@@ -32,6 +32,33 @@ in-flight work.
 Safety tags preserve every pre-convergence `main`; the convergence receipt
 records the final local workspace landing.
 
+## 2026-09-04 canonical-corpus correction
+
+The depth reader is no longer an Atlas-plus-intake merge that the root reads
+through a separate adapter. Backend commit `1b085b19d` introduces one internal
+`LifeCorpusSnapshot` seam: Experience Graph, Atlas, and intake are normalized,
+deduplicated by stable record identity, filtered by the requested lens, and
+sorted by a single `(sort_at, record_id)` order. Both `GET /v1/life` and
+`GET /v1/life/record` derive from that snapshot. The depth cursor is version 2
+and carries lens, snapshot timestamp, sort boundary, and record identity, so a
+later page cannot reshuffle records or cross lenses. Intake readers expose raw
+continuation keys and the `read_all` wrapper drains past quarantined rows.
+
+The root now reports `visible_entry_count` separately from the full
+`total_entry_count`; a compact eight-row preview no longer claims that eight is
+the whole corpus. A shared Occasion also no longer silently changes a private
+Plan's audience. The workspace OpenAPI snapshots and generated mobile types
+were regenerated in `cc2727b` / `b5d3cb4cc`, with the follow-up preserving the
+existing booking-field contract in `4b4d64b58`.
+
+On mobile, `b4e78795b` replaces the unbounded ScrollView reader with a
+virtualized list that restores by `entry_id`, fetching pages until the anchor
+is present and using a pixel fallback only when the row has disappeared.
+Position keys are now per-account/per-lens, and the full Life page is removed
+from the Home query persister. Artifact destinations carry the originating
+Life lens, and `3110d43c2` makes the Life root's Search and Everything controls
+real, accessible actions rather than inert icons.
+
 ## Landed checkpoints
 
 ### Backend (`Travel Agent`)
@@ -80,8 +107,9 @@ The complete-record door now lands on a dedicated `/you/life-record` reader
 contract, supports Time/Places cursor pagination, shows factual date/place/media
 context, preserves canonical owner destinations, and keeps loading, partial,
 failure, empty, and “read more” states explicit. The backend page is additive
-and reads the existing owner-owned Atlas timeline (`fc361aeed`); it is not a
-second Life archive. The follow-up merge (`5b0e1a644`, with coverage in
+and reads the canonical `LifeCorpusSnapshot` over the existing owner
+projections (`1b085b19d`); it is not a second Life archive. The earlier
+Atlas-plus-intake merge (`5b0e1a644`, with coverage in
 `b562eb3b4`) now combines Atlas rows, confirmed intake anchors, and retained
 source-only submissions in one globally ordered cursor. The cursor carries both
 the last consumed Atlas row and intake sort key, so buffered Atlas rows are not
@@ -105,9 +133,11 @@ look-ahead row and return an explicit continuation bit (`1c22ce1fc`), so
 partial authority is no longer inferred from an exact 100-row response. The
 mobile reader carries its originating Life lens into dossier links and uses
 history with a lens-aware fallback when leaving a retained-source record
-(`ebbd4de7a`). It now persists an account-partitioned lens/offset/anchor and
-the last loaded cursor, restores that offset after the bounded query cache
-hydrates, and clears the position at account teardown (`ec09c0f41`).
+(`ebbd4de7a`). The follow-up reader (`b4e78795b`) uses a virtualized list and
+restores by stable entry identity, fetching until the anchor is available and
+falling back to pixels only when the row is gone. Position storage is now
+account- and lens-partitioned, the unbounded Life query is excluded from the
+Home persister, and account teardown still clears all position keys.
 
 ### Shared workspace
 
@@ -120,7 +150,9 @@ hydrates, and clears the position at account teardown (`ec09c0f41`).
 
 ## Validation evidence
 
-- Consolidated backend artifact/root/Life/API focused suite: 78 tests passed.
+- Consolidated backend artifact/root/Life/API focused suite: 81 tests passed,
+  including canonical corpus ordering, deduplication, Places filtering, and
+  snapshot-stable cursor behavior.
 - Backend semantic-facade and prior-trip custody suite: 34 tests passed.
 - Frontend canonical Places projection parity: 13 tests passed.
 - Frontend `tsc --noEmit`: passed.
@@ -145,17 +177,10 @@ hydrates, and clears the position at account teardown (`ec09c0f41`).
 
 ## Deliberately deferred
 
-1. Dossier-grade destinations for every Life object family, exact refinding
-   continuation into those destinations, and scroll-position restoration. The
-   current depth cursor now uses owner-level `(updated_at, id)` tie-breaks and
-   exact counts when a bounded page is exhausted; repeated reads can therefore
-   progress beyond the 100-row owner batch. The internal unified owner-level
-   intake page service is now in place (`bff449427`), and its readers expose a
-   database-backed continuation bit (`1c22ce1fc`). Dossier destinations and
-   lens-aware return navigation are landed (`28edd6654`, `ebbd4de7a`). The
-   remaining work is to validate scroll restoration on a real cold-launch
-   deep-link path and cover dossier destinations for any new Life object
-   family without changing the public shape.
+1. Dossier-grade destinations for every Life object family and a real-device
+   cold-launch/deep-link rehearsal of the identity-based scroll restoration.
+   The canonical cursor and mobile restore implementation are landed; device
+   validation and new object-family destinations remain open.
 2. Full Places/People/Threads lens projection from production data.
 3. Public rollout, analytics-driven promotion, and removal of legacy Atlas.
 4. Together/multiplayer write paths and generalized Occasion architecture.
