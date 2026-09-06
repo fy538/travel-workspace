@@ -1045,6 +1045,9 @@ tests; do not defer the live engine until content composition is finished.
   readback/repair gates, and fail-closed release evidence. This strengthens the
   shadow and contract layer only; no real-account/device rehearsal, durable
   watch, notification release, or consequence-family activation is claimed.
+  The corresponding mobile root-consequence and Places state suites pass **35
+  tests**, covering account-bound grants, verified readback/repair messaging,
+  and cross-root invalidation without changing Chat or Life internals.
 - **I3 / writer-authority inventory — audited and decision-bound:**
   workspace document `i3-writer-authority-audit-2026-09-05.md` maps explicit
   Chat retention, Intake custody, catalog-edit inference, Discover behavioral
