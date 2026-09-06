@@ -796,7 +796,7 @@ document's creation.
 | --- | --- | --- |
 | I0 | Implemented/integrated at inventory level; live-engine path matrix and 2026-09-06 decision-alignment audit recorded | Keep D1 object-less intent ownership and family-specific D6 watch contracts gated; consume settled D2–D5 policy through I1–I3 adapters |
 | I1 | Integrated for request-clock, consequence fan-out, dependency matrix, capture return, authority-safe owner-read coalescing, and Places continuity | Trace remaining owner identity plus condition signals; agree Life handles/change events and bounded reevaluation inputs |
-| I2 | Owner-read readiness, fast root serving, single assembly seam, bounded reads, late-work limits, content-free serving measurement, deterministic trigger identity, durable workflow handoff, a dark lease/readback adapter, deployment envelope, and an injected canonical executor seam are implemented; worker activation remains gated | Name the concrete production/readback/context owners and bind them to a controlled cohort; only then consider registering a dark Arq job and measuring signal-to-judgment budgets |
+| I2 | Owner-read readiness, fast root serving, single assembly seam, bounded reads, late-work limits, content-free serving measurement, deterministic trigger identity, durable workflow handoff, a dark lease/readback adapter, deployment envelope, and an injected canonical executor/context seam are implemented; worker activation remains gated | Bind the approved producer, canonical readback, and clock-preserving Places context adapter to a controlled cohort with cost/latency evidence; only then consider registering a dark Arq job and measuring signal-to-judgment budgets |
 | I3 | Capture/custody and format boundary audited; supported/rejected cases are locally tested; writer-authority inventory is recorded; owner decisions and formats remain partial | Complete native custody evidence, resolve inferred-writer authority, draft precise owner ADR, then implement approved intent/social commands |
 | I4 | Renderer promotion boundary, result-set identity, source-backed revision, native returns, and stale-source treatment are implemented locally; semantic promotion remains dark | Complete real-data Home→Places→Focus/Path acceptance and decide whether personalized freshness needs a separate source vector |
 | I5 | Graph/consequence foundations present; movement signal→judgment shadow path is locally evidenced; lightweight experience remains incomplete | Complete adaptation and shared consequences over I1–I3, preserving purpose, plural participation, and meaningful stop/wait behavior |
@@ -1255,6 +1255,10 @@ extend this same truthful gate, not add a speculative route service or worker.
   continuity seam and executor contract have 17 focused tests passing, and the
   adapter is exported for injection only. It is not registered with Arq, does
   not choose a provider, and does not create a context or persistence owner.
+  The Places context owner now has a clock-preserving adapter
+  (`travel-agent` `64230fb0e`): a canonical `places_context` handle is
+  revalidated against the work item's represented clock before it enters
+  continuity. The governed Opening loader remains separate.
 
 - **Repository-wide offline receipt (2026-09-06):** after the worker cleanup,
   authority rebaseline, deployment-envelope slice, and canonical-executor /

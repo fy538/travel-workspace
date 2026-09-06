@@ -127,8 +127,10 @@ controlled cohort with real cost/latency evidence.
 The production/readback owner is already concrete: the existing
 `root_source_contributions` store and its `get_current_source_contribution` /
 `complete_source_contribution_attempt_with_production` gateways. The context
-owner is intentionally not silently inferred: the current Places handle helper
-does not accept the work item's represented clock, while the current-context
-loader returns a governed Opening result rather than a `PlacesContext`. That
-clock-preserving adapter is the remaining owner decision before controlled
-registration.
+owner is now clock-preserving as well: `travel-agent` `64230fb0e` extends the
+Places handle reader with an explicit `now` and exposes
+`resolve_canonical_places_context`, which accepts only a `places_context` ref,
+revalidates the handle, and returns the existing `PlacesContext`. The current-
+context loader remains a different Opening-result owner and is not substituted.
+Controlled registration still requires an explicit injected resolver/producer
+binding and real cost/latency evidence.
