@@ -1287,6 +1287,16 @@ extend this same truthful gate, not add a speculative route service or worker.
   certify Home→Places→Focus/Path recomposition, native device behavior, or a
   provider-backed Source cohort. Those remain separate gates.
 
+- **I4 / real Home→Places runtime continuity (2026-09-06):** the existing
+  real-Postgres Save-owner integration now reads the same canonical Save through
+  the governed `/api/root-projections/v2/places/runtime` envelope in addition
+  to the Places owner reader and Home v2 projection. The test asserts the
+  `places-root-runtime.v1` wrapper, the nested v2 semantic identity, and the
+  workspace-feed join; it passes **1 real-Postgres test**. This proves the
+  owner-backed Home→Places runtime seam for a concrete Save, but intentionally
+  does not claim Focus/Path recomposition, personalized freshness vectors, or
+  native/device acceptance.
+
 - **Cross-repository contract revalidation (2026-09-06):** workspace
   `make contract-check` passed against the current committed snapshot: 578
   backend paths / 640 operations, 443 mobile-projected paths / 488 operations,

@@ -86,6 +86,10 @@ experience rather than create a second feed.
 - Backend OpenAPI, the committed app projection, and generated mobile types
   agree on the 35-kind Home transport union; this is a contract receipt only,
   not a renderer-promotion receipt.
+- The real-Postgres Save-owner integration reads the same canonical Save through
+  the governed Places runtime envelope after Home projection and Places owner
+  reads; one focused integration test passes. This is owner-backed runtime
+  continuity evidence, not Focus/Path recomposition or native/device evidence.
 - `utils/rootProjectionV2Conformance.ts` deliberately treats an unregistered
   Home kind as a contract error, and the Places screen filters through its
   explicit registry.
