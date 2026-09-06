@@ -1228,7 +1228,7 @@ extend this same truthful gate, not add a speculative route service or worker.
   executor proves readback for produced or reused output. Invalid work,
   expiry, provider failure, readback failure, and lease loss are distinct
   content-free outcomes; generated prose and source claims never enter the
-  workflow result. The focused worker/telemetry suites pass (21 tests). The
+  workflow result. The focused worker/telemetry suites pass (22 tests). The
   adapter is not registered with Arq, is not called by ordinary root GETs, and
   has no provider implementation of its own.
 
