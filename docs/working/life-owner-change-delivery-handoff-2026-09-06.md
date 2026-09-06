@@ -35,6 +35,9 @@ The implementation lives across `travel-agent` commits `1bb03e1c7`,
 `77d4a8474`, `073d33b9d`, `420176821`, and `a669541b2`. The final two follow-up
 packages make semantic representation withdrawal/restore explicit and add the
 versioned content-free source-owner lifecycle envelope.
+The pure Occasion audience contract is now also landed in
+`travel-agent` commit `6d4365a83`; it does not yet authorize an Occasion
+producer or projector.
 
 ## What landed
 
@@ -158,11 +161,12 @@ no production activation, reader cutover, or device test is claimed.
 1. Run the existing worker against a fixture retained-source event and verify
    the exact shadow row, stale replay, withdrawal, and explicit restore
    transitions end to end.
-2. Agree and land the graph owner event contract for the next eligible family
-   (Plan/Occasion/Outcome). Occasion is the leading candidate because it has
-   revision and audience evidence, but all membership/invitation/lifecycle
-   mutations must feed one viewer-scoped producer before implementation.
-3. Add that family's owner-specific projector and PostgreSQL transaction tests.
+2. Wire the landed Occasion digest and viewer-union helpers into a narrow
+   canonical reader and all membership/lifecycle mutation transactions.
+   Occasion is the leading candidate because it has revision and audience
+   evidence, but the producer must cover every path before any projector is
+   enabled.
+3. Add the Occasion owner-specific projector and PostgreSQL transaction tests.
 4. Expand owner coverage one family at a time by updating the owner matrix and
    adding owner-specific authority/audience tests. Do not mark Life complete or
    cut over readers after the first adapter.
