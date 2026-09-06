@@ -167,19 +167,22 @@ bridge/intake tests. These checks prove the local transaction/schema path only;
 no production activation, reader cutover, or device test is claimed.
 
 The Occasion contract/producer package adds 48 command and helper tests, and
-the combined Life/Occasion focused suite passes 81 tests. The producer package
-was committed as `8558d7110`; its focused format/lint checks pass. These
-numbers prove the transaction wiring and pure contract only; no projector,
-serving read, or production activation is claimed.
+the combined Life/Occasion focused suite passes 81 tests. Two additional
+PostgreSQL tests now cover membership fan-out and account-erasure handoff; the
+local producer suite passes 2/2. The producer package was committed as
+`8558d7110`, account-erasure handling as `a3b0edc84` and `73baf2be2`, and the
+PostgreSQL proof as `cf2988abd`; focused format/lint checks pass. These numbers
+prove the transaction wiring and pure contract only; no projector, serving
+read, or production activation is claimed.
 
 ## Next checkpoint
 
 1. Run the existing worker against a fixture retained-source event and verify
    the exact shadow row, stale replay, withdrawal, and explicit restore
    transitions end to end.
-2. Add PostgreSQL transaction tests for every covered Occasion mutation path
-   (create, accept, leave, transfer, lifecycle, reconciliation, handoff
-   acceptance, and account erasure).
+2. Extend PostgreSQL transaction coverage to lifecycle, organizer transfer,
+   reconciliation, and handoff acceptance (membership fan-out and account
+   erasure are now covered).
 3. Add the Occasion owner-specific projector and current-authority reader;
    exercise member departure, role transfer, stale replay, withdrawal, and
    restoration without enabling serving cutover.
