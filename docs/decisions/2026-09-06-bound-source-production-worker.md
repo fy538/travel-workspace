@@ -132,9 +132,9 @@ execution context are bound while the canonical executor runs, allowing these
 measurements to join the existing durable LLM accounting ledger. Dollar cost
 remains owned by that ledger; neither cost nor measurements are copied into a
 workflow receipt, generated expression, or source payload. The focused worker,
-canonical-executor, continuity, and telemetry receipt is 40 passed. This is
-evidence for the gate, not approval to register the job or expose a controlled
-cohort.
+canonical-executor, continuity, and telemetry receipt is 41 passed, including
+workflow-context restoration and queue-delay coverage. This is evidence for
+the gate, not approval to register the job or expose a controlled cohort.
 
 The production/readback owner is already concrete: the existing
 `root_source_contributions` store and its `get_current_source_contribution` /
