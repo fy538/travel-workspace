@@ -205,7 +205,7 @@ implied by that count.
    cutover. Member departure, stale replay, and withdrawal are now covered by
    the local Postgres proof. The projector is registered in the canonical
    event-subscriber bundle but remains shadow-only.
-4. Expand owner coverage one family at a time by updating the owner matrix and
+3. Expand owner coverage one family at a time by updating the owner matrix and
    adding owner-specific authority/audience tests. Do not mark Life complete or
    cut over readers after the first adapter.
 
