@@ -305,8 +305,10 @@ transaction as a Life write/withdrawal, prevents first-insert-after-deletion
 publication, requires the owner-specific handler to claim an event before the
 outbox acknowledges it, and refuses acknowledgement after lease expiry. The
 resolved integration worktree passes **53 focused tests (including 9
-PostgreSQL) plus Ruff**. It is an integration candidate, not yet a claim that
-this checkout has cut over or that unsupported owner families are served.
+PostgreSQL) plus Ruff**, and the combined Experience Graph/Life/account
+regression run passes **186 tests**. It is an integration candidate, not yet a
+claim that this checkout has cut over or that unsupported owner families are
+served.
 
 7. Complete for direct Occasion join/leave and account erasure: encounter and
    Commitment audience-repair events now cover direct membership plus account
