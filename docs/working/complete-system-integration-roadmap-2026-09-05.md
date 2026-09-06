@@ -1268,8 +1268,9 @@ extend this same truthful gate, not add a speculative route service or worker.
   tests in 7m05s. The run emitted only the existing Postgres-leak baseline
   warnings; no new failure was introduced. Native/device and live Postgres
   evidence remain intentionally out of scope for this checkpoint. The focused
-  root-projection receipt is now **327 passed** (up from 319), and the worker /
-  continuity wiring receipt is 15 passed.
+  root-projection receipt is now **328 passed** (up from 319); adding the Places
+  context-clock suite yields **348 passed** across the combined owner-bound
+  check. The worker / continuity wiring receipt is 15 passed.
 
 - **I0 / decision alignment — documented:** the 2026-09-06 audit above
   reconciles the queue against accepted Contribution/Use Grant, four-root,
