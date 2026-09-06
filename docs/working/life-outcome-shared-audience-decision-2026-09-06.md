@@ -136,6 +136,31 @@ An old event may not resurrect a row after a newer revision or withdrawal. An
 explicit, authoritative reauthorization may restore a withdrawn row at the
 current revision; replay alone may not.
 
+### Two revision dimensions still need an index decision
+
+Outcome content has an integer `personal_outcomes.revision`, but audience can
+change without that integer changing: an Occasion member can leave, or a
+Commitment participant can be removed. The current Life index CAS stores one
+`owner_revision` token, so an Outcome producer must not pretend that the
+integer alone protects audience changes.
+
+Before wiring the producer, Integration and Life must choose one of these
+explicit representations:
+
+- make the derived Life CAS token a composite of the integer owner revision and
+  the opaque `audience_revision`, while retaining the canonical integer in the
+  event payload; or
+- extend the index read/write contract so `owner_revision` and
+  `audience_revision` are compared independently (the existing
+  `dependency_fingerprint` column is a possible storage seam, but its current
+  writer does not participate in CAS).
+
+**Recommendation:** keep the canonical Outcome revision integer and add an
+explicit audience/dependency CAS dimension rather than hiding a composite
+token inside the owner revision. This preserves the owner matrix's integer
+meaning and makes membership-driven withdrawals observable. Until that writer
+contract is accepted and tested, `supports_delta_delivery` must remain false.
+
 ### Owner departure is not silent ownership transfer
 
 Leaving an Occasion removes that person from the effective reader audience and
@@ -218,4 +243,3 @@ Related sequencing records:
 - [Complete Life system roadmap](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md)
 - [Contribution and Consequence Contract](../systems/contribution-and-consequence.md)
 - [Contribution use grants decision](../decisions/2026-08-29-adopt-contribution-use-grants.md)
-

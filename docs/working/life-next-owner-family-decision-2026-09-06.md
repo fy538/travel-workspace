@@ -28,7 +28,9 @@ Occasion-scoped encounter Outcomes, and participant-scoped Commitment Outcomes;
 it provides deterministic audience revisions, before/after viewer unions, and
 withdrawal envelopes for erasure. The expanded focused suite passes 73 tests.
 This package deliberately does not register producers, change the Together
-reader, or enable Life serving.
+reader, or enable Life serving. The remaining gate is a separate CAS dimension
+for audience changes that do not increment the Outcome's integer content
+revision; the current Life index writer compares only one owner token.
 
 ## Recommendation
 

@@ -224,8 +224,10 @@ shared arrangement material, or a serving cutover.
    land in `travel-agent` commits `134bb021b`, `4ef82cce8`, and `9aa75ff3d`;
    the focused suite passes 73 tests. The next package must still wire canonical
    membership/erasure fan-out and a shadow producer without treating these
-   helpers as proof that social visibility is solved. Do not mark Life
-   complete or cut over readers after the first adapters.
+   helpers as proof that social visibility is solved. The producer is also
+   gated on resolving the separate Outcome content-revision versus
+   audience-revision CAS dimension described in the proposal. Do not mark
+   Life complete or cut over readers after the first adapters.
 
 The canonical roadmap and execution status remain the forward register; this
 handoff is the package receipt and cross-lane interface, not a competing plan.
