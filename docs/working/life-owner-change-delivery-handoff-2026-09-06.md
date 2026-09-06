@@ -220,12 +220,12 @@ shared arrangement material, or a serving cutover.
 3. Keep Outcome deferred until shared audience/revocation semantics are
    explicit. The review boundary is the [Outcome shared-audience and
    revocation proposal](life-outcome-shared-audience-decision-2026-09-06.md);
-   the pure audience resolver and 68-test fixture package now land in
-   `travel-agent` commit `134bb021b`. The next package must still add the
-   owner-specific event envelope, membership/erasure fan-out tests, and a
-   shadow producer without treating the resolver as proof that social
-   visibility is solved. Do not mark Life complete or cut over readers after
-   the first adapters.
+   the pure audience resolver and identifier-only event-envelope package now
+   land in `travel-agent` commits `134bb021b` and `4ef82cce8`; the focused
+   suite passes 73 tests. The next package must still wire canonical
+   membership/erasure fan-out and a shadow producer without treating these
+   helpers as proof that social visibility is solved. Do not mark Life
+   complete or cut over readers after the first adapters.
 
 The canonical roadmap and execution status remain the forward register; this
 handoff is the package receipt and cross-lane interface, not a competing plan.
