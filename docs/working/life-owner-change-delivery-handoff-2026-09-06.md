@@ -191,17 +191,20 @@ derived-row revision, while explicit restoration remains separate from ordinary
 upsert. The retained-source adapter uses the same readback seam, so this fix
 does not make Occasion a special-case writer. The follow-up Postgres proof for
 role transfer, departure, and explicit re-acceptance restoration is committed
-as `fb125bdc0`.
+as `fb125bdc0`. The retained-source worker-path proof and UTC timestamp
+canonicalization are committed as `39d8c6692`.
 
-The final focused Life/Occasion regression run passes 53 tests, including the
-Postgres producer and projector proofs. No full-repository or device test is
-implied by that count.
+The final focused Life/Occasion regression run passes 56 tests, including the
+Postgres producer/projector proofs and the worker repair path. No
+full-repository or device test is implied by that count.
 
 ## Next checkpoint
 
-1. Run the existing worker against a fixture retained-source event and verify
-   the exact shadow row, stale replay, withdrawal, and explicit restore
-   transitions end to end.
+1. Complete: the existing worker now has a PostgreSQL fixture proving the
+   retained-source shadow row, stale replay, withdrawal, and explicit restore
+   transitions end to end. Timestamp revisions are canonicalized to UTC at
+   the projector boundary so PostgreSQL session timezones cannot create false
+   stale events.
 2. Complete the landed Occasion projector's Postgres current-authority proof
    for member departure, stale replay, withdrawal, role transfer, and explicit
    restoration without enabling serving cutover. The projector is registered
