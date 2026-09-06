@@ -290,6 +290,13 @@ This does not solve the separate first-insert-after-deletion interleaving; that
 case requires an owner-side publication fence and remains a blocking race
 decision before historical fan-out or serving cutover.
 
+The delivery bridge also now requires at least one registered
+`life_projection.changed` consumer before acknowledging a durable event
+(`travel-agent` commit `28a9b9507`). A process with no Life subscribers now
+defers the outbox event for retry instead of reporting a false publication;
+unsupported owner families remain capability-matrix gaps rather than being
+treated as handled by an unrelated subscriber.
+
 7. Complete for direct Occasion join/leave and account erasure: encounter and
    Commitment audience-repair events now cover direct membership plus account
    deletion (`fd66f9f1f`, `329060a88`, `afb13c6fa`). No current reconciliation
