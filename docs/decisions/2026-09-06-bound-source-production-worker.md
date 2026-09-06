@@ -97,7 +97,10 @@ existing correction/invalidation paths remain authoritative.
 ## Roadmap consequence
 
 I2's “production worker decision” is now owner-bound but implementation-gated.
-The next implementation package is the small work-item/trigger contract plus
-one fake-worker test; only after that should a job function be registered. The
-current roadmap therefore remains partial: no queue, scheduler, deployment
-flag, or production cohort is activated by this document.
+The work-item/trigger contract now includes deterministic identity construction
+(`travel-agent` commit `1ccd27a02`); equivalent requests deduplicate without
+including source text or generated prose. The next implementation package is
+the durable enqueue/outbox handoff plus one fake-worker lease/expiry test. Only
+after that should a job function be registered. The current roadmap therefore
+remains partial: no queue, scheduler, deployment flag, or production cohort is
+activated by this document.

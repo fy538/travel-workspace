@@ -796,7 +796,7 @@ document's creation.
 | --- | --- | --- |
 | I0 | Implemented/integrated at inventory level; live-engine path matrix and 2026-09-06 decision-alignment audit recorded | Keep D1 object-less intent ownership and family-specific D6 watch contracts gated; consume settled D2–D5 policy through I1–I3 adapters |
 | I1 | Integrated for request-clock, consequence fan-out, dependency matrix, capture return, authority-safe owner-read coalescing, and Places continuity | Trace remaining owner identity plus condition signals; agree Life handles/change events and bounded reevaluation inputs |
-| I2 | Owner-read readiness, fast root serving, single assembly seam, bounded reads, late-work limits, and content-free serving measurement are implemented; worker owner is now bound but activation remains gated | Use the measurement to close signal-to-judgment budgets; add/validate the named trigger path before registering any production job |
+| I2 | Owner-read readiness, fast root serving, single assembly seam, bounded reads, late-work limits, content-free serving measurement, and deterministic trigger identity are implemented; worker owner is now bound but activation remains gated | Use the measurement to close signal-to-judgment budgets; validate durable enqueue/outbox handoff and fake-worker lease behavior before registering any production job |
 | I3 | Capture/custody and format boundary audited; supported/rejected cases are locally tested; writer-authority inventory is recorded; owner decisions and formats remain partial | Complete native custody evidence, resolve inferred-writer authority, draft precise owner ADR, then implement approved intent/social commands |
 | I4 | Renderer promotion boundary, result-set identity, source-backed revision, native returns, and stale-source treatment are implemented locally; semantic promotion remains dark | Complete real-data Home→Places→Focus/Path acceptance and decide whether personalized freshness needs a separate source vector |
 | I5 | Graph/consequence foundations present; movement signal→judgment shadow path is locally evidenced; lightweight experience remains incomplete | Complete adaptation and shared consequences over I1–I3, preserving purpose, plural participation, and meaningful stop/wait behavior |
@@ -1200,6 +1200,15 @@ extend this same truthful gate, not add a speculative route service or worker.
   and the focused
   composition/telemetry suites pass (7 tests); this is observation only and
   does not register a worker, activate production, or change root payloads.
+
+- **I2 / deterministic trigger identity — implemented and locally tested:**
+  `travel-agent` commit `1ccd27a02` adds a builder for the content-free Source
+  work item. Equivalent authorized warm/signal requests share one stable work
+  and idempotency identity even when their expiry is refreshed; a changed
+  represented clock, audience, policy/compiler version, root set, or canonical
+  trigger/context reference produces a different identity. The focused source
+  work suite passes (4 tests), with no queue, worker registration, or provider
+  call added.
 
 - **I0 / decision alignment — documented:** the 2026-09-06 audit above
   reconciles the queue against accepted Contribution/Use Grant, four-root,
