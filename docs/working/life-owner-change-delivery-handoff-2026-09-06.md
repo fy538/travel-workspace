@@ -226,8 +226,9 @@ shared arrangement material, or a serving cutover.
    membership/erasure fan-out and a shadow producer without treating these
    helpers as proof that social visibility is solved. The producer is also
    gated on resolving the separate Outcome content-revision versus
-   audience-revision CAS dimension described in the proposal. Do not mark
-   Life complete or cut over readers after the first adapters.
+   audience-revision CAS dimension described in the [CAS decision
+   proposal](life-outcome-audience-cas-decision-proposal-2026-09-06.md). Do not
+   mark Life complete or cut over readers after the first adapters.
 
 The canonical roadmap and execution status remain the forward register; this
 handoff is the package receipt and cross-lane interface, not a competing plan.

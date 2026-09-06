@@ -812,5 +812,7 @@ before adding an Outcome producer. The pure resolver and content-free
 event-envelope seam now land in `travel-agent` commits `134bb021b`, `4ef82cce8`,
 and `9aa75ff3d`; canonical event fan-out, erasure propagation, the separate
 audience/content CAS dimension, shadow projection, and owner-matrix evidence
-remain. Keep serving cutover and unsupported owners gated until whole-corpus
-coverage, repair, authorization, and destination evidence are complete.
+remain. Review the [Outcome audience CAS proposal](life-outcome-audience-cas-decision-proposal-2026-09-06.md)
+before changing the index writer. Keep serving cutover and unsupported owners
+gated until whole-corpus coverage, repair, authorization, and destination
+evidence are complete.
