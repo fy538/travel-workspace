@@ -123,3 +123,12 @@ provider, context repository, queue registration, or production cohort is
 activated by this document. Before an Arq job can be registered, the product
 must name the concrete context/readback owners and bind this adapter to a
 controlled cohort with real cost/latency evidence.
+
+The production/readback owner is already concrete: the existing
+`root_source_contributions` store and its `get_current_source_contribution` /
+`complete_source_contribution_attempt_with_production` gateways. The context
+owner is intentionally not silently inferred: the current Places handle helper
+does not accept the work item's represented clock, while the current-context
+loader returns a governed Opening result rather than a `PlacesContext`. That
+clock-preserving adapter is the remaining owner decision before controlled
+registration.
