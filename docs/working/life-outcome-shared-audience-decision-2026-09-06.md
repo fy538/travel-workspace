@@ -44,11 +44,12 @@ The proposed canonical rules are:
    future addressed handoff or relationship grant is a different owner and
    delivery contract, not an Outcome shortcut.
 
-This deliberately narrows the current reader's implicit behavior. The current
-Together query can include a shared Commitment Outcome for every member of a
-linked Occasion. That may be a valid future explicit `occasion` audience, but
-it must not be treated as the canonical rule without an authored grant and a
-separate decision.
+This deliberately narrows the current reader's implicit behavior. The
+viewer-relative Together predicate now keeps linked Commitment Outcomes with
+named participants (`68e72d3f7`), while a Life projector still re-reads the
+canonical participant set rather than trusting that surface query. A future
+Occasion-wide Commitment audience would require an authored grant and a
+separate decision; it must not be inferred from the link alone.
 
 ## What the repository establishes today
 
