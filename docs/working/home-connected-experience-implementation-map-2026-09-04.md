@@ -3,13 +3,105 @@ doc_type: working
 status: active
 owner: founder / Home engineering
 created: 2026-09-04
-last_verified: 2026-09-04
+last_verified: 2026-09-06
 expires: 2026-10-04
 why_new: Converts the connected Home journey plan into an evidence-linked code map and production-feasibility work package without authorizing a repository-wide rewrite or a second owner system.
 supersedes: []
 ---
 
 # Home — connected-experience implementation map
+
+## September 6 execution rebaseline
+
+This is the **Home task's Home/Places consumer plan**, subordinate to the
+[integration coordination register](complete-system-integration-roadmap-2026-09-05.md#2-current-coordination-register--september-6)
+for shared contracts. Keep J1–J4 and packages A–E; do not create another root
+program. The September 4 code-map rows below are historical observations where
+this rebaseline supersedes them.
+
+| Existing package | Landed since the original map | Remaining delivery |
+| --- | --- | --- |
+| A/B destination and expression mapping | Exact Life/source routes and Home owner-routing fixes; prose anatomy now renders; expanded Home union is typed | Map each current visual family to a real producer/read, supported renderer and exact destination; added kinds remain dark until complete |
+| C return and change behavior | Home return tokens across owner routes; Places field/map/detail result identity and catalog revision; current/updated/unknown freshness helper | Scope-correct real-data field/search/map/depth/return and changed-result coverage; private freshness is not implied by catalog revisions |
+| D receiving owners | Life canonical tab/readers, Capture useful-first facts and retry repair, scoped entity lifecycle fixes | Consume exact refs; [loose intent](retained-intention-before-plan-decision-proposal-2026-09-06.md) and concrete arrangement/shared commands remain dependency-bound |
+| E economics | Ordinary root serving excludes optional production; bounded reads and measured dark worker/executor supplied by Integration | Useful-result quality, controlled provider cost/latency and promotion; Home must not build another generator |
+
+**Next package:** select a varied group of already owner-backed value treatments
+and complete their producer→renderer→destination→return chains. Cover practical
+preparation, complete-on-view understanding, human contribution and ordinary
+possibility across J1–J4. Unavailable owners remain explicit; a card's absence
+does not by itself justify a new semantic kind or product rule.
+
+Use the existing [artifact-led design handoff](claude-design-home-artifact-led-visual-value-handoff-2026-09-05.md)
+for visual work. Keep one delivery matrix in this file using:
+
+| Value family | Producing/read owner and supported scope | Production mode | Payload/renderer | Exact destination and optional action | Revision/expiry/repair | Evidence and missing part |
+| --- | --- | --- | --- | --- | --- | --- |
+| Ticket / retained confirmation | Existing Source or booking-evidence owner | Read; no provider execution | Shared pass/chip candidate, native coverage to verify | Exact evidence + supported external continuation | Historical versus current provider fact | [Retirement adapter](booking-retained-evidence-adapter-brief-2026-09-05.md); receiving mapping remains |
+| Human contribution | Existing source/handoff authority only where executable | Retrieve; no mandatory AI enrichment | Attribution-preserving treatment | Original/place, optional explicit response | Audience, withdrawal, expiry | Addressed read seams exist; general casual-sharing adapters are not certified |
+| Comparison / explanation | Admitted world/source result | Reuse or explicitly bounded production | Supported anatomy before adding a kind | Exact reading/place context | Source and use eligibility | Prose rendering landed; richer families need producer/renderer pairing |
+| Prepared possibility | Existing authorized context and domain refs | Deterministic facts plus warranted bounded assistance | Candidate form, not a new owner | Inspect now; Keep/adopt only with an available command | Condition and target revisions | Loose-intent persistence and complete live reevaluation remain partial |
+
+The matrix is an implementation inventory, not proof these four treatments are
+all served. Reuse existing tests and generated contracts; current work uses
+local tests without requiring a new app/device session. Integration owns shared
+production, signals and cross-root contract changes; this lane owns Home and
+Places consumer composition, field/map/search/depth continuity and value review.
+
+### Useful preparation receiving requirements
+
+These are receiving expectations for packages A–E, not newly shipped kinds or
+permission to activate production. [The three concrete experiences](situated-value-decision-matrix-2026-09-06.md#12-useful-preparation-three-concrete-receiving-experiences)
+exercise explanation, ordinary possibility and addressed social preparation.
+
+| Result state | What Home delivers | What must not happen |
+| --- | --- | --- |
+| Ready and eligible | The substantive comparison, concrete offer or bounded assessment, with exact sources and optional continuation | A label or teaser that makes the person ask again for the actual value |
+| Accepted preparation still running | Useful existing material, such as the original friend note; explicit progress belongs where the person is relying on requested work | Speculative-job spinners, an implied completed assessment, or an internal work queue replacing the Home portfolio |
+| Unsupported, failed or expired | Remaining valid material with the consequential limitation; withdraw invalid fit claims and report failure for work the person entrusted to Vesper | Asking the friend to become a researcher, silently dropping an accepted task, or portraying the fallback as equivalent completed service |
+
+On completion, revalidate source/use/audience scope and consequential facts
+before admitting the result. Preserve scroll, selected identity and touch
+targets; define stable in-session arrival through existing delivery/invalidation
+seams, or receive on a later appropriate read. This is a design requirement,
+not certification of an automatic in-session update path. A completed refresh
+is not necessarily a new card or push; changed validity and changed prominence
+are separate decisions. Revoked or obsolete claims must not remain visible
+merely to preserve layout continuity.
+
+Ordinary GETs, tab focus and app launch do not enqueue production. The
+[accepted worker decision](../decisions/2026-09-06-bound-source-production-worker.md)
+owns permitted triggers and activation gates. Integration supplies supported
+production/delivery paths; Home consumes them without another generator.
+For each specimen record the real source, supported producer/read, exact
+renderer and destination, trigger if new work is needed, and readiness gap.
+Measure total checking and repair effort across recipients and organizers,
+alongside latency, reuse and cost. Written specimens and fictional supply are
+design evidence, not runtime or real-world availability receipts.
+
+### September 6 portfolio checkpoint — owner-backed value is connected
+
+The first consumer delivery pass is now verified against the current code, not
+only against an envelope fixture. One bounded Home read can retain all four
+families below while keeping the existing owner, payload, and continuation
+seams. The portfolio test intentionally uses existing adapters; it does not
+invent a Home generator or a new durable store.
+
+| Value family | Producing owner → supported scope | Production mode | Payload / renderer | Exact destination / action | Revision / expiry / repair | Evidence and current boundary |
+| --- | --- | --- | --- | --- | --- | --- |
+| Practical preparation / retained confirmation | Plan proposal and legacy Plan/Trip readers → an open reviewed change or current/upcoming/returned Plan context | Deterministic owner read; no booking/provider execution | `motion_loose_end_row`, `motion_all_plans_door`, or `horizon_aperture_row`; existing Home v2 link renderer | Proposal continues to Chat with the proposal/trip refs; current/upcoming/returned context opens Life/Places through the typed destination | Proposal deadline or bounded re-read; Trip ref uses `updated_at` as revision; stale/unknown is re-read by the owner | `tests/root_projection/test_home_portfolio.py::test_owner_backed_home_portfolio_keeps_four_value_families_connected`, existing plan/trip adapter tests. Retained-intention ownership and live reevaluation remain unadopted. |
+| Explanation / comparison with new substance | Places contextual feed → admitted `ANGLE` with real preview text and a canonical dossier/place ref | Reuse of an existing source-backed read; no bespoke Home generation | `horizon_editorial_passage` with `RootRead.voice`; native Home v2 read renderer; full spatial depth remains Places-owned | Typed `places.open_entity` opens the selected dossier/entity with context; no prompt for more reflection | Six-hour Home expiry plus source/card read requirements; omit on missing preview or failed owner read; recompose when Places revision changes | Same portfolio test plus `test_contextual_places_adapter_delivers_substance_without_copying_the_feed`; app renderer/navigation tests. Richer comparison families remain dark until they have both producer and renderer. |
+| Attributed human contribution | Addressed Place handoff authority → recipient-only note with sender, scope, expiry, and canonical venue ref | Retrieve authorized source; no mandatory AI paraphrase or social telemetry | `people_note_door` with the original message preserved; native Home v2 read renderer | `places.open_entity` opens the exact venue and handoff/source refs; casual shared browse remains in Places friends scope | Handoff revision, audience, status, expiry, and withdrawal are read at source; wrong viewer and expired handoff are omitted | Same portfolio test plus `test_addressed_place_note_preserves_human_copy_and_recipient_authority`; app `homeRootV2Renderer` test proves the attributed copy reaches the Places door. A general casual-sharing adapter is not certified and is not fabricated. |
+| Ordinary forward-looking possibility | Server-resolved Places context plus contextual Place candidates → current home-area/world opening | Deterministic context/read; no automatic provider generation | `horizon_aperture_row` link and existing Places world-field/search/map machinery | `places.open_context` preserves opaque context; field → search/map → selected entity/detail → return uses existing Places route family | Context value contract re-reads hourly; Places result-set identity/revision is preserved through map/detail returns; unknown position remains unknown | Same portfolio test; `test_places_runtime.py`; app `placesMapReturn`, `rootProjectionNavigation`, and renderer suites (26 tests) prove scope, selected identity, changed revision, and Home-depth return. No passive friend location is inferred. |
+
+This checkpoint proves useful admitted substance and continuity for the
+available owners. It does **not** claim that every accepted semantic kind is
+renderable: the newer prepared-alternatives, world-fact, authored-region, and
+sample-demonstration kinds remain dark by design. It also does not claim an
+executable retained-intention command, a general casual-social adapter, a
+canonical Plan/Occasion owner route, or paid/provider production. Those are
+explicit dependencies for the adjacent lanes rather than reasons to add Home
+surface code.
 
 ## 1. Purpose and decision boundary
 
@@ -109,11 +201,11 @@ Status vocabulary: **present and verified** means the seam is visible in code bu
 | --- | --- | --- | --- | --- |
 | Read addressed contribution | Home resource/action path plus source-backed projection refs | present but unverified | Keep original attribution and audience metadata; do not synthesize a generic social feed | Viewer sees a complete share without responding; private/group scopes remain distinct |
 | Inspect original and Place | `hrefForRootResource` for artifact/entity/place plus Places context route | present and verified | Keep canonical ResourceRef opening; adapt only missing source/original route | Original, source scope, and place context agree |
-| Browse more shared material | No confirmed present-tense browse owner was found in the Home navigation map | blocked on owner decision | Decide whether Life People or a separate explicitly scoped destination serves this intent; no silent new social root | Authorized-only list; withdrawn/expired material disappears from derivatives |
+| Browse more shared material | September 5 decision selects Places' friends scope; complete current runtime reader/entry still needs mapping | policy settled; implementation partial | Use the accepted friends-scope pull path; Life People is durable record, not a competing current feed. September 6 research refines discoverability unless an explicit amendment changes placement | Authorized-only browse independent of Home ranking; no view reporting, response debt or automatic inference |
 | Respond or use in arrangement | `openV2Action` → source inspection and consequence confirmation where declared | present but unverified | Keep source inspect first; route arrangement use to Plan owner, not generic Chat | Audience preview, explicit send, duplicate submission, and withdrawal/repair |
 | Return | return registry keyed by source refs/viewer/unit | present but unverified | Keep/revalidate; preserve orientation without resurrecting stale content | Back after withdrawal and after private-save-only path |
 
-**J2 owner dependencies:** source/share authority, Life People browsing decision, and Plan contribution semantics. Social consumption must be valuable before any reply is requested.
+**J2 owner dependencies:** executable source/share adapters, Places friends-scope browsing, Life's durable record and Plan contribution commands. Policy is not a missing storage adapter. Social consumption must be valuable before any reply is requested.
 
 ### J3 — arrangement → inspect → contribute/edit → owner readback → Home
 

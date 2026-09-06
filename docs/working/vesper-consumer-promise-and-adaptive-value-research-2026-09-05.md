@@ -30,8 +30,12 @@ The approved product refinement is:
 
 The four moves remain **Make sense. Open possibility. Help it work. Carry
 forward.** They are a repertoire, not quotas, personas, onboarding modes, or a
-required journey. This refinement does not change the group-travel launch
-wedge, four roots, shared owners, release boundaries, or action authority.
+required journey. The September 5 refinement did not itself change the then
+group-travel launch wedge. The later [September 6 strategy decision](../decisions/2026-09-06-reconcile-consumer-strategy.md)
+and §13 below supersede that exclusive travel-first assumption: everyday
+usefulness is the product; travel is a demanding specialization and acquisition
+candidate. The four roots, shared owners, release boundaries and action authority
+are unchanged by this positioning research.
 
 The proposed opening **More to discover. Less to figure out.** remains a
 hypothesis alongside discovery-led and practical-help-led alternatives. The
@@ -698,6 +702,10 @@ opening, including casual daily questions—not engineered obligation.
 
 ### 10.4 Pending continuity decision
 
+**September 6 status clarification:** optional conversational continuity is now
+accepted product direction under the [strategy decision](../decisions/2026-09-06-reconcile-consumer-strategy.md).
+The precise agreement below remains unadopted and supplies no runtime authority.
+
 There is a real contract seam, not just a copy problem. The current
 [Contribution and Consequence Contract](../systems/contribution-and-consequence.md)
 defaults Ask to no new durable personal state and defines transient expiry.
@@ -705,8 +713,8 @@ We cannot promise that ordinary questions improve future context while silently
 retaining them under another name. Existing authorized memory may inform an
 Ask; the Ask does not itself authorize new memory.
 
-**Proposal, not adopted:** explore an optional, understandable conversational
-continuity agreement that avoids per-turn saving. Before changing the contract,
+**Policy proposal, not adopted:** specify an optional, understandable
+conversational continuity agreement that avoids per-turn saving. Before changing the contract,
 resolve and evaluate:
 
 1. **Material and duration:** source conversation, selected facts, summaries,
@@ -756,7 +764,115 @@ unfinished-work pressure. No participant results or success thresholds are
 claimed here; these cases guide design and later evaluation, not a one-loop
 gate on the system architecture.
 
-## 11. What stays open
+## 11. Casual social value and offline connection
+
+September 6 continuation: the founder wants casual sharing that makes friends'
+lives visible without polished publishing, passive-view surveillance, popularity
+pressure, or equivalent contribution effort. It should also create natural
+openings to connect and reconnect, including gathering offline. The founder
+approved sharpening this direction after the research discussion.
+
+This is evidence and decision provenance, not a new social product identity or
+runtime certification. Product doctrine lives in
+[Multiplayer Product Strategy](../../travel-agent/docs/product/Multiplayer%20Product%20Strategy.md#social-benefit-before-social-structure).
+No participant study, retention experiment, or offline-outcome evaluation of
+Vesper was conducted. The comparisons below remain proposed.
+
+### 11.1 Synthesis and scope
+
+The ambition is **enjoyable awareness, easier human initiation, and less
+unwanted work between wanting to spend time together and actually doing it**.
+Casually staying in touch, receiving something through a friend, and finding a
+way to reconnect are independent benefits. None must turn into an Occasion.
+They fit the existing four moves and roots; they are not new objects or modes.
+
+The sender may gain chosen expression, connection, or a useful handoff; the
+recipient may gain enjoyment, perspective, practical help, or an opportunity.
+Mutual value need not mean equal effort in the same exchange. Receiving should
+not require posting, and asymmetric participation must not simply strand an
+organizer with all the unwanted work. Preserve choosing, cooking, hosting,
+expression, and other effort people actually value.
+
+### 11.2 Research findings and limitations
+
+| Evidence | Finding and limit | Vesper implication to investigate |
+| --- | --- | --- |
+| [Bayer et al., *Sharing the Small Moments*, 2016](https://www.yardi.people.si.umich.edu/pubs/Schoenebeck_Snapchat16.pdf) | Two-week experience sampling with 154 college students plus 28 interviews associated Snapchat exchanges with enjoyment and positive mood, but lower perceived support than other channels. Observational, population- and platform-specific. | Ordinary shared moments can be worthwhile. Enjoyment, awareness, support, and closeness need separate evaluation. |
+| [Lin, Levordashka, and Utz, *Ambient Intimacy on Twitter*, 2016](https://cyberpsychology.eu/article/view/6186) | Participants reported awareness more broadly than intimacy; feeling close was limited to fewer people. Not proof that browsing improves an existing friendship. | Do not equate seeing an update with deepening a relationship. |
+| [Kim et al., *Sharing, Not Showing Off*, CSCW 2024](https://arxiv.org/html/2408.02883v1) | Interviews with 29 users aged 13–18 identified reduced presentation pressure alongside pressure from reciprocal posting, timing, and authenticity rules. Qualitative adolescent evidence, not an adult acceptance rate. | Remove performance requirements without imposing unfiltered self-disclosure, daily posting, or posting-to-unlock. |
+| [Liu et al., reaching-out research, APA summary, 2022](https://www.apa.org/news/press/releases/2022/07/friends-enjoy-being-reached) | Studies with more than 5,900 participants found that senders underestimated recipients' appreciation. A small reach-out can matter, but this is not permission for automated social messages. | Support human-chosen initiation; do not assume an elaborate message is required. |
+| [*Who Reaches Out to Old Friends and What Do They Say?*, Collabra, 2025](https://online.ucpress.edu/collabra/article/11/1/143319/212890/Who-Reaches-Out-to-Old-Friends-and-What-Do-They) | Analyses of 863 drafts found no consistent relationship between message features and sending; an additional field study again found substantial hesitation. Textual associations are not a causal test of Vesper's contextual suggestions. | Better generated wording alone is not a validated reconnection mechanism. A shared cue may help, but that remains our hypothesis. |
+| [Halfmann and Rieger, *Permanently on Call*, 2019](https://academic.oup.com/jcmc/article/24/4/165/5487068) | A field experiment and diary study examined availability pressure, autonomy, and competence. Not an isolated experiment proving that removal of one read-receipt feature fixes pressure. | Distinguish passive attention visibility from chosen acknowledgment and explicit commitments. |
+| [Tonietto and Malkoc, *The Calendar Mindset*, 2016](https://www.business.rutgers.edu/sites/default/files/documents/tonietto-the-calendar-mindset.pdf) | Across 13 studies, precise scheduling could make leisure more work-like and reduce enjoyment; rough scheduling avoided the effect in studied conditions. The authors do not reject calendars or necessary commitments. | Keep possibilities loose until precision helps a real dependency; do not make every gathering an itinerary. |
+
+These findings support design hypotheses and cautions, not a claim that casual
+sharing, fewer metrics, or AI facilitation will reliably increase friendship
+quality or offline attendance. No such effect has been established for Vesper.
+
+### 11.3 Adjacent products and adopted refinements
+
+The opportunity is not an empty category. [Locket's official listing](https://apps.apple.com/us/app/locket-widget/id1600525061)
+describes casual photo delivery and reactions without counts; [Instagram's
+2025 announcement](https://about.fb.com/news/2025/08/new-instagram-features-help-you-connect/amp/)
+includes a friends map and friend-based discovery; [Partiful's current help](https://help.partiful.com/en-us/articles/15525594-why-use-partiful)
+describes link-based invitations, RSVP, coordination, and post-event photos.
+These establish product capabilities, not causal psychological benefits or
+their absence in other apps. “Less polished Instagram” is not sufficient
+differentiation. Vesper's hypothesis is coherent continuity from personal value
+through a chosen human contribution to an optional shared experience that its
+world intelligence and live engine help work.
+
+The approved sharpening is:
+
+1. **Human presence can be complete value.** A friend's cooking photograph
+   needs neither novel explanation nor an invitation. Vesper's own added prose
+   still must earn its place. Keep these editorial lanes distinct.
+2. **Casual attention is not a scoreboard.** No passive-view reporting, public
+   popularity score, authenticity deadline, or reciprocal contribution gate.
+   Optional private acknowledgment remains welcome.
+3. **Commitments retain truth.** An invitation is unanswered until answered;
+   an agreement may have real timing and dependencies. Hiding passive views
+   does not mean hiding whether someone explicitly accepted.
+4. **Social value needs intentional access.** People should be able to find
+   eligible friend material without waiting for Home to select it. The exact
+   entry or lens remains open; this is not a fifth-root authorization.
+5. **Private continuity is not social-use permission.** Casual sharing does
+   not silently grant permanent recipient memory, person profiling, broader
+   audience, or indefinite resurfacing. The existing five-axis contract owns
+   these boundaries; §10.4 remains an unadopted private-continuity proposal.
+6. **Make gathering feasible with minimum useful structure.** Add precision
+   for actual dependencies, not administrative completeness. Help prepare,
+   coordinate, and adapt through existing owners, then recede. Human expression
+   and the decision to reach out remain human.
+
+### 11.4 Comparable experiences and open decisions
+
+Use four connected comparisons, not a mandatory conversion funnel or four new
+services. These can refine existing social design fixtures:
+
+| Case | Complete experience and value | Required alternate branch |
+| --- | --- | --- |
+| S1 — ordinary share | One imperfect pasta photograph is deliberately shared with selected friends; a recipient enjoys seeing it. No explanation or response is needed. | No reply, later visit, mute, and withdrawal without a relationship inference or backlog. |
+| S2 — directed perspective | An authorized Paris contribution reaches a friend with a relevant Rome experience. The human material stands alone; any AI comparison adds a real supported distinction. | Receiving without reciprocal posting, rejecting AI enrichment, and using an existing messaging channel. |
+| S3 — optional gathering | A person chooses to turn “we should cook” into a weekend invitation. A recipient sees enough to decide without becoming an organizer or completing a profile. | Presence without availability, interest without acceptance, decline, unanswered invitation, and a guest without deep app adoption. |
+| S4 — gathering meets reality | Timing or another practical condition changes. Vesper prepares a feasible adjustment, preserves dependencies, and routes the actual decision. People enjoy the gathering without documenting it. | Someone can only join part of it; a fixed dependency prevents the proposed change; no photos or retrospective contribution afterward. |
+
+Hold human source material constant when comparing raw sharing, light context,
+and AI enrichment. Assess sender effort and willingness, recipient enjoyment,
+perceived presence, freedom not to respond, authorship comprehension, initiation,
+organizer burden, and whether desired time together actually became easier.
+Do not use views, clicks, accepted invitations, or attendance alone as evidence
+of relationship benefit. Small qualitative comparisons can reveal friction;
+longer observation is needed for recurrent value and sustained burden.
+
+Open design decisions include the pull-based social entry, the minimum useful
+casual-share presentation, optional acknowledgment, guest access, and how loose
+interest becomes a legible invitation without premature planning. Mechanisms
+for contextual reconnection and offline benefit remain unvalidated. Maintain
+the coherent four-root system while comparing these seams; no single case
+defines the architecture or blocks every other workstream.
+
+## 12. What stays open
 
 - Which opening produces the clearest accurate expectation in each acquisition context?
 - Which of the section 9 sparse-context returns are actually worthwhile to newcomers, and where can we reliably supply their world evidence?
@@ -768,8 +884,182 @@ gate on the system architecture.
 - Which existing implementation paths can honor these contracts, and at what cost?
 - Can the optional continuity agreement in §10.4 be made understandable and useful without weakening the current Ask boundary by implication?
 - Which kinds of authorized memory application earn voluntary return beyond merely recalling a fact?
+- Which casual social contributions are enjoyable without AI enrichment, and where can people intentionally find them?
+- Can contextual openings and minimum-structure arrangements improve wanted time together without response pressure or organizer burden?
 
 Review after the first comprehension round, the complete adaptive-experience
 comparisons, or evidence that the proposed rules conflict with current owner
 contracts. Update canonical language through its named owner; keep uncertain
 mechanisms and research results here. The roadmap remains in its execution lane.
+
+## 13. Consequential strategy reconciliation — September 6
+
+### Status and documentary findings
+
+The founder requested reconciliation research, reviewed the recommendations,
+and authorized updating the docs. The [accepted decision](../decisions/2026-09-06-reconcile-consumer-strategy.md)
+adopts everyday-first product entry, optional conversational continuity as
+direction, bounded practical responsibility and consumer-funded economics.
+It does not adopt the detailed memory policy, watch infrastructure, prices,
+launch geography or the pending pre-Plan owner proposal. No new user study,
+pricing experiment or production verification was performed in this pass.
+
+The documentary conflict was more than copy:
+
+- Growth Strategy still treated group travel as the exclusive launch wedge and
+  participant-to-organizer conversion as the venture gate. The new direction
+  treats everyday value as intrinsic, and travel as a strong comparison rather
+  than a compulsory first chapter.
+- Monetization Strategy still assumed free planning, paid trip experience,
+  transaction commissions and future sponsored/data businesses. These are not
+  compatible defaults after provider execution retirement. Its old scenario
+  margins and “confirmed” labels were not Vesper demand evidence.
+- Venture Path was already marked archived in frontmatter while its body still
+  claimed strategic authority. Its trip-to-wallet capital narrative is now
+  preserved in a clearly historical snapshot, with a current evidence-led
+  strategy at the existing linked path.
+- Contribution policy deliberately forbids Ask-driven durable state. Accepting
+  the value of conversational continuity does not resolve its material, duration,
+  permitted use and repair agreement. The pending history/source packet remains
+  the review location, not a second implementation mandate.
+- The live-engine matrix already distinguishes current assessment from watches;
+  the retained booking adapter preserves useful evidence without checkout.
+  Strategy should clarify these boundaries, not add another engine or owner.
+
+### Sources and what they actually support
+
+Sources were consulted September 6, 2026. Primary product documentation establishes
+advertised behavior, not adoption, superiority or causal outcomes. The research
+below supplements sections 3, 10 and 11 rather than replacing their limitations.
+
+| Source | Evidence | Implication and limit |
+| --- | --- | --- |
+| [Beli official product](https://beliapp.com/beli-home) | A concrete restaurant entry joins tracking, sharing and discovery | A recognizable entrance can support several connected benefits. It does not establish the right Vesper category or justify ratings, profiles or capture labor |
+| [Partiful, Why use Partiful?](https://help.partiful.com/en-us/articles/15525594-why-use-partiful) | A shareable invitation link joins RSVP, communication and contributed photos | Existing human intent can motivate recipient participation. It does not prove Vesper virality or make every share an invitation |
+| [Claude chat search and memory](https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context) | Current documentation describes automatic topic memory, explicit remembering, past-chat retrieval and controls; a separate section describes legacy summary memory | Automatic memory is not a unique Vesper feature. Compare useful application across complete experiences, not “implicit versus explicit” labels; do not mix legacy and current behavior |
+| [Zhang et al., 2025 preprint](https://arxiv.org/html/2508.07664v1) | Interviews with 18 Chinese participants describe continuity benefits, incomplete mental models, profiling concerns and doubts about control | Support source-grounded, understandable optional continuity; young/student-skewed qualitative evidence cannot select a population default or retention duration |
+| [Microsoft Research HAI guidelines](https://www.microsoft.com/en-us/research/articles/guidelines-for-human-ai-interaction-eighteen-best-practices-for-human-centered-ai-design/) | Research-backed guidance emphasizes clear capabilities/reliability, contextual timing, efficient correction and cautious adaptation | Distinguish checking now, keeping and following; not evidence that more confirmations or always-on agents improve our experience |
+| [Gemini scheduled actions](https://support.google.com/gemini/answer/16316416?hl=en) | Scheduled assistance has explicit creation and management controls | Scheduling alone is not differentiation. Vesper must contribute situated judgment and represent actual responsibility |
+| [Flighty pricing](https://flighty.com/pricing) | Core free flight value coexists with paid duration options | Bounded practical value can have an episodic offer. No claim follows about Vesper willingness to pay or the need to build a tracker |
+| [Granola billing documentation](https://docs.granola.ai/help-center/managing-your-account/subscriptions-and-billing) | Basic use and expanded history/integrations/model access have different commercial treatment | A reference for depth/capacity, not authority to copy workplace seat pricing or restrict entrusted personal history |
+| [RevenueCat, State of Subscription Apps 2026](https://www.revenuecat.com/state-of-subscription-apps) | Aggregated subscription data shows lower 12-month retention for AI apps than non-AI across durations | Novel capability does not establish sustained value. Primarily 2025 data, RevenueCat-integrated revenue-generating apps, selection thresholds and observational comparisons limit inference; not a Vesper forecast |
+
+### Recommendations adopted versus still uncertain
+
+**Launch:** favor bounded everyday-first market entry. Keep group travel as a
+demanding specialization and compare acquisition performance. Candidate users
+already ask questions, save places, exchange recommendations and make experiences
+happen; individual usefulness cannot depend on friends joining. NYC is a
+founder-accessible cohort hypothesis, not an approved public launch. Local supply
+depth, freshness and cost may overturn the initial market bet.
+
+**Continuity:** ordinary conversation can eventually improve later private help
+under an optional agreement. Do not require manual keeping of every fact. A
+question remains evidence of a discussion, not a preference, identity, intention
+or consent. Specify readable history, source/derivative custody and later use
+separately. Current Ask policy, expiry and no retrospective backfill remain.
+Comprehension cases must include returning to an answer after source expiry,
+asking for someone else, changing purpose and excluding an otherwise useful chat.
+
+**Responsibility:** present assessment, retained intention, accepted monitoring
+and owner-authorized change create different expectations. Preserve purpose when
+conditions change, not merely the schedule. Keep does not start a watch; a watch
+does not authorize a shared change or booking. Monitor subjects, supported sources,
+windows, cancellation and service-loss behavior need exact contracts before
+activation. A useful explanation may still end without any consequence.
+
+**Economics:** investigate consumer payment for depth, capacity and bounded help.
+Membership leads; episodic access remains an alternative. Free participation must
+be complete and credible within clear limits, with coherent shared truth and
+basic recipient access. No fixed price, unlimited promise, paid memory permission
+or forced recipient seat follows. Exclude speculative referrals, sponsored ranking,
+personal-data commercialization and financial rails from the base viability case.
+Measure the entire cohort's serving, production, data, monitoring and support
+costs, not only a paying user's last model call.
+
+### Receiving documents and next decisions
+
+Product Thesis, Product Model and Product Vision and Scope carry the framing;
+Growth Strategy owns audience/entry; Monetization Strategy and Venture Path own
+the commercial hypotheses. Their previous economic narratives remain in
+[monetization history](../../travel-agent/docs/archive/monetization-strategy-before-2026-09-06.md)
+and [venture history](../../travel-agent/docs/archive/venture-path-before-2026-09-06.md).
+The contribution contract and existing history/intention packets retain actual
+policy ownership. The integration roadmap receives boundaries, not speculative
+retention, scheduling or billing tasks.
+
+Next resolve the exact continuity agreement; the retained-intention owner;
+supported practical service periods and failure behavior; the first audience
+and reliable world supply; and one honest offer with measured costs. Research
+cannot replace observed newcomer comprehension, useful repeat choice or actual
+payment. Continue complete-system work under current authority while those
+decisions mature; no single behavior loop gates the whole product.
+
+## 14. Situated value: turning context into useful judgment
+
+The [situated-value decision matrix](situated-value-decision-matrix-2026-09-06.md)
+extends this research with six comparable everyday situations: a casual
+question, an ordinary week, a forming gathering, an active outing, returning
+after absence and enjoyable casual social reception. It separates what is known, inferred and unknown; the immediate
+contribution; root placement; retirement; and the existing owner dependencies.
+Controlled comparisons change one fact at a time to expose the judgment rather
+than attributing every difference to a richer personal profile.
+
+The review-led revision adds natural acquisition and updating routes, connected
+moments that compare recollection with useful application, actual content
+specimens, competing-value compositions and different wanted-assistance cases.
+A small primary-source check supports the Palisades/Dover geological comparison;
+fictional venue offers and people remain labeled fixtures, not live supply or
+research participants. Evidence-ablation review now considers corroboration,
+confidence and robustness, not only whether the visible output changes.
+
+The subsequent fresh-eye pass strengthens the comparisons with equal-information
+baselines and end-to-end effort, ordinary/weak opportunity supply, less organized
+user expression and several developing situations at once. It distinguishes
+evidenced-concern value from exploratory offers without creating new grammar or
+claiming a city-level suggestion is strongly personalized. Owner revisions trigger
+reassessment; delivery and prominence are not proof that a concern is resolved.
+
+The founder also supplied a temporal case: evidence on day 1, an explanation
+on day 2 in the same conversation, and related evidence on day 5. Matrix §3.3
+and §6.4 now distinguish received/event/revision/validity times, authored
+clarification versus AI explanation, correction versus corroboration versus
+cross-context connection, and useful later application. Same-thread continuity
+does not bypass expiry or source-use authority; cross-thread relevance does not
+require users to merge conversations. The worked access-time example and its
+acceptance cases remain design recommendations, not a new memory policy or
+implementation-completion claim.
+
+Matrix [§10](situated-value-decision-matrix-2026-09-06.md#10-experience-manuscript-one-week-three-strands)
+now supplies the nonvisual week-long manuscript: a source arrives, an imperfect
+explanation is corrected, Home provides value without more input, related access
+evidence and a friend's note improve a later choice, and a bounded practical
+check leads into a return with no backlog. An unrelated Sunday ticket and
+building-photography interest persist alongside that arc. Actual proposed copy,
+root transitions, owner effects, missing-source/origin branches and uncertain
+outcomes make this the next review object rather than another abstract framework.
+It does not authorize runtime changes or certify the fictional fixture supply.
+
+The manuscript's self-review revision removes the user-assembled Friday packet:
+Tuesday now explicitly establishes arrival-and-return access for a particular
+Saturday meetup; Friday supplies only a new place link from that context. Vesper's
+target behavior retrieves the requirement, checks current venue evidence and
+recovers Maya's eligible earlier recommendation. A venue can permit arrival yet
+fail the planned return. This demonstrates reduced assembly, not unique reasoning
+or a mobility preference inferred from a travel story. Wednesday compares what
+the two photographs permit after the original advice was already delivered;
+receipts distinguish correcting Vesper's explanation from changing authored words.
+These changes replace the weak moments in §10 rather than creating another framework.
+
+The [Graph Legibility Doctrine](../systems/graph-legibility-doctrine.md) is aligned
+with four roots, contextual evidence and correction, current consequence receipts,
+booking retirement and the distinction between permitted context use and an
+unsupported personal verdict. This removes stale examples; it does not adopt
+the pending optional continuity agreement or add runtime authority.
+
+The working recommendation is to distinguish importance in someone's life from
+the usefulness of a particular contribution now, and to select that contribution
+before medium or expensive production. It does not amend crown rules, approve
+the pending history/intention proposals, enable monitoring or claim validated
+demand. Existing decision packets and the integration roadmap retain their
+authority; the matrix supplies concrete cases for their next reviews.

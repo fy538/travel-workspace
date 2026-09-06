@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / architecture / engineering
 created: 2026-09-04
-last_verified: 2026-09-04
+last_verified: 2026-09-06
 expires: 2026-10-04
 why_new: Connects accepted lightweight arrangement behavior to four complete situations, inspected runtime owners, legacy contraction, and an implementation decision docket.
 supersedes: []
@@ -11,6 +11,42 @@ source_of_truth_for: []
 ---
 
 # Lightweight arrangements — experience and implementation handoff
+
+## September 6 execution rebaseline
+
+Keep A0–A4 in §7 as the sole arrangement engineering sequence. The current
+[Claude handoff §0.8](claude-design-plans-in-real-life-handoff-2026-09-04.md#08-september-6-export-review-finish-the-content-and-continuations-not-another-redesign)
+owns the reduced design's latest continuation refinements. This handoff owns
+their engineering translation. Neither the illustrated revision nor its older
+prototype tests establish runtime command behavior.
+
+**Next package: A0, then the accepted subset of A1/A2.** Complete the exact
+command/readback map below and submit the [retained-intention owner proposal](retained-intention-before-plan-decision-proposal-2026-09-06.md)
+for adoption/schema review. Do not start another framework or re-expand the
+operations-screen inventory. Scoped edit and use-grant policy is settled; the
+concrete storage/command adapters remain incomplete, not a reason to re-vote
+the general policy. A passed local command test is not native acceptance;
+app/device sessions are deferred for current execution.
+
+| Current design continuation | Exact engineering distinction to settle | Receiving contract |
+| --- | --- | --- |
+| D3 message-first change | An explicit owner instruction may update and announce; draft preparation alone does neither. Name whether the final action updates, sends or both, and expose partial failure | Plan/Commitment mutation, message delivery and provider reservation remain separate readbacks |
+| I1 staggered-dinner possibility | Preparing a proposal is not adopting seven or accepting on behalf of Maya/Sam | Explicit adoption/participation command; Home displays actual changed state |
+| J2f earlier visit | Shared time and private preference may differ; no inferred authority to split the group | Personal participation versus agreed change; live engine may explain tradeoffs without choosing for people |
+| F1 river instead of café | Authored occurrence can lead the later account without rewriting intended itinerary | Occurrence/source owner supplies truth; Life projects it and preserves planned history |
+| Loose Saturday Keep | Durable optional intent without a required Plan | Unadopted D1 proposal; no hidden Plan, Commitment or Life-only writer |
+
+The [seven-sentence decision](../decisions/2026-09-05-adopt-the-plan-in-seven-sentences.md)
+remains accepted. Useful shortcut/proactivity exceptions explicitly labeled
+proposed in the latest handoff require a new decision before implementation;
+this rebaseline does not silently adopt them. Keep compatible refinements
+moving while the exact exception is reviewed.
+
+Coordinate through the [current register](complete-system-integration-roadmap-2026-09-05.md#2-current-coordination-register--september-6):
+Capture resolves contributions; this lane owns arrangement commands; Integration
+owns signal/evaluation and shared boundaries; Home/Places and Life consume exact
+refs/readback. Source production does not own shared human comments. Retirement
+removes old routes only after their real jobs have receiving implementations.
 
 ## 0. Status, scope, and reading order
 
@@ -198,6 +234,10 @@ lighter permitted edit path instead of the same ceremony for every dinner.
 ## 4. Recommended architecture decisions before implementation
 
 ### D1 — Retained intention before a Plan
+
+Current decision packet: [retained intention before Plan](retained-intention-before-plan-decision-proposal-2026-09-06.md).
+It consolidates the recommendation below into a proposed owner, lifecycle,
+command and consumer contract. It is not an adopted schema.
 
 **Recommend:** person-owned prospective material with optional Plan association,
 kept in the existing graph domain rather than a new microservice. Retaining one

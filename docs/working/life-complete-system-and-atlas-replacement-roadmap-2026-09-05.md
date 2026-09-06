@@ -22,6 +22,15 @@ supersedes:
 
 ## Current execution baseline — September 6
 
+**Latest planning checkpoint:** [§10](#10-design-independent-execution-plan--september-6)
+reconciles this roadmap against backend `68e72d3f7` and app `d7d1a3271`.
+It supersedes the earlier next-package wording below where that wording still
+describes Plan/Occasion/Outcome delivery as absent. Earlier receipts remain
+historical evidence, not current completion claims. The immediate sequence is
+publication correctness → bounded owner reads → resumable historical population
+and repair → complete shadow comparison; organization and mobile continuity
+follow within R2–R5.
+
 R0–R8 remains Life's sole forward roadmap. The engine design supplies behavior
 and implementation detail; the execution-status file preserves receipts. The
 [coordination register](complete-system-integration-roadmap-2026-09-05.md#2-current-coordination-register--september-6)
@@ -32,20 +41,19 @@ inspection date, not a request to repeat completed work.
 | --- | --- | --- |
 | R0 / R4 root and reading | Canonical Life route, Atlas redirects, four depth lenses, exact-owner and identity-restoration improvements | Rich lens organization and complete owner/destination coverage are not certified |
 | R1 common reads | Shared snapshot assembly, chronology, owner revisions and conflict-aware cursors | Routes still assemble owner snapshots; indexed serving has not cut over |
-| R1 / R2 index helpers | Typed bounded reads/writes, all-lens planner, owner capability matrix, shadow batch and comparison | Helpers exist; continuous shadow population and backfill do not |
-| R2 change safety | Revision guards, withdrawal and explicit restore; separate Life outbox schema/repository; identifier-only publisher/repair; retained-source verification, attachment, deletion, and shadow projection | Connect the next revision/audience-safe owner or semantic-representation transition; do not compete for Intake's single acknowledgement |
+| R1 / R2 index helpers | Typed bounded reads/writes, all-lens planner, owner capability matrix, shadow batch and comparison | Owner-specific incremental projectors exist; resumable historical backfill and whole-corpus parity remain |
+| R2 change safety | Revision guards, withdrawal/restore, dependency CAS, separate Life outbox and repair; retained-source, Plan, Occasion and Outcome projectors plus audience repair | Verify publication races and delivery completion, reconcile capability declarations, then add bounded historical reconciliation; preserve Intake's independent acknowledgement |
 | R3 / R5 retrieval | Retained sources and canonical destinations have landed | Broader custody/refinding, dependent repairs and retained booking-reader mapping remain |
 | R6 prospective/shared | Consumer requirements established | [Pre-Plan intention proposal](retained-intention-before-plan-decision-proposal-2026-09-06.md) is unadopted; missing owner adapters cannot be replaced by Life writes |
 | R7 / R8 richness and replacement | Design/scenario portfolio and migration obligations are explicit | Returns, organization quality, whole-corpus cutover and Atlas deletion remain incomplete |
 
-**Next connected package:** the retained-source owner change → landed
-downstream delivery bridge → current-authority projector → shadow record is
-now executable. Next, expand to another owner or wire semantic representation
-withdrawal while preserving replay/withdrawal verification. Expand owner
-coverage before switching readers; an initial adapter is an increment in the
-complete program, not the sole product loop. No native session is required for
-this engineering batch; preserve later native/release acceptance separately
-under the founder's current deferral.
+**Next connected package:** execute §10's publication/delivery audit and
+corrections, bounded owner reads, resumable historical population and full shadow
+comparison. Several owner adapters and semantic-representation transitions have
+already landed; do not restart them from an older receipt. Expand and verify
+coverage before switching readers. No native session is required for this
+engineering batch; preserve later native/release acceptance separately under
+the founder's current deferral.
 
 Capture supplies source identity, revision, lifecycle and repair events; Life
 owns derived indexing. Home/Places consumes exact record destinations, not a
@@ -153,6 +161,7 @@ The next R1 seam is now explicit in the backend rather than only in the plan:
 | `7e9119028` | Added `find_life_index_cursor`, an exact viewer/version/lens-scoped lookup that returns a stable `(sort_at, record_id)` boundary for a live row without scanning the corpus | This enables a future restoration adapter but is not wired into the mobile reader or HTTP depth route; absent, revoked, suppressed, or deleted rows resolve to no cursor |
 | `3e4210172` | Added `read_life_index_record_page`, a typed repository wrapper that decodes every bounded row into `LifeRecordEntry` while preserving `has_more` and the keyset cursor | No route uses this reader yet; viewer scoping and withdrawal predicates remain owned by the underlying repository query, and malformed rows fail closed rather than being silently dropped |
 | `0f6da7c43` | Added `compare_life_index_page`, which slices the canonical snapshot at the same keyset boundary and compares row parity plus `has_more`/next-cursor metadata | This is a pure shadow policy and test seam; it does not run in production, record metrics, or authorize a serving switch |
+| `7b3995c0d` | Added `compare_life_index_viewers`, which applies the bounded canonical-vs-index comparator to an explicit viewer cohort, proves empty non-participant buckets, rejects unexpected viewer buckets, and flags stored rows whose `viewer_id` disagrees with their bucket | This is still a pure shadow/test seam; it does not emit metrics, compare payload/grant parity, or authorize a serving switch |
 | `bb836993e` | Added owner-scoped `withdraw_life_index_owner_entries` and a conflict `WHERE` guard so correction/deletion can revoke derived rows and a stale projector cannot resurrect them through an ordinary upsert | No event subscriber or outbox calls this yet; reauthorization is intentionally a separate future command, and source truth remains untouched |
 | `647950ede` | Tightened the upsert guard to reject existing `status='revoked'` rows even if legacy data lacks withdrawal timestamps | This closes a monotonicity edge only; it does not add the explicit restore/reauthorize command or connect withdrawal to owner events |
 
@@ -807,7 +816,7 @@ contract is recorded in
 The combined focused Life/Plan/Occasion evidence now passes 60 tests, including
 PostgreSQL producer/projector proofs and retained-source worker repair.
 
-**Next checkpoint:** define the Outcome shared-audience/revocation contract
+**Historical next checkpoint (superseded by §10):** define the Outcome shared-audience/revocation contract
 before adding an Outcome producer. The pure resolver and content-free
 event-envelope seam now land in `travel-agent` commits `134bb021b`, `4ef82cce8`,
 and `9aa75ff3d`; canonical event fan-out, erasure propagation, the separate
@@ -816,3 +825,392 @@ remain. Review the [Outcome audience CAS proposal](life-outcome-audience-cas-dec
 before changing the index writer. Keep serving cutover and unsupported owners
 gated until whole-corpus coverage, repair, authorization, and destination
 evidence are complete.
+
+## 10. Design-independent execution plan — September 6
+
+### 10.1 Objective, scope, and inspected baseline
+
+Build the system that makes existing and newly contributed experience reliably
+available to Life while Claude Design refines presentation. A person should be
+able to find old material, see later contributions in the appropriate historical
+context, and keep their corrections through subsequent updates. This batch
+advances the whole-corpus replacement; it is not a request to reduce Life to one
+behavior loop or wait for every screen to settle.
+
+Planning inspection: backend `68e72d3f7` on the active
+`codex/contribution-capture-cc2-cc5` checkout; app `d7d1a3271` on `main`.
+The earlier isolated Life worktree still points at `b4d87161f` and must not be
+treated as the latest implementation base. Both backend product docs and root
+coordination docs have concurrent edits; one Occasion test is also dirty at the
+inspection checkpoint. No code, migrations, running jobs, or release flags were
+changed during this planning pass. Test descriptions below are required future
+evidence, not newly executed results.
+
+| Area | Code observed | Implication for this plan |
+| --- | --- | --- |
+| Owner delivery | `retained_source_projector.py`, `plan_projector.py`, `occasion_projector.py`, `outcome_projector.py`; graph owner event modules; separate Life outbox and worker | Extend the existing path. Do not recreate the old generic whole-corpus consumer. |
+| Audience repair | Outcome projection `ba9463c2a`, encounter membership repair `fd66f9f1f`, erasure fixes through `68e72d3f7` | Reconcile tests and owner declarations before scheduling work already landed. Shared Outcomes do not establish a generic friend-note owner. |
+| Capability declaration | `owner_contracts.py` still declares Outcome delta delivery absent | This matrix is stale; update it only to the scope supported by reviewed code and tests. All current families remain shadow-only. |
+| Publication | `index_writer.py` supports content-revision CAS, optional dependency CAS, withdrawal, explicit restore | The primitives exist; transaction ordering and first-insert/withdrawal races need targeted verification before a large backfill. |
+| Historical population | `life_projection_jobs.py` repairs due outbox delivery; no dedicated Life historical backfill runner found in the inspected backend/scripts | Event repair does not populate untouched old history. Implement resumable enumeration and reconciliation. |
+| Comparison | `index_compare.py` compares identity, kind, sort, lens membership and page continuation | Add independent coverage and full typed-entry comparison, including content, authority, dependencies and destinations. |
+| Serving | `root_projections.py::_read_life_snapshot` still fans in graph, Intake and Atlas owners | Keep this serving path during shadow work. A first backfill is not a reader-cutover certificate. |
+| Mobile | `LifeRootV1Screen.tsx`, full-record reader, refind and reading-position utilities exist | Extend their behavior against stable contracts; final editorial composition can proceed separately. |
+
+### 10.2 Dependencies on design and adjacent lanes
+
+Proceed now with identity, time semantics, owner-based authorization, durable
+delivery, bounded history reads, checkpointing, repair, comparison and direct
+navigation contracts. None depends on the final wording of the pasta Return,
+Maya comparison, or the ordering of visible dossier sections.
+
+Organizational controls can be specified against the existing engine design;
+their persistence/schema and command contract must be reviewed before implementation.
+The exact grouping policy and consumer treatment of splits remain subject to
+the existing design decisions. Start deterministic explicit relationships first.
+
+| Lane | Exact interface needed | Life responsibility / fallback |
+| --- | --- | --- |
+| Capture | Exact retained-source identity/read, current custody and representation state, canonical revision, expiry/deletion/unrepresentation semantics | Reuse its readers/events. Agree any missing exact-read or publication-fence contract before changing source-owned transactions. Original retrieval must not wait for Life organization. |
+| Plan / Occasion / Outcome owners | Exact owner reads; current and departed eligible viewers; content and audience revision semantics; bounded enumerators; restoration authority | Implement derived consumers and owner-specific reconciliation. Unsupported scope stays explicitly incomplete rather than guessed. |
+| Integration | Durable Life delivery completion semantics, shared dependency/repair envelope, checkpoint schema review where needed | Reuse the existing Life queue and worker conventions. Do not claim Intake's upstream acknowledgement or introduce a competing generic indexing service. |
+| Entities | Canonical resource handles and exact destinations | Reuse them for Place/person/source context; Life does not re-resolve entities or redesign their pages. |
+| Home / Places | Exact record handles, current eligibility, return context and invalidation targets | Supply stable reads and destinations. No separate Life generator or dependency on opening Life for the live engine to operate. |
+| Retirement | Retained booking/legacy evidence mapping and obligations inventory | Inventory and preserve access; no deletion simply because another owner backfills successfully. |
+| Claude Design | Selected detail/section composition and remaining P1–P4 decisions | Consume semantic fixtures while code foundations advance; do not hard-code fixture prose into production. |
+
+Pre-Plan intention custody, a generic social-contribution owner, authored
+composition custody/editor, and kept-path retention remain outside the immediate
+batch. They block their own capabilities, not existing owner coverage.
+
+### 10.3 Execution order and reviewable commit packages
+
+These packages refine R1/R2 and then R3–R5; they do not create another roadmap.
+
+| Commit package | Scope | Exit condition |
+| --- | --- | --- |
+| R1/R2-A | Reconcile owner coverage and reproduce delivery/publication gaps | Named owner/event/test matrix and failing regressions for confirmed gaps; no stale claims of completion |
+| R1/R2-B | Correct publication ordering and durable delivery accounting | PostgreSQL interleavings cannot regress content/audience or resurrect withdrawn material; lost acknowledgement is recoverable |
+| R1/R2-C | Exact owner readers, paged enumeration and shared materialization seam | Per-item work is bounded; partial/unavailable reads never become deletion evidence; backfill and live changes use the same owner projection rules |
+| R1/R2-D | Resumable backfill, version targeting and operator controls | Interrupted historical fill resumes safely and accounts for every enumerated item |
+| R1/R2-E | Concurrent catch-up and repair of disappeared/viewer-removed records | Live writes and historical fill converge; reverse reconciliation finds stale derived rows |
+| R1/R2-F | Full shadow comparison and coverage report | Deterministic portfolio has no unexplained mismatches; unavailable owners remain visible as gaps |
+| R2-G | Deterministic organization, identities and durable correction controls | W1–W5-supported relationships survive late arrival, rebuild, rename/detach/split within accepted authority |
+| R3/R4/R5-H | Mobile record access, refinding and return continuity | Same supported object opens through every entry path with honest state and restored context |
+
+Sequence A → B → C → D → E → F. Define the G/H contracts while D–F are underway
+if that helps adjacent design work; do not let UI traffic trigger organization.
+Each package ends with explicit-file commits and updates to this roadmap and
+the execution-status receipt. No push, merge, production activation or serving
+cutover is included in this planning request.
+
+### 10.4 R1/R2-A and B — close publication gaps before historical fan-out
+
+First reconcile owner declarations across create, content update, representation,
+membership/visibility change, expiry, withdrawal, erasure and explicit restoration.
+Distinguish code presence, focused tests, database evidence and serving eligibility.
+Audit worker registration as well as producer calls. Confirm the current branch
+and test changes before editing anything in a concurrent lane.
+
+The inspected code warrants these concrete tests:
+
+1. **Old content overwrites new content:** worker A reads owner revision 1;
+   worker B publishes revision 2; A then reads index revision 2 and uses it as
+   its expected CAS token while publishing the revision-1 payload. Plan and
+   Outcome currently read authority before index state. Equality against that
+   later index read alone does not bind the draft to current authority.
+2. **First insert after withdrawal:** A reads an eligible owner, which is then
+   deleted/revoked before A inserts an index row that never existed. An existing
+   row's tombstone cannot protect this case.
+3. **Old withdrawal after restoration:** withdrawal currently updates an owner's
+   index rows without an expected revision/dependency predicate. Interleave it
+   with a new authorized restoration and check the final state.
+4. **Audience-only change:** hold the content revision fixed while membership
+   changes. Both the content token and the audience/dependency token must guard
+   publication and re-entry, including account erasure.
+5. **Successful write, lost acknowledgement:** replay after writing a row but
+   before acknowledging the event, including restoration and partially completed
+   multi-viewer delivery. Repeated restoration must be idempotent under the
+   current owner contract, not a permanent retry or automatic authorization.
+6. **Missing consumer / failed acknowledgement:** `emit_and_wait` returns true
+   with no subscribers, while the Life publisher currently ignores the boolean
+   result of `mark_life_projection_event_published`. An event needs evidence
+   that its intended owner consumer handled it; unrelated subscribers do not
+   establish completion. A failed lease acknowledgement must not count as published.
+7. **Expired lease / process restart:** the old claimant cannot mark another
+   claimant's work complete; lease expiry/reclaim cannot make stale publication
+   safe merely because an event was once claimed.
+
+Implement the narrowest shared publication contract that covers these cases.
+Preferred direction: prepare content outside long transactions; within a short
+publication transaction validate/lock the relevant canonical owner and audience
+generation, validate the observed derived-row state, then apply the write or
+withdrawal. Include missing-row protection. Reuse owner repositories and current
+CAS helpers; agree any owner-side locking/generation seam with its lane. Merely
+reordering two independent reads or adding another Python check is insufficient
+for all cases. Establish a consistent lock order to avoid deadlocks.
+
+Separate the current authorization clock from historical event/occurrence time.
+Delayed events and backfill must evaluate expiry at current authority, while
+preserving original time metadata. Never compare opaque revisions lexically.
+
+Retain the existing Life outbox. Strengthen its completion contract locally
+without silently changing semantics for unrelated event-bus users. A stale hint
+can be acknowledged as obsolete only when current state is safely represented or
+durable newer/reconciliation work accounts for it. Return explicit outcomes such
+as applied, withdrawn, already-current, obsolete, retryable, unsupported and
+terminal-error; a submitted write count is not proof of successful publication.
+
+### 10.5 R1/R2-C — bounded reads and one projection path
+
+Reuse the retained-source exact read. Plan/Occasion/Outcome currently call
+`get_experience_projection` and select their target from the returned graph.
+That repository is unbounded by default; simply adding a preview limit would
+make a missing target ambiguous and could cause erroneous withdrawal.
+
+Introduce or reuse owner-local exact lookup and paged enumeration contracts:
+
+- Enumerate stable owner IDs with a keyset cursor and an explicit continuation.
+- Read a named owner with the authority dependencies needed for this viewer.
+- Distinguish eligible, authoritatively absent/ineligible, and unknown/incomplete/error.
+- Page large viewer sets and dependency sets independently of owner enumeration.
+- Resolve a current build input with content revision, audience/dependency tokens,
+  time roles, represented/source/owner refs and current status.
+
+Share that input-to-entry builder and guarded publication between live events,
+backfill and repair. Extract only repeated owner projection logic; do not build
+another all-history compiler or use a root GET as the worker's data source.
+Thread a configured target projection version through the materialization seam;
+current helpers often default to `life.v1` and cannot implicitly populate a
+different rebuild version.
+
+Cover all eligible lens memberships of an owner in its one stored record.
+Several current builders begin with a Time snapshot; audit actual lens output
+before claiming four-lens parity. No unsupported owner or missing lens may be
+silently filtered out of the coverage denominator.
+
+### 10.6 R1/R2-D — resumable historical population
+
+Build a bounded, operator-invoked runner using existing worker conventions and
+the existing index. Proposed homes are a small module under `life_projection/`,
+its worker entry in `workers/life_projection_jobs.py`, and a thin script/Make
+target. These are proposed additions, not currently implemented entry points.
+
+The runner requires explicit viewer/cohort scope, owner families, target shadow
+version, page size and work budget. Default to a dry-run inventory; writing must
+select a shadow version explicitly. Do not enumerate the entire user population
+or run against production as an incidental local test.
+
+Persist a checkpoint with:
+
+- Run identity, selected scope, target version, code/policy version and status.
+- Per-owner enumeration cursor and any owner-supported replay boundary.
+- Viewer/dependency continuation where one item fans out to many recipients.
+- Durable unresolved work identities and retry/error classifications.
+- Applied, already-current, withdrawn, deferred, unsupported and failed counts.
+- Last completed unit and lease/ownership evidence for concurrent runners.
+
+First inspect the existing `agent_workflows` checkpoint repository and worker
+patterns for a semantic fit. Reuse an appropriate primitive; do not force this
+system job into a user-facing workflow or unrelated domain record. If no fit
+exists, propose a minimal Life run/checkpoint table with an additive migration
+and schema review. The checkpoint owns progress only; it is not a second source
+of Life truth or another event framework.
+
+Advance a page checkpoint only after each item is applied, confirmed current,
+or durably assigned unresolved work. A crash after row commit but before progress
+commit must replay safely. An unsupported owner can be recorded as a known gap,
+but cannot make a whole-corpus run complete.
+
+A separate target version prevents rebuilding from mutating a served version.
+The version-routing design must also account for live changes while a build is
+active: use the existing Life delivery path with explicit durable work for each
+active target, or a replay journal with independent persisted offsets. A single
+global published flag cannot stand in for delivery to several build versions.
+Choose and record the narrower implementation in the schema/transaction review;
+do not start an orphaned shadow version that stops receiving changes.
+
+### 10.7 R1/R2-E — catch-up and reverse reconciliation
+
+Scan historical owners, process subsequent changes, then verify current state
+through both directions:
+
+1. Owner → index finds missing or outdated derived records.
+2. Index → current owner finds deleted owners, removed viewers, superseded
+   representation, and obsolete identities no longer emitted by enumeration.
+
+Compute the affected viewer set from current authority plus prior derived
+recipients, using the owner contract for which former recipients must lose access.
+Only scanning current members misses the people who left. Never infer revocation
+from an incomplete or failed read. Historical Atlas is a separate migration family
+with its own eligibility and retained-source mapping, not a new incremental owner.
+
+Use owner-supported ordering and a demonstrated catch-up protocol. Timestamp
+alone, a random UUID cursor, or a sequence allocated before commit is not proof
+that every concurrent committed mutation was observed. A late commit can fall
+behind an apparent boundary. Where no commit-safe replay boundary exists, record
+that limitation and use durable overlapping reconciliation/dirty tracking until
+it can be certified; do not call one pass a global snapshot.
+
+The Life publisher prunes published events after seven days by default. A build
+must not depend on replay data that can expire underneath it. Bound replay retention
+to active build checkpoints or choose the durable per-target work approach above.
+A missing replay interval requires a new reconciliation pass, not guessed progress.
+
+Repair must honor current custody and explicit restoration generations. Repeated
+ordinary scans cannot restore material simply because an old source is still
+physically present. Preserve tombstones and rejected memberships as applicable.
+Do not mass-delete unmatched rows on the basis of a partial backfill.
+
+### 10.8 R1/R2-F — comparison and coverage report
+
+Extend `index_compare.py`; retain its existing bounded-page checks. Separate:
+
+**Structural parity:** identity, unique count unit, kind, time basis, ordering,
+lens membership, cursor/has-more and exact position restoration.
+
+**Typed projection parity:** expected owner-derived entries versus stored entries,
+including viewer/version/owner identity, content revision, authority/dependency
+token, represented and source refs, grants, lineage, payload, exact destination,
+status/lifecycle and withdrawal state. Normalize only declared unordered fields
+and incidental write timestamps. Do not sort content whose order has meaning or
+ignore differing claims just to make a report green.
+
+**Coverage:** inventory every family separately as incremental, backfilled,
+reconciled, compared, unsupported, or blocked. Include retained originals,
+represented anchors, Plans, Occasions, Outcomes, historical Atlas material and
+any commitments emitted by the canonical corpus. Matrix omissions are findings.
+Generic social contributions and authored compositions remain unavailable until
+their own owner contracts exist.
+
+Compare at matching owner/authority revisions. Concurrent drift is an explicit
+retry/inconclusive result, not an equality failure to ignore. Keep per-record
+revision evidence; a shared wall-clock label does not create cross-owner consistency.
+
+The legacy serving snapshot is one comparator, not the complete product oracle.
+For example, its `my` graph mode and newer shared Outcome projection can have
+intentionally different populations. Record owner-contract expectations and
+classify intended additions separately from regressions. Validate selected
+source-level facts independently to avoid two consumers sharing the same builder
+bug and appearing equal.
+
+Emit a machine-readable report plus a concise operator summary: examined scope,
+versions, revision basis, coverage, missing/extra/mismatched rows, stale-viewer
+findings, unresolved work and actual timing/query measurements. Logs should use
+opaque references and field-level classifications rather than raw private content.
+
+### 10.9 Verification portfolio for the first connected batch
+
+Use the existing `tests/life_projection/`, core outbox/propagation tests and
+worker tests. Extend PostgreSQL fixtures for actual transaction behavior; mocked
+CAS calls cannot establish concurrency safety. Use local tests, with model/API
+calls and device testing deferred for this batch.
+
+Required scenarios:
+
+- Untouched historical originals, an ordinary local occasion, an owner-private
+  Plan, and private/shared Outcomes populate from enumeration.
+- Repeated pages/events and restart at each checkpoint do not duplicate records.
+- Mutations during enumeration, including backdated insertion and a transaction
+  committing behind a traversal boundary, eventually appear.
+- Old content, audience changes, first insert, withdrawal, restoration, failed
+  acknowledgement and lease reclaim exercise §10.4's interleavings.
+- A departed/erased viewer loses dependent rows while independent records remain.
+- Source expiry and represented/unrepresented transitions retain exact-original
+  access only where the source owner permits it.
+- More records/viewers/dependencies than one page drain completely without
+  lifetime-history reads or accidental omission-based withdrawal.
+- Payload, destination, source/grant/dependency and time mismatches are detected
+  even when IDs/order match.
+- Unsupported owner families and missing replay intervals prevent a false
+  completion certificate.
+- Comparison reads themselves do not create Atlas rows, perform generation,
+  change canonical owners, or count as user activity.
+
+Run focused suites and repository-required checks for touched code, then record
+exact commands and counts. Classify additive checkpoint schema/publication-owner
+changes under the repository's schema/architecture review rules. Follow workspace
+schema export/type-generation workflow if public models/routes change; internal
+worker-only changes do not require invented public endpoints. Before migrations,
+check the actual Alembic head and preserve a single lineage.
+
+First-batch exit: supported owners have bounded, restartable historical population
+and live reconciliation; concurrency regressions pass locally; the comparison
+report accounts for the full declared cohort and identifies every remaining
+family gap. Serving stays on the existing reader. R8 requires additional complete
+owner coverage, read-time authorization, measured access, mobile acceptance and
+an explicit release decision.
+
+### 10.10 R2-G — organization and durable human corrections
+
+Proceed from the system-design D2–D7 and W1–W5 contracts. Index population by itself
+does not create good episodes, place relationships, or attention threads.
+
+First specify and review the minimal persistence delta for stable group identity,
+membership with supporting refs/revisions, alias/split resolution, and durable
+human controls. Reuse existing canonical owners for journeys and Occasions;
+derived organization cannot mutate their participants, plans, audience or sources.
+
+Implement deterministic explicit containment and time/place relations before
+learned clustering. Separate occurred/captured/authored/imported/planned time;
+`updated_at` is a revision clock, not occurrence evidence. Source-only and undated
+items are valid final states. A September import can update August without moving
+September's rows. Preserve exact links even when optional similarity work is capped.
+
+Implement scoped rename, detach-with-exclusion, and accepted split/merge behavior
+with revision-bound commands, readback and valid Undo. Persist these choices so
+rebuilds cannot erase them. Keep old links resolvable with no automatic first-child
+choice where ambiguous. Translate natural language through existing contextual
+Chat/owner commands; do not build another Life chat or correction inbox.
+
+Reproject only affected memberships, counts, search/destinations and dependent
+content. Model-assisted relation proposals remain bounded and optional; they
+cannot grant authority, establish attendance, or rename authored material.
+No new model experiment or generated Return is required for custody and repair
+to function. Calibrate ambiguity on W1–W5 before proposing automatic broad joins.
+
+### 10.11 R3/R4/R5-H — mobile work that can proceed during visual refinement
+
+Audit the current root, full-record reader, `useLifeRefind`, resource destination
+resolver, query keys and `lifeReadingPositionStorage` against the selected design
+semantics. Reuse existing components and return envelopes. Concrete work includes:
+
+- Direct chips/search results and exploratory rows reaching the same object.
+- Lens/query/row identity and offset restored after opening details, account
+  switching, and app restart; bounded fallback when the row disappears.
+- Original-source access distinct from the full organized history. The current
+  root archive control routes to the full-record reader; do not relabel that
+  route Everything kept without implementing the corresponding source access.
+- Explicit Life search scope, accurate unsupported destinations, partial results,
+  and no silent disappearance/count mismatch when a record cannot open.
+- Loading/error/offline behavior that preserves usable prior content and the
+  root's navigation anatomy, with no fabricated completeness.
+- Contextual correction and source-owner handoffs using accepted commands;
+  invalidate both root and depth after durable change.
+
+Backend transport changes must update generated mobile types in the same package.
+Use focused component/navigation tests while native testing remains deferred;
+carry device accessibility, touch, cold-start and visual checks to the release
+checkpoint. Final section order, editorial copy and illustration treatment can
+land after the Claude pass without changing canonical object identity.
+
+### 10.12 Solo-founder sequencing and first action
+
+The next code action is R1/R2-A: pin the current implementation baseline, reconcile
+the owner matrix and reproduce the publication/delivery cases. Then implement B
+before starting a large historical fill. C–F follow as reviewable connected
+packages. The important visible milestone is that retained history actually
+populates and stays correct across changes—not another standalone test framework.
+
+Work in a fresh isolated `codex/` worktree based on the verified integration
+baseline, or deliberately reconcile the old Life branch after reviewing its
+divergence. Do not reset or rebase concurrent work blindly. Commit explicit files
+only. Coordinate proposed owner/schema changes through the existing register;
+continue independent consumer/comparison work if an owner seam is unavailable.
+
+At each package close, record implemented scope, test commands/results, known
+coverage gaps, schema/API impact and the next checkpoint in the existing roadmap
+and status file. Keep R7 content production and R8 cutover explicit downstream
+work; neither a passing shadow comparison nor a polished design silently enables
+them. No calendar estimate is justified until A–C establish the actual owner and
+publication gaps.

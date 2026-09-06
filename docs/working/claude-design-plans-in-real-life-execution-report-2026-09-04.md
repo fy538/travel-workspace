@@ -566,6 +566,35 @@ convention, not an optimality result. Kernel §11.15 carries a dated correction 
 this pass; its R1–R5 checks from §0.5 stand. *Native-unverified:* everything. *Participant-unverified:* everything.
 Live sync: pushed via DesignSync and re-rendered from the served project, not asserted from local edits.
 
+## 3q. §0.8 content-and-continuation cleanup (2026-09-06)
+
+Four existing treatments refined; two frames added to trace one continuation; nothing else grew.
+
+- **D3 (05).** The draft message and recipients lead ("To Maya and Sam · Draft"); one consequence sending does not
+  settle ("Your table is still reserved for seven"); action named for its effect: **Update & send** (owner
+  instruction: the arrangement moves and the announcement goes out), Edit, Not now. Removed from customer copy: the
+  per-person Maya/Sam/table lines, the prepared-vs-authored note, the correction-vs-unsend footer (now annotation).
+- **J2f (09).** "Ben moved the visit to eleven, after the quieter window you asked about. Going together at 10:15
+  would need his agreement." Replaces "10:15 is still yours to take", which implicitly encouraged a split. Annotation
+  aligned: agreement to attend together, not owner approval of an authorized edit; nothing invented about Ben's
+  availability; the pill remains for raising it.
+- **F1 (11).** The reported afternoon takes the title ("An afternoon by the river"), attributed ("You said you went
+  here instead of the café"), original intention beneath in muted type; gutter word "after" (no invented time);
+  people phrase omitted (no attendance asserted). "What was planned stays as it was" removed from copy; the
+  invariant lives in the annotation.
+- **I1 → I1b → I1c (11).** The door now reads "Prepare a proposal for Maya and Sam". I1b: the prepared proposal in the
+  J3a outgoing-card family — recipients, editable question-shaped wording, **Send proposal** (a message; dinner stays
+  at eight until they answer), Edit, Not now (contacts no one). I1c: readback — what was sent (her words under the
+  row), what did not change (thesis and row still eight; ink receipt states it once), what is unanswered (both).
+  Contrast with D3 stated on the frame: expressed intent + outgoing effect, not a new screen. Both PROPOSED under the
+  sentence-6 exception. Board 11 is now six frames.
+- **Record-keeping.** Selective prompting is recorded on 07 and in kernel §11.15's correction note as a relaxation
+  of the accepted sentence-2 addendum wording, alongside the proposed amendments, not as unchanged canon.
+
+**Verification.** *Illustrated (pushed via DesignSync, rendered from the served project, inspected):* 05 D3, 09 J2f,
+11 I1/I1b/I1c/F1, 07, 00. *Wired:* none — the prototype (92) was not extended; its §0.5 regression results are not
+evidence for the message or proposal paths. *Native-unverified, participant-unverified:* everything.
+
 ## 4. Verification (live project, 2026-09-04)
 
 - Every board rendered from the **live project** via `render_preview` serve URLs in headless Chrome

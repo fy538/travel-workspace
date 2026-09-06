@@ -3,11 +3,20 @@ doc_type: working
 status: active
 owner: founder / Home orchestration
 created: 2026-09-04
-last_verified: 2026-09-04
+last_verified: 2026-09-06
 expires: 2026-10-04
 why_new: Plans the connected-prototype and cross-lane engineering feasibility phase after the Home-only composition iterations; the design handoff owns visual critique while this companion owns sequencing, integration questions, deliverables, and completion criteria.
 supersedes: []
 ---
+
+> **September 6 execution authority:** preserve this plan's connected journeys;
+> use the [implementation map's current baseline](home-connected-experience-implementation-map-2026-09-04.md#september-6-execution-rebaseline)
+> for packages and the [coordination register](complete-system-integration-roadmap-2026-09-05.md#2-current-coordination-register--september-6)
+> for receiving owners. Earlier destination, social-placement and economics
+> findings are dated evidence, not instructions to repeat landed work. Places'
+> friends-scope placement is the accepted baseline; proposed crown/design
+> exceptions require explicit decisions. Native acceptance remains separate
+> from the current locally tested engineering sequence.
 
 # Home — connected experience and implementation-readiness plan
 

@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: product / backend / frontend
 created: 2026-09-04
-last_verified: 2026-09-05
+last_verified: 2026-09-06
 expires: 2026-10-04
 why_new: Replans entity work from the implemented September 4 baseline into evidence-gated completion, integration, and separately approved expansion.
 supersedes: []
@@ -15,6 +15,13 @@ Current execution detail: [Entity system implementation closure and acceptance
 plan (September 5)](entity-system-acceptance-plan-2026-09-05.md). It follows the
 latest local-main fixes and separates core-page, research, and people acceptance;
 the historical execution evidence below is not a current-build release verdict.
+
+**September 6:** follow the acceptance plan's current assignment for targeted
+receiving-lane closure. Earlier E1/E2 repair lists and environment/native
+checkpoints are historical; several repairs have since landed. Do not restart
+the whole E0–E10 program or expand entity kinds merely to keep the lane active.
+Current app/device testing is deferred, not passed; independent engineering
+may continue under the existing capability boundaries.
 
 ## 1. Outcome and scope
 

@@ -20,9 +20,12 @@ depends_on:
 ## September 5 roadmap rebaseline
 
 Use the [Complete-system integration roadmap](complete-system-integration-roadmap-2026-09-05.md)
-for current Strategy sequencing and the
+for current cross-system sequencing and the
 [Life replacement roadmap](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md)
-for Life execution. Only those two user-owned lanes remain active. This document
+for Life execution. The integration roadmap's September 6 coordination register
+now assigns the independent Home/Places, Life and Contribution delivery lanes
+plus bounded Plan and support work; the earlier two-lane assumption is retired.
+This document
 retains the earlier acceptance portfolio and implementation rationale; its Life
 baseline and separate-entity-lane assumption are historical, not current status.
 The [September 5 Home amendment](../decisions/2026-09-05-amend-home-composition-canon.md)

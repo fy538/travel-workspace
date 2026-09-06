@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / architecture / backend / mobile
 created: 2026-08-29
-last_verified: 2026-09-05
+last_verified: 2026-09-06
 expires: 2026-09-28
 why_new: Translates the accepted Contribution and Consequence Contract into a code-grounded, architecture-spanning migration plan for Chat, Intake, memory, synthesis, behavioral inference, receipts, correction, and mobile contribution surfaces without prematurely committing to a database migration.
 promotes_to: null
@@ -11,6 +11,36 @@ supersedes: []
 ---
 
 # Contribution Contract and Legacy Memory Migration Plan
+
+## September 6 current package register
+
+CC-0–CC-6 in §11 is the only forward completion sequence. Earlier A–G and
+P0–P5 sections retain rationale/scope, not alternative first batches. Follow
+the [shared coordination register](complete-system-integration-roadmap-2026-09-05.md#2-current-coordination-register--september-6)
+for receiving owners; this lane owns Capture/Chat lifecycle and useful-first
+results, not Life indexing, Home production or arrangement truth.
+
+| Batch | Landed baseline | Remaining next work |
+| --- | --- | --- |
+| CC-0 | Source-local page/count repair | Recheck supported reader/continuation cases only when their receiving contract changes; do not rebuild the count fix |
+| CC-1 | Authored authority through retry, redacted history metadata, stable distinct gesture identity | Preserve these contracts across remaining entry paths; no source-ID-only gesture dedupe |
+| CC-2 | Intake deadline preservation, copy inventory, Chat-image row-failure cleanup, custody-proof reads, processing-copy expiry | Accepted read/prompt rejection and eligible new-source cleanup are landed; adopt [history/source-expiry semantics](conversation-history-source-expiry-decision-proposal-2026-09-06.md) before changing Chat-image/history copies |
+| CC-3 | Bounded non-authoritative behavioral signals and synthesis labeling | Remaining writer/consumer conformance and repair, not a repeat universal memory audit |
+| CC-4 | Source-extracted facts precede candidate controls; Share Capture ordering is covered | Complete useful result/receipt/leave/re-entry across supported formats with real content/native evidence; source facts alone do not finish every value sequence |
+| CC-5 | Existing owner handoff/readback/correction portfolio plus content-free source-owner envelope | Rehearse the source envelope through Life readback/correction; map shared/intent and receipt consumers through actual owners |
+| CC-6 | Focused local evidence recorded in §11.6 | Real transport/content usefulness and later native acceptance remain distinct; app/device testing is currently deferred |
+
+The next batch should close an existing lifecycle/result/owner path, not add a
+new source store. Keep history-policy-dependent writes separate from safe
+format, reader, repair and handoff work. The [retained-intention proposal](retained-intention-before-plan-decision-proposal-2026-09-06.md)
+is not yet adopted; do not create intent through a Source or pseudo-Trip.
+Optional casual-question continuity remains unadopted, even while Strategy
+explores its product value. General five-axis policy is already settled.
+
+Life consumes authorized source events and owns the derived record. Retirement's
+[expense brief](assisted-expense-contraction-brief-2026-09-05.md) reuses this input
+path for private receipt understanding; shared debt remains an explicit command
+to the existing deterministic owner. No Chat root redesign is implied.
 
 > **Current execution plan — September 5:** [§11](#11-completion-plan--september-5)
 > records the fresh baseline, remaining repairs, product sequences, owner
@@ -1439,3 +1469,289 @@ needs the founder-selected Chat-image history rule and expiry sweep. CC-4
 still needs the full useful-first result sequence and registered native
 evidence, and CC-6 remains open for real transport, native, and
 generated-content runs.
+
+### 11.7 Execution receipt — September 6 — source lifecycle and owner-event handoff
+
+The next bounded Contribution/Capture package is implemented in backend
+commits `a669541b2`, `fce385207`, and `780677110` on the isolated branch
+`codex/contribution-capture-cc2-cc5`. It
+closes the non-proposal lifecycle and handoff work that can proceed without
+choosing a new conversation-history policy, retained-intention owner, or
+social command:
+
+| Accepted behavior | Delivered behavior | Evidence |
+| --- | --- | --- |
+| Expiry is an owner/privacy boundary | Semantic admission, semantic completion, and normalization refuse late work after a transient deadline. Expiry selects pending, uploaded, verified, and deletion-pending custody rows, scrubs only the source IDs in that lifecycle batch, and dead-letters unfinished work before cleanup. | `tests/inbound/test_intake_semantic_jobs.py`; `tests/inbound/test_intake_v2_retention.py` — 9 PostgreSQL tests passed. |
+| Read-time rejection | Semantic source loading requires verified custody, extracting processing state, and an unexpired transient deadline. Anchor image reads and canonical pending-Chat source/image/text readers also revalidate custody/expiry instead of trusting a stale verified row. | `tests/inbound/test_intake_semantic_jobs.py`; `tests/inbound/test_intake_anchor_projection.py`; `tests/api/test_intake_route.py`; `tests/core/test_pending_chat_turns.py` (17 focused cases). |
+| Source/derivative lifecycle handoff | Verified, normalized, represented/unrepresented, candidate confirmation/retraction, deletion, and expiry outbox payloads carry a content-free `source-owner-change.v1` envelope. It has stable event identity/retry key, owner revision, private scope/purpose, source refs, causal refs (including the candidate that caused representation), affected consumers, and owner-partition ordering metadata. | `backend/core/models/source_owner_event.py`, `backend/core/source_owner_events.py`; source-owner and Life broadcast tests. |
+| Life receives source-side metadata without Capture writing Life rows | The existing source-owner transaction enriches the Intake and Life outbox payloads. The delivery bridge validates and forwards only the envelope metadata; Life's projector and index writer remain the receiving owner. | `backend/core/life_projection_propagation.py`, `backend/core/life_projection_broadcast.py`; 61 focused offline tests passed. |
+| Correction/withdrawal remains causal and distinct | Candidate confirmation/retraction, source represented/unrepresented, owner deletion, and expiry keep distinct event keys and lifecycle values. No source-ID-only dedupe or merged gesture was introduced. | `tests/core/test_source_owner_events.py`, `tests/core/test_life_projection_broadcast.py`, existing correction/retention suites. |
+
+Focused validation passed **61 offline tests** for the lifecycle/handoff
+package, a further **17 offline pending-Chat read tests**, and **9 PostgreSQL
+tests**, plus Ruff lint/format checks, `git diff --check`, and Python compile checks. The
+normal pre-commit run passed its safety, import-cycle, sync-DB, timeout,
+registry, and projection-policy hooks. The repository's pre-existing
+broad-exception ceiling and backend size-budget ratchet remain over baseline,
+so only `check-broad-exceptions` and `check-size-budgets` were explicitly
+skipped for the commit; this is not a claim that those publication gates are
+clear.
+
+The receiving interface is now explicit: `event_id`/`event_key` identify the
+retry, `owner_id`/`owner_revision` identify the source-owner version, `scope`
+carries the private viewer and purpose, `source_refs` and
+`causal_dependencies` carry opaque lineage, `affected_consumers` names the
+downstream readers, and `ordering` fixes the owner partition/sequence and
+retry identity. The envelope contains no source bytes, extracted claims, or
+generated prose. Capture still owns durable source emission; Life still owns
+projection/index rows and current-authority readback.
+
+This receipt does **not** adopt the September 6 history-expiry or
+retained-intention proposals. CC-2 still needs the founder-selected
+ordinary-Chat versus Ask-image history rule, legacy-copy inventory/report, and
+cleanup evidence. CC-3's remaining writer family, CC-4's complete useful-first
+composition, and CC-5's intention/social/expense owner commands remain open.
+CC-6 still needs real transport, native, and generated-content evidence. The
+next unblocked package is to finish new-source copy/consumer expiry cases and
+then join the validated source envelope to the existing Life readback and
+correction journeys; no Life rows or new owner command are added by this
+package.
+
+### 11.8 Execution receipt — September 6 — custody-proof reads and aligned delivery
+
+The follow-up source-lifecycle package hardens accepted read and worker
+boundaries without adopting either September 6 proposal. Pending Chat source,
+image, and text readers; source-only Life reads; and confirmed-anchor source
+status now require the owner-bound custody receipt as well as verified custody
+and an unexpired transient deadline. Normalization and semantic workers fail
+closed before prompting or materializing derivatives when a receipt is
+invalid; URL and transcript materialization re-checks the locked parent before
+binding a child. No new copy, expiry policy, Chat root, or Life row was added.
+
+The Life delivery bridge also cross-checks the validated
+`source-owner-change.v1` envelope against the outbox key, owner id, owner
+revision, lifecycle, and viewer scope. Malformed or mismatched source-owner
+metadata is rejected rather than acknowledged. The envelope remains
+content-free and source-side; Life retains ownership of projector/index writes
+and canonical readback.
+
+Evidence: **95 offline** focused lifecycle/read/handoff tests and **9
+PostgreSQL** tests passed, plus Ruff, compile, and diff checks. This package is
+the next bounded commit `0aeb8611b` after `a669541b2`, `fce385207`, and
+`780677110` on `codex/contribution-capture-cc2-cc5`. Remaining CC-2 history-specific image
+policy/legacy cleanup, CC-3 writer-family conformance, CC-4 complete
+useful-first composition, CC-5 approved intention/social/expense commands,
+and CC-6 native/real-transport/content evidence remain open.
+
+### 11.9 Execution receipt — September 6 — itinerary edit writer conformance
+
+The accepted itinerary-edit writer now emits factual swap/add/remove signals
+with explicit operational provenance, non-authoritative policy, bounded
+confidence/importance, a 90-day expiry, and a source-operation subject key.
+Both the legacy edit-log drain and canonical committed Replace path retain
+their distinct receipts and transition lineage; retries do not silently
+promote the sentence to authored taste. This is a writer-local repair, not a
+Personal Memory prompt change or a universal memory audit.
+
+Evidence: `travel-agent` commit `fe87dc34f`; **23 offline** edit-inference
+tests passed. Discover/engagement/reflection, accommodation/planning, and
+group-synthesis writers remain bounded but need separate owner/policy receipts
+before their next changes. Intention/social/expense commands and the
+history-specific Chat-image decision remain gated.
+
+### 11.10 Execution receipt — September 6 — owner readback redaction during cleanup lag
+
+The canonical `GET /intake/submissions/{id}` owner read now applies the same
+accepted privacy boundary before physical cleanup completes. When a source is
+past its transient deadline, revoked, deleted, or fails its owner-bound custody
+receipt, the receipt retains content-free lifecycle metadata but removes
+`storage_ref`, `original_filename`, and raw `metadata`. A stale verified row
+therefore cannot expose a byte-addressing field or inline source payload during
+the cleanup window. The read remains owner-scoped and does not alter retention
+policy, source bytes, Life rows, or the unadopted history proposal.
+
+Evidence: `travel-agent` commit `444f2dfe9`; the expiry readback negative case
+is covered in `tests/inbound/test_intake_v2_retention.py`. The focused lifecycle/
+handoff suite remains **95 offline tests** (the added case is PostgreSQL-gated),
+and the retention/attempt portfolio remains **9 PostgreSQL tests**, with Ruff,
+compile, format, and diff checks clean. No API schema or mobile code changed.
+
+This closes the currently accepted source-read cleanup-lag seam. The next
+unblocked work remains the source/derivative copy-consumer expiry evidence and
+the Life readback/correction journey. Founder-selected ordinary-Chat versus
+Ask-image history treatment, remaining writer-family policies, useful-first
+composition, intention/social/expense owner commands, and native/real-transport
+evidence remain separately gated.
+
+### 11.11 Execution receipt — September 6 — Atlas reflection writer conformance
+
+The Atlas-derived-signal reflection writer now records its existing bounded
+behavior as explicit operational evidence: `evidence_origin=operational_event`,
+`promotion_policy=derived_unconfirmed`, `authority=non_authoritative`, a
+confidence band mapped from the signal's existing confidence, and a 90-day
+expiry. Each observation uses `subject_key=atlas_signal:{signal_id}`, so a
+replayed emission reinforces the same signal while separate signals remain
+distinct. The existing global/user learning gates, signal-state pause, and
+`link_signal_observation` back-link remain unchanged; no authored preference or
+shared fact is created.
+
+Evidence: `travel-agent` commit `79702ee87`; the Atlas signal-memory and
+reflection suites pass **31 offline tests**. Ruff, format, compile, and the
+non-mutating safety hooks passed for the owned files. The vulture, sync-DB,
+surface-key, broad-exception, and size-budget hooks were skipped for this
+commit because the repository's pre-existing ratchet/stash behavior reports
+baseline changes outside this package; no new violation was reported by the
+sync-DB or surface-key scans.
+
+This closes one accepted remaining CC-3 reflection-writer seam. Discover
+synthesis, memory-engagement reflection, accommodation/planning, and group
+synthesis still require their own explicit owner/policy evidence before any
+promotion or prompt change. CC-2 history-specific image treatment, CC-4 full
+useful-first composition, CC-5 intention/social/expense commands, and CC-6
+native/real-transport evidence remain separately gated.
+
+### 11.12 Execution receipt — September 6 — submission-level Chat source admission
+
+The pending-Chat admission boundary now verifies a whole-submission
+`SourceRef` against both custody layers: the owner-scoped, active submission
+envelope and at least one verified child source object with a valid immutable
+custody receipt. A submission row alone is not enough to authorize a prompt.
+This closes the cleanup/tamper race in which the submission could still look
+verified while every child source row was unusable; direct source-object refs
+retain their existing per-object receipt check. The check preserves gesture
+identity and does not deduplicate separate refs by source id.
+
+Evidence: `travel-agent` commit `a7cbec6cf`; the focused pending-Chat suite
+passes **19 offline tests**, including the negative all-child-receipts-invalid
+case. The connected lifecycle/read/handoff portfolio passes **108 offline
+tests** with this package, and Ruff, format, compile, and diff checks are
+clean. No API schema, Life index row, Chat-root design, history policy, or
+retention migration changed; native/app and real-transport evidence remain
+deferred.
+
+The receiving interface is unchanged and explicit: Life continues to consume
+the content-free source-owner envelope and own its projector/readback; Chat
+must fail closed when a submission ref has no custody-valid child; Home/Places
+consume only repaired owner revisions. The next unblocked source-side package
+is copy/consumer expiry evidence that does not require choosing the unadopted
+ordinary-Chat versus Ask-image history rule, followed by a joint Life
+readback/correction rehearsal. Remaining writer families and intention,
+social, and expense owner commands stay decision-bound.
+
+### 11.13 Execution receipt — September 6 — Life handoff causality evidence
+
+The existing source→Life registration path now has an explicit conformance
+case for a representation withdrawal: the Life outbox payload carries the
+`source-owner-change.v1` lifecycle, stable event key, owner revision, private
+viewer scope, and the candidate that caused the withdrawal as an opaque causal
+dependency. This is test evidence over the existing owner boundary, not a new
+projector or Life write. It confirms that correction/withdrawal preserves
+causality across the handoff while retries continue to use the same event
+identity.
+
+Evidence: `travel-agent` commit `9802c047c`; the source-owner propagation and
+envelope suite passes **7 offline tests**. No production behavior, API schema,
+Life index row, or owner command changed. The remaining next package is
+source/derivative copy-consumer expiry evidence independent of the unadopted
+Chat-history proposal, followed by a real Life readback/correction rehearsal
+when that receiving lane is ready.
+
+### 11.14 Execution receipt — September 6 — whole-submission admission positive control
+
+The pending-Chat source admission contract now has paired negative and positive
+coverage: a whole-submission `SourceRef` is rejected when all child source
+receipts are invalid, and it is admitted when the owner-scoped submission has at
+least one verified child with a matching immutable custody receipt. This keeps
+the new fail-closed guard from narrowing the supported path accidentally. The
+test does not deduplicate source refs, change gesture identity, or alter the
+materializer/readback boundary.
+
+Evidence: `travel-agent` commit `e33268064`; `tests/core/test_pending_chat_turns.py`
+passes **20 offline tests**. No production behavior, API/schema, Chat-root,
+Life projector, retention-policy, history-migration, or owner-command change
+was made. The supported source lifecycle remains locally evidenced; the next
+unblocked work is copy/consumer expiry evidence that is independent of the
+unadopted Chat-history proposal, followed by a receiving-lane Life
+readback/correction rehearsal when that lane is ready.
+
+### 11.15 Execution receipt — September 6 — useful-first capture display evidence
+
+The existing Share Capture surface now has a direct regression case for the
+accepted value-first contract: when source-extracted observations and a
+candidate are both available, the user sees the bounded “Already useful” facts
+before the “Keep this interpretation” decision. This protects the immediate
+value-before-management ordering without adding a new useful-result schema,
+changing Chat, or requiring a classification action before value.
+
+Evidence: `travel-app` commit `d7d1a3271`; the focused Share Capture suite passes
+**11 tests**. This is native-adjacent Jest evidence only; real transport, OS
+delivery, generated-content quality, and device acceptance remain deferred to
+CC-6. The next accepted source-side work is copy/consumer expiry evidence that
+does not depend on the unadopted Chat-history proposal, followed by a joint Life
+readback/correction rehearsal when the receiving lane is ready.
+
+### 11.16 Execution receipt — September 6 — processing-copy expiry evidence
+
+The accepted expiry path now has database-backed coverage for both
+normalization and semantic processing copies. When an ephemeral submission
+crosses its transient deadline, the expiry transaction clears each selected
+processing run's content-bearing `output` while preserving the source's
+content-free lifecycle/provenance fields, dead-lettering unfinished work, and
+leaving derived owner records under their own lifecycle. This extends the
+existing source cleanup evidence without adopting a Chat-history rule or
+purging historical conversation/image copies.
+
+Evidence: `travel-agent` commit `49ec11e21`; the targeted PostgreSQL expiry case
+passes, and the connected retention/attempt portfolio remains **9 PostgreSQL
+tests**. No API/schema, mobile, Chat-root, Life projector/index, or owner
+command changed. The remaining CC-2 history-specific image treatment is
+decision-blocked; native, real-transport, and generated-content evidence remain
+CC-6 gates.
+
+### 11.17 Current lane boundary — September 6
+
+The accepted source-side work that can proceed without a new product decision
+is now locally covered: custody-proof reads and prompt admission, retry
+identity, transient expiry and processing-copy cleanup, content-free source
+owner events, causal Life handoff metadata, and useful-first Share Capture
+ordering. No Life index row is written by Capture, and no Source is promoted to
+intention, social membership, expense debt, or a synthetic Plan.
+
+The next connected step is a receiving-lane Life readback/correction rehearsal
+using the existing event envelope. Further CC-2 work requires the founder's
+ordinary-Chat versus Ask-image history rule; CC-3 remaining writers need their
+own authority receipts; CC-4 full journey acceptance needs real content/native
+evidence; and CC-5 intention/social/expense commands remain owner-decision
+gated. The September 6 history and retained-intention documents remain
+proposals and are not runtime dependencies for the completed source boundary.
+
+### 11.18 Execution receipt — September 6 — Discover writer conformance
+
+The accepted CC-3 Discover-session writer now records its existing behavioral
+output as explicitly bounded derived evidence. Each emitted observation has a
+fixed 0.4 confidence, a 90-day expiry, and retains the existing
+`source_mode="inferred"`, capped importance, and non-authoritative provenance.
+When all input signals identify one Discover session, the writer also emits a
+hashed session/category/ordinal subject key so a retry can reinforce the same
+derived signal while multiple model outputs remain distinct. If signals span
+multiple sessions—or no session identity is supplied—the writer leaves the key
+unset rather than inventing a cross-session owner and collapsing separate
+behavioral windows.
+
+Evidence: `travel-agent` commit `8b6bab422`; **16** Discover-synthesis tests
+and **56** combined Discover/edit-inference/Atlas/engagement tests passed.
+Ruff, format, compile, and the owned-file safety hooks passed. The repository's
+vulture, broad-exception, and size-budget hooks remain pre-existing ratchets;
+they were skipped for this commit only (direct vulture produced no findings).
+No prompt, Chat root, source custody, Life row, intention, social command, or
+promotion policy changed. The writer remains decision-gated from becoming an
+authored or longitudinal preference; explicit confirmation remains the
+promotion boundary.
+
+This closes the accepted bounded-conformance seam for Discover synthesis. The
+remaining CC-3 families (memory-engagement interpretation, accommodation/
+planning, and group synthesis) still require their own owner/policy receipts;
+CC-2 history-specific image treatment, CC-4 complete useful-first journeys,
+CC-5 intention/social/expense commands, and CC-6 native/real-transport/content
+evidence remain separately gated. The next connected source-side step is still
+the joint Life readback/correction rehearsal over the existing envelope.

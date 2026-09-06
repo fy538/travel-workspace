@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / design / architecture
 created: 2026-09-02
-last_verified: 2026-09-02
+last_verified: 2026-09-06
 expires: 2026-10-02
 why_new: Tests whether Vesper needs an intentional present-tense social-world aperture in addition to object-native multiplayer projection and Life's durable People record, without presupposing a fifth root, friend feed, or live-location map.
 promotes_to: null
@@ -26,6 +26,9 @@ depends_on:
 # Claude Design / Claude Code Handoff — Social Aperture and Shared World
 
 **Date:** September 2, 2026
+
+**Amended:** September 6 — social-benefit and low-pressure participation
+direction; referenced design boards and runtime status have not been re-certified.
 
 **Audience:** Claude Design and Claude Code
 
@@ -184,6 +187,40 @@ The opposite hypothesis remains credible:
 The new project exists to decide between these hypotheses through complete
 compositions—not rhetoric.
 
+### 1.4 September 6 refinement: enjoyable presence and easier time together
+
+The founder's refinement and [research pass](vesper-consumer-promise-and-adaptive-value-research-2026-09-05.md#11-casual-social-value-and-offline-connection)
+sharpen the purpose of this investigation: enjoyable awareness, easier human
+initiation, and less unwanted work between wanting to spend time together and
+actually doing it. These are independent benefits, not one conversion funnel.
+
+A friend's ordinary photograph may be worth seeing because it is theirs.
+Compare it without generated enrichment before adding explanation or an
+invitation. Do not make people publish something impressive, demonstrate
+authenticity, or provide equivalent effort to receive. Vesper's additions still
+owe a useful contribution. Optional private acknowledgment is welcome; passive
+viewer reporting and public popularity scores are not.
+
+The need for intentional access is accepted as a design requirement: a person
+should be able to find eligible human contributions without depending entirely
+on Home ranking. The right entry, lens, and composition remain open. IA-0 must
+receive a strong discoverable pull path, not a deliberately weak control; no
+fifth root or separate social owner is selected by this amendment.
+
+Apply the [four social-benefit comparisons](vesper-consumer-promise-and-adaptive-value-research-2026-09-05.md#114-comparable-experiences-and-open-decisions)
+as overlays on the existing fixture portfolio, not four additional product
+modes: ordinary share with no reply; a directed perspective; a human-chosen
+gathering; and its adaptation to reality. Show a recipient with little app
+investment and an organizer whose unwanted work is actually reduced. No image
+or retrospective contribution is required after attendance.
+
+Keep casual shares distinct from invitations and agreed arrangements. Hide
+passive consumption, not explicit response state or material dependencies.
+Do not infer availability from location or silence. Start loose when useful;
+add precise timing when people need to rely on it. The live engine should make
+the evening easier, not make leisure look like project management. These
+targets preserve existing authority and do not authorize implementation.
+
 ## 2. Canonical product laws
 
 Treat these as fixed inputs unless the project produces concrete evidence that
@@ -219,9 +256,9 @@ Do not reduce multiplayer to either social discovery or group planning.
 person × relationship × Place × situation × Outcome
 ```
 
-The person is valuable because of a situated contribution, shared history,
-current participation, or deliberate availability—not because an avatar makes
-a card feel social.
+The person is valuable through enjoyable ordinary presence, a situated
+contribution, shared history, current participation, or deliberate
+availability—not because an avatar makes generic system content feel social.
 
 ### 2.4 Social material remains object-native
 
@@ -980,7 +1017,9 @@ aperture.
 
 Reject any proposal that produces one of these outcomes:
 
-1. A conventional feed of saves, likes, bookings, check-ins, and stories.
+1. A generic activity feed assembled from saves, likes, bookings, or check-ins.
+   Bounded browsing of deliberately shared ordinary human moments is not this
+   failure mode; it does not require AI enrichment to earn its value.
 2. A map of precise friend locations without explicit, current, granular
    sharing.
 3. An avatar strip whose people can be removed without changing the value.

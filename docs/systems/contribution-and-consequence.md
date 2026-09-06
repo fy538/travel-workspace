@@ -325,11 +325,20 @@ execute, and reconcile remain separate provider transitions.
 
 ### 3.10 Open proposal: casual-question continuity (not in force)
 
-The product ambition is useful continuity from ordinary questions without a
-per-turn memory-management ritual. An optional, understandable conversational
-continuity agreement is being explored in the
+The [September 6 strategy decision](../decisions/2026-09-06-reconcile-consumer-strategy.md)
+accepts optional conversational continuity as product direction: ordinary
+questions should be able to improve later private help without per-turn saving.
+It does **not** adopt a retention agreement or change Ask. The precise policy
+remains under investigation in the
 [research brief](../working/vesper-consumer-promise-and-adaptive-value-research-2026-09-05.md#104-pending-continuity-decision).
-This paragraph records an unresolved decision, not a new authority grant.
+Do not confuse accepted direction with an effective user grant.
+
+The [September 6 history/source-expiry decision packet](../working/conversation-history-source-expiry-decision-proposal-2026-09-06.md)
+is the current review location for history copies, source-dependent answers and
+optional continuity. It is explicitly unadopted; none of its proposed migration
+or treatment choices changes this contract. The separate [pre-Plan intention
+packet](../working/retained-intention-before-plan-decision-proposal-2026-09-06.md)
+likewise proposes an owner without making Ask a retained intention.
 
 Before adoption, specify retained material and duration, eligible later uses,
 scope and sensitive/third-party exclusions, source-versus-person inference,
@@ -613,6 +622,30 @@ erases source, truth type, scope, expiry, disagreement, or correction.
   pending-action consumer is not certified.
 
 Current code existence is implementation evidence, not conformance.
+
+### Source-owner handoff alignment — 2026-09-06
+
+The retained-source owner now emits a content-free `source-owner-change.v1`
+envelope through the existing Intake/Life outboxes. It carries stable
+event/retry identity, owner revision, private scope and purpose, opaque source
+and causal references, affected consumers, and owner-partition ordering for
+verified, normalized, represented/unrepresented, candidate confirmation/
+retraction, deletion, and expiry transitions. The delivery bridge validates
+and forwards only this metadata; Capture still owns durable source emission,
+while Life owns projection/index rows and current-authority readback. This
+does not adopt a new history policy, create intention, or authorize a derived
+claim. Canonical pending-Chat source/image/text readers also enforce the
+transient deadline at read time, so cleanup lag cannot make released material
+usable.
+
+The same source-owner receipt is now required by pending-Chat source/image/text
+reads, retained-source Life reads, and confirmed-anchor source status. Workers
+fail closed before prompting or materializing a derivative when the immutable
+owner-bound receipt does not match; the Life bridge rejects a nested envelope
+whose identity, revision, lifecycle, or viewer scope disagrees with the
+outbox. This is delivery/read validation only: Capture emits source metadata,
+Life owns projector/index rows, and the unadopted history/continuity proposals
+remain inactive.
 
 ## 13. Migration order
 

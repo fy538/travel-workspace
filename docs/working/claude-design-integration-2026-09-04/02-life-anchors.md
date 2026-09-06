@@ -13,6 +13,13 @@ supersedes: []
 
 ## Assignment
 
+**Latest handoff — September 6 consolidation:** use
+[Life / Current Product companion-project handoff](../claude-design-life-canonical-project-handoff-2026-09-06.md)
+for the next Claude Design assignment. Preserve this project's archive and curate
+a new, intuitive companion project. The assignments below remain provenance;
+boards 35–39 now cover the requested Life-over-time exploration. Do not repeat
+that pass or interpret its proposals as automatically adopted.
+
 Work in `/Users/feihuyan/Downloads/vesper-life-anchors` (the current export;
 the original assignment referenced the earlier `vesper-life-anchors 2`). Extend the current
 direction in this design project; do not implement production changes or replace

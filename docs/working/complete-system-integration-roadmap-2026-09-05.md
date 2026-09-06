@@ -453,6 +453,15 @@ reuse, delivery/received distinction and owner-direct practical value.
   live freshness and worthwhile change their own timing and resource budgets;
   slow content production must not starve them. Explicitly invoked AI reasoning
   may be bounded work without making every root GET a generation request.
+- Apply the [accepted bounded worker decision](../decisions/2026-09-06-bound-source-production-worker.md)
+  to the [useful-preparation specimens](situated-value-decision-matrix-2026-09-06.md#12-useful-preparation-three-concrete-receiving-experiences):
+  bind each produced result to a permitted named trigger, eligible source/use
+  scope, bounded executor/budget, deadline, canonical readback and delivery path.
+  Ordinary GETs, focus and app launch cannot enqueue optional production. Reuse
+  current work-item/lease/executor seams; their existence is not activation or
+  proof a particular specimen has its trigger and producer. Resolve the missing
+  binding, not a new scheduler. Keep source revocation, late completion,
+  unsupported production and requested-work failure in acceptance coverage.
 - Implement reevaluation through the existing judgment/admission and owner
   gateways: a signal can cause no change, hold, wait, a revised possibility, an
   authorized action or release. Recheck relevance and grants before delivery.
@@ -565,6 +574,15 @@ context. All have correction/release coverage and exact continuity destinations.
 - Make factual reconstruction useful on its own when it reduces work or reveals
   a legible pattern. Apply the new-substance test to claimed interpretation,
   comparison and synthesis; do not ban factual summaries categorically.
+- Implement the [Home receiving requirements](home-connected-experience-implementation-map-2026-09-04.md#useful-preparation-receiving-requirements)
+  across ready, accepted-work-pending and unsupported results. Deliver substance
+  when ready; preserve useful existing material while waiting without implying
+  fit or filling Home with jobs. Receive later completion without scroll jumps,
+  duplicate cards or automatic push; remove invalid claims promptly. Refreshing
+  an existing offer need not promote it as new. Review E1–E3 for actual benefit,
+  optional continuation and total organizer/recipient effort, separately from
+  technical correctness. These are varied system acceptance cases, not a single
+  showcase loop or authorization to expose gated kinds.
 - Preserve attribution and allowed social context. Conditional people grouping
   follows the latest social split: Home shows addressed and shared-consequential
   material, including the conditional `Addressed to you` region. Its shared-world

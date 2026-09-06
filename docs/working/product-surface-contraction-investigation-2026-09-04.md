@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / architecture
 created: 2026-09-04
-last_verified: 2026-09-05
+last_verified: 2026-09-06
 expires: 2026-10-04
 why_new: Investigates post-pivot surface contraction and plans bounded booking-execution retirement while preserving external reservation usefulness.
 supersedes: []
@@ -1117,6 +1117,34 @@ the compatibility route, or remove the return-catch behavior from Chat as part
 of this repository pass.
 
 ## 20. Next execution sequence — September 5 rebaseline
+
+### September 6 current coordination and next batch
+
+SC-0–SC-6 remains the contraction sequence. The [current coordination register](complete-system-integration-roadmap-2026-09-05.md#2-current-coordination-register--september-6)
+supersedes §20.12's task-activity snapshot; §20.13 records the completed read
+facade and handoffs. Do not re-extract `bookingReads.ts` or recreate the two
+briefs. Run this lane in replacement-bound batches, not as a parallel Home,
+Life, Capture or Plan implementation program.
+
+| Ready output / next package | Receiving package | Acceptance before contraction |
+| --- | --- | --- |
+| [Retained booking evidence](booking-retained-evidence-adapter-brief-2026-09-05.md) | Life R3/R5 exact reader; Home delivery matrix consumes its facts | Exact session/offer/source identity, historical/current distinction, external continuation, access and needed recovery |
+| [Assisted expense result](assisted-expense-contraction-brief-2026-09-05.md) | Capture CC-4/5 plus current Trip expense owner | Immediate private understanding; explicit authorized debt command; deterministic amounts and correction |
+| SC-0 route dispositions | Integration landing, with Life confirming its two owner routes | Recheck stale inventory and `/you/intake-submissions/[submissionId]`, `/you/life-record` classifications; regenerate once after source changes land |
+| Arrangement/settings replacement | Components and Plan A4 | Exact retained participant/grant/change/recovery jobs exist before deleting their old route |
+| Atlas removal | Life R8 | Complete receiving coverage and migration; a canonical tab alone is insufficient |
+
+Every deletion candidate must name remaining callers, replacement owner,
+historical deep links, obligation/recovery dependency and rollback. Static
+dependency removal and retained-reader work can proceed before provider
+shutdown; obligation-bearing removals need separately authorized environment
+evidence. Shared non-Trip expense debt remains unresolved and must not create
+a pseudo-Trip. UI reduction must not delegate arithmetic to generated prose.
+
+Next checkpoint: a receiving reader/result is integrated and the caller map
+shows which maintenance obligation can actually disappear. No provider action,
+production deletion, native session or flag change is authorized by this
+documentation update.
 
 ### 20.1 Outcome, authority, and current evidence
 

@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / architecture / engineering
 created: 2026-09-01
-last_verified: 2026-09-05
+last_verified: 2026-09-06
 expires: 2026-10-01
 why_new: Records the executed, cross-repository Life v1 foundation and its validation evidence so future design work can build on committed seams rather than re-open the architecture.
 depends_on:
@@ -14,6 +14,19 @@ depends_on:
 ---
 
 # Life v1 — execution status
+
+## September 6 reading order
+
+Use the [replacement roadmap's current baseline](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#current-execution-baseline--september-6)
+for what to execute next. This file is the evidence ledger, not a second
+sequence. The canonical Life tab and four-lens readers have landed; older
+flag/Atlas descriptions below are historical. The owner-safe shadow section
+records index/outbox/restore helpers plus the new identifier-only outbox
+delivery bridge and retained-source shadow projector, not broader owner
+producer wiring, populated data or a serving cutover. Native acceptance remains deferred for
+current engineering, not retrospectively passed. Source and future-intent
+dependencies follow the integration register and its explicitly unadopted
+decision proposals.
 
 ## September 5 roadmap and evidence clarification
 
@@ -109,8 +122,23 @@ capabilities, and forwards the batch to the guarded writer. Commit `8dc6c3d1b`
 extracts the pure publication decision used by replay/race tests. Commit
 `893300606` adds the separate `life_projection_outbox` table and lease/ack/retry
 operations so future owner transactions can deliver Life work without
-competing for Intake's single acknowledgement event; no producer or worker is
-wired to it yet. The workspace replay manifest and validator (`ed0568a`) pin
+competing for Intake's single acknowledgement event. The September 6 delivery
+bridge now provides the after-commit `life_projection.ready` handoff, an
+identifier/revision-only `life_projection.changed` envelope, and a minute
+repair sweep. Commit `77d4a8474` connects retained-source verification,
+attachment, and deletion to a current-authority shadow projector; broader
+owner producers and indexed serving remain open.
+Commit `073d33b9d` additionally wires Experience Graph confirmation and
+candidate retraction to the retained-source path: `source_represented` and
+`source_unrepresented` are emitted transactionally, and the projector
+withdraws/restores the private shadow row against the exact owner revision.
+Follow-up commit `420176821` makes those branches explicit and stale-safe.
+The local `lifeoutbox01` migration is now applied and the PostgreSQL
+bridge/intake suite passes 17 tests. Commit `a669541b2` adds the
+content-free `source-owner-change.v1` lifecycle envelope with explicit owner
+revision, retry identity and source/candidate references. This remains
+shadow-only.
+The workspace replay manifest and validator (`ed0568a`) pin
 W1–W6 transitions and their repair/must-not expectations.
 
 These are scaffolding and shadow-population seams, not a populated index,
@@ -269,3 +297,24 @@ revision/audience contracts, then certify paged backfill and shadow parity befor
 any indexed serving switch. Remaining dossiers, lenses, custody, refinding,
 shared/prospective continuity, Returns and Atlas deletion are explicit packages
 in that program, rather than indefinite deferrals.
+
+### R1/R2 consumer delivery receipt — 2026-09-06
+
+The owner-change consumer is now connected to the existing durable bridge in
+`travel-agent` commit `b4d87161f` (based on bridge commit `1bb03e1c7`). The
+retained-source owner adapter and producer are also landed in `77d4a8474`.
+The generic current-authority fan-in uses existing graph/intake/timeline
+readers and the all-lens corpus builder; the existing shadow writer receives
+explicit prior revision tokens. Stale/out-of-order updates converge on current
+authority, withdrawals preserve tombstones and remove disappeared identities,
+and restore requires an explicit event plus an exact withdrawn-row revision.
+Unavailable owner kinds fail closed. This is shadow materialization only; no
+reader cutover or Atlas deletion follows.
+
+Evidence: 103 focused Life/bridge/worker tests passed locally. Remaining
+dependency is graph-owner production: Plan/Occasion/Outcome must agree the
+event envelope and add transactional `register_life_projection_propagation`
+calls with explicit viewer scope. Retained-source producer calls already exist
+in Intake. No extra source writer was invented in Life's lane. See the
+[owner-change delivery handoff](life-owner-change-delivery-handoff-2026-09-06.md)
+for fields, behavior, and the next PostgreSQL/producer checkpoint.

@@ -1208,7 +1208,7 @@ not settled.** "Help welcome only after a problem" comes from one CHI 2024 study
 evaluators (timing did not affect performance) and one CHI 2025 programming study; the
 "five notifications a week" figure is vendor survey data, not a threshold; "tapping is 10×
 faster" is an essayist's estimate. They support the direction; they do not make rules.
-Amendments proposed under §0.7 (selective guidance; a possibility plus one quiet door after
+Selective guidance (§0.7 B1, applied 2026-09-05) is a relaxation of the literal "after an answer, one Or-say line" wording in the sentence-2 addendum below; it is recorded as such, not as unchanged canon. Amendments proposed under §0.7 ( a possibility plus one quiet door after
 an implication; acknowledgment of a submission in the active interaction; urgent changes not
 bundled) are recorded on project board 07 and in the execution report §3p as PROPOSED, each
 needing a new decision before adoption. This record is not otherwise edited.

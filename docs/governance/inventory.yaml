@@ -87,6 +87,42 @@ rules:
 
 
 overrides:
+  docs/working/vesper-useful-preparation-and-initiative-research-2026-09-06.md:
+    disposition: keep_reference
+    rationale: Research on useful preparation, production versus delivery timing, and three complete experience comparisons; identifies existing owner dependencies without adopting background authority or certifying user demand.
+
+  docs/working/vesper-ordinary-value-and-relationship-strategy-research-2026-09-06.md:
+    disposition: keep_reference
+    rationale: Parallel research on dependable value, ordinary-week supply, capability, initiative, recipient-complete social value and strategic disconfirmation; recommendations do not adopt runtime policy or certify user outcomes.
+
+  docs/working/situated-value-decision-matrix-2026-09-06.md:
+    disposition: keep_reference
+    rationale: Working five-situation value matrix with controlled context comparisons and existing owner dependencies; supports strategy and integration review without adopting runtime policy or claiming user validation.
+
+  docs/working/cross-root-change-dependency-matrix-2026-09-05.md:
+    disposition: keep_reference
+    rationale: Integration consumer-delivery matrix separating foreground invalidation, durable events, generated-result repair and current authorization; existing domain contracts own truth.
+
+  docs/working/entity-roadmap-2026-09-04.md:
+    disposition: keep_reference
+    rationale: Entity scope and historical execution rationale; current bounded packages live in the entity acceptance plan and integration register.
+
+  docs/working/entity-system-acceptance-plan-2026-09-05.md:
+    disposition: keep_reference
+    rationale: Current bounded entity closure and receiving-lane acceptance sequence with independent core, research and people gates; no activation authority.
+
+  docs/working/lightweight-arrangements-implementation-handoff-2026-09-04.md:
+    disposition: keep_reference
+    rationale: Arrangement A0-A4 engineering sequence and design-to-command handoff; proposed owner/schema choices require adoption under existing product contracts.
+
+  docs/working/retained-intention-before-plan-decision-proposal-2026-09-06.md:
+    disposition: keep_reference
+    rationale: Review-ready but unadopted pre-Plan owner and command proposal; existing contribution and graph contracts remain authoritative until an accepted decision.
+
+  docs/working/conversation-history-source-expiry-decision-proposal-2026-09-06.md:
+    disposition: keep_reference
+    rationale: Review-ready but unadopted material lifecycle and history proposal; optional conversational continuity remains unadopted and existing Ask rules govern.
+
   docs/working/vesper-consumer-promise-and-adaptive-value-research-2026-09-05.md:
     disposition: keep_reference
     rationale: Strategy-thread research provenance and proposed consumer comprehension and adaptive-assistance studies; existing product canon and approved messaging retain authority, with no runtime or participant-validation claim.
@@ -101,7 +137,7 @@ overrides:
 
   docs/working/complete-system-integration-roadmap-2026-09-05.md:
     disposition: keep_authoritative
-    rationale: Current two-lane Strategy integration roadmap with code-backed correction packages, Life boundaries, reassessment checkpoints and bounded Luna execution policy; product canon and release approvals retain their authority.
+    rationale: Current cross-lane coordination register and integration roadmap with code-backed packages, autonomous delivery boundaries and reassessment checkpoints; product canon and release approvals retain their authority.
 
   docs/working/home-connected-experience-plan-2026-09-04.md:
     disposition: keep_reference

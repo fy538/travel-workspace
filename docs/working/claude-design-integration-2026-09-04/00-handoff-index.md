@@ -3,13 +3,33 @@ doc_type: working
 status: active
 owner: founder / product / design
 created: 2026-09-04
-last_verified: 2026-09-04
+last_verified: 2026-09-06
 expires: 2026-10-04
 why_new: User-requested routing index for five separately transferable Claude project briefs arising from the September 4 design integration review.
 supersedes: []
 ---
 
 # Claude design integration — project handoffs
+
+## Current handoff routing — September 6
+
+This table supersedes the September 4 project/version table below for new
+handoffs. Older bundles remain provenance, not instructions to restart them.
+The [integration register](../complete-system-integration-roadmap-2026-09-05.md#2-current-coordination-register--september-6)
+owns engineering assignments; this index routes design work only.
+
+| Current work | Primary handoff | Version / boundary |
+| --- | --- | --- |
+| Home, with bounded Places extension | [Artifact-led value](../claude-design-home-artifact-led-visual-value-handoff-2026-09-05.md), alongside the generous-value brief | September 6 response records the Home project move to `42876b8c`; verify the current export before using an older Downloads path |
+| Life | [Life anchors](02-life-anchors.md) | Current `/Users/feihuyan/Downloads/vesper-life-anchors`; updated walkthroughs refine behavior, not another engine roadmap |
+| Plans in real life | [Plans handoff §0.8](../claude-design-plans-in-real-life-handoff-2026-09-04.md#08-september-6-export-review-finish-the-content-and-continuations-not-another-redesign) | Current `/Users/feihuyan/Downloads/vesper-plans-in-real-life`; finish reduced family and exact continuations, not the old large kernel exploration |
+| Chat / capture | [Chat brief](04-chat.md), constrained by [CC completion](../contribution-contract-and-legacy-memory-migration-plan-2026-08-29.md#11-completion-plan--september-5) | Bounded useful-first contribution work; no Chat root redesign or new continuity permission |
+| Entities | [Entity brief](05-entity-objects.md) and [acceptance plan](../entity-system-acceptance-plan-2026-09-05.md) | Targeted receiving-lane support; verify export availability, no family expansion |
+
+The active social baseline remains Home addressed/shared consequences, Places
+friends-scope browsing, and Life's durable People record. New social research
+refines effort and discoverability; changing placement needs an explicit
+amendment. Crown and Plan exceptions labeled proposed remain unadopted.
 
 ## Purpose and authority
 

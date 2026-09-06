@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: product / backend / mobile
 created: 2026-09-05
-last_verified: 2026-09-05
+last_verified: 2026-09-06
 expires: 2026-10-05
 why_new: Converts the implemented entity roadmap into bounded correctness, native acceptance, and independently gated pilot packages without restarting the architecture or authorizing backfill.
 supersedes: []
@@ -14,6 +14,35 @@ depends_on:
 ---
 
 # Entity system: implementation closure and acceptance plan
+
+## September 6 current assignment
+
+This remains the scoped C0–C8 execution detail; the September 4 entity roadmap
+is background direction, not a second pending repair queue. The latest landed
+app/backend fixes (`fce56e1cb`, `dda170a09`, represented in current main history)
+address public-share lifetime, canonical cross-kind actions, research request
+correlation/retries, readable-generation refresh, people expiry/custody/grants
+and duplicate legacy reads. Do not repeat those fixes from an older checklist.
+The later venue hook-order repair also landed in the shared app history.
+
+**Next work is targeted receiving-lane closure, not entity expansion.** Accept
+an exact Home/Places/Life entry, return, research-generation or withdrawal case;
+reproduce it on current code; fix only the owning entity boundary; hand back
+the typed ref/readback and regression. The existing focused tests are evidence,
+not a new run or an enabled-capability verdict.
+
+Core pages, research and people retain separate acceptance/activation gates.
+Full native/platform and operational acceptance remain future work; the founder
+has deferred app/device tests for current engineering. Preserve those gates,
+but do not make them block disjoint code work or start a new native session by
+default. No additional entity kinds, catalog backfill, paid research, queue
+activation or Home/Places root redesign is included.
+
+The [coordination register](complete-system-integration-roadmap-2026-09-05.md#2-current-coordination-register--september-6)
+names current receiving owners. Older environment/test failures in receipts are
+dated evidence and must be reproduced before becoming a current blocker. Core
+data coverage or private-social availability cannot be inferred from a flag-off
+smoke run or a passing transport-envelope test.
 
 ## 1. Outcome and authority
 
