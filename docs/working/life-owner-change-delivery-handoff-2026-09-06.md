@@ -191,6 +191,10 @@ derived-row revision, while explicit restoration remains separate from ordinary
 upsert. The retained-source adapter uses the same readback seam, so this fix
 does not make Occasion a special-case writer.
 
+The final focused Life/Occasion regression run passes 52 tests, including the
+Postgres producer and projector proofs. No full-repository or device test is
+implied by that count.
+
 ## Next checkpoint
 
 1. Run the existing worker against a fixture retained-source event and verify
