@@ -1062,6 +1062,13 @@ tests; do not defer the live engine until content composition is finished.
   receipts preserve the explicit boundary: no production shutdown, provider
   secret deletion, destructive database migration, retained-Life-reader
   migration, or Chat rewrite is claimed.
+- **I6 / current contraction guard recheck (2026-09-06):**
+  `npm run surface:contraction:check` still reports exactly three inherited
+  findings: the generated route inventory is stale, and
+  `/you/intake-submissions/[submissionId]` plus `/you/life-record` lack an
+  M-1 owner or explicit exemption. These are shared-registry/Life ownership
+  obligations, not booking-retirement evidence; no Life or generated-route
+  files were changed in this integration batch.
 
 ### M1 batch update — 2026-09-05
 
