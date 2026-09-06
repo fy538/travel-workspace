@@ -1138,3 +1138,12 @@ extend this same truthful gate, not add a speculative route service or worker.
   tests), and TypeScript passes. No native rehearsal or shell promotion is
   claimed; the change only preserves the existing return contract until the
   destination is exited.
+
+- **I1 / cross-owner return envelope — implemented and locally tested:**
+  `travel-app` commit `43a461b02` extends the same existing return-token
+  preservation to Home-origin Chat, Life, profile, saved-place, receipt, and
+  canonical fallback handoffs. The prior fix covered direct Places depth; this
+  closes the adjacent owner branches without adding a new navigation payload
+  or persistence layer. The focused root-navigation suite passes (14 tests),
+  and TypeScript passes. This remains ephemeral navigation continuity, not
+  durable memory or a shell-promotion claim.
