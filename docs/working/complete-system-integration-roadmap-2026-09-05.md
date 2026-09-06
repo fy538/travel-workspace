@@ -1190,7 +1190,7 @@ extend this same truthful gate, not add a speculative route service or worker.
   this isolated commit; all other commit-local hooks passed.
 
 - **I2 / content-free composition measurement — implemented and locally tested:**
-  the current integration adds `RootCompositionMeasurementV1` and the stable
+  `travel-agent` commit `f484c1af0` adds `RootCompositionMeasurementV1` and the stable
   `root.composition_measured` event. The shared Home/Places composition seam
   records only elapsed time plus bounded candidate, admission, owner-read, and
   degradation counts; candidate identifiers, claim text, source/subject refs,
