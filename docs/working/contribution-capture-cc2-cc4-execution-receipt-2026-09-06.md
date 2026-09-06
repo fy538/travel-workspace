@@ -67,6 +67,14 @@ withdrawal, stale replay non-resurrection, explicit rejoin restoration, owner
 erasure withdrawal, and surviving-audience repair. Life remains shadow-only;
 this does not authorize reader serving or cutover.
 
+Life withdrawal hardening has since landed in `travel-agent` commit
+`1faa8a49c`: withdrawal carries the exact owner revision and prior audience
+dependency token, and the index writer applies both as optional CAS predicates.
+The focused Outcome/index suite now passes **25 tests**, including a PostgreSQL
+proof that an old audience token cannot revoke a later restoration. The
+first-insert-after-deletion interleaving still requires an owner-side
+publication fence before historical fan-out or serving cutover.
+
 ## Next connected checkpoint
 
 Run one joint Life rehearsal for each Outcome family:
