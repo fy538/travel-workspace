@@ -1276,7 +1276,16 @@ extend this same truthful gate, not add a speculative route service or worker.
   while the executor runs so those records can be joined. These measurements
   are production-only telemetry and never enter workflow result JSON or source
   content. The worker, canonical-executor, continuity, and telemetry receipt is
-  **40 passed**; controlled registration is still gated on real cohort evidence.
+  **41 passed**; controlled registration is still gated on real cohort evidence.
+
+- **Environment / real-backend revalidation (2026-09-06):** the canonical local
+  Postgres target at `localhost:15432` is reachable, and the backend virtualenv
+  now imports `openai` (`2.32.0`) and SQLAlchemy (`2.0.52`). The real-Postgres
+  Places owner/catalog suites pass **42 tests**; the real-Postgres search,
+  experiences, and lookup route suites pass **20 tests**. This upgrades the
+  evidence available for owner-backed Places and search behavior; it does not
+  certify Home→Places→Focus/Path recomposition, native device behavior, or a
+  provider-backed Source cohort. Those remain separate gates.
 
 - **Repository-wide offline receipt (2026-09-06):** after the worker cleanup,
   authority rebaseline, deployment-envelope slice, canonical-executor /
