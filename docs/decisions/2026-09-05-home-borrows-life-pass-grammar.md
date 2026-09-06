@@ -18,7 +18,7 @@ source_of_truth_for:
 
 ## Context
 
-The Home project (`Vesper — Home`, `03538beb`, board `08 - Seam with Life`)
+The Home project (`Vesper — Home`, `42876b8c`; the original `03538beb` was created as a design-system project by mistake and is retired, board `08 - Seam with Life`)
 was read against the Life project (`Vesper — Life & Anchors`, `f524c7f0`,
 boards 01A, 01A2, 01A6, 09B, 16, 17C, 19, 32, 33). The two projects share
 one fixture world and one loop: Life holds the source, the record, and the

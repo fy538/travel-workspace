@@ -340,7 +340,7 @@ broken. Rendered through the Design runtime and on the canvas, Board 1 was not
 broken; it was outdated by content (the 08-31 union of 31 kinds, lag lines
 citing laws amended 09-05, the superseded kicker typography).
 
-The project `Vesper — Home` (`03538beb`) now holds eight current boards in
+The project `Vesper — Home` (`03538beb`, moved to `42876b8c` on 2026-09-06) now holds eight current boards in
 reading order and four archived ones, flat, no folders:
 
 | Board | Holds | Replaces |

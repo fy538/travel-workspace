@@ -12,9 +12,10 @@ supersedes: []
 # Home — artifact-led visual value: response
 
 Responds to [the handoff](claude-design-home-artifact-led-visual-value-handoff-2026-09-05.md).
-Work is in the live Claude Design project `Vesper — Home` (`03538beb`), not the
-Downloads export the brief names; the export is a stale copy of the same
-project. Canvas `790957aa` republished with the same boards.
+Work is in the live Claude Design project `Vesper — Home`, not the Downloads
+export the brief names; the export is a stale copy. On 2026-09-06 the project
+moved to `42876b8c` (a regular project); `03538beb` had been created as a
+design-system project by mistake and is retired. Canvas `790957aa` republished with the same boards.
 
 ## 1. What was delivered
 
@@ -80,7 +81,7 @@ is a proposal.
 
 ## 6. Handback
 
-- Boards: `00`, `02`, `03`, `04`, `06`, `07`, `08`, `09` revised or added in project `03538beb`; `01`, `05`, `Z1–Z4` untouched.
+- Boards: `00`, `02`, `03`, `04`, `06`, `07`, `08`, `09` revised or added in project `42876b8c` (moved from `03538beb` on 09-06); `01`, `05`, `Z1–Z4` untouched.
 - Content production still missing: a technique library (the method); a city notice source with freshness and licensing; station data for the cold split; the coastline research.
 - Engineering seams named on 07's per-form ledger: pass-family renderer and provider seam; sequence renderer and route seam to Places; paired-evidence renderer under the seat law; strip renderer over the reconstruction seam; method renderer over a library that does not exist.
 - Not verified: rendered native layouts, interactions, accessibility beyond the 1.3× reflow test, provider integrations, cost. No static board proves live behaviour.
