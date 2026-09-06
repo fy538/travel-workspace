@@ -1786,3 +1786,15 @@ broader cross-viewer/race comparison. Life withdrawal CAS hardening is now
 also landed in `travel-agent` commit `1faa8a49c`; the first-insert-after-
 deletion interleaving still requires an owner-side publication fence before
 historical fan-out or serving cutover.
+
+### CC-2/CC-5 follow-up receipt — retained-source Life replay — September 6
+
+The canonical inline retained-source capture boundary now emits its
+content-free Life owner event in `travel-agent` commit `5a6fce1f2`, aligning
+direct Share Capture with the existing upload/finalize path. Commit
+`33028d1cc` adds the retained-source representation/unrepresentation replay
+transition: representation withdraws the Life row, and an
+owner-revision-advanced unrepresentation restores it without allowing an old
+replay to win. The focused source-to-Life lifecycle suite passes **28 tests**.
+This remains shadow delivery; retained-source serving and any owner-matrix
+promotion remain disabled.
