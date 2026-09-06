@@ -1,7 +1,7 @@
 ---
 doc_type: working
 status: active
-decision_status: proposed
+decision_status: accepted
 owner: founder / Experience Graph / Life / Integration
 created: 2026-09-06
 last_verified: 2026-09-06
@@ -14,16 +14,16 @@ supersedes: []
 
 ## Status and recommendation
 
-**Proposed, not adopted or implemented.** This document is the review boundary
-for the next Life owner-family package. It does not authorize an Outcome
-producer, a schema migration, a Life serving cutover, or a new social feed. The
-accepted [Contribution and Consequence Contract](../systems/contribution-and-consequence.md),
+**Accepted for shadow delivery, not a serving cutover.** The rules below are
+now the canonical Outcome audience contract for the next Life packages. They
+do not authorize a schema migration, a Life serving cutover, or a new social
+feed. The accepted [Contribution and Consequence Contract](../systems/contribution-and-consequence.md),
 [Life v1 behavior sequences](../decisions/2026-09-01-adopt-life-v1-behavior-sequences.md),
-and current owner matrix remain authoritative until this proposal is accepted
-or replaced.
+and current owner matrix remain authoritative.
 
-**Recommendation:** keep Outcome shadow-only until one canonical, viewer-relative
-audience resolver and its revocation events are specified and tested. Treat
+**Recommendation:** keep Outcome shadow-only while the canonical,
+viewer-relative audience resolver and its repair events are exercised in all
+owner mutation paths. Treat
 `personal_outcomes.visibility = 'shared'` as an authorization result, not as a
 complete audience definition. Preserve the two existing domain shapes, but do
 not let the Life projector infer a broad audience from a presentation surface.
@@ -144,22 +144,18 @@ Commitment participant can be removed. The current Life index CAS stores one
 `owner_revision` token, so an Outcome producer must not pretend that the
 integer alone protects audience changes.
 
-Before wiring the producer, Integration and Life must choose one of these
-explicit representations:
+The explicit representation is now adopted:
 
-- make the derived Life CAS token a composite of the integer owner revision and
-  the opaque `audience_revision`, while retaining the canonical integer in the
-  event payload; or
 - extend the index read/write contract so `owner_revision` and
-  `audience_revision` are compared independently (the existing
-  `dependency_fingerprint` column is a possible storage seam, but its current
-  writer does not participate in CAS).
+  `audience_revision` are compared independently, using the existing
+  `dependency_fingerprint` storage seam.
 
-**Recommendation:** keep the canonical Outcome revision integer and add an
-explicit audience/dependency CAS dimension rather than hiding a composite
-token inside the owner revision. This preserves the owner matrix's integer
-meaning and makes membership-driven withdrawals observable. Until that writer
-contract is accepted and tested, `supports_delta_delivery` must remain false.
+`travel-agent` commit `66f378fc1` implements the two-token writer/readback
+contract; `ba9463c2a` implements the shadow projector; and `fd66f9f1f` emits
+direct Occasion join/leave repair events for encounter Outcomes. This preserves
+the owner matrix's integer meaning and makes membership-driven withdrawals
+observable. `supports_delta_delivery` remains false while erasure,
+reconciliation, and broader database race coverage are completed.
 
 ### Owner departure is not silent ownership transfer
 
@@ -225,14 +221,14 @@ green against the canonical graph and the shadow projector:
 
 ## Sequencing and ownership
 
-1. **Experience Graph:** implement and test the pure audience resolver and
-   enumerate every membership/visibility change that can alter its result.
-2. **Integration:** define the content-free event keys and before/after viewer
-   union; ensure account erasure and relationship changes can publish them
-   transactionally or through an identifier-only repair path.
-3. **Life:** add the Outcome owner contract only after the fixtures above pass;
-   then add a shadow projector with integer CAS, withdrawal, stale replay, and
-   explicit restore proof.
+1. **Complete:** Experience Graph pure audience resolver, content-free event
+   envelope, and direct Occasion join/leave encounter repair are implemented
+   and tested (`134bb021b`, `4ef82cce8`, `9aa75ff3d`, `fd66f9f1f`).
+2. **In progress:** Integration must extend the same before/after union to
+   account erasure and reconciliation-driven membership repair.
+3. **Complete in shadow:** Life has the Outcome owner consumer with two-token
+   CAS, withdrawal, stale replay, and explicit restore proof
+   (`66f378fc1`, `ba9463c2a`).
 4. **Serving:** keep `supports_delta_delivery=False` and Life serving gated
    until cross-viewer shadow comparison is clean. Do not treat the existing
    Together query as proof of a complete Outcome audience contract.
