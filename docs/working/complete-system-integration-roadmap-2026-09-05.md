@@ -1281,15 +1281,16 @@ extend this same truthful gate, not add a speculative route service or worker.
 - **Repository-wide offline receipt (2026-09-06):** after the worker cleanup,
   authority rebaseline, deployment-envelope slice, canonical-executor /
   readback slice (`travel-agent` `467be5711`), clock-preserving context owner
-  (`64230fb0e`), and provider-factory binding (`d621afff4`), the bounded backend
-  command `pytest -q -m 'not requires_postgres and not requires_api_keys'`
-  passed **20,768 tests**, with 30 skips, 56 expected XPASSes, and 1,346
-  deselected tests in 7m01s. The run emitted only the existing Postgres-leak
+  (`64230fb0e`), provider-factory binding (`d621afff4`), and production
+  measurement join (`daa1a2635`), the bounded backend command
+  `pytest -q -m 'not requires_postgres and not requires_api_keys'` passed
+  **20,769 tests**, with 30 skips, 56 expected XPASSes, and 1,346 deselected
+  tests in 7m33s. The run emitted only the existing Postgres-leak
   baseline warnings; no new failure was introduced. Native/device and live
   Postgres evidence remain intentionally out of scope for this checkpoint. The
-  focused root-projection receipt is **329 passed**; adding the Places
-  context-clock suite yields **349 passed** across the combined owner-bound
-  check. The worker / continuity wiring receipt is 32 passed.
+  focused root-projection receipt is **330 passed**; adding the Places
+  context-clock suite yields **350 passed** across the combined owner-bound
+  check. The worker / continuity / telemetry wiring receipt is 40 passed.
 
 - **I0 / decision alignment — documented:** the 2026-09-06 audit above
   reconciles the queue against accepted Contribution/Use Grant, four-root,
