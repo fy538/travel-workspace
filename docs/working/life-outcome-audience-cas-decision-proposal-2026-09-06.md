@@ -52,6 +52,13 @@ and `ruff check` passes for the touched files. This proves the writer contract
 and its compatibility boundary only; the Outcome producer/projector still must
 provide and use the audience token before any serving decision.
 
+The first shadow consumer is now also landed in `travel-agent` commit
+`ba9463c2a`. It forwards the typed audience token across the event bus,
+re-reads current graph authority, and writes the token through the two-token
+CAS seam. Its focused Outcome/Life-index/event-bus suite passes **63 tests**.
+This is still shadow delivery: no reader cutover or production activation is
+implied, and PostgreSQL race proofs remain outstanding.
+
 ## Why one owner revision is insufficient
 
 An Outcome can remain at revision `3` while an authorized viewer leaves an
@@ -145,11 +152,13 @@ The writer change is ready only when these cases pass:
    types (`66f378fc1`).
 2. Add pure and PostgreSQL CAS proofs, including same-owner-revision audience
    changes and restore.
-3. Update the Outcome adapter to store the event's audience token as its
-   dependency fingerprint.
-4. Only then wire Outcome create/update and membership/erasure repair
-   producers, followed by a shadow projector. Keep `supports_delta_delivery`
-   false until that package is complete.
+3. **Complete in shadow:** update the Outcome adapter/projector to store the
+   event's audience token as its dependency fingerprint (`ba9463c2a`).
+4. Add PostgreSQL proofs for same-owner-revision audience changes, stale replay,
+   departure withdrawal, and explicit restore.
+5. Only then consider wiring additional membership/erasure repair producers or
+   any serving experiment. Keep `supports_delta_delivery` false until the
+   database race package is complete.
 
 Related records:
 

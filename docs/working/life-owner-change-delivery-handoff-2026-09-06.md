@@ -214,6 +214,14 @@ owner-only families remain backward compatible. Its focused contract,
 projector, readback, and shadow tests pass 28/28; this is a writer contract
 receipt, not an Outcome projector or serving approval.
 
+The first Outcome shadow consumer is now landed in `travel-agent` commit
+`ba9463c2a`. It forwards only the typed audience revision/withdrawal metadata
+across the Life event bus, re-reads current graph authority, normalizes
+Commitment-vs-Occasion audience fields on the derived entry, and uses the
+prior dependency token for the two-dimensional CAS write/restore. The focused
+Outcome, Life-index, event-bus, and subscriber-wiring suite passes **63 tests**.
+The consumer remains shadow-only and does not authorize a serving cutover.
+
 ## Next checkpoint
 
 1. Complete: the existing worker now has a PostgreSQL fixture proving the
@@ -239,11 +247,14 @@ receipt, not an Outcome projector or serving approval.
    must still supply and exercise both tokens. Do not mark Life complete or cut
    over readers after the first adapters.
 
-4. Next safe Outcome package: add a shadow producer/projector that supplies the
+4. Complete: the first Outcome shadow producer/projector now supplies the
    resolver's `audience_revision` as the index `dependency_fingerprint`, reads
-   both current tokens, and proves same-owner-revision audience changes in pure
-   and PostgreSQL tests. Keep `supports_delta_delivery` false and do not wire
-   serving until membership/erasure repair and stale-replay proofs are present.
+   both current tokens, and proves the Commitment/Occasion boundary in pure
+   tests (`ba9463c2a`). Keep `supports_delta_delivery` false.
+5. Next safe Outcome checkpoint: add PostgreSQL proof for same-owner-revision
+   audience changes, departure withdrawal, stale replay, and explicit
+   re-authorization restore. Keep serving disabled until membership/erasure
+   repair and these database races are proven end to end.
 
 The canonical roadmap and execution status remain the forward register; this
 handoff is the package receipt and cross-lane interface, not a competing plan.
