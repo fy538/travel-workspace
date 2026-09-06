@@ -180,7 +180,8 @@ The shadow-only projector and audience-revision adapter are committed as
 `72950377b`; three projector tests and the subscriber-wiring suite pass. This
 package validates current-authority re-read, exact revision matching, and
 departure withdrawal in pure tests; the remaining Postgres projector exercise
-is still a checkpoint, not a serving-read approval.
+is now smoke-verified against a real Occasion and `life_corpus_entries`, but
+remains a checkpoint, not a serving-read approval.
 
 ## Next checkpoint
 
