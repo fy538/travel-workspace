@@ -106,14 +106,20 @@ worker adapter is now implemented and locally tested (`travel-agent` commit
 `b4a2b4f91`): it claims through that fence, rejects stale work before and after
 execution, requires canonical readback for produced or reused output, and
 records only content-free outcomes. It remains unregistered and cannot be
-reached from ordinary Home/Places GETs. The next package is the approved
-canonical executor. The deployment envelope is now explicit and locally tested
+reached from ordinary Home/Places GETs. The canonical executor now exists as an
+injection-only adapter; the deployment envelope is explicit and locally tested
 (`travel-agent` commits `08505058d` and `7f88e0f08`): policy/compiler versions,
 Home/Places scope, lease duration/renewal, execution timeout, retry budget, and
 dark-versus-controlled cohort are all bounded before a worker can be registered;
 sync executor calls use a dedicated fixed pool rather than the process-wide
 default executor.
-Only after the canonical executor is approved should an Arq job function be
-registered. The current roadmap therefore remains partial: no queue consumer,
-scheduler, deployment flag, provider implementation, or production cohort is
-activated by this document.
+The canonical owner seam is now also explicit in `travel-agent`:
+`SourceContributionCanonicalExecutor` delegates to the existing continuity
+path, resolves only an injected context owner, and verifies a post-write
+canonical readback before reporting produced/reused success. Its continuity
+readback hook fails closed on a missing or mismatched durable result; 17 focused
+contract/continuity tests pass. The adapter is still injection-only: no
+provider, context repository, queue registration, or production cohort is
+activated by this document. Before an Arq job can be registered, the product
+must name the concrete context/readback owners and bind this adapter to a
+controlled cohort with real cost/latency evidence.
