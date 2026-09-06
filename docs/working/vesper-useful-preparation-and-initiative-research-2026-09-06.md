@@ -728,6 +728,11 @@ not adding a generic autonomy slider or pretending Keep creates a watch.
 
 ### 11.7 Experience checks and decisions to carry forward
 
+The [instruction-scope decision proposal](assistance-instruction-scope-decision-proposal-2026-09-06.md)
+now carries the four cases into concrete lifetime, correction, cross-root
+receiving and owner-review requirements. It is proposed, not adopted; the
+research itself does not authorize its bounded cross-root write path.
+
 Compare the same situation under three treatments: response-only adaptation,
 scoped cross-root adaptation and indiscriminate global adaptation. The last is
 a negative control in a specimen, not a behavior to deploy. Hold evidence and

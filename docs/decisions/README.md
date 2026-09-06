@@ -61,6 +61,10 @@ accepted ADRs and do not change runtime authority. Review/approval promotes the
 agreed choice into a dated decision; the existing contribution contract remains
 in force until then.
 
+- [Natural assistance instructions with precise scope](../working/assistance-instruction-scope-decision-proposal-2026-09-06.md):
+  proposes response, explicit surface/time, named-episode and ongoing-default
+  behavior; cross-root admission, lifecycle and receiving remain unadopted.
+
 - [Retained intention before a Plan](../working/retained-intention-before-plan-decision-proposal-2026-09-06.md):
   recommends one person-owned prospective owner in the existing graph domain,
   not a mandatory Plan or a Life/Home writer.

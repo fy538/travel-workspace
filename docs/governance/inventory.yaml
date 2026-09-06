@@ -87,6 +87,10 @@ rules:
 
 
 overrides:
+  docs/working/assistance-instruction-scope-decision-proposal-2026-09-06.md:
+    disposition: keep_reference
+    rationale: Unadopted four-case assistance-scope proposal with lifecycle, private ownership, correction and cross-root receiving requirements; no runtime authority or new memory system is activated.
+
   docs/working/vesper-useful-preparation-and-initiative-research-2026-09-06.md:
     disposition: keep_reference
     rationale: Research on useful preparation, production versus delivery timing, and three complete experience comparisons; identifies existing owner dependencies without adopting background authority or certifying user demand.
