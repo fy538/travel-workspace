@@ -209,9 +209,12 @@ full-repository or device test is implied by that count.
    for member departure, stale replay, withdrawal, role transfer, and explicit
    restoration without enabling serving cutover. The projector is registered
    in the canonical event-subscriber bundle but remains shadow-only.
-3. Expand owner coverage one family at a time by updating the owner matrix and
-   adding owner-specific authority/audience tests. Do not mark Life complete or
-   cut over readers after the first adapter.
+3. Use the [next owner-family decision](life-next-owner-family-decision-2026-09-06.md)
+   to scope the next package: existing owner-private Plans first, with Outcome
+   deferred until shared audience/revocation semantics are explicit. Expand
+   one family at a time by updating the owner matrix and adding owner-specific
+   authority/audience tests. Do not mark Life complete or cut over readers
+   after the first adapter.
 
 The canonical roadmap and execution status remain the forward register; this
 handoff is the package receipt and cross-lane interface, not a competing plan.
