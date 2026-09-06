@@ -221,8 +221,8 @@ shared arrangement material, or a serving cutover.
    explicit. The review boundary is the [Outcome shared-audience and
    revocation proposal](life-outcome-shared-audience-decision-2026-09-06.md);
    the pure audience resolver and identifier-only event-envelope package now
-   land in `travel-agent` commits `134bb021b` and `4ef82cce8`; the focused
-   suite passes 73 tests. The next package must still wire canonical
+   land in `travel-agent` commits `134bb021b`, `4ef82cce8`, and `9aa75ff3d`;
+   the focused suite passes 73 tests. The next package must still wire canonical
    membership/erasure fan-out and a shadow producer without treating these
    helpers as proof that social visibility is solved. Do not mark Life
    complete or cut over readers after the first adapters.

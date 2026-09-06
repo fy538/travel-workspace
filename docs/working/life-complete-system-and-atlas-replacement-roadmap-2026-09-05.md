@@ -809,8 +809,8 @@ PostgreSQL producer/projector proofs and retained-source worker repair.
 
 **Next checkpoint:** define the Outcome shared-audience/revocation contract
 before adding an Outcome producer. The pure resolver and content-free
-event-envelope seam now land in `travel-agent` commits `134bb021b` and
-`4ef82cce8`; canonical event fan-out, erasure propagation, shadow projection,
+event-envelope seam now land in `travel-agent` commits `134bb021b`, `4ef82cce8`,
+and `9aa75ff3d`; canonical event fan-out, erasure propagation, shadow projection,
 and owner-matrix evidence remain. Keep serving cutover and unsupported owners
 gated until whole-corpus coverage, repair, authorization, and destination
 evidence are complete.

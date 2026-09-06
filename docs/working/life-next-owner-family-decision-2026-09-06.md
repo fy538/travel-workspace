@@ -23,7 +23,7 @@ Life/Plan/Occasion suite passes 60 tests. Serving remains gated.
 
 The first Outcome contract seam is now implemented as a pure audience resolver
 and content-free event-envelope builder in `travel-agent` commits
-`134bb021b` and `4ef82cce8`. It distinguishes owner-private Outcomes,
+`134bb021b`, `4ef82cce8`, and `9aa75ff3d`. It distinguishes owner-private Outcomes,
 Occasion-scoped encounter Outcomes, and participant-scoped Commitment Outcomes;
 it provides deterministic audience revisions, before/after viewer unions, and
 withdrawal envelopes for erasure. The expanded focused suite passes 73 tests.
