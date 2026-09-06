@@ -1342,3 +1342,28 @@ extend this same truthful gate, not add a speculative route service or worker.
   are no longer treated as open policy questions; D1 remains decision-blocked
   at the owner/schema boundary, and D6 remains activation-gated per family.
   This narrows the next work without inventing a new intent or watch owner.
+
+### M1 follow-up review — 2026-09-06
+
+- **Evidence:** owner-backed Places, Home, and governed runtime envelopes are
+  all reachable against local Postgres; the concrete Save is visible through
+  its canonical Places owner and Home unit. The v2 runtime's semantic admission
+  does not yet include that newly saved card. Mobile consequence/Places state
+  coverage and backend consequence contracts remain green at their stated test
+  receipts.
+- **Product:** this is not evidence that the saved card should be promoted to
+  the semantic root. The runtime must earn a value-bearing admission reason;
+  “the owner exists” is not enough to create another feed or duplicate mature
+  Places work.
+- **Architecture:** keep the mature workspace as the owner of the saved
+  collection and keep v2 admission explicit. Do not add a client-side merge or
+  a generic `saved` semantic unit to make the runtime look complete.
+- **Economics/reliability:** the probe added no provider work and preserved the
+  bounded response path. The remaining gap is product admission and real
+  Focus/Path continuity, not latency infrastructure.
+- **Next batch:** decide one of two bounded outcomes: (a) name a genuine
+  value-bearing saved-place producer plus native treatment and exact return, or
+  (b) keep saved cards on the mature workspace path and close I4 with the
+  explicit non-promotion rationale. In either case, continue the real-data
+  Focus/Path/stale-source acceptance before enabling semantic Places or dark
+  Home kinds. No queue activation, Life migration, or Chat change is implied.
