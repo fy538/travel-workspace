@@ -1240,8 +1240,10 @@ extend this same truthful gate, not add a speculative route service or worker.
   controlled cohort. The dark default cannot register a job; the worker only
   accepts a handoff whose semantic versions and retry budget match the
   envelope, and applies the execution timeout when one is supplied. Contract
-  and worker tests pass (12 tests); no Arq function, queue consumer, provider
-  call, or ordinary GET activation was added.
+  and worker tests pass (12 tests); synchronous executor work uses a dedicated
+  fixed two-slot pool so a cancelled timeout cannot spill into the process-wide
+  default executor. No Arq function, queue consumer, provider call, or ordinary
+  GET activation was added.
 
 - **Repository-wide offline receipt (2026-09-06):** after the worker cleanup,
   authority rebaseline, and deployment-envelope slice, the bounded backend

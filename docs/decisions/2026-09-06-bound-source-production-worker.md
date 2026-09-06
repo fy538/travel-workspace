@@ -108,9 +108,11 @@ execution, requires canonical readback for produced or reused output, and
 records only content-free outcomes. It remains unregistered and cannot be
 reached from ordinary Home/Places GETs. The next package is the approved
 canonical executor. The deployment envelope is now explicit and locally tested
-(`travel-agent` commit `08505058d`): policy/compiler versions,
+(`travel-agent` commits `08505058d` and `7f88e0f08`): policy/compiler versions,
 Home/Places scope, lease duration/renewal, execution timeout, retry budget, and
-dark-versus-controlled cohort are all bounded before a worker can be registered.
+dark-versus-controlled cohort are all bounded before a worker can be registered;
+sync executor calls use a dedicated fixed pool rather than the process-wide
+default executor.
 Only after the canonical executor is approved should an Arq job function be
 registered. The current roadmap therefore remains partial: no queue consumer,
 scheduler, deployment flag, provider implementation, or production cohort is
