@@ -223,19 +223,24 @@ across the Life event bus, re-reads current graph authority, normalizes
 Commitment-vs-Occasion audience fields on the derived entry, and uses the
 prior dependency token for the two-dimensional CAS write/restore. The focused
 Outcome, Life-index, event-bus, and subscriber-wiring suite passes **63 tests**.
-The consumer remains shadow-only and does not authorize a serving cutover.
+The direct membership/account-erasure repair package is landed in
+`fd66f9f1f`, `329060a88`, `afb13c6fa`, `6c42c92f7`, and `68e72d3f7`. The
+joint source → outbox → Life shadow-index rehearsal passes **6 PostgreSQL
+tests** across shared Encounter and Commitment Outcomes, including member
+withdrawal, stale replay, explicit rejoin restoration, owner erasure, and
+surviving-audience repair. The consumer remains shadow-only and does not
+authorize a serving cutover; broader cross-viewer/race comparison remains the
+next hardening gate.
 
 Direct Occasion membership join/leave now emits audience-repair events for
 existing shared encounter Outcomes in `travel-agent` commit `fd66f9f1f`.
 Commitment Outcomes are deliberately excluded because their audience is the
-Commitment participant set. The end-to-end Postgres proof covers same-owner-
-revision audience change, departure withdrawal, stale replay, and explicit
-rejoin restore; the combined focused run passes **46 tests**. Account erasure
-now adds owner withdrawal before deletion and repairs surviving encounter
-audiences in `329060a88`; Commitment-participant erasure repair is landed in
-`afb13c6fa`. The focused Outcome/account-lifecycle run now passes **27 tests**,
-including the PostgreSQL proofs. No current reconciler mutates membership
-audiences; any future reconciliation writer must reuse these helpers.
+Commitment participant set. Account erasure now adds owner withdrawal before
+deletion and repairs surviving encounter audiences in `329060a88`, while
+Commitment-participant erasure repair is landed in `afb13c6fa`. The focused
+Outcome/account-lifecycle run includes the six PostgreSQL proofs above. No
+current reconciler mutates membership audiences; any future reconciliation
+writer must reuse these helpers.
 
 ## Next checkpoint
 
@@ -248,26 +253,35 @@ audiences; any future reconciliation writer must reuse these helpers.
    for member departure, stale replay, withdrawal, role transfer, and explicit
    restoration without enabling serving cutover. The projector is registered
    in the canonical event-subscriber bundle but remains shadow-only.
-3. Keep Outcome shadow-only until cross-viewer comparison and race semantics
-   are explicit. The review boundary is the [Outcome shared-audience and
+3. Keep Outcome shadow-only while cross-viewer comparison and race semantics
+   are broadened. The review boundary is the [Outcome shared-audience and
    revocation proposal](life-outcome-shared-audience-decision-2026-09-06.md).
-   The producer/projector, two-token CAS, direct membership repair, and account
-   erasure repair are landed in `travel-agent` commits `66f378fc1`,
-   `ba9463c2a`, `fd66f9f1f`, `329060a88`, and `afb13c6fa`; no reader cutover
-   follows. Do
-   not mark Life complete or cut over readers after these shadow adapters.
+   The producer/projector, two-token CAS, direct membership repair, account
+   erasure repair, and six-test PostgreSQL rehearsal are landed in
+   `travel-agent` commits `66f378fc1`, `ba9463c2a`, `fd66f9f1f`,
+   `329060a88`, `afb13c6fa`, `6c42c92f7`, and `68e72d3f7`; no reader cutover
+   follows. Do not mark Life complete or cut over readers after these shadow
+   adapters.
 
 4. Complete: the first Outcome shadow producer/projector now supplies the
    resolver's `audience_revision` as the index `dependency_fingerprint`, reads
    both current tokens, and proves the Commitment/Occasion boundary in pure
    tests (`ba9463c2a`). Keep `supports_delta_delivery` false.
-5. Next safe Outcome checkpoint: run cross-viewer shadow comparison and add
-   broader PostgreSQL stale-replay/withdrawal/restore race proofs. If a future
-   reconciler mutates membership, it must call the same audience-repair helper
-   inside its owner transaction. Keep serving disabled until these proofs are
-   complete.
+5. Complete the pure cross-viewer comparison seam in `travel-agent` commit
+   `7b3995c0d`. `compare_life_index_viewers` runs the existing bounded
+   canonical-vs-index comparison for an explicit viewer cohort, treats an
+   empty non-participant bucket as an observable result, detects unexpected
+   viewer buckets, and flags rows whose stored `viewer_id` disagrees with the
+   bucket. This remains a deterministic test/worker seam: it does not emit
+   metrics, alter serving, or claim payload/grant parity beyond the existing
+   typed projector contracts.
+6. Next safe Outcome checkpoint: add broader PostgreSQL stale-replay,
+   withdrawal, and restore race proofs against this cohort contract. If a
+   future reconciler mutates membership, it must call the same audience-repair
+   helper inside its owner transaction. Keep serving disabled until these
+   proofs are complete.
 
-6. Complete for direct Occasion join/leave and account erasure: encounter and
+7. Complete for direct Occasion join/leave and account erasure: encounter and
    Commitment audience-repair events now cover direct membership plus account
    deletion (`fd66f9f1f`, `329060a88`, `afb13c6fa`). No current reconciliation
    command mutates membership; future writers inherit this contract.
