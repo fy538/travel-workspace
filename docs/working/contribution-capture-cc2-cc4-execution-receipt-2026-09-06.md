@@ -15,7 +15,7 @@ depends_on:
 
 # Contribution/Capture CC-2 → CC-4 Execution Receipt
 
-**Date:** 2026-09-06  
+**Date:** 2026-09-06
 **Owner lane:** Contribution and Capture
 
 ## Delivered source-side package
