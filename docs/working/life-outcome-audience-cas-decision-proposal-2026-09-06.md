@@ -59,6 +59,12 @@ CAS seam. Its focused Outcome/Life-index/event-bus suite passes **63 tests**.
 This is still shadow delivery: no reader cutover or production activation is
 implied, and PostgreSQL race proofs remain outstanding.
 
+Direct Occasion join/leave now emits encounter audience-repair events in
+`travel-agent` commit `fd66f9f1f`; Commitment Outcomes remain scoped to their
+participant set. The database proof covers same-owner-revision audience
+change, departure withdrawal, stale replay, and rejoin restore. Account
+erasure and reconciliation paths still need the same repair treatment.
+
 ## Why one owner revision is insufficient
 
 An Outcome can remain at revision `3` while an authorized viewer leaves an
@@ -154,11 +160,12 @@ The writer change is ready only when these cases pass:
    changes and restore.
 3. **Complete in shadow:** update the Outcome adapter/projector to store the
    event's audience token as its dependency fingerprint (`ba9463c2a`).
-4. Add PostgreSQL proofs for same-owner-revision audience changes, stale replay,
-   departure withdrawal, and explicit restore.
-5. Only then consider wiring additional membership/erasure repair producers or
-   any serving experiment. Keep `supports_delta_delivery` false until the
-   database race package is complete.
+4. **Complete for direct Occasion membership:** add the canonical encounter
+   audience-repair producer and PostgreSQL proof (`fd66f9f1f`).
+5. Add equivalent account-erasure and reconciliation repair producers, with
+   PostgreSQL stale-replay/withdrawal/restore proofs.
+6. Only then consider any serving experiment. Keep
+   `supports_delta_delivery` false until the database race package is complete.
 
 Related records:
 

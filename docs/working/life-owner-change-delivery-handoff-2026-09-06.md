@@ -222,6 +222,14 @@ prior dependency token for the two-dimensional CAS write/restore. The focused
 Outcome, Life-index, event-bus, and subscriber-wiring suite passes **63 tests**.
 The consumer remains shadow-only and does not authorize a serving cutover.
 
+Direct Occasion membership join/leave now emits audience-repair events for
+existing shared encounter Outcomes in `travel-agent` commit `fd66f9f1f`.
+Commitment Outcomes are deliberately excluded because their audience is the
+Commitment participant set. The end-to-end Postgres proof covers same-owner-
+revision audience change, departure withdrawal, stale replay, and explicit
+rejoin restore; the combined focused run passes **46 tests**. Account-erasure
+and reconciliation-driven membership repairs remain separate checkpoints.
+
 ## Next checkpoint
 
 1. Complete: the existing worker now has a PostgreSQL fixture proving the
@@ -255,6 +263,11 @@ The consumer remains shadow-only and does not authorize a serving cutover.
    audience changes, departure withdrawal, stale replay, and explicit
    re-authorization restore. Keep serving disabled until membership/erasure
    repair and these database races are proven end to end.
+
+6. Complete for direct Occasion join/leave: emit encounter audience-repair
+   events in the canonical membership transaction (`fd66f9f1f`). Next, extend
+   the same helper to account erasure and reconciliation paths, then add
+   their Postgres proofs before any serving experiment.
 
 The canonical roadmap and execution status remain the forward register; this
 handoff is the package receipt and cross-lane interface, not a competing plan.
