@@ -63,8 +63,9 @@ Direct Occasion join/leave now emits encounter audience-repair events in
 `travel-agent` commit `fd66f9f1f`; Commitment Outcomes remain scoped to their
 participant set. Account erasure now emits owner withdrawal before deletion
 and repairs surviving encounter audiences in `329060a88`; `afb13c6fa` adds
-the equivalent repair for surviving Commitment Outcomes and fixes the
-viewer-relative Together predicate for linked participant Outcomes. The
+the equivalent repair for surviving Commitment Outcomes, and `68e72d3f7`
+keeps the viewer-relative Together predicate participant-scoped for linked
+Commitment Outcomes. The
 focused Outcome/account-lifecycle run now covers 27 tests, including the
 PostgreSQL proofs. No current reconciler mutates the audience sets; a future
 reconciliation writer must reuse these producer seams. Broader race coverage

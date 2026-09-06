@@ -32,8 +32,9 @@ The two-token Life index CAS seam is now implemented in `travel-agent` commit
 join/leave encounter repair is `fd66f9f1f`. These packages do not change the
 Together reader or enable Life serving. Account-erasure withdrawal and
 surviving encounter-audience repair are now implemented in `329060a88`, and
-Commitment-participant audience repair is implemented in `afb13c6fa`; the
-focused run includes the PostgreSQL proofs for both scopes. No current
+Commitment-participant audience repair is implemented in `afb13c6fa`, and
+`68e72d3f7` keeps the Together projection participant-scoped; the focused run
+includes the PostgreSQL proofs for both scopes. No current
 reconciler mutates either audience set; broader race coverage is the next
 gate.
 

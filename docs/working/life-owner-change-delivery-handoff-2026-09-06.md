@@ -146,9 +146,9 @@ after the generic membership sweep in `travel-agent` commits `a3b0edc84` and
 `73baf2be2`; solo Occasions are skipped before their owner cascade. The Plan
 producer/projector is shadow-only, and the Outcome producer/projector now
 handles direct membership and account-erasure audience repairs in
-`66f378fc1`, `ba9463c2a`, `fd66f9f1f`, `329060a88`, and `afb13c6fa`. No
-current reconciler mutates these audience sets; any future writer must reuse
-the accepted helper inside its owner transaction. This lane still does not
+`66f378fc1`, `ba9463c2a`, `fd66f9f1f`, `329060a88`, `afb13c6fa`, and
+`68e72d3f7`. No current reconciler mutates these audience sets; any future
+writer must reuse the accepted helper inside its owner transaction. This lane still does not
 invent a second Capture transaction or a Life-owned source writer.
 
 ## Verification

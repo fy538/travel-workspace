@@ -153,7 +153,9 @@ The explicit representation is now adopted:
 `travel-agent` commit `66f378fc1` implements the two-token writer/readback
 contract; `ba9463c2a` implements the shadow projector; `fd66f9f1f` emits
 direct Occasion join/leave repair events for encounter Outcomes; and
-`329060a88` extends the same contract through account erasure. This preserves
+`329060a88` and `afb13c6fa` extend the same contract through account erasure.
+The Together projection is explicitly participant-scoped for Commitment
+Outcomes in `68e72d3f7`. This preserves
 the owner matrix's integer meaning and makes membership-driven withdrawals
 observable. `supports_delta_delivery` remains false while cross-viewer shadow
 comparison and broader database race coverage are completed; a future
