@@ -1203,6 +1203,16 @@ owner decides*; push-fatigue research finds most people abandon an app above fiv
 notifications a week; proactive-assistant research finds help welcome only after a
 problem and only if it can be turned off (sources in the project execution report §3m).
 
+**Correction note (2026-09-05, §0.7 C) — the research sentences above are directional,
+not settled.** "Help welcome only after a problem" comes from one CHI 2024 study of UX
+evaluators (timing did not affect performance) and one CHI 2025 programming study; the
+"five notifications a week" figure is vendor survey data, not a threshold; "tapping is 10×
+faster" is an essayist's estimate. They support the direction; they do not make rules.
+Amendments proposed under §0.7 (selective guidance; a possibility plus one quiet door after
+an implication; acknowledgment of a submission in the active interaction; urgent changes not
+bundled) are recorded on project board 07 and in the execution report §3p as PROPOSED, each
+needing a new decision before adoption. This record is not otherwise edited.
+
 **The seven sentences.** Everything on the Plan/Occasion surface is a consequence of
 these; anything that cannot be derived from them is not part of the customer-facing
 design and belongs in the engineering appendix.

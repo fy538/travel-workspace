@@ -320,6 +320,252 @@ Applied to boards 09, 10, 07 and `kit/proto.js`; composition family unchanged; n
   "Ask Ben about 10:15" opens is drawn, not wired (Kyoto is not the interactive fixture); modal sheet vs in-flow region.
 - Native and participant validation remain unclaimed.
 
+## 3j. §0.6 — journey-to-system coverage specification (2026-09-05)
+
+Deliverables: new board **11 Continuations** (K1–K2, G1–G3, I1–I2, W1–W2, F1–F2 + coverage table + Q15–Q19); 02 A4
+aligned to the J2 follow-up pattern (field stays; no "Something else…"); 02 A9 "say a day" instruction removed;
+07 R-12 wording aligned to the later rulings (no routine memory offer; draft custody is a proposal, Q14); 07 R-17,
+Q15–Q19; 00 index. All new frames are **illustrated only**; nothing on 11 is wired into the board-10 prototype.
+Engineering reuse below is from §0.6's inspected code (app `c03f909f8` / backend `424e2d23a`) and the
+lightweight-arrangements handoff (A0–A4) — referenced, not approved or superseded; reinspect before implementation.
+
+Status vocabulary: **illustrated** (drawn), **wired** (board 10 markup), **simulated/tested** (board 10 runtime,
+in-app browser), **existing runtime** (code exists today), **proposed** (named gap).
+
+### J-A — A thought becomes something useful later
+1. **Start / value:** Chat, "maybe jazz Saturday"; a fixed dinner exists. Value = the option that fits, why, and the one exclusion (02 A1).
+2. **Delivered before any ask:** the fit in the itinerary's own rows; no name, no container, no Trip.
+3. **Entry / target / result / return:** "Keep it as an option" → the sparse page (A2). Return via Chat card (A6), Home card + "Places you've kept" row (11 K1), Life (Q2). Same identity block everywhere; no memory of the conversation needed.
+4. **Owner / private / untouched:** the arrangement = lightweight Plan (handoff D1, proposed); the place = Places relationship; Theo's note stays Theo's. Dinner untouched.
+5. **Interruption / disagreement / non-application / later:** release Saturday → place stays kept, no ghost row (A7, 11 K2); nothing about the place is deleted.
+6. **Reuse / gap:** reuse `homecard` shape, word gutter, Places object page. **Gap:** Trip-independent retained intention with optional timing, owner references, scoped release — `LocalPlanScreen` and `planShape` are Trip-scoped; experience-graph Plan has owner/horizon/lifecycle but `update_plan` is metadata mutation.
+7. **Evidence:** A1–A2, A6–A7, K1–K2 illustrated; board 10 starts kept (not wired); storage proposed (A0).
+
+### J-B — Understand, follow up, adapt in context
+1. **Start / value:** a stop on a shared Kyoto day; "would my mother enjoy this?" Value = a grounded answer with the one remembered fact labeled (08 P2, 09 J2a).
+2. **Delivered first:** answer, then the field stays (J2b); no "Something else…" anywhere now (02 A4 corrected).
+3. **Entry / target / result / return:** one pill → sheet with the row as target → correction within the exchange → "add Isuien" → accurate readback + observation + one continuation (J2f) → "Ask Ben about 10:15 →" opens the J3a outgoing card. Return: sheet closes, plan resting; Chat handoff carries target + unresolved intent (Q12/Q15).
+4. **Owner / private / untouched:** the change is the requester's (their participation/additions); the mother's preference stays private; Ben's edit untouched.
+5. **Interruption etc.:** pending (J2c), failed (J2d), unknown ≠ unchanged (J2e), draft recovered/discardable (J2g); all simulated on 10 with regression checks R1–R5.
+6. **Reuse / gap:** reuse `PlanStopInspectSheet` target semantics but resolve ONE integration with the entity lane (the plan route also enters entity inspection today — two competing surfaces). **Gap:** contextual assistance with Chat continuity (streaming, expansion, interruption, return); `rootConsequences` adapters extended, not duplicated.
+7. **Evidence:** illustrated (08/09); simulated + tested (10: pending navigation, failed input, discard, scoped undo, private records); Chat continuity proposed.
+
+### J-C — Invite, contribute, participate without a committee
+1. **Start / value:** host describes dinner (04 C1); guest opens a link (C2). Value for the guest = when/where/who/how/cost before any ask.
+2. **Delivered first:** the guest page in the same type; two answers (in / can't).
+3. **Entry / target / result / return:** guest: "Reply to Nora · she'll see this" vs the private Ask Vesper pill (11 G1); reply via the exact outgoing card; host sees reply/question/photo/contribution under the row, answers with one message (G2); guest's private question answered in the same sheet, nothing sent (G3). Editor within grant: same words simply apply (09 J3d).
+4. **Owner / private / untouched:** plan = host's; messages = multiplayer lane; photo custody = Life; "Sam from 7:30" is participation, not an edit; viewing a link grants no edit rights.
+5. **Interruption etc.:** decline is first-class (C2/C7); unanswered stays unanswered (05 D3); contributions never become edits.
+6. **Reuse / gap:** reuse guest page (C2), outgoing card (J3a), attach/photo (C4); experience-graph invitation/decision facilities exist. **Gap:** guest delivery, bounded identity, reply channel and media custody without an account (Q9/Q16) — an RSVP endpoint is not this.
+7. **Evidence:** illustrated (04/09/11); exercised on 10 for Maya's suggestion vs authorized edit and Sam in/out; guest channels proposed.
+
+### J-D — A change cannot work for everyone
+1. **Start / value:** Maya asks for eight (05 D2); owner previews who is affected (D3); sends. Value = consequences legible before sending.
+2. **Delivered first:** the preview with responses and the reservation fact; silence ≠ acceptance.
+3. **Entry / target / result / return:** Sam "can't do 8" → ink readback, one observation from expressed reasons (Maya's reading, Sam's 9:30), one continuation "Keep 7 — tell Maya and Sam →" (11 I1). Restaurant can't move → mismatch with source, one feasible alternative prepared not booked, "Ask … about Ostro at 8:15 →" (11 I2). After send: "sent · no answer yet".
+4. **Owner / private / untouched:** plan = owner's; each person's answer = theirs; reservation fact = Commitment evidence (PCA-2); nobody's agreement restored from organizer intent.
+5. **Interruption etc.:** provider evidence supplied, never inferred (D5/D6); a stale alternative explained (D7); send ≠ delivery ≠ acceptance.
+6. **Reuse / gap:** reuse mismatch block, evidence pattern, J2f hierarchy; `plan_shape` viewer-relative participation logic (its guarantees, not its buckets). **Gap:** consequence-aware coordination and provider infeasibility as a state (Q17, handoff A3); grounded alternative search with real availability.
+7. **Evidence:** illustrated (05/11); exercised on 10 (send 8, Sam can't, forward); resolution intelligence proposed.
+
+### J-E — A conditional plan meets an ambiguous day
+1. **Start / value:** "beach, or the Whitney if it rains" as one row (02 A10). Value = one compact expression, no branches.
+2. **Delivered first:** on the day, the forecast in the row's supporting line and a recommendation in the row's preview card (11 W1) — both choices explicit, Maya's visibility stated.
+3. **Entry / target / result / return:** a held backup is never auto-selected. With an explicit prior instruction and a clear condition, the row resolves with an attributed receipt + Undo (W2); an ambiguous condition still yields W1 even with an instruction.
+4. **Owner / private / untouched:** owner's arrangement; forecast = evidence with freshness; dinner dependency untouched.
+5. **Interruption etc.:** uncertainty preserved ("showers on and off"), not "the weather settled".
+6. **Reuse / gap:** reuse D1 scoped alternative card, J2f receipt. **Gap:** condition meaning, evidence freshness, dependencies, action scope; a scoped revocable instruction as stored semantics (Q18, A0/D4).
+7. **Evidence:** illustrated only.
+
+### J-F — The day ends and something carries forward
+1. **Start / value:** the morning after (11 F1). Value = the same page, past-tense kicker, nothing marked done by time passing, Sam's voluntary photo where Dana's was.
+2. **Delivered first:** planned rows as planned; no questionnaire.
+3. **Entry / target / result / return:** one correction through the pill ("the river, not the café") read back as a Saturday fact; three weeks later Chat reactivates by reference — last time's place/people/photo, a new "Keep the 17th" (F2); Sep 19 stays as it was.
+4. **Owner / private / untouched:** correction = Plan fact; photo = Life/Place custody (pointer here); new arrangement = new lightweight Plan with owner references, never a copy.
+5. **Interruption etc.:** an unfulfilled possibility simply stays a possibility (no inference); personal outcomes need not converge into one story.
+6. **Reuse / gap:** reuse A1 chat-with-rows, A2 keep, C4 attach. **Gap:** passed-occasion lifecycle state; planned vs contributed record; owner references from a new arrangement to a passed one (Q19, D5); Life refinding is Life's.
+7. **Evidence:** illustrated only.
+
+### Engineering summary (from §0.6 C, restated for the receiving lanes)
+Moderate presentation (all primitives reused), substantial integration: contextual assistance + Chat continuity;
+lightweight intent without a Trip; contributions and scoped collaboration; participation vs shared consequential
+fact; grounded adaptation/conditional plans; recovery across roots; non-app guest delivery. The Trip bridge's
+legacy execution ownership is not to be competed with before cutover. AI interprets and explains; it does not replace
+authoritative state, deterministic constraints, permission enforcement or arithmetic.
+
+## 3k. Holistic-critique pass — board 12 (2026-09-05)
+
+Founder asked for a holistic critique against the vision, journey traces, engineering complexity and coverage, then
+"let's do it." Critique verdict: faithful on the page, weakest between pages. Four gaps closed or proposed on the new
+board **12 Arrival, Stacking, Peers, Outcome**; everything illustrated only.
+
+- **Arrival (N1–N3, R-18).** Lock-screen cues carry the receipt sentence and its one observation, titled by the
+  arrangement; one per relied-upon change or ask; resolved facts never cue; grouped within the hour. Home shows the
+  arrangement's state plus one sentence about what changed (two events that resolve together = one sentence).
+  Opening from the cue lands on the plan at the recent region; no interstitial. Q20: notification decisioning + per-
+  person "last seen" (a private record, as board 10 already models).
+- **Stacking rule (S1–S2, R-19).** Recent region ordered by consequence (needs you / changed and matters / resolved),
+  newest first within class; only the top item carries observation + one continuation; three lines then "and N
+  more →"; lines leave on the person's action, never a timer. §0.5's hierarchy is the one-event case. S2 shows
+  contraction after acting, with "sent · no answer yet" in the row.
+- **Authority proposals (P1–P2, PR-1/PR-2, Q21) — NOT adopted until ruled.** PR-1: two participants, no named
+  decider → either resolves loose material with attribution and mutual Undo; commitments keep their maker (Multiplayer
+  §5.2 applied to authority). PR-2 (stress case): peer occasion, everyone shapes it → loose material changes freely
+  attributed; an explicitly agreed time changes as a proposal to those affected, adopted by their answers, never by
+  silence; no vote/deadline/approval surface (D3 register). Ceremony risk stated; scoped to explicitly agreed times.
+- **Outcome (O1, R-20, Q22).** A materially better second occasion: Oct 17 booked at eight because the table could
+  not move last time; Dana's dish note and Sam's 7:30 arrival as attributed facts with doors to Sep 19; Alex's guest
+  line pre-carried. Outcome surfaces as a supporting register (like a ticket stub), scoped and removable in a sentence,
+  never a statement about the person. Record is Person/Relationship-scoped; scope/provenance/audience and retraction
+  at source are Q22.
+
+Critique items recorded but not drawn (still open): groups larger than four; disputing a wrong recommendation beyond
+typing; large text and voice as primary input; offline; guest identity when a link is forwarded (named on 11 G1).
+Journey-trace frictions from the critique are listed in the conversation record and summarized on 12's lede.
+
+## 3l. Subtraction pass — the Plan in seven sentences (2026-09-05)
+
+Founder verdict after the holistic critique and board 12: "too complex … we tried to avoid too much operational
+rules around changing, modifications." Ruled: the design is seven sentences; everything else is a consequence or
+engineering. Written to `design-kernel-extraction-2026-08-29.md` §11.15 and
+`docs/decisions/2026-09-05-adopt-the-plan-in-seven-sentences.md`.
+
+**The seven sentences** (verbatim in §11.15): a page you read, always current · one way to change anything: say it
+(direct controls only for finite real choices) · yours changes with one receipt and Undo; someone else's receives
+your exact words, previewed · every event is a sentence on its row, nothing else added · at most one sentence at the
+top says what needs you; cues only for that, bundled per arrangement per day; people tell people · Vesper states
+facts, recommends once without a button only after a problem, can be turned off · failure says so once, keeps words.
+
+**Cut applied to the live project.**
+
+| Board | Before | After | Moved to |
+|---|---|---|---|
+| 04 C | 8 frames | 7 (C6 granted edit removed) | 90 |
+| 05 D | 8 | 4 (D1, D3, D4, D8) | 90: D2, D5, D6, D7 |
+| 09 Journeys | 15 + friction log | 6 (J1a, J2a, J2b, J2f, J3a, J3b); J2f chip removed | 90: J1b–d, J2c–e, J2g, J3c–d, log |
+| 11 Continuations | 11 + 3 panels | 4 (K2, G1, I1, F1); I1 chip removed | 91: K1, G2, G3, I2, W1, W2, F2, panels |
+| 12 | 8 + panel | deleted | 91 (all; PR-2 marked withdrawn) |
+| 10 Interactive | — | renamed 92 Appendix · Prototype | — |
+| 07 | R-1–R-20, PR-1/2 | the seven sentences + retirement map; B-1–B-7, mapping, reuse, questions kept | — |
+
+Appendix boards carry an ENGINEERING APPENDIX banner and an APPENDIX tag on every frame; their copy predates the
+subtraction and is kept as evidence. Pre-subtraction copies of every board are in the session scratchpad
+`pirl/pre-subtraction/` (not in the live project).
+
+**Retired:** R-1–R-20 as rules (mapped to sentences in §11.15); PR-2 withdrawn; PR-1 held as a proposal in sentence 3.
+**Kept:** B-1–B-7 (upstream behaviour), the §11.8 amendment, type/material mapping, reuse map, Q1–Q22 as
+engineering questions.
+
+## 3m. Proxy validation — research-grounded walkthroughs in place of participants (2026-09-05)
+
+No participant has been observed in this project. The founder asked for the next best thing: use the research and
+judgment. Two paper walkthroughs, two questions each ("did they understand what the page was?", "did they know what
+to say to change it?"). Predictions, not observations.
+
+**Walkthrough A — the sparse Saturday (02 A1 → A2 → A4 → A5 → A7).**
+- *What is this page?* Predicted pass. The identity block is a sentence in the person's own terms and the rows are
+  the itinerary grammar people already read. Risk: the gutter word "Option" and "kept" — uncertainty-in-scheduling
+  research (Haze, CHI 2022) finds people want to express tentativeness and that calendars force certainty; our
+  registers allow it, but "Option ·" is product vocabulary. Test "maybe" and the person's own phrase first.
+- *What would you say to change it?* Predicted partial fail. This is the gulf of execution/envisioning documented for
+  natural-language interfaces (Subramonyam et al. 2023: capability, language and intentionality gaps; voice-assistant
+  discoverability studies: people do not know what they can ask). Mitigations with evidence: (a) a contextual example
+  phrase in the field derived from the selected row ("the later set instead"); (b) one suggested next phrase at the
+  end of an answer (the LLM cooking-assistant study); (c) keep direct controls for finite choices — A3's set picker
+  is validated by the bandwidth argument (tapping a known choice is ~10× faster than describing it). All three fit
+  sentence 2 and none adds a screen.
+
+**Walkthrough B — the shared dinner (04 C1 → C2 → C3 → 05 D3 → 11 G1).**
+- *What is this page?* Predicted pass for both roles. The guest page matches the conventions Partiful and Apple
+  Invites have taught (a link; when/where/who; two answers; no account). Risk: guests may look for the guest list
+  (Apple Invites added guest-list visibility later on demand); ours shows names in the people phrase, which is enough.
+- *What would you say?* For the guest: the two doors (reply to Nora vs ask Vesper) are labeled by audience, which the
+  privacy-first reading requires, but it is the one novel affordance and should be the first thing tested. For the
+  owner: moving dinner by saying it maps to the "propose new time" mental model; the novel part is D3's preview of who
+  is affected and who has answered. RSVP benchmarks (Greenvelope, 70,624 events, 2025–26: median 85% response;
+  personal events ~86%) mean 1 in 7 people will simply not answer — silence-as-state (D3) is the right default, and a
+  gentle reminder should come earlier than hosts assume (trade guidance: 48 hours). Partiful's own advice after a time
+  change is to text guests and ask them to re-RSVP — exactly sentence 5's "people tell people."
+
+**Verdict.** Comprehension (question 1) is expected to pass in both walkthroughs. Knowing what to say (question 2) is
+the main UX risk of the seven-sentence design and should be the first thing tested with people. Three
+recommended changes, none applied yet, all within sentence 2: contextual example phrase in the field; one suggested
+next phrase after each answer; direct controls retained for finite choices. What the research cannot answer: whether
+the accurate-readback + one-sentence-observation form (J2f) reads as helpful or as a scold; no shipped product does it.
+
+Sources: Partiful help (date/time change), Apple newsroom (Invites, Feb 2025) and AppleInsider (co-hosting, Jun 2026),
+Google Workspace blog (propose new time), MobiLoud/ContextSDK push statistics, CHI 2024/2025 proactive-assistant
+papers, Calm Technology principles, NN/g progressive disclosure, Subramonyam et al. "Bridging the Gulf of Envisioning"
+(arXiv 2309.14459), Haze (CHI 2022, 10.1145/3491102.3502107), Greenvelope RSVP benchmarks 2026, julian.digital "The
+case against conversational interfaces" (2025).
+
+## 3n. PR-1 ruling (2026-09-05)
+
+Founder ruled **defer** on PR-1 (two participants, no named decider, either resolves loose material). Until
+participant walkthroughs show the asymmetry matters, the owner decides for two people and the other person says
+it in words, as everywhere else. Recorded in kernel §11.15, the decision record, and board 07 sentence 3.
+
+## 3o. Sentence-2 discoverability fixes applied (2026-09-05)
+
+The three fixes recommended in §3m, applied to the boards that stay:
+
+1. **Contextual example in the field before any answer.** 08 P2 ("move it to 10"); prototype 92 placeholders
+   ("add the bookstore" / "add the bookstore at 4"). Rendered as `Ask, or say a change — “…”` with the example in
+   ink-2 (kit `.field .txt q`).
+2. **One suggested next phrase after an answer** (`.say`: "Or say “…”"): 08 P2b ("then add Isuien after"), P3
+   ("Tuesday, but later"), P4 ("Tuesday afternoon instead"), P9a ("ask them about 4:30 instead"); 09 J2a ("then add
+   Isuien after"); 02 A4 ("or skip the jazz"). The field returns to the generic "Follow up, or change something…"
+   after an answer so the example is not shown twice.
+3. **Direct controls for finite choices** — audited, all already present; inventory written into 07 sentence 2 and
+   kernel §11.15. Nothing drawn.
+
+Also removed the four remaining "Something else…" branches on 08 (P2b chip, P3/P4/P9a doors) that the §0.6 J-B
+correction had missed; the field stays in every case.
+
+## 3p. §0.7 post-subtraction refinement (2026-09-05)
+
+**Changed existing frames** (same reduced family; appendices 90–92 untouched; nothing regenerated):
+02 A4 (Or-say removed) · 05 D3 (prepared message with recipients and words beside Send; "Edit the wording"; annotation)
+· 08 P3, P4 (Or-say removed; P2b and P9a keep theirs) · 09 J2a (Or-say removed), J2f (one sentence relating the move
+to the crowd concern, with the 10:15 possibility, no button) · 11 I1 (thesis corrected; implication on top; one
+possibility; one quiet door — PROPOSED), F1 (account, not rewrite; planned row stands) · 07 (§0.7 amendment list)
+· 00 (status). Kit: `.page .outgoing` / `.qp .outgoing` rules.
+
+**Before/after effort log.**
+
+| Journey | Step | Before | After | Effort removed |
+|---|---|---|---|---|
+| Loose Saturday | Read the kept page and leave (02 A2 → close) | No prompt, no ask | Unchanged | — (successful read-and-exit, nothing further required) |
+| Loose Saturday | "Make it less rushed" (A4) | Answer + Use/Not now + field + "Or say 'or skip the jazz'" | Answer + Use/Not now + field | One prompt the person did not need; the field still allows any continuation |
+| Loose Saturday | Choose the set (A3) | Direct picker | Unchanged | — (finite choice stays direct) |
+| Shared dinner | Inspect Tōdai-ji (08 P2) | Field "Ask, or 'move it to 10'" | Unchanged | — (one contextual example before any answer, kept) |
+| Shared dinner | Move to Wednesday → Tuesday? (P3, P4) | Chips + "Or say …" on both | Chips + field | Two prompts; the scope question (temple vs morning) is kept because it is consequential |
+| Shared dinner | Dana suggests 4 (P9a) | Send-as-suggestion + "Or say 'ask them about 4:30 instead'" | Unchanged | — (kept: reveals a non-obvious capability) |
+| Changing day | Move dinner to 8 (05 D3) | Preview of affected people, then Send; the words to Maya and Sam implicit | Preview + prepared message with recipients and words + Edit + Send | The host no longer composes or retypes the change to tell people; prepared vs authored is explicit |
+| Changing day | Sam can't do 8 (11 I1) | Objection stated in thesis (wrongly), receipt, people phrase, Sam's words; a recital of facts; mismatch block | Thesis true; implication once; one possibility; row carries participation + reservation door; Sam's words once | Three duplicated facts and one false summary removed; one possibility added (PROPOSED); a door instead of retyping "keep 7, tell both" (PROPOSED) |
+| Changing day | Ben moved the temple (09 J2f) | Readback + observation | Readback + one sentence tying the move to the crowd concern with the 10:15 possibility | The person is not left to reconcile the schedule against what they said they wanted |
+| After the day | "We went to the river" (11 F1) | Plan row rewritten + receipt "now says the river" | Planned row stands; account under it in her words; "noted" | No accidental rewrite of intention; no outcome editor |
+
+**Amendment list.** *Compatible with the accepted seven sentences (applied):* selective guidance (sentence 2
+addendum clarified: not compulsory); prepared message beside Send with prepared ≠ authored (sentence 3); say each
+thing once from the same state (sentence 4); an account of what occurred is not a change (sentences 1/4). *PROPOSED
+exceptions — need a new decision before adoption; labeled PROPOSED on the boards:* (a) sentence 6: one possibility may
+follow the implication, and where adopting it means telling people, one quiet text door prepares the message (11 I1);
+(b) sentence 7 clarification: "pending is silent" governs the resting page; the active interaction acknowledges a
+submission (form on appendix 90 J2c); (c) sentence 5 clarification: per-day bundling is a non-urgent default; a distinct
+urgent change is not suppressed. PR-1 remains deferred; PR-2 remains withdrawn; no authority expanded.
+
+**Research corrections (§0.7 C), applied to §3m's claims without rewriting them:** "help welcome only after a
+problem" is one UX-evaluator study (Kuang et al. 2024; timing did not affect performance) and one programming study
+(Chen et al. 2025), not a rule for everyday assistance; the "five notifications a week" figure is vendor survey data,
+not a threshold; "10× faster" is an essayist's estimate, not a benchmark; Partiful's non-notification is a familiar
+convention, not an optimality result. Kernel §11.15 carries a dated correction note.
+
+**Verification.** *Illustrated (rendered from the live project, headless Chrome, and inspected):* 05 D3, 08 P2–P4,
+09 J2a/J2f, 11 I1/F1, 02 A4. *Scripted / mechanically checked:* none changed — the prototype (92) was not touched in
+this pass; its R1–R5 checks from §0.5 stand. *Native-unverified:* everything. *Participant-unverified:* everything.
+Live sync: pushed via DesignSync and re-rendered from the served project, not asserted from local edits.
+
 ## 4. Verification (live project, 2026-09-04)
 
 - Every board rendered from the **live project** via `render_preview` serve URLs in headless Chrome

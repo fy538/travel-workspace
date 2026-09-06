@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / design / Components and Plan
 created: 2026-09-04
-last_verified: 2026-09-05
+last_verified: 2026-09-06
 expires: 2026-10-04
 why_new: Gives Claude Code and Claude Design a composition-led visual exploration brief that reconciles the September 4 arrangements discussion, consumer research, and the existing editorial itinerary instead of replacing it with an operational status dashboard.
 supersedes: []
@@ -14,7 +14,7 @@ source_of_truth_for: []
 
 ## 0. Start here
 
-**Current assignment — September 5, recommendation and recovery refinement:** continue the existing **Vesper — Plans in Real Life** project. Read §0.5 first: the latest export addresses much of §0.4, including lighter memory/draft copy, purpose-aware readback, and basic request recovery. Preserve those gains. Make J2f's recommendation fit the actual human concern, reduce its action hierarchy, correct unknown-outcome copy, and repair the remaining prototype defects. §0.1–0.4 retain the underlying requirements; older defect descriptions are historical where later sections record a correction. Do not create another project, expand the operation-screen inventory, or implement production changes for this revision.
+**Current assignment — September 6, content and continuation cleanup.** Continue the existing **Vesper — Plans in Real Life** project. Read §0.8 first; it reviews the September 6, 11:50 export against §0.7. Preserve the reduced family and the improvements already made. Refine D3's message-first hierarchy, J2f's social assumption, F1's prominence of reported experience, and the precise consequence of I1's prepared message. Keep detailed recovery/coverage/prototype material in appendices 90–92. Earlier sections remain provenance and engineering evidence, not a cumulative screen checklist. No new project, operation-screen expansion, adjacent-root redesign, or production implementation is requested.
 
 This is a **design exploration**, not production implementation, a schema decision, or a new app-wide design system. The original handover preceded project creation; the subsequent [execution report](claude-design-plans-in-real-life-execution-report-2026-09-04.md) records the existing [Plans in Real Life project](https://claude.ai/design/p/cd2e1f82-9786-4ae6-993e-c0dfbe8d6302). The reviewed local export is `/Users/feihuyan/Downloads/vesper-plans-in-real-life/project`. Inspect the current live version before syncing; this revision does not independently certify that it matches the export. Do not invent integration commands or claim a sync succeeded without checking the live project.
 
@@ -229,6 +229,8 @@ Report what is illustrated, simulated, and mechanically exercised separately, wi
 
 ### 0.5 Latest export review: better judgment, lighter completion, dependable recovery
 
+**Review-stage note:** these findings concern the 11:39 export. §0.6 records the subsequent fixes and current journey-coverage assignment. Retain the regression cases without treating their original failures as still outstanding.
+
 **Evidence — September 5, export files dated 11:39 local.** The review read boards 09/10 and `kit/proto.js`, rendered the revised journey compositions, and exercised the runtime in an isolated JavaScript harness with stubbed DOM and controlled timers. The harness checked state transitions and input-field behavior, not real browser navigation, native gestures, keyboard behavior, a production backend, or participant usability. No design or application code was changed during the review. This section refines the existing assignment, not the accepted ownership, audience, or lifecycle contracts.
 
 #### Confirmed progress to preserve
@@ -275,6 +277,243 @@ Keep the existing explicit-send boundary and the navigation/input fixes. A globa
 Keep the composition family and refine the existing boards and runtime. Deliver J2f with a contextually justified recommendation and lighter action hierarchy, consistent uncertainty wording across boards 09/10, and regression checks for the three reproductions above alongside the now-working pending-navigation and failed-input cases. Update the friction log to distinguish fixed, outstanding, illustrated, and exercised behavior. Native and participant validation remain unclaimed.
 
 **The next improvement should make Vesper's help more perceptive and dependable—not make the interface more elaborate.** This is a refinement of a coherent product direction, not a request to reopen the entire design or turn the broader system into a narrow proof gate.
+
+### 0.6 End-to-end journeys, coverage, and engineering implications
+
+**Historical assignment note:** this section records the 13:39 export before the accepted subtraction. §0.7 governs the current pass. Retain the owner/dependency analysis and regression evidence; do not restore removed recommendation controls, deferred peer-authority proposals, or appendix journeys merely to satisfy this earlier coverage brief.
+
+**Assessment.** The central flow makes sense. The family is more complete as a way to read and adapt an arrangement than as an end-to-end experience covering everything around it. Keep it as the Plan/Occasion design north star, not as proof that every product responsibility or implementation seam is resolved. The next work should complete missing transitions, not reopen the visual system.
+
+**Evidence and limits — September 5.** The latest review inspected the local export dated 13:39, including A9–A10, C/D/E, J1–J3 and prototype source; rendered the revised journey composition; and exercised selected state/input transitions in an isolated JavaScript harness. Follow-on investigation inspected Product Thesis, Product Model, Multiplayer Product Strategy, the [lightweight-arrangements implementation handoff](lightweight-arrangements-implementation-handoff-2026-09-04.md), and relevant code at app `c03f909f8` / backend `424e2d23a`. Findings are hypothetical walkthroughs plus bounded code evidence, not observed user friction, an exhaustive repository audit, production test results, or native visual acceptance. Reinspect current code before implementation.
+
+**Closed findings from §0.5.** J2f now offers “Ask Ben about 10:15” rather than assuming solo participation, with lighter hierarchy, subordinate Undo, and an inline navigation door. J2e no longer promises unchanged state while the result is unknown. Harness checks passed for matching-draft discard without resurrection, preserving different edited input, Undo retaining Sam's independent response, private request-state separation on viewer switch, deferred results assigned to the original requester, pending navigation, and retaining a blocked second input through reconciliation. These are specific passing cases, not comprehensive privacy, concurrency, or native certification. The export itself still identifies retry-identity and illustrated-versus-wired limitations.
+
+#### A. Six journey traces: keep the strengths, finish the transitions
+
+**J-A — A thought becomes something useful later.** Chat → grounded jazz possibility → Keep → sparse Saturday page → optional adjustment → later return through Home, Chat, Places, or Life.
+
+The value-before-organization pattern is strong. The remaining question from the person's perspective is: “Did I save a place, make a plan, or save this conversation—and where is it tomorrow?” Show recognizable identity and current state across entry and return. The immediate result should open the retained thing; later refinding should not require remembering the original conversation. Release “Saturday” without losing an independently retained Corner Note relationship. Do not add a naming form, mandatory Trip, storage explanation, or tutorial. Engineering must support stable lightweight intent, optional timing, owner references and scoped release. A saved card is not the complete capability.
+
+**J-B — Understand, follow up, and adapt in context.** Inspect Tōdai-ji → ask about mother → correct the answer → request Isuien → receive the actual result → optionally discuss timing with Ben.
+
+This is the strongest illustrated flow. Preserve the active field and carried target. Older A4 still puts further expression behind “Something else…” after a proposed alternative; align such examples with the later J2 continuation pattern. “That works, but can we get lunch first?” should be an ordinary follow-up, not navigation to another operation. Expand the same active surface when useful; remove conversational chrome when returning to the resting plan. A transfer to Chat carries target, unresolved intent and conversation continuity instead of requiring a new briefing. This is shared interaction/session work with the Chat lane, not authorization to create a second assistant or conversation store.
+
+**J-C — Invite, contribute, and participate without a planning committee.** Host describes dinner → previews actual invitation and recipients → sends → guest receives useful details → responds or contributes → authorized collaborator edits within scope.
+
+The roles are well distinguished, but the thin guest is better designed as an RSVP recipient than as a contributor. C4 shows Dana's photo and Sam's dessert contribution after arrival; it does not fully trace how a non-app guest supplies them. Cover “I can get there at 7:30,” “Can I bring Alex?”, “I'll bring dessert,” a practical question, and one photo/link contribution through a minimal family—not five screens. A reply to the host must be distinguishable from a private question to Vesper. Contributions need not become arrangement edits, and viewing a link alone does not grant contribution rights. Guest delivery, bounded identity/access, authorship, media custody and later access changes are real engineering dependencies; an RSVP endpoint does not implement all of them.
+
+**J-D — A change cannot work for everyone.** Maya asks for eight → owner sees implications → sends the changed time → reservation mismatch remains → Sam responds → provider evidence may arrive.
+
+The designed success path is useful but assumes eventual accommodation. Continue with “Sam can't do eight” and, separately, “The restaurant can't move the table.” Recording the objection is not the same as helping the experience work. Depending on expressed priorities and practical facts, Vesper might help keep seven with Maya joining later, retain eight with Sam explicitly opting out, or prepare another feasible arrangement. Show one supported continuation rather than all alternatives at once. Do not restore everyone's agreement from organizer intent, imply that sending equals delivery, or assume delivery equals acceptance. The needed intelligence is consequence-aware coordination, not a new vote/approval dashboard. This is a substantive live-engine responsibility, not peripheral error handling.
+
+**J-E — A conditional plan meets an ambiguous day.** “Beach, or the Whitney if it rains” → one conditional row → Saturday has intermittent showers → useful recommendation or authorized resolution → each participant sees their relevant result.
+
+Keep A10's compact expression. Distinguish a held backup from an explicit instruction to select it under a condition. A forecast changing does not universally authorize Vesper to choose a shared plan. Where judgment remains necessary, expose the useful recommendation in context, not a branching editor. The implementation needs condition meaning, evidence freshness, dependencies and action scope. It must preserve uncertainty instead of pretending “the weather settled” is a universal binary event.
+
+**J-F — The day ends and something carries forward.** Passed occasion → refind the actual material → correct a factual relation or voluntarily contribute → a later relevant occasion benefits.
+
+The current project is thin here. Define what happens to an unfulfilled possibility, how planned differs from happened, where contributed photos belong, and how a later return can reuse useful material without recreating the arrangement. Do not infer attendance from time passing or append an after-action questionnaire. Show one ordinary voluntary contribution/correction and one later reactivation. The Plan page connects to Life and Place owners; it does not absorb their organization, media, or memory responsibilities. Personal outcomes need not converge into one shared story.
+
+**A9 refinement.** An untimed collection is already a complete useful state. Remove the routine “Say a day and one of these becomes Saturday's page” instruction. Keeping possibilities does not incur a scheduling obligation. Contextual asking remains available; Home/Places can surface a justified opening when it becomes useful.
+
+#### B. Coverage is not a claim that Plan contains the whole app
+
+| Use-case family | Current evidence | Remaining responsibility |
+| --- | --- | --- |
+| Structured Trip and upcoming logistics | Strong compositions | Integrate with existing canonical travel truth and native navigation |
+| Loose local possibility | Strong sparse layout | Retention, identity, later refinding, temporal release |
+| Read-only place understanding | Strong illustration | Grounded content and an actual contextual exchange |
+| Comment, suggestion, authorized edit | Strong role examples | Consistent entry, target persistence, scoped grants and repair |
+| Dinner-only, skip and rejoin | Useful examples | Continue after changed participation or reunion constraints |
+| Disruption and practical rescue | Good first response | Incompatible responses, infeasible provider outcome, delivery uncertainty |
+| Untimed and conditional arrangements | Useful A9–A10 treatment | Conditional authority, ambiguous conditions, no scheduling homework |
+| Photos, knowledge, food, labor, care | Contribution results illustrated | Lightweight author/guest creation and correction paths |
+| Guest without installation | Value-first recipient page | Delivery, safe identity, bounded contribution and continued access |
+| Recurrence and later continuity | Mostly adjacent scope | Define handoffs and one later-return journey, not a Plan archive redesign |
+| Expense understanding/accounting | Not covered here | Adjacent assisted experience; preserve deterministic calculations where promised |
+| Cultural connections, rich media, broader Home/Places value | Adjacent responsibilities | Compatible references and return paths, not additional mandatory Plan sections |
+| Booking execution | Intentionally excluded | Retain useful external handoff and supplied reservation evidence |
+
+The [Product Model](../../travel-agent/docs/product/Product%20Model.md) and [Multiplayer Product Strategy](../../travel-agent/docs/product/Multiplayer%20Product%20Strategy.md) include private caucus, meaningful contribution, repair, recurrence and later reactivation. The present boards cannot be described as complete coverage of that larger vision. Deliberate scope boundaries are not missing screens; an unowned handoff or unfinished outcome is a genuine gap.
+
+#### C. Engineering: reusable presentation, substantial domain integration
+
+**Assessment:** moderate presentation work, substantial integration/domain work. Reducing the frontend's operations inventory remains valuable, but it transfers responsibility into reliable interpretation, authoritative commands and coherent readback. Relative complexity below is a planning judgment, not a calendar estimate.
+
+| Area | Relative complexity | Why |
+| --- | --- | --- |
+| Editorial page and sparse variants | Moderate | Reuse header, row, time gutter, rail, chapter and sheet primitives |
+| Contextual assistance and Chat continuity | High | Target context, conversation ownership, streaming, expansion, interruption and return |
+| Lightweight intent without a Trip | High | Stable identity/owner, optional timing, retention, association and release |
+| Contributions and scoped collaboration | High | Different command effects, authorship, grants, revocation and concurrent writes |
+| Participation and changed agreements | High | Individual decisions coexist with one shared consequential fact |
+| Grounded adaptation/conditional plans | High | Model judgment plus deterministic feasibility, evidence and dependency checks |
+| Recovery across roots | High | Retry identity, stale actions, causal repair, readback and cache invalidation |
+| Non-app guest contribution/delivery | High | Bounded identity, access, delivery and response continuity |
+
+Concrete reusable foundations and gaps from the inspected code:
+
+- [LocalPlanScreen](../../travel-app/components/trip-plan/LocalPlanScreen.tsx) already composes a lighter local page, but still takes `tripId` and Trip state. [planShape](../../travel-app/data/planShape.ts) is also Trip-scoped. Sparse presentation is not yet evidence of Trip-independent material ownership.
+- [Plan graph models](../../travel-agent/backend/core/models/experience_graph.py) provide owner, horizon, lifecycle and Commitment references. [update_plan and graph commands](../../travel-agent/backend/domains/experience_graph/commands.py) provide owner checks, expected revisions and idempotent receipts, plus invitation/decision facilities. The inspected Plan update is metadata mutation, not a complete lightweight-material/scoped-collaborator editor.
+- [Plan Shape compilation](../../travel-agent/backend/core/plan_shape.py) supplies viewer-relative participation logic over canonical itinerary data. Reuse its useful guarantees, not its status buckets as page organization.
+- [PlanStopInspectSheet](../../travel-app/components/trip-plan/PlanStopInspectSheet.tsx) still offers details/change operations; the [main Plan route](../../travel-app/app/%28tabs%29/trips/[tripId]/plan.tsx) also enters contextual entity inspection. Resolve one deliberate integration with the entity lane instead of adding another competing detail or assistant surface.
+- [Root consequences](../../travel-app/data/rootConsequences.ts) provide server-resolved actions, repair and broad read-model invalidation. Extend the appropriate owner adapters and validate new cache dependencies rather than duplicating actions on each root.
+- The [Trip bridge](../../travel-agent/backend/domains/experience_graph/trip_adapter.py) explicitly preserves legacy execution ownership. A new design does not authorize competing graph and block writers or deletion of guarantees before cutover.
+
+AI can interpret intention, compare grounded alternatives and explain outcomes. It must not replace authoritative state, deterministic time/route constraints, permission enforcement, or expense arithmetic with generated prose. New schema/auth choices and migration remain separately approval-bearing. Reuse the existing implementation handoff's A0–A4 dependency sequence; this design supplement does not approve it for execution or supersede its owners.
+
+#### D. Next deliverable: journey-to-system coverage, not another broad visual brief
+
+Add a compact coverage specification to the receiving agent's existing report. For J-A–J-F record:
+
+1. Starting evidence/state and the person's expected value.
+2. What is delivered before asking for additional input.
+3. Entry, target, current result, and return/refinding path.
+4. Canonical owner; what changes, remains private, and stays untouched.
+5. Interruption, disagreement, non-application and later-return behavior.
+6. Existing component/service/command to reuse, or a precisely named engineering gap.
+7. Evidence status: illustrated, wired in the artifact, simulated/tested, existing runtime, or proposed.
+
+Prioritize five missing continuations: Keep without a Plan → refind → release only timing; thin guest → question/contribution; incompatible participant/provider response → useful resolution; ambiguous conditional day → appropriate recommendation/action; ended occasion → later useful continuity. Apply the J-B follow-up consistency correction across older examples too. Illustrate only the transitions necessary to expose these decisions using existing patterns, with detailed visual judgment left to Claude Design. Do not turn each case into a bespoke operation screen, new service, schema noun, or root redesign.
+
+Coordinate stable targets, session/history ownership, evidence custody and return behavior with Chat, Entity and Home/Places/Life. Where their contract is unresolved, name the question and owner; do not silently decide it in a mock. Update stale board-07 descriptions of routine memory offers and settled draft retention so they agree with the later rulings. Keep participant/native validation unclaimed.
+
+**Completion criterion for this assignment:** the designer and engineer can trace the full representative portfolio through a small interaction family, know who owns each effect, and see where genuine behavior or contract decisions remain. Architecture should cover the system; delivery can follow dependencies. No single-loop proof gate, universal Plan container, or claim of complete product coverage is implied.
+
+### 0.7 Post-subtraction refinement: simplify the machinery, preserve the help
+
+**Review-stage note:** §0.8 records the subsequent September 6 export and governs the current bounded assignment. Keep the research and boundaries below; do not repeat corrections that the later review marks as addressed.
+
+**Verdict and provenance — September 5.** The founder accepted the preceding research-backed recommendation to retain the simplified direction and refine effort within it. The reviewed export has files dated 15:25: reduced main boards, seven sentences on board 07, and engineering appendices 90–92. This is a credible Plan/Occasion design direction, not validated usability or complete product coverage. This update draws on the local design/source review and online research; no participant study, new native acceptance test, production implementation, or live-design sync was performed for this handover update.
+
+**Precedence.** Read the [accepted seven-sentence decision](../decisions/2026-09-05-adopt-the-plan-in-seven-sentences.md), [kernel §11.15](design-kernel-extraction-2026-08-29.md), and [execution report §3l–3o](claude-design-plans-in-real-life-execution-report-2026-09-04.md). Preserve their subtraction and owner-default direction. The founder has requested this refinement brief; it does not silently rewrite the accepted decision. Where the recommendations below relax literal rules—mandatory “Or say…”, no recommendation buttons, or silent pending—label the difference in the design/report as a proposed amendment. A subsequent canonical change needs a new decision, as the accepted record requires. Do not revive PR-1/PR-2 or expand authority through copy changes.
+
+**One governing aim, not another grammar:** reduce the work required to receive value and reach an understandable result. Fewer screens, words, or controls are not sufficient if people must instead invent prompts, repeat context, reconcile facts, or carry messages manually.
+
+#### A. Preserve the design we have reached
+
+- Keep the continuous editorial page, warm paper, serif hierarchy, compact time gutter, sparse untimed states and full-day legibility. Use the existing typography, spacing, material and overlay roles in §4; no new visual language is requested.
+- Keep one contextual Vesper interaction family for understanding, exploration and changes. Preserve the active field and optional voice; no permanent conversation feed on the resting plan and no input field under every row.
+- Keep owner-default changes, scoped grants, independent participation, voluntary contributions, and the distinction between private assistance and explicit messages to people.
+- Keep useful finite controls, external provider doors, truthful recovery and retention of the person's words. Appendix placement does not remove engineering obligations.
+- Keep temporal release, voluntary after-day contributions and useful continuity. A loose possibility is already a valid result; no scheduling obligation or post-event questionnaire.
+
+#### B. The actual changes to make
+
+**1. Let an answer be complete.** Audit the “Or say…” lines on 08 P2b/P3/P4/P9a, 09 J2a and 02 A4 against the current live version. Remove the requirement to append a suggested instruction after every answer. Keep a contextual example only where it reveals a useful, otherwise non-obvious capability or resolves likely uncertainty. Preserve the active field so “She's fine walking; it's crowds she dislikes” remains easy. Do not replace the removed line with a chip carousel, engagement prompt or “Something else…” branch. Proposed amendment to sentence 2's discoverability addendum: guidance is selective, not compulsory.
+
+**2. Carry context instead of repeatedly asking for it.** Opening from dinner already supplies dinner as the target. Use that context for “move this to ten” or “Wednesday morning, leave the time open.” Clarify only consequential ambiguity: moving the temple versus the whole outing may require a question; choosing the object again after explicit selection generally does not. Retain exact provider facts and the arrival-versus-performance distinction. Do not add scope forms or rely on exact scripted phrasing as the real product contract.
+
+**3. Reduce repetition on I1 before adding anything.** The current top thesis still says dinner is with Maya and Sam while the row says Sam cannot do eight. Correct the summary from the same current state. Give the top line the unresolved implication, the dinner row the current arrangement/participation, and the attached contribution Sam's actual words when useful. Do not repeat the same objection at every level or add a status region to explain it.
+
+**4. Allow useful judgment without taking over.** I1's compact facts are useful but should not be the ceiling of Vesper's assistance. An illustrative supported possibility is: “Keeping seven preserves the reservation. Maya could join after the reading, if a staggered dinner works for you.” This is not a claim that seven works for Sam, that Maya agrees, or that the reservation has changed. Use the fixture's evidence and expressed priorities; name the tradeoff, do not invent feasibility. Similarly, J2f should relate the changed timing to the expressed crowd concern, not merely recite the new schedule. One relevant implication or possibility can replace repetitive facts; no compulsory recommendation section, scolding, or menu of alternatives. Recommendation, adoption, and execution remain separate effects—not three new screens. Consequence-aware recommendations are deferred in the accepted decision: any illustrated refinement must be labeled proposed, not quietly promoted to a shipped or approved capability.
+
+**5. Keep obvious selections easier than describing them.** The real 8:30/10:30 set choice, RSVP, Keep, Send and supported Undo remain useful. Do not add comprehensive Move/Replace/Skip menus. Conversely, do not remove an already-clear selection solely because it follows an AI recommendation and force “yes, choose that” to be retyped. Where a single direct adoption would materially reduce effort, show at most a small proposed treatment within the existing family and record the explicit exception to sentence 6's no-button rule. Do not silently restore the former J2f/I1 chips. No new full-screen variant is needed to discuss this exception.
+
+**6. Keep the host in control without making them a courier.** In D3/G1/J3, carry the known change into a prepared message with the actual recipients and outgoing words visible beside Send. Let the person edit before sending; distinguish prepared wording from words they already authored. Avoid a separate mandatory messaging workflow or retyping the change. Never treat a private question as permission to send, rewrite an authored suggestion silently, or imply another person's acceptance. This is preparation in the existing exchange, not autonomous communication.
+
+**7. Quiet resting page, legible active response.** A submitted request needs a small acknowledgment in the active interaction. Preserve words and prevent duplicate effects while its outcome is unresolved; do not show the change as completed. No permanent progress/status panel is needed. Unknown is not failure or confirmed non-application. Proposed clarification to sentence 7: “pending is silent” should govern resting-page clutter, not erase acknowledgment of a person's submission. Likewise, per-day bundling is a nonurgent default to review, not permission to suppress a distinct urgent change. Keep detailed delivery/recovery cases in the appendix.
+
+**8. Preserve planned versus happened in F1.** “We went to the river, not the café” reports an occurrence; it is not automatically an instruction to rewrite the original plan. Keep the supplied account distinguishable from the earlier intention without exposing an outcome editor. Resolve custody with the Life/contribution lane; do not manufacture attendance from midnight passing or force everyone's personal account into one story.
+
+#### C. Research basis: support the direction without turning evidence into absolute rules
+
+- **Prompting has a cost.** [Tankelevitch et al., CHI 2024](https://www.microsoft.com/en-us/research/publication/the-metacognitive-demands-and-opportunities-of-generative-ai/) synthesize metacognitive demands around expressing goals, evaluating outputs and managing workflows. This is a framework, not a Vesper trial. Our inference: evaluate total user effort, not only interface size.
+- **Contextual guidance is useful; a mandatory next prompt is not established.** [Subramonyam et al., Gulf of Envisioning](https://arxiv.org/abs/2309.14459) analyze capability, language and intentionality gaps in LLM interaction. Our inference: reveal helpful possibilities where needed; do not presume every answer needs another suggested instruction.
+- **Language and direct interaction can complement each other.** [Horvitz, CHI 1999](https://www.microsoft.com/en-us/research/publication/principles-mixed-initiative-user-interfaces/) develops principles for coupling automated services with direct manipulation. It is not a modern mobile benchmark or evidence that tapping is universally “10× faster.” Keep only the controls that remove real work in these journeys.
+- **Timing is contextual, not universally “after a problem.”** [Kuang et al., CHI 2024](https://emilykuang.github.io/lab/publication/chi24-ux-proactive-ca/) studied 24 UX evaluators analyzing usability recordings in a hybrid Wizard-of-Oz setup. They preferred suggestions after potential problems; timing did not significantly affect analytic performance. This does not establish a universal restriction for everyday assistance. [Chen et al., CHI 2025](https://www.microsoft.com/en-us/research/publication/need-help-designing-proactive-ai-assistants-for-programming/) report benefits and contextual nuances in a randomized programming-assistant study; it also is not direct evidence about travel or social coordination.
+- **Make invocation, correction and consequences understandable.** [Microsoft's human–AI guidelines](https://www.microsoft.com/en-us/research/blog/guidelines-for-human-ai-interaction-design/) support contextual timing, short-term continuity, clarification under uncertainty, and efficient dismissal/correction. They explicitly involve tradeoffs, not a mechanical checklist or validation of a particular sheet.
+- **A competitor convention is not an optimality result.** [Partiful's date/time documentation](https://help.partiful.com/en-us/articles/15525367-how-do-i-change-the-date-and-time-on-my-event) explicitly says guests are not notified automatically and the host must send a text blast. This supports a familiar human-authored communication model, not the conclusion that Vesper should require a separate manual communication chore.
+
+Do not repeat “help is welcome only after a problem,” a universal five-notifications-per-week abandonment threshold, or a fixed tapping-versus-language speed multiplier as settled research. The current pass does not validate those generalizations. Keep product choices clearly separated from evidence; correct overclaims in the receiving report without silently rewriting accepted decision history.
+
+#### D. Bounded delivery and stopping point
+
+This section replaces the older broad composition/coverage requests for the current iteration. Return:
+
+1. The same reduced design family, with the changed existing frames identified. Keep appendices 90–92 labeled as evidence; do not regenerate the earlier ~90-frame main family.
+2. A short before/after effort log for loose Saturday, shared dinner and the changing day: where the revision removes a prompt, repeated context, duplicated fact, unnecessary navigation or manual coordination. Include a successful read-and-exit with no further action.
+3. A concise amendment list separating changes compatible with the accepted seven sentences from proposed exceptions requiring a new decision. Do not create another sprawling rule system or silently change upstream authority.
+4. Verification of affected rendered states and existing bounded prototype regressions where wired. Report illustrated, scripted, mechanically checked, native-unverified and participant-unverified portions separately. Do not claim live sync from local edits alone.
+
+Stop when the existing family delivers useful orientation, allows natural continuation, and makes the result and audience understandable with less work. Further participant walkthroughs should use goals rather than button instructions and observe prompt invention, rebriefing, uncertainty and repetition. They can proceed alongside system implementation; this is not a single-loop proof gate or a request to halt adjacent architecture.
+
+**Final direction for Claude: keep the page calm and the assistance capable. Remove the obligation to operate, prompt, or coordinate unnecessarily—not the substance that makes Vesper worth using.**
+
+### 0.8 September 6 export review: finish the content and continuations, not another redesign
+
+**Evidence and verdict.** The review inspected the local export with files dated September 6 at 11:50, compared its changed frames with §0.7 and execution report §3p, and rendered boards 05, 09 and 11 in the in-app browser. The direction is stronger and should be retained. This was a local artifact/source review, not a fresh live-project sync, native acceptance test, participant walkthrough, or production code audit. The new treatments remain illustrated; report §3p says the interactive prototype was not updated for this pass. Do not count its older regression results as execution evidence for the new message or recommendation paths.
+
+#### A. Addressed findings: preserve these gains
+
+- Routine “Or say…” lines were removed from 02 A4, 08 P3/P4 and 09 J2a. The field remains; selected contextual examples remain elsewhere. Do not restore compulsory follow-up nudges.
+- D3 now prepares actual wording addressed to Maya and Sam, with Edit and explicit Send. Keep this reduction in composition work.
+- I1 fixes the false “with Maya and Sam” summary and offers one useful staggered-dinner possibility instead of only reciting incompatible facts. The proposed shortcut is explicitly labeled as an exception, not quietly adopted canon.
+- F1 now preserves the original planned material separately from Nora's account. No checkmarks or attendance inference appear merely because the day ended.
+- The reduced main-board family remains intact. None of the refinements below requires restoring the earlier operations inventory.
+
+#### B. D3 — make the outgoing message the center
+
+**Observed friction.** D3 now reduces typing but asks for substantial reading: preview heading/time, separate Maya/Sam/table explanations, the outgoing message, prepared-versus-authored explanation, and correction-versus-unsending explanation. Several layers communicate the same change. This is predicted cognitive effort from the rendered composition, not measured participant behavior.
+
+**Refinement.** Let the actual message and recipient names lead; retain the practical consequence not settled by sending. Illustrative content hierarchy, not an exact wireframe:
+
+> **To Maya and Sam · Draft**
+>
+> Dinner's moving to eight, same place. Sam—does eight work for you?
+>
+> Your table is still reserved for seven.
+>
+> **Send to Maya and Sam** · Edit · Not now
+
+Keep any additional information only if it changes the decision. Remove ordinary customer copy such as “it becomes yours when you send or edit it”; a Draft label, visible words and explicit Send establish the relevant expectation without explaining the internal authorship model. Preserve authorship and correction behavior underneath. Detailed unsend/repair limits can appear when relevant rather than as a permanent footer on every prepared message.
+
+D3 follows an explicit owner instruction to move dinner. Make clear if its primary action both updates the arrangement and sends the announcement; where that is the actual intended effect, a label such as “Update & send” may be clearer than bare “Send.” Do not imply the restaurant changed, Sam agreed, or delivery succeeded merely because the message was submitted. Reuse the existing preview/receipt pattern; no second confirmation ceremony is requested.
+
+#### C. J2f — preserve social intent, not merely individual scheduling freedom
+
+**Observed inconsistency.** The customer sentence now says “10:15 is still yours to take if early matters,” while the annotation says neither going alone nor approaching Ben is recommended because who is coming was never established. The wording implicitly encourages a separate visit despite that limit.
+
+Replace this with a grounded implication that leaves the relationship intact. For example:
+
+> Ben moved the visit to eleven, after the quieter window we discussed. Going together at 10:15 would need his agreement.
+
+This example concerns agreement to attend together, not a new requirement for owner approval on an otherwise authorized edit. Preserve scoped editing rights and independent participation. Use the supported fixture context; do not invent that Ben is available at 10:15 or that a companion is definitely attending. Keep the ordinary contextual field/pill available, with no forced follow-up, social-split recommendation, new button panel or implicit disclosure of private context. Align the annotation with the final customer wording.
+
+#### D. F1 — retaining the original plan does not require it to dominate the later account
+
+**Observed friction.** The structural correction is right, but the café still has the prominent activity title while the river—the experience Nora reports—appears as a subordinate correction. Someone returning to understand their day must reconstruct what happened from notes beneath things that did not happen.
+
+Within the existing entry, explore giving the reported experience appropriate prominence while keeping the original intention available. For example:
+
+> **An afternoon by the river**
+>
+> You said you went here instead of the café.
+>
+> Originally planned: Willow & Page café.
+
+This is a source-attributed presentation, not permission to overwrite Plan truth, create a verified shared Occurrence, invent an exact river location/time, or assert that every named participant attended. If the surface is explicitly displaying the original itinerary, retain that reading; give the person's account a clear, useful treatment rather than silently switching the whole page into an authoritative history. Coordinate any later Life projection with its existing owner. Do not introduce an outcome editor, a new mode taxonomy, or a memory-maintenance task.
+
+Remove “What was planned stays as it was” from routine customer copy. Keep that invariant in the design/engineering annotation. The user should receive the account, not a lesson in storage semantics.
+
+#### E. I1 — define what “Prepare that for Maya and Sam” actually prepares
+
+The shortcut is a useful reduction in retyping. Calling it a “door” rather than a “button” does not settle its consequence or exempt it from the proposed sentence-6 amendment.
+
+**Recommended treatment for this fixture:** preparation does not change the eight-o'clock arrangement. Because I1 follows an optional suggestion rather than an explicit instruction to change the plan, prepare a proposal to the two people, for example: “Could we keep seven? Maya, would joining after the reading work for you? Sam, would seven work?” Show the actual recipients and editable wording. A clear “Send proposal” sends that message, not a plan mutation or an announcement of a settled decision. Silence is not acceptance.
+
+Contrast D3, where the owner already instructed a move. If the owner instead explicitly asks from I1 to keep seven and tell both, the same interaction family may prepare an update-and-announcement, with that effect clearly named and owner-authorized. Do not make every owner edit depend on a new group approval workflow. The distinction comes from expressed intent and the outgoing effect, not from adding a new operation screen.
+
+Show the immediate result of the selected I1 path using the existing outgoing/readback treatment: what was sent, whether the arrangement changed, and what remains unanswered. Canceling preparation must not change the plan or contact anyone. No provider change or acceptance by another person follows automatically. These are design expectations under the [Contribution and Consequence contract](../systems/contribution-and-consequence.md), not a claim that delivery or the command path is implemented.
+
+#### F. Bounded delivery and stopping point
+
+1. Refine the existing D3, J2f, F1 and I1 treatments; preserve typography, paper, spacing, full-day readability and the rest of the reduced family. Detailed visual composition remains Claude Design's job.
+2. Trace I1's one chosen continuation into the existing outgoing-message/readback family, contrasted with D3's explicit change. Reuse an existing frame or interaction state where possible; do not create a proposal-management suite.
+3. Update stale board annotations and the report so they match the illustrated behavior. Selective prompting is a relaxation of the accepted literal “after every answer” addendum; record that alongside the proposed recommendation/action and pending-feedback amendments rather than calling it unchanged canon. Do not rewrite the accepted decision history.
+4. Verify the affected rendered states, recipient wording and meaningful action labels. If any continuation is wired, check preparation, dismissal, submission and return against the stated effects. Otherwise mark it illustrated, with prototype/native/participant limits explicit. Preserve unrelated existing work and inspect the live project before syncing.
+
+**Stop after this content-and-continuation cleanup.** Do not add more conceptual rules, expand the main family to cover every appendix case, or start another composition exercise. The next gains should come from making these existing interactions natural in use, alongside the established engineering work—not from further growing the handover's screen inventory.
 
 ## 1. Why this project, and why now
 
@@ -642,7 +881,7 @@ Research could disconfirm our proposal: if users cannot see a complete day, find
 4. Include the overlapping-travel stress case as an extension, not another standalone product.
 5. Explicitly show what the person receives before supplying more information. Audit every ask: is it truly necessary to deliver this consequence?
 
-For this review iteration, preserve the existing complete family and board 09's connected journeys. Prioritize §0.5's recommendation quality, completion hierarchy, uncertainty copy, and targeted recovery corrections, retaining §0.1–0.4's underlying requirements and completed improvements. The original broad composition brief is context, not an instruction to restart all four situations.
+For this review iteration, follow §0.8's content-and-continuation cleanup, preserving §0.7's gains, the post-subtraction main family, reduced board 09, and A9–A10's lighter forms. Older coverage requests in §0.6 and broad composition steps above remain context and appendix evidence, not an instruction to restore removed frames, restart all four situations or redesign adjacent roots.
 
 ### Phase C — make the visual consequences interactive
 
@@ -652,7 +891,7 @@ For this review iteration, preserve the existing complete family and board 09's 
 - Re-entry must show the current state; navigation Back must not undo an edit.
 - Keep, preview, adopt, contribute, participate, grant/revoke, and external handoff must have distinguishable effects even when their UI is small.
 - Let ordinary interactions feel ordinary. Do not add a receipt card for every tap merely to expose correctness to the researcher.
-- Follow §0.3 for active follow-up access, contextual no-mutation answers, interruption/resume, execution uncertainty, and consistent private preparation before explicit sharing; apply §0.5's latest corrections and regression checks, preserving §0.4's completed improvements. Keep prototype recognizer limitations separate from the product's supported capabilities and genuine execution boundaries.
+- Follow §0.8 for the current interaction refinement and retain §0.7's simplification boundaries. Keep §0.3–0.6's context, audience, uncertainty and recovery evidence in the appendix; exercise relevant existing regressions without turning the earlier coverage inventory into new main-board screens. Keep prototype recognizer limitations separate from the product's supported capabilities and genuine execution boundaries. Do not build production infrastructure merely to make an artifact appear complete.
 
 ### Phase D — verify the design, then hand back the decisions
 
@@ -670,11 +909,13 @@ No production implementation is requested. If the founder later approves impleme
 
 ## 12. Required delivery back to the founder
 
-Deliver:
+**Current-iteration override:** deliver §0.8.F's bounded cleanup and continuation review, preserving §0.7's amendment distinctions. The original full-project inventory below is retained for provenance; reuse existing material rather than treating it as a fresh assignment or restoring pre-subtraction screens.
+
+Original full-project delivery inventory:
 
 1. **Project URL and active-board map**, with the original kernel lab clearly separate.
 2. **One recommended complete design family**: four full-scroll situations plus the small overlap extension.
-3. **Essential interaction paths**: the three connected journeys in §0.3, refined under §0.4–0.5 and incorporating the §0.1 stress cases and §0.2 baseline. Explicitly cover value without mutation, free follow-up, intent-aware adaptation, ordinary change, conditional clarification, interruption/recovery with original words, and exact sender-to-recipient continuity. Include §0.5's discard, independent-response Undo, and private-viewpoint regression checks. Report illustrated, simulated, and mechanically tested portions separately.
+3. **Essential interaction paths and journey-to-system coverage**: preserve the §0.3–0.5 journeys and passing regression cases, then cover §0.6's entry/refinding, guest contribution, incompatible responses, ambiguous conditional resolution and later continuity. Supply the §0.6 coverage specification with owner boundaries, existing-code reuse, engineering gaps and adjacent-lane decisions. Report illustrated, wired, simulated/tested, existing runtime and proposed portions separately; do not claim every broader product use case is contained in Plan.
 4. **A visual baseline comparison** using the current itinerary at equal scale and comparable content. Explain what was preserved, changed, and intentionally removed.
 5. **Type/material mapping**, including exact reused tokens, proposed exceptions, font loading/fallback, and unresolved old-doc conflicts.
 6. **A concise decision log**: accepted behavior preserved; design recommendations made; architecture-bearing questions still open; contract amendments proposed, if any.

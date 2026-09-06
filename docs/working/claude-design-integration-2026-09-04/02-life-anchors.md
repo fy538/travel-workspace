@@ -3,8 +3,8 @@ doc_type: working
 status: active
 owner: founder / Life design
 created: 2026-09-04
-last_verified: 2026-09-04
-expires: 2026-10-04
+last_verified: 2026-09-06
+expires: 2026-10-06
 why_new: User-requested standalone Claude Life assignment covering prospective continuity and cross-root retrieval without reopening completed archive and social explorations.
 supersedes: []
 ---
@@ -13,9 +13,16 @@ supersedes: []
 
 ## Assignment
 
-Work in `/Users/feihuyan/Downloads/vesper-life-anchors 2`. Extend the current
+Work in `/Users/feihuyan/Downloads/vesper-life-anchors` (the current export;
+the original assignment referenced the earlier `vesper-life-anchors 2`). Extend the current
 direction in this design project; do not implement production changes or replace
 the four-root shell. This is a focused design pass, not a new Life ontology.
+
+**Current handover, September 6:** begin with [Life over time](#september-6-follow-up--life-over-time)
+below. Boards 30–34 now substantially compose the original A–D assignment;
+those sections remain its rationale and acceptance constraints, not a request
+to repeat the exploration. The new work is a bounded behavior pass using the
+existing root and dossier anatomy. Proposed rulings remain distinct from canon.
 
 Vesper makes sense, opens possibility, helps it work, and carries forward. Home
 and Places deliver present value; Chat receives and helps shape it; Life provides
@@ -143,3 +150,189 @@ what is actually arranged, and recover past context without knowing our nouns.
 They must also be able to let an option go nowhere. Absence of action is not a
 failed loop. Label fixtures and unbuilt behavior; do not confuse storyboard
 completeness with native or participant evidence.
+
+## September 6 follow-up — Life over time
+
+### Outcome and review basis
+
+The overall Life direction is sufficiently designed for engineering to continue.
+The remaining architecture-bearing design gap is how an automatically maintained
+record **grows, changes, and remains recognizable without management work**.
+Do not commission another root redesign or add a memory-management dashboard.
+
+This follow-up comes from a source/storyboard review of the current export's
+production roots, mixed-corpus proposal, dossiers, custody drawers, contribution
+and correction sequences, and boards 30–34, compared with the Life contract and
+September 5 organization-engine design. It is not a device-usability test or
+certification that every historical canvas is current.
+
+Read alongside the original references:
+
+1. [Life v1 experience contract](../../contracts/life-v1-experience.md).
+2. [Organization and composition engine system design](../life-organization-and-composition-engine-system-design-2026-09-05.md),
+   especially decisions D2–D7, evolving experiences W1–W6, stable updates in §6.4,
+   and the later-phase authorship boundary. These are engineering recommendations;
+   do not treat every proposed type as a customer-facing noun.
+3. [Unfolding decision docket](../life-unfolding-decision-docket-2026-09-04.md)
+   and export board 34 for pending prospective rulings.
+4. [Plan in seven sentences](../../decisions/2026-09-05-adopt-the-plan-in-seven-sentences.md)
+   for the newer arrangement simplification. Do not import older coordination
+   mechanisms from the Round-3 research simply because board 34 references it.
+   This decision does not by itself resolve the kept-intention ownership question.
+
+Preserve what the project already establishes: four Life lenses, finite roots,
+target-first refinding, quiet custody, value-first contribution, attributed shared
+records, optional intentions, and distinct original/place/relationship/arrangement/
+composition destinations. The following are gaps in completeness or interaction,
+not a claim those topics have never been explored.
+
+### Six design gaps to close
+
+#### 1. A changing record that stays recognizable — highest priority
+
+Board 28 explains how input becomes a record. Boards 25/26/30 compose resting
+pages. Neither yet provides a connected ordinary-life sequence for late arrivals,
+regrouping, or improved descriptions of an object the person already knows.
+
+Show what happens when older Italy photos arrive after a local NYC week; a fragment
+joins an existing evening; and two initially grouped visits become separate.
+Resolve title stability, grouping boundaries, the reader's current row, and the
+destination of an old link after a split. Specify what changes silently and what
+requires a small contextual explanation. Distinguish immediately available
+original material from enrichment that has not finished; a slow enrichment job
+must not make the whole record unavailable.
+
+Recommended direction: quiet enrichment, stable recognizable objects, no jump
+under the reader, and explanations only where a change would otherwise confuse.
+No update inbox, routine approval queue, or “review your memories” obligation.
+
+#### 2. Organization correction in the person's language
+
+Board 24 already provides a useful precedent: “That photo was the Smith St place,
+not Court St.” C4 lists merge/split/detach/demote operations, but its stewardship
+sheet does not yet make the organization-repair experience equally effortless.
+
+Compose the visible entry, contextual expression, resulting page, and compact
+readback/Undo for examples such as:
+
+- “These were two different dinners.”
+- “Keep this photo, but it doesn't belong to that night.”
+- “Call this our summer cooking experiments.”
+
+Use the existing contextual Chat/interaction affordance; do not require a swipe
+or knowledge of internal operations. A grouping correction must not accidentally
+edit the shared arrangement, delete the original, or change an audience. Show
+how a chosen title or separation survives later automatic enrichment. A deliberate
+human grouping is not evidence that Vesper independently discovered a pattern.
+
+#### 3. A useful place relationship before a visit
+
+Board 32's Lilia relationship destination says “Nothing yet — the relation begins
+if an evening does.” That undersells the relationship already established by a
+friend's recommendation, the person's deliberate keep, and later consideration.
+
+Replace the empty-state implication with the useful material that actually exists:
+for example, “Maya mentioned the corner table. You kept her note in August,” with
+the original note and any independently established arrangement accessible.
+No recorded visit remains no recorded visit; it does not mean no relationship.
+Avoid both invented personal significance and a prompt to go there to fill the page.
+
+Show the later dinner enriching this same relationship, rather than replacing a
+placeholder. Preserve the social authorship and withdrawal behavior already
+explored in boards 21 and 33.
+
+#### 4. Predictable destinations without a five-way decision
+
+Board 32 establishes five legitimate objects. It still needs to demonstrate the
+primary tap behavior in ordinary use; its five-door search grouping should not
+become the mandatory chooser everywhere.
+
+Recommended defaults to compose and pressure-test:
+
+| Entry context | Primary destination |
+| --- | --- |
+| Life's Places-lens relationship row | Your accumulated record with that place |
+| Current dinner/arrangement row | The arrangement page owned by the Plan lane |
+| Note or photo thumbnail | The original material |
+| World-discovery place result | The entity/place page |
+| Explicitly saved composition | The deliberately kept version |
+
+Make secondary destinations discoverable with ordinary names. Search should
+honor the remembered target and expose alternatives where genuinely ambiguous.
+Show Back restoring the originating query, lens, and position. Do not redesign
+the entity or arrangement page in Life; compose the handoff and return against
+their current owning designs.
+
+#### 5. Retained material that never becomes an episode
+
+Board 10A already accommodates unattached material, but “Not yet placed” and
+“Vesper places these as episodes form” imply that eventual episode placement is
+the successful outcome. An undated recipe, article, screenshot, or standalone
+voice observation may be complete and useful without one.
+
+Show one such item retained, left alone for months, and later retrieved and used.
+Determine its neutral resting label, accessible original, and optional related
+context without inventing a date or an episode. Reuse Everything kept and search;
+do not add an Unsorted inbox, badge, or classification chore. Custody succeeds
+even when organization has no further justified relationship to add.
+
+#### 6. Automatic enrichment versus a deliberately saved piece
+
+C7/C8 establish composition versions and dependency repair; board 32 says a kept
+composition stays “as made.” The transition between those rules is still schematic.
+Make the distinction visible through behavior:
+
+- New material can enrich the automatic record without rewriting a saved piece.
+- A factual correction gets an understandable treatment on affected generated
+  content; independently authored captions are not silently regenerated.
+- An explicitly requested new version preserves the prior version's identity
+  and the person's choices, subject to current source-access restrictions.
+- If material becomes unavailable, show what can still be read and what cannot;
+  avoid turning the normal page into a dependency report.
+
+The full manual editor remains later-phase. Specify save, reopen, and update
+expectations now, with a minimal later-phase sketch of selecting material and
+making one's own version. Do not expand this into editor tooling, a version-control
+dashboard, or a new prerequisite for shipping automatic Life.
+
+### Deliverable — four connected walkthroughs, one existing design
+
+Use the current components and anatomy. Added details are labeled fixtures, not
+recovered facts about the founder. Each walkthrough shows the relevant before
+state, initiating event/gesture, changed state, and later return. Screens exist
+only where the person actually needs to see something.
+
+| Walkthrough | Required coverage |
+| --- | --- |
+| An ordinary NYC week gains late material | Local week remains recognizable; historical Italy material enriches its own context; one undated standalone item stays useful without an episode; delayed enrichment does not block source access |
+| One incorrectly grouped evening is corrected | A sentence separates two dinners; independent sources remain; title/relationship correction survives another update; an old entry path resolves understandably; Undo is visible |
+| An unvisited place already holds value | Friend's note → private keep → useful relationship page → current arrangement → later supported visit; demonstrate primary destinations and exact return context without a five-way chooser |
+| A saved piece is revisited after its record changes | More material arrives; an affected fact is corrected; a human caption stays intact; unavailable-source treatment is legible; optional new version is distinct; full authoring remains later-phase |
+
+For each walkthrough, append a short implementation note naming the stable
+identity, changed relationships, expected update behavior, human choices that
+must survive, navigation anchor, and owner boundary. These notes belong beside
+the design, not in customer-facing copy. Report unresolved architecture-bearing
+decisions rather than inventing domain ownership to complete a screen.
+
+### Canon reconciliation and stopping point
+
+Before presenting this as a unified build specification:
+
+- Reconcile board 00A's authority map and boards 25/26 with boards 30–34. Label
+  adopted anatomy, proposed AHEAD/intention behavior, and historical alternatives
+  explicitly. Keep pending rulings pending until the owner/founder decides them.
+- Reconcile the consumer meaning of release versus deletion: board 31 says a
+  released intention leaves search, while the existing drawer retains released
+  sources. These may be different scoped operations, but the same word must not
+  leave its consequence unexplained. Use one-line contextual readbacks; do not
+  introduce a universal lifecycle settings screen.
+- Return a small decision/delta list stating which existing boards and canonical
+  documents would change. A fixture walkthrough is not adoption, native usability
+  evidence, or proof that the backend already implements the behavior.
+
+The pass is complete when someone can recognize, retrieve, use, and occasionally
+correct their growing record without learning our ontology or maintaining it.
+There should be no new required setup, filing step, reflection prompt, or routine
+review obligation. Engineering can continue on stable foundations while these
+targeted interaction decisions are resolved.

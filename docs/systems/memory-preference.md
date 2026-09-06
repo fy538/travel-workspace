@@ -3,14 +3,15 @@
 > Surface: Vesper (the world-model substrate)
 > Maturity (for MVP): MVP-required
 > Status: wired
-> Last updated: 2026-08-29 (contribution authority and legacy-write boundary aligned)
+> Last updated: 2026-09-06 (useful-continuity doctrine; implementation status not re-certified)
 
 ## Purpose
 Preserve admitted, source-bound evidence about how people and explicit
 relationship scopes choose, experience, revisit, correct, and respond to the
 world; derive a revisable **Personal Memory** projection; and compile
-purpose-bound context for local and travel decisions. It serves the moat thesis
-only when governed outcome history improves a later occasion. Memory volume,
+purpose-bound context for understanding, retrieval, and local or travel help.
+It serves the moat thesis only when authorized continuity improves a later
+experience or capability. Memory volume,
 behavioral exhaust, and personality synthesis are not product value.
 
 ## Spans (cross-repo)
@@ -68,8 +69,10 @@ summary as permission to widen scope or audience.
   confirmation, Occurrence, and authored Outcome are separate stages. Product
   and situation learning may proceed without a person claim; person and
   relationship learning require governed evidence.
-- **Application proves value:** stored evidence is useful only when it changes a
-  later local or travel decision and the outcome can be measured.
+- **Application proves value:** judge memory by improved understanding,
+  retrieval relief, enjoyment, capability, prospective help, coordination, or
+  judgment—not volume or callbacks. Evaluate the benefit appropriate to the
+  job; a useful return need not produce a decision or transaction.
 - **Context transfers carefully:** local evidence may inform travel and travel
   evidence may inform local decisions, but scope, companions, occasion, and
   confidence must remain explicit.
@@ -84,6 +87,57 @@ summary as permission to widen scope or audience.
 - **Relationship scope is exact:** person-place, person-companion, and
   `(person, place, companion)` projections do not grant one another visibility
   or authority automatically. Current intent and membership outrank history.
+
+## Assistance preferences and scoped correction
+
+Topic interest does not establish the benefit a person wants, the depth they
+prefer, or the part they want to do themselves. Compile those distinctions
+under [Product Model §4.1](../../travel-agent/docs/product/Product%20Model.md#41-adaptive-assistance-within-one-product)
+and the existing contribution contract; do not introduce a second personality
+profile or silently learn a durable role from usage.
+
+Current instructions govern the immediate response. Session/Occasion treatment
+adjustments expire with their scope; ongoing assistance preferences require
+admitted evidence and remain correctable. “Not this weekend” changes timing;
+“that was for my parents” corrects subject/context; “too long” can change depth
+without rejecting the topic. “Keep, but don't recommend from it” separates
+custody from future influence and must invalidate dependent recommendation use.
+Resolve only consequential ambiguity; do not add a setup or feedback ritual.
+
+Observed behavior is conditioned on what Vesper exposed and which alternatives
+were available. Repeated reads or selections do not independently prove the
+person prefers that value mix. Non-use and silence establish neither success
+nor dislike. Apply the existing L0–L3 boundary rather than automatically
+promoting treatment history into person memory. Learned convenience preferences
+never widen action, audience, or inference authority.
+
+Evaluate changed purpose, correction scope, subject attribution, and retained
+capability access using the [adaptive-experience cases](../working/vesper-consumer-promise-and-adaptive-value-research-2026-09-05.md#7-adaptive-experience-comparison-and-design-handoff).
+This section defines target behavior; it does not certify legacy writers or
+claim that adaptive defaults are implemented.
+
+## Useful continuity beyond recollection
+
+An ordinary question can be a complete entry and a natural reason to return.
+Answer it well now; neither an Occasion nor future memory is required. A
+question records a current request, not automatically a durable interest,
+intention, preference, or identity. Where prior context is already authorized
+for this purpose, use it to improve the contribution rather than merely repeat
+what the person said. Current purpose and new interests can outweigh history.
+
+Low-effort acquisition, precise representation, and useful application are
+separate design goals. Automatic use within granted authority need not require
+manual curation of every memory; effortless input does not authorize hidden
+inference. Preserve original authorship, AI additions, and user-endorsed meaning
+through reuse. Offer contextual evidence and correction without narrating every
+retrieval or requiring a profile-maintenance habit.
+
+**Current Ask authority is unchanged:** no new durable personal state by
+default. The [casual-question continuity proposal](contribution-and-consequence.md#310-open-proposal-casual-question-continuity-not-in-force)
+is pending, not an enabled agreement or a runtime claim. Its
+[research basis](../working/vesper-consumer-promise-and-adaptive-value-research-2026-09-05.md#10-casual-questions-and-useful-continuity)
+separates acquisition, representation, application, initiative, visibility,
+and control; “implicit versus explicit memory” is not a sufficient contract.
 
 ## Failure modes
 - Missing Personal Memory → generated on demand in `get_traveler_context()`.

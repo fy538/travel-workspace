@@ -87,6 +87,10 @@ rules:
 
 
 overrides:
+  docs/working/vesper-consumer-promise-and-adaptive-value-research-2026-09-05.md:
+    disposition: keep_reference
+    rationale: Strategy-thread research provenance and proposed consumer comprehension and adaptive-assistance studies; existing product canon and approved messaging retain authority, with no runtime or participant-validation claim.
+
   docs/working/life-organization-and-composition-engine-system-design-2026-09-05.md:
     disposition: keep_reference
     rationale: Detailed proposed Life engine contracts, evolving behavior cases and implementation units supporting the existing replacement roadmap without claiming shipped behavior.

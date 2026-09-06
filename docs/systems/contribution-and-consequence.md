@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / product / architecture / engineering
 created: 2026-08-29
-last_verified: 2026-09-04
+last_verified: 2026-09-06
 why_new: Defines one cross-repository boundary from human contribution through immediate value, retention, consequence, projection, receipt, and causal repair across Chat, Intake, Occasions, Home, Places, and Life.
 supersedes: []
 source_of_truth_for:
@@ -212,6 +212,14 @@ prompts default to L0–L2 product or situation use. They do not become L3 perso
 or relationship claims. Repetition may justify cautious ranking or an offer of
 a narrow mandate; it does not promote itself into permission.
 
+Assistance preferences follow this same boundary, not a separate implicit
+learning exemption. Topic, desired benefit, wanted participation, and current
+purpose are distinct under [Product Model §4.1](../../travel-agent/docs/product/Product%20Model.md#41-adaptive-assistance-within-one-product).
+“Too long,” “not tonight,” and “for my parents” do not establish the same claim.
+The [memory charter](memory-preference.md#assistance-preferences-and-scoped-correction)
+specifies correction distinctions. Preserve target, level, subject, purpose,
+expiry, and dependency repair; adaptation never widens any authority axis.
+
 ### 3.5 Outcome learning preserves causality
 
 Keep this ladder explicit:
@@ -314,6 +322,26 @@ photos rather than camera-roll scanning, shared Places rather than complete
 location history, availability rather than all calendar content, and derived
 live state rather than raw health history. Search, prepare, hold, authorize,
 execute, and reconcile remain separate provider transitions.
+
+### 3.10 Open proposal: casual-question continuity (not in force)
+
+The product ambition is useful continuity from ordinary questions without a
+per-turn memory-management ritual. An optional, understandable conversational
+continuity agreement is being explored in the
+[research brief](../working/vesper-consumer-promise-and-adaptive-value-research-2026-09-05.md#104-pending-continuity-decision).
+This paragraph records an unresolved decision, not a new authority grant.
+
+Before adoption, specify retained material and duration, eligible later uses,
+scope and sensitive/third-party exclusions, source-versus-person inference,
+and inspection, correction, exclusion, and deletion behavior. Storage for chat
+history is not itself permission for cross-context use. Any agreement must
+resolve the five axes independently and remain revocable; it cannot silently
+widen audience or action authority.
+
+Until an explicit contract amendment is adopted, the Ask ruling, T0 treatment,
+and existing expiry rules remain in force. Do not relabel a question as Bring,
+infer an agreement from continued use, or implement retention under this
+proposal. Already authorized context may still be used within its actual scope.
 
 ## 4. Contribution envelope
 

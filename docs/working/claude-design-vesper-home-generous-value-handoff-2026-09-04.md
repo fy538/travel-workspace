@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Home design
 created: 2026-09-04
-last_verified: 2026-09-04
+last_verified: 2026-09-06
 expires: 2026-10-04
 why_new: User-requested standalone handoff for the new Home-only Claude project, translating the fuller-feed, multiplayer, and capability-discovery review into a bounded design assignment distinct from the earlier bundled Home and Places brief.
 supersedes: []
@@ -31,15 +31,27 @@ Vesper can do. The founder explicitly requested this handoff after the review.
 > Home should make a short visit worthwhile and a longer visit rewarding.
 > One priority organizes the page; it does not exhaust what the page offers.
 
-**Latest review — September 4, Revision 3:** the targeted corrections largely
-landed. Keep Revision 3 as the working composition reference. Remove the hollow
-circles that suggest selection and correct the overconfident causal cooking
-headline, then move to connected experiences rather than another structural
-redesign. The [connected-experience plan](home-connected-experience-plan-2026-09-04.md)
-defines the next phase: four complete journeys, realistic material, and a
-parallel engineering feasibility map. Sections 5.1–5.3 preserve the critique
-and corrections that produced the current composition; unresolved authority
-questions remain explicit rather than automatically adopted.
+**Latest assignment — September 5: artifact-led Home, with a bounded Places
+extension.** The current export uses boards `00`–`08`, with September 4
+specimens preserved as `Z1`–`Z4`. Board `08 - Seam with Life` is the starting
+point for the next exploration, alongside the complete Home compositions.
+Read the [artifact-led visual value handoff](claude-design-home-artifact-led-visual-value-handoff-2026-09-05.md)
+for the detailed assignment, examples, review criteria, and copy-paste kickoff.
+The founder sees the recognizable artifact treatment as a way to elevate Home
+visually and potentially Places later. Explore that direction in the design
+project; this is not authorization to implement app changes.
+
+**Adaptive-value supplement — September 5.** Section 12 below adds the
+consumer-promise and same-person comparison brief. Apply it within the current
+artifact-led assignment, not as a new shell, persona system, or replacement for
+the existing boards. Messaging variants are research copy, not approved branding.
+
+The [connected-experience plan](home-connected-experience-plan-2026-09-04.md)
+remains journey and engineering-seam context. Sections 4–8 below preserve the
+earlier composition brief and its review history; their old revision numbers,
+board names, and open social questions are historical where superseded by the
+September 5 decisions and companion brief. Do not rebuild old revisions or
+repeat resolved corrections merely because they remain recorded here.
 
 The detailed compositions, social grouping, and onboarding treatments below are
 proposals to evaluate, not already-adopted product laws. Canon retains authority
@@ -51,8 +63,9 @@ the earlier [Home and Places handoff](claude-design-integration-2026-09-04/01-ho
 That brief's Places work remains separate. In particular, its blanket exclusion
 of a fixed people region or onboarding campaign must not foreclose this bounded
 comparison of a conditional social grouping and value-first capability discovery.
-This is permission to explore, not approval of a mandatory social section or
-permanent tutorial campaign.
+This was permission to explore, not approval of a mandatory social section or
+permanent tutorial campaign. The September 5 composition decision now governs
+the conditional addressed region and the Home / Places / Life social split.
 
 ## 2. Product context to preserve
 
@@ -108,28 +121,30 @@ Read the actual text and boards, not only filenames or previous summaries.
    for the immediately preceding value pass. Its proposed rules are not all canon.
 8. [HPL productization program](home-places-life-productization-program-2026-09-04.md)
    for system integration context, not permission to implement it here.
+9. [September 5 Home composition amendment](../decisions/2026-09-05-amend-home-composition-canon.md)
+   for containment, typography, the addressed region, and the accepted social split.
+10. [Home borrows Life's pass grammar](../decisions/2026-09-05-home-borrows-life-pass-grammar.md)
+    for current marks, chips, pass lifecycle, and explicitly provisional crown arbitration.
+11. [Artifact-led visual value handoff](claude-design-home-artifact-led-visual-value-handoff-2026-09-05.md)
+    for the latest exploration and proposed amendments, distinct from accepted rules.
 
-Inspect the four original files in the export's `project/` directory as the
-previous baseline:
+Inspect the current export's `project/` directory:
 
-- `Board 1 - Home Inventory.dc.html`
-- `Board 2 - Persona A - New Yorker.dc.html`
-- `Board 3 - Persona B - Back from Europe.dc.html`
-- `Board 4 - Persona C - New User.dc.html`
+- `00 - Index.dc.html`
+- `01 - Parts.dc.html`
+- `02 - Persona A - The New Yorker.dc.html`
+- `03 - Persona B - Back from Europe.dc.html`
+- `04 - Persona C - New User.dc.html`
+- `05 - Wedge - Trip Forming.dc.html`
+- `06 - Places - From Friends.dc.html`
+- `07 - Ledger and Decisions.dc.html`
+- `08 - Seam with Life.dc.html`
 
-Then inspect the newer delivered boards, which are the starting point for the
-next pass, not work to commission again from scratch:
-
-- `H0 - Ledger and Decisions.dc.html`
-- `H1 - Ordinary Sunday Generous.dc.html`
-- `H2 - Social Week Two Treatments.dc.html`
-- `H3 - First Open to Next Open.dc.html`
-- `H4 - Priority Stress Test.dc.html`
-- `H5 - Return Home Corrected.dc.html`
-
-Board 1 is an inventory with explicitly identified older specimens, not a
-requirement to render every component or preserve every historical rule. Boards
-2–4 contain fifteen fixture opens. All invented world facts remain fixtures.
+The `Z1`–`Z4` files are September 4 baselines. Parts and ledger boards contain
+historical specimens and rulings alongside newer ones: check status rather
+than treating every example as a current requirement. All invented world facts
+remain fixtures. The September 5 review inspected source and composition, not
+a rendered or functioning native application.
 
 Conversation provenance:
 
@@ -255,7 +270,8 @@ their previews must provide a real payoff rather than only a tantalizing title.
 Do not force the full article inline to satisfy “complete value.”
 
 Use the existing visual language and whichever medium explains the result
-best. This pass is not a new visual-language laboratory. Put design rationale,
+best. The September 5 companion brief authorizes a focused artifact-led visual
+exploration; it does not reopen the entire brand or product grammar. Put design rationale,
 source-production notes, and audit language outside the consumer phone frames.
 
 ### 5.1 Composition principles — hierarchy, containment, and text reduction
@@ -484,6 +500,14 @@ disposition for A–E above, including anything deliberately left unchanged and
 why. Do not add more board families or reopen the whole product grammar.
 
 ## 6. Multiplayer: make the present social world visible
+
+**September 5 status:** the comparison below records the earlier exploration.
+The composition amendment now resolves D-H2/D-H3/D-H4: directed and
+shared-consequential material on Home; casual sharing in Places' `From friends`
+scope; durable record in Life People. Preserve its featured, placeless Status
+exception on Home. Do not reopen these decisions merely to demonstrate a new
+visual treatment. The companion brief explains how to explore the forms within
+these boundaries.
 
 Home is a good place to encounter multiplayer. It must not be the only route
 to shared material when ranking does not select it.
@@ -724,13 +748,77 @@ Deliver:
 ## 11. Copy-paste kickoff
 
 > Read this handoff and its required sources, then work in the existing
-> `vesper-home` Claude Design project. Revision 3 is the working baseline. Follow
-> the companion home-connected-experience-plan-2026-09-04.md: remove misleading
-> selection circles and the unsupported causal cooking claim, then connect J1–J4
-> through the existing Place/entity, arrangement, Chat/capture, and Life owners.
-> Preserve the composition and replace key placeholders with permitted realistic
-> material. Show meaningful alternative and failure states, back behavior, and
-> larger-text layouts. Label scripted behavior and unavailable owner destinations;
-> do not simulate implementation readiness. Keep production assumptions explicit.
-> Do not change app code, redesign adjacent roots, or silently amend canon. Return
-> one connected artifact and precise seam questions for the parallel code audit.
+> `vesper-home` Claude Design project from its current `00`–`08` boards. Follow
+> `claude-design-home-artifact-led-visual-value-handoff-2026-09-05.md` for the latest
+> assignment: develop a small family of recognizable, useful artifact forms;
+> evaluate them within complete Home scrolls; then show a bounded Places
+> extension using the same objects. Preserve current social ownership and the
+> four-root roles. Keep simple findings simple. Distinguish proposed crown-rule
+> amendments from accepted canon. Show direct value, destination and return
+> behavior, larger-text layouts, production assumptions, and fallbacks. Do not
+> change app code or redesign Chat, Life, or the Plan owner. Return the revised
+> design artifact, a recommendation, and an explicit decision/engineering handback.
+
+## 12. Adaptive value: the same person can want different help
+
+Read [consumer promise and adaptive value](vesper-consumer-promise-and-adaptive-value-research-2026-09-05.md)
+for research provenance, interview materials, and the complete comparison cases.
+Its [September 6 matched sparse-context pass](vesper-consumer-promise-and-adaptive-value-research-2026-09-05.md#9-matched-sparse-context-pass--september-6)
+works through menu, open-afternoon, addressed friend-handoff, and city-only Home
+experiences with no history, one added detail, and authorized history. Use it to
+check first-use value and continuity within this assignment, not as a new shell
+or four mandatory Home sections. The examples are synthetic specifications, not
+verified local content, user-study results, or implemented behavior. A labeled
+sample demonstrates capability but does not substitute for real value on Home.
+The product principle is now explicit in the Thesis and Product Model: learn
+what kind of help someone values, not just their topics. Reduce unwanted work;
+preserve choosing, making, exploring, and expression the person wants to retain.
+
+### Bounded design comparison
+
+Use one existing evidence set and one person across complete Home compositions.
+Do not introduce explorer/planner/storyteller modes or a preference setup screen.
+Keep source facts, component vocabulary, typography, and root navigation stable;
+label changed intent and hypothetical evidence in the off-phone ledger.
+
+| Comparison | What changes in the return | What must not change |
+| --- | --- | --- |
+| Unhurried curiosity → explicitly requested practical help | Lead with a substantive explanation in the first situation; direct useful help in the second, retaining worthwhile optional depth where appropriate. | Interest is not erased; no automatic plan changes or new monitoring authority. |
+| Enjoys choosing, wants logistics handled | Provide useful comparisons and practical checks without taking over choice. | No operational control panel, automatic booking, or tutorial before value. |
+| Shared visit for parents → later ordinary personal weekend | Scope the visit's constraints and recommendations to that occasion. | Parents' interests do not become the person's enduring tastes. |
+| Rich history → unfamiliar new question; sparse-history counterpart | Let the current purpose govern and deliver grounded value even without extensive history. | No repetitive travel retrospective, fabricated familiarity, or mandatory friend enrollment. |
+
+Show correction behavior for “too long, not wrong topic,” “not this weekend,”
+and “keep it, but don't recommend from it” as compact connected states, not a
+new preference-management destination. Design intention is not proof the backend
+can honor scope or causal repair; list dependencies in the handback.
+
+### Composition and social boundaries
+
+- Select the wanted benefit before medium or card. Do not merely change titles
+  on otherwise identical compositions or produce every possible output.
+- Retain a generous possibility field without filling category quotas. A
+  practical-first visit must not permanently hide discovery or unused capabilities.
+- Keep important commitment changes legible independent of engagement history.
+  Different private help must remain compatible with the same shared arrangement.
+- Preserve the accepted Home addressed/shared-consequence versus Places casual
+  friends-sharing split; adaptation does not create a fifth social surface.
+- Show immediate value, not why Vesper thinks it understands the person. No
+  inferred biography, personality percentages, or preference-maintenance homework.
+- Reuse eligible production work subject to freshness and audience. Keep the
+  existing production ledger; different value mixes do not justify generating
+  every user a bespoke feed from scratch.
+
+### Handback
+
+Identify what changed because of current purpose, explicit preference, or
+available evidence; what remained unknown; which effort the person retained;
+what Vesper absorbed; and how correction changes future presentation. Report
+complete-page coherence, setup burden, capability access, and value on view.
+Do not treat clicks or silence alone as success, dislike, or personal truth.
+
+For consumer-copy exploration, use the research brief's three headlines with
+identical supporting copy and examples. Keep these off production branding and
+separate cold comprehension from understanding after examples. There is no
+participant evidence or winning headline yet. This supplement authorizes design
+comparison, not app-code changes or edits to Chat, Life, or Plan ownership.
