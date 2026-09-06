@@ -1427,14 +1427,15 @@ proven:
 | CC-4 | Mobile `33bb0cfa8`; share-capture/audio/intake/outbox suites: 20 passed | Capture now surfaces bounded, source-extracted facts before candidate controls; later Chat continuation remains optional, and the screen keeps a clear receipt/delete/leave path. |
 | CC-5 | Existing owner/activation/correction portfolio: 44 passed | Handoff receipts, exact owner readback, activation replay, and semantic correction helpers remain fail-closed and owner-scoped; no new owner command was invented without an owner contract. |
 
-The mobile outbox and capture tests provide local transport evidence, but the
-app-wide typecheck is currently blocked by an unrelated concurrent entity/Places
-change in `app/venue/[venueId]/index.tsx`. The backend pre-commit size budget
-and one pre-existing error-category registration finding also remain outside
-these bounded commits; they were explicitly skipped and must be cleared before
-publication. CC-2 now has the copy/consumer inventory and transactional
-row-write cleanup, but still needs the founder-selected Chat-image history
-rule and expiry sweep. CC-4
+The mobile outbox and capture tests provide local transport evidence; the
+current checkout also passes `npx tsc --noEmit` and the focused capture/share
+portfolio (31 tests). An earlier typecheck failure in
+`app/venue/[venueId]/index.tsx` was cleared by concurrent entity/Places work,
+not by this lane. The backend pre-commit size budget and one pre-existing
+error-category registration finding remain outside these bounded commits;
+they were explicitly skipped and must be cleared before publication. CC-2 now
+has the copy/consumer inventory and transactional row-write cleanup, but still
+needs the founder-selected Chat-image history rule and expiry sweep. CC-4
 still needs the full useful-first result sequence and registered native
 evidence, and CC-6 remains open for real transport, native, and
 generated-content runs.
