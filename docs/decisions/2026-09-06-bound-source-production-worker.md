@@ -117,12 +117,12 @@ The canonical owner seam is now also explicit in `travel-agent`:
 `SourceContributionCanonicalExecutor` (`travel-agent` `467be5711`) delegates to the existing continuity
 path, resolves only an injected context owner, and verifies a post-write
 canonical readback before reporting produced/reused success. Its continuity
-readback hook fails closed on a missing or mismatched durable result; 17 focused
-contract/continuity tests pass. The adapter is still injection-only: no
-provider, context repository, queue registration, or production cohort is
-activated by this document. Before an Arq job can be registered, the product
-must name the concrete context/readback owners and bind this adapter to a
-controlled cohort with real cost/latency evidence.
+readback hook fails closed on a missing or mismatched durable result; 32 focused
+contract/continuity/worker tests pass. The adapter is still injection-only: no
+provider call, context repository write, queue registration, or production
+cohort is activated by this document. Before an Arq job can be registered, the
+product must bind the approved provider/owner factory to a controlled cohort
+with real cost/latency evidence.
 
 The production/readback owner is already concrete: the existing
 `root_source_contributions` store and its `get_current_source_contribution` /
@@ -132,5 +132,7 @@ Places handle reader with an explicit `now` and exposes
 `resolve_canonical_places_context`, which accepts only a `places_context` ref,
 revalidates the handle, and returns the existing `PlacesContext`. The current-
 context loader remains a different Opening-result owner and is not substituted.
-Controlled registration still requires an explicit injected resolver/producer
-binding and real cost/latency evidence.
+`travel-agent` `d621afff4` now provides that explicit factory binding for the
+existing structured provider, retained-production readback, and Places context
+owner. Controlled registration still requires an injected worker call and real
+cost/latency evidence; the factory itself performs no work at import time.
