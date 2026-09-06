@@ -107,8 +107,11 @@ worker adapter is now implemented and locally tested (`travel-agent` commit
 execution, requires canonical readback for produced or reused output, and
 records only content-free outcomes. It remains unregistered and cannot be
 reached from ordinary Home/Places GETs. The next package is the approved
-canonical executor and deployment envelope, including lease duration/renewal,
-retry budget, and a controlled cohort. Only after that should an Arq job
-function be registered. The current roadmap therefore remains partial: no
-queue consumer, scheduler, deployment flag, or production cohort is activated
-by this document.
+canonical executor. The deployment envelope is now explicit and locally tested
+(`travel-agent` commit `08505058d`): policy/compiler versions,
+Home/Places scope, lease duration/renewal, execution timeout, retry budget, and
+dark-versus-controlled cohort are all bounded before a worker can be registered.
+Only after the canonical executor is approved should an Arq job function be
+registered. The current roadmap therefore remains partial: no queue consumer,
+scheduler, deployment flag, provider implementation, or production cohort is
+activated by this document.

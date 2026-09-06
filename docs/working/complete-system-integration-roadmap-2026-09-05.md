@@ -1232,6 +1232,17 @@ extend this same truthful gate, not add a speculative route service or worker.
   adapter is not registered with Arq, is not called by ordinary root GETs, and
   has no provider implementation of its own.
 
+- **I2 / deployment envelope — implemented and locally tested:** `travel-agent`
+  adds `SourceContributionWorkerDeploymentV1`, a content-free operating
+  contract for the existing `audio_jobs.WorkerSettings` entry point. It binds
+  policy/compiler versions and Home/Places scope, and requires a bounded lease,
+  renewal interval, execution timeout, retry budget, and explicit dark versus
+  controlled cohort. The dark default cannot register a job; the worker only
+  accepts a handoff whose semantic versions and retry budget match the
+  envelope, and applies the execution timeout when one is supplied. Contract
+  and worker tests pass (12 tests); no Arq function, queue consumer, provider
+  call, or ordinary GET activation was added.
+
 - **I0 / decision alignment — documented:** the 2026-09-06 audit above
   reconciles the queue against accepted Contribution/Use Grant, four-root,
   lightweight-arrangement, Life organization, and live-engine decisions. D2–D5
