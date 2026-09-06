@@ -56,6 +56,13 @@ The Postgres cases prove shared Encounter before/after fan-out and prove that a
 shared Commitment Outcome does not widen to an unrelated Occasion member.
 Ruff, formatting, compile, and `git diff --check` passed for the package.
 
+The connected regression portfolio subsequently passed **139 offline tests**
+and **7 PostgreSQL tests** across Capture, Graph, Life broadcast/propagation,
+retention, memory-writer conformance, and owner contracts. A repository-wide
+offline collection was attempted but remains environment-blocked by the
+checkout's pre-existing missing optional packages (`openai`, `json_repair`,
+`shapely`, and `redis`); no failure was attributed to this package.
+
 ## Boundaries preserved
 
 - Life still owns its projector, index, readback, and correction application;
