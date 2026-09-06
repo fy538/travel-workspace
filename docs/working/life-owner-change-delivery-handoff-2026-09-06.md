@@ -37,7 +37,8 @@ packages make semantic representation withdrawal/restore explicit and add the
 versioned content-free source-owner lifecycle envelope.
 The pure Occasion audience contract is now landed in `travel-agent` commit
 `6d4365a83`, and the canonical Occasion producer seam is landed in
-`travel-agent` commit `8558d7110`. The producer still does not authorize an
+`travel-agent` commit `8558d7110`, with direct account-erasure handling in
+`a3b0edc84` and `73baf2be2`. The producer still does not authorize an
 Occasion projector or a Life serving cutover.
 
 ## What landed
@@ -138,11 +139,12 @@ source deletion. Occasion producer call sites now cover creation, accepted
 membership (including the handoff bridge), leave, organizer transfer,
 lifecycle transitions, and reconciliation-driven lifecycle changes. They all
 compute the composite audience revision and fan out to the before/after viewer
-union inside the owner transaction. Direct account-erasure reassignment and
-deletion still bypass this command seam and remain an explicit coverage gap;
-they must be handled before claiming complete Occasion producer coverage.
-Graph Plan and Outcome producers are still absent. The remaining dependency is
-to review/land the graph owner contract, not to invent a second Capture
+union inside the owner transaction. The direct account-erasure path now
+snapshots the pre-erasure audience and journals surviving shared Occasions
+after the generic membership sweep in `travel-agent` commits `a3b0edc84` and
+`73baf2be2`; solo Occasions are skipped before their owner cascade. Graph Plan
+and Outcome producers are still absent. The remaining dependency is to
+review/land the graph owner contract, not to invent a second Capture
 transaction or a Life-owned source writer.
 
 ## Verification
@@ -167,18 +169,17 @@ no production activation, reader cutover, or device test is claimed.
 The Occasion contract/producer package adds 48 command and helper tests, and
 the combined Life/Occasion focused suite passes 81 tests. The producer package
 was committed as `8558d7110`; its focused format/lint checks pass. These
-numbers prove the transaction wiring and pure contract only; no account-erasure
-path, projector, serving read, or production activation is claimed.
+numbers prove the transaction wiring and pure contract only; no projector,
+serving read, or production activation is claimed.
 
 ## Next checkpoint
 
 1. Run the existing worker against a fixture retained-source event and verify
    the exact shadow row, stale replay, withdrawal, and explicit restore
    transitions end to end.
-2. Close the Occasion producer coverage gap for account-erasure reassignment/
-   deletion, then add PostgreSQL transaction tests for every covered mutation
-   path (create, accept, leave, transfer, lifecycle, reconciliation, and
-   handoff acceptance).
+2. Add PostgreSQL transaction tests for every covered Occasion mutation path
+   (create, accept, leave, transfer, lifecycle, reconciliation, handoff
+   acceptance, and account erasure).
 3. Add the Occasion owner-specific projector and current-authority reader;
    exercise member departure, role transfer, stale replay, withdrawal, and
    restoration without enabling serving cutover.
