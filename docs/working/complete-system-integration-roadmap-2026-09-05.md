@@ -1257,14 +1257,15 @@ extend this same truthful gate, not add a speculative route service or worker.
   not choose a provider, and does not create a context or persistence owner.
 
 - **Repository-wide offline receipt (2026-09-06):** after the worker cleanup,
-  authority rebaseline, and deployment-envelope slice, the bounded backend
-  command `pytest -q -m 'not requires_postgres and not requires_api_keys'`
-  passed **20,757 tests**, with 30 skips, 56 expected XPASSes, and 1,346
-  deselected tests in 7m03s. The run emitted only the existing Postgres-leak
-  baseline warnings; no new failure was introduced. Native/device and live
-  Postgres evidence remain intentionally out of scope for this checkpoint. The
-  follow-up bounded synchronous-executor correction (`7f88e0f08`) is covered by
-  the focused root-projection receipt (319 passed).
+  authority rebaseline, deployment-envelope slice, and canonical-executor /
+  readback slice (`travel-agent` `467be5711`), the bounded backend command
+  `pytest -q -m 'not requires_postgres and not requires_api_keys'` passed
+  **20,765 tests**, with 30 skips, 56 expected XPASSes, and 1,346 deselected
+  tests in 7m05s. The run emitted only the existing Postgres-leak baseline
+  warnings; no new failure was introduced. Native/device and live Postgres
+  evidence remain intentionally out of scope for this checkpoint. The focused
+  root-projection receipt is now **327 passed** (up from 319), and the worker /
+  continuity wiring receipt is 15 passed.
 
 - **I0 / decision alignment — documented:** the 2026-09-06 audit above
   reconciles the queue against accepted Contribution/Use Grant, four-root,

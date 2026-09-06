@@ -114,7 +114,7 @@ dark-versus-controlled cohort are all bounded before a worker can be registered;
 sync executor calls use a dedicated fixed pool rather than the process-wide
 default executor.
 The canonical owner seam is now also explicit in `travel-agent`:
-`SourceContributionCanonicalExecutor` delegates to the existing continuity
+`SourceContributionCanonicalExecutor` (`travel-agent` `467be5711`) delegates to the existing continuity
 path, resolves only an injected context owner, and verifies a post-write
 canonical readback before reporting produced/reused success. Its continuity
 readback hook fails closed on a missing or mismatched durable result; 17 focused
