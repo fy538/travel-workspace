@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Strategy integration task
 created: 2026-09-05
-last_verified: 2026-09-05
+last_verified: 2026-09-06
 expires: 2026-10-05
 why_new: Rebaselines the post-pivot system around the real-world live engine and four surfaces, with code-backed correction priorities, explicit Life ownership, bounded Luna delegation, and recurring architectural and product reassessment.
 supersedes:
