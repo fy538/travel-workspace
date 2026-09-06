@@ -1211,11 +1211,12 @@ extend this same truthful gate, not add a speculative route service or worker.
   call added.
 
 - **I2 / durable content-free handoff — implemented and locally tested:**
-  `travel-agent` commit `d0f3b395b` persists the bounded work item through the
+  `travel-agent` commits `d0f3b395b` and `8fc497eac` persist the bounded work
+  item through the
   existing domain-neutral `agent_workflows` lease/idempotency fence, with a
-  dedicated workflow type, immutable payload projection, due-row listing, and
-  a current-clock gate for the future worker. The focused source-workflow and
-  generic workflow suites pass (26 tests); no Arq function is registered, no
+  dedicated workflow type, immutable payload projection, due-row listing, lease
+  delegation, and a current-clock gate for the future worker. The focused
+  source-workflow and generic workflow suites pass (27 tests); no Arq function is registered, no
   scheduler is added, and no provider/model call is possible through this
   handoff alone.
 
