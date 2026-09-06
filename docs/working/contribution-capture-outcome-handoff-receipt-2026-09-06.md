@@ -88,3 +88,7 @@ checkout's pre-existing missing optional packages (`openai`, `json_repair`,
 4. **CC-3/CC-4/CC-6:** remaining writer-family receipts, full useful-first
    journeys, and real transport/native/generated-content evidence remain
    separately gated as recorded in the contribution and integration roadmaps.
+
+The accepted derivative-consumer expiry gate and the current Life/mobile
+receiving evidence are recorded in the follow-up receipt:
+[`contribution-capture-cc2-cc4-execution-receipt-2026-09-06.md`](contribution-capture-cc2-cc4-execution-receipt-2026-09-06.md).
