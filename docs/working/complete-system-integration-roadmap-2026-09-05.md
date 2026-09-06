@@ -1128,3 +1128,13 @@ extend this same truthful gate, not add a speculative route service or worker.
   producing a false “fixture not admitted” result. The runner now fails before
   provisioning when the operator has not named the exact database, preserving
   the no-implicit-write boundary.
+
+- **I1 / direct Places return envelope — implemented and locally tested:**
+  `travel-app` commit `ca9a2a0fa` carries the existing short-lived Home return
+  token through direct Place, Venue, Site, Accommodation, Experience, and
+  Dossier resource routes. The return registry already held the exact
+  projection/unit identity; these routes were the remaining navigation branch
+  that silently dropped it. The focused root-navigation suite passes (13
+  tests), and TypeScript passes. No native rehearsal or shell promotion is
+  claimed; the change only preserves the existing return contract until the
+  destination is exited.
