@@ -206,6 +206,14 @@ PostgreSQL. The combined focused Life/Plan/Occasion regression run passes 60
 tests. Plan remains shadow-only; this package does not create loose intention,
 shared arrangement material, or a serving cutover.
 
+The two-dimensional Life index CAS seam for shared Outcome delivery is now
+landed in `travel-agent` commit `66f378fc1`. It preserves the canonical owner
+revision and adds an optional exact `dependency_fingerprint` guard for
+audience/dependency-sensitive writes, including explicit restore. The
+owner-only families remain backward compatible. Its focused contract,
+projector, readback, and shadow tests pass 28/28; this is a writer contract
+receipt, not an Outcome projector or serving approval.
+
 ## Next checkpoint
 
 1. Complete: the existing worker now has a PostgreSQL fixture proving the
@@ -224,11 +232,18 @@ shared arrangement material, or a serving cutover.
    land in `travel-agent` commits `134bb021b`, `4ef82cce8`, and `9aa75ff3d`;
    the focused suite passes 73 tests. The next package must still wire canonical
    membership/erasure fan-out and a shadow producer without treating these
-   helpers as proof that social visibility is solved. The producer is also
-   gated on resolving the separate Outcome content-revision versus
-   audience-revision CAS dimension described in the [CAS decision
-   proposal](life-outcome-audience-cas-decision-proposal-2026-09-06.md). Do not
-   mark Life complete or cut over readers after the first adapters.
+   helpers as proof that social visibility is solved. The producer now has the
+   separate Outcome content-revision versus audience-revision CAS seam
+   described in the [CAS decision
+   proposal](life-outcome-audience-cas-decision-proposal-2026-09-06.md), but
+   must still supply and exercise both tokens. Do not mark Life complete or cut
+   over readers after the first adapters.
+
+4. Next safe Outcome package: add a shadow producer/projector that supplies the
+   resolver's `audience_revision` as the index `dependency_fingerprint`, reads
+   both current tokens, and proves same-owner-revision audience changes in pure
+   and PostgreSQL tests. Keep `supports_delta_delivery` false and do not wire
+   serving until membership/erasure repair and stale-replay proofs are present.
 
 The canonical roadmap and execution status remain the forward register; this
 handoff is the package receipt and cross-lane interface, not a competing plan.

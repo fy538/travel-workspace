@@ -14,10 +14,10 @@ supersedes: []
 
 ## Status and recommendation
 
-**Proposed, not adopted or implemented.** This is the final contract gate
-between the Outcome audience resolver/event envelope and a shadow producer. It
-does not authorize a migration, a Life serving cutover, or a change to the
-canonical Experience Graph owner.
+**Contract accepted for the Life writer, but not a serving cutover.** The
+Outcome audience resolver/event envelope remains a shadow-only producer
+dependency; this document does not authorize a migration, a Life serving
+cutover, or a change to the canonical Experience Graph owner.
 
 **Recommendation:** retain the canonical integer
 `personal_outcomes.revision` as `owner_revision`, and use the existing derived
@@ -33,7 +33,24 @@ This keeps two facts separate:
   participant state that determines who may see the derived row.
 
 The current Life index already stores `dependency_fingerprint`, but its writer
-only compares `owner_revision`. That is the missing implementation seam.
+
+### Implementation receipt (2026-09-06)
+
+The writer/readback seam is now implemented in `travel-agent` commit
+`66f378fc1`:
+
+- `read_life_index_owner_state` reads both `owner_revision` and
+  `dependency_fingerprint`;
+- upsert and explicit restore accept an optional, identity-complete
+  `expected_dependency_fingerprint_by_identity` map;
+- SQL compares the dependency token when supplied while preserving owner-only
+  behavior for legacy families; and
+- restore checks both tokens before attempting to reauthorize a withdrawn row.
+
+The focused index contract/projector/readback/shadow suite passes **28 tests**
+and `ruff check` passes for the touched files. This proves the writer contract
+and its compatibility boundary only; the Outcome producer/projector still must
+provide and use the audience token before any serving decision.
 
 ## Why one owner revision is insufficient
 
@@ -124,7 +141,8 @@ The writer change is ready only when these cases pass:
 
 ## Sequencing
 
-1. Accept this contract and update the Life index writer/readback types.
+1. **Complete:** accept this contract and update the Life index writer/readback
+   types (`66f378fc1`).
 2. Add pure and PostgreSQL CAS proofs, including same-owner-revision audience
    changes and restore.
 3. Update the Outcome adapter to store the event's audience token as its
@@ -138,4 +156,3 @@ Related records:
 - [Outcome shared-audience and revocation proposal](life-outcome-shared-audience-decision-2026-09-06.md)
 - [Life owner-change handoff](life-owner-change-delivery-handoff-2026-09-06.md)
 - [Life complete-system roadmap](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md)
-
