@@ -290,6 +290,25 @@ Do not create a hidden conversation merely to persist a direct object contributi
 Neither conversation `intent_state`, an interpreted ExperienceAnchor, a generated
 Opening nor a cached Composition is automatically the missing intent owner.
 
+### I0 decision-alignment audit — 2026-09-06
+
+The original queue above is a discovery list, not six equally unresolved
+decisions. Existing accepted canon settles four rows at the policy level; only
+the concrete owner/trigger seams remain implementation work:
+
+| Queue item | Current evidence | Current state | Remaining work |
+| --- | --- | --- | --- |
+| D1 — pre-Plan intention | `lightweight-arrangements-implementation-handoff-2026-09-04.md` and `life-organization-and-composition-engine-system-design-2026-09-05.md` both preserve loose intent without a synthetic Trip, but explicitly leave its durable owner open | **Decision-blocked** | Founder/Plan lane must choose the narrow owner and command before a durable loose-Keep or Life Ahead write is added |
+| D2 — shared human material | `2026-08-29-adopt-contribution-use-grants.md` settles custody, attribution, audience/use grants, and adoption as separate lifecycles | **Policy settled** | Implement only through existing Source/authored payload and target/adoption owners; no new social owner |
+| D3 — scoped editing | `contribution-and-consequence.md` plus the lightweight-arrangements handoff define owner-only editing by default and revocable scoped target/effect grants | **Policy settled; runtime partial** | Add/verify the named grant adapter when a concrete collaborative command needs it |
+| D4 — retention boundaries | `2026-08-29-adopt-contribution-and-consequence-contract.md` and the use-grants decision separate conversation, Source, claims, projections, and intent retention | **Policy settled; writer audit partial** | Finish inferred-writer audit and preserve the held Chat surface; do not claim universal no-write behavior yet |
+| D5 — cross-root change/production | `four-root-loop-object-surface.md`, `artifact-expression-and-composition.md`, the dependency matrix, and the accepted four-root decisions establish owner revisions, causal repair, shared meaning, and root-native expressions | **Architecture settled; I1/I2 partial** | Measure remaining duplicate reads and finish the bounded work-item/trigger path before production promotion |
+| D6 — live evaluation/watches | `live-engine-owner-path-matrix-2026-09-05.md` and `2026-09-06-bound-source-production-worker.md` name the owner boundary and keep watches dark | **Owner-bound; activation gated** | Each watch family still needs a concrete signal, refresh policy, audience, action depth, expiry, cancellation, and readback owner |
+
+This audit prevents I0 from reopening accepted authority policy while still
+blocking premature persistence or background monitoring. It does not authorize
+the unresolved D1 owner or any D6 watch.
+
 ### I1 — current-world context, shared identity and change propagation
 
 **Reuse:** owner-read envelopes/budgets, canonical repositories, ResourceRef /
@@ -775,7 +794,7 @@ document's creation.
 
 | Package | State at roadmap creation | Next concrete action |
 | --- | --- | --- |
-| I0 | Implemented/integrated at inventory level; live-engine path matrix recorded; activation decisions remain gated | Resolve the named intent/material, shared-change, and watch-owner decisions before adding durable watches or a second owner |
+| I0 | Implemented/integrated at inventory level; live-engine path matrix and 2026-09-06 decision-alignment audit recorded | Keep D1 object-less intent ownership and family-specific D6 watch contracts gated; consume settled D2–D5 policy through I1–I3 adapters |
 | I1 | Integrated for request-clock, consequence fan-out, dependency matrix, capture return, authority-safe owner-read coalescing, and Places continuity | Trace remaining owner identity plus condition signals; agree Life handles/change events and bounded reevaluation inputs |
 | I2 | Owner-read readiness, fast root serving, single assembly seam, bounded reads, and late-work limits are implemented; worker owner is now bound but activation remains gated | Measure serving and signal-to-judgment paths; add the content-free trigger/work-item contract before registering any production job |
 | I3 | Capture/custody and format boundary audited; supported/rejected cases are locally tested; writer-authority inventory is recorded; owner decisions and formats remain partial | Complete native custody evidence, resolve inferred-writer authority, draft precise owner ADR, then implement approved intent/social commands |
@@ -1169,3 +1188,10 @@ extend this same truthful gate, not add a speculative route service or worker.
   unregistered and no queue or provider call was added. The normal backend
   size-budget hook remains pre-existingly over threshold and was skipped for
   this isolated commit; all other commit-local hooks passed.
+
+- **I0 / decision alignment — documented:** the 2026-09-06 audit above
+  reconciles the queue against accepted Contribution/Use Grant, four-root,
+  lightweight-arrangement, Life organization, and live-engine decisions. D2–D5
+  are no longer treated as open policy questions; D1 remains decision-blocked
+  at the owner/schema boundary, and D6 remains activation-gated per family.
+  This narrows the next work without inventing a new intent or watch owner.
