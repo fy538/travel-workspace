@@ -27,16 +27,18 @@ and content-free event-envelope builder in `travel-agent` commits
 Occasion-scoped encounter Outcomes, and participant-scoped Commitment Outcomes;
 it provides deterministic audience revisions, before/after viewer unions, and
 withdrawal envelopes for erasure. The expanded focused suite passes 73 tests.
-This package deliberately does not register producers, change the Together
-reader, or enable Life serving. The remaining gate is a separate CAS dimension
-for audience changes that do not increment the Outcome's integer content
-revision; the current Life index writer compares only one owner token.
+The two-token Life index CAS seam is now implemented in `travel-agent` commit
+`66f378fc1`; the shadow Outcome consumer is `ba9463c2a`; and direct Occasion
+join/leave encounter repair is `fd66f9f1f`. These packages do not change the
+Together reader or enable Life serving. Account-erasure and reconciliation
+repair paths remain the next gate.
 
 ## Recommendation
 
-Implement **existing owner-private Plans** as the next Life shadow owner
-family. Do not implement loose pre-Plan intention, shared arrangement
-material, or Outcome delivery in the same package.
+Keep **existing owner-private Plans** as the completed bounded owner-family
+proof, then continue Outcome shadow hardening. Do not implement loose pre-Plan
+intention, shared arrangement material, or a Life serving cutover in this
+package.
 
 This is an engineering sequencing decision, not permission to cut over Life
 serving. The package should prove that the same outbox → event bus →
@@ -63,7 +65,7 @@ This makes Plan a useful second owner-family proof without depending on the
 unadopted retained-intention owner proposal or on the arrangement lane's
 future command/readback work.
 
-## Why Outcome is not next
+## Why Outcome required a separate package
 
 Outcome is not merely another private integer-revision row:
 
@@ -76,9 +78,10 @@ Outcome is not merely another private integer-revision row:
   outcome visibility corrections would need an explicit before/after viewer
   union and withdrawal/restore contract.
 
-The existing owner matrix correctly keeps Outcome shadow-only, but its
-`supports_delta_delivery=False` declaration should remain until that audience
-contract is designed and tested. Do not solve it by broadcasting every graph
+The existing owner matrix correctly keeps Outcome shadow-only. The audience
+contract, two-token CAS, and direct Occasion repair are now designed and
+tested; remaining erasure/reconciliation repair must land before any
+`supports_delta_delivery` change. Do not solve it by broadcasting every graph
 viewer or by letting Life infer grants from a presentation record.
 
 ## Plan package boundary (landed)
@@ -120,7 +123,8 @@ second corpus.
 The Plan package is complete for shadow delivery: an owner-private Plan can be created,
 updated, transitioned, withdrawn, and explicitly restored in shadow storage;
 stale events cannot overwrite a newer revision; worker repair delivers missed
-events; and no shared or pre-Plan semantics were introduced. At that point the
-team can make a deliberate Outcome decision with evidence from a second
-integer-revision owner, rather than treating Plan as proof that social audience
-semantics are solved.
+events; and no shared or pre-Plan semantics were introduced. Outcome now has a
+shadow proof beyond Plan, but Plan remains only an owner-private comparison
+point. The next exit condition is account-erasure and reconciliation repair
+coverage plus cross-viewer shadow comparison; no reader cutover follows
+automatically.
