@@ -75,6 +75,14 @@ proof that an old audience token cannot revoke a later restoration. The
 first-insert-after-deletion interleaving still requires an owner-side
 publication fence before historical fan-out or serving cutover.
 
+The canonical inline retained-source capture boundary now emits its
+content-free Life owner event in `travel-agent` commit `5a6fce1f2`, aligning
+direct Share Capture with the existing upload/finalize path. Its focused
+PostgreSQL proof reaches Life readback and owner deletion withdrawal. This
+does not promote the retained-source projector to serving, and the separate
+representation/unrepresentation repair extension remains outside this
+committed package until its ordering and current-authority proof are green.
+
 ## Next connected checkpoint
 
 Run one joint Life rehearsal for each Outcome family:
