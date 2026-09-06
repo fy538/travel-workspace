@@ -15,8 +15,8 @@ depends_on:
 
 # Contribution/Capture → Life Outcome Handoff Receipt
 
-**Date:** 2026-09-06  
-**Owner lane:** Contribution and Capture  
+**Date:** 2026-09-06
+**Owner lane:** Contribution and Capture
 **Backend commit:** `37c3f93bf` (`feat(life): emit Outcome owner handoffs`)
 
 ## Delivered
