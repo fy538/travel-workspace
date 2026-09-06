@@ -151,11 +151,13 @@ The explicit representation is now adopted:
   `dependency_fingerprint` storage seam.
 
 `travel-agent` commit `66f378fc1` implements the two-token writer/readback
-contract; `ba9463c2a` implements the shadow projector; and `fd66f9f1f` emits
-direct Occasion join/leave repair events for encounter Outcomes. This preserves
+contract; `ba9463c2a` implements the shadow projector; `fd66f9f1f` emits
+direct Occasion join/leave repair events for encounter Outcomes; and
+`329060a88` extends the same contract through account erasure. This preserves
 the owner matrix's integer meaning and makes membership-driven withdrawals
-observable. `supports_delta_delivery` remains false while erasure,
-reconciliation, and broader database race coverage are completed.
+observable. `supports_delta_delivery` remains false while cross-viewer shadow
+comparison and broader database race coverage are completed; a future
+reconciliation writer must reuse these producer seams rather than bypass them.
 
 ### Owner departure is not silent ownership transfer
 
@@ -175,9 +177,13 @@ current schema, Outcomes owned by the departing account are deleted by the
 owner foreign-key cascade; they are not transferred to a surviving Occasion
 member. The producer/erasure path must therefore emit a content-free
 withdrawal for every previously effective viewer before or atomically with the
-delete. Surviving participants' independent Outcomes remain independent. A
-future attribution-preserving shared record would require a new custody and
-authorship contract, not a special case in Life.
+delete. `329060a88` now implements that withdrawal and repairs surviving
+shared encounter audiences after the Occasion membership sweep; `afb13c6fa`
+extends the same treatment to participant-scoped Commitment Outcomes after
+the Commitment participant sweep. Surviving participants' independent
+Outcomes remain independent. A future attribution-preserving shared record
+would require a new custody and authorship contract, not a special case in
+Life.
 
 ## Required event envelope
 
@@ -215,7 +221,8 @@ green against the canonical graph and the shadow projector:
 7. An Occasion/Commitment deletion or invalid binding withdraws every affected
    viewer and cannot be undone by a stale event.
 8. Owner account erasure withdraws all derived rows for the deleted Outcome;
-   no Outcome is reassigned to a survivor.
+   no Outcome is reassigned to a survivor. The same erasure repairs surviving
+   encounter and Commitment audiences without widening either scope.
 9. A newer revision wins over an out-of-order event; explicit reauthorization
    is the only restore path.
 
@@ -224,8 +231,12 @@ green against the canonical graph and the shadow projector:
 1. **Complete:** Experience Graph pure audience resolver, content-free event
    envelope, and direct Occasion join/leave encounter repair are implemented
    and tested (`134bb021b`, `4ef82cce8`, `9aa75ff3d`, `fd66f9f1f`).
-2. **In progress:** Integration must extend the same before/after union to
-   account erasure and reconciliation-driven membership repair.
+2. **Complete for account erasure:** owner-authored Outcomes emit a
+   transactional withdrawal before their canonical rows disappear, and
+   surviving encounter and Commitment Outcomes receive audience repairs after
+   their membership sweeps (`329060a88`, `afb13c6fa`). No current reconciler
+   mutates either audience set; any future reconciliation writer must call the
+   same helpers inside its owner transaction.
 3. **Complete in shadow:** Life has the Outcome owner consumer with two-token
    CAS, withdrawal, stale replay, and explicit restore proof
    (`66f378fc1`, `ba9463c2a`).

@@ -30,8 +30,12 @@ withdrawal envelopes for erasure. The expanded focused suite passes 73 tests.
 The two-token Life index CAS seam is now implemented in `travel-agent` commit
 `66f378fc1`; the shadow Outcome consumer is `ba9463c2a`; and direct Occasion
 join/leave encounter repair is `fd66f9f1f`. These packages do not change the
-Together reader or enable Life serving. Account-erasure and reconciliation
-repair paths remain the next gate.
+Together reader or enable Life serving. Account-erasure withdrawal and
+surviving encounter-audience repair are now implemented in `329060a88`, and
+Commitment-participant audience repair is implemented in `afb13c6fa`; the
+focused run includes the PostgreSQL proofs for both scopes. No current
+reconciler mutates either audience set; broader race coverage is the next
+gate.
 
 ## Recommendation
 
@@ -79,10 +83,12 @@ Outcome is not merely another private integer-revision row:
   union and withdrawal/restore contract.
 
 The existing owner matrix correctly keeps Outcome shadow-only. The audience
-contract, two-token CAS, and direct Occasion repair are now designed and
-tested; remaining erasure/reconciliation repair must land before any
-`supports_delta_delivery` change. Do not solve it by broadcasting every graph
-viewer or by letting Life infer grants from a presentation record.
+contract, two-token CAS, direct Occasion repair, and account-erasure repair
+for both encounter and Commitment Outcomes are now designed and tested;
+cross-viewer comparison and broader race coverage must land before any
+`supports_delta_delivery` change. Do not solve it by
+broadcasting every graph viewer or by letting Life infer grants from a
+presentation record.
 
 ## Plan package boundary (landed)
 
@@ -120,11 +126,12 @@ second corpus.
 
 ## Plan exit condition
 
-The Plan package is complete for shadow delivery: an owner-private Plan can be created,
-updated, transitioned, withdrawn, and explicitly restored in shadow storage;
-stale events cannot overwrite a newer revision; worker repair delivers missed
-events; and no shared or pre-Plan semantics were introduced. Outcome now has a
-shadow proof beyond Plan, but Plan remains only an owner-private comparison
-point. The next exit condition is account-erasure and reconciliation repair
-coverage plus cross-viewer shadow comparison; no reader cutover follows
-automatically.
+The Plan package is complete for shadow delivery: an owner-private Plan can be
+created, updated, transitioned, withdrawn, and explicitly restored in shadow
+storage; stale events cannot overwrite a newer revision; worker repair
+delivers missed events; and no shared or pre-Plan semantics were introduced.
+Outcome now has a shadow proof beyond Plan, including account-erasure repair
+for both audience shapes, but Plan remains only an owner-private comparison
+point. The next exit condition is cross-viewer shadow comparison plus broader
+race coverage; no reader cutover follows automatically. Any future
+reconciliation writer must reuse the accepted audience-repair helpers.

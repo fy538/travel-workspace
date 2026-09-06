@@ -61,9 +61,14 @@ implied, and PostgreSQL race proofs remain outstanding.
 
 Direct Occasion join/leave now emits encounter audience-repair events in
 `travel-agent` commit `fd66f9f1f`; Commitment Outcomes remain scoped to their
-participant set. The database proof covers same-owner-revision audience
-change, departure withdrawal, stale replay, and rejoin restore. Account
-erasure and reconciliation paths still need the same repair treatment.
+participant set. Account erasure now emits owner withdrawal before deletion
+and repairs surviving encounter audiences in `329060a88`; `afb13c6fa` adds
+the equivalent repair for surviving Commitment Outcomes and fixes the
+viewer-relative Together predicate for linked participant Outcomes. The
+focused Outcome/account-lifecycle run now covers 27 tests, including the
+PostgreSQL proofs. No current reconciler mutates the audience sets; a future
+reconciliation writer must reuse these producer seams. Broader race coverage
+remains a separate checkpoint.
 
 ## Why one owner revision is insufficient
 
@@ -132,7 +137,9 @@ fingerprint, not user content and not a new source of truth.
 4. A withdrawn row is never restored by an old event. Explicit reauthorization
    must supply the current owner and audience tokens.
 5. Account erasure emits a withdrawal event using the prior audience token (or
-   an identifier-only erasure repair) before the owner row disappears.
+   an identifier-only erasure repair) before the owner row disappears, and
+   repairs surviving encounter and Commitment Outcomes after their membership
+   sweeps.
 
 ## Acceptance fixtures
 
@@ -162,8 +169,11 @@ The writer change is ready only when these cases pass:
    event's audience token as its dependency fingerprint (`ba9463c2a`).
 4. **Complete for direct Occasion membership:** add the canonical encounter
    audience-repair producer and PostgreSQL proof (`fd66f9f1f`).
-5. Add equivalent account-erasure and reconciliation repair producers, with
-   PostgreSQL stale-replay/withdrawal/restore proofs.
+5. **Complete for account erasure:** owner withdrawal plus surviving encounter
+   and Commitment repair producers and PostgreSQL proofs landed in
+   `329060a88` and `afb13c6fa`. No current reconciliation writer mutates
+   membership audiences; any future one must call these helpers and add
+   stale-replay/withdrawal/restore proofs.
 6. Only then consider any serving experiment. Keep
    `supports_delta_delivery` false until the database race package is complete.
 
