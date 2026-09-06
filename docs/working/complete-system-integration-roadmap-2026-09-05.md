@@ -1157,3 +1157,15 @@ extend this same truthful gate, not add a speculative route service or worker.
   warm trigger, durable deduplication, lease-first execution, and content-free
   telemetry. No queue, scheduler, worker function, or production flag was
   added or activated by the decision.
+
+- **I2 / content-free production work item — implemented and locally tested:**
+  `travel-agent` commit `00f74699b` adds the strict
+  `SourceContributionWorkItemV1` contract and three focused tests. It bounds
+  the future handoff to Home/Places, an explicit situation/audience, one
+  represented-at clock, IANA timezone, policy/compiler versions, a named
+  trigger, optional canonical refs, and an expiry. It rejects unknown roots,
+  naive clocks, missing signal/recomposition references, and extra generated
+  content. The focused pytest passes (3 tests); the ordinary worker is still
+  unregistered and no queue or provider call was added. The normal backend
+  size-budget hook remains pre-existingly over threshold and was skipped for
+  this isolated commit; all other commit-local hooks passed.
