@@ -77,11 +77,13 @@ publication fence before historical fan-out or serving cutover.
 
 The canonical inline retained-source capture boundary now emits its
 content-free Life owner event in `travel-agent` commit `5a6fce1f2`, aligning
-direct Share Capture with the existing upload/finalize path. Its focused
-PostgreSQL proof reaches Life readback and owner deletion withdrawal. This
-does not promote the retained-source projector to serving, and the separate
-representation/unrepresentation repair extension remains outside this
-committed package until its ordering and current-authority proof are green.
+direct Share Capture with the existing upload/finalize path. Commit
+`33028d1cc` adds the retained-source representation/unrepresentation replay
+transition with a PostgreSQL proof: representation withdraws the Life row,
+and an owner-revision-advanced unrepresentation restores it without allowing
+an old replay to win. The focused source-to-Life lifecycle suite now passes
+**28 tests**. This remains shadow delivery; it does not promote the retained-
+source projector to serving.
 
 ## Next connected checkpoint
 
