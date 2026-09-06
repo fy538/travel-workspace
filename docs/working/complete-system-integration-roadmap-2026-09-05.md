@@ -1251,7 +1251,9 @@ extend this same truthful gate, not add a speculative route service or worker.
   passed **20,757 tests**, with 30 skips, 56 expected XPASSes, and 1,346
   deselected tests in 7m03s. The run emitted only the existing Postgres-leak
   baseline warnings; no new failure was introduced. Native/device and live
-  Postgres evidence remain intentionally out of scope for this checkpoint.
+  Postgres evidence remain intentionally out of scope for this checkpoint. The
+  follow-up bounded synchronous-executor correction (`7f88e0f08`) is covered by
+  the focused root-projection receipt (319 passed).
 
 - **I0 / decision alignment — documented:** the 2026-09-06 audit above
   reconciles the queue against accepted Contribution/Use Grant, four-root,
