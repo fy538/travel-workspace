@@ -1750,21 +1750,19 @@ and resumability paths were rerun by explicit test path with 23 mobile tests
 passing. This is native-adjacent regression evidence, not real OS transport,
 device, or generated-content acceptance.
 
-The parallel Life receiver (`codex/life-owner-delivery`, commit `b4d87161f`)
-has a shadow delivery path with current-authority rebuild, owner-revision CAS,
-withdrawal, explicit restore, and stale/out-of-order handling; its focused
-receiver rehearsal passes 39 unit tests. That is receiver-only evidence. A
-joint Outcome source mutation → durable outbox → Life shadow index/readback
-run remains required before serving or cutover. Capture does not write Life
-rows or merge the parallel Life branch implicitly.
+The initial parallel Life receiver (`codex/life-owner-delivery`, commit
+`b4d87161f`) is retained as provenance for the shadow delivery shape; it is
+superseded by the landed shared-backend receiver and repair commits recorded
+in the CC-5 receipt below. The joint Outcome source mutation → durable outbox
+→ Life shadow index/readback rehearsal is now complete for shared Commitment
+and Encounter Outcomes. Capture does not write Life rows or merge a receiver
+branch implicitly.
 
-Next connected checkpoint: execute that joint Postgres rehearsal for shared
-Commitment and Encounter Outcomes, including owner readback, audience
-withdrawal, stale replay non-resurrection, and explicit restore. Then complete
-CC-4's useful-first journey with real representative content/native evidence.
-History-specific Chat-image policy, remaining writer families,
-intention/social/expense commands, and production transport remain separately
-gated.
+Next connected checkpoint: complete CC-4's useful-first journey with real
+representative content/native evidence. Life remains shadow-only; its next
+hardening checkpoint is broader cross-viewer/race comparison. History-specific
+Chat-image policy, remaining writer families, intention/social/expense
+commands, and production transport remain separately gated.
 
 ### CC-5 follow-up receipt — Outcome Life rehearsal complete — September 6
 
