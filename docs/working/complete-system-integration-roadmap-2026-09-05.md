@@ -1243,6 +1243,14 @@ extend this same truthful gate, not add a speculative route service or worker.
   and worker tests pass (12 tests); no Arq function, queue consumer, provider
   call, or ordinary GET activation was added.
 
+- **Repository-wide offline receipt (2026-09-06):** after the worker cleanup,
+  authority rebaseline, and deployment-envelope slice, the bounded backend
+  command `pytest -q -m 'not requires_postgres and not requires_api_keys'`
+  passed **20,757 tests**, with 30 skips, 56 expected XPASSes, and 1,346
+  deselected tests in 7m03s. The run emitted only the existing Postgres-leak
+  baseline warnings; no new failure was introduced. Native/device and live
+  Postgres evidence remain intentionally out of scope for this checkpoint.
+
 - **I0 / decision alignment — documented:** the 2026-09-06 audit above
   reconciles the queue against accepted Contribution/Use Grant, four-root,
   lightweight-arrangement, Life organization, and live-engine decisions. D2–D5
