@@ -297,6 +297,16 @@ defers the outbox event for retry instead of reporting a false publication;
 unsupported owner families remain capability-matrix gaps rather than being
 treated as handled by an unrelated subscriber.
 
+The next owner-fence package is now available on the separate
+`codex/life-system-execution` lane as `travel-agent` commit `36943a651`.
+It locks the canonical owner (and audience rows where applicable) in the same
+transaction as a Life write/withdrawal, prevents first-insert-after-deletion
+publication, requires the owner-specific handler to claim an event before the
+outbox acknowledges it, and refuses acknowledgement after lease expiry. Its
+focused validation is **44 unit tests + 8 PostgreSQL tests**. It is an
+integration candidate, not yet a claim that this checkout has cut over or that
+unsupported owner families are served.
+
 7. Complete for direct Occasion join/leave and account erasure: encounter and
    Commitment audience-repair events now cover direct membership plus account
    deletion (`fd66f9f1f`, `329060a88`, `afb13c6fa`). No current reconciliation
