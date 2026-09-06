@@ -1265,16 +1265,17 @@ extend this same truthful gate, not add a speculative route service or worker.
   continuity. The governed Opening loader remains separate.
 
 - **Repository-wide offline receipt (2026-09-06):** after the worker cleanup,
-  authority rebaseline, deployment-envelope slice, and canonical-executor /
-  readback slice (`travel-agent` `467be5711`), the bounded backend command
-  `pytest -q -m 'not requires_postgres and not requires_api_keys'` passed
-  **20,765 tests**, with 30 skips, 56 expected XPASSes, and 1,346 deselected
-  tests in 7m05s. The run emitted only the existing Postgres-leak baseline
-  warnings; no new failure was introduced. Native/device and live Postgres
-  evidence remain intentionally out of scope for this checkpoint. The focused
-  root-projection receipt is now **328 passed** (up from 319); adding the Places
-  context-clock suite yields **348 passed** across the combined owner-bound
-  check. The worker / continuity wiring receipt is 15 passed.
+  authority rebaseline, deployment-envelope slice, canonical-executor /
+  readback slice (`travel-agent` `467be5711`), clock-preserving context owner
+  (`64230fb0e`), and provider-factory binding (`d621afff4`), the bounded backend
+  command `pytest -q -m 'not requires_postgres and not requires_api_keys'`
+  passed **20,768 tests**, with 30 skips, 56 expected XPASSes, and 1,346
+  deselected tests in 7m01s. The run emitted only the existing Postgres-leak
+  baseline warnings; no new failure was introduced. Native/device and live
+  Postgres evidence remain intentionally out of scope for this checkpoint. The
+  focused root-projection receipt is **329 passed**; adding the Places
+  context-clock suite yields **349 passed** across the combined owner-bound
+  check. The worker / continuity wiring receipt is 32 passed.
 
 - **I0 / decision alignment — documented:** the 2026-09-06 audit above
   reconciles the queue against accepted Contribution/Use Grant, four-root,
