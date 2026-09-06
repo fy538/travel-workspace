@@ -35,9 +35,10 @@ The implementation lives across `travel-agent` commits `1bb03e1c7`,
 `77d4a8474`, `073d33b9d`, `420176821`, and `a669541b2`. The final two follow-up
 packages make semantic representation withdrawal/restore explicit and add the
 versioned content-free source-owner lifecycle envelope.
-The pure Occasion audience contract is now also landed in
-`travel-agent` commit `6d4365a83`; it does not yet authorize an Occasion
-producer or projector.
+The pure Occasion audience contract is now landed in `travel-agent` commit
+`6d4365a83`, and the canonical Occasion producer seam is landed in
+`travel-agent` commit `8558d7110`. The producer still does not authorize an
+Occasion projector or a Life serving cutover.
 
 ## What landed
 
@@ -131,11 +132,18 @@ after-commit event-bus prompt is only a latency optimization. A missed prompt
 must be repaired by the existing Life outbox worker. The event must not reuse
 Intake's single acknowledgement or be inferred from a presentation/card ID.
 
-Current repository evidence: retained-source producer call sites now exist in
+Current repository evidence: retained-source producer call sites exist in
 `backend/core/db/intake_v2.py` for source attach, source verification, and
-source deletion. Graph Plan/Occasion/Outcome producers are still absent. The
-remaining dependency is to review/land the graph owner contract, not to invent
-a second Capture transaction or a Life-owned source writer.
+source deletion. Occasion producer call sites now cover creation, accepted
+membership (including the handoff bridge), leave, organizer transfer,
+lifecycle transitions, and reconciliation-driven lifecycle changes. They all
+compute the composite audience revision and fan out to the before/after viewer
+union inside the owner transaction. Direct account-erasure reassignment and
+deletion still bypass this command seam and remain an explicit coverage gap;
+they must be handled before claiming complete Occasion producer coverage.
+Graph Plan and Outcome producers are still absent. The remaining dependency is
+to review/land the graph owner contract, not to invent a second Capture
+transaction or a Life-owned source writer.
 
 ## Verification
 
@@ -156,17 +164,24 @@ combined focused suite passes 42 tests, including 17 PostgreSQL-backed
 bridge/intake tests. These checks prove the local transaction/schema path only;
 no production activation, reader cutover, or device test is claimed.
 
+The Occasion contract/producer package adds 48 command and helper tests, and
+the combined Life/Occasion focused suite passes 81 tests. The producer package
+was committed as `8558d7110`; its focused format/lint checks pass. These
+numbers prove the transaction wiring and pure contract only; no account-erasure
+path, projector, serving read, or production activation is claimed.
+
 ## Next checkpoint
 
 1. Run the existing worker against a fixture retained-source event and verify
    the exact shadow row, stale replay, withdrawal, and explicit restore
    transitions end to end.
-2. Wire the landed Occasion digest and viewer-union helpers into a narrow
-   canonical reader and all membership/lifecycle mutation transactions.
-   Occasion is the leading candidate because it has revision and audience
-   evidence, but the producer must cover every path before any projector is
-   enabled.
-3. Add the Occasion owner-specific projector and PostgreSQL transaction tests.
+2. Close the Occasion producer coverage gap for account-erasure reassignment/
+   deletion, then add PostgreSQL transaction tests for every covered mutation
+   path (create, accept, leave, transfer, lifecycle, reconciliation, and
+   handoff acceptance).
+3. Add the Occasion owner-specific projector and current-authority reader;
+   exercise member departure, role transfer, stale replay, withdrawal, and
+   restoration without enabling serving cutover.
 4. Expand owner coverage one family at a time by updating the owner matrix and
    adding owner-specific authority/audience tests. Do not mark Life complete or
    cut over readers after the first adapter.
