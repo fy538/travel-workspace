@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Life engineering / cross-repository architecture
 created: 2026-09-05
-last_verified: 2026-09-05
+last_verified: 2026-09-06
 expires: 2026-10-05
 why_new: Rebaselines the executed Life foundation into a complete engineering program with an explicit Atlas replacement, data migration, and deletion outcome requested by the founder.
 depends_on:
@@ -19,6 +19,39 @@ supersedes:
 ---
 
 # Life complete system and Atlas replacement roadmap
+
+## Current execution baseline — September 6
+
+R0–R8 remains Life's sole forward roadmap. The engine design supplies behavior
+and implementation detail; the execution-status file preserves receipts. The
+[coordination register](complete-system-integration-roadmap-2026-09-05.md#2-current-coordination-register--september-6)
+owns current cross-lane assignments. Historical findings below describe their
+inspection date, not a request to repeat completed work.
+
+| Layer | Current implementation | Next work / limitation |
+| --- | --- | --- |
+| R0 / R4 root and reading | Canonical Life route, Atlas redirects, four depth lenses, exact-owner and identity-restoration improvements | Rich lens organization and complete owner/destination coverage are not certified |
+| R1 common reads | Shared snapshot assembly, chronology, owner revisions and conflict-aware cursors | Routes still assemble owner snapshots; indexed serving has not cut over |
+| R1 / R2 index helpers | Typed bounded reads/writes, all-lens planner, owner capability matrix, shadow batch and comparison | Helpers exist; continuous shadow population and backfill do not |
+| R2 change safety | Revision guards, withdrawal and explicit restore; separate Life outbox schema/repository; identifier-only publisher/repair; retained-source verification, attachment, deletion, and shadow projection | Connect the next revision/audience-safe owner or semantic-representation transition; do not compete for Intake's single acknowledgement |
+| R3 / R5 retrieval | Retained sources and canonical destinations have landed | Broader custody/refinding, dependent repairs and retained booking-reader mapping remain |
+| R6 prospective/shared | Consumer requirements established | [Pre-Plan intention proposal](retained-intention-before-plan-decision-proposal-2026-09-06.md) is unadopted; missing owner adapters cannot be replaced by Life writes |
+| R7 / R8 richness and replacement | Design/scenario portfolio and migration obligations are explicit | Returns, organization quality, whole-corpus cutover and Atlas deletion remain incomplete |
+
+**Next connected package:** the retained-source owner change → landed
+downstream delivery bridge → current-authority projector → shadow record is
+now executable. Next, expand to another owner or wire semantic representation
+withdrawal while preserving replay/withdrawal verification. Expand owner
+coverage before switching readers; an initial adapter is an increment in the
+complete program, not the sole product loop. No native session is required for
+this engineering batch; preserve later native/release acceptance separately
+under the founder's current deferral.
+
+Capture supplies source identity, revision, lifecycle and repair events; Life
+owns derived indexing. Home/Places consumes exact record destinations, not a
+Life-owned generator. Retirement supplies the existing booking-evidence mapping
+for R3/R5. Keep the newer Life walkthroughs in the existing W1–W6/design portfolio,
+not a competing engine or roadmap; illustrative transitions are not test passes.
 
 ## 1. Outcome and authority
 
@@ -73,8 +106,10 @@ manual composition is a later extension; protected authorship, source lineage
 and version behavior must be preserved now, but a full editor does not gate
 the automatic Life engine or Atlas replacement.
 
-### Implementation receipt — September 5, 2026
+### Historical implementation receipt — September 5, 2026
 
+Read the September 6 baseline and §6 for current remaining work. The following
+table preserves the first-pass snapshot, including gaps subsequently closed.
 The first execution pass has landed in the two child repositories. These are
 real replacement seams, not a claim that the complete program is finished:
 
@@ -82,7 +117,7 @@ real replacement seams, not a claim that the complete program is finished:
 |---|---|---|
 | R0 | `/(tabs)/life` is the visible continuity root; legacy Atlas root/deep links redirect; graph/source fallbacks and Life back navigation land in Life; all four lens routes are accepted | Legacy nested readers, producers, tables and API routes still exist behind compatibility paths |
 | R1 | Root and depth use one normalized corpus assembly; timeline reads no longer call the Atlas HTTP route; source chronology, source revisions, cursor identity and corpus-fingerprint conflict handling are explicit; depth exposes source revisions; an additive versioned `life_corpus_entries` index, bounded repository keyset reader, strict write contract, idempotent writer, explicit snapshot projector/merge adapter, all-lens batch planner, typed row/record decoder, exact anchor cursor seek, typed indexed record-page reader, and bounded-page continuation comparator now exist | The index is still dark: no owner backfill, incremental fan-out, shadow runtime, or serving cutover exists yet; the route still reconstructs the current snapshot from owner sources and mobile restoration still uses the legacy reader |
-| R2 | Trip/memory correction invalidation now includes Life root and depth query families; stale-cursor restart is actionable in the reader; the derived index now has an owner-scoped withdrawal primitive and refuses stale upserts over withdrawn rows | Incremental Life index, backfill, outbox fan-out, explicit reauthorization/restore, and custody/refind invalidation are not implemented |
+| R2 | Trip/memory correction invalidation now includes Life root and depth query families; stale-cursor restart is actionable in the reader; the derived index now has an owner-scoped withdrawal primitive and refuses stale upserts over withdrawn rows; the separate Life outbox now has an identifier-only publisher/repair path and retained-source shadow projector | Broader owner fan-out, semantic-representation withdrawal, incremental index/backfill, explicit reauthorization/restore, and custody/refind invalidation remain |
 | R4 | Life is always reachable in the four-tab shell; Time/Places/People/Threads readers and bounded position restoration exist | People/Threads remain truthful sparse reads where no owner exists; root composition and dossier/custody behavior are still partial |
 | R8 | No user data or source tables were deleted; all changes are committed locally and generated contracts are synchronized | Atlas retirement, migration certification, real-device QA and deployment remain future work |
 
@@ -609,8 +644,26 @@ not implied by the scaffolding commits.
    composition custody; unavailable paths fail closed.
 2. **Transaction and schema review — landed as additive seams:** the separate
    downstream outbox, owner revision CAS, and explicit restore operation are
-   present. Existing owner transactions still need to call the outbox only after
-   their own authority/revision contracts are reviewed.
+   present. The September 6 delivery bridge now adds the after-commit
+   `life_projection.ready` handoff, identifier/revision-only
+   `life_projection.changed` publication, and minute repair sweep. The
+   retained-source Intake transactions now call that bridge and a
+   current-authority shadow projector writes or withdraws `life.v1` rows.
+   Commit `073d33b9d` extends the same narrow path across semantic
+   representation: Experience Graph confirmation emits `source_represented`
+   and candidate retraction emits `source_unrepresented` in the owner
+   transaction, so the retained-source projector withdraws or restores its
+   private shadow row under the exact owner revision. Follow-up commit
+   `420176821` makes those withdrawal/restore branches explicit and stale-safe.
+   The local `lifeoutbox01` migration is now applied; focused projector/bridge
+   tests and 17 PostgreSQL bridge/intake tests pass.
+   Commit `a669541b2` then adds the versioned, content-free
+   `source-owner-change.v1` envelope to Intake lifecycle events, including
+   owner revision, retry identity and source/candidate references. This is a
+   contract hardening step only; it does not authorize a Life reader cutover.
+   Existing owner transactions still need to call the outbox only after their
+   own authority/revision contracts are reviewed; no broader owner projector
+   or serving cutover is implied.
 3. **Connected shadow population — next:** wire source-custody and eligible
    owner changes through owner-backed projectors into the existing versioned
    index. Do not compete with the intake bridge for the same single-ack outbox
@@ -719,3 +772,42 @@ as provenance; current product architecture is the four-root contract.
 Update package status with code references and bounded evidence after each
 delivery. Record partial packages as partial. A passing helper test, mock board,
 generated schema or smoke flow never substitutes for the package exit behavior.
+
+### R1/R2 owner-change delivery package — 2026-09-06
+
+**Consumer side and first owner adapter landed.** The Life lane now consumes
+the existing `life_projection.ready` → `life_projection.changed` bridge
+(`travel-agent` `b4d87161f`) through
+`backend/life_projection/delivery.py`. It validates viewer scope and owner
+metadata, re-reads current authority at one clock, derives all four lenses
+through the existing corpus builder, filters unavailable owner families, and
+persists to the existing shadow index with revision-CAS. The retained-source
+adapter (`77d4a8474`) handles its own narrow current-owner read, producer
+handoff, withdrawal tombstone, and explicit restore CAS; the generic consumer
+skips it to avoid duplicate writes. Ordinary replay cannot restore withdrawn
+rows; stale/out-of-order revisions converge safely. The worker remains the
+already-landed `backend/workers/life_projection_jobs.py`; no second worker or
+outbox was created.
+
+The owner-private Plan adapter now follows the same path for canonical Plan
+create/update/lifecycle mutations in `travel-agent` commits `7b6e97d7f` and
+`f12dca534`. Plan remains shadow-only and does not add loose intention or
+shared arrangement material.
+
+Focused local evidence is 103 passing Life/bridge/worker tests across the new
+consumer, retained-source adapter, current authority, CAS/withdrawal/restore,
+bridge, propagation, and worker suites. The package does not claim full owner
+coverage, indexed serving, PostgreSQL transaction evidence, production
+activation, or Atlas retirement. Graph owners must still call
+`register_life_projection_propagation` from their own transaction with
+`payload.viewer_ids` and (when available) an aware `represented_at`; the exact
+contract is recorded in
+[`life-owner-change-delivery-handoff-2026-09-06.md`](life-owner-change-delivery-handoff-2026-09-06.md).
+
+The combined focused Life/Plan/Occasion evidence now passes 60 tests, including
+PostgreSQL producer/projector proofs and retained-source worker repair.
+
+**Next checkpoint:** define the Outcome shared-audience/revocation contract
+before adding an Outcome producer. Keep serving cutover and unsupported owners
+gated until whole-corpus coverage, repair, authorization, and destination
+evidence are complete.

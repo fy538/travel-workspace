@@ -12,6 +12,15 @@ source_of_truth_for:
 
 # Life next owner-family decision — 2026-09-06
 
+## Execution result
+
+The Plan recommendation is implemented as a shadow-only package in
+`travel-agent` commits `7b6e97d7f` and `f12dca534`. Canonical owner-private Plan
+create, update, and lifecycle mutations now journal Life changes; the Plan
+projector re-reads current authority and proves integer-revision CAS,
+withdrawal, stale replay, and explicit restoration. The focused combined
+Life/Plan/Occasion suite passes 60 tests. Serving remains gated.
+
 ## Recommendation
 
 Implement **existing owner-private Plans** as the next Life shadow owner
@@ -61,9 +70,9 @@ The existing owner matrix correctly keeps Outcome shadow-only, but its
 contract is designed and tested. Do not solve it by broadcasting every graph
 viewer or by letting Life infer grants from a presentation record.
 
-## Plan package boundary
+## Plan package boundary (landed)
 
-The eventual Plan package may include only:
+The landed Plan package includes only:
 
 1. Producer events for canonical Plan create, owner update, and lifecycle
    transition, emitted inside the Plan transaction with the owner as the sole
@@ -83,26 +92,24 @@ It must not include:
   revision and has a separately declared Life consequence;
 - reader cutover, Atlas retirement, or a generalized owner framework.
 
-## Contract changes required before coding
+## Contract changes made
 
-Before implementation, update the Life owner matrix for `plan` from
-`supports_delta_delivery=False` to the exact private-owner capability that the
-projector proves. Keep `availability=SHADOW_ONLY` until the shadow package and
-its replay/withdrawal evidence land. The contract must state that viewer scope
-is `[plan.owner_id]`; a client-supplied arbitrary viewer list is invalid.
+The Life owner matrix now declares Plan `supports_delta_delivery=True` and
+`supports_audience_rechecks=True` while retaining `availability=SHADOW_ONLY`.
+The projector enforces viewer scope as exactly one owner-private viewer; a
+client-supplied arbitrary viewer list is invalid.
 
-The package should add a single graph producer module and a single Plan
-projector. It should reuse the existing Life outbox, event envelope, current
-graph projection, index writer, and worker rather than introduce a Plan-specific
-queue or a second corpus.
+The package adds a single graph producer module and a single Plan projector. It
+reuses the existing Life outbox, event envelope, current graph projection,
+index writer, and worker rather than introducing a Plan-specific queue or a
+second corpus.
 
-## Exit condition
+## Plan exit condition
 
-The Plan package is complete when an owner-private Plan can be created,
+The Plan package is complete for shadow delivery: an owner-private Plan can be created,
 updated, transitioned, withdrawn, and explicitly restored in shadow storage;
 stale events cannot overwrite a newer revision; worker repair delivers missed
 events; and no shared or pre-Plan semantics were introduced. At that point the
 team can make a deliberate Outcome decision with evidence from a second
 integer-revision owner, rather than treating Plan as proof that social audience
 semantics are solved.
-

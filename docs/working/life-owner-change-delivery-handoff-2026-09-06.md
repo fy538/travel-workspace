@@ -198,6 +198,14 @@ The final focused Life/Occasion regression run passes 56 tests, including the
 Postgres producer/projector proofs and the worker repair path. No
 full-repository or device test is implied by that count.
 
+The owner-private Plan shadow package is now landed in `travel-agent` commits
+`7b6e97d7f` and `f12dca534`. It journals canonical Plan create, update, and
+lifecycle transitions, re-reads the owner-private graph projection, rejects
+stale integer revisions, and exercises withdrawal/explicit restoration in
+PostgreSQL. The combined focused Life/Plan/Occasion regression run passes 60
+tests. Plan remains shadow-only; this package does not create loose intention,
+shared arrangement material, or a serving cutover.
+
 ## Next checkpoint
 
 1. Complete: the existing worker now has a PostgreSQL fixture proving the
@@ -209,12 +217,11 @@ full-repository or device test is implied by that count.
    for member departure, stale replay, withdrawal, role transfer, and explicit
    restoration without enabling serving cutover. The projector is registered
    in the canonical event-subscriber bundle but remains shadow-only.
-3. Use the [next owner-family decision](life-next-owner-family-decision-2026-09-06.md)
-   to scope the next package: existing owner-private Plans first, with Outcome
-   deferred until shared audience/revocation semantics are explicit. Expand
-   one family at a time by updating the owner matrix and adding owner-specific
-   authority/audience tests. Do not mark Life complete or cut over readers
-   after the first adapter.
+3. Keep Outcome deferred until shared audience/revocation semantics are
+   explicit. The next package must update the owner matrix and add
+   owner-specific authority/audience tests without treating Plan as proof that
+   social visibility is solved. Do not mark Life complete or cut over readers
+   after the first adapters.
 
 The canonical roadmap and execution status remain the forward register; this
 handoff is the package receipt and cross-lane interface, not a competing plan.

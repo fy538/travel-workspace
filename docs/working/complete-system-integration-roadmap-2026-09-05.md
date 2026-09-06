@@ -1,7 +1,7 @@
 ---
 doc_type: working
 status: active
-owner: founder / Strategy integration task
+owner: founder / Integration task
 created: 2026-09-05
 last_verified: 2026-09-06
 expires: 2026-10-05
@@ -10,9 +10,9 @@ supersedes:
   - forward execution sequencing in vesper-product-system-build-program-2026-09-01.md
   - orchestration and lane allocation in home-places-life-productization-program-2026-09-04.md
 source_of_truth_for:
-  - Strategy task complete-system integration sequencing
+  - Integration task complete-system sequencing
   - live-engine integration across context, judgment, surfaces and continuity
-  - two-lane coordination with Life
+  - current cross-lane coordination and receiving interfaces
   - integration milestone reassessment and bounded subagent execution
 depends_on:
   - ../systems/four-root-loop-object-surface.md
@@ -26,6 +26,21 @@ depends_on:
 # Complete-system integration roadmap
 
 ## 0. Decision, scope, and evidence boundary
+
+**September 6 strategic reconciliation:** the accepted
+[consumer-strategy decision](../decisions/2026-09-06-reconcile-consumer-strategy.md)
+makes everyday value intrinsic, with travel a demanding specialization rather
+than a mandatory launch entrance. Continue the complete portfolio and existing
+milestones; no new architecture, release flag or lane is created by that change.
+Optional conversational continuity is accepted direction but its policy remains
+unadopted: D4/history work must preserve current Ask authority. D1/pre-Plan intent
+still needs its owner decision. Retaining intent is not accepting a watch;
+I2/I5 must distinguish present assessment, monitoring and authorized changes.
+Provider execution stays retired in product scope with finite recovery duties.
+Consumer-paid depth/capacity is an economic hypothesis: preserve bounded serving,
+production and watch costs without adding billing or paid authority now. Exact
+prices, geography and entitlement/service-period behavior remain open. This
+paragraph does not upgrade any implementation or production readiness receipt.
 
 Keep the core architecture. Complete its integrations, replace transitional
 serving paths where necessary, and retire competing implementations. Do not
@@ -46,17 +61,16 @@ the existing contribution/agency surface; Life organizes an unfolding life.
 Multiplayer participates throughout. The moves are not tabs, pipeline stages,
 four required cards, or four independently owned services.
 
-Two user-owned tasks remain active:
+The **Integration** task (`01a030af-13a8-74e1-81be-7d526bec3045`) owns this
+cross-system program. The September 6 register in §2 replaces the original
+two-lane assignment with explicit delivery and support responsibilities. The
+separate **Strategy** task supplies product decisions, not a competing execution
+queue. Assignment here does not claim a task is running or was dispatched.
 
-- **Life** (`01a06ecc-1a79-74a1-9c47-9f24461313ea`) executes the
-  [Life replacement roadmap](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md).
-- **Strategy**, this task (`01a030af-13a8-74e1-81be-7d526bec3045`), owns the
-  complete-system integration program below, including Places end to end.
-
-This document replaces older forward ordering and the assumption that six
-specialist tasks remain active. Their code, acceptance cases, decisions, and
-historical receipts remain evidence. It does not supersede product canon,
-Life's internal execution program, or operational release procedures.
+This document replaces older cross-system ordering and lane allocation. Lane
+roadmaps retain internal package detail; their code, acceptance cases and
+historical receipts remain evidence. Product canon and operational release
+procedures retain their authority.
 
 This is a planning deliverable. No implementation, schema approval, paid
 generation, provider contact, deployment, feature-flag activation, production
@@ -172,18 +186,53 @@ commands keep their responsibilities. Do not force every read or article through
 a heavyweight decision arc. Preserve simple complete-on-view value alongside
 live assistance, with no visible fifth tab or obligatory "engine" section.
 
-## 2. Two-lane ownership and coordination
+## 2. Current coordination register — September 6
 
-| Area | Strategy integration owns | Life owns / supplies |
-| --- | --- | --- |
-| Identity and navigation | Cross-root resource/return contract, Home/Places consumers, acceptance coverage | Exact Life destinations, legacy alias migration, reader restoration |
-| Evidence and correction | Shared owner-change semantics; coverage across production, roots, pending actions and retained results | Life index, depth, dossiers, custody and refind repair |
-| Intention and shared material | Exact owner/schema/command decisions and approved implementation | Prospective and attributed shared projections; no substitute Life-only writer |
-| Value production | Shared producer/reuse/admission, cost and foreground-allocation contracts | Eligible corpus reads and Life-native Return integration using shared production |
-| Live engine | Trigger/evaluation contracts, current-world adapters, temporal judgment, bounded watches, action/delivery integration | Owner-backed historical/prospective context and reconciled record; no separate Life engine or watch writer |
-| Home / Places | Complete output experiences and practical continuations | Stable continuity destinations and permitted historical context |
-| Capture | Existing entry-path conformance, formats and immediate-value handoff | Original/source accessibility and organized continuity |
-| Migration | Non-Life legacy consumers, booking/surface contraction and cross-repo rollout coordination | Atlas replacement and its data/read compatibility obligations |
+This register replaces the earlier two-lane assignment, not I0–I6's system
+responsibilities. The founder requested this documentation rebaseline; it is
+not a claim that tasks were dispatched or acknowledged an assignment. Existing
+task titles below are preserved. Three autonomous delivery lanes are Life,
+Home (explicitly including Places consumers), and Contribution and Capture.
+Components and Plan closes bounded design/command decisions before its next
+engineering batch. Integration coordinates shared boundaries and the live
+engine; it is not the default implementer for every other lane.
+
+| Lane / cadence | Authoritative execution plan | Current package | Promised interface | Dependency / receiving owner | Next checkpoint |
+| --- | --- | --- | --- | --- | --- |
+| **Integration** — shared-system execution and coordination | This roadmap, I0–I6 | I1/I2 change delivery and controlled production preparation; I5 practical reevaluation | Typed owner refs/revisions, change/repair contract, bounded production and family-specific signal→judgment→consequence paths | Lane-owned readers/writers; D1 proposal; named signal/activation authority | Review a connected owner-change or live-adaptation package; separate working behavior from inactive adapters |
+| **Life** — continue | [Life R0–R8](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md) | R1/R2 owner events→shadow index; R3–R5 reader/custody integration | Exact eligible record/ref, revision, bounded page/restore and withdrawal behavior | Capture/source and graph owner events; D1 only for prospective writes | An authorized transition and replay/withdrawal update a shadow record; no whole-index cutover implied |
+| **Home** — continue Home/Places delivery | [Connected implementation map](home-connected-experience-implementation-map-2026-09-04.md), consuming I4 | Value families→native consumers→Places field/map/search/depth→return | Typed producer-to-renderer mapping, exact destinations and current/updated/unknown result context | Entities depth; Life exact readers; shared production from Integration; Plan commands | Complete varied owner-backed journeys and inspect actual value, not just the transport envelope |
+| **Contribution and Capture** — bounded completion | [CC-0–CC-6](contribution-contract-and-legacy-memory-migration-plan-2026-08-29.md#11-completion-plan--september-5) | Remaining CC-2/3/4/5 lifecycle, useful-first result and owner joins | Effective gesture/authority, source refs, retry identity, lifecycle and owner readback | History proposal for history-specific expiry; Life consumes source events; D1 only for loose intent | Source and derivatives obey custody across use, retry and repair; immediate value precedes optional management |
+| **Components and Plan** — design/decision, then engineering | [Arrangement A0–A4](lightweight-arrangements-implementation-handoff-2026-09-04.md), [design handoff](claude-design-plans-in-real-life-handoff-2026-09-04.md) | A0 owner/command packet; latest §0.8 continuation refinements | Distinct propose/update/send/participate/adopt effects, exact arrangement ref and readback | D1; settled use-grant policy plus concrete adapters; live engine supplies practical judgment | Map reduced designs to commands; ratify any seven-sentence exceptions before building them |
+| **Entities** — targeted support/closure | [C0–C8 acceptance plan](entity-system-acceptance-plan-2026-09-05.md) | Concrete receiving-lane failures and scoped lifecycle closure | Canonical venue/site/experience reads, citations, independently gated research/people, exact return | Home/Places and Life callers; no new entity-family scope | Reproduce and close a named cross-entry/withdrawal failure; no generic expansion or backfill |
+| **Retirement** — replacement-bound batches | [SC-0–SC-6](product-surface-contraction-investigation-2026-09-04.md#20-next-execution-sequence--september-5-rebaseline) | SC-0/1 retained-reader adoption, then family-specific removal | Existing booking evidence refs, external continuation and deterministic expense owner | Life/Home receive evidence; Capture receives receipts; Plan owns arrangement replacements | Receiving path works and remaining caller/obligation inventory names what may be removed |
+| **Strategy** — bounded decisions | Product canon; proposals linked below, not a separate engineering roadmap | Adaptive/social policy alignment and decision ratification | Explicit adopted versus proposed behavior; no implicit runtime/retention grants | Founder choices; lane feedback on concrete conflicts | Resolve one blocking choice; preserve accepted baseline until explicitly amended |
+| **Repo Clean Up** — on demand | Current landing package and this register | Coordinated landing and repository verification | Exact repo/commit/worktree disposition; current remote evidence | Owners finish their packages; shared generators serialize | Land approved work without sweeping concurrent edits; no perpetual cleanup program |
+
+### Decision queue and autonomous work
+
+- **D1:** [retained-intention proposal](retained-intention-before-plan-decision-proposal-2026-09-06.md).
+  Components and Plan proposes the owner; Integration, Life and Capture review
+  commands/consumers. It remains unadopted; no synthetic Plan or Life-only writer.
+- **D4 refinement:** [history/source-expiry proposal](conversation-history-source-expiry-decision-proposal-2026-09-06.md).
+  Five-axis policy is settled, but history-specific lifecycle/migration is not.
+  Optional conversational continuity remains unadopted.
+- **Social baseline:** September 5 assigns casual place-sharing browse to
+  Places' friends scope and durable history to Life People. September 6 research
+  can refine effort, discoverability and presentation; it does not silently
+  reopen root ownership. A placement change needs an explicit amendment.
+- **Design exceptions:** crown access/priority and seven-sentence Plan exceptions
+  remain proposals where the receiving handoff labels them so. No broad redesign
+  or invisible authority change follows from a compelling board.
+- **D6:** a production worker is not a watch owner. Each live family still needs
+  a signal, freshness, reevaluation, expiry/cancel and consequence contract.
+
+Proceed independently on accepted contracts and owned files. Bring changes to
+canonical owners/schema, shared commands/events, API contracts, cross-root
+navigation, activation, retirement or accepted product decisions to Integration.
+Visual refinement, internal adapters and scoped tests do not require a universal
+approval round. A handoff names source SHA, interface/guarantees, unavailable
+cases, receiving consumer, files, regression evidence and next checkpoint.
 
 Life R6 consumes I3's intention/shared-material contract. Life R7 and I2/I4
 share production and allocation interfaces. Those specific dependencies do not
@@ -193,12 +242,23 @@ The engine reads relevant source, intent and outcome owners directly through
 agreed contracts; it does not scrape the Life UI or depend on a Life page being
 opened. Life and the engine are different consumers of those authorities.
 
-Before either task changes a shared model, route file, generated schema,
+Before any task changes a shared model, route file, generated schema,
 navigation utility or invalidation policy, declare the exact files and contract
 change. Shared files are serial integration points, not parallel writing areas.
 For future coordination, communicate one bounded dependency request rather than
 redirecting the other task's whole program. This planning pass sends no command
-to the Life task.
+to another task. Use isolated `codex/` worktrees for concurrent implementation;
+serialize shared schema/route generation and landing. Explicit filename staging
+does not protect against another task's already-staged changes. Inspect staged
+paths before committing and never reset another lane to obtain a clean tree.
+
+Review after a connected package, after at most three integrated packages, or
+when a material contradiction appears. Use local tests during current execution;
+the founder deferred app/device testing for now. Keep native/release gates
+explicit without making them a prerequisite for unrelated engineering. A
+checkpoint records what to continue, revise or retire, not another blanket
+revalidation loop. This register is the current assignment map; older task
+activity tables and receipts elsewhere are dated evidence.
 
 ## 3. Milestones and dependency ordering
 
@@ -278,10 +338,10 @@ Decision queue to resolve in I0 (recommendations, not approved schemas):
 
 | Decision | Default recommendation to investigate | Must settle before |
 | --- | --- | --- |
-| D1 — pre-Plan intention | Governed authored claim or narrowly typed person-owned prospective record; optional Plan relation | Durable loose-Keep writes and Life Ahead adoption |
+| D1 — pre-Plan intention | [Review-ready owner proposal](retained-intention-before-plan-decision-proposal-2026-09-06.md); no required Plan | Adoption and schema review before durable loose-Keep writes and Life Ahead adoption |
 | D2 — shared human material | Reuse source/authored payload custody with an explicit target/adoption relation | Generic Plan/Occasion comments and suggestion adoption |
 | D3 — scoped editing | Separate revocable target/effect grant, not a new organizer/member role or implicit AI mandate | Collaborative edits beyond existing owner-only commands |
-| D4 — retention boundaries | Explicitly distinguish conversation history, Ask attachments, source custody, memory claims and retained intent | Expanding writer conformance or claiming an end-to-end no-write promise |
+| D4 — retention boundaries | Settled five-axis contract plus [history/source-expiry proposal](conversation-history-source-expiry-decision-proposal-2026-09-06.md) | History-specific migration and any continuity expansion await adoption; unaffected writer repairs proceed |
 | D5 — cross-root change/production contracts | Existing owner revisions and repair lineage; shared meaning identity with root-specific expressions | New shared consumers and production promotion |
 | D6 — live evaluation and authorized watches | Reuse bounded scheduler/delivery primitives where suitable; explicitly own condition, refresh, audience, action depth, expiry, cancellation and reevaluation state | New durable monitoring, background subscriptions or claims that the engine will keep watching |
 
@@ -301,7 +361,7 @@ the concrete owner/trigger seams remain implementation work:
 | D1 — pre-Plan intention | `lightweight-arrangements-implementation-handoff-2026-09-04.md` and `life-organization-and-composition-engine-system-design-2026-09-05.md` both preserve loose intent without a synthetic Trip, but explicitly leave its durable owner open | **Decision-blocked** | Founder/Plan lane must choose the narrow owner and command before a durable loose-Keep or Life Ahead write is added |
 | D2 — shared human material | `2026-08-29-adopt-contribution-use-grants.md` settles custody, attribution, audience/use grants, and adoption as separate lifecycles | **Policy settled** | Implement only through existing Source/authored payload and target/adoption owners; no new social owner |
 | D3 — scoped editing | `contribution-and-consequence.md` plus the lightweight-arrangements handoff define owner-only editing by default and revocable scoped target/effect grants | **Policy settled; runtime partial** | Add/verify the named grant adapter when a concrete collaborative command needs it |
-| D4 — retention boundaries | `2026-08-29-adopt-contribution-and-consequence-contract.md` and the use-grants decision separate conversation, Source, claims, projections, and intent retention | **Policy settled; writer audit partial** | Finish inferred-writer audit and preserve the held Chat surface; do not claim universal no-write behavior yet |
+| D4 — retention boundaries | Existing decisions separate Source, claims, projections, purposes and retention; the September 6 history proposal specifies the remaining copy/answer-lifecycle choice | **General policy settled; history-specific proposal unadopted; writer audit partial** | Complete unaffected repairs; obtain explicit history semantics before migration; optional conversational continuity is not enabled |
 | D5 — cross-root change/production | `four-root-loop-object-surface.md`, `artifact-expression-and-composition.md`, the dependency matrix, and the accepted four-root decisions establish owner revisions, causal repair, shared meaning, and root-native expressions | **Architecture settled; I1/I2 partial** | Measure remaining duplicate reads and finish the bounded work-item/trigger path before production promotion |
 | D6 — live evaluation/watches | `live-engine-owner-path-matrix-2026-09-05.md` and `2026-09-06-bound-source-production-worker.md` name the owner boundary and keep watches dark | **Owner-bound; activation gated** | Each watch family still needs a concrete signal, refresh policy, audience, action depth, expiry, cancellation, and readback owner |
 
@@ -714,7 +774,7 @@ migration inventories or consumer integration. Do not silently substitute a
 different model/effort if those settings are unavailable; report the limitation.
 No new user-owned tasks are required for temporary subagents.
 
-The Strategy parent owns architecture decisions, the roadmap, shared contracts,
+The Integration parent owns architecture coordination, the roadmap, shared contracts,
 integration review and final status. Delegate only concrete work that can proceed
 alongside useful parent work. Start with at most two implementation workers;
 use the third available worker slot for independent review when useful. The
@@ -790,25 +850,31 @@ different evidence dimensions, not interchangeable claims of completion.
 Human value remains separately reviewed. No release claim follows from this
 document's creation.
 
-## 9. Current execution ledger and first batch
+## 9. Current execution ledger and next batch
 
-| Package | State at roadmap creation | Next concrete action |
+| Package | State rebaselined September 6 | Next concrete action |
 | --- | --- | --- |
-| I0 | Implemented/integrated at inventory level; live-engine path matrix and 2026-09-06 decision-alignment audit recorded | Keep D1 object-less intent ownership and family-specific D6 watch contracts gated; consume settled D2–D5 policy through I1–I3 adapters |
-| I1 | Integrated for request-clock, consequence fan-out, dependency matrix, capture return, authority-safe owner-read coalescing, and Places continuity | Trace remaining owner identity plus condition signals; agree Life handles/change events and bounded reevaluation inputs |
+| I0 | Implemented/integrated at inventory level; live-engine path matrix and 2026-09-06 decision-alignment audit recorded | Keep D1 retained-intention ownership and family-specific D6 watch contracts gated; consume accepted general D2–D5 policy through I1–I3 adapters without treating D4's history/source-expiry proposal as adopted |
+| I1 | Integrated for request-clock, consequence fan-out, dependency matrix, capture return, authority-safe owner-read coalescing, Places continuity, retained-source Life outbox→event-bus→shadow projector path, and the owner-private Plan shadow path | Keep Outcome/shared-audience coverage and index serving gated; next owner work requires explicit audience/revocation semantics |
 | I2 | Owner-read readiness, fast root serving, single assembly seam, bounded reads, late-work limits, content-free serving measurement, deterministic trigger identity, durable workflow handoff, a dark lease/readback adapter, deployment envelope, and an injected canonical executor/context/provider seam are implemented; worker activation remains gated | Approve a controlled cohort only after measuring provider cost/latency and signal-to-judgment budgets; only then consider registering a dark Arq job |
-| I3 | Capture/custody and format boundary audited; supported/rejected cases are locally tested; writer-authority inventory is recorded; owner decisions and formats remain partial | Complete native custody evidence, resolve inferred-writer authority, draft precise owner ADR, then implement approved intent/social commands |
+| I3 | CC-0/1 reader/authority/retry repairs, deadline/custody/processing-copy restrictions, source-owner handoff metadata, bounded writer conformance (itinerary, Atlas, Discover), and useful-first capture ordering are locally evidenced; history-specific lifecycle and owner commands remain gated | Capture coordinates Life readback/correction over the existing envelope; review the two September 6 decision proposals before dependent writes; native/content evidence stays deferred for current engineering |
 | I4 | Renderer promotion boundary, result-set identity, source-backed revision, native returns, and stale-source treatment are implemented locally; semantic promotion remains dark | Complete real-data Home→Places→Focus/Path acceptance and decide whether personalized freshness needs a separate source vector |
 | I5 | Graph/consequence foundations present; movement signal→judgment shadow path is locally evidenced; lightweight experience remains incomplete | Complete adaptation and shared consequences over I1–I3, preserving purpose, plural participation, and meaningful stop/wait behavior |
 | I6 | Inventories, guards, retained booking-evidence and assisted-expense contracts are recorded and locally validated; destructive cutovers remain incomplete | Run environment obligation audits, migrate actual retained readers, and remove only execution paths with no remaining consumer or obligation |
 
-**First execution batch after authorization:** complete I0's owner inventory and
-live-engine path matrix across practical preparation, changed conditions and
-authorized waiting. Propose the exact missing contracts, implement independently
-safe I1 continuity/signal repairs, and measure I2's current serving and evaluation
-paths. Hold M0 before new shared or watch persistence. Do not spend that batch
-rewriting canon, building a universal framework, or only expanding mock smoke
-tests; do not defer the live engine until content composition is finished.
+**Next connected work:** the retained-source and owner-private Plan Life
+delivery paths are now landed and locally tested; the next connected step is
+the semantic-representation transition that withdraws a retained-source row or
+an Outcome owner contract that makes shared audience/revocation semantics
+explicit.
+Home/Places completes value-bearing consumers and scope-correct continuations;
+Capture closes remaining useful-result/lifecycle/owner joins. Integration
+coordinates change delivery, bounded production preparation and practical
+reevaluation. Components and Plan prepares the D1 owner and exact command
+packet; history-specific CC-2 work uses the separate proposal. Do not restart
+I0's completed inventory or add another general framework. New persistence,
+paid/provider work, watches and activation retain their own approval gates.
+Use §2's register for responsibility and the lane plans for detailed sequences.
 
 ### Execution receipts (2026-09-05)
 
@@ -865,6 +931,46 @@ tests; do not defer the live engine until content composition is finished.
   depth, session, and asynchronous-production consumers. It records the
   remaining background-fan-out, late-completion, and signal-to-judgment gaps
   without introducing a second authority or an all-account event bus.
+- **I1 / Life downstream delivery bridge — implemented and locally tested:**
+  `travel-agent` adds an after-commit registration helper, an
+  identifier/revision-only `life_projection.changed` publisher, and a minute
+  repair worker over the existing Life outbox. Thirteen focused tests cover
+  payload redaction, commit handoff, consumer failure/defer behavior, retry
+  repair, and worker registration. This closes the outbox-to-event seam only;
+  no owner producer, current-authority projector, index population, Home/Places
+  consumer, or serving cutover is claimed.
+- **I1 / retained-source shadow projection — implemented and locally tested:**
+  `travel-agent` commit `77d4a8474` connects retained-source verification,
+  provider-archive attachment, and owner deletion to the Life outbox. A
+  current-authority reader and owner-revision-checked projector write or
+  withdraw private `life.v1` shadow rows without changing serving. The focused
+  Life/intake suite passes 114 tests; semantic candidate representation,
+  broader owner families, and indexed cutover remain open.
+- **I1 / retained-source semantic representation — implemented and locally
+  tested:** `travel-agent` commit `073d33b9d` connects Experience Graph anchor
+  confirmation and candidate retraction to the same owner transaction. A
+  confirmed candidate emits `source_represented`; a retracted candidate emits
+  `source_unrepresented`; the current-authority retained-source projector then
+  withdraws or restores the private `life.v1` shadow row by owner revision.
+  Follow-up commit `420176821` makes the projector honor those change kinds
+  explicitly, with stale-event protection and an explicit restore path. The
+  focused projector/bridge suite passes 24 tests; after applying the existing
+  `lifeoutbox01` migration locally, the PostgreSQL bridge/intake suite passes
+  17 tests. No fallback or serving cutover was added.
+- **I1 / source-owner lifecycle envelope — implemented and locally tested:**
+  `travel-agent` commit `a669541b2` adds the versioned, content-free
+  `source-owner-change.v1` payload, lifecycle vocabulary, retry identity,
+  owner revision and source/candidate references to Intake lifecycle events.
+  It preserves legacy top-level outbox fields while making downstream Life,
+  Home, Places and graph consumers explicit. The combined focused suite passes
+  42 tests; this remains a delivery contract, not a serving or activation
+  change.
+- **I1 / Occasion audience contract — implemented and locally tested:**
+  `travel-agent` commit `6d4365a83` adds deterministic hashing of the
+  canonical Occasion revision plus active-member role/visibility revisions,
+  and a before/after viewer union that includes departed viewers for
+  withdrawal. Five pure contract tests pass. No Occasion producer, reader,
+  projector, or owner-matrix promotion is claimed yet.
 - **Boundary preserved:** no API schema changed, no generated mobile types were
   regenerated, no Life internals were edited, and the pre-existing uncommitted
   Claude-design handoffs and concurrent Life work remain untouched.
@@ -1310,9 +1416,11 @@ extend this same truthful gate, not add a speculative route service or worker.
   reader and Home v2 projection. The test asserts the `places-root-runtime.v1`
   wrapper, nested v2 semantic identity, and workspace-feed join; it passes **1
   real-Postgres test**. The fixture's Save is proven independently through the
-  canonical Places owner and Home unit; the runtime semantic admission did not
-  admit that newly saved card. That is an honest I4 promotion gap, not a reason
-  to force a generic admission rule. Focus/Path recomposition, personalized
+  canonical Places owner and Home unit. **Corrected on the September 6
+  orchestration review:** the test does not assert card presence in the runtime,
+  and its default scope does not select the Saved collection. The earlier
+  attribution to semantic admission was unsupported; no new promotion rule
+  follows from this probe. Focus/Path recomposition, personalized
   freshness vectors, and native/device acceptance remain unclaimed.
 
 - **Cross-repository contract revalidation (2026-09-06):** workspace
@@ -1343,27 +1451,286 @@ extend this same truthful gate, not add a speculative route service or worker.
   at the owner/schema boundary, and D6 remains activation-gated per family.
   This narrows the next work without inventing a new intent or watch owner.
 
-### M1 follow-up review — 2026-09-06
+### M1 follow-up review — 2026-09-06, corrected baseline
 
-- **Evidence:** owner-backed Places, Home, and governed runtime envelopes are
-  all reachable against local Postgres; the concrete Save is visible through
-  its canonical Places owner and Home unit. The v2 runtime's semantic admission
-  does not yet include that newly saved card. Mobile consequence/Places state
-  coverage and backend consequence contracts remain green at their stated test
-  receipts.
-- **Product:** this is not evidence that the saved card should be promoted to
-  the semantic root. The runtime must earn a value-bearing admission reason;
-  “the owner exists” is not enough to create another feed or duplicate mature
-  Places work.
-- **Architecture:** keep the mature workspace as the owner of the saved
-  collection and keep v2 admission explicit. Do not add a client-side merge or
-  a generic `saved` semantic unit to make the runtime look complete.
-- **Economics/reliability:** the probe added no provider work and preserved the
-  bounded response path. The remaining gap is product admission and real
-  Focus/Path continuity, not latency infrastructure.
-- **Next batch:** decide one of two bounded outcomes: (a) name a genuine
-  value-bearing saved-place producer plus native treatment and exact return, or
-  (b) keep saved cards on the mature workspace path and close I4 with the
-  explicit non-promotion rationale. In either case, continue the real-data
-  Focus/Path/stale-source acceptance before enabling semantic Places or dark
-  Home kinds. No queue activation, Life migration, or Chat change is implied.
+- **Evidence:** the real-Postgres test proves Save-owner readback, the concrete
+  Home unit, and the Places runtime envelope. It does not prove saved-card
+  rendering in the governed runtime. `places/sections.py::_load_saved_items`
+  selects saved/trip/city/area scopes; the fixture never selects one. Its
+  absence therefore did not establish a semantic-admission defect.
+- **Next evidence:** use an explicit supported scope, trace producer output
+  before admission and assert the represented saved identity and return after
+  a change. Keep the result distinct from field/map/search/depth acceptance.
+- **Product/architecture:** do not invent a producer, client merge or generic
+  semantic kind to satisfy an incorrectly scoped test. Also do not close I4
+  with a non-promotion rationale derived from that test. Existing owner and
+  renderer boundaries remain; change them only on actual value/coverage evidence.
+- **Next execution:** follow §2 and §9 rather than repeating receipt-only runs.
+  The Source worker is implemented but inactive; live judgment and authorized
+  watches remain separate responsibilities. Current work needs no app/device
+  session, queue activation, production migration or Chat redesign.
+
+### CC-2/CC-5 Contribution/Capture receipt — 2026-09-06
+
+The Contribution and Capture lane delivered backend commits `a669541b2`,
+`fce385207`, and `780677110` on `codex/contribution-capture-cc2-cc5`. This is an accepted-contract repair, not
+an adoption of either September 6 decision proposal.
+
+- **Lifecycle/read boundary:** semantic admission, semantic completion, and
+  normalization now refuse late work after transient source expiry. Expiry
+  sweeps pending/uploaded/verified/deletion-pending custody, scrubs only the
+  selected source IDs, and dead-letters unfinished work before cleanup.
+  Semantic loading, anchor image reads, and pending-Chat source/image/text
+  reads fail closed on expired/revoked custody.
+- **Source-owner handoff:** Intake and the existing Life outbox now carry a
+  content-free `source-owner-change.v1` envelope with stable event/retry
+  identity, owner revision, private scope and purpose, source/causal refs,
+  affected consumers, and owner-partition ordering. The Life delivery bridge
+  validates and forwards this metadata only; Capture does not write Life rows.
+- **Causal repair:** verified/normalized/represented/unrepresented,
+  candidate-confirmed/retracted, deleted, and expired transitions preserve
+  distinct event keys; representation handoffs carry the candidate that
+  caused them as an opaque causal dependency. No source-ID-only dedupe or
+  synthetic owner was added.
+
+Evidence: **61 offline** lifecycle/handoff tests, a further **17 offline**
+pending-Chat read tests, and **9 PostgreSQL** focused tests passed, together
+with Ruff, compile, and diff checks. The broad-exception and backend size
+budget hooks remain over their pre-existing baselines and were explicitly
+skipped for this commit. The receiving interface is
+`backend/core/models/source_owner_event.py`; Life remains responsible for its
+projector/index and exact current-authority readback.
+
+Remaining CC work is intentionally unchanged: founder selection of the
+ordinary-Chat versus Ask-image history rule and any historical cleanup; the
+remaining CC-3 writer family; CC-4's full useful-first result composition;
+approved intention/social/expense owner commands; and CC-6 real transport,
+native, and generated-content evidence. Next package: finish the new-source
+copy/consumer expiry cases and exercise the source envelope through Life
+readback/correction without inventing a new owner or enabling either proposal.
+
+### CC-2/CC-5 follow-up receipt — custody-proof reads and aligned delivery — 2026-09-06
+
+The next focused package keeps the accepted source lifecycle fail-closed at
+the read and delivery boundaries. Canonical pending-Chat source/image/text
+reads, retained-source Life reads, and confirmed-anchor source status now
+require the existing owner-bound custody receipt in addition to custody status
+and transient-deadline predicates. Normalization and semantic workers reject
+invalid source receipts before prompting or producing derivatives; URL and
+transcript materializers re-check the locked parent receipt before binding a
+new child. This does not change the unadopted ordinary-Chat history rule and
+does not add a new copy or cleanup policy.
+
+The Life delivery bridge now cross-checks a nested `source-owner-change.v1`
+envelope against its legacy outbox fields (event key, owner id, owner revision,
+lifecycle, and viewer scope) before forwarding it. A mismatched or malformed
+content-free handoff is rejected rather than acknowledged; source bytes and
+prose remain excluded. Life still owns its projector/index and exact readback.
+
+Evidence: **95 offline** focused lifecycle/read/handoff tests and **9
+PostgreSQL** retention/attempt tests passed, with Ruff, compile, and diff
+checks clean. The package is committed on
+`codex/contribution-capture-cc2-cc5` as the next bounded source-read/delivery
+change (`travel-agent` commit `0aeb8611b`). No API schema, mobile code,
+Chat root, Life rows, or proposal policy changed. The next package remains the
+accepted new-source copy/consumer expiry evidence and Life readback/correction
+journey; history-specific Chat-image treatment, intention/social/expense
+commands, and native/real-transport evidence remain separately gated.
+
+### CC-3 writer-conformance receipt — itinerary edit signals — 2026-09-06
+
+The accepted itinerary-edit writer now marks its factual swap/add/remove
+observations as reversible operational evidence: explicit
+`evidence_origin=operational_event`, `promotion_policy=derived_unconfirmed`,
+`authority=non_authoritative`, bounded confidence/importance, a 90-day expiry,
+and a source-operation subject key. Legacy edit-log and canonical committed
+Replace paths share the same policy while retaining their distinct source
+receipts and exact transition lineage. No Personal Memory prompt, authored
+preference, or group writer was changed.
+
+Evidence: `travel-agent` commit `fe87dc34f`; the focused edit-inference suite
+passes **23 offline tests**. Remaining writer families (Discover synthesis,
+engagement/reflection, accommodation/planning, and group synthesis) stay on
+their existing bounded paths and require their own owner/policy evidence; no
+universal memory audit was reopened.
+
+### CC-2/CC-5 follow-up receipt — owner readback redaction during cleanup lag — 2026-09-06
+
+The canonical `GET /intake/submissions/{id}` owner read now redacts
+`storage_ref`, `original_filename`, and raw `metadata` whenever a source is
+past its transient deadline, revoked, deleted, or fails its owner-bound custody
+receipt. It still returns content-free lifecycle metadata, so the receipt is
+accurate while cleanup is pending and cannot leak a stale byte address or
+inline source payload. This is a source-side read boundary only: it changes no
+retention policy, Chat history rule, Life row, API schema, or mobile surface.
+
+Evidence: `travel-agent` commit `444f2dfe9`; the PostgreSQL-gated negative case
+is in `tests/inbound/test_intake_v2_retention.py`. The focused lifecycle/
+handoff portfolio remains **95 offline tests** and the retention/attempt
+portfolio remains **9 PostgreSQL tests**, with Ruff, compile, format, and diff
+checks clean. The pre-existing broad-exception and size-budget baselines remain
+outside this bounded package and were skipped only for commit validation.
+
+The accepted cleanup-lag read seam is now closed. Next package: source/
+derivative copy-consumer expiry evidence and the source envelope through Life
+readback/correction; history-specific Chat-image treatment, remaining writer
+families, useful-first composition, intention/social/expense commands, and
+native/real-transport evidence remain separately gated.
+
+### CC-3 follow-up receipt — Atlas reflection writer conformance — 2026-09-06
+
+The Atlas-derived-signal reflection writer now emits explicit operational,
+non-authoritative provenance, a signal-confidence mapping, a 90-day expiry, and
+`subject_key=atlas_signal:{signal_id}`. A retry therefore reinforces the same
+derived signal, while separate signal IDs and later gestures remain distinct.
+Existing learning gates, signal pause, and Atlas back-link behavior are
+unchanged; this does not promote generated taste or alter Personal Memory
+prompts.
+
+Evidence: `travel-agent` commit `79702ee87`; **31 offline** Atlas/reflection
+tests passed, with Ruff, format, compile, and the owned-file safety hooks
+clean. The repository's vulture, sync-DB, surface-key, broad-exception, and
+size-budget hooks were skipped for this bounded commit due pre-existing
+ratchet/stash behavior; the sync-DB and surface-key scans reported no new
+violations. Discover, memory-engagement, accommodation/planning, and group
+synthesis writers remain separately gated.
+
+### CC-2/CC-5 follow-up receipt — submission-level Chat source admission — 2026-09-06
+
+`validate_admitted_source_refs` now treats an `intake_submission` reference as
+usable only when its owner-scoped submission envelope is active **and** at
+least one verified child source object still passes the immutable custody
+receipt. A stale/tampered submission row therefore cannot pass admission and
+reach the Chat prompt while its materializer has no safe evidence. Direct
+`intake_source_object` references keep their existing object-level receipt
+check; separate gestures remain separate identities.
+
+Evidence: `travel-agent` commit `a7cbec6cf`; **19 offline** pending-Chat tests
+pass, including the all-child-receipts-invalid negative case. The connected
+focused lifecycle/read/handoff portfolio is **108 offline tests**; Ruff,
+format, compile, and diff checks are clean. No API/schema, Chat-root, Life
+projector, retention-policy, or history-migration change was made. The
+pre-existing vulture, sync-DB, surface-key, broad-exception, and size-budget
+ratchets were skipped only for commit validation; the skipped checks reported
+no new sync-DB or surface-key findings.
+
+This closes the remaining accepted submission-level prompt/read rejection
+seam. Life still receives only the content-free source-owner event and owns
+its index/readback; Home/Places remain downstream consumers of canonical owner
+revisions. Next package: source/derivative copy-consumer expiry evidence that
+does not depend on the unadopted Chat-history proposal, then a joint Life
+readback/correction rehearsal. History-specific image treatment, remaining
+writer families, useful-first composition, intention/social/expense commands,
+and native/real-transport evidence remain separately gated.
+
+### CC-5 follow-up receipt — Life handoff causality evidence — 2026-09-06
+
+The existing source→Life registration path now has an explicit conformance
+case for a representation withdrawal. The test asserts that the outbox
+payload retains the `source-owner-change.v1` lifecycle, event/retry identity,
+owner revision, private viewer scope, and the candidate that caused the
+withdrawal as an opaque causal dependency. It exercises the source-side
+handoff only; Capture does not write Life rows and no new projector or owner
+command was introduced.
+
+Evidence: `travel-agent` commit `9802c047c`; **7 offline** source-owner
+propagation/envelope tests pass. No API/schema or mobile change was made. The
+next package remains source/derivative copy-consumer expiry evidence that is
+independent of the unadopted Chat-history proposal, then a joint Life
+readback/correction rehearsal when the receiving lane is ready.
+
+### CC-2/CC-5 follow-up receipt — whole-submission admission positive control — 2026-09-06
+
+Pending-Chat admission now has paired conformance evidence: a whole-submission
+source ref fails closed when every child source receipt is invalid, while the
+same path remains accepted when one owner-scoped child is verified and its
+immutable custody receipt matches. This is a regression guard for the accepted
+source/ref boundary, not a new source store or dedupe rule.
+
+Evidence: `travel-agent` commit `e33268064`; **20 offline** pending-Chat tests
+pass. No API/schema, Chat-root, Life projector/index, retention/history policy,
+or owner command changed. The remaining accepted lane work is source/derivative
+copy-consumer expiry evidence independent of the unadopted Chat-history
+proposal, then a joint Life readback/correction rehearsal when the receiving
+lane is ready; native, real-transport, and content-usefulness evidence remain
+separate CC-6 gates.
+
+### CC-4 follow-up receipt — useful-first capture display evidence — 2026-09-06
+
+The Share Capture surface has direct regression coverage for the accepted
+value-first ordering: source-extracted observations render as “Already useful”
+before the candidate “Keep this interpretation” control. The test preserves
+the existing compact receipt and optional Chat continuation; it adds no result
+schema, Chat-root behavior, or mandatory review step.
+
+Evidence: `travel-app` commit `d7d1a3271`; **11 offline Jest** tests pass for the
+Share Capture screen. This is native-adjacent evidence, not OS/real-transport
+or generated-content acceptance. The remaining CC-4 journey and CC-6 content,
+native, and transport evidence stay separate; source/derivative expiry and
+Life readback/correction remain the next accepted cross-root checks.
+
+### CC-2 follow-up receipt — processing-copy expiry evidence — 2026-09-06
+
+The expiry path now has PostgreSQL coverage for both normalization and semantic
+processing copies. Crossing an ephemeral source deadline clears each selected
+run's content-bearing `output`, while content-free lifecycle/provenance fields
+remain available and unfinished work is dead-lettered before cleanup. This is
+independent of the unadopted Chat-history/image policy and does not purge
+conversation history or Life-owned derived records.
+
+Evidence: `travel-agent` commit `49ec11e21`; the targeted case passes and the
+connected retention/attempt portfolio remains **9 PostgreSQL tests**. No
+API/schema, mobile, Chat-root, Life projector/index, or owner command changed.
+The remaining history-specific image treatment is decision-blocked; native,
+real-transport, and generated-content acceptance remain separate CC-6 gates.
+
+### Contribution/Capture current boundary — September 6
+
+The accepted source-side boundary is now locally evidenced for custody-proof
+reads and prompt admission, distinct retry identity, transient expiry and
+processing-copy cleanup, content-free source-owner events, causal Life handoff
+metadata, and useful-first Share Capture ordering. Capture still owns source
+emission; Life owns its projector/index and canonical readback. No Source is
+promoted here to intention, social membership, expense debt, or a synthetic
+Plan.
+
+The next connected action is the receiving-lane Life readback/correction
+rehearsal over the existing envelope. Ordinary-Chat versus Ask-image history
+semantics remain proposal-gated; remaining CC-3 writers require family-specific
+authority receipts; full CC-4 journeys require real content/native evidence;
+and CC-5 intention/social/expense commands require their existing owner
+decisions. The September 6 decision documents remain proposals and are not
+runtime dependencies for this source boundary.
+
+### I3 / CC-3 follow-up receipt — Discover writer conformance — September 6
+
+The Discover-session synthesis writer now makes its already-derived behavior
+explicitly bounded: emitted observations carry fixed 0.4 confidence, a
+90-day expiry, capped importance, inferred/non-authoritative provenance, and a
+hashed subject key only when one source session owns the synthesis. Multiple
+model outputs remain distinct by category/ordinal; mixed or missing session
+identity receives no invented key. This preserves separate behavioral windows
+and keeps explicit confirmation as the promotion boundary.
+
+Evidence: `travel-agent` commit `8b6bab422`; 16 focused Discover tests and 56
+combined Discover/edit-inference/Atlas/engagement tests pass, with Ruff,
+format, compile, and owned-file safety checks clean. The change is writer-local:
+no Chat redesign, source-custody/history policy, Life row, owner command, or
+Personal Memory promotion was introduced. The remaining CC-3 families and the
+CC-5 Life readback/correction rehearsal stay in their existing gates.
+
+### I1 / Life owner-private Plan shadow delivery — September 6
+
+The next Life owner family is now wired without broadening product grammar:
+canonical Plan create, owner update, and lifecycle transitions enqueue
+owner-private Life events; the Plan projector re-reads the viewer's current
+graph projection and writes the existing shadow index with integer revision
+CAS, withdrawal, stale replay protection, and explicit restoration. The owner
+matrix now declares Plan delta delivery and audience rechecks while retaining
+`SHADOW_ONLY` availability.
+
+Evidence: `travel-agent` commits `7b6e97d7f` and `f12dca534`; the combined
+focused Life/Plan/Occasion suite passes **60 tests**. The package does not add
+loose intention, shared arrangement material, a Plan-specific queue, serving
+cutover, or Outcome delivery. Outcome remains gated on an explicit shared
+audience/revocation contract.
