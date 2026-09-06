@@ -281,6 +281,15 @@ writer must reuse these helpers.
    helper inside its owner transaction. Keep serving disabled until these
    proofs are complete.
 
+The first withdrawal race hardening is now landed in `travel-agent` commit
+`1faa8a49c`: Outcome withdrawal calls carry the exact owner revision and prior
+audience dependency token, and the index writer applies both as optional CAS
+predicates. The focused Outcome/index suite passes **25 tests**, including a
+PostgreSQL proof that an old audience token cannot revoke a later restoration.
+This does not solve the separate first-insert-after-deletion interleaving; that
+case requires an owner-side publication fence and remains a blocking race
+decision before historical fan-out or serving cutover.
+
 7. Complete for direct Occasion join/leave and account erasure: encounter and
    Commitment audience-repair events now cover direct membership plus account
    deletion (`fd66f9f1f`, `329060a88`, `afb13c6fa`). No current reconciliation
