@@ -796,7 +796,7 @@ document's creation.
 | --- | --- | --- |
 | I0 | Implemented/integrated at inventory level; live-engine path matrix and 2026-09-06 decision-alignment audit recorded | Keep D1 object-less intent ownership and family-specific D6 watch contracts gated; consume settled D2–D5 policy through I1–I3 adapters |
 | I1 | Integrated for request-clock, consequence fan-out, dependency matrix, capture return, authority-safe owner-read coalescing, and Places continuity | Trace remaining owner identity plus condition signals; agree Life handles/change events and bounded reevaluation inputs |
-| I2 | Owner-read readiness, fast root serving, single assembly seam, bounded reads, late-work limits, content-free serving measurement, deterministic trigger identity, and durable workflow handoff are implemented; worker owner is now bound but activation remains gated | Use the measurement to close signal-to-judgment budgets; validate worker lease/readback behavior before registering any production job |
+| I2 | Owner-read readiness, fast root serving, single assembly seam, bounded reads, late-work limits, content-free serving measurement, deterministic trigger identity, durable workflow handoff, and a dark lease/readback adapter are implemented; worker activation remains gated | Bind one approved canonical executor and deployment envelope; only then consider registering a dark Arq job and measuring signal-to-judgment budgets |
 | I3 | Capture/custody and format boundary audited; supported/rejected cases are locally tested; writer-authority inventory is recorded; owner decisions and formats remain partial | Complete native custody evidence, resolve inferred-writer authority, draft precise owner ADR, then implement approved intent/social commands |
 | I4 | Renderer promotion boundary, result-set identity, source-backed revision, native returns, and stale-source treatment are implemented locally; semantic promotion remains dark | Complete real-data Home→Places→Focus/Path acceptance and decide whether personalized freshness needs a separate source vector |
 | I5 | Graph/consequence foundations present; movement signal→judgment shadow path is locally evidenced; lightweight experience remains incomplete | Complete adaptation and shared consequences over I1–I3, preserving purpose, plural participation, and meaningful stop/wait behavior |
@@ -1219,6 +1219,18 @@ extend this same truthful gate, not add a speculative route service or worker.
   source-workflow and generic workflow suites pass (20 tests); no Arq function is registered, no
   scheduler is added, and no provider/model call is possible through this
   handoff alone.
+
+- **I2 / worker lease and readback boundary — implemented and locally tested:**
+  `travel-agent` commit `b4a2b4f91` adds a dark worker adapter that claims the
+  durable Source handoff, parses its strict serialized contract, rejects stale
+  work before owner/provider execution, rechecks expiry after execution, and
+  publishes a generic completion receipt only after an injected canonical
+  executor proves readback for produced or reused output. Invalid work,
+  expiry, provider failure, readback failure, and lease loss are distinct
+  content-free outcomes; generated prose and source claims never enter the
+  workflow result. The focused worker/telemetry suites pass (21 tests). The
+  adapter is not registered with Arq, is not called by ordinary root GETs, and
+  has no provider implementation of its own.
 
 - **I0 / decision alignment — documented:** the 2026-09-06 audit above
   reconciles the queue against accepted Contribution/Use Grant, four-root,

@@ -101,8 +101,14 @@ The work-item/trigger contract now includes deterministic identity construction
 (`travel-agent` commit `1ccd27a02`); equivalent requests deduplicate without
 including source text or generated prose. The durable handoff now reuses the
 existing `agent_workflows` lease/idempotency fence (`travel-agent` commit
-`d0f3b395b`), including a current-clock gate for the future worker. The next
-package is worker lease/readback behavior and content-free outcome telemetry.
-Only after that should an Arq job function be registered. The current roadmap
-therefore remains partial: no queue consumer, scheduler, deployment flag, or
-production cohort is activated by this document.
+`d0f3b395b`), including a current-clock gate for the future worker. A dark
+worker adapter is now implemented and locally tested (`travel-agent` commit
+`b4a2b4f91`): it claims through that fence, rejects stale work before and after
+execution, requires canonical readback for produced or reused output, and
+records only content-free outcomes. It remains unregistered and cannot be
+reached from ordinary Home/Places GETs. The next package is the approved
+canonical executor and deployment envelope, including lease duration/renewal,
+retry budget, and a controlled cohort. Only after that should an Arq job
+function be registered. The current roadmap therefore remains partial: no
+queue consumer, scheduler, deployment flag, or production cohort is activated
+by this document.
