@@ -218,10 +218,12 @@ shared arrangement material, or a serving cutover.
    restoration without enabling serving cutover. The projector is registered
    in the canonical event-subscriber bundle but remains shadow-only.
 3. Keep Outcome deferred until shared audience/revocation semantics are
-   explicit. The next package must update the owner matrix and add
-   owner-specific authority/audience tests without treating Plan as proof that
-   social visibility is solved. Do not mark Life complete or cut over readers
-   after the first adapters.
+   explicit. The review boundary is the [Outcome shared-audience and
+   revocation proposal](life-outcome-shared-audience-decision-2026-09-06.md);
+   the next package must update the owner matrix and add owner-specific
+   authority/audience tests without treating Plan as proof that social
+   visibility is solved. Do not mark Life complete or cut over readers after
+   the first adapters.
 
 The canonical roadmap and execution status remain the forward register; this
 handoff is the package receipt and cross-lane interface, not a competing plan.
