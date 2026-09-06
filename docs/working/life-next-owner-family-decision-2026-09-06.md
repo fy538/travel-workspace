@@ -21,6 +21,13 @@ projector re-reads current authority and proves integer-revision CAS,
 withdrawal, stale replay, and explicit restoration. The focused combined
 Life/Plan/Occasion suite passes 60 tests. Serving remains gated.
 
+The first Outcome contract seam is now implemented as a pure audience resolver
+in `travel-agent` commit `134bb021b`. It distinguishes owner-private Outcomes,
+Occasion-scoped encounter Outcomes, and participant-scoped Commitment Outcomes;
+it provides deterministic audience revisions and before/after viewer unions.
+The expanded focused suite passes 68 tests. This package deliberately does not
+publish Outcome events, change the Together reader, or enable Life serving.
+
 ## Recommendation
 
 Implement **existing owner-private Plans** as the next Life shadow owner

@@ -220,8 +220,10 @@ shared arrangement material, or a serving cutover.
 3. Keep Outcome deferred until shared audience/revocation semantics are
    explicit. The review boundary is the [Outcome shared-audience and
    revocation proposal](life-outcome-shared-audience-decision-2026-09-06.md);
-   the next package must update the owner matrix and add owner-specific
-   authority/audience tests without treating Plan as proof that social
+   the pure audience resolver and 68-test fixture package now land in
+   `travel-agent` commit `134bb021b`. The next package must still add the
+   owner-specific event envelope, membership/erasure fan-out tests, and a
+   shadow producer without treating the resolver as proof that social
    visibility is solved. Do not mark Life complete or cut over readers after
    the first adapters.
 

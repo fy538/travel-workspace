@@ -808,6 +808,8 @@ The combined focused Life/Plan/Occasion evidence now passes 60 tests, including
 PostgreSQL producer/projector proofs and retained-source worker repair.
 
 **Next checkpoint:** define the Outcome shared-audience/revocation contract
-before adding an Outcome producer. Keep serving cutover and unsupported owners
-gated until whole-corpus coverage, repair, authorization, and destination
-evidence are complete.
+before adding an Outcome producer. The pure resolver and audience-revision
+fixture seam now land in `travel-agent` commit `134bb021b`; event fan-out,
+erasure propagation, shadow projection, and owner-matrix evidence remain.
+Keep serving cutover and unsupported owners gated until whole-corpus coverage,
+repair, authorization, and destination evidence are complete.
