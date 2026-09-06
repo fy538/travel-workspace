@@ -253,8 +253,9 @@ writer must reuse these helpers.
    for member departure, stale replay, withdrawal, role transfer, and explicit
    restoration without enabling serving cutover. The projector is registered
    in the canonical event-subscriber bundle but remains shadow-only.
-3. Keep Outcome shadow-only while cross-viewer comparison and race semantics
-   are broadened. The review boundary is the [Outcome shared-audience and
+3. Keep Outcome shadow-only while the verified integration package is brought
+   onto the active checkout and full-corpus evidence is gathered. The review
+   boundary is the [Outcome shared-audience and
    revocation proposal](life-outcome-shared-audience-decision-2026-09-06.md).
    The producer/projector, two-token CAS, direct membership repair, account
    erasure repair, and six-test PostgreSQL rehearsal are landed in
@@ -266,7 +267,9 @@ writer must reuse these helpers.
 4. Complete: the first Outcome shadow producer/projector now supplies the
    resolver's `audience_revision` as the index `dependency_fingerprint`, reads
    both current tokens, and proves the Commitment/Occasion boundary in pure
-   tests (`ba9463c2a`). Keep `supports_delta_delivery` false.
+   tests (`ba9463c2a`). The owner matrix now records the journal/projector
+   capability in the verified integration package, while all current families
+   remain shadow-only.
 5. Complete the pure cross-viewer comparison seam in `travel-agent` commit
    `7b3995c0d`. `compare_life_index_viewers` runs the existing bounded
    canonical-vs-index comparison for an explicit viewer cohort, treats an
@@ -275,20 +278,23 @@ writer must reuse these helpers.
    bucket. This remains a deterministic test/worker seam: it does not emit
    metrics, alter serving, or claim payload/grant parity beyond the existing
    typed projector contracts.
-6. Next safe Outcome checkpoint: add broader PostgreSQL stale-replay,
-   withdrawal, and restore race proofs against this cohort contract. If a
-   future reconciler mutates membership, it must call the same audience-repair
-   helper inside its owner transaction. Keep serving disabled until these
-   proofs are complete.
+6. Complete in the verified integration worktree: broader PostgreSQL
+   stale-replay, withdrawal, restoration, first-insert, owner-fence, and lease
+   acknowledgement proofs pass. The next safe checkpoint is to land that
+   package on the active backend branch, then extend comparison to typed
+   payload/grant/dependency parity. If a future reconciler mutates membership,
+   it must call the same audience-repair helper inside its owner transaction.
+   Keep serving disabled until full-corpus evidence is complete.
 
 The first withdrawal race hardening is now landed in `travel-agent` commit
 `1faa8a49c`: Outcome withdrawal calls carry the exact owner revision and prior
 audience dependency token, and the index writer applies both as optional CAS
 predicates. The focused Outcome/index suite passes **25 tests**, including a
 PostgreSQL proof that an old audience token cannot revoke a later restoration.
-This does not solve the separate first-insert-after-deletion interleaving; that
-case requires an owner-side publication fence and remains a blocking race
-decision before historical fan-out or serving cutover.
+The separate first-insert-after-deletion interleaving is solved by the
+owner-side publication fence in integration commit `0151942d6`; it remains a
+deployment/integration prerequisite for the active checkout, not a serving
+authorization.
 
 The delivery bridge also now requires at least one registered
 `life_projection.changed` consumer before acknowledging a durable event
