@@ -1287,6 +1287,12 @@ extend this same truthful gate, not add a speculative route service or worker.
   certify Home→Places→Focus/Path recomposition, native device behavior, or a
   provider-backed Source cohort. Those remain separate gates.
 
+- **Cross-repository contract revalidation (2026-09-06):** workspace
+  `make contract-check` passed against the current committed snapshot: 578
+  backend paths / 640 operations, 443 mobile-projected paths / 488 operations,
+  generated TypeScript parity, 10 canonical place-identity seams, and the
+  schema-bridge manifest. No generated API file was changed by this check.
+
 - **Repository-wide offline receipt (2026-09-06):** after the worker cleanup,
   authority rebaseline, deployment-envelope slice, canonical-executor /
   readback slice (`travel-agent` `467be5711`), clock-preserving context owner
