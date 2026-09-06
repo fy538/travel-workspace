@@ -50,18 +50,22 @@ real-transport, or generated-content acceptance.
 
 ## Receiving-lane status
 
-The parallel Life worktree (`codex/life-owner-delivery`, commit
-`b4d87161f`) contains the receiving-side shadow delivery implementation:
-current-authority rebuild, owner-revision CAS, withdrawal, explicit restore,
-stale/out-of-order handling, and viewer-scope validation. Its focused unit
-rehearsal is **39 passed** across the change-event, delivery, index, broadcast,
-and retained-source suites.
+The Life receiver is now landed on the shared backend branch. Outcome shadow
+delivery re-reads current graph authority, carries a separate audience
+dependency token, and uses the existing Life index CAS/withdrawal/restore
+writers. Direct Occasion membership changes and account erasure emit repair
+events for both Encounter and participant-scoped Commitment Outcomes. The
+implementation is in commits `ba9463c2a`, `fd66f9f1f`, `329060a88`,
+`afb13c6fa`, `6c42c92f7`, and `68e72d3f7`.
 
-That result is receiver evidence only. It does not yet prove a real
-Outcome-source mutation through the shared outbox, Postgres delivery worker,
-Life index readback, and correction in one environment. The Life lane owns
-that projector/index work; Capture must not write Life rows or merge the
-parallel branch implicitly.
+The joint source → outbox → Life shadow-index rehearsal now passes **6
+PostgreSQL tests** in
+`tests/life_projection/test_outcome_projector_postgres.py` and
+`tests/domains/experience_graph/test_outcome_life_producers_postgres.py`.
+It covers shared Encounter and Commitment readback, member departure
+withdrawal, stale replay non-resurrection, explicit rejoin restoration, owner
+erasure withdrawal, and surviving-audience repair. Life remains shadow-only;
+this does not authorize reader serving or cutover.
 
 ## Next connected checkpoint
 
@@ -77,9 +81,10 @@ Run one joint Life rehearsal for each Outcome family:
 5. Re-run the current revision only through an explicit owner-authorized
    restore path.
 
-Record the Postgres/worker evidence in the Life owner matrix before treating
-Outcome delivery as ready for serving or broad cutover. After that checkpoint,
-the next Capture package is CC-4's complete useful-first journey with real
-content and native evidence. History-specific Chat-image policy, remaining
-writer families, intention/social/expense owner commands, and release/transport
-evidence remain separately gated.
+The Postgres/worker evidence is now recorded in the Life handoff and roadmap.
+The next Capture package is CC-4's complete useful-first journey with real
+content and native evidence; the next Life hardening gate is broader
+cross-viewer/race comparison while keeping Outcome serving disabled.
+History-specific Chat-image policy, remaining writer families,
+intention/social/expense owner commands, and release/transport evidence remain
+separately gated.

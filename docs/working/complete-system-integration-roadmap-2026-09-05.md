@@ -1765,3 +1765,23 @@ CC-4's useful-first journey with real representative content/native evidence.
 History-specific Chat-image policy, remaining writer families,
 intention/social/expense commands, and production transport remain separately
 gated.
+
+### CC-5 follow-up receipt — Outcome Life rehearsal complete — September 6
+
+The Outcome receiving checkpoint is now exercised against the shared local
+PostgreSQL database. The landed Life shadow consumer and graph repair paths
+cover both canonical audience shapes: active Occasion members for Encounter
+Outcomes and active Commitment participants for Commitment Outcomes. The
+rehearsal verifies source mutation → Life outbox event → current-authority
+projector → indexed readback, then member departure withdrawal, stale replay
+non-resurrection, explicit rejoin restoration, owner erasure withdrawal, and
+surviving-audience repair.
+
+Evidence: `travel-agent` commits `ba9463c2a`, `fd66f9f1f`, `329060a88`,
+`afb13c6fa`, `6c42c92f7`, and `68e72d3f7`; **6 PostgreSQL tests passed** across
+`tests/life_projection/test_outcome_projector_postgres.py` and
+`tests/domains/experience_graph/test_outcome_life_producers_postgres.py`.
+This is shadow-index/readback evidence only. Outcome serving, reader cutover,
+and owner-matrix promotion remain disabled. The next Capture checkpoint is
+CC-4 real-content/native evidence; the next Life hardening checkpoint is
+broader cross-viewer/race comparison.
