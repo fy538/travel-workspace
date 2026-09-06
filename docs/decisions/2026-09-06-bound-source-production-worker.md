@@ -124,6 +124,18 @@ cohort is activated by this document. Before an Arq job can be registered, the
 product must bind the approved provider/owner factory to a controlled cohort
 with real cost/latency evidence.
 
+The worker now also emits a bounded production-measurement join: elapsed
+execution time, durable enqueue-to-start delay when available, owner-read
+count, provider invocation count, and a coarse cost class (`reuse`, `provider`,
+`none`, or `unknown`). Workflow id, attempt, user, surface, and background
+execution context are bound while the canonical executor runs, allowing these
+measurements to join the existing durable LLM accounting ledger. Dollar cost
+remains owned by that ledger; neither cost nor measurements are copied into a
+workflow receipt, generated expression, or source payload. The focused worker,
+canonical-executor, continuity, and telemetry receipt is 40 passed. This is
+evidence for the gate, not approval to register the job or expose a controlled
+cohort.
+
 The production/readback owner is already concrete: the existing
 `root_source_contributions` store and its `get_current_source_contribution` /
 `complete_source_contribution_attempt_with_production` gateways. The context

@@ -1264,6 +1264,20 @@ extend this same truthful gate, not add a speculative route service or worker.
   revalidated against the work item's represented clock before it enters
   continuity. The governed Opening loader remains separate.
 
+- **I2 / production measurement join — implemented and locally tested:** the
+  dark worker now emits bounded, content-free execution measurements alongside
+  its production outcome: elapsed execution time, durable enqueue-to-start
+  delay when the workflow exposes both timestamps, owner-read count, provider
+  invocation count, reuse/provider/none/unknown cost class, and the existing
+  attempt/outcome dimensions. The canonical executor supplies owner-read and
+  producer invocation counts without changing the semantic receipt. Dollar
+  cost remains owned by the existing durable LLM accounting ledger; the worker
+  binds workflow id, attempt, user, surface, and background execution context
+  while the executor runs so those records can be joined. These measurements
+  are production-only telemetry and never enter workflow result JSON or source
+  content. The worker, canonical-executor, continuity, and telemetry receipt is
+  **40 passed**; controlled registration is still gated on real cohort evidence.
+
 - **Repository-wide offline receipt (2026-09-06):** after the worker cleanup,
   authority rebaseline, deployment-envelope slice, canonical-executor /
   readback slice (`travel-agent` `467be5711`), clock-preserving context owner
