@@ -44,6 +44,7 @@ checkpoint.
 | R1/R2-D resumable population | `a6a0722fa` | Additive `life_projection_backfill_runs` migration (`lifebackfill02`), dry-run-by-default runner, explicit target version, durable checkpoint/lease, unresolved-work accounting, and safe restart. |
 | R1/R2-E catch-up and reverse reconciliation | `30f35c130` | Owner-to-index missing/stale repair and index-to-owner withdrawal readiness; incomplete reads never become deletion evidence. |
 | R1/R2-F typed comparison and coverage | `5e591bbfe` | Field-level typed comparison (authority, dependencies, refs, payload, destination, lifecycle) and explicit incremental/backfilled/reconciled/compared/unsupported/blocked coverage stages. |
+| Viewer-cohort shadow comparison | `1c18c0eb0` | Explicit per-viewer bucket parity, empty non-participant proof, and viewer-bucket leak detection layered onto the typed comparison. |
 | Operator worker boundary | `4f4519778` | Explicit queue entry point for one bounded backfill slice; no cron side effect or serving switch. |
 | Publication edge correction | `9508f9ddd` | Private Outcome audience tokens preserve subject/occasion context when the owner fence recomputes dependency authority. |
 | Enumeration edge correction | `f35144a5e` | Occasion keyset enumeration uses `DISTINCT` owner identities so multi-member Occasions cannot consume the historical work budget repeatedly. |
@@ -71,7 +72,7 @@ continues independently.
 Backend, using the repository virtual environment:
 
 ```text
-158 passed in 5.93s
+160 passed in 6.32s
   /Users/feihuyan/travel-workspace/travel-agent/.venv/bin/python -m pytest -q \
     tests/life_projection \
     tests/workers/test_life_projection_jobs.py \
