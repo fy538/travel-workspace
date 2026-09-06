@@ -31,9 +31,10 @@ canonical owner transaction
   -> existing revision-CAS index writer
 ```
 
-The implementation lives in `travel-agent` commit `b4d87161f`, based on the
-concurrent bridge and retained-source adapter commits `1bb03e1c7` and
-`77d4a8474`.
+The implementation lives across `travel-agent` commits `1bb03e1c7`,
+`77d4a8474`, `073d33b9d`, `420176821`, and `a669541b2`. The final two follow-up
+packages make semantic representation withdrawal/restore explicit and add the
+versioned content-free source-owner lifecycle envelope.
 
 ## What landed
 
@@ -147,19 +148,21 @@ Focused local evidence on the isolated Life lane:
   `except Exception` handler and passed the status-write guard after adding an
   explicit source-status predicate.
 
-No PostgreSQL integration run, producer transaction, production activation,
-reader cutover, or device test is claimed by this package.
+The local PostgreSQL database is now migrated through `lifeoutbox01`. The
+combined focused suite passes 42 tests, including 17 PostgreSQL-backed
+bridge/intake tests. These checks prove the local transaction/schema path only;
+no production activation, reader cutover, or device test is claimed.
 
 ## Next checkpoint
 
-1. Add a PostgreSQL transaction test proving retained-source mutation + Life
-   outbox row commit atomically, while Intake acknowledgement remains
-   independent.
-2. Run the existing worker against a fixture retained-source event and verify
+1. Run the existing worker against a fixture retained-source event and verify
    the exact shadow row, stale replay, withdrawal, and explicit restore
    transitions end to end.
-3. Agree and land the graph owner event contract for the next eligible family
-   (Plan/Occasion/Outcome), then add its owner-specific projector.
+2. Agree and land the graph owner event contract for the next eligible family
+   (Plan/Occasion/Outcome). Occasion is the leading candidate because it has
+   revision and audience evidence, but all membership/invitation/lifecycle
+   mutations must feed one viewer-scoped producer before implementation.
+3. Add that family's owner-specific projector and PostgreSQL transaction tests.
 4. Expand owner coverage one family at a time by updating the owner matrix and
    adding owner-specific authority/audience tests. Do not mark Life complete or
    cut over readers after the first adapter.
