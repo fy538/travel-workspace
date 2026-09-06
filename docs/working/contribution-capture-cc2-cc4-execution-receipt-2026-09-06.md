@@ -20,12 +20,13 @@ depends_on:
 
 ## Delivered source-side package
 
-Backend commit `70762af24` closes the accepted copy/consumer expiry seam in
-the Intake v2 normalizer. URL retrieval and audio transcription now re-check
-the owner submission's custody and transient deadline immediately before a
-derived source can be bound. The URL path also performs a preflight before
-returning an already-existing derivative, so a retry cannot reuse a child
-after the source's ephemeral window has ended. Explicit
+Backend commits `70762af24` and `7966cdb9f` close the accepted copy/consumer
+expiry seam in the Intake v2 normalizer. URL retrieval and audio
+transcription now re-check the owner submission's custody and transient
+deadline before reading source bytes or binding a derived source. The URL path
+also performs a preflight before returning an already-existing derivative, so
+a retry cannot reuse a child after the source's ephemeral window has ended.
+Explicit
 `source_and_derived` retention remains durable by contract; invalid custody,
 expired custody, and malformed clocks fail closed.
 
@@ -38,7 +39,7 @@ place as the second boundary after a provider call.
 - `tests/inbound/test_intake_v2_web_lineage.py`
 - `tests/inbound/test_intake_semantic_jobs.py`
 - `tests/inbound/test_intake_v2_retention.py`
-- Focused offline result: **15 passed, 3 deselected**.
+- Focused offline result: **15 passed, 3 deselected** after both commits.
 - Ruff, compile, and `git diff --check` passed for the owned files.
 
 The focused mobile useful-first path was rerun by explicit test path against
@@ -82,4 +83,3 @@ the next Capture package is CC-4's complete useful-first journey with real
 content and native evidence. History-specific Chat-image policy, remaining
 writer families, intention/social/expense owner commands, and release/transport
 evidence remain separately gated.
-

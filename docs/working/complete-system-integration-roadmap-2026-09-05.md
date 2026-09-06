@@ -1739,11 +1739,12 @@ audience/revocation contract.
 
 The Capture lane now closes the accepted derivative-consumer expiry seam:
 URL retrieval and audio transcription re-check verified custody and the
-transient source deadline before binding a child source, including the
-already-existing URL-child retry path. Explicit `source_and_derived`
-retention remains durable; invalid custody and malformed clocks fail closed.
+transient source deadline before reading source bytes or binding a child
+source, including the already-existing URL-child retry path. Explicit
+`source_and_derived` retention remains durable; invalid custody and malformed
+clocks fail closed.
 
-Evidence: `travel-agent` commit `70762af24`; 15 focused offline tests passed,
+Evidence: `travel-agent` commits `70762af24` and `7966cdb9f`; 15 focused offline tests passed,
 with Ruff, compile, and diff checks clean. The current Share Capture, audio,
 and resumability paths were rerun by explicit test path with 23 mobile tests
 passing. This is native-adjacent regression evidence, not real OS transport,
