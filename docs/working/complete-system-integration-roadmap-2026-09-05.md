@@ -1782,4 +1782,7 @@ Evidence: `travel-agent` commits `ba9463c2a`, `fd66f9f1f`, `329060a88`,
 This is shadow-index/readback evidence only. Outcome serving, reader cutover,
 and owner-matrix promotion remain disabled. The next Capture checkpoint is
 CC-4 real-content/native evidence; the next Life hardening checkpoint is
-broader cross-viewer/race comparison.
+broader cross-viewer/race comparison. Life withdrawal CAS hardening is now
+also landed in `travel-agent` commit `1faa8a49c`; the first-insert-after-
+deletion interleaving still requires an owner-side publication fence before
+historical fan-out or serving cutover.
