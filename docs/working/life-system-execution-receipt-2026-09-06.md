@@ -46,6 +46,7 @@ checkpoint.
 | R1/R2-F typed comparison and coverage | `5e591bbfe` | Field-level typed comparison (authority, dependencies, refs, payload, destination, lifecycle) and explicit incremental/backfilled/reconciled/compared/unsupported/blocked coverage stages. |
 | Operator worker boundary | `4f4519778` | Explicit queue entry point for one bounded backfill slice; no cron side effect or serving switch. |
 | Publication edge correction | `9508f9ddd` | Private Outcome audience tokens preserve subject/occasion context when the owner fence recomputes dependency authority. |
+| Enumeration edge correction | `f35144a5e` | Occasion keyset enumeration uses `DISTINCT` owner identities so multi-member Occasions cannot consume the historical work budget repeatedly. |
 
 The existing retained-source, Plan, Occasion, and Outcome projectors all reuse
 the same owner-fenced writer and return explicit `updated`/`withdrawn`/`stale`
