@@ -1038,6 +1038,13 @@ tests; do not defer the live engine until content composition is finished.
   →treatment→content-free telemetry for a late movement and explicit silence
   for safe/unknown movement. This is a bounded live-engine path, not a durable
   watch, scheduler, notification release, or Plan mutation.
+- **I5 / cross-family consequence rehearsal contracts — revalidated locally
+  (2026-09-06):** the release-rehearsal, family-adapter, and movement suites
+  pass **36 tests** together. They cover purpose-preserving movement judgment,
+  shared-plan repair, encounter confirmation, addressed-place handoff,
+  readback/repair gates, and fail-closed release evidence. This strengthens the
+  shadow and contract layer only; no real-account/device rehearsal, durable
+  watch, notification release, or consequence-family activation is claimed.
 - **I3 / writer-authority inventory — audited and decision-bound:**
   workspace document `i3-writer-authority-audit-2026-09-05.md` maps explicit
   Chat retention, Intake custody, catalog-edit inference, Discover behavioral
