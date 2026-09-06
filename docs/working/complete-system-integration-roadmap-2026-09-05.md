@@ -1216,7 +1216,7 @@ extend this same truthful gate, not add a speculative route service or worker.
   existing domain-neutral `agent_workflows` lease/idempotency fence, with a
   dedicated workflow type, immutable payload projection, due-row listing, lease
   delegation, and a current-clock gate for the future worker. The focused
-  source-workflow and generic workflow suites pass (27 tests); no Arq function is registered, no
+  source-workflow and generic workflow suites pass (20 tests); no Arq function is registered, no
   scheduler is added, and no provider/model call is possible through this
   handoff alone.
 
