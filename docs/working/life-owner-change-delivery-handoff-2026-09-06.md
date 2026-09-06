@@ -189,9 +189,11 @@ The shared index CAS readback and the Postgres stale-replay/withdrawal proof
 are committed as `38e843e00`. Owner updates now compare against the prior
 derived-row revision, while explicit restoration remains separate from ordinary
 upsert. The retained-source adapter uses the same readback seam, so this fix
-does not make Occasion a special-case writer.
+does not make Occasion a special-case writer. The follow-up Postgres proof for
+role transfer, departure, and explicit re-acceptance restoration is committed
+as `fb125bdc0`.
 
-The final focused Life/Occasion regression run passes 52 tests, including the
+The final focused Life/Occasion regression run passes 53 tests, including the
 Postgres producer and projector proofs. No full-repository or device test is
 implied by that count.
 
@@ -200,11 +202,10 @@ implied by that count.
 1. Run the existing worker against a fixture retained-source event and verify
    the exact shadow row, stale replay, withdrawal, and explicit restore
    transitions end to end.
-2. Exercise the landed Occasion projector against Postgres current-authority
-   reads for role transfer and explicit restoration, without enabling serving
-   cutover. Member departure, stale replay, and withdrawal are now covered by
-   the local Postgres proof. The projector is registered in the canonical
-   event-subscriber bundle but remains shadow-only.
+2. Complete the landed Occasion projector's Postgres current-authority proof
+   for member departure, stale replay, withdrawal, role transfer, and explicit
+   restoration without enabling serving cutover. The projector is registered
+   in the canonical event-subscriber bundle but remains shadow-only.
 3. Expand owner coverage one family at a time by updating the owner matrix and
    adding owner-specific authority/audience tests. Do not mark Life complete or
    cut over readers after the first adapter.
