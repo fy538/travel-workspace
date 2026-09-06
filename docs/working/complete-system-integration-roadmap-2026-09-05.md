@@ -1289,8 +1289,9 @@ extend this same truthful gate, not add a speculative route service or worker.
   baseline warnings; no new failure was introduced. Native/device and live
   Postgres evidence remain intentionally out of scope for this checkpoint. The
   focused root-projection receipt is **330 passed**; adding the Places
-  context-clock suite yields **350 passed** across the combined owner-bound
-  check. The worker / continuity / telemetry wiring receipt is 40 passed.
+  context-clock suite yields **351 passed** across the combined owner-bound
+  check. The worker / continuity / telemetry wiring receipt is 41 passed,
+  including workflow-context restoration and queue-delay coverage.
 
 - **I0 / decision alignment — documented:** the 2026-09-06 audit above
   reconciles the queue against accepted Contribution/Use Grant, four-root,
