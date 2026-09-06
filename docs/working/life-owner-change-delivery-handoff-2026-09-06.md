@@ -185,15 +185,22 @@ departure withdrawal in pure tests; the remaining Postgres projector exercise
 is now smoke-verified against a real Occasion and `life_corpus_entries`, but
 remains a checkpoint, not a serving-read approval.
 
+The shared index CAS readback and the Postgres stale-replay/withdrawal proof
+are committed as `38e843e00`. Owner updates now compare against the prior
+derived-row revision, while explicit restoration remains separate from ordinary
+upsert. The retained-source adapter uses the same readback seam, so this fix
+does not make Occasion a special-case writer.
+
 ## Next checkpoint
 
 1. Run the existing worker against a fixture retained-source event and verify
    the exact shadow row, stale replay, withdrawal, and explicit restore
    transitions end to end.
 2. Exercise the landed Occasion projector against Postgres current-authority
-   reads: member departure, role transfer, stale replay, withdrawal, and
-   restoration, without enabling serving cutover. The projector is registered
-   in the canonical event-subscriber bundle but remains shadow-only.
+   reads for role transfer and explicit restoration, without enabling serving
+   cutover. Member departure, stale replay, and withdrawal are now covered by
+   the local Postgres proof. The projector is registered in the canonical
+   event-subscriber bundle but remains shadow-only.
 4. Expand owner coverage one family at a time by updating the owner matrix and
    adding owner-specific authority/audience tests. Do not mark Life complete or
    cut over readers after the first adapter.
