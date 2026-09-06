@@ -777,7 +777,7 @@ document's creation.
 | --- | --- | --- |
 | I0 | Implemented/integrated at inventory level; live-engine path matrix recorded; activation decisions remain gated | Resolve the named intent/material, shared-change, and watch-owner decisions before adding durable watches or a second owner |
 | I1 | Integrated for request-clock, consequence fan-out, dependency matrix, capture return, authority-safe owner-read coalescing, and Places continuity | Trace remaining owner identity plus condition signals; agree Life handles/change events and bounded reevaluation inputs |
-| I2 | Owner-read readiness, fast root serving, single assembly seam, bounded reads, and late-work limits are implemented; production worker decision remains open | Measure serving and signal-to-judgment paths; separate fast practical assessment, authorized reevaluation, and optional production |
+| I2 | Owner-read readiness, fast root serving, single assembly seam, bounded reads, and late-work limits are implemented; worker owner is now bound but activation remains gated | Measure serving and signal-to-judgment paths; add the content-free trigger/work-item contract before registering any production job |
 | I3 | Capture/custody and format boundary audited; supported/rejected cases are locally tested; writer-authority inventory is recorded; owner decisions and formats remain partial | Complete native custody evidence, resolve inferred-writer authority, draft precise owner ADR, then implement approved intent/social commands |
 | I4 | Renderer promotion boundary, result-set identity, source-backed revision, native returns, and stale-source treatment are implemented locally; semantic promotion remains dark | Complete real-data Home→Places→Focus/Path acceptance and decide whether personalized freshness needs a separate source vector |
 | I5 | Graph/consequence foundations present; movement signal→judgment shadow path is locally evidenced; lightweight experience remains incomplete | Complete adaptation and shared consequences over I1–I3, preserving purpose, plural participation, and meaningful stop/wait behavior |
@@ -1147,3 +1147,13 @@ extend this same truthful gate, not add a speculative route service or worker.
   or persistence layer. The focused root-navigation suite passes (14 tests),
   and TypeScript passes. This remains ephemeral navigation continuity, not
   durable memory or a shell-promotion claim.
+
+- **I2 / bounded production owner — decision accepted:** workspace decision
+  `docs/decisions/2026-09-06-bound-source-production-worker.md` names the
+  existing Arq `WorkerSettings` process as the future execution owner for
+  optional Source contribution production. It explicitly keeps GETs, app
+  launch, focus, watches, and generic background ticks out of the trigger
+  path; requires a versioned content-free work item, a named signal/explicit
+  warm trigger, durable deduplication, lease-first execution, and content-free
+  telemetry. No queue, scheduler, worker function, or production flag was
+  added or activated by the decision.
