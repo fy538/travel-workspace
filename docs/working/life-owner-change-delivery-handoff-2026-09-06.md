@@ -39,7 +39,8 @@ The pure Occasion audience contract is now landed in `travel-agent` commit
 `6d4365a83`, and the canonical Occasion producer seam is landed in
 `travel-agent` commit `8558d7110`, with direct account-erasure handling in
 `a3b0edc84` and `73baf2be2`. The producer still does not authorize an
-Occasion projector or a Life serving cutover.
+Occasion serving cutover. The shadow-only Occasion projector and audience
+revision adapter are landed in `travel-agent` commit `72950377b`.
 
 ## What landed
 
@@ -172,8 +173,14 @@ PostgreSQL tests now cover membership fan-out and account-erasure handoff; the
 local producer suite passes 2/2. The producer package was committed as
 `8558d7110`, account-erasure handling as `a3b0edc84` and `73baf2be2`, and the
 PostgreSQL proof as `cf2988abd`; focused format/lint checks pass. These numbers
-prove the transaction wiring and pure contract only; no projector, serving
-read, or production activation is claimed.
+prove the transaction wiring and pure contract only; no serving read or
+production activation is claimed.
+
+The shadow-only projector and audience-revision adapter are committed as
+`72950377b`; three projector tests and the subscriber-wiring suite pass. This
+package validates current-authority re-read, exact revision matching, and
+departure withdrawal in pure tests; the remaining Postgres projector exercise
+is still a checkpoint, not a serving-read approval.
 
 ## Next checkpoint
 
@@ -183,9 +190,10 @@ read, or production activation is claimed.
 2. Extend PostgreSQL transaction coverage to lifecycle, organizer transfer,
    reconciliation, and handoff acceptance (membership fan-out and account
    erasure are now covered).
-3. Add the Occasion owner-specific projector and current-authority reader;
-   exercise member departure, role transfer, stale replay, withdrawal, and
-   restoration without enabling serving cutover.
+3. Exercise the landed Occasion projector against Postgres current-authority
+   reads: member departure, role transfer, stale replay, withdrawal, and
+   restoration, without enabling serving cutover. The projector is registered
+   in the canonical event-subscriber bundle but remains shadow-only.
 4. Expand owner coverage one family at a time by updating the owner matrix and
    adding owner-specific authority/audience tests. Do not mark Life complete or
    cut over readers after the first adapter.
