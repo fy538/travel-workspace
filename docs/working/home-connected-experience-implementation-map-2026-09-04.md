@@ -821,6 +821,8 @@ then-current `main` checkouts; they are intentionally not merged or pushed:
 | A1/B2 renderer receiving | Travel App `6e29dd1cd` + `59cafa451` (`feat(home): use user-facing continuation labels`; `refactor(home): let instrument value lead`) | Composition payloads render without the internal semantic-kind stamp; instruments lead with supplied fallback content. The actual `HomeRootV2Screen` smoke test checks supplied text and a destination callback. Labels are now user-facing. | This does not verify actual owner supply or router execution. The fresh pass found label/resolver inconsistencies and omitted read/composition actions; §8.8 corrects them. Native acceptance remains deferred; no new kind was promoted. |
 | A1 compiler substance | Travel Agent `6ae314440` (`test(home): preserve delivered substance and destination`) | A synthetic candidate retains composition title/body and its destination object through selection/compilation. Focused backend suite at that checkpoint: 27 passed. | This test bypasses producing adapters, canonical owner rereads and common value judgment. Its `opening` reference does not establish an exact Places entity route. It is compiler preservation evidence, not a completed owner-backed journey. |
 | B1 addressed place receiving | Travel App `9d57d203e` (`test(home): preserve addressed place handoff routing`) | A destination containing venue and handoff references resolves to that venue with a bounded Home return token. Navigation suite: 23 passed. | The fixture supplies references, not private note text: it does not prove full source custody, original-note arrival or subsequent Ask continuity. Integration/Entity/Capture dependencies remain. |
+| Package 1 value receiving | Travel App `0fbd09b9f`; Travel Agent `f3bdd939c` | Read/composition/direct-state/receipt units now retain supplied actions; link payloads prefer their semantic target over an incidental represented ref. Existing experience cards carry confirmed start time, duration and price facts into the existing bounded relation. | Mobile Jest/typecheck could not run because the isolated worktree has no dependencies and the disk filled during a temporary install attempt; backend pytest could not import SQLAlchemy. Python compilation passed. Backend commit hooks passed all applicable checks; the pre-existing size-budget gate was skipped. These are source-level fixes, not native or populated-data evidence. |
+| Package 2/3 receiving and screen wiring | Travel App `c8e768340`, `d4fbee3f4`; Travel Agent `fae783911` | Continuation labels now follow the declared destination owner and the existing resource resolver (graph-owner resources fall back honestly to Chat). The actual Home v2 screen test exercises a `source.inspect` action, and the compiler test proves an admitted action survives into the emitted unit. | Mobile dependency installation remains unavailable; backend pytest remains unavailable without SQLAlchemy. Existing route tests and source-level compilation are not a populated-data or native run. Exact place-handoff source depth and area/city slug identity remain owner questions. |
 
 The mobile branch also passes the Home screen smoke suite (7 tests) and
 TypeScript check. Existing expiry-observation tests continue to cover C1's safe
@@ -829,10 +831,11 @@ was added. The temporary dependency symlink used to run Jest in the isolated
 worktree was removed before finishing, and both implementation worktrees are
 clean.
 
-This round improves presentation and narrow regression coverage; it does not
-complete A1/B1/B2. The next slice can improve the available contextual/directed
-families immediately. D1's broader supply, D2's retained-evidence reader mapping
-and E1's cross-owner economics remain separate dependencies.
+Package 1 improves presentation and value preservation, but it does not
+complete A1/B1/B2. Package 2 remains the exact-continuation and return pass;
+Package 3 must still join real owner admission to the rendered screen. D1's
+broader supply, D2's retained-evidence reader mapping and E1's cross-owner
+economics remain separate dependencies.
 
 ### 8.8 Next slice — complete the available Home portfolio
 
