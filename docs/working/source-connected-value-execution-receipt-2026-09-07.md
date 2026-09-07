@@ -33,6 +33,9 @@ not activate the worker or claim native evidence.
 | SP-2d bounded request admission | Authenticated clients can submit a strict, private, content-free request with a named purpose, subjects, Sources, root scope, represented clock and bounded expiry. The request is persisted through the existing workflow fence; malformed exact comparisons are rejected and disabled production returns a truthful unavailable response. | Backend `bc012aca2` — `feat(source): accept bounded preparation requests`; `40eb81b2a` — `fix(source): gate preparation on production rollout` |
 | Contract publication and mobile recovery | The full OpenAPI snapshot and active projection include the request and owner-only exact result routes. Generated mobile types, HTTP methods, mock parity and focused transport tests consume both routes; the result read remains available for already-retained output while new production is separately gated. The shared result hook is root-scoped, does not read without a workflow identity, treats unavailable/failed outcomes as terminal, and polls only a pending result. The request hook submits the bounded body and invalidates only that exact root/result key; it never retries by creating a new request. | Workspace `f60f2e6`, `1434694`, `20d833a`; app `c9d208632`, `66d61f59c`, `15b38e18f`, `d874bb778`, `90b8ba7b5`, `c201457d3`, `c6300cc1e`, `b479c3289` |
 | CV-3 Home/Places receiving | The tested receiving adapter is landed on backend `main` and the app's Entity checkout and clean app-`main` integration worktree. It preserves owner-backed composition, exact continuations, practical delivery, and return-token behavior without adding a new producer or screen family. | Backend `1146ae041`; app `f4401ef73` (Entity checkout) and `8bed6ca82` (clean `main` worktree) |
+| E1 current-job owner-read compiler and root wiring | Root composition now derives bounded owner reads from the actual current candidates, immediate job, subject/Source/context refs and purpose. Exact request-local scopes are reused; unsupported semantic operations such as `route.evaluate` are omitted instead of being scheduled by scenario name. The existing scenario compiler remains a compatibility path for legacy callers and fixtures. | Backend `1bd838f4c` — `feat(integration): compile root reads from current jobs` |
+| E3 unsupported practical claims fail closed | Practical candidates carrying an unadmitted question now receive an explicit unknown assessment and are not treated as feasible. The supported `place.open_now` path is unchanged; no generic route assessor or provider was invented. | Backend `455048802` — `fix(integration): fail closed on unsupported practical claims` |
+| Request/worker version compatibility | Bounded request admission now emits the canonical `source.v1` and `compiler.v1` versions accepted by the existing dark worker, avoiding a producer/consumer version mismatch without activating execution. | Backend `b7df20cdc` — `fix(source): align requests with worker versions` |
 
 ## Existing receiving evidence consumed
 
@@ -85,12 +88,16 @@ Focused local suites passed during this batch:
 * `make contract-check` passed with the request/result routes in the active
   mobile projection, generated types synchronized, 370 facade entries
   classified, and the canonical place/Occasion checks green.
+* 22 focused current-job owner-read tests, 50 combined root/practical/portfolio
+  tests, 21 value-composition tests and 53 request/worker/executor tests passed;
+  Ruff passed on all modified backend files.
 
 ## Still gated / not claimed
 
 1. The request owner now expresses an exact commissioned subject/Source set,
-   but the production worker is still dark; acceptance is not evidence that a
-   provider-backed result will arrive.
+   and root composition has a current-job read compiler, but the production
+   worker is still dark; acceptance is not evidence that a provider-backed
+   result will arrive.
 2. The worker remains dark. No queue registration, provider activation, paid
    call, or ordinary GET acquisition was added.
 3. Exact result lookup still requires the retained row and current Source/
@@ -106,7 +113,8 @@ Focused local suites passed during this batch:
 
 Run one real local end-to-end fixture through explicit request → canonical
 Source executor → durable production/readback → exact result route → Home and
-Places receiving, then exercise cancellation against the same workflow. Keep
-the worker dark and use fixture provider/owner material. This checkpoint should
-be followed by a reassessment before any public preparation or mobile consumer
-activation.
+Places receiving, then exercise cancellation against the same workflow. Use a
+direct fixture executor (or an explicitly controlled local worker invocation)
+with fixture provider/owner material; keep production queue/provider
+activation dark. This checkpoint should be followed by a reassessment before
+any public preparation or mobile consumer activation.

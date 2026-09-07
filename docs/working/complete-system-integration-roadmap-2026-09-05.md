@@ -3479,12 +3479,43 @@ separate from new-production gating. Focused workflow/API/transport/hook tests
 pass; `make contract-check` is green.
 
 This is **E4/E5 contract progress, not tranche completion**. The worker remains
-dark and no provider call or live queue registration was added. E1's runtime
-read-policy replacement, E2's public owner-to-depth breadth, E3's generic
-request-local practical assessment, and E6's combined restart/race/latency
-verification remain the next integration work. The exact request route accepts
-the job and returns `pending`; a controlled local worker run is still required
-before describing a generated result as received.
+dark and no provider call or live queue registration was added. E1 now has a
+bounded current-job compiler wired into root composition, and E3 has a
+fail-closed safety floor for unsupported practical questions; neither is the
+full runtime replacement or generic practical assessor described above. E2's
+public owner-to-depth breadth and E6's combined restart/race/latency
+verification remain open. The exact request route accepts the job and returns
+`pending`; a controlled local fixture executor is still required before
+describing a generated result as received.
+
+#### 9.9.8 Execution receipt — current-job reads and practical boundary (September 7)
+
+The next integration package replaced the root's dependence on broad scenario
+labels as its primary read authority. Backend `1bd838f4c` adds
+`compile_current_job_owner_read_requests`: it derives operation-specific,
+bounded reads from the actual candidate set, immediate job, exact subject/
+Source/context refs, purpose and audience. It preserves request-local reuse,
+skips known-unavailable semantic work such as `route.evaluate`, and leaves the
+legacy scenario compiler available only for compatibility callers and
+fixtures. `root_composition.py` now appends these current-job reads to the
+existing value reads without introducing a new store or producer.
+
+Backend `455048802` closes the practical safety gap: any claim whose question
+is not an admitted operation receives an explicit unknown assessment and cannot
+be presented as feasible. The supported `place.open_now` assessment remains
+the only practical specialist currently admitted. Backend `b7df20cdc` aligns
+bounded request output with the dark worker's canonical `source.v1` /
+`compiler.v1` versions, so the producer and consumer no longer disagree about
+identity while execution stays disabled.
+
+Focused local validation passed: 22 current-job compiler tests, 50 combined
+root/practical/portfolio tests, 21 value-composition tests, and 53
+request/worker/executor tests, with Ruff clean on modified files. These commits
+are local integration progress, not evidence of provider-backed production,
+public Content breadth, native rendering, or Life/Chat activation. The next
+checkpoint remains a direct fixture request → canonical executor → durable
+readback → exact route → Home/Places receipt with cancellation, followed by a
+reassessment before broadening E2/E3 or enabling the worker.
 
 ### Execution receipts (2026-09-07)
 
