@@ -44,7 +44,7 @@ inspection date, not a request to repeat completed work.
 | --- | --- | --- |
 | R0 / R4 root and reading | Canonical Life route, Atlas redirects, four depth lenses, exact-owner and identity-restoration improvements | Rich lens organization and complete owner/destination coverage are not certified |
 | R1 common reads | Shared snapshot assembly, chronology, owner revisions and conflict-aware cursors | Routes still assemble owner snapshots; indexed serving has not cut over |
-| R1 / R2 index helpers | Typed bounded reads/writes, all-lens planner, owner capability matrix, owner-specific projectors, resumable backfill, reconciliation and complete typed comparison | Run a bounded populated-corpus rehearsal and establish whole-corpus/viewer parity; future-version targets do not yet receive live owner fanout |
+| R1 / R2 index helpers | Typed bounded reads/writes, all-lens planner, owner capability matrix, owner-specific projectors, resumable backfill, reconciliation and complete typed comparison; bounded four-viewer corpus rehearsal now passes with canonical owner-time ordering | Establish broader corpus/viewer parity and future-version delivery boundaries; future-version targets do not yet receive live owner fanout |
 | R2 change safety | Revision guards, withdrawal/restore, dependency CAS, separate Life outbox and repair; retained-source, Plan, Occasion and Outcome projectors, audience repair and fenced publication/delivery | Add PostgreSQL interleaving evidence and verify remaining owner contracts; preserve Intake's independent acknowledgement |
 | R3 / R5 retrieval | Retained sources and canonical destinations have landed | Broader custody/refinding, dependent repairs and retained booking-reader mapping remain |
 | R6 prospective/shared | Consumer requirements established | [Pre-Plan intention proposal](retained-intention-before-plan-decision-proposal-2026-09-06.md) is unadopted; missing owner adapters cannot be replaced by Life writes |
@@ -135,6 +135,27 @@ claim unsupported owner coverage. The backend package is committed as
 `e03f8f980` on the isolated Life worktree; focused connected and producer/
 projector regressions pass. The repository-wide size-budget hook remains a
 pre-existing failure and was skipped for this commit only.
+
+**Stable ordering authority — September 7 (working evidence):** the follow-up
+package closes the rehearsal's ordering mismatch without changing the reader
+or activating the index. The owner graph models and repository projection now
+carry immutable Plan/Occasion `created_at` values (and Occasion `lived_at`);
+canonical Life ordering uses scheduled Plan time, owner-lived time, or owner
+creation time as applicable. Retained-source rows use immutable submission
+creation time rather than mutable processing `updated_at`. Every canonical
+record now carries a `sort_precision` basis into the shadow row, while public
+`occurred_*` fields remain null unless an occurrence assertion exists. Legacy
+storage-neutral fixtures may still fall back to an explicitly labeled
+`read_clock`, but production owner reads supply the owner timestamps and the
+rehearsal must reject that fallback before serving cutover. The bounded corpus
+rehearsal is now green: four viewers, all supported owner families, replay and
+out-of-order delivery, withdrawal/rejoin restoration, lens parity and cursor
+ordering all pass. Focused evidence is 19 Life unit tests and 24 connected
+Life delivery/projector/producer tests (including the corpus rehearsal). The
+backend code is committed as `a1a0e3632` on the isolated Life worktree. This
+remains shadow evidence only; no serving cutover, Atlas deletion or production
+activation is included. The repository-wide size-budget gate remains a
+pre-existing failure.
 
 Capture supplies source identity, revision, lifecycle and repair events; Life
 owns derived indexing. Home/Places consumes exact record destinations, not a
@@ -1340,7 +1361,7 @@ SHAs and dirty-file scope when execution starts; use an isolated backend
 | [Backfill repository](../../travel-agent/backend/core/db/life_projection_backfill.py) | `create_life_projection_backfill_run`, claim/advance/pause/finish operations, persisted scope and unresolved work | Database tests for restart, stale leases, counter recovery and unresolved-item retry; `completed` alone is not parity |
 | [Backfill runner](../../travel-agent/backend/life_projection/backfill.py) and [worker](../../travel-agent/backend/workers/life_projection_jobs.py) | `build_life_backfill_event`, bounded `run_life_projection_backfill`, explicit `run_life_projection_backfill_job` | Fixture/report wiring and a connected writing run now exist; successful owner retries remove resolved identities from live unresolved work (`d062d1810`), and transient enumeration failures retain their cursor for retry (`f9b687055`). Paused-run persistence and the broader retry/lease matrix remain follow-up evidence. Dry-run still creates/updates control rows but does not materialize corpus rows |
 | [Owner enumeration](../../travel-agent/backend/life_projection/owner_reads.py) | Paged Plan/Occasion/Outcome/source identities and exact-owner dependency limits | Timestamp/ID traversal is not a commit-safe snapshot; test behind-cursor mutations, broad candidate eligibility and dependency truncation |
-| [Owner projectors](../../travel-agent/backend/life_projection/plan_projector.py) and [lens adapter](../../travel-agent/backend/life_projection/index_projector.py) | Four owner projectors with fences; reusable multi-snapshot merger exists | `index_entries_from_all_lenses` now derives eligible memberships at one represented-at clock; Plan/Occasion/Outcome no longer silently write Time-only rows. Retained sources remain Time-only until place/people evidence is owned |
+| [Owner projectors](../../travel-agent/backend/life_projection/plan_projector.py) and [lens adapter](../../travel-agent/backend/life_projection/index_projector.py) | Four owner projectors with fences; reusable multi-snapshot merger exists | `index_entries_from_all_lenses` now derives eligible memberships at one represented-at clock; Plan/Occasion/Outcome no longer silently write Time-only rows. Canonical ordering now carries owner-time precision through the index (`a1a0e3632`). Retained sources remain Time-only until place/people evidence is owned |
 | [Reconciliation](../../travel-agent/backend/life_projection/reconciliation.py) | `reconcile_life_owner` compares/repairs one supplied owner and requires explicit absence evidence | `enumerate_indexed_life_owners` and `reconcile_life_owners` now provide bounded keyset discovery, including withdrawn rows and unknown-family classification. The viewer-only `read_life_index_owner_rows` overload remains unsuitable for corpus traversal |
 | [Comparison](../../travel-agent/backend/life_projection/index_compare.py) | Structural, bounded-page, viewer-bucket and typed-entry comparisons | Assemble independently expected entries and database rows at matching revisions; invoke typed comparison separately per viewer/version because its identity key is `record_id` |
 | [Coverage](../../travel-agent/backend/life_projection/coverage.py) | `LifeCoverageReport` and one stage per owner family | Coverage now rejects empty/partial denominators; `backend/life_projection/rehearsal.py` and the opt-in pytest writer emit `vesper.life-shadow-rehearsal.v1` evidence with non-production/serving gates |
