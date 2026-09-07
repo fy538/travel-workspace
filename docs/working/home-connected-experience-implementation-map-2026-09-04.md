@@ -13,6 +13,8 @@ supersedes: []
 
 **September 7 planning update:** [§8](#8-september-7-detailed-consumer-delivery-plan)
 is the current Home receiving work plan within A–E and Integration CV-0–CV-4.
+The [next connected slice in §8.8](#88-next-slice--complete-the-available-home-portfolio)
+supersedes the initial coding assignment with a code-grounded execution order.
 It separates candidate compatibility, useful delivered content, exact continuation,
 and native acceptance. It does not authorize application implementation, paid
 production, a new persistent lane, or a design-canon change by itself.
@@ -168,9 +170,9 @@ promised by the design. Keep this test as candidate regression coverage.
 | Practical current-place help | Places canonical identity + cached opening facts → exact current venue claim | Existing read and deterministic claim assessment | Existing contextual Place candidate plus competing open-now variant; native link treatment | Exact venue; supported owner/external continuation, no booking effect | Field-specific evidence deadline reaches delivered unit; unsupported claim yields to independent exploration; mobile currently refreshes the whole root | `tests/api/test_practical_root_delivery.py`, `ea816526d`, app `9326c34a4`. Connected synthetic-boundary coverage, not live provider or future/arrival feasibility. Extend under D2/C1. |
 | Plan proposal / held operational state | Plan proposal, Trip and graph owners → authorized existing consequence | Deterministic owner read | Existing link/instrument families | Proposal/graph-specific Chat or published owner route; exact arrangement completeness varies by owner | Owner revision, deadline and accepted readback | Candidate test and existing owner tests. A proposal door is not retained confirmation or a complete practical preparation. No new Plan command in Home. |
 | Ticket / retained confirmation | Intake/Source or legacy booking session/offer reader → exact authorized evidence | Read only; no provider execution | Current source/instrument primitives are reuse candidates; no completed Home pass mapping claimed | Exact retained original, or session + offer identity and supported external link | Separate scheduled time, upload time and current provider observation; preserve historical evidence after claim expiry | [Retained-evidence brief](booking-retained-evidence-adapter-brief-2026-09-05.md), mobile `data/bookingReads.ts`, Life exact-source reader. Producing Home adapter and full visible field mapping remain D2 work. |
-| Explanation / comparison | Existing Places `ANGLE`/dossier; approved public content and eligible private Source production where connected | Reuse ready material; new acquisition/production belongs to Content/Integration | `horizon_editorial_passage` with `RootRead.voice`, or existing composition anatomy | Exact dossier routing fixed by `c8d88437f`; supported entity/dossier Ask by `8860a34bd`; selected passage/source continuation remains open | Source eligibility/revision and bounded value expiry; never renew old prose by retitling | Existing adapter/renderer tests plus prepared-serving tests. Portfolio-wide admission/rendering and actual new-substance judgment remain A1/D1/B2; public supply is not provided by private storage. |
+| Explanation / comparison | Existing Places `ANGLE`/dossier; approved public content and eligible private Source production where connected | Reuse ready material; new acquisition/production belongs to Content/Integration | `horizon_editorial_passage` with `RootRead.voice`, or existing composition anatomy | Exact dossier routing fixed by `c8d88437f`; supported entity/dossier Ask by `8860a34bd`; selected passage/source continuation remains open | Source eligibility/revision and bounded value expiry; never renew old prose by retitling | Adapter and compiler tests are separate from actual admitted/rendered delivery. At `59cafa451`, read/composition bodies omit supplied actions, including Source inspection. §8.8 closes this receiving gap; bounded research/disposition alone does not supply a public Home result. |
 | Attributed directed human contribution | Relationships `list_place_handoffs(SEND_NOW)` + graph identity binding → named recipient | Read original authorized words; no mandatory synthesis | `people_note_door`, `RootRead.voice` and sender label | Current destination opens the venue; handoff ref exists but does not establish exact original/depth/Ask continuity | Current recipient, grant, revision, expiry and withdrawal; independent human copy must not depend on AI readiness | Existing addressed-note adapter and renderer coverage. B1 must trace original/source consumption and current permission through actual continuation. General casual sharing is not certified here; it belongs in Places friends scope. |
-| Ordinary forward-looking possibility | Existing Places context/feed → current supported place; Content supplies broader public place/topic/time results | Read ready facts/content; explicit investigation is separately authorized | Current `horizon_aperture_row` is a label/relation door; richer body only where existing typed payload supports real substance | Context field or exact result, then scoped search/map/depth and return; external result only with a supported safe destination | Selected scope/result revision and local date window; current `open_now` does not prove weekend availability | Context candidate test is not a concrete opportunity. Contextual feed takes at most two cards; this event-preview producer (`backend/places/experiences.py`) requires a dated Trip. Content/Integration must supply everyday temporal scope; D1/B1/B2 consume it. |
+| Ordinary forward-looking possibility | Existing Places context/feed → current supported place; Content supplies broader public place/topic/time results | Read ready facts/content; explicit investigation is separately authorized | Current `horizon_aperture_row` is a label/relation door; preserve decisive supplied facts within existing typed payloads | Exact supported entity or explicitly labeled context field, then scoped search/map/depth and return. Area/city `place` refs currently fall back to context; they do not certify exact selected-area depth | Selected scope/result revision and local date window; current `open_now` does not prove weekend availability | §8.8 traces supplied value through admission/rendering. Contextual feed takes at most two cards; experience previews currently require a dated Trip. Everyday temporal supply remains Content-owned; ordinary place exploration need not wait for it. |
 
 This inventory combines different levels of evidence; it does **not** certify
 the entire portfolio as delivered, native-tested or activated. In particular,
@@ -811,14 +813,14 @@ production activation occurred.
 
 ### 8.7 September 7 connected-package receipts
 
-The first implementation packages are now landed in isolated branches from the
-current `main` checkouts; they are intentionally not merged or pushed:
+The first implementation packages are committed in isolated branches from the
+then-current `main` checkouts; they are intentionally not merged or pushed:
 
 | Package | Commit | What is now verified | What remains outside this package |
 | --- | --- | --- | --- |
-| A1/B2 renderer receiving | Travel App `6e29dd1cd` + `59cafa451` (`feat(home): use user-facing continuation labels`; `refactor(home): let instrument value lead`) | Existing composition payloads render without the internal semantic-kind stamp. Doors use the supplied destination/resource owner to say `Open in Places`, `Ask Vesper`, `Open in Life`, `Open the map`, or a bounded fallback. Instruments now lead with their owner-backed fallback instead of a generic “commitment/recovery” heading. The actual `HomeRootV2Screen` smoke test verifies substantive text and the Places destination path. | Native typography/scroll acceptance; richer producer supply; no new semantic kind promoted. |
-| A1 compiler substance | Travel Agent `6ae314440` (`test(home): preserve delivered substance and destination`) | A compiler-level Home test proves title, substantive body, exact Places target and source identity survive selection and compilation. Focused backend suite: 27 passed. | This is deterministic adapter/selector evidence, not live provider or production-worker evidence. |
-| B1 addressed place receiving | Travel App `9d57d203e` (`test(home): preserve addressed place handoff routing`) | An addressed place destination opens the exact venue with one bounded Home return token; private handoff text is not serialized into the route. Navigation suite: 23 passed. | Original handoff/source depth and subsequent Ask continuity still need Integration/Entity/Capture owner support. |
+| A1/B2 renderer receiving | Travel App `6e29dd1cd` + `59cafa451` (`feat(home): use user-facing continuation labels`; `refactor(home): let instrument value lead`) | Composition payloads render without the internal semantic-kind stamp; instruments lead with supplied fallback content. The actual `HomeRootV2Screen` smoke test checks supplied text and a destination callback. Labels are now user-facing. | This does not verify actual owner supply or router execution. The fresh pass found label/resolver inconsistencies and omitted read/composition actions; §8.8 corrects them. Native acceptance remains deferred; no new kind was promoted. |
+| A1 compiler substance | Travel Agent `6ae314440` (`test(home): preserve delivered substance and destination`) | A synthetic candidate retains composition title/body and its destination object through selection/compilation. Focused backend suite at that checkpoint: 27 passed. | This test bypasses producing adapters, canonical owner rereads and common value judgment. Its `opening` reference does not establish an exact Places entity route. It is compiler preservation evidence, not a completed owner-backed journey. |
+| B1 addressed place receiving | Travel App `9d57d203e` (`test(home): preserve addressed place handoff routing`) | A destination containing venue and handoff references resolves to that venue with a bounded Home return token. Navigation suite: 23 passed. | The fixture supplies references, not private note text: it does not prove full source custody, original-note arrival or subsequent Ask continuity. Integration/Entity/Capture dependencies remain. |
 
 The mobile branch also passes the Home screen smoke suite (7 tests) and
 TypeScript check. Existing expiry-observation tests continue to cover C1's safe
@@ -827,10 +829,234 @@ was added. The temporary dependency symlink used to run Jest in the isolated
 worktree was removed before finishing, and both implementation worktrees are
 clean.
 
-The next executable work is therefore not another Home shell rewrite. D1 still
-needs Content/Integration to provide an owner-backed reusable or explicitly
-investigated result; D2 still needs the retained-evidence reader mapping; and
-E1 still needs the cross-owner cost/degraded-state receipt. Until those owners
-publish exact payloads, Home should consume the supported contextual/directed
-families and preserve the explicit unavailable boundary rather than inventing
-new generators, stores, booking surfaces or social data.
+This round improves presentation and narrow regression coverage; it does not
+complete A1/B1/B2. The next slice can improve the available contextual/directed
+families immediately. D1's broader supply, D2's retained-evidence reader mapping
+and E1's cross-owner economics remain separate dependencies.
+
+### 8.8 Next slice — complete the available Home portfolio
+
+**Recommendation:** deliver the useful content and coherent continuations that
+existing owners can already support. This is one connected slice inside
+A1/B1/B2/C1, with a bounded D1 receiving checkpoint. It is not a new shell,
+generation system, or requirement to prove one behavior before building the
+rest of the product.
+
+**User outcome:** Home can give me a worthwhile explanation, a concrete place
+to consider, an original note someone directed to me, and supported practical
+context. I receive something before tapping. If I continue, I reach that same
+subject; exploring its surrounding field, search or map does not lose my scope,
+selection or way back. The page remains useful when one contribution is absent
+or a practical claim expires. These are repertoire examples, not four required
+cards, four sections or four new semantic kinds.
+
+#### Fresh baseline and what remains open
+
+Planning inspection: Home mobile worktree `codex/home-receiving-2026-09-07`
+at `59cafa451`, Home backend worktree at `6ae314440`; backend main progressed
+to `72775a5bf`; the shared mobile checkout remains the Entity lane at
+`17eea1980`, with mobile main `8860a34bd`. Recheck these before implementation.
+Entity's unmerged object-page work is not automatically part of Home's branch.
+
+- `HomeRootV2UnitRenderer.tsx` renders `read` and `composition` content without
+  their supplied `UnitActions`. `source_contribution.py` already supplies a
+  `source.inspect` action for eligible attachments, and `HomeRootExperience`
+  already handles it. The consumer currently drops that reachable value.
+- `direct_state` and `receipt` bodies ignore supplied destinations/actions.
+  The fallback `firstOpenableRef` takes the first ref with a canonical path,
+  rather than a payload's exact subject. An incidental contextual ref can win.
+- New label helpers duplicate assumptions about routing. An `opening` need not
+  open Places; a `commitment` need not open Chat. A capability label can also
+  contradict the declared target root. Button wording needs to match the
+  existing resolved route, or use an honest neutral label.
+- The contextual adapter preserves a dossier preview but reduces other kinds
+  to title/relation. Experience previews contain supplied timing/duration/price
+  fields that this path does not carry. Preserve meaningful supplied material
+  within the existing contract; adding arbitrary prose or more candidates is
+  not a substitute. The current experience supplier is Trip-scoped.
+- Entity now has an authorized `PeopleLineSheet`, but its presence does not
+  prove a Home `place_handoff` opens that exact line. The existing Source
+  inspection hook reads an exact Intake attachment; it is not a generic
+  original-handoff reader.
+- Content has `BoundedResearchResult` and explicit, write-free disposition.
+  Integration added explicit request binding (`4ec001ab7`), actor-scoped
+  workflow/result readback (`e944ac954`) and locator hardening (`72775a5bf`).
+  These advance the handoff; they do not make the raw research result an
+  admitted Home payload or activate its producer. Follow
+  [the current supply receipt](recommendation-world-supply-architecture-and-roadmap-2026-09-07.md#11-content-infrastructure-execution-plan)
+  and Integration §9.6 before claiming broader ready supply.
+
+#### Implementation order and reviewable commits
+
+**Package 1 — complete value and controls for existing content (A1/B2).**
+
+Start with a real contextual dossier, a canonical place possibility and an
+authorized addressed note. Add an eligible prepared Source composition using
+the existing admission/serving path where a fixture can establish its source
+authority. Do not add a fictitious production owner to fill this fourth case.
+
+1. In `backend/root_projection/v2/home_source_adapters.py`, trace each supplied
+   title, preview/reason, useful fact and exact subject through the existing
+   adapter. Preserve a complete explanation and a concrete reason to consider
+   the place. For supported experience previews, carry the decisive supplied
+   schedule/duration/price details that fit the existing payload bounds;
+   missing facts remain missing. Published timing is not current capacity,
+   bookability or opening at arrival. A long preview must have a deliberate
+   bounded treatment; do not silently cut away qualifications.
+2. Keep canonical-place `RootLink` behavior compatible with
+   `place_candidates_with_open_now`, which currently requires that family.
+   Preserve the independent exploration candidate and its shared evidence/
+   selection identity. No cap, budget, ranking or crown-policy change in this
+   package. If a field cannot fit without a shared DTO change, record the exact
+   mapping and serialize that follow-up through Integration.
+3. In `components/home-root/HomeRootV2UnitRenderer.tsx`, render supported supplied
+   actions for read/composition/receipt/direct-state as well as existing link/
+   instrument bodies. Reuse `HomeRootExperience` handlers and consequence
+   confirmation. Inspection must not count as consumption of the explanation;
+   a rendering refactor must not execute a write on view or expose a fallback
+   navigation path that bypasses confirmation.
+4. Preserve the original human wording and attribution. Remove internal
+   explanatory machinery from visible basis text only by using a truthful
+   existing source/place label or an appropriate omission. Do not reauthor
+   someone's note or conceal information needed to interpret a claim.
+5. Avoid duplicate controls for the same destination. Keep the complete-on-view
+   value primary and inspection/continuation optional. This is existing-component
+   behavior and content work; finer visual composition stays in Claude Design.
+
+**Checkpoint:** adapter assertions plus actual native-component Jest rendering
+show the useful text and reachable controls for these families. This is local
+component evidence, not a native app run. Each case records what the person
+receives without another prompt, its authorized source, and missing depth.
+
+**Package 2 — make each continuation refer to the same thing (B1).**
+
+1. Use an explicit destination when present. Otherwise resolve a payload's
+   semantic target through the existing canonical resolver; do not select an
+   arbitrary source/person/context ref just because it has a path. A provenance
+   ref is not automatically the primary destination. If no exact destination
+   exists, expose only a genuinely supported context door or no control.
+2. Make labels agree with actual resolution. Prefer the existing resolver and
+   declared root over a second kind-to-root routing table. Use a neutral label
+   when the exact root is indeterminate; a generic fallback must not claim
+   exact original/depth arrival. Keep raw source text out of route parameters.
+3. Exercise Home → exact dossier/venue/site/experience and return. Exercise
+   Home → Places field → scoped search/map → selected detail → Places → Home
+   through the existing route family, result-set identity and return registry.
+   These are optional paths, not a mandatory funnel for every card.
+4. Resolve two narrow owner questions: (a) how an area/city `place` identity
+   reaches exact depth when slug/parent metadata is not in the root ref;
+   (b) whether a directed `place_handoff` has an exact reader/selection contract
+   for original-note arrival and contextual Ask. Entity's place-line reader
+   must be checked for this identity, not assumed equivalent. Until then,
+   preserve original value on Home and label the supported place destination
+   honestly; do not offer unsupported “Open original” or “Ask about this note”.
+
+**Shared-file declaration before edits:** `utils/rootProjectionNavigation.ts`,
+`utils/resourceDestination.ts`, `utils/routes.ts`,
+`utils/rootProjectionReturnRegistry.ts`, `utils/placesMapReturn.ts`,
+`components/places/usePlacesSemanticNavigation.ts`, generated root types and
+backend public models belong to the coordinated seam. Request the smallest
+change from Integration, with file/function and failing case. Do not edit or
+merge the shared Entity checkout. Local renderer/handler changes can proceed
+while a missing shared mapping is unresolved.
+
+**Checkpoint:** pressing rendered controls reaches the expected route with
+the selected identity and one bounded return context. A callback assertion or
+an independently hand-built destination object is insufficient on its own.
+Original-note/selected-passage Ask remains dependency-bound unless its actual
+reader and authorization survive the full path.
+
+**Package 3 — join owner admission, visible value and repair (A1/B2/C1).**
+
+Extend the existing test seams rather than build another general harness:
+
+- Backend: producing adapter → real canonical-owner read execution → common
+  value judgment → selection → Home compiler. Patch database/provider access
+  at repository boundaries, not the admission verdict or completed portfolio.
+  Extend `test_home_portfolio.py`, `test_home_page_composition.py` and the
+  existing practical/Source serving tests as appropriate.
+- Mobile: use an envelope emitted by that exercised pipeline in
+  `HomeRootV2Screen.smoke.test.tsx`; exercise the real screen and renderer in a
+  focused `HomeRootExperience.test.tsx` path. Mock native/router/network edges,
+  not the value-rendering components under assessment. Reuse an existing
+  fixture convention with a deterministic regeneration/check method if a
+  serialized cross-repo fixture is necessary. No manually invented canonical
+  identity standing in for a real owner output.
+- Cases must cover quiet everyday Home, practical urgency, missing optional
+  interpretation, withdrawal of a directed contribution, and a changed or
+  expired practical claim. Assert which useful unit is actually admitted and
+  displayed, which is absent, and why. Do not force all families into one
+  projection against the accepted attention policy.
+- Restore the same selected result only while identity and relevant revision
+  still match. A changed result recomposes with updated context; a removed
+  result does not silently select a replacement. Unknown position/freshness
+  must not read as current. A lost in-memory return token falls back safely
+  without presenting itself as durable restoration.
+- Preserve whole-root expiry/revalidation and current privacy withdrawal
+  behavior. No second refresh engine or implicit preparation on root refresh.
+  Test that ordinary GET/refetch does not call the production entry point.
+
+**Checkpoint:** one joined evidence record per family: producing owner/scope,
+read result, emitted unit/revision, visible payoff, pressed continuation,
+return/change behavior, absent claims and test files. Describe fixture-based
+local integration separately from populated-data and native evidence. Read
+the complete composed output for repetition and remaining user effort; passing
+tests cannot establish that its contents are worthwhile.
+
+**Package 4 — close the receiving boundary and publish the receipt (D1/E1).**
+
+Receive an actual owner output when available, not a raw research dictionary.
+With Content/Integration, map the existing response to: canonical subject,
+actor/source scope, displayable supported claims, original attribution,
+revision/deadline, limitations and exact continuation/readback. These are
+mapping requirements, not a new Home-owned schema or lifecycle.
+
+- Public reusable material must have its canonical read/admission and permitted
+  display/reuse. `ResearchDisposition.canonical_ref` plus a retention flag is
+  not, alone, that owner-backed result.
+- Explicit private preparation must be linked to the authorized request and
+  current workflow/result readback. Home consumes eligible ready output through
+  existing serving; it must not initiate preparation because a feed is sparse.
+- Retained tickets/confirmations remain D2's named Capture/retirement reader
+  dependency. A graph instrument, synthetic opening or current-hours badge
+  does not fulfill that family. Continue with available practical help and
+  record the missing retained-evidence projection explicitly.
+- Everyday time-window experience supply remains Content-owned; never create
+  a fake Trip to obtain weekend candidates. Venue exploration can deliver
+  immediate forward-looking value without promising future feasibility.
+
+Update the single delivery matrix and §8.7 receipts with actual commits and
+test counts. If no new producer is ready, finish the available improvements
+and name the exact blocked mappings rather than declaring broad D1 completion.
+Use existing read/production telemetry for reuse checks; paid cost/latency and
+production activation remain outside this local receiving slice.
+
+#### Acceptance and handback
+
+| Receiving situation | Required user value and continuation | Must remain explicit |
+| --- | --- | --- |
+| Canonical explanation | A substantive supplied explanation visible on Home; exact dossier depth; return to the appropriate Home state | A related headline or generic source door is not the explanation; selected-passage Ask needs its own contract |
+| Ordinary possibility | Concrete supplied reason to consider a supported place; exact subject or honestly labeled scope; optional field/search/map exploration | No invented future schedule, personal interpretation or mandatory reflection |
+| Directed human contribution | Original wording and sender attribution before tapping; supported exact place route; revocation removes dependent display | Exact original-note/Ask support is not implied; casual sharing stays in Places friends scope |
+| Practical help | Supported current claim and its limitation; independent place value survives loss of optional practical evidence | Current opening does not prove arrival, capacity or weekend fit; retained confirmation remains separate |
+| Prepared Source result | Eligible served substance, reachable inspection where supported, truthful destination | Compiler compatibility or a workflow locator alone does not certify usable supply |
+| Changed context / return | Same scope and selected identity when valid; honest updated/unknown or safe fallback when not | No arbitrary replacement selection, restored expired claim or fabricated original-source continuity |
+
+**Work order:** Package 1 is the first implementation package, split into
+backend and mobile commits where needed; begin the two shared-owner mapping
+questions alongside it. Package 2 can land supported exact paths without
+waiting for missing mappings. Package 3 accompanies those changes and
+consolidates their evidence rather than postponing tests to the end.
+Package 4 records what was genuinely connected and what is still unavailable.
+No fixed calendar promise depends on the adjacent lanes finishing first.
+
+**Execution discipline:** re-read the latest potentially uncommitted Integration
+register, inspect branches/worktrees/staged and dirty paths, and compare the
+three existing Home mobile commits and one backend test commit against the
+chosen baseline. Do not duplicate equivalent Entity fixes or silently merge
+unrelated work. Use isolated `codex/` branches; commit only this slice's files
+in reviewable packages. Shared model changes require the full type-sync
+workflow. Run focused tests for changed behavior and mobile typecheck; database
+changes, if newly needed, require the owning lane's real local DB verification.
+No automatic merge/push, paid providers, production activation, or native/app
+testing. This planning update changes documentation only.
