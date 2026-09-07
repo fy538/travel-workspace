@@ -31,7 +31,7 @@ not activate the worker or claim native evidence.
 | SP-2b effective stop | Source-only cancellation uses a transaction-time actor/type/revision fence, records the applied command, cancels the workflow atomically, and remains behind the existing shared workflow-control flag. Generic steer/pause/resume/handoff semantics remain intent-only. | `1447eeccd` — `feat: apply source workflow cancellation` |
 | SP-2c terminal result semantics | The exact-result reader now distinguishes a completed `producer_silence` ending (`no_useful_result`) from a malformed or missing result identity (`unavailable`), and maps superseded workflows to an unavailable result without attempting regeneration. | `9c1eda6e9` — `fix(source): report terminal silence and supersession` |
 | SP-2d bounded request admission | Authenticated clients can submit a strict, private, content-free request with a named purpose, subjects, Sources, root scope, represented clock and bounded expiry. The request is persisted through the existing workflow fence; malformed exact comparisons are rejected and disabled production returns a truthful unavailable response. | Backend `bc012aca2` — `feat(source): accept bounded preparation requests`; `40eb81b2a` — `fix(source): gate preparation on production rollout` |
-| Contract publication and mobile recovery | The full OpenAPI snapshot and active projection include the request and owner-only exact result routes. Generated mobile types, HTTP methods, mock parity and focused transport tests consume both routes; the result read remains available for already-retained output while new production is separately gated. | Workspace `f60f2e6`, `1434694`, `20d833a`; app `c9d208632`, `66d61f59c`, `15b38e18f`, `d874bb778`, `90b8ba7b5`, `c201457d3` |
+| Contract publication and mobile recovery | The full OpenAPI snapshot and active projection include the request and owner-only exact result routes. Generated mobile types, HTTP methods, mock parity and focused transport tests consume both routes; the result read remains available for already-retained output while new production is separately gated. The shared result hook is root-scoped, does not read without a workflow identity, treats unavailable/failed outcomes as terminal, and polls only a pending result. | Workspace `f60f2e6`, `1434694`, `20d833a`; app `c9d208632`, `66d61f59c`, `15b38e18f`, `d874bb778`, `90b8ba7b5`, `c201457d3`, `c6300cc1e` |
 | CV-3 Home/Places receiving | The tested receiving adapter is landed on backend `main` and the app's Entity checkout and clean app-`main` integration worktree. It preserves owner-backed composition, exact continuations, practical delivery, and return-token behavior without adding a new producer or screen family. | Backend `1146ae041`; app `f4401ef73` (Entity checkout) and `8bed6ca82` (clean `main` worktree) |
 
 ## Existing receiving evidence consumed
@@ -78,6 +78,8 @@ Focused local suites passed during this batch:
   exact scope validation and the production rollout gate;
 * 85 focused mobile HTTP tests, including content-free request submission and
   owner-scoped exact result recovery;
+* 2 focused mobile result-hook tests, including no-read-without-identity and
+  explicit terminal recovery after a pending result;
 * `make contract-check` passed with the request/result routes in the active
   mobile projection, generated types synchronized, 370 facade entries
   classified, and the canonical place/Occasion checks green.
