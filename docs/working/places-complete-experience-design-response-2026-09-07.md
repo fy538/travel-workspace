@@ -18,7 +18,9 @@ The work is in the dedicated Claude Design project **Vesper — Places**
 canon amendment or an implementation authorization; every recommendation points
 at the phone that is its evidence.
 
-## 1. What was delivered
+> **Reading order (September 7, after the §8 and §9 critiques).** Sections 1–6 below are the **first export's** record and are **historical**: several of their recommendations were withdrawn by the critiques (the persistent ghost-result rule, the mandatory withdrawal line, the "missing result-set producer" claim, the automatic canon-kind changes C1–C7). The **current recommendations are in section 8** and on boards `08` and `09` in the project. Do not read sections 1–6 as instructions.
+
+## 1. What was delivered (historical, first export)
 
 | Board | What it shows |
 | --- | --- |
@@ -33,7 +35,7 @@ at the phone that is its evidence.
 | `08` | The five decisions with recommendations, the keep / adapt / replace inventory, the receiving contract, the proposed canon changes as exact cases and deltas, the unresolved dependencies, the content-cost classes |
 | `RA1–RA16`, `RS1–RS5`, `RH1–RH3`, `RE1–RE4`, `RL1–RL2` | Reference boards copied from the five live sibling projects (Home & Places, Social Aperture, Vesper — Home, Entity Object Handoff Lab, Life). Precedent, not adoption |
 
-## 2. The five decisions — recommendations
+## 2. The five decisions — recommendations (historical; superseded by section 8)
 
 1. **Default composition.** Content-led field with the map one tap away. Map-led earns the first viewport only when orientation is the job (an unvisited scope, a spatial question). No mandatory crown; one lead, a small contrasting set, then the collection ends and names its widenings. Evidence: 02 phones 1 and 3 on the same evidence; 05 phone 1; 07.
 2. **Spatial interaction.** Map and field share one result set and revision; the toggle preserves question, scope, set and position; panning is inspection. A change of city, question, time or friends scope is deliberate, establishes a new set, and the page says so. Out-of-window material stays on the map in ghost ink with its reason. Evidence: 02 phone 2; 03 phones 2 and 5; 05 phone 4.
@@ -41,7 +43,7 @@ at the phone that is its evidence.
 4. **Social receiving.** From friends is a scope the person chooses; the original material leads with no preamble; enrichment only where it adds one fact. Outside the scope, one friend line may sit inside the place it is about. Reply to a person and Ask Vesper have distinct recipients; neither auto-sends. Withdrawal is a local honest line; no-supply names the scope; never an invite ending. Evidence: 04; 07 phone 1.
 5. **Continuation.** Open the existing destination (the entity page, the exact occurrence, the reading, the route); provider continuations are labelled external. Return restores scope, question, form, selection and position. Sending an idea goes through the existing arrangement owner and reads back once; nothing is duplicated into Home or Life for having been viewed. Evidence: 02, 03, 05, 06.
 
-## 3. Proposed canon changes (exact case and delta; on 08)
+## 3. Proposed canon changes (historical; withdrawn — see section 8)
 
 - **C1** Finite first collection with deliberate widening replaces "this is all of it today" as a ceiling (anatomy §2.5 / §9.4).
 - **C2** Add the dated event stub as a Places kind; series and occurrence are distinct objects. A kind admission is a canon event.
@@ -55,7 +57,7 @@ at the phone that is its evidence.
 
 The brief supplied a fresh packet (W1–W5, H1, H2). Every other current board runs on the shared fixture world. Situations C, D and E cross into Home and Life, so this project mapped the packet onto that world: W3 is the greenmarket, H1 is Maya, H2 is Dana's existing Sorrento status; the Harbor Print Room and *Rooms Remade*, the Canal Hall listening hour, the waterside pair and the room comparison enter the shared world as new venues. Everything is synthetic. If the packet should stay separate, say so; 02 is the first board to change.
 
-## 5. Dependencies engineering still owes
+## 5. Dependencies engineering still owes (historical; the current list is on board 08)
 
 A pre-Plan suggestion to one person and the thin-guest path (Arrangements) — drawn on 06 as a dependency, not a working button. The `PlacesResultSetRef` producer and consumers (Places backend) — every same-set claim assumes it. Dated-occurrence supply with series identity, freshness and licensing (Content). Provider-specific media and map rights (Content). Practical assessment fresh / stale / unknown (Integration). Route-from-origin needs a chosen origin. Reusable enrichment (the room comparison, the shaded-side finding, the three ways home) is assumed to exist, not to be produced. Reply to a person from a share (Chat / People).
 
@@ -80,3 +82,21 @@ Every board was revised in the order §8.11 asked: 02 and 07, then 04, then 06, 
 - **§8.10** 08 rewritten as a proposal record: the result-set builder verified in code (`backend/places/result_set.py`: scope + query, parent set, revision hook; consumed by map, search, sections, collections); labels corrected (the social renderer exists as a sentence strip; the receiving view does not); the dated event reclassified as a visual treatment with representation to verify; every change categorized as consumer copy, interaction decision, data/contract gap, engineering task, token proposal or content supply; supply classes carry refresh responsibilities; the seat rule drawn as two expressions, not hidden content.
 
 **Still open:** the map-led versus content-led comparison on the same rich and sparse evidence (scheduled next; content-led remains a hypothesis); the token proposal; the dated-event representation; the arrangements dependency for a pre-Plan message to named people; real pictures in place of illustrations; a real-source packet before any real-data evaluation.
+
+## 8. Current recommendations (after the focused judgment pass, handoff §9)
+
+These replace sections 2, 3 and 5.
+
+**The five decisions.**
+
+1. *Default composition.* For this packet the possibility leads (the free film on the lawn) with the spatial understanding folded in where it improves it: which pier, what view, when. An explanation earns the lead only by its usefulness. A coherent first collection grouped by headings a person would use; no quota, no ceremonial ending; further exploration within the same intent. Content-led versus map-led is still a hypothesis; the equal-evidence comparison is the next pass.
+2. *Spatial interaction.* Map in the header only; the map form shows the same things where they are and keeps background geography without treating it as a rejected result. Supported today for scope and query; time and social source are not in the result-set identity and the mobile map path returns to the scope.
+3. *Content forms.* Lead card, event and place units, a friend's share with picture and words first, a contribution line, a change, a prepared message. Containment for recognition, not by category.
+4. *Social receiving.* From friends is a row with faces under the lead and a chip in the line, never only a sheet row. Inside it people's words and pictures lead, grouped by where, and not only advice. Another friend's separate visit is labelled as such, never as a reply. A friend's venue note may inform an occurrence and is labelled as about the venue. "With Maya" changes relevance inside the current question and keeps the hours in force, on one authorized reason. Withdrawal is quiet; dependents are repaired.
+5. *Continuation.* Open the existing destination; external continuations say so; return restores the question and position; a proposal is one prepared message to named people, sent on tap, read back in one line. After a change, every visible option is re-read at the current time; practical infeasibility, friends' agreement and the arrangement's adoption stay distinct; replacement claims are supported or say they are not.
+
+**The changes, by category** (full table on board 08): consumer copy and composition (no internal copy; guidance not quotas; a possibility over an explanation; context is not a schedule); interaction decisions (the question line, chip and sheet; selective exclusions with "Another time"); data and contract gaps (time and social source in `PlacesResultSetRef`; a kept share as context for "with someone", owned by Life's kept-intention lifecycle; venue-level versus occurrence-level social labels; a pre-Plan message to named people, owned by Arrangements); engineering tasks (the share view with a picture and an in-place reply); a token proposal (supporting 14/19 and meta 11 inside Places phones); content supply (reusable enrichment made once and kept current).
+
+**Verified against code on September 7.** `backend/places/result_set.py` builds a set identity from the context handle plus a query digest with a parent set and a revision hook, consumed by map projection, search, sections and collections. The social renderer is a person, sentence and place-name strip; the receiving view is not implemented. Candidate cards carry dates; whether series and occurrence are distinct in the catalog is to be verified before any noun is added.
+
+**Not validated.** The default, the typography proposal and the interaction behavior are not validated by the self-assessment on board 09. Next: the map-led versus content-led comparison on the same rich and sparse evidence, then a rendered visual review.
