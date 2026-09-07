@@ -1680,8 +1680,9 @@ verify the claimed outer workflow in the same transaction, so a cancellation
 or lease takeover that wins the row lock cannot publish stale output. Backend
 commit `ddad25e51` adds the real PostgreSQL proof for cancellation before
 publication and cancellation after publication (**7** tests pass). Focused
-worker/workflow/continuity tests pass (**42**), and the
-offline root-projection plus workflow-API regression packet passes (**396**).
+worker/workflow/continuity tests pass (**42**), the offline root-projection
+plus workflow-API regression packet passes (**399**), and the existing durable
+workflow PostgreSQL packet passes (**6**).
 Pre-commit's existing size-budget and status-guard baseline checks remain
 skipped for these commits; all other changed-file gates passed.
 
