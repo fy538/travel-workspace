@@ -390,6 +390,11 @@ The defensible work is **what we ask, what we verify, how we judge it for this m
   a larger provider-reported `totalPages` value cannot extend the request beyond
   pages 0–4. This is a request-safety bound, not evidence of event coverage or
   permission for proactive refresh.
+- **S2 / on-sale temporal guard — landed in backend `ba4b893a0`:** Ticketmaster
+  normalization now preserves an on-sale timestamp only when it is parseable
+  and timezone-aware; malformed or timezone-less values remain unknown. Two
+  regression cases pass in the event normalizer suite. This improves temporal
+  fidelity without choosing an unknown-time schema or enabling refresh.
 - The focused combined receipt across ingestion/Ticketmaster, Places discovery/
   taste/projection/feed, Home and root-projection suites is **210 passed, 9
   skipped, 16 warnings**. The skips and warnings are the existing Postgres
