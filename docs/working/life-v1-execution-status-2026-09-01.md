@@ -74,15 +74,16 @@ attendance; those require the Capture-owned bounded evidence contract. The
 offline Life selection is **204 passed, 34 deselected**. No producer, schema,
 serving or Atlas state changed.
 
-**M3 cursor scope — September 7:** commit `bb2677abd` binds newly issued
-derived-index cursors to viewer, lens and projection version and rejects
-cross-scope replay before SQL. Invalid lens values fail closed; legacy
-two-field cursors remain only for pure comparison fixtures. Focused index and
-connected corpus checks pass. The isolated Life package passes **226 tests**
-when the unrelated root-route collection is excluded because this worktree
-lacks the pre-existing `openai` dependency; this environment limitation is
-not counted as Life evidence. Public reader wiring, full eligibility
-composition and serving cutover remain open.
+**M3 cursor scope — September 7:** commits `bb2677abd` and `f0a8d4f69` bind
+newly issued derived-index cursors to viewer, lens and projection version,
+reject cross-scope replay before SQL, and reject legacy unscoped cursors at the
+repository boundary. Invalid lens values fail closed; legacy two-field
+cursors remain only for pure comparison fixtures. Focused index and connected
+corpus checks pass. The isolated Life package passes **226 tests** when the
+unrelated root-route collection is excluded because this worktree lacks the
+pre-existing `openai` dependency; this environment limitation is not counted
+as Life evidence. Public reader wiring, full eligibility composition and
+serving cutover remain open.
 
 The [September 7 operational packet](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#11-bounded-shadow-rehearsal-execution-packet--september-7)
 now has an executed bounded slice. Backend commits `41e07297e`, `ca559b2f7`,

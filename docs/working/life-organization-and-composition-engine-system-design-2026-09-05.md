@@ -1559,10 +1559,10 @@ projectors and direct callers remain compatible. This is a publication-race
 correction, not a claim that all organization stages are transactionally
 atomic or that Life serving has been cut over.
 
-The first bounded reader follow-through is committed as `bb2677abd`:
-newly-issued derived-index cursors carry viewer, lens and projection-version
-scope, and the repository rejects replay across any of those dimensions before
-executing the keyset query. Invalid lens values fail closed. This is an
-internal continuation boundary that preserves the dark serving path; public
-reader authorization, candidate-scan budgets and route cutover remain future
-work.
+The first bounded reader follow-through is committed as `bb2677abd` and
+`f0a8d4f69`: newly-issued derived-index cursors carry viewer, lens and
+projection-version scope, the repository rejects cross-scope replay and
+legacy unscoped cursors before executing the keyset query, and invalid lens
+values fail closed. This is an internal continuation boundary that preserves
+the dark serving path; public reader authorization, candidate-scan budgets and
+route cutover remain future work.

@@ -3025,19 +3025,20 @@ size-budget and status-dead-gate hooks remain pre-existing baseline failures
 and were explicitly skipped only for these commits; other applicable hooks and
 whitespace checks pass.
 
-The first bounded M3 reader seam is `bb2677abd` (`fix(life): bind derived
-cursors to read scope`). Newly issued derived-index cursors now carry viewer,
-lens and projection-version scope; replaying a cursor across any of those
-dimensions is rejected before the bounded SQL query, and invalid lens values
-fail closed. Legacy two-field cursors remain accepted only by pure comparison
-fixtures; repository readers always bind the new scope fields. Focused index,
-typed-reader, comparator and connected corpus checks pass. The Life package
-passes **226 tests** when the unrelated root-route test is excluded because
-this isolated worktree does not have the pre-existing `openai` dependency;
-collection failure is recorded rather than presented as a Life regression.
-This closes only the internal cursor boundary: public route wiring, complete
-authorization composition, scanned-candidate budgets and serving cutover remain
-M3 work.
+The first bounded M3 reader seam is `bb2677abd` plus the fail-closed follow-up
+`f0a8d4f69` (`fix(life): reject unscoped index cursors`). Newly issued
+derived-index cursors now carry viewer, lens and projection-version scope;
+replaying a cursor across any of those dimensions, or passing a legacy
+two-field cursor to a repository reader, is rejected before the bounded SQL
+query. Invalid lens values fail closed. Legacy two-field cursors remain
+accepted only by pure comparison fixtures; repository readers always bind the
+new scope fields. Focused index, typed-reader, comparator and connected corpus
+checks pass. The Life package passes **226 tests** when the unrelated root-route
+test is excluded because this isolated worktree does not have the pre-existing
+`openai` dependency; collection failure is recorded rather than presented as
+a Life regression. This closes only the internal cursor boundary: public route
+wiring, complete authorization composition, scanned-candidate budgets and
+serving cutover remain M3 work.
 
 These receipts do not close M2's richer evidence contract, M3 bounded public
 reader composition, M4 mobile receiving, M5 evaluation/Returns, or M6
