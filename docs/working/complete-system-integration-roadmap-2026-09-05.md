@@ -1381,8 +1381,11 @@ they do not block the accepted read/judgment work.
   reads and before common value admission. Fresh true evidence is supported,
   fresh false or permanent closure suppresses the dependent candidate, and
   missing/stale evidence is unknown while independent candidates remain
-  eligible. The focused value-composition suite passes **13 tests**. Existing
-  producers do not claim this question until their visible copy is ready.
+  eligible. The focused value-composition suite passes **13 tests**. Backend
+  commits `46652e1d5` and `140d46a2b` then opt the existing Home Place adapter
+  into the question for actual Place candidates and match canonical refs by
+  stable identity. Existing explanation and social producers do not claim this
+  question until their visible copy is ready.
 - **CV-4 / exact editorial destination — implemented:** mobile commit
   `c8d88437f` makes a `places.open_entity` destination prefer its exact dossier
   subject (including when a context ref is also present), preserving the root
