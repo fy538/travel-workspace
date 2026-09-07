@@ -1,0 +1,74 @@
+Run from /Users/feihuyan/travel-workspace/travel-agent.
+This reruns existing offline tests with read-only result observation and blocked external IO.
+No native or model-generation evidence is produced.
+
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. .venv/bin/python - <<'PY'
+import json, sys, socket
+from unittest.mock import patch
+import pytest
+
+records = {}
+current = [""]
+targets = {
+ "test_practical_claim_and_independent_read_survive_real_root_composition",
+ "test_addressed_place_note_preserves_human_copy_and_recipient_authority",
+ "test_owner_backed_home_portfolio_keeps_four_value_families_connected",
+ "test_home_portfolio_degrades_to_cold_chrome_when_graph_is_unavailable",
+ "test_current_prepared_value_reuses_the_same_meaning_across_roots",
+ "test_exact_result_reopens_by_digest_without_current_group_ranking",
+ "test_exact_owner_handoff_keeps_version_roots_and_clock_together",
+}
+def item_data(item):
+ return {key: (value.model_dump(mode="json") if hasattr(value, "model_dump") else value)
+         for key in ("kind", "payload", "destination", "expires_at", "source_refs")
+         if (value := getattr(item, key, None)) is not None}
+def encode(value):
+ if hasattr(value, "model_dump"): return value.model_dump(mode="json")
+ if isinstance(value, tuple): return [encode(v) for v in value]
+ if hasattr(value, "value"): return value.value
+ return str(value)
+def profile(frame, event, arg):
+ if event != "return" or arg is not None or frame.f_code.co_name not in targets:
+  return
+ loc = frame.f_locals
+ row = {"test": current[0], "stage": frame.f_code.co_name}
+ if "response" in loc:
+  if loc.get("surface") not in ("home", "runtime") or loc.get("condition") not in ("open", "missing", "completion_expiry"): return
+  response = loc["response"]
+  units = [*response.projection.units, *(u for r in response.projection.regions for u in r.units)]
+  row.update(surface=loc["surface"],condition=loc["condition"],units=[item_data(u) for u in units])
+  if "runtime" in loc:
+   row["workspace_feed"] = loc["runtime"].workspace_feed.model_dump(mode="json")
+ elif "projection" in loc:
+  row.update(posture=loc["projection"].posture, candidates=[item_data(c) for c in loc["projection"].candidates])
+ elif "candidates" in loc:
+  row["candidates"] = [item_data(c) for c in loc["candidates"]]
+ elif "home" in loc and "places" in loc:
+  row.update(equal_across_roots=loc["home"] == loc["places"], candidates=[item_data(c) for c in loc["home"].candidates])
+ elif "result" in loc and hasattr(loc["result"], "candidates"):
+  row.update(equal_to_prepared=loc["result"] == loc["prepared"], candidates=[item_data(c) for c in loc["result"].candidates])
+ elif "handoff" in loc:
+  row["handoff"] = {"source_ref":encode(loc["handoff"].source_ref),"roots":sorted(loc["handoff"].roots),"draft":loc["handoff"].record.draft.model_dump(mode="json")}
+ else: return
+ records[current[0]]=json.loads(json.dumps(row, default=encode))
+class Capture:
+ def pytest_runtest_setup(self,item): current[0] = item.nodeid
+ def pytest_runtest_logreport(self,report):
+  if report.when=="call" and report.nodeid in records:
+   records[report.nodeid]["test_outcome"]=report.outcome
+
+def no_io(*args,**kwargs): raise OSError("External IO disabled for receiving-value capture")
+with patch("backend.core.db.engine.get_engine", side_effect=no_io), patch("backend.core.db.engine.get_async_engine",side_effect=no_io), patch.object(socket.socket,"connect",no_io), patch.object(socket.socket,"connect_ex",no_io):
+ sys.setprofile(profile)
+ try:
+  code=pytest.main(["-q","-p","no:cacheprovider","-m","not requires_postgres and not requires_api_keys",
+    "tests/api/test_practical_root_delivery.py",
+    "tests/root_projection/test_home_portfolio.py",
+    "tests/root_projection/test_source_contribution_serving.py",
+    "tests/core/test_place_content_sources.py"],plugins=[Capture()])
+ finally: sys.setprofile(None)
+print("RECEIVING_CAPTURE_JSON_START")
+print(json.dumps({"exit_code":code,"evidence_type":"executed-existing-tests-with-synthetic-owners-and-authored-producer","records":list(records.values())},indent=2))
+print("RECEIVING_CAPTURE_JSON_END")
+raise SystemExit(code)
+PY

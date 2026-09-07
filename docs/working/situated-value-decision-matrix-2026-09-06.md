@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / integration
 created: 2026-09-06
-last_verified: 2026-09-06
+last_verified: 2026-09-07
 expires: 2026-10-06
 why_new: Turns the broad context and adaptive-assistance vision into comparable everyday situations, controlled judgment changes, surface decisions and named owner dependencies without adopting new runtime policy.
 supersedes: []
@@ -36,9 +36,23 @@ Section 11 applies two lower-participation comparisons to that same week:
 no new user contributions after Tuesday, and a recipient who declines app
 installation, profile setup and reciprocal contribution. They specify received
 value, remaining work and supply dependencies—not new runtime guarantees.
+[Section 11.9](#119-whole-experience-review-received-value-context-and-human-work)
+extends that ledger to actual outputs, context comparisons and total human
+burden across time and people. It distinguishes authored specimens, connected
+implementation evidence and observed consumer outcomes rather than treating
+them as interchangeable proof.
 Section 12 supplies three concrete prepared-result specimens. [Section 13](#13-a-week-of-competing-purposes-changing-receptivity-and-repair)
 is a separate week-long branch testing competing purposes, a suggestion that
 misses the person's moment, scoped repair and return without unfinished work.
+[Section 14](#14-three-independent-entrances-and-a-return-after-absence)
+reuses these specimens as three independent newcomer entrances and a
+low-participation return. It specifies first value, optional continuation,
+remaining effort and the expectation each encounter should establish—not a
+required onboarding sequence or a new visual composition.
+The [September 7 NYC companion](nyc-newcomer-connected-home-specimen-2026-09-07.md)
+grounds one complete return encounter in real primary sources, with exact
+cross-root continuations, a social variation and inspected implementation gaps.
+It is a sourced design specimen, not a live product output.
 Examples are **synthetic design fixtures inspired by the founder's stories**,
 not new claims about the founder,
 real friends, live venues, provider conditions or demonstrated user demand.
@@ -250,6 +264,13 @@ family role; use stated needs and real access evidence.
 This is a design sequence, not a new service topology or numerical ranker.
 Hard truth, scope and feasibility limits are not weights that engagement can
 outvote. No universal measure of meaning, welfare or fit is proposed.
+
+For remembered context specifically, the
+[continuity proposal §7](conversation-history-source-expiry-decision-proposal-2026-09-06.md#7-when-remembered-context-earns-influence)
+separates permission, actual contribution and how its basis becomes legible.
+Its matched cases distinguish useful adaptation from callbacks, stale constraints
+and irrelevant history. The optional agreement remains proposed; these examples
+do not expand current Ask retention or authorize later use.
 
 An interruptive safety or commitment warning needs strong, current evidence;
 an interesting low-stakes possibility can be offered without knowing the whole
@@ -1514,6 +1535,138 @@ will produce. The combined A+B case must still work if nobody responds: current
 personal value remains available, no shared choice is manufactured, and no
 documentation or social debt accumulates.
 
+### 11.9 Whole-experience review: received value, context and human work
+
+**September 7 review recommendation, not completed evaluation.** Extend §11.7's
+ledger and §15's portfolio rather than build another scoring service. The unit
+of review is a complete encounter and its relevant later return, including other
+people where involved—not an isolated card, tool call, generated word count or
+mandatory journey through all four tabs. An explanation or human share may
+deliver its entire value without any subsequent action.
+
+#### Attach the output and the work it leaves behind
+
+Use the existing case IDs and owner inventories. Record these distinctions in
+the review packet; they are not new production fields, content-retention authority
+or an obligation to ask users to rate every interaction.
+
+| Review item | Evidence to attach |
+| --- | --- |
+| Starting situation | Exact current request/entrance, available evidence, unknowns and permitted uses; identify any proposed rather than adopted continuity branch |
+| Actual received output | The rendered response, original human material, comparison or exact read result; label manuscript, deterministic fixture, connected local run or activated path separately |
+| Concrete payoff | What became newly understandable, worth considering, easier to arrange, enjoyable to receive or dependably findable? Quote or point to the useful substance, not its intended marketing claim |
+| Context contribution | What changed because of relevant context: selection, method, depth, confidence, practical fit or reduced re-explanation? A repeated name is not the benefit; correct non-use may leave the result unchanged |
+| Wanted participation preserved | What the person actually wanted to choose, make, explore, discuss or decide; do not infer that every remaining human action is a product defect |
+| Unwanted work remaining | Source gathering, repeated explanation, manual comparison, verification, copying, coordination, result chasing and later reconstruction; attribute it to the person who performs it |
+| Work created by Vesper | Correcting misattribution, supervising pending work, interpreting excessive prose, finding vanished results, managing permissions or responding to avoid social pressure |
+| Continuation and ending | Exact subject/result access, optional human/provider action, actual status and behavior after correction, expiry, nonresponse and return; preserve independent value |
+| Delivery and economic boundary | Actual producer/read owner, supported channel, real versus simulated adapters, source coverage, observed latency/cost when available, reuse and unresolved capability; do not invent measurements |
+
+Technical delivery is necessary but does not establish enjoyment or usefulness.
+An authored specimen demonstrates a design choice; a connected test establishes
+only what it exercises; a participant response establishes only that observed
+experience. Keep judged quality, observed behavior and inferred benefit separate.
+Use “not measured” for unknowns, not zero burden, zero cost or assumed satisfaction.
+
+#### Compare context without rigging the alternative
+
+For relevant cases, compare a credible current workflow, Vesper with little
+personal history and Vesper with relevant authorized context. Use the same current
+request, world conditions and comparable source/model/tool resources. A capable
+alternative is allowed to win; do not manufacture differentiation by starving it
+of evidence or making the Vesper version longer and more polished.
+
+Separate **equal-information output quality** from **the work of obtaining and
+assembling that information**. In the first comparison, supply the same relevant
+evidence and ask whether judgment improves. In the second, record what each
+workflow actually requires the person to find, import, explain and maintain.
+Carry any earlier onboarding, contribution and correction effort into the latter;
+previous context is not free merely because it was collected last week. This
+context comparison is distinct from §15.6's category/history/purpose selection
+treatments. Cross them only when it answers a particular question; do not create
+an exhaustive factorial program by default.
+
+Inspect the selected result and the whole Home/Places composition. A good card
+can sit inside a repetitive or demanding page. A compact comparison can remove
+more work than a long article; a rich explanation can be the desired experience.
+No fixed word count, choice count, medium or daily-use target follows.
+
+#### Extend the existing portfolio through time and other people
+
+| Existing case or branch | Controlled change | Success that should remain possible |
+| --- | --- | --- |
+| S1 / N1, an ordinary question | Remove personal history but keep the current question and sufficient world evidence | Useful understanding now; no setup interview or speculative profile before the answer |
+| §6.4 / J11, delayed explanation | Add the day-2 correction and day-5 related evidence | The interpretation changes coherently; later help does not repeat the rejected theory or credit memory for facts the new input already supplied |
+| J10 / J12 and comparison A | Remove the historical bridge and all further input; later expire one candidate | Worthwhile world material, non-redundant composition and truthful exact continuations without manufactured novelty or capture homework |
+| §12's prepared results | Omit the result from Home ranking, then reconnect or change a source | Requested work remains exactly reachable while eligible; changed or unavailable output is explained without a new research prompt |
+| S6 / comparison B | Recipient reads without installing, replying or adding anything; then an arrangement changes | Original human value and any supported current update remain usable; explicitly count unsupported-channel work left with the host |
+| J8 / J9 | The person wants to choose; a friend has a different need or declines | Wanted agency survives, private evidence stays private and host convenience does not substitute for mutual value or consensus |
+| S5 / R and continuity lifecycle | Return months later; compare history-only, earlier age-limited and proposed selective long-range agreements | Only actually authorized context contributes; expired or excluded material is not revived, current circumstances lead, no catch-up debt appears and independent world value remains available |
+
+The outside-app recipient and optional continuity cases remain proposed unless
+their actual access/use agreements and runtime paths support them. Record that
+gap rather than simulate success without marking the substitution. A shared
+experience must also work when nobody responds: personal value continues, and
+silence creates neither a group decision nor a relationship judgment.
+
+#### Starting review notes: design evidence, not measured gains
+
+The [NYC newcomer specimen](nyc-newcomer-connected-home-specimen-2026-09-07.md#9-fresh-eyes-review-useful-but-not-yet-distinctive-enough)
+provides three concrete starting judgments:
+
+- **Market-day comparison:** the useful distinction is the day-specific offering,
+  already legible in the output. Its base value does not require personal history.
+  Sending someone to reconstruct the same comparison from multiple rosters would
+  return avoidable work. Choosing when or whether to go remains human.
+- **Paddle possibility and continuation:** a specific session can be worthwhile
+  with sparse context. Carrying its identity and terms into an exact question
+  can reduce reconstruction. Provider registration remains external; unverified
+  availability must not be counted as completed preparation. A correct link alone
+  does not prove the connected product is more desirable than a good city guide.
+- **Friend contribution:** the authored perspective is itself a candidate payoff.
+  Compare original-only receipt with optional useful enrichment, not AI prose
+  against an intentionally impoverished share. The recipient may stop at enjoying
+  it; any joint-action branch must count host and guest work separately.
+
+These are desk-review judgments about written specimens. They establish neither
+production delivery nor consumer enjoyment. Keep the source-backed fixture limits
+in the linked document; its dated listings are not a live availability guarantee.
+
+#### Research basis and receiving handoff
+
+- [Suh et al., CHI 2016, *User Burden Scale*](https://asu.elsevierpure.com/en/publications/developing-and-validating-the-user-burden-scale-a-tool-for-assess/):
+  primary institutional abstract reviewed. The validated scale distinguishes
+  difficulty of use, physical, time/social, mental/emotional, privacy and financial
+  burdens. Our inference is to review more than clicks and elapsed task time,
+  including work transferred to friends. This does not call for administering
+  its 20-item questionnaire after ordinary app interactions.
+- [Chen et al., KDD 2026, *PAUSE*](https://arxiv.org/html/2607.27354v1):
+  full-text desk review of a simulated-user benchmark in integrated, stateful
+  service environments. It distinguishes semantic/trajectory evaluation from
+  deterministic checks for constraint-intensive tasks. Our inference is to inspect
+  actual final state and cross-service behavior as well as language quality.
+  Simulated completion does not establish real consumer value or retention.
+
+At the existing integration checkpoints, bring the output, its real dependency
+boundary and this burden comparison together. The [receiving lifecycle](complete-system-integration-roadmap-2026-09-05.md#968-complete-receiving-experience-and-supported-service-boundaries)
+owns the request-to-result execution mapping; the [continuity lifecycle](conversation-history-source-expiry-decision-proposal-2026-09-06.md#8-continuity-lifecycle-clarification-expiry-and-a-long-return)
+owns the proposed memory-policy branches. Its [four complete long-range experiences](conversation-history-source-expiry-decision-proposal-2026-09-06.md#10-selective-long-range-continuity-four-complete-experiences)
+add actual answer/Home specimens and capable no-history comparisons: ordinary
+help, contextual discovery, late correction and an original human contribution.
+The latest proposal favors selective longer-range use over a universal 90-day
+ceiling; the agreement is unadopted. Record when memory changes selection, only
+avoids an error, or adds nothing. Do not manufacture inferior baselines or count
+an accurate callback as improvement. Include the proposal's [scoped control
+branches](conversation-history-source-expiry-decision-proposal-2026-09-06.md#4-simple-controls-with-exact-consequences):
+Home-only suppression is not a ban on requested help; a recommendation-use ban
+must also hold inside requested recommendations; off/re-enable must not silently
+rebuild old continuity. Review the resulting benefit and burden, not merely
+whether the control was acknowledged. These branches remain unadopted.
+This ledger judges received value,
+not a second owner contract. Use existing review tools and later voluntary
+research; no new dashboard, paid batch, routine feedback homework or single-loop
+gate is commissioned here.
+
 ## 12. Useful preparation: three concrete receiving experiences
 
 These specimens extend the same manuscript, not the product grammar. They
@@ -1863,3 +2016,298 @@ instruction**, alongside the finite-work trigger bindings. The architecture
 should carry the smallest justified scope through existing context and owners;
 the person should be able to say what they want naturally. Neither conclusion
 authorizes a new memory agreement, root, scheduler or Chat/Life redesign here.
+
+## 14. Three independent entrances and a return after absence
+
+### 14.1 Purpose, shared fixture and review contract
+
+**Predictable kind of value, variable and sometimes surprising substance.**
+The founder authorized this applied pass after the consumer-experience research
+summarized in the [market research follow-through](vesper-audience-offer-and-market-strategy-research-2026-09-06.md#11-consumer-experience-follow-through-independent-entrances).
+It asks what someone receives and learns to expect, not how to explain our
+architecture to them. These are nonvisual design specimens, not shipped screens,
+new canonical policy, a scheduled first week or observed user results.
+
+Reuse the world and original material from §§10–13, but **reset the newcomer
+between entrance comparisons**. The user does not inherit the founder's trip,
+the family meetup, cooking interest, photography history or pending assignments.
+The local venue names, offers and human messages remain fictional. The
+Palisades/Dover facts retain S2's sources. Real visual analysis, venue supply,
+audience access and owner commands must replace fixture assumptions before a
+working demonstration can claim these results.
+
+| Entrance | Minimum starting evidence | Value that must not depend on more setup |
+| --- | --- | --- |
+| N1 — Help me understand this | Two supplied photographs and the current question | Explanation and a useful comparison of the supplied material |
+| N2 — Show me something worthwhile | Deliberately selected NYC context, not live location or availability | Substantive world understanding and an approachable local possibility |
+| N3 — A friend sent me this | The exact addressed contribution and sufficient recipient authority | The original human offering and usable place context |
+| R — Return after little participation | Precisely distinguish a retained place/source from expired Ask material | Current value, correct access and no catch-up obligation |
+
+The entrances share a capability repertoire and standards; they need not show
+the same content. For each comparison, give the alternative product the same
+permitted evidence. Keep the separate audience/headline comparison in the
+research brief unchanged. A person may arrive through any root or an external
+handoff. Never require all three entrances before the product becomes useful.
+
+### 14.2 N1 — Help me understand this
+
+**Arrival:** the person opens Chat and supplies two building photographs:
+“Why do these look like they're leaning? Which one is worth fixing?” No profile
+or imported archive exists. This is Ask with supporting images, not a Bring
+merely because the inputs are photographs.
+
+**First received value:** assume actual analysis supports §12.1's stipulated
+crop geometry. The proposed response is:
+
+> The camera is tilted upward, so the verticals converge. The wider second
+> photo gives you more room to straighten them without cutting off the roof.
+>
+> **First photo:** straightening would crop the roof.
+> **Second photo:** the extra margin gives you a better starting point.
+
+Display the two originals alongside their respective findings using a supported
+treatment; the comparison must not depend on the person guessing which image
+the prose refers to. An unsupported comparison renderer is a design dependency,
+not permission to fabricate guides or imply an edited file exists. Uncertain
+geometry gets qualified rather than a confident crop claim.
+
+**What is complete:** the person understands the effect and has a reason to
+choose one image. They need not ask again for the actual comparison, take a
+lesson, edit now or save anything. If only the explanation is supported, deliver
+it and state the missing comparison capability; do not call that equivalent to
+the requested full result.
+
+**Optional continuation:** an unobtrusive way to ask about the selected image,
+with its source context carried forward. An explicit “Keep this comparison”
+uses a supported source/result owner and readback if available; no save is
+implied by reading. Editing/export is not part of this specimen's promise.
+
+**Cross-root consequence:** Chat serves the current job. Life receives only
+actually retained material under its applicable policy. Home does not manufacture
+a photography task or later repeat this comparison as a discovery. Places need
+not appear: not every answer owes a spatial continuation.
+
+**Effort removed / left human:** Vesper applies an explanation to the actual
+choice rather than making the person translate generic advice. Choosing,
+experimenting and the pleasure of photography stay with them. Any checking or
+unsupported editing effort still required must count in a comparison.
+
+**Expectation to establish:** “I can bring something imperfect and get help
+that applies to it.” Not “everything I ask is stored forever,” “Vesper edits
+photos,” or “I have joined a photography course.”
+
+**Fresh-eyes critique:** this is an accessible entrance, but capable assistants
+may do it equally well. It demonstrates our competence, not our complete
+differentiation. Do not force a place recommendation into the answer to make it
+look uniquely Vesper. Later optional experiences must earn the broader claim.
+
+### 14.3 N2 — Show me something worthwhile
+
+**Arrival:** the person opens Home after selecting NYC. They have no prior
+contributions or friends on Vesper and have not stated they are free this
+weekend. Location permission and an interest questionnaire are unnecessary for
+this selected-city specimen.
+
+**First received value:** use the following complementary contributions from
+S2. This is a content manuscript, not a fixed section count or full-scroll visual
+layout. The studio remains conspicuously labeled fictional in design review.
+
+> **Pull a print. Take it home.**
+> Canal Print Room · Brooklyn
+> Saturday 1–4 · 45-minute drop-in · $12, materials included
+> No experience or reservation needed.
+> See the session
+
+> **A cliff can begin underground—or on a seabed.**
+> The Hudson Palisades expose rock formed from magma beneath the surface.
+> Dover's chalk formed from microscopic marine remains. Similar dramatic
+> edges, very different origins: cliff describes a landform, not one rock type.
+> Explore the two places
+
+The comparison is the sourced world material from S2, **not** a claimed response
+to this newcomer's Sorrento experience. The print offer is a concrete future
+possibility, not “your perfect Saturday.” Source context and published offer
+validity belong in the actual receiving experience. Do not imply guaranteed
+admission, a current queue, a route from the user or a known interest in art.
+
+**What is complete:** the first item makes an activity understandable enough to
+consider without doing another search for basic terms. The second is worth
+reading even if the person does nothing. Neither requires personalization to
+be honest. More scroll must earn its place through other distinct, supported
+value; two good specimens are not a mandate for a sparse Home.
+
+**Optional continuation:** “See the session” opens the exact offer/place in
+Places with the same details, source context and current validity. Other options
+can be explored there without returning to a blank search. “Would this fit
+before dinner?” invokes Chat with the selected offer already attached; clarify
+the dinner time/location only if unavailable and necessary. Do not make the
+person recopy the card. The comparison's continuation gives the two-place
+context, not a generic map of NYC.
+
+**Cross-root consequence:** Home gives value; Places provides spatial depth and
+alternatives; Chat can perform a bounded practical assessment. Life need not
+gain anything from viewing. “Keep this place” and “keep this as an idea for next
+Saturday” are different effects; the latter remains dependent on the intention
+proposal and cannot be silently replaced with a placeholder Plan.
+
+**Effort removed / left human:** basic discovery and interpretation work is
+already done. Whether to go, explore something else or simply enjoy the reading
+remains entirely optional. Asking for practical fit must produce an assessment,
+not automatically accept future monitoring or book an activity.
+
+**Expectation to establish:** “I can open Vesper without an assignment and get
+something worthwhile; if I want to use it, the practical context is connected.”
+Not “everything here is inferred from my personality” or “there is a brand-new
+personal magazine every day.”
+
+**Fresh-eyes critique:** this is the strongest hypothesis for revealing breadth
+without a feature tour, but also the most supply-dependent. If the local offer
+is missing, the explanation alone does not demonstrate the promised local
+possibility. Show remaining valid value and record the supply gap. Do not use a
+fictional perfect offer to pronounce the entrance successful.
+
+### 14.4 N3 — A friend sent me this
+
+**Arrival:** Maya deliberately addresses Riverside Reading Room to this person.
+The recipient opens that exact contribution, potentially through an external
+link. They have no Vesper profile or imported history. Identity verification, if
+required by the audience policy, is separate from app adoption. External
+receiving is still an implementation requirement, not certified availability.
+
+**First received value:**
+
+> **From Maya · Riverside Reading Room**
+> “We sat by the river windows. I'd go back.”
+> See the place
+
+Show her original photograph only if she supplied it for this audience. Include
+enough exact place context to resolve which venue she means, with the actual
+source time available. No AI summary or inferred reason she thought of this
+person is needed. The note does not prove she is there now, wants to meet or can
+guarantee a river-window seat.
+
+**What is complete:** the recipient receives something personal and usable
+without choosing a reaction, offering a contribution or registering for a
+gathering. Enjoyment is a possible outcome, not something inferred from a view.
+Access must not be blocked by an interest questionnaire or an invitation to
+upload contacts.
+
+**Optional continuation:** the person can open the place, reply through a
+supported channel, or ask “Would this work for six of us Saturday?” The last
+request is a new practical job. Retrieve current venue evidence and obtain only
+missing information that matters. Maya must not become the unpaid researcher.
+Fit advice is not a reservation or invitation. Reply support must correspond
+to a real channel; an external-message draft is not a delivered message.
+
+**Cross-root consequence:** addressed material may appear in the recipient's
+Home while eligible; wider casual friends browsing belongs in Places. This
+exact place and original contribution remain consistent through depth and
+return. Life custody follows a real retention grant or explicit supported Keep,
+not merely receipt. Recipient-held copies cannot bypass withdrawal or expiry
+rules, and Vesper cannot promise to recall external screenshots.
+
+**Effort removed / left human:** the recipient does not reconstruct the venue
+or ask the sender to resend basic context. Vesper can absorb practical checking
+if requested. The sender owns their expression; the recipient owns whether to
+respond or use it. No attention scoreboard or reminder to reciprocate follows.
+
+**Expectation to establish:** “Things friends send through Vesper are easy to
+enjoy and use, without enrolling me in work.” Not “this is another social feed
+I must maintain.” A later independent personal request is adoption evidence;
+opening the gift is not.
+
+**Fresh-eyes critique:** this may best communicate the human character of the
+product, but a useful shared link alone does not establish a reason to install
+or pay. Preserve the gift even if the recipient never adopts. Evaluate sender,
+recipient and system costs separately.
+
+### 14.5 R — Return after little participation
+
+This is a controlled branch, not the fourth required step. Suppose a person
+asked two questions, deliberately kept one place through a working owner, has
+no active friends on Vesper and returns seven days later. They have not provided
+any new life events. The earlier questions were Ask-only; session/source expiry
+and current history policy remain in force. The kept place is **not** a kept
+Saturday activity, known visit or ongoing watch.
+
+**On Home:** serve a current, supported possibility in the selected context and
+a substantive world contribution where supply supports them. They need not
+relate to the expired questions. Do not lead with “you've been away,” a count
+of missed content, an unfinished-interest list or a recap of inferred behavior.
+Do not turn the expired studio offer into this week's event. This specimen
+leaves the new offer unfilled until real supply exists; that is a release gap,
+not license to reuse stale terms or invent another perfect workshop.
+
+**If they want the place:** Life should make the deliberately kept place easy
+to recover through its existing organization/search, and open the same Places
+identity. Retention establishes refindability, not current opening hours. The
+old offer is historical or expired; current practical details need current
+sources. Retrieval is complete value without a new recommendation or memory
+announcement. No mandatory Home recap is needed to teach Life's role.
+
+**If they ask something unrelated:** answer it without requiring a catch-up,
+reactivating old interests or explaining that personalization is incomplete.
+Existing supported affordances can quietly help someone remember how to use
+the product; do not restart a full onboarding sequence after absence.
+
+**Variant: nothing was retained.** Remove the kept-place retrieval promise and
+all dependence on expired Ask material. World-based value and new questions
+still work. Do not disguise the lack of private history with callbacks or ask
+the person to reconstruct the week just to make Home useful. An expired answer
+cannot be recovered by reasoning from its former derivative.
+
+**Variant: an accepted responsibility exists.** A separately authorized watch
+or arrangement has its actual current status, limits and failure treatment.
+Returning after absence does not forgive a missed obligation; it also does not
+create one. In the base low-participation fixture there is no such responsibility.
+
+**Expectation to establish:** “Vesper remains useful without maintenance, and
+what I deliberately entrusted is recoverable.” Not “Vesper knows what I did
+while away” or “every previous suggestion is waiting for completion.”
+
+### 14.6 Comparison ledger and recommendation
+
+| Encounter | Payoff received before another action | Main burden avoided | Existing receiving responsibilities / dependency | Misunderstanding to catch |
+| --- | --- | --- | --- | --- |
+| N1 | Applied explanation and supported image comparison | Translating generic advice to the supplied images | Chat/contribution, source handling and supported comparison renderer; retention only on real authority | General photo editor, compulsory memory or learning course |
+| N2 | Concrete opportunity plus worthwhile understanding | Searching basic terms; having to supply a task before receiving value | Home/Places source-backed supply, exact depth/return; bounded Chat assessment when requested | Personalized omniscience, a magazine, or a new offer guaranteed every visit |
+| N3 | Original human offering and exact place context | Sender follow-up and recipient reconstruction | Social audience/read owner, Places, supported external receiving/reply | An invitation, public post, reciprocal obligation or forced signup |
+| R | Current value and exact entrusted-material access where applicable | Catch-up, repeat entry and stale-state interpretation | Home/Places supply, Life retained owner, lifecycle reads; no continuity-policy expansion | Passive life tracking, eternal Ask memory or an unfinished-work backlog |
+
+**Recommendation:** N2 is the leading composition hypothesis for communicating
+the broader product because it supplies value without a request and makes depth
+and practical continuation discoverable. N1 must remain an equally legitimate,
+competitive entrance; N3 can be someone's entire first experience. This does
+not adopt Home as a mandatory startup route or make any entrance a product mode.
+R is a cross-cutting requirement, not a retention campaign.
+
+All four express the same responsibility: contribute something worth
+understanding, enjoying or using; absorb unnecessary reconstruction; leave
+human choice and expression intact; preserve only justified continuity. They
+do not require identical cards, content proportions or every product move in
+every encounter.
+
+### 14.7 Review before visual or implementation handoff
+
+Use these specimens in the existing review process; do not add a new research
+platform or owner service. In a newcomer comparison, give the example without
+explaining the philosophy first, then ask:
+
+1. What did you receive, and was it useful or enjoyable before doing anything else?
+2. What would you come back to Vesper for?
+3. What do you think was saved, shared or accepted as work?
+4. What would you expect to see if you returned next week without adding anything?
+
+Record misunderstandings separately from dislike, factual failure and missing
+capability. Use the same evidence with a capable existing-tool alternative;
+count checking, switching, prompting and repair rather than assuming fewer
+screens means less effort. Immediate enjoyment can count without an action;
+silence and dwell do not prove enjoyment. Do not translate research questions
+into production feedback chores.
+
+Before calling a specimen build-ready, attach its actual producer/read owner,
+source scope, supported renderer, exact continuation and return, lifecycle and
+remaining gap using the existing Home/integration inventories. No new semantic
+kind is justified solely by a good piece of illustrative copy. Visual composition
+stays with the dedicated design lane. Launch messaging, retention agreements,
+external guest policy and runtime activation still require their own decisions.

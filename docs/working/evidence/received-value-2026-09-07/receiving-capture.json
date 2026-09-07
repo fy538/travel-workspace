@@ -1,0 +1,2254 @@
+{
+  "recorded_at": "2026-09-07T20:43:19Z",
+  "backend_revision": "9d3127084d128fec33bb610dba17094ff3d3fea6",
+  "backend_branch": "main",
+  "mobile_revision": "c3feb89f05a5761c14985c9e0cea709afdf8f114",
+  "mobile_branch": "codex/entity-object-design-completion",
+  "workspace_revision": "382d369a9f30722562e01d974f6409d0793863a7",
+  "scope": "Selected payload, destination, source-reference and expiry fields captured from existing test function results. Not a native screenshot, full HTTP response, live-model output or production-user session.",
+  "inputs": "Existing authored synthetic fixtures; database owners and producer responses are substituted by the tests.",
+  "io_guard": "Database engine factories and Python socket connect/connect_ex were blocked for the capture process. No live provider run or worker activation.",
+  "backend_verification": {
+    "passed": 73,
+    "failed": 0,
+    "pytest_elapsed_seconds": 5.76
+  },
+  "mobile_verification": {
+    "passed": 34,
+    "suites": 2,
+    "jest_elapsed_seconds": 1.182,
+    "kind": "navigation and return utility tests; no UI capture"
+  },
+  "exit_code": 0,
+  "evidence_type": "executed-existing-tests-with-synthetic-owners-and-authored-producer",
+  "records": [
+    {
+      "test": "tests/api/test_practical_root_delivery.py::test_practical_claim_and_independent_read_survive_real_root_composition[open-home]",
+      "stage": "test_practical_claim_and_independent_read_survive_real_root_composition",
+      "surface": "home",
+      "condition": "open",
+      "units": [
+        {
+          "kind": "horizon_editorial_passage",
+          "payload": {
+            "family": "read",
+            "scale": "line",
+            "anchor": "The working waterfront is still shaping dinner",
+            "voice": "Red Hook's newer kitchens occupy the same industrial edge that once kept the neighborhood apart from the subway city.",
+            "basis": "Red Hook"
+          },
+          "destination": {
+            "target_root": "places",
+            "capability_ref": "places.open_entity",
+            "resource_refs": [
+              {
+                "kind": "places_context",
+                "id": "home",
+                "revision": null,
+                "canonical_path": "/owners/places_context/home"
+              },
+              {
+                "kind": "dossier",
+                "id": "41",
+                "revision": null,
+                "canonical_path": "/owners/dossier/41"
+              }
+            ]
+          },
+          "expires_at": "2026-09-01 19:00:00+00:00",
+          "source_refs": [
+            {
+              "kind": "places_section",
+              "id": "guide",
+              "revision": null,
+              "canonical_path": "/owners/places_section/guide"
+            },
+            {
+              "kind": "dossier",
+              "id": "41",
+              "revision": null,
+              "canonical_path": "/owners/dossier/41"
+            }
+          ]
+        },
+        {
+          "kind": "horizon_aperture_row",
+          "payload": {
+            "family": "link",
+            "label": "Bookshop",
+            "relation": "Open now · Independent publishers upstairs",
+            "target": {
+              "kind": "venue",
+              "id": "42",
+              "revision": null,
+              "canonical_path": "/owners/venue/42"
+            }
+          },
+          "destination": {
+            "target_root": "places",
+            "capability_ref": "places.open_entity",
+            "resource_refs": [
+              {
+                "kind": "places_context",
+                "id": "home",
+                "revision": null,
+                "canonical_path": "/owners/places_context/home"
+              },
+              {
+                "kind": "venue",
+                "id": "42",
+                "revision": null,
+                "canonical_path": "/owners/venue/42"
+              }
+            ]
+          },
+          "expires_at": "2026-09-01 13:09:00+00:00",
+          "source_refs": [
+            {
+              "kind": "places_section",
+              "id": "nearby_set",
+              "revision": null,
+              "canonical_path": "/owners/places_section/nearby_set"
+            },
+            {
+              "kind": "venue",
+              "id": "42",
+              "revision": null,
+              "canonical_path": "/owners/venue/42"
+            },
+            {
+              "kind": "place_status_observation",
+              "id": "google_places:g-42",
+              "revision": "042143d675684c461e5126dd8f5b902150417ebfb38caf348a328403ae424ad1",
+              "canonical_path": "/owners/place_status_observation/google_places:g-42"
+            }
+          ]
+        }
+      ],
+      "test_outcome": "passed"
+    },
+    {
+      "test": "tests/api/test_practical_root_delivery.py::test_practical_claim_and_independent_read_survive_real_root_composition[open-runtime]",
+      "stage": "test_practical_claim_and_independent_read_survive_real_root_composition",
+      "surface": "runtime",
+      "condition": "open",
+      "units": [
+        {
+          "kind": "field_branch",
+          "payload": {
+            "family": "link",
+            "label": "Bookshop",
+            "relation": "Open now · Independent publishers upstairs",
+            "target": {
+              "kind": "venue",
+              "id": "42",
+              "revision": null,
+              "canonical_path": "/owners/venue/42"
+            }
+          },
+          "expires_at": "2026-09-01 13:09:00+00:00",
+          "source_refs": [
+            {
+              "kind": "places_section",
+              "id": "nearby_set",
+              "revision": null,
+              "canonical_path": "/owners/places_section/nearby_set"
+            },
+            {
+              "kind": "venue",
+              "id": "42",
+              "revision": null,
+              "canonical_path": "/owners/venue/42"
+            },
+            {
+              "kind": "place_status_observation",
+              "id": "google_places:g-42",
+              "revision": "042143d675684c461e5126dd8f5b902150417ebfb38caf348a328403ae424ad1",
+              "canonical_path": "/owners/place_status_observation/google_places:g-42"
+            }
+          ]
+        },
+        {
+          "kind": "field_editorial_cover",
+          "payload": {
+            "family": "read",
+            "scale": "line",
+            "anchor": "The working waterfront is still shaping dinner",
+            "voice": "Red Hook's newer kitchens occupy the same industrial edge that once kept the neighborhood apart from the subway city.",
+            "basis": "Red Hook"
+          },
+          "expires_at": "2026-09-01 19:00:00+00:00",
+          "source_refs": [
+            {
+              "kind": "places_section",
+              "id": "guide",
+              "revision": null,
+              "canonical_path": "/owners/places_section/guide"
+            },
+            {
+              "kind": "dossier",
+              "id": "41",
+              "revision": null,
+              "canonical_path": "/owners/dossier/41"
+            }
+          ]
+        }
+      ],
+      "workspace_feed": {
+        "posture": "quiet",
+        "context": {
+          "scope": {
+            "kind": "home",
+            "label": "Brooklyn",
+            "place_id": null,
+            "trip_id": null,
+            "lat": null,
+            "lng": null
+          },
+          "position": {
+            "state": "unknown",
+            "lat": null,
+            "lng": null,
+            "accuracy_m": null,
+            "age_seconds": null
+          },
+          "anchor": {
+            "kind": "home_area",
+            "label": "Brooklyn",
+            "lat": null,
+            "lng": null
+          },
+          "ref": {
+            "handle": "home",
+            "kind": "home",
+            "label": "Brooklyn",
+            "role": "primary",
+            "selection_reason": "home"
+          }
+        },
+        "result_set": null,
+        "sections": [
+          {
+            "reason": "guide",
+            "label": "A READING OF NEW YORK",
+            "count": null,
+            "note": null,
+            "treatment": "single",
+            "door": null,
+            "destination": null,
+            "cards": [
+              {
+                "id": "angle-nyc-waterfront",
+                "kind": "angle",
+                "title": "The working waterfront is still shaping dinner",
+                "meta": null,
+                "kicker": null,
+                "reason": null,
+                "lead": null,
+                "duration_minutes": null,
+                "verb": null,
+                "action_label": null,
+                "action": null,
+                "place": null,
+                "angle": {
+                  "dossier_id": 41,
+                  "title": "The working waterfront is still shaping dinner",
+                  "preview": "Red Hook's newer kitchens occupy the same industrial edge that once kept the neighborhood apart from the subway city.",
+                  "place_name": "Red Hook",
+                  "place_slug": null,
+                  "read_minutes": null,
+                  "media": null
+                },
+                "city": null,
+                "friend": null,
+                "memory": null,
+                "experience": null,
+                "area": null,
+                "register_data": null
+              }
+            ],
+            "fact_key": null,
+            "revision_key": null
+          },
+          {
+            "reason": "nearby_set",
+            "label": "Nearby",
+            "count": null,
+            "note": null,
+            "treatment": "single",
+            "door": null,
+            "destination": null,
+            "cards": [
+              {
+                "id": "bookshop",
+                "kind": "place",
+                "title": "Bookshop",
+                "meta": null,
+                "kicker": null,
+                "reason": "Independent publishers upstairs",
+                "lead": null,
+                "duration_minutes": null,
+                "verb": null,
+                "action_label": null,
+                "action": null,
+                "place": {
+                  "id": "42",
+                  "canonical_ref": null,
+                  "external_ref": null,
+                  "resolution_available": false,
+                  "canonical_venue_id": null,
+                  "entity_type": "venue",
+                  "name": "Bookshop",
+                  "venue_type": null,
+                  "cuisine_type": null,
+                  "price_range": null,
+                  "locality": null,
+                  "media": null,
+                  "photo_url": null,
+                  "meters": null,
+                  "duration_minutes": null,
+                  "source": "catalog",
+                  "taste_score": 0.8,
+                  "search_score": null,
+                  "relationship": {
+                    "saved": false,
+                    "taste_match": false,
+                    "taste_signal": null,
+                    "in_trip": false,
+                    "loved": false,
+                    "from_trip": {
+                      "knowledge": "unknown",
+                      "name": null,
+                      "display_eligible": false
+                    },
+                    "from_guide": {
+                      "knowledge": "unknown",
+                      "name": null,
+                      "display_eligible": false
+                    },
+                    "saved_by_friend": {
+                      "knowledge": "unknown",
+                      "name": null,
+                      "display_eligible": false
+                    },
+                    "encounter": {
+                      "count": 0,
+                      "last_date": null,
+                      "trip_id": null,
+                      "trip_title": null,
+                      "source": null
+                    }
+                  },
+                  "operational": {
+                    "freshness": "unknown",
+                    "open_now": true,
+                    "hours_today": null,
+                    "permanently_closed": null,
+                    "verified_at": null
+                  }
+                },
+                "angle": null,
+                "city": null,
+                "friend": null,
+                "memory": null,
+                "experience": null,
+                "area": null,
+                "register_data": null
+              }
+            ],
+            "fact_key": null,
+            "revision_key": null
+          }
+        ],
+        "unavailable_producers": [],
+        "saved_total": 0
+      },
+      "test_outcome": "passed"
+    },
+    {
+      "test": "tests/api/test_practical_root_delivery.py::test_practical_claim_and_independent_read_survive_real_root_composition[missing-home]",
+      "stage": "test_practical_claim_and_independent_read_survive_real_root_composition",
+      "surface": "home",
+      "condition": "missing",
+      "units": [
+        {
+          "kind": "horizon_editorial_passage",
+          "payload": {
+            "family": "read",
+            "scale": "line",
+            "anchor": "The working waterfront is still shaping dinner",
+            "voice": "Red Hook's newer kitchens occupy the same industrial edge that once kept the neighborhood apart from the subway city.",
+            "basis": "Red Hook"
+          },
+          "destination": {
+            "target_root": "places",
+            "capability_ref": "places.open_entity",
+            "resource_refs": [
+              {
+                "kind": "places_context",
+                "id": "home",
+                "revision": null,
+                "canonical_path": "/owners/places_context/home"
+              },
+              {
+                "kind": "dossier",
+                "id": "41",
+                "revision": null,
+                "canonical_path": "/owners/dossier/41"
+              }
+            ]
+          },
+          "expires_at": "2026-09-01 19:00:00+00:00",
+          "source_refs": [
+            {
+              "kind": "places_section",
+              "id": "guide",
+              "revision": null,
+              "canonical_path": "/owners/places_section/guide"
+            },
+            {
+              "kind": "dossier",
+              "id": "41",
+              "revision": null,
+              "canonical_path": "/owners/dossier/41"
+            }
+          ]
+        },
+        {
+          "kind": "horizon_aperture_row",
+          "payload": {
+            "family": "link",
+            "label": "Bookshop",
+            "relation": "Independent publishers upstairs",
+            "target": {
+              "kind": "venue",
+              "id": "42",
+              "revision": null,
+              "canonical_path": "/owners/venue/42"
+            }
+          },
+          "destination": {
+            "target_root": "places",
+            "capability_ref": "places.open_entity",
+            "resource_refs": [
+              {
+                "kind": "places_context",
+                "id": "home",
+                "revision": null,
+                "canonical_path": "/owners/places_context/home"
+              },
+              {
+                "kind": "venue",
+                "id": "42",
+                "revision": null,
+                "canonical_path": "/owners/venue/42"
+              }
+            ]
+          },
+          "expires_at": "2026-09-01 19:00:00+00:00",
+          "source_refs": [
+            {
+              "kind": "places_section",
+              "id": "nearby_set",
+              "revision": null,
+              "canonical_path": "/owners/places_section/nearby_set"
+            },
+            {
+              "kind": "venue",
+              "id": "42",
+              "revision": null,
+              "canonical_path": "/owners/venue/42"
+            }
+          ]
+        }
+      ],
+      "test_outcome": "passed"
+    },
+    {
+      "test": "tests/api/test_practical_root_delivery.py::test_practical_claim_and_independent_read_survive_real_root_composition[missing-runtime]",
+      "stage": "test_practical_claim_and_independent_read_survive_real_root_composition",
+      "surface": "runtime",
+      "condition": "missing",
+      "units": [
+        {
+          "kind": "field_editorial_cover",
+          "payload": {
+            "family": "read",
+            "scale": "line",
+            "anchor": "The working waterfront is still shaping dinner",
+            "voice": "Red Hook's newer kitchens occupy the same industrial edge that once kept the neighborhood apart from the subway city.",
+            "basis": "Red Hook"
+          },
+          "expires_at": "2026-09-01 19:00:00+00:00",
+          "source_refs": [
+            {
+              "kind": "places_section",
+              "id": "guide",
+              "revision": null,
+              "canonical_path": "/owners/places_section/guide"
+            },
+            {
+              "kind": "dossier",
+              "id": "41",
+              "revision": null,
+              "canonical_path": "/owners/dossier/41"
+            }
+          ]
+        },
+        {
+          "kind": "field_branch",
+          "payload": {
+            "family": "link",
+            "label": "Bookshop",
+            "relation": "Independent publishers upstairs",
+            "target": {
+              "kind": "venue",
+              "id": "42",
+              "revision": null,
+              "canonical_path": "/owners/venue/42"
+            }
+          },
+          "expires_at": "2026-09-01 19:00:00+00:00",
+          "source_refs": [
+            {
+              "kind": "places_section",
+              "id": "nearby_set",
+              "revision": null,
+              "canonical_path": "/owners/places_section/nearby_set"
+            },
+            {
+              "kind": "venue",
+              "id": "42",
+              "revision": null,
+              "canonical_path": "/owners/venue/42"
+            }
+          ]
+        }
+      ],
+      "workspace_feed": {
+        "posture": "quiet",
+        "context": {
+          "scope": {
+            "kind": "home",
+            "label": "Brooklyn",
+            "place_id": null,
+            "trip_id": null,
+            "lat": null,
+            "lng": null
+          },
+          "position": {
+            "state": "unknown",
+            "lat": null,
+            "lng": null,
+            "accuracy_m": null,
+            "age_seconds": null
+          },
+          "anchor": {
+            "kind": "home_area",
+            "label": "Brooklyn",
+            "lat": null,
+            "lng": null
+          },
+          "ref": {
+            "handle": "home",
+            "kind": "home",
+            "label": "Brooklyn",
+            "role": "primary",
+            "selection_reason": "home"
+          }
+        },
+        "result_set": null,
+        "sections": [
+          {
+            "reason": "guide",
+            "label": "A READING OF NEW YORK",
+            "count": null,
+            "note": null,
+            "treatment": "single",
+            "door": null,
+            "destination": null,
+            "cards": [
+              {
+                "id": "angle-nyc-waterfront",
+                "kind": "angle",
+                "title": "The working waterfront is still shaping dinner",
+                "meta": null,
+                "kicker": null,
+                "reason": null,
+                "lead": null,
+                "duration_minutes": null,
+                "verb": null,
+                "action_label": null,
+                "action": null,
+                "place": null,
+                "angle": {
+                  "dossier_id": 41,
+                  "title": "The working waterfront is still shaping dinner",
+                  "preview": "Red Hook's newer kitchens occupy the same industrial edge that once kept the neighborhood apart from the subway city.",
+                  "place_name": "Red Hook",
+                  "place_slug": null,
+                  "read_minutes": null,
+                  "media": null
+                },
+                "city": null,
+                "friend": null,
+                "memory": null,
+                "experience": null,
+                "area": null,
+                "register_data": null
+              }
+            ],
+            "fact_key": null,
+            "revision_key": null
+          },
+          {
+            "reason": "nearby_set",
+            "label": "Nearby",
+            "count": null,
+            "note": null,
+            "treatment": "single",
+            "door": null,
+            "destination": null,
+            "cards": [
+              {
+                "id": "bookshop",
+                "kind": "place",
+                "title": "Bookshop",
+                "meta": null,
+                "kicker": null,
+                "reason": "Independent publishers upstairs",
+                "lead": null,
+                "duration_minutes": null,
+                "verb": null,
+                "action_label": null,
+                "action": null,
+                "place": {
+                  "id": "42",
+                  "canonical_ref": null,
+                  "external_ref": null,
+                  "resolution_available": false,
+                  "canonical_venue_id": null,
+                  "entity_type": "venue",
+                  "name": "Bookshop",
+                  "venue_type": null,
+                  "cuisine_type": null,
+                  "price_range": null,
+                  "locality": null,
+                  "media": null,
+                  "photo_url": null,
+                  "meters": null,
+                  "duration_minutes": null,
+                  "source": "catalog",
+                  "taste_score": 0.8,
+                  "search_score": null,
+                  "relationship": {
+                    "saved": false,
+                    "taste_match": false,
+                    "taste_signal": null,
+                    "in_trip": false,
+                    "loved": false,
+                    "from_trip": {
+                      "knowledge": "unknown",
+                      "name": null,
+                      "display_eligible": false
+                    },
+                    "from_guide": {
+                      "knowledge": "unknown",
+                      "name": null,
+                      "display_eligible": false
+                    },
+                    "saved_by_friend": {
+                      "knowledge": "unknown",
+                      "name": null,
+                      "display_eligible": false
+                    },
+                    "encounter": {
+                      "count": 0,
+                      "last_date": null,
+                      "trip_id": null,
+                      "trip_title": null,
+                      "source": null
+                    }
+                  },
+                  "operational": {
+                    "freshness": "unknown",
+                    "open_now": null,
+                    "hours_today": null,
+                    "permanently_closed": null,
+                    "verified_at": null
+                  }
+                },
+                "angle": null,
+                "city": null,
+                "friend": null,
+                "memory": null,
+                "experience": null,
+                "area": null,
+                "register_data": null
+              }
+            ],
+            "fact_key": null,
+            "revision_key": null
+          }
+        ],
+        "unavailable_producers": [],
+        "saved_total": 0
+      },
+      "test_outcome": "passed"
+    },
+    {
+      "test": "tests/api/test_practical_root_delivery.py::test_practical_claim_and_independent_read_survive_real_root_composition[completion_expiry-home]",
+      "stage": "test_practical_claim_and_independent_read_survive_real_root_composition",
+      "surface": "home",
+      "condition": "completion_expiry",
+      "units": [
+        {
+          "kind": "horizon_editorial_passage",
+          "payload": {
+            "family": "read",
+            "scale": "line",
+            "anchor": "The working waterfront is still shaping dinner",
+            "voice": "Red Hook's newer kitchens occupy the same industrial edge that once kept the neighborhood apart from the subway city.",
+            "basis": "Red Hook"
+          },
+          "destination": {
+            "target_root": "places",
+            "capability_ref": "places.open_entity",
+            "resource_refs": [
+              {
+                "kind": "places_context",
+                "id": "home",
+                "revision": null,
+                "canonical_path": "/owners/places_context/home"
+              },
+              {
+                "kind": "dossier",
+                "id": "41",
+                "revision": null,
+                "canonical_path": "/owners/dossier/41"
+              }
+            ]
+          },
+          "expires_at": "2026-09-01 19:00:00+00:00",
+          "source_refs": [
+            {
+              "kind": "places_section",
+              "id": "guide",
+              "revision": null,
+              "canonical_path": "/owners/places_section/guide"
+            },
+            {
+              "kind": "dossier",
+              "id": "41",
+              "revision": null,
+              "canonical_path": "/owners/dossier/41"
+            }
+          ]
+        },
+        {
+          "kind": "horizon_aperture_row",
+          "payload": {
+            "family": "link",
+            "label": "Bookshop",
+            "relation": "Independent publishers upstairs",
+            "target": {
+              "kind": "venue",
+              "id": "42",
+              "revision": null,
+              "canonical_path": "/owners/venue/42"
+            }
+          },
+          "destination": {
+            "target_root": "places",
+            "capability_ref": "places.open_entity",
+            "resource_refs": [
+              {
+                "kind": "places_context",
+                "id": "home",
+                "revision": null,
+                "canonical_path": "/owners/places_context/home"
+              },
+              {
+                "kind": "venue",
+                "id": "42",
+                "revision": null,
+                "canonical_path": "/owners/venue/42"
+              }
+            ]
+          },
+          "expires_at": "2026-09-01 19:00:00+00:00",
+          "source_refs": [
+            {
+              "kind": "places_section",
+              "id": "nearby_set",
+              "revision": null,
+              "canonical_path": "/owners/places_section/nearby_set"
+            },
+            {
+              "kind": "venue",
+              "id": "42",
+              "revision": null,
+              "canonical_path": "/owners/venue/42"
+            }
+          ]
+        }
+      ],
+      "test_outcome": "passed"
+    },
+    {
+      "test": "tests/api/test_practical_root_delivery.py::test_practical_claim_and_independent_read_survive_real_root_composition[completion_expiry-runtime]",
+      "stage": "test_practical_claim_and_independent_read_survive_real_root_composition",
+      "surface": "runtime",
+      "condition": "completion_expiry",
+      "units": [
+        {
+          "kind": "field_editorial_cover",
+          "payload": {
+            "family": "read",
+            "scale": "line",
+            "anchor": "The working waterfront is still shaping dinner",
+            "voice": "Red Hook's newer kitchens occupy the same industrial edge that once kept the neighborhood apart from the subway city.",
+            "basis": "Red Hook"
+          },
+          "expires_at": "2026-09-01 19:00:00+00:00",
+          "source_refs": [
+            {
+              "kind": "places_section",
+              "id": "guide",
+              "revision": null,
+              "canonical_path": "/owners/places_section/guide"
+            },
+            {
+              "kind": "dossier",
+              "id": "41",
+              "revision": null,
+              "canonical_path": "/owners/dossier/41"
+            }
+          ]
+        },
+        {
+          "kind": "field_branch",
+          "payload": {
+            "family": "link",
+            "label": "Bookshop",
+            "relation": "Independent publishers upstairs",
+            "target": {
+              "kind": "venue",
+              "id": "42",
+              "revision": null,
+              "canonical_path": "/owners/venue/42"
+            }
+          },
+          "expires_at": "2026-09-01 19:00:00+00:00",
+          "source_refs": [
+            {
+              "kind": "places_section",
+              "id": "nearby_set",
+              "revision": null,
+              "canonical_path": "/owners/places_section/nearby_set"
+            },
+            {
+              "kind": "venue",
+              "id": "42",
+              "revision": null,
+              "canonical_path": "/owners/venue/42"
+            }
+          ]
+        }
+      ],
+      "workspace_feed": {
+        "posture": "quiet",
+        "context": {
+          "scope": {
+            "kind": "home",
+            "label": "Brooklyn",
+            "place_id": null,
+            "trip_id": null,
+            "lat": null,
+            "lng": null
+          },
+          "position": {
+            "state": "unknown",
+            "lat": null,
+            "lng": null,
+            "accuracy_m": null,
+            "age_seconds": null
+          },
+          "anchor": {
+            "kind": "home_area",
+            "label": "Brooklyn",
+            "lat": null,
+            "lng": null
+          },
+          "ref": {
+            "handle": "home",
+            "kind": "home",
+            "label": "Brooklyn",
+            "role": "primary",
+            "selection_reason": "home"
+          }
+        },
+        "result_set": null,
+        "sections": [
+          {
+            "reason": "guide",
+            "label": "A READING OF NEW YORK",
+            "count": null,
+            "note": null,
+            "treatment": "single",
+            "door": null,
+            "destination": null,
+            "cards": [
+              {
+                "id": "angle-nyc-waterfront",
+                "kind": "angle",
+                "title": "The working waterfront is still shaping dinner",
+                "meta": null,
+                "kicker": null,
+                "reason": null,
+                "lead": null,
+                "duration_minutes": null,
+                "verb": null,
+                "action_label": null,
+                "action": null,
+                "place": null,
+                "angle": {
+                  "dossier_id": 41,
+                  "title": "The working waterfront is still shaping dinner",
+                  "preview": "Red Hook's newer kitchens occupy the same industrial edge that once kept the neighborhood apart from the subway city.",
+                  "place_name": "Red Hook",
+                  "place_slug": null,
+                  "read_minutes": null,
+                  "media": null
+                },
+                "city": null,
+                "friend": null,
+                "memory": null,
+                "experience": null,
+                "area": null,
+                "register_data": null
+              }
+            ],
+            "fact_key": null,
+            "revision_key": null
+          },
+          {
+            "reason": "nearby_set",
+            "label": "Nearby",
+            "count": null,
+            "note": null,
+            "treatment": "single",
+            "door": null,
+            "destination": null,
+            "cards": [
+              {
+                "id": "bookshop",
+                "kind": "place",
+                "title": "Bookshop",
+                "meta": null,
+                "kicker": null,
+                "reason": "Independent publishers upstairs",
+                "lead": null,
+                "duration_minutes": null,
+                "verb": null,
+                "action_label": null,
+                "action": null,
+                "place": {
+                  "id": "42",
+                  "canonical_ref": null,
+                  "external_ref": null,
+                  "resolution_available": false,
+                  "canonical_venue_id": null,
+                  "entity_type": "venue",
+                  "name": "Bookshop",
+                  "venue_type": null,
+                  "cuisine_type": null,
+                  "price_range": null,
+                  "locality": null,
+                  "media": null,
+                  "photo_url": null,
+                  "meters": null,
+                  "duration_minutes": null,
+                  "source": "catalog",
+                  "taste_score": 0.8,
+                  "search_score": null,
+                  "relationship": {
+                    "saved": false,
+                    "taste_match": false,
+                    "taste_signal": null,
+                    "in_trip": false,
+                    "loved": false,
+                    "from_trip": {
+                      "knowledge": "unknown",
+                      "name": null,
+                      "display_eligible": false
+                    },
+                    "from_guide": {
+                      "knowledge": "unknown",
+                      "name": null,
+                      "display_eligible": false
+                    },
+                    "saved_by_friend": {
+                      "knowledge": "unknown",
+                      "name": null,
+                      "display_eligible": false
+                    },
+                    "encounter": {
+                      "count": 0,
+                      "last_date": null,
+                      "trip_id": null,
+                      "trip_title": null,
+                      "source": null
+                    }
+                  },
+                  "operational": {
+                    "freshness": "unknown",
+                    "open_now": null,
+                    "hours_today": null,
+                    "permanently_closed": null,
+                    "verified_at": null
+                  }
+                },
+                "angle": null,
+                "city": null,
+                "friend": null,
+                "memory": null,
+                "experience": null,
+                "area": null,
+                "register_data": null
+              }
+            ],
+            "fact_key": null,
+            "revision_key": null
+          }
+        ],
+        "unavailable_producers": [],
+        "saved_total": 0
+      },
+      "test_outcome": "passed"
+    },
+    {
+      "test": "tests/root_projection/test_home_portfolio.py::test_addressed_place_note_preserves_human_copy_and_recipient_authority",
+      "stage": "test_addressed_place_note_preserves_human_copy_and_recipient_authority",
+      "candidates": [
+        {
+          "kind": "people_note_door",
+          "payload": {
+            "family": "read",
+            "scale": "line",
+            "anchor": "A place from Maya",
+            "voice": "Try the back room after seven; it changes the whole place.",
+            "basis": "Private, attributed place contribution"
+          },
+          "destination": {
+            "target_root": "places",
+            "capability_ref": "places.open_entity",
+            "resource_refs": [
+              {
+                "kind": "venue",
+                "id": "42",
+                "revision": null,
+                "canonical_path": "/owners/venue/42"
+              },
+              {
+                "kind": "place_handoff",
+                "id": "5eb9eaac-adc1-4aeb-98da-b9f4df8e0d5b",
+                "revision": "0",
+                "canonical_path": "/owners/place_handoff/5eb9eaac-adc1-4aeb-98da-b9f4df8e0d5b"
+              }
+            ]
+          },
+          "source_refs": [
+            {
+              "kind": "place_handoff",
+              "id": "5eb9eaac-adc1-4aeb-98da-b9f4df8e0d5b",
+              "revision": "0",
+              "canonical_path": "/owners/place_handoff/5eb9eaac-adc1-4aeb-98da-b9f4df8e0d5b"
+            }
+          ]
+        }
+      ],
+      "test_outcome": "passed"
+    },
+    {
+      "test": "tests/root_projection/test_home_portfolio.py::test_owner_backed_home_portfolio_keeps_four_value_families_connected",
+      "stage": "test_owner_backed_home_portfolio_keeps_four_value_families_connected",
+      "posture": "quiet",
+      "candidates": [
+        {
+          "kind": "world_read",
+          "payload": {
+            "family": "read",
+            "scale": "state",
+            "anchor": "The week is open",
+            "voice": "Your recorded world stays ready when you need it.",
+            "basis": "There is no unresolved demand in the current projection."
+          },
+          "source_refs": [
+            {
+              "kind": "person",
+              "id": "5a21c79d-e446-4591-a663-e8a24551af27",
+              "revision": null,
+              "canonical_path": "/owners/person/5a21c79d-e446-4591-a663-e8a24551af27"
+            }
+          ]
+        },
+        {
+          "kind": "week_shape",
+          "payload": {
+            "family": "week_shape",
+            "timezone": "America/New_York",
+            "days": [
+              {
+                "date": "2026-09-01",
+                "mark": "today",
+                "note": null,
+                "represented_refs": []
+              },
+              {
+                "date": "2026-09-02",
+                "mark": "none",
+                "note": null,
+                "represented_refs": []
+              },
+              {
+                "date": "2026-09-03",
+                "mark": "none",
+                "note": null,
+                "represented_refs": []
+              },
+              {
+                "date": "2026-09-04",
+                "mark": "none",
+                "note": null,
+                "represented_refs": []
+              },
+              {
+                "date": "2026-09-05",
+                "mark": "none",
+                "note": null,
+                "represented_refs": []
+              },
+              {
+                "date": "2026-09-06",
+                "mark": "none",
+                "note": null,
+                "represented_refs": []
+              },
+              {
+                "date": "2026-09-07",
+                "mark": "none",
+                "note": null,
+                "represented_refs": []
+              }
+            ]
+          },
+          "source_refs": [
+            {
+              "kind": "person",
+              "id": "5a21c79d-e446-4591-a663-e8a24551af27",
+              "revision": null,
+              "canonical_path": "/owners/person/5a21c79d-e446-4591-a663-e8a24551af27"
+            }
+          ]
+        },
+        {
+          "kind": "people_note_door",
+          "payload": {
+            "family": "read",
+            "scale": "line",
+            "anchor": "A place from Maya",
+            "voice": "Try the back room after seven; it changes the whole place.",
+            "basis": "Private, attributed place contribution"
+          },
+          "destination": {
+            "target_root": "places",
+            "capability_ref": "places.open_entity",
+            "resource_refs": [
+              {
+                "kind": "venue",
+                "id": "42",
+                "revision": null,
+                "canonical_path": "/owners/venue/42"
+              },
+              {
+                "kind": "place_handoff",
+                "id": "b227b049-4a68-4b0f-8e77-dd482e2341cd",
+                "revision": "0",
+                "canonical_path": "/owners/place_handoff/b227b049-4a68-4b0f-8e77-dd482e2341cd"
+              }
+            ]
+          },
+          "source_refs": [
+            {
+              "kind": "place_handoff",
+              "id": "b227b049-4a68-4b0f-8e77-dd482e2341cd",
+              "revision": "0",
+              "canonical_path": "/owners/place_handoff/b227b049-4a68-4b0f-8e77-dd482e2341cd"
+            }
+          ]
+        },
+        {
+          "kind": "horizon_editorial_passage",
+          "payload": {
+            "family": "read",
+            "scale": "line",
+            "anchor": "The working waterfront is still shaping dinner",
+            "voice": "Red Hook's newer kitchens occupy the same industrial edge that once kept the neighborhood apart from the subway city.",
+            "basis": "Red Hook"
+          },
+          "destination": {
+            "target_root": "places",
+            "capability_ref": "places.open_entity",
+            "resource_refs": [
+              {
+                "kind": "places_context",
+                "id": "home",
+                "revision": null,
+                "canonical_path": "/owners/places_context/home"
+              },
+              {
+                "kind": "dossier",
+                "id": "41",
+                "revision": null,
+                "canonical_path": "/owners/dossier/41"
+              }
+            ]
+          },
+          "expires_at": "2026-09-01 19:00:00+00:00",
+          "source_refs": [
+            {
+              "kind": "places_section",
+              "id": "guide",
+              "revision": null,
+              "canonical_path": "/owners/places_section/guide"
+            },
+            {
+              "kind": "dossier",
+              "id": "41",
+              "revision": null,
+              "canonical_path": "/owners/dossier/41"
+            }
+          ]
+        },
+        {
+          "kind": "horizon_aperture_row",
+          "payload": {
+            "family": "link",
+            "label": "Brooklyn",
+            "relation": "Home",
+            "target": {
+              "kind": "places_context",
+              "id": "home",
+              "revision": null,
+              "canonical_path": "/owners/places_context/home"
+            }
+          },
+          "destination": {
+            "target_root": "places",
+            "capability_ref": "places.open_context",
+            "resource_refs": [
+              {
+                "kind": "places_context",
+                "id": "home",
+                "revision": null,
+                "canonical_path": "/owners/places_context/home"
+              }
+            ]
+          },
+          "source_refs": [
+            {
+              "kind": "places_context",
+              "id": "home",
+              "revision": null,
+              "canonical_path": "/owners/places_context/home"
+            }
+          ]
+        },
+        {
+          "kind": "motion_loose_end_row",
+          "payload": {
+            "family": "link",
+            "label": "Move dinner later",
+            "relation": "A reviewed Plan change is ready for the group",
+            "target": {
+              "kind": "plan_proposal",
+              "id": "a14fab5d-6ee3-493a-be5d-a11070ee75b3",
+              "revision": null,
+              "canonical_path": "/owners/plan_proposal/a14fab5d-6ee3-493a-be5d-a11070ee75b3"
+            }
+          },
+          "destination": {
+            "target_root": "chat",
+            "capability_ref": "chat.open_plan_proposal",
+            "resource_refs": [
+              {
+                "kind": "plan_proposal",
+                "id": "a14fab5d-6ee3-493a-be5d-a11070ee75b3",
+                "revision": null,
+                "canonical_path": "/owners/plan_proposal/a14fab5d-6ee3-493a-be5d-a11070ee75b3"
+              },
+              {
+                "kind": "trip",
+                "id": "e5ad77a0-64b7-406e-9225-5d6dc7f1a997",
+                "revision": null,
+                "canonical_path": "/owners/trip/e5ad77a0-64b7-406e-9225-5d6dc7f1a997"
+              }
+            ]
+          },
+          "expires_at": "2026-09-01 15:00:00+00:00",
+          "source_refs": [
+            {
+              "kind": "plan_proposal",
+              "id": "a14fab5d-6ee3-493a-be5d-a11070ee75b3",
+              "revision": null,
+              "canonical_path": "/owners/plan_proposal/a14fab5d-6ee3-493a-be5d-a11070ee75b3"
+            },
+            {
+              "kind": "trip",
+              "id": "e5ad77a0-64b7-406e-9225-5d6dc7f1a997",
+              "revision": null,
+              "canonical_path": "/owners/trip/e5ad77a0-64b7-406e-9225-5d6dc7f1a997"
+            }
+          ]
+        }
+      ],
+      "test_outcome": "passed"
+    },
+    {
+      "test": "tests/root_projection/test_home_portfolio.py::test_home_portfolio_degrades_to_cold_chrome_when_graph_is_unavailable",
+      "stage": "test_home_portfolio_degrades_to_cold_chrome_when_graph_is_unavailable",
+      "posture": "cold",
+      "candidates": [
+        {
+          "kind": "world_read",
+          "payload": {
+            "family": "read",
+            "scale": "state",
+            "anchor": "Start anywhere",
+            "voice": "A place, person, or question can become useful context.",
+            "basis": "Home has no owned current state to elevate yet."
+          },
+          "source_refs": [
+            {
+              "kind": "person",
+              "id": "3460d68f-a7af-4c38-a027-a8670d0682f9",
+              "revision": null,
+              "canonical_path": "/owners/person/3460d68f-a7af-4c38-a027-a8670d0682f9"
+            }
+          ]
+        },
+        {
+          "kind": "week_shape",
+          "payload": {
+            "family": "week_shape",
+            "timezone": "America/New_York",
+            "days": [
+              {
+                "date": "2026-09-01",
+                "mark": "today",
+                "note": null,
+                "represented_refs": []
+              },
+              {
+                "date": "2026-09-02",
+                "mark": "none",
+                "note": null,
+                "represented_refs": []
+              },
+              {
+                "date": "2026-09-03",
+                "mark": "none",
+                "note": null,
+                "represented_refs": []
+              },
+              {
+                "date": "2026-09-04",
+                "mark": "none",
+                "note": null,
+                "represented_refs": []
+              },
+              {
+                "date": "2026-09-05",
+                "mark": "none",
+                "note": null,
+                "represented_refs": []
+              },
+              {
+                "date": "2026-09-06",
+                "mark": "none",
+                "note": null,
+                "represented_refs": []
+              },
+              {
+                "date": "2026-09-07",
+                "mark": "none",
+                "note": null,
+                "represented_refs": []
+              }
+            ]
+          },
+          "source_refs": [
+            {
+              "kind": "person",
+              "id": "3460d68f-a7af-4c38-a027-a8670d0682f9",
+              "revision": null,
+              "canonical_path": "/owners/person/3460d68f-a7af-4c38-a027-a8670d0682f9"
+            }
+          ]
+        }
+      ],
+      "test_outcome": "passed"
+    },
+    {
+      "test": "tests/root_projection/test_source_contribution_serving.py::test_current_prepared_value_reuses_the_same_meaning_across_roots",
+      "stage": "test_current_prepared_value_reuses_the_same_meaning_across_roots",
+      "equal_across_roots": true,
+      "candidates": [
+        {
+          "kind": "horizon_editorial_passage",
+          "payload": {
+            "family": "composition",
+            "composition_id": "composition.waterfront.home",
+            "expression_version": "composition-brief.v1",
+            "title": "The route was tracing an older public boundary",
+            "substance": "The evening route was crossing a working-waterfront boundary that still shapes how public life reaches the water.",
+            "lead_medium": "comparison",
+            "support_medium": null,
+            "lead_anatomy": {
+              "medium": "comparison",
+              "axes": [
+                "public edge"
+              ],
+              "cases": [
+                {
+                  "case_id": "case.trace",
+                  "label": "The lived trace",
+                  "values": {
+                    "public edge": "the route felt detached"
+                  },
+                  "source_ids": [
+                    "source.trace"
+                  ]
+                },
+                {
+                  "case_id": "case.world",
+                  "label": "The wider context",
+                  "values": {
+                    "public edge": "working access still shapes the waterfront"
+                  },
+                  "source_ids": [
+                    "source.world"
+                  ]
+                }
+              ],
+              "limit_note": "This explains a bounded spatial relation, not personal identity."
+            },
+            "support_anatomy": null,
+            "basis": "governed Sources and claim-local contribution admission",
+            "brief": {
+              "schema_version": "composition-brief.v1",
+              "brief_id": "composition.waterfront.home",
+              "title": "The route was tracing an older public boundary",
+              "immediate_job": "understand",
+              "dominant_move": "make_sense",
+              "surface": "home",
+              "audience": "private",
+              "authority": "vesper_prepare",
+              "subject_refs": [
+                {
+                  "kind": "place",
+                  "id": "waterfront",
+                  "revision": "r1",
+                  "canonical_path": "/owners/place/waterfront"
+                }
+              ],
+              "owner_refs": [
+                {
+                  "kind": "person",
+                  "id": "11111111-1111-4111-8111-111111111111",
+                  "revision": "r1",
+                  "canonical_path": "/owners/person/11111111-1111-4111-8111-111111111111"
+                }
+              ],
+              "source_manifest": [
+                {
+                  "source_id": "source.trace",
+                  "resource_ref": {
+                    "kind": "experience_anchor",
+                    "id": "anchor-1",
+                    "revision": "r1",
+                    "canonical_path": "/owners/experience_anchor/anchor-1"
+                  },
+                  "kind": "visit_evidence",
+                  "author": "viewer",
+                  "label": "A retained waterfront trace",
+                  "freshness": "current",
+                  "allowed_audiences": [
+                    "private"
+                  ],
+                  "represented_at": "2026-09-02T18:00:00Z",
+                  "expires_at": null
+                },
+                {
+                  "source_id": "source.world",
+                  "resource_ref": {
+                    "kind": "dossier",
+                    "id": "42",
+                    "revision": "r1",
+                    "canonical_path": "/owners/dossier/42"
+                  },
+                  "kind": "public_source",
+                  "author": "public_source",
+                  "label": "Current waterfront context",
+                  "freshness": "current",
+                  "allowed_audiences": [
+                    "private"
+                  ],
+                  "represented_at": "2026-09-02T18:00:00Z",
+                  "expires_at": null
+                }
+              ],
+              "claims": [
+                {
+                  "claim_id": "claim.waterfront",
+                  "text": "The working edge and the evening trace explain the same break in public space.",
+                  "operation": "synthesis",
+                  "authorship": "vesper",
+                  "novelty": "new_to_person",
+                  "confidence": "supported",
+                  "minimum_supporting_sources": 2,
+                  "source_bindings": [
+                    {
+                      "source_id": "source.trace",
+                      "role": "supports",
+                      "span": null
+                    },
+                    {
+                      "source_id": "source.world",
+                      "role": "supports",
+                      "span": null
+                    }
+                  ]
+                }
+              ],
+              "lead": {
+                "section_id": "section.home",
+                "role": "lead",
+                "job": "make one source-bound relationship perceptible",
+                "preferred_medium": "comparison",
+                "allowed_media": [
+                  "comparison"
+                ],
+                "modifiers": [],
+                "semantic_role": "editorial_contribution",
+                "editorial_operation": "contrast",
+                "claim_ids": [
+                  "claim.waterfront"
+                ],
+                "accessible_summary": "The working edge and the evening trace explain the same break in public space.",
+                "anatomy": {
+                  "medium": "comparison",
+                  "axes": [
+                    "public edge"
+                  ],
+                  "cases": [
+                    {
+                      "case_id": "case.trace",
+                      "label": "The lived trace",
+                      "values": {
+                        "public edge": "the route felt detached"
+                      },
+                      "source_ids": [
+                        "source.trace"
+                      ]
+                    },
+                    {
+                      "case_id": "case.world",
+                      "label": "The wider context",
+                      "values": {
+                        "public edge": "working access still shapes the waterfront"
+                      },
+                      "source_ids": [
+                        "source.world"
+                      ]
+                    }
+                  ],
+                  "limit_note": "This explains a bounded spatial relation, not personal identity."
+                }
+              },
+              "supporting": null,
+              "lifecycle_intent": "ephemeral",
+              "represented_from": null,
+              "represented_to": null,
+              "generated_at": "2026-09-02T18:00:00Z",
+              "uncertainty_and_limits": [
+                "The evidence supports a bounded spatial explanation."
+              ],
+              "continuation": null,
+              "text_fallback": "The evening route was crossing a working-waterfront boundary that still shapes how public life reaches the water.",
+              "composition_write_now": false,
+              "save_requires_explicit_command": false
+            }
+          },
+          "expires_at": "2026-09-03 00:00:00+00:00",
+          "source_refs": [
+            {
+              "kind": "experience_anchor",
+              "id": "anchor-1",
+              "revision": "r1",
+              "canonical_path": "/owners/experience_anchor/anchor-1"
+            },
+            {
+              "kind": "dossier",
+              "id": "42",
+              "revision": "r1",
+              "canonical_path": "/owners/dossier/42"
+            }
+          ]
+        },
+        {
+          "kind": "field_lead_composition",
+          "payload": {
+            "family": "composition",
+            "composition_id": "composition.waterfront.places",
+            "expression_version": "composition-brief.v1",
+            "title": "Where the working edge still divides the waterfront",
+            "substance": "The evening route was crossing a working-waterfront boundary that still shapes how public life reaches the water.",
+            "lead_medium": "spatial",
+            "support_medium": null,
+            "lead_anatomy": {
+              "medium": "spatial",
+              "points": [
+                {
+                  "point_id": "point.edge",
+                  "label": "The working edge",
+                  "detail": "The personal trace and public context meet at this boundary.",
+                  "entity_ref": {
+                    "kind": "place",
+                    "id": "waterfront",
+                    "revision": "r1",
+                    "canonical_path": "/owners/place/waterfront"
+                  },
+                  "source_ids": [
+                    "source.trace",
+                    "source.world"
+                  ]
+                }
+              ],
+              "relationship": "The route crosses the working edge that shapes evening access."
+            },
+            "support_anatomy": null,
+            "basis": "governed Sources and claim-local contribution admission",
+            "brief": {
+              "schema_version": "composition-brief.v1",
+              "brief_id": "composition.waterfront.places",
+              "title": "Where the working edge still divides the waterfront",
+              "immediate_job": "understand",
+              "dominant_move": "make_sense",
+              "surface": "places",
+              "audience": "private",
+              "authority": "vesper_prepare",
+              "subject_refs": [
+                {
+                  "kind": "place",
+                  "id": "waterfront",
+                  "revision": "r1",
+                  "canonical_path": "/owners/place/waterfront"
+                }
+              ],
+              "owner_refs": [
+                {
+                  "kind": "person",
+                  "id": "11111111-1111-4111-8111-111111111111",
+                  "revision": "r1",
+                  "canonical_path": "/owners/person/11111111-1111-4111-8111-111111111111"
+                }
+              ],
+              "source_manifest": [
+                {
+                  "source_id": "source.trace",
+                  "resource_ref": {
+                    "kind": "experience_anchor",
+                    "id": "anchor-1",
+                    "revision": "r1",
+                    "canonical_path": "/owners/experience_anchor/anchor-1"
+                  },
+                  "kind": "visit_evidence",
+                  "author": "viewer",
+                  "label": "A retained waterfront trace",
+                  "freshness": "current",
+                  "allowed_audiences": [
+                    "private"
+                  ],
+                  "represented_at": "2026-09-02T18:00:00Z",
+                  "expires_at": null
+                },
+                {
+                  "source_id": "source.world",
+                  "resource_ref": {
+                    "kind": "dossier",
+                    "id": "42",
+                    "revision": "r1",
+                    "canonical_path": "/owners/dossier/42"
+                  },
+                  "kind": "public_source",
+                  "author": "public_source",
+                  "label": "Current waterfront context",
+                  "freshness": "current",
+                  "allowed_audiences": [
+                    "private"
+                  ],
+                  "represented_at": "2026-09-02T18:00:00Z",
+                  "expires_at": null
+                }
+              ],
+              "claims": [
+                {
+                  "claim_id": "claim.waterfront",
+                  "text": "The working edge and the evening trace explain the same break in public space.",
+                  "operation": "synthesis",
+                  "authorship": "vesper",
+                  "novelty": "new_to_person",
+                  "confidence": "supported",
+                  "minimum_supporting_sources": 2,
+                  "source_bindings": [
+                    {
+                      "source_id": "source.trace",
+                      "role": "supports",
+                      "span": null
+                    },
+                    {
+                      "source_id": "source.world",
+                      "role": "supports",
+                      "span": null
+                    }
+                  ]
+                }
+              ],
+              "lead": {
+                "section_id": "section.places",
+                "role": "lead",
+                "job": "locate the relationship in the world",
+                "preferred_medium": "spatial",
+                "allowed_media": [
+                  "spatial"
+                ],
+                "modifiers": [],
+                "semantic_role": "editorial_contribution",
+                "editorial_operation": "relational_mapping",
+                "claim_ids": [
+                  "claim.waterfront"
+                ],
+                "accessible_summary": "The working edge and the evening trace explain the same break in public space.",
+                "anatomy": {
+                  "medium": "spatial",
+                  "points": [
+                    {
+                      "point_id": "point.edge",
+                      "label": "The working edge",
+                      "detail": "The personal trace and public context meet at this boundary.",
+                      "entity_ref": {
+                        "kind": "place",
+                        "id": "waterfront",
+                        "revision": "r1",
+                        "canonical_path": "/owners/place/waterfront"
+                      },
+                      "source_ids": [
+                        "source.trace",
+                        "source.world"
+                      ]
+                    }
+                  ],
+                  "relationship": "The route crosses the working edge that shapes evening access."
+                }
+              },
+              "supporting": null,
+              "lifecycle_intent": "ephemeral",
+              "represented_from": null,
+              "represented_to": null,
+              "generated_at": "2026-09-02T18:00:00Z",
+              "uncertainty_and_limits": [
+                "The evidence supports a bounded spatial explanation."
+              ],
+              "continuation": null,
+              "text_fallback": "The evening route was crossing a working-waterfront boundary that still shapes how public life reaches the water.",
+              "composition_write_now": false,
+              "save_requires_explicit_command": false
+            }
+          },
+          "expires_at": "2026-09-03 00:00:00+00:00",
+          "source_refs": [
+            {
+              "kind": "experience_anchor",
+              "id": "anchor-1",
+              "revision": "r1",
+              "canonical_path": "/owners/experience_anchor/anchor-1"
+            },
+            {
+              "kind": "dossier",
+              "id": "42",
+              "revision": "r1",
+              "canonical_path": "/owners/dossier/42"
+            }
+          ]
+        }
+      ],
+      "test_outcome": "passed"
+    },
+    {
+      "test": "tests/root_projection/test_source_contribution_serving.py::test_exact_result_reopens_by_digest_without_current_group_ranking",
+      "stage": "test_exact_result_reopens_by_digest_without_current_group_ranking",
+      "equal_to_prepared": true,
+      "candidates": [
+        {
+          "kind": "horizon_editorial_passage",
+          "payload": {
+            "family": "composition",
+            "composition_id": "composition.waterfront.home",
+            "expression_version": "composition-brief.v1",
+            "title": "The route was tracing an older public boundary",
+            "substance": "The evening route was crossing a working-waterfront boundary that still shapes how public life reaches the water.",
+            "lead_medium": "comparison",
+            "support_medium": null,
+            "lead_anatomy": {
+              "medium": "comparison",
+              "axes": [
+                "public edge"
+              ],
+              "cases": [
+                {
+                  "case_id": "case.trace",
+                  "label": "The lived trace",
+                  "values": {
+                    "public edge": "the route felt detached"
+                  },
+                  "source_ids": [
+                    "source.trace"
+                  ]
+                },
+                {
+                  "case_id": "case.world",
+                  "label": "The wider context",
+                  "values": {
+                    "public edge": "working access still shapes the waterfront"
+                  },
+                  "source_ids": [
+                    "source.world"
+                  ]
+                }
+              ],
+              "limit_note": "This explains a bounded spatial relation, not personal identity."
+            },
+            "support_anatomy": null,
+            "basis": "governed Sources and claim-local contribution admission",
+            "brief": {
+              "schema_version": "composition-brief.v1",
+              "brief_id": "composition.waterfront.home",
+              "title": "The route was tracing an older public boundary",
+              "immediate_job": "understand",
+              "dominant_move": "make_sense",
+              "surface": "home",
+              "audience": "private",
+              "authority": "vesper_prepare",
+              "subject_refs": [
+                {
+                  "kind": "place",
+                  "id": "waterfront",
+                  "revision": "r1",
+                  "canonical_path": "/owners/place/waterfront"
+                }
+              ],
+              "owner_refs": [
+                {
+                  "kind": "person",
+                  "id": "11111111-1111-4111-8111-111111111111",
+                  "revision": "r1",
+                  "canonical_path": "/owners/person/11111111-1111-4111-8111-111111111111"
+                }
+              ],
+              "source_manifest": [
+                {
+                  "source_id": "source.trace",
+                  "resource_ref": {
+                    "kind": "experience_anchor",
+                    "id": "anchor-1",
+                    "revision": "r1",
+                    "canonical_path": "/owners/experience_anchor/anchor-1"
+                  },
+                  "kind": "visit_evidence",
+                  "author": "viewer",
+                  "label": "A retained waterfront trace",
+                  "freshness": "current",
+                  "allowed_audiences": [
+                    "private"
+                  ],
+                  "represented_at": "2026-09-02T18:00:00Z",
+                  "expires_at": null
+                },
+                {
+                  "source_id": "source.world",
+                  "resource_ref": {
+                    "kind": "dossier",
+                    "id": "42",
+                    "revision": "r1",
+                    "canonical_path": "/owners/dossier/42"
+                  },
+                  "kind": "public_source",
+                  "author": "public_source",
+                  "label": "Current waterfront context",
+                  "freshness": "current",
+                  "allowed_audiences": [
+                    "private"
+                  ],
+                  "represented_at": "2026-09-02T18:00:00Z",
+                  "expires_at": null
+                }
+              ],
+              "claims": [
+                {
+                  "claim_id": "claim.waterfront",
+                  "text": "The working edge and the evening trace explain the same break in public space.",
+                  "operation": "synthesis",
+                  "authorship": "vesper",
+                  "novelty": "new_to_person",
+                  "confidence": "supported",
+                  "minimum_supporting_sources": 2,
+                  "source_bindings": [
+                    {
+                      "source_id": "source.trace",
+                      "role": "supports",
+                      "span": null
+                    },
+                    {
+                      "source_id": "source.world",
+                      "role": "supports",
+                      "span": null
+                    }
+                  ]
+                }
+              ],
+              "lead": {
+                "section_id": "section.home",
+                "role": "lead",
+                "job": "make one source-bound relationship perceptible",
+                "preferred_medium": "comparison",
+                "allowed_media": [
+                  "comparison"
+                ],
+                "modifiers": [],
+                "semantic_role": "editorial_contribution",
+                "editorial_operation": "contrast",
+                "claim_ids": [
+                  "claim.waterfront"
+                ],
+                "accessible_summary": "The working edge and the evening trace explain the same break in public space.",
+                "anatomy": {
+                  "medium": "comparison",
+                  "axes": [
+                    "public edge"
+                  ],
+                  "cases": [
+                    {
+                      "case_id": "case.trace",
+                      "label": "The lived trace",
+                      "values": {
+                        "public edge": "the route felt detached"
+                      },
+                      "source_ids": [
+                        "source.trace"
+                      ]
+                    },
+                    {
+                      "case_id": "case.world",
+                      "label": "The wider context",
+                      "values": {
+                        "public edge": "working access still shapes the waterfront"
+                      },
+                      "source_ids": [
+                        "source.world"
+                      ]
+                    }
+                  ],
+                  "limit_note": "This explains a bounded spatial relation, not personal identity."
+                }
+              },
+              "supporting": null,
+              "lifecycle_intent": "ephemeral",
+              "represented_from": null,
+              "represented_to": null,
+              "generated_at": "2026-09-02T18:00:00Z",
+              "uncertainty_and_limits": [
+                "The evidence supports a bounded spatial explanation."
+              ],
+              "continuation": null,
+              "text_fallback": "The evening route was crossing a working-waterfront boundary that still shapes how public life reaches the water.",
+              "composition_write_now": false,
+              "save_requires_explicit_command": false
+            }
+          },
+          "expires_at": "2026-09-03 00:00:00+00:00",
+          "source_refs": [
+            {
+              "kind": "experience_anchor",
+              "id": "anchor-1",
+              "revision": "r1",
+              "canonical_path": "/owners/experience_anchor/anchor-1"
+            },
+            {
+              "kind": "dossier",
+              "id": "42",
+              "revision": "r1",
+              "canonical_path": "/owners/dossier/42"
+            }
+          ]
+        },
+        {
+          "kind": "field_lead_composition",
+          "payload": {
+            "family": "composition",
+            "composition_id": "composition.waterfront.places",
+            "expression_version": "composition-brief.v1",
+            "title": "Where the working edge still divides the waterfront",
+            "substance": "The evening route was crossing a working-waterfront boundary that still shapes how public life reaches the water.",
+            "lead_medium": "spatial",
+            "support_medium": null,
+            "lead_anatomy": {
+              "medium": "spatial",
+              "points": [
+                {
+                  "point_id": "point.edge",
+                  "label": "The working edge",
+                  "detail": "The personal trace and public context meet at this boundary.",
+                  "entity_ref": {
+                    "kind": "place",
+                    "id": "waterfront",
+                    "revision": "r1",
+                    "canonical_path": "/owners/place/waterfront"
+                  },
+                  "source_ids": [
+                    "source.trace",
+                    "source.world"
+                  ]
+                }
+              ],
+              "relationship": "The route crosses the working edge that shapes evening access."
+            },
+            "support_anatomy": null,
+            "basis": "governed Sources and claim-local contribution admission",
+            "brief": {
+              "schema_version": "composition-brief.v1",
+              "brief_id": "composition.waterfront.places",
+              "title": "Where the working edge still divides the waterfront",
+              "immediate_job": "understand",
+              "dominant_move": "make_sense",
+              "surface": "places",
+              "audience": "private",
+              "authority": "vesper_prepare",
+              "subject_refs": [
+                {
+                  "kind": "place",
+                  "id": "waterfront",
+                  "revision": "r1",
+                  "canonical_path": "/owners/place/waterfront"
+                }
+              ],
+              "owner_refs": [
+                {
+                  "kind": "person",
+                  "id": "11111111-1111-4111-8111-111111111111",
+                  "revision": "r1",
+                  "canonical_path": "/owners/person/11111111-1111-4111-8111-111111111111"
+                }
+              ],
+              "source_manifest": [
+                {
+                  "source_id": "source.trace",
+                  "resource_ref": {
+                    "kind": "experience_anchor",
+                    "id": "anchor-1",
+                    "revision": "r1",
+                    "canonical_path": "/owners/experience_anchor/anchor-1"
+                  },
+                  "kind": "visit_evidence",
+                  "author": "viewer",
+                  "label": "A retained waterfront trace",
+                  "freshness": "current",
+                  "allowed_audiences": [
+                    "private"
+                  ],
+                  "represented_at": "2026-09-02T18:00:00Z",
+                  "expires_at": null
+                },
+                {
+                  "source_id": "source.world",
+                  "resource_ref": {
+                    "kind": "dossier",
+                    "id": "42",
+                    "revision": "r1",
+                    "canonical_path": "/owners/dossier/42"
+                  },
+                  "kind": "public_source",
+                  "author": "public_source",
+                  "label": "Current waterfront context",
+                  "freshness": "current",
+                  "allowed_audiences": [
+                    "private"
+                  ],
+                  "represented_at": "2026-09-02T18:00:00Z",
+                  "expires_at": null
+                }
+              ],
+              "claims": [
+                {
+                  "claim_id": "claim.waterfront",
+                  "text": "The working edge and the evening trace explain the same break in public space.",
+                  "operation": "synthesis",
+                  "authorship": "vesper",
+                  "novelty": "new_to_person",
+                  "confidence": "supported",
+                  "minimum_supporting_sources": 2,
+                  "source_bindings": [
+                    {
+                      "source_id": "source.trace",
+                      "role": "supports",
+                      "span": null
+                    },
+                    {
+                      "source_id": "source.world",
+                      "role": "supports",
+                      "span": null
+                    }
+                  ]
+                }
+              ],
+              "lead": {
+                "section_id": "section.places",
+                "role": "lead",
+                "job": "locate the relationship in the world",
+                "preferred_medium": "spatial",
+                "allowed_media": [
+                  "spatial"
+                ],
+                "modifiers": [],
+                "semantic_role": "editorial_contribution",
+                "editorial_operation": "relational_mapping",
+                "claim_ids": [
+                  "claim.waterfront"
+                ],
+                "accessible_summary": "The working edge and the evening trace explain the same break in public space.",
+                "anatomy": {
+                  "medium": "spatial",
+                  "points": [
+                    {
+                      "point_id": "point.edge",
+                      "label": "The working edge",
+                      "detail": "The personal trace and public context meet at this boundary.",
+                      "entity_ref": {
+                        "kind": "place",
+                        "id": "waterfront",
+                        "revision": "r1",
+                        "canonical_path": "/owners/place/waterfront"
+                      },
+                      "source_ids": [
+                        "source.trace",
+                        "source.world"
+                      ]
+                    }
+                  ],
+                  "relationship": "The route crosses the working edge that shapes evening access."
+                }
+              },
+              "supporting": null,
+              "lifecycle_intent": "ephemeral",
+              "represented_from": null,
+              "represented_to": null,
+              "generated_at": "2026-09-02T18:00:00Z",
+              "uncertainty_and_limits": [
+                "The evidence supports a bounded spatial explanation."
+              ],
+              "continuation": null,
+              "text_fallback": "The evening route was crossing a working-waterfront boundary that still shapes how public life reaches the water.",
+              "composition_write_now": false,
+              "save_requires_explicit_command": false
+            }
+          },
+          "expires_at": "2026-09-03 00:00:00+00:00",
+          "source_refs": [
+            {
+              "kind": "experience_anchor",
+              "id": "anchor-1",
+              "revision": "r1",
+              "canonical_path": "/owners/experience_anchor/anchor-1"
+            },
+            {
+              "kind": "dossier",
+              "id": "42",
+              "revision": "r1",
+              "canonical_path": "/owners/dossier/42"
+            }
+          ]
+        }
+      ],
+      "test_outcome": "passed"
+    },
+    {
+      "test": "tests/core/test_place_content_sources.py::test_exact_owner_handoff_keeps_version_roots_and_clock_together",
+      "stage": "test_exact_owner_handoff_keeps_version_roots_and_clock_together",
+      "handoff": {
+        "source_ref": {
+          "kind": "place_content_primitive",
+          "id": "f8a5ba10-9a09-4379-a3d7-bcb4133a7f2a",
+          "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "canonical_path": "/owners/place_content_primitive/f8a5ba10-9a09-4379-a3d7-bcb4133a7f2a"
+        },
+        "roots": [
+          "home",
+          "places"
+        ],
+        "draft": {
+          "primitive_id": "sorrento-marina-verticality",
+          "primitive_type": "interpretive_lens",
+          "entity_type": "site",
+          "entity_slug": "sorrento-marina-piccola",
+          "anchor_slot": "arrival",
+          "content_version": 1,
+          "claim": "Sorrento makes the sea feel close while keeping it vertically expensive.",
+          "observable_target": "the cliff-to-marina transition",
+          "interpretation": "The town and its waterfront work like distinct levels.",
+          "source_observation_keys": [
+            "obs.sorrento.verticality.1"
+          ],
+          "authority_scope": "reviewed-place-content",
+          "applicable_conditions": "when moving between town and marina",
+          "spatial_scope": "Sorrento town and Marina Piccola",
+          "temporal_validity": "durable form; recheck access",
+          "limits": "not a current route or accessibility guarantee",
+          "disagreement_ids": [],
+          "eligible_surfaces": [
+            "home",
+            "place_context"
+          ],
+          "eligible_actions": [
+            "interpret"
+          ],
+          "proactivity_level": "contextual",
+          "privacy_scope": "public",
+          "review_state": "accepted",
+          "source_artifact": "foundry:sorrento:verticality",
+          "policy_binding": {
+            "policy_version": "content-consequence-policy-v1",
+            "authority_role": "institutional_editorial",
+            "evidence_maturity": "plausible",
+            "truth_mode": "source_extracted",
+            "allowed_consequences": [
+              "interpretation"
+            ],
+            "review_receipt_ref": "review:sorrento:verticality:1"
+          }
+        }
+      },
+      "test_outcome": "passed"
+    }
+  ]
+}

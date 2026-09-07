@@ -91,6 +91,12 @@ ingress and mobile results, practical judgment, Life serving adoption, and narro
 intent/social handoffs. Earlier package descriptions remain acceptance scope;
 the updated baseline and exit evidence determine completion.
 
+[Section 9.8.11](#9811-supported-service-and-received-value-acceptance--september-7)
+applies the accepted September 7 strategy refinement to these same packages:
+complete benefits, selective context, whole-experience judgment and voluntary
+consumer choice. It adds receiving acceptance and unresolved offer decisions,
+not a new execution queue, continuity policy or release claim.
+
 This document replaces older cross-system ordering and lane allocation. Lane
 roadmaps retain internal package detail; their code, acceptance cases and
 historical receipts remain evidence. Product canon and operational release
@@ -2112,6 +2118,14 @@ Contribution, Source, context, root, live and social owners after policy adoptio
 No new subsystem, source backfill, rollout flag or execution lane follows here;
 unaffected lifecycle and receiving work can continue under current contracts.
 
+The latest [proposed control semantics](conversation-history-source-expiry-decision-proposal-2026-09-06.md#4-simple-controls-with-exact-consequences)
+also belong in that policy-dependent handoff: requested help, on-visit discovery,
+interruption and external consequence have different boundaries, not separate
+permissions per root. Test scoped suppression, recommendation-use exclusion and
+off/re-enable without historical rebuilding; reevaluate dependent accepted work
+without deleting independent tickets, commitments or supported watches. This is
+a review requirement after adoption, not authority to change current retention.
+
 ##### Receiving evidence and direction checkpoints
 
 Extend SP-0's mapping and SP-3's result-to-consumer tests with actual request,
@@ -2809,9 +2823,12 @@ policy. Use the accepted behavior while resolving each missing choice.
    temporal/place eligibility contract; do not achieve it by widening private
    saves or revealing trip participation. Preserve accepted placement: addressed
    or shared-consequential Home material, casual spatial sharing in Places.
-   Consume the existing [Friends-audience proposal](friends-audience-decision-proposal-2026-09-07.md)
-   and [connection-default proposal](ongoing-connection-default-decision-proposal-2026-09-07.md)
-   rather than creating competing decisions; both remain proposed at this read.
+   Consume the existing Friends-audience and connection-default proposals rather
+   than creating competing decisions. The local drafts are
+   `friends-audience-decision-proposal-2026-09-07.md` and
+   `ongoing-connection-default-decision-proposal-2026-09-07.md`; both are proposed
+   and uncommitted at this strategy handoff. Their owners retain publication
+   responsibility; current audience authority remains unchanged.
 4. Optional history/source-expiry semantics remain their own proposal; current
    Ask can deliver immediate value without silently retaining conversation
    history. Do not bundle that adoption into a social or preparation implementation.
@@ -2899,6 +2916,127 @@ received output, exact continuation and repair, with current candidate evidence.
 This is stronger than "the repository has every subsystem" and different from
 "the product is enabled and validated with users." Both distinctions must remain
 visible in roadmap status and the final handoff.
+
+#### 9.8.11 Supported service and received-value acceptance — September 7
+
+**Strategy follow-through; existing Package 0–6 ownership and order remain.**
+This implements the product/evaluation direction in the
+[September 7 decision refinement](../decisions/2026-09-06-reconcile-consumer-strategy.md#5-september-7-refinement-complete-benefits-selective-context-and-voluntary-choice).
+It does not reopen landed work, adopt an account agreement or authorize code,
+paid production, recruiting, billing, native testing or rollout. Rebaseline
+implementation evidence at each checkpoint rather than copying §19 research
+snapshots into current status.
+
+The [v1 supported-offer candidate](vesper-v1-supported-offer-2026-09-07.md)
+specifies recommended inclusion boundaries and audits question-led, independent
+Home/Places and friend-led entrances against the current receipts. Use it as
+the product-side checklist for these packages, not a second execution queue.
+Its NYC recommendation, material scope and conditional extensions remain
+proposed; it does not change release flags, account agreements or this order.
+
+##### A. One intended service, five recognizable received benefits
+
+The table is the **target acceptance boundary**, not a declaration that every
+row is currently available. Each row must be classified on the selected
+candidate using §9.8's existing evidence stages. These benefits are not new
+modes, objects, root assignments or a required five-step experience.
+
+| Job and minimum context | Finished benefit to inspect | Existing package/owner | What cannot substitute for completion |
+| --- | --- | --- | --- |
+| Ask about a current thing; text or an explicitly supported source/ref can be enough | A substantive explanation, comparison or adaptation, with no required Keep or follow-up | Package 2 for commissioned work; current Chat/Contribution for immediate help; Content for supported world evidence | A contextual warm relabeled as an exact comparison, or a visible attachment whose contents cannot be read |
+| Open Home/Places with little history and no friends; use an explicitly chosen browsing area where needed | A worthwhile composition and working exact depth, with different benefits where justified | Package 1 with Content, Home/Places and existing entity readers | Filled cards, a polished fixture injected after the compiler, or asking for more personal data to conceal thin supply |
+| Ask whether a possibility can work within a current window | Grounded judgment, useful alternatives when warranted, and honest remaining human/provider work | Package 3 with existing live/specialist owners; Package 2 only if preparation is actually commissioned | An open-now fact offered as full route feasibility, an implied watch, or an external link described as a booking |
+| Receive a friend's addressed note, source or offer | Readable original with attribution and audience; optional private help preserves the exact subject | Package 5 with Social/Source; Package 2 for permitted commissioned help | A feed teaser, a venue substituted for the note, compulsory reciprocity, or assuming visibility grants all derivative uses |
+| Return to a deliberately retained result/source | Reopen the exact retained object under current authority, including correction or truthful unavailability | Package 4 with Life; Packages 1/2 for root/request continuity | Saving the original instead of its adaptation, a generic Life/chat destination, or requiring another prompt to regenerate it |
+
+The first public offer can claim only the tested material and coverage in these
+rows. Text, photo, PDF, ticket, recording and third-party note support must each
+be evidenced through the relevant custody/reader path; a general attachment
+affordance does not establish semantic support. Do not add a universal material
+ingestion project as a prerequisite for the bounded service.
+
+Home and Places should remain worthwhile without a fresh production run. Test
+current eligible public supply, authorized personal material, and optional
+production unavailability separately. Thin supply is a value gap, not an excuse
+to describe an empty state as complete. A fallback must supply a worthwhile
+bounded result or make the limitation clear without falsely accepting work.
+
+Before widening exposure, record the supported situations/materials and world
+area, coverage/freshness limits, current help versus accepted following, resource
+allowance, exact result/return route, and stop/failure behavior. NYC, prices,
+history duration and generalized watches are still not selected by this plan.
+Unsettled commercial or long-range-memory choices must not block unrelated
+public receiving, immediate help or already-authorized owner-based continuity.
+
+##### B. Inspect actual value and context's marginal contribution
+
+Reuse the existing [whole-experience review ledger](situated-value-decision-matrix-2026-09-06.md#119-whole-experience-review-received-value-context-and-human-work)
+and §9.8.2 portfolio; do not introduce another telemetry schema or universal
+quality score. At the existing package checkpoints:
+
+1. Record the actual produced/received result, what new benefit it supplies,
+   what input was demanded, what meaningful choice remains, and what avoidable
+   reconstruction remains. Preserve desired choosing, making and exploration.
+2. Compare capable current-evidence help with selectively eligible context under
+   the same subjects, sources and constraints. A diagnostic irrelevant-history
+   treatment can reveal over-personalization; it is not the competitive baseline.
+   Record ties and appropriate non-use, not just examples where history wins.
+3. Exercise the day-one observation, day-two explanation and day-five related
+   evidence/correction. Verify referent, subject, present applicability and
+   dependency repair. Run agreement-dependent long-range branches only as
+   labeled specimens until the actual policy is adopted; current authorized
+   fixtures can test the underlying distinctions without a new grant.
+4. Review the whole scroll and exact continuation. Different media/topics may
+   still repeat the same benefit. Include understanding, enjoyment, practical
+   relief, human perspective and forward possibility where supported—not quotas.
+   Keep accepted social placement and no-history/no-friends receiving intact.
+5. Follow source loss, changed facts, cancelled work and absence through what
+   is actually displayed. Stable owner identity alone does not prove that the
+   person can read the right result or that its content is still applicable.
+
+Automated checks screen grounding, repetition, subject/temporal mistakes and
+authority violations. Human judgments establish perceived usefulness; neither
+model scores nor passive exposure certify delight, satisfaction or an outing.
+Label authored specimen, controlled owner fixture, connected local runtime,
+provider-evidenced output and voluntary user observation distinctly. This does
+not resume deferred native testing or require a daily consumer review task.
+
+**Checkpoint interpretation:** Package 1 asks whether supplied substance makes
+a worthwhile whole receiving surface; Package 2 asks whether the requested job
+really finishes; Package 3 asks whether practical judgment reduces burden;
+Packages 4/5 ask whether exact continuity and original human value survive;
+Package 6 reassesses the combined offer. Review and revise the next two packages
+under §9.8.10 rather than starting a new strategy or validation lane.
+
+##### C. Consumer learning alongside the system, not a gate on its architecture
+
+The [Growth Strategy learning sequence](../../travel-agent/docs/product/Growth%20Strategy.md#learn-from-real-opportunities-without-assigning-a-habit)
+owns the audience/offer investigation. Use the same honest examples for alternate
+openings, include sparse-history and lightly involved recipients, and distinguish
+comprehension from useful receiving and voluntary later choice. Research may
+begin with clearly labeled supported encounters before every surface is polished;
+it must not represent a manuscript or manual intervention as shipped capability.
+
+As a supported service becomes available, examine whether people choose it when
+relevant questions, free time, social offers or retrieval needs recur. Absence
+alone is neither failure nor satisfaction. Do not infer real-life opportunity
+from ambient surveillance or assign daily sessions to produce retention evidence.
+Recipient usefulness, adoption, first purchase and renewal remain separate.
+
+[Monetization Strategy](../../travel-agent/docs/product/Monetization%20Strategy.md)
+owns the service/allowance comparison and whole-cohort cost evidence. Include
+unsuccessful production, refresh, free recipients and support; separate fixed
+engineering/acquisition costs. Compare membership with an episodic alternative
+as research before choosing an entitlement implementation. No survey result or
+competitor benchmark sets a price or authorizes a purchase test here.
+
+**Next founder decisions:** review the [concrete offer candidate](vesper-v1-supported-offer-2026-09-07.md)
+against actual coverage and delivered results; resolve the history/use agreement
+in its existing proposal; select an
+honest audience/offer study when receiving support permits it. These may change
+exposure or defaults, not silently alter canonical ownership or narrow the system
+to one behavior loop. The research basis and disconfirmation conditions remain in
+[the four-area synthesis](vesper-audience-offer-and-market-strategy-research-2026-09-06.md#19-four-consequential-strategy-questions--september-7).
 
 ### Execution receipts (2026-09-07)
 

@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / research
 created: 2026-09-05
-last_verified: 2026-09-06
+last_verified: 2026-09-07
 expires: 2026-10-05
 why_new: Consolidates the strategy-thread research on the consumer promise and adaptive assistance, with bounded canonical amendments and a proposed comprehension and experience study rather than a new product identity or implementation claim.
 supersedes: []
@@ -738,6 +738,22 @@ or inference authority. It does not establish that an agreement exists in the
 current app. Implementation requires a separately adopted contract decision,
 owner mapping, and verified repair paths—not a prompt-only memory instruction.
 
+**September 7 follow-through, reconciled after the later research:** the
+[latest proposal, §10](conversation-history-source-expiry-decision-proposal-2026-09-06.md#10-selective-long-range-continuity-four-complete-experiences)
+favors prospective, selective long-range use of eligible conversation text,
+not a universal 90-day ceiling. The earlier 90-day treatment remains in §9 as
+a comparison. Readable history, eligible use and current relevance are distinct;
+source expiry, exclusions, attribution and corrections still bind. This is a
+strategic recommendation, not a research-established optimal duration.
+
+[Proposed controls, §4](conversation-history-source-expiry-decision-proposal-2026-09-06.md#4-simple-controls-with-exact-consequences)
+distinguish requested help, on-visit discovery, interruption and external/shared
+consequences—not one permission per tab. They recommend an early nonblocking
+explanation, optional prospective configuration after value, scoped correction
+and global off-with-clearing rather than an ambiguous pause. Neither this
+research nor its examples adopt that agreement, backfill old questions or change
+the current Ask/T0 boundary.
+
 ### 10.5 Comparison cases and success criteria
 
 Extend the existing sparse-context cases with matched immediate and later
@@ -1063,3 +1079,33 @@ before medium or expensive production. It does not amend crown rules, approve
 the pending history/intention proposals, enable monitoring or claim validated
 demand. Existing decision packets and the integration roadmap retain their
 authority; the matrix supplies concrete cases for their next reviews.
+
+The September 7 [learnable-breadth, judgment, dependable-value and voluntary-preference
+research](vesper-audience-offer-and-market-strategy-research-2026-09-06.md#14-learnable-breadth-judgment-dependable-value-and-voluntary-preference--september-7)
+now compares how the same curiosity, practical, independent-Home and social
+encounters reveal Vesper's range. It recommends complete payoffs with earned
+continuations, goal-sensitive recommendation breadth, explicit useful service
+fallbacks and evidence of voluntary choice distinct from satisfaction. These
+are research recommendations and competing experience treatments, not adopted
+public copy, a new one-loop launch restriction, a continuity-policy change or
+validated consumer demand.
+
+The subsequent [complete-encounter comparison](vesper-audience-offer-and-market-strategy-research-2026-09-06.md#15-complete-encounter-comparison-and-recommended-defaults--september-7)
+writes three treatments for each of those four entrances with shared value,
+concrete destinations and comfortable endings. Its authored review qualifies
+the universal “earned bridge” interpretation: direct practical help and original
+social receiving should usually feel finished, while exploratory encounters can
+expose another useful direction. Exact continuation remains available throughout;
+promoting it is a separate design choice. This is a proposed mixed default, not
+a consumer-test result, new grammar or claim of implemented readiness.
+
+The [received-value comparison](vesper-audience-offer-and-market-strategy-research-2026-09-06.md#16-received-value-against-capable-alternatives--september-7)
+then separates presentation from substance. It writes matched familiar-tool and
+Vesper results, applies one consequential context change to each encounter, and
+distinguishes completed help from optional choice and unresolved service work.
+Several first answers tie; the proposed additional value is earned selection,
+exact useful continuation and reduced reconstruction, not memory alone. Current
+lane reports and an executed deterministic root rehearsal establish mechanism
+evidence, not generated-answer quality or consumer preference. Its handback is
+four concrete receiving requirements for existing lanes, not another grammar,
+new permissions or a restriction to proving one loop.

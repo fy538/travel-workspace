@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / engineering
 created: 2026-05-01
-last_verified: 2026-09-01
+last_verified: 2026-09-07
 why_new: Promote the existing workspace index into the canonical documentation entry point.
 supersedes: []
 source_of_truth_for: [workspace-docs-navigation]
@@ -11,33 +11,55 @@ source_of_truth_for: [workspace-docs-navigation]
 
 # Workspace Documentation
 
-## Start here — three questions
+## Start here — product, execution and evidence
 
-Daily engineering work only ever asks three things. Each has exactly one answer.
+Use the authority appropriate to the question. Product direction, current work
+and a bounded milestone are not interchangeable.
 
 | Question | Answer | When you ask it |
 |---|---|---|
-| **What am I building?** | [M1 — Plan Repair](release/m1-plan-repair.md) | picking work |
-| **Am I done?** | [`evidence-attestations.json`](journeys/evidence-attestations.json) — promoted receipts only | claiming work |
+| **What product are we building?** | [Product Thesis](../travel-agent/docs/product/Product%20Thesis.md) → [Product Model](../travel-agent/docs/product/Product%20Model.md) → [accepted consumer strategy](decisions/2026-09-06-reconcile-consumer-strategy.md) | understanding direction and boundaries |
+| **What engineering work comes next?** | [Complete-system integration roadmap](working/complete-system-integration-roadmap-2026-09-05.md) — current packages, dependencies and checkpoints | selecting and coordinating work under existing contracts |
+| **What must the M1 demo establish?** | [M1 — Plan Repair](release/m1-plan-repair.md) | executing or certifying that bounded operational-alpha milestone |
+| **What evidence supports completion?** | Current owner/package receipts for local progress; [`evidence-attestations.json`](journeys/evidence-attestations.json) for promoted journey evidence | distinguishing implementation progress from certification |
 | **What must I not break?** | [V1 scope](release/v1-scope.md) for dark surfaces · [Journey Status](journeys/STATUS.md) for the regression floor | shipping work |
 
-M1 is the single milestone: the four-act demo journey, each act mapped to its
-proof, flags, and rollback. If work does not serve one of its acts, it is not
-this milestone.
+M1 owns its four-act demo, required proof, flags and rollback. It does not define
+the whole product, architecture order or complete evidence portfolio. Work
+outside M1 may still be necessary under the integration roadmap and accepted
+product strategy; it simply does not count toward that milestone by implication.
 
 Three things follow from that table and are worth stating once:
 
 - **A green test is not done.** A test name proves coverage is *defined*. Only a
   promoted receipt at the layer named in
-  [the evidence model](journeys/EVIDENCE_MODEL.md) proves execution.
-- **Intent, evidence, and regression stay separate.** M1 says which receipts are
-  required; the attestation index says which exist; the J replay floor says
-  whether something old broke. Collapsing any two rebuilds the confusion this
-  structure exists to remove.
+  [the evidence model](journeys/EVIDENCE_MODEL.md) certifies the corresponding
+  journey claim. Local tests can establish their stated implementation boundary,
+  not consumer preference or release readiness.
+- **Intent, evidence, and regression stay separate.** The applicable roadmap or
+  milestone names required outcomes; its receipts and the attestation index
+  record evidence at different scopes; the J replay floor checks regressions.
+  A research specimen or supported-offer candidate is not an execution receipt.
 - **Lighting a flag outside its declared `gate:` is a scope change**, not a
   config change.
 
-Everything below is orientation and supporting authority, not daily lookup.
+The roadmap is an execution plan, not a replacement authority for product,
+permissions or release. Read the relevant owner contract before changing it.
+
+## Current strategy review
+
+- [Accepted September 7 refinement](decisions/2026-09-06-reconcile-consumer-strategy.md#5-september-7-refinement-complete-benefits-selective-context-and-voluntary-choice):
+  complete benefits, selective context and voluntary choice; no new retention
+  agreement, price or launch readiness follows.
+- [Strategy reading map and chronological audit](working/vesper-audience-offer-and-market-strategy-research-2026-09-06.md#current-reading-map):
+  research provenance, revised recommendations and evidence limits.
+- [V1 supported-offer candidate](working/vesper-v1-supported-offer-2026-09-07.md):
+  proposed inclusion boundaries and independent entrances, not shipping scope.
+- [Pending decision packets](decisions/README.md#pending-decision-packets--not-adopted):
+  unresolved agreements stay separate from accepted direction.
+
+These links make the current reasoning discoverable without promoting working
+research into canon or replacing generated release intent.
 
 ## Company orientation
 
@@ -56,7 +78,7 @@ Principles, Unified Context Graph, and the relevant system charter.
 
 | Question | Entry point | Owns |
 |---|---|---|
-| What am I building now? | [M1 — Plan Repair](release/m1-plan-repair.md) | `docs/release/m1-plan-repair.md` — the single milestone, its four demo acts, and exit criteria |
+| What must M1 establish? | [M1 — Plan Repair](release/m1-plan-repair.md) | `docs/release/m1-plan-repair.md` — the bounded operational-alpha milestone, its four demo acts, and exit criteria |
 | Why this product? | [Product Thesis](../travel-agent/docs/product/Product%20Thesis.md) | `travel-agent/docs/product/Product Thesis.md` — core promise and strategy |
 | How does the product model fit together? | [Product Model](../travel-agent/docs/product/Product%20Model.md) | `travel-agent/docs/product/Product Model.md` — governed owners, four recurring moves, four root orientations, real-world consequence, and continuity |
 | What principles guide it? | [What We Believe](../travel-agent/docs/product/What%20We%20Believe.md) | `travel-agent/docs/product/What We Believe.md` — durable product beliefs |
