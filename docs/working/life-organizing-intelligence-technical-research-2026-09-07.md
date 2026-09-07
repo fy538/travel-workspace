@@ -62,6 +62,14 @@ below are proposed starting points, not measured requirements.
 
 ## 2. What our code already provides—and what it does not
 
+**Subsequent implementation receipt:** the
+[roadmap checkpoint](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#1315-executed-measurement-and-first-b1-product-world-checkpoint--september-7)
+now records corrected measurements and the first fixture-backed B1 compiler at
+backend `333f447be`. The baseline inspection below remains historical research
+evidence; it must not be read as a request to recreate those new packages.
+Oracle-fixture compliance does not establish extraction, learned organization,
+human usefulness, or production readiness.
+
 The implementation baseline inspected here is backend
 `codex/life-shadow-rehearsal-2026-09-07` at `b1ab469f0`, in the isolated Life
 worktree. The documentation baseline is

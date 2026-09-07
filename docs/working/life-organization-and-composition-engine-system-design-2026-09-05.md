@@ -71,6 +71,15 @@ owns the next work. No model comparison or richer organizer was executed by
 that research, and no new architecture, serving path, or product authority was
 adopted.
 
+**First research implementation — September 7:** the
+[execution checkpoint](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#1315-executed-measurement-and-first-b1-product-world-checkpoint--september-7)
+records `4a19414be` and `333f447be`: corrected measurements and a bounded B1
+compiler exercised across five oracle-interpreted product worlds, with real
+organization persistence, pagination and evolving correction tests. The Life
+branch is still isolated. This is not learned clustering, source extraction,
+human-value evidence, or serving activation; the checkpoint names the remaining
+Capture and B2 interfaces.
+
 ### 1.1 Authority and phase boundaries
 
 - The [Life experience contract](../contracts/life-v1-experience.md) owns the

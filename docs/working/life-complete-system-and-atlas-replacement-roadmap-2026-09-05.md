@@ -3136,3 +3136,127 @@ HEAD. The new report is classified and adds no inventory failure. This package
 does not claim a repository-wide green documentation gate or rerun backend
 engineering tests; the executed code evidence is the pure metric diagnostic
 described above.
+
+### 13.15 Executed measurement and first B1 product-world checkpoint — September 7
+
+The first implementation following §13.14 is committed on the isolated backend
+branch `codex/life-shadow-rehearsal-2026-09-07`. These packages are not merged
+or pushed. Canonical workspace/backend/app concurrent changes were left alone.
+Task classification is `safe-backend`: internal Life logic, fixtures and
+documentation; no public API, shared owner schema, prompt, model default or
+background activation changed. Therefore no OpenAPI/mobile type regeneration
+was required.
+
+| Package | Code evidence | What changed |
+| --- | --- | --- |
+| Measurement correction | `4a19414be` | Record recovery is accurately named/versioned; typed relationship measurements include direction, source span, source/owner/locator revisions, viewer, purpose and projection version. Accepted, forbidden and unjudged output are distinct. |
+| B1 compiler and five product worlds | `333f447be` | Added bounded evidence-to-proposal compilation using existing evidence/group/membership interfaces; executable oracle fixtures and real organization persistence/reader tests; source-locator associations survive proposal merging; missing human/refinding judgments remain unmeasured. |
+
+Implementation map:
+
+- `backend/life_projection/quality.py` emits `life-record-quality.v2` with
+  `required_record_recall`; missing findability/usefulness judgments are `None`,
+  not zero or fabricated success. Supplied judgments cannot count absent records.
+- `backend/life_projection/quality_relations.py` measures actual required edges;
+  only `same_source` normalizes endpoint direction. Judgment coverage accompanies
+  precision, so unknown output cannot silently become correct output.
+- `backend/life_projection/evidence_organization.py` compiles at most 256 record
+  snapshots and 512 evidence units. It returns scoped proposals, observed
+  revisions, rejections and unplaced originals. It does not persist or serve.
+- `backend/life_projection/organization.py` preserves each evidence marker's
+  exact source/locator/revisions even when several passages share one record
+  membership. No original is cloned to represent multiple evidence units.
+- `backend/life_projection/FEATURE.md` now documents this package separately
+  from the older `backend/life/` refinding implementation.
+
+The B1 compiler admits declared time-role calendar navigation, source-only
+episodes from explicit occurred claims, explicit owner-context associations,
+and explicitly supplied continuity references. Dates, nearby places, similar
+food or filenames do not establish a common event. Pending retained sources can
+support literal capture navigation; current live canonical Occasions are not
+mistaken for transient Ask material. A ticket mentioning an occurrence does
+not create an episode without occurrence support. Calendar placement uses a
+declared fixed timezone and the start of each evidence interval; this is an
+experimental policy, not a newly activated user preference or universal
+multi-period coverage rule.
+
+#### Product-world output, with limited judgments made explicit
+
+All evidence is synthetic and **oracle-interpreted**. The illustrative literal
+text is not parsed by a model. Namespace `product-life.organization.v1` is
+separate from the backend delivery W1–W6 fixture namespace.
+
+| World | Observable result | Required links recovered | Additional unjudged links |
+| --- | --- | --- | --- |
+| W1 Europe | Kept ferry ticket and explicit train account relate to a journey; only the occurred account supports occurrence; late capture remains dated navigation | 2/2 | 4 |
+| W2 ordinary NYC | Two passages in one text become separate cafe episodes; one original remains; undated reading stays unplaced and available in the supplied corpus | 2/2 | 4 |
+| W3 continuity | Three explicitly connected sources relate through a Thread without merging their episodes; unrelated food and transient Ask do not join it | 3/3 | 6 |
+| W4 dinner | Viewer-relative contributions retain attribution; another person's private account is absent from the other viewer's proposed record | 1/1 | 4 |
+| W5 unused ticket | Corrected ticket remains calendar-organized; stale occurrence evidence is rejected; no episode or occurrence relationship is created | 1/1 | 0 |
+
+B0 owner containment recovers none of these nine **source-evidence** links;
+B1 recovers nine, with none of the explicitly forbidden fixture links admitted.
+This verifies the added deterministic behavior, not a general model-quality
+win: 18 other output links remain unjudged by this small rubric, source
+interpretations are supplied, and there is no held-out or human-value result.
+W5 does not establish free-text understanding of negation; it checks the
+organization consequence of current typed evidence versus a stale old claim.
+
+#### Connected validation
+
+The PostgreSQL tests materialize each of the five worlds through the existing
+organization store, replay without rewriting unchanged memberships, and page
+the actual group reader at two rows per page while checking exact membership
+and provenance. A sixth connected case exercises a shared dinner through
+rename, detach, complete-set withdrawal reconciliation, non-resurrecting replay
+and explicit restoration. The title and exclusion survive. Each test creates
+and removes its own disposable user; no shared development schema was migrated.
+
+The writer receives the previous affected groups plus current group content
+revisions for complete-set reconciliation. A new compiler batch alone is not
+proof that an omitted group is empty. These tests establish derived-store/group
+metadata compatibility, not canonical source-reader authorization, producer
+delivery, visual composition, or indexed public serving.
+
+Final local selection: **296 passed**, including PostgreSQL, with API-key tests
+excluded. Focused new/updated measurement and product-world files: **44 passed**.
+Command (using the existing repository virtual environment):
+
+```bash
+PYTHONPATH=. python -m pytest tests/life_projection \
+  tests/workers/test_life_projection_jobs.py \
+  tests/core/test_life_projection_broadcast.py \
+  -m 'not requires_api_keys' -q
+```
+
+Ruff, formatting, whitespace and the new FEATURE metadata check pass. Applicable
+commit hooks passed except the already recorded repository-wide size-budget
+and status-guard baseline failures, explicitly skipped for these commits. No
+unrelated code was changed to satisfy those gates. No model calls, app/device
+tests, production actions, merge, push, Atlas migration or deletion occurred.
+
+#### Next checkpoint and remaining interfaces
+
+M2/M5 are not complete. The first B1 executable is an experiment over explicit
+interpretation—not an automatic source extractor, general clusterer, or
+production owner adapter. Continue with:
+
+1. Label the additional output relationships and add independently authored
+   holdout sequences, including ambiguous identity and conflicting context.
+   Keep extraction correctness separate from downstream organization correctness.
+2. Prepare the bounded B2 candidate/classification comparison over the same
+   fixtures and existing model gateway. Agree eligible input data and a run
+   budget before paid inference; do not add another framework or memory writer.
+3. Obtain Capture's current-authority evidence envelope and revisioned delivery
+   for occurred/negative claims, Place/people attribution, source locators and
+   corrections. Experimental `context_ref`/`continuity_ref` inputs are not an
+   independently adopted producer contract. Publication must recheck owner and
+   dependency authority through the maintainer, not trust old indexed snapshots.
+4. Continue M3/expression evaluation of exact source reads and lens-specific
+   previews. Group metadata tests do not measure recognition, useful new value
+   or human refinding. Resolve calendar policy and complete affected-scope
+   handling before production source-only organization wiring.
+
+Source-owned transactions, Intake acknowledgement, live-engine canonical reads,
+current serving gates, and the prohibition on a Life-owned intention writer
+remain unchanged.
