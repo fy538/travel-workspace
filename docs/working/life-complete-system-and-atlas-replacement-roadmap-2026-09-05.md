@@ -152,11 +152,12 @@ rehearsal is now green: four viewers, all supported owner families, replay and
 out-of-order delivery, withdrawal/rejoin restoration, lens parity and cursor
 ordering all pass. Focused evidence is 19 Life unit tests and 24 connected
 Life delivery/projector/producer tests (including the corpus rehearsal). The
-backend code is committed as `a1a0e3632` on the isolated Life worktree. This
-remains shadow evidence only; no serving cutover, Atlas deletion or production
-activation is included. The repository-wide size-budget gate remains a
-pre-existing failure. The rehearsal's fail-closed `read_clock` guard is
-committed separately as `ce12ee3c5`.
+backend ordering implementation is committed as `a1a0e3632` plus the
+public-contract-preserving metadata follow-up `73fe1ebae` on the isolated Life
+worktree. This remains shadow evidence only; no serving cutover, Atlas deletion
+or production activation is included. The repository-wide size-budget gate
+remains a pre-existing failure. The rehearsal's fail-closed `read_clock` guard
+is committed separately as `ce12ee3c5`.
 
 Capture supplies source identity, revision, lifecycle and repair events; Life
 owns derived indexing. Home/Places consumes exact record destinations, not a
