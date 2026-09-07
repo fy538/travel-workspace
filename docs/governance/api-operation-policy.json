@@ -855,7 +855,7 @@
     },
     "GET /api/agent-workflows/{workflow_id}/result": {
       "audience": "app",
-      "feature_flag": "SHARED_WORKFLOW_CONTROL_ENABLED",
+      "feature_flag": "ROOT_SOURCE_CONTRIBUTION_PRODUCTION_ENABLED",
       "lifecycle": "active",
       "owner": "integration",
       "reason": "Owner-only exact Source result reopening is consumed by the typed mobile recovery client; the feature flag remains the rollout gate.",
@@ -878,7 +878,7 @@
           "source": "travel-app/utils/api/http.ts"
         }
       ],
-      "feature_flag": "SHARED_WORKFLOW_CONTROL_ENABLED",
+      "feature_flag": "ROOT_SOURCE_CONTRIBUTION_PRODUCTION_ENABLED",
       "lifecycle": "active",
       "owner": "integration",
       "reason": "A typed mobile request can submit one bounded private Source job to the existing durable workflow fence.",
