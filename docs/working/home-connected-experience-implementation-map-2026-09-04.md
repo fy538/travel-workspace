@@ -824,12 +824,13 @@ then-current `main` checkouts; they are intentionally not merged or pushed:
 | Package 1 value receiving | Travel App `0fbd09b9f`; Travel Agent `f3bdd939c` | Read/composition/direct-state/receipt units now retain supplied actions; link payloads prefer their semantic target over an incidental represented ref. Existing experience cards carry confirmed start time, duration and price facts into the existing bounded relation. | Mobile Jest/typecheck could not run because the isolated worktree has no dependencies and the disk filled during a temporary install attempt; backend pytest could not import SQLAlchemy. Python compilation passed. Backend commit hooks passed all applicable checks; the pre-existing size-budget gate was skipped. These are source-level fixes, not native or populated-data evidence. |
 | Package 2/3 receiving and screen wiring | Travel App `c8e768340`, `d4fbee3f4`; Travel Agent `fae783911`, `f012ada36` | Continuation labels now follow the declared destination owner and the existing resource resolver (graph-owner resources fall back honestly to Chat). The actual Home v2 screen test exercises a `source.inspect` action, and the compiler test proves an admitted action survives into the emitted unit. Experience timestamps are only presented as scheduled when their source marks timing confirmed. | Mobile dependency installation remains unavailable; backend pytest remains unavailable without SQLAlchemy. Existing route tests and source-level compilation are not a populated-data or native run. Exact place-handoff source depth and area/city slug identity remain owner questions. |
 
-The mobile branch also passes the Home screen smoke suite (7 tests) and
-TypeScript check. Existing expiry-observation tests continue to cover C1's safe
-whole-root recomposition at value/proof deadlines; no second refresh mechanism
-was added. The temporary dependency symlink used to run Jest in the isolated
-worktree was removed before finishing, and both implementation worktrees are
-clean.
+At the earlier renderer checkpoint, the mobile branch passed the Home screen
+smoke suite (7 tests) and TypeScript check. The current package added focused
+screen tests but could not rerun Jest/typecheck because dependencies were not
+available in the isolated worktree; see the explicit boundary in the table
+above. Existing expiry-observation tests continue to cover C1's safe whole-root
+recomposition at value/proof deadlines; no second refresh mechanism was added.
+Both implementation worktrees are clean.
 
 Package 1 improves presentation and value preservation, but it does not
 complete A1/B1/B2. Package 2 remains the exact-continuation and return pass;
