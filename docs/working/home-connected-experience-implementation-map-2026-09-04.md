@@ -13,9 +13,11 @@ supersedes: []
 
 ## September 6 execution rebaseline
 
-This is the **Home task's Home/Places consumer plan**, subordinate to the
+This is the **Home/Places consumer plan**, subordinate to the
 [integration coordination register](complete-system-integration-roadmap-2026-09-05.md#2-current-coordination-register--september-6)
-for shared contracts. Keep J1–J4 and packages A–E; do not create another root
+for shared contracts. The latest September 6 two-lane decision assigns its
+execution to Integration, with Home available for bounded consumer support;
+it is not a third persistent lane. Keep J1–J4 and packages A–E; do not create another root
 program. The September 4 code-map rows below are historical observations where
 this rebaseline supersedes them.
 
@@ -26,8 +28,11 @@ this rebaseline supersedes them.
 | D receiving owners | Life canonical tab/readers, Capture useful-first facts and retry repair, scoped entity lifecycle fixes | Consume exact refs; [loose intent](retained-intention-before-plan-decision-proposal-2026-09-06.md) and concrete arrangement/shared commands remain dependency-bound |
 | E economics | Ordinary root serving excludes optional production; bounded reads and measured dark worker/executor supplied by Integration | Useful-result quality, controlled provider cost/latency and promotion; Home must not build another generator |
 
-**Next package:** select a varied group of already owner-backed value treatments
-and complete their producer→renderer→destination→return chains. Cover practical
+**Next package:** the four-family owner-backed portfolio below has landed.
+Execute [CV-1](complete-system-integration-roadmap-2026-09-05.md#91-connected-value-execution-sequence):
+receive current prepared Source results on normal Home/Places reads without
+starting production. Then complete the remaining producer→renderer→destination→return
+chains. Cover practical
 preparation, complete-on-view understanding, human contribution and ordinary
 possibility across J1–J4. Unavailable owners remain explicit; a card's absence
 does not by itself justify a new semantic kind or product rule.

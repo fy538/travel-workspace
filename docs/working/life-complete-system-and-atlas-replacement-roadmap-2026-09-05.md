@@ -22,14 +22,15 @@ supersedes:
 
 ## Current execution baseline — September 6
 
-**Latest planning checkpoint:** [§10](#10-design-independent-execution-plan--september-6)
-reconciles this roadmap against backend `68e72d3f7` and app `d7d1a3271`.
-It supersedes the earlier next-package wording below where that wording still
-describes Plan/Occasion/Outcome delivery as absent. Earlier receipts remain
-historical evidence, not current completion claims. The immediate sequence is
-publication correctness → bounded owner reads → resumable historical population
-and repair → complete shadow comparison; organization and mobile continuity
-follow within R2–R5.
+**Latest integration checkpoint:** backend `329c91f87` includes `d37967e6f`,
+which merged publication/delivery fencing, bounded owner reads, resumable
+backfill, reconciliation, typed full-row comparison and operator boundaries.
+App `38d3a6521` includes lens/refind-destination continuity. The
+[execution receipt](life-system-execution-receipt-2026-09-06.md) records the
+individual packages. [§10](#10-design-independent-execution-plan--september-6)
+remains the detailed plan, but its original missing-capability and next-package
+wording is historical where superseded here. These implementations do not
+establish a populated real corpus, complete parity, indexed serving or release.
 
 R0–R8 remains Life's sole forward roadmap. The engine design supplies behavior
 and implementation detail; the execution-status file preserves receipts. The
@@ -41,17 +42,21 @@ inspection date, not a request to repeat completed work.
 | --- | --- | --- |
 | R0 / R4 root and reading | Canonical Life route, Atlas redirects, four depth lenses, exact-owner and identity-restoration improvements | Rich lens organization and complete owner/destination coverage are not certified |
 | R1 common reads | Shared snapshot assembly, chronology, owner revisions and conflict-aware cursors | Routes still assemble owner snapshots; indexed serving has not cut over |
-| R1 / R2 index helpers | Typed bounded reads/writes, all-lens planner, owner capability matrix, shadow batch and comparison | Owner-specific incremental projectors exist; resumable historical backfill and whole-corpus parity remain |
-| R2 change safety | Revision guards, withdrawal/restore, dependency CAS, separate Life outbox and repair; retained-source, Plan, Occasion and Outcome projectors plus audience repair | Verify publication races and delivery completion, reconcile capability declarations, then add bounded historical reconciliation; preserve Intake's independent acknowledgement |
+| R1 / R2 index helpers | Typed bounded reads/writes, all-lens planner, owner capability matrix, owner-specific projectors, resumable backfill, reconciliation and complete typed comparison | Populate and establish whole-corpus/viewer parity; future-version targets do not yet receive live owner fanout |
+| R2 change safety | Revision guards, withdrawal/restore, dependency CAS, separate Life outbox and repair; retained-source, Plan, Occasion and Outcome projectors, audience repair and fenced publication/delivery | Actual PostgreSQL interleaving evidence and owner coverage still need verification; preserve Intake's independent acknowledgement |
 | R3 / R5 retrieval | Retained sources and canonical destinations have landed | Broader custody/refinding, dependent repairs and retained booking-reader mapping remain |
 | R6 prospective/shared | Consumer requirements established | [Pre-Plan intention proposal](retained-intention-before-plan-decision-proposal-2026-09-06.md) is unadopted; missing owner adapters cannot be replaced by Life writes |
 | R7 / R8 richness and replacement | Design/scenario portfolio and migration obligations are explicit | Returns, organization quality, whole-corpus cutover and Atlas deletion remain incomplete |
 
-**Next connected package:** execute §10's publication/delivery audit and
-corrections, bounded owner reads, resumable historical population and full shadow
-comparison. Several owner adapters and semantic-representation transitions have
-already landed; do not restart them from an older receipt. Expand and verify
-coverage before switching readers. No native session is required for this
+**Next connected package:** make target-version continuity truthful at the
+operator boundary: non-`life.v1` backfills are useful shadow rebuilds, not
+continuously updated serving authorities. Preserve dry-run and comparison
+capability; do not fabricate a live subscription or prohibit legitimate shadow
+work. Then establish coverage/reconciliation evidence, close remaining real
+publication races, and advance R2-G deterministic organization and correction.
+Several owner adapters and semantic-representation transitions have already
+landed; do not restart them from an older receipt. Expand and verify coverage
+before switching readers. No native session is required for this
 engineering batch; preserve later native/release acceptance separately under
 the founder's current deferral.
 

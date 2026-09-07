@@ -62,8 +62,8 @@ Multiplayer participates throughout. The moves are not tabs, pipeline stages,
 four required cards, or four independently owned services.
 
 The **Integration** task (`01a030af-13a8-74e1-81be-7d526bec3045`) owns this
-cross-system program. The September 6 register in §2 replaces the original
-two-lane assignment with explicit delivery and support responsibilities. The
+cross-system program. The latest September 6 register in §2 consolidates
+execution into two persistent lanes with bounded support assignments. The
 separate **Strategy** task supplies product decisions, not a competing execution
 queue. Assignment here does not claim a task is running or was dispatched.
 
@@ -188,21 +188,29 @@ live assistance, with no visible fifth tab or obligatory "engine" section.
 
 ## 2. Current coordination register — September 6
 
-This register replaces the earlier two-lane assignment, not I0–I6's system
-responsibilities. The founder requested this documentation rebaseline; it is
-not a claim that tasks were dispatched or acknowledged an assignment. Existing
-task titles below are preserved. Three autonomous delivery lanes are Life,
-Home (explicitly including Places consumers), and Contribution and Capture.
-Components and Plan closes bounded design/command decisions before its next
-engineering batch. Integration coordinates shared boundaries and the live
-engine; it is not the default implementer for every other lane.
+**Post-investigation rebaseline, September 6:** the founder accepted two
+persistent engineering lanes: **Integration** owns connected value delivery and
+live integration, including Home/Places consumers; **Life** owns continuity,
+organization and reader migration. This supersedes the earlier same-day
+three-delivery-lane assignment, not I0–I6 or the lane plans' acceptance criteria.
+Home, Capture, Entities, Components and Plan, and Retirement remain bounded
+support responsibilities, not separate expanding engineering programs. Strategy
+continues to resolve product choices without becoming an engineering gate for
+already accepted contracts. Existing user-owned tasks are not automatically
+started by this register; temporary subagents execute explicitly bounded work.
+
+Rechecked implementation bases: workspace `1a2d2ac`, backend `329c91f87`, app
+`38d3a6521`. Backend `d37967e6f` already merged Life population/reconciliation;
+app `38d3a6521` already merged lens/refind continuity. Root design/inventory and
+market-research edits present at this checkpoint belong to concurrent work and
+are outside this package.
 
 | Lane / cadence | Authoritative execution plan | Current package | Promised interface | Dependency / receiving owner | Next checkpoint |
 | --- | --- | --- | --- | --- | --- |
-| **Integration** — shared-system execution and coordination | This roadmap, I0–I6 | I1/I2 change delivery and controlled production preparation; I5 practical reevaluation | Typed owner refs/revisions, change/repair contract, bounded production and family-specific signal→judgment→consequence paths | Lane-owned readers/writers; D1 proposal; named signal/activation authority | Review a connected owner-change or live-adaptation package; separate working behavior from inactive adapters |
-| **Life** — continue | [Life R0–R8](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md) | R1/R2 owner events→shadow index; R3–R5 reader/custody integration | Exact eligible record/ref, revision, bounded page/restore and withdrawal behavior | Capture/source and graph owner events; D1 only for prospective writes | An authorized transition and replay/withdrawal update a shadow record; no whole-index cutover implied |
-| **Home** — continue Home/Places delivery | [Connected implementation map](home-connected-experience-implementation-map-2026-09-04.md), consuming I4 | Value families→native consumers→Places field/map/search/depth→return | Typed producer-to-renderer mapping, exact destinations and current/updated/unknown result context | Entities depth; Life exact readers; shared production from Integration; Plan commands | Complete varied owner-backed journeys and inspect actual value, not just the transport envelope |
-| **Contribution and Capture** — bounded completion | [CC-0–CC-6](contribution-contract-and-legacy-memory-migration-plan-2026-08-29.md#11-completion-plan--september-5) | Remaining CC-2/3/4/5 lifecycle, useful-first result and owner joins | Effective gesture/authority, source refs, retry identity, lifecycle and owner readback | History proposal for history-specific expiry; Life consumes source events; D1 only for loose intent | Source and derivatives obey custody across use, retry and repair; immediate value precedes optional management |
+| **Integration** — persistent connected-value/live lane | This roadmap I0–I6; [Home/Places implementation map](home-connected-experience-implementation-map-2026-09-04.md) | CV-1 prepared-result serving, then CV-2 practical facts into judgment (§9.1) | Current, viewer-safe results through existing root contracts; exact source/context revisions; no production on GET; practical unknowns remain explicit | Existing Source storage/readers and Home/Places portfolio; Life exact destinations; no new intention/watch authority | Prepared value joins both roots without changing canonical state, then route/conditions improve an existing judgment |
+| **Life** — persistent continuity lane | [Life R0–R8](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md) | R2 target-version continuity, coverage and reconciliation; then R2-G organization and R3–R5 reader/custody integration | Exact eligible record/ref, revision, bounded query/restore, withdrawal, and truthful population versus live-delivery status | Existing source/graph owner events; indexed serving requires parity and target delivery; D1 only for prospective writes | Default shadow continuity and future-target limitations explicit; coverage/parity evidence before any serving switch |
+| **Home** — bounded support within Integration | [Connected implementation map](home-connected-experience-implementation-map-2026-09-04.md), consuming I4 | Receiving renderer/destination failures from CV-1/CV-2; complete varied value, not more kinds | Existing typed producer-to-renderer mapping and exact return | Integration supply; Entities depth; Life readers | A named consumer gap closes; no separate generator or expanding feature backlog |
+| **Contribution and Capture** — bounded support | [CC-0–CC-6](contribution-contract-and-legacy-memory-migration-plan-2026-08-29.md#11-completion-plan--september-5) | Named lifecycle/correction failures exposed by connected value or Life | Effective gesture/authority, source refs, retry identity, lifecycle and owner readback | History proposal for history-specific expiry; Life consumes source events; D1 only for loose intent | Source and derivatives obey custody across use, retry and repair; immediate value precedes optional management |
 | **Components and Plan** — design/decision, then engineering | [Arrangement A0–A4](lightweight-arrangements-implementation-handoff-2026-09-04.md), [design handoff](claude-design-plans-in-real-life-handoff-2026-09-04.md) | A0 owner/command packet; latest §0.8 continuation refinements | Distinct propose/update/send/participate/adopt effects, exact arrangement ref and readback | D1; settled use-grant policy plus concrete adapters; live engine supplies practical judgment | Map reduced designs to commands; ratify any seven-sentence exceptions before building them |
 | **Entities** — targeted support/closure | [C0–C8 acceptance plan](entity-system-acceptance-plan-2026-09-05.md) | Concrete receiving-lane failures and scoped lifecycle closure | Canonical venue/site/experience reads, citations, independently gated research/people, exact return | Home/Places and Life callers; no new entity-family scope | Reproduce and close a named cross-entry/withdrawal failure; no generic expansion or backfill |
 | **Retirement** — replacement-bound batches | [SC-0–SC-6](product-surface-contraction-investigation-2026-09-04.md#20-next-execution-sequence--september-5-rebaseline) | SC-0/1 retained-reader adoption, then family-specific removal | Existing booking evidence refs, external continuation and deterministic expense owner | Life/Home receive evidence; Capture receives receipts; Plan owns arrangement replacements | Receiving path works and remaining caller/obligation inventory names what may be removed |
@@ -246,8 +254,9 @@ Before any task changes a shared model, route file, generated schema,
 navigation utility or invalidation policy, declare the exact files and contract
 change. Shared files are serial integration points, not parallel writing areas.
 For future coordination, communicate one bounded dependency request rather than
-redirecting the other task's whole program. This planning pass sends no command
-to another task. Use isolated `codex/` worktrees for concurrent implementation;
+redirecting the other task's whole program. The current execution uses temporary
+bounded implementation/review agents, not new user-owned tasks. Use isolated
+`codex/` worktrees for concurrent implementation;
 serialize shared schema/route generation and landing. Explicit filename staging
 does not protect against another task's already-staged changes. Inspect staged
 paths before committing and never reset another lane to obtain a clean tree.
@@ -873,26 +882,74 @@ document's creation.
 | Package | State rebaselined September 6 | Next concrete action |
 | --- | --- | --- |
 | I0 | Implemented/integrated at inventory level; live-engine path matrix and 2026-09-06 decision-alignment audit recorded | Keep D1 retained-intention ownership and family-specific D6 watch contracts gated; consume accepted general D2–D5 policy through I1–I3 adapters without treating D4's history/source-expiry proposal as adopted |
-| I1 | Integrated for request-clock, consequence fan-out, dependency matrix, capture return, authority-safe owner-read coalescing, Places continuity, retained-source Life outbox→event-bus→shadow projector path, and the owner-private Plan shadow path | Keep Outcome/shared-audience coverage and index serving gated; next owner work requires explicit audience/revocation semantics |
-| I2 | Owner-read readiness, fast root serving, single assembly seam, bounded reads, late-work limits, content-free serving measurement, deterministic trigger identity, durable workflow handoff, a dark lease/readback adapter, deployment envelope, and an injected canonical executor/context/provider seam are implemented; worker activation remains gated | Approve a controlled cohort only after measuring provider cost/latency and signal-to-judgment budgets; only then consider registering a dark Arq job |
+| I1 | Integrated for request-clock, consequence fan-out, source/graph Life delivery, owner-fenced publication, audience/withdrawal repair, bounded enumeration, resumable backfill, reconciliation and full typed comparison; source representation transitions and Outcome adapters are no longer missing foundation | Establish population/coverage and target-version live delivery before indexed serving; PostgreSQL interleaving evidence remains distinct from offline tests |
+| I2 | Bounded reads, fast assembly, source storage/reuse, trigger/workflow identity, dark worker budgets/leases, canonical executor/context/provider binding and telemetry are implemented; normal root callers still lack automatic prepared-result consumption at this baseline | CV-1 joins current retained results to serving without creating work; then inspect approved trigger→executor→readback supply. Cost/cohort evidence and worker registration remain separately gated |
 | I3 | CC-0/1 reader/authority/retry repairs, deadline/custody/processing-copy restrictions, source-owner handoff metadata, bounded writer conformance (itinerary, Atlas, Discover), and useful-first capture ordering are locally evidenced; history-specific lifecycle and owner commands remain gated | Capture coordinates Life readback/correction over the existing envelope; review the two September 6 decision proposals before dependent writes; native/content evidence stays deferred for current engineering |
-| I4 | Renderer promotion boundary, result-set identity, source-backed revision, native returns, and stale-source treatment are implemented locally; semantic promotion remains dark | Complete real-data Home→Places→Focus/Path acceptance and decide whether personalized freshness needs a separate source vector |
+| I4 | Renderer promotion, result-set identity, source-backed revision, native returns, stale-source treatment and a four-value-family owner-backed Home portfolio are implemented and locally tested; rollout remains internal | Receive prepared results through existing native kinds and complete practical/social/continuity handoffs; real-data and native quality remain unevidenced by these tests |
 | I5 | Graph/consequence foundations present; movement signal→judgment shadow path is locally evidenced; lightweight experience remains incomplete | Complete adaptation and shared consequences over I1–I3, preserving purpose, plural participation, and meaningful stop/wait behavior |
 | I6 | Inventories, guards, retained booking-evidence and assisted-expense contracts are recorded and locally validated; destructive cutovers remain incomplete | Run environment obligation audits, migrate actual retained readers, and remove only execution paths with no remaining consumer or obligation |
 
-**Next connected work:** the retained-source and owner-private Plan Life
-delivery paths are now landed and locally tested; the next connected step is
-the semantic-representation transition that withdraws a retained-source row or
-an Outcome owner contract that makes shared audience/revocation semantics
-explicit.
-Home/Places completes value-bearing consumers and scope-correct continuations;
-Capture closes remaining useful-result/lifecycle/owner joins. Integration
-coordinates change delivery, bounded production preparation and practical
-reevaluation. Components and Plan prepares the D1 owner and exact command
-packet; history-specific CC-2 work uses the separate proposal. Do not restart
-I0's completed inventory or add another general framework. New persistence,
-paid/provider work, watches and activation retain their own approval gates.
-Use §2's register for responsibility and the lane plans for detailed sequences.
+**Next connected work:** execute CV-1 below alongside Life's R2 continuity and
+coverage work. Do not rebuild source delivery, representation withdrawal,
+Outcome adapters, backfill or reconciliation from older receipts. The next
+stage connects existing capabilities and makes migration claims precise. New
+persistence, paid/provider work, watches and activation retain their own gates.
+Use §2's register for responsibility and the existing lane plans for detail.
+
+### 9.1 Connected-value execution sequence
+
+This is the next sequence within I1–I5, not a new product architecture or a
+one-loop proof program. All four moves remain represented by the acceptance
+portfolio. A package is reviewable scope, not the definition of Vesper.
+
+| Order | Outcome / implementation boundary | Exit and reassessment |
+| --- | --- | --- |
+| **CV-1 — prepared value reaches ordinary root reads** | Reuse current Source opportunity identities, `root_source_contributions`, canonical loaders, shared root composition, value admission and existing native anatomy. Add read-only admission of eligible retained results to Home and both Places v2 callers. Do not call the producer-or-reuse orchestration from GET. | Eligible complete-on-view value survives; misses, expired/revoked/changed sources and unavailable reads omit optional value while owner-backed material remains. Zero enqueue, lease claims, provider calls or new retention from a root read. |
+| **CV-2 — practical truth reaches common judgment** | Audit and join existing route/movement, Place conditions and Moment owners to the supported read mesh. Start from an available exact route/condition owner, not another coordinator or speculative `route.evaluate` implementation. | Known versus unknown feasibility changes a prepared possibility or live adaptation; stale facts do not become confident claims. Reassess owner coverage before widening a family. No new watch or provider integration implied. |
+| **CV-3 — useful preparation has an end-to-end supply path** | Map each supported named trigger through existing work item, bounded executor, eligible Source/current context, durable readback and CV-1 consumer. Exercise reuse, cancellation, revocation, late completion and useful fallback locally. | Record which value families actually have supply. Unsupported triggers remain unavailable. Controlled paid measurement/registration requires the accepted worker decision's separate gates; no generation on launch/focus/GET. |
+| **CV-4 — whole-system consumer completion and contraction** | Resolve exact Home/Places→owner→Life handoffs, practical shared effects, source correction and low-burden effect copy. Accept named support packages from Capture/Entities/Plan/Retirement. | A varied everyday, practical, social and continuity portfolio operates coherently. Remove replaced consumers only after obligations and receiving paths are established. No Chat entrance redesign or production cutover implied. |
+
+**CV-1 implementation packet:**
+
+- Classify as `safe-backend` while limited to root-projection internal reads,
+  composition and tests. Any schema/API/auth change exits this packet and
+  follows the repository's approval and contract-sync workflow.
+- Owner: Integration. Files: `backend/root_projection/v2/` read-only serving
+  adapter, `backend/api/services/root_composition.py`, focused root/API tests,
+  and the subsystem `FEATURE.md`. No new store, prompt, queue or mobile kind.
+- Resolve the current viewer, situation, allowed roots and exact evidence /
+  subject / context / audience identity through existing metadata owners.
+  A retained production is not authority by itself; current source reads and
+  ordinary value admission remain mandatory. Do not broaden cross-root reuse
+  by stripping meaning-bearing context from a key.
+- Bound the optional read with the existing bounded blocking-reader mechanism;
+  do not rely on cancelling `to_thread` to stop underlying work. Timeout or
+  missing storage cannot erase the base portfolio. Keep metrics content-free.
+- Reuse one semantic production with its distinct Home/Places expressions;
+  preserve source refs, expiry and delivery identity. Neither a cache hit nor
+  a root GET is evidence of user receipt or new knowledge.
+- Local acceptance: cache hit and miss; changed/removed/revoked source;
+  context/situation/viewer/audience mismatch; expired value; delayed/unavailable
+  storage; both root consumers including Places runtime; no inline producer or
+  work scheduling even when the production flag is enabled. Keep base state,
+  human contributions and practical instruments available.
+- Report separately: implemented, locally tested, integrated, real-data
+  evidenced, native evidenced and enabled. This packet does not establish
+  plentiful production supply or consumer delight just by serving a fixture.
+
+**Parallel Life checkpoint:** continue R2–R5 from the merged implementation.
+First make explicit that non-`life.v1` historical target builds currently lack
+live owner fanout; preserve useful shadow rebuilds and dry-run comparison.
+Then establish owner coverage and reconciliation evidence, close true
+publication-race gaps, and implement deterministic organization/correction.
+Reader cutover still requires population, delta continuity, viewer parity and
+withdrawal correctness. Merely finishing a backfill is not cutover readiness.
+
+Reassess after CV-1 plus the parallel Life package, then after each connected
+package or at most three integrated packages. The questions are: did users gain
+a supported value path; did we duplicate an owner; what remains unavailable;
+and what should stop or change before the next batch? Do not reopen settled
+philosophy or require every design lane to finish before accepted work proceeds.
 
 ### Execution receipts (2026-09-05)
 
