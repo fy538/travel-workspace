@@ -855,10 +855,10 @@
     },
     "GET /api/agent-workflows/{workflow_id}/result": {
       "audience": "app",
-      "feature_flag": "ROOT_SOURCE_CONTRIBUTION_PRODUCTION_ENABLED",
+      "feature_flag": null,
       "lifecycle": "active",
       "owner": "integration",
-      "reason": "Owner-only exact Source result reopening is consumed by the typed mobile recovery client; the feature flag remains the rollout gate.",
+      "reason": "Owner-only exact Source result reopening is a read-only recovery path for already retained output; new production remains separately gated.",
       "removal_trigger": "Remove only with an equivalent owner-scoped exact-result recovery transport.",
       "review_by": "2026-10-30",
       "consumers": [
