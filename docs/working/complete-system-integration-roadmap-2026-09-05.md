@@ -207,6 +207,35 @@ two-task allocation wherever it would exclude these complementary responsibiliti
 Integration remains the sole landing owner for shared read, judgment and root
 composition changes. Current receiving work and checkpoints are in §9.5.
 
+**Content handoff, September 7:** the [recommendation world-supply audit and
+roadmap](recommendation-world-supply-architecture-and-roadmap-2026-09-07.md)
+now supplies provider/code evidence and S0–S4 receiving packages within CV-2–CV-4.
+Inspect its S0 before widening acquisition: the existing nearby producer can
+still reach live discovery from a quiet root read on a cold cache/thin corpus,
+separately from the correctly read-only prepared Source path. Provider version,
+field-retention and event-time normalization findings remain proposed work,
+not fixes, procurement approval or activation evidence.
+
+The September 7 review sharpens these dependencies: S0A receiving fixtures and
+S0B supplier feasibility start together; S3 receiving-contract work begins
+immediately, not after all acquisition work. Provider-free roots also need a
+bounded newcomer ready-supply/fallback checkpoint before wider rollout, without
+leaving network production on GET as a bridge. S2 adds affected-record-only
+ingestion invalidation and explicit event refresh/repair ownership. S4 evaluates
+repeat-use economics and expansion, not the first supplier choice. These are
+overlapping CV-2–CV-4 packages; Integration remains the shared landing owner.
+
+**Execution receipt, September 7:** backend commits `90da623d3` and
+`6130da1d3` implement two repository-safe S0A boundaries: experience
+brief/embedding invalidation is limited to materially changed provider rows,
+and ordinary Home/Places nearby reads cannot fall through to live provider
+discovery. The explicit member-checked map path remains provider-capable. The
+world-supply roadmap records the focused tests and the remaining ready-value,
+provider-rights, and coverage gates; these commits do not close CV-3 or claim
+newcomer supply. Commit `5421c66b7` additionally caps the Ticketmaster fetch at
+the documented first-1,000-result window; it is a request-safety repair, not a
+supplier-coverage or proactive-refresh approval.
+
 | Additional responsibility | Authoritative context | Current package | Promised interface | Dependency / next checkpoint |
 | --- | --- | --- | --- | --- |
 | Content — active research task | Editorial canon; Strategy September 7 world-supply discussion; CV-3 below | Provider coverage, proactive supply, selective indexing and economics evaluation | Supported candidate identity, evidence, freshness, permitted reuse/display, continuation and acquisition/refresh cost | Integration receives a concrete supplier contract before adding provider-dependent runtime paths; private preparation and public retrieval retain distinct authority |
