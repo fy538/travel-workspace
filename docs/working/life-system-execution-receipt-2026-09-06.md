@@ -55,6 +55,7 @@ checkpoint.
 | Publication edge correction | `9508f9ddd` | Private Outcome audience tokens preserve subject/occasion context when the owner fence recomputes dependency authority. |
 | Enumeration edge correction | `f35144a5e` | Occasion keyset enumeration uses `DISTINCT` owner identities so multi-member Occasions cannot consume the historical work budget repeatedly. |
 | R2-G deterministic organization/control slice | `143c54079` | `lifeorg01` adds stable viewer/version-scoped group identities, evidence-backed memberships, and a revision-bound control ledger for rename, detach/exclusion, and exact Undo; learned clustering and serving remain out of scope. |
+| R2-G command-ledger race fence | `a6c21a0ca` | Rename, detach, and Undo claim the viewer/version/control-key idempotency boundary before mutating derived state; a concurrent duplicate rereads the committed control result. |
 
 The existing retained-source, Plan, Occasion, and Outcome projectors all reuse
 the same owner-fenced writer and return explicit `updated`/`withdrawn`/`stale`
@@ -133,7 +134,8 @@ lint, import-cycle, boundary, timeout, and other applicable hooks pass.
   authored compositions, and retained booking-reader mapping remain explicit
   coverage gaps.
 - R2-G is landed only for deterministic proposal/materialization and the
-  rename/detach control ledger. Owner-driven wiring, identity reconciliation,
+  rename/detach control ledger, including conflict-safe first-attempt
+  idempotency. Owner-driven wiring, identity reconciliation,
   alias/split/merge behavior, affected-set repair, model-assisted candidates,
   and Life serving remain downstream work. R8 migration certification,
   read-time authorization, device QA, serving cutover, and Atlas retirement

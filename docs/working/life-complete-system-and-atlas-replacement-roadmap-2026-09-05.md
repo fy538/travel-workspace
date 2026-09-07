@@ -1707,6 +1707,12 @@ memberships excluded and updates evidence only when it changes. This is not yet
 owner-driven wiring, an identity registry, alias/split/merge reconciliation, or
 indexed serving.
 
+Follow-up commit `a6c21a0ca` closes the command-ledger race: rename, detach, and
+Undo now claim their globally unique viewer/version/control key with
+`ON CONFLICT DO NOTHING` before mutating any derived group or membership row.
+The losing first attempt rereads and returns the committed control result, so a
+concurrent duplicate cannot apply a second mutation under a different target.
+
 | Lane/interface | Concrete dependency | Work that can continue here |
 | --- | --- | --- |
 | Capture/source owners | Exact custody/expiry/representation reads, current revision and authorized restore event; agree any missing transaction change before editing its producer | Receiver tests, replay, report and source-only organization using existing contracts |
@@ -1757,6 +1763,9 @@ The bounded packet was implemented in backend worktree
   The deterministic proposal/materialization seam is implemented without
   learned clustering or a Life-owned source of truth; wiring and identity
   reconciliation remain follow-up work.
+- `a6c21a0ca` — command-ledger inserts are conflict-safe and happen before
+  derived-state mutation, fencing concurrent duplicate rename, detach, and
+  Undo attempts behind the viewer/version/control-key idempotency boundary.
 
 The explicitly provisioned local database `vesper_life_rehearsal_20260907` was
 migrated to `lifeorg01` (single head). Evidence executed against that
@@ -1769,7 +1778,7 @@ database:
 | Retry/enumeration unit selection | 9 passed |
 | Complete `tests/life_projection` connected selection | 17 passed, 165 offline cases deselected |
 | Connected report command with JUnit + `--life-rehearsal-report` | 2 passed; report schema `vesper.life-shadow-rehearsal.v1`, `supported_scope=pass`, `whole_portfolio_complete=false`, `serving_ready=false` |
-| R2-G organization proposal/materialization and PostgreSQL control sequence | 5 passed; stable identity, evidence revision, replay, exclusion non-resurrection, stale readback, rename/detach, and exact Undo |
+| R2-G organization proposal/materialization and PostgreSQL control sequence | 5 passed; stable identity, evidence revision, replay, exclusion non-resurrection, stale readback, rename/detach, exact Undo, and conflict-safe control insertion |
 | Ruff on changed files | Passed |
 
 The rehearsal proves the supported Plan path, linked Occasion lens membership,
