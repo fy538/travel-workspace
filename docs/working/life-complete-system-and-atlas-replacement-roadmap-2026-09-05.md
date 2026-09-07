@@ -25,7 +25,7 @@ supersedes:
 **Latest inspected checkpoint — September 7 architecture review and planning:**
 backend local `main` is `7a1d18070`; the latest Life rehearsal, organization and
 repair packages remain on `codex/life-shadow-rehearsal-2026-09-07` at
-`163b18e8b`, not merged into backend main. The branches have 65 main-only and
+`767f70499`, not merged into backend main. The branches have 65 main-only and
 46 Life-only commits at inspection; these counts do not describe equivalent
 amounts of Life work. Earlier Life foundation packages were integrated; that
 does not include every later receipt below. App `f4401ef73`, currently checked
@@ -133,6 +133,25 @@ status-dead-gate checks remain pre-existing baseline failures and were skipped
 explicitly; all other applicable hooks passed. This is still shadow-index
 evidence only: no serving cutover, owner-producer change, migration, Atlas
 deletion or remote publication follows from this package.
+
+**Maintained-delivery follow-through — September 7:** commit `0b822c3aa`
+(`fix(life): unify maintenance completion`) adds the shared
+`LifeMaintenanceResult` boundary and routes Plan, Occasion, Outcome and
+retained-source live handlers through it. Required organization repair can now
+remain `pending` instead of being acknowledged as success, while a stale owner
+whose successor is current is explicitly `superseded`. Production backfill uses
+the same maintainer by default; injected projectors remain a migration-test
+seam. Commit `767f70499` preserves explicit non-default shadow projection
+versions through the identifier-only event bridge, restores retained-source
+rows through an exact owner-state read rather than a viewer-wide scan, and adds
+regressions for default backfill dispatch and authorized restore. The offline
+Life selection passes **199 tests** with **34** database/API-key cases
+deselected. The repository-wide size-budget and status-dead-gate hooks remain
+pre-existing baseline failures and were skipped explicitly; all other
+applicable hooks passed. This closes the shared completion and bounded-lookup
+package, but not the transaction-atomicity requirement: index and
+organization still use separate repository transactions and require the
+controlled race package below.
 
 **Roadmap rebaseline — September 7:** implementation packages for R1/R2-A
 through F have landed. Their functions and tests do not complete every package
@@ -2521,7 +2540,7 @@ requires those boundaries.
 
 ### 13.2 Review evidence and what it changes
 
-Paths below refer to the Life backend at `163b18e8b` unless an app path is named.
+Paths below refer to the Life backend at `767f70499` unless an app path is named.
 The canonical backend has overlapping fixes absent from that branch, including
 `270acb53e` passing target projection versions through withdrawal fences.
 Reconcile those changes before evaluating an integrated candidate.

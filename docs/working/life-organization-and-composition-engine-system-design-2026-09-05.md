@@ -1426,7 +1426,7 @@ or mobile integration. The roadmap §12.11 is the canonical receipt.
 ## 17. Maintained-system architecture amendment — September 7
 
 This amendment follows the general architecture review of Life backend
-`163b18e8b`, canonical backend `7a1d18070` and mobile `f4401ef73`. It specifies
+`767f70499`, canonical backend `7a1d18070` and mobile `f4401ef73`. It specifies
 the next design constraints; it does not claim they are implemented. The
 [roadmap §13](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#13-architecture-review-follow-through--september-7)
 owns package sequencing, code evidence, tests, dependencies and activation gates.
@@ -1528,3 +1528,13 @@ receiving; quality evaluation accompanies both. A model experiment follows
 specific measured grouping misses and uses the existing model gateway with
 authorized inputs/budget. A successful index rehearsal, a new classifier or a
 polished screen alone cannot certify the complete Life system.
+
+**Maintained-delivery implementation receipt — September 7:** the shared
+maintainer now returns explicit `complete`, `superseded` or `pending` status
+and is the default operation for live owner delivery and non-dry-run backfill.
+The retained-source adapter recovers a prior row through an exact owner-state
+read for explicit restoration; the event bridge preserves an explicit target
+projection version so historical shadow builds cannot fall into `life.v1`.
+These changes are committed as `0b822c3aa` and `767f70499` on the isolated
+Life branch. They do not satisfy the separate-transaction race or multi-slice
+continuation requirements; those remain the next M1 package.

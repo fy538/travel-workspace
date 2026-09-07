@@ -28,7 +28,7 @@ not retrospectively passed. Source and future-intent dependencies follow the
 integration register and its explicitly unadopted decision proposals.
 
 **Architecture review and next plan — September 7:** the latest inspected Life
-backend is `163b18e8b` on its isolated branch, distinct from backend main
+backend is `767f70499` on its isolated branch, distinct from backend main
 `7a1d18070`; current mobile is `f4401ef73` on the entity completion branch.
 The review passed **194 offline Life tests**, with **34** database cases
 deselected, and reproduced a discarded organization-repair result with an
@@ -39,6 +39,18 @@ real-owner evidence and scoped organization, bounded eligible readers, four-lens
 receiving, quality/Returns, and gated Atlas replacement. Its M0–M6 packages
 refine existing R0–R8/P0–P7 work; none is executed by writing the plan. The first
 checkpoint is M0's baseline delta and M1's connected maintenance contract.
+
+**M1 maintenance completion — September 7:** backend commit `0b822c3aa`
+introduces the shared typed maintainer used by live owner consumers and
+non-dry-run backfill. Commit `767f70499` adds exact retained-source restore
+state, explicit shadow-version propagation and default-backfill dispatch
+regressions. Offline validation is **199 passed, 34 deselected** under the
+Life selection. The size-budget and status-dead-gate hooks were the same
+pre-existing repository-wide failures and were skipped explicitly; all other
+applicable hooks passed. The remaining M1 checkpoint is a controlled
+current-owner/index/organization transaction race and durable continuation for
+work that exceeds one bounded transaction. Neither commit changes serving,
+owner producers, migrations, Atlas state or remote branches.
 
 The [September 7 operational packet](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#11-bounded-shadow-rehearsal-execution-packet--september-7)
 now has an executed bounded slice. Backend commits `41e07297e`, `ca559b2f7`,
