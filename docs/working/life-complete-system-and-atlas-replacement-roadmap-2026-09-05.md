@@ -1806,6 +1806,8 @@ The bounded packet was implemented in backend worktree
   target membership updates are revisioned and replay-safe.
 - `3b17dacd9` — treats multiple active resolution rows as ambiguous even when
   they happen to name the same target, avoiding a hidden alias/merge choice.
+- `7c5154740` — adds connected merge evidence with a target-side exclusion;
+  the merge keeps that exclusion while unioning the source evidence.
 
 The explicitly provisioned local database `vesper_life_rehearsal_20260907` was
 migrated to `lifeorg02` (single head). Evidence executed against that
@@ -1820,7 +1822,7 @@ database:
 | Connected report command with JUnit + `--life-rehearsal-report` | 2 passed; report schema `vesper.life-shadow-rehearsal.v1`, `supported_scope=pass`, `whole_portfolio_complete=false`, `serving_ready=false` |
 | R2-G organization proposal/materialization and PostgreSQL control sequence | 12 passed across the focused Plan/Occasion/organization selection; stable identity, evidence revision, replay, exclusion non-resurrection, stale readback, rename/detach, exact Undo, conflict-safe control insertion, owner-group archive, explicit restore, and projector callbacks |
 | R2-G identity-resolution registry and migration | 7 passed across the resolution/organization selection; idempotent alias, merge/split persistence, all-target split readback, and `lifeorg02` downgrade/upgrade |
-| R2-G unambiguous resolution application | 2 passed; merge membership transfer, target-side preservation, source redirect, idempotent reapplication, and explicit split ambiguity |
+| R2-G unambiguous resolution application | 2 passed; merge membership transfer, target-side exclusion preservation, source redirect, idempotent reapplication, and explicit split ambiguity |
 | Ruff on changed files | Passed |
 
 The rehearsal proves the supported Plan path, linked Occasion lens membership,
