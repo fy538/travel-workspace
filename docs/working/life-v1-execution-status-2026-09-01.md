@@ -52,6 +52,13 @@ current-owner/index/organization transaction race and durable continuation for
 work that exceeds one bounded transaction. Neither commit changes serving,
 owner producers, migrations, Atlas state or remote branches.
 
+**Publication fence — September 7:** commit `3a44caf0f` keeps default Life
+index writes and Plan/Occasion owner-group materialization/archive in one
+short transaction; resolution repair remains a post-commit bounded stage whose
+result can keep delivery pending. The barrier regression and offline Life
+selection are green at **200 passed, 34 deselected**. Resolution atomicity,
+continuation persistence and any serving/Atlas transition remain unexecuted.
+
 The [September 7 operational packet](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#11-bounded-shadow-rehearsal-execution-packet--september-7)
 now has an executed bounded slice. Backend commits `41e07297e`, `ca559b2f7`,
 `bfb26e6a9`, `27258111c`, `d062d1810`, and `f9b687055` add all-lens owner materialization, explicit

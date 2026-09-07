@@ -153,6 +153,18 @@ package, but not the transaction-atomicity requirement: index and
 organization still use separate repository transactions and require the
 controlled race package below.
 
+**Publication-fence follow-through — September 7:** commit `3a44caf0f`
+(`fix(life): fence index and owner materialization`) adds an optional existing
+connection to the index writer and primary organization materializer/archive.
+The default maintainer now opens one short transaction for the index plus
+owner-group publication, and queues resolution repair until that lock is
+released while still folding its result into `pending` completion. Injected
+projectors retain their old call shape. A barrier-style regression proves the
+order `begin → materialize → commit → reconcile`; offline Life validation is
+**200 passed, 34 deselected**. This closes the primary publication interleave
+for supported owner groups but does not make resolution repair atomic or add
+multi-slice consumer checkpoints; those remain explicit follow-up work.
+
 **Roadmap rebaseline — September 7:** implementation packages for R1/R2-A
 through F have landed. Their functions and tests do not complete every package
 exit. Fresh code inspection found Time-only owner materialization, a

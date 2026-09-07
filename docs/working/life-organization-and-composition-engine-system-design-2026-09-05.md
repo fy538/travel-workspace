@@ -1538,3 +1538,11 @@ projection version so historical shadow builds cannot fall into `life.v1`.
 These changes are committed as `0b822c3aa` and `767f70499` on the isolated
 Life branch. They do not satisfy the separate-transaction race or multi-slice
 continuation requirements; those remain the next M1 package.
+
+The follow-up fence package is committed as `3a44caf0f`: the default
+maintainer shares one transaction for index and primary owner-group
+materialization/archive, then runs resolution repair after commit and preserves
+its `pending` result. The connection seam is optional so existing migration
+projectors and direct callers remain compatible. This is a publication-race
+correction, not a claim that all organization stages are transactionally
+atomic or that Life serving has been cut over.
