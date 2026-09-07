@@ -115,6 +115,27 @@ rehearsal a release certificate. No native session is required for this
 engineering checkpoint; preserve later native/release acceptance separately
 under the founder's current deferral.
 
+**Bounded corpus rehearsal — September 7 (working evidence):** the connected
+`test_life_shadow_corpus_postgres.py` case now provisions four viewers (owner,
+participant, second participant, unrelated viewer) and the four supported
+shadow owner families, runs bounded resumable backfill, publishes the durable
+outbox events through the registered owner consumers, delivers Plan revisions
+out of order, and verifies Occasion/Encounter Outcome withdrawal followed by
+an explicit rejoin restoration. The graph producer now distinguishes
+`occasion_membership_restored` and `outcome_audience_restored` from ordinary
+membership changes so the projector's fail-closed replay rule does not block a
+legitimate restoration. The report writer emits the expected
+`vesper.life-shadow-rehearsal.v1` envelope. Owner/audience identity assertions
+are green, but the report is intentionally `inconclusive`: undated Plan and
+Occasion rows receive a materialization-clock `sort_at` while the canonical
+snapshot uses its request clock. Resolve that stable ordering authority before
+any indexed comparison can be called green or a reader cutover can be
+considered. This package does not activate serving, migrate/delete Atlas, or
+claim unsupported owner coverage. The backend package is committed as
+`e03f8f980` on the isolated Life worktree; focused connected and producer/
+projector regressions pass. The repository-wide size-budget hook remains a
+pre-existing failure and was skipped for this commit only.
+
 Capture supplies source identity, revision, lifecycle and repair events; Life
 owns derived indexing. Home/Places consumes exact record destinations, not a
 Life-owned generator. Retirement supplies the existing booking-evidence mapping
@@ -1367,6 +1388,10 @@ of owner truth):
 - `tests/life_projection/test_life_shadow_rehearsal_postgres.py`: connected
   Plan/Occasion population, all-lens projection, withdrawal/restore,
   inventory/reconciliation and report cases.
+- `tests/life_projection/test_life_shadow_corpus_postgres.py`: connected
+  four-viewer/four-owner corpus rehearsal, bounded resumable backfill, durable
+  out-of-order Plan delivery, Occasion/Outcome withdrawal and explicit rejoin
+  restoration, plus lens parity reporting.
 - `tests/life_projection/test_life_shadow_races_postgres.py`: deterministic
   publication race with a separate owner-commit thread and bounded barriers.
 - `tests/life_projection/conftest.py`: opt-in report option/writer; a test
