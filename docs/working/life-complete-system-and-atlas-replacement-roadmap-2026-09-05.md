@@ -2365,6 +2365,42 @@ organizer-and-reader increment. This turns the current safety/index foundation
 into recognizable personal experience without waiting for a universal AI memory
 solution or cutting the product down to one travel behavior.
 
+### 12.11 Execution receipt — connected storage and bounded depth reader
+
+The first unblocked implementation slices are now committed on the isolated
+Life backend branch (recheck branch divergence before integration):
+
+- `43043a035` separates generated owner containment from occurrence evidence,
+  adds the incremental `lifeorg06` relation migration, and covers the exact
+  owner-self conversion/collision guard. Existing genuine `supports_occurrence`
+  rows and control/lineage IDs are preserved.
+- `49b92b3ad` adds `content_revision` and `read_epoch` as freshness fields
+  distinct from command CAS revision, creates typed `life_organization_group_links`
+  for `contains` and `calendar_reference`, locks topology endpoints in stable
+  order, rejects self/cyclic containment, and adds `lifeorg07`.
+- `9e34fc03d` adds a bounded renderer-neutral group-depth reader with immediate
+  children, active membership keyset pagination, stable identity restoration,
+  and stale content/read-epoch rejection.
+- `acb8ed40a` adds PostgreSQL evidence that membership refresh advances content
+  freshness without changing command revision, and that topology links are
+  bounded and cycle-safe.
+
+The local development database was at `lifeorg05`; the additive `lifeorg06` →
+`lifeorg07` upgrade was applied transactionally for test evidence. Focused
+organization, migration, reader and PostgreSQL tests passed (**20**), and the
+full `tests/life_projection` selection passed (**209**). Ruff and migration-chain
+checks passed. Pre-existing repository hooks for event-type parity (the
+isolated worktree environment lacks the hook's SQLAlchemy import), repository
+size budgets, and status-dead-gates were skipped for commits; they are not Life
+regressions and remain release blockers to resolve in the owning baseline.
+
+This receipt completes only the storage/reader foundation of P0/P2/P4. It does
+not implement Capture's structured evidence read, source-only episode/period
+proposal generation, affected-set reconciliation for relationships that
+disappear, retained-source/Outcome organization callbacks, public routes or
+mobile schema integration. The next code package must add those against the
+agreed cross-lane evidence contract; it must not infer them from the new tables.
+
 ### 12.10 Planning verification receipt
 
 - Re-read the retained-source model/read, source event purposes, awaited Life

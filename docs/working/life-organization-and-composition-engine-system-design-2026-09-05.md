@@ -1392,3 +1392,16 @@ Additional code inspection sharpened four requirements:
 
 The detailed table/model deltas in the roadmap are proposals for the next
 reviewable implementation package, not schema changes made by this research.
+
+**Implementation follow-through — September 7:** the proposal now has an
+isolated backend implementation for its first storage/read seam. `lifeorg06`
+adds the neutral `contained_record` vocabulary and converts only exact
+owner-self memberships (collision-safe); `lifeorg07` adds typed
+`contains`/`calendar_reference` group links plus independent content/read
+freshness fields; and `organization_reader.py` exposes bounded immediate
+children and active membership pages with stale-epoch rejection. PostgreSQL
+tests cover freshness without command-revision churn and cycle-safe topology;
+the complete Life selection is green on the migrated local development
+database. This remains shadow-only and does not claim source evidence
+extraction, broader owner coverage, affected-set reconciliation, serving
+cutover or mobile integration. The roadmap §12.11 is the canonical receipt.
