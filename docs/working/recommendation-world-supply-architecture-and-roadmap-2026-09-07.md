@@ -1362,7 +1362,7 @@ backend branch, in isolated commits:
 | C1a | `10ecea2c4` | Usage is snapshotted before executor-bound persistence, and zero uncached input is counted as zero rather than falling back to a legacy total. |
 | C2a | `516c89596`, `dd1890eb6` | Answer-only completion is a graph terminal and the experience caller can return its bounded result without a brief/dossier write. Existing legacy callers remain explicitly compatible. |
 | C4a | `b0d5a80ca`, `0cd27bdee` | Exact source handoff and bounded multi-anchor composition read current owner records with version, lifecycle, privacy, evidence and consequence checks. |
-| C3a | `5a6bc740a`, `5a9daed12`, `af9dc4ae3` | Local event windows, explicit event search scope, provider metadata preservation and the lookup consumer's `results`/`events` compatibility boundary are covered. |
+| C3a | `5a6bc740a`, `5a9daed12`, `af9dc4ae3`, `4559e82d2` | Local event windows, explicit event search scope, provider metadata preservation, lookup normalization and local city/date propagation are covered. |
 | C1b (first slice) | `8926cb497`, plus `2a102c599` | Caller deadlines are enforced around the full quick graph and before subquery dispatch; remaining chain time is capped and deadline exhaustion returns an explicit bounded stop. |
 | C4b (structured first slice) | `4efe7aa1a` | A bounded place-scope reader discovers only admitted primitives attached to the place's canonical child entities; it does not invoke research, providers or a global index. |
 
