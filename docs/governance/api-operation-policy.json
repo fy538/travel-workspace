@@ -855,13 +855,19 @@
     },
     "GET /api/agent-workflows/{workflow_id}/result": {
       "audience": "app",
-      "consumers": [],
       "feature_flag": "SHARED_WORKFLOW_CONTROL_ENABLED",
-      "lifecycle": "dark",
+      "lifecycle": "active",
       "owner": "integration",
-      "reason": "Owner-only exact Source result reopening is implemented for backend verification but remains dark until a typed mobile consumer and native recovery evidence are approved.",
-      "removal_trigger": "Activate only with a device-validated requester recovery flow or remove the transport.",
-      "review_by": "2026-10-30"
+      "reason": "Owner-only exact Source result reopening is consumed by the typed mobile recovery client; the feature flag remains the rollout gate.",
+      "removal_trigger": "Remove only with an equivalent owner-scoped exact-result recovery transport.",
+      "review_by": "2026-10-30",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "getSourceContributionResult",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ]
     },
     "POST /api/proposal-guest-capabilities/{capability_token}/claim": {
       "audience": "app",
