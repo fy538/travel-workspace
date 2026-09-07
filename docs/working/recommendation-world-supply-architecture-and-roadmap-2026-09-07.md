@@ -403,7 +403,7 @@ The defensible work is **what we ask, what we verify, how we judge it for this m
   a green full-suite receipt.
 - **Follow-up provider-independent receipt:** the expanded regression command
   covering those suites plus bounded-result, disposition, source-metadata,
-  World Foundry and web-search policy tests is **268 passed, 9 skipped, 16
+  World Foundry and web-search policy tests is **270 passed, 9 skipped, 16
   warnings**. The skips/warnings remain the existing Postgres leak baseline.
   Two separately selected API-marked synthesis tests reached the Anthropic
   client but could not execute assertions because the configured account has
