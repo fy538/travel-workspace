@@ -30,7 +30,8 @@ not activate the worker or claim native evidence.
 | SP-1c exact-result independence and fail-closed context handling | Exact requester readback now uses the retained production seed's source/context coordinates instead of re-running current opportunity discovery or ranking. Its shared validation still rechecks owner custody, audience, expiry, represented time, current Opening state, and deterministic candidate expiry. The API route maps both Places-context and retained-result storage failures to the existing unavailable state rather than leaking a server error. Regressions prove discovery is not called and both read boundaries fail closed. | `fd08f68f4` — `fix(source): keep exact result readback independent`; `fb521f38d` — `fix(source): fail closed on context read errors`; `f2bf741a1` — `fix(source): fail closed on result read errors` |
 | SP-2b effective stop | Source-only cancellation uses a transaction-time actor/type/revision fence, records the applied command, cancels the workflow atomically, and remains behind the existing shared workflow-control flag. Generic steer/pause/resume/handoff semantics remain intent-only. | `1447eeccd` — `feat: apply source workflow cancellation` |
 | SP-2c terminal result semantics | The exact-result reader now distinguishes a completed `producer_silence` ending (`no_useful_result`) from a malformed or missing result identity (`unavailable`), and maps superseded workflows to an unavailable result without attempting regeneration. | `9c1eda6e9` — `fix(source): report terminal silence and supersession` |
-| Contract publication | The full OpenAPI snapshot and active projection include the dark owner-only result route; the operation policy declares it dark with no mobile consumer. | `cf4ee23` — `chore: publish exact source result contract` |
+| SP-2d bounded request admission | Authenticated clients can submit a strict, private, content-free request with a named purpose, subjects, Sources, root scope, represented clock and bounded expiry. The request is persisted through the existing workflow fence; malformed exact comparisons are rejected and disabled production returns a truthful unavailable response. | Backend `bc012aca2` — `feat(source): accept bounded preparation requests`; `40eb81b2a` — `fix(source): gate preparation on production rollout` |
+| Contract publication and mobile recovery | The full OpenAPI snapshot and active projection include the request and owner-only exact result routes. Generated mobile types, HTTP methods, mock parity and focused transport tests consume both routes; the result read remains available for already-retained output while new production is separately gated. | Workspace `f60f2e6`, `1434694`, `20d833a`; app `c9d208632`, `66d61f59c`, `15b38e18f`, `d874bb778`, `90b8ba7b5`, `c201457d3` |
 | CV-3 Home/Places receiving | The tested receiving adapter is landed on backend `main` and the app's Entity checkout and clean app-`main` integration worktree. It preserves owner-backed composition, exact continuations, practical delivery, and return-token behavior without adding a new producer or screen family. | Backend `1146ae041`; app `f4401ef73` (Entity checkout) and `8bed6ca82` (clean `main` worktree) |
 
 ## Existing receiving evidence consumed
@@ -73,15 +74,19 @@ Focused local suites passed during this batch:
   added by `b0d5a80ca`;
 * the route pre-commit gates including route-auth, response-model, import-cycle,
   and status-guard checks;
-* `make contract-check` passed after the generated enum-order refresh in
-  `c3feb89f0`. The new dark result route is not in the active mobile
-  projection, so no mobile consumer was added.
+* 22 focused backend workflow API tests, including request admission, strict
+  exact scope validation and the production rollout gate;
+* 85 focused mobile HTTP tests, including content-free request submission and
+  owner-scoped exact result recovery;
+* `make contract-check` passed with the request/result routes in the active
+  mobile projection, generated types synchronized, 370 facade entries
+  classified, and the canonical place/Occasion checks green.
 
 ## Still gated / not claimed
 
-1. The current Source request owner still cannot express an exact commissioned
-   subject set without a real authenticated request owner; the mapping document
-   intentionally leaves that contract-sensitive extension proposed.
+1. The request owner now expresses an exact commissioned subject/Source set,
+   but the production worker is still dark; acceptance is not evidence that a
+   provider-backed result will arrive.
 2. The worker remains dark. No queue registration, provider activation, paid
    call, or ordinary GET acquisition was added.
 3. Exact result lookup still requires the retained row and current Source/
