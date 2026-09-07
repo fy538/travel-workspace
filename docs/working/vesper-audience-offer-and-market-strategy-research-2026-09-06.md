@@ -2428,7 +2428,8 @@ Implementation: note reader `travel-agent/backend/concierge/handoff_entry.py`
 [root navigation](../../travel-app/utils/rootProjectionNavigation.ts), and
 [existing composer](../../travel-app/app/conversations/create.tsx). The bounded
 cross-repo contract is documented in the
-[Conversation Seed standard](../../travel-app/docs/conversation-seed/Standard.md#addressed-friend-note-september-7-implementation).
+[Conversation Seed standard](../../travel-app/docs/conversation-seed/Standard.md)
+(September 7 addressed-friend-note section, **local WIP** at this receipt).
 
 ### 18.2 What this does not finish
 
