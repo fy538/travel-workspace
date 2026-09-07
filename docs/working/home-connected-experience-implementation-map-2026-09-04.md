@@ -31,12 +31,15 @@ this rebaseline supersedes them.
 **Next package:** the four-family owner-backed portfolio below has landed.
 [CV-1 is implemented and locally tested](complete-system-integration-roadmap-2026-09-05.md#92-cv-1-and-life-target-capability-execution-receipt--september-6):
 ordinary Home/Places reads can receive eligible prepared Source results without
-starting production. The next Integration package is CV-2, connecting real
-practical facts to common judgment. The initial fixture covers omission policy;
-it does not establish actual reachability or survival of the saved door in a
-composed response. Follow the [September 7 CV-2 execution plan](complete-system-integration-roadmap-2026-09-05.md#94-cv-2-detailed-execution-plan--september-7):
-repair coverage/revision/time semantics, then connect the existing cache-only
-venue-status owner to a claim-specific assessment and actual root output.
+starting production. The September 7 repair now connects cache-backed opening
+facts to judgment and Home/both Places responses (backend `ea816526d`, mobile
+main `9326c34a4`). An explicit open-now alternative requires fresh canonical
+evidence; ordinary Place exploration and independent reading remain eligible
+when that claim cannot be supported. See the
+[receiving checkpoint and supply audit](complete-system-integration-roadmap-2026-09-05.md#95-receiving-and-execution-rebaseline--september-7).
+Next comes a named supply handoff and remaining exact continuations, not more
+Home kinds. Current opening evidence does not establish actual reachability
+or future availability.
 Specialized routes exist; a generic canonical route reader remains unavailable.
 Continue completing producer→renderer→destination→return chains. Cover practical
 preparation, complete-on-view understanding, human contribution and ordinary
@@ -62,7 +65,8 @@ Places consumer composition, field/map/search/depth continuity and value review.
 ### Useful preparation receiving requirements
 
 September 7 practical-context requirements complement the preparation states
-below. These are planned CV-2 acceptance cases, using existing root forms:
+below. These are CV-2 acceptance boundaries using existing root forms; the
+opening-claim and independent-exploration subset now has connected local tests:
 
 | Material / claim | Home and Places receiving behavior |
 | --- | --- |
@@ -117,16 +121,17 @@ adds a sparse-context consumer case to J1–J4, not a new execution lane or
 replacement composition. Reinspection at backend `7b1d8a6b0` / mobile
 `38d3a6521` narrows the destination claims in the historical table below:
 
-- An `ANGLE` candidate carries a dossier ref, but the mobile
-  `places.open_entity` destination only selects venue/site/accommodation/
-  experience refs. Dossier-only destinations can fall back to Places root.
-  Direct dossier resource routing exists; that does not certify this tap path.
+- **Closed locally:** mobile `c8d88437f` resolves the exact dossier for an
+  editorial destination before an incidental venue/context. Destination tests
+  cover the resolver, not merely an available dossier route.
 - Addressed-note candidates carry both venue and handoff refs. The mobile
   destination resolves the venue; exact handoff/source continuity in depth and
   subsequent Ask remains unverified, not an accomplished end-to-end guarantee.
-- Root-destination Chat seeds handle graph and Trip refs, not venue/dossier-only
-  subjects. Audit separate entity Ask paths before claiming all contextual Chat
-  is missing; preserve the selected session and evidence, not merely its venue.
+- **Closed for supported entity subjects:** mobile main `8860a34bd` reuses
+  venue/site/accommodation/experience/dossier seeds at root contextual Ask.
+  Exact dossier identity, private routing and return survive without an
+  automatic question. Addressed Source, selected passage, original session
+  and revision-bound evidence continuation remain unverified.
 
 These corrections supersede the corresponding exact-continuation wording below.
 The earlier candidate/renderer tests remain evidence of their narrower scope.

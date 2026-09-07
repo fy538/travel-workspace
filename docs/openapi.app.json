@@ -88194,6 +88194,18 @@
             "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
             "title": "Unit Id"
           },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
           "kind": {
             "anyOf": [
               {

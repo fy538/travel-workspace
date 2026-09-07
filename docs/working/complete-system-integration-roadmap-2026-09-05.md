@@ -62,8 +62,8 @@ Multiplayer participates throughout. The moves are not tabs, pipeline stages,
 four required cards, or four independently owned services.
 
 The **Integration** task (`01a030af-13a8-74e1-81be-7d526bec3045`) owns this
-cross-system program. The latest September 6 register in §2 consolidates
-execution into two persistent lanes with bounded support assignments. The
+cross-system program. The September 7 receiving update in §2 retains Integration
+and Life engineering ownership and adds Content's supplier responsibility. The
 separate **Strategy** task supplies product decisions, not a competing execution
 queue. Assignment here does not claim a task is running or was dispatched.
 
@@ -186,7 +186,23 @@ commands keep their responsibilities. Do not force every read or article through
 a heavyweight decision arc. Preserve simple complete-on-view value alongside
 live assistance, with no visible fifth tab or obligatory "engine" section.
 
-## 2. Current coordination register — September 6
+<a id="2-current-coordination-register--september-6"></a>
+
+## 2. Current coordination register — September 7
+
+**September 7 receiving update:** Integration and Life remain the engineering
+owners below. The active Content task (`01a07c63-5ebe-71d2-9cb0-314ec4e06963`)
+now owns world-supply research and its implementation handoff. Strategy
+(`01a072c6-2735-7152-94ea-bb6958ead53d`) proposes a bounded Social participation
+task; it has not been dispatched by this register. This supersedes the older
+two-task allocation wherever it would exclude these complementary responsibilities.
+Integration remains the sole landing owner for shared read, judgment and root
+composition changes. Current receiving work and checkpoints are in §9.5.
+
+| Additional responsibility | Authoritative context | Current package | Promised interface | Dependency / next checkpoint |
+| --- | --- | --- | --- | --- |
+| Content — active research task | Editorial canon; Strategy September 7 world-supply discussion; CV-3 below | Provider coverage, proactive supply, selective indexing and economics evaluation | Supported candidate identity, evidence, freshness, permitted reuse/display, continuation and acquisition/refresh cost | Integration receives a concrete supplier contract before adding provider-dependent runtime paths; private preparation and public retrieval retain distinct authority |
+| Social — proposed bounded task | Multiplayer Product Strategy; lightweight-arrangements handoff; Home J2 | Audit share-from-day, addressed recommendation and optional gathering as complete sender/recipient experiences | Original material, sender/recipient scope, source identity, expiry/withdrawal, exact response or owner continuation | Integration owns common composition, Life owns indexing; no new social store/feed or automatic dispatch |
 
 **Post-investigation rebaseline, September 6:** the founder accepted two
 persistent engineering lanes: **Integration** owns connected value delivery and
@@ -1354,6 +1370,110 @@ consequences, specialist-owner reuse and existing root forms. Loose intention,
 optional history, watches and activation retain their separate decisions;
 they do not block the accepted read/judgment work.
 
+### 9.5 Receiving and execution rebaseline — September 7
+
+The founder accepted the Integration task's next-step recommendation after
+reviewing Strategy, Content and Life. Execute the following packages within
+CV-2–CV-4; do not introduce another roadmap or universal owner.
+
+1. **Practical delivery repair — locally implemented.** Backend `ea816526d`
+   closes exact audience/revision/time admission, bounded optional cache
+   behavior, dependent expiry through the delivered unit, and the reviewed
+   open-now alternative producer. Mobile main `9326c34a4` observes that deadline.
+   Connected Home and both Places response tests preserve independent
+   explanation/exploration. This is not certification of all human-material
+   paths, provider coverage or native behavior; see the receipt below.
+2. **CV-3 supply and CV-4 continuation can overlap.** Trace supported triggers
+   through existing preparation, durable readback and ordinary root serving.
+   Private prepared Source output (currently at most one per read) does not
+   establish public world supply. Consume Content's supplier findings; no
+   dossier requirement for every discovery and no AI-enrichment requirement
+   for original social material. Keep misses useful without work on GET.
+3. **Complete exact continuation.** Mobile `c8d88437f` fixes dossier destination
+   routing. Mobile main `8860a34bd` adds existing place/reading-specific seed
+   kinds to root contextual Ask. Remaining packages inspect
+   addressed-source continuity through depth, and owner-backed save-to-Life
+   mapping. Keep Place bookmark, retained reading and dated intention distinct.
+   Life owns its projection; Integration does not add another bookmark owner.
+4. **Then extend practical adaptation.** Consume existing route/movement facts
+   for a named timing question. Changed facts must lead to useful revision,
+   qualification, alternatives or release, rather than only invalidation.
+   Watches and external execution retain their existing decision boundaries.
+
+Review after the repair and after each two connected packages: sparse-context
+Home, an ordinary question, original friend material, a practical change and
+return after absence. Check delivered substance, work removed, exact continuation,
+changed-source repair and combined cost/latency. These are independent encounters,
+not a required tab journey or a one-loop product definition. Native testing
+remains deferred by the founder; record local evidence separately.
+
+Life continues its roadmap §11 corpus, lens, reconciliation and race packet in
+its isolated worktree. Optional conversational continuity remains a concrete
+upcoming decision: define receiving/dependency repair now, but the proposed
+90-day ceiling is not adopted retention policy. Social can advance casual
+sharing without waiting for the pre-Plan owner decision.
+
+Historical receipts below describe the earlier implementation, not completion
+of this receiving pass. In particular, ordinary Place cards no longer universally
+assert an open-now question, and the earlier missing-`openai` test blocker was
+an interpreter mismatch: use the backend `.venv/bin/python` for verification.
+
+#### Receiving checkpoint: practical delivery and contextual Ask
+
+- Backend `ea816526d`: **574 affected tests passed**, including **21 connected
+  cases** over Home composition, Places root and Places runtime assembly.
+  Open, closed, missing, stale, permanent-closure, future-observation and
+  completion-time expiry cases use synthetic catalog/cache boundaries and
+  real adapters, canonical Place reads and common judgment. Independent
+  reading and ordinary Place exploration survive an unsupported claim.
+  A **78-test** reader/delivery rerun passed after cleanup.
+- Opening claims are alternatives to the same ordinary Place candidate, not
+  a blanket feasibility gate. Both compete for the same seat. The assessment's
+  evidence and shortest used deadline survive composition, delivery binding
+  and the generated API contract. A second clock check handles expiry while
+  delivery-history lookup runs.
+- Cache work uses the existing physically bounded optional Places executor
+  concurrently with identity lookup. Slow, saturated and failed optional reads
+  preserve identity. Lookup is still per venue: portfolio-wide batching and
+  real-database conflict handling are not certified by this packet.
+- Mobile expiry/navigation/root-rendering checks: **39 tests passed** before
+  the continuation packet; routing/seed/create-intent then passed **42 tests**.
+  Typecheck passed after both changes; lint passed with 176 existing warnings.
+  Existing backend seed-resolution tests passed **43 tests**. These counts
+  overlap; do not sum them as distinct cases.
+- Mobile main `9326c34a4` observes value expiry. Main `8860a34bd` reuses
+  venue/site/accommodation/experience/dossier seeds at root contextual Ask,
+  prioritizes the exact dossier over an incidental venue, retains return,
+  and uses the existing new-private-conversation path. It adds no prompt or
+  retention rule. Equivalent commits `c2d2b16e0` / `6296287ef` also remain on
+  the concurrent entity branch; its unrelated changes were not merged.
+- Mobile still uses its existing whole-root expiry fallback and refresh,
+  not per-unit stable replacement. Selected-text, prior-session,
+  source-revision and addressed-note continuity are not certified here.
+  No native, live-provider, populated-corpus or activation claim is made.
+- Backend commit hooks passed except existing size-budget violations in
+  unchanged files; only that hook was skipped. Workspace link checking still
+  reports the pre-existing `state` link in
+  `claude-design-interaction-kernel-lab-v2-3-arrangements-execution-report-2026-09-04.md:53`.
+
+#### CV-3 supply audit: what exists versus what can run
+
+| Boundary inspected | Current evidence | Next scoped work / gate |
+| --- | --- | --- |
+| Trigger identity | `build_source_contribution_work_item` supports authorized signal, explicit warm and source recomposition; no runtime caller found under `backend/` | Bind one named existing owner event or explicit request with current authority, deduplication and cancellation. Never substitute focus/GET for the missing event. |
+| Durable handoff | `create_source_contribution_workflow` reuses `agent_workflows`; no runtime caller found | Connect the chosen trigger to its durable outbox/workflow handoff and exercise replay locally. An enum/workflow alone is not populated supply. |
+| Execution/readback | Dark worker, bounded canonical executor, Places context resolver and default producer factory exist with local tests | Verify trigger→executor→durable readback with deterministic production first. Approved provider/cohort and cost evidence remain activation gates. |
+| Scheduling | No Source-contribution registration found under `backend/workers` | Remain dark under the accepted worker decision. No new scheduler, deployment or provider calls are authorized by this audit. |
+| Root consumption | Prepared-source reader checks current use and private audience; at most one eligible prepared production per root read | Preserve ordinary material on a miss. Private retained production does not establish public world coverage or require dossiers for all discovery. |
+| Public/world supply | Content owns provider coverage, reuse/display rights, acquisition/refresh cost and lifecycle findings | Receive an evidence/freshness/continuation supplier contract before provider-specific runtime work. External provider terms were not independently verified in this audit. |
+
+Next checkpoint is a **named trigger-owner/handoff packet**, not more generic
+worker infrastructure. Pair it with the addressed-source depth/Ask audit and
+receive Life's bookmark/retained-reading projection contract without building
+a second save owner. Withdrawal and current-use repair must hold through
+production and continuation. Provider activation, optional continuity and
+watches remain separate decisions. CV-3 and the broader CV-4 remain open.
+
 ### Execution receipts (2026-09-07)
 
 - **CV-2A / operation-specific field coverage — implemented:** backend commit
@@ -1396,11 +1516,10 @@ they do not block the accepted read/judgment work.
 
 These receipts establish local implementation and focused contracts, not live
 provider coverage, populated supply, native visual acceptance or production
-activation. The next execution step is to run the dependency-complete
-canonical-owner suite, then wire `practical_question` into one reviewed
-producer and visible Home/Places anatomy before broadening route/movement
-coverage. The Life lane remains independent and its current commits are not
-repeated here.
+activation. The later receiving checkpoint in §9.5 supersedes the earlier
+canonical-owner test blocker and blanket Home Place opt-in described here.
+Next comes the named supply handoff and remaining exact continuations before
+broadening route/movement coverage. Life remains independent.
 
 ### Execution receipts (2026-09-05)
 
