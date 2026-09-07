@@ -29,9 +29,10 @@ this rebaseline supersedes them.
 | E economics | Ordinary root serving excludes optional production; bounded reads and measured dark worker/executor supplied by Integration | Useful-result quality, controlled provider cost/latency and promotion; Home must not build another generator |
 
 **Next package:** the four-family owner-backed portfolio below has landed.
-Execute [CV-1](complete-system-integration-roadmap-2026-09-05.md#91-connected-value-execution-sequence):
-receive current prepared Source results on normal Home/Places reads without
-starting production. Then complete the remaining producer→renderer→destination→return
+[CV-1 is implemented and locally tested](complete-system-integration-roadmap-2026-09-05.md#92-cv-1-and-life-target-capability-execution-receipt--september-6):
+ordinary Home/Places reads can receive eligible prepared Source results without
+starting production. The next Integration package is CV-2, connecting real
+practical facts to common judgment. Continue completing producer→renderer→destination→return
 chains. Cover practical
 preparation, complete-on-view understanding, human contribution and ordinary
 possibility across J1–J4. Unavailable owners remain explicit; a card's absence

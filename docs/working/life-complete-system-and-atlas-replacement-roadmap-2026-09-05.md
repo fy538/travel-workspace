@@ -48,11 +48,22 @@ inspection date, not a request to repeat completed work.
 | R6 prospective/shared | Consumer requirements established | [Pre-Plan intention proposal](retained-intention-before-plan-decision-proposal-2026-09-06.md) is unadopted; missing owner adapters cannot be replaced by Life writes |
 | R7 / R8 richness and replacement | Design/scenario portfolio and migration obligations are explicit | Returns, organization quality, whole-corpus cutover and Atlas deletion remain incomplete |
 
-**Next connected package:** make target-version continuity truthful at the
-operator boundary: non-`life.v1` backfills are useful shadow rebuilds, not
-continuously updated serving authorities. Preserve dry-run and comparison
-capability; do not fabricate a live subscription or prohibit legitimate shadow
-work. Then establish coverage/reconciliation evidence, close remaining real
+**Target-capability checkpoint:** backend `77eb3780b` now exposes
+`owner_fanout_status` and `receives_live_owner_fanout` on the existing backfill
+run and worker result. Non-`life.v1` builds remain historical shadow targets;
+the default is covered by current version-less owner events. This is capability
+metadata, not measured successful delivery or permission to switch readers.
+Dry-run/comparison and explicit shadow targets remain supported. No writer,
+subscription, schema or activation policy changed. See the
+[joint receipt](complete-system-integration-roadmap-2026-09-05.md#92-cv-1-and-life-target-capability-execution-receipt--september-6)
+for the implementation and validation boundary.
+
+**Next connected package:** investigate the two retained-source PostgreSQL
+restore failures observed during this batch (restored revision remains old /
+restored row remains revoked), distinguishing implementation from fixture or
+environment causes. The 151 passing offline Life/worker tests do not establish
+that those database transitions work. Then establish coverage/reconciliation
+evidence, close remaining real
 publication races, and advance R2-G deterministic organization and correction.
 Several owner adapters and semantic-representation transitions have already
 landed; do not restart them from an older receipt. Expand and verify coverage

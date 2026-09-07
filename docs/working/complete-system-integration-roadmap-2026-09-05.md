@@ -207,7 +207,7 @@ are outside this package.
 
 | Lane / cadence | Authoritative execution plan | Current package | Promised interface | Dependency / receiving owner | Next checkpoint |
 | --- | --- | --- | --- | --- | --- |
-| **Integration** — persistent connected-value/live lane | This roadmap I0–I6; [Home/Places implementation map](home-connected-experience-implementation-map-2026-09-04.md) | CV-1 prepared-result serving, then CV-2 practical facts into judgment (§9.1) | Current, viewer-safe results through existing root contracts; exact source/context revisions; no production on GET; practical unknowns remain explicit | Existing Source storage/readers and Home/Places portfolio; Life exact destinations; no new intention/watch authority | Prepared value joins both roots without changing canonical state, then route/conditions improve an existing judgment |
+| **Integration** — persistent connected-value/live lane | This roadmap I0–I6; [Home/Places implementation map](home-connected-experience-implementation-map-2026-09-04.md) | CV-1 implemented and locally tested (§9.2); next CV-2 practical facts into judgment (§9.1) | Current, viewer-safe results through existing root contracts; exact source/context revisions; no production on GET; practical unknowns remain explicit | Existing Source storage/readers and Home/Places portfolio; Life exact destinations; no new intention/watch authority | Route/conditions improve an existing judgment; prepared supply and production activation remain distinct from read-path completion |
 | **Life** — persistent continuity lane | [Life R0–R8](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md) | R2 target-version continuity, coverage and reconciliation; then R2-G organization and R3–R5 reader/custody integration | Exact eligible record/ref, revision, bounded query/restore, withdrawal, and truthful population versus live-delivery status | Existing source/graph owner events; indexed serving requires parity and target delivery; D1 only for prospective writes | Default shadow continuity and future-target limitations explicit; coverage/parity evidence before any serving switch |
 | **Home** — bounded support within Integration | [Connected implementation map](home-connected-experience-implementation-map-2026-09-04.md), consuming I4 | Receiving renderer/destination failures from CV-1/CV-2; complete varied value, not more kinds | Existing typed producer-to-renderer mapping and exact return | Integration supply; Entities depth; Life readers | A named consumer gap closes; no separate generator or expanding feature backlog |
 | **Contribution and Capture** — bounded support | [CC-0–CC-6](contribution-contract-and-legacy-memory-migration-plan-2026-08-29.md#11-completion-plan--september-5) | Named lifecycle/correction failures exposed by connected value or Life | Effective gesture/authority, source refs, retry identity, lifecycle and owner readback | History proposal for history-specific expiry; Life consumes source events; D1 only for loose intent | Source and derivatives obey custody across use, retry and repair; immediate value precedes optional management |
@@ -883,14 +883,15 @@ document's creation.
 | --- | --- | --- |
 | I0 | Implemented/integrated at inventory level; live-engine path matrix and 2026-09-06 decision-alignment audit recorded | Keep D1 retained-intention ownership and family-specific D6 watch contracts gated; consume accepted general D2–D5 policy through I1–I3 adapters without treating D4's history/source-expiry proposal as adopted |
 | I1 | Integrated for request-clock, consequence fan-out, source/graph Life delivery, owner-fenced publication, audience/withdrawal repair, bounded enumeration, resumable backfill, reconciliation and full typed comparison; source representation transitions and Outcome adapters are no longer missing foundation | Establish population/coverage and target-version live delivery before indexed serving; PostgreSQL interleaving evidence remains distinct from offline tests |
-| I2 | Bounded reads, fast assembly, source storage/reuse, trigger/workflow identity, dark worker budgets/leases, canonical executor/context/provider binding and telemetry are implemented; normal root callers still lack automatic prepared-result consumption at this baseline | CV-1 joins current retained results to serving without creating work; then inspect approved trigger→executor→readback supply. Cost/cohort evidence and worker registration remain separately gated |
+| I2 | Bounded reads, fast assembly, source storage/reuse, trigger/workflow identity, dark worker budgets/leases, canonical executor/context/provider binding and telemetry are implemented; CV-1 now connects current prepared results to ordinary Home/Places reads (§9.2) | CV-2 connects practical truth; CV-3 inspects approved trigger→executor→readback supply. Cost/cohort evidence and worker registration remain separately gated |
 | I3 | CC-0/1 reader/authority/retry repairs, deadline/custody/processing-copy restrictions, source-owner handoff metadata, bounded writer conformance (itinerary, Atlas, Discover), and useful-first capture ordering are locally evidenced; history-specific lifecycle and owner commands remain gated | Capture coordinates Life readback/correction over the existing envelope; review the two September 6 decision proposals before dependent writes; native/content evidence stays deferred for current engineering |
 | I4 | Renderer promotion, result-set identity, source-backed revision, native returns, stale-source treatment and a four-value-family owner-backed Home portfolio are implemented and locally tested; rollout remains internal | Receive prepared results through existing native kinds and complete practical/social/continuity handoffs; real-data and native quality remain unevidenced by these tests |
 | I5 | Graph/consequence foundations present; movement signal→judgment shadow path is locally evidenced; lightweight experience remains incomplete | Complete adaptation and shared consequences over I1–I3, preserving purpose, plural participation, and meaningful stop/wait behavior |
 | I6 | Inventories, guards, retained booking-evidence and assisted-expense contracts are recorded and locally validated; destructive cutovers remain incomplete | Run environment obligation audits, migrate actual retained readers, and remove only execution paths with no remaining consumer or obligation |
 
-**Next connected work:** execute CV-1 below alongside Life's R2 continuity and
-coverage work. Do not rebuild source delivery, representation withdrawal,
+**Next connected work:** CV-2 below alongside Life's R2 coverage and
+reconciliation work; the first CV-1/target-capability receipt is in §9.2.
+Do not rebuild source delivery, representation withdrawal,
 Outcome adapters, backfill or reconciliation from older receipts. The next
 stage connects existing capabilities and makes migration claims precise. New
 persistence, paid/provider work, watches and activation retain their own gates.
@@ -950,6 +951,106 @@ package or at most three integrated packages. The questions are: did users gain
 a supported value path; did we duplicate an owner; what remains unavailable;
 and what should stop or change before the next batch? Do not reopen settled
 philosophy or require every design lane to finish before accepted work proceeds.
+
+### 9.2 CV-1 and Life target-capability execution receipt — September 6
+
+The first two-lane batch connects an existing result to its consumers; it does
+not add a fifth root, generator, owner, retention policy or product grammar.
+
+**Integration implementation:** backend `59f323b31` adds read-only prepared
+Source admission to ordinary Home v2, Places v2 and Places-runtime composition.
+It resolves the current viewer/situation and exact source/context group,
+reads the existing retained result, revalidates canonical source and context
+custody, and rebuilds candidates through the existing compiler. A miss remains
+a miss: no enqueue, lease claim, provider invocation or new retention occurs.
+Expired, shortened-custody, changed, unavailable or mismatched material cannot
+borrow the retained payload's old authority. A private result cannot become
+shared through root consumption. Retained JSON database values now pass through
+JSON-mode validation rather than the incompatible strict Python-input path.
+
+Backend `b25702bb1` preserves the final owner boundary: Source refs require
+`source.inspect`, while exact Opening dependencies require `moment.read`.
+Unrelated unknown conditions/position do not invalidate an interpretation, but
+a missing, changed, withdrawn or expired Opening does. Home and Places retain
+their distinct expressions and the same meaning-bearing identity. Final root
+owner reads and value admission still run; prepared discovery is not authority.
+
+Optional reads use a 350 ms initial internal deadline, not a measured latency
+SLO. Known read errors are sanitized before they can reach late-work logging.
+Base owner-backed material remains available on optional timeout or failure.
+Backend `7a8a6f58c` additionally caps optional submitted/running/queued work at
+eight on the existing executor. Saturation returns unavailable without another
+submission. Cancelled queued work remains a no-op holding its permit until the
+physical item drains, preventing repeated deadlines from accumulating queued
+closures. Mandatory supporting-read semantics are unchanged; this is not a
+claim that all backend work queues have been bounded.
+No new public model, route shape, schema, mobile type or mobile screen changed.
+
+**Parallel Life implementation:** backend `77eb3780b` exposes target fanout
+capability on the existing backfill run and worker result. The default
+`life.v1` target is covered by current version-less owner events;
+non-default targets remain `historical_shadow_only`. This preserves legitimate
+shadow builds without treating completion as continuous reconciliation.
+Capability metadata is not evidence that workers ran, a corpus is populated,
+all owners are covered, or indexed serving is ready. No subscription, writer,
+serving flag or release policy was changed.
+
+**Local evidence:**
+
+- Combined root, API, retained-record, canonical-owner, Life, Life-worker and
+  Places orchestration offline suites: **619 passed, 9 deselected** after
+  combining all four backend commits.
+  HTTP tests exercise all three callers with production disabled and enabled;
+  canonical-owner tests separately exercise actual read compilation and value
+  judgment. Neither is native or paid-production evidence.
+- Broader backend run on the initial CV-1 state, before final review fixes
+  and Life integration:
+  **20,931 passed, 1 failed, 30 skipped, 1,361 deselected, 56 xpassed**.
+  The failing `test_hpl_manifest_keeps_social_authority_explicit` compares a
+  legacy revision `3` against the current Occasion audience fingerprint. It
+  also fails on unchanged backend `329c91f87`; this is a reproduced baseline
+  failure, not a green full-suite claim. Some tests explicitly allow baseline
+  local PostgreSQL access despite the offline marker selection.
+- Life's separate PostgreSQL run reported **158 passed, 2 failed** in retained
+  source restore scenarios (old revision / row still revoked). These were not
+  reproduced against the unchanged baseline in this batch and remain a named
+  Life investigation before coverage/cutover claims. The offline tests do not
+  replace them.
+- Ruff, formatting, diff checks and applicable commit guards passed. The
+  existing size-budget hook failed on seven untouched function/file entries;
+  only that hook was explicitly skipped for commits. No baseline was raised.
+  Workspace link validation retains two unrelated missing targets (`runs/`
+  and `state`). The isolated baseline inventory reports 32 existing
+  unclassified documents; no document was created by this batch, and the
+  concurrent main-checkout inventory edits were left untouched. Spine and
+  touched-document commit guards passed.
+
+Reproduce the final focused check from the backend root with its development
+environment active:
+
+```bash
+PYTHONPATH=. python -m pytest -q tests/root_projection \
+  tests/api/test_root_composition_service.py tests/api/test_root_projections.py \
+  tests/core/test_source_contributions.py tests/concierge/test_canonical_owner_reads.py \
+  tests/life_projection tests/workers/test_life_projection_jobs.py \
+  tests/places/test_feed_orchestration.py tests/places/test_feed_orchestration_characterization.py \
+  -m 'not requires_postgres and not requires_api_keys' --tb=short --maxfail=3
+```
+
+The four backend commits are integrated at `7a8a6f58c` on local `main`;
+workspace roadmap changes are locally committed. Neither repository was
+pushed by this batch. Concurrent workspace inventory/design/research edits
+and the unchanged mobile checkout remain outside this landing.
+
+**Direction review:** keep the architecture and two persistent lanes. The
+next Integration package is CV-2: name the real route/conditions/Moment owner
+and make practical facts change an existing judgment, preserving unknowns.
+Life first investigates the two retained-source restore failures and verifies
+population, target continuity and viewer parity, then advances deterministic
+organization. Do not treat a served fixture as plentiful, interesting supply;
+CV-3 still owns the end-to-end preparation path and activation evidence.
+Paid worker activation, new watch/intention/history policy, indexed serving,
+native acceptance and release remain separately gated.
 
 ### Execution receipts (2026-09-05)
 
