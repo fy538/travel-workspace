@@ -67,6 +67,14 @@ and Life engineering ownership and adds Content's supplier responsibility. The
 separate **Strategy** task supplies product decisions, not a competing execution
 queue. Assignment here does not claim a task is running or was dispatched.
 
+**September 7 supply clarification:** the system has three complementary ways
+to obtain value—explicit investigation, bounded reusable public/world
+preparation, and authorized private preparation. They share judgment and root
+delivery, but not authority, privacy or retention. Home/Places must be useful
+from eligible prepared material without initiating acquisition on every read;
+private Source production is one path, not the universal recommendation
+backend. CV-3 and the checkpoints in §9 make this distinction executable.
+
 This document replaces older cross-system ordering and lane allocation. Lane
 roadmaps retain internal package detail; their code, acceptance cases and
 historical receipts remain evidence. Product canon and operational release
@@ -907,7 +915,7 @@ document's creation.
 | --- | --- | --- |
 | I0 | Implemented/integrated at inventory level; live-engine path matrix and 2026-09-06 decision-alignment audit recorded | Keep D1 retained-intention ownership and family-specific D6 watch contracts gated; consume accepted general D2–D5 policy through I1–I3 adapters without treating D4's history/source-expiry proposal as adopted |
 | I1 | Integrated for request-clock, consequence fan-out, source/graph Life delivery, owner-fenced publication, audience/withdrawal repair, bounded enumeration, resumable backfill, reconciliation and full typed comparison; source representation transitions and Outcome adapters are no longer missing foundation | Establish population/coverage and target-version live delivery before indexed serving; PostgreSQL interleaving evidence remains distinct from offline tests |
-| I2 | Bounded reads, fast assembly, source storage/reuse, trigger/workflow identity, dark worker budgets/leases, canonical executor/context/provider binding and telemetry are implemented; CV-1 now connects current prepared results to ordinary Home/Places reads (§9.2) | CV-2 connects practical truth; CV-3 inspects approved trigger→executor→readback supply. Cost/cohort evidence and worker registration remain separately gated |
+| I2 | Bounded reads, fast assembly, source storage/reuse, trigger/workflow identity, dark worker budgets/leases, canonical executor/context/provider binding and telemetry are implemented; CV-1 now connects current prepared results to ordinary Home/Places reads (§9.2) | Close the ordinary-read acquisition leak, then connect practical truth and the three supply modes (explicit investigation, reusable public/world preparation, and authorized private preparation) through judgment→delivery. Cost/cohort evidence and worker registration remain separately gated |
 | I3 | CC-0/1 reader/authority/retry repairs, deadline/custody/processing-copy restrictions, source-owner handoff metadata, bounded writer conformance (itinerary, Atlas, Discover), and useful-first capture ordering are locally evidenced; history-specific lifecycle and owner commands remain gated | Capture coordinates Life readback/correction over the existing envelope; review the two September 6 decision proposals before dependent writes; native/content evidence stays deferred for current engineering |
 | I4 | Renderer promotion, result-set identity, source-backed revision, native returns, stale-source treatment and a four-value-family owner-backed Home portfolio are implemented and locally tested; rollout remains internal | Receive prepared results through existing native kinds and complete practical/social/continuity handoffs; real-data and native quality remain unevidenced by these tests |
 | I5 | Graph/consequence foundations present; movement signal→judgment shadow path is locally evidenced; lightweight experience remains incomplete | Complete adaptation and shared consequences over I1–I3, preserving purpose, plural participation, and meaningful stop/wait behavior |
@@ -929,9 +937,10 @@ portfolio. A package is reviewable scope, not the definition of Vesper.
 
 | Order | Outcome / implementation boundary | Exit and reassessment |
 | --- | --- | --- |
+| **CV-0 — ordinary serving is acquisition-free** | Trace every Home/Places root caller, including the nearby corpus/provider fallback and optional reachability/travel-time branches. Split read-only serving from explicit discovery/preparation while preserving useful corpus and prepared material on a miss. | Under cold-cache/thin-corpus fixtures, an ordinary Home/Places read makes no provider, model, enqueue or write call. Explicit map/search/investigation paths retain their own bounded acquisition authority. This is a boundary gate for all later CV packages. |
 | **CV-1 — prepared value reaches ordinary root reads** | Reuse current Source opportunity identities, `root_source_contributions`, canonical loaders, shared root composition, value admission and existing native anatomy. Add read-only admission of eligible retained results to Home and both Places v2 callers. Do not call the producer-or-reuse orchestration from GET. | Eligible complete-on-view value survives; misses, expired/revoked/changed sources and unavailable reads omit optional value while owner-backed material remains. Zero enqueue, lease claims, provider calls or new retention from a root read. |
 | **CV-2 — practical truth reaches common judgment** | Audit and join existing route/movement, Place conditions and Moment owners to the supported read mesh. Start from an available exact route/condition owner, not another coordinator or speculative `route.evaluate` implementation. | Known versus unknown feasibility changes a prepared possibility or live adaptation; stale facts do not become confident claims. Reassess owner coverage before widening a family. No new watch or provider integration implied. |
-| **CV-3 — useful preparation has an end-to-end supply path** | Map each supported named trigger through existing work item, bounded executor, eligible Source/current context, durable readback and CV-1 consumer. Exercise reuse, cancellation, revocation, late completion and useful fallback locally. | Record which value families actually have supply. Unsupported triggers remain unavailable. Controlled paid measurement/registration requires the accepted worker decision's separate gates; no generation on launch/focus/GET. |
+| **CV-3 — supply modes reach judgment and delivery** | Connect three deliberately different paths to the same receiving system: (a) explicit investigation for a user request, (b) bounded reusable public/world preparation for approved places, topics or time windows, and (c) authorized private preparation through the existing Source work item, executor, lease and readback. Carry evidence, rights, freshness, cost and exact continuation into common judgment, live assessment and Home/Places composition. | Each supported value family has a named supply owner and an end-to-end fixture from candidate/evidence to useful output. A public candidate does not require private history; private production does not become public supply. Unsupported triggers remain unavailable. Controlled paid measurement/worker registration requires separate gates; no generation on launch/focus/GET. |
 | **CV-4 — whole-system consumer completion and contraction** | Resolve exact Home/Places→owner→Life handoffs, practical shared effects, source correction and low-burden effect copy. Accept named support packages from Capture/Entities/Plan/Retirement. | A varied everyday, practical, social and continuity portfolio operates coherently. Remove replaced consumers only after obligations and receiving paths are established. No Chat entrance redesign or production cutover implied. |
 
 **CV-1 implementation packet:**
@@ -961,6 +970,35 @@ portfolio. A package is reviewable scope, not the definition of Vesper.
 - Report separately: implemented, locally tested, integrated, real-data
   evidenced, native evidenced and enabled. This packet does not establish
   plentiful production supply or consumer delight just by serving a fixture.
+
+#### CV-3 supply-mode receiving contract
+
+CV-3 is deliberately a **three-path supply program**, not a decision to make
+every Home item a private background job. The paths share candidate, evidence,
+judgment and root-delivery contracts, but they do not share authority or
+retention semantics:
+
+| Supply mode | Initial owner / trigger | Appropriate output | Explicit boundary |
+| --- | --- | --- | --- |
+| **Explicit investigation** | Existing Chat/action request with authenticated request identity, bounded place/topic/time scope and a finite deadline | A ready answer or small set of worthwhile possibilities, including a qualified world-first option when evidence supports it | It may acquire on demand, but it must not silently become a watch, durable intention, or global catalog write |
+| **Public/world preparation** | A separately approved Content/Integration preparation job for a supported market, topic or time window | Selective reusable world evidence and candidate possibilities that can be judged for multiple people | Queries contain no private conversation or friend constraints; provider rights, refresh, cost and admission are explicit before activation |
+| **Authorized private preparation** | An explicit user-requested warm action first; an adopted signal owner only after its authority, cancellation and expiry are implemented | Source-derived preparation scoped to the viewer, allowed roots, current purpose and eligible private material | The current Source executor remains explicit-warm only; source correction/refind and projection repair are not fresh-generation mandates |
+
+All three paths must end at the same typed receiving boundary: candidate
+identity, decisive evidence, claim-specific validity, rights/display policy,
+judgment, practical dependencies, cost and exact continuation. Home and Places
+then choose the appropriate expression for the current situation. A prepared
+item is not automatically a Life artifact, shared contribution, notification,
+booking action or durable user fact.
+
+**CV-3 checkpoint:** exercise at least one representative case for each mode
+through supply → evidence → judgment → Home/Places delivery → exact
+continuation, plus missing, stale, conflicting, revoked and cancelled variants.
+The portfolio must include cold-start world value, a private cross-source
+connection and an ordinary practical/social possibility. Passing means the
+system can explain what it knows, what it cannot verify and what the person can
+do next without another input exercise. It does not require live providers,
+production worker registration or a comprehensive world index.
 
 **Parallel Life checkpoint:** continue R2–R5 from the merged implementation.
 First make explicit that non-`life.v1` historical target builds currently lack
@@ -1460,19 +1498,24 @@ an interpreter mismatch: use the backend `.venv/bin/python` for verification.
 
 | Boundary inspected | Current evidence | Next scoped work / gate |
 | --- | --- | --- |
-| Trigger identity | `build_source_contribution_work_item` supports authorized signal, explicit warm and source recomposition; no runtime caller found under `backend/` | Bind one named existing owner event or explicit request with current authority, deduplication and cancellation. Never substitute focus/GET for the missing event. |
-| Durable handoff | `create_source_contribution_workflow` reuses `agent_workflows`; no runtime caller found | Connect the chosen trigger to its durable outbox/workflow handoff and exercise replay locally. An enum/workflow alone is not populated supply. |
-| Execution/readback | Dark worker, bounded canonical executor, Places context resolver and default producer factory exist with local tests | Verify trigger→executor→durable readback with deterministic production first. Approved provider/cohort and cost evidence remain activation gates. |
+| Explicit investigation | Existing Chat/action tools can perform bounded lookup, and the web/Places adapters are metered and guarded; the complete candidate→judgment→root receipt is not yet a single tested path | Name the receiving command and exercise a user-requested place/topic/time case. Keep acquisition request-scoped; do not make its result a watch or durable fact by default. |
+| Public/world preparation | Content has supplied provider/code/rights/economics findings; no activated public preparation job or reusable admitted world pool exists | Define a narrow supported market/topic/window and an admission/refresh contract. Use recorded fixtures first; provider account and retention approval remain gates. |
+| Private trigger identity | `build_source_contribution_work_item` supports authorized signal, explicit warm and source recomposition; no runtime caller found under `backend/` | Bind an explicit request first. A signal or source-owner repair event needs a separately implemented authority, deduplication, cancellation and expiry contract. Never substitute focus/GET for the missing event. |
+| Durable handoff | `create_source_contribution_workflow` reuses `agent_workflows`; no runtime caller found | Connect only the selected private trigger to its durable outbox/workflow handoff and exercise replay locally. An enum/workflow alone is not populated supply. |
+| Execution/readback | Dark worker, bounded canonical executor, Places context resolver and default producer factory exist with local tests | Verify private trigger→executor→durable readback with deterministic production first. Approved provider/cohort and cost evidence remain activation gates. |
 | Scheduling | No Source-contribution registration found under `backend/workers` | Remain dark under the accepted worker decision. No new scheduler, deployment or provider calls are authorized by this audit. |
 | Root consumption | Prepared-source reader checks current use and private audience; at most one eligible prepared production per root read | Preserve ordinary material on a miss. Private retained production does not establish public world coverage or require dossiers for all discovery. |
-| Public/world supply | Content owns provider coverage, reuse/display rights, acquisition/refresh cost and lifecycle findings | Receive an evidence/freshness/continuation supplier contract before provider-specific runtime work. External provider terms were not independently verified in this audit. |
+| Common receiving boundary | Root composition, value admission, claim-specific practical assessment and exact mobile continuation exist in pieces; no cross-mode receipt covers all three paths | Add the CV-3 portfolio fixture and verify the same evidence/rights/freshness/cost fields survive into Home and Places with distinct expressions. |
 
-Next checkpoint is a **named trigger-owner/handoff packet**, not more generic
-worker infrastructure. Pair it with the addressed-source depth/Ask audit and
-receive Life's bookmark/retained-reading projection contract without building
-a second save owner. Withdrawal and current-use repair must hold through
-production and continuation. Provider activation, optional continuity and
-watches remain separate decisions. CV-3 and the broader CV-4 remain open.
+Next checkpoint is a **supply-to-value portfolio receipt**, not another generic
+worker-infrastructure packet. It should cover one explicit investigation, one
+bounded public/world preparation case and one explicit private preparation case
+through evidence, judgment, Home/Places delivery and exact continuation. Pair it
+with the addressed-source depth/Ask audit and receive Life's
+bookmark/retained-reading projection contract without building a second save
+owner. Withdrawal, current-use repair, claim expiry and cancellation must hold
+through production and continuation. Provider activation, optional continuity
+and watches remain separate decisions. CV-3 and the broader CV-4 remain open.
 
 #### Trigger-owner follow-up — scope repair before activation
 
