@@ -61,6 +61,8 @@ Focused local suites passed during this batch:
   worker, serving, workflow, and Source storage;
 * 304 tests across the integrated Home/Places composition, practical delivery,
   workflow API, Source projection, and Source storage packet;
+* 6 public Place-content owner/receiving tests, including the exact handoff
+  added by `b0d5a80ca`;
 * the route pre-commit gates including route-auth, response-model, import-cycle,
   and status-guard checks;
 * `make contract-check` passed after the generated enum-order refresh in
