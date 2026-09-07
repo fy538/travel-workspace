@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Life engineering / cross-repository architecture
 created: 2026-09-05
-last_verified: 2026-09-06
+last_verified: 2026-09-07
 expires: 2026-10-05
 why_new: Rebaselines the executed Life foundation into a complete engineering program with an explicit Atlas replacement, data migration, and deletion outcome requested by the founder.
 depends_on:
@@ -58,13 +58,17 @@ subscription, schema or activation policy changed. See the
 [joint receipt](complete-system-integration-roadmap-2026-09-05.md#92-cv-1-and-life-target-capability-execution-receipt--september-6)
 for the implementation and validation boundary.
 
-**Next connected package:** investigate the two retained-source PostgreSQL
-restore failures observed during this batch (restored revision remains old /
-restored row remains revoked), distinguishing implementation from fixture or
-environment causes. The 151 passing offline Life/worker tests do not establish
-that those database transitions work. Then establish coverage/reconciliation
-evidence, close remaining real
-publication races, and advance R2-G deterministic organization and correction.
+**Restore correction — September 7:** the retained-source projector now allows
+an owner-authorized `source_unrepresented` event to restore an existing
+withdrawn row; ordinary replay remains fail-closed. It also uses the event's
+authoritative owner revision as the read clock when an explicit represented-at
+clock is absent. Both previously failing PostgreSQL restore cases now pass,
+alongside the offline projector tests. Evidence and commit are recorded in the
+integration roadmap receipt; this remains shadow-index/readback evidence only.
+
+**Next connected package:** establish broader coverage/reconciliation evidence,
+close remaining real publication races, and advance R2-G deterministic
+organization and correction.
 Several owner adapters and semantic-representation transitions have already
 landed; do not restart them from an older receipt. Expand and verify coverage
 before switching readers. No native session is required for this

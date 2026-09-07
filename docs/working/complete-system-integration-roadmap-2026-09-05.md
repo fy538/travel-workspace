@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Integration task
 created: 2026-09-05
-last_verified: 2026-09-06
+last_verified: 2026-09-07
 expires: 2026-10-05
 why_new: Rebaselines the post-pivot system around the real-world live engine and four surfaces, with code-backed correction priorities, explicit Life ownership, bounded Luna delegation, and recurring architectural and product reassessment.
 supersedes:
@@ -998,8 +998,8 @@ serving flag or release policy was changed.
 **Local evidence:**
 
 - Combined root, API, retained-record, canonical-owner, Life, Life-worker and
-  Places orchestration offline suites: **619 passed, 9 deselected** after
-  combining all four backend commits.
+  Places orchestration offline suites: **621 passed, 9 deselected** after the
+  restore correction and CV-2 proof.
   HTTP tests exercise all three callers with production disabled and enabled;
   canonical-owner tests separately exercise actual read compilation and value
   judgment. Neither is native or paid-production evidence.
@@ -1011,11 +1011,12 @@ serving flag or release policy was changed.
   also fails on unchanged backend `329c91f87`; this is a reproduced baseline
   failure, not a green full-suite claim. Some tests explicitly allow baseline
   local PostgreSQL access despite the offline marker selection.
-- Life's separate PostgreSQL run reported **158 passed, 2 failed** in retained
-  source restore scenarios (old revision / row still revoked). These were not
-  reproduced against the unchanged baseline in this batch and remain a named
-  Life investigation before coverage/cutover claims. The offline tests do not
-  replace them.
+- Life's PostgreSQL restore cases now pass: **2 passed, 10 deselected** for
+  the retained-source projector file, including the old-revision and revoked
+  row cases. Backend `7b1d8a6b0` makes `source_unrepresented` an explicit
+  owner-authorized restoration path for an existing withdrawn row and uses the
+  event owner revision as its read clock. This is shadow-index/readback proof;
+  it does not establish corpus coverage, live target fanout, or reader cutover.
 - Ruff, formatting, diff checks and applicable commit guards passed. The
   existing size-budget hook failed on seven untouched function/file entries;
   only that hook was explicitly skipped for commits. No baseline was raised.
@@ -1037,20 +1038,44 @@ PYTHONPATH=. python -m pytest -q tests/root_projection \
   -m 'not requires_postgres and not requires_api_keys' --tb=short --maxfail=3
 ```
 
-The four backend commits are integrated at `7a8a6f58c` on local `main`;
+The five backend commits are integrated at `7b1d8a6b0` on local `main`;
 workspace roadmap changes are locally committed. Neither repository was
 pushed by this batch. Concurrent workspace inventory/design/research edits
 and the unchanged mobile checkout remain outside this landing.
 
-**Direction review:** keep the architecture and two persistent lanes. The
-next Integration package is CV-2: name the real route/conditions/Moment owner
-and make practical facts change an existing judgment, preserving unknowns.
-Life first investigates the two retained-source restore failures and verifies
-population, target continuity and viewer parity, then advances deterministic
-organization. Do not treat a served fixture as plentiful, interesting supply;
+**Direction review:** keep the architecture and two persistent lanes. CV-2 now
+has an evidence-backed Place/Moment boundary; the next work is owner coverage
+and one concrete practical adapter at a time. Life's next work is population,
+target continuity and viewer parity, then deterministic organization. Do not
+treat a served fixture as plentiful, interesting supply;
 CV-3 still owns the end-to-end preparation path and activation evidence.
 Paid worker activation, new watch/intention/history policy, indexed serving,
 native acceptance and release remain separately gated.
+
+### 9.3 CV-2 practical-fact boundary — September 7
+
+The first CV-2 audit confirms a narrower, already-supported seam. The existing
+`place.read` owner read carries Place identity, evidence, current-condition
+omissions, and reachability omissions into the shared value judgment. A saved
+Place candidate remains admitted when only the explicitly accepted
+`current_conditions_unavailable` omission is present. The same candidate is
+suppressed when the owner returns an unaccepted `route_unavailable` omission.
+The underlying saved-place door remains a valid owner-backed continuity door;
+practical uncertainty changes whether Vesper offers it as value, not whether
+the durable save exists.
+
+Evidence: `tests/root_projection/test_home_portfolio.py::test_place_reachability_changes_value_judgment_without_erasing_the_saved_door`.
+This is an offline contract proof, not a live route/provider result. It does
+not establish a standalone `route_evaluate` owner, current traffic, weather,
+opening-hours, or provider coverage. Those facts should enter through existing
+Place/Moment owner reads until a named route owner is actually available.
+
+The next CV-2 package is therefore an owner-coverage audit and one concrete
+real-data adapter at a time: identify which current practical fact is missing,
+name its canonical owner and expiry, add the smallest typed reader/omission
+contract, and prove that the existing judgment changes while the base material
+survives. Do not add a route coordinator, watch, provider call, or new durable
+context store as a consequence of this test.
 
 ### Execution receipts (2026-09-05)
 

@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Home engineering
 created: 2026-09-04
-last_verified: 2026-09-06
+last_verified: 2026-09-07
 expires: 2026-10-04
 why_new: Converts the connected Home journey plan into an evidence-linked code map and production-feasibility work package without authorizing a repository-wide rewrite or a second owner system.
 supersedes: []
@@ -32,7 +32,9 @@ this rebaseline supersedes them.
 [CV-1 is implemented and locally tested](complete-system-integration-roadmap-2026-09-05.md#92-cv-1-and-life-target-capability-execution-receipt--september-6):
 ordinary Home/Places reads can receive eligible prepared Source results without
 starting production. The next Integration package is CV-2, connecting real
-practical facts to common judgment. Continue completing producer→renderer→destination→return
+practical facts to common judgment. The first proof covers accepted
+current-condition uncertainty versus an unaccepted reachability failure on a
+saved Place; no separate route owner exists yet. Continue completing producer→renderer→destination→return
 chains. Cover practical
 preparation, complete-on-view understanding, human contribution and ordinary
 possibility across J1–J4. Unavailable owners remain explicit; a card's absence
