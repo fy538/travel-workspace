@@ -63,6 +63,7 @@ checkpoint.
 | R2-G resolution lifecycle and owner trigger | `1854e4740` | `lifeorg03` adds explicit successor lineage and replay-safe, revision-bound revoke; Plan/Occasion owner publication invokes the existing organization-resolution application adapter. |
 | R2-G lifecycle repair reporting | `c718fc0cc` | Owner-triggered reconciliation reports missing, ambiguous, applied, and post-transfer repair-required states; it never treats a revoked/replaced transfer as a successful no-op. |
 | R2-G transfer lineage and repair inventory | `1e49ba0b5` | `lifeorg04` records source/target membership transfer lineage and exposes a bounded affected-set plan for later rebuild; no reverse mutation or reader cutover. |
+| R2-G lifecycle comparison correction | `e00123f3d` | Replacement replay compares resolution-kind values explicitly, preserving idempotent successor detection across equivalent enum instances. |
 
 The existing retained-source, Plan, Occasion, and Outcome projectors all reuse
 the same owner-fenced writer and return explicit `updated`/`withdrawn`/`stale`

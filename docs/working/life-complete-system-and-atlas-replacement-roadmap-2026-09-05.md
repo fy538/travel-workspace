@@ -1765,6 +1765,7 @@ reconciliation now exposes the exact affected set when available; it falls
 back to an explicit group rebuild requirement when older rows have no lineage.
 This package still plans the repair and does not reverse memberships or change
 Life readers. The local migration head is now `lifeorg04`.
+Follow-up `e00123f3d` makes replacement-kind replay comparisons value-based.
 
 | Lane/interface | Concrete dependency | Work that can continue here |
 | --- | --- | --- |
