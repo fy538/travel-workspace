@@ -28,7 +28,9 @@ not activate the worker or claim native evidence.
 | SP-0a request/result/control mapping | Existing Source work-item fields, missing exact-commission fields, request/reuse/result identity distinctions, and truthful lifecycle states are documented without inventing a second store. | `51fc6c9` — `docs: map source request result and control boundaries` |
 | SP-1b exact result binding | Canonical Source execution computes a deterministic production digest; the completion receipt can carry a typed versioned result reference; an owner-only result route reopens the retained version without current Home/Places ranking or acquisition. Replaced/expired results return unavailable. Exact reads now revalidate a referenced Places context before serving, validate digest shape, fail closed on owner-read/storage errors, and canonicalize unordered fields before hashing; worker regressions prove the digest is carried into the receipt. | `381bbba29` — `feat: bind exact source result identities`; `7d8552f29` — `fix: revalidate source context on exact reads`; `35c1b203f` — `fix: harden exact source result reads`; `90955883f` — `test: prove exact source result receipt binding`; `1961eebff` — `fix: canonicalize source result identities` |
 | SP-2b effective stop | Source-only cancellation uses a transaction-time actor/type/revision fence, records the applied command, cancels the workflow atomically, and remains behind the existing shared workflow-control flag. Generic steer/pause/resume/handoff semantics remain intent-only. | `1447eeccd` — `feat: apply source workflow cancellation` |
+| SP-2c terminal result semantics | The exact-result reader now distinguishes a completed `producer_silence` ending (`no_useful_result`) from a malformed or missing result identity (`unavailable`), and maps superseded workflows to an unavailable result without attempting regeneration. | `9c1eda6e9` — `fix(source): report terminal silence and supersession` |
 | Contract publication | The full OpenAPI snapshot and active projection include the dark owner-only result route; the operation policy declares it dark with no mobile consumer. | `cf4ee23` — `chore: publish exact source result contract` |
+| CV-3 Home/Places receiving | The tested receiving adapter is landed on backend `main` and the app's Entity checkout and clean app-`main` integration worktree. It preserves owner-backed composition, exact continuations, practical delivery, and return-token behavior without adding a new producer or screen family. | Backend `1146ae041`; app `f4401ef73` (Entity checkout) and `8bed6ca82` (clean `main` worktree) |
 
 ## Existing receiving evidence consumed
 
@@ -61,6 +63,11 @@ Focused local suites passed during this batch:
   worker, serving, workflow, and Source storage;
 * 304 tests across the integrated Home/Places composition, practical delivery,
   workflow API, Source projection, and Source storage packet;
+* 69 focused backend tests across the merged Home/Places receiving and workflow
+  packet;
+* 46 focused mobile Home/Places/navigation tests plus TypeScript typecheck on
+  the merged Entity checkout. The clean app-`main` integration worktree has no
+  installed dependencies, so it was not re-run independently there;
 * 6 public Place-content owner/receiving tests, including the exact handoff
   added by `b0d5a80ca`;
 * the route pre-commit gates including route-auth, response-model, import-cycle,
