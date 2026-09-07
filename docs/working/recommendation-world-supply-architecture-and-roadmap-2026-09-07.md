@@ -901,6 +901,16 @@ and the scope of any event-model change. Track completion with commit IDs,
 test receipts, remaining gaps and actual producer/readback bindings in this
 document.
 
+**Execution status, September 7:** the provider-independent part of Wave A is
+now landed: C0's nearby discovery/routing read boundary, C1's typed bounded
+result, explicit search-depth policy and traceable-source handling, and C2's
+write-free disposition mapper. The next work is intentionally gated rather
+than implied by these commits: canonical observation/primitive promotion,
+unknown-time event representation and field-specific repair, active retrieval
+readback, public preparation, and consumer activation still need their owner,
+schema/rights, or supplier decisions. No provider was activated and no root
+read was changed into a production research trigger.
+
 ### 11.7 Validation, migration and decision record
 
 Use the cheapest meaningful validation for each change:
