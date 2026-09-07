@@ -54,6 +54,7 @@ checkpoint.
 | Operator worker boundary | `4f4519778` | Explicit queue entry point for one bounded backfill slice; no cron side effect or serving switch. |
 | Publication edge correction | `9508f9ddd` | Private Outcome audience tokens preserve subject/occasion context when the owner fence recomputes dependency authority. |
 | Enumeration edge correction | `f35144a5e` | Occasion keyset enumeration uses `DISTINCT` owner identities so multi-member Occasions cannot consume the historical work budget repeatedly. |
+| R2-G deterministic organization/control slice | `143c54079` | `lifeorg01` adds stable viewer/version-scoped group identities, evidence-backed memberships, and a revision-bound control ledger for rename, detach/exclusion, and exact Undo; learned clustering and serving remain out of scope. |
 
 The existing retained-source, Plan, Occasion, and Outcome projectors all reuse
 the same owner-fenced writer and return explicit `updated`/`withdrawn`/`stale`
@@ -89,7 +90,7 @@ Backend, using the repository virtual environment:
 The migration chain reports one head:
 
 ```text
-lifebackfill02 (head)
+lifeorg01 (head after the R2-G organization package)
 ```
 
 Mobile verification:
@@ -131,9 +132,12 @@ lint, import-cycle, boundary, timeout, and other applicable hooks pass.
 - Experience anchors, historical Atlas material, generic social contributions,
   authored compositions, and retained booking-reader mapping remain explicit
   coverage gaps.
-- R2-G deterministic organization and durable human corrections remain a
-  contract/design package. R8 migration certification, read-time authorization,
-  device QA, serving cutover, and Atlas retirement remain downstream gates.
+- R2-G is landed only for deterministic proposal/materialization and the
+  rename/detach control ledger. Owner-driven wiring, identity reconciliation,
+  alias/split/merge behavior, affected-set repair, model-assisted candidates,
+  and Life serving remain downstream work. R8 migration certification,
+  read-time authorization, device QA, serving cutover, and Atlas retirement
+  remain separate gates.
 
 ## Next checkpoint — rebaselined September 7
 
@@ -148,9 +152,9 @@ lint, import-cycle, boundary, timeout, and other applicable hooks pass.
    defects, unsupported capability, blocked infrastructure and revision drift.
 3. Require per-target durable delivery before continuously maintaining another
    shadow version; historical-only diagnostics must not appear live.
-4. Advance R2-G in parallel: deterministic evidence-backed organization and
-   revision-bound human corrections using the existing owner/index seam. Then
-   separately review exact retrieval/return acceptance, indexed serving and
-   Atlas retirement conditions.
+4. Connect the landed R2-G materializer to owner-scoped replay/reconciliation
+   for Plan and Occasion records, then add the identity registry and accepted
+   alias/split/merge resolution. Keep exact retrieval/return acceptance,
+   indexed serving, and Atlas retirement as separate downstream gates.
 
 This receipt is evidence of the executed packages, not a release certificate.
