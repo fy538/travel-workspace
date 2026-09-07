@@ -1659,6 +1659,10 @@ The bounded packet was implemented in backend worktree
   publisher and current-authority consumer, including out-of-order replay.
 - `d7714e38c` — the connected delivery test isolates event-bus registrations so
   its explicit publisher cannot leak asynchronous work into neighboring tests.
+- `6c7d07847` — graph owner events now defer to their specialized current-
+  authority consumers; the generic handler no longer double-writes or loses
+  Outcome audience dependency tokens. Connected delivery coverage includes
+  Plan, Occasion and shared Outcome.
 
 The explicitly provisioned local database `vesper_life_rehearsal_20260907` was
 migrated to `lifebackfill02` (single head). Evidence executed against that
@@ -1667,7 +1671,7 @@ database:
 | Check | Result |
 | --- | --- |
 | Offline Life/event-bus selection | 179 passed, 11 provider/Postgres cases deselected |
-| Full `tests/life_projection` selection on isolated PostgreSQL | 172 passed |
+| Full `tests/life_projection` selection on isolated PostgreSQL | 179 passed |
 | Retry/enumeration unit selection | 9 passed |
 | Complete `tests/life_projection` connected selection | 11 passed, 157 offline cases deselected |
 | Connected report command with JUnit + `--life-rehearsal-report` | 2 passed; report schema `vesper.life-shadow-rehearsal.v1`, `supported_scope=pass`, `whole_portfolio_complete=false`, `serving_ready=false` |
@@ -1675,8 +1679,8 @@ database:
 
 The rehearsal proves the supported Plan path, linked Occasion lens membership,
 current-authority fencing, withdrawal/explicit restoration, bounded derived-owner
-inventory, a real durable Plan outbox-to-consumer path with out-of-order replay,
-and one real commit/publication interleaving. The unit-level backfill
+inventory, real durable Plan/Occasion/Outcome outbox-to-consumer paths with
+out-of-order replay, and one real commit/publication interleaving. The unit-level backfill
 retry cases additionally prove that resolved or already-current identities are
 removed from live unresolved work rather than retained as an append-only error,
 and that a transient enumeration read preserves its retry cursor. It does not

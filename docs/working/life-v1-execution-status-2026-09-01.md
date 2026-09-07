@@ -33,10 +33,11 @@ now has an executed bounded slice. Backend commits `41e07297e`, `ca559b2f7`,
 coverage/report wiring, bounded indexed-owner reconciliation, and a
 deterministic owner-commit/publication race, plus live-set cleanup when a
 deferred backfill identity later resolves or is already current, and retryable
-enumeration failure handling. Backend commits `b7425b548` and `d7714e38c` add
-a connected durable Plan outbox-to-consumer replay proof and isolate its event
-bus state. The focused retry selection passed 9 tests and the full
-`tests/life_projection` selection passed 172 tests on the isolated
+enumeration failure handling. Backend commits `b7425b548`, `d7714e38c`, and
+`6c7d07847` add connected durable Plan/Occasion/Outcome outbox-to-consumer
+replay proof, specialized graph-owner dispatch, and isolated event-bus state.
+The focused retry selection passed 9 tests and the full
+`tests/life_projection` selection passed 179 tests on the isolated
 database. On isolated local database
 `vesper_life_rehearsal_20260907` at migration head `lifebackfill02`, the Life
 offline selection passed 179 tests and the complete connected Life selection
