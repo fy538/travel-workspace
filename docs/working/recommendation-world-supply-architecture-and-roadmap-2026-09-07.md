@@ -1953,6 +1953,9 @@ Two follow-up hardening commits extend the receipt above:
   time into every experience derived-point payload (initial generation, dirty
   repair and side-build), preserving parity without making the vector store
   authoritative.
+- `92b8b4594` reorders brief finalization behind the winning generation CAS
+  and requeues a draft if the finalization write fails, so a late provider
+  update cannot be reported as a complete stale brief.
 
 The focused lifecycle and side-build suites remained green after these
 changes; the aggregate receipt is **226 passed, 7 deselected**, with the same
