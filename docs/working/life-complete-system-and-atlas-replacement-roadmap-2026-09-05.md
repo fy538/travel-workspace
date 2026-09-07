@@ -25,7 +25,7 @@ supersedes:
 **Rebaseline after the first organizing-intelligence implementation — September 7:**
 the latest inspected Life backend is `333f447be` on
 `codex/life-shadow-rehearsal-2026-09-07`. Its preceding measurement correction
-is `4a19414be`. Backend local `main` is `b7df20cdc`; ancestry inspection confirms
+is `4a19414be`. Backend local `main` is `d8fdb55d6`; ancestry inspection confirms
 that it does not include the latest Life checkpoint. Earlier foundations were
 integrated, but that does not mean all subsequent Life packages are merged.
 App `b479c3289` is on `codex/entity-object-design-completion`; its earlier Life
@@ -101,15 +101,17 @@ This is the only current queue. The items refine existing R0–R8/M0–M6; they 
 not new lanes or a requirement to finish every experiment before connecting the
 system. Work on the first three can progress together where dependencies permit.
 
-1. **M2/M5 — complete the first quality baseline.** Judge the 18 additional
-   relationships; add independently authored holdout sequences and the missing
-   challenge variants, especially ambiguous identity, conflicting context,
-   negative occurrence and multi-event/undated material. Separate oracle-evidence
-   organization from raw-artifact extraction. Exit with per-world required,
-   accepted, forbidden and unjudged relationships, grouping expectations and
-   evolving-update results. The benchmark must cover ordinary life, journeys,
-   continuing attention, shared perspectives and kept-but-not-lived material;
-   passing one story is not system completion.
+1. **M2/M5 — complete the first quality baseline.** The six independently
+   authored synthetic holdouts in §13.16 now cover ambiguous identity,
+   conflicting context, negative occurrence, late import, shared privacy and
+   repeated-place separation. Their emitted relations have explicit judgment
+   coverage. Continue by reviewing the remaining 18 relationships from the
+   oracle worlds, adding independently reviewed labels and the missing challenge
+   variants. Separate oracle-evidence organization from raw-artifact extraction.
+   Exit with per-world required, accepted, forbidden and unjudged relationships,
+   grouping expectations and evolving-update results over ordinary life,
+   journeys, continuing attention, shared perspectives and kept-but-not-lived
+   material; passing synthetic holdouts is not system completion.
 2. **M1/M2 — connect real evidence to maintained organization.** Agree Capture's
    bounded current-authority evidence read and Integration's revision/durable
    delivery semantics before source-owned changes. Map fields to real owner
@@ -3394,3 +3396,39 @@ production owner adapter. Continue with:
 Source-owned transactions, Intake acknowledgement, live-engine canonical reads,
 current serving gates, and the prohibition on a Life-owned intention writer
 remain unchanged.
+
+### 13.16 Independent holdout quality slice — September 7
+
+The first quality-baseline item in the current queue is now exercised in a
+separate evaluator fixture, without changing the production organizer or adding
+another index. `organization_holdouts_v1.json` uses namespace
+`product-life.organization.holdout.v1`, distinct record identities and an
+`independent-evaluator` authorship marker. Six synthetic holdouts cover:
+ambiguous same-place identity (H1), conflicting stale context (H2), scheduled
+nonattendance (H3), late import and unknown date (H4), viewer-relative shared
+contribution (H5), and repeated-place meal separation (H6).
+
+`test_life_organization_holdouts.py` runs the existing B0/B1 compiler and typed
+relationship evaluator over those cases. Every expected output relation is
+explicitly accepted or forbidden; therefore this slice reports judgment
+coverage rather than silently treating extra output as correct. The shared case
+also compiles for two viewers and checks that a private contribution is not
+leaked while the attributed contribution remains attributable.
+
+Validation: the focused holdout selection passed **4 tests**. Together with the
+previous product-world selection this is **300 Life/organization tests** when
+the previously recorded PostgreSQL and worker/broadcast selection is included;
+the holdout command itself emits a deterministic
+`product-life.organization.holdout.v1` report with `model_calls=0`,
+`human_value_measured=false` and `serving_ready=false`. The fixture remains
+oracle-interpreted: it does not parse raw text, establish automatic extraction,
+measure human usefulness or authorize a B2 model run. No source producer,
+schema, mobile contract, serving path, migration, merge, push or Atlas action
+changed.
+
+This closes only the initial independent-judgment harness item. The next
+quality gates are independently reviewed labels/held-out variants beyond these
+synthetic cases, explicit extraction-vs-organization measurements, and a
+budgeted B2 comparison only after eligible data and stop rules are agreed.
+The real-owner evidence/durable-delivery seam and M3 bounded readers remain
+parallel current-queue work.

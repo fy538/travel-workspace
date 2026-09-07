@@ -54,6 +54,19 @@ judgments, the real evidence/delivery contract, maintained organization and
 useful bounded readers, with a budgeted B2 comparison only where warranted.
 See the roadmap queue rather than repeating the completed measurement/M1 work.
 
+**Independent holdout quality slice — September 7:** the Life rehearsal branch
+adds six separately namespaced, independently labeled synthetic holdouts for
+ambiguity, stale correction, nonattendance, late import, shared privacy and
+repeated-place separation. The existing B0/B1 compiler and typed relationship
+evaluator now require explicit accepted/forbidden judgments for every emitted
+relation in that fixture. The focused holdout selection passed **4 tests**; the
+full Life/worker/broadcast selection passed **300 tests** after this addition.
+Its deterministic report is marked oracle, `model_calls=0`,
+`human_value_measured=false` and `serving_ready=false`. This is a
+quality-harness checkpoint only; it does not establish raw extraction, human
+usefulness, public reader adoption or model promotion. The roadmap §13.16 is
+the canonical receipt for the committed package.
+
 ## Historical September 7 implementation receipts
 
 The receipts below preserve their original revisions and test boundaries.
