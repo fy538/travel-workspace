@@ -1789,6 +1789,10 @@ reactivation. The restored target's newer membership revision still blocks
 the stale transfer rollback, making restoration a current-authority boundary
 rather than an implicit permission to replay historical repair.
 
+Commit `6f4a977bb` adds the legacy-lineage boundary case. A transfer row
+without usable lineage returns `group_rebuild_required` from both the planner
+and mutation entry point; no reverse mutation is attempted.
+
 | Lane/interface | Concrete dependency | Work that can continue here |
 | --- | --- | --- |
 | Capture/source owners | Exact custody/expiry/representation reads, current revision and authorized restore event; agree any missing transaction change before editing its producer | Receiver tests, replay, report and source-only organization using existing contracts |
@@ -1867,8 +1871,8 @@ The follow-up repair work is also committed in the isolated Life worktree:
 regressions, `59cab4f88` proves an explicit restored target cannot be overwritten
 by an old transfer, and `4e41b23c4` aligns a retained-source route fixture with
 the canonical `created_at` ordering contract. The connected resolution
-selection passes 8 cases; the full `tests/life_projection` selection passes
-204 cases, and the combined Life worker/event-bus selection passes 227 cases.
+selection passes 9 cases; the full `tests/life_projection` selection passes
+205 cases, and the combined Life worker/event-bus selection passes 228 cases.
 
 The explicitly provisioned local database `vesper_life_rehearsal_20260907` was
 migrated to `lifeorg05` (single head). Evidence executed against that
@@ -1884,8 +1888,8 @@ database:
 | R2-G organization proposal/materialization and PostgreSQL control sequence | 12 passed across the focused Plan/Occasion/organization selection; stable identity, evidence revision, replay, exclusion non-resurrection, stale readback, rename/detach, exact Undo, conflict-safe control insertion, owner-group archive, explicit restore, and projector callbacks |
 | R2-G identity-resolution registry and migration | 7 passed across the resolution/organization selection; idempotent alias, merge/split persistence, all-target split readback, and `lifeorg02` downgrade/upgrade |
 | R2-G unambiguous resolution application | 2 passed; merge membership transfer, target-side exclusion preservation, source redirect, idempotent reapplication, and explicit split ambiguity |
-| R2-G CAS-guarded repair lifecycle | 8 passed; multi-transfer reverse rollback, later target detach atomic rejection, archived target fencing, and explicit restored-target stale-repair rejection |
-| Broad Life verification | 227 passed across `tests/life_projection`, Life projection workers, event bus, and projection broadcast suites |
+| R2-G CAS-guarded repair lifecycle | 9 passed; multi-transfer reverse rollback, later target detach atomic rejection, archived target fencing, explicit restored-target stale-repair rejection, and legacy lineage rebuild classification |
+| Broad Life verification | 228 passed across `tests/life_projection`, Life projection workers, event bus, and projection broadcast suites |
 | Ruff on changed files | Passed |
 
 The rehearsal proves the supported Plan path, linked Occasion lens membership,

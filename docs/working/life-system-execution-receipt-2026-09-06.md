@@ -68,6 +68,7 @@ checkpoint.
 | R2-G repair lifecycle race coverage | `c6cc768fc` | Rollback now requires a redirected source and active targets; connected PostgreSQL regressions cover multiple transfers, later target detach with atomic no-partial-mutation failure, and archived target-owner fencing. |
 | R2-G explicit restore race coverage | `59cab4f88` | The archived-target regression now also restores the target explicitly and proves the old transfer remains blocked by the newer restored membership revision; no stale rollback can overwrite the restored state. |
 | Life route fixture alignment | `4e41b23c4` | Supplies the retained-source `created_at` required by the canonical Life ordering contract; no production behavior changed. |
+| R2-G legacy lineage boundary | `6f4a977bb` | A legacy transfer row returns `group_rebuild_required` from both planning and mutation APIs; source/group/lineage state remains untouched rather than being guessed. |
 
 The existing retained-source, Plan, Occasion, and Outcome projectors all reuse
 the same owner-fenced writer and return explicit `updated`/`withdrawn`/`stale`
@@ -106,11 +107,11 @@ The migration chain reports one head:
 lifeorg05 (head after the R2-G CAS-guarded repair package)
 ```
 
-The current connected organization/projector selection is `36 passed`,
+The current connected organization/projector selection is `37 passed`,
 including migration-backed replacement/revocation, transfer lineage, multiple
 transfer rollback, stale-control fencing, explicit restoration, and
 owner-triggered repair classification. The full `tests/life_projection`
-selection is `204 passed`.
+selection is `205 passed`.
 
 Mobile verification:
 
