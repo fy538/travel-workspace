@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / architecture / engineering
 created: 2026-09-01
-last_verified: 2026-09-06
+last_verified: 2026-09-07
 expires: 2026-10-01
 why_new: Records the executed, cross-repository Life v1 foundation and its validation evidence so future design work can build on committed seams rather than re-open the architecture.
 depends_on:
@@ -15,18 +15,17 @@ depends_on:
 
 # Life v1 — execution status
 
-## September 6 reading order
+## September 7 reading order
 
-Use the [replacement roadmap's current baseline](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#current-execution-baseline--september-6)
+Use the [replacement roadmap's current baseline](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#current-execution-baseline--september-7)
 for what to execute next. This file is the evidence ledger, not a second
 sequence. The canonical Life tab and four-lens readers have landed; older
 flag/Atlas descriptions below are historical. The owner-safe shadow section
-records index/outbox/restore helpers plus the new identifier-only outbox
-delivery bridge and retained-source shadow projector, not broader owner
-producer wiring, populated data or a serving cutover. Native acceptance remains deferred for
-current engineering, not retrospectively passed. Source and future-intent
-dependencies follow the integration register and its explicitly unadopted
-decision proposals.
+records the integrated index/outbox/restore helpers, owner adapters and
+identifier-only delivery bridge; it still does not claim populated data or a
+serving cutover. Native acceptance remains deferred for current engineering,
+not retrospectively passed. Source and future-intent dependencies follow the
+integration register and its explicitly unadopted decision proposals.
 
 ## September 5 roadmap and evidence clarification
 
@@ -291,14 +290,21 @@ Home persister, and account teardown still clears all position keys.
 4. Together/multiplayer write paths and generalized Occasion architecture.
 5. Visual composition polish beyond the production HTML design reference.
 
-The next implementation batch is owner-specific Life event delivery and shadow
-replay in the replacement roadmap: connect only owners with trustworthy
-revision/audience contracts, then certify paged backfill and shadow parity before
-any indexed serving switch. Remaining dossiers, lenses, custody, refinding,
-shared/prospective continuity, Returns and Atlas deletion are explicit packages
-in that program, rather than indefinite deferrals.
+The owner-specific delivery batch is now integrated locally. The next batch is
+bounded shadow rehearsal against an explicit corpus and viewer cohort: certify
+paged population, replay/out-of-order revision handling, withdrawal/restore,
+audience changes and parity/coverage reporting. Classify unsupported owner
+families explicitly. Advance deterministic organization and durable corrections
+in parallel, then take the separate retrieval, serving and Atlas-retirement
+gates. Remaining dossiers, lenses, custody, refinding, shared/prospective
+continuity and Returns are explicit packages in that program, rather than
+indefinite deferrals.
 
 ### R1/R2 consumer delivery receipt — 2026-09-06
+
+The following receipt is historical package provenance. Its isolated worktree
+and pre-integration wording do not describe the current branch; use the
+September 7 replacement roadmap and execution receipt for the active baseline.
 
 The owner-change consumer is now connected to the existing durable bridge in
 `travel-agent` commit `b4d87161f` (based on bridge commit `1bb03e1c7`). The

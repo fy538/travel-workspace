@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Life engineering / cross-repository architecture
 created: 2026-09-06
-last_verified: 2026-09-06
+last_verified: 2026-09-07
 expires: 2026-10-06
 why_new: Records the implementation and verification evidence for the connected Life shadow-system packages executed from the September 6 roadmap.
 depends_on:
@@ -16,15 +16,19 @@ depends_on:
 
 ## Result
 
-The remaining connected R1/R2 shadow path is implemented in isolated child
-worktrees:
+This receipt records the connected R1/R2 shadow path as it was executed in
+isolated child worktrees. Those packages are now integrated into the current
+backend/app lines; the old worktree locations and “not merged” wording below
+are historical provenance, not the current repository state.
 
 `eligible owner change → durable Life delivery → current-authority projector →
 shadow index row`, with bounded historical population, catch-up/reverse
 reconciliation, typed comparison, coverage accounting, and mobile continuity.
 
 The work remains shadow-only. No Life reader cutover, Atlas deletion, source
-data migration, production activation, push, or merge was performed.
+data migration or production activation was performed. Integration has landed
+the package commits locally, but publication/remote status and release approval
+remain separate gates.
 
 The implementation is intentionally additive: canonical Plans, Occasions,
 Outcomes, and retained Intake sources remain authoritative; `life_corpus_entries`
@@ -32,7 +36,7 @@ and the backfill control row are rebuildable downstream state.
 
 ## Committed packages
 
-### Backend — `codex/life-system-execution`
+### Backend — originally `codex/life-system-execution`, now integrated on local `main`
 
 The worktree is based on backend `68e72d3f7` and is clean at the receipt
 checkpoint.
@@ -54,7 +58,7 @@ the same owner-fenced writer and return explicit `updated`/`withdrawn`/`stale`
 counts. Owner contracts remain `shadow_only`; no family is silently promoted to
 serving authority.
 
-### Mobile — `codex/life-system-execution`
+### Mobile — originally `codex/life-system-execution`, now integrated on `main`
 
 The app worktree is based on app `d7d1a3271` and is clean at the receipt
 checkpoint.
@@ -123,19 +127,22 @@ lint, import-cycle, boundary, timeout, and other applicable hooks pass.
   contract/design package. R8 migration certification, read-time authorization,
   device QA, serving cutover, and Atlas retirement remain downstream gates.
 
-## Next checkpoint
+## Next checkpoint — rebaselined September 7
 
-1. Agree and verify the missing owner-side producer/event contracts with
+1. Agree and verify the remaining owner-side producer/event contracts with
    Capture and the graph-owner lanes; add PostgreSQL interleavings for first
-   insert, audience-only change, restoration, lost acknowledgement, and lease
-   reclaim.
-2. Run a bounded dry-run against an explicit viewer cohort, inspect the
-   machine-readable comparison/coverage report, and resolve every supported
-   mismatch or classify it as an owner capability gap.
+   insert, audience-only change, restoration, lost acknowledgement and lease
+   reclaim. Preserve Intake's independent acknowledgement.
+2. Run a bounded dry-run against an explicit local corpus and viewer cohort,
+   inspect the machine-readable comparison/coverage report, and classify every
+   mismatch as fixed, unsupported or blocked. Include late/out-of-order
+   revisions, withdrawal, authorized restoration and audience changes.
 3. Choose and implement the per-target live-delivery strategy before any
-   shadow version other than `life.v1` is populated.
-4. Only after the report is complete, expand owner coverage and the durable
-   organization/correction seam; then separately review indexed serving and
+   shadow version other than `life.v1` is populated; historical-only targets
+   must not appear live.
+4. Advance R2-G in parallel: deterministic evidence-backed organization and
+   revision-bound human corrections using the existing owner/index seam. Then
+   separately review exact retrieval/return acceptance, indexed serving and
    Atlas retirement conditions.
 
 This receipt is evidence of the executed packages, not a release certificate.
