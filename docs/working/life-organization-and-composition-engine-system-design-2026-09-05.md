@@ -53,9 +53,23 @@ pending prospective/authorship policy.
 **Latest architecture follow-through — September 7:** [section 17](#17-maintained-system-architecture-amendment--september-7)
 records the reviewed completion, transaction, rebuild and reader decisions.
 The [roadmap §13](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#13-architecture-review-follow-through--september-7)
-is the current execution order. The latest inspected Life implementation is
-`163b18e8b`, separate from backend main `7a1d18070`; earlier baseline tables
-and receipts are historical, not instructions to recreate completed storage.
+is the corrective execution order. At that review checkpoint the inspected
+Life implementation was `163b18e8b`, separate from backend main `7a1d18070`;
+the research follow-through below pins a later Life checkpoint. Earlier baseline
+tables and receipts are historical, not instructions to recreate completed storage.
+
+**Technical research follow-through — September 7:** the
+[seven-area research report](life-organizing-intelligence-technical-research-2026-09-07.md)
+extends §16 with primary-source methods, transfer limits, and experiments for
+evidence extraction, episode identity, continuity, hierarchy, incremental
+maintenance, preview selection, and evaluation/economics. Its code baseline is
+Life `b1ab469f0`; it records a pure diagnostic showing that the current quality
+helper's `required_link_recall` measures record recovery, not typed relationship
+recall. The
+[roadmap research checkpoint](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#1314-organizing-intelligence-research-checkpoint--september-7)
+owns the next work. No model comparison or richer organizer was executed by
+that research, and no new architecture, serving path, or product authority was
+adopted.
 
 ### 1.1 Authority and phase boundaries
 

@@ -3065,8 +3065,74 @@ Quality thresholds, held-out worlds, model evaluation and Returns remain open.
 
 These receipts do not close M2's richer evidence contract, M3 bounded public
 reader composition, M4 mobile receiving, M5 evaluation/Returns, or M6
-replacement/Atlas retirement. The next checkpoint is either Capture's agreed
-occurred/place/people/locator read or a demonstrated affected scope that
-requires reviewed multi-slice continuation metadata. Until then, keep Life
+replacement/Atlas retirement. Capture's agreed occurred/place/people/locator
+read and any demonstrated affected scope requiring reviewed multi-slice
+continuation metadata remain integration dependencies. The research checkpoint
+below identifies useful unblocked M2/M5 work; those dependencies do not mean
+all organizing-intelligence work must wait. Keep Life
 shadow-only, preserve unsupported owner coverage, and do not merge, push,
 activate readers, migrate/delete Atlas, or add another indexing framework.
+
+### 13.14 Organizing-intelligence research checkpoint — September 7
+
+The [technical research report](life-organizing-intelligence-technical-research-2026-09-07.md)
+covers all seven requested areas: multimodal evidence, episode identity,
+cross-experience continuity, hierarchy, incremental maintenance, representative
+selection, and evaluation/uncertainty/economics. It distinguishes published
+results from Life-specific hypotheses, with 2025–2026 methods and foundational
+event-relation, retrieval, clustering and summarization research. It proposes
+one experiment corpus and harness, not seven new delivery lanes or a new
+roadmap. Code inspection is pinned to Life `b1ab469f0`; no model benchmark or
+backend implementation was run in this research package.
+
+**Measurement correction before comparison:** a pure call to the existing
+`measure_life_quality` with two required/actual record IDs and zero joins returns
+`required_link_recall=1.0`. The field currently measures record recovery, not
+relationship recovery. Preserve that useful measurement under an accurate
+name; add required typed, directed-where-relevant, source-located relationships
+and group judgments. Existing undirected forbidden-join measurements remain
+useful but cannot express the entire relation model. Preserve explicit
+denominators and do not reinterpret historical receipts as measured grouping.
+
+Also distinguish product-world W1–W6 from the backend shadow-rehearsal W1–W6
+lifecycle cases using fixture namespace plus scenario ID. Passing lifecycle
+fixtures does not close product-world organization acceptance.
+
+**Next connected package inside M2/M5:**
+
+1. Correct the evaluation seam and add regression cases for recovered records
+   with missing/wrong relationships, direction, evidence spans and scope.
+2. Make the five existing product worlds executable as evolving organization
+   fixtures: journey, ordinary local life, continuing attention, shared dinner,
+   and ambiguous/nonattendance evidence. Include sparse/no-photo cases and
+   existing twelve perturbations; keep oracle-evidence and extraction runs
+   separate. Later authored composition remains a compatibility case.
+3. Exercise B1 through the existing evidence/proposal/maintainer seams with
+   explicit fixture evidence, including source-only organization. No independent
+   source parser, Capture producer, or second durable index.
+4. Propose a bounded offline B2 inference run using the same corpus and existing
+   model gateway. Compare typed relation assistance with deterministic B1,
+   conservative B0, and useful simpler challengers. Choose the run budget and
+   eligible data before model execution; research is not spending authorization.
+5. Evaluate resulting groups, exact-original access, lens-appropriate previews
+   and update stability together. Report construction/update/read/retry costs
+   and failed cases, not just query accuracy. Use results to choose which
+   methods earn production wiring; serving acceptance remains separate.
+
+The first three steps can proceed while the richer Capture owner-read envelope
+is pending. The producer contract must identify how extraction completion and
+revised evidence reach durable delivery, especially if evidence can change
+without a source revision. Life owns consumer/replay work and reports that
+dependency; it must not implement Capture's source-owned transaction. These
+research findings do not authorize a serving cutover, migration, Atlas deletion,
+or an autonomous Life-owned memory/intention writer.
+
+Research-package validation: lifecycle metadata passes for the report and both
+linked Life documents; all 65 scoped relative link targets resolve, with
+child-repository paths checked against the canonical workspace; whitespace
+checks pass. The full inventory check still reports 37 unclassified documents,
+verified to be the same failures as the documentation branch's pre-change
+HEAD. The new report is classified and adds no inventory failure. This package
+does not claim a repository-wide green documentation gate or rerun backend
+engineering tests; the executed code evidence is the pure metric diagnostic
+described above.

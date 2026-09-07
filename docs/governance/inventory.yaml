@@ -135,6 +135,10 @@ overrides:
     disposition: keep_reference
     rationale: Detailed proposed Life engine contracts, evolving behavior cases and implementation units supporting the existing replacement roadmap without claiming shipped behavior.
 
+  docs/working/life-organizing-intelligence-technical-research-2026-09-07.md:
+    disposition: keep_reference
+    rationale: Seven-area primary-source technical review and proposed organization experiments; supplies evidence to the existing Life design and roadmap without claiming measured model quality or approving runtime changes.
+
   docs/working/life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md:
     disposition: keep_reference
     rationale: Active Life replacement engineering sequence and bounded implementation receipts; accepted experience and owner contracts retain product authority.
