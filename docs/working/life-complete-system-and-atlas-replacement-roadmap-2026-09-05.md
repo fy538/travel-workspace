@@ -2405,6 +2405,9 @@ Life backend branch (recheck branch divergence before integration):
   topology and membership pages in one short `REPEATABLE READ` snapshot. The
   connection is released before pagination; freshness epochs still fence a
   later continuation.
+- `622ab741e` adds runtime type checks to `LifeCorpusCursor`, so an invalid
+  lens, timestamp, identity or revision cannot cross the pure pagination
+  boundary merely because a caller bypassed HTTP validation.
 
 The local development database was at `lifeorg05`; the additive `lifeorg06` →
 `lifeorg07` upgrade was applied transactionally for test evidence. Focused
