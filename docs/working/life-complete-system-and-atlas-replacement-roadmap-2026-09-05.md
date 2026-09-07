@@ -25,7 +25,7 @@ supersedes:
 **Latest inspected checkpoint — September 7 architecture review and planning:**
 backend local `main` is `7a1d18070`; the latest Life rehearsal, organization and
 repair packages remain on `codex/life-shadow-rehearsal-2026-09-07` at
-`91024a856`, not merged into backend main. The branches have 65 main-only and
+`bac99b1b0`, not merged into backend main. The branches have 65 main-only and
 46 Life-only commits at inspection; these counts do not describe equivalent
 amounts of Life work. Earlier Life foundation packages were integrated; that
 does not include every later receipt below. App `f4401ef73`, currently checked
@@ -164,6 +164,18 @@ maintenance tests pass, and the complete Life selection with the connected
 database passes **235 tests** under `-m 'not requires_api_keys'`. The next M1
 checkpoint is durable multi-slice progress for affected scopes; no new queue or
 schema was introduced here.
+
+**M2 source-evidence handoff — September 7:** commit `bac99b1b0` adds a
+read-only `retained_source_evidence_unit` adapter over the existing
+authoritative retained-source projection. It records exact submission/source
+references, owner revision and immutable capture time with `CAPTURED` role;
+the evidence contract rejects using that unit as `supports_occurrence` proof.
+No Capture transaction, producer, organization write or new owner is added.
+The offline Life selection passes **204 tests** with **34** database/API-key
+cases deselected. The next dependency is Capture's agreed bounded evidence
+read (occurred/place/people roles and lifecycle/locator semantics); until that
+seam exists, retained originals remain safely findable but ungrouped beyond
+source-only organization.
 
 **Publication-fence follow-through — September 7:** commit `3a44caf0f`
 (`fix(life): fence index and owner materialization`) adds an optional existing

@@ -1426,7 +1426,7 @@ or mobile integration. The roadmap §12.11 is the canonical receipt.
 ## 17. Maintained-system architecture amendment — September 7
 
 This amendment follows the general architecture review of Life backend
-`91024a856`, canonical backend `7a1d18070` and mobile `f4401ef73`. It specifies
+`bac99b1b0`, canonical backend `7a1d18070` and mobile `f4401ef73`. It specifies
 the next design constraints; it does not claim they are implemented. The
 [roadmap §13](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#13-architecture-review-follow-through--september-7)
 owns package sequencing, code evidence, tests, dependencies and activation gates.
@@ -1544,6 +1544,12 @@ default repair uses the shared maintainer and propagates `pending` completion
 to the bounded reconciliation result. This preserves the distinction between
 current indexed rows, repaired rows and repairs whose organization stage is
 still reachable, without adding another event source or indexing framework.
+
+The M2 handoff package is committed as `bac99b1b0`. Retained Intake material
+can now be represented as private, capture-time evidence without being
+mistaken for an occurrence claim; richer organization remains blocked on an
+agreed Capture owner-read envelope for occurred/place/people evidence and
+locator/lifecycle repair.
 
 The follow-up fence package is committed as `3a44caf0f`: the default
 maintainer shares one transaction for index and primary owner-group

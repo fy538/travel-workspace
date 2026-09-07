@@ -28,7 +28,7 @@ not retrospectively passed. Source and future-intent dependencies follow the
 integration register and its explicitly unadopted decision proposals.
 
 **Architecture review and next plan — September 7:** the latest inspected Life
-backend is `91024a856` on its isolated branch, distinct from backend main
+backend is `bac99b1b0` on its isolated branch, distinct from backend main
 `7a1d18070`; current mobile is `f4401ef73` on the entity completion branch.
 The review passed **194 offline Life tests**, with **34** database cases
 deselected, and reproduced a discarded organization-repair result with an
@@ -66,6 +66,13 @@ the default repair path now cannot silently treat an index-only update as a
 complete Life repair. The complete Life selection with local PostgreSQL passes
 **235 tests** under `-m 'not requires_api_keys'`. Durable multi-slice progress
 and serving remain pending.
+
+**M2 source-evidence handoff — September 7:** commit `bac99b1b0` adds the
+conservative retained-source evidence adapter with capture-time semantics and
+exact source/owner references. It cannot establish occurrence, place or
+attendance; those require the Capture-owned bounded evidence contract. The
+offline Life selection is **204 passed, 34 deselected**. No producer, schema,
+serving or Atlas state changed.
 
 The [September 7 operational packet](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#11-bounded-shadow-rehearsal-execution-packet--september-7)
 now has an executed bounded slice. Backend commits `41e07297e`, `ca559b2f7`,
