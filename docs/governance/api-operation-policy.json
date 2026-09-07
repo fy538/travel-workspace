@@ -869,6 +869,22 @@
         }
       ]
     },
+    "POST /api/agent-workflows/source-contribution": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "submitSourceContributionRequest",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": "SHARED_WORKFLOW_CONTROL_ENABLED",
+      "lifecycle": "active",
+      "owner": "integration",
+      "reason": "A typed mobile request can submit one bounded private Source job to the existing durable workflow fence.",
+      "removal_trigger": "Remove only with an equivalent owner-scoped request transport.",
+      "review_by": "2026-10-30"
+    },
     "POST /api/proposal-guest-capabilities/{capability_token}/claim": {
       "audience": "app",
       "consumers": [],

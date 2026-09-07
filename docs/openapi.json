@@ -459,6 +459,66 @@
         }
       }
     },
+    "/api/agent-workflows/source-contribution": {
+      "post": {
+        "tags": [
+          "agent-workflows"
+        ],
+        "summary": "Submit Source Contribution Request",
+        "description": "Accept one bounded private Source preparation request.\n\nAcceptance persists the exact job in the existing workflow fence. It does\nnot promise that a provider or worker is available; callers recover the\neventual outcome through the returned workflow/status reference and the\nowner-scoped exact-result route.",
+        "operationId": "submit_source_contribution_request_api_agent_workflows_source_contribution_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SourceContributionRequestCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceContributionRequestResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/agent-workflows/{workflow_id}": {
       "get": {
         "tags": [
@@ -110497,6 +110557,136 @@
           "assembly"
         ],
         "title": "SourceContributionProductionV1"
+      },
+      "SourceContributionRequestCreate": {
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Request Id"
+          },
+          "purpose": {
+            "$ref": "#/components/schemas/SourceContributionRequestPurpose"
+          },
+          "situation": {
+            "$ref": "#/components/schemas/ContributionSituation"
+          },
+          "allowed_roots": {
+            "items": {
+              "$ref": "#/components/schemas/ProductRoot"
+            },
+            "type": "array",
+            "maxItems": 2,
+            "minItems": 1,
+            "uniqueItems": true,
+            "title": "Allowed Roots"
+          },
+          "subject_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 16,
+            "title": "Subject Refs",
+            "default": []
+          },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 16,
+            "title": "Source Refs",
+            "default": []
+          },
+          "context_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "represented_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Represented At"
+          },
+          "timezone_name": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Timezone Name"
+          },
+          "expires_in_seconds": {
+            "type": "integer",
+            "maximum": 3600.0,
+            "minimum": 60.0,
+            "title": "Expires In Seconds",
+            "default": 900
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "request_id",
+          "purpose",
+          "situation",
+          "allowed_roots",
+          "represented_at",
+          "timezone_name"
+        ],
+        "title": "SourceContributionRequestCreate",
+        "description": "The small, content-free request a person can submit from a root.\n\nThe request names the job and its exact owner refs; it never accepts source\ntext or a free-form prompt.  ``represented_at`` is supplied by the caller\nso retries keep the same semantic identity instead of creating a fresh\nrequest merely because the network recovered later."
+      },
+      "SourceContributionRequestPurpose": {
+        "type": "string",
+        "enum": [
+          "contextual_warm",
+          "exact_comparison",
+          "public_discovery"
+        ],
+        "title": "SourceContributionRequestPurpose",
+        "description": "The bounded job a Source production request is allowed to fulfill."
+      },
+      "SourceContributionRequestResponse": {
+        "properties": {
+          "workflow_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Workflow Id"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "accepted",
+              "already_exists"
+            ],
+            "title": "Status"
+          },
+          "workflow_status": {
+            "type": "string",
+            "title": "Workflow Status"
+          },
+          "request_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "result_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          }
+        },
+        "type": "object",
+        "required": [
+          "workflow_id",
+          "status",
+          "workflow_status",
+          "request_ref",
+          "result_ref"
+        ],
+        "title": "SourceContributionRequestResponse",
+        "description": "Accepted request identity; output is recovered through the result route."
       },
       "SourceContributionSeedV1": {
         "properties": {
