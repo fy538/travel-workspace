@@ -3471,10 +3471,12 @@ is present in `8ba9026c1`; malformed exact comparisons fail before persistence.
 The app's Entity checkout carries `15b38e18f` and `d874bb778`: generated types,
 HTTP and mock methods can recover an exact result or submit a bounded request.
 `90b8ba7b5` and `c201457d3` synchronize the shared social handoff schema and
-facade manifest without changing Chat behavior. Workspace `f60f2e6`, `1434694`
+facade manifest without changing Chat behavior. `c6300cc1e` adds a root-scoped,
+pending-only result reader and `b479c3289` adds the bounded request mutation;
+neither creates work without an explicit caller. Workspace `f60f2e6`, `1434694`
 and `20d833a` publish the request/result contract and keep retained-result reads
-separate from new-production gating. Focused workflow/API/transport tests pass;
-`make contract-check` is green.
+separate from new-production gating. Focused workflow/API/transport/hook tests
+pass; `make contract-check` is green.
 
 This is **E4/E5 contract progress, not tranche completion**. The worker remains
 dark and no provider call or live queue registration was added. E1's runtime
