@@ -1767,6 +1767,15 @@ This package still plans the repair and does not reverse memberships or change
 Life readers. The local migration head is now `lifeorg04`.
 Follow-up `e00123f3d` makes replacement-kind replay comparisons value-based.
 
+Commit `c82f6ceb4` completes the first bounded repair mutation. `lifeorg05`
+captures target pre-state and post-transfer revisions, removes cascading
+membership FKs so lineage survives deletion, and performs reverse-order
+CAS-guarded rollback. Revoked transfers restore the source group/memberships;
+replacements can then apply their successor in a separate transaction. Any
+later membership revision, unrelated active transfer, archived group, or
+legacy lineage fails closed for review. This is not a general group rebuild,
+and readers remain shadow-only.
+
 | Lane/interface | Concrete dependency | Work that can continue here |
 | --- | --- | --- |
 | Capture/source owners | Exact custody/expiry/representation reads, current revision and authorized restore event; agree any missing transaction change before editing its producer | Receiver tests, replay, report and source-only organization using existing contracts |
