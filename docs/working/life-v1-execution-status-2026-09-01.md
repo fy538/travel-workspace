@@ -27,6 +27,12 @@ serving cutover. Native acceptance remains deferred for current engineering,
 not retrospectively passed. Source and future-intent dependencies follow the
 integration register and its explicitly unadopted decision proposals.
 
+The [September 7 operational packet](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#11-bounded-shadow-rehearsal-execution-packet--september-7)
+specifies the next runnable corpus, database scope, comparison report and race
+matrix. Code inspection found remaining lens-materialization, bounded traversal
+and recovery connections. Fixture/report implementation and database rehearsal
+are still planned; no test counts below certify that packet.
+
 ## September 5 roadmap and evidence clarification
 
 The [Life complete-system and Atlas replacement roadmap](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md)

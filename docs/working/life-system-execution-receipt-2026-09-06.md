@@ -22,8 +22,10 @@ backend/app lines; the old worktree locations and “not merged” wording below
 are historical provenance, not the current repository state.
 
 `eligible owner change → durable Life delivery → current-authority projector →
-shadow index row`, with bounded historical population, catch-up/reverse
+shadow index row`, with bounded historical population, single-owner
 reconciliation, typed comparison, coverage accounting, and mobile continuity.
+These are implemented components; complete traversal, recovery and all-lens
+materialization still need the connections identified below.
 
 The work remains shadow-only. No Life reader cutover, Atlas deletion, source
 data migration or production activation was performed. Integration has landed
@@ -111,12 +113,18 @@ lint, import-cycle, boundary, timeout, and other applicable hooks pass.
 
 ## What is deliberately not complete
 
+- September 7 code inspection confirms Time-only owner materialization,
+  single-owner reconciliation without a bounded corpus traversal, unresolved
+  run items without a connected recovery path, and report helpers without a
+  complete executable rehearsal. The [operational packet](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#11-bounded-shadow-rehearsal-execution-packet--september-7)
+  defines the exact fixture, interfaces, commands, thresholds and remaining work.
+  Its scenarios and race tests are planned, not newly passing evidence.
 - The index is not populated for real users and is not read by Home, Places, or
   Life routes. The canonical snapshot path remains the serving oracle.
-- A non-`life.v1` target build does not yet receive live owner fan-out. Before
-  starting such a build, add per-target durable delivery/replay or explicitly
-  constrain the operator to the live shadow version; never leave an orphaned
-  target version running.
+- A non-`life.v1` target build does not yet receive live owner fan-out. Use
+  `life.v1` in the isolated local rehearsal database. Other versions are finite
+  historical-only diagnostics until durable per-target delivery is implemented;
+  their population completion does not establish continuity.
 - Source-owned producer changes for graph owners must still be coordinated with
   Plan/Occasion/Outcome owners. This batch did not invent a competing source
   transaction or claim Capture's acknowledgement.
@@ -133,13 +141,13 @@ lint, import-cycle, boundary, timeout, and other applicable hooks pass.
    Capture and the graph-owner lanes; add PostgreSQL interleavings for first
    insert, audience-only change, restoration, lost acknowledgement and lease
    reclaim. Preserve Intake's independent acknowledgement.
-2. Run a bounded dry-run against an explicit local corpus and viewer cohort,
-   inspect the machine-readable comparison/coverage report, and classify every
-   mismatch as fixed, unsupported or blocked. Include late/out-of-order
-   revisions, withdrawal, authorized restoration and audience changes.
-3. Choose and implement the per-target live-delivery strategy before any
-   shadow version other than `life.v1` is populated; historical-only targets
-   must not appear live.
+2. Implement the thin test fixture/driver in roadmap §11, inventory with a
+   dry-run, then use a separate writing run to populate `life.v1` in the isolated
+   local database. Exercise replay, late revisions, withdrawal/restoration,
+   audience changes and bounded reconciliation before comparing. Report actual
+   defects, unsupported capability, blocked infrastructure and revision drift.
+3. Require per-target durable delivery before continuously maintaining another
+   shadow version; historical-only diagnostics must not appear live.
 4. Advance R2-G in parallel: deterministic evidence-backed organization and
    revision-bound human corrections using the existing owner/index seam. Then
    separately review exact retrieval/return acceptance, indexed serving and

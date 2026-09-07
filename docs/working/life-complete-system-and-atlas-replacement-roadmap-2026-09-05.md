@@ -22,15 +22,16 @@ supersedes:
 
 ## Current execution baseline — September 7
 
-**Latest verified integration checkpoint:** backend local `main` now includes
-the September 7 coverage, temporal-admission, cache-backed venue-fact and Life
-restore corrections through `21f2e3085` (with the working-tree value-judgment
-edit still owned by Integration). The Life implementation packages are merged
+**Latest inspected integration checkpoint:** backend local `main` was
+`3f7e25da6` during the September 7 rehearsal planning pass. It includes the
+Life restore correction `7b1d8a6b0` and subsequent Integration work. The Life
+implementation packages are merged
 into the current backend line; app `38d3a6521` includes lens/refind-destination
 continuity. The [execution receipt](life-system-execution-receipt-2026-09-06.md)
 records the package evidence. [§10](#10-design-independent-execution-plan--september-6)
-is retained as the acceptance checklist, but its original implementation
-sequence is historical where a package has landed. None of this establishes a
+is retained as the acceptance checklist; [§11](#11-bounded-shadow-rehearsal-execution-packet--september-7)
+owns the immediate operational plan. Original implementation instructions are
+historical where a package has landed. None of this establishes a
 populated real corpus, complete parity, indexed serving or release.
 
 R0–R8 remains Life's sole forward roadmap. The engine design supplies behavior
@@ -67,10 +68,13 @@ clock is absent. Both previously failing PostgreSQL restore cases now pass,
 alongside the offline projector tests. Evidence and commit are recorded in the
 integration roadmap receipt; this remains shadow-index/readback evidence only.
 
-**Roadmap rebaseline — September 7:** R1/R2-A through F, the operator boundary,
-the retained-source and Plan adapters, and the September 7 restoration and
-temporal/coverage corrections are implemented on the current backend line.
-Their remaining work is evidence and coverage, not a second implementation.
+**Roadmap rebaseline — September 7:** implementation packages for R1/R2-A
+through F have landed. Their functions and tests do not complete every package
+exit. Fresh code inspection found Time-only owner materialization, a
+single-owner reconciliation primitive without a bounded corpus traversal,
+unresolved-work recovery still to connect, and comparison/report assembly
+still to implement. [§11.1](#111-inspected-code-and-remaining-connections)
+records these distinctions. Extend the existing components at those seams.
 The next Life checkpoint is a bounded local corpus rehearsal across supported
 owners and an explicit viewer cohort: exercise late and out-of-order updates,
 withdrawal, authorized restoration, audience changes and lease/replay failure;
@@ -78,7 +82,9 @@ emit a machine-readable coverage/parity report; and classify every mismatch as
 fixable, unsupported or blocked. In parallel, advance R2-G's deterministic
 organization and durable correction seam against the same authoritative rows.
 
-Do not switch readers, populate a new target version, delete Atlas or call the
+Use `life.v1` in the isolated local rehearsal database. Other versions may
+remain explicit historical-only diagnostic builds, with no continuity claim.
+Do not switch readers, activate a new continuously maintained version, delete Atlas or call the
 rehearsal a release certificate. No native session is required for this
 engineering checkpoint; preserve later native/release acceptance separately
 under the founder's current deferral.
@@ -856,9 +862,10 @@ evidence are complete.
 
 ## 10. Design-independent execution plan — September 6
 
-> **Status note — September 7:** R1/R2-A through F and the operator boundary
-> described in this section have landed in the current backend line. The
-> sections below now serve as acceptance, race, and coverage checklists. Do
+> **Status note — September 7:** implementation packages for R1/R2-A through F
+> have landed in the current backend line; their complete exit conditions have
+> not. Section 11 records the remaining connected implementation and evidence.
+> The sections below serve as acceptance, race, and coverage checklists. Do
 > not re-implement a landed package because an older paragraph still describes
 > it as future work; record only the remaining evidence or owner gap.
 
@@ -924,17 +931,18 @@ These packages refine R1/R2 and then R3–R5; they do not create another roadmap
 | --- | --- | --- |
 | R1/R2-A | Reconcile owner coverage and reproduce delivery/publication gaps | **Landed in part;** current owner/event matrix is evidence-backed, with remaining gaps named rather than claimed complete |
 | R1/R2-B | Correct publication ordering and durable delivery accounting | **Landed in part;** focused CAS/replay protections exist; PostgreSQL interleavings and any remaining owner fences are the exit evidence |
-| R1/R2-C | Exact owner readers, paged enumeration and shared materialization seam | **Landed;** bounded readers and one projection path exist; rehearsal must prove partial/unavailable reads never become deletion evidence |
+| R1/R2-C | Exact owner readers, paged enumeration and shared materialization seam | **Partial;** bounded exact-owner readers exist; connect eligible lens materialization and verify incomplete reads across the direct event path |
 | R1/R2-D | Resumable backfill, version targeting and operator controls | **Landed;** run against an explicit cohort and account for every enumerated item before treating population as operationally ready |
-| R1/R2-E | Concurrent catch-up and repair of disappeared/viewer-removed records | **Landed in part;** run the late-change, withdrawal, restoration and reverse-reconciliation cases in the bounded rehearsal |
+| R1/R2-E | Concurrent catch-up and repair of disappeared/viewer-removed records | **Partial;** single-owner reconciliation exists; bounded corpus traversal, unresolved-work recovery and catch-up evidence remain |
 | R1/R2-F | Full shadow comparison and coverage report | **Landed as tooling;** produce and review the first complete report, with unavailable owners visible as gaps |
 | R2-G | Deterministic organization, identities and durable correction controls | W1–W5-supported relationships survive late arrival, rebuild, rename/detach/split within accepted authority |
 | R3/R4/R5-H | Mobile record access, refinding and return continuity | Same supported object opens through every entry path with honest state and restored context |
 
-The next execution order is **bounded rehearsal and evidence for A–F → resolve
-classified owner/coverage gaps → R2-G organization and durable corrections →
-R3/R4/R5-H retrieval and return acceptance**. Define the G/H contracts while
-the rehearsal is underway, but do not let UI traffic trigger organization. Each
+The immediate work has two tracks inside the Life lane: connect and rehearse
+A–F using §11, while advancing R2-G's organization/control contract and accepted
+deterministic implementation. R3/R4/R5-H exact retrieval can proceed against
+stable handles. Organization need not wait for every unsupported owner family;
+only dependent behaviors wait on a missing owner. UI reads do not trigger organization. Each
 package ends with explicit-file commits and updates to this roadmap and the
 execution-status receipt. No production activation, serving cutover or Atlas
 deletion is included until its separate gates pass.
@@ -1026,10 +1034,13 @@ silently filtered out of the coverage denominator.
 
 ### 10.6 R1/R2-D — resumable historical population
 
-Build a bounded, operator-invoked runner using existing worker conventions and
-the existing index. Proposed homes are a small module under `life_projection/`,
-its worker entry in `workers/life_projection_jobs.py`, and a thin script/Make
-target. These are proposed additions, not currently implemented entry points.
+`life_projection/backfill.py::run_life_projection_backfill` and
+`workers/life_projection_jobs.py::run_life_projection_backfill_job` now provide
+the bounded runner and worker entry. The run/checkpoint repository is
+`core/db/life_projection_backfill.py`; `lifebackfill02` added its table. Reuse
+them. No standalone Life operator CLI or complete rehearsal driver was found
+in this inspection. Section 11 uses the existing pytest infrastructure for the
+first local executable packet. The requirements below remain acceptance criteria.
 
 The runner requires explicit viewer/cohort scope, owner families, target shadow
 version, page size and work budget. Default to a dry-run inventory; writing must
@@ -1045,12 +1056,11 @@ Persist a checkpoint with:
 - Applied, already-current, withdrawn, deferred, unsupported and failed counts.
 - Last completed unit and lease/ownership evidence for concurrent runners.
 
-First inspect the existing `agent_workflows` checkpoint repository and worker
-patterns for a semantic fit. Reuse an appropriate primitive; do not force this
-system job into a user-facing workflow or unrelated domain record. If no fit
-exists, propose a minimal Life run/checkpoint table with an additive migration
-and schema review. The checkpoint owns progress only; it is not a second source
-of Life truth or another event framework.
+The existing `life_projection_backfill_runs` table owns progress only. Use its
+lease and checkpoint operations; do not introduce another checkpoint table or
+move this system job into a user-facing workflow. Missing retry/reconciliation
+state must first be assessed against its existing checkpoint and unresolved-work
+fields before proposing a schema change.
 
 Advance a page checkpoint only after each item is applied, confirmed current,
 or durably assigned unresolved work. A crash after row commit but before progress
@@ -1231,9 +1241,11 @@ land after the Claude pass without changing canonical object identity.
 
 ### 10.12 Solo-founder sequencing and first action
 
-The next code action is no longer a new A package. Pin the current integration
-baseline, run a bounded dry-run against an explicit local corpus and viewer
-cohort, and produce the coverage/parity report described above. Reproduce the
+The next code action is §11's corpus/expectation fixture and connected rehearsal
+driver using the existing functions. Pin the integration baseline, inventory
+the isolated local corpus, then populate and reconcile its shadow rows in a
+separate writing run before producing the comparison report. Inventory alone
+does not test materialization. Reproduce the
 remaining publication cases (first insert after withdrawal, withdrawal versus
 restore, audience-only change, lost acknowledgement and lease reclaim) in
 PostgreSQL where evidence is still absent. Every result must be classified as
@@ -1256,5 +1268,370 @@ At each package close, record implemented scope, test commands/results, known
 coverage gaps, schema/API impact and the next checkpoint in the existing roadmap
 and status file. Keep R7 content production and R8 cutover explicit downstream
 work; neither a passing shadow comparison nor a polished design silently enables
-them. No calendar estimate is justified until A–C establish the actual owner and
-publication gaps.
+them. Estimate later work after the rehearsal classifies concrete owner,
+publication and organization gaps.
+
+## 11. Bounded shadow rehearsal execution packet — September 7
+
+Status: planned from code inspection, not executed. This section operationalizes
+R1/R2-A–F and the parallel R2-G contract within the existing roadmap. The outcome
+is a reproducible local corpus whose supported records remain correct through
+population, owner changes, repair and retrieval. User-visible organization is
+a separate acceptance track over those same records.
+
+### 11.1 Inspected code and remaining connections
+
+Inspection base: backend `3f7e25da6`, mobile `c8d88437f`, workspace `3b98c52`.
+Concurrent Integration commits can advance these independently. Record actual
+SHAs and dirty-file scope when execution starts; use an isolated backend
+`codex/life-shadow-rehearsal-2026-09-07` worktree for implementation.
+
+| Existing component | What the code currently establishes | Remaining connection or test |
+| --- | --- | --- |
+| [Backfill repository](../../travel-agent/backend/core/db/life_projection_backfill.py) | `create_life_projection_backfill_run`, claim/advance/pause/finish operations, persisted scope and unresolved work | Database tests for restart, stale leases, counter recovery and unresolved-item retry; `completed` alone is not parity |
+| [Backfill runner](../../travel-agent/backend/life_projection/backfill.py) and [worker](../../travel-agent/backend/workers/life_projection_jobs.py) | `build_life_backfill_event`, bounded `run_life_projection_backfill`, explicit `run_life_projection_backfill_job` | Connect corpus fixture and report; verify paused-run resumption and actual writes. Dry-run creates/updates control rows but does not materialize corpus rows |
+| [Owner enumeration](../../travel-agent/backend/life_projection/owner_reads.py) | Paged Plan/Occasion/Outcome/source identities and exact-owner dependency limits | Timestamp/ID traversal is not a commit-safe snapshot; test behind-cursor mutations, broad candidate eligibility and dependency truncation |
+| [Owner projectors](../../travel-agent/backend/life_projection/plan_projector.py) and [lens adapter](../../travel-agent/backend/life_projection/index_projector.py) | Four owner projectors with fences; reusable multi-snapshot merger exists | Plan, Occasion and Outcome build only a Time snapshot; retained sources explicitly use Time. Derive each eligible lens without giving every record all four lenses; audit lens-specific payload conflicts before merging |
+| [Reconciliation](../../travel-agent/backend/life_projection/reconciliation.py) | `reconcile_life_owner` compares/repairs one supplied owner and requires explicit absence evidence | Add bounded discovery of previously indexed owners/viewers, including tombstones. The viewer-only `read_life_index_owner_rows` overload reads all rows, so do not use it for corpus traversal |
+| [Comparison](../../travel-agent/backend/life_projection/index_compare.py) | Structural, bounded-page, viewer-bucket and typed-entry comparisons | Assemble independently expected entries and database rows at matching revisions; invoke typed comparison separately per viewer/version because its identity key is `record_id` |
+| [Coverage](../../travel-agent/backend/life_projection/coverage.py) | `LifeCoverageReport` and one stage per owner family | Add a test report envelope with stage-by-stage evidence, nonempty denominators and explicit gaps. An empty report or zero-count `compared` family must not certify this rehearsal |
+| Existing PostgreSQL suites | Owner mutation, audience removal/rejoin, erasure and retained-source restoration examples | Reuse them. Add controlled two-connection races; sequential stale replay is valuable but does not establish every interleaving |
+
+Further code observations to reproduce before changing behavior:
+
+- `unresolved_work` is copied into each run slice and appended to, while completed
+  cursors are skipped. A repaired item needs an explicit retry/readback/removal
+  path; simply calling a paused run again may retain unresolved work forever.
+- Backfill treats zero projector counters as already current. Require readback
+  to distinguish idempotence, suppressed/represented material, unsupported work
+  and a missing write. An authoritatively ineligible enumerated source is a
+  resolved exclusion, not endless retry work; an unavailable read is unresolved.
+  Likewise, do not infer completeness from raw counters.
+- Enumeration errors currently become `enumeration_unavailable` and mark a
+  family cursor done. A transient database/read error must remain retryable and
+  distinguishable from an unsupported owner; exercise this through real resume.
+- Backfill rejects truncated graph reads, but direct projector delivery needs
+  its own incomplete-read cases. Missing entries from incomplete reads cannot
+  establish withdrawal.
+- Owner fences, source eligibility and event clocks must agree at publication.
+  Test expiry during a paused projection and events carrying historical clocks;
+  advancing the request clock must not preserve expired source use.
+
+These are implementation observations and regression targets, not fresh test
+results. Fix only failures demonstrated by the connected cases.
+
+### 11.2 Fixture corpus, independent expectations and scope
+
+Use an isolated local PostgreSQL database named
+`vesper_life_rehearsal_20260907`, with the current migration head. Existing
+pytest setup deletes matching test-place rows and existing repair jobs claim
+global due work, so a shared development database is unsuitable for this run.
+No provider, model, Redis worker process or native app is required: call the
+registered worker functions in-process against the real database.
+
+Proposed test files, not existing commands or shipped fixtures:
+
+- `tests/life_projection/fixtures/shadow_rehearsal_v1.json`: synthetic logical
+  identities, owner-command inputs, expected viewer/lens/destination/time facts
+  and links to W1–W6. Map logical IDs to run-scoped UUIDs; record that map.
+- `tests/life_projection/rehearsal_support.py`: fixture construction through
+  existing owner commands, explicit event registration, independent assertions
+  and report serialization. It does not replace any production projector.
+- `tests/life_projection/test_life_shadow_rehearsal_postgres.py`: connected
+  population/lifecycle/reading cases.
+- `tests/life_projection/test_life_shadow_races_postgres.py`: database races
+  with deterministic barriers, bounded timeouts and separate connections.
+- `tests/life_projection/conftest.py`: narrowly scoped report option and fixture
+  wiring if needed; do not alter global test cleanup to make the packet pass.
+
+Four primary viewers: A (owner/host), B (participant who later leaves/rejoins),
+C (Occasion member outside a particular Commitment), D (unrelated viewer).
+Keep all four comparison buckets, including D's intentionally empty bucket.
+A separate erasure case may create a disposable fifth actor so the baseline
+cohort remains comparable after destructive fixture transitions.
+
+Baseline corpus has seven canonical records in each supported owner family:
+
+| Family | Required fixture mix | What independent assertions establish |
+| --- | --- | --- |
+| Plan | Five A-owned and two B-owned Plans; ordinary local and travel contexts; planned/completed/cancelled states where supported | Owner-private visibility, canonical state, exact identity; a Plan or elapsed date does not prove attendance |
+| Occasion | Seven A-hosted occasions with explicit varying membership of A/B/C | Common record follows current membership; one evening does not need a Trip; participant changes do not rewrite private source custody |
+| Outcome | Two private, three shared Commitment Outcomes, two shared Encounter Outcomes | Private meaning stays private; Commitment audience is participants plus its owner, not every Occasion member; separate accounts remain attributable |
+| Retained source | Five A-owned and two B-owned eligible originals: ticket, photograph, note, reading, ordinary local material, an old import and undated material | Original remains findable, time roles stay distinct, retention creates neither attendance nor a compulsory group |
+
+Seven per family is the fixture inventory, not an asserted visible-row count.
+Declare exact eligible identity sets for every viewer and transition separately.
+Add four source controls beyond those 28 records: transient Ask source,
+expired source, deleted source and represented source. Their expected eligibility
+comes from the source owner; a represented original can remain owner-accessible
+while its source-only Life row is withdrawn. Missing anchor index coverage must
+stay visible rather than being filled with a duplicate source row.
+
+Use owner-page size 3, per-call work budget 2 and record-page size 3, then repeat
+the final read with size 1 and 5. These are test parameters, not product defaults.
+Include equal sort times and a page-boundary identity, and put the same material
+in two supported lenses without counting it as two distinct corpus records.
+Add a separate dependency-boundary test with a deliberately small injected cap
+and cap + 1 dependents; measure that the production query still respects its
+configured limit. Extra fixture people are scoped to that case.
+
+Map the existing [W1–W6 manifest](fixtures/life-engine/life-engine-replay-v0.1.json)
+to actual behavior without treating its symbolic events/revisions as producer
+payloads. Use actual owner commands and returned revision tokens:
+
+- W1/W5: original custody, historical/undated placement and ticket truth are
+  executable now; complete journeys and anchor-driven attendance repair remain
+  named coverage until their owner adapters exist.
+- W2: include an ordinary week with source-only records and no Plan. A separate
+  Plan fixture exercises prospective authority; do not turn the whole week into one.
+- W3: exercise an independently retained reading and corrected evidence;
+  Ask alone must not create retained material. Thread formation belongs to G.
+- W4: Occasion and shared Outcome cases execute now. They do not certify
+  generic friend-note/social-contribution custody by analogy.
+- W6: keep authored-composition cases as explicit future contract coverage;
+  an expected unavailable result is not implemented authoring.
+
+The coverage denominator includes all eight entries in `LIFE_OWNER_CONTRACTS`,
+plus named obligations for Commitments emitted by canonical reads, retained
+booking evidence and saved-Place representation. Those obligations need mappings
+to existing owners; do not fabricate index owner kinds just to fill a matrix.
+
+### 11.3 Run sequence and reviewable packages
+
+| Commit package within R0–R8 | Work and principal files | Exit evidence |
+| --- | --- | --- |
+| R1/R2-A/F — executable corpus and assertions | Add the test files above; call current backfill/worker/read/compare functions; produce an initial report | All four supported families and four viewers have declared expected sets; failures identify code gaps, unsupported capability or infrastructure blockage |
+| R1/R2-C/D — complete population and lens projection | Extend existing owner projectors/merger and backfill/repository only where the corpus reproduces gaps | Writing run populates supported rows, all eligible lens memberships survive later events, resume works after each durable boundary, unresolved work can converge |
+| R1/R2-E — bounded reconciliation | Extend `reconciliation.py` and bounded index repository reads with current-owner absence proof and persisted traversal/retry state where needed | Both directions visit every fixture identity, including removed recipients; late commits converge after catch-up; incomplete reads preserve prior rows |
+| R1/R2-B — publication and delivery races | Extend current PostgreSQL suites/fences/outbox tests with deterministic barriers; coordinate any owner transaction correction | Actual committed rows and event/run lease states satisfy §11.4; no missing-consumer acknowledgement or stale restoration |
+| R1/R2-F + R3/R5-H — final report and exact reads | Assemble existing comparators, typed decoder and anchor seek; record source-owner destination obligations | Supported scope is explained and correct across every page/viewer/lens; full portfolio gaps remain explicit; documentation records exact commands and results |
+
+Start the G contract work after the corpus/expectations package; it can proceed
+while C–F hardening runs. This is one Life lane with independent work, not a
+request to create another persistent task. Fix a blocker in the owning package
+when found rather than completing all test infrastructure before correcting it.
+
+Detailed execution order inside the rehearsal:
+
+1. Validate local database scope before importing pytest. Verify migration head,
+   capture code and fixture revisions, and construct synthetic owners. Register
+   the Life bridge/required owner consumers before live mutation tests.
+2. Historical case: seed via owner commands with their real transactional
+   producers, deliberately defer after-commit delivery in the fixture, and
+   inventory using a new `dry_run=True` backfill run. Assert corpus tables are
+   unchanged by inventory. Durable run/checkpoint writes are expected.
+3. Create a distinct `dry_run=False` run targeting `life.v1`. Call
+   `run_life_projection_backfill_job(None, str(run.id))` for bounded slices,
+   preserving checkpoints. Do not toggle the inventory run into a writing run.
+4. Deliver the deferred and new events through the real bridge and required
+   consumers, then the existing repair function for missed delivery. Preserve
+   original event/retry identities; do not substitute direct projector calls
+   for the producer-to-outbox-to-worker evidence. Direct calls remain useful in
+   narrowly isolated race tests.
+5. Apply the lifecycle matrix. Enumerate owners and previously indexed
+   identities separately. Confirm absence through owner reads/commands before
+   withdrawal, and retry revision drift explicitly.
+6. After fixture mutations settle, run two complete comparison passes separated
+   by replay and restart. This proves convergence for this corpus; it does not
+   prove global snapshot semantics or an indefinite replay guarantee.
+7. Read every eligible lens and cursor page. Validate typed records, canonical
+   destinations and exact anchor seeking, including missing/withdrawn anchors.
+   Compare source originals separately from organized record availability.
+8. Emit report/JUnit and a brief receipt. Keep explicit unresolved dependencies
+   with owning lane and next check. Clean up only run-owned fixture identities;
+   retain failed-run diagnostics without raw private payloads.
+
+### 11.4 Lifecycle, concurrency and failure matrix
+
+Use existing sequential PostgreSQL cases as baseline, and add actual
+interleavings only where absent. Each race uses separate connections and a
+barrier at read/publication or commit/acknowledgement, with both orderings where
+relevant. Sleep timing alone is insufficient.
+
+| Case | Required observation |
+| --- | --- |
+| Old projection vs newer content commit | Revision-1 draft cannot replace revision-2 material; a later replay converges using current authority |
+| First insert vs owner deletion/withdrawal | A draft read before removal cannot insert a newly visible row after removal; missing prior index row supplies no exemption |
+| Old withdrawal vs explicit restoration | Final row corresponds to the later authorized owner state; ordinary replay cannot impersonate restoration |
+| Audience-only update | Unchanged content revision with changed member/participant generation repairs all current and former viewers; C never receives participant-only material |
+| Leave/rejoin and erasure | Old audience replay cannot resurrect access; explicit eligible rejoin follows the owner contract; independent surviving history remains |
+| Source representation/unrepresentation | Source-only row withdraws and may restore under the explicit owner revision; generic backfill must not recreate a representation duplicate |
+| Expiry during projection / delayed event | Current eligibility is rechecked before publication; an earlier event timestamp cannot extend custody or shift occurrence dates |
+| Commit before acknowledgement failure | Replayed event produces no duplicate and reaches durable acknowledgement only after the required consumer succeeds |
+| Missing or wrong consumer | An unrelated subscriber cannot satisfy delivery; missing intended consumer leaves recoverable work |
+| Expired event lease and run lease | Old claimant cannot acknowledge/checkpoint after reclaim; failed failure-reporting under a lost lease cannot overwrite the new claimant |
+| Crash after row write, before checkpoint | Resume inspects current state and accounts for the unit without duplication, omission or inflated distinct coverage |
+| Error/deferred unit later resolves | Resume/reconciliation retries the exact unresolved identity and removes it only after verified resolution; errors cannot become unsupported completion |
+| Commit behind enumeration cursor | Overlapping repair/second enumeration discovers the missed current owner; timestamp cursor alone earns no snapshot guarantee |
+| Incomplete owner/dependency read | Prior permitted rows are not withdrawn by omission; exact dependencies remain bounded and the gap is retryable/inconclusive |
+| Non-default version control | It remains `historical_shadow_only`; version-less live events update `life.v1`. Exercise this in a separate finite diagnostic, not the maintained rehearsal target |
+| Comparator negative controls | Independently alter a copied row's payload, refs, audience token, lens, destination, cursor or viewer bucket; each specific fault is detected |
+
+Where a mutation command does not exist, record the precise unavailable owner
+operation. Fixture SQL may arrange commit timing or simulate a disappeared row,
+but cannot be presented as evidence that a nonexistent producer works.
+
+### 11.5 Comparison oracle and report contract
+
+Expected identity, audience, truth/time and destination facts come from the
+fixture plus current canonical owner reads. Reuse the pure corpus/compiler for
+full expected representations while keeping independent assertions for those
+facts; comparing a projector's output with itself cannot detect a shared bug.
+Do not use a Life/Atlas GET that performs projection maintenance as the worker
+or oracle. The legacy serving snapshot is an additional compatibility comparator;
+shared Outcome additions relative to `my` mode need declared expectations.
+
+Build one proposed test-report envelope, `vesper.life-shadow-rehearsal.v1`, around
+the existing comparison/coverage results. It is a local artifact, not a new API
+or database. Minimum fields:
+
+| Field | Meaning |
+| --- | --- |
+| `run_id`, `fixture_revision`, `code_revisions`, `migration_head`, `not_production_data` | Reproducible run and implementation identity |
+| `scope` | Local database label (no DSN), viewer aliases, owner families, obligation list, selected version, page/work budgets and scenario IDs |
+| `target_capability` | Existing `owner_fanout_status` plus measured event-delivery evidence; capability declaration alone is not proof |
+| `phases` | Inventory, population, catch-up, replay, comparison and retrieval statuses; backfill run IDs and checkpoint/lease outcomes |
+| `coverage` | Existing report plus per-family/per-viewer expected, enumerated, eligible, indexed, withdrawn, unresolved and compared identity counts; separate evidence for incremental/backfilled/reconciled/compared stages |
+| `comparisons` | Structural, typed, lens/page/cursor and viewer results; exact mismatched field names and opaque identities |
+| `cases` | Scenario/race test node, pass/fail/skip, observed outcome, evidence location and any remaining dependency |
+| `measurements` | SQL count, largest fetched page, examined owner/dependency counts, slice duration, retries and maximum retained batch size |
+| `findings` | `defect`, `unsupported`, `blocked` or `revision_drift`; named owner/next action; repaired findings retain regression evidence |
+| `result` | `supported_scope`: pending/pass/fail/inconclusive; `whole_portfolio_complete`: boolean; `serving_ready`: always false for this packet |
+
+Do not print original text/media, SQL parameters, credentials or exception
+payloads in the report. Store field-level mismatches and fixture aliases; retain
+ordered payload comparisons internally without sorting away meaningful differences.
+Counters such as `applied_count` may count repeated writes or several viewers;
+derive distinct coverage from actual identity sets.
+
+Acceptance thresholds for this bounded engineering packet:
+
+- All required cases execute; zero unexpected skips, missing viewer buckets or
+  undeclared families. Each supported family has nonempty positive evidence;
+  D's empty result is an explicitly expected negative control.
+- Zero unexplained missing, extra, duplicate, typed, audience, lens or cursor
+  mismatches for supported eligible records at matching revisions. Zero
+  unauthorized rows visible through the tested indexed reader after repair.
+- Zero unresolved supported units after the two settled comparison passes.
+  Retry/infrastructure failure is inconclusive, not pass; classify an unsupported
+  family without dropping it from the whole-portfolio result.
+- Reads honor configured limits plus documented lookahead; no viewer-wide
+  unbounded owner-row scan. Use at most 100 slices and a 120-second watchdog per
+  connected case initially; hitting either fails/inconcludes with diagnostics.
+  These are test hang bounds, not mobile latency or production SLOs. Report
+  actual timings and query counts before setting production thresholds.
+- Whole-portfolio coverage stays incomplete while anchors, Atlas migration or
+  another required obligation lacks implementation, even if supported scope
+  passes. No aggregate `ok` flag may mask that difference.
+
+### 11.6 Exact commands and environment boundary
+
+The W1–W6 structure check is available now, from the workspace root:
+
+```bash
+make life-engine-fixture-check
+```
+
+The following test commands use existing suites. Run from the chosen backend
+worktree with the repository virtual environment. First provision the isolated
+local database above and set `LIFE_REHEARSAL_DATABASE_URL` to that database.
+Before importing tests, export both settings forms so an existing `.env`
+cannot select a different database. Run this block in a dedicated shell with
+failure stopping enabled; do not print the URL:
+
+```bash
+set -e
+: "${LIFE_REHEARSAL_DATABASE_URL:?Set the isolated local rehearsal database URL}"
+export DATABASE_URL="$LIFE_REHEARSAL_DATABASE_URL"
+export RESEARCH_DATABASE_URL="$LIFE_REHEARSAL_DATABASE_URL"
+export PYTHONPATH=.
+.venv/bin/python - <<'PY'
+from sqlalchemy.engine import make_url
+from alembic.config import Config
+from alembic.script import ScriptDirectory
+from backend.core.settings import core_settings
+url = make_url(core_settings.postgres_dsn)
+assert url.host in {"127.0.0.1", "localhost", "::1"}, "Local database required"
+assert url.database == "vesper_life_rehearsal_20260907", "Wrong rehearsal database"
+assert len(ScriptDirectory.from_config(Config("alembic.ini")).get_heads()) == 1, "Expected one migration head"
+print("Life rehearsal database scope verified")
+PY
+.venv/bin/python -m alembic heads
+.venv/bin/python -m alembic upgrade head
+.venv/bin/python -m alembic current
+.venv/bin/python -m pytest -q -m 'not requires_postgres and not requires_api_keys' \
+  tests/life_projection tests/workers/test_life_projection_jobs.py \
+  tests/core/test_life_projection_broadcast.py \
+  tests/core/test_life_projection_propagation.py tests/core/test_event_bus.py
+.venv/bin/python -m pytest -q -rs -m requires_postgres \
+  tests/life_projection \
+  tests/domains/experience_graph/test_occasion_life_events_postgres.py \
+  tests/domains/experience_graph/test_outcome_life_producers_postgres.py
+```
+
+Verify exactly one code head before upgrading; if multiple heads exist, resolve
+the integration dependency first. The local database must exist before the
+upgrade. Database unavailability can cause current `requires_postgres` markers
+to skip: inspect results and require the expected selected cases to execute.
+Do not run the broad workspace Postgres target for this packet; it selects
+unrelated suites and supplies a shared-database default.
+
+After the proposed test driver and report option are implemented, this command
+becomes the connected entry point. It does not exist as a runnable packet yet:
+
+```bash
+LIFE_REHEARSAL_OUTPUT_DIR=$(mktemp -d /tmp/vesper-life-rehearsal.XXXXXX)
+.venv/bin/python -m pytest -q -rs \
+  tests/life_projection/test_life_shadow_rehearsal_postgres.py \
+  tests/life_projection/test_life_shadow_races_postgres.py \
+  --junitxml="$LIFE_REHEARSAL_OUTPUT_DIR/junit.xml" \
+  --life-rehearsal-report="$LIFE_REHEARSAL_OUTPUT_DIR/report.json"
+```
+
+The report writer must emit incomplete/failure evidence on assertion failure,
+not only successful teardown; a missing/truncated report fails the checkpoint.
+Run without xdist initially because event subscriber registration and the
+cohort are process-scoped. Use synchronous calls or the existing async worker
+entry as appropriate, preserving registration and after-commit semantics.
+
+Implementation classification: test fixture/report wiring is `safe-backend`;
+runtime fixes remain scoped to Life unless a demonstrated owner/schema contract
+changes. Review those through the relevant owner/Integration interface. Only
+public model/route changes require the workspace schema/type workflow; this
+test report does not. No models, migrations or API changes are proposed solely
+to make the rehearsal runnable.
+
+### 11.7 Organization track and interfaces to other lanes
+
+R2-G starts with a concrete persistence/command proposal using system-design
+D2–D7 and the current Claude Life P2 scenarios. Specify stable group identity,
+typed memberships with supporting revisions, persistent exclusions and rename
+controls, and unambiguous alias/split resolution. First acceptance examples:
+
+1. An old Italy photo joins its supported August context without displacing an
+   ordinary September week or changing unrelated group IDs.
+2. A source stays unplaced when evidence is insufficient; the original remains
+   directly accessible without a filing task.
+3. An authorized detach or rename survives replay/rebuild; duplicate commands
+   are idempotent, stale edits receive current readback, and Undo has an exact basis.
+4. A membership/audience change removes dependent presentation while independent
+   authored material remains; shared meaning is never synthesized into one voice.
+
+Implement accepted deterministic rules and controls against supported owners
+while coverage work continues. Broader learned clustering and saved-composition
+editing have their own R7 gates. A test corpus passing A–F does not certify
+organization quality, and a missing future composition owner does not block G's
+existing-source work.
+
+| Lane/interface | Concrete dependency | Work that can continue here |
+| --- | --- | --- |
+| Capture/source owners | Exact custody/expiry/representation reads, current revision and authorized restore event; agree any missing transaction change before editing its producer | Receiver tests, replay, report and source-only organization using existing contracts |
+| Graph owners | Current/former recipient sets; Commitment participation, Occasion membership and Outcome content/audience revisions; absence/restore evidence | Existing projections, population and bounded reconciliation; no Life-owned intention writer |
+| Integration/Home/Places | Canonical record ref and current revision, exact destination, return lens/anchor, affected-query/dependency repair signals | Supply tested record interfaces and named receiving gaps. Integration owns prepared-value delivery and practical facts; its live engine reads canonical owners directly |
+| Retirement | Explicit mapping for Atlas/historical artifacts and retained booking evidence, including hide/rename/refind controls | Keep migration obligations in the denominator; preserve canonical original destinations |
+| Design/founder | Resolve split navigation or group-control choices only where they change persistence/commands | Complete deterministic containment, exact retrieval and replay without waiting for final visual composition |
+
+After each package, update this section's status and the existing execution
+receipt with exact commits, executed tests, report location, remaining owner
+gaps and next checkpoint. Commit only explicit files. This planning packet
+authorizes no push, merge, production activation, reader cutover or Atlas deletion.
