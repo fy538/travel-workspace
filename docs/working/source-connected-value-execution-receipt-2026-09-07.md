@@ -34,7 +34,10 @@ not activate the worker or claim native evidence.
 
 No new Home/Places producer or store was introduced. The existing prepared
 read path already composes eligible retained Source value into both Home v2 and
-Places v2/runtime through `root_composition._prepared_source_contribution`:
+Places v2/runtime through `root_composition._prepared_source_contribution`.
+The parallel Content lane also landed an exact public Place-content source
+handoff in `b0d5a80ca`; this is an owner/ref/revision receiving boundary, not a
+broad public recommendation publisher:
 
 * `59f323b31` provides provider-free prepared Source admission;
 * `ea816526d` carries verified Place facts through root delivery;
@@ -42,7 +45,7 @@ Places v2/runtime through `root_composition._prepared_source_contribution`:
   `tests/api/test_practical_root_delivery.py` cover bounded, read-only
   composition; and
 * `backend/core/place_content_sources.py` plus its tests provide the public
-  content owner/ref/revision/current-state receiving boundary.
+  content owner/ref/revision/current-state receiving boundary (`b0d5a80ca`).
 
 The integration implication is deliberate: private exact requester recovery,
 ordinary Home/Places ranking, and public Content supply remain distinct owners
@@ -60,10 +63,8 @@ Focused local suites passed during this batch:
   workflow API, Source projection, and Source storage packet;
 * the route pre-commit gates including route-auth, response-model, import-cycle,
   and status-guard checks;
-* `make contract-check` confirmed the OpenAPI snapshots and active projection,
-  but reports one inherited generated-TypeScript enum-order mismatch in
-  `travel-app/utils/api/schema.gen.ts` (`low | medium | high` versus
-  `high | medium | low`). The new dark result route is not in the active mobile
+* `make contract-check` passed after the generated enum-order refresh in
+  `c3feb89f0`. The new dark result route is not in the active mobile
   projection, so no mobile consumer was added.
 
 ## Still gated / not claimed
