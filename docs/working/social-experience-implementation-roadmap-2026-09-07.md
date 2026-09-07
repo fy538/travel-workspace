@@ -1138,11 +1138,24 @@ without changing either primary checkout:
   query filters. The focused mock parity suite (6 tests), HTTP suite (84
   tests), API surface parity suite (30 tests), typecheck and schema-bridge all
   pass.
+- Backend `2e98e4c3b` centralizes current-authority handoff visibility across
+  Chat history, previews/unread counts, search windows and concierge model
+  context; it also bounds history refill and removes recipient attention from
+  sender detail/transition projections. The focused cross-reader suites pass
+  (329 tests); the backend size-budget hook remains an existing structural
+  blocker.
+- Mobile `b7c614db8` consumes the sender-control projection, rehydrates the
+  Place-card withdrawal affordance after remount/navigation, reconciles
+  uncertain completion, and adds a lifecycle regression test. The focused
+  mobile suites pass (99 tests), with typecheck, schema-bridge and API-boundary
+  checks green.
 
-These commits make sender control durable beyond the immediate composer session
-and close one pagination bypass; they do not establish general sharing,
-original-media receiving, Life refinding, or complete reader repair. The
-workspace OpenAPI snapshots remain unchanged until these isolated branches are
-combined with the current primary app/backend and the generated contract is
-regenerated once. Do not treat the endpoint as released or enabled from these
-branch-local receipts.
+These commits establish the first sender-history API shape, make the current
+Place-card withdrawal affordance durable across navigation/remounts when a
+single pair scope is unambiguous, and close one conversation-history
+pagination case. They do not establish general sharing, original-media
+receiving, Life refinding, or complete reader repair. The workspace OpenAPI
+snapshots remain unchanged until these isolated branches are combined with the
+current primary app/backend and the generated contract is regenerated once.
+Do not treat the endpoint as released or enabled from these branch-local
+receipts.
