@@ -543,6 +543,75 @@
         }
       }
     },
+    "/api/agent-workflows/{workflow_id}/result": {
+      "get": {
+        "tags": [
+          "agent-workflows"
+        ],
+        "summary": "Read Source Contribution Result",
+        "description": "Reopen one completed private Source result by its exact version.\n\nThis route is deliberately actor-scoped and read-only. It bypasses Home or\nPlaces ranking, but it still uses Source's current custody/expiry checks;\nan unavailable result is never regenerated from a GET.",
+        "operationId": "read_source_contribution_result_api_agent_workflows__workflow_id__result_get",
+        "parameters": [
+          {
+            "name": "workflow_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Workflow Id"
+            }
+          },
+          {
+            "name": "root",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/ProductRoot",
+              "default": "home"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceContributionExactResultResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/agent-workflows/planning/latest": {
       "get": {
         "tags": [
@@ -52126,6 +52195,15 @@
         ],
         "title": "AttendanceWritebackPayload"
       },
+      "AttentionBurden": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "title": "AttentionBurden"
+      },
       "AuditEvent": {
         "properties": {
           "kind": {
@@ -59189,6 +59267,16 @@
         ],
         "title": "ContentDecisionReceipt",
         "description": "Replayable result of selecting or withholding content."
+      },
+      "ContributionSituation": {
+        "type": "string",
+        "enum": [
+          "ordinary_current_world",
+          "open_interval",
+          "recent_return",
+          "live_shared"
+        ],
+        "title": "ContributionSituation"
       },
       "ConversationAgencyResponse": {
         "properties": {
@@ -74449,6 +74537,15 @@
         ],
         "title": "IntentWorkingAssumption",
         "description": "A reversible planning hypothesis, never a confirmed constraint."
+      },
+      "InteractionAudience": {
+        "type": "string",
+        "enum": [
+          "private",
+          "group",
+          "public"
+        ],
+        "title": "InteractionAudience"
       },
       "InteractionRequest": {
         "properties": {
@@ -94961,6 +95058,75 @@
         "title": "PostcardRenderResponse",
         "description": "Outcome of a postcard render request.\n\n``render_status`` is ``ready`` (rendered_image_url set), ``failed`` (a stable\n``error`` token explains why \u2014 e.g. ``feature_disabled``, ``daily_cap_reached``,\n``no_source_image``, ``below_quality_floor``), or ``none``."
       },
+      "PracticalAssessment": {
+        "properties": {
+          "question": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,119}$",
+            "title": "Question"
+          },
+          "state": {
+            "$ref": "#/components/schemas/PracticalAssessmentState"
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Reason"
+          },
+          "evidence_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Evidence Refs",
+            "default": []
+          },
+          "observed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed At"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "question",
+          "state",
+          "reason"
+        ],
+        "title": "PracticalAssessment",
+        "description": "Claim-specific practical evidence; never a universal feasibility score."
+      },
+      "PracticalAssessmentState": {
+        "type": "string",
+        "enum": [
+          "supported",
+          "unsupported",
+          "unknown"
+        ],
+        "title": "PracticalAssessmentState",
+        "description": "Evidence state for one explicitly named practical claim."
+      },
       "PredictedRecovery": {
         "type": "string",
         "enum": [
@@ -103407,6 +103573,328 @@
         ],
         "title": "RootAudience"
       },
+      "RootCandidate": {
+        "properties": {
+          "candidate_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Candidate Id"
+          },
+          "root": {
+            "type": "string",
+            "enum": [
+              "home",
+              "places"
+            ],
+            "title": "Root"
+          },
+          "kind": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/HomeUnitKind"
+              },
+              {
+                "$ref": "#/components/schemas/PlacesUnitKind"
+              }
+            ],
+            "title": "Kind"
+          },
+          "region": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RootRegion"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "state": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesState"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "dominant_job": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Dominant Job"
+          },
+          "material_trigger": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Material Trigger"
+          },
+          "evidence_cluster_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Evidence Cluster Id"
+          },
+          "surface_seat_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Surface Seat Id"
+          },
+          "semantic_role": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Semantic Role"
+          },
+          "represented_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Represented Refs",
+            "default": []
+          },
+          "owner_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Owner Refs",
+            "default": []
+          },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Source Refs",
+            "default": []
+          },
+          "grant_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Grant Refs",
+            "default": []
+          },
+          "projected_surfaces": {
+            "items": {
+              "$ref": "#/components/schemas/ProductRoot"
+            },
+            "type": "array",
+            "title": "Projected Surfaces",
+            "default": []
+          },
+          "audience": {
+            "$ref": "#/components/schemas/RootAudience",
+            "default": "private"
+          },
+          "status": {
+            "$ref": "#/components/schemas/RootStatus",
+            "default": "current"
+          },
+          "freshness": {
+            "$ref": "#/components/schemas/RootFreshness",
+            "default": "fresh"
+          },
+          "lifecycle": {
+            "$ref": "#/components/schemas/RootLifecycle",
+            "default": "ephemeral"
+          },
+          "owner_surface": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ProductRoot"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "fact_key": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 300
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fact Key"
+          },
+          "novelty": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Novelty"
+          },
+          "burden": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Burden"
+          },
+          "admission_priority": {
+            "type": "integer",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Admission Priority",
+            "default": 50
+          },
+          "feasible": {
+            "type": "boolean",
+            "title": "Feasible",
+            "default": true
+          },
+          "actions": {
+            "items": {
+              "$ref": "#/components/schemas/RootAction"
+            },
+            "type": "array",
+            "title": "Actions",
+            "default": []
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RootDestination"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "payload": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/RootDirectState"
+              },
+              {
+                "$ref": "#/components/schemas/RootComposition"
+              },
+              {
+                "$ref": "#/components/schemas/RootInstrument"
+              },
+              {
+                "$ref": "#/components/schemas/RootReceipt"
+              },
+              {
+                "$ref": "#/components/schemas/RootLink"
+              },
+              {
+                "$ref": "#/components/schemas/RootRead"
+              },
+              {
+                "$ref": "#/components/schemas/RootSilence"
+              },
+              {
+                "$ref": "#/components/schemas/RootWeekShape"
+              }
+            ],
+            "title": "Payload",
+            "discriminator": {
+              "propertyName": "family",
+              "mapping": {
+                "composition": "#/components/schemas/RootComposition",
+                "direct_state": "#/components/schemas/RootDirectState",
+                "instrument": "#/components/schemas/RootInstrument",
+                "link": "#/components/schemas/RootLink",
+                "read": "#/components/schemas/RootRead",
+                "receipt": "#/components/schemas/RootReceipt",
+                "silence": "#/components/schemas/RootSilence",
+                "week_shape": "#/components/schemas/RootWeekShape"
+              }
+            }
+          },
+          "lead_medium": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LeadMedium"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "support_medium": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LeadMedium"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "dependency_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Dependency Refs",
+            "default": []
+          },
+          "treatment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SurfaceTreatmentProjection"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "why_this": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Why This"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "value_candidate": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ValueCandidate"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "candidate_id",
+          "root",
+          "kind",
+          "dominant_job",
+          "material_trigger",
+          "evidence_cluster_id",
+          "surface_seat_id",
+          "semantic_role",
+          "novelty",
+          "burden",
+          "payload",
+          "why_this"
+        ],
+        "title": "RootCandidate",
+        "description": "One owner-backed semantic candidate before surface admission."
+      },
       "RootComposition": {
         "properties": {
           "family": {
@@ -109683,6 +110171,439 @@
           "created_at"
         ],
         "title": "SocialCircleTripLink"
+      },
+      "SourceContributionAssemblyFindingCode": {
+        "type": "string",
+        "enum": [
+          "portfolio_clock_mismatch",
+          "portfolio_audience_mismatch",
+          "source_read_missing",
+          "source_not_authorized",
+          "source_audience_exceeded",
+          "current_context_not_authorized",
+          "current_context_audience_exceeded",
+          "current_context_expired",
+          "subject_not_authorized",
+          "shared_owner_read_missing",
+          "shared_grant_missing",
+          "selection_grant_mismatch",
+          "owner_scope_empty",
+          "owner_scope_exceeded",
+          "producer_declined",
+          "producer_failed"
+        ],
+        "title": "SourceContributionAssemblyFindingCode"
+      },
+      "SourceContributionAssemblyFindingV1": {
+        "properties": {
+          "code": {
+            "$ref": "#/components/schemas/SourceContributionAssemblyFindingCode"
+          },
+          "path": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Path"
+          },
+          "detail": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Detail"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "code",
+          "path",
+          "detail"
+        ],
+        "title": "SourceContributionAssemblyFindingV1"
+      },
+      "SourceContributionAssemblyV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "source-contribution-assembly.v1",
+            "title": "Schema Version",
+            "default": "source-contribution-assembly.v1"
+          },
+          "admitted": {
+            "type": "boolean",
+            "title": "Admitted"
+          },
+          "seed": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SourceContributionSeedV1"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "findings": {
+            "items": {
+              "$ref": "#/components/schemas/SourceContributionAssemblyFindingV1"
+            },
+            "type": "array",
+            "title": "Findings",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "admitted"
+        ],
+        "title": "SourceContributionAssemblyV1"
+      },
+      "SourceContributionCompilationV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "source-contribution-compilation.v1",
+            "title": "Schema Version",
+            "default": "source-contribution-compilation.v1"
+          },
+          "contribution_id": {
+            "type": "string",
+            "maxLength": 120,
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Contribution Id"
+          },
+          "situation": {
+            "$ref": "#/components/schemas/ContributionSituation"
+          },
+          "represented_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Represented At"
+          },
+          "grant_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Grant Refs",
+            "default": []
+          },
+          "correction_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "admitted": {
+            "type": "boolean",
+            "title": "Admitted"
+          },
+          "briefs": {
+            "items": {
+              "$ref": "#/components/schemas/CompositionBriefV1"
+            },
+            "type": "array",
+            "title": "Briefs",
+            "default": []
+          },
+          "findings": {
+            "items": {
+              "$ref": "#/components/schemas/SourceContributionFindingV1"
+            },
+            "type": "array",
+            "title": "Findings",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "contribution_id",
+          "situation",
+          "represented_at",
+          "admitted"
+        ],
+        "title": "SourceContributionCompilationV1"
+      },
+      "SourceContributionExactResultResponse": {
+        "properties": {
+          "workflow_id": {
+            "type": "string",
+            "title": "Workflow Id"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "ready",
+              "no_useful_result",
+              "failed",
+              "cancelled",
+              "unavailable"
+            ],
+            "title": "Status"
+          },
+          "result_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "production": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SourceContributionProductionV1"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          }
+        },
+        "type": "object",
+        "required": [
+          "workflow_id",
+          "status"
+        ],
+        "title": "SourceContributionExactResultResponse",
+        "description": "Owner-scoped read of one exact Source result version."
+      },
+      "SourceContributionFindingCode": {
+        "type": "string",
+        "enum": [
+          "duplicate_id",
+          "duplicate_surface",
+          "unknown_source",
+          "source_metadata_changed",
+          "source_expired",
+          "source_audience_exceeded",
+          "unknown_claim",
+          "claim_changed",
+          "unused_claim",
+          "subject_exceeded",
+          "owner_exceeded",
+          "root_not_allowed",
+          "root_coverage_incomplete",
+          "move_not_allowed",
+          "audience_changed",
+          "known_claim_relabeled",
+          "unsupported_personal_inference",
+          "novel_contribution_missing",
+          "synthesis_support_weak",
+          "root_expression_duplicated",
+          "root_job_invalid",
+          "root_payload_too_long",
+          "expression_rejected"
+        ],
+        "title": "SourceContributionFindingCode"
+      },
+      "SourceContributionFindingV1": {
+        "properties": {
+          "code": {
+            "$ref": "#/components/schemas/SourceContributionFindingCode"
+          },
+          "path": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Path"
+          },
+          "detail": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Detail"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "code",
+          "path",
+          "detail"
+        ],
+        "title": "SourceContributionFindingV1"
+      },
+      "SourceContributionProductionV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "source-contribution-production.v1",
+            "title": "Schema Version",
+            "default": "source-contribution-production.v1"
+          },
+          "assembly": {
+            "$ref": "#/components/schemas/SourceContributionAssemblyV1"
+          },
+          "compilation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SourceContributionCompilationV1"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "candidates": {
+            "items": {
+              "$ref": "#/components/schemas/RootCandidate"
+            },
+            "type": "array",
+            "title": "Candidates",
+            "default": []
+          },
+          "findings": {
+            "items": {
+              "$ref": "#/components/schemas/SourceContributionAssemblyFindingV1"
+            },
+            "type": "array",
+            "title": "Findings",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "assembly"
+        ],
+        "title": "SourceContributionProductionV1"
+      },
+      "SourceContributionSeedV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "source-contribution-seed.v1",
+            "title": "Schema Version",
+            "default": "source-contribution-seed.v1"
+          },
+          "seed_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Seed Id"
+          },
+          "situation": {
+            "$ref": "#/components/schemas/ContributionSituation"
+          },
+          "represented_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Represented At"
+          },
+          "audience": {
+            "$ref": "#/components/schemas/CompositionAudience"
+          },
+          "allowed_roots": {
+            "items": {
+              "$ref": "#/components/schemas/ProductRoot"
+            },
+            "type": "array",
+            "maxItems": 4,
+            "minItems": 1,
+            "uniqueItems": true,
+            "title": "Allowed Roots"
+          },
+          "allowed_moves": {
+            "items": {
+              "$ref": "#/components/schemas/CompositionProductMove"
+            },
+            "type": "array",
+            "maxItems": 4,
+            "minItems": 1,
+            "uniqueItems": true,
+            "title": "Allowed Moves"
+          },
+          "subject_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 16,
+            "minItems": 1,
+            "title": "Subject Refs"
+          },
+          "owner_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 16,
+            "minItems": 1,
+            "title": "Owner Refs"
+          },
+          "grant_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 16,
+            "title": "Grant Refs",
+            "default": []
+          },
+          "correction_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/CompositionSourceV1"
+            },
+            "type": "array",
+            "maxItems": 32,
+            "minItems": 1,
+            "title": "Sources"
+          },
+          "known_claim_texts": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 64,
+            "title": "Known Claim Texts",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "seed_id",
+          "situation",
+          "represented_at",
+          "audience",
+          "allowed_roots",
+          "allowed_moves",
+          "subject_refs",
+          "owner_refs",
+          "sources"
+        ],
+        "title": "SourceContributionSeedV1",
+        "description": "Authority-scoped material visible to a contribution producer."
       },
       "SourceRef": {
         "properties": {
@@ -118595,9 +119516,9 @@
               {
                 "type": "string",
                 "enum": [
-                  "low",
+                  "high",
                   "medium",
-                  "high"
+                  "low"
                 ]
               },
               {
@@ -120155,6 +121076,262 @@
           "type"
         ],
         "title": "ValidationError"
+      },
+      "ValueCandidate": {
+        "properties": {
+          "candidate_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Candidate Id"
+          },
+          "immediate_job": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,119}$",
+            "title": "Immediate Job"
+          },
+          "material_trigger": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Material Trigger"
+          },
+          "role": {
+            "$ref": "#/components/schemas/ValueCandidateRole"
+          },
+          "product_move": {
+            "$ref": "#/components/schemas/CompositionProductMove"
+          },
+          "result_family": {
+            "$ref": "#/components/schemas/ValueResultFamily"
+          },
+          "target_root": {
+            "$ref": "#/components/schemas/ProductRoot"
+          },
+          "audience": {
+            "$ref": "#/components/schemas/InteractionAudience",
+            "default": "private"
+          },
+          "preferred_treatment": {
+            "$ref": "#/components/schemas/TreatmentKind"
+          },
+          "quiet_treatment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TreatmentKind"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "decision_mode": {
+            "$ref": "#/components/schemas/ValueDecisionMode",
+            "default": "inferred"
+          },
+          "read_requirements": {
+            "items": {
+              "$ref": "#/components/schemas/ValueReadRequirement"
+            },
+            "type": "array",
+            "maxItems": 16,
+            "minItems": 1,
+            "title": "Read Requirements"
+          },
+          "subject_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 16,
+            "minItems": 1,
+            "title": "Subject Refs"
+          },
+          "novelty": {
+            "$ref": "#/components/schemas/CompositionClaimNovelty"
+          },
+          "evidence_strength": {
+            "$ref": "#/components/schemas/ValueSignal"
+          },
+          "epistemic_yield": {
+            "$ref": "#/components/schemas/ValueSignal"
+          },
+          "present_relevance": {
+            "$ref": "#/components/schemas/ValueSignal"
+          },
+          "compression": {
+            "$ref": "#/components/schemas/ValueSignal"
+          },
+          "burden": {
+            "$ref": "#/components/schemas/AttentionBurden"
+          },
+          "actionable": {
+            "type": "boolean",
+            "title": "Actionable",
+            "default": false
+          },
+          "feasible": {
+            "type": "boolean",
+            "title": "Feasible",
+            "default": true
+          },
+          "interruption_eligible": {
+            "type": "boolean",
+            "title": "Interruption Eligible",
+            "default": false
+          },
+          "practical_question": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_.:-]{1,119}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Practical Question"
+          },
+          "practical_assessment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PracticalAssessment"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "lead_medium": {
+            "$ref": "#/components/schemas/LeadMedium"
+          },
+          "support_medium": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LeadMedium"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Expires At"
+          },
+          "correction_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "candidate_id",
+          "immediate_job",
+          "material_trigger",
+          "role",
+          "product_move",
+          "result_family",
+          "target_root",
+          "preferred_treatment",
+          "read_requirements",
+          "subject_refs",
+          "novelty",
+          "evidence_strength",
+          "epistemic_yield",
+          "present_relevance",
+          "compression",
+          "burden",
+          "lead_medium",
+          "expires_at"
+        ],
+        "title": "ValueCandidate",
+        "description": "One owner-bound proposal before root layout or generated expression."
+      },
+      "ValueCandidateRole": {
+        "type": "string",
+        "enum": [
+          "operational",
+          "clarification",
+          "coordination",
+          "world_opening",
+          "continuity"
+        ],
+        "title": "ValueCandidateRole"
+      },
+      "ValueDecisionMode": {
+        "type": "string",
+        "enum": [
+          "deterministic",
+          "inferred"
+        ],
+        "title": "ValueDecisionMode"
+      },
+      "ValueReadRequirement": {
+        "properties": {
+          "operation_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.]{2,79}$",
+            "title": "Operation Id"
+          },
+          "resource_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Resource Refs",
+            "default": []
+          },
+          "accepted_omission_codes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Accepted Omission Codes",
+            "default": []
+          },
+          "requires_evidence_refs": {
+            "type": "boolean",
+            "title": "Requires Evidence Refs",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "operation_id"
+        ],
+        "title": "ValueReadRequirement"
+      },
+      "ValueResultFamily": {
+        "type": "string",
+        "enum": [
+          "direct_state",
+          "composition",
+          "instrument",
+          "receipt",
+          "owner_link",
+          "read",
+          "week_shape",
+          "prose"
+        ],
+        "title": "ValueResultFamily"
+      },
+      "ValueSignal": {
+        "type": "string",
+        "enum": [
+          "zero",
+          "low",
+          "medium",
+          "high"
+        ],
+        "title": "ValueSignal"
       },
       "VenueBriefFeedResponse": {
         "properties": {
