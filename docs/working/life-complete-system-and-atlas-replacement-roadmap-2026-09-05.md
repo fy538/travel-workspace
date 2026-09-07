@@ -2401,6 +2401,10 @@ Life backend branch (recheck branch divergence before integration):
 - `8893cf518` tightens the evidence envelope's contract version to a closed
   literal and adds a regression for unknown versions, preventing a future
   producer from silently changing the meaning of an organization unit.
+- `0f2d004db` makes the bounded group reader assemble group metadata, immediate
+  topology and membership pages in one short `REPEATABLE READ` snapshot. The
+  connection is released before pagination; freshness epochs still fence a
+  later continuation.
 
 The local development database was at `lifeorg05`; the additive `lifeorg06` →
 `lifeorg07` upgrade was applied transactionally for test evidence. Focused

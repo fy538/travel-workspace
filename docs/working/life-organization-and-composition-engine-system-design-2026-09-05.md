@@ -1410,6 +1410,7 @@ churn, cycle-safe topology, and replay-safe scoped reconciliation; the complete
 Life selection is green on the migrated local development database. The
 canonical corpus route also now uses a typed cursor that binds lens,
 represented-at time, corpus revision and stable `(sort_at, record_id)` identity
-for continuation. This remains shadow-only and does not claim source evidence
+for continuation. Group-depth reads use one short repeatable-read snapshot for
+metadata, topology and membership rows. This remains shadow-only and does not claim source evidence
 extraction, broader owner coverage, lifecycle repair callbacks, serving cutover
 or mobile integration. The roadmap §12.11 is the canonical receipt.
