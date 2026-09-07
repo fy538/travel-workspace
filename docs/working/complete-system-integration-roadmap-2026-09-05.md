@@ -995,10 +995,14 @@ booking action or durable user fact.
 through supply → evidence → judgment → Home/Places delivery → exact
 continuation, plus missing, stale, conflicting, revoked and cancelled variants.
 The portfolio must include cold-start world value, a private cross-source
-connection and an ordinary practical/social possibility. Passing means the
-system can explain what it knows, what it cannot verify and what the person can
-do next without another input exercise. It does not require live providers,
-production worker registration or a comprehensive world index.
+connection and an ordinary practical/social possibility. At least one public
+case must be a dated or occurrence-level possibility: preserve the requested
+local time window, distinguish venue/series from the exact occurrence, and keep
+unknown, postponed or cancelled status explicit. A venue identity or stale
+event row is not event readiness. Passing means the system can explain what it
+knows, what it cannot verify and what the person can do next without another
+input exercise. It does not require live providers, production worker
+registration or a comprehensive world index.
 
 **Parallel Life checkpoint:** continue R2–R5 from the merged implementation.
 First make explicit that non-`life.v1` historical target builds currently lack
