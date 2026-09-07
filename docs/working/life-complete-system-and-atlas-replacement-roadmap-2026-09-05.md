@@ -1705,8 +1705,10 @@ viewer/version-scoped group identities, evidence-backed memberships, and
 revision-bound rename/detach/Undo controls. The materializer leaves excluded
 memberships excluded and updates evidence only when it changes. Plan/Occasion
 owner-driven wiring and the accepted alias/merge/split registry now exist; this
-is not yet affected-membership reconciliation, resolution replacement/revocation,
-broader owner coverage, or indexed serving.
+is not yet affected-membership reconciliation, broader owner coverage, or
+indexed serving. Resolution lifecycle controls now exist, but a replacement or
+revocation after a membership transfer is reported for repair rather than
+silently attempting to reverse derived memberships without per-relation lineage.
 
 Follow-up commit `a6c21a0ca` closes the command-ledger race: rename, detach, and
 Undo now claim their globally unique viewer/version/control key with
@@ -1736,6 +1738,17 @@ Commit `04e9ab8fd` adds the bounded application step. A single active target
  redirects the old group. Multiple active split targets return an explicit
  ambiguity result and move nothing. Reapplication is a no-op after redirect;
  resolution replacement/revocation and reader exposure remain separate.
+
+Commit `1854e4740` adds the lifecycle seam and owner trigger. A replacement
+atomically creates an evidence-backed successor and records `superseded_by_id`;
+a revision-bound revoke is replay-safe. The existing Plan and Occasion owner
+projector callbacks invoke organization reconciliation on the current owner
+group, so an accepted active alias/merge can be applied on the owner-change
+path without creating another queue. A split remains ambiguous. If a lifecycle
+change arrives after a prior membership transfer, the derived rows require an
+explicit lineage-aware repair package; this commit does not infer or silently
+undo those rows.
+The local migration head is now `lifeorg03`.
 
 | Lane/interface | Concrete dependency | Work that can continue here |
 | --- | --- | --- |
