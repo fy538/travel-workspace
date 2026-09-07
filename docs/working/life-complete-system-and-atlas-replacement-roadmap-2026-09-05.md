@@ -1713,6 +1713,14 @@ Undo now claim their globally unique viewer/version/control key with
 The losing first attempt rereads and returns the committed control result, so a
 concurrent duplicate cannot apply a second mutation under a different target.
 
+Commit `29d2a799b` connects that organization seam to the existing Plan and
+Occasion owner projectors. A successfully fenced current entry materializes its
+owner group/membership; a fenced withdrawal archives the group and marks active
+memberships superseded; only an explicit restoration reactivates those derived
+rows. Missing current authority on a restore now fails instead of being treated
+as a withdrawal. The adapter is injected at the existing event consumer, so no
+second queue or Life-owned source transaction is introduced.
+
 | Lane/interface | Concrete dependency | Work that can continue here |
 | --- | --- | --- |
 | Capture/source owners | Exact custody/expiry/representation reads, current revision and authorized restore event; agree any missing transaction change before editing its producer | Receiver tests, replay, report and source-only organization using existing contracts |
@@ -1766,6 +1774,12 @@ The bounded packet was implemented in backend worktree
 - `a6c21a0ca` — command-ledger inserts are conflict-safe and happen before
   derived-state mutation, fencing concurrent duplicate rename, detach, and
   Undo attempts behind the viewer/version/control-key idempotency boundary.
+- `29d2a799b` — the existing Plan/Occasion owner consumers now invoke a thin
+  organization adapter after successful index publication, archive derived
+  owner groups on fenced withdrawal, and require an explicit restore to
+  reactivate superseded memberships. Callback-level tests and PostgreSQL
+  archive/restore evidence cover the connection; Outcome/source organization
+  remains intentionally unimplemented.
 
 The explicitly provisioned local database `vesper_life_rehearsal_20260907` was
 migrated to `lifeorg01` (single head). Evidence executed against that
@@ -1778,7 +1792,7 @@ database:
 | Retry/enumeration unit selection | 9 passed |
 | Complete `tests/life_projection` connected selection | 17 passed, 165 offline cases deselected |
 | Connected report command with JUnit + `--life-rehearsal-report` | 2 passed; report schema `vesper.life-shadow-rehearsal.v1`, `supported_scope=pass`, `whole_portfolio_complete=false`, `serving_ready=false` |
-| R2-G organization proposal/materialization and PostgreSQL control sequence | 5 passed; stable identity, evidence revision, replay, exclusion non-resurrection, stale readback, rename/detach, exact Undo, and conflict-safe control insertion |
+| R2-G organization proposal/materialization and PostgreSQL control sequence | 12 passed across the focused Plan/Occasion/organization selection; stable identity, evidence revision, replay, exclusion non-resurrection, stale readback, rename/detach, exact Undo, conflict-safe control insertion, owner-group archive, explicit restore, and projector callbacks |
 | Ruff on changed files | Passed |
 
 The rehearsal proves the supported Plan path, linked Occasion lens membership,
