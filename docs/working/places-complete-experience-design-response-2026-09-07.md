@@ -149,3 +149,15 @@ The founder reopened composition: the field was simple, standard and a little bo
 **The recommendation (board 17).** B as the spine, with A's lead-and-siblings opening the first pocket and A's assortment and readings between pockets, and C's moments and voices placed inside the pocket their place is in, with a kept moment allowed to lead only when evidence earns it. The acceptance questions are answered per candidate from the rendered scrolls; they are not usability findings. Dependencies that could invalidate the concept: supply that does not cluster, no route source for Places, missing coordinates on new venues, a city with no pockets.
 
 **Not started.** Stage 2 (selection with annotations hidden) and Stage 3 (the five situations, the states, the paths, the contracts, the decision record). No shared design-system change has been applied; the type rules are proposed for Places.
+
+## 13. The synthesis, drawn (September 7; revision doc §11)
+
+The founder's Stage 1 review kept the gains and corrected the proposal: geography organizes value where it helps and is not the spine; a compact assortment or a standalone moment is not decorative for failing to explain a spatial relationship. Board 18 draws one recommended full scroll in two matched versions, both in full.
+
+**The organizing principle.** A mixed-value field with one pocket. Populated: the kept pier with Maya opens (her picture, her two words, the kept intention, this Saturday's sunset), two nearby options related by park, the From friends row, the everyday assortment, Red Hook by ferry as the one pocket, Maya's Print Room picture once, the listening hour with its neighbours stated by distance and no map, the two-piers pair and the floods reading, Priya seen up close, two voices on the organ, the Saturday-morning set with Theo inside. Cold: the film opens, the same assortment, pocket, evening, comparison and reading, Sunday plain, the morning set without Theo.
+
+**The five corrections.** No sequence words anywhere; siblings are related by place or distance; the pocket has no route or walk and states proximity in one line; the pool and the lunch counter are separate rows and targets. Section labels only where they group several things; Maya's words appear once, with her picture, and the pocket entry carries a compact reference. "Any day" only; the reading's preview carries its payoff and its door is "The rest of the reading". The claim that Saturday is the first evening both are free is removed; no fixture evidence was added. Both scrolls are drawn, nothing referenced.
+
+**Kept, combined, omitted.** From A: lead and siblings, the assortment, the pair, the reading, the morning set, standalone moments. From B: the pocket, for Red Hook only. From C: the kept opening, the organ voices and Priya, populated only. Omitted: Sunset Park, Canal Street and Downtown as pockets; Alex's loop, the market rhythm, then/now on the counter, and the Print Room as two voices, which belong to Stage 3's situations.
+
+Boards 17 and 00 point to 18; 09 has the pass. Stops for review. Stage 3 waits on selection.
