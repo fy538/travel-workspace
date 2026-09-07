@@ -21,6 +21,13 @@ The inspected foundation is reusable. The main gaps are candidate acquisition/ad
 
 This is a **research-backed implementation roadmap**, with the bounded code receipts in §10. The detailed Content-lane execution plan is in [§11](#11-content-infrastructure-execution-plan); the next implementation batch, dependencies and completion checks are in [§12](#12-next-execution-batch-connected-content-lifecycle). It does not establish provider procurement, legal clearance, deployment approval or complete supply. No paid API batch, account inspection, production DB query, subscription, provider contact, worker registration or app change was performed in this lane. Public documentation describes capabilities, not measured NYC coverage.
 
+The latest ingestion investigation and implementation sequence are in
+[§13](#13-content-ingestion-investigation-and-implementation-plan).
+That section rechecks backend `7a1d18070`, distinguishes repaired findings from
+remaining ingestion defects, and refines C1b/C2b/C3a/C5a/C6a. Earlier snapshots
+and execution receipts remain dated evidence; they do not establish that the
+whole ingestion lifecycle is complete.
+
 ### Authority and inspected state
 
 - [Product Thesis](../../travel-agent/docs/product/Product%20Thesis.md) and [Product Model](../../travel-agent/docs/product/Product%20Model.md): everyday usefulness; current purpose over historical resemblance; four product moves, not a travel-only funnel.
@@ -1386,3 +1393,509 @@ Roadmap-document verification after this receipt update: governance metadata,
 relative links, same-document anchors, code-fence pairing and whitespace
 remain to be rerun at commit time; the earlier planning-pass counts are not
 reused as current verification claims.
+
+## 13. Content ingestion investigation and implementation plan
+
+### 13.1 Decision and scope
+
+**Keep the existing domain owners and build a reliable, selective supply
+lifecycle around them.** The foundation is useful, but importer correctness,
+refresh ordering, derived-work completion and consumer freshness are not yet
+consistent. Fixing an adapter or passing the current unit suites is insufficient
+evidence that imported information remains useful through later changes.
+
+This is a September 7 investigation and proposed execution plan. Backend main
+was `7a1d18070`; mobile main was `f4401ef73`. Concurrent concierge, mobile
+conversation-entry and strategy-document edits were present. This pass changed
+only this roadmap. It did not implement the repairs, change source access,
+activate production, query production data or test native rendering.
+
+Scope is **public-world content acquisition and maintenance**: stable place
+facts, time-bound event/offer data, selected research and reviewed interpretation,
+their derived indexes, and the receiving contracts used by existing consumers.
+Personal ticket/photo intake, private memory, social permissions, booking and
+Plan mutation retain their existing owners. A public catalog change can inform
+those owners; ingestion cannot create their user authority.
+
+The work should support the complete repertoire: practical suggestions,
+substantive explanation, world-first discovery, cross-place connections and
+later reuse. It does not narrow the product to events or make every item a
+dossier. Events expose the highest-risk freshness defects; durable explanation
+and ordinary places remain equal parts of the supply architecture.
+
+### 13.2 Existing paths and what to preserve
+
+| Path | Current implementation | Preserve / correct |
+| --- | --- | --- |
+| Stable place discovery | `scripts/seed_place.py` foundation phase and `backend/research_agent/tasks/seed_venues.py` discover and materialize places/venues/sites/accommodations. Existing-ID and spatial/name deduplication exist. | Preserve entity owners and external identities. This is principally discovery/seeding: existing entities are often skipped, so rerunning it is not evidence that their facts were refreshed. Do not extend its fuzzy POI merge into automatic event-occurrence merging. |
+| Provider experiences | `backend/ingestion/{base,ticketmaster,bandsintown,viator,amadeus_tours,registry,geo}.py`; CLI `scripts/ingest_events.py`; seed pipeline registry caller. | Preserve source/source-ID upserts and the transaction containing material changes plus dirty marking. Replace untyped success/empty outcomes, field omissions, guessed values and credential-only eligibility. |
+| Legacy enrichment | `generate_experience_briefs.py`, `experience_research.py`, graph persistence and legacy write-back; shared embedding helpers. | Preserve useful retained material and bounded answer-only completion. Trace each writer: the repaired research graph does not govern every initial brief generator or direct vector writer. |
+| Reviewed research | Research-to-Foundry adapter, `world_foundry/promotion.py`, `persist.py`, `editorial_bridge.py`, source observations, fact claims and place-content primitives. | Preserve explicit evidence/review/identity boundaries. Fact writes and projection rebuild now share a transaction; editorial enters as proposed, not automatically accepted or Home-eligible. |
+| Derived retrieval | `experience_brief_state`, background experience embedding/archival, structured Places queries, place-content readers and vector side-builds. | Preserve Postgres authority, exact current readback and bounded geographic retrieval. Repair generation races and align every serving path with current owner data. |
+| Orchestration | `pipeline_runs`, checkpoint/resume helpers, CLI and `seed_city_full` worker; API experience embedding loop. | There is an existing runner and background indexing. They do not yet establish fresh provider supply, accurate completion, isolated cleanup or complete provider-cost control. |
+
+The prior repair of the Foundry fact-commit/projection gap is present in
+[the current writer](../../travel-agent/backend/world_foundry/persist.py).
+The older §12.2 statement that rebuild occurs after commit is historical.
+This pass did not rerun real-Postgres Foundry promotion/rollback tests and does
+not treat the existence of that transaction as a receipt for all of C2b.
+
+### 13.3 Findings, evidence and consequences
+
+Evidence labels: **reproduced** means an isolated local probe exercised the
+actual function with controlled boundaries; **inspected** means a direct code
+path or contract mismatch; **provider reference** means public primary
+documentation, without testing Vesper's account or endpoint live.
+
+| ID / priority | Finding and evidence | Product / operational consequence |
+| --- | --- | --- |
+| IN-01 / P1 | **Inspected; prior-turn local probes:** Bandsintown replaces missing event time with `datetime.now(UTC)`, accepts naive timestamps, hardcodes EUR and marks all rows active. Empty city passes its substring test; missing IDs become an empty string. `bandsintown.py`. | A wrong-time or wrong-place event can enter the operational catalog; malformed identities can collide. An adapter's existence is not readiness for broad discovery. |
+| IN-02 / P1 | **Inspected; prior-turn local probes:** Ticketmaster batch fetch uses UTC calendar-day bounds, constructs city names from hierarchical slugs, and checks low quota before consuming the successful response. `ticketmaster.py::fetch`. | Local-day coverage can be wrong; valid fetched events can be discarded. Research-tool timezone repairs did not fix this separate batch path. The 1,000-result cap is already fixed and must remain. |
+| IN-03 / P1 | **Reproduced:** Ticketmaster can persist `price_currency=None`; the database and public `ExperienceResponse` allow it, but `core/models/experiences.py::Experience` requires `str`. `get_experiences_without_briefs` constructs those models. | One correctly unknown currency can break a typed enrichment batch. Preserve unknown rather than reintroduce EUR to make validation pass. |
+| IN-04 / P1 | **Reproduced via actual generated SQL:** Viator normalization emits `duration_minutes`, but base upsert neither compares nor updates it. `place_id` is also omitted; provider-owned guide/capacity fields have similar discrepancies. `base.py`. | Refresh can report an update while important stored fields remain stale. Fix with explicit field ownership and absence semantics, not blindly copying every incoming column over classifier or curator data. |
+| IN-05 / P1 | **Inspected:** Material changes include the entire `raw_data` payload; unchanged rows do not update observation freshness; no provider revision/run ordering guards the overwrite. `base.py`. | Inert payload changes cause embedding work, unchanged successful checks leave no freshness receipt, and a late older response can overwrite a newer cancellation. Material `updated_at` cannot do all three jobs. |
+| IN-06 / P1 | **Inspected and worker call reproduced:** ingestion's dirty upsert does not advance `brief_version`; embedding calls `clear_experience_brief_dirty` without `expected_version`, although the helper supports it. | A worker using old input can erase a newer repair obligation. Existing helper-level CAS tests miss the actual writer-to-worker path. |
+| IN-07 / P1 | **Inspected:** the dirty-row query releases its row locks before embedding. An API-loop advisory lock exists, but initial brief generation and CLI paths can write vectors outside it. All use an entity-stable point ID. | Adding a CAS argument alone does not prevent older vector work overwriting newer data. Completion fencing, writer serialization and current-generation read checks must be designed together. |
+| IN-08 / P1 | **Reproduced / inspected:** a failed embedding that returns no point is counted as one success. The retry worker can embed a draft and clear dirty without completing the brief or issuing its corresponding completion event. An existing complete brief is reused even after provider prose changes. | Success counters are misleading; initial generation can repeat; semantic content may remain stale while indexing appears repaired. |
+| IN-09 / P1 | **Reproduced:** a provider exception becomes the string `test: ERROR`; `run_pipeline` records the step as `ok` unless the LLM budget is exhausted. Missing configuration also returns a normal string. Resume recognizes city/step success for 30 days. | Failed or partial ingestion can be skipped on retry. A completed discovery step is not proof that this provider and date window were successfully refreshed. |
+| IN-10 / P1 | **Reproduced:** pipeline cleanup gathers all tasks on the shared loop, excluding only itself. An unrelated waiting task was cancelled when the accelerated cleanup deadline fired. `seed_place.py::run_pipeline`. | A city-seed worker can wait on or cancel unrelated work. Track only tasks owned by the run; shared-loop inventory is not a task-ownership mechanism. |
+| IN-11 / P1 before expanded sourcing | **Provider reference + inspected:** Viator batch ingestion uses `/products/search` with a cursor scheme, while the documented search contract uses start/count pagination and is not an ingestion endpoint. Its documented ingestion endpoint has a distinct access model. | Correct the integration mode before widening or repeatedly refreshing this source. Credentials alone do not make a provider eligible for durable batch ingestion. Account access remains unverified. |
+| IN-12 / P2 | **Inspected:** the registry creates Bandsintown without artists; a configured Viator suppresses Amadeus globally even for unsupported destinations; Viator city mappings omit hierarchical slugs. Amadeus ignores the date window because it returns on-demand products. | “Configured” and “supports this job” diverge. Distinguish events, on-demand offerings, query scopes and fallback eligibility. An on-demand listing does not prove availability on Saturday. |
+| IN-13 / P1 for receiving correctness | **Inspected:** newer Places readers use local half-open windows; older ranked Trip and planner queries still compare timestamps to date bounds, including `<= date_to`. Recurrence helpers can fall back to UTC. | Friday-night or final-day results can disagree across consumers. Share window semantics and preserve missing-timezone uncertainty. Do not claim every route is broken: several readers already check active status in Postgres. |
+| IN-14 / P2 | **Inspected:** experience vector payload lacks lifecycle/freshness/generation fields. Archival uses start time minus six hours and a single 500-point page. Seed embedding processes a global bounded batch, then reports completion for a city step. | Long-running events can leave retrieval too early; cancelled points occupy candidate capacity; scope and backlog completion are unclear. Postgres status checks mitigate some serving errors but do not make retrieval complete or efficient. |
+| IN-15 / P1 before automated expansion | **Inspected:** daily city accounting uses Redis in deployed worker contexts, but check and reservation are separate operations. LLM-call ceilings do not reserve all provider, retry, detail and embedding work. | Concurrent jobs can pass the same remaining allowance. Do not repeat the stale FEATURE claim that the cap is only process-local, or claim the current Redis implementation is an atomic spend envelope. |
+| IN-16 / P1 before new public editorial admission | **Inspected:** initial experience brief generation writes prose without supplying its selected web evidence in `source_inputs`, then uses embedding success to transition draft to complete. `generate_experience_briefs.py::_process_batch`. | The repaired research graph's evidence checks do not cover this writer. Index readiness does not establish evidence support, editorial acceptance or permission for public reuse. Trace and migrate this path explicitly. |
+
+The Amadeus and Viator normalizers also default missing currency to EUR;
+Viator stores a `fromPrice` as both minimum and maximum and defaults absent
+guide requirements to false. These belong in the same normalization and
+consumer-semantics repair as IN-01/03/04. An advertised lower bound is not an
+exact quote or upper bound. No current-source price, catalog size, commercial
+entitlement or coverage guarantee is inferred from comments in those modules.
+
+### 13.4 Source capability decisions
+
+The source adapter contract should declare supported **operations**, scopes
+and dispositions rather than a single configured/not-configured flag:
+discovery, detail verification, permitted retention, derived/indexed use and
+refresh. Bind the effective policy to the run. Reuse the Places source-policy
+owner where relevant; do not silently apply its two POI-provider entries to
+every event source or treat normalization as permission to persist raw data.
+
+| Source family | Recommended direction | Boundary to establish |
+| --- | --- | --- |
+| Ticketmaster | Retain bounded, explicit market/window event supply where supported by the configured source policy; use exact-ID verification for selected upcoming events. | Canonical geography and timezone; pagination ceiling and truncation receipt; status/uncertainty; supported account use and refresh. Search omission is not cancellation evidence. |
+| Bandsintown | Optional artist-scoped supplement. | Explicit artist input and place matching; independently justified timezone interpretation; no invented time/currency; exact IDs and lifecycle semantics. Do not count it as general city discovery. |
+| Viator | Prefer a query-and-link capability for this product direction; remove credential-only enrollment in the durable importer when this package executes. | Validate the account's permitted mode. A genuine ingestion integration would need the appropriate endpoint/access and refresh obligations; this plan does not authorize building that catalog. Preserve existing records for a reviewed migration. |
+| Amadeus activities | Optional scoped discovery of on-demand offerings, subject to supported source policy. | A geographical product result is not dated occurrence or current booking availability. Exact identity, price basis/currency and usable geography need validation. |
+| Open-web/official sources and Foundry | Selectively retain reusable evidence, facts and reviewed interpretation through existing owners. | Source support, retention, attribution, observation clocks and independent editorial acceptance. Search-provider summaries do not become original-source evidence. |
+| Existing POI adapters and seeders | Keep canonical identities, bounded provider discovery and exact current verification. | Separate finding a place from refreshing its facts. Do not expand seed-time fuzzy matching or owner-scoped provider-shell rights into unreviewed global materialization. |
+
+Primary references checked September 7:
+
+- [Ticketmaster Discovery API](https://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/): supports geographic and temporal filters and distinguishes TBA/TBD fields; deep paging is bounded. Apply those semantics through canonical scope rather than a transformed storage slug.
+- [Bandsintown API documentation](https://help.artists.bandsintown.com/en/articles/9186477-api-documentation): documents artist-event retrieval and date-range selection. This page does not settle timezone semantics for every payload; retain that as an adapter conformance question.
+- [Viator technical guide](https://partnerresources.viator.com/travel-commerce/technical-guide/): separates live search from ingestion; search pagination uses start/count, and product ingestion uses modified-since with access-tier requirements. The current batch adapter crosses these boundaries. Prefer query-only access unless the ingestion obligations are deliberately accepted.
+
+These references support the capability distinction, not an account-specific
+legal conclusion or measured supplier comparison. No authenticated provider
+call was made. Live sampling requires the actual supported account and a
+bounded total operation allowance.
+
+### 13.5 Target lifecycle and ownership
+
+```text
+explicit request / operator-authorized preparation / approved refresh
+  -> resolve canonical geographic scope, purpose and time window
+  -> check source operation policy and reserve work
+  -> fetch bounded pages/details; record complete/partial/failed outcome
+  -> validate identity, fields, uncertainty and observation order
+  -> retain only permitted observations and selected domain records
+  -> transaction: apply accepted change + advance generation + repair obligation
+  -> domain-owned derivation / review / indexing with fenced completion
+  -> consumer rereads current owner, eligibility, evidence and validity
+  -> expiry, correction or new evidence repairs only affected outputs
+```
+
+Introduce small internal typed contracts at these seams, reusing existing
+research budget/disposition and source contracts where their meanings match:
+
+- **Request:** run ID; trigger/purpose; canonical place and optional geometry;
+  provider scope; local window/timezone or explicit no-date product search;
+  policy/adapter version; item/page/operation/deadline limits; disposition.
+- **Fetch outcome:** records plus source operation, effective scope,
+  request-start/response-observed times, available provider revision,
+  pages/operations consumed, continuation and stop reason. Distinguish complete,
+  partial, empty, unsupported, unconfigured and failed.
+- **Normalized candidate:** source identity; canonical subject when resolved;
+  supplied-field mask; known/unknown values; event/offering/time precision;
+  evidence and price basis; allowed disposition; validation result.
+- **Run receipt:** fetched, rejected, deferred, inserted, materially changed,
+  unchanged-but-checked, superseded and repaired counts; incomplete scope;
+  cost known/unknown; owner references and derivation outcomes.
+
+These are proposed internal contracts, not four new public APIs or universal
+content tables. Extend `pipeline_runs` or an existing execution owner for
+structured run metadata; source observations own evidence; `experiences` owns
+offering/occurrence rows; `experience_brief_state` owns experience derivation;
+Foundry/place-content owners govern reviewed facts and interpretation.
+Schema changes require a concrete migration design and owner review during
+execution. A JSON summary must not become an alternative canonical event store.
+
+Recommended storage design: add only the metadata needed by those owners for
+source/run ordering, last successful observation, requested derivation generation,
+completed generation and a fenced claim. Keep compatibility with the current
+`brief_version` until every writer has migrated; do not reinterpret it in one
+caller while another still increments it on completion. Choose the exact fields
+and migration after tracing their current consumers. No new queue service or
+generalized event-sourcing rewrite is needed to implement these guarantees.
+
+### 13.6 Field ownership, clocks and repair
+
+| Change | What should change | What should not automatically run |
+| --- | --- | --- |
+| Successful refetch, same supported facts | Observation/check receipt and field validity under source policy | Prose generation or embedding |
+| Raw payload changes outside used fields | Permitted source snapshot/hash and diagnostics | Semantic invalidation |
+| Time, status, price, availability or access changes | Operational state, current eligibility and dependent practical projections; repair index payload if relevant | Rewriting unrelated history or interpretation |
+| Name, lineup, subject, sourced description or meaning-bearing evidence changes | Current source-owned fields; affected brief/primitive reevaluation; semantic retrieval input when it actually changes | Regenerating every entity from the same source |
+| Editorial revision with unchanged event facts | Reviewed content version and its retrieval material | Refetching every provider fact |
+| Classification or human correction | The classification/correction owner's projection with provenance | Overwriting it with absent provider fields on refresh |
+| Cancellation, withdrawal or evidence expiry | Exclude current feasible recommendations immediately; retain permitted historical evidence and repair affected projections | Deleting user history, changing a Plan automatically, or assuming a disappeared search result was cancelled |
+
+Keep these clocks distinct: event occurrence; provider revision when supplied;
+request start; observation/check time; material domain generation; content
+generation; last completed index generation; and claim validity. Completion
+time alone is not an ordering rule: an old slow request can finish last.
+
+For sources without revisions, serialize conflicting refresh scopes and carry
+the observation/run ordering through conditional writes. Do not silently
+allow an older in-flight observation to reactivate a newer cancellation.
+Provider truth can still change again: a genuinely newer reinstatement must
+be representable. Retention/expiry policy governs how much observation history
+survives; storing every full raw response is not required.
+
+On field absence, distinguish **not supplied** from **explicitly cleared** and
+**unknown in this observation**. The merge policy must state whether a search
+response is a full snapshot or a partial projection. `place_id` represents
+grounded entity location/ownership, not whichever market most recently queried
+it. Provider updates must preserve separate classifier/curator fields.
+
+Unknown-start one-off events cannot currently satisfy the database constraint.
+Keep permitted uncertain evidence in the observation/proposal path and return
+a deferred reason. Do not invent a timestamp or disguise it as an on-demand
+offering. `live_event_candidates` also requires a start, so it is not a ready
+unknown-time staging solution. Decide whether a later product need warrants a
+time-precision schema amendment before relaxing the operational table.
+
+### 13.7 Execution packages
+
+#### I0 — Bind source operations, request scope and outcome contracts
+
+Maps to C1b/C2b/C5a. Define the internal contracts in §13.5 and a source
+capability inventory. Default unsupported ingestion operations to explicit
+unsupported results. Keep source errors distinct from a successful empty
+window. Preserve legacy CLI callers through a small adapter during migration.
+
+Resolve city name, country/region, timezone, centroid and provider mappings
+from canonical place metadata/ancestors. Do not guess them from a hierarchical
+slug. Represent unknown scope and unsupported artist/product searches directly.
+Bind a source/operation policy before acquisition and before durable writes.
+
+Entry files: ingestion base/registry/geo, existing Places source policy,
+bounded research schemas/disposition, pipeline checkpoint/worker entry points.
+
+Acceptance: configured-but-unsupported provider, missing artists, unmapped city,
+empty success, partial page and provider failure remain distinguishable through
+CLI and worker receipts. Review the exact storage/API implications before I2.
+
+#### I1 — Repair adapter and model fidelity
+
+Maps to C3a. Land in reviewable units:
+
+1. Align unknown currency across normalization, the internal Experience model,
+   database reads and existing response contracts. Test a mixed enrichment
+   batch containing a missing-currency row. Preserve existing nullable API
+   behavior; inspect generated-schema effects before deciding sync scope.
+2. Give Ticketmaster batch fetch the resolved scope and local window. Consume
+   every successful page before deciding whether to fetch the next. Handle
+   malformed quota headers and report the deep-page limit as partial coverage.
+3. Repair Bandsintown exact identity, city matching and supported time parsing;
+   missing/naive time is deferred unless a verified timezone contract resolves
+   it. Wire explicit artists into any supported registry request.
+4. Bring tour/offering normalization under the same supplied-field, unknown-
+   currency and price-basis rules. A from-price is not an exact price range;
+   missing guide requirements do not become a confirmed false assertion.
+5. Remove Viator search from automatic durable batch enrollment; implement only
+   the agreed query path under its documented request/response contract. A full
+   ingestion endpoint migration remains a separate source decision.
+
+Acceptance: local midnight, DST transitions, missing timezone, TBA/cancellation,
+empty IDs/city, duplicate source IDs, source errors, low quota with a nonempty
+page and price basis all have deterministic fixtures. No live quota is needed
+for those tests; captured provider-conformance fixtures must match the selected
+endpoint, not merely the current adapter's assumptions.
+
+#### I2 — Make domain updates ordered, field-aware and atomic
+
+Maps to C2b/C3a. Centralize the experience merge policy with an explicit
+provider-owned field inventory. Add currently omitted fields where their owner
+permits updates; preserve unrelated enrichment and human corrections. Detect
+semantic and operational changes separately from observation-only changes.
+
+Record permitted observations and conditional domain updates with a durable
+generation/repair obligation in the same transaction. Use the common dirty
+writer with caller-owned transaction support rather than maintaining a second
+weaker SQL path in `ingestion/base.py`. Every material update advances the
+generation. Apply source revision/run ordering so late work cannot revert newer
+state. Successful unchanged checks still record freshness without dirtying text.
+
+Decide batch failure semantics explicitly: validate records before writes;
+isolatable data errors receive row-level rejection/savepoint handling, while
+database/invalidation failures roll back the affected commit unit. Commit page
+progress only with durable records and repair obligations. A bounded replay
+must be idempotent; it must not repeat the whole world or hide partial work.
+
+Acceptance requires local Postgres: unchanged replay, duration correction,
+preserved classifier fields, explicit clearing versus omission, duplicate row,
+late cancellation/reinstatement order, failed invalidation rollback and
+interruption/resume. SQL compilation and mocked sessions cannot establish these
+transaction guarantees.
+
+#### I3 — Complete derivation and index repair through one writer
+
+Maps to C3a/C4a/C4b. Make initial generation, research completion, classifier
+updates, provider refresh, CLI and background retry converge on the same
+experience derivation owner. Initial generators persist their output and
+schedule/mark its exact version; they must not race the worker through an
+independent direct Qdrant write.
+
+Use the generation captured at claim time for completion CAS. Require it from
+production callers. Protect concurrent external writes as well as database
+clears: reuse an existing lock/lease pattern for one active writer per entity,
+stamp the source generation in the index, and revalidate that generation on
+read. Row locks released before network work do not provide this guarantee.
+
+Select the concrete claim/lease storage during I2 schema review. Prefer extending
+the existing brief-state owner. Do not keep a database write transaction open
+across model/provider work. A CAS loss leaves a repair obligation; an uncertain
+external write cannot be reported as current. If stable point IDs cannot meet
+the late-write tests, use generation-specific derived points with an owner-held
+current generation and bounded old-point cleanup. This is an indexing choice,
+not a new domain identity.
+
+Return explicit success/retry/superseded/rejected results. Count only confirmed
+completion. Repair draft-to-complete state and its exact-version completion
+event through the existing event owner; retry must not imply another editorial
+publication or duplicate downstream synthesis. Distinguish metadata payload
+updates from text regeneration and embedding. A text fingerprint must include
+the effective embedding contract/model, not a few floats from the last vector.
+
+Archival should honor known end/duration and the selected temporal policy;
+preserve ongoing events and history. Deletion and cleanup must be bounded,
+resumable and unable to delete a newer rescheduled generation. Cancelled/expired
+records should stop consuming useful candidate capacity, with current owner
+checks enforcing eligibility before asynchronous cleanup finishes.
+
+Acceptance: provider update during embedding; two worker entry points; old job
+finishing after new; external write succeeds then DB acknowledgment fails;
+embedding returns no point; draft retry; payload-only change; no-op replay;
+cancel/reschedule during archival; backlog larger than one page. Validate the
+SQL interleavings with Postgres and vector behavior using the configured test
+collection/contract, without downloading a model in ordinary offline tests.
+
+#### I4 — Make orchestration truthful, isolated and budgeted
+
+Maps to C1b/C5a. Replace summary-string success with typed outcomes. Map partial,
+unsupported and unconfigured outcomes explicitly to existing checkpoint states
+plus structured details, or propose the necessary state migration. A failed
+provider cannot create a reusable `ok` checkpoint. CLI exit/result status must
+reflect incomplete required work while still allowing independent sources to
+succeed.
+
+Resume keys must include effective provider/operation, scope/window,
+adapter/policy version and relevant phase configuration. Separate recovering a
+specific interrupted run from deciding when to refresh its source again.
+Thirty-day city/step success is not an event freshness policy. Record page or
+batch progress where the provider supports safe replay; do not pretend an
+opaque cursor remains valid indefinitely.
+
+Track tasks spawned by this run and drain/cancel only those tasks. Remove the
+`asyncio.all_tasks()` ownership assumption. Propagate deadlines through fetch,
+retry and persistence handoff; cancelling `asyncio.to_thread` does not stop the
+underlying function. The design needs cooperative deadline/generation checks
+and bounded HTTP work so a timed-out seed cannot later publish silently.
+
+Reserve provider/time-window capacity atomically before each metered operation,
+including retries/pages/details and indexing as applicable. Reuse C1b's budget
+owner; do not create a second commercial ledger. The Redis city-count check
+and write must be a single reservation operation. Reconcile known/unknown
+charges and abandoned work. Keep city-scoped work/receipts separate from global
+maintenance; expose backlog rather than marking one batch globally complete.
+
+Acceptance: all providers fail; one fails; key missing; retry after partial page;
+resume after window/policy change; simultaneous last-allowance contenders;
+deadline with a live sync fetch; worker restart; and a sibling task that survives
+another run's cleanup. Deterministic fake-clock/fake-provider tests precede any
+metered supplier sample.
+
+#### I5 — Align current reads and connect the live engine
+
+Maps to C3a/C4a/C6a. Reuse the local-window logic introduced in Places; move
+shared semantics into the existing core occurrence/query owner as needed so
+planner, Trip, map, ambient and public Places readers agree. Specify start-
+within-window versus overlaps-window by purpose, including multi-day events,
+inclusive local end dates, recurring occurrences and unknown end/timezone.
+
+After vector selection, batch-read current canonical identity, state, relevant
+fields, source validity and content generation. Exclude stale/withdrawn matches
+and boundedly refill when invalid candidates exhaust the first page. Current
+Postgres `active` filtering already exists in several paths: preserve it and
+extend freshness/field checks rather than claiming all consumers trust vectors.
+
+Give Home/Places and the live engine exact subject/occurrence, current operation
+state, checked time/validity, uncertainty, owner/version and evidence
+dependencies. Keep a substantive interpretation readable if its independent
+evidence remains valid while today's ticket availability becomes unknown.
+The live engine decides feasibility, alternative, intervention or silence;
+Plan/action/notification owners authorize consequences. A cancellation is
+evidence for reassessment, not permission to cancel a person's arrangements.
+
+Acceptance: one correction reaches every affected receiving path; an old vector
+cannot revive cancelled or stale practical content; a valid historical account
+survives an unrelated operating change; no ordinary Home/Places GET starts or
+enqueues acquisition; public evidence does not create a save, watch or Life entry.
+Run schema sync/type checks if public models or routes change. Native QA belongs
+to any resulting surface change, not this planning pass.
+
+#### I6 — Operate selective public supply and retire duplicate paths
+
+Maps to C2b/C5a/C6a. Once the preceding lifecycle is reliable, connect bounded
+public preparation through the existing research/production owners to Foundry
+or the appropriate fact/experience writer, explicit editorial acceptance and
+current consumer reads. A proposed primitive or successful index write is not
+automatic Home admission.
+
+Start with an operator-selected scope and source policy: a local rolling event
+window plus durable explanations and practical place knowledge. Set item,
+operation, review and refresh limits. This collection is an integration scope,
+not a product wedge or a limit on the four product moves. Retain only selected
+material with supported reuse; request-specific provider results may expire
+without becoming catalog entries. Deepen useful objects when a real purpose
+warrants it, rather than briefing every imported product by default.
+
+Do not treat a missing-coverage signal as sufficient reason for automatic
+full-city generation. Keep legacy `seed_city_full` as an explicitly governed
+operator/compatibility path until its replacement has consumer readback and
+cost receipts; migrate its automatic caller deliberately. Existing `pipeline_runs`
+and API embed loops are not substitutes for the public preparation contract.
+
+Measure useful admitted units, rejection/partial reasons, current field coverage,
+refresh lag, reuse without reacquisition, cost per useful unit and repair lag.
+Test cold-start practical help, worthwhile unfamiliar options, substantive
+cross-place explanation and safe reuse together. Human review evaluates substance
+and reading burden; fixtures do not prove live market coverage or delight.
+
+Retirement inventory must name every remaining direct writer, completion event,
+index path and automatic trigger with an owner and removal condition. Update
+Ingestion/World Foundry/Workers FEATURE notes, Content Research Pipeline and this
+roadmap. Several notes currently contradict the code: Foundry now creates
+proposed editorial primitives and rebuilds transactionally; the city budget has
+a Redis path; ingestion uses a transaction. Do not broadly rewrite product canon
+or delete historical user/catalog records as this cleanup.
+
+### 13.8 Sequence, checkpoints and parallelizable boundaries
+
+| Order | Work | Review decision before expanding |
+| --- | --- | --- |
+| First | I0 contract/source inventory, I1 concrete normalization fixes, I4 task-isolation and truthful-result fixes | Are source modes and outcomes honest? Do unknowns survive typed reads? Can one failed run leave another job running? |
+| Next | I2 ordered persistence plus I3 shared derivation; I4 scope-aware resume and atomic reservations | Can a late response or old worker overwrite a newer correction? Does repeated unchanged ingestion avoid semantic work? |
+| Then | I5 consumer convergence, while I6 public preparation is wired through existing owners | Do the same identity, local window, status and validity mean the same thing across roots and practical judgment? |
+| Before expansion | Bounded I6 live run and retirement review | Do actual source access, useful yield, maintenance burden and costs justify wider supply? Which sources should remain query-only? |
+
+These are coordinated system packages, not a demand to prove one narrow user
+loop before designing the architecture. Temporal, durable-knowledge and
+cross-place cases constrain the shared contracts together. No calendar estimate
+is justified before the persistence/derivation design review.
+
+If parallel agents are requested during execution, independent assignments can
+cover adapter conformance, worker/orchestrator regression tests and consumer
+window inventory. One owner lands shared ingestion contracts, schema, generation
+semantics and cutover. Do not let concurrent workers independently modify
+`base.py`, `experience_briefs.py` and the derived writer around different version
+definitions. No agents were dispatched in this planning pass.
+
+Recommended first execution batch: I0's minimum contract, I1's currency/time/
+identity/page fixes, I4's false-success and unrelated-task fixes, and the I2/I3
+generation design with real transaction tests. Do not stop at adding an optional
+CAS argument while leaving the ingestion dirty writer or direct index writers
+outside that contract.
+
+### 13.9 Verification and migration checklist
+
+Current investigation receipt: **164 passed, 7 deselected**, backend
+`7a1d18070`, with model downloads disabled:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \
+  .venv/bin/python -m pytest -q -p no:cacheprovider \
+  tests/ingestion tests/world_foundry \
+  tests/core/test_smaudit_experience_brief_cas.py \
+  tests/core/test_experience_briefs_db.py \
+  tests/research_agent/test_generate_experience_briefs.py \
+  tests/research_agent/test_experience_warming.py \
+  tests/research_agent/test_checkpoint.py \
+  tests/workers/test_research_jobs_daily_cap.py \
+  tests/places/test_experiences.py \
+  tests/core/test_discover_map_experiences.py \
+  -m 'not requires_postgres and not requires_api_keys and not requires_dogfood_wedge'
+```
+
+Additional isolated probes in this pass confirmed:
+
+- nullable currency fails the internal Experience model;
+- normalized duration is absent from the actual upsert update/comparison, and
+  the upsert has no provider revision predicate;
+- an embedding returning no point is counted as successful;
+- a controlled provider exception produces `status=ok`, summary `test: ERROR`;
+- a pipeline with no steps cancels an unrelated task during cleanup (the
+  timeout was accelerated to 10 ms; no live job was affected).
+
+The prior status pass separately reproduced Bandsintown invented/naive time,
+Ticketmaster successful-page loss and omission of the embedding clear's expected
+version. Existing passing suites do not cover those full paths. The isolated
+probes used mocks at external/DB boundaries; they do not establish actual
+Postgres ordering, provider conformance or Qdrant crash recovery.
+
+Execution must add those regression paths and then exercise real local Postgres
+for ordered updates, transaction rollback, generation CAS and concurrent claims.
+Use bounded fake embeddings for most vector tests; explicitly provision any
+real-model integration environment. This workspace had critically low disk
+space during inspection, and the earlier broad test run attempted a large model
+download. Resolve local test capacity deliberately before broad integration
+testing; no files were deleted by this investigation.
+
+Migration rules:
+
+1. Record branch/working-tree state and recheck adjacent lanes before edits.
+2. Introduce backward-compatible readers before changing durable state shape;
+   do not rewrite existing prices, timestamps or locations from guesses.
+3. Inventory affected rows and repair a bounded cohort from supported source
+   evidence; malformed existing rows remain diagnosed, not silently relabeled.
+4. Rebuild only affected derived generations and verify consumer readback.
+5. Expand worker/source exposure only after correctness and budget receipts;
+   preserve valid reads when new acquisition is disabled.
+6. Commit scoped backend changes by explicit filenames; sync contracts when
+   required; record actual SHAs and tests here after each package.
+
+Completion means the supported source can be fetched, admitted, refreshed,
+reused, corrected and retired without inventing unknown facts, losing changes,
+silently expanding scope or treating failed work as success. A comprehensive
+world index, every source integration and a new set of mobile screens are not
+required for that outcome.
+
+Documentation verification for this amendment: lifecycle metadata passed;
+79 local link targets and 3 same-document anchors resolved; code fences were
+paired; `git diff --check` passed. The repository-wide living-link check found
+one unrelated existing `state` link in the September 4 interaction-kernel
+execution report. That file was left to its owning lane; this roadmap's checks
+passed independently.
