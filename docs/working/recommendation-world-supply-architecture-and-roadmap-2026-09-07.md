@@ -363,17 +363,22 @@ The defensible work is **what we ask, what we verify, how we judge it for this m
   not create a catalog row, dossier, vector or review write. Focused research
   coverage is **30 passed**; this is a consumer handoff receipt, not proof of
   supplier quality, identity resolution or canonical promotion.
-- **S3 / explicit private-preparation handoff — landed in backend `4ec001ab7`
-  with the bounded lease repair in `6a502fae2`, exact readback receipt in
-  `e944ac954`, and request-ref hardening in `72775a5bf`:** an explicit Source
-  request now carries a content-free `ResourceRef` plus optional
-  conversation/message provenance into the durable workflow, accepts only the
+- **S3 / explicit private-preparation handoff and first publication fence —
+  landed in backend `4ec001ab7` with the bounded lease repair in `6a502fae2`,
+  exact readback receipt in `e944ac954`, request-ref hardening in `72775a5bf`,
+  and the inner-write fence in `872e92691`:** an explicit Source request now
+  carries a content-free `ResourceRef` plus optional conversation/message
+  provenance into the durable workflow, accepts only the
   `source_preparation_request` reference kind, rejects non-explicit or
   mismatched trigger references, uses the deployment lease rather than a
   historical default, and returns an actor-scoped workflow/result locator
-  after successful readback. The submission adapter still does not enqueue,
-  claim or produce work; public preparation remains a separate owner and
-  activation decision. Focused workflow/worker coverage is **22 passed**.
+  after successful readback. The inner Source publication path locks and
+  verifies the claimed outer workflow in the same transaction, so a
+  cancellation or lease takeover that wins the row lock cannot publish stale
+  output. The submission adapter still does not enqueue, claim or produce
+  work; public preparation remains a separate owner and activation decision.
+  Focused workflow/worker/continuity/database coverage is **61 passed**;
+  broader PostgreSQL interleaving proof remains open.
 - **S1 / search-policy separation — landed in backend `84a650829`:** Tavily
   search depth is now an explicit tool/profile setting independent of result
   count. Direct legacy callers retain the prior fallback; current quick/deep
@@ -921,12 +926,14 @@ document.
 now landed: C0's nearby discovery/routing read boundary, C1's typed bounded
 result, explicit search-depth policy and traceable-source handling, and C2's
 write-free disposition mapper, plus the explicit private-preparation workflow
-handoff and bounded execution lease. The next work is intentionally gated
-rather than implied by these commits: canonical observation/primitive
-promotion, unknown-time event representation and field-specific repair, active
-retrieval readback, public preparation, and consumer activation still need
-their owner, schema/rights, or supplier decisions. No provider was activated
-and no root read was changed into a production research trigger.
+handoff, bounded execution lease and first inner-write publication fence. The
+next work is intentionally gated rather than implied by these commits:
+PostgreSQL cancellation/completion interleaving proof, canonical
+observation/primitive promotion, unknown-time event representation and
+field-specific repair, active retrieval readback, public preparation, and
+consumer activation still need their owner, schema/rights, or supplier
+decisions. No provider was activated and no root read was changed into a
+production research trigger.
 
 ### 11.7 Validation, migration and decision record
 
