@@ -32,10 +32,13 @@ this rebaseline supersedes them.
 [CV-1 is implemented and locally tested](complete-system-integration-roadmap-2026-09-05.md#92-cv-1-and-life-target-capability-execution-receipt--september-6):
 ordinary Home/Places reads can receive eligible prepared Source results without
 starting production. The next Integration package is CV-2, connecting real
-practical facts to common judgment. The first proof covers accepted
-current-condition uncertainty versus an unaccepted reachability failure on a
-saved Place; no separate route owner exists yet. Continue completing producer→renderer→destination→return
-chains. Cover practical
+practical facts to common judgment. The initial fixture covers omission policy;
+it does not establish actual reachability or survival of the saved door in a
+composed response. Follow the [September 7 CV-2 execution plan](complete-system-integration-roadmap-2026-09-05.md#94-cv-2-detailed-execution-plan--september-7):
+repair coverage/revision/time semantics, then connect the existing cache-only
+venue-status owner to a claim-specific assessment and actual root output.
+Specialized routes exist; a generic canonical route reader remains unavailable.
+Continue completing producer→renderer→destination→return chains. Cover practical
 preparation, complete-on-view understanding, human contribution and ordinary
 possibility across J1–J4. Unavailable owners remain explicit; a card's absence
 does not by itself justify a new semantic kind or product rule.
@@ -57,6 +60,25 @@ production, signals and cross-root contract changes; this lane owns Home and
 Places consumer composition, field/map/search/depth continuity and value review.
 
 ### Useful preparation receiving requirements
+
+September 7 practical-context requirements complement the preparation states
+below. These are planned CV-2 acceptance cases, using existing root forms:
+
+| Material / claim | Home and Places receiving behavior |
+| --- | --- |
+| Current visit suggestion | Fresh opening evidence may qualify “open now”; route, capacity and opening at arrival require their own facts. Closed/unknown status changes the dependent claim. |
+| Saved place or historical explanation | Retain the exact independent destination and useful content when optional practical evidence is absent. Do not erase the durable material with the visit-now offer. |
+| Friend's original contribution | Keep its attribution, wording and source scope; distinguish any computed practical assessment. Source withdrawal still removes dependent uses. |
+| Future/weekend possibility | Current `open_now` cannot establish future hours. Keep useful exploration without asserting unverified future feasibility or asking for more documentation. |
+
+Home should express the useful consequence for the person's current horizon;
+Places should provide substantive spatial exploration and relevant detail.
+Neither needs a new status dashboard. Test emitted content and exact
+continuations in ordinary Home and both Places v2 callers, with a varied
+portfolio that includes understanding, possibility, social material and
+practical help. C/D closes only when actual owner facts alter the appropriate
+output while independent value survives. The integration roadmap owns the
+implementation sequence and shared assessment contract.
 
 These are receiving expectations for packages A–E, not newly shipped kinds or
 permission to activate production. [The three concrete experiences](situated-value-decision-matrix-2026-09-06.md#12-useful-preparation-three-concrete-receiving-experiences)
@@ -88,6 +110,39 @@ alongside latency, reuse and cost. Written specimens and fictional supply are
 design evidence, not runtime or real-world availability receipts.
 
 ### September 6 portfolio checkpoint — owner-backed value is connected
+
+**September 7 receiving correction:** the
+[real-source NYC specimen and fresh-eyes review](nyc-newcomer-connected-home-specimen-2026-09-07.md#9-fresh-eyes-review-useful-but-not-yet-distinctive-enough)
+adds a sparse-context consumer case to J1–J4, not a new execution lane or
+replacement composition. Reinspection at backend `7b1d8a6b0` / mobile
+`38d3a6521` narrows the destination claims in the historical table below:
+
+- An `ANGLE` candidate carries a dossier ref, but the mobile
+  `places.open_entity` destination only selects venue/site/accommodation/
+  experience refs. Dossier-only destinations can fall back to Places root.
+  Direct dossier resource routing exists; that does not certify this tap path.
+- Addressed-note candidates carry both venue and handoff refs. The mobile
+  destination resolves the venue; exact handoff/source continuity in depth and
+  subsequent Ask remains unverified, not an accomplished end-to-end guarantee.
+- Root-destination Chat seeds handle graph and Trip refs, not venue/dossier-only
+  subjects. Audit separate entity Ask paths before claiming all contextual Chat
+  is missing; preserve the selected session and evidence, not merely its venue.
+
+These corrections supersede the corresponding exact-continuation wording below.
+The earlier candidate/renderer tests remain evidence of their narrower scope.
+
+| Existing package | Receiving requirement | Acceptance boundary |
+| --- | --- | --- |
+| A/B + CV-4 | Resolve the exact reading and contextual question subject | Destination-tap coverage, not only a valid candidate envelope. No generic-root fallback presented as exact continuation. |
+| C + CV-4 | Preserve context through optional depth, supported direct handoff and return | No mandatory Home→Places→Chat→Life sequence; changed/withdrawn state recomposes, and restart does not depend on an in-memory token. |
+| D + Life receiving owner | Distinguish Place bookmark, dated offer and retained reading; establish the approved save-to-Life projection | No duplicate save store, inferred visit or hidden watch. Places save support does not certify a Life record or generic loose-intent command. |
+| E + CV-2/CV-3 | Supply complete understanding, concrete possibility and proportionate practical checking before another prompt | Distinguish published terms from verified availability/fit; no custom production per Home open. Preserve human value when optional synthesis is absent. |
+
+The specimen's prior focused checks passed 44 backend and 57 mobile tests,
+not real-data journey or native visual acceptance. Review remaining user
+reconstruction and low-participation endings across the whole page; do not
+expand the candidate cap merely to match four written units. Integration
+retains A–E/CV sequencing. Recheck code and adjacent work before implementation.
 
 The first consumer delivery pass is now verified against the current code, not
 only against an envelope fixture. One bounded Home read can retain all four
