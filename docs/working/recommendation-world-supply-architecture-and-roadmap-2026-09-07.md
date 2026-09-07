@@ -917,12 +917,13 @@ document.
 **Execution status, September 7:** the provider-independent part of Wave A is
 now landed: C0's nearby discovery/routing read boundary, C1's typed bounded
 result, explicit search-depth policy and traceable-source handling, and C2's
-write-free disposition mapper. The next work is intentionally gated rather
-than implied by these commits: canonical observation/primitive promotion,
-unknown-time event representation and field-specific repair, active retrieval
-readback, public preparation, and consumer activation still need their owner,
-schema/rights, or supplier decisions. No provider was activated and no root
-read was changed into a production research trigger.
+write-free disposition mapper, plus the explicit private-preparation workflow
+handoff and bounded execution lease. The next work is intentionally gated
+rather than implied by these commits: canonical observation/primitive
+promotion, unknown-time event representation and field-specific repair, active
+retrieval readback, public preparation, and consumer activation still need
+their owner, schema/rights, or supplier decisions. No provider was activated
+and no root read was changed into a production research trigger.
 
 ### 11.7 Validation, migration and decision record
 
