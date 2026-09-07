@@ -1785,6 +1785,11 @@ The cases are committed but require a runnable SQLAlchemy/PostgreSQL
 environment before they can be counted as connected evidence; legacy lineage
 fallback and explicit restored-owner interleavings remain the next package.
 
+Commit `59cab4f88` extends the archived-target regression through explicit
+reactivation. The restored target's newer membership revision still blocks
+the stale transfer rollback, making restoration a current-authority boundary
+rather than an implicit permission to replay historical repair.
+
 | Lane/interface | Concrete dependency | Work that can continue here |
 | --- | --- | --- |
 | Capture/source owners | Exact custody/expiry/representation reads, current revision and authorized restore event; agree any missing transaction change before editing its producer | Receiver tests, replay, report and source-only organization using existing contracts |

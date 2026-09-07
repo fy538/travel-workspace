@@ -66,6 +66,7 @@ checkpoint.
 | R2-G lifecycle comparison correction | `e00123f3d` | Replacement replay compares resolution-kind values explicitly, preserving idempotent successor detection across equivalent enum instances. |
 | R2-G CAS-guarded affected-set repair | `c82f6ceb4` | `lifeorg05` captures target pre-state/post-revision evidence and reverses transfer lineage in reverse order; revoked resolutions restore source state, replacements can reapply successors, and stale/unrelated changes fail closed. |
 | R2-G repair lifecycle race coverage | `c6cc768fc` | Rollback now requires a redirected source and active targets; PostgreSQL regressions cover multiple transfers, later target detach with atomic no-partial-mutation failure, and archived target-owner fencing. Connected execution is pending an environment with SQLAlchemy/Postgres. |
+| R2-G explicit restore race coverage | `59cab4f88` | The archived-target regression now also restores the target explicitly and proves the old transfer remains blocked by the newer restored membership revision; no stale rollback can overwrite the restored state. Connected execution is pending the same environment. |
 
 The existing retained-source, Plan, Occasion, and Outcome projectors all reuse
 the same owner-fenced writer and return explicit `updated`/`withdrawn`/`stale`
