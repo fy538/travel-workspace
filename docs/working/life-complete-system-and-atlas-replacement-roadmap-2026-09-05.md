@@ -1663,6 +1663,8 @@ database:
 | Check | Result |
 | --- | --- |
 | Offline Life/event-bus selection | 179 passed, 11 provider/Postgres cases deselected |
+| Full `tests/life_projection` selection on isolated PostgreSQL | 171 passed |
+| Retry/enumeration unit selection | 9 passed |
 | Complete `tests/life_projection` connected selection | 11 passed, 157 offline cases deselected |
 | Connected report command with JUnit + `--life-rehearsal-report` | 2 passed; report schema `vesper.life-shadow-rehearsal.v1`, `supported_scope=pass`, `whole_portfolio_complete=false`, `serving_ready=false` |
 | Ruff on changed files | Passed |

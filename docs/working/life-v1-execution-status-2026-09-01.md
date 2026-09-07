@@ -33,7 +33,9 @@ now has an executed bounded slice. Backend commits `41e07297e`, `ca559b2f7`,
 coverage/report wiring, bounded indexed-owner reconciliation, and a
 deterministic owner-commit/publication race, plus live-set cleanup when a
 deferred backfill identity later resolves or is already current, and retryable
-enumeration failure handling. On isolated local database
+enumeration failure handling. The focused retry selection passed 9 tests and
+the full `tests/life_projection` selection passed 171 tests on the isolated
+database. On isolated local database
 `vesper_life_rehearsal_20260907` at migration head `lifebackfill02`, the Life
 offline selection passed 179 tests and the complete connected Life selection
 passed 11 tests; the report command passed 2 tests and emitted
