@@ -658,6 +658,15 @@ included. Native two-account, guest-web, connected PostgreSQL and operational
 fan-out evidence remain outstanding. “Committed on an isolated branch” is not
 “merged,” “enabled,” or “released.”
 
+The workspace `make contract-check` was also run after the snapshot commits.
+Snapshot validation and the active mobile projection passed; the final compare
+was intentionally against the separate dirty `travel-app` checkout on its
+pre-social branch and therefore reported the two expected isolated-branch
+differences (`handoff_action: dismiss` and `PlacesFriendActivity.venue_ids`).
+After the mobile branch is merged or its generated schema is advanced through
+the normal cross-repo workflow, rerun the check before claiming a synchronized
+contract.
+
 Update this ledger as implementation lands; retain the design brief for intent
 and the main roadmap for cross-system sequencing. Archive or renew this working
 plan by October 7 rather than let it become another stale source of build truth.
