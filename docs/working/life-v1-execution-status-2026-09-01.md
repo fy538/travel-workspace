@@ -28,10 +28,17 @@ not retrospectively passed. Source and future-intent dependencies follow the
 integration register and its explicitly unadopted decision proposals.
 
 The [September 7 operational packet](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#11-bounded-shadow-rehearsal-execution-packet--september-7)
-specifies the next runnable corpus, database scope, comparison report and race
-matrix. Code inspection found remaining lens-materialization, bounded traversal
-and recovery connections. Fixture/report implementation and database rehearsal
-are still planned; no test counts below certify that packet.
+now has an executed bounded slice. Backend commits `41e07297e`, `ca559b2f7`,
+`bfb26e6a9`, and `27258111c` add all-lens owner materialization, explicit
+coverage/report wiring, bounded indexed-owner reconciliation, and a
+deterministic owner-commit/publication race. On isolated local database
+`vesper_life_rehearsal_20260907` at migration head `lifebackfill02`, the Life
+offline selection passed 179 tests and the complete connected Life selection
+passed 11 tests; the report command passed 2 tests and emitted
+`vesper.life-shadow-rehearsal.v1` with `supported_scope=pass`,
+`whole_portfolio_complete=false`, and `serving_ready=false`. This is evidence
+for the supported Plan/linked-Occasion slice, not a populated whole-portfolio
+certificate.
 
 ## September 5 roadmap and evidence clarification
 
@@ -146,11 +153,13 @@ shadow-only.
 The workspace replay manifest and validator (`ed0568a`) pin
 W1–W6 transitions and their repair/must-not expectations.
 
-These are scaffolding and shadow-population seams, not a populated index,
-serving cutover, or claim that grouping quality is solved. Owner-specific event
-producers, a worker that rehydrates current owner/authorization state, paged
-backfill, and shadow parity at payload/grant/dependency level remain the next
-connected implementation work.
+These are scaffolding and shadow-population seams, not a populated whole
+portfolio, serving cutover, or claim that grouping quality is solved. The
+remaining connected work is the full seven-record/four-viewer corpus, paused-run
+and unresolved-work convergence, broad lease/acknowledgement interleavings,
+independent Anchor/Atlas/social/authored owner adapters, and final payload,
+grant, dependency, destination and cursor parity. The report intentionally
+keeps unsupported families and `serving_ready=false` visible.
 
 ## Landed checkpoints
 

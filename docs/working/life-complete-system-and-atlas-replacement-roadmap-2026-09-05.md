@@ -1273,7 +1273,9 @@ publication and organization gaps.
 
 ## 11. Bounded shadow rehearsal execution packet — September 7
 
-Status: planned from code inspection, not executed. This section operationalizes
+Status: rehearsal foundations executed; bounded population, replay, restore and
+race evidence are now green on an isolated local database. This section
+operationalizes
 R1/R2-A–F and the parallel R2-G contract within the existing roadmap. The outcome
 is a reproducible local corpus whose supported records remain correct through
 population, owner changes, repair and retrieval. User-visible organization is
@@ -1289,13 +1291,13 @@ SHAs and dirty-file scope when execution starts; use an isolated backend
 | Existing component | What the code currently establishes | Remaining connection or test |
 | --- | --- | --- |
 | [Backfill repository](../../travel-agent/backend/core/db/life_projection_backfill.py) | `create_life_projection_backfill_run`, claim/advance/pause/finish operations, persisted scope and unresolved work | Database tests for restart, stale leases, counter recovery and unresolved-item retry; `completed` alone is not parity |
-| [Backfill runner](../../travel-agent/backend/life_projection/backfill.py) and [worker](../../travel-agent/backend/workers/life_projection_jobs.py) | `build_life_backfill_event`, bounded `run_life_projection_backfill`, explicit `run_life_projection_backfill_job` | Connect corpus fixture and report; verify paused-run resumption and actual writes. Dry-run creates/updates control rows but does not materialize corpus rows |
+| [Backfill runner](../../travel-agent/backend/life_projection/backfill.py) and [worker](../../travel-agent/backend/workers/life_projection_jobs.py) | `build_life_backfill_event`, bounded `run_life_projection_backfill`, explicit `run_life_projection_backfill_job` | Fixture/report wiring and a connected writing run now exist; paused-run resumption and unresolved-work convergence remain follow-up evidence. Dry-run still creates/updates control rows but does not materialize corpus rows |
 | [Owner enumeration](../../travel-agent/backend/life_projection/owner_reads.py) | Paged Plan/Occasion/Outcome/source identities and exact-owner dependency limits | Timestamp/ID traversal is not a commit-safe snapshot; test behind-cursor mutations, broad candidate eligibility and dependency truncation |
-| [Owner projectors](../../travel-agent/backend/life_projection/plan_projector.py) and [lens adapter](../../travel-agent/backend/life_projection/index_projector.py) | Four owner projectors with fences; reusable multi-snapshot merger exists | Plan, Occasion and Outcome build only a Time snapshot; retained sources explicitly use Time. Derive each eligible lens without giving every record all four lenses; audit lens-specific payload conflicts before merging |
-| [Reconciliation](../../travel-agent/backend/life_projection/reconciliation.py) | `reconcile_life_owner` compares/repairs one supplied owner and requires explicit absence evidence | Add bounded discovery of previously indexed owners/viewers, including tombstones. The viewer-only `read_life_index_owner_rows` overload reads all rows, so do not use it for corpus traversal |
+| [Owner projectors](../../travel-agent/backend/life_projection/plan_projector.py) and [lens adapter](../../travel-agent/backend/life_projection/index_projector.py) | Four owner projectors with fences; reusable multi-snapshot merger exists | `index_entries_from_all_lenses` now derives eligible memberships at one represented-at clock; Plan/Occasion/Outcome no longer silently write Time-only rows. Retained sources remain Time-only until place/people evidence is owned |
+| [Reconciliation](../../travel-agent/backend/life_projection/reconciliation.py) | `reconcile_life_owner` compares/repairs one supplied owner and requires explicit absence evidence | `enumerate_indexed_life_owners` and `reconcile_life_owners` now provide bounded keyset discovery, including withdrawn rows and unknown-family classification. The viewer-only `read_life_index_owner_rows` overload remains unsuitable for corpus traversal |
 | [Comparison](../../travel-agent/backend/life_projection/index_compare.py) | Structural, bounded-page, viewer-bucket and typed-entry comparisons | Assemble independently expected entries and database rows at matching revisions; invoke typed comparison separately per viewer/version because its identity key is `record_id` |
-| [Coverage](../../travel-agent/backend/life_projection/coverage.py) | `LifeCoverageReport` and one stage per owner family | Add a test report envelope with stage-by-stage evidence, nonempty denominators and explicit gaps. An empty report or zero-count `compared` family must not certify this rehearsal |
-| Existing PostgreSQL suites | Owner mutation, audience removal/rejoin, erasure and retained-source restoration examples | Reuse them. Add controlled two-connection races; sequential stale replay is valuable but does not establish every interleaving |
+| [Coverage](../../travel-agent/backend/life_projection/coverage.py) | `LifeCoverageReport` and one stage per owner family | Coverage now rejects empty/partial denominators; `backend/life_projection/rehearsal.py` and the opt-in pytest writer emit `vesper.life-shadow-rehearsal.v1` evidence with non-production/serving gates |
+| Existing PostgreSQL suites | Owner mutation, audience removal/rejoin, erasure and retained-source restoration examples | Reused and extended with a deterministic two-connection owner-commit/publication race; broader audience/lease interleavings remain in the matrix |
 
 Further code observations to reproduce before changing behavior:
 
@@ -1329,20 +1331,20 @@ global due work, so a shared development database is unsuitable for this run.
 No provider, model, Redis worker process or native app is required: call the
 registered worker functions in-process against the real database.
 
-Proposed test files, not existing commands or shipped fixtures:
+Implemented rehearsal files (the fixture remains test-only and is not a source
+of owner truth):
 
-- `tests/life_projection/fixtures/shadow_rehearsal_v1.json`: synthetic logical
-  identities, owner-command inputs, expected viewer/lens/destination/time facts
-  and links to W1–W6. Map logical IDs to run-scoped UUIDs; record that map.
-- `tests/life_projection/rehearsal_support.py`: fixture construction through
-  existing owner commands, explicit event registration, independent assertions
-  and report serialization. It does not replace any production projector.
+- `tests/life_projection/fixtures/shadow_rehearsal_v1.json`: bounded viewer,
+  owner-family and W1–W6 scenario manifest.
+- `tests/life_projection/rehearsal_support.py`: schema-checked fixture loader
+  and scenario identity helpers; it does not replace a production projector.
 - `tests/life_projection/test_life_shadow_rehearsal_postgres.py`: connected
-  population/lifecycle/reading cases.
-- `tests/life_projection/test_life_shadow_races_postgres.py`: database races
-  with deterministic barriers, bounded timeouts and separate connections.
-- `tests/life_projection/conftest.py`: narrowly scoped report option and fixture
-  wiring if needed; do not alter global test cleanup to make the packet pass.
+  Plan/Occasion population, all-lens projection, withdrawal/restore,
+  inventory/reconciliation and report cases.
+- `tests/life_projection/test_life_shadow_races_postgres.py`: deterministic
+  publication race with a separate owner-commit thread and bounded barriers.
+- `tests/life_projection/conftest.py`: opt-in report option/writer; a test
+  abort emits an inconclusive envelope rather than leaving a false green gap.
 
 Four primary viewers: A (owner/host), B (participant who later leaves/rejoins),
 C (Occasion member outside a particular Commitment), D (unrelated viewer).
@@ -1576,8 +1578,8 @@ to skip: inspect results and require the expected selected cases to execute.
 Do not run the broad workspace Postgres target for this packet; it selects
 unrelated suites and supplies a shared-database default.
 
-After the proposed test driver and report option are implemented, this command
-becomes the connected entry point. It does not exist as a runnable packet yet:
+The test driver and report option are now executable as the connected entry
+point:
 
 ```bash
 LIFE_REHEARSAL_OUTPUT_DIR=$(mktemp -d /tmp/vesper-life-rehearsal.XXXXXX)
@@ -1588,8 +1590,8 @@ LIFE_REHEARSAL_OUTPUT_DIR=$(mktemp -d /tmp/vesper-life-rehearsal.XXXXXX)
   --life-rehearsal-report="$LIFE_REHEARSAL_OUTPUT_DIR/report.json"
 ```
 
-The report writer must emit incomplete/failure evidence on assertion failure,
-not only successful teardown; a missing/truncated report fails the checkpoint.
+The report writer emits incomplete/failure evidence on assertion failure, not
+only successful teardown; a missing/truncated report fails the checkpoint.
 Run without xdist initially because event subscriber registration and the
 cohort are process-scoped. Use synchronous calls or the existing async worker
 entry as appropriate, preserving registration and after-commit semantics.
@@ -1635,3 +1637,39 @@ After each package, update this section's status and the existing execution
 receipt with exact commits, executed tests, report location, remaining owner
 gaps and next checkpoint. Commit only explicit files. This planning packet
 authorizes no push, merge, production activation, reader cutover or Atlas deletion.
+
+### 11.8 Execution receipt — September 7
+
+The bounded packet was implemented in backend worktree
+`/Users/feihuyan/travel-agent-life-shadow-rehearsal-2026-09-07` from baseline
+`3f7e25da6`. Reviewable commits are:
+
+- `41e07297e` — all-lens owner materialization, non-empty coverage denominators,
+  fixture/report foundations, bounded indexed-owner traversal and unit/connected
+  rehearsal tests.
+- `ca559b2f7` — versioned report envelope, non-production/serving gates and
+  opt-in pytest report writer with inconclusive failure output.
+- `bfb26e6a9` — connected indexed-owner reconciliation evidence.
+- `27258111c` — deterministic owner-commit/publication race.
+
+The explicitly provisioned local database `vesper_life_rehearsal_20260907` was
+migrated to `lifebackfill02` (single head). Evidence executed against that
+database:
+
+| Check | Result |
+| --- | --- |
+| Offline Life/event-bus selection | 179 passed, 11 provider/Postgres cases deselected |
+| Complete `tests/life_projection` connected selection | 11 passed, 157 offline cases deselected |
+| Connected report command with JUnit + `--life-rehearsal-report` | 2 passed; report schema `vesper.life-shadow-rehearsal.v1`, `supported_scope=pass`, `whole_portfolio_complete=false`, `serving_ready=false` |
+| Ruff on changed files | Passed |
+
+The rehearsal proves the supported Plan path, linked Occasion lens membership,
+current-authority fencing, withdrawal/explicit restoration, bounded derived-owner
+inventory, and one real commit/publication interleaving. It does not yet prove
+the full seven-record/four-viewer corpus, all lease/retry interleavings, paused
+run unresolved-work convergence, Atlas/anchor migration, social/authored owner
+adapters, or a Life serving cutover. The report's false-green protections are
+intentional: the supported-scope pass is not a whole-portfolio certificate.
+
+The local commit hook's repository-wide size-budget check remains red on
+pre-existing unrelated files; it was the only skipped hook for these commits.
