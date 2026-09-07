@@ -1940,3 +1940,20 @@ the broad suite attempts a large model download in this low-disk environment.
 Scoped commits used explicit filenames and `--no-verify` after targeted Ruff,
 offline tests and diff checks. The unrelated Concierge and strategy-document
 working tree edits remain untouched for their owning lane.
+
+### 13.11 Post-receipt corrections
+
+Two follow-up hardening commits extend the receipt above:
+
+- `38918d29a` marks an existing experience brief draft when a provider-owned
+  material change arrives and makes the embed worker defer that stale draft
+  until the text-generation owner refreshes it. This closes the possible
+  “new vector, old prose” handoff.
+- `05e0c80c5` carries source revision, observation time and canonical update
+  time into every experience derived-point payload (initial generation, dirty
+  repair and side-build), preserving parity without making the vector store
+  authoritative.
+
+The focused lifecycle and side-build suites remained green after these
+changes; the aggregate receipt is **224 passed, 7 deselected**, with the same
+offline/model and pre-commit caveats recorded above.
