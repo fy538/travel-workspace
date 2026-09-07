@@ -1655,8 +1655,9 @@ optimistic without this distinction.
 
 ### 9.6 Private preparation and shared delivery execution plan — September 7
 
-**Status: SP-1 and effective lease timing are implemented; publication/cancel
-interleavings and shared delivery remain unimplemented and unactivated.** This
+**Status: SP-1, effective lease timing and the publication fence are implemented;
+PostgreSQL cancellation interleavings and shared delivery remain unproven,
+unimplemented and unactivated.** This
 is the Integration execution detail within CV-3/CV-4 and I2/I4, not another
 roadmap or product grammar. It supersedes older next-step language that starts
 with more worker infrastructure, repeats CV-2 A–D, or makes all content wait
@@ -1665,7 +1666,7 @@ and [contribution contract](../systems/contribution-and-consequence.md) retain
 authority over activation, use, retention, audience and repair.
 
 **Execution receipt — September 7:** backend commits `6a502fae2`,
-`4ec001ab7` and `72775a5bf` implement the first private-preparation boundary without adding a
+`4ec001ab7`, `72775a5bf` and `872e92691` implement the first private-preparation boundary without adding a
 runtime caller, queue, provider, prompt or mobile surface. The Source worker
 now claims with the effective deployment lease rather than the database's
 shorter default; the explicit submission adapter validates the `explicit_warm`
@@ -1673,13 +1674,16 @@ owner binding, retains a content-free request reference plus conversation and
 source-message identity, and preserves deterministic replay. Successful Source
 completion now carries a typed, actor-scoped workflow/result locator in its
 specialized receipt; request-ref kinds and deep-link construction are
-centralized and validated. Focused worker/workflow tests pass (**22**), and the
+centralized and validated. The inner Source publication path can now lock and
+verify the claimed outer workflow in the same transaction, so a cancellation
+or lease takeover that wins the row lock cannot publish stale output. Focused
+worker/workflow/continuity tests pass (**42**), and the
 offline root-projection plus workflow-API regression packet passes (**396**).
 Pre-commit's existing size-budget and status-guard baseline checks remain
 skipped for these commits; all other changed-file gates passed.
 
 The receipt does **not** claim a runtime request handler, PostgreSQL
-publication/cancellation linearization, a public-world supply path, worker
+interleaving evidence for every completion/cancellation ordering, a public-world supply path, worker
 registration, provider activation or Home/Places delivery. SP-2 still requires
 one transaction-level interleaving proof in which the outer workflow fence and
 the inner Source attempt/output write share a lock boundary; an in-memory
