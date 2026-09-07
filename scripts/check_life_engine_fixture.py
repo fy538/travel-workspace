@@ -31,8 +31,8 @@ ALLOWED_CHANGE_KINDS = {
 }
 
 
-def validate() -> list[str]:
-    data = json.loads(FIXTURE.read_text(encoding="utf-8"))
+def validate(path: Path = FIXTURE) -> list[str]:
+    data = json.loads(path.read_text(encoding="utf-8"))
     errors: list[str] = []
     if data.get("schema_version") != "vesper.life-engine-replay.v0.1":
         errors.append("unexpected schema_version")
@@ -49,6 +49,10 @@ def validate() -> list[str]:
         scenario_id = scenario.get("scenario_id", "<unknown>")
         if not scenario.get("owner_kinds"):
             errors.append(f"{scenario_id} has no owner_kinds")
+        if scenario_id == "W2" and {"plan", "occasion"}.intersection(
+            scenario.get("owner_kinds") or []
+        ):
+            errors.append("W2 must exercise ordinary life without Plan or Occasion owners")
         transitions = scenario.get("transitions")
         if not isinstance(transitions, list) or not transitions:
             errors.append(f"{scenario_id} has no transitions")
@@ -60,6 +64,13 @@ def validate() -> list[str]:
             event_ids.add(event_id)
             if transition.get("change_kind") not in ALLOWED_CHANGE_KINDS:
                 errors.append(f"{scenario_id} has unknown change_kind")
+            if transition.get("owner_kind") not in (scenario.get("owner_kinds") or []):
+                errors.append(f"{scenario_id} transition owner is not declared in owner_kinds")
+            if scenario_id == "W2" and (
+                transition.get("owner_kind") in {"plan", "occasion"}
+                or transition.get("change_kind") in {"plan_opened", "occasion_created"}
+            ):
+                errors.append("W2 cannot create or depend on a Plan or Occasion")
             for key in ("owner_kind", "owner_id", "owner_revision"):
                 if not transition.get(key):
                     errors.append(f"{scenario_id} transition missing {key}")
