@@ -1375,7 +1375,9 @@ they do not block the accepted read/judgment work.
   cache-only bridge for the canonical Place adapter, and exposes a typed
   `PlaceOperationalFact`. Cache failure, missing provenance and future
   observations remain unknown; no provider call, write or new owner is added
-  to root serving. Existing Places projection/actionability tests pass (**41**).
+  to root serving. Commit `3f7e25da6` also treats malformed or timezone-less
+  legacy observation timestamps as unknown instead of failing the owner read.
+  Existing Places projection/actionability tests pass (**41**).
 - **CV-2D / claim-specific practical assessment — implemented:** backend
   commit `07baa364c` adds an opt-in `place.open_now` assessment after owner
   reads and before common value admission. Fresh true evidence is supported,
