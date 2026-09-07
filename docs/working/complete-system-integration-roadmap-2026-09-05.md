@@ -1656,8 +1656,9 @@ optimistic without this distinction.
 ### 9.6 Private preparation and shared delivery execution plan — September 7
 
 **Status: SP-1, effective lease timing and the publication fence are implemented;
-PostgreSQL cancellation interleavings and shared delivery remain unproven,
-unimplemented and unactivated.** This
+the core PostgreSQL cancellation/publication interleaving is proven, while
+broader worker recovery and shared delivery remain unimplemented and
+unactivated.** This
 is the Integration execution detail within CV-3/CV-4 and I2/I4, not another
 roadmap or product grammar. It supersedes older next-step language that starts
 with more worker infrastructure, repeats CV-2 A–D, or makes all content wait
@@ -1676,14 +1677,16 @@ completion now carries a typed, actor-scoped workflow/result locator in its
 specialized receipt; request-ref kinds and deep-link construction are
 centralized and validated. The inner Source publication path can now lock and
 verify the claimed outer workflow in the same transaction, so a cancellation
-or lease takeover that wins the row lock cannot publish stale output. Focused
+or lease takeover that wins the row lock cannot publish stale output. Backend
+commit `ddad25e51` adds the real PostgreSQL proof for cancellation before
+publication and cancellation after publication (**7** tests pass). Focused
 worker/workflow/continuity tests pass (**42**), and the
 offline root-projection plus workflow-API regression packet passes (**396**).
 Pre-commit's existing size-budget and status-guard baseline checks remain
 skipped for these commits; all other changed-file gates passed.
 
 The receipt does **not** claim a runtime request handler, PostgreSQL
-interleaving evidence for every completion/cancellation ordering, a public-world supply path, worker
+interleaving evidence for every recovery ordering, a public-world supply path, worker
 registration, provider activation or Home/Places delivery. SP-2 still requires
 one transaction-level interleaving proof in which the outer workflow fence and
 the inner Source attempt/output write share a lock boundary; an in-memory
