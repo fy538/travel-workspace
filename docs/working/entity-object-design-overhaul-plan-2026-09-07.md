@@ -100,6 +100,11 @@ media retrieval, exact Life record destination, arrangement standing and
 optional useful/keep-words/reply actions remain gated by the dependencies below;
 no backfill has been run.
 
+Latest QA note: Metro preflight and the Entity Object Page doctor passed once
+the local bundler was started. The capture run reached the first Maestro journey
+but could not complete in this environment (no usable simulator/device); it was
+stopped after the retry began. This does not count as native visual acceptance.
+
 Retain:
 
 - V2 canonical presentation and full `{type, id}` action identity.
