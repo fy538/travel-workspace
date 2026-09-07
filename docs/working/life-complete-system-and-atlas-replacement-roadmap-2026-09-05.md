@@ -1755,8 +1755,16 @@ If an owner group is redirected and its active resolution changed, or a
 resolution was revoked after transfer, the callback returns a repair-required
 status instead of presenting a no-op as convergence. Missing owner groups and
 ambiguous split decisions are separately classified. This is a reporting and
-safety boundary; relation-level lineage and affected-set rebuilding remain the
-next implementation package.
+safety boundary; actual affected-set rebuilding remains the next implementation
+package.
+
+Commit `1e49ba0b5` adds per-membership transfer lineage in `lifeorg04` and a
+bounded repair-plan reader. Each accepted merge/alias transfer records the
+source and target membership IDs plus the source evidence/revision. Lifecycle
+reconciliation now exposes the exact affected set when available; it falls
+back to an explicit group rebuild requirement when older rows have no lineage.
+This package still plans the repair and does not reverse memberships or change
+Life readers. The local migration head is now `lifeorg04`.
 
 | Lane/interface | Concrete dependency | Work that can continue here |
 | --- | --- | --- |

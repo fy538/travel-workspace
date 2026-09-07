@@ -62,6 +62,7 @@ checkpoint.
 | R2-G target exclusion evidence | `7c5154740` | Connected merge coverage proves a target-side exclusion remains authoritative while source evidence is unioned. |
 | R2-G resolution lifecycle and owner trigger | `1854e4740` | `lifeorg03` adds explicit successor lineage and replay-safe, revision-bound revoke; Plan/Occasion owner publication invokes the existing organization-resolution application adapter. |
 | R2-G lifecycle repair reporting | `c718fc0cc` | Owner-triggered reconciliation reports missing, ambiguous, applied, and post-transfer repair-required states; it never treats a revoked/replaced transfer as a successful no-op. |
+| R2-G transfer lineage and repair inventory | `1e49ba0b5` | `lifeorg04` records source/target membership transfer lineage and exposes a bounded affected-set plan for later rebuild; no reverse mutation or reader cutover. |
 
 The existing retained-source, Plan, Occasion, and Outcome projectors all reuse
 the same owner-fenced writer and return explicit `updated`/`withdrawn`/`stale`
@@ -97,8 +98,12 @@ Backend, using the repository virtual environment:
 The migration chain reports one head:
 
 ```text
-lifeorg03 (head after the R2-G resolution lifecycle package)
+lifeorg04 (head after the R2-G transfer-lineage package)
 ```
+
+The current connected organization/projector selection is `33 passed`,
+including migration-backed replacement/revocation, transfer lineage, and
+owner-triggered repair classification.
 
 Mobile verification:
 
@@ -144,7 +149,7 @@ lint, import-cycle, boundary, timeout, and other applicable hooks pass.
   idempotency. Plan/Occasion owner-driven wiring now exists for the first
   deterministic owner-group path; identity reconciliation,
   accepted alias/split/merge persistence and unambiguous merge application now
-  exist; split choice, affected-set repair after a lifecycle change,
+  exist; split choice, affected-set rebuilding after a lifecycle change,
   model-assisted candidates,
   Outcome/source organization and Life serving remain downstream work. R8
   migration certification,
@@ -164,8 +169,9 @@ lint, import-cycle, boundary, timeout, and other applicable hooks pass.
    defects, unsupported capability, blocked infrastructure and revision drift.
 3. Require per-target durable delivery before continuously maintaining another
    shadow version; historical-only diagnostics must not appear live.
-4. Add lineage-aware affected-set repair for resolution replacement/revocation
-   (the lifecycle commands and owner trigger now exist). Keep split choices
+4. Implement the actual affected-set rebuild/reversal using the new transfer
+   lineage inventory (the lifecycle commands and owner trigger now exist).
+   Keep split choices
    ambiguous until an exact descendant is supported, then expand organization
    coverage to the next supported owner family. Keep exact retrieval/return
    acceptance, indexed serving, and Atlas retirement as separate downstream
