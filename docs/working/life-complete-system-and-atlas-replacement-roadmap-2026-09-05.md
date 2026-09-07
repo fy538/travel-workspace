@@ -1655,6 +1655,10 @@ The bounded packet was implemented in backend worktree
   from the persisted unresolved-work set, including already-current convergence.
 - `f9b687055` — transient enumeration failures now pause without advancing the
   family cursor; a later successful page clears the retryable family finding.
+- `b7425b548` — connected Plan owner mutations now exercise the durable outbox
+  publisher and current-authority consumer, including out-of-order replay.
+- `d7714e38c` — the connected delivery test isolates event-bus registrations so
+  its explicit publisher cannot leak asynchronous work into neighboring tests.
 
 The explicitly provisioned local database `vesper_life_rehearsal_20260907` was
 migrated to `lifebackfill02` (single head). Evidence executed against that
@@ -1663,7 +1667,7 @@ database:
 | Check | Result |
 | --- | --- |
 | Offline Life/event-bus selection | 179 passed, 11 provider/Postgres cases deselected |
-| Full `tests/life_projection` selection on isolated PostgreSQL | 171 passed |
+| Full `tests/life_projection` selection on isolated PostgreSQL | 172 passed |
 | Retry/enumeration unit selection | 9 passed |
 | Complete `tests/life_projection` connected selection | 11 passed, 157 offline cases deselected |
 | Connected report command with JUnit + `--life-rehearsal-report` | 2 passed; report schema `vesper.life-shadow-rehearsal.v1`, `supported_scope=pass`, `whole_portfolio_complete=false`, `serving_ready=false` |
@@ -1671,7 +1675,8 @@ database:
 
 The rehearsal proves the supported Plan path, linked Occasion lens membership,
 current-authority fencing, withdrawal/explicit restoration, bounded derived-owner
-inventory, and one real commit/publication interleaving. The unit-level backfill
+inventory, a real durable Plan outbox-to-consumer path with out-of-order replay,
+and one real commit/publication interleaving. The unit-level backfill
 retry cases additionally prove that resolved or already-current identities are
 removed from live unresolved work rather than retained as an append-only error,
 and that a transient enumeration read preserves its retry cursor. It does not
