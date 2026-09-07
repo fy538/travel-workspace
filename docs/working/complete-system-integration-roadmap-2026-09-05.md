@@ -1474,6 +1474,64 @@ a second save owner. Withdrawal and current-use repair must hold through
 production and continuation. Provider activation, optional continuity and
 watches remain separate decisions. CV-3 and the broader CV-4 remain open.
 
+#### Trigger-owner follow-up — scope repair before activation
+
+Reinspection found that naming an event was not enough to connect safe supply.
+`SourceOwnerChangeEventV1.scope.purpose` currently permits `source_refind` or
+`projection_repair`; it does not authorize a new generation job. Its opaque
+Intake references are also not automatically the exact Source opportunities
+accepted by the producer. Existing deletion/candidate-retraction paths already
+invalidate dependent production through `invalidate_source_contributions_for_source`.
+Do not duplicate that owner or turn the repair event into a new warm request.
+
+The canonical executor previously ignored work-item root scope, accepted an
+unowned workflow, and could continue automatic discovery after a requested
+Places context resolved to nothing. Backend `778494b62` corrects those prerequisites:
+
+- only explicit-warm items are supported by this executor until another
+  trigger has an implemented owner binding;
+- actor/key/unsupported-trigger failures are terminal contract failures, not
+  retryable provider failures;
+- an explicit Places context must resolve to the requested handle; blocking
+  resolution runs off the event loop so cancellation remains responsive;
+- root scope reaches continuity selection and new generation, without changing
+  the Sources' permissions or the root-neutral group identity;
+- wider cached output does not substitute for a narrower job or falsely count
+  as reuse. A scoped result remains readable by its matching root and cannot
+  appear on an excluded root.
+
+Local verification: **426 tests passed** across `tests/root_projection` and
+the root API/composition/practical-delivery suites. New connected cases cover
+Home-only and Places-only generation→readback→serving, plus missing/changed
+context, cancellation, missing actor and unsupported signal rejection. Imports,
+lazy-import inventory and changed-file lint passed. Tests use synthetic owner
+and persistence boundaries; there is no PostgreSQL, paid-provider or native
+receipt. API schemas, prompts and mobile surfaces are unchanged. Backend commit
+hooks passed except the same existing size-budget violations in unchanged
+files; that hook alone was skipped. Workspace links still report the existing
+`state` target in the September 4 arrangements execution report.
+
+**Recommended next trigger, pending founder interface approval:** an explicit
+private preparation request in the existing conversation/action workflow,
+such as preparing options for a named Place/time window. This is not a proposed
+new Home input card or a requirement to prepare before browsing. Bind the
+authenticated request identity, exact supported context, requested roots,
+current-use authority and finite deadline to the existing work item; store
+only its content-free handoff in the existing workflow. Preserve a useful
+immediate answer and report completion/failure where the person requested work.
+Source correction during the job must invalidate/recheck its dependencies,
+not renew its deadline or create a recurring mandate.
+
+Before wiring a runtime caller, settle the existing command/handler that owns
+this explicit request and its cancellation/expiry receipt. Adding a new tool,
+prompt or API contract requires its normal approval; no such change is implied
+by the trigger enum. Then test durable retry/deduplication and execution through
+canonical readback. Controlled provider measurement and Arq activation remain
+later gates. Intake-to-generation, generic background ticks and production on
+GET remain excluded. This packet closes execution-scope holes, **not CV-3's
+runtime supply connection**; the prior “named trigger-owner” next step was too
+optimistic without this distinction.
+
 ### Execution receipts (2026-09-07)
 
 - **CV-2A / operation-specific field coverage — implemented:** backend commit

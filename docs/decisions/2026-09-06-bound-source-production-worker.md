@@ -4,7 +4,7 @@ status: accepted
 owner: backend / product / cross-repo architecture
 created: 2026-09-06
 decided: 2026-09-06
-last_verified: 2026-09-06
+last_verified: 2026-09-07
 expires: 2026-12-06
 why_new: Names the future execution owner and activation boundary for optional Home/Places Source contribution production without adding a queue or model work to ordinary root reads.
 source_of_truth_for:
@@ -148,3 +148,21 @@ context loader remains a different Opening-result owner and is not substituted.
 existing structured provider, retained-production readback, and Places context
 owner. Controlled registration still requires an injected worker call and real
 cost/latency evidence; the factory itself performs no work at import time.
+
+### September 7 execution-scope correction
+
+Backend `778494b62` makes the default canonical executor support **explicit-warm** items,
+not a general signal subscriber. It rejects the other trigger labels until
+their concrete owner binding exists. Intake's source-refind/projection-repair
+events do not grant fresh-generation authority. Actor/key/unsupported-binding
+failures are terminal; missing requested Places context stops discovery.
+Synchronous context resolution no longer blocks worker cancellation.
+
+The work item's allowed roots now constrain selection and new production;
+broader cached production is not substituted for narrower work. This preserves
+Source permissions and group identity, so existing root serving can find a
+scoped result while refusing an excluded root. The affected local suite passes
+426 tests, including connected production/readback/serving scope cases. No
+runtime caller, new command, queue registration, prompt or production cohort
+is activated. The Integration roadmap records the explicit-request interface
+decision still needed before connecting supply.
