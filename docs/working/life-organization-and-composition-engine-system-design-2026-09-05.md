@@ -1402,9 +1402,11 @@ freshness fields; `evidence.py` defines a strict, owner-scoped evidence-unit
 envelope and `organization.py` provides policy-scoped period seeds plus a
 deterministic source-evidence adapter; and `organization_reader.py` exposes
 bounded immediate children and active membership pages with stale-epoch
-rejection. PostgreSQL tests cover freshness without command-revision churn and
-cycle-safe topology; the complete Life selection is green on the migrated local
-development database. This remains shadow-only and does not claim source
-evidence extraction, broader owner coverage, affected-set reconciliation,
-serving cutover or mobile integration. The roadmap §12.11 is the canonical
-receipt.
+rejection; and the materializer has an explicit, complete-set reconciliation
+mode that supersedes disappeared active relations while preserving exclusions
+and historical rows. PostgreSQL tests cover freshness without command-revision
+churn, cycle-safe topology, and replay-safe scoped reconciliation; the complete
+Life selection is green on the migrated local development database. This
+remains shadow-only and does not claim source evidence extraction, broader
+owner coverage, lifecycle repair callbacks, serving cutover or mobile
+integration. The roadmap §12.11 is the canonical receipt.
