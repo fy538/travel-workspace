@@ -57,6 +57,7 @@ checkpoint.
 | R2-G deterministic organization/control slice | `143c54079` | `lifeorg01` adds stable viewer/version-scoped group identities, evidence-backed memberships, and a revision-bound control ledger for rename, detach/exclusion, and exact Undo; learned clustering and serving remain out of scope. |
 | R2-G command-ledger race fence | `a6c21a0ca` | Rename, detach, and Undo claim the viewer/version/control-key idempotency boundary before mutating derived state; a concurrent duplicate rereads the committed control result. |
 | R2-G owner-projector organization bridge | `29d2a799b` | Existing Plan/Occasion consumers now materialize owner groups after successful index publication, archive groups on fenced withdrawal, and reactivate superseded memberships only on explicit restore; no new delivery path or canonical owner is introduced. |
+| R2-G resolution application | `04e9ab8fd` | A single active alias/merge target transfers memberships with deterministic evidence/exclusion preservation and redirects the source; multiple split targets remain an explicit ambiguity and do not move memberships. |
 
 The existing retained-source, Plan, Occasion, and Outcome projectors all reuse
 the same owner-fenced writer and return explicit `updated`/`withdrawn`/`stale`
@@ -138,7 +139,8 @@ lint, import-cycle, boundary, timeout, and other applicable hooks pass.
   rename/detach control ledger, including conflict-safe first-attempt
   idempotency. Plan/Occasion owner-driven wiring now exists for the first
   deterministic owner-group path; identity reconciliation,
-  alias/split/merge behavior, affected-set repair, model-assisted candidates,
+  accepted alias/split/merge persistence and unambiguous merge application now
+  exist; split choice, affected-set repair, model-assisted candidates,
   Outcome/source organization and Life serving remain downstream work. R8
   migration certification,
   read-time authorization, device QA, serving cutover, and Atlas retirement
@@ -157,10 +159,10 @@ lint, import-cycle, boundary, timeout, and other applicable hooks pass.
    defects, unsupported capability, blocked infrastructure and revision drift.
 3. Require per-target durable delivery before continuously maintaining another
    shadow version; historical-only diagnostics must not appear live.
-4. Apply the accepted R2-G identity resolutions to affected memberships and
-   owner-scoped replay/reconciliation for Plan and Occasion records; then add
-   explicit resolution replacement/revocation and expand organization coverage
-   to the next supported owner family. Keep exact retrieval/return acceptance,
+4. Connect resolution application to owner-scoped reconciliation and add
+   explicit resolution replacement/revocation. Keep split choices ambiguous
+   until an exact descendant is supported, then expand organization coverage to
+   the next supported owner family. Keep exact retrieval/return acceptance,
    indexed serving, and Atlas retirement as separate downstream gates.
 
 This receipt is evidence of the executed packages, not a release certificate.

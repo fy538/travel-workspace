@@ -1728,7 +1728,14 @@ viewer/version scoped; old handles remain resolvable, while a split returns all
 active descendants instead of silently choosing the first child. The migration
 head is now `lifeorg02`. Applying resolutions to affected memberships, chaining
 or revoking decisions, and exposing them through Life readers remain separate
-steps.
+steps; the first unambiguous alias/merge application is recorded below.
+
+Commit `04e9ab8fd` adds the bounded application step. A single active target
+(alias/merge) copies active or excluded memberships with deterministic evidence
+ union, preserves target-side exclusions, supersedes the old memberships, and
+ redirects the old group. Multiple active split targets return an explicit
+ ambiguity result and move nothing. Reapplication is a no-op after redirect;
+ resolution replacement/revocation and reader exposure remain separate.
 
 | Lane/interface | Concrete dependency | Work that can continue here |
 | --- | --- | --- |
@@ -1793,6 +1800,10 @@ The bounded packet was implemented in backend worktree
   alias/merge/split mappings with evidence and stable source/target handles.
   Resolution replay is idempotent and split reads preserve every active target;
   no membership rewrite or reader cutover is implied.
+- `04e9ab8fd` — applies one unambiguous active alias/merge resolution to the
+  derived membership layer with exclusion/evidence preservation, while leaving
+  multi-target splits explicitly unresolved. The redirected source group and
+  target membership updates are revisioned and replay-safe.
 
 The explicitly provisioned local database `vesper_life_rehearsal_20260907` was
 migrated to `lifeorg02` (single head). Evidence executed against that
@@ -1807,6 +1818,7 @@ database:
 | Connected report command with JUnit + `--life-rehearsal-report` | 2 passed; report schema `vesper.life-shadow-rehearsal.v1`, `supported_scope=pass`, `whole_portfolio_complete=false`, `serving_ready=false` |
 | R2-G organization proposal/materialization and PostgreSQL control sequence | 12 passed across the focused Plan/Occasion/organization selection; stable identity, evidence revision, replay, exclusion non-resurrection, stale readback, rename/detach, exact Undo, conflict-safe control insertion, owner-group archive, explicit restore, and projector callbacks |
 | R2-G identity-resolution registry and migration | 7 passed across the resolution/organization selection; idempotent alias, merge/split persistence, all-target split readback, and `lifeorg02` downgrade/upgrade |
+| R2-G unambiguous resolution application | 2 passed; merge membership transfer, target-side preservation, source redirect, idempotent reapplication, and explicit split ambiguity |
 | Ruff on changed files | Passed |
 
 The rehearsal proves the supported Plan path, linked Occasion lens membership,
