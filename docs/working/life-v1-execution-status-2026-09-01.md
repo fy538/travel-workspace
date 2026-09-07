@@ -28,7 +28,7 @@ not retrospectively passed. Source and future-intent dependencies follow the
 integration register and its explicitly unadopted decision proposals.
 
 **Architecture review and next plan — September 7:** the latest inspected Life
-backend is `f0a8d4f69` on its isolated branch, distinct from backend main
+backend is `b1ab469f0` on its isolated branch, distinct from backend main
 `7a1d18070`; current mobile is `f4401ef73` on the entity completion branch.
 The review passed **194 offline Life tests**, with **34** database cases
 deselected, and reproduced a discarded organization-repair result with an
@@ -84,6 +84,23 @@ unrelated root-route collection is excluded because this worktree lacks the
 pre-existing `openai` dependency; this environment limitation is not counted
 as Life evidence. Public reader wiring, full eligibility composition and
 serving cutover remain open.
+
+**M0 historical migration evidence — September 7:** commit `c4af8dfee`
+executes the real `lifeorg04 → lifeorg05` Alembic upgrade inside a disposable
+PostgreSQL schema. It preserves source evidence, records the conservative
+`legacy_rebuild_required` before-image status and sentinels, drops only the
+membership foreign keys intended by `lifeorg05`, and retains viewer/resolution
+ownership. Migration-specific and offline guards pass **10 tests**. No shared
+database migration or downgrade was run.
+
+**M5 quality measurement seam — September 7:** commit `b1ab469f0` adds a
+deterministic evaluator for required-link recall, false joins, exact-original
+findability and useful coverage. It is observational and can be embedded in
+the existing rehearsal measurements; it does not group records, call models
+or set thresholds. Five focused quality tests and the Life selection pass
+**232 tests** with the unrelated root-route collection excluded for the
+isolated worktree's missing pre-existing `openai` dependency. Evaluation
+worlds, thresholds and model experiments remain future work.
 
 The [September 7 operational packet](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#11-bounded-shadow-rehearsal-execution-packet--september-7)
 now has an executed bounded slice. Backend commits `41e07297e`, `ca559b2f7`,

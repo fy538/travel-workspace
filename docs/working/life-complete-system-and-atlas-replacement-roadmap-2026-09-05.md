@@ -24,8 +24,8 @@ supersedes:
 
 **Latest inspected checkpoint — September 7 architecture review and planning:**
 backend local `main` is `7a1d18070`; the latest Life rehearsal, organization,
-repair and scoped-reader packages remain on
-`codex/life-shadow-rehearsal-2026-09-07` at `f0a8d4f69`, not merged into
+repair, scoped-reader and evaluation packages remain on
+`codex/life-shadow-rehearsal-2026-09-07` at `b1ab469f0`, not merged into
 backend main. The branches have 65 main-only and
 46 Life-only commits at inspection; these counts do not describe equivalent
 amounts of Life work. Earlier Life foundation packages were integrated; that
@@ -3040,6 +3040,28 @@ test is excluded because this isolated worktree does not have the pre-existing
 a Life regression. This closes only the internal cursor boundary: public route
 wiring, complete authorization composition, scanned-candidate budgets and
 serving cutover remain M3 work.
+
+M0's historical migration obligation is now covered by
+`c4af8dfee` (`test(life): verify historical organization upgrade`). A
+disposable-schema PostgreSQL test seeds the pre-`lifeorg05` transfer table,
+runs the real Alembic upgrade, verifies preserved source evidence and lineage,
+checks the intentionally conservative `legacy_rebuild_required` and
+revision sentinels, confirms the membership foreign keys are removed while
+viewer/resolution ownership remains, and drops the schema in the same
+transaction. The migration-specific and offline guards pass **10 tests**.
+This is rollback evidence for the historical upgrade, not permission to
+downgrade or migrate the shared development database.
+
+The first M5 measurement seam is `b1ab469f0` (`feat(life): measure
+organization quality outcomes`). `measure_life_quality` deduplicates fixture
+identities and undirected joins, reports required-link recall, false-join rate,
+exact-original findability, useful coverage, and explicit denominators, and
+returns `None` for unmeasured zero-denominator rates. It performs no grouping,
+model call, or promotion decision; callers can place its stable dictionary in
+the existing rehearsal `measurements` payload. Five focused quality tests and
+the full Life selection pass **232 tests** with the unrelated root-route test
+excluded for the isolated worktree's missing pre-existing `openai` dependency.
+Quality thresholds, held-out worlds, model evaluation and Returns remain open.
 
 These receipts do not close M2's richer evidence contract, M3 bounded public
 reader composition, M4 mobile receiving, M5 evaluation/Returns, or M6
