@@ -98,6 +98,35 @@ committed as `6fefdb756` on the isolated Life worktree and the mobile patch as
 remains a pre-existing failure and was explicitly skipped for the backend
 commit; all other commit hooks passed.
 
+**Code-review closure — September 7:** the follow-up pass in the same isolated
+worktree is committed as `163b18e8b` (`fix(life): close organization and reader
+safety gaps`). It closes the remaining reviewed R1/R2 edges without changing
+the serving path or adding a second index: owner-self exclusions remain
+effective when `supports_occurrence` rows migrate to neutral containment;
+complete-set reconciliation requires the current per-group content revision;
+episode memberships can be explicitly restored while ordinary replay remains
+non-resurrecting; and organization evidence now preserves purpose/time-role
+metadata and rejects scheduled/refind evidence from occurrence relations.
+Topology checks serialize per viewer/version so disjoint concurrent links
+cannot close a longer cycle. Evidence refreshes advance content/read epochs,
+resolution repairs fence affected groups, and membership/child cursors carry
+viewer, version, group scope and freshness. Immediate child reads are bounded
+with an explicit continuation cursor. The Life corpus route now rejects
+non-object or incomplete cursor payloads as typed 422 errors before constructing
+the pagination model.
+
+The retained-source worker test now waits on its own durable outbox row rather
+than assuming a globally bounded repair sweep will claim that event first; this
+removes a local-queue ordering flake while preserving worker-path coverage.
+Validation: the complete `tests/life_projection` selection passed **228 tests**
+on the isolated PostgreSQL-backed environment; the focused migration,
+organization, reader and route selection passed **29 tests**; Ruff and
+whitespace checks passed. The commit hook's repository-wide size-budget and
+status-dead-gate checks remain pre-existing baseline failures and were skipped
+explicitly; all other applicable hooks passed. This is still shadow-index
+evidence only: no serving cutover, owner-producer change, migration, Atlas
+deletion or remote publication follows from this package.
+
 **Roadmap rebaseline — September 7:** implementation packages for R1/R2-A
 through F have landed. Their functions and tests do not complete every package
 exit. Fresh code inspection found Time-only owner materialization, a
