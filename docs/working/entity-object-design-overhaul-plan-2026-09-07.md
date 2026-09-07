@@ -93,7 +93,7 @@ or main-branch merge:
 | `c03677948` | Reset ephemeral research-arrival state on entity replacement | Prevents an old page’s arrival treatment surviving a reused route |
 | `6f0aa5319` | Compact map forwarding coverage | EntityLocationMap policy remains unchanged |
 
-The current route-level evidence is 8 focused suites / 100 tests plus a clean
+The current route-level evidence is 8 focused suites / 102 tests plus a clean
 TypeScript check. The branch remains internal and feature flags remain off by
 default. Native screenshot comparison, design-reference registration, owned
 media retrieval, exact Life record destination, arrangement standing and
