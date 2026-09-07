@@ -1121,3 +1121,28 @@ the proposed migration/API shape for the required approval, then execute selecte
 sending → original receiving → basic Life continuity and controls as one connected
 delivery. No new research pack, broad design sprint or guest identity system is
 needed to begin that work.
+
+### 10.8 Execution receipts — September 7
+
+The first baseline fixes are now committed on the isolated social candidate,
+without changing either primary checkout:
+
+- Backend `20d22e75b` refills conversation-history pages after terminal
+  relationship handoff messages are filtered. Its targeted conversation API
+  suite passes (164 tests).
+- Backend `05c87064b` adds a sender-scoped UUID handoff-history reader. It
+  includes terminal rows for owner reconciliation while the response projection
+  continues to redact terminal material. Relationship route + conversation
+  suites pass together (183 tests).
+- Mobile `946b418aa` adds the matching API/data/mock surface and bounded HTTP
+  query filters. The focused mock parity suite (6 tests), HTTP suite (84
+  tests), API surface parity suite (30 tests), typecheck and schema-bridge all
+  pass.
+
+These commits make sender control durable beyond the immediate composer session
+and close one pagination bypass; they do not establish general sharing,
+original-media receiving, Life refinding, or complete reader repair. The
+workspace OpenAPI snapshots remain unchanged until these isolated branches are
+combined with the current primary app/backend and the generated contract is
+regenerated once. Do not treat the endpoint as released or enabled from these
+branch-local receipts.
