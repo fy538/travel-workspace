@@ -364,13 +364,15 @@ The defensible work is **what we ask, what we verify, how we judge it for this m
   coverage is **30 passed**; this is a consumer handoff receipt, not proof of
   supplier quality, identity resolution or canonical promotion.
 - **S3 / explicit private-preparation handoff — landed in backend `4ec001ab7`
-  with the bounded lease repair in `6a502fae2`:** an explicit Source request
-  now carries a content-free `ResourceRef` plus optional conversation/message
-  provenance into the durable workflow, rejects non-explicit or mismatched
-  trigger references, and uses the deployment lease rather than a historical
-  default. The handoff still does not enqueue, claim, produce or expose a
-  result; public preparation remains a separate owner and activation decision.
-  Focused workflow coverage is **8 passed**.
+  with the bounded lease repair in `6a502fae2` and exact readback receipt in
+  `e944ac954`:** an explicit Source request now carries a content-free
+  `ResourceRef` plus optional conversation/message provenance into the durable
+  workflow, rejects non-explicit or mismatched trigger references, uses the
+  deployment lease rather than a historical default, and returns an
+  actor-scoped workflow/result locator after successful readback. The
+  submission adapter still does not enqueue, claim or produce work; public
+  preparation remains a separate owner and activation decision. Focused
+  workflow/worker coverage is **22 passed**.
 - **S1 / search-policy separation — landed in backend `84a650829`:** Tavily
   search depth is now an explicit tool/profile setting independent of result
   count. Direct legacy callers retain the prior fallback; current quick/deep
