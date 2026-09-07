@@ -92,7 +92,7 @@ Backend, using the repository virtual environment:
 The migration chain reports one head:
 
 ```text
-lifeorg01 (head after the R2-G organization package)
+lifeorg02 (head after the R2-G organization and identity-resolution packages)
 ```
 
 Mobile verification:
@@ -157,9 +157,10 @@ lint, import-cycle, boundary, timeout, and other applicable hooks pass.
    defects, unsupported capability, blocked infrastructure and revision drift.
 3. Require per-target durable delivery before continuously maintaining another
    shadow version; historical-only diagnostics must not appear live.
-4. Connect the landed R2-G materializer to owner-scoped replay/reconciliation
-   for Plan and Occasion records, then add the identity registry and accepted
-   alias/split/merge resolution. Keep exact retrieval/return acceptance,
+4. Apply the accepted R2-G identity resolutions to affected memberships and
+   owner-scoped replay/reconciliation for Plan and Occasion records; then add
+   explicit resolution replacement/revocation and expand organization coverage
+   to the next supported owner family. Keep exact retrieval/return acceptance,
    indexed serving, and Atlas retirement as separate downstream gates.
 
 This receipt is evidence of the executed packages, not a release certificate.

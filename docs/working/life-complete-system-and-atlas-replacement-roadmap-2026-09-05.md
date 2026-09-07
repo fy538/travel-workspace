@@ -1700,12 +1700,13 @@ organization quality, and a missing future composition owner does not block G's
 existing-source work.
 
 **September 7 checkpoint:** commit `143c54079` lands the first persistence
-slice in the isolated backend worktree. `lifeorg01` now stores stable
+slice in the isolated backend worktree. `lifeorg02` now stores stable
 viewer/version-scoped group identities, evidence-backed memberships, and
 revision-bound rename/detach/Undo controls. The materializer leaves excluded
-memberships excluded and updates evidence only when it changes. This is not yet
-owner-driven wiring, an identity registry, alias/split/merge reconciliation, or
-indexed serving.
+memberships excluded and updates evidence only when it changes. Plan/Occasion
+owner-driven wiring and the accepted alias/merge/split registry now exist; this
+is not yet affected-membership reconciliation, resolution replacement/revocation,
+broader owner coverage, or indexed serving.
 
 Follow-up commit `a6c21a0ca` closes the command-ledger race: rename, detach, and
 Undo now claim their globally unique viewer/version/control key with
@@ -1720,6 +1721,14 @@ memberships superseded; only an explicit restoration reactivates those derived
 rows. Missing current authority on a restore now fails instead of being treated
 as a withdrawal. The adapter is injected at the existing event consumer, so no
 second queue or Life-owned source transaction is introduced.
+
+Commit `2defe2692` adds the first identity-resolution registry on top of that
+seam. Accepted alias/merge/split decisions are evidence-backed, idempotent and
+viewer/version scoped; old handles remain resolvable, while a split returns all
+active descendants instead of silently choosing the first child. The migration
+head is now `lifeorg02`. Applying resolutions to affected memberships, chaining
+or revoking decisions, and exposing them through Life readers remain separate
+steps.
 
 | Lane/interface | Concrete dependency | Work that can continue here |
 | --- | --- | --- |
@@ -1780,9 +1789,13 @@ The bounded packet was implemented in backend worktree
   reactivate superseded memberships. Callback-level tests and PostgreSQL
   archive/restore evidence cover the connection; Outcome/source organization
   remains intentionally unimplemented.
+- `2defe2692` — `lifeorg02` adds an accepted identity-resolution registry for
+  alias/merge/split mappings with evidence and stable source/target handles.
+  Resolution replay is idempotent and split reads preserve every active target;
+  no membership rewrite or reader cutover is implied.
 
 The explicitly provisioned local database `vesper_life_rehearsal_20260907` was
-migrated to `lifeorg01` (single head). Evidence executed against that
+migrated to `lifeorg02` (single head). Evidence executed against that
 database:
 
 | Check | Result |
@@ -1793,6 +1806,7 @@ database:
 | Complete `tests/life_projection` connected selection | 17 passed, 165 offline cases deselected |
 | Connected report command with JUnit + `--life-rehearsal-report` | 2 passed; report schema `vesper.life-shadow-rehearsal.v1`, `supported_scope=pass`, `whole_portfolio_complete=false`, `serving_ready=false` |
 | R2-G organization proposal/materialization and PostgreSQL control sequence | 12 passed across the focused Plan/Occasion/organization selection; stable identity, evidence revision, replay, exclusion non-resurrection, stale readback, rename/detach, exact Undo, conflict-safe control insertion, owner-group archive, explicit restore, and projector callbacks |
+| R2-G identity-resolution registry and migration | 7 passed across the resolution/organization selection; idempotent alias, merge/split persistence, all-target split readback, and `lifeorg02` downgrade/upgrade |
 | Ruff on changed files | Passed |
 
 The rehearsal proves the supported Plan path, linked Occasion lens membership,
