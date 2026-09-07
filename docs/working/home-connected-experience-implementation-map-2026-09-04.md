@@ -894,16 +894,22 @@ of the Entity work is implied.
    facts. Preserve these commits; do not implement the old missing-action
    finding again. Remaining work is actual admission/render/navigation evidence,
    content completeness and honest edge-state behavior.
-2. **Semantic revision remains defective.** `_revision` in
-   `backend/root_projection/v2/compiler.py` removes only top-level expiry.
-   `with_value_contract` retains rolling expiry inside the hashed candidate.
-   Current mobile restoration requires the same whole-projection revision;
-   removing that guard would hide the underlying defect rather than repair it.
-3. **Exact continuation still has two interpretations.**
-   `firstOpenableRef` accepts either canonical-resolver or root-router success
-   and then uses a kind-priority heuristic. `hrefForRootResource` ignores an
-   exact Source path and opens `routes.youLifeRecord()` without a record.
-   A button's eligibility, label and actual target need one consistent result.
+2. **Semantic revision was defective at the inspection baseline, and is now
+   repaired.** Backend commit `e79f1eb61` removes the mirrored rolling
+   `value_candidate.expires_at` from the semantic hash while retaining
+   claim-specific practical expiry. Keep the whole-projection restoration
+   guard; it still protects genuinely changed projections. Do not reopen this
+   as a current implementation task unless a new nested-expiry regression is
+   reproduced.
+3. **Exact continuation is repaired for supported destinations.** Mobile
+   commits `fb9676419`, `c8d88437f`, and the connected Home receiving merge
+   make resolver eligibility, labels, and presses agree; exact Source/Outcome
+   selectors are preserved when an owner emits an allowlisted route, and
+   dossier subjects take precedence over incidental venue/context refs. The
+   remaining boundary is intentionally narrower: `firstOpenableRef` still
+   chooses a kind-priority resource only for units without an explicit typed
+   destination, while unsupported source paths honestly fall back or render no
+   control. Do not treat those fallbacks as exact original-source depth.
 4. **Nomination and read budgets need joined verification.** The Places adapter
    now accepts 24 cards; open-now variants can produce more candidates, while
    `build_home_portfolio` bounds each source to 24 items including metadata.
