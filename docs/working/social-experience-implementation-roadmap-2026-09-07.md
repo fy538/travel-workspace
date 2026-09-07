@@ -619,6 +619,45 @@ adding a second set of strategy documents.
 | S6 | Existing Content and scoped-use foundations; broader policy-gated work planned | Effective grants, substantive added value and all-consumer repair |
 | S7 | Continuous obligation; not certified here | Combined candidate, native/web/operational evidence and authorized exposure |
 
+## 9. Execution ledger — September 7, 2026
+
+This ledger records the first implementation batch after the roadmap was
+written. These commits are on isolated `codex/social-implementation-2026-09-07`
+branches in the two child repositories; they have not been merged or pushed by
+this planning thread. Contract snapshots are committed in the workspace root.
+
+| Slice | Backend evidence | Mobile / contract evidence | State |
+| --- | --- | --- | --- |
+| Low-pressure recipient dismissal | `7159a74a4` adds `place_handoff.dismiss.v1`, binds it to the existing recipient-authorized terminal transition, and keeps legacy `Keep` action resolution compatible | `91995b4f8` adds the UUID action type, quiet terminal copy, cache invalidation and no receipt publication; workspace snapshots in `d3b6bc1` | Landed on isolated branches; focused backend 37 tests and mobile 14 tests passed |
+| Exact friend-place doorway | `f9ce20f63` preserves bounded `venue_ids` aligned with friend place names and returns exact IDs from the existing Places query; snapshot `55f2bcb` | `894dfb6b8` makes only verified venue thumbnails open the canonical venue route and adds a profile doorway; legacy name-only rows remain informational | Landed on isolated branches; backend social-section tests (72) and mobile Places tests (47) passed |
+| Sender withdrawal affordance | Existing sender-authorized `revoke` transition is reused; no new authority or route | `8cf8f82e9` retains the returned handoff revision, offers local “Take it back,” and sends a revision-bound revoke; sender component tests (6) and TypeScript passed | Landed on isolated mobile branch |
+| Revocation/expiry projection invariant | Existing Home adapter already rejects terminal and expired handoffs; no runtime change was needed | `4f4ed556c` makes the invariant explicit for Home projection tests (revoked and expired material both omitted) | Landed on isolated backend branch |
+
+### What this batch proves—and does not prove
+
+The current batch proves a coherent, bounded pair/place specialization: a
+sender can leave a place note, a recipient can leave it aside without social
+telemetry, a sender can withdraw it immediately, and Places friend rows open a
+canonical profile or exact venue only when the server supplied that identity.
+Home and Places do not copy revoked or expired note material into their
+projections.
+
+It does **not** prove the full social portfolio. No multi-recipient audience,
+selected-photo/non-spatial writer, non-account guest, remote contributor,
+per-person mute/block policy, shared-object reader, scoped friend-source AI
+composition, or live-engine participation path was introduced. Those remain
+S0/S1–S6 work behind the decision and owner gates above. No Chat or Life root
+redesign was made in this batch.
+
+### Verification boundary
+
+Focused unit/component suites and the mobile TypeScript check passed for the
+changed slices. The backend pre-existing size-budget formatter gate required a
+targeted skip for the test-only commit; no unrelated formatting churn was
+included. Native two-account, guest-web, connected PostgreSQL and operational
+fan-out evidence remain outstanding. “Committed on an isolated branch” is not
+“merged,” “enabled,” or “released.”
+
 Update this ledger as implementation lands; retain the design brief for intent
 and the main roadmap for cross-system sequencing. Archive or renew this working
 plan by October 7 rather than let it become another stale source of build truth.
