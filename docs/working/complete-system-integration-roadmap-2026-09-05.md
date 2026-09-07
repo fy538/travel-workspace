@@ -279,8 +279,8 @@ provider activation or evidence-quality validation.
 
 | Additional responsibility | Authoritative context | Current package | Promised interface | Dependency / next checkpoint |
 | --- | --- | --- | --- | --- |
-| Content — active research task | Editorial canon; Strategy September 7 world-supply discussion; CV-3 below | Provider coverage, proactive supply, selective indexing and economics evaluation | Supported candidate identity, evidence, freshness, permitted reuse/display, continuation and acquisition/refresh cost | Integration receives a concrete supplier contract before adding provider-dependent runtime paths; private preparation and public retrieval retain distinct authority |
-| Social — proposed bounded task | Multiplayer Product Strategy; lightweight-arrangements handoff; Home J2 | Audit share-from-day, addressed recommendation and optional gathering as complete sender/recipient experiences | Original material, sender/recipient scope, source identity, expiry/withdrawal, exact response or owner continuation | Integration owns common composition, Life owns indexing; no new social store/feed or automatic dispatch |
+| Content — executing C0–C6 | Editorial canon; [world-supply §11](recommendation-world-supply-architecture-and-roadmap-2026-09-07.md#11-content-infrastructure-execution-plan); CV-3 below | Routing-read boundary, bounded acquisition, selective persistence and refresh | Supported candidate identity, evidence, freshness, permitted reuse/display, continuation and acquisition/refresh cost | Integration SP-4 receives the actual owner/readback contract; public supply and private preparation remain distinct |
+| Social — design handoff, idle at inspection | Multiplayer Product Strategy; lightweight-arrangements handoff; Home J2 | Complete sender/recipient experiences; consolidated cross-surface design exploration proposed | Original material, sender/recipient scope, source identity, expiry/withdrawal, exact response or owner continuation | Root projects own page composition; Integration owns common delivery and Life owns indexing. No new social store/feed or task dispatch here |
 
 **Post-investigation rebaseline, September 6:** the founder accepted two
 persistent engineering lanes: **Integration** owns connected value delivery and
@@ -309,7 +309,7 @@ market-research edits remain outside this refresh.
 
 | Lane / cadence | Authoritative execution plan | Current package | Promised interface | Dependency / receiving owner | Next checkpoint |
 | --- | --- | --- | --- | --- | --- |
-| **Integration** — persistent connected-value/live lane | This roadmap I0–I6; [Home/Places implementation map](home-connected-experience-implementation-map-2026-09-04.md) | CV-1 implemented; CV-2 A/B coverage and temporal repair, then C/D cache-backed venue facts into judgment (§9.4) | Field-specific current evidence and claim-specific practical assessment through existing root contracts; source/context revisions; no production on GET | Existing Places cache and owner reads; shared value judgment; Home/Places portfolio; Life exact destinations | First coverage/revision checkpoint, then actual open/closed/unknown facts change the appropriate offer while independent value survives |
+| **Integration** — persistent connected-value/live lane | This roadmap I0–I6 and §9.6; [Home/Places implementation map](home-connected-experience-implementation-map-2026-09-04.md) | CV-1 and CV-2 A–D have local receipts; SP-0 request/result binding and SP-2 execution/publication repair next | Exact authorized work/result identity, coherent cancellation and source repair, shared judgment/delivery without production on GET | Content's public supply; Home receiving/presentation; existing source owners; Life exact destinations | Review request semantics and effective lease/publication fences, then connect durable request → exact result → current delivery |
 | **Life** — persistent continuity lane | [Life R0–R8](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md) | R2 target-version continuity, coverage and reconciliation; then R2-G organization and R3–R5 reader/custody integration | Exact eligible record/ref, revision, bounded query/restore, withdrawal, and truthful population versus live-delivery status | Existing source/graph owner events; indexed serving requires parity and target delivery; D1 only for prospective writes | Default shadow continuity and future-target limitations explicit; coverage/parity evidence before any serving switch |
 | **Home** — bounded support within Integration | [Connected implementation map](home-connected-experience-implementation-map-2026-09-04.md), consuming I4 | Receiving renderer/destination failures from CV-1/CV-2; complete varied value, not more kinds | Existing typed producer-to-renderer mapping and exact return | Integration supply; Entities depth; Life readers | A named consumer gap closes; no separate generator or expanding feature backlog |
 | **Contribution and Capture** — bounded support | [CC-0–CC-6](contribution-contract-and-legacy-memory-migration-plan-2026-08-29.md#11-completion-plan--september-5) | Named lifecycle/correction failures exposed by connected value or Life | Effective gesture/authority, source refs, retry identity, lifecycle and owner readback | History proposal for history-specific expiry; Life consumes source events; D1 only for loose intent | Source and derivatives obey custody across use, retry and repair; immediate value precedes optional management |
@@ -985,7 +985,7 @@ document's creation.
 | --- | --- | --- |
 | I0 | Implemented/integrated at inventory level; live-engine path matrix and 2026-09-06 decision-alignment audit recorded | Keep D1 retained-intention ownership and family-specific D6 watch contracts gated; consume accepted general D2–D5 policy through I1–I3 adapters without treating D4's history/source-expiry proposal as adopted |
 | I1 | Integrated for request-clock, consequence fan-out, source/graph Life delivery, owner-fenced publication, audience/withdrawal repair, bounded enumeration, resumable backfill, reconciliation and full typed comparison; source representation transitions and Outcome adapters are no longer missing foundation | Establish population/coverage and target-version live delivery before indexed serving; PostgreSQL interleaving evidence remains distinct from offline tests |
-| I2 | Bounded reads, fast assembly, source storage/reuse, trigger/workflow identity, dark worker budgets/leases, canonical executor/context/provider binding and telemetry are implemented; CV-1 now connects current prepared results to ordinary Home/Places reads (§9.2) | Close the ordinary-read acquisition leak, then connect practical truth and the three supply modes (explicit investigation, reusable public/world preparation, and authorized private preparation) through judgment→delivery. Cost/cohort evidence and worker registration remain separately gated |
+| I2 | Bounded reads, fast assembly, source storage/reuse, work-item/workflow contracts, dark executor/deployment envelope and telemetry exist; CV-1 connects prepared reads. §9.6 identifies missing request binding and effective lease/publication connections | Execute §9.6 SP-0–SP-3 and receive Content through SP-4. Content owns the remaining routing-read repair. Cost/cohort evidence and worker registration remain separately gated |
 | I3 | CC-0/1 reader/authority/retry repairs, deadline/custody/processing-copy restrictions, source-owner handoff metadata, bounded writer conformance (itinerary, Atlas, Discover), and useful-first capture ordering are locally evidenced; history-specific lifecycle and owner commands remain gated | Capture coordinates Life readback/correction over the existing envelope; review the two September 6 decision proposals before dependent writes; native/content evidence stays deferred for current engineering |
 | I4 | Renderer promotion, result-set identity, source-backed revision, native returns, stale-source treatment and a four-value-family owner-backed Home portfolio are implemented and locally tested; rollout remains internal | Receive prepared results through existing native kinds and complete practical/social/continuity handoffs; real-data and native quality remain unevidenced by these tests |
 | I5 | Graph/consequence foundations present; movement signal→judgment shadow path is locally evidenced; lightweight experience remains incomplete | Complete adaptation and shared consequences over I1–I3, preserving purpose, plural participation, and meaningful stop/wait behavior |
@@ -1011,7 +1011,7 @@ portfolio. A package is reviewable scope, not the definition of Vesper.
 
 | Order | Outcome / implementation boundary | Exit and reassessment |
 | --- | --- | --- |
-| **CV-0 — ordinary serving is acquisition-free** | Trace every Home/Places root caller, including the nearby corpus/provider fallback and optional reachability/travel-time branches. Split read-only serving from explicit discovery/preparation while preserving useful corpus and prepared material on a miss. | Under cold-cache/thin-corpus fixtures, an ordinary Home/Places read makes no provider, model, enqueue or write call. Explicit map/search/investigation paths retain their own bounded acquisition authority. This is a boundary gate for all later CV packages. |
+| **CV-0 — ordinary serving is acquisition-free** | Content C0 owns the remaining routing-boundary repair; Integration consumes its whole-call-path evidence. Separate serving from discovery/preparation while preserving useful current material on a miss. | Cold-cache/thin-corpus root reads make no acquisition provider/model call, enqueue, attempt claim or new source/content-retention write. Existing authorized delivery/accounting receipts are not acquisition. Explicit discovery keeps its own authority. Gate rollout on this boundary, not independent SP/Content/Home implementation work. |
 | **CV-1 — prepared value reaches ordinary root reads** | Reuse current Source opportunity identities, `root_source_contributions`, canonical loaders, shared root composition, value admission and existing native anatomy. Add read-only admission of eligible retained results to Home and both Places v2 callers. Do not call the producer-or-reuse orchestration from GET. | Eligible complete-on-view value survives; misses, expired/revoked/changed sources and unavailable reads omit optional value while owner-backed material remains. Zero enqueue, lease claims, provider calls or new retention from a root read. |
 | **CV-2 — practical truth reaches common judgment** | Audit and join existing route/movement, Place conditions and Moment owners to the supported read mesh. Start from an available exact route/condition owner, not another coordinator or speculative `route.evaluate` implementation. | Known versus unknown feasibility changes a prepared possibility or live adaptation; stale facts do not become confident claims. Reassess owner coverage before widening a family. No new watch or provider integration implied. |
 | **CV-3 — supply modes reach judgment and delivery** | Connect three deliberately different paths to the same receiving system: (a) explicit investigation for a user request, (b) bounded reusable public/world preparation for approved places, topics or time windows, and (c) authorized private preparation through the existing Source work item, executor, lease and readback. Carry evidence, rights, freshness, cost and exact continuation into common judgment, live assessment and Home/Places composition. | Each supported value family has a named supply owner and an end-to-end fixture from candidate/evidence to useful output. A public candidate does not require private history; private production does not become public supply. Unsupported triggers remain unavailable. Controlled paid measurement/worker registration requires separate gates; no generation on launch/focus/GET. |
@@ -1577,7 +1577,7 @@ an interpreter mismatch: use the backend `.venv/bin/python` for verification.
 | Boundary inspected | Current evidence | Next scoped work / gate |
 | --- | --- | --- |
 | Explicit investigation | Existing Chat/action tools can perform bounded lookup, and the web/Places adapters are metered and guarded; the complete candidate→judgment→root receipt is not yet a single tested path | Name the receiving command and exercise a user-requested place/topic/time case. Keep acquisition request-scoped; do not make its result a watch or durable fact by default. |
-| Public/world preparation | Content has supplied provider/code/rights/economics findings; no activated public preparation job or reusable admitted world pool exists | Define a narrow supported market/topic/window and an admission/refresh contract. Use recorded fixtures first; provider account and retention approval remain gates. |
+| Public/world preparation | Existing research/city content, source observations, facts, primitives and derived indexes exist. Content C0–C6 connects their acquisition, selective retention, retrieval and refresh; this audit does not establish an activated purpose-aware everyday supply path | Receive those actual owners in SP-4 with explicit coverage and admission/refresh evidence. Do not rebuild a public store or infer that all public supply is absent. Provider account and retention approval remain gates. |
 | Private trigger identity | `build_source_contribution_work_item` supports authorized signal, explicit warm and source recomposition; no runtime caller found under `backend/` | Bind an explicit request first. A signal or source-owner repair event needs a separately implemented authority, deduplication, cancellation and expiry contract. Never substitute focus/GET for the missing event. |
 | Durable handoff | `create_source_contribution_workflow` reuses `agent_workflows`; no runtime caller found | Connect only the selected private trigger to its durable outbox/workflow handoff and exercise replay locally. An enum/workflow alone is not populated supply. |
 | Execution/readback | Dark worker, bounded canonical executor, Places context resolver and default producer factory exist with local tests | Verify private trigger→executor→durable readback with deterministic production first. Approved provider/cohort and cost evidence remain activation gates. |
@@ -1655,13 +1655,35 @@ optimistic without this distinction.
 
 ### 9.6 Private preparation and shared delivery execution plan — September 7
 
-**Status: planned, not implemented or activated by this section.** This is the
-Integration execution detail within CV-3/CV-4 and I2/I4, not another roadmap or
-product grammar. It supersedes older next-step language that starts with more
-worker infrastructure, repeats CV-2 A–D, or makes all content wait for practical
-specialists. The [accepted worker decision](../decisions/2026-09-06-bound-source-production-worker.md)
+**Status: SP-1 and effective lease timing are implemented; publication/cancel
+interleavings and shared delivery remain unimplemented and unactivated.** This
+is the Integration execution detail within CV-3/CV-4 and I2/I4, not another
+roadmap or product grammar. It supersedes older next-step language that starts
+with more worker infrastructure, repeats CV-2 A–D, or makes all content wait
+for practical specialists. The [accepted worker decision](../decisions/2026-09-06-bound-source-production-worker.md)
 and [contribution contract](../systems/contribution-and-consequence.md) retain
 authority over activation, use, retention, audience and repair.
+
+**Execution receipt — September 7:** backend commits `6a502fae2` and
+`4ec001ab7` implement the first private-preparation boundary without adding a
+runtime caller, queue, provider, prompt or mobile surface. The Source worker
+now claims with the effective deployment lease rather than the database's
+shorter default; the explicit submission adapter validates the `explicit_warm`
+owner binding, retains a content-free request reference plus conversation and
+source-message identity, and preserves deterministic replay. Successful Source
+completion now carries a typed, actor-scoped workflow/result locator in its
+specialized receipt. Focused worker/workflow tests pass (**20**), and the
+offline root-projection plus workflow-API regression packet passes (**396**).
+Pre-commit's existing size-budget and status-guard baseline checks remain
+skipped for these commits; all other changed-file gates passed.
+
+The receipt does **not** claim a runtime request handler, PostgreSQL
+publication/cancellation linearization, a public-world supply path, worker
+registration, provider activation or Home/Places delivery. SP-2 still requires
+one transaction-level interleaving proof in which the outer workflow fence and
+the inner Source attempt/output write share a lock boundary; an in-memory
+post-execution check would be insufficient. SP-3 and SP-4 remain the next
+receiving work after that boundary is reviewed.
 
 #### 9.6.1 Outcome and scope
 
