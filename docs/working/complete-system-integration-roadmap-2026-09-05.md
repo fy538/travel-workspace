@@ -199,15 +199,23 @@ continues to resolve product choices without becoming an engineering gate for
 already accepted contracts. Existing user-owned tasks are not automatically
 started by this register; temporary subagents execute explicitly bounded work.
 
-Rechecked implementation bases: workspace `1a2d2ac`, backend `329c91f87`, app
+September 6 implementation bases: workspace `1a2d2ac`, backend `329c91f87`, app
 `38d3a6521`. Backend `d37967e6f` already merged Life population/reconciliation;
 app `38d3a6521` already merged lens/refind continuity. Root design/inventory and
 market-research edits present at this checkpoint belong to concurrent work and
 are outside this package.
 
+**September 7 planning refresh:** audited backend base `7b1d8a6b0`, workspace
+base `2f78a82`, app base `38d3a6521`. CV-1 serving and Life restore/target
+capability work have advanced. The audit found incomplete practical-field
+coverage and judgment integration; the next implementation sequence is
+[§9.4](#94-cv-2-detailed-execution-plan--september-7). Its packages are planned,
+not additional implementation receipts. Concurrent design, inventory and
+market-research edits remain outside this refresh.
+
 | Lane / cadence | Authoritative execution plan | Current package | Promised interface | Dependency / receiving owner | Next checkpoint |
 | --- | --- | --- | --- | --- | --- |
-| **Integration** — persistent connected-value/live lane | This roadmap I0–I6; [Home/Places implementation map](home-connected-experience-implementation-map-2026-09-04.md) | CV-1 implemented and locally tested (§9.2); next CV-2 practical facts into judgment (§9.1) | Current, viewer-safe results through existing root contracts; exact source/context revisions; no production on GET; practical unknowns remain explicit | Existing Source storage/readers and Home/Places portfolio; Life exact destinations; no new intention/watch authority | Route/conditions improve an existing judgment; prepared supply and production activation remain distinct from read-path completion |
+| **Integration** — persistent connected-value/live lane | This roadmap I0–I6; [Home/Places implementation map](home-connected-experience-implementation-map-2026-09-04.md) | CV-1 implemented; CV-2 A/B coverage and temporal repair, then C/D cache-backed venue facts into judgment (§9.4) | Field-specific current evidence and claim-specific practical assessment through existing root contracts; source/context revisions; no production on GET | Existing Places cache and owner reads; shared value judgment; Home/Places portfolio; Life exact destinations | First coverage/revision checkpoint, then actual open/closed/unknown facts change the appropriate offer while independent value survives |
 | **Life** — persistent continuity lane | [Life R0–R8](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md) | R2 target-version continuity, coverage and reconciliation; then R2-G organization and R3–R5 reader/custody integration | Exact eligible record/ref, revision, bounded query/restore, withdrawal, and truthful population versus live-delivery status | Existing source/graph owner events; indexed serving requires parity and target delivery; D1 only for prospective writes | Default shadow continuity and future-target limitations explicit; coverage/parity evidence before any serving switch |
 | **Home** — bounded support within Integration | [Connected implementation map](home-connected-experience-implementation-map-2026-09-04.md), consuming I4 | Receiving renderer/destination failures from CV-1/CV-2; complete varied value, not more kinds | Existing typed producer-to-renderer mapping and exact return | Integration supply; Entities depth; Life readers | A named consumer gap closes; no separate generator or expanding feature backlog |
 | **Contribution and Capture** — bounded support | [CC-0–CC-6](contribution-contract-and-legacy-memory-migration-plan-2026-08-29.md#11-completion-plan--september-5) | Named lifecycle/correction failures exposed by connected value or Life | Effective gesture/authority, source refs, retry identity, lifecycle and owner readback | History proposal for history-specific expiry; Life consumes source events; D1 only for loose intent | Source and derivatives obey custody across use, retry and repair; immediate value precedes optional management |
@@ -1054,28 +1062,340 @@ native acceptance and release remain separately gated.
 
 ### 9.3 CV-2 practical-fact boundary — September 7
 
-The first CV-2 audit confirms a narrower, already-supported seam. The existing
-`place.read` owner read carries Place identity, evidence, current-condition
-omissions, and reachability omissions into the shared value judgment. A saved
-Place candidate remains admitted when only the explicitly accepted
-`current_conditions_unavailable` omission is present. The same candidate is
-suppressed when the owner returns an unaccepted `route_unavailable` omission.
-The underlying saved-place door remains a valid owner-backed continuity door;
-practical uncertainty changes whether Vesper offers it as value, not whether
-the durable save exists.
+The first fixture establishes **omission-policy behavior**: a candidate is
+admitted with an accepted `current_conditions_unavailable` omission and
+suppressed with an unaccepted `route_unavailable` omission. The latter is a
+fabricated test code; the canonical Place reader reports
+`reachability_unavailable`. The fixture does not establish an actual route
+failure, open/closed feasibility, or retention of the saved door in a composed
+response. Preserving independent saved material remains an acceptance
+requirement, not an outcome demonstrated by that test's name.
 
 Evidence: `tests/root_projection/test_home_portfolio.py::test_place_reachability_changes_value_judgment_without_erasing_the_saved_door`.
-This is an offline contract proof, not a live route/provider result. It does
-not establish a standalone `route_evaluate` owner, current traffic, weather,
-opening-hours, or provider coverage. Those facts should enter through existing
-Place/Moment owner reads until a named route owner is actually available.
+Narrow this test's description and add actual owner-to-consumer cases in CV-2.
+The subsequent audit ran 79 focused local tests across canonical reads,
+portfolio planning/composition, entity situation, RouteFact and weather-rescue
+behavior. Passing those tests did not close the uncovered paths below.
 
-The next CV-2 package is therefore an owner-coverage audit and one concrete
-real-data adapter at a time: identify which current practical fact is missing,
-name its canonical owner and expiry, add the smallest typed reader/omission
-contract, and prove that the existing judgment changes while the base material
-survives. Do not add a route coordinator, watch, provider call, or new durable
-context store as a consequence of this test.
+The implementation gap has two sides. The read plan overstates certain fields
+and assigns aggregate requirements to unrelated operations. Separately,
+common value judgment primarily checks read identity, state, evidence and
+accepted omissions; receiving a reference alone does not teach it that a
+venue is closed. CV-2 must connect a typed practical observation to the
+specific claim it can support or invalidate.
+
+### 9.4 CV-2 detailed execution plan — September 7
+
+#### Outcome and boundaries
+
+The next milestone is **practical context changes the value Vesper delivers**.
+Home can give a useful opening into this afternoon, Places can explain and
+compare relevant places, and both can qualify what is actually possible.
+An original friend note, saved place or historical explanation remains useful
+when a visit-now suggestion is unavailable. Life continues to retain and
+organize underlying material. These outcomes must not require another input
+exercise from the person.
+
+Keep the four moves — Make sense, Open possibility, Help it work, Carry
+forward — in one acceptance portfolio throughout execution. Venue status is
+the first practical adapter because an existing cache-only owner path already
+supplies relevant facts. It is a dependency-sized implementation package;
+Vesper's scope still spans everyday, social, practical and continuity value.
+Home must retain interesting, substantive value alongside operational help.
+
+Use two persistent lanes. Integration owns this sequence and its Home/Places
+consumers; Life continues its existing R2–R5 plan. Dates follow evidence and
+dependency completion. This plan does not impose a one-week launch or require
+the founder to freeze all product thinking before engineering proceeds.
+
+#### Code baseline and selected seam
+
+| Existing capability | Audited gap | Planning consequence |
+| --- | --- | --- |
+| [Portfolio planning](../../travel-agent/backend/concierge/agentic_facade/portfolio_reads.py) | Coverage includes Moment conditions although the reader reports them unavailable; aggregate fields are copied to each operation | Repair operation-specific coverage before using it to choose infrastructure |
+| [Canonical owner reads](../../travel-agent/backend/concierge/agentic_facade/canonical_owner_reads.py) | Place dependency revisions and evidence later than the represented clock need stronger checks | Make exact dependency and time semantics executable |
+| [Places cache](../../travel-agent/backend/places/cache.py) | Cache-only venue batches expose opening/closure facts with separate freshness rules; the DTO drops raw field deadlines and provider identity | Reuse this owner boundary for verifiable field-level facts |
+| [Places projection](../../travel-agent/backend/places/projection.py) | Aggregate fresh/stale does not establish each field's validity | Share fact interpretation where appropriate; preserve other callers until explicitly migrated |
+| [Value judgment](../../travel-agent/backend/lived_experience/value_composition.py) and [root composition](../../travel-agent/backend/api/services/root_composition.py) | Read validation does not interpret practical payload values; candidate feasibility is supplied separately | Add a narrow deterministic assessment after owner reads and before final judgment |
+| [RouteFact](../../travel-agent/backend/core/distance/route_fact.py), movement and [entity situation](../../travel-agent/backend/places/entity_situation.py) | Scoped route capabilities exist; generic canonical `route.evaluate` remains unavailable | Reuse specialist facts through an explicit input contract after the first integration package |
+| [Weather provider](../../travel-agent/backend/core/weather_provider.py) | Current observations and forecasts have different provenance/time contracts | Require adequate source/validity metadata for the particular use before generic admission |
+
+Moment `availability` currently describes active Opening context. It does not
+establish free calendar time, venue inventory or bookability. Entity catalog
+lifecycle status is also distinct from operational opening status. Preserve
+these distinctions in coverage reports and visible copy.
+
+#### CV-2A — correct the coverage contract
+
+Owner: Integration. Principal files: `portfolio_reads.py`, its focused tests,
+and the semantic catalog only where readiness declarations need correction.
+
+1. Map each visible field to its actual operation or named derived evaluator.
+   Preserve collective coverage: a field with no owner remains explicitly
+   missing rather than disappearing from the report.
+2. Remove unsupported Moment-condition claims. Audit other supported-field
+   declarations against returned payloads, including relationship, group and
+   source fields. A reference does not establish that the referenced facts
+   were read.
+3. Distinguish registration, executable reader readiness, field capability,
+   request-specific evidence and activation. Continue omitting the known-
+   unavailable generic route operation from routine read budgets.
+4. Narrow the existing omission-policy regression. Test actual reader output,
+   including `False`, `None` and explicit gaps; do not simply repeat the same
+   hard-coded capability map in the test.
+
+Exit: every required field has a named obligation or explicit gap. Route is
+not responsible for Place identity, and Source inspection is not credited
+with unrelated relationship facts. Supported candidates continue to compose.
+
+#### CV-2B — repair revision and temporal admission
+
+Owner: Integration. Principal files: canonical adapters and owner-read/value-
+composition tests; shared admission code only where a reproduced failure
+requires it.
+
+1. Validate pinned Place dependencies against the current owner revision.
+   A changed revision requires current recomposition or explicit mismatch;
+   never silently satisfy an old dependency with a different revision.
+2. Exclude evidence observed after the represented instant. Distinguish provider
+   observation, cache-write and request time. Where an owner lacks historical
+   reads, do not imply reconstruction of an earlier snapshot. An absent usable
+   timestamp remains an explicit limitation.
+3. Test validity again at composition completion. Facts expiring during other
+   reads cannot support newly emitted confident claims. Bound a dependent
+   result by the expiry of facts it actually uses; unrelated stale optional
+   facts must not expire all independent material.
+4. Cover changed/deleted/redirected identity, missing timestamps, cross-viewer
+   references and partial reads. Preserve audience/use checks and bounded
+   optional-read admission.
+
+Exit: the future-observation and pinned-revision regressions fail correctly,
+and ordinary current reads remain useful. One represented clock does not
+promise a global multi-owner database snapshot.
+
+**Checkpoint 1:** review A/B together with a corrected coverage report and
+test receipt. Confirm which remaining gaps are real before adding an adapter.
+This is the correctness baseline; the end-user milestone follows in C/D.
+
+#### Early consumer repair — CV-4 receiving support alongside CV-2
+
+The concurrent September 7 [Home receiving correction](home-connected-experience-implementation-map-2026-09-04.md#september-6-portfolio-checkpoint--owner-backed-value-is-connected)
+identified an existing exact-destination defect. Reinspection confirms that
+[`rootProjectionNavigation.ts`](../../travel-app/utils/rootProjectionNavigation.ts)
+supports direct dossier resources, but `places.open_entity` selects only venue,
+site, accommodation and experience refs. A dossier-only explanation destination
+therefore falls back to the Places root.
+
+Do this bounded mobile packet alongside A/B or C/D when an owner is available;
+it does not depend on venue status or justify another persistent lane:
+
+1. Route the supported dossier-bearing destination to the exact reading and
+   preserve the existing return context. Define subject precedence when refs
+   contain both a Place and a reading; do not choose arbitrarily by list order.
+2. Test the actual destination resolver and rendered tap for dossier-only,
+   mixed refs, invalid/deleted subject and changed-result return. A valid
+   candidate envelope alone is insufficient.
+3. Audit addressed-note/source continuity through depth and contextual Ask.
+   The root Chat seed helper only covers graph/Trip subjects; separate entity
+   Ask paths require inspection before deciding what is missing. Do not expand
+   this routing repair into a Chat redesign or claim all contextual Ask is absent.
+4. Keep saved Place, retained reading and dated possibility semantics distinct.
+   Standalone entity-save representation in Life remains a receiving-owner
+   question; report the needed projection instead of adding another save store.
+
+Exit: a surfaced explanation opens that explanation with supported return;
+source/Ask/Life gaps are either covered by actual journey tests or named as
+dependencies. The broader CV-4 portfolio remains open. The concurrent review's
+doc changes retain their ownership; this plan consumes, rather than absorbs,
+that work.
+
+#### CV-2C — admit cache-backed venue facts
+
+Owner: Integration; bounded Places-owner support can take the adapter after
+A/B's interface is stable. Reuse `backend/places/cache.py` and the Place owner
+payload in `backend/core/models/owner_read.py`.
+
+1. Add the smallest typed operational snapshot for `open_now` and
+   `permanently_closed`, carrying canonical venue identity, evidence/provider
+   identity, source version, observation time and field-specific expiry.
+   Preserve durable entity revision separately from transient observation
+   identity. Reuse an existing contract if it already preserves these meanings.
+2. Evaluate eligibility against the supplied clock. Preserve original
+   observation time; cache insertion and root assembly cannot renew evidence.
+   Check existing rows' payload versus column timestamps before choosing a
+   legacy fallback. Unverifiable provenance cannot support a confident claim.
+3. Keep lookup cache-only, bounded and batched, using existing provider policy
+   and venue mapping. Define deterministic tie handling and conflicting-source
+   behavior. Unresolved disagreement remains unknown.
+4. Distinguish miss, negative lookup, unsupported entity type, stale observation
+   and explicit closure. Lookup failure never means closed. `open_now` does
+   not prove opening at arrival or this weekend; interval reasoning needs
+   timezone and schedule semantics before admission.
+5. Use the existing Place read boundary for these conditions. Introduce another
+   owner family only if a concrete consumer demonstrates the need for an
+   independently addressable contract.
+
+Exit: actual cache-to-owner reads supply attributed values and field-specific
+gaps, without network access, enqueue, leases or writes during root serving.
+Unit cases and a local database reader test cover valid, stale, future, missing
+and conflicting rows. This establishes local integration; it does not establish
+real-world provider coverage or populated production supply.
+
+#### CV-2D — turn observations into useful output
+
+C and D form one connected delivery package, even if committed separately.
+Owner: Integration, including Home/Places consumers.
+
+1. Name the practical question attached to a candidate claim, initially whether
+   a venue is open now. Use a narrow typed assessment: supported, unsupported
+   or unknown, with reason, evidence and validity. “Open” is not complete
+   feasibility; avoid introducing a universal scoring framework.
+2. Assess after owner reads and before common judgment. Bind the result to the
+   claim it supports. Existing `feasible` or posture flags cannot substitute
+   for missing travel time, capacity or opening-at-arrival evidence. Exercise
+   all three states rather than treating missing information as `True`.
+3. Use existing root anatomy and destinations. Revise or withdraw a dependent
+   visit-now offer when closed or unverifiable. Preserve valid browsing,
+   explanation, the independent saved door and original attributed messages.
+   Permanent closure may affect current visit suggestions more broadly while
+   the historical record and social source remain independently useful.
+4. Home emphasizes the temporal consequence; Places supports exploration and
+   detail. Avoid duplicating all status information or rewriting a friend's
+   note as generated copy. Suggest an alternative only when its own facts
+   support it.
+5. Exercise Home and both Places v2 callers through production composition.
+   Assert actual content/claims and preserved owner destinations, not just an
+   intermediate candidate or accepted omission code.
+
+| Evidence/event | Dependent practical output | Independent value |
+| --- | --- | --- |
+| Fresh `open_now=True` | May support “open now”; no implied arrival, capacity or route guarantee | Existing exploration and source remain |
+| Fresh `open_now=False` | Revise/withdraw immediate-open claim; no invented reopening time | Saved place, history, explanation and friend note remain reachable |
+| Missing/stale/future/conflicting status | No confident opening claim; a worthwhile exploration can remain with the relevant limitation | No demand to re-document the place to rescue the feed |
+| Fact expires during assembly or source changes | Reassess/remove the dependent assertion, preserving exact current refs | Unrelated valid material survives |
+| Friend note withdrawn | Remove that note and results whose use depends on it | Independent public facts and viewer-owned material retain their own eligibility |
+
+**Checkpoint 2:** compare composed portfolios across ordinary NYC, emerging
+weekend, trip disruption, post-return curiosity and addressed social material.
+Review useful substance, low input burden, exact continuation and bounded cost
+together. A page containing only warnings does not pass. Use local tests for
+this checkpoint; native acceptance remains separately recorded and deferred.
+C/D closes when actual facts change the appropriate output and the independent
+material demonstrably survives in the response.
+
+#### CV-2E — extend through existing practical specialists
+
+After checkpoint 2, route/movement evidence is the next candidate when the
+portfolio contains a concrete timing question. Reuse RouteFact and routing
+policy. Specify destination, authorized origin, origin quality/age, mode,
+departure/arrival time, intended use, provider policy, observation identity
+and expiry. Origin remains request/session scoped; a previous route is not
+permission for background location.
+
+Entity situation, movement and leave-by demonstrate scoped capabilities. Root
+composition should not call an object-page HTTP endpoint or start a provider
+lookup to imitate them. Identify an authorized owner already supplying an
+eligible observation. If absent, name the missing input/refresh contract first.
+Keep canonical `route.evaluate` unavailable until that contract and adapter
+work. Radius fallback cannot certify route feasibility; current weather cannot
+certify a forecast.
+
+Use deterministic local observations to test stale origin, future observation,
+expiry, degradation, policy mismatch and unavailable routes. Add weather or
+future-hours reasoning when a named result needs it and its fact contract is
+adequate. This sequence does not authorize a provider, durable watch or scheduler.
+
+#### Following milestones: supply, continuity and contraction
+
+| Stage | Work/dependency | Exit evidence |
+| --- | --- | --- |
+| **CV-3 supply completion** | Trace existing accepted trigger → work item → bounded executor → stored result → current-use validation → CV-1 consumer for explanation, possibility and addressed contribution | Local end-to-end reuse, failure, cancellation, revocation, late completion and useful fallback; distinguish actual supply from empty supported renderers. Paid activation follows the accepted worker decision. |
+| **Parallel Life R2 → R2-G → R3–R5** | Owner/target coverage and reconciliation, then deterministic organization and exact readers/custody; Integration consumes ref, revision, restore/withdrawal and target-capability contracts | Population, delta continuity, viewer parity and withdrawal evidence before indexed serving. Future-target shadow builds are not live delivery. This work need not wait for venue status. |
+| **CV-4 consumer completion** | Exact Home/Places → source/entity/arrangement → Life destinations, return and changed-source repair; bounded Capture/Entity/Plan help for named receiving failures | Varied connected value, social attribution and private/public separation survive correction and return without duplicate objects or forced inputs |
+| **Replacement-bound contraction** | Remove superseded readers/screens in caller-inventoried batches; retain booking evidence/external continuation and deterministic expense correctness | Working replacement destination, remaining-obligation inventory, deletion tests and local regressions before removal |
+
+Inspect the full portfolio, remaining user work, duplicate ownership, source
+availability, latency and cost at each checkpoint. Reorder when evidence shows
+a different binding constraint. Supply-path inspection can proceed alongside
+CV-2; shared composition changes land serially. Consumer quality and supply
+must not wait indefinitely for “all infrastructure” to finish.
+
+#### Execution and verification
+
+- First batch: A and B as separate reviewable commits, then checkpoint 1.
+  Second batch: C and D with an integrated receipt, then checkpoint 2.
+  The independent early CV-4 destination packet may land alongside either.
+  Later batches follow the dependencies above. Each receipt names repo SHAs,
+  changed contracts, tests and remaining gaps. This refresh implements none
+  of these planned packages.
+- Keep Integration and Life persistent. Bounded cache-adapter work or an
+  exact-destination repair or regression audit can run in parallel once
+  interfaces/files are fixed. Integration owns landing shared owner-read, judgment, composition and
+  generated-contract changes. This plan does not start additional tasks.
+- Run affected portfolio, canonical-read, value-composition, Places cache/
+  projection and Home/Places API tests. Add local database tests for the cache
+  join, no-provider/no-write assertions, optional-read saturation and
+  completion-time expiry. Record actual counts and baseline failures; earlier
+  receipts do not replace rerunning affected suites.
+- Classify typed-boundary changes through backend task intake. API model/route
+  changes require workspace `scripts/sync-types.sh`, review of both OpenAPI
+  snapshots and generated mobile types, then typecheck and focused renderer/
+  navigation tests. Internal adapters alone do not justify new mobile kinds.
+- Check branch/status before touching each repo and stage explicit owned files.
+  Preserve concurrent Life/design/strategy work and attach dependent repo SHAs
+  to cross-repo receipts.
+- Reassess before a second owner/store, new write authority, undocumented
+  history/watch semantics, provider execution, unbounded root work, or an
+  inability to preserve independent material. Report the concrete conflict;
+  unrelated accepted work can continue.
+
+Recommended defaults are cache-backed venue facts first, claim-specific
+consequences, specialist-owner reuse and existing root forms. Loose intention,
+optional history, watches and activation retain their separate decisions;
+they do not block the accepted read/judgment work.
+
+### Execution receipts (2026-09-07)
+
+- **CV-2A / operation-specific field coverage — implemented:** backend commit
+  `153cf746b` gives each semantic operation its own requested-field set instead
+  of copying a requirement's aggregate fields to every operation. The Moment
+  reader no longer claims current conditions. The focused portfolio suite
+  passes **17 tests**, including a collective-coverage regression. Readiness,
+  field capability, evidence and activation remain separate axes.
+- **CV-2B / Place revision and represented-clock admission — implemented:**
+  backend commit `c15068fcb` rejects stale pinned Place/transport-hub/entity
+  revisions and owner rows updated after the requested represented instant.
+  Focused canonical-owner collection remains environment-blocked in this
+  checkout because the `openai` package is unavailable; the changed modules
+  pass `compileall` and lint. The new regressions are committed but require the
+  normal dependency-complete run before they are a green runtime receipt.
+- **CV-2C / cache-backed venue facts — implemented:** backend commit
+  `21f2e3085` preserves provider/place identity, provider observation time and
+  field expiry metadata in the existing cache reader, adds a synchronous
+  cache-only bridge for the canonical Place adapter, and exposes a typed
+  `PlaceOperationalFact`. Cache failure, missing provenance and future
+  observations remain unknown; no provider call, write or new owner is added
+  to root serving. Existing Places projection/actionability tests pass (**41**).
+- **CV-2D / claim-specific practical assessment — implemented:** backend
+  commit `07baa364c` adds an opt-in `place.open_now` assessment after owner
+  reads and before common value admission. Fresh true evidence is supported,
+  fresh false or permanent closure suppresses the dependent candidate, and
+  missing/stale evidence is unknown while independent candidates remain
+  eligible. The focused value-composition suite passes **13 tests**. Existing
+  producers do not claim this question until their visible copy is ready.
+- **CV-4 / exact editorial destination — implemented:** mobile commit
+  `c8d88437f` makes a `places.open_entity` destination prefer its exact dossier
+  subject (including when a context ref is also present), preserving the root
+  return token. The focused navigation suite passes **15 tests** and app
+  typecheck passes.
+
+These receipts establish local implementation and focused contracts, not live
+provider coverage, populated supply, native visual acceptance or production
+activation. The next execution step is to run the dependency-complete
+canonical-owner suite, then wire `practical_question` into one reviewed
+producer and visible Home/Places anatomy before broadening route/movement
+coverage. The Life lane remains independent and its current commits are not
+repeated here.
 
 ### Execution receipts (2026-09-05)
 
