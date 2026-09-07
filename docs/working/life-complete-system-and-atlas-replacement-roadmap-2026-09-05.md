@@ -1663,6 +1663,12 @@ The bounded packet was implemented in backend worktree
   authority consumers; the generic handler no longer double-writes or loses
   Outcome audience dependency tokens. Connected delivery coverage includes
   Plan, Occasion and shared Outcome.
+- `949fdd524` — `require_handler=True` now requires an explicit owner-consumer
+  acknowledgement; an unrelated subscriber returning `None` cannot establish
+  durable publication completion.
+- `09d6f9b69` — connected PostgreSQL evidence now covers persisted backfill
+  pause/restart, stale backfill-lease fencing, and outbox lease reclaim/lost
+  acknowledgement.
 
 The explicitly provisioned local database `vesper_life_rehearsal_20260907` was
 migrated to `lifebackfill02` (single head). Evidence executed against that
@@ -1670,23 +1676,28 @@ database:
 
 | Check | Result |
 | --- | --- |
-| Offline Life/event-bus selection | 179 passed, 11 provider/Postgres cases deselected |
-| Full `tests/life_projection` selection on isolated PostgreSQL | 179 passed |
+| Offline Life/event-bus selection | 165 passed, 17 provider/Postgres cases deselected |
+| Full `tests/life_projection` selection on isolated PostgreSQL | 182 passed |
 | Retry/enumeration unit selection | 9 passed |
-| Complete `tests/life_projection` connected selection | 11 passed, 157 offline cases deselected |
+| Complete `tests/life_projection` connected selection | 17 passed, 165 offline cases deselected |
 | Connected report command with JUnit + `--life-rehearsal-report` | 2 passed; report schema `vesper.life-shadow-rehearsal.v1`, `supported_scope=pass`, `whole_portfolio_complete=false`, `serving_ready=false` |
 | Ruff on changed files | Passed |
 
 The rehearsal proves the supported Plan path, linked Occasion lens membership,
 current-authority fencing, withdrawal/explicit restoration, bounded derived-owner
 inventory, real durable Plan/Occasion/Outcome outbox-to-consumer paths with
-out-of-order replay, and one real commit/publication interleaving. The unit-level backfill
-retry cases additionally prove that resolved or already-current identities are
-removed from live unresolved work rather than retained as an append-only error,
-and that a transient enumeration read preserves its retry cursor. It does not
-yet prove the full seven-record/four-viewer corpus, all lease/retry
-interleavings, paused-run restart against a real persisted unresolved set,
-Atlas/anchor migration, social/authored owner adapters, or a Life serving
+out-of-order replay, and one real commit/publication interleaving. The connected
+control-plane cases additionally prove that a paused checkpoint can be reclaimed,
+that a stale backfill claimant cannot checkpoint after lease takeover, and that a
+lost outbox acknowledgement cannot be performed by the old lease holder. The
+unit-level backfill retry cases additionally prove that resolved or already-current
+identities are removed from live unresolved work rather than retained as an
+append-only error, and that a transient enumeration read preserves its retry
+cursor. It does not
+yet prove the full seven-record/four-viewer corpus, the broader lease/retry
+interleaving matrix, paused-run restart with a persisted unresolved identity
+reprocessed by the runner, Atlas/anchor migration, social/authored owner
+adapters, or a Life serving
 cutover. The report's false-green protections are intentional: the supported-
 scope pass is not a whole-portfolio certificate.
 
