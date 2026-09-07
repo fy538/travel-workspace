@@ -27,6 +27,19 @@ serving cutover. Native acceptance remains deferred for current engineering,
 not retrospectively passed. Source and future-intent dependencies follow the
 integration register and its explicitly unadopted decision proposals.
 
+**Architecture review and next plan — September 7:** the latest inspected Life
+backend is `163b18e8b` on its isolated branch, distinct from backend main
+`7a1d18070`; current mobile is `f4401ef73` on the entity completion branch.
+The review passed **194 offline Life tests**, with **34** database cases
+deselected, and reproduced a discarded organization-repair result with an
+in-memory Plan projector probe. These are review receipts, not new feature or
+release evidence. The [roadmap §13](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#13-architecture-review-follow-through--september-7)
+now owns the detailed corrective sequence: shared maintenance completion,
+real-owner evidence and scoped organization, bounded eligible readers, four-lens
+receiving, quality/Returns, and gated Atlas replacement. Its M0–M6 packages
+refine existing R0–R8/P0–P7 work; none is executed by writing the plan. The first
+checkpoint is M0's baseline delta and M1's connected maintenance contract.
+
 The [September 7 operational packet](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#11-bounded-shadow-rehearsal-execution-packet--september-7)
 now has an executed bounded slice. Backend commits `41e07297e`, `ca559b2f7`,
 `bfb26e6a9`, `27258111c`, `d062d1810`, and `f9b687055` add all-lens owner materialization, explicit

@@ -50,6 +50,13 @@ before using section 2 or 15 as a current-state statement. R0–R8 remains the
 only roadmap; the new section does not authorize indexed serving or adopt
 pending prospective/authorship policy.
 
+**Latest architecture follow-through — September 7:** [section 17](#17-maintained-system-architecture-amendment--september-7)
+records the reviewed completion, transaction, rebuild and reader decisions.
+The [roadmap §13](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#13-architecture-review-follow-through--september-7)
+is the current execution order. The latest inspected Life implementation is
+`163b18e8b`, separate from backend main `7a1d18070`; earlier baseline tables
+and receipts are historical, not instructions to recreate completed storage.
+
 ### 1.1 Authority and phase boundaries
 
 - The [Life experience contract](../contracts/life-v1-experience.md) owns the
@@ -1373,7 +1380,8 @@ choices, proposed evidence/read/storage contracts, migration cases, local test
 matrix and release boundaries. It is the forward execution packet; do not
 create a competing organization roadmap or restart the foundations in §15.
 
-Additional code inspection sharpened four requirements:
+At that planning baseline, code inspection sharpened four requirements
+(the implementation follow-through below closes parts of 2–4):
 
 1. `RetainedSourceProjection` exposes an authored note and whole-source refs,
    not a structured occurrence/place/participant/locator contract. Existing
@@ -1414,3 +1422,109 @@ for continuation. Group-depth reads use one short repeatable-read snapshot for
 metadata, topology and membership rows. This remains shadow-only and does not claim source evidence
 extraction, broader owner coverage, lifecycle repair callbacks, serving cutover
 or mobile integration. The roadmap §12.11 is the canonical receipt.
+
+## 17. Maintained-system architecture amendment — September 7
+
+This amendment follows the general architecture review of Life backend
+`163b18e8b`, canonical backend `7a1d18070` and mobile `f4401ef73`. It specifies
+the next design constraints; it does not claim they are implemented. The
+[roadmap §13](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#13-architecture-review-follow-through--september-7)
+owns package sequencing, code evidence, tests, dependencies and activation gates.
+
+### 17.1 Life is derived, but its durable human inputs are not disposable
+
+Keep three categories distinct:
+
+| State | Authority and rebuild behavior |
+| --- | --- |
+| Sources, canonical claims, Plans, Occasions, Outcomes and audience | Existing owners remain authoritative. Life re-reads them; organization cannot grant access or establish attendance |
+| Human organizational controls and accepted identity/lineage decisions | Durable Life inputs with their own revision/retention semantics. Rebuild must retain or explicitly map them; raw source replay cannot recover them |
+| Indexed rows, memberships, selected previews and generated renditions | Derived state reconstructed from current owners plus applicable durable inputs; replaceable without losing originals or authored choices |
+
+Projection version is an implementation boundary, not permission to forget a
+rename, detach instruction or accepted episode identity. Current group/control
+storage is version-scoped; cross-version rebuild needs a tested migration or
+resolution mapping. Algorithm re-derivation remains distinct from replaying an
+accepted organization. Later authored compositions need their own custody;
+they must not become disposable index payloads.
+
+### 17.2 Completion belongs to maintained scope, not the first successful write
+
+The current event path can write an index record and discard a returned
+organization-repair requirement. Backfill can skip organization entirely when
+the indexed revision is current. These observations refine §7.2 into an
+enforceable requirement:
+
+> Every runtime entry path uses the same maintained-owner operation. It may
+> complete only when all required stages are current or when a durable,
+> reachable successor has accepted the remaining work.
+
+Keep owner-specific readers, revision/audience fences and restore semantics.
+Centralize runtime dispatch, stage obligations and typed completion; do not
+generalize away owner truth. Pure injection seams are useful in tests but an
+optional callback must not determine whether production correctness runs.
+
+For bounded deterministic work, prepare outside the database transaction and
+publish index, organization, dependency and affected-read changes inside one
+short current-authority transaction. Reuse narrow in-transaction repository
+primitives; nested independent transactions do not satisfy this requirement.
+Audit lock order across owner fences, topology, groups, controls, resolution and
+index writes. Reject stale preparation rather than let an old owner entry
+overwrite organization after a newer index commit.
+
+For work requiring several bounded transactions, keep durable progress in the
+existing Life delivery/backfill machinery. Checkpoints are consumer-owned,
+lease-fenced, content-free and separate from immutable source-event metadata.
+Commit each slice with its progress; incomplete repair stays reachable. Do
+not acknowledge on truncation, lose old-parent repair after a move, or make a
+user resolve a worker queue. Schema changes for progress remain proposals
+requiring review, not an additional queue framework selected by this document.
+
+An unplaced source can be a valid outcome; a broken accepted merge is unfinished
+correctness work. Unsupported organization can coexist with safe original
+access, but must remain visible in coverage rather than counted as implemented.
+
+### 17.3 One set of read semantics does not require one giant query
+
+Digest, group depth, exact original, Everything kept, refinding and anchor seek
+are separate bounded operations. They share identity, version, current
+eligibility, time meanings, count units, correction and destination semantics.
+The current internal group reader supplies useful storage primitives, not the
+complete public authorization or presentation contract.
+
+Before returning text, counts, previews or media, establish current owner and
+purpose/audience eligibility at a defined read boundary. Snapshot consistency
+and cursor freshness are not permission. Bound scanned work as well as output,
+and report sparse/partial coverage without falsely exhausting the corpus.
+Exact-old-record navigation must not fetch all preceding pages. Changes to an
+unrelated group should not reset an open exact reader unnecessarily.
+
+Root/depth GETs in the target path do not repair Atlas, re-cluster or generate
+content. Existing historical adapters stay available during migration; removal
+depends on custody, exact-target and current-authority parity, not renamed routes.
+
+### 17.4 Broad organization and useful receiving are the next product increment
+
+Connect the existing evidence envelope and grouping primitives to real
+source/Outcome reads, alongside Plan/Occasion containment. Event delivery does
+not itself grant organization or semantic reuse. Agree the missing evidence
+and purpose contract with Capture; preserve safe source-only refinding when
+that richer interface is unavailable.
+
+Exercise W1–W5 through four distinct lenses and direct-original access.
+Evaluate ordinary local evidence, repeated visits, explicit continuity,
+attributed shared material and kept-but-not-lived sources. Every correction
+must update its affected memberships, preview/count support and destinations
+while preserving independent accounts. W6 remains the later composition lane.
+
+Retain the native shell and restoration work. Add the semantic distinctions
+needed by approved Life designs instead of another shell or entity framework.
+Life offers durable continuity to Home/Places; shared production owns generated
+value and its lifecycle. The live engine reads canonical owners without waiting
+for Life's worker, page opening or a completed composition.
+
+M1's maintenance checkpoint is followed by connected M2–M4 organization and
+receiving; quality evaluation accompanies both. A model experiment follows
+specific measured grouping misses and uses the existing model gateway with
+authorized inputs/budget. A successful index rehearsal, a new classifier or a
+polished screen alone cannot certify the complete Life system.
