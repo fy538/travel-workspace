@@ -2568,11 +2568,11 @@ continuity. Exact originals remain directly findable across these views.
 Home/Places can consume exact eligible references, while the live engine keeps
 reading canonical owners independently of whether Life has ever been opened.
 
-This section is a plan. No package below is marked executed by its inclusion.
-It does not authorize schema changes, source-owned producer edits, prompt
-changes, paid inference, merges, pushes, activation or destructive retirement.
-Follow the owning repository's approval rules when a later implementation
-requires those boundaries.
+This section is the execution plan and ledger. Packages are marked executed
+only by the receipts below; inclusion does not authorize schema changes,
+source-owned producer edits, prompt changes, paid inference, merges, pushes,
+activation or destructive retirement. Follow the owning repository's approval
+rules when a later implementation requires those boundaries.
 
 ### 13.2 Review evidence and what it changes
 
@@ -2996,4 +2996,39 @@ anchors resolve (child-repository links checked against the canonical
 workspace); `git diff --check` passed. Review test results in §13.2 are from
 the preceding architecture review, not a new connected run in this planning
 turn. No code, schema, database, mobile UI, design project, deployment or remote
-branch was changed. Documentation edits remain uncommitted in the isolated lane.
+branch was changed. The planning edits and execution receipts are committed in
+the isolated documentation lane; no source-owned producer, public reader,
+mobile UI, deployment or remote branch was changed by this section.
+
+### 13.13 Execution receipt — M0/M1 and conservative M2 follow-through — September 7
+
+The first architecture checkpoint is now executed in bounded packages on the
+isolated Life backend branch. M0's branch/dirty-state and dependency audit was
+performed before mutation; no concurrent source-owned or mobile work was
+swept into the lane. M1's shared maintainer is implemented by commits
+`0b822c3aa`, `767f70499`, `91024a856` and `3a44caf0f`: live owner delivery,
+non-dry-run backfill and reverse reconciliation now share typed completion;
+stale successors are superseded; explicit retained-source restoration uses an
+exact owner-state read; target projection versions survive the identifier-only
+bridge; and index plus primary Plan/Occasion owner-group publication share one
+short transaction. Resolution repair remains a bounded post-commit stage and
+is surfaced as pending rather than acknowledged as complete.
+
+The conservative M2 consumer seam is `bac99b1b0`. It exposes retained-source
+capture-time evidence with exact source references and owner revision while
+rejecting that unit as occurrence proof. Capture producers and source-owned
+transactions were not changed. The complete Life projection selection passes
+**238 tests** on the local PostgreSQL-backed environment with API-key cases
+excluded; focused maintenance, backfill, reconciliation, delivery, restore,
+ordering and evidence regressions are included. Backend repository-wide
+size-budget and status-dead-gate hooks remain pre-existing baseline failures
+and were explicitly skipped only for these commits; other applicable hooks and
+whitespace checks pass.
+
+These receipts do not close M2's richer evidence contract, M3 bounded public
+reader composition, M4 mobile receiving, M5 evaluation/Returns, or M6
+replacement/Atlas retirement. The next checkpoint is either Capture's agreed
+occurred/place/people/locator read or a demonstrated affected scope that
+requires reviewed multi-slice continuation metadata. Until then, keep Life
+shadow-only, preserve unsupported owner coverage, and do not merge, push,
+activate readers, migrate/delete Atlas, or add another indexing framework.
