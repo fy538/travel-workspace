@@ -185,3 +185,24 @@ Board 19 is board 18's two scrolls with the five priorities applied and nothing 
 **Proposed tokens, scoped to Places.** Compact-row title sans 15/20 at 600; radius scale 16 / 12 / 10; the question field's ground, hairline and glyph; the person mark; the outlined primary at 34px.
 
 **Dependencies.** Real photographs under each grant, or the no-media path; venue coordinates and illustrative shoreline geometry for the pocket; a source for street names; the brand basemap when a real map replaces the fragment. No provider, pipeline or app change is authorized by this pass.
+
+## 17. The polished-export review, applied (September 7; revision doc §13)
+
+The composition on 19 is kept and the round is closed as a working direction. The four bounded corrections of §13.7 are applied; the connected journeys of §13.6 follow separately (§18).
+
+**Disposition, by correction.**
+
+| # | Correction | Where | What changed |
+| --- | --- | --- | --- |
+| 1 | Representative real photograph and mixed avatars, or an explicit limitation | 19 (both units); 20, rows "Media" and "Identity and thumbnails" | The opening's human unit now carries a permitted photograph, unrestyled: "Statue of Liberty and Upper New York Bay from Valentino Pier 9", Rhododendrites, Wikimedia Commons, CC BY-SA 4.0 (Red Hook, not Sunset Park; not Maya's picture). 20 shows the same opening four ways: the SVG stand-in as it was, that photograph, a second photograph in other light ("BrooklynBridge 11", Michael Denis Cassidy, CC BY-SA 4.0; a blown-out sun and a green cast), and no media. Maya and Priya carry demonstration portraits (Unsplash via Wikimedia Commons, CC0: Brooke Cagle; Ehimetalor Unuabona); Anna and Sam stay initials, so the From friends row and the authored contributions are the mixed case, beside the initials-only fallback. The Print Room note has no permitted photograph and carries no picture. The stand-ins are no longer presented as photographs anywhere. All assets are identified as demonstration assets outside the phone. |
+| 2 | Deliberate thumbnail selection | 19 (both scrolls); 20, "Identity and thumbnails" | The lunch counter is a plate on a steel counter, no longer the noodle bowl. Each compact entry now chooses specific media, a category symbol, or nothing; the café table and the waiting room keep the no-image row. Row geometry unchanged. |
+| 3 | Flexible decision wording | 08; this document | Decision 1: a kept possibility may lead when relevant and worthwhile; its existence alone does not outrank a better world offering; the selected scroll is one example of an adaptable composition, not a permanent section order. Decision 3: cards group and, where it helps, convey importance; containment does not by itself establish authority, certainty, endorsement or ranking; one primary continuation where the content calls for one, not on every group. No canon amendment. |
+| 4 | The opening's continuation without re-keeping; sent distinguished from arranged; the owner dependency | 20, "Opening, destination, return", five frames | "Keep it as it is" removed. The page: her picture, the kept line, this Saturday's facts, one prepared message to Maya as the primary, the venue as a secondary. Frame 4 shows the page only if the message was sent: a compact readback (asked, when, no answer yet) and no primary; frame 5 the field with one readback line on the opening card. Nothing says the outing is arranged. The page is marked a design proposal with an unresolved owner: the retained-intention proposal of September 6 is unadopted and the Life manifest lists the intention owner as pending; Life indexes the record and nothing claims a canonical writer. |
+
+**Observed renders.** Board 19, both scrolls, at phone width with commentary hidden; board 20 rows 5 to 8 as rendered crops. Row 5 and the media and identity rows were inspected at 1:1 for the opening, the discs and the readback.
+
+**Static versus exercised.** All transitions on 20 are ordered static frames. No target and no Back were exercised as a connected interaction. The older prototype's transitions do not verify this destination.
+
+**Representative-media limits.** One landscape photograph in the fixture's human unit and one alternative; two portraits. Recognition at 24px depends on the name beside the disc. No photograph exists for the Print Room. Real photographs under each grant remain a dependency. No media pipeline, generation or provider is activated.
+
+**Owner dependencies.** The kept intention's owner (retained-intention proposal, unadopted; Life manifest, intention owner pending). Licensed world imagery has no owner that can hold, cite or attribute it (as noted for Home HL-1). Nothing here authorizes app code, a shared-token rollout, a new owner or a policy change.
