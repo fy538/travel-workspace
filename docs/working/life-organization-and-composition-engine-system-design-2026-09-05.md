@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Life engineering / product / cross-repository architecture
 created: 2026-09-05
-last_verified: 2026-09-05
+last_verified: 2026-09-07
 expires: 2026-10-05
 why_new: Converts the Life requirements, AI/ML research, and later manual-authorship direction into evolving examples, engineering decisions, contracts, evaluation cases, and implementation units within the existing Life replacement roadmap.
 source_of_truth_for: []
@@ -42,6 +42,13 @@ in [Life execution status](life-v1-execution-status-2026-09-01.md).
 Read sections 2–4 for product behavior, 5–10 for engineering, and 11–13 for
 evaluation, implementation, and unresolved choices. Section 14 records the
 research patterns being borrowed and their limits.
+
+**September 7 investigation:** [section 16](#16-organization-quality-and-reader-value-investigation--september-7)
+adds code probes, research findings, concrete W1–W5 organization/read examples,
+update rules and experiment decisions. Read its pinned implementation baseline
+before using section 2 or 15 as a current-state statement. R0–R8 remains the
+only roadmap; the new section does not authorize indexed serving or adopt
+pending prospective/authorship policy.
 
 ### 1.1 Authority and phase boundaries
 
@@ -977,6 +984,10 @@ receipts and evolving-record evaluations above.
 
 ## 15. Verification and implementation receipt
 
+**Historical September 5 foundation receipt.** Later owner, backfill and
+organization implementations are recorded in the complete-system roadmap;
+the absence statements below describe this original package, not today's code.
+
 The documentation pass and its first non-regrettable execution slice are now
 separate receipts. The design and roadmap remain proposed contracts; the
 following additive backend/workspace seams are implemented and locally tested:
@@ -1001,3 +1012,383 @@ roadmap. The global link check reports only its pre-existing unrelated `state`
 target in the arrangements execution report. The inventory check still has
 pre-existing unclassified documents; those workspace issues are not claimed as
 fixed or as Life runtime failures.
+
+## 16. Organization quality and reader value investigation — September 7
+
+### 16.1 Outcome and evidence boundary
+
+**Recommendation: build source-backed organization and useful group readers
+together, with incremental stability tested throughout.** Evaluate richer
+connections alongside them. The next useful increment is not another owner
+row called an episode: it is an ordinary, source-backed record a person can
+recognize, explore and retrieve without creating a Plan or doing filing work.
+
+This investigation completes a code-backed design analysis and targeted
+primary-source literature pass. It does **not** complete a model benchmark,
+user study, multimodal extraction experiment, organization-quality measurement,
+database migration rehearsal, native usability test or production activation.
+The following examples and judgments are authored specifications, not outputs
+observed from a functioning automatic organizer.
+
+Internal basis: sections 4–13; the [Life value research](life-user-value-deep-research-round-4-2026-08-29.md),
+[over-time walkthroughs](life-over-time-walkthroughs-2026-09-06.md),
+[current design manifest](claude-design-life-current-product-manifest-2026-09-06.md),
+Life experience contract and Editorial Canon. The current workspace manifest
+has concurrent edits; it was read, not overwritten or promoted into canon.
+Founder stories establish product motivation. The fictional records below do
+not establish additional facts about the founder's trip or friends.
+
+Implementation inspected at workspace `83e2ae1`, backend main `4efe7aa1a`,
+Life backend branch `codex/life-shadow-rehearsal-2026-09-07` at `6f4a977bb`, and
+app `c3feb89f0` on `codex/entity-object-design-completion`.
+The latest organization work is on the isolated Life branch, not backend main.
+Earlier foundation merges do not establish that those later packages landed.
+
+### 16.2 What the code can actually organize today
+
+| Inspected seam | Observed behavior | Consequence for this investigation |
+| --- | --- | --- |
+| Life branch `backend/life_projection/organization.py` | Automatic group seeds accept Plan and Occasion; explicit proposals and exclusions are supported | Source-only episodes, periods and inferred threads are not automatically formed by this function |
+| `organization_projector.py` | Materializes the supported owner entry after index publication | A Plan row in its own group is not a nested journey assembled from tickets and photographs |
+| `compiler.py` | Bounded priority/owner-kind selection, up to eight entries per lens | Owner-family diversity is a safety baseline, not representative selection of experiences or evidence |
+| `backend/api/routes/root_projections.py::_read_life_snapshot` | Reads graph, Intake and Atlas into the canonical snapshot | Group organization is not yet the serving root/depth source; do not route around parity requirements |
+| App `components/life/LifeRootV1Screen.tsx` | Renders lens sections as title/subtitle rows and an optional Return | Rich group payloads and nested reader content are substantive missing connections, not only styling |
+| Existing W1–W6 manifest and checker | Symbolic owner transitions; checker establishes structural validity | This is not an end-to-end quality runner or a source of measured clustering accuracy |
+
+Five in-memory probes ran against the real Life-branch
+`build_deterministic_membership_proposals` function. All used synthetic
+`LifeIndexProjectionEntry` rows, one fixture viewer, revision `1`, the same
+September 1 UTC sort time, and matching fixture title/place metadata. No owner
+database, private sources or model API was used.
+
+| Probe | Input | Observed proposals | Interpretation |
+| --- | --- | --- | --- |
+| P1 | Retained photo, receipt, note; no explicit memberships | 0 | Current primitive leaves source-only material ungrouped; matching metadata does not form an episode |
+| P2 | P1 plus a Plan row | 1: the Plan inside its owner group | Sources still do not join; canonical-owner coverage is not source organization |
+| P3 | P1 plus one explicit photo → dinner relation | 1 `belongs_to_episode` | Explicit relation normalization is reusable |
+| P4 | P3 with the same relation twice | 1 | Duplicate proposal is deduplicated |
+| P5 | P3 with the relation excluded | 0 | Explicit exclusion wins in this pure proposal path |
+
+**Semantic correction required before consuming these groups as lived
+evidence:** P2 emits `supports_occurrence` although the Plan's `occurred_start`
+is null. The implementation currently uses that relation for owner containment.
+This is a misleading relation type, not evidence that the app already invents
+a visit. R2-G must separate neutral organizational containment from
+occurrence support; only an occurrence-owning claim can supply the latter.
+Audit the enum, stored memberships, materializer and reader assumptions
+together. Do not fix this by changing a subtitle or by treating every Occasion
+as already lived. This investigation does not migrate those rows.
+
+**Fixture correction:** W2 previously began with `plan_opened` for
+`fixture-nyc-week`, despite specifying ordinary life without a major occasion.
+It now starts with retained local source evidence and has no Plan/Occasion
+owner. The existing validator rejects their reintroduction into W2. Separate
+Plan cases remain elsewhere in the portfolio. This removes a test premise
+that could hide the source-only organization gap; it does not close the gap.
+
+### 16.3 What additional research changes—and does not change
+
+Sources accessed September 7, 2026. Findings below are deliberately narrow;
+the Life recommendations are our engineering/design inferences.
+
+| Primary source | Finding relevant here | Life implication and transfer limit |
+| --- | --- | --- |
+| [ES-Mem, January 2026 preprint](https://arxiv.org/html/2601.07582v1) | Segments dialogue by topic/intent and uses boundary anchors for hierarchical retrieval; its limitations describe relatively static stored memories and primarily text-modal data | Useful candidate pattern for retrieving coherent source passages. A conversation boundary is not a lived-event boundary. This paper does not establish late-photo organization, durable correction or stable personal group identity |
+| [Reflective Memory Management, ACL 2025](https://aclanthology.org/2025.acl-long.413/) | Studies variable conversation granularity and retrieval adaptation | Compare granularity when retrieval misses context. Do not import its reinforcement-learning machinery or treat model-cited evidence as user endorsement |
+| [Incremental Constrained Clustering by Minimal Weighted Modification, CP 2023](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.CP.2023.10) | Models sequential expert constraints while minimizing disruption to the previous partition; evaluated on reference and satellite-image time-series data | Treat stable organization as an objective, not merely stable IDs. Borrow minimal-change reasoning, not its expert query workflow, solver, or relaxable-constraint policy for user exclusions |
+| [Stuff I've Seen, SIGIR 2003](https://www.microsoft.com/en-us/research/publication/stuff-ive-seen-a-system-for-personal-information-retrieval-and-re-use/) | Personal retrieval system evaluation found time and people useful contextual cues across heterogeneous material | Supports cue-rich direct retrieval alongside browsing. Workplace retrieval does not validate Life's four-lens layout or personal narrative quality |
+| [LongMemEval, ICLR 2025](https://arxiv.org/abs/2410.10813) | Separates extraction, multi-session reasoning, temporal reasoning, knowledge updates and abstention in long-term dialogue evaluation | Score those abilities separately in Life cases. Question-answer accuracy does not measure comfortable browsing, source custody, stable groups or value before a tap |
+| [Attention to Event Segmentation Improves Memory in Young Adults: A Lifespan Study](https://pmc.ncbi.nlm.nih.gov/articles/PMC11774534/) | An explicit segmentation intervention on activity movies had age- and delay-dependent benefits rather than uniform effects | Do not claim that automatically grouping imported artifacts improves human memory, or ask users to segment their lives as a supposedly validated benefit. Test recognition/refinding of the interface itself |
+
+The most consequential synthesis is **three different decisions, with separate
+evaluation**:
+
+1. **Retrieval granularity:** which original passage, image region or extracted
+   fact answers a question? A source may contain several useful spans.
+2. **Life organization:** which supported lived/planned/kept contexts does that
+   material relate to? Several typed relationships can coexist; an analogy is
+   not containment and a subject mention is not participation.
+3. **Presentation:** which small selection makes a period, place, thread or
+   shared record useful to this viewer here? Omission from a preview does not
+   remove membership or custody.
+
+One embedding partition, summary tree or generated title cannot own all three.
+These are responsibilities inside the existing system, not new services.
+
+### 16.4 Recommended grouping rules with concrete judgments
+
+The rules below refine D2–D9 without requiring a new product object:
+
+- **Use references to evidence units, not only whole artifacts.** A chat note
+  describing Tuesday and Saturday may support two episodes through different
+  source locators. Keep one original; do not clone it into two independent
+  witnesses. Owner revision/locator repair must remain exact.
+- **Expose a natural default path without forcing exclusive membership.** A
+  dish photograph can be inside a dinner, associated with its Place, and
+  support an explicitly connected cooking question. Its placement does not
+  count as three sources or three occurrences.
+- **Separate dated navigation from episode inference.** A period may organize
+  authorized dates without claiming an event. Label authored/planned/captured
+  time appropriately; an undated source stays accessible outside lived
+  chronology. Persist the calendar/timezone policy; a device timezone change
+  must not recreate the user's periods.
+- **Require event-specific support for new episode membership.** An explicit
+  owner link, a source's literal account, or compatible corroborating evidence
+  can support a bounded context. Coincident upload times, the same restaurant,
+  shared vocabulary and visual similarity alone cannot establish one dinner.
+- **Do not transitively merge resemblance.** If A resembles B and B resembles C,
+  that is not permission to merge A and C into one episode. Inspect conflicting
+  dates, contexts, controls and source lineage at the proposed group boundary.
+- **Uncertainty is a valid internal result, not an inbox.** Prefer useful
+  source/place access over a speculative merge. Do not ask users to clear
+  routine organizational uncertainty before they can use Life.
+- **Let voluntary edits be precise.** A rename protects that label; detach
+  excludes that membership. Neither is a global taste claim or evidence that
+  the user wants to manually maintain a filing system.
+
+All IDs/names in this table are fictional, and all retention/attribution is
+explicitly part of the scenario. The table judges expected behavior, not
+measured algorithm output.
+
+| World and evidence | Recommended organization | Useful result and exact route | Wrong result |
+| --- | --- | --- | --- |
+| W1: journey context, tickets, selected photos, direct accounts; later ferry → train correction | Stable journey with supported segments; separate arranged/occurred movement; a meal/day is nested only where it helps recognition | Journey shows planned ferry beside the corrected reported train, supported sequence and gaps; either opens its original/claim directly | Fill every travel leg, merge by import day, delete the unused ticket or turn transport choices into personality |
+| W2: two separately reported cafe mornings, a local note, an undated reading; no Plan | Date-supported local period, two distinct outings, one Place relationship; reading remains independently findable | Time distinguishes the mornings; Places brings both accounts and the note together; exact note search bypasses the period | Require a week Plan, merge visits, invent a ritual, or bury the reading because it has no episode |
+| W3: retained pasta observation, retained explanatory reading, later cooking attempt explicitly connected by the person | Distinct trip/local episodes plus an authored continuity relation with source-backed steps | Threads shows observation → explanation → later attempt, with the actual note/reading available; a useful mechanism needs support beyond the original observation | Every food reference becomes a culinary identity; a transient Ask silently becomes retained memory |
+| W4: dinner Occasion, one's own receipt, another participant's deliberately contributed photo and words, separate private Outcomes | Common occasion identity; viewer-relative evidence and attributed accounts; independent originals retain their owners | People opens what that person contributed; dinner opens the shared record; a private Outcome stays only in its authorized view | Merge subjective accounts into a group voice, count a mention as attendance, or generate prose to justify an enjoyable human contribution |
+| W5: ticket with ambiguous attendance, later explicit nonattendance, delayed old replay | Kept original with unused/negative claim association; no supported visit | Exact ticket opens directly; related Place can show kept-not-lived; correction explains the relevant distinction inside the record | Calendar passage, ticket extraction or replay restores attendance |
+
+Different useful hierarchies can be acceptable. W1 may show cities then days,
+or a few directly recognizable segments, without requiring both levels. W2
+may expose each morning directly under a month when a week adds no useful
+navigation. Accept those variants if direct retrieval, truthful counts,
+evidence and stable destinations hold. Do not force one fixture tree as
+universal ground truth.
+
+### 16.5 Update policy: improve the record without moving the furniture
+
+Prefer this ordering of obligations: preserve authority and correction;
+repair contradicted claims/relationships; preserve valid authored controls;
+preserve identities/navigation; improve coverage and presentation with the
+smallest justified change. Stability never means leaving a false claim visible.
+
+| Change | Update | Preserve | Visible explanation |
+| --- | --- | --- | --- |
+| Late Sorrento photos | Relevant historical memberships, eligible counts and available evidence | Unrelated NYC period, journey handle, authored title and open reader anchor | Usually none; no global “review your updated Life” demand |
+| Duplicate or crop | Source-lineage/display deduplication | Distinct useful originals and independent source routes | None unless the person explicitly asks what was kept |
+| New material from an existing episode | Add supporting relationships; replace a missing/invalid preview when needed | Current useful representative selection by default; adding media alone is not a reason to reorder everything | Only if a material visible change would otherwise confuse |
+| Evidence of a different evening | Repartition the affected episode; retain old-handle resolution | Independent events and valid controls | Bounded explanation when opening the old handle; no compulsory global review |
+| Explicit detach | Durable relation-specific exclusion, including rebuild/replay | Original custody, independent Place/People relationships | One scoped readback plus valid Undo |
+| Explicit rename | User-controlled title | Identity and facts; do not generalize the rename into a preference | One readback; later enrichment does not overwrite it |
+| Friend withdraws a source | Remove dependent content and revise viewer-eligible preview/counts | Independent accounts, lawful original ownership, stable accessible group where it still exists | Generic absence only where needed; no withdrawn caption, thumbnail or private title in the explanation |
+| No new evidence | No organization/synthesis job merely to make Life look active | Familiar record and direct retrieval | None |
+
+For preview replacement, use a **material-improvement rule**, initially
+deterministic: replace unavailable/misleading evidence; honor explicit choice;
+otherwise retain a valid representative unless a new item adds a named missing
+facet or resolves an uncertainty. Do not refresh on every higher similarity
+score. Measure whether this becomes too static as well as whether it churns.
+
+Measure membership changes separately from title, preview and order changes.
+Compute avoidable churn only over still-eligible, unaffected items; required
+revocation/correction is reported separately. A zero-change system that never
+incorporates useful new evidence is not a successful stable organizer.
+
+### 16.6 Same dinner, four useful entrances
+
+This content exercise uses one fixture evening with an explicitly reported
+dinner, retained reservation and dish photo, Dana's authorized sauce note, and
+a separately retained earlier cooking question. It is not a new source of truth
+or a demand to display the evening in all lenses.
+
+| Lens | What the preview should let the person recognize | On opening | What should not be copied across lenses |
+| --- | --- | --- | --- |
+| Time | Which evening; a distinguishing source or literal event detail; whether facts are planned or occurred | Sequence, original reservation, dinner evidence and attributed contributions | A long cooking essay merely because it belongs to the same evidence set |
+| Places | Which restaurant; the distinct visits/keeps and useful material associated with it | Separate visits, retained notes and originals; an optional world-entity door | A second nearby discovery feed or a visit count from the reservation |
+| Threads | The precise cooking question and what changed across supported contexts | Question, Dana's actual note, evidence of the later attempt and any supported explanation | A new thread just because a dish appears in a photograph |
+| People | Dana's contribution and the shared context that makes it recognizable | Her attributed note alongside the authorized shared record; optional human reply | Her private preferences, inferred intimacy or an automatic message in the user's voice |
+
+Recommended content responsibilities for the existing read contracts:
+
+1. **Group preview:** stable group/destination, lens-specific distinguishing
+   detail, typed time/state, representative evidence with a source locator,
+   viewer-eligible counts with named units, and coverage/availability metadata.
+2. **Group depth:** same identity and revisions; bounded chronology or related
+   contexts; nested groups only when useful; separate planned/occurred/kept
+   material; attributed contributions; independently accessible originals.
+3. **Exact result:** direct original/claim destination with optional containment
+   cues. The query “Dana's sauce note” must not stop at a generic dinner page.
+4. **Navigation:** preserve origin, query, lens and stable row/block anchor;
+   source search never requires journey → city → day → dinner traversal.
+
+These are semantic requirements, not an invented JSON API. Audit and extend
+the current backend models through normal schema synchronization when the
+reader package is implemented. Do not add a new universal dossier renderer
+or a server-directed layout vocabulary.
+
+Selection should optimize **recognition and useful evidence coverage**, not
+the number of owner kinds shown. A receipt can be more useful than the best
+photograph when it identifies the bottle someone wants to find again. A note
+can be the whole useful preview. No image is required. The full-record path
+keeps omitted evidence accessible; source counts do not equal visit counts.
+
+### 16.7 Value judgments: evaluate the actual contribution
+
+Use two editorial baselines independently: **what this person already supplied
+or explicitly received**, and **what was merely exposed in the interface**.
+Keep these distinctions within existing purpose/retention authority; they do
+not authorize a new permanent knowledge profile or ambient history scan.
+
+| Candidate | Judgment in this investigation | Reason / better output |
+| --- | --- | --- |
+| “You noticed the pasta tasted different” | Reject as a proactive AI Return | Repeats the premise; no completed contribution |
+| Source-backed comparison of the original dish observation, a retained explanation and a later attempt | Eligible for evaluation, not automatically admitted | Names the actual mechanism/difference and limitations; generated cooking facts still require supporting research, not invented fixture truth |
+| Corrected ferry-versus-train reconstruction with links to the ticket and direct account | Useful factual record; optional Return only when assembling the fragments adds substance | The person can understand the sequence and retrieve the documents without replying |
+| “You and Dana were both in Europe” | Reject as an AI synthesis on that fact alone | Coincidence supplies no useful contrast |
+| Dana's deliberately shared photograph or practical note, in her words | Can be complete social value without AI transformation | Human contribution does not owe an explanatory novelty test; viewer authority and purpose still apply |
+| Two authorized accounts with a supported difference relevant to a later choice | Eligible for evaluation | Show the difference and its limited application; do not synthesize a shared subjective experience |
+| “You experience travel through transitions” | Reject as unsolicited identity interpretation | The same transport evidence may support route reconstruction, not a claim about the person's interior life |
+| Exact retrieval of the requested unused ticket | Complete utility | Does not need an insight, recommendation or next-step prompt |
+
+For each candidate, record its premise, new work, sources, complete payoff,
+limits, and where it belongs. Compare a plain source/record, a bounded
+reconstruction, and a richer interpretation where applicable. Judge substance,
+recognition, effort and intrusion separately; do not combine them into one
+engagement score. Human delight and retrieval relief can be the whole payoff.
+
+Home/Places receive present consequences through the existing shared delivery
+allocation. Life retains reusable depth and exact records. A good Life record
+does not entitle the same output to a second Home slot, and live feasibility
+still comes from canonical/current-world owners independently of Life reads.
+
+### 16.8 Challenge variants and experiment protocol
+
+These are **new authored challenge specifications**, not held-out test results.
+Once their expected behavior informs implementation, they are calibration
+cases. A later evaluator must prepare unseen variations before measuring
+generalization; relabeling these examples “held out” would be misleading.
+
+| Variant | Perturbation | Required discrimination |
+| --- | --- | --- |
+| V1 / W1 | Journey crosses month boundary | Two calendar references, one journey identity |
+| V2 / W1 | Late import uses today's upload time but supported older capture context | Historical organization without a fabricated occurrence or current-week takeover |
+| V3 / W1 | Crop, screenshot and original all depict one ticket | Source lineage, not three trips/witnesses |
+| V4 / W2 | Same restaurant on two explicitly different dates | Two occurrences under one Place relation |
+| V5 / W2 | Two activities near midnight with ambiguous timezone | Preserve date uncertainty; do not let device timezone decide attendance or silently split the event |
+| V6 / W2 | Long text note refers to several dates; no photographs | Source-span associations and readable text previews; no photo minimum |
+| V7 / W2 | Undated useful article remains unplaced for months | Exact/cue-based retrieval remains useful without a filing obligation |
+| V8 / W3 | Same topic appears once in a transient Ask and once in a retained note | Only admitted evidence participates in durable organization; no thread from transient exhaust |
+| V9 / W3 | Similar food vocabulary in unrelated contexts | No continuity link solely from topic similarity |
+| V10 / W4 | Two viewers have different allowed contributions in the same Occasion | Shared identity where authorized, different evidence/counts; no existence leak through private previews |
+| V11 / W4 | Friend note is withdrawn after a preview was selected | Repair preview, derivative and relevant counts, not independent personal history |
+| V12 / W5 | Corrected nonattendance followed by delayed import/replay | Original remains useful; no resurrection of the rejected occurrence |
+
+Execute E1–E5 from section 11 with the following distinctions:
+
+- **B0, current primitive:** owner containment plus supplied explicit links.
+  P1–P5 above measure only this primitive's behavior, not corpus quality.
+- **B1, next deterministic candidate baseline:** exact owner/source links,
+  typed time and canonical entity evidence with contradiction/exclusion checks;
+  evaluate source-only periods and episodes. It must extract/admit supported
+  relationships, not wait for users to file every source.
+- **B2, optional bounded model assistance:** same candidate envelope and
+  controls, plus relation classification on genuinely unresolved candidates.
+  Return source locators, type, contradictions and no-link; use the existing
+  model gateway/registry. B2 is not implemented or benchmarked in this pass.
+- **Do not select:** a global fixed-radius/time-window clusterer, a summary
+  tree as personal identity, a new graph database, custom training, a user
+  labeling queue, or an autonomous memory-rewriting agent. A later proposal
+  must identify a measured B1/B2 miss and its maintenance cost.
+
+For organization, annotate required links, forbidden links and several
+acceptable partitions. Report required-link recall **and** false joins, source
+findability, unplaced-but-findable proportion and subgroup coverage. Returning
+no links can pass forbidden-join tests while failing the product; report both.
+For retrieval, separate source recall from ranking and final answer quality.
+For incremental maintenance, compare final truth/control/identity state with
+rebuild, while separately measuring intermediate navigation and preview churn.
+
+For reader/content review, give the reviewer the same evidence in differently
+organized versions with neutral labels. Tasks: recognize the right event,
+retrieve one specific original, distinguish two visits, find a person's actual
+contribution, and understand one changed relationship without providing new
+input. Record wrong doors, backtracking, missing evidence, completion and
+qualitative burden. Founder judgment supplies design feedback; it is not a
+multi-user validation result. No study was run in this pass.
+
+Do not invent percentage targets from paper results. Before promotion, record
+measured per-world baselines, tolerances, cost/latency budgets and confidence
+limits. Forbidden attendance, source resurrection, authorship or audience
+violations remain hard failures, not tradeoffs for a higher average score.
+Unseen-data/model comparisons require an authorized, versioned run; no private
+artifacts are uploaded or paid models called by this documentation package.
+
+### 16.9 Decisions and connected next package
+
+| Decision | Recommendation now | Remaining evidence or dependency |
+| --- | --- | --- |
+| Ordinary life entry | Source-only periods and supported episodes without Plan creation | Implement B1 in R2-G; W2 must contain no Plan/Occasion prerequisite |
+| Source granularity | Preserve originals; use exact locators for context-specific relations | Capture/claim owner must expose literal evidence and revision/repair identity; Life must not invent missing owner authority |
+| Group identity/updates | Stable registry plus minimal justified changes and scoped human controls | Reuse existing organization storage; compare evolving records and rebuild, not only IDs |
+| Owner-containment semantics | Separate containment from `supports_occurrence` before downstream adoption | R2-G model/storage/consumer review and existing-row treatment; no migration authorized here |
+| Four-lens value | Same corpus and identities, different recognition cues and depth | R3–R5 payload/read integration plus content walkthrough; final visuals remain in Claude Design |
+| Semantic assistance | Experiment B2 only where B1 has supported misses | Model/prompt/version/budget and independently prepared evaluation variants; no selected model winner yet |
+| Rich connections | Evaluate reconstruction, explanation and attributed human contribution separately | Existing editorial producer and Integration allocation; no Life-only generator |
+| Pre-Plan intention / authored composition | Preserve seams; do not invent writers | Existing Plan-lane proposal and R7 custody choice remain unresolved |
+
+Next connected package in the existing roadmap: R2-G source-backed
+organization plus R3–R5 group reads. First reconcile the relation vocabulary,
+inspect eligible retained-source/Outcome evidence, implement source-only
+periods and explicitly supported episode links, and expose bounded previews
+and original routes from that material. Carry W1–W5 and update/withdrawal cases
+through the package, including truthful sparse People/Threads behavior.
+Unsupported source/claim/social owners remain named dependencies, not silently
+replaced by synthetic Plans, a generic social store or a Life intention writer.
+
+Continue migration verification, branch reconciliation and existing shadow
+delivery work independently. The populated historical-schema upgrade test
+remains an engineering acceptance gap; a current-row
+`legacy_rebuild_required` toggle is not that test. Research does not authorize
+merging the Life branch, switching readers, Atlas deletion or production use.
+
+### 16.10 Verification receipt for this investigation
+
+- P1–P5 executed against Life backend `6f4a977bb`; observed outputs recorded
+  in section 16.2. No model or database was involved.
+- Existing focused backend tests: `test_life_organization.py` and
+  `test_life_projection_v1.py`: **14 passed**. These verify their implemented
+  contracts, not the proposed richer grouping behavior.
+- W2 symbolic fixture corrected; replay validator and six fixture-validator
+  regression tests passed. Scoped document lifecycle validation, Ruff and
+  `git diff --check` passed. All 57 relative links checked in this initial
+  investigation resolve when child-repository targets use the canonical workspace.
+- No app code, owner transaction, generated API schema, database, prompt,
+  serving configuration, design canvas or remote branch changed in this pass.
+
+### 16.11 Implementation planning follow-through
+
+The [roadmap §12](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#12-connected-organization-and-reader-implementation-plan--september-7)
+now supplies the connected package sequence, research-backed implementation
+choices, proposed evidence/read/storage contracts, migration cases, local test
+matrix and release boundaries. It is the forward execution packet; do not
+create a competing organization roadmap or restart the foundations in §15.
+
+Additional code inspection sharpened four requirements:
+
+1. `RetainedSourceProjection` exposes an authored note and whole-source refs,
+   not a structured occurrence/place/participant/locator contract. Existing
+   `source_refind` / `projection_repair` event purposes do not automatically
+   authorize semantic extraction. Broader organization needs an agreed owner
+   read, not Life independently scraping intake tables or raw chats.
+2. Group storage needs a typed group-to-group navigation seam. Do not put
+   group IDs into record membership fields or use a generated summary tree as
+   identity. Multiple calendar references must not duplicate a journey.
+3. Ordinary membership materialization currently advances membership revision
+   but not group revision. Future readers need explicit content freshness;
+   retain existing command/Undo CAS semantics separately from read invalidation.
+4. Update-only proposal materialization does not reconcile relationships that
+   disappeared. Repair must discover the previous and new affected groups,
+   preserve exclusions and independent support, and update bounded readers.
+
+The detailed table/model deltas in the roadmap are proposals for the next
+reviewable implementation package, not schema changes made by this research.
