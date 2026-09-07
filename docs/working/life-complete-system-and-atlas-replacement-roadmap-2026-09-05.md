@@ -2412,10 +2412,10 @@ Life backend branch (recheck branch divergence before integration):
 The local development database was at `lifeorg05`; the additive `lifeorg06` →
 `lifeorg07` upgrade was applied transactionally for test evidence. Focused
 organization, migration, reader and PostgreSQL tests passed (**20**), and the
-full `tests/life_projection` selection passed (**220**, including the scoped
-reconciliation and typed-cursor cases). The typed corpus-cursor and route
-selection then passed their focused suite (**21**). Ruff and migration-chain
-checks passed. Pre-existing
+full `tests/life_projection` selection passed (**221**, including the scoped
+reconciliation, typed-cursor and evidence-version cases). The typed
+corpus-cursor and route selection passed their focused suite (**21**). Ruff and
+migration-chain checks passed. Pre-existing
 repository hooks for event-type parity (the
 isolated worktree environment lacks the hook's SQLAlchemy import), repository
 size budgets, and status-dead-gates were skipped for commits; they are not Life
