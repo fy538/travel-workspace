@@ -1664,15 +1664,16 @@ for practical specialists. The [accepted worker decision](../decisions/2026-09-0
 and [contribution contract](../systems/contribution-and-consequence.md) retain
 authority over activation, use, retention, audience and repair.
 
-**Execution receipt — September 7:** backend commits `6a502fae2` and
-`4ec001ab7` implement the first private-preparation boundary without adding a
+**Execution receipt — September 7:** backend commits `6a502fae2`,
+`4ec001ab7` and `72775a5bf` implement the first private-preparation boundary without adding a
 runtime caller, queue, provider, prompt or mobile surface. The Source worker
 now claims with the effective deployment lease rather than the database's
 shorter default; the explicit submission adapter validates the `explicit_warm`
 owner binding, retains a content-free request reference plus conversation and
 source-message identity, and preserves deterministic replay. Successful Source
 completion now carries a typed, actor-scoped workflow/result locator in its
-specialized receipt. Focused worker/workflow tests pass (**20**), and the
+specialized receipt; request-ref kinds and deep-link construction are
+centralized and validated. Focused worker/workflow tests pass (**22**), and the
 offline root-projection plus workflow-API regression packet passes (**396**).
 Pre-commit's existing size-budget and status-guard baseline checks remain
 skipped for these commits; all other changed-file gates passed.
