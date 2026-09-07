@@ -1291,7 +1291,7 @@ SHAs and dirty-file scope when execution starts; use an isolated backend
 | Existing component | What the code currently establishes | Remaining connection or test |
 | --- | --- | --- |
 | [Backfill repository](../../travel-agent/backend/core/db/life_projection_backfill.py) | `create_life_projection_backfill_run`, claim/advance/pause/finish operations, persisted scope and unresolved work | Database tests for restart, stale leases, counter recovery and unresolved-item retry; `completed` alone is not parity |
-| [Backfill runner](../../travel-agent/backend/life_projection/backfill.py) and [worker](../../travel-agent/backend/workers/life_projection_jobs.py) | `build_life_backfill_event`, bounded `run_life_projection_backfill`, explicit `run_life_projection_backfill_job` | Fixture/report wiring and a connected writing run now exist; paused-run resumption and unresolved-work convergence remain follow-up evidence. Dry-run still creates/updates control rows but does not materialize corpus rows |
+| [Backfill runner](../../travel-agent/backend/life_projection/backfill.py) and [worker](../../travel-agent/backend/workers/life_projection_jobs.py) | `build_life_backfill_event`, bounded `run_life_projection_backfill`, explicit `run_life_projection_backfill_job` | Fixture/report wiring and a connected writing run now exist; a successful retry now removes its resolved identity from live unresolved work (`d062d1810`). Paused-run resumption and the broader retry/lease matrix remain follow-up evidence. Dry-run still creates/updates control rows but does not materialize corpus rows |
 | [Owner enumeration](../../travel-agent/backend/life_projection/owner_reads.py) | Paged Plan/Occasion/Outcome/source identities and exact-owner dependency limits | Timestamp/ID traversal is not a commit-safe snapshot; test behind-cursor mutations, broad candidate eligibility and dependency truncation |
 | [Owner projectors](../../travel-agent/backend/life_projection/plan_projector.py) and [lens adapter](../../travel-agent/backend/life_projection/index_projector.py) | Four owner projectors with fences; reusable multi-snapshot merger exists | `index_entries_from_all_lenses` now derives eligible memberships at one represented-at clock; Plan/Occasion/Outcome no longer silently write Time-only rows. Retained sources remain Time-only until place/people evidence is owned |
 | [Reconciliation](../../travel-agent/backend/life_projection/reconciliation.py) | `reconcile_life_owner` compares/repairs one supplied owner and requires explicit absence evidence | `enumerate_indexed_life_owners` and `reconcile_life_owners` now provide bounded keyset discovery, including withdrawn rows and unknown-family classification. The viewer-only `read_life_index_owner_rows` overload remains unsuitable for corpus traversal |
@@ -1651,6 +1651,8 @@ The bounded packet was implemented in backend worktree
   opt-in pytest report writer with inconclusive failure output.
 - `bfb26e6a9` — connected indexed-owner reconciliation evidence.
 - `27258111c` — deterministic owner-commit/publication race.
+- `d062d1810` — successful backfill retries now remove their resolved identity
+  from the persisted unresolved-work set, including already-current convergence.
 
 The explicitly provisioned local database `vesper_life_rehearsal_20260907` was
 migrated to `lifebackfill02` (single head). Evidence executed against that
@@ -1665,11 +1667,14 @@ database:
 
 The rehearsal proves the supported Plan path, linked Occasion lens membership,
 current-authority fencing, withdrawal/explicit restoration, bounded derived-owner
-inventory, and one real commit/publication interleaving. It does not yet prove
-the full seven-record/four-viewer corpus, all lease/retry interleavings, paused
-run unresolved-work convergence, Atlas/anchor migration, social/authored owner
-adapters, or a Life serving cutover. The report's false-green protections are
-intentional: the supported-scope pass is not a whole-portfolio certificate.
+inventory, and one real commit/publication interleaving. The unit-level backfill
+retry case additionally proves that a resolved or already-current identity is
+removed from live unresolved work rather than retained as an append-only error.
+It does not yet prove the full seven-record/four-viewer corpus, all lease/retry
+interleavings, paused-run restart against a real persisted unresolved set,
+Atlas/anchor migration, social/authored owner adapters, or a Life serving
+cutover. The report's false-green protections are intentional: the supported-
+scope pass is not a whole-portfolio certificate.
 
 The local commit hook's repository-wide size-budget check remains red on
 pre-existing unrelated files; it was the only skipped hook for these commits.

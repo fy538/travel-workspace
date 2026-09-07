@@ -29,9 +29,10 @@ integration register and its explicitly unadopted decision proposals.
 
 The [September 7 operational packet](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#11-bounded-shadow-rehearsal-execution-packet--september-7)
 now has an executed bounded slice. Backend commits `41e07297e`, `ca559b2f7`,
-`bfb26e6a9`, and `27258111c` add all-lens owner materialization, explicit
+`bfb26e6a9`, `27258111c`, and `d062d1810` add all-lens owner materialization, explicit
 coverage/report wiring, bounded indexed-owner reconciliation, and a
-deterministic owner-commit/publication race. On isolated local database
+deterministic owner-commit/publication race, plus live-set cleanup when a
+deferred backfill identity later resolves or is already current. On isolated local database
 `vesper_life_rehearsal_20260907` at migration head `lifebackfill02`, the Life
 offline selection passed 179 tests and the complete connected Life selection
 passed 11 tests; the report command passed 2 tests and emitted
@@ -156,10 +157,10 @@ W1–W6 transitions and their repair/must-not expectations.
 These are scaffolding and shadow-population seams, not a populated whole
 portfolio, serving cutover, or claim that grouping quality is solved. The
 remaining connected work is the full seven-record/four-viewer corpus, paused-run
-and unresolved-work convergence, broad lease/acknowledgement interleavings,
-independent Anchor/Atlas/social/authored owner adapters, and final payload,
-grant, dependency, destination and cursor parity. The report intentionally
-keeps unsupported families and `serving_ready=false` visible.
+restart against persisted unresolved work, broader lease/acknowledgement and
+retry interleavings, independent Anchor/Atlas/social/authored owner adapters,
+and final payload, grant, dependency, destination and cursor parity. The report
+intentionally keeps unsupported families and `serving_ready=false` visible.
 
 ## Landed checkpoints
 
