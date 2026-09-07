@@ -363,6 +363,13 @@ The defensible work is **what we ask, what we verify, how we judge it for this m
   not create a catalog row, dossier, vector or review write. Focused research
   coverage is **30 passed**; this is a consumer handoff receipt, not proof of
   supplier quality, identity resolution or canonical promotion.
+- **S1 / search-policy separation — landed in backend `84a650829`:** Tavily
+  search depth is now an explicit tool/profile setting independent of result
+  count. Direct legacy callers retain the prior fallback; current quick/deep
+  research profiles explicitly remain `basic` pending a supplier-cost
+  decision. Focused tool/handler coverage is **37 passed**. This changes
+  configuration clarity and spend control, not provider activation or source
+  quality.
 - **S2 / event paging guard — landed in backend `5421c66b7`:** the existing
   Ticketmaster fetch keeps its 200-item page size but caps a refresh at five
   pages (the documented first-1,000-result window). A regression fixture proves
@@ -607,7 +614,8 @@ Implementation:
    candidate pass ask for specific missing evidence; do not fan out to every
    provider or require deep research for each result.
 3. Separate Tavily search depth from result count in the existing tool/profile
-   configuration. Return source results as discovery material; extract or open
+   configuration. This is landed in backend `84a650829`; keep the current
+   profiles on `basic` until a supplier-cost decision. Return source results as discovery material; extract or open
    the source that actually supports a consequential claim. Preserve source
    dates, status, attribution and gaps rather than treating the provider's
    generated answer as independent evidence.

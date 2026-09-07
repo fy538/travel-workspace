@@ -198,14 +198,20 @@ live assistance, with no visible fifth tab or obligatory "engine" section.
 
 ## 2. Current coordination register — September 7
 
-**September 7 receiving update:** Integration and Life remain the engineering
-owners below. The active Content task (`01a07c63-5ebe-71d2-9cb0-314ec4e06963`)
-now owns world-supply research and its implementation handoff. Strategy
-(`01a072c6-2735-7152-94ea-bb6958ead53d`) proposes a bounded Social participation
-task; it has not been dispatched by this register. This supersedes the older
-two-task allocation wherever it would exclude these complementary responsibilities.
-Integration remains the sole landing owner for shared read, judgment and root
-composition changes. Current receiving work and checkpoints are in §9.5.
+**September 7 afternoon coordination refresh:** Integration owns shared
+execution, judgment and root composition; its next detailed packet is
+[§9.6](#96-private-preparation-and-shared-delivery-execution-plan--september-7).
+Content (`01a07c63-5ebe-71d2-9cb0-314ec4e06963`) is executing its C0–C6 supply
+plan, including the remaining routing-read boundary. Do not duplicate that
+repair here. Home (`01a06f87-e648-74d2-a0ae-f0adb305e44c`) is planning page
+composition, supply reception and exact continuations in its existing map;
+Life continues corpus/recovery/parity work in its isolated worktree. Strategy
+owns first-encounter and product-clarity specifications. Social and Places
+have design handoffs; Social is no longer merely a proposed task. Entities is
+idle with reviewed implementation on a mobile branch, not fully landed main.
+These are observed assignments, not a dispatch or permission to take over
+another task. The historical two-persistent-lane model does not exclude bounded
+Home, Content or design work. Shared files still require one landing owner.
 
 **Content handoff, September 7:** the [recommendation world-supply audit and
 roadmap](recommendation-world-supply-architecture-and-roadmap-2026-09-07.md)
@@ -263,6 +269,13 @@ Content can now hand a provider-neutral result to identity, observation and
 place-content owners without requiring a dossier or catalog insert. Focused
 research tests pass **30**; supplier quality, retention rights, identity
 resolution and canonical write-back remain separate gates.
+
+**Search-policy receipt, September 7:** backend commit `84a650829` makes
+Tavily search depth an explicit tool/profile setting rather than a side effect
+of result count. Current quick/deep profiles remain on `basic` pending a
+supplier-cost decision, and direct legacy callers keep their fallback behavior.
+Focused tool/handler coverage is **37 passed**; this is a cost-policy seam, not
+provider activation or evidence-quality validation.
 
 | Additional responsibility | Authoritative context | Current package | Promised interface | Dependency / next checkpoint |
 | --- | --- | --- | --- | --- |
@@ -978,8 +991,12 @@ document's creation.
 | I5 | Graph/consequence foundations present; movement signal→judgment shadow path is locally evidenced; lightweight experience remains incomplete | Complete adaptation and shared consequences over I1–I3, preserving purpose, plural participation, and meaningful stop/wait behavior |
 | I6 | Inventories, guards, retained booking-evidence and assisted-expense contracts are recorded and locally validated; destructive cutovers remain incomplete | Run environment obligation audits, migrate actual retained readers, and remove only execution paths with no remaining consumer or obligation |
 
-**Next connected work:** CV-2 below alongside Life's R2 coverage and
-reconciliation work; the first CV-1/target-capability receipt is in §9.2.
+**Next connected work:** execute §9.6's private preparation and shared delivery
+packet within CV-3/CV-4, alongside Content C0–C6, Home's receiving/presentation
+plan and Life's corpus/recovery work. CV-2 A–D has local implementation receipts;
+do not restart it from the older sequencing text. CV-2E practical specialist
+expansion follows a named timing need rather than preceding all supply work.
+The first CV-1/target-capability receipt is in §9.2.
 Do not rebuild source delivery, representation withdrawal,
 Outcome adapters, backfill or reconciliation from older receipts. The next
 stage connects existing capabilities and makes migration claims precise. New
@@ -1635,6 +1652,332 @@ later gates. Intake-to-generation, generic background ticks and production on
 GET remain excluded. This packet closes execution-scope holes, **not CV-3's
 runtime supply connection**; the prior “named trigger-owner” next step was too
 optimistic without this distinction.
+
+### 9.6 Private preparation and shared delivery execution plan — September 7
+
+**Status: planned, not implemented or activated by this section.** This is the
+Integration execution detail within CV-3/CV-4 and I2/I4, not another roadmap or
+product grammar. It supersedes older next-step language that starts with more
+worker infrastructure, repeats CV-2 A–D, or makes all content wait for practical
+specialists. The [accepted worker decision](../decisions/2026-09-06-bound-source-production-worker.md)
+and [contribution contract](../systems/contribution-and-consequence.md) retain
+authority over activation, use, retention, audience and repair.
+
+#### 9.6.1 Outcome and scope
+
+Connect a specifically authorized private preparation request to useful,
+source-backed output that can be received in its original context and, when
+eligible, encountered in Home and Places. The same result must survive retry,
+change and return without becoming a new user fact, Plan or Life artifact by
+implication. Deliver complete value before offering optional continuation.
+
+This packet connects an existing pipeline; it does not define Vesper as a
+preparation app or make preparation a prerequisite for browsing. Public-world
+knowledge, immediate investigation and original human contributions remain
+independent sources of value. A new person without retained material must not
+be told to document life to repair an empty private-production branch.
+
+Product examples exercise several needs together: a substantive comparison
+from retained attention, a forward-looking possibility grounded in current
+material, a practical qualification, and a private juxtaposition with an
+authorized friend's perspective. Novel external facts require Content's
+evidence; the private structured producer is not a substitute research engine.
+
+#### 9.6.2 Inspected baseline and concrete gaps
+
+Planning began from workspace 82ab038, backend main 5421c66b7 and mobile
+17eea1980 on the Entity branch. Content was actively changing discovery/taste;
+Home was updating its implementation map; Life was advancing its isolated
+rehearsal. These are inspection bases, not required resets or remote status.
+
+| Boundary | Existing code and evidence | Remaining integration work |
+| --- | --- | --- |
+| Request identity | [Work item](../../travel-agent/backend/core/models/source_contribution_work.py) has viewer, roots, situation, audience, represented clock, policy/compiler, trigger/context refs, deadline and deterministic identity | No runtime caller constructs it. No field directly represents an arbitrary question, selected Source set or requested activity window. An expiry is not an event window; a situation enum is not a complete user request. |
+| Durable submission | [Workflow handoff](../../travel-agent/backend/root_projection/v2/source_contribution_workflow.py) uses existing agent_workflows with supersede_existing false | No runtime caller creates this workflow. It currently leaves conversation/message identity unset; establish an exact private request receipt without broadening readership. |
+| Execution | [Canonical executor](../../travel-agent/backend/root_projection/v2/source_contribution_canonical_executor.py) supports explicit-warm, canonical context resolution, current production reuse and readback | It rediscovers eligible material; it is not yet an exact-subject/request compiler. Other trigger labels are rejected and must remain so without owner bindings. |
+| Operational lease | [Worker](../../travel-agent/backend/root_projection/v2/source_contribution_worker.py) claims a workflow and checks execution/deployment contracts | The Source wrapper calls claim_workflow without a duration override; [DB default](../../travel-agent/backend/core/db/agent_workflows.py) is 60 seconds, while [deployment defaults](../../travel-agent/backend/core/models/source_contribution_worker.py) declare a 300-second lease and 240-second execution timeout. No Source-worker renewal caller was found. Wire effective timing; declarations alone do not protect a long execution. |
+| Publication and control | [Continuity](../../travel-agent/backend/root_projection/v2/source_contribution_continuity.py) commits an attempt/result before the worker completes its outer workflow receipt; [store](../../travel-agent/backend/core/db/source_contributions.py) checks the Source attempt token | Establish the exact atomic boundary between outer cancellation/lease loss, Source eligibility, work deadline and publication. Rejecting a later workflow receipt is not by itself evidence that output was never stored or served. |
+| Reconnect and cancel | [Workflow routes](../../travel-agent/backend/api/routes/agent_workflows.py) provide authenticated read/reconnect and a control-intent transport | The command route records intentions behind a flag; its documented transport does not itself execute cancellation. Do not present recorded intent as a stopped Source job. |
+| Exact result retrieval | Worker receipts name the work and outcome; [prepared serving](../../travel-agent/backend/root_projection/v2/source_contribution_serving.py) rediscovers eligible groups and returns at most one current private result | Work completion is not a direct result locator. The requester needs an exact authorized result/readback path even if Home's selection does not display it. |
+| Public supply | Existing observations, facts, place-content primitives, Foundry, research and derived indexes exist; Content C0–C6 maps their connections | The missing new capability is connected purpose-aware supply/retrieval/refresh, not the absence of every public corpus. Private prepared storage must not become the public knowledge owner. |
+
+Existing 426-test scope coverage and separate worker/serving tests are useful
+regression baselines. They do not close the request entry, outer-to-inner
+publication fence, actual deployment timing or product result retrieval above.
+The observations here are static inspection, not reproduced production failures.
+
+#### 9.6.3 Recommended request and lifecycle decisions
+
+Recommend one explicit private request through the existing conversation/action
+dispatch architecture. Keep “warm” an internal implementation label. Do not add
+a Home input card, a new tab, an obligatory setup gesture or a generic new tool
+until the existing dispatch/command inventory shows that it is needed.
+
+The receiving owner must resolve these meanings before admission:
+
+| Meaning | Required binding / recommended default |
+| --- | --- |
+| Who requested what | Authenticated actor, exact authored request identity and bounded purpose; bind existing canonical refs where available. A model-selected relevant group cannot silently replace the named subject. |
+| Which material may be used | Existing source custody/use grants and supported context; source refs and revisions where the request names them. Ask alone does not admit its attachment for later Home use. |
+| Where and when | Distinguish subject geography, requested local activity window, context observation time, work deadline and result validity. Do not overload the represented clock or TTL. |
+| Audience and roots | Private requester by default; requested Home/Places scope intersects existing use grants. Existing private access does not authorize public reuse, sharing or messages to a friend. |
+| Retry identity | Stable original request identity and purpose/scope version. Redelivery does not use a new current timestamp to create another job or renew consent/expiry. Changed purpose or scope requires a distinct explicit request. |
+| What persists | Content-free workflow metadata plus permitted recomputable output under existing Source production custody. No automatic Source retention, person claim, Life save, intention or Plan. |
+| What comes back | Exact work status and authorized result ref/readback, with source and practical validity. The result must be reachable independently of the ranked Home portfolio. |
+| What stop means | Reuse the existing workflow owner for execution cancellation; define its linearization with publication. Stopping pending work is distinct from deleting an already completed retained source/result. |
+
+These are contract requirements and recommended choices, not adoption of a new
+schema or command. First choose the real handler and required owner references.
+If the existing work item cannot faithfully carry that bounded request, propose
+a minimal versioned adapter/extension with migration and API impact; do not
+hide missing meaning in an opaque payload or weaken validation to accept it.
+
+An immediate answer may be complete. Additional preparation is optional and
+does not replace that answer with a progress screen. When runtime execution is
+disabled, report unsupported/unavailable and preserve ready value; do not accept
+a user-visible pending job that cannot run. An internal deterministic runner
+can exercise the same service while remaining explicitly a local test path.
+
+#### 9.6.4 Work packages
+
+Package IDs below are execution labels only. Status starts planned for each.
+
+**SP-0 — Bind the request, result and control interfaces.**
+
+- Trace existing action dispatch, research initiation, workflow read/control
+  and Source opportunity resolution; identify the exact handler that may own
+  private preparation. Keep Content's research owner separate.
+- Map every field in §9.6.3 onto a concrete owner/model/function or name the
+  precise gap. Resolve exact-source versus contextual discovery semantics.
+- Specify accepted, reused, no-useful-result, retryable-failure, expired,
+  cancelled and superseded outcomes using existing lifecycle owners. Separate
+  an execution receipt from a useful result and from actual surface exposure.
+- Specify private result access and cancellation through the same actor-scoped
+  work identity. Verify that conversation membership cannot expose private
+  preparation metadata or material if a conversation reference is added.
+- Review only the missing interface decisions with the founder; shared model,
+  prompt, API, action-authority and background posture changes retain their
+  normal review requirements. No new registry or request store by default.
+
+Exit: a concrete call graph and field/authority mapping, plus a reviewed
+request/result/control contract. “Explicit warm exists” is not the exit.
+This contract-sensitive packet can proceed alongside all other tasks.
+
+**SP-1 — Connect durable submission and exact readback.**
+
+- Implement the smallest owner-bound submission adapter after SP-0 review;
+  reuse build_source_contribution_work_item and create_source_contribution_workflow.
+- Resolve authority before accepting work. Reject wrong actor, unsupported
+  context/roots, missing required sources and requests whose time has elapsed.
+- Preserve stable retry identity, original deadline and private scope across
+  request redelivery and reconnect. Do not automatically supersede unrelated
+  preparation for the same person.
+- Link submission to its original request and exact canonical result using
+  opaque refs, not duplicated source text or generated prose in workflow JSON.
+  Reuse authenticated workflow reads where safe; do not build another inbox.
+- Keep durable acceptance separate from runnable admission. No production
+  entry point may report queued work while the only runner is a test fixture.
+- Test crash after workflow commit/before transport handoff, duplicate delivery
+  and retry after reconnect. Existing workflow due-work queries may support a
+  later approved recovery mechanism; do not create a scheduler here.
+
+Exit: one authorized request maps to one durable work identity and truthful
+readable state. Restart/retry loses neither authority nor result linkage.
+Likely files: Source work/workflow adapters and focused workflow tests; shared
+workflow/API changes are explicitly reviewed and coordinated.
+
+**SP-2 — Make execution, cancellation and publication one coherent lifecycle.**
+
+- Connect the effective workflow claim duration and, if needed, renewal to the
+  existing deployment envelope. Measure actual elapsed deadlines rather than
+  trusting default metadata. Preserve Source attempt deduplication separately
+  from the outer workflow's execution lease.
+- Carry request scope through opportunity selection, canonical reads, reuse,
+  production and completion. Resolve request-specific material without changing
+  the root-neutral group identity or expanding allowed roots.
+- Revalidate current source/use eligibility, exact context and deadline at the
+  storage boundary. Test a cancellation or owner change between final checking
+  and commit; use existing transactional owner fences wherever they fit.
+- Connect outer workflow cancellation/lease takeover to permission to publish.
+  A timed-out thread may finish physically; it must not acquire permission from
+  a stale token. Verify reuse and fresh production obey the same current-use
+  rules and distinguish invalid input from retryable acquisition failure.
+- Reuse cancel_workflow and current source invalidation semantics. Define what
+  wins when completion and cancellation race, and which source/output survives.
+  Do not delete independent results or already retained original material.
+- Bound provider retries across workflow attempts; cancellation never starts
+  replacement work or extends a deadline. Keep failure telemetry content-free.
+
+Exit: real local PostgreSQL interleavings establish coherent publication and
+readback across both leases, source revisions and request control. The
+single-Source attempt tests alone are insufficient. This safe internal repair
+work can start while SP-0's interface decision is reviewed; no activation needed.
+
+**SP-3 — Deliver exact prepared value through existing shared consumers.**
+
+- Connect the durable result to the current prepared-source reader, canonical
+  owner mesh, value judgment and Home/Places composition. Reuse the same result
+  across allowed roots with root-appropriate expression, not copied page JSON.
+- Exercise Home, Places root and Places runtime responses through real shared
+  adapters; mock providers/external catalogs, not the meaning-bearing judgment
+  or result-to-consumer connection being tested.
+- Provide the exact requester result even when it loses a Home ranking slot.
+  Preserve exact source/entity/dossier refs for Home's continuation package;
+  a workflow success receipt must not route to an unrelated geographic door.
+- Test direct read, next ordinary visit and return after change. Preparation
+  completion does not authorize push or a new refresh loop; use existing
+  explicit reconnect/refresh behavior and hand mobile receiving needs to Home.
+- Preserve independent explanation, public material and original human copy
+  when a dependent practical claim or private contribution becomes unavailable.
+- Emit distinct production, eligibility, selection and delivery evidence;
+  suppression or a miss is not delivery, and an empty supported renderer is
+  not substantive value. Do not raise candidate caps to make fixtures pass.
+
+Exit: the same authorized result is retrieved exactly and can contribute useful
+substance to all supported root callers without new acquisition on GET. Home
+owns visual hierarchy, selected-text Ask and native continuation presentation;
+Integration owns shared payload meaning and backend delivery.
+
+**SP-4 — Receive Content's public knowledge without merging its authority.**
+
+- Work alongside Content C1/C2/C4/C6 on a small real receiving contract, using
+  existing public-content reads, primitives, evidence and final composition.
+  Reuse accepted owners before considering any new DTO, index or store.
+- Map exact subjects, claim type, source observations, validity, permitted
+  display/reuse and continuation. Keep acquisition cost in execution/accounting
+  joins rather than copying it into every card or treating it as truth.
+- Public material must be useful without private history. Private source
+  context may improve a result only under its own use grant; a friend's
+  perspective cannot become shared corpus through anonymization.
+- Verify qualified answers, reuse, source correction, no useful source and
+  public-only fallback across the joint portfolio below. Public result expiry
+  must not erase independent private originals, or vice versa.
+- Start receiving fixtures before Content's full pipeline is complete. Only
+  claim a connected supply path after actual Content owner/readback adapters
+  replace the corresponding fixture boundaries.
+
+Exit: one shared judgment/delivery architecture receives the distinct supply
+paths; each actual producer, read owner and unsupported mapping is recorded.
+This overlaps SP-0–SP-3 and does not wait for private worker activation.
+
+**SP-5 — Operational handoff and controlled activation decision.**
+
+- First produce a local connected receipt: effective lease timing, deadlines,
+  request/result identity, replay, cancellation, source repair, exact delivery,
+  cold-state fallback and known unsupported cases. Keep fake-provider evidence
+  separate from output quality or real costs.
+- After explicit approval, measure the existing provider in a named, bounded
+  cohort using the accepted worker/provider policy. Record attempts, elapsed
+  time, queue delay, owner reads, reuse, provider calls and actual ledger cost;
+  set reviewed limits before the first paid run. No invented cost estimate.
+- Only after the accepted worker gates are satisfied, register a dedicated job
+  in the existing WorkerSettings and wire durable dispatch/recovery there.
+  Register no second queue, generic background tick or recursive self-schedule.
+- Ensure disable/rollback stops new acceptance and acquisition, handles pending
+  work truthfully and leaves current eligible reads available. Reopening a flag
+  cannot revive expired/cancelled work. Audit import/startup behavior.
+- Expose the reviewed request through the selected existing interaction path
+  only when it can execute and report completion. Chat design changes, native
+  acceptance, broad rollout and future triggers remain separate work.
+
+Exit: either a bounded activated capability with measured evidence and rollback,
+or an explicitly ready-but-dark implementation with named unmet gates. Do not
+mark CV-3 or the complete product done because the dark lifecycle tests pass.
+
+#### 9.6.5 Joint portfolio and failure matrix
+
+These cases test shared architecture concurrently; no single loop defines it.
+Use synthetic/recorded observations locally, not claims about actual current
+venues, events or friends. Original human material may bypass generation.
+
+| Situation | Required value | Important variant |
+| --- | --- | --- |
+| Post-return attention | A supported comparison that adds something beyond the person's own observation | Requested source differs from another eligible group; no evidence for the proposed new connection |
+| Ordinary NYC / little history | A concrete public-world possibility with value on first view | Empty private corpus must not trigger capture homework or hidden acquisition |
+| Coming weekend | Useful options with an explicit local window and supported practical facts | Open now is not future availability; no adopted intention or Plan follows |
+| Changed practical condition | Revise the affected practical offer while preserving worthwhile explanation or alternatives | Closure/expiry between production, persistence and delivery |
+| A friend's perspective | Original attributable material, with an optional supported private juxtaposition | Wrong recipient, withdrawal while running, or public/private mixed dependencies |
+| Return after absence | Exact still-eligible result, a truthful changed result or an honest unavailable state | Root ranking omits the result, context expires, or source custody is shortened |
+
+Apply duplicate request, retry after restart, budget exhaustion, cancellation
+before/during/after execution, lease takeover, source revision, wrong viewer,
+unsupported root, missing readback and late completion across relevant cases.
+Include positive controls: legitimate reuse remains useful; unrelated values
+survive; ordinary answers and authored social contributions can end without
+new work, retention or continuation.
+
+#### 9.6.6 Sequence, ownership and review checkpoints
+
+| Round | This lane | Independent work and handoff | Checkpoint |
+| --- | --- | --- | --- |
+| A — establish executable boundaries | SP-0 exact request/result/control decision; SP-2 effective lease/publication audit and minimal repairs; SP-3 receiving fixtures | Content owns routing C0 and bounded evidence C1/C2; Home owns its page/continuation plan; Life owns corpus/parity | Can the request be represented without losing purpose or widening scope? Can cancellation or lease loss still leave publishable output? |
+| B — connect the private path | SP-1 reviewed submission/readback; SP-2 connected DB lifecycle; SP-3 actual shared serving | Home receives exact refs/statuses; Content continues public storage and retrieval | Request → durable execution → canonical result → exact retrieval/eligible root delivery is connected; no second owner or fake progress state |
+| C — combine supply and experience | Complete SP-3 and SP-4 with real Content owner adapters | Home composition/rendering and Life exact readers proceed against their contracts | Does the portfolio deliver enough substance, preserve distinctions, remove work and remain useful for newcomers? |
+| D — operationalize deliberately | SP-5 controlled measurement/registration only after approval | Coordinate one shared-contract landing sequence and later native acceptance | Which parts are locally connected, production-ready, activated and genuinely user-validated? Record each separately. |
+
+Working ownership:
+
+- Integration: Source request/workflow/worker/continuity/serving connections,
+  shared owner reads and judgment/composition, backend integration fixtures.
+- Content: research acquisition, public observations/facts/primitives,
+  retrieval/refresh, source decisions and currently active discovery/taste
+  repairs. Do not modify these files concurrently from this lane.
+- Home: its implementation map, page selectors/presentation, mobile rendering
+  and continuations; shared backend changes are handed to Integration.
+- Life: owner projectors, outboxes, index/organization, exact Life reader
+  semantics and migration. This packet consumes them without creating saves.
+- Entities: bounded exact-depth gaps; do not sweep its unmerged mobile work into
+  this packet. Social/Places/Strategy supply experience requirements and keep
+  their own design documents.
+
+Check status/branches immediately before edits, not only at packet start.
+Use an isolated worktree for overlapping backend work; stage explicit files,
+inspect the entire staged index before committing, and record dependent SHAs.
+No subagents or user-owned tasks are dispatched by this plan. If delegation is
+requested during execution, use narrow independent tasks and non-overlapping
+files; follow §7's model policy without having multiple workers land shared
+schema, core DB or composition changes concurrently.
+
+Reassess at each round and after two connected packages. Stop only the affected
+path for an unapproved source/authority/schema decision; continue independent
+repair and receiving work. Do not gate Content or Home on a global philosophy
+freeze, one showcase loop, all practical specialists or private activation.
+
+#### 9.6.7 Validation, commits and completion record
+
+Classify SP-0/SP-1 and any shared payload change as contract-sensitive. Pure
+internal lifecycle fixes are safe-backend only if they preserve schema, auth
+and prompts. New authority, cross-owner schema and background posture remain
+founder-reviewed; prompt changes require separate behavioral evidence. No
+runtime code, prompt, API, deployment or retention policy changes in this plan.
+
+Use the backend .venv interpreter with HF_HUB_OFFLINE=1 and
+TRANSFORMERS_OFFLINE=1 for local tests. Extend existing Source work/workflow,
+canonical executor, continuity, serving and root API tests. Use existing
+source_contribution_attempts_postgres and agent_workflows tests as foundations
+for the missing connected lifecycle interleavings; create isolated disposable
+fixtures, not production runs or migrations by assumption. Add only the tests
+and fixtures needed for real connections; do not build another evaluation engine.
+
+Run affected suites, Ruff/import checks and diff checks per commit. Any API
+change follows workspace scripts/sync-types.sh, both OpenAPI snapshots, mobile
+generated types, operation governance and typecheck. Coordinate this shared
+generation/landing with Home/Entities. Pure internal adapters do not require
+new mobile kinds. Native testing remains deferred and is not replaced by a
+backend green result.
+
+Suggested reviewable commits: request mapping/contract; effective lease and
+publication fence; durable submission/result binding; connected root delivery;
+Content receiving adapter; operational handoff. Split large packages further
+when authority, DB or API review deserves its own checkpoint. A documentation
+commit is never an implementation receipt. Do not skip hooks silently or sweep
+another task's staged files into a commit.
+
+Record package, exact repos/commits, runtime callers, real versus simulated
+boundaries, tests, remaining decisions, rollout status and next checkpoint in
+this section. No percentage-complete metric substitutes for those distinctions.
+The immediate implementation batch is SP-0 plus SP-2's existing lifecycle gaps,
+with SP-3/SP-4 receiving fixtures alongside—not queue activation or new screens.
 
 ### Execution receipts (2026-09-07)
 
