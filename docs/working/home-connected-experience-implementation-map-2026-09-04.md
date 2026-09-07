@@ -808,3 +808,29 @@ target in `claude-design-interaction-kernel-lab-v2-3-arrangements-execution-repo
 it reports no missing file targets in this implementation map. No application
 tests were rerun for this docs-only plan, and no native, database, provider or
 production activation occurred.
+
+### 8.7 September 7 connected-package receipts
+
+The first implementation packages are now landed in isolated branches from the
+current `main` checkouts; they are intentionally not merged or pushed:
+
+| Package | Commit | What is now verified | What remains outside this package |
+| --- | --- | --- | --- |
+| A1/B2 renderer receiving | Travel App `6e29dd1cd` (`feat(home): use user-facing continuation labels`) | Existing composition payloads render without the internal semantic-kind stamp. Doors use the supplied destination/resource owner to say `Open in Places`, `Ask Vesper`, `Open in Life`, `Open the map`, or a bounded fallback. The actual `HomeRootV2Screen` smoke test verifies the substantive composition and Places destination path. | Native typography/scroll acceptance; richer producer supply; no new semantic kind promoted. |
+| A1 compiler substance | Travel Agent `6ae314440` (`test(home): preserve delivered substance and destination`) | A compiler-level Home test proves title, substantive body, exact Places target and source identity survive selection and compilation. Focused backend suite: 27 passed. | This is deterministic adapter/selector evidence, not live provider or production-worker evidence. |
+| B1 addressed place receiving | Travel App `9d57d203e` (`test(home): preserve addressed place handoff routing`) | An addressed place destination opens the exact venue with one bounded Home return token; private handoff text is not serialized into the route. Navigation suite: 23 passed. | Original handoff/source depth and subsequent Ask continuity still need Integration/Entity/Capture owner support. |
+
+The mobile branch also passes the Home screen smoke suite (7 tests) and
+TypeScript check. Existing expiry-observation tests continue to cover C1's safe
+whole-root recomposition at value/proof deadlines; no second refresh mechanism
+was added. The temporary dependency symlink used to run Jest in the isolated
+worktree was removed before finishing, and both implementation worktrees are
+clean.
+
+The next executable work is therefore not another Home shell rewrite. D1 still
+needs Content/Integration to provide an owner-backed reusable or explicitly
+investigated result; D2 still needs the retained-evidence reader mapping; and
+E1 still needs the cross-owner cost/degraded-state receipt. Until those owners
+publish exact payloads, Home should consume the supported contextual/directed
+families and preserve the explicit unavailable boundary rather than inventing
+new generators, stores, booking surfaces or social data.
