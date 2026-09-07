@@ -2543,19 +2543,22 @@ experience, or branch-local progress with an integrated candidate.
 
 | Inspected location | Planning baseline | Treatment |
 | --- | --- | --- |
-| Workspace `main` | `382d369`, with concurrent roadmap/design/strategy/inventory edits | Preserve existing work; record only this rebaseline's changes |
-| Backend `main` | `9d3127084`, including a newer Content research/publication batch | Re-run affected tests; earlier evaluation results do not cover this new commit |
-| Mobile checkout | `codex/entity-object-design-completion`, `c3feb89f0` | Review its unique work against current mobile main before landing |
-| Backend Home receiving | `codex/home-receiving-2026-09-07`, `8c096e44f` | Review and test against current backend main, including Content changes |
-| Mobile Home receiving | `codex/home-receiving-2026-09-07`, `e1a22a89f` | Integrate with Entity work; equivalent patches must land once |
+| Workspace `main` | `0de97cd`, with concurrent roadmap/design/strategy/inventory edits | Preserve existing work; record only this rebaseline's changes |
+| Backend `main` | `1146ae041`, including the Content research/publication batch, terminal-state repair, and merged Home receiving | Re-run affected tests; the active Content/Strategy edits remain uncommitted and outside this candidate |
+| Mobile checkout | `codex/entity-object-design-completion`, `f4401ef73` | Home receiving is integrated with Entity; active Chat edits remain uncommitted and outside this candidate |
+| Backend Home receiving | Landed on backend `main` as `1146ae041`; source branch remains at `8c096e44f` | Keep the merge as the candidate; do not re-apply equivalent patches |
+| Mobile Home receiving | Landed on the Entity checkout as `f4401ef73` and on clean app `main` worktree as `8bed6ca82` | Keep one reviewed patch per target branch; the clean `main` worktree lacks installed dependencies for a fresh Jest run |
 | Backend Life | `codex/life-shadow-rehearsal-2026-09-07`, `9e34fc03d` | Bounded organization-group reader has advanced; DB/test edits were still active. Choose a tested cut with its owner, not the entire dirty branch |
 
 These are observations, not a frozen merge target. Recheck status, worktrees,
 ancestry and active ownership before execution. Later commits require explicit
 inclusion or exclusion; neither assume them reviewed nor discard them.
 
-The evaluation ran **694 backend tests**, **101 mobile tests** on the Entity
-checkout, and **52 backend Home-branch tests**. Contract freshness/parity,
+The pre-execution evaluation ran **694 backend tests**, **101 mobile tests** on
+the Entity checkout, and **52 backend Home-branch tests**. During this
+execution, the merged receiving/workflow packet passed **69 focused backend
+tests**, and the merged Entity checkout passed **46 focused mobile
+Home/Places/navigation tests plus TypeScript typecheck**. Contract freshness/parity,
 TypeScript and API/import boundaries passed on their inspected bases. These are
 separate receipts, not a combined-candidate full-suite pass. The Home mobile
 worktree could not freshly run Jest because dependencies were absent; a prior
