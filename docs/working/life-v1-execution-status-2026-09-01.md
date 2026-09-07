@@ -59,6 +59,12 @@ result can keep delivery pending. The barrier regression and offline Life
 selection are green at **200 passed, 34 deselected**. Resolution atomicity,
 continuation persistence and any serving/Atlas transition remain unexecuted.
 
+**Reverse reconciliation — September 7:** commit `91024a856` aligns bounded
+repair with the shared maintainer and surfaces pending completion when
+organization work remains. Legacy injected projector callers remain intact;
+the default repair path now cannot silently treat an index-only update as a
+complete Life repair. Durable multi-slice progress and serving remain pending.
+
 The [September 7 operational packet](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#11-bounded-shadow-rehearsal-execution-packet--september-7)
 now has an executed bounded slice. Backend commits `41e07297e`, `ca559b2f7`,
 `bfb26e6a9`, `27258111c`, `d062d1810`, and `f9b687055` add all-lens owner materialization, explicit

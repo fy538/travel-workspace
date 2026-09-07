@@ -1539,6 +1539,12 @@ These changes are committed as `0b822c3aa` and `767f70499` on the isolated
 Life branch. They do not satisfy the separate-transaction race or multi-slice
 continuation requirements; those remain the next M1 package.
 
+The reverse-reconciliation follow-through is committed as `91024a856`:
+default repair uses the shared maintainer and propagates `pending` completion
+to the bounded reconciliation result. This preserves the distinction between
+current indexed rows, repaired rows and repairs whose organization stage is
+still reachable, without adding another event source or indexing framework.
+
 The follow-up fence package is committed as `3a44caf0f`: the default
 maintainer shares one transaction for index and primary owner-group
 materialization/archive, then runs resolution repair after commit and preserves

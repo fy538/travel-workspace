@@ -153,6 +153,16 @@ package, but not the transaction-atomicity requirement: index and
 organization still use separate repository transactions and require the
 controlled race package below.
 
+**Reverse-reconciliation follow-through — September 7:** commit `91024a856`
+(`fix(life): align reconciliation with maintenance`) makes the bounded reverse
+reconciler use `maintain_life_owner_change` by default whenever repair is
+requested and no migration projector is injected. It carries the maintainer's
+index result and exposes `repair_pending`/`withdrawal_pending` rather than
+reporting a partially completed repair as final. Existing pure projector
+injection remains available for migration tests. The next M1 checkpoint is
+durable multi-slice progress for affected scopes; no new queue or schema was
+introduced here.
+
 **Publication-fence follow-through — September 7:** commit `3a44caf0f`
 (`fix(life): fence index and owner materialization`) adds an optional existing
 connection to the index writer and primary organization materializer/archive.
