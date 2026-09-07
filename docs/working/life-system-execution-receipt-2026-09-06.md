@@ -65,6 +65,7 @@ checkpoint.
 | R2-G transfer lineage and repair inventory | `1e49ba0b5` | `lifeorg04` records source/target membership transfer lineage and exposes a bounded affected-set plan for later rebuild; no reverse mutation or reader cutover. |
 | R2-G lifecycle comparison correction | `e00123f3d` | Replacement replay compares resolution-kind values explicitly, preserving idempotent successor detection across equivalent enum instances. |
 | R2-G CAS-guarded affected-set repair | `c82f6ceb4` | `lifeorg05` captures target pre-state/post-revision evidence and reverses transfer lineage in reverse order; revoked resolutions restore source state, replacements can reapply successors, and stale/unrelated changes fail closed. |
+| R2-G repair lifecycle race coverage | `c6cc768fc` | Rollback now requires a redirected source and active targets; PostgreSQL regressions cover multiple transfers, later target detach with atomic no-partial-mutation failure, and archived target-owner fencing. Connected execution is pending an environment with SQLAlchemy/Postgres. |
 
 The existing retained-source, Plan, Occasion, and Outcome projectors all reuse
 the same owner-fenced writer and return explicit `updated`/`withdrawn`/`stale`
@@ -171,12 +172,11 @@ lint, import-cycle, boundary, timeout, and other applicable hooks pass.
    defects, unsupported capability, blocked infrastructure and revision drift.
 3. Require per-target durable delivery before continuously maintaining another
    shadow version; historical-only diagnostics must not appear live.
-4. Expand affected-set repair beyond the first merge/alias path: exercise
-   multi-transfer chains, concurrent controls, archived/restored owners, and
-   legacy lineage that correctly falls back to group rebuild. Keep split choices
-   ambiguous until an exact descendant is supported, then expand organization
-   coverage to the next supported owner family. Keep exact retrieval/return
-   acceptance, indexed serving, and Atlas retirement as separate downstream
-   gates.
+4. Run the three newly committed PostgreSQL repair regressions in the isolated
+   environment, then expand affected-set repair to legacy lineage fallback and
+   explicit restored-owner interleavings. Keep split choices ambiguous until an
+   exact descendant is supported, then expand organization coverage to the next
+   supported owner family. Keep exact retrieval/return acceptance, indexed
+   serving, and Atlas retirement as separate downstream gates.
 
 This receipt is evidence of the executed packages, not a release certificate.

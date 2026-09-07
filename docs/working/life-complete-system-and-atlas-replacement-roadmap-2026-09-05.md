@@ -1776,6 +1776,15 @@ later membership revision, unrelated active transfer, archived group, or
 legacy lineage fails closed for review. This is not a general group rebuild,
 and readers remain shadow-only.
 
+Follow-up `c6cc768fc` closes the remaining lifecycle-state hole at the mutation
+boundary: repair refuses to run unless the source is still `redirected` and
+each affected target group is still `active`. Its three PostgreSQL regression
+cases cover a two-membership transfer, a later target detach (the repair
+transaction fails before changing any row), and an archived owner target.
+The cases are committed but require a runnable SQLAlchemy/PostgreSQL
+environment before they can be counted as connected evidence; legacy lineage
+fallback and explicit restored-owner interleavings remain the next package.
+
 | Lane/interface | Concrete dependency | Work that can continue here |
 | --- | --- | --- |
 | Capture/source owners | Exact custody/expiry/representation reads, current revision and authorized restore event; agree any missing transaction change before editing its producer | Receiver tests, replay, report and source-only organization using existing contracts |
