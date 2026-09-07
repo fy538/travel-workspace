@@ -2398,6 +2398,9 @@ Life backend branch (recheck branch divergence before integration):
   corpus revision and the `(sort_at, record_id)` identity boundary in one
   pure contract; malformed partial boundaries are rejected before a page can
   be concatenated with a different scope.
+- `8893cf518` tightens the evidence envelope's contract version to a closed
+  literal and adds a regression for unknown versions, preventing a future
+  producer from silently changing the meaning of an organization unit.
 
 The local development database was at `lifeorg05`; the additive `lifeorg06` →
 `lifeorg07` upgrade was applied transactionally for test evidence. Focused

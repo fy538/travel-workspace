@@ -1399,7 +1399,8 @@ adds the neutral `contained_record` vocabulary and converts only exact
 owner-self memberships (collision-safe); `lifeorg07` adds typed
 `contains`/`calendar_reference` group links plus independent content/read
 freshness fields; `evidence.py` defines a strict, owner-scoped evidence-unit
-envelope and `organization.py` provides policy-scoped period seeds plus a
+envelope with a closed contract version and `organization.py` provides
+policy-scoped period seeds plus a
 deterministic source-evidence adapter; and `organization_reader.py` exposes
 bounded immediate children and active membership pages with stale-epoch
 rejection; and the materializer has an explicit, complete-set reconciliation
