@@ -1366,13 +1366,12 @@ backend branch, in isolated commits:
 | C1b (first slice) | `8926cb497`, plus `2a102c599` | Caller deadlines are enforced around the full quick graph and before subquery dispatch; remaining chain time is capped and deadline exhaustion returns an explicit bounded stop. |
 | C4b (structured first slice) | `4efe7aa1a` | A bounded place-scope reader discovers only admitted primitives attached to the place's canonical child entities; it does not invoke research, providers or a global index. |
 
-Focused receipts run during this pass: `12`, `48`, `25`, `6`, `10`, `13`,
-`16`, `20`, `5`, `36`, and `11` tests respectively for the affected
-accounting, graph, event, exact-handoff, composition, experience, event-tool,
-lookup, quick-research, deadline-dispatch and place-scope slices (the last
-two overlap the graph/quick suites and are listed to make the boundary
-explicit). The combined content-lane regression command is still required
-before calling this a branch-wide green result.
+Focused receipts run during this pass: `12` accounting, `48` content/graph,
+`25` Places/event, `6` exact handoff, `10` multi-anchor composition, `13`
+experience, `16` event-tool, `20` lookup, `5` quick-research, and `11`
+place-scope tests. Deadline dispatch is covered inside the graph/quick suites;
+the combined content-lane regression command ran `153` tests. These are
+scoped receipts, not a branch-wide green claim.
 
 The existing World Foundry promotion/persistence owner remains the C2b
 boundary; this pass did not silently mark it complete. Real local Postgres
