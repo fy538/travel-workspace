@@ -355,6 +355,14 @@ The defensible work is **what we ask, what we verify, how we judge it for this m
   New regressions exercise cold-cache root calls and assert neither routing
   helper is invoked. This is a nearby serving-boundary receipt, not a claim of
   complete provider isolation or newcomer ready supply.
+- **S1 / bounded evidence handoff — landed in backend `8cd543260`:** the quick
+  research path now preserves its legacy graph-state keys while attaching a
+  typed `bounded-research-result-v1`. The result keeps request purpose/scope,
+  source evidence, supported material, unresolved gaps, stop reason and
+  measured usage together. It intentionally marks no source reusable and does
+  not create a catalog row, dossier, vector or review write. Focused research
+  coverage is **30 passed**; this is a consumer handoff receipt, not proof of
+  supplier quality, identity resolution or canonical promotion.
 - **S2 / event paging guard — landed in backend `5421c66b7`:** the existing
   Ticketmaster fetch keeps its 200-item page size but caps a refresh at five
   pages (the documented first-1,000-result window). A regression fixture proves
@@ -432,7 +440,7 @@ repairs, not a test of the plan below.
 | [Place content models](../../travel-agent/backend/core/models/place_content.py), [persistence](../../travel-agent/backend/core/db/place_content.py) and [delta application](../../travel-agent/backend/core/db/place_content_delta.py) | Versioned lenses, cues and conditional judgments; required/contextual evidence, disagreement edges, review, lifecycle, validity and policy bindings | Smaller-than-dossier content already has an owner. Extend its adapters and query paths before proposing another content store. |
 | [World Foundry promotion](../../travel-agent/backend/world_foundry/promotion.py), [persistence](../../travel-agent/backend/world_foundry/persist.py) and [editorial bridge](../../travel-agent/backend/world_foundry/editorial_bridge.py) | Reviewed facts can persist; selected editorial becomes a **proposed** primitive with narrow interpretation authority | Foundry review, runtime acceptance, surface eligibility and public reuse are different steps. A persisted primitive is not automatically a Home candidate. Some Foundry docs still describe older writer limitations; code capability also does not establish deployed activation. |
 | [Research graph persistence](../../travel-agent/backend/research_agent/agents/persist.py), [legacy write-back](../../travel-agent/backend/research_agent/db/write_back.py), [Foundry adapter](../../travel-agent/backend/research_agent/pipeline/world_foundry_adapter.py) | Legacy briefs/structured fields/dossiers, optional hold-for-review, and a research-to-Foundry adapter coexist | Trace and migrate the actual callers. `LEGACY_RESEARCH_WRITEBACK_ENABLED` defaults to true in code; the deployed value was not checked. A shadow artifact is not a completed migration. |
-| [Quick research](../../travel-agent/backend/research_agent/agents/quick_research.py) | Uses the same research graph with a quick profile and known target slug/type | Add bounded evidence-oriented completion paths; fewer graph iterations alone do not provide independent discovery or selective persistence. |
+| [Quick research](../../travel-agent/backend/research_agent/agents/quick_research.py) and [bounded-result adapter](../../travel-agent/backend/research_agent/pipeline/bounded_result.py) | Uses the same research graph with a quick profile and known target slug/type; now exposes a typed evidence handoff alongside legacy state | Route bounded results to existing identity/observation/primitive owners; fewer graph iterations alone do not provide independent discovery or selective persistence. |
 | [Public content source reads](../../travel-agent/backend/core/place_content_sources.py) and [content compilation](../../travel-agent/backend/lived_experience/content_compiler.py) | Exact accepted public primitive versions can be read and checked; current enumeration starts from bounded known entity refs | Reuse these consumer contracts. Discovering useful public material by region, time or theme still needs a concrete read path; the reader is not a public producer. |
 | [Primitive vector projection](../../travel-agent/backend/core/vector/place_content_sidebuild.py) | Derived projection machinery already exists for place briefs, angles and primitives | Extend and validate the active retrieval path. Source observations, event changes and every discovered entity do not each need an embedding. |
 | [Experience ingestion](../../travel-agent/backend/ingestion/base.py) | Conditional upserts and changed-ID invalidation are landed; `raw_data`, schedule, status and prose still share the material-change predicate | Split observation refresh, practical repair, text regeneration and vector payload updates. Dirty marking currently occurs in a later transaction and catches failures; retry-safe downstream repair remains work. |
@@ -592,7 +600,8 @@ changes; new provider integration remains an explicit source decision.
 Implementation:
 
 1. Add the smallest typed request/result adapters needed by §11.3 inside the
-   existing research/tool boundaries. Keep source acquisition independent from
+   existing research/tool boundaries. The first bounded-result adapter is
+   landed in backend `8cd543260`; keep source acquisition independent from
    whether a canonical entity or dossier already exists.
 2. Reuse exact IDs and current evidence before broad search. Let an initial
    candidate pass ask for specific missing evidence; do not fan out to every

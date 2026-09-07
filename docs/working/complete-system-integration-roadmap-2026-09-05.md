@@ -254,6 +254,16 @@ The plan reuses World Foundry, source observations, entity facts, place-content
 primitives and derived indexes; it does not add a new recommendation engine or
 claim that those paths are already fully connected.
 
+**Bounded-result receipt, September 7:** backend commit `8cd543260` attaches a
+typed `bounded-research-result-v1` to quick-research output while preserving
+legacy graph-state keys. The result carries explicit request scope, source
+evidence, supported material, unresolved gaps, stop reason and measured usage;
+it does not grant reusable-source permission or perform canonical promotion.
+Content can now hand a provider-neutral result to identity, observation and
+place-content owners without requiring a dossier or catalog insert. Focused
+research tests pass **30**; supplier quality, retention rights, identity
+resolution and canonical write-back remain separate gates.
+
 | Additional responsibility | Authoritative context | Current package | Promised interface | Dependency / next checkpoint |
 | --- | --- | --- | --- | --- |
 | Content — active research task | Editorial canon; Strategy September 7 world-supply discussion; CV-3 below | Provider coverage, proactive supply, selective indexing and economics evaluation | Supported candidate identity, evidence, freshness, permitted reuse/display, continuation and acquisition/refresh cost | Integration receives a concrete supplier contract before adding provider-dependent runtime paths; private preparation and public retrieval retain distinct authority |
