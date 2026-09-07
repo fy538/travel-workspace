@@ -97,6 +97,13 @@ complete benefits, selective context, whole-experience judgment and voluntary
 consumer choice. It adds receiving acceptance and unresolved offer decisions,
 not a new execution queue, continuity policy or release claim.
 
+[Section 9.9](#99-next-executable-tranche--connected-everyday-value)
+groups the unfinished work into a larger, executable tranche: useful public and
+authorized personal value, shared practical judgment, completed requested work,
+and exact continuation. It refines §9.8's execution waves, not its ownership or
+product scope. Start with E0/E1; do not restart completed Source machinery or
+wait for every supplier's entire roadmap.
+
 This document replaces older cross-system ordering and lane allocation. Lane
 roadmaps retain internal package detail; their code, acceptance cases and
 historical receipts remain evidence. Product canon and operational release
@@ -3037,6 +3044,445 @@ honest audience/offer study when receiving support permits it. These may change
 exposure or defaults, not silently alter canonical ownership or narrow the system
 to one behavior loop. The research basis and disconfirmation conditions remain in
 [the four-area synthesis](vesper-audience-offer-and-market-strategy-research-2026-09-06.md#19-four-consequential-strategy-questions--september-7).
+
+### 9.9 Next executable tranche — connected everyday value
+
+**Status: proposed execution plan, September 7; not an implementation receipt.**
+This is the next substantial batch within §9.8, not a replacement program or a
+new product category. It changes the unit of execution from isolated adapter
+repairs to completed connections across supply, judgment, receiving and return.
+The prior Source callback, exact-result readback, cancellation and Home receiving
+repairs remain completed foundations; do not implement them again.
+
+#### 9.9.1 Outcome and size of the slice
+
+**A person can open worthwhile Home/Places value, explore its substance, judge
+whether a possibility fits their day, request supported additional help, and
+return to exactly what was supplied or prepared.** Authorized personal material
+and another person's original contribution can improve that experience; neither
+rich history nor friends is required to obtain value.
+
+This is a larger slice because the same identities, current-world facts, job
+semantics, source dependencies and result references have to work across several
+independent experiences. It is not one mandatory journey through every move.
+An explanation can finish on view; someone can check feasibility without
+reading an article; a friend's note can be complete value without AI rewriting.
+
+The expected step change is:
+
+| Today’s incomplete connection | End of this tranche |
+| --- | --- |
+| Content owners have increasingly capable readers, but reader existence does not establish complete root receipt | Current, admitted material travels through actual Home/Places adapters, judgment, renderable units and exact depth |
+| Runtime read policy still maps through founder-story labels | Required reads follow actual subjects, purpose, time, context and available authority; stories remain regression fixtures |
+| Place facts and movement capabilities exist, but generic `route.evaluate` is unavailable | A named, bounded practical assessment uses the relevant existing owners and returns supported fit, conflict, alternatives or explicit uncertainty |
+| Source workflows can store, finish, read back and stop, but have no live request ingress or mobile exact-result consumer | Supported requests preserve their exact job, can execute locally through the real submission path, and have recoverable requester-visible results |
+| Social and Life have branch-local improvements with separate completion criteria | Reviewed cuts are received through exact owner interfaces; corrections and withdrawal reach every supported consumer |
+
+**Not promised by completion:** live provider coverage, production worker
+activation, native UX certification, a settled launch offer, optional history
+adoption, a new Friends audience, generalized watches, booking execution, or
+completion of Life's full Atlas replacement. Record each separately rather than
+using those deferrals to excuse missing local integration.
+
+#### 9.9.2 Fresh baseline and ownership
+
+Inspection points, not a frozen candidate: workspace `58e0d1e`, backend
+`7a1d18070`, primary mobile Entity branch `f4401ef73`, and mobile main integration
+worktree `8bed6ca82`. Workspace strategy/design files and primary child checkouts
+contain concurrent edits. Re-read state before any landing; never merge a task
+merely because its latest message says its batch is finished.
+
+| Workstream | Observed state / authoritative plan | Interface this tranche receives |
+| --- | --- | --- |
+| Integration | This section, §9.8, and the [Source receipt](source-connected-value-execution-receipt-2026-09-07.md) | Shared request/read semantics, composition, exact result delivery, cross-repo candidate and integrated verification |
+| Content | [Supply roadmap §12–13](recommendation-world-supply-architecture-and-roadmap-2026-09-07.md#13-content-ingestion-investigation-and-implementation-plan); latest task is planning ingestion I0–I6, not declaring ingestion finished | Admitted exact/multi-anchor/place-scope content; canonical event identity, state, clocks, current fields, read bounds and correction behavior |
+| Life | [Life roadmap](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md); active isolated lane has added M0–M6 maintenance/organization/readers sequencing | Tested owner/group/original readers, revision/restart semantics and source-loss behavior; its branch-local plan must travel with its cut |
+| Social | [Social implementation roadmap](social-experience-implementation-roadmap-2026-09-07.md); backend through `4f4ed556c`, mobile through `8cf8f82e9`, under a new review | Exact addressed note and venue identity, recipient dismissal, sender withdrawal, current audience and invalidation; review findings must be resolved before adoption |
+| Home / Places / Entity design | Existing receiving maps and design handoffs; Home receiving already landed on the inspected candidates | Supported semantic kinds, exact destinations, composition intent and targeted receiving corrections—not permission for Integration to redesign each surface |
+
+The fresh Content investigation reports ingestion normalization, source-mode,
+ordered-update, indexing and orchestration gaps. Integration must not expand
+provider acquisition around those unfinished paths. It can connect already
+admitted current records and controlled owner fixtures now, while Content fixes
+its lifecycle. Label fixtures versus actual provider-evidenced supply.
+
+The Social review is examining withdrawal/revision races and stale Chat/history
+or cache visibility. Do not hide those defects by filtering only the Home card.
+Social owns its fixes; Integration owns receiving and verifying the reviewed cut.
+Current Life work likewise owns maintenance and organization internals rather
+than becoming another implementation queue here.
+
+#### 9.9.3 Architectural decisions proposed for this execution
+
+1. **One logical receiving path, several legitimate producers.** Public content,
+   authorized private preparation and original social material converge at
+   typed owner-backed contributions and shared judgment. They do not share a
+   private-content store, generation prompt, retention policy or publication
+   authority. Root-specific selection and density remain legitimate.
+2. **Actual context instead of narrative labels.** Derive bounded read intent
+   from root, immediate job, exact subjects, requested fields, relevant time
+   window, explicit context/origin and authority references. Extend/reuse current
+   request contracts; do not persist a new universal context object. Missing
+   optional context should reduce a claim, not trigger an onboarding questionnaire.
+3. **Workflow owns the accepted job; Source owns prepared output.** Proposed
+   authenticated submission lives with the existing workflow API/service and
+   stores a versioned, content-free request specification in its existing
+   `request_json`. The request reference resolves that specification rather than
+   referring to a record that does not exist. No second request table or inbox.
+4. **Exact requested work is not ambient warming.** Keep contextual warming and
+   exact source-connected explanation/comparison distinct. An exact job must
+   preserve purpose and the requested subjects, sources, scope and constraints
+   through retry, reuse, production and result readback. Do not expose an
+   arbitrary research promise behind the existing private Source producer.
+   Public investigation remains Content/Research-owned.
+5. **A result is not automatically a Life artifact.** Request status, semantic
+   reuse identity, exact output version and deliberately retained object remain
+   distinct. The requester can reopen a still-eligible result without Home
+   selecting it and without Keep. Deliberate retention, where supported, uses
+   the existing appropriate owner and its correction contract.
+6. **Practical assessment precedes practical promises.** Use existing route,
+   place, event and commitment authorities. Ordinary root reads consume bounded
+   current facts; they do not perform provider acquisition. A deliberate check
+   may use an already-approved refresh path within its own scope. Neither path
+   silently accepts monitoring or modifies an arrangement.
+
+These are concrete implementation proposals for review under the child repo's
+shared-model/table/prompt approval rules. They are not changes to Ask, Source
+retention, social use rights or provider authority. Update the existing
+[request mapping](source-request-result-control-mapping-2026-09-07.md) when the
+precise request shape is approved; do not create another decision packet for
+routine adapter design. Confirm genuinely new policy separately and continue
+unrelated implementation.
+
+#### 9.9.4 Execution packages
+
+##### E0 — Select the candidate and freeze handoff boundaries
+
+Maps to §9.8 Package 0. Start here, but do not turn it into repository-wide
+housekeeping.
+
+- Record branch/HEAD/dirty state and ancestry in all three repositories. Work
+  from isolated Integration candidates where shared primary checkouts are dirty.
+- Inventory only the required Home/Entity, Content and reviewed Social commits;
+  distinguish already merged, equivalent changes and still branch-local work.
+  Receive Life at a tested interface cut, not by merging its unfinished branch.
+- Compare committed OpenAPI, app projection and generated types on the selected
+  mobile candidate. The Social `dismiss`/`venue_ids` snapshot additions and their
+  generated consumer changes must land together before claiming a clean contract.
+- Record the package/file owners below. Preserve existing Strategy edits in this
+  roadmap and current Chat/navigation edits in the primary app checkout.
+
+**Exit:** one reproducible candidate tuple and a precise list of absent supplier
+cuts. No requirement to delete old branches, push, activate flags or merge every
+unrelated feature before useful work starts.
+
+##### E1 — Replace scenario-driven read policy with current-job requirements
+
+Maps to Packages 1/3; first implementation work after E0.
+
+**Primary code:** `backend/api/services/root_composition.py`,
+`backend/concierge/agentic_facade/portfolio_reads.py`,
+`canonical_owner_reads.py`, existing owner-read models and the associated tests.
+
+- Trace each current `PortfolioSituation` consumer and distinguish selection
+  presentation from requested owner fields. Founder scenario names may remain
+  fixture labels, not runtime authority or capability selectors.
+- Compile operation-specific requirements from actual candidate/subject refs,
+  current purpose and time/context. Preserve requested-versus-returned field
+  coverage, clocks, revisions, missing fields and existing omission reasons.
+- Reuse request-local identical reads without treating different grants, origins,
+  subject revisions or departure windows as equivalent. Do not unify every
+  domain DTO or introduce a global cache.
+- Declare capability narrowly. Stop scheduling known-unavailable generic
+  `route.evaluate` work; E3 introduces the supported practical operation, not a
+  blanket claim that every catalog route can now be evaluated.
+- Preserve current production-key compatibility deliberately: current work items
+  carry situation/version fields. If their meaning changes, version the new
+  identity and handle old pending work/results explicitly rather than making
+  stale productions eligible under a renamed enum.
+
+**Exit:** equivalent real-world requests behave equivalently outside the founder
+fixtures; a changed subject/window/origin changes the necessary reads; irrelevant
+history and an absent Plan do not prevent complete current-job help.
+
+##### E2 — Finish public and personal receiving, including exact depth
+
+Maps to Package 1 and Content C4/C6, with Content I5/I6 supplying current data.
+
+**Primary code:** existing place-content owner readers;
+`backend/lived_experience/place_content.py`; `backend/api/services/root_composition.py`;
+`backend/root_projection/v2/`; existing Places runtime adapters; mobile
+`HomeRootV2UnitRenderer`, `PlacesSemanticUnitCard`, `resourceDestination.ts` and
+the current root/depth renderers.
+
+- Connect admitted exact, multi-anchor and place-scope material through the
+  real owner adapters into common judgment and native-supported semantic kinds.
+  First inventory what already reaches the roots; fix the missing cases rather
+  than duplicating the Home receiving work in `1146ae041`/`8bed6ca82`.
+- Supply substantive explanation, timely possibility and useful practical
+  context from current material. Test a worthwhile whole composition without
+  personal history or social density, and a mixed composition with authorized
+  personal context. Do not pad breadth with paraphrase, duplicated benefits,
+  compulsory prompts or a large volume of new generation.
+- Preserve different root jobs: Home expresses relevance to this person's
+  current/upcoming life; Places expresses spatial scope, comparative context
+  and exploration. Neither is a copy of the other or one product move's tab.
+- Ensure each emitted unit has the right content depth. A source citation,
+  article/comparison and place identity are different destinations. Opening an
+  explanation must not substitute a generic venue page, source list or Chat.
+- Keep practical field expiry separate from independently valid interpretation.
+  A changed event time must alter practical claims without needlessly erasing
+  an independently supported historical explanation.
+- Read-only provider-disabled tests must traverse the real owner-to-root path;
+  fixtures inserted after judgment/compiler do not demonstrate supply integration.
+
+**Exit:** several materially different benefits are actually received and have
+working exact depth on the selected candidate. State supported content/media and
+coverage limits. Human reading of local output checks substance and repetition;
+native visual polish remains separately deferred.
+
+##### E3 — Connect practical judgment to those same possibilities
+
+Maps to Package 3. This follows E1 and advances alongside E2; do not leave the
+live engine until after content and surfaces are treated as finished.
+
+**Primary code:** `backend/core/distance/route_fact.py`, existing distance cache
+and resolver policy, `backend/core/movement/engine.py` and
+`situated_judgment.py`, canonical owner-read adapters, lived-experience judgment,
+root composition and the existing action/return adapters.
+
+- Implement the bounded question “can this option fit before my next relevant
+  commitment or within this stated window?” from exact place/event identity,
+  duration when supported, origin, travel mode, departure window, current route
+  fact and relevant commitment. No arbitrary requirement to create a Trip.
+- The inspected movement session is still Trip-shaped and its situated bridge
+  requires an Occasion/Commitment scope. Reuse the deterministic calculations
+  and authority adapters where compatible; do not fabricate either container
+  for an uncommitted browsing assessment. Keep that assessment request-local.
+- Check inbound travel, activity/entry window and onward travel when a later
+  commitment matters. An open venue or short inbound route alone cannot establish
+  the whole option fits. Unknown duration, stale routing or imprecise origin
+  must qualify the answer rather than become zero time or a hard rejection.
+- Use supported outcomes to retain, qualify, shorten, substitute, postpone or
+  release the possibility. A substitute needs its own evidence. Not every event
+  change needs a full agent run or a visible intervention.
+- Run correction/time-change reevaluation through existing refresh and owner
+  events. A changed judgment updates treatment/continuation; owner commands
+  remain necessary for an authorized Plan/Commitment change. Sharing a note or
+  keeping a possibility is not a subscription to a watch.
+
+**Exit:** Home, Places and invoked practical help agree on the same evidence and
+constraints without necessarily presenting identical text. An everyday case and
+an existing Trip/Occasion case work; a missing/stale-fact case remains useful and
+honest. Root reads still make zero provider/model calls.
+
+##### E4 — Complete supported request submission and execution
+
+Maps to Package 2; implement the missing job semantics, not another worker.
+
+**Primary code:** `backend/api/routes/agent_workflows.py`, workflow service/DB
+gateways, `backend/core/models/source_contribution_work.py`,
+`backend/root_projection/v2/source_contribution_workflow.py`,
+`source_contribution_canonical_executor.py`, existing worker/deployment envelope,
+Source production and exact-serving code.
+
+Commit-sized sequence:
+
+1. **Request contract and regressions.** Bind an authenticated, versioned request
+   to the existing workflow. Carry exact subject/source refs and revisions,
+   bounded supported purpose/operation, applicable constraints/window, caller's
+   return context, use/audience, accepted deadline and idempotency. Store refs and
+   typed execution parameters, not private source text or a duplicate chat log.
+   A free-form job not expressible by the supported contract must use an existing
+   suitable answer path or be declined without pretending it was accepted.
+2. **Exact execution.** Resolve that request on each attempt. The present
+   executor rediscovers eligible contextual material; add exact-source selection
+   for an exact job and preserve the named comparison throughout. Do not replace
+   missing requested material with a different highly ranked source. Recheck
+   scope and current dependencies before publication. Permit partial results
+   only when independently supported and clearly within the requested job.
+3. **Runnable admission and recovery.** Connect submission to existing durable
+   workflow/outbox dispatch and the accepted worker adapter. Exercise a controlled
+   local worker with injected provider execution; do not claim completion from
+   directly constructing a work item in a unit test. Acceptance must distinguish
+   execution unavailable from accepted/pending. Implement the wiring without
+   enabling live registration/cohorts or paid production absent the accepted
+   activation requirements.
+4. **Bounded exact retrieval.** Keep versioned requester retrieval independent of
+   ranking. The current digest reader fetches all unexpired viewer productions
+   and hashes them in Python. Add an owner-scoped exact lookup path rather than
+   an arbitrary scan limit that loses older valid results. Prefer a content-free
+   owner locator in the workflow plus digest verification if it preserves the
+   binding; use a schema/index migration only if the owner access pattern requires
+   it and the shared-table change is approved. Never put generated content into
+   workflow receipts.
+
+**Exit:** authenticated submission → controlled worker → real persistence →
+current exact readback succeeds, survives retry/restart, and reports genuine
+pending/ready/no-useful-result/failed/cancelled/unavailable outcomes. Changed
+subjects with the same replay key conflict; cancellation or source withdrawal
+winning a race prevents late publication. Ask remains answer-only; required
+source use must fit its existing custody lifetime.
+
+##### E5 — Deliver and recover results; receive Social/Life cuts
+
+Maps to Packages 2/4/5. This is consumer integration, not a new tab, a generalized
+job dashboard, or a Chat/Life design rewrite.
+
+**Primary code:** generated mobile API client/types, existing workflow helpers,
+root action/continuation dispatch, `utils/resourceDestination.ts`,
+`utils/rootProjectionNavigation.ts`, root consequence/invalidation helpers, and
+existing composition/detail rendering. Navigation is a serialized shared-file
+boundary because adjacent Chat work already edits it.
+
+- Add the Source result API consumer and exact typed destination. Audit the
+  backend result projection before exposing it: mobile needs admitted readable
+  content and exact refs, not every internal assembly/seed field. Derive wire
+  types through workspace schema sync, not handwritten DTO copies.
+- Reuse appropriate workflow tracking and receipt pieces, but first separate
+  planning-specific assumptions. `useDurableAgentWorkflow` currently tracks one
+  pending item per scope and has planning-only discovery; it is not already a
+  general results library. Two requests must not overwrite one another's route
+  back to the result. Reuse authoritative workflow lookup with bounded scoped
+  discovery if needed; avoid a new durable mobile inbox.
+- Start from contextual Home/Places actions using existing interaction controls,
+  preserving exact origin/subject. Add a small shared reading destination only
+  if no existing result/depth surface fits its lifecycle. Do not attach a
+  temporary production to Life merely to reuse a saved-reading screen.
+- Preserve recovery after background/relaunch and account isolation, including
+  terminal results no longer ranked on Home. Returning to Places keeps its
+  relevant scope. Failure is truthful and does not ask the person to re-enter
+  the entire request. Stop and source-expiry update all cached result views.
+- Receive Social's reviewed original-note/dismiss/withdraw cut. Test original
+  text and authorship, exact venue continuation, recipient visibility and the
+  affected root/detail/history caches. No new friends-map location inference,
+  implicit AI-use grant, reciprocity prompt or generic social feed.
+- Receive Life's tested exact/group reader cut with owner ref/revision and
+  eligibility/restart semantics. Check that an existing deliberate Keep and
+  permitted correction lead to the same original from supported lenses. Life
+  owns organization, backfill and internal UI. If its next cut is not ready,
+  retain the functioning supported path and record the specific unreceived case.
+
+**Exit:** users can read the actual result or original and return without another
+prompt or compulsory save. An original, an adaptation and a place remain distinct.
+App hooks/components/navigation and backend readers agree across lifecycle
+changes. No Chat home/composer or Life surface redesign is included.
+
+##### E6 — Verify the combined system and remove replaced paths
+
+Maps to Package 6; use the same candidate, not six disconnected green branches.
+
+- Exercise the portfolio below through real local route/service/owner paths,
+  generated mobile consumers and current owner fixtures. Reuse existing test
+  harnesses instead of creating another product-proof platform.
+- Run affected backend suites, PostgreSQL race/restart/migration cases, mobile
+  API/hook/component/navigation suites, TypeScript, contracts, import boundaries
+  and applicable docs checks. Broaden regression coverage at the final combined
+  candidate; report skipped/live/native cases rather than claiming all tests.
+- Measure actual query count/rows/fan-out and latency for cold, warm, larger
+  corpus and degraded reads. Hold existing budgets, especially the optional
+  prepared-read deadline. Root GETs must make/enqueue zero acquisition calls;
+  expensive execution must carry bounded attempts, deadline and accounting.
+  A simulated provider establishes wiring, not output quality or economics.
+- Remove migrated scenario-policy branches, duplicated consumer lookups or
+  request/result shims only after their callers and replacement tests are covered.
+  Do not bundle unrelated booking-data deletion, old-branch cleanup or Atlas
+  retirement into the tranche.
+- Update this roadmap, the existing Source receipt/request mapping and affected
+  owner feature docs with candidate SHAs, exact capabilities, local evidence,
+  missing supplier cuts and the next two packages. No claim of deployment or
+  native usability follows from local engineering completion.
+
+**Exit:** an integrated implementation receipt with no known dangling promised
+continuation in the supported portfolio. If an experience still requires a
+fixture-only shortcut, describe that as missing integration, not complete.
+
+#### 9.9.5 Portfolio and acceptance observations
+
+Use existing scenarios and owner factories; these are comparable pressures on
+the system, not a prescribed user funnel or one card per row.
+
+| Situation | Received value | Essential variation / failure |
+| --- | --- | --- |
+| Little history, no friends, chosen browsing area | Useful explanation and forward possibilities with exact depth | No production available; thin supply is reported honestly, not replaced by requests for more personal input |
+| Authorized post-trip material, ordinary week at home | A substantive new connection plus relevant forward options, not a recap-only scroll | Current purpose differs from old context; irrelevant context loses influence without erasing the original |
+| A possibility before a later commitment | Practical fit/tradeoff or evidence-backed alternative | Missing onward route, unknown duration, local-time boundary, changed/cancelled event |
+| Requested explanation/comparison | Correct subjects, a finished readable result and recoverable exact access | Retry, two concurrent requests, rank removal, worker restart, no useful result, effective stop |
+| A friend's addressed contribution | Readable attributed original and optional exact continuation | Recipient dismissal, sender withdrawal after recipient revision, stale cached/history exposure |
+| Return to deliberately retained material | Same original/result under current eligibility and the relevant Life lens | Correction, source withdrawal, organization revision/restart; independent material remains |
+
+At checkpoints inspect both correctness and actual contribution: what new value
+arrived, what input was required, what meaningful choosing remained, and what
+avoidable reconstruction the app removed. A grounded but uninteresting report
+still fails the content bar. Valid operational facts alone do not make a useful
+whole scroll. Conversely, practical relief can finish without an interpretation.
+Use §9.8.11's existing ledger rather than inventing a universal quality score.
+
+#### 9.9.6 Order, parallelism and checkpoints
+
+**One Integration landing lane, existing specialist suppliers.** Do not collapse
+Content, Life and Social into this task or require them to wait on every decision
+here. Their plans retain internal ownership. This document dispatches nobody.
+
+| Phase | Integration sequence | Independent work / checkpoint |
+| --- | --- | --- |
+| Start | E0, then E1; settle E4's concrete request contract while E1 is reviewed | Content ingestion fixes, Life maintenance and Social review continue in their own lanes |
+| Receive and judge | E2 and E3 in disjoint adapter/test packages; serialize shared composition changes | **Checkpoint A:** does actual supply yield substantive value and does practical judgment change it correctly? Reassess the next two packages |
+| Finish requested work | E4 request/execution/exact lookup, then E5 consumer; consume reviewed Social/Life cuts as available | **Checkpoint B:** can the person get, recover and use the actual result/original without re-prompting or compulsory Keep? |
+| Consolidate | E6 combined regression, measurement, replacement-bound cleanup and receipt | **Checkpoint C:** what is genuinely complete locally, what remains supplier/decision/activation work, and what is now the highest-value next tranche? |
+
+Each package can contain several commits; the slice is not a promise to finish
+in one session or a fixed week. Retain §9.8.10's intermediate review at no more
+than three implementation subpackages without checking the system. Commit
+implementation, tests and the appropriate evidence together; synchronize schemas
+at the contract boundary and keep no more than two completed handoffs unreceived.
+
+When the user requests parallel agents, delegate disjoint public adapter/tests,
+practical adapter/tests or consumer work after E1's interface settles, using the
+requested Luna max/xhigh settings when available. Integration keeps shared
+models, generated schemas, root judgment/selection, navigation and final landing
+serialized. Prefer independent audit if implementation files overlap.
+
+**Proceed without new product policy:** existing public receiving, request-local
+practical assessment, exact current result consumers, scoped owner adapters and
+reviewed correction/withdrawal handling. These are engineering work, not all
+"contract-gated."
+
+**Resolve only the actual boundary:** approve precise shared-model/prompt/table
+changes before editing them; obtain an adopted policy for new long-range history,
+retained intention or social derivative use; meet worker/provider activation and
+Life cutover requirements before enabling them. A held policy blocks its affected
+case, not E1–E3 or every other supported E4/E5 path. Do not turn a supplier delay
+into a reason to build a competing owner.
+
+**Recommended first execution batch:** E0's bounded candidate check, E1's runtime
+read-policy replacement and E2's first complete public owner-to-depth connection.
+Start E3's practical adapter once E1's requirements are stable; do not stop the
+tranche at that first connection or describe it as proving the whole product.
+
+#### 9.9.7 Execution receipt — request/result connection (September 7)
+
+The first executable connection now has a real cross-repository seam. Backend
+`e65a06e01` accepts a strict private Source request through the existing durable
+workflow fence, and `e6223b988` aligns its rollout gate with
+`ROOT_SOURCE_CONTRIBUTION_PRODUCTION_ENABLED`. The earlier exact-scope contract
+is present in `8ba9026c1`; malformed exact comparisons fail before persistence.
+
+The app's Entity checkout carries `15b38e18f` and `d874bb778`: generated types,
+HTTP and mock methods can recover an exact result or submit a bounded request.
+`90b8ba7b5` and `c201457d3` synchronize the shared social handoff schema and
+facade manifest without changing Chat behavior. Workspace `f60f2e6`, `1434694`
+and `20d833a` publish the request/result contract and keep retained-result reads
+separate from new-production gating. Focused workflow/API/transport tests pass;
+`make contract-check` is green.
+
+This is **E4/E5 contract progress, not tranche completion**. The worker remains
+dark and no provider call or live queue registration was added. E1's runtime
+read-policy replacement, E2's public owner-to-depth breadth, E3's generic
+request-local practical assessment, and E6's combined restart/race/latency
+verification remain the next integration work. The exact request route accepts
+the job and returns `pending`; a controlled local worker run is still required
+before describing a generated result as received.
 
 ### Execution receipts (2026-09-07)
 
