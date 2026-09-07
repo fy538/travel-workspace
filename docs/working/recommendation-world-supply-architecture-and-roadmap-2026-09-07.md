@@ -370,6 +370,14 @@ The defensible work is **what we ask, what we verify, how we judge it for this m
   decision. Focused tool/handler coverage is **37 passed**. This changes
   configuration clarity and spend control, not provider activation or source
   quality.
+- **S1/S3 / explicit disposition mapping — landed in backend `22fd90497`:** a
+  write-free mapper now classifies a bounded result as `current_answer`,
+  `reusable_observation`, `proposed_primitive`, or `deep_compilation`. Missing
+  canonical identity or retention permission always caps the result at a
+  current answer; editorial and deep paths require explicit requests, and
+  unresolved gaps keep proposed primitives in review. Four focused regressions
+  pass. This is a deterministic handoff seam, not canonical write-back or a
+  source-rights grant.
 - **S2 / event paging guard — landed in backend `5421c66b7`:** the existing
   Ticketmaster fetch keeps its 200-item page size but caps a refresh at five
   pages (the documented first-1,000-result window). A regression fixture proves
@@ -612,7 +620,9 @@ Implementation:
    whether a canonical entity or dossier already exists.
 2. Reuse exact IDs and current evidence before broad search. Let an initial
    candidate pass ask for specific missing evidence; do not fan out to every
-   provider or require deep research for each result.
+   provider or require deep research for each result. Route the normalized
+   result through the explicit disposition mapper (`22fd90497`) before any
+   existing owner is asked to retain or promote material.
 3. Separate Tavily search depth from result count in the existing tool/profile
    configuration. This is landed in backend `84a650829`; keep the current
    profiles on `basic` until a supplier-cost decision. Return source results as discovery material; extract or open
