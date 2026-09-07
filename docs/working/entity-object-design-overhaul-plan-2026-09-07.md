@@ -90,6 +90,8 @@ or main-branch merge:
 | `46eadd5d0` | Ephemeral research-arrival/source-count treatment | Queued → ready arrival test |
 | `9121c8546` | Unsafe booking URLs suppressed at projection boundary | HTTP(S)-only reservation action test |
 | `50190881f` | Detail save origin envelopes for venue/site/experience | Route smoke tests; bounded `surface` + optional `trip_id` only |
+| `c03677948` | Reset ephemeral research-arrival state on entity replacement | Prevents an old page’s arrival treatment surviving a reused route |
+| `6f0aa5319` | Compact map forwarding coverage | EntityLocationMap policy remains unchanged |
 
 The current route-level evidence is 8 focused suites / 100 tests plus a clean
 TypeScript check. The branch remains internal and feature flags remain off by
