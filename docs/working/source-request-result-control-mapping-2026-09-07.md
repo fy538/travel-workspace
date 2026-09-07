@@ -153,7 +153,7 @@ an expiry refresh does not silently extend a running job.
 | --- | --- | --- |
 | `pending` | Work has no terminal receipt | Exact reader returns `pending` with the workflow state in `reason`; running is not a separate result status |
 | `ready` | Useful produced/reused output is durably linked and currently eligible | Implemented exact digest/ref validation and Source/context readback |
-| `no_useful_result` | Execution ended without admitted production | Declared in the response enum, but the inspected handler has no branch returning it; distinguish `producer_silence` before treating a missing result ref as lost output |
+| `no_useful_result` | Execution ended without admitted production | Implemented for a completed `producer_silence` workflow when its content-free status reference is valid; a malformed or missing reference remains `unavailable` |
 | `failed` | Terminal technical or contract failure | Exact reader maps `failed_terminal`; retryable nonterminal work remains pending |
 | `cancelled` | Effective workflow cancellation won the race | Implemented Source-specific mutation and exact-reader status; inspect owner state rather than generic command acceptance |
 | `unavailable` | Exact result is missing, replaced, expired or no longer authorized for current use | Implemented with reason codes; replacement/expiry are not distinct top-level wire statuses |

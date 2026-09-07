@@ -2681,11 +2681,12 @@ separates those foundations from the unfinished service.
    controlled providers is valid test infrastructure; a forged workflow row or
    direct executor invocation alone does not establish an ingress-to-result path.
    Production scheduling/registration and activation remain separate decisions.
-4. Complete truthful endings. In the inspected result handler,
-   `no_useful_result` is declared but never returned: `producer_silence` can reach
-   missing-result handling. Map useful silence separately from lost/expired
-   output and technical failure, then test cancellation/publication races,
-   deadline expiry, replacement and revoked Source/context eligibility.
+4. Complete truthful endings. The result handler now maps a completed,
+   content-free `producer_silence` outcome to `no_useful_result` when its status
+   reference is valid, and maps superseded workflows to `unavailable`. Preserve
+   the fail-closed behavior for malformed or missing references. Continue by
+   testing cancellation/publication races, deadline expiry, replacement and
+   revoked Source/context eligibility.
 5. Add the generated mobile result consumer and exact reading destination using
    existing interaction/navigation patterns. The requester can reopen the result
    regardless of Home ranking, restart the app, switch accounts and understand
