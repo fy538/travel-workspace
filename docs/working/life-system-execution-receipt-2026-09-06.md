@@ -65,8 +65,9 @@ checkpoint.
 | R2-G transfer lineage and repair inventory | `1e49ba0b5` | `lifeorg04` records source/target membership transfer lineage and exposes a bounded affected-set plan for later rebuild; no reverse mutation or reader cutover. |
 | R2-G lifecycle comparison correction | `e00123f3d` | Replacement replay compares resolution-kind values explicitly, preserving idempotent successor detection across equivalent enum instances. |
 | R2-G CAS-guarded affected-set repair | `c82f6ceb4` | `lifeorg05` captures target pre-state/post-revision evidence and reverses transfer lineage in reverse order; revoked resolutions restore source state, replacements can reapply successors, and stale/unrelated changes fail closed. |
-| R2-G repair lifecycle race coverage | `c6cc768fc` | Rollback now requires a redirected source and active targets; PostgreSQL regressions cover multiple transfers, later target detach with atomic no-partial-mutation failure, and archived target-owner fencing. Connected execution is pending an environment with SQLAlchemy/Postgres. |
-| R2-G explicit restore race coverage | `59cab4f88` | The archived-target regression now also restores the target explicitly and proves the old transfer remains blocked by the newer restored membership revision; no stale rollback can overwrite the restored state. Connected execution is pending the same environment. |
+| R2-G repair lifecycle race coverage | `c6cc768fc` | Rollback now requires a redirected source and active targets; connected PostgreSQL regressions cover multiple transfers, later target detach with atomic no-partial-mutation failure, and archived target-owner fencing. |
+| R2-G explicit restore race coverage | `59cab4f88` | The archived-target regression now also restores the target explicitly and proves the old transfer remains blocked by the newer restored membership revision; no stale rollback can overwrite the restored state. |
+| Life route fixture alignment | `4e41b23c4` | Supplies the retained-source `created_at` required by the canonical Life ordering contract; no production behavior changed. |
 
 The existing retained-source, Plan, Occasion, and Outcome projectors all reuse
 the same owner-fenced writer and return explicit `updated`/`withdrawn`/`stale`
@@ -105,9 +106,11 @@ The migration chain reports one head:
 lifeorg05 (head after the R2-G CAS-guarded repair package)
 ```
 
-The current connected organization/projector selection is `33 passed`,
-including migration-backed replacement/revocation, transfer lineage, and
-owner-triggered repair classification.
+The current connected organization/projector selection is `36 passed`,
+including migration-backed replacement/revocation, transfer lineage, multiple
+transfer rollback, stale-control fencing, explicit restoration, and
+owner-triggered repair classification. The full `tests/life_projection`
+selection is `204 passed`.
 
 Mobile verification:
 
@@ -173,11 +176,10 @@ lint, import-cycle, boundary, timeout, and other applicable hooks pass.
    defects, unsupported capability, blocked infrastructure and revision drift.
 3. Require per-target durable delivery before continuously maintaining another
    shadow version; historical-only diagnostics must not appear live.
-4. Run the three newly committed PostgreSQL repair regressions in the isolated
-   environment, then expand affected-set repair to legacy lineage fallback and
-   explicit restored-owner interleavings. Keep split choices ambiguous until an
-   exact descendant is supported, then expand organization coverage to the next
-   supported owner family. Keep exact retrieval/return acceptance, indexed
-   serving, and Atlas retirement as separate downstream gates.
+4. Expand affected-set repair to legacy lineage fallback and migration-backed
+   historical rows. Keep split choices ambiguous until an exact descendant is
+   supported, then expand organization coverage to the next supported owner
+   family. Keep exact retrieval/return acceptance, indexed serving, and Atlas
+   retirement as separate downstream gates.
 
 This receipt is evidence of the executed packages, not a release certificate.

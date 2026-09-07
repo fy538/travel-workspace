@@ -1781,9 +1781,8 @@ boundary: repair refuses to run unless the source is still `redirected` and
 each affected target group is still `active`. Its three PostgreSQL regression
 cases cover a two-membership transfer, a later target detach (the repair
 transaction fails before changing any row), and an archived owner target.
-The cases are committed but require a runnable SQLAlchemy/PostgreSQL
-environment before they can be counted as connected evidence; legacy lineage
-fallback and explicit restored-owner interleavings remain the next package.
+The connected resolution selection passes all 8 cases; legacy lineage fallback
+remains the next package.
 
 Commit `59cab4f88` extends the archived-target regression through explicit
 reactivation. The restored target's newer membership revision still blocks
