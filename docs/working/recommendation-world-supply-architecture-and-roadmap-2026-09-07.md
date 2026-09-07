@@ -19,7 +19,7 @@ Use existing canonical identities and evidence owners, bounded provider/web acqu
 
 The inspected foundation is reusable. The main gaps are candidate acquisition/admission, temporal fidelity, commercial source policies and the connection from acquisition to delivery—not the absence of another engine.
 
-This is a **research-backed implementation roadmap**, with the bounded code receipts in §10. The detailed Content-lane execution plan is in [§11](#11-content-infrastructure-execution-plan). It does not establish provider procurement, legal clearance, deployment approval or complete supply. No paid API batch, account inspection, production DB query, subscription, provider contact, worker registration or app change was performed in this lane. Public documentation describes capabilities, not measured NYC coverage.
+This is a **research-backed implementation roadmap**, with the bounded code receipts in §10. The detailed Content-lane execution plan is in [§11](#11-content-infrastructure-execution-plan); the next implementation batch, dependencies and completion checks are in [§12](#12-next-execution-batch-connected-content-lifecycle). It does not establish provider procurement, legal clearance, deployment approval or complete supply. No paid API batch, account inspection, production DB query, subscription, provider contact, worker registration or app change was performed in this lane. Public documentation describes capabilities, not measured NYC coverage.
 
 ### Authority and inspected state
 
@@ -476,11 +476,15 @@ and projections. The work is organized around the
 whole content lifecycle, with the portfolio in §11.4 exposing different needs
 throughout implementation.
 
-Planning recheck: workspace `c0b3e12`, backend `5421c66b7`, mobile `17eea1980`.
-The Place canon has uncommitted strategy amendments; they are working context.
-This pass inspected code and documents, not production configuration or data.
-The earlier 210-test receipt is historical verification of the implemented
-repairs, not a test of the plan below.
+Latest planning recheck: workspace `8cbdc02`, backend `86f04589d`, mobile
+`17eea1980` on `codex/entity-object-design-completion`. Backend `96cadfada`
+contains this lane's latest content-hardening repairs; `86f04589d` is the
+adjacent Integration deadline-forwarding repair. Concurrent strategy,
+Integration and Home work is present and remains owned by those lanes. These
+are inspection baselines, not a cross-repository release or deployed state.
+The earlier planning baseline (`c0b3e12` / `5421c66b7`) and test receipts remain
+historical. This pass inspects code and documents, not production configuration
+or data, and does not rerun runtime tests for a documentation-only plan.
 
 | Existing owner / path | What the code establishes | Implication for this plan |
 | --- | --- | --- |
@@ -492,7 +496,7 @@ repairs, not a test of the plan below.
 | [Quick research](../../travel-agent/backend/research_agent/agents/quick_research.py) and [bounded-result adapter](../../travel-agent/backend/research_agent/pipeline/bounded_result.py) | Uses the same research graph with a quick profile and known target slug/type; now exposes a typed evidence handoff alongside legacy state | Route bounded results to existing identity/observation/primitive owners; fewer graph iterations alone do not provide independent discovery or selective persistence. |
 | [Public content source reads](../../travel-agent/backend/core/place_content_sources.py) and [content compilation](../../travel-agent/backend/lived_experience/content_compiler.py) | Exact accepted public primitive versions can be read and checked; current enumeration starts from bounded known entity refs | Reuse these consumer contracts. Discovering useful public material by region, time or theme still needs a concrete read path; the reader is not a public producer. |
 | [Primitive vector projection](../../travel-agent/backend/core/vector/place_content_sidebuild.py) | Derived projection machinery already exists for place briefs, angles and primitives | Extend and validate the active retrieval path. Source observations, event changes and every discovered entity do not each need an embedding. |
-| [Experience ingestion](../../travel-agent/backend/ingestion/base.py) | Conditional upserts and changed-ID invalidation are landed; `raw_data`, schedule, status and prose still share the material-change predicate | Split observation refresh, practical repair, text regeneration and vector payload updates. Dirty marking currently occurs in a later transaction and catches failures; retry-safe downstream repair remains work. |
+| [Experience ingestion](../../travel-agent/backend/ingestion/base.py) | Conditional upserts and same-transaction changed-ID invalidation are landed in `96cadfada`; `raw_data`, schedule, status and prose still share the material-change predicate | Preserve the transactional repair. Split observation refresh, practical repair, text regeneration and vector payload updates; verify recovery for any additional downstream consumers. |
 | [Event preview reader](../../travel-agent/backend/places/experiences.py) | This producer accepts a dated, membership-checked Trip | Give the content query owner an explicit place plus local-window path; preserve the Trip wrapper and its access checks. |
 | [Places budget](../../travel-agent/backend/places/budget.py), [commercial usage ledger](../../travel-agent/backend/core/commercial_access/usage_ledger.py) | Provider call counting exists; separate commercial quota reservations are atomic and billing-subject scoped | Provider COGS enforcement cannot be claimed from the count check. Reuse reservation mechanics where suitable, while keeping internal acquisition spend distinct from customer entitlements. |
 | [Discovery](../../travel-agent/backend/places/discovery.py), [taste](../../travel-agent/backend/places/taste.py), [reachability](../../travel-agent/backend/core/reachability.py) | `allow_provider=False` now gates POI fallback, reachability/isochrone and Matrix ranking; explicit map/discovery calls remain provider-capable | C0 has a focused receipt for this nearby call path. Reconfirm any additional root producers before broader rollout and preserve valid cached evidence and honest distance semantics. |
@@ -757,9 +761,10 @@ Implementation:
   not regenerate prose. A changed artist or activity description may justify
   text work; cancellation must immediately affect eligibility even if the
   embedding stays unchanged.
-- Replace the post-commit best-effort dirty handoff with an existing durable
-  transaction/outbox mechanism or a reviewed narrow extension. An unchanged
-  retry after a crash must still recover missed downstream work.
+- Preserve the same-transaction dirty handoff landed in `96cadfada`. Verify
+  durable delivery/replay for each additional dependency introduced by the
+  field-specific split; do not repeat the already-landed dirty-marking repair.
+  An unchanged retry after a crash must still recover missed downstream work.
 - Bind refresh to exact source IDs and scope. Establish provider revision or
   retrieval ordering, cancellation/expiry semantics, backoff, retry ceiling and
   refresh budget. Search omission is not deletion or cancellation.
@@ -908,13 +913,13 @@ decision. The review asks whether the design still supports all six cases,
 what actual consumers use, what duplicates an existing owner, and what work
 can be removed. Do not wait for one behavioral experiment to define the system.
 
-**Immediate first execution round:** C0's concrete owner-binding gaps and
-routing-boundary repair, then C1's bounded evidence result with C2's explicit
-disposition mapping. Exercise restaurant, event, recurring activity and
-cross-place explanation shapes from the start. Deliver code and readback
-evidence, not only another generalized architecture document. Supplier rights
-work proceeds alongside this; it blocks the affected live provider path, not
-the independent adapter, persistence and retrieval work.
+**Next execution round:** C1a accounting closure, C2a write-free completion,
+C2b selective owner persistence, and C4a exact readback, detailed in §12.
+The earlier C0 routing repair and initial bounded-result/disposition adapters
+are landed; they are regression boundaries, not tasks to restart. Keep the
+whole six-case portfolio in view. Supplier rights work proceeds alongside
+implementation; it blocks affected live use and retention, not independent
+adapter, owner and query work using permitted fixtures.
 
 Relative sizes above express uncertainty and review burden, not calendar
 estimates. Estimate elapsed time after Wave A identifies the writer cutover
@@ -922,18 +927,25 @@ and the scope of any event-model change. Track completion with commit IDs,
 test receipts, remaining gaps and actual producer/readback bindings in this
 document.
 
-**Execution status, September 7:** the provider-independent part of Wave A is
-now landed: C0's nearby discovery/routing read boundary, C1's typed bounded
-result, explicit search-depth policy and traceable-source handling, and C2's
-write-free disposition mapper, plus the explicit private-preparation workflow
-handoff, bounded execution lease and first inner-write publication fence. The
-next work is intentionally gated rather than implied by these commits:
-PostgreSQL cancellation/completion interleaving proof, canonical
-observation/primitive promotion, unknown-time event representation and
-field-specific repair, active retrieval readback, public preparation, and
-consumer activation still need their owner, schema/rights, or supplier
-decisions. No provider was activated and no root read was changed into a
-production research trigger.
+**Execution status, September 7:** C0's nearby discovery/routing boundary,
+C1's bounded-result adapter and explicit search-depth policy, and C2's pure
+disposition mapper are landed. `96cadfada` subsequently tightened citation
+association, cumulative subquery bounds, research response metering and event
+invalidation. These repairs do not connect selective canonical publication:
+the production graph still reaches legacy writers before quick research
+normalizes its result, and the disposition mapper has no production caller.
+Citation association does not establish claim entailment; subquery counting
+does not establish a nested-call or monetary ceiling. §12 records two further
+metering gaps found by inspection.
+
+Adjacent Integration has advanced workflow authorization, lease/publication
+fencing and deadline forwarding. Its active source-result/readback work stays
+with that lane. Real PostgreSQL interleaving evidence, public content admission,
+event uncertainty/field repair, active retrieval, public preparation and actual
+consumer activation must each have their own receipt. The preceding content
+review reported focused passing suites, but the full offline backend run was
+not clean; this planning pass does not claim to repair or rerun that baseline.
+No provider was activated and no root read became a production research trigger.
 
 ### 11.7 Validation, migration and decision record
 
@@ -995,3 +1007,383 @@ provider agreement, runtime prompt or personal-retention contract.
 Planning-pass verification: governance metadata, scoped relative links, code
 fences and whitespace checked for this roadmap and the Integration receiving
 note. No runtime tests were rerun for these documentation-only changes.
+
+## 12. Next execution batch: connected content lifecycle
+
+### 12.1 Outcome and scope
+
+The next milestone is a working connection from bounded research to selectively
+retained knowledge, current consumer reads and correction. A small useful
+answer must be able to finish immediately. Its permitted reusable portion can
+subsequently help another question or person without repeating the research.
+The six cases in §11.4 exercise the system together; none is the sole launch
+loop or a prerequisite for unrelated architecture work.
+
+Preserve three independent decisions:
+
+- **What would help now:** the request's purpose, appropriate depth, supported
+  answer and remaining uncertainty.
+- **What work may run:** accepted trigger, source operations, execution budget,
+  deadline and cancellation authority.
+- **What may survive or be shown elsewhere:** source rights, exact subject,
+  evidence, review, retention and consumer eligibility.
+
+An LLM can propose a claim or editorial treatment. It cannot grant a source
+license, approve canonical identity, widen an audience or mark its own draft
+accepted. A public evidence write never means the user saved, followed, planned
+or attended something. The
+[contribution contract](../systems/contribution-and-consequence.md) continues
+to govern those personal consequences.
+
+This batch uses the existing observation, entity-fact, experience and
+place-content owners. No universal content table, worldwide venue/event index,
+new queue framework, new screen family or redesign of Chat/Life is authorized.
+Source/account policy is a prerequisite for affected live operations, not a
+reason to postpone provider-independent implementation.
+
+### 12.2 Code findings that determine the work order
+
+| Finding at the inspected baseline | Consequence |
+| --- | --- |
+| `quick_research` awaits the full graph before creating its bounded result. Green graph output flows through dossier generation/validation and persistence; yellow/red paths also have durable review/metadata effects. | Add an explicit acquisition/completion path whose disposition is chosen before any domain writer. Post-hoc normalization cannot provide a write boundary. |
+| `map_research_disposition` has no production caller. `compile_graph` is called directly by the queue, angle task and research script as well as quick research. | Migrate actual callers with explicit modes and compatibility behavior. Testing only the mapper or quick wrapper misses bypasses. |
+| `research_experience` can persist a metadata-only fallback with research status `complete`; its helper is a separate writer. | Separate useful fallback from researched/admitted material, and include this caller in the cutover. A disabled legacy graph writer is insufficient. |
+| The new usage accumulator is a `ContextVar`, while the research DB executor does not propagate context. Some terminal writers calculate measured tokens inside that executor. | Capture an immutable usage snapshot before thread dispatch, or deliberately propagate context with isolation tests. Existing same-thread mocks do not cover this boundary. |
+| Response accounting uses `uncached_input_tokens or input_tokens`. Zero uncached tokens is valid for fully cached input. | Reconcile with canonical provider-usage semantics; avoid adding cached input twice. Keep token classes separate for cost calculation. |
+| Foundry persistence shares one transaction for observations, identities, claims and proposed primitives, then rebuilds the place projection after commit. | Reuse the transactional writer. Verify durable recovery across the fact-commit → projection-rebuild gap; a projection outbox created only during rebuild cannot by itself cover that earlier gap. |
+| Accepted public primitive readers already enforce exact version and current eligibility. Enumeration begins from a bounded set of known entity refs. | Connect exact readback first, then add bounded geographic/window/theme candidate lookup. A working side-build is not evidence of working semantic retrieval. |
+| Event dirty marking is now in the upsert transaction. An unknown-start cancellation/postponement can update an existing row using its stored start; new unknown-start records are still skipped. | Preserve the repair and distinguish carried historical time from a newly confirmed schedule. Temporal representation and field-specific refresh remain separate work. |
+
+Primary implementation files are linked in §11.1. Additional seams are
+[research graph](../../travel-agent/backend/research_agent/agents/deep_research.py),
+[experience research](../../travel-agent/backend/research_agent/agents/experience_research.py),
+[research DB executor](../../travel-agent/backend/research_agent/db/connection.py),
+[research LLM accounting](../../travel-agent/backend/research_agent/pipeline/llm.py),
+[disposition mapper](../../travel-agent/backend/research_agent/pipeline/disposition.py)
+and [bounded schemas](../../travel-agent/backend/research_agent/pipeline/schemas.py).
+These are code-inspection findings, not newly executed failure reproductions.
+Recheck the active branch and caller inventory before editing: Integration is
+changing nearby Source/workflow code concurrently.
+
+### 12.3 Commit-sized execution sequence
+
+The suffixes refine the existing C packages. Each row is a landing unit; split
+a unit further when an owner/schema migration needs independent review. Do
+not bundle a new source, shared schema and consumer activation into one commit.
+
+| Unit | Depends on | Deliverable | Required completion evidence |
+| --- | --- | --- | --- |
+| **C1a — accounting closure** | Current baseline | Reliable run-usage snapshot across terminal/thread boundaries; correct cached-token accounting | Real executor-boundary test, concurrent-run isolation, success/review/discard/fallback paths and fully/partially cached responses |
+| **C2a — write-free completion** | Existing bounded-result/disposition contracts | Small-result completion before persistence; explicit caller mode and legacy compatibility | Green/yellow/red, failure and exhausted-budget cases cannot reach domain writers in this mode; useful supported answers survive |
+| **C2b — owner admission and publication** | C2a; source/subject policy for retained fixtures | Source-bound facts and proposed primitives using existing owners; explicit review → accepted current read | Real Postgres idempotency, rollback/version conflict and interrupted projection recovery; transient/private material cannot broaden rights |
+| **C4a — exact reuse and handoff** | C2b; existing reader contracts | Current retained units can answer another request; machine-readable owner/version/validity result | Fresh → retained → reused → corrected traces; exact lookup needs no vector search or provider call |
+| **C3a — local events and field repair** | Existing ingestion; shared result contract from C2a | Place/local-window queries, uncertainty handling and targeted operational/semantic repair | Trip wrapper parity, DST/midnight/TBA/cancel/late-response cases, schedule-only update without unnecessary prose regeneration |
+| **C4b — geographic and thematic retrieval** | C4a; C3a for temporal candidates | Bounded active retrieval from admitted material and purpose-led candidate expansion | Actual query/readback and stale-index exclusion; unfamiliar no-history option and cross-place comparison supported |
+| **C1b — enforceable acquisition envelope** | C1a; adapter inventory from C2a | Nested operation/deadline accounting and shared atomic spend reservations with replay/settlement | Concurrency, fallback/retry/pagination, unknown-charge timeout, crash and exhaustion cases; explicit source policy |
+| **C5a — bounded public preparation** | C2b/C4a/C1b; C3a/C4b for affected coverage | Operator-scoped collection prepared through existing production and read owners | Admitted current collection, attributable cost, refresh/expiry and useful-empty-scope behavior; no work on GET |
+| **C6a — consumer activation and retirement** | C4a contract handoff; relevant supply units | Integration-owned receipt in actual consumers and removal of migrated duplicate writers | Committed source/consumer SHAs, current-read and correction tests; separate native/content-quality review |
+
+**First implementation round:** C1a → C2a → C2b → C4a. Its deliverable is
+connected small-unit publication and readback, including correction, with
+provider-free fixtures across all six cases. C2b can expose and test fact reads
+while the editorial acceptance transition is being completed; neither requires
+turning every answer into a publication. Event query work and budget design
+can be prepared independently; their shared changes land after contract review.
+
+#### C1a: close measured-usage correctness before expanding production
+
+Capture run-local usage once at the terminal boundary and pass ordinary values
+to persistence, or use a reviewed context-propagating executor. The preferred
+minimal change is explicit snapshots where only accounting is needed; do not
+change a shared executor's authority behavior accidentally. Verify the actual
+executor path rather than replacing it with a same-thread passthrough.
+
+Use canonical uncached/cache-read/cache-write/output semantics from the core
+provider adapters. Test a genuinely zero uncached-input response, absent usage,
+multiple model calls, exceptions and concurrent investigations. Keep measured
+usage separate from estimated/pre-authorized cost. This closes accounting
+correctness; it does not yet establish C1b's hard monetary ceiling.
+
+#### C2a: make completion independent of a dossier and a writer
+
+1. Inventory `compile_graph`, `quick_research`, `research_experience`, direct
+   queue/angle jobs, research CLI and their persistence helpers. Record which
+   callers migrate now and which intentionally retain compatibility behavior.
+2. Select an explicit acquisition-only completion mode before execution.
+   Reuse gathering/reflection where useful, but let small factual/interpretive
+   results stop without dossier writing or the dossier-specific quality gate.
+3. Normalize supported results and resolve disposition before observation,
+   fact, primitive, brief, dossier or review-queue persistence. Apply this to
+   failure/partial branches too. Execution telemetry may persist under its
+   policy; it must not smuggle retained source bodies/private prompts into a
+   supposedly transient run through metadata or graph checkpoints.
+4. Bind proposed claims to specific source records and supporting passages or
+   structured fields. Domain/index association is only source matching: reject
+   ambiguous same-domain matches and a source that does not support the claim.
+   Keep title, actual retrieval/publication time, contrary evidence and missing
+   fields. A provider summary can guide research, not authenticate itself.
+5. Call the disposition mapper using caller-owned purpose and policy inputs.
+   Return partial value and exact external continuation without canonical
+   insertion when identity, support or retention is insufficient.
+
+Acceptance tests spy on **every reachable writer**, including fallback and
+review paths. An exhausted budget must stop additional acquisition and finish
+with the supported subset, rather than replan indefinitely. An explicit deep
+compilation can retain its dedicated workflow; it is not the default cost of a
+restaurant fact. Prompt/graph changes require side-by-side portfolio review in
+addition to deterministic tests.
+
+#### C2b: admit the reusable portion through existing owners
+
+Use the research-to-Foundry adapter for typed observations, claims, judgments
+and editorial proposals. Its required field mappings must come from supported
+material; do not mine a polished answer into supposedly verified facts. Reuse
+the entity owner only when persistence warrants canonical resolution. The
+shared `EntityRef` already includes `experience`; inspect each downstream
+owner's actual supported fields rather than inventing an event identity type.
+
+Split implementation into two reviewable commits if needed:
+
+- **Evidence/fact admission:** minimal permitted observation, exact subject,
+  claim validity and independent source policy; existing atomic persistence,
+  deterministic retry identity and a recoverable projection obligation.
+- **Editorial transition:** proposed primitive, durable review receipt,
+  accepted version and explicit action/surface policy. Retain the existing
+  Foundry bridge's narrow `on_request` interpretation default. Home eligibility
+  needs its own policy, not a global widening of every primitive.
+
+Keep model/network work outside transactions. The current Foundry writer
+already passes one connection to observation/fact/primitive gateways; preserve
+that property. Close the after-commit projection gap with existing durable
+repair machinery where it fits. Test both same-run retry and equivalent
+re-acquisition: a new run ID must not automatically mean a new useful version.
+Define change identity from subject, claim/content and supporting evidence,
+while retaining each legitimate new observation's time and provenance.
+
+Routine factual checks should be automated under a specific source/field
+policy; judgment-heavy publication needs an appropriate review policy. A
+universal founder approval queue is not the operating model. Until eligibility
+is granted, an immediate supported answer can still succeed and a proposed
+primitive must remain absent from public feeds.
+
+#### C4a: retrieve a current unit and use it again
+
+Bind the retained result to actual fact and primitive reader functions, not a
+payload copied from the writer. Return exact subject, observation/claim or
+primitive-version refs, support, validity, missing fields and permitted uses.
+This is a content handoff, not a new personal-memory artifact.
+
+Exercise the whole chain: initial answer → permitted retention → second
+question/current read → changed observation → revised answer. The second
+question should be able to use a smaller fact without loading a dossier.
+Same-user and cross-user tests must separate public reuse from private
+question/rationale. Withdrawal of a friend's contribution removes the private
+juxtaposition while independent public knowledge remains available.
+
+Use exact version checks already present in `place_content_sources.py`.
+Return explicit stale/unavailable for an exact-version request that is no
+longer eligible; do not silently substitute latest content. A caller asking
+for current material may receive the current accepted revision through the
+owner's current-read path. Both paths must recheck source lifecycle and policy.
+
+#### C3a: make events useful outside a dated Trip
+
+Expose a lower-level content query taking explicit place/geometry, local start
+and end dates, timezone and relevant filters. Declare inclusive local date
+semantics and convert once to half-open instants for query execution; apply
+overlap/occurrence rules after retrieval. Keep the membership-checked Trip
+producer as an adapter so private scope is never treated as public city scope.
+
+Before a schema change, settle venue versus recurring offering, actual
+occurrence and performer/admission slot using existing experience owners.
+Preserve date-only, TBA/TBD and postponed observations without inventing a
+timestamp. If an operational row cannot represent them, retain only permitted
+uncertain evidence and report the limitation; skipping normalization is not
+successful ingestion. A cancellation carrying an old stored start must not
+suggest that this time was reconfirmed.
+
+Classify changes separately: observation/freshness, practical eligibility,
+semantic content and derived payload. A cancelled occurrence disappears from
+current feasible suggestions immediately through owner checks; a new raw fetch
+timestamp does not force a new brief or embedding. Preserve same-transaction
+dirty marking and add durable obligations only for genuinely separate repair
+consumers. Test provider revision/retrieval ordering, replay and successful
+freshness updates so a late response cannot revive cancellation.
+
+#### C4b: find retained material by place, time and question
+
+Use structured Postgres/PostGIS/event predicates for geography and time, and
+the existing derived content index for bounded semantic candidates. Confirm
+the actual active collection and reader; then fetch authoritative current
+records before composition. Expired evidence cannot return through stale
+vector text. Index selected admitted semantic content, not every provider
+result or every operational refresh.
+
+Replace corpus-count/taste-match sufficiency only on the affected discovery
+path: evaluate missing evidence, current purpose and useful alternatives.
+Preserve explicit provider permission and budgets. Ordinary Home/Places reads
+consume available material and declare gaps; they cannot acquire more by
+silently invoking this expansion policy.
+
+For the cliff comparison, compose from independently supported anchors first.
+Only propose a multi-subject model extension if a real consumer cannot reuse
+or repair the relation correctly with current owners. Assess whether the
+answer adds substance the user did not supply, not simply whether search found
+two similar embeddings.
+
+#### C1b: make bounded work genuinely bounded
+
+Inventory every metered search, extraction/detail call, provider fallback,
+page, retry and model call. The existing `max_operations` subquery ceiling is
+useful but is not that inventory's enforceable budget. Apply the accepted
+deadline at dispatch and completion, and stop fan-out when no reservation
+remains. Account for a timed-out operation that may already have been charged.
+
+Use an acquisition-run envelope plus shared provider/time-window reservations.
+Reuse atomic reservation/replay/settlement mechanics where appropriate; the
+commercial ledger's customer billing subject is not automatically a provider
+COGS subject. Reserve before dispatch, settle known usage, retain/reconcile
+uncertain charges and release only known unused reservations. Unknown cost
+must be explicit, not zero. Estimate conservatively under a configured source
+policy, with a separate emergency stop and bounded retries.
+
+Tests need concurrent contenders for the last allowance, nested fallback,
+worker crash, duplicate settlement, cancellation and partial success. This
+gates automated/live metered production. Offline adapter/readback work does
+not wait for procurement, and a measured small supplier sample still needs an
+explicit total spend/operation envelope and authorized account.
+
+#### C5a: create a bounded collection of ready value
+
+Choose an explicit public scope, such as NYC with one rolling weekend window
+plus a small set of durable explanations useful beyond that weekend. Set a
+target collection size, refresh ceilings, supported source families, review
+capacity and total spend before a run. Selection should cover practical
+possibilities, substantive understanding and a few reusable relationships.
+Use the six cases for coverage, not a rigid six-section Home composition.
+
+Bind an operator-authorized preparation request to the existing research
+production owner and C2/C4 write/read paths. Record run identity, lease,
+deadline, deduplication, budget and readback. The private Source-contribution
+worker is not the default owner of public world preparation. An offline fixture
+or a queue definition alone does not demonstrate a running public producer.
+
+Start with explicit runs. Add recurring refresh only after freshness classes,
+cost, repair and stop behavior have receipts. Report admitted useful units per
+operation/cost, rejection reasons, repeat-query reuse, coverage gaps and stale
+exclusions. Do not use pages scraped or words generated as success metrics.
+Visual composition and new rendering formats remain outside this batch.
+
+#### C6a: integrate without creating another product lane
+
+Hand the Integration roadmap's **SP-4a public-content receive** package a
+committed source SHA, exact typed result, owner reader, eligibility/validity
+rules, correction behavior and test receipts. Supply public-only orientation,
+small interpretation, event and mixed-public/private examples without assuming
+a rich personal history. Integration owns workflow/result delivery and shared
+composition; Home owns receiving composition; Life owns permitted continuity.
+Content supplies the material and its lifecycle, not parallel implementations
+of those responsibilities.
+
+For the live engine, deliver structured subjects, conditions, operational
+deadlines and dependencies. A useful interpretation can coexist with unknown
+current feasibility. A schedule update affects practical judgment without
+rewriting unrelated history. Ranking, action authority, live watch subscriptions
+and actual booking remain with their established owners; content publication
+does not create any of them.
+
+Migrate one canonical writer per output kind after write-free comparison.
+Include `research_experience` and direct graph callers; preserve current
+approved legacy reads until replacements serve their consumers. Turning off
+the legacy flag into a growing hold queue is not a completed cutover. Record
+remaining intentional compatibility paths with an owner and removal condition;
+do not delete old catalogs or user records as cleanup.
+
+### 12.4 Review points and evidence
+
+| Review point | When | Question that can change the next work |
+| --- | --- | --- |
+| **Completion boundary** | After C1a/C2a | Can small useful answers finish without domain writes or dossier work? Are evidence support and actual run accounting preserved? If not, repair this boundary before caller migration. |
+| **Owner and reuse** | After C2b/C4a | Can admitted facts/interpretation be reread, reused and corrected through existing owners? Does a new schema solve a demonstrated problem, or duplicate an existing owner? |
+| **Temporal and retrieval** | After C3a/C4b | Do ordinary local requests, scheduled events and cross-place questions all work with independent clocks and no taste-history prerequisite? Does semantic retrieval add useful reach beyond structured/exact reads? |
+| **Supply and economics** | Before/after the bounded C5a run | Do source rights, useful yield, refresh burden, review and costs support expansion? Which material should remain transient or explicitly requested? |
+| **Consumer integration** | At C4a handoff and C6a activation | Can real consumers use exact current material and respond to correction? Which remaining failures belong to supply, composition, rendering or native UX? |
+
+At each review, update this roadmap with committed SHAs, tests actually run,
+remaining gaps and the next bounded work. Recheck concurrent branches/status
+before shared edits. Land explicit filenames; do not sweep other lanes' work.
+If delegation is later requested, event fixtures/query work and provider
+budget tests can run independently with named file ownership. Shared contracts
+and activation retain a single landing owner.
+
+Validation proceeds from pure adapter tests to owner integration tests to
+actual receiving paths. Use real local Postgres for transaction/retry/conflict
+claims; mocked sessions cannot establish lock ordering or crash recovery.
+Keep optional provider/model dependencies out of ordinary-root tests, including
+cold-cache and empty-result variants. If an API contract changes, run workspace
+schema sync, inspect both OpenAPI snapshots and generated mobile types, then
+check affected mobile consumers. Pure internal adapters do not need a new API.
+
+Separately review consumer output for useful new substance, modest reading
+burden, concrete possibilities, practical uncertainty and absence of unwanted
+input homework. Offline fixtures establish mechanics, not live coverage,
+human-perceived quality or measured provider economics. Native app QA is a
+separate receipt when receiving UI changes.
+
+### 12.5 Stop conditions and completion definition
+
+Pause the affected path for a concrete decision when it needs a new durable
+owner, changed private/public authority, a commercial source policy, an
+unknown-time schema or a new review/activation policy. Record the narrow choice
+and continue independent work. Do not declare the whole architecture blocked
+by an unavailable provider or one ambiguous specimen.
+
+**The first round is complete when** C1a/C2a/C2b/C4a have landed and retained
+small outputs are demonstrably used and repaired through current readers.
+It does not claim city-wide supply, deployed public preparation or finished
+Home UX. **The connected content milestone is complete when** the relevant
+event/retrieval paths, enforceable production budget, bounded public producer
+and actual consumer handoff also have evidence, with overlapping writers
+migrated or explicitly documented as compatibility paths.
+
+Rollback disables new acquisition/publication through the owning controls
+while preserving valid reads. It never re-enables implicit research on GET,
+revives a withdrawn version or converts an unknown fact into a promise.
+No calendar estimate is assigned before the first owner/transaction review;
+the order and exit conditions above are the execution commitment.
+
+### 12.6 September 7 execution receipts
+
+The provider-independent portion of the batch is now implemented on the active
+backend branch, in isolated commits:
+
+| Unit | Receipt | What is now true |
+| --- | --- | --- |
+| C1a | `10ecea2c4` | Usage is snapshotted before executor-bound persistence, and zero uncached input is counted as zero rather than falling back to a legacy total. |
+| C2a | `516c89596`, `dd1890eb6` | Answer-only completion is a graph terminal and the experience caller can return its bounded result without a brief/dossier write. Existing legacy callers remain explicitly compatible. |
+| C4a | `b0d5a80ca`, `0cd27bdee` | Exact source handoff and bounded multi-anchor composition read current owner records with version, lifecycle, privacy, evidence and consequence checks. |
+| C3a | `5a6bc740a`, `5a9daed12`, `af9dc4ae3` | Local event windows, explicit event search scope, provider metadata preservation and the lookup consumer's `results`/`events` compatibility boundary are covered. |
+| C1b (first slice) | `8926cb497`, plus `2a102c599` | Caller deadlines are enforced around the full quick graph and before subquery dispatch; remaining chain time is capped and deadline exhaustion returns an explicit bounded stop. |
+| C4b (structured first slice) | `4efe7aa1a` | A bounded place-scope reader discovers only admitted primitives attached to the place's canonical child entities; it does not invoke research, providers or a global index. |
+
+Focused receipts run during this pass: `12`, `48`, `25`, `6`, `10`, `13`,
+`16`, `20`, `5`, `36`, and `11` tests respectively for the affected
+accounting, graph, event, exact-handoff, composition, experience, event-tool,
+lookup, quick-research, deadline-dispatch and place-scope slices (the last
+two overlap the graph/quick suites and are listed to make the boundary
+explicit). The combined content-lane regression command is still required
+before calling this a branch-wide green result.
+
+The existing World Foundry promotion/persistence owner remains the C2b
+boundary; this pass did not silently mark it complete. Real local Postgres
+tests are still required for idempotency, rollback/version conflict and
+interrupted projection recovery. C1b still lacks provider-COGS reservations,
+unknown-charge settlement and crash/concurrency receipts. C5a public
+preparation and C6a Integration consumer activation remain unlanded. No
+semantic vector expansion, provider activation, Home/Life/Chat redesign or
+GET-triggered research was introduced.
+
+Roadmap-document verification after this receipt update: governance metadata,
+relative links, same-document anchors, code-fence pairing and whitespace
+remain to be rerun at commit time; the earlier planning-pass counts are not
+reused as current verification claims.
