@@ -6,18 +6,27 @@ owner: Integration / Contribution and Capture
 created: 2026-09-07
 last_verified: 2026-09-07
 expires: 2026-10-07
-why_new: Makes the SP-0a request, result, and control boundaries executable without inventing a second store or claiming exact result support that does not yet exist.
+why_new: Maps Source request semantics, implemented exact-result retrieval and cancellation, and the remaining authenticated-ingress and consumer boundaries.
 supersedes: []
 ---
 
 # Source request, result, and control mapping — 2026-09-07
 
-Status: **implemented mapping / contract-sensitive gaps isolated**
+Status: **mapping rebaselined after SP-1b/SP-2b / request extension still proposed**
 
 This is the SP-0a companion to the complete-system integration roadmap. It
 maps the existing private Source preparation path without introducing a second
 request store, inbox, or generated-content owner. It is deliberately precise
 about what exists today and what is only a proposed interface.
+
+September 7 rebaseline: exact result binding/retrieval and Source-specific
+effective cancellation are implemented in `381bbba29` and `1447eeccd`, with
+subsequent hardening through `1961eebff`. The
+[execution receipt](source-connected-value-execution-receipt-2026-09-07.md)
+owns their verification. The request owner, runnable ingress and mobile result
+consumer remain incomplete. This correction adopts no new request schema or
+retention policy. The next execution order is
+[integration roadmap §9.8](complete-system-integration-roadmap-2026-09-05.md#98-connected-system-next-stage--september-7-holistic-rebaseline).
 
 ## 1. The three identities stay distinct
 
@@ -25,7 +34,7 @@ about what exists today and what is only a proposed interface.
 | --- | --- | --- | --- |
 | Request identity | The authenticated request owner, currently carried as a `ResourceRef(kind="source_preparation_request")` in workflow metadata | Who asked for which bounded job and which accepted purpose/scope it refers to | No. A conversation or message ref alone is not a readable purpose contract. |
 | Semantic reuse identity | `SourceContributionWorkItemV1`'s deterministic `work_id` / Source group key | Which governed viewer, evidence/context, roots, audience and policy/compiler versions may reuse one production | No. Reuse identity does not prove who requested it or authorize exact retrieval. |
-| Result identity | **Not yet complete.** Today the receipt points to `source_contribution_workflow_status:{workflow_id}` and the current Source group row is the only durable production locator | The exact published production/version that a requester may reopen | No. A group key can be overwritten and therefore cannot promise an immutable historical result. |
+| Result identity | Source completion receipt carries `ResourceRef(kind="source_contribution_result", id=workflow_id, revision=production_digest)`; the owner-only `/api/agent-workflows/{workflow_id}/result` reader resolves it | The exact published production/version while its retained row, Sources and context remain eligible | No. Status, request and result refs remain distinct; overwritten or expired output is unavailable, not an immutable archive. |
 
 The existing `agent_workflows` row remains the lifecycle/control owner. Generated
 prose and candidates remain under Source production storage. `result_json` and
@@ -45,8 +54,8 @@ the receipt must remain content-free.
 | Replay key | `idempotency_key`, derived from the bounded work identity | Workflow row | `create_or_get_workflow` |
 | Accepted deadline | `expires_at`; worker lease is separate | Work item + workflow lease | Worker clock, completion fence and Source persistence |
 | Output validity | Source candidate expiry plus current source/context custody | Source production row | Shared Source serving/admission |
-| Result ref | Status-shaped workflow ref only | Completion receipt | Workflow read route |
-| Effective stop | Generic `agent_workflow_commands` intent; `cancel_workflow` exists but is not connected to Source route | Command row / workflow row | **SP-2b** |
+| Result ref | Versioned `source_contribution_result` ref and canonical production digest; status ref remains separate | Completion receipt + existing Source production row | Actor-authorized exact-result route and shared current Source/context validation |
+| Effective stop | Source-only cancel command calls `cancel_owned_source_workflow` behind the existing workflow-control flag | Applied command + workflow state in one transaction | Actor/type/control-revision checks at mutation time; other workflow commands retain their existing semantics |
 
 ## 3. What the current path actually supports
 
@@ -54,7 +63,10 @@ The canonical Source executor is an **explicit contextual warm** path. It can
 re-read the viewer's eligible private material, compile a bounded production,
 write it through the existing Source attempt/output transaction, verify a
 canonical readback, and publish a content-free workflow receipt. It does not
-yet implement a commissioned comparison with an exact subject set.
+yet implement a commissioned comparison with an exact subject set. No runtime
+caller of `create_explicit_source_contribution_workflow` or worker registration
+was found at this rebaseline. The examples below describe the adapter's
+representable inputs, not a currently offered end-user service.
 
 That distinction is important:
 
@@ -111,9 +123,11 @@ roots = {home, places}
 context_ref = places_context:rome-now
 ```
 
-Result: a workflow status receipt. Once SP-1b exists, the requester will also
-receive an exact versioned result locator if a useful production was actually
-published.
+Result: when an authorized caller explicitly runs the current adapter/executor,
+the workflow exposes status and can carry an exact versioned result locator
+after useful production/readback. A normal mobile request does not yet invoke
+that complete path. The result reader remains declared dark without a mobile
+consumer.
 
 ### Rejected as under-specified
 
@@ -133,28 +147,35 @@ same workflow/result. A changed exact subject, context revision, purpose,
 audience, policy/compiler version or replay key creates a new semantic identity;
 an expiry refresh does not silently extend a running job.
 
-### Result states (target shape)
+### Result states (current wire support and remaining semantics)
 
 | State | Meaning | Current support |
 | --- | --- | --- |
-| `pending` / `running` | Accepted handoff has not produced a terminal receipt | Existing workflow projection |
-| `ready` | Useful produced/reused output is durably linked to an exact result identity | Worker verifies production, but exact result binding is SP-1b |
-| `no_useful_result` | Canonical owner path completed without admitted production | Worker has `producer_silence`; route projection needs mapping |
-| `failed` | Technical or contract failure with truthful retryability | Existing workflow failure states |
-| `cancelled` | Effective workflow cancellation won the race | `cancel_workflow` exists; Source control wiring is SP-2b |
-| `replaced` / `expired` / `unavailable` | Exact result is no longer eligible or was superseded | Exact reader and version/digest binding are SP-1b |
+| `pending` | Work has no terminal receipt | Exact reader returns `pending` with the workflow state in `reason`; running is not a separate result status |
+| `ready` | Useful produced/reused output is durably linked and currently eligible | Implemented exact digest/ref validation and Source/context readback |
+| `no_useful_result` | Execution ended without admitted production | Declared in the response enum, but the inspected handler has no branch returning it; distinguish `producer_silence` before treating a missing result ref as lost output |
+| `failed` | Terminal technical or contract failure | Exact reader maps `failed_terminal`; retryable nonterminal work remains pending |
+| `cancelled` | Effective workflow cancellation won the race | Implemented Source-specific mutation and exact-reader status; inspect owner state rather than generic command acceptance |
+| `unavailable` | Exact result is missing, replaced, expired or no longer authorized for current use | Implemented with reason codes; replacement/expiry are not distinct top-level wire statuses |
 
 ## 6. Dependent implementation gates
 
-1. **SP-1b:** return and durably bind a versioned result identity/digest at the
-   Source publication boundary; provide actor-authorized exact retrieval that
-   shares ordinary serving validation and never acquires on GET.
-2. **SP-2b:** connect an authenticated Source owner stop to `cancel_workflow`
-   with a transaction-time ownership/revision check; keep generic command intent
-   semantics unchanged for other workflow types.
-3. **SP-3a:** deliver the same admitted result through Home and Places while
-   preserving exact requester access independent of ranking.
+1. **SP-0a/SP-1 remainder:** select the authenticated request owner and bind
+   purpose, exact subjects where requested, time window, authority, deadline and
+   replay semantics. Reuse existing workflow/custody infrastructure; review the
+   proposed extension before claiming commissioned comparisons.
+2. **SP-2/SP-3 remainder:** connect an executable ingress and truthful ending
+   states, including no-useful-result, to the existing exact reader and stop
+   path. Verify accepted work can actually run before exposing acceptance.
+3. **SP-3a:** add the generated mobile consumer and supported result destination;
+   preserve requester access independently of Home ranking, plus current
+   source/context expiry and account isolation. Ordinary prepared Home/Places
+   serving already exists; do not implement it again.
+4. **SP-5:** evaluate one connected local request/execution/readback/result/root
+   portfolio before any separate worker/provider activation. Current exact
+   reads can require the original eligible context; independent partial results
+   need explicit dependency support before that restriction can be relaxed.
 
-Until those gates land, the status-shaped receipt is honest and the Source
-worker remains dark. No client or roadmap should call the current status ref an
-exact content result.
+The Source worker remains dark because ingress, request semantics, consumer
+delivery and activation evidence are unfinished. Exact backend result retrieval
+and Source cancellation are no longer missing foundations.

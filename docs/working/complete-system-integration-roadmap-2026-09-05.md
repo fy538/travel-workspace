@@ -75,6 +75,22 @@ from eligible prepared material without initiating acquisition on every read;
 private Source production is one path, not the universal recommendation
 backend. CV-3 and the checkpoints in §9 make this distinction executable.
 
+[Section 9.6.8](#968-complete-receiving-experience-and-supported-service-boundaries)
+adds the consumer receiving requirements to these same packages: distinguish
+help now, requested preparation and explicitly accepted following; preserve
+exact result access independently of Home ranking; and report completion and
+stop according to actual owner state. This is a planning refinement, not a new
+service launch, continuity agreement or execution queue.
+
+[Section 9.8](#98-connected-system-next-stage--september-7-holistic-rebaseline)
+is the current detailed execution order following the holistic integration
+evaluation. The callback repair, exact backend result reader and Source-specific
+cancellation from §9.7 have landed; do not schedule them again. The remaining
+work is reviewed branch convergence, public supply receiving, meaningful request
+ingress and mobile results, practical judgment, Life serving adoption, and narrow
+intent/social handoffs. Earlier package descriptions remain acceptance scope;
+the updated baseline and exit evidence determine completion.
+
 This document replaces older cross-system ordering and lane allocation. Lane
 roadmaps retain internal package detail; their code, acceptance cases and
 historical receipts remain evidence. Product canon and operational release
@@ -127,6 +143,10 @@ semantics and authority. Consolidate duplicated decisions, not every class or
 DTO simply because they look similar.
 
 ### Code-backed issues that determine the roadmap
+
+This is the initial issue register, retained for traceability. Several repairs
+have since landed; use §9.8 and the dated execution receipts for current state,
+not the original observation column as a fresh missing-work list.
 
 | ID | Observation | Disposition / work package |
 | --- | --- | --- |
@@ -198,14 +218,16 @@ live assistance, with no visible fifth tab or obligatory "engine" section.
 
 ## 2. Current coordination register — September 7
 
-**September 7 afternoon coordination refresh:** Integration owns shared
-execution, judgment and root composition; its next detailed packet is
-[§9.6](#96-private-preparation-and-shared-delivery-execution-plan--september-7).
+**September 7 current coordination:** Integration owns shared execution,
+judgment and root composition; its next detailed packet is
+[§9.8](#98-connected-system-next-stage--september-7-holistic-rebaseline).
 Content (`01a07c63-5ebe-71d2-9cb0-314ec4e06963`) is executing its C0–C6 supply
-plan, including the remaining routing-read boundary. Do not duplicate that
-repair here. Home (`01a06f87-e648-74d2-a0ae-f0adb305e44c`) is planning page
-composition, supply reception and exact continuations in its existing map;
-Life continues corpus/recovery/parity work in its isolated worktree. Strategy
+plan; the routing-read boundary has repair receipts below. Recheck new Content
+changes rather than duplicating that repair. Home
+(`01a06f87-e648-74d2-a0ae-f0adb305e44c`) has receiving implementation on backend
+and mobile branches, plus composition work in its existing map;
+Life continues organization/readers and corpus/recovery/parity work in its
+isolated worktree. Strategy
 owns first-encounter and product-clarity specifications. Social and Places
 have design handoffs; Social is no longer merely a proposed task. Entities is
 idle with reviewed implementation on a mobile branch, not fully landed main.
@@ -299,18 +321,18 @@ app `38d3a6521` already merged lens/refind continuity. Root design/inventory and
 market-research edits present at this checkpoint belong to concurrent work and
 are outside this package.
 
-**September 7 planning refresh:** audited backend base `7b1d8a6b0`, workspace
-base `2f78a82`, app base `38d3a6521`. CV-1 serving and Life restore/target
-capability work have advanced. The audit found incomplete practical-field
-coverage and judgment integration; the next implementation sequence is
-[§9.4](#94-cv-2-detailed-execution-plan--september-7). Its packages are planned,
-not additional implementation receipts. Concurrent design, inventory and
-market-research edits remain outside this refresh.
+**September 7 holistic refresh:** Content has advanced backend `main` to
+`9d3127084`; Home receiving, mobile Entity and Life organization have additional
+branch work. These are not yet one verified candidate. Use
+[§9.8](#98-connected-system-next-stage--september-7-holistic-rebaseline) for the
+current baseline, dependency-aware sequence and checkpoints. Concurrent design,
+inventory, strategy and Life edits remain their owners' work. Earlier CV/SP
+receipts establish their named behavior, not completion of the remaining system.
 
 | Lane / cadence | Authoritative execution plan | Current package | Promised interface | Dependency / receiving owner | Next checkpoint |
 | --- | --- | --- | --- | --- | --- |
-| **Integration** — persistent connected-value/live lane | This roadmap I0–I6 and §9.6; [Home/Places implementation map](home-connected-experience-implementation-map-2026-09-04.md) | CV-1 and CV-2 A–D have local receipts; SP-0 request/result binding and SP-2 execution/publication repair next | Exact authorized work/result identity, coherent cancellation and source repair, shared judgment/delivery without production on GET | Content's public supply; Home receiving/presentation; existing source owners; Life exact destinations | Review request semantics and effective lease/publication fences, then connect durable request → exact result → current delivery |
-| **Life** — persistent continuity lane | [Life R0–R8](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md) | R2 target-version continuity, coverage and reconciliation; then R2-G organization and R3–R5 reader/custody integration | Exact eligible record/ref, revision, bounded query/restore, withdrawal, and truthful population versus live-delivery status | Existing source/graph owner events; indexed serving requires parity and target delivery; D1 only for prospective writes | Default shadow continuity and future-target limitations explicit; coverage/parity evidence before any serving switch |
+| **Integration** — persistent connected-value/live lane | This roadmap I0–I6 and §9.8; [Home/Places implementation map](home-connected-experience-implementation-map-2026-09-04.md) | Package 0 reviewed candidate; then public receiving and request/consumer completion alongside Life; practical specialization follows | Useful current supply through shared judgment, exact request-bound results and effective controls, canonical destinations and repair without acquisition on GET | Content's public supply; existing Source/request owners; Life exact/indexed readers; Home/Entity receiving branches | Checkpoint 0 combined candidate; then review actual supplied/received value and request-to-result behavior, not already-landed result/cancel helpers |
+| **Life** — persistent continuity lane | [Life R0–R8](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md) | R2-G typed organization/group readers and R3–R5 receiving over existing target-version/coverage work; publish a tested branch cut | Exact eligible record/ref, revision/read epoch, bounded group query/restore, withdrawal, and truthful population versus live-delivery status | Existing source/graph owner events; Integration adopts tested readers; indexed serving requires parity and target delivery; D1 only for prospective writes | §9.8 Package 4: clean tested cut, migration/reader evidence, current versus future-target limitations; no implicit serving switch |
 | **Home** — bounded support within Integration | [Connected implementation map](home-connected-experience-implementation-map-2026-09-04.md), consuming I4 | Receiving renderer/destination failures from CV-1/CV-2; complete varied value, not more kinds | Existing typed producer-to-renderer mapping and exact return | Integration supply; Entities depth; Life readers | A named consumer gap closes; no separate generator or expanding feature backlog |
 | **Contribution and Capture** — bounded support | [CC-0–CC-6](contribution-contract-and-legacy-memory-migration-plan-2026-08-29.md#11-completion-plan--september-5) | Named lifecycle/correction failures exposed by connected value or Life | Effective gesture/authority, source refs, retry identity, lifecycle and owner readback | History proposal for history-specific expiry; Life consumes source events; D1 only for loose intent | Source and derivatives obey custody across use, retry and repair; immediate value precedes optional management |
 | **Components and Plan** — design/decision, then engineering | [Arrangement A0–A4](lightweight-arrangements-implementation-handoff-2026-09-04.md), [design handoff](claude-design-plans-in-real-life-handoff-2026-09-04.md) | A0 owner/command packet; latest §0.8 continuation refinements | Distinct propose/update/send/participate/adopt effects, exact arrangement ref and readback | D1; settled use-grant policy plus concrete adapters; live engine supplies practical judgment | Map reduced designs to commands; ratify any seven-sentence exceptions before building them |
@@ -981,19 +1003,19 @@ document's creation.
 
 ## 9. Current execution ledger and next batch
 
-| Package | State rebaselined September 6 | Next concrete action |
+| Package | State with September 7 integration correction | Next concrete action |
 | --- | --- | --- |
 | I0 | Implemented/integrated at inventory level; live-engine path matrix and 2026-09-06 decision-alignment audit recorded | Keep D1 retained-intention ownership and family-specific D6 watch contracts gated; consume accepted general D2–D5 policy through I1–I3 adapters without treating D4's history/source-expiry proposal as adopted |
 | I1 | Integrated for request-clock, consequence fan-out, source/graph Life delivery, owner-fenced publication, audience/withdrawal repair, bounded enumeration, resumable backfill, reconciliation and full typed comparison; source representation transitions and Outcome adapters are no longer missing foundation | Establish population/coverage and target-version live delivery before indexed serving; PostgreSQL interleaving evidence remains distinct from offline tests |
-| I2 | Bounded reads, fast assembly, source storage/reuse, work-item/workflow contracts, dark executor/deployment envelope and telemetry exist; CV-1 connects prepared reads. §9.6 identifies missing request binding and effective lease/publication connections | Execute §9.6 SP-0–SP-3 and receive Content through SP-4. Content owns the remaining routing-read repair. Cost/cohort evidence and worker registration remain separately gated |
+| I2 | Bounded reads, prepared serving, dark execution, publication fences, callback repair, exact backend result retrieval and Source-specific effective stop have local receipts | Follow §9.8 Packages 1–3: public receiving, semantic request/runnable ingress/mobile results, then practical specialization. Worker registration, cost/cohort evidence and activation remain distinct; do not rebuild result/cancel foundations |
 | I3 | CC-0/1 reader/authority/retry repairs, deadline/custody/processing-copy restrictions, source-owner handoff metadata, bounded writer conformance (itinerary, Atlas, Discover), and useful-first capture ordering are locally evidenced; history-specific lifecycle and owner commands remain gated | Capture coordinates Life readback/correction over the existing envelope; review the two September 6 decision proposals before dependent writes; native/content evidence stays deferred for current engineering |
 | I4 | Renderer promotion, result-set identity, source-backed revision, native returns, stale-source treatment and a four-value-family owner-backed Home portfolio are implemented and locally tested; rollout remains internal | Receive prepared results through existing native kinds and complete practical/social/continuity handoffs; real-data and native quality remain unevidenced by these tests |
 | I5 | Graph/consequence foundations present; movement signal→judgment shadow path is locally evidenced; lightweight experience remains incomplete | Complete adaptation and shared consequences over I1–I3, preserving purpose, plural participation, and meaningful stop/wait behavior |
 | I6 | Inventories, guards, retained booking-evidence and assisted-expense contracts are recorded and locally validated; destructive cutovers remain incomplete | Run environment obligation audits, migrate actual retained readers, and remove only execution paths with no remaining consumer or obligation |
 
-**Next connected work:** execute §9.6's private preparation and shared delivery
-packet within CV-3/CV-4, alongside Content C0–C6, Home's receiving/presentation
-plan and Life's corpus/recovery work. CV-2 A–D has local implementation receipts;
+**Next connected work:** execute §9.8's reviewed candidate and connected delivery
+sequence within the existing CV/SP/I packages, alongside Content C0–C6, Home's
+receiving/presentation plan and Life's corpus/recovery work. CV-2 A–D has local implementation receipts;
 do not restart it from the older sequencing text. CV-2E practical specialist
 expansion follows a named timing need rather than preceding all supply work.
 The first CV-1/target-capability receipt is in §9.2.
@@ -1525,8 +1547,9 @@ remains deferred by the founder; record local evidence separately.
 
 Life continues its roadmap §11 corpus, lens, reconciliation and race packet in
 its isolated worktree. Optional conversational continuity remains a concrete
-upcoming decision: define receiving/dependency repair now, but the proposed
-90-day ceiling is not adopted retention policy. Social can advance casual
+upcoming decision: define receiving/dependency repair now. The [latest proposal](conversation-history-source-expiry-decision-proposal-2026-09-06.md#10-selective-long-range-continuity-four-complete-experiences)
+recommends selective long-range use instead of the earlier universal 90-day
+ceiling; neither that agreement nor broader retention is adopted. Social can advance casual
 sharing without waiting for the pre-Plan owner decision.
 
 Historical receipts below describe the earlier implementation, not completion
@@ -1655,10 +1678,16 @@ optimistic without this distinction.
 
 ### 9.6 Private preparation and shared delivery execution plan — September 7
 
-**Status: SP-1, effective lease timing and the publication fence are implemented;
-the core PostgreSQL cancellation/publication interleaving is proven, while
-broader worker recovery and shared delivery remain unimplemented and
-unactivated.** This
+**Historical status at the first September 7 review:** the submission adapter,
+effective workflow claim duration, private workflow authorization and portions
+of the publication fence are implemented. SP-1 is partial: its locator resolves
+workflow status, not the exact prepared content. `270acb53e` adds a concurrent
+publication-first/cancellation test; the connected production path subsequently
+reproduced a deadline-callback `TypeError`. SP-2 therefore remains open, as do
+runtime request/control wiring, exact retrieval and complete shared delivery.
+[§9.7](#97-next-integration-execution-batch--september-7-review-rebaseline)
+recorded the corrective sequence. Callback, exact-result and Source-cancel
+repairs have since landed; use §9.8 for current evidence and remaining work. This
 is the Integration execution detail within CV-3/CV-4 and I2/I4, not another
 roadmap or product grammar. It supersedes older next-step language that starts
 with more worker infrastructure, repeats CV-2 A–D, or makes all content wait
@@ -1673,13 +1702,14 @@ now claims with the effective deployment lease rather than the database's
 shorter default; the explicit submission adapter validates the `explicit_warm`
 owner binding, retains a content-free request reference plus conversation and
 source-message identity, and preserves deterministic replay. Successful Source
-completion now carries a typed, actor-scoped workflow/result locator in its
+completion carries a typed, actor-scoped workflow locator in its
 specialized receipt; request-ref kinds and deep-link construction are
 centralized and validated. The inner Source publication path can now lock and
 verify the claimed outer workflow in the same transaction, so a cancellation
 or lease takeover that wins the row lock cannot publish stale output. Backend
-commit `ddad25e51` adds the real PostgreSQL proof for cancellation before
-publication and cancellation after publication (**7** tests pass). Focused
+commit `ddad25e51` adds sequential PostgreSQL cases for cancellation before
+publication and cancellation after publication (**7** tests pass); these alone
+do not exercise concurrent interleaving. Focused
 worker/workflow/continuity tests pass (**42**), the offline root-projection
 plus workflow-API regression packet passes (**399**), and the existing durable
 workflow PostgreSQL packet passes (**6**).
@@ -1688,11 +1718,11 @@ skipped for these commits; all other changed-file gates passed.
 
 The receipt does **not** claim a runtime request handler, PostgreSQL
 interleaving evidence for every recovery ordering, a public-world supply path, worker
-registration, provider activation or Home/Places delivery. SP-2 still requires
-one transaction-level interleaving proof in which the outer workflow fence and
-the inner Source attempt/output write share a lock boundary; an in-memory
-post-execution check would be insufficient. SP-3 and SP-4 remain the next
-receiving work after that boundary is reviewed.
+registration, provider activation or Home/Places delivery. SP-2 remains open
+for broader recovery and lease-takeover orderings beyond the named cancellation
+proof; an in-memory post-execution check cannot replace transaction-level
+evidence. SP-3 and SP-4 remain the next receiving work alongside those remaining
+lifecycle checks.
 
 #### 9.6.1 Outcome and scope
 
@@ -1719,23 +1749,26 @@ evidence; the private structured producer is not a substitute research engine.
 Planning began from workspace 82ab038, backend main 5421c66b7 and mobile
 17eea1980 on the Entity branch. Content was actively changing discovery/taste;
 Home was updating its implementation map; Life was advancing its isolated
-rehearsal. These are inspection bases, not required resets or remote status.
+rehearsal. These are inspection bases, not required resets or remote status. The
+table below incorporates the named September 7 request/lease/publication receipts;
+recheck subsequent commits before reopening a gap.
 
 | Boundary | Existing code and evidence | Remaining integration work |
 | --- | --- | --- |
 | Request identity | [Work item](../../travel-agent/backend/core/models/source_contribution_work.py) has viewer, roots, situation, audience, represented clock, policy/compiler, trigger/context refs, deadline and deterministic identity | No runtime caller constructs it. No field directly represents an arbitrary question, selected Source set or requested activity window. An expiry is not an event window; a situation enum is not a complete user request. |
-| Durable submission | [Workflow handoff](../../travel-agent/backend/root_projection/v2/source_contribution_workflow.py) uses existing agent_workflows with supersede_existing false | No runtime caller creates this workflow. It currently leaves conversation/message identity unset; establish an exact private request receipt without broadening readership. |
+| Durable submission | [Workflow handoff](../../travel-agent/backend/root_projection/v2/source_contribution_workflow.py) uses existing agent_workflows with supersede_existing false; the explicit adapter now binds the request and accepts conversation/message identity | No runtime caller creates this workflow. Connect the reviewed handler and real dispatch; an adapter and stored identity do not establish executable consumer acceptance. |
 | Execution | [Canonical executor](../../travel-agent/backend/root_projection/v2/source_contribution_canonical_executor.py) supports explicit-warm, canonical context resolution, current production reuse and readback | It rediscovers eligible material; it is not yet an exact-subject/request compiler. Other trigger labels are rejected and must remain so without owner bindings. |
-| Operational lease | [Worker](../../travel-agent/backend/root_projection/v2/source_contribution_worker.py) claims a workflow and checks execution/deployment contracts | The Source wrapper calls claim_workflow without a duration override; [DB default](../../travel-agent/backend/core/db/agent_workflows.py) is 60 seconds, while [deployment defaults](../../travel-agent/backend/core/models/source_contribution_worker.py) declare a 300-second lease and 240-second execution timeout. No Source-worker renewal caller was found. Wire effective timing; declarations alone do not protect a long execution. |
-| Publication and control | [Continuity](../../travel-agent/backend/root_projection/v2/source_contribution_continuity.py) commits an attempt/result before the worker completes its outer workflow receipt; [store](../../travel-agent/backend/core/db/source_contributions.py) checks the Source attempt token | Establish the exact atomic boundary between outer cancellation/lease loss, Source eligibility, work deadline and publication. Rejecting a later workflow receipt is not by itself evidence that output was never stored or served. |
+| Operational lease | [Worker](../../travel-agent/backend/root_projection/v2/source_contribution_worker.py) now uses the effective deployment claim duration; the earlier DB-default mismatch is repaired | Verify connected execution deadlines, recovery and any required renewal behavior under the actual deployment envelope. Do not reopen the fixed duration-override defect or treat declared timing as complete recovery evidence. |
+| Publication and control | [Continuity](../../travel-agent/backend/root_projection/v2/source_contribution_continuity.py) and [store](../../travel-agent/backend/core/db/source_contributions.py) now fence inner publication with the outer workflow; the receipt above names the PostgreSQL cancellation-ordering proof | Complete broader recovery/lease-takeover evidence and connect actual consumer cancellation. A publication fence is not a functioning user-facing stop command or proof of every late-result/read-repair ordering. |
 | Reconnect and cancel | [Workflow routes](../../travel-agent/backend/api/routes/agent_workflows.py) provide authenticated read/reconnect and a control-intent transport | The command route records intentions behind a flag; its documented transport does not itself execute cancellation. Do not present recorded intent as a stopped Source job. |
-| Exact result retrieval | Worker receipts name the work and outcome; [prepared serving](../../travel-agent/backend/root_projection/v2/source_contribution_serving.py) rediscovers eligible groups and returns at most one current private result | Work completion is not a direct result locator. The requester needs an exact authorized result/readback path even if Home's selection does not display it. |
+| Exact result retrieval | Successful worker receipts now include a typed actor-scoped workflow/result locator; [prepared serving](../../travel-agent/backend/root_projection/v2/source_contribution_serving.py) still selects current eligible private material | The locator is useful groundwork, not evidence that the person can open the requested content. Connect exact authorized result/readback and presentation independently of Home selection. |
 | Public supply | Existing observations, facts, place-content primitives, Foundry, research and derived indexes exist; Content C0–C6 maps their connections | The missing new capability is connected purpose-aware supply/retrieval/refresh, not the absence of every public corpus. Private prepared storage must not become the public knowledge owner. |
 
 Existing 426-test scope coverage and separate worker/serving tests are useful
-regression baselines. They do not close the request entry, outer-to-inner
-publication fence, actual deployment timing or product result retrieval above.
-The observations here are static inspection, not reproduced production failures.
+regression baselines. Later receipts establish the specific lifecycle repairs
+they name, not runtime request entry, all recovery orderings, product result
+retrieval or activation. The remaining gap descriptions are inspected boundaries,
+not reproduced production failures or a claim that this strategy pass reran tests.
 
 #### 9.6.3 Recommended request and lifecycle decisions
 
@@ -1771,7 +1804,9 @@ can exercise the same service while remaining explicitly a local test path.
 
 #### 9.6.4 Work packages
 
-Package IDs below are execution labels only. Status starts planned for each.
+Package IDs below are execution labels only. Their descriptions specify intended
+exits; dated receipts own current status. Do not reset implemented portions to
+planned merely because their original work-package text remains below.
 
 **SP-0 — Bind the request, result and control interfaces.**
 
@@ -2009,6 +2044,857 @@ boundaries, tests, remaining decisions, rollout status and next checkpoint in
 this section. No percentage-complete metric substitutes for those distinctions.
 The immediate implementation batch is SP-0 plus SP-2's existing lifecycle gaps,
 with SP-3/SP-4 receiving fixtures alongside—not queue activation or new screens.
+
+#### 9.6.8 Complete receiving experience and supported service boundaries
+
+**September 7 product/strategy refinement within the existing packages.** Being
+able to discuss a subject, accepting a bounded job and accepting an ongoing
+responsibility are different promises. Preserve broad product value without
+implying unlimited execution. The following are experience distinctions, not
+new modes, objects, endpoints, tabs or a competing task system.
+
+| Promise | What the person should receive | Boundary and existing receiving work |
+| --- | --- | --- |
+| Help now | A useful answer, explanation, comparison or practical assessment in the current interaction; an answer can end there | Use authorized current context and available capabilities. No background acceptance, new retained state or watch follows from asking. Existing Chat/contribution and judgment owners apply. |
+| Prepare something | A specific accepted job, an understandable pending state when needed, and exact access to the useful result or honest ending | SP-0–SP-3 connect request, executor, status and result. Durable submission alone is insufficient; acceptance requires the approved runtime path, deadline and resource envelope. |
+| Follow something | The named changing subject, actual supported coverage, what would merit an update, and when/how responsibility ends | Existing live-family and mandate owners under I2/I5; a present assessment, saved place or worker lease cannot establish monitoring. Unsupported coverage must be explicit before reliance. |
+
+The engine's contribution begins before a watch: assess what is feasible,
+resolve a relevant practical distinction and preserve the purpose of an outing
+when supported conditions change. It need not turn curiosity into a project or
+replace provider registration/booking. Explain a material coverage limit at the
+point of reliance, not with a generic disclaimer attached to every Home unit.
+
+**Synthetic receiving example:** “Compare these two places for catching up with
+Maya on Saturday.” Resolve the named places and time window, deliver the useful
+comparison and allow exact optional depth. Do not silently substitute two other
+venues, imply Maya accepted, send an invitation, claim a table is available or
+start following the evening. If further preparation is accepted, it belongs to
+that request; the user should not have to reconstruct it in another tab.
+
+##### Acceptance through ending: inspect the person's experience
+
+Map these meanings onto existing lifecycle states; do not create a parallel
+status enum. A worker's technical completion, useful result, surface selection
+and actual delivery remain separately observable.
+
+| Situation | Required receiving behavior | Failure to prevent |
+| --- | --- | --- |
+| Execution unsupported or disabled | Return whatever immediate value is available and state the narrow limitation; do not accept pending work | “I'll handle it” when only a fixture or dormant adapter can run |
+| Request accepted and runnable | Bind exact actor, request, subject, scope and deadline; make status recoverable through the same identity | A spinner with no durable request or an accepted obligation lost on reconnect |
+| Ready or legitimately reused | Open the exact still-authorized result with its substantive payoff and relevant validity | A success receipt pointing only to generic Places, or requiring another prompt to discover the result |
+| No useful result or exhausted retry budget | Close the request honestly, preserve independently useful partial work, and distinguish unavailable evidence from a supported negative finding | Endless pending, fabricated completion, empty output described as prepared value, or a list of links replacing the promised comparison |
+| Conditions or sources changed | Revalidate at use; revise or withdraw dependent claims while keeping independent permitted value | Presenting an old plan as current, or erasing a whole explanation because one practical field expired |
+| Stop requested while work is pending | Invoke actual owner control and suppress unauthorized late publication/delivery; distinguish request recorded from effective stop | Treating the current intent-only command transport as a stopped job |
+| Stop races with completion | Read the authoritative outcome. If completion won, explain the completed result and the separate available withdrawal/deletion action | Claiming completed work never occurred, deleting unrelated retained originals, or promising erasure of external copies |
+| Return after absence or Home reprioritization | Exact requester access remains available while authorized; otherwise show the truthful changed/unavailable state | Ranking is the only route to commissioned work, or opening Home silently regenerates expired output |
+
+**Requested work must be findable independently of editorial prominence.** Use
+existing authorized conversation/request readback and appropriate exact-object
+continuations before considering new surfaces. A workflow locator must resolve
+to useful content, not merely technical status. Home may elevate that result;
+Places may express spatial depth; Life receives only an independently authorized
+retained object. A four-tab journey or new inbox is not required.
+
+Keep status and controls proportional. An immediate answer needs no lifecycle
+panel; a delayed accepted job needs a reliable return path. Completion is not
+automatic permission to push, share or keep a new artifact. Stopping work,
+excluding recommendation use and deleting a source are different operations.
+Use the [continuity lifecycle](conversation-history-source-expiry-decision-proposal-2026-09-06.md#8-continuity-lifecycle-clarification-expiry-and-a-long-return)
+for agreement-dependent history branches without activating that proposal.
+
+The [four long-range specimens and owner map](conversation-history-source-expiry-decision-proposal-2026-09-06.md#10-selective-long-range-continuity-four-complete-experiences)
+extend the same receiving review: a casual question, a substantive Home
+connection, late correction and an addressed human contribution. They compare
+capable no-history help, the earlier 90-day option and selective long-range use;
+not every case should favor memory. Map their requirements onto existing
+Contribution, Source, context, root, live and social owners after policy adoption.
+No new subsystem, source backfill, rollout flag or execution lane follows here;
+unaffected lifecycle and receiving work can continue under current contracts.
+
+##### Receiving evidence and direction checkpoints
+
+Extend SP-0's mapping and SP-3's result-to-consumer tests with actual request,
+work and result identities, owner revisions, delivery path, validity and an
+explicit list of remaining human work. This is review evidence, not private
+content copied into generic workflow JSON or mandatory production telemetry.
+Reuse the [situated-value review ledger](situated-value-decision-matrix-2026-09-06.md#119-whole-experience-review-received-value-context-and-human-work).
+
+- **After request/control integration:** can a person distinguish an answer,
+  accepted preparation and a watch? Verify actual stop execution, publication
+  races and the right result after reconnect—not only transport responses.
+- **After shared delivery:** remove the result's Home slot and follow its exact
+  requester path. Apply source correction/expiry and a changed practical fact;
+  inspect the displayed result, not only invalidation events.
+- **At the combined supply/experience review:** compare no-history, relevant-
+  context and low-participation social cases. Inspect substantive benefit and
+  total burden alongside real versus simulated runtime boundaries.
+- **Before activation:** retain SP-5's measured cost, coverage, disable/recovery
+  and rollout gates. A successful simulated delivery or manuscript does not
+  establish an operational service or consumer preference.
+
+These checks extend the existing whole-product portfolio. They do not block
+independent Content, Home or Life work behind one showcase loop, and do not
+authorize Chat redesign, a new background runner or provider execution.
+
+##### Research basis and limits
+
+- [Tomašev, Franklin and Osindero, 2026, *Intelligent AI Delegation*](https://arxiv.org/html/2602.11865v1)
+  is a conceptual framework covering intent, authority, responsibility and
+  verifiable completion—not a consumer experiment. Our design inference is
+  to make accepted responsibility and ending understandable, not import its
+  entire multi-agent protocol architecture or expose policy forms to users.
+- [Flighty's delay-prediction documentation](https://flighty.com/help/delay-predictions),
+  checked September 7, separates predictions from official airline times and
+  names coverage exclusions, including maintenance and crew issues. It is an
+  adjacent design example, not independent validation of accuracy or a Vesper
+  integration commitment. Useful inference and precise service limits can coexist.
+
+This amendment records recommendations and previously named code evidence.
+It does not claim new backend tests, runtime support or consumer validation.
+
+### 9.7 Next integration execution batch — September 7 review rebaseline
+
+**Historical execution batch:** the baseline and "Start here" below describe
+the pre-repair state. Preserve their acceptance criteria and receipts, but use
+§9.8 for current scheduling; callback, exact-result and Source-cancel repairs
+are no longer missing foundations.
+
+This is executable detail within SP-0–SP-5, CV-3/CV-4 and I2/I4/I5. The suffixes
+below identify commit-sized portions of existing packages. They introduce no
+new program or permanent lane. Scope is the complete connection among request,
+execution, useful result, current-world judgment and existing consumers.
+
+#### 9.7.1 Inspected baseline and success criteria
+
+Inspection points: backend `270acb53e` on `main`, workspace `2cb1eea` on `main`,
+mobile `17eea1980` on `codex/entity-object-design-completion`. These identify
+observations, not a synchronized release candidate. Content/research and a
+Source-worker typing edit were uncommitted; the roadmap and design/strategy
+documents also contained concurrent changes. Recheck before implementation.
+
+| Capability | Current evidence | Remaining connection |
+| --- | --- | --- |
+| Source execution | Work item, submission adapter, dark worker, canonical executor, attempt store and workflow lease exist | Connected fresh production with workflow identity and deadline raises `TypeError`; no production caller for the explicit submission adapter was found |
+| Review repairs | `270acb53e` adds private workflow authorization, request identity rebuilding, deadline/lease checks, Life version fences, causal audience-event keys and executor context propagation | The reported 603 passing tests did not cover the failing connected callback; do not treat that count as system completion |
+| Request meaning | Work item includes viewer, trigger/context refs, roots, situation, represented clock and versions | No explicit field contract presently guarantees named subjects, comparison purpose, requested window and exact-source requirements survive the whole execution |
+| Result access | Completion points to `source_contribution_workflow_status` | Exact useful content must be addressable independently of current discovery/ranking and must survive reconnect while still eligible |
+| Cancellation | `cancel_workflow` changes durable state and serializes against the publication lock | The HTTP commands endpoint records intent; it does not execute stop. A user request must reach the actual owner operation |
+| Ordinary serving | Prepared Source reads and canonical admission feed shared Home/Places composition | The current reader rediscovers eligible groups; it is not an exact commissioned-result reader |
+| Public Content | Bounded research result and owner-disposition work exist; further Content edits are active | Receive actual admitted public-owner material, with clear provenance and useful no-history behavior |
+| Practical adaptation | CV-2 supplies operation-specific fields, cache-backed conditions, admission, unit expiry and recomposition | Changed evidence must yield useful revised judgment where supported; suppressing an expired claim alone does not choose a better next step |
+
+Current reproduced failure: `orchestrate_source_contribution_with_continuity`
+passes `work_deadline` to `complete_fenced_production`, whose signature omits
+that keyword. The reproduction used real resolution/orchestration with
+deterministic owner/provider fixtures and a persistence spy; persistence was
+never reached. This is a callable-contract failure, not a provider outage.
+
+The batch succeeds when a supported request produces a useful answer to that
+request, can be reopened through its own identity, obeys effective stop and
+source repair, and contributes eligible meaning to Home/Places. Public-only
+value and practical reevaluation must use the same shared delivery architecture.
+Life retention remains an independently authorized owner action. No native app
+testing is required for this engineering batch under the founder's current
+instruction; visual quality and consumer preference remain later evidence.
+
+#### 9.7.2 Architectural choices to carry into implementation
+
+1. **Keep request identity, semantic reuse identity and result identity distinct.**
+   A request ID answers who asked for which job. A Source group key identifies
+   equivalent governed production inputs. A result locator identifies the
+   actual output/version. Two requests may reuse one result only when their
+   purpose, subjects, scope, grants, versions and deadlines permit that reuse.
+2. **Prefer existing owners.** Reuse `agent_workflows` for work/control receipts,
+   Source owners for evidence and `root_source_contributions` for eligible
+   derived output. Do not copy generated prose into workflow JSON, build a
+   second inbox, or promote generated output into a personal fact.
+3. **Separate current admission from editorial ranking.** Exact requester access
+   bypasses discovery/ranking, never authorization, source validity or expiry.
+   Share the substantive validation/compilation code with ordinary serving.
+4. **Preserve partial independent value only at a proven dependency boundary.**
+   A changed opening hour may remove a timing claim without deleting independent
+   history or authored material. If the current representation cannot establish
+   independent support, return unavailable for that dependent unit; do not
+   infer a safe partial result from prose.
+5. **Keep the live engine present in preparation and reevaluation.** Providers
+   supply bounded observations; existing judgment/admission evaluates them;
+   canonical domain owners execute any authorized consequence. Source generation
+   is not the engine's universal entry point.
+
+The following are recommended interface decisions for SP-0a, not adopted schema
+changes. Prepare their concrete shapes and consumer examples before dependent
+implementation; use the existing review authority rather than a new approval
+workflow.
+
+| Decision | Recommended implementation direction | Why / required check |
+| --- | --- | --- |
+| Exact subjects versus contextual discovery | Explicitly distinguish the two in the request owner; preserve exact subjects and source requirements for a commissioned comparison | A contextual warm job must not silently stand in for “compare A and B” |
+| Request payload custody | Keep opaque/versioned refs in work metadata; resolve purpose/window/constraints from an authorized existing request owner, or propose the minimum bounded typed extension if none exists | A conversation ID or message ID alone does not establish readable, retained request semantics |
+| Retry and clock | Retry the original accepted identity and deadline; separate represented context time, actual execution time and result validity | The builder excludes expiry from its hash while workflow fingerprints include the serialized payload; specify same-request replay versus changed-deadline rejection instead of extending work implicitly |
+| Exact result locator | Bind a versioned reference plus expected production identity/digest to the work receipt at the durable publication boundary | The current group row can be overwritten; a group key alone cannot promise an immutable historical result |
+| Result replaced or expired | Return a truthful changed/unavailable outcome; offer explicit refresh only through an accepted execution path | Do not substitute a newer unrelated result or regenerate during GET; archival retention would require its own decision |
+| Stop | Use actor-scoped effective cancellation for this workflow type through the existing control owner; preserve generic intent semantics for other types | A 202 command receipt must not be represented as a completed stop |
+| Completed with no useful output | Map execution ending and the existing Source outcome into a truthful read projection; only produced/reused admitted material receives a ready-content locator | Worker completion, substantive success and surface delivery answer different questions |
+| Availability | Keep acceptance disabled when execution/dispatch is unavailable; retain current useful answers and prepared reads | A durable row with no runnable transport must not create a consumer promise |
+
+#### 9.7.3 SP-2a — repair the connected completion path first
+
+**Classification:** safe-backend for the local callback repair; broader shared
+lease/receipt changes discovered by this package require their own scoped review.
+
+Code: `travel-agent/backend/root_projection/v2/source_contribution_continuity.py`,
+`source_contribution_canonical_executor.py`, `source_contribution_worker.py`,
+and `backend/core/db/source_contributions.py`. Coordinate the worker typing edit.
+
+- Define one way to carry deadline and workflow authority to the production
+  completer. Make the callable type, wrapper and invocation agree; do not swallow
+  `TypeError` or remove the deadline check to restore passing behavior.
+- Add a regression using the real canonical executor → resolver → orchestration
+  path, mocking only external acquisition and fixture owner material. Include a
+  real local PostgreSQL write/read case. Avoid mocking the resolver at the
+  exact boundary this regression crossed.
+- Cover fresh production, legitimate reuse and no admitted result; verify the
+  original deadline and both lease identities reach the relevant boundaries.
+- Check cancellation/lease loss through reuse and the final completion receipt,
+  not just fresh production storage. `complete_generic_workflow` currently
+  checks owner/status; determine whether expired-but-unreclaimed leases can
+  still acknowledge completion and repair the Source path if reproduced.
+- Exercise expiry while blocked on a database lock. The current persistence
+  code reuses a caller timestamp; repeat comparison against that same timestamp
+  is not evidence of a fresh check after waiting. Specify the linearization
+  point and check the effective clock/leases there, with deterministic clock
+  injection for tests.
+- Preserve existing atomic attempt/output writes and cancellation ordering.
+
+**Exit:** the connected fresh path reaches durable readback before its deadline;
+late/unauthorized paths cannot publish or report ready value. Record the exact
+interleavings covered and remaining cases. This package proceeds immediately.
+
+#### 9.7.4 SP-0a — settle request, result and control mapping
+
+**Classification:** contract-sensitive; schema/auth/prompt/runtime exposure
+changes follow the existing backend intake rules. This package delivers a
+concrete field mapping and proposed interfaces within this roadmap.
+
+Trace `source_contribution_work.py`, `source_contribution_workflow.py`, the
+canonical executor, opportunity selection, `agent_workflows.py` models/DB/API,
+and current conversation/action dispatch. Name a callable existing ingress or
+record that none supports the requested meaning. An unused adapter is not ingress.
+
+For each portfolio request, map actor, purpose, exact subjects, optional source
+refs, requested time window/timezone, current context revision, permitted roots,
+audience/use, replay key, accepted deadline, output validity, result ref and
+effective stop. State where each value persists and which owner revalidates it.
+Use the synthetic “compare two places for catching up on Saturday” case to
+expose lost fields, then repeat with interpretation and public-only discovery.
+
+Check whether current Source compilation can deliver the commissioned job at
+all. If it only supports contextual enrichment, retain that declared scope and
+propose the missing narrow adapter or route to the existing investigation owner;
+do not label general Source discovery a comparison executor.
+
+Deliver example accepted/rejected/replayed requests and ready/no-result/expired/
+cancelled responses. Resolve the decision table in §9.7.2 only where the current
+owners lack a concrete representation. Approval of a plan does not silently
+adopt new Ask retention, private sharing, watches or provider execution.
+
+**Exit:** request meaning, result ownership, custody and control are traceable
+without invented authority. Dependent API/model shapes are concrete and reviewed.
+SP-2a and SP-4a do not wait for this interface work to finish.
+
+#### 9.7.5 SP-1b — exact result binding and retrieval
+
+**Depends on:** SP-2a and the SP-0a result/request decisions.
+
+Code: Source work/executor/worker/continuity modules; existing production DB
+owner; `backend/api/routes/agent_workflows.py`; existing `ResourceRef` and
+completion-receipt models. Reuse the material/context admission implemented in
+`source_contribution_serving.py` rather than cloning it into a permissive reader.
+
+- Return an opaque result identity from canonical readback, including the exact
+  production version/digest needed to detect replacement. Bind it durably to
+  the authorized work. Generated text remains under its existing output owner.
+- Make publication and result linkage atomic through existing transaction
+  plumbing where feasible. If a same-transaction join is impossible, specify
+  a recoverable persisted checkpoint with exact output identity before claiming
+  completion. Test crash after domain write and before workflow completion;
+  retry must reconcile that exact output rather than discover a different one.
+- Implement actor-authorized exact retrieval independent of current group
+  enumeration, root ranking and whether the original Places handle still ranks.
+  An expired handle must not erase independent content authority, but genuinely
+  context-dependent claims must still fail their current-use checks.
+- Factor shared source/grant/revision/validity validation for exact and ordinary
+  readers. Recompile only from eligible retained material; do not acquire or
+  renew expiry on either GET path.
+- Define deterministic reads for pending, useful ready/reused, no useful result,
+  failure, cancellation, replacement, deletion and expiry using existing
+  lifecycle/outcome meanings. Inaccessible work must not leak existence.
+- Regenerate OpenAPI/mobile types for any API change through workspace sync;
+  add a typed client read and mock only after the shape is settled. Keep the
+  current screen composition unchanged in this package.
+
+**Exit:** remove the result from Home selection and still open that exact result
+while eligible. Return after process restart, source correction, revision change
+and expiry yields the right content or a truthful unavailable state.
+
+#### 9.7.6 SP-2b — effective stop and complete ending semantics
+
+**Depends on:** SP-0a control mapping; develops alongside SP-1b with serialized
+changes to shared workflow DB/API/models.
+
+- Connect the supported actor request to `cancel_workflow` through the existing
+  workflow control owner. Recheck ownership and the relevant control revision
+  in the mutation transaction; actor authorization at an earlier read is not
+  sufficient evidence for a later action.
+- Keep intent acceptance distinct from effective cancellation. Use the real
+  owner state for the returned outcome and retry it idempotently. Do not change
+  pause/steer/handoff semantics across all workflow types to implement Source stop.
+- Exercise pending stop, running stop, stop after publication, stop after
+  completed receipt, duplicate stop, lease takeover and completion contention.
+  Test both concurrency orderings and a lost client response.
+- Preserve already committed eligible output when publication wins according
+  to the adopted contract; report that distinction. Withdrawal/use exclusion
+  and Source deletion remain separate actions. Cancellation of one request
+  must not remove a legitimate result reused by another request.
+- Define no-useful-output and exhausted-retry behavior so existing clients do
+  not treat generic technical completion as content ready. Inspect
+  `travel-app/hooks/useDurableAgentWorkflow.ts` and its receipt assumptions;
+  plan a scoped consumer change where required without redesigning Chat.
+- Ensure disabling execution stops new acceptance and retry dispatch while
+  allowing authorized status/result reads. No stop operation spawns new work.
+
+**Exit:** client stop → canonical cancellation → publication/receipt fence →
+authoritative response is connected. Checkpoint A reviews SP-1b/SP-2b together.
+
+#### 9.7.7 SP-3a — deliver the result through shared Home and Places consumers
+
+**Depends on:** SP-1b; runtime exposure additionally requires SP-2b and SP-5.
+
+Code: `backend/api/services/root_composition.py`, existing root projection v2
+adapters/compilers, `backend/api/routes/root_projections.py`, Places runtime,
+and the Home lane's existing native renderer/destination adapters.
+
+- Carry the exact result and subject refs through candidate generation, owner
+  reads, practical/meaning admission, selection and delivery. Record separately
+  what was produced, still eligible, selected and actually exposed.
+- Exercise Home, Places v2 and Places runtime with real shared composition.
+  Use synthetic evidence/provider fixtures, not stubbed admission or an injected
+  final card in the path whose integration is under test.
+- Express the same authorized meaning appropriately in each allowed root.
+  Preserve canonical destinations and current return context. Shared group
+  identity does not grant a root outside the request's approved scope.
+- Keep the requester continuation available when optional Home placement loses
+  ranking or the situation changes. Share exact-reader semantics with that
+  continuation rather than making it run discovery again.
+- Hand Home a concrete receiving packet: payload/ref examples, freshness,
+  ready/changed/unavailable behavior, original-request continuation and tests.
+  Changes to Chat layout or Life organization remain outside this package.
+
+**Exit:** a meaningful request → persisted result → exact read → root expression
+journey works with acquisition disabled on GET, across all three root callers.
+
+#### 9.7.8 SP-4a — receive public supply alongside private integration
+
+**Starts alongside SP-0a.** It depends on Content's specific committed owner
+adapters, not private Source activation. Content's active uncommitted research,
+ingestion, usage and disposition files are owned by that lane.
+
+- Receive a handoff naming source SHA, bounded request/result contract, actual
+  canonical write/read owner, supported claims, source locators, validity,
+  display/reuse rights, unavailable cases and focused evidence.
+- Map the admitted result through existing observations/facts/place-content
+  primitives and shared composition. A `BoundedResearchResult` is not by itself
+  canonical truth, a reuse grant or a delivered Home unit; preserve Content's
+  disposition checks and unresolved gaps.
+- Build receiving fixtures for public-only local orientation, a supported
+  interpretation, a time-sensitive event and public knowledge combined with
+  permitted private context. Label fixture-only supply until real adapters
+  replace the mocked owner boundary.
+- Include one addressed/shared-consequential contribution under existing grants:
+  public facts and a friend's authored perspective must retain separate owners,
+  attribution and withdrawal. No public promotion through anonymization.
+- Verify useful thin-corpus behavior, independent partial evidence and a
+  truthful unavailable result. No live acquisition on root miss and no inflated
+  candidate limits to manufacture feed density.
+- Keep usage accounting in execution/ledger joins. Inspect measured cost and
+  latency when a later authorized cohort runs; fake-provider tests establish
+  wiring, not generation quality or unit economics.
+
+**Exit:** public-only and authorized mixed-context value reach actual consumers
+through real Content owner adapters. Checkpoint B reviews this with SP-3a.
+
+#### 9.7.9 SP-3b / I5 — turn changed conditions into useful revised judgment
+
+**Starts with receiving fixtures while SP-3a/SP-4a proceed.** Extend the already
+implemented CV-2 facts/admission paths only for named supported cases.
+
+- Use existing current-context/owner reads and
+  `backend/lived_experience/judgment_admission.py` through shared root composition
+  to reassess purpose and feasibility when an authorized fact changes.
+- For an ordinary outing, a changed opening time can preserve the original
+  suggestion, qualify it, shorten an activity, offer a supported alternative,
+  postpone it or remove the dependent action. Available evidence determines
+  which treatment is justified; an unknown fact must remain unknown.
+- For the Saturday comparison, preserve the named purpose and companions'
+  authorized constraints. A fresh alternative is not an accepted arrangement,
+  invitation or participant commitment. Apply an owner command only when the
+  actual request authorizes that effect and verify its readback.
+- Preserve independently useful interpretation and authored material when
+  operational claims change. Carry field validity to the receiving unit and
+  recomposition; supported unchanged conditions should not create noise.
+- Exercise a current explicit request and existing authorized change inputs.
+  Do not introduce polling, background location, provider refresh or a watch to
+  obtain a fixture's missing signal. Record coverage limits at the point of use.
+
+**Exit:** before/after evidence changes produce a useful, purpose-preserving
+result across exact retrieval and root delivery where supported. Checkpoint C
+asks whether the person has less work and a better practical choice, not merely
+whether invalidation fired.
+
+#### 9.7.10 Sequence, ownership and direction checkpoints
+
+| Order | Integration work | Independent receiving/owner work | Decision at checkpoint |
+| --- | --- | --- | --- |
+| 1 | SP-2a callback and connected completion repair | Content and Life continue their current packages | Fresh/reused/no-result paths behave through actual boundaries; no unresolved regression is hidden by mocks |
+| 2 | SP-0a concrete request/result/control mapping | Begin SP-4a receiving fixtures and SP-3b change cases | Exact request semantics, custody, output identity and stop are implementable; isolate any genuinely new decision |
+| 3 | SP-1b exact publication/readback; SP-2b effective stop | Content supplies committed owner readers; Home reviews receiving examples | **A:** exact reconnect and real cancellation work; assess shared-model changes and whether any duplicate authority appeared |
+| 4 | SP-3a all root callers; SP-4a real supply receiving | Home implements scoped rendering/destination gaps; Life supplies exact authorized refs | **B:** newcomer, relevant-history and low-participation social value are substantive and coherent |
+| 5 | SP-3b practical reevaluation plus remaining integration failures | Plan/Occasion owners receive only authorized effects | **C:** changing reality improves or correctly narrows the experience; document unsupported signals/capabilities |
+| 6 | SP-5 readiness receipt and operational handoff | Separate approved cost/cohort and later native acceptance | **D:** distinguish locally connected, measured, activated and consumer-validated; activate only under the accepted gates |
+
+One persistent Integration lane owns common orchestration, workflow/result
+interfaces and shared composition. Content owns supply; Life owns corpus,
+organization and retained readers. Home/Entities/Capture/Plan provide bounded
+receiving repairs. Parallel work does not require more permanent tasks, and
+this plan dispatches no agents. If the founder requests delegation, split by
+independent files/contracts; one owner lands shared DB/API/schema changes.
+
+Checkpoints occur after the named connected packages, not on an arbitrary
+weekly schedule. At each checkpoint record what is useful, what is connected,
+what remains simulated, what to simplify and the next two packages. Do not
+reopen the whole philosophy or repeat already-satisfied evidence without a
+new regression, dependency change or unresolved concern.
+
+#### 9.7.11 Validation portfolio and commit discipline
+
+Use four comparable situations throughout: ordinary local/no-history use,
+post-return attention that earns a new connection, a requested comparison for
+a shared outing, and reopening earlier work after absence/change. They exercise
+the shared system; none becomes the universal product shape.
+
+Required checks span: wrong actor; mismatched exact subjects/purpose/window;
+same-request retry and distinct requests; unsupported execution; production and
+reuse; no useful result; original deadline; lock wait across expiry; workflow
+and attempt lease takeover; correction/revocation before and during publication;
+both cancellation orderings; crash between output and receipt; overwritten
+output; Home exclusion; expired context; scoped social withdrawal; public-only
+fallback; changed practical fields; and no-change behavior.
+
+Reuse existing test modules: `tests/root_projection/test_source_contribution_*`,
+`tests/core/test_source_contribution_attempts_postgres.py`,
+`tests/core/test_agent_workflows_db.py`, `tests/api/test_agent_workflows.py`,
+`tests/api/test_root_source_contribution_wiring.py`,
+`tests/api/test_root_composition_service.py`, and
+`tests/api/test_practical_root_delivery.py`. Add connected tests beside their
+owning behavior. Preserve real resolver, compiler, admission and DB boundaries
+where those are the subject of the test. Use synchronization to establish
+interleavings; distinguish a sequential ordering test from actual contention.
+
+Run offline/provider-free suites with `HF_HUB_OFFLINE=1` and
+`TRANSFORMERS_OFFLINE=1`; use local PostgreSQL for durability/locking. API/model
+changes require workspace `scripts/sync-types.sh`, review of full and app OpenAPI,
+generated mobile types, contract parity, typecheck and focused consumer tests.
+No native validation is claimed in this batch. Broaden tests when the changed
+dependency footprint or a failure warrants it, not to accumulate counts.
+
+Suggested commit progression: connected callback repair; request-scope contract;
+result persistence/readback; exact-result API plus contract sync; effective-stop
+API/owner integration; shared root delivery; public-owner receiving; practical
+reevaluation. Split further where the review boundary warrants it. Each commit
+names its backend/workspace/mobile dependencies and updates the relevant receipt
+without declaring an entire SP package done from a helper-level test.
+
+Before edits, recheck all repo branches, status and worktrees. Use an isolated
+worktree when shared files overlap active work. Stage explicit filenames and
+inspect the full staged index. Serialize generated contracts. Record pre-existing
+check failures separately; the earlier size-budget bypass is not blanket
+permission to skip future checks. Do not sweep concurrent Content or design
+changes into Integration commits.
+
+**Historical start (superseded by §9.8):** implement SP-2a, then produce SP-0a's concrete contract mapping
+while receiving SP-4a fixtures. After mapping, proceed through SP-1b/SP-2b and
+Checkpoint A. This written plan changes no runtime behavior and does not
+activate a worker, provider, watch, new retention policy or app screen.
+
+### 9.8 Connected-system next stage — September 7 holistic rebaseline
+
+#### 9.8.1 Outcome and inspected baseline
+
+**Keep the architecture; finish the connections that make its capabilities
+useful together.** This is the next sequence inside I0–I6, CV and SP, not a new
+program, one-loop launch constraint or repository-wide redesign. Packages below
+are planning boundaries, not newly authorized implementations or activations.
+
+The integration evaluation found materially stronger owner boundaries, shared
+Home/Places composition, consequence repair and bounded prepared serving. The
+remaining risk is confusing well-tested subsystems with a complete receiving
+experience, or branch-local progress with an integrated candidate.
+
+| Inspected location | Planning baseline | Treatment |
+| --- | --- | --- |
+| Workspace `main` | `382d369`, with concurrent roadmap/design/strategy/inventory edits | Preserve existing work; record only this rebaseline's changes |
+| Backend `main` | `9d3127084`, including a newer Content research/publication batch | Re-run affected tests; earlier evaluation results do not cover this new commit |
+| Mobile checkout | `codex/entity-object-design-completion`, `c3feb89f0` | Review its unique work against current mobile main before landing |
+| Backend Home receiving | `codex/home-receiving-2026-09-07`, `8c096e44f` | Review and test against current backend main, including Content changes |
+| Mobile Home receiving | `codex/home-receiving-2026-09-07`, `e1a22a89f` | Integrate with Entity work; equivalent patches must land once |
+| Backend Life | `codex/life-shadow-rehearsal-2026-09-07`, `9e34fc03d` | Bounded organization-group reader has advanced; DB/test edits were still active. Choose a tested cut with its owner, not the entire dirty branch |
+
+These are observations, not a frozen merge target. Recheck status, worktrees,
+ancestry and active ownership before execution. Later commits require explicit
+inclusion or exclusion; neither assume them reviewed nor discard them.
+
+The evaluation ran **694 backend tests**, **101 mobile tests** on the Entity
+checkout, and **52 backend Home-branch tests**. Contract freshness/parity,
+TypeScript and API/import boundaries passed on their inspected bases. These are
+separate receipts, not a combined-candidate full-suite pass. The Home mobile
+worktree could not freshly run Jest because dependencies were absent; a prior
+lane receipt is not a replacement for a new combined run. Docs status checking
+failed on unclassified inventory entries. Main's observed migration head was
+`lifebackfill02`; newer Life migrations must be reconciled on the selected cut.
+Full-suite, native, production and cost claims remain separate and unverified
+by this planning update.
+
+#### 9.8.2 Complete experience portfolio
+
+Use these situations throughout the packages. They are coverage cases, not a
+required feed composition, one value per tab, or an instruction to manufacture
+all four product moves in every session.
+
+| Situation | User-visible value | System connection to inspect |
+| --- | --- | --- |
+| Ordinary local day, little or no private history | Worthwhile nearby possibilities or useful understanding immediately | Prepared public/world supply → current judgment → Home/Places → canonical depth |
+| Return from Europe to New York | New connections and forward-looking local possibilities, with selective factual continuity | Eligible private attention plus public context → substantive output → exact artifact/place/Life return |
+| Explicit Saturday preparation | The requested comparison or investigation, not a generic contextual warm | Authenticated request meaning → executable work → exact result and useful endings, independent of feed rank |
+| A friend's addressed place or shared contribution | A useful shared opening and the original contribution in context | Audience-owning record → appropriate root → readable original → optional consequence and withdrawal repair |
+| An outing changes as reality changes | A reachable alternative, justified wait or simpler next step that preserves purpose | Current practical facts → shared assessment → revised proposal → authorized owner command only when chosen |
+| Return after absence, correction or restart | Refind what matters without stale duplicates or a lost destination | Durable owner refs → bounded Life organization → current root/detail eligibility and causal repair |
+
+For each case record the actual value delivered, input asked of the user,
+continuation, owner, freshness dependency and failure/repair behavior. Do not
+substitute card counts, successful DTO rendering or green helper tests for that
+record. Home and Places remain output-rich; Chat redesign stays out of scope.
+
+#### 9.8.3 Package 0 — reviewed candidate and honest baseline
+
+**Maps to:** I0/I1/I6. **Owner:** Integration, coordinating named branch owners.
+This is bounded convergence, not a new permanent cleanup lane.
+
+1. Inventory all three repositories and relevant worktrees: HEAD, merge base,
+   unique/equivalent patches, dirty files, tests and promised interfaces. Make a
+   small disposition table: integrate, hold with reason, or already equivalent.
+2. Build a candidate in isolated `codex/` worktrees where shared files overlap.
+   Start from current backend main/Content and receive reviewed backend Home
+   changes. Start from mobile main and combine reviewed Entity and Home changes;
+   identify overlapping expiry/Ask/return patches rather than applying twice.
+3. Ask the Life owner for a tested, clean cut with migration prerequisites and
+   exclusions. Its independent reader work continues; Integration need not wait
+   for all R0–R8. Test selected migrations on disposable local PostgreSQL before
+   claiming the cut integrated. Do not switch Life serving as part of a merge.
+4. Verify the combined schema via the required backend snapshot → app projection
+   → generated mobile types workflow. Review route coverage, boundary guards,
+   typecheck and focused suites on the resulting candidate, not only its parents.
+5. Reconcile the current-state ledger and docs inventory with their owners.
+   Preserve concurrent design/strategy documents; classify them rather than
+   suppressing the status check. Record exact inherited/environment failures.
+
+**Checkpoint 0:** one explicit candidate per repo, landed/held SHA disposition,
+tested interfaces and supported behavior. Local integration, remote publication,
+runtime enablement and native evidence are separate states. Branch deletion is
+not a prerequisite and is not authorized by this plan.
+
+**Commit boundaries when execution is requested:** backend receiving; mobile
+Entity/Home integration; selected Life migration/reader integration; combined
+contract regeneration; coordination/status receipt. Split overlapping changes
+for review and never sweep an active owner's dirty files into these commits.
+
+#### 9.8.4 Package 1 — public supply becomes received Home/Places value
+
+**Maps to:** SP-4a, CV-3/CV-4, I4. **Owners:** Content supplies; Integration
+consumes; existing Home/Entity components provide presentation and depth.
+
+Content's authoritative plan remains
+[World supply C0–C6](recommendation-world-supply-architecture-and-roadmap-2026-09-07.md).
+This package does not reopen its research/publication internals or wait for the
+private Source worker to become enabled.
+
+1. Freeze a narrow supplier/receiver example for exact-entity, multi-anchor and
+   place-scope material: owner/version refs, represented place/time, use rights,
+   evidence, useful body limits, expiry dependencies and exact continuation.
+   Distinguish a currently supported owner read from a proposed supply category.
+2. Trace actual owner fixtures through `core/place_content_sources`,
+   `lived_experience/place_content`, existing observations/entity facts and their
+   adapters into `root_projection/v2`, `places_runtime` and `root_composition`.
+   Keep specialized reads; remove duplicated judgment only where demonstrated.
+3. Exercise ordinary/no-history value, an explanatory connection, a timely
+   possibility and mixed private/public context. Begin with stored owner rows,
+   not a finished card injected after the compiler. Explain corpus limits when
+   no legitimate material exists; do not turn every miss into a user assignment.
+4. Preserve enough candidate variety before shared judgment; avoid truncating
+   supply before the selector can judge usefulness. Independent source loss
+   should remove dependent value, not unrelated prepared material, where the
+   supported dependency model can establish independence.
+5. Use the existing renderer and destination contracts to deliver complete,
+   readable value. Reopen the exact artifact/entity; test expiry, unavailable
+   depth, account changes and return. No new per-root generator or screen family.
+6. Measure owner reads, fan-out, response latency and fallback behavior. Root
+   GET remains acquisition-free. A real C5a provider/cost run is a separate,
+   explicitly scoped activation step, not hidden inside a receiving test.
+
+**Checkpoint 1:** actual supplied substance is received in both root roles with
+working exact continuations. Label owner-fixture evidence versus real-corpus
+coverage. If public supply is temporarily thin, advance private/request receiving
+without claiming the public experience solved.
+
+#### 9.8.5 Package 2 — complete explicit preparation, not another worker
+
+**Maps to:** SP-0a/SP-1 remainder, SP-2/SP-3/SP-5, I2/I3/I4.
+**Owner:** Integration with the existing authenticated request/contribution owner.
+
+Keep implemented workflow persistence, callback repair, publication fences,
+versioned exact-result retrieval and Source-specific effective cancellation.
+The corrected [Source mapping](source-request-result-control-mapping-2026-09-07.md)
+separates those foundations from the unfinished service.
+
+1. Select the existing authenticated ingress that owns request meaning. Prefer
+   a versioned record in its workflow/request infrastructure with governed opaque
+   refs; justify a new owner only if the existing one cannot preserve custody.
+   Ratify the narrow mapping before extending schema. Preserve purpose, exact
+   subjects when requested, relevant Sources, context/time window, audience,
+   accepted deadline and replay identity through retries and retrieval.
+2. Distinguish an immediate answer, an explicit contextual warm and a commissioned
+   exact comparison. Do not advertise an exact comparison when execution merely
+   compiles the viewer's general private context. Optional conversation history
+   remains a separate unadopted policy, not a prerequisite or implicit grant.
+3. Connect one real authenticated ingress to submission and runnable execution.
+   Verify execution availability before exposing acceptance. A local driver with
+   controlled providers is valid test infrastructure; a forged workflow row or
+   direct executor invocation alone does not establish an ingress-to-result path.
+   Production scheduling/registration and activation remain separate decisions.
+4. Complete truthful endings. In the inspected result handler,
+   `no_useful_result` is declared but never returned: `producer_silence` can reach
+   missing-result handling. Map useful silence separately from lost/expired
+   output and technical failure, then test cancellation/publication races,
+   deadline expiry, replacement and revoked Source/context eligibility.
+5. Add the generated mobile result consumer and exact reading destination using
+   existing interaction/navigation patterns. The requester can reopen the result
+   regardless of Home ranking, restart the app, switch accounts and understand
+   effective stop. This does not authorize a Chat home/composer redesign.
+6. Verify connected request → executor → durable owner readback → exact result
+   → eligible root delivery → return/stop. Use local PostgreSQL for durability
+   and genuine interleavings where claimed. Preserve current eligibility rules;
+   exact retrieval does not promise a permanent independent generated archive.
+
+**Checkpoint 2:** a normal supported request can run and reach its intended
+consumer; all endings are coherent. Separately report adapter-only, local
+connected, provider-evidenced, scheduled and enabled support.
+
+**Commit progression:** request contract/adapter; authenticated ingress; ending
+semantics; mobile destination plus generated contracts; connected durability and
+repair cases; updated receipt. Public supply work does not wait for this entire
+package, and practical reads do not depend on activating a Source worker.
+
+#### 9.8.6 Package 3 — practical judgment becomes a shared capability
+
+**Maps to:** CV-2E, SP-3b, I1/I2/I5. **Owner:** Integration, consuming specialist
+owners rather than adding another universal live engine.
+
+The shared practical assessment inspected here supports `place.open_now`;
+canonical `route.evaluate` still reports unavailable. Specialized RouteFact and
+movement work exists, so the task is bounded integration rather than inventing
+all practical intelligence. Refresh the
+[live-engine path matrix](live-engine-owner-path-matrix-2026-09-05.md) against
+current code before selecting a specialist; old matrix claims are not evidence
+that a later owner implementation is absent.
+
+1. Remove founder-scenario categories as runtime read-policy requirements.
+   Replace reliance on `PortfolioSituation` labels such as ordinary New York or
+   emerging Saturday with the actual root, subjects, purpose, place/time window,
+   requested practical fields and authority. This is a bounded read contract,
+   not a new durable context owner. Keep those stories as portfolio fixtures.
+   Compare read plans and query/fan-out limits before and after the change.
+2. Take the first connected question: **can this worthwhile option fit the
+   available window before the next commitment?** Reuse RouteFact/movement and
+   commitment owners for origin, mode, travel duration, destination timing,
+   represented clock and expiry. Missing or stale facts remain explicit.
+3. Let the shared judgment retain, qualify, substitute, postpone or release a
+   possibility with an understandable reason. Preserve the person's purpose;
+   don't create a Plan, book, move a commitment or message someone by inference.
+4. Reevaluate through supported owner events, explicit refresh and foreground
+   reads. Keep identity/readback stable across no-change and changed cases.
+   Test a route/timing change, an unchanged situation, loss of evidence and a
+   user correction across Home, Places and the existing action destination.
+5. Expand weather or other specialists only where owner coverage and freshness
+   can support a named decision. An accepted generalized watch still needs its
+   D6 family contract; ordinary assessment is not permission to monitor.
+
+**Checkpoint 3:** at least one everyday and one shared practical situation gets
+genuinely easier without an operational dashboard or extra form. Record current
+assessment versus monitored coverage, latency, fan-out and unnecessary-change
+rate. These are validation cases within the full portfolio, not a narrowed
+product definition.
+
+#### 9.8.7 Package 4 — adopt Life's bounded readers alongside integration
+
+**Maps to:** Life R1–R5/R8 and I1/I6. **Owner:** Life supplies; Integration owns
+cross-root callers and the tested landing. The
+[Life roadmap](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md)
+retains authority over organization, migrations, corpus recovery and cutover.
+
+Life's progress is substantial, but current serving still reconstructs a
+graph/intake/timeline corpus on root and depth reads. New indexed/group readers
+and coverage machinery do not automatically replace that serving path.
+
+1. Publish a tested cut for typed navigation, read epochs and bounded organization
+   groups with migration prerequisites. Name active edits excluded from the cut.
+   Distinguish finite historical population, current-target live delivery and
+   future target-version capability; do not infer one from another's backfill.
+2. Validate indexed exact/group reads against current authorization, owner
+   eligibility, membership and canonical organization. Test pagination/restart,
+   correction, source loss, account isolation and genuinely mixed owner records.
+   Never mix incompatible indexed and legacy pages inside one logical read.
+3. Measure representative corpus growth: query count, rows materialized, response
+   latency and projection lag. Whole-corpus fan-in is a transitional fallback,
+   not the scalability target. Record actual measurements before adopting a
+   cutover threshold; do not invent a performance pass from small fixtures.
+4. Integration updates root/depth callers to receive exact eligible refs, epochs,
+   supported group navigation and truthful unavailable/restart states. Confirm
+   Home/Places return into the correct Life record after source correction.
+5. Switch only named readers whose population, target delivery and semantic parity
+   are established. Preserve whole-request fallback and rollback until measured
+   serving is stable. Retire Atlas/legacy reconstruction only when its remaining
+   callers, records and obligations have a replacement.
+
+**Checkpoint 4:** a selected reader family is integrated, scalable on measured
+corpora and usable for refinding. If serving parity is not ready, land tested
+foundations without claiming indexed serving enabled. Neither public Home value
+nor Source ingress must wait for completion of all Life organization work.
+
+#### 9.8.8 Package 5 — close the narrow intention and social seams
+
+**Maps to:** D1/D4/D6, I3/I5 and Life R6. **Owners:** the relevant domain/decision
+owners; Integration receives their agreed contracts. Do not grow two new lanes.
+
+This package has bounded decision gates, not a license to silently adopt proposed
+policy. Use the accepted behavior while resolving each missing choice.
+
+1. **Retained intention before a Plan:** review the existing
+   [D1 proposal](retained-intention-before-plan-decision-proposal-2026-09-06.md).
+   Its proposed person-owned graph intent must remain distinct from a place
+   save, generated suggestion and shared Plan. On adoption, implement Keep →
+   canonical owner readback → eligible Home/Places → Life refind → optional Plan
+   adoption. Test "forget Saturday, keep the place" without inventing a Plan.
+   Retention is not a watch, audience grant or commitment.
+2. **Addressed social contribution:** verify the original record's exact reader
+   and destination, not only its feed teaser. Receive an addressed place/artifact
+   from its audience-owning record; a reply or next action is optional. Test
+   recipient-only eligibility, source withdrawal and matching root/detail/Life
+   repair. This is a useful sharing path, not an obligation to participate.
+3. **Everyday spatial friends:** `places/friends.py` is still Trip-scoped at this
+   baseline. Broader everyday sharing requires an explicit owner/audience and
+   temporal/place eligibility contract; do not achieve it by widening private
+   saves or revealing trip participation. Preserve accepted placement: addressed
+   or shared-consequential Home material, casual spatial sharing in Places.
+   Consume the existing [Friends-audience proposal](friends-audience-decision-proposal-2026-09-07.md)
+   and [connection-default proposal](ongoing-connection-default-decision-proposal-2026-09-07.md)
+   rather than creating competing decisions; both remain proposed at this read.
+4. Optional history/source-expiry semantics remain their own proposal; current
+   Ask can deliver immediate value without silently retaining conversation
+   history. Do not bundle that adoption into a social or preparation implementation.
+
+**Checkpoint 5:** each adopted handoff has a concrete owner, original readable
+record, receiving surface, consequence and undo/withdrawal behavior. Report
+unresolved choices precisely and continue unrelated engineering. If a proposed
+social design contradicts current canon, decide the amendment before building it.
+
+#### 9.8.9 Package 6 — whole-system reassessment and justified contraction
+
+**Maps to:** I6, SP-5, Life R8 and existing SC retirement packages.
+**Owner:** Integration, with affected owners reviewing replacement evidence.
+
+1. Re-run the six situations against combined repo candidates. Review actual
+   content, practical help, continuation and refinding—not merely shared IDs.
+   Count avoidable user input and duplicate surfaces, not mandatory grammar
+   appearances. A stable thin corpus is an experience gap even if serving is safe.
+2. Run affected backend/mobile suites, local PostgreSQL cases, schema freshness,
+   contract/API/import boundaries and docs status. Broaden to the appropriate
+   full suites before a broad integration claim. Investigate the previously
+   observed full-suite/xdist stall with bounded observable runs; don't turn an
+   unexplained stall into either a pass or an indefinitely blocked roadmap.
+3. Collect local read latency, query/fan-out behavior, growth and failure/replay
+   characteristics. Record actual provider production cost separately when
+   authorized. Fixture counts do not demonstrate real-corpus quality or economics.
+4. Remove a competing reader or operational surface only after its receiving
+   replacement, caller inventory and outstanding obligations are covered.
+   Booking transaction execution remains retired product scope, but retained
+   booking evidence, external continuation, deterministic expense calculation
+   and legitimate Trip guarantees must survive the appropriate owner paths.
+5. Publish one integration receipt: exact SHAs, implemented/integrated/tested
+   capabilities, held decisions, rollout/rollback posture, remaining risks and
+   the next two packages. Do not claim native quality or deployment from code
+   tests. Native app testing remains deferred per the current instruction.
+
+**Checkpoint 6:** answer whether this feels and behaves like one useful system,
+where it still fragments, and which next connection has the greatest value.
+Keep or revise the next sequence from that evidence; don't restart the architecture
+or broaden scope simply because a package completed.
+
+#### 9.8.10 Execution order, coordination and stop rules
+
+The package numbers identify responsibility; **they are not a fully serial
+dependency chain**. Begin with enough Package 0 to establish safe candidates and
+contract ownership, then proceed as follows:
+
+| Round | Integration's primary work | Work that can proceed alongside | Reassessment |
+| --- | --- | --- | --- |
+| A | Package 0 candidate; identify Package 1 supply payloads and Package 2 ingress/ending gaps | Life publishes a tested cut; Content completes owner supply/coverage | Checkpoint 0: what is actually integrated and what remains branch-local? |
+| B | Package 1 public receiving and Package 2 request/mobile completion in bounded, disjoint subpackages | Package 4 Life reads; Package 5 decision packets | Checkpoints 1/2: does useful work reach the person without extra homework? |
+| C | Package 3 shared practical judgment; implement adopted Package 5 handoffs | Life reader adoption and Content corpus/economics work | Checkpoints 3–5: do world changes, sharing and continuity reinforce the same experience? |
+| D | Package 6 combined portfolio, measured serving and replacement-bound contraction | Only named remaining owner fixes | Checkpoint 6: keep direction, narrow a claim or change the next two packages |
+
+**Persistent ownership:** Integration retains one cross-repo landing and
+receiving queue. Life and Content can continue independently behind named
+interfaces. Home/Entities/Capture/Plan/Social supply bounded fixes or decisions;
+this plan creates no new user-owned tasks. A supplier delay should block only
+the dependent receiving case, not the entire system program.
+
+**Parallel execution discipline:** when parallel agents are explicitly requested,
+use the user's Luna max/xhigh preference for bounded implementation or read-only
+review work. Assign disjoint files and concrete payload/test expectations;
+serialize generated schemas, root-composition policy and shared navigation.
+Keep no more than two completed subpackages awaiting integration/review. A
+handoff includes SHA, interface example, authority/freshness rules, consumer,
+tests and remaining limitations. Do not equate a worker's green suite with the
+merged candidate's behavior. No agent is dispatched by this document.
+
+**Review cadence:** after each connected package, after at most three smaller
+implementation subpackages without a system checkpoint, or immediately when
+an owner/policy contradiction appears. Each checkpoint chooses the next two
+packages and revises this section/register instead of creating another roadmap.
+Avoid speculative calendar promises until the initial candidate and contract
+gaps are measured.
+
+**Pause only the affected work** when it requires an unadopted owner/retention/
+audience/watch decision, a conflicting active edit, unresolved migration parity,
+provider/deployment authority, or a safety regression. Continue safe unrelated
+packages. Ask for the exact missing decision; do not silently widen authority,
+erase work or treat deployment as an ordinary test step.
+
+**Completion standard:** claimed situations have a real owner path, useful
+received output, exact continuation and repair, with current candidate evidence.
+This is stronger than "the repository has every subsystem" and different from
+"the product is enabled and validated with users." Both distinctions must remain
+visible in roadmap status and the final handoff.
 
 ### Execution receipts (2026-09-07)
 
