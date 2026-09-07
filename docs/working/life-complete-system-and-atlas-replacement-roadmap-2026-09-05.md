@@ -1750,6 +1750,14 @@ explicit lineage-aware repair package; this commit does not infer or silently
 undo those rows.
 The local migration head is now `lifeorg03`.
 
+Commit `c718fc0cc` makes the owner-triggered reconciliation result explicit.
+If an owner group is redirected and its active resolution changed, or a
+resolution was revoked after transfer, the callback returns a repair-required
+status instead of presenting a no-op as convergence. Missing owner groups and
+ambiguous split decisions are separately classified. This is a reporting and
+safety boundary; relation-level lineage and affected-set rebuilding remain the
+next implementation package.
+
 | Lane/interface | Concrete dependency | Work that can continue here |
 | --- | --- | --- |
 | Capture/source owners | Exact custody/expiry/representation reads, current revision and authorized restore event; agree any missing transaction change before editing its producer | Receiver tests, replay, report and source-only organization using existing contracts |

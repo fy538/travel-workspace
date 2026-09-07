@@ -61,6 +61,7 @@ checkpoint.
 | R2-G ambiguity fence | `3b17dacd9` | Multiple active resolution rows remain ambiguous even if they name the same target; application never picks one hidden resolution kind. |
 | R2-G target exclusion evidence | `7c5154740` | Connected merge coverage proves a target-side exclusion remains authoritative while source evidence is unioned. |
 | R2-G resolution lifecycle and owner trigger | `1854e4740` | `lifeorg03` adds explicit successor lineage and replay-safe, revision-bound revoke; Plan/Occasion owner publication invokes the existing organization-resolution application adapter. |
+| R2-G lifecycle repair reporting | `c718fc0cc` | Owner-triggered reconciliation reports missing, ambiguous, applied, and post-transfer repair-required states; it never treats a revoked/replaced transfer as a successful no-op. |
 
 The existing retained-source, Plan, Occasion, and Outcome projectors all reuse
 the same owner-fenced writer and return explicit `updated`/`withdrawn`/`stale`
