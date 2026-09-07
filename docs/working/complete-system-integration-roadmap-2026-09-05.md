@@ -3512,10 +3512,29 @@ Focused local validation passed: 22 current-job compiler tests, 50 combined
 root/practical/portfolio tests, 21 value-composition tests, and 53
 request/worker/executor tests, with Ruff clean on modified files. These commits
 are local integration progress, not evidence of provider-backed production,
-public Content breadth, native rendering, or Life/Chat activation. The next
-checkpoint remains a direct fixture request → canonical executor → durable
-readback → exact route → Home/Places receipt with cancellation, followed by a
-reassessment before broadening E2/E3 or enabling the worker.
+public Content breadth, native rendering, or Life/Chat activation. The
+controlled fixture checkpoint is recorded in §9.9.9; the next review is E2/E3
+reassessment before broadening public supply or enabling the worker.
+
+#### 9.9.9 Execution receipt — controlled request-to-root checkpoint (September 7)
+
+Backend `d8fdb55d6` completes the planned local fixture checkpoint without
+turning on the production worker. A loopback-Postgres fixture submits a bounded
+request through the HTTP route, claims the existing dark-worker adapter
+directly, invokes the canonical executor with an authored fixture producer,
+persists the production, and reopens it through the exact result route. The
+same retained production is received by Home and Places; replay reuses it
+without another producer call. The fixture also records read-only cost evidence
+without treating missing ledger rows as zero cost, and proves source withdrawal
+and cancellation prevent or remove delivery, including a late executor losing
+the workflow fence.
+
+The package adds no queue registration, provider call, native UI, public
+recommendation breadth, or Life/Chat activation. The next integration review is
+therefore E2's public owner-to-depth breadth and E3's supported practical
+specialist, using the evidence from this fixture to decide what to widen. The
+production worker remains dark until its separate activation requirements are
+met.
 
 ### Execution receipts (2026-09-07)
 

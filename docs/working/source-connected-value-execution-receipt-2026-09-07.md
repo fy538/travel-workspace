@@ -36,6 +36,7 @@ not activate the worker or claim native evidence.
 | E1 current-job owner-read compiler and root wiring | Root composition now derives bounded owner reads from the actual current candidates, immediate job, subject/Source/context refs and purpose. Exact request-local scopes are reused; unsupported semantic operations such as `route.evaluate` are omitted instead of being scheduled by scenario name. The existing scenario compiler remains a compatibility path for legacy callers and fixtures. | Backend `1bd838f4c` — `feat(integration): compile root reads from current jobs` |
 | E3 unsupported practical claims fail closed | Practical candidates carrying an unadmitted question now receive an explicit unknown assessment and are not treated as feasible. The supported `place.open_now` path is unchanged; no generic route assessor or provider was invented. | Backend `455048802` — `fix(integration): fail closed on unsupported practical claims` |
 | Request/worker version compatibility | Bounded request admission now emits the canonical `source.v1` and `compiler.v1` versions accepted by the existing dark worker, avoiding a producer/consumer version mismatch without activating execution. | Backend `b7df20cdc` — `fix(source): align requests with worker versions` |
+| Controlled local request-to-root checkpoint | A loopback-Postgres fixture submits through the HTTP contract, claims the existing dark-worker adapter directly, runs the canonical executor with an authored fixture producer, persists and reopens the exact result from JSONB, receives the same production in Home and Places, proves idempotent reuse without another producer call, records read-only cost evidence, and proves cancellation/source withdrawal prevent or remove delivery. | Backend `d8fdb55d6` — `test(source): exercise request to root delivery` |
 
 ## Existing receiving evidence consumed
 
@@ -91,6 +92,9 @@ Focused local suites passed during this batch:
 * 22 focused current-job owner-read tests, 50 combined root/practical/portfolio
   tests, 21 value-composition tests and 53 request/worker/executor tests passed;
   Ruff passed on all modified backend files.
+* 65 checkpoint tests passed, including 15 JSON-boundary tests, 2 loopback
+  PostgreSQL request→executor→readback/root/cancellation tests, storage/digest
+  regressions and read-only cost-report tests.
 
 ## Still gated / not claimed
 
@@ -111,10 +115,10 @@ Focused local suites passed during this batch:
 
 ## Next checkpoint
 
-Run one real local end-to-end fixture through explicit request → canonical
-Source executor → durable production/readback → exact result route → Home and
-Places receiving, then exercise cancellation against the same workflow. Use a
-direct fixture executor (or an explicitly controlled local worker invocation)
-with fixture provider/owner material; keep production queue/provider
-activation dark. This checkpoint should be followed by a reassessment before
-any public preparation or mobile consumer activation.
+The controlled local request → canonical executor → durable readback → exact
+route → Home/Places receiving checkpoint is complete in `d8fdb55d6`, including
+idempotent reuse, cost-evidence boundaries, source withdrawal and cancellation
+winning against a late executor. The next checkpoint is a reassessment of E2
+public owner-to-depth breadth and E3's supported practical specialist. Keep
+production queue/provider activation dark; no public preparation or mobile
+consumer activation follows automatically from this fixture.
