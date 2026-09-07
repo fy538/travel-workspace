@@ -1333,16 +1333,18 @@ changes, if newly needed, require the owning lane's real local DB verification.
 No automatic merge/push, paid providers, production activation, or native/app
 testing. This planning update changes documentation only.
 
-**Planning verification — September 7 post-review pass:** the two focused
-backend modules above passed 27 tests. The separate adapter diagnostic reproduces
-the nested-expiry revision defect. Source routing was inspected in code, not
-executed in a native app. The scoped whitespace check and all 15 relative file
-links in this map pass. Workspace-wide checks report two unrelated issues:
-the concurrent `fixtures/shared-fixture-world-2026-09-07.md` exceeds its
-30-day working-document expiry, and
+**Planning verification — September 7 post-review pass (historical, before the
+implementation receipt below):** the two focused backend modules passed 27
+tests. The separate adapter diagnostic reproduced the nested-expiry revision
+defect. Source routing was inspected in code, not executed in a native app. The
+scoped whitespace check and all 15 relative file links in this map passed.
+Workspace-wide checks reported two unrelated issues: the concurrent
+`fixtures/shared-fixture-world-2026-09-07.md` exceeds its 30-day working-document
+expiry, and
 `claude-design-interaction-kernel-lab-v2-3-arrangements-execution-report-2026-09-04.md:53`
-has a missing `state` link target. Neither was changed by this lane. No
-implementation fix or release is claimed here.
+has a missing `state` link target. Neither was changed by this lane. The
+implementation and test receipts below supersede the then-current “no fix”
+status; they do not claim native acceptance or release readiness.
 
 **Implementation receipt — September 7 connected Home slice:** the plan was
 executed through the available owner-backed seams, with the following isolated
