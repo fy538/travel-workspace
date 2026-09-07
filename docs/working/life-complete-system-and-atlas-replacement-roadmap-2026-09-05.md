@@ -68,6 +68,32 @@ clock is absent. Both previously failing PostgreSQL restore cases now pass,
 alongside the offline projector tests. Evidence and commit are recorded in the
 integration roadmap receipt; this remains shadow-index/readback evidence only.
 
+**Code-review correction pass — September 7 (working patch):** a fresh review
+of the Life shadow path corrected the remaining safety edges in the isolated
+`codex/life-shadow-rehearsal-2026-09-07` worktree. Retained-source eligibility
+now evaluates expiry against the current authorization clock while preserving
+the historical `represented_at` snapshot for cursor stability; a record-level
+backfill failure reopens its owner-family checkpoint so unresolved work is
+reachable on retry; Plan/Occasion/Outcome replays cannot restore revoked,
+suppressed or deleted rows without an explicit restore change kind; rehearsal
+reports reject false-green comparisons, cases, phases and blocking findings;
+and retained-source reads are pinned to the requested projection version.
+The root digest now reserves bounded representation for each owner kind,
+scheduled Plan and authored Outcome timestamps no longer populate public
+`occurred_*` fields, and Plan subtitles label schedule dates as planned.
+Graph-owned Life destinations are lens-neutral identities; the mobile reader
+applies the originating lens when reopening an exact row. Mobile Life
+restoration now filters unsupported rows before indexing, stops
+repeating a failed cursor request, and preserves identity-based restoration
+across query rerenders; stale-cursor restart also resets the restoration
+attempt. Focused evidence is 170 offline Life tests, 81 Life-related mobile
+tests, mobile TypeScript, Ruff and `git diff --check`; no serving cutover,
+database migration or remote publication is included. The backend patch is
+committed as `6fefdb756` on the isolated Life worktree and the mobile patch as
+`17eea1980` on the app branch. The repository-wide backend size-budget hook
+remains a pre-existing failure and was explicitly skipped for the backend
+commit; all other commit hooks passed.
+
 **Roadmap rebaseline — September 7:** implementation packages for R1/R2-A
 through F have landed. Their functions and tests do not complete every package
 exit. Fresh code inspection found Time-only owner materialization, a
