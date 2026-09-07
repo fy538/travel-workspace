@@ -31,7 +31,7 @@ This is a **research-backed implementation roadmap**, with the bounded code rece
 
 Snapshot: workspace `ffcb533`, backend main `ea816526d`, mobile branch `codex/entity-object-design-completion` at `6296287ef`. Working-tree strategy edits were present. The matrix and Place canon include this lane's prior uncommitted amendments; treat them as inspected working state, not proof of deployment. This is a targeted code/doc audit, not a claim to have reread every recent document or tested all app routes.
 
-September 7 review amendment: the follow-up review observed backend `778494b62` and mobile `3f199d470` and rechecked acquisition, ingestion and receiving boundaries. It retains the architecture, brings supplier feasibility and portfolio receiving checks forward, adds ready-supply and event-lifecycle requirements, and makes S0–S4 overlapping integration packages rather than a waterfall. The original test receipt in §10 is not a fresh test run against those later heads. None of this amendment implements or activates the proposed repairs.
+September 7 review amendment: the follow-up review observed backend `778494b62` and mobile `3f199d470` and rechecked acquisition, ingestion and receiving boundaries. It retains the architecture, brings supplier feasibility and portfolio receiving checks forward, adds ready-supply and event-lifecycle requirements, and makes S0–S4 overlapping integration packages rather than a waterfall. The original test receipt in §10 was not a fresh test run against those later heads; the follow-up execution receipts below now record bounded repairs landed after that review. No provider, worker or production activation was performed.
 
 ## 2. What exists, and what it does not yet establish
 
@@ -343,11 +343,18 @@ The defensible work is **what we ask, what we verify, how we judge it for this m
   projection/feed, and the nearby Places section pass `False`; the existing
   member-checked map discovery remains the explicit provider-capable path.
   Cache keys include this boundary. Thin-corpus root reads therefore return
-  corpus material or a sparse result without invoking the POI fallback. This
-  is not complete provider isolation: optional reachability and travel-time
-  ranking paths can still acquire routing data when their separate flags are
-  enabled. §11 C0 owns the receiving handoff for that remaining boundary. This
-  also does not provide the §5 ready-value pool for newcomers.
+  corpus material or a sparse result without invoking the POI fallback. The
+  follow-up C0 receipt below closes the same boundary for optional reachability
+  and travel-time ranking. This still does not provide the §5 ready-value pool
+  for newcomers.
+- **S0A / routing refinement boundary — landed in backend `0cb5e9325` and
+  documented in `f3531bb05`:** `allow_provider=False` now gates both the
+  isochrone/reachability canary and Matrix travel-time ranking. With routing
+  flags enabled, ordinary Home/Places reads stay corpus-only or honestly sparse;
+  explicit provider-capable map/discovery calls retain their prior behavior.
+  New regressions exercise cold-cache root calls and assert neither routing
+  helper is invoked. This is a nearby serving-boundary receipt, not a claim of
+  complete provider isolation or newcomer ready supply.
 - **S2 / event paging guard — landed in backend `5421c66b7`:** the existing
   Ticketmaster fetch keeps its 200-item page size but caps a refresh at five
   pages (the documented first-1,000-result window). A regression fixture proves
@@ -431,7 +438,7 @@ repairs, not a test of the plan below.
 | [Experience ingestion](../../travel-agent/backend/ingestion/base.py) | Conditional upserts and changed-ID invalidation are landed; `raw_data`, schedule, status and prose still share the material-change predicate | Split observation refresh, practical repair, text regeneration and vector payload updates. Dirty marking currently occurs in a later transaction and catches failures; retry-safe downstream repair remains work. |
 | [Event preview reader](../../travel-agent/backend/places/experiences.py) | This producer accepts a dated, membership-checked Trip | Give the content query owner an explicit place plus local-window path; preserve the Trip wrapper and its access checks. |
 | [Places budget](../../travel-agent/backend/places/budget.py), [commercial usage ledger](../../travel-agent/backend/core/commercial_access/usage_ledger.py) | Provider call counting exists; separate commercial quota reservations are atomic and billing-subject scoped | Provider COGS enforcement cannot be claimed from the count check. Reuse reservation mechanics where suitable, while keeping internal acquisition spend distinct from customer entitlements. |
-| [Discovery](../../travel-agent/backend/places/discovery.py), [taste](../../travel-agent/backend/places/taste.py), [reachability](../../travel-agent/backend/core/reachability.py) | `allow_provider=False` blocks POI fallback, but separately enabled isochrone/Matrix paths can still reach a provider | C0 must close and test the full network boundary with both spatial flags enabled, preserving valid cached evidence and honest distance semantics. |
+| [Discovery](../../travel-agent/backend/places/discovery.py), [taste](../../travel-agent/backend/places/taste.py), [reachability](../../travel-agent/backend/core/reachability.py) | `allow_provider=False` now gates POI fallback, reachability/isochrone and Matrix ranking; explicit map/discovery calls remain provider-capable | C0 has a focused receipt for this nearby call path. Reconfirm any additional root producers before broader rollout and preserve valid cached evidence and honest distance semantics. |
 
 ### 11.2 Architecture and ownership decisions
 
@@ -572,8 +579,9 @@ Deliverables:
 
 **Checkpoint:** known owners and actual call chains are recorded; all six
 result shapes have an owner or a precise gap; the POI-only boundary claim has
-been replaced by a demonstrated whole-call-path receipt. This is safety and
-contract progress; substantive content production continues in C1/C2.
+been replaced by a demonstrated nearby discovery/routing call-path receipt.
+This is safety and contract progress; substantive content production continues
+in C1/C2.
 
 #### C1 — Implement bounded acquisition and normalized evidence results
 

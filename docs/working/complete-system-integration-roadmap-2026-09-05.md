@@ -231,13 +231,16 @@ overlapping CV-2–CV-4 packages; Integration remains the shared landing owner.
 brief/embedding invalidation is limited to materially changed provider rows,
 and ordinary Home/Places nearby reads cannot fall through to live POI provider
 discovery. The explicit member-checked map path remains provider-capable.
-This is not complete network isolation: separately enabled reachability and
-Matrix ranking can still acquire routing data on cache misses. The
-world-supply roadmap records the focused tests and the remaining ready-value,
-provider-rights, and coverage gates; these commits do not close CV-3 or claim
-newcomer supply. Commit `5421c66b7` additionally caps the Ticketmaster fetch at
-the documented first-1,000-result window; it is a request-safety repair, not a
-supplier-coverage or proactive-refresh approval.
+Backend commit `0cb5e9325` and documentation commit `f3531bb05` then close the
+same `allow_provider=False` boundary for optional reachability/isochrone and
+Matrix travel-time ranking. With routing flags enabled, ordinary Home/Places
+reads remain corpus-only or honestly sparse; the explicit map/discovery path
+retains its provider-capable behavior. The world-supply roadmap records the
+focused tests and the remaining ready-value, provider-rights, and coverage
+gates; these commits do not close CV-3 or claim newcomer supply. Commit
+`5421c66b7` additionally caps the Ticketmaster fetch at the documented
+first-1,000-result window; it is a request-safety repair, not a supplier-
+coverage or proactive-refresh approval.
 
 **Detailed Content execution plan, September 7:** [world-supply §11](recommendation-world-supply-architecture-and-roadmap-2026-09-07.md#11-content-infrastructure-execution-plan)
 now maps C0–C6 onto the existing S0–S4 responsibilities: owner/read boundaries,
