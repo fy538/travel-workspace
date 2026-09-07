@@ -1406,7 +1406,9 @@ rejection; and the materializer has an explicit, complete-set reconciliation
 mode that supersedes disappeared active relations while preserving exclusions
 and historical rows. PostgreSQL tests cover freshness without command-revision
 churn, cycle-safe topology, and replay-safe scoped reconciliation; the complete
-Life selection is green on the migrated local development database. This
-remains shadow-only and does not claim source evidence extraction, broader
-owner coverage, lifecycle repair callbacks, serving cutover or mobile
-integration. The roadmap §12.11 is the canonical receipt.
+Life selection is green on the migrated local development database. The
+canonical corpus route also now uses a typed cursor that binds lens,
+represented-at time, corpus revision and stable `(sort_at, record_id)` identity
+for continuation. This remains shadow-only and does not claim source evidence
+extraction, broader owner coverage, lifecycle repair callbacks, serving cutover
+or mobile integration. The roadmap §12.11 is the canonical receipt.

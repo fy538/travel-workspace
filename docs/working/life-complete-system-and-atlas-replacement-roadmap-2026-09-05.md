@@ -2393,12 +2393,18 @@ Life backend branch (recheck branch divergence before integration):
   relations that disappeared, preserves excluded and historical rows, and is
   replay-safe. The default incremental materializer remains unchanged, so an
   incomplete owner read cannot cause an accidental withdrawal.
+- `36ff8053e` makes the canonical corpus continuation typed and shared by the
+  root/depth route path. `LifeCorpusCursor` fences lens, represented-at time,
+  corpus revision and the `(sort_at, record_id)` identity boundary in one
+  pure contract; malformed partial boundaries are rejected before a page can
+  be concatenated with a different scope.
 
 The local development database was at `lifeorg05`; the additive `lifeorg06` →
 `lifeorg07` upgrade was applied transactionally for test evidence. Focused
 organization, migration, reader and PostgreSQL tests passed (**20**), and the
 full `tests/life_projection` selection passed (**219**, including the scoped
-reconciliation cases). Ruff and migration-chain checks passed. Pre-existing
+reconciliation cases). The typed corpus-cursor and route selection then passed
+their focused suite (**21**). Ruff and migration-chain checks passed. Pre-existing
 repository hooks for event-type parity (the
 isolated worktree environment lacks the hook's SQLAlchemy import), repository
 size budgets, and status-dead-gates were skipped for commits; they are not Life
