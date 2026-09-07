@@ -3010,3 +3010,30 @@ Atlas/anchor migration, social/authored owner adapters, and serving acceptance
 remain separately gated. Capture still owns source lifecycle/emission; the
 next cross-lane dependency is the agreed owner contract for any additional
 family, not a Life-owned writer.
+
+### CC-5 follow-up receipt — maintained Life completion and source handoff — September 7
+
+The Life lane now has one completion contract across live delivery, backfill
+and bounded reverse reconciliation. Backend commit `0b822c3aa` introduces the
+typed maintainer; `767f70499` preserves target projection versions through the
+content-free bridge and fixes exact retained-source restoration; `3a44caf0f`
+puts index plus primary Plan/Occasion owner-group publication behind one short
+transaction; and `91024a856` makes reverse repair surface pending organization
+work instead of reporting index-only success. Commit `bac99b1b0` adds a
+read-only retained-source evidence handoff with capture-time semantics that
+cannot be used as occurrence proof.
+
+Evidence: the isolated Life branch is clean at `bac99b1b0`; the complete Life
+selection with local PostgreSQL passes **238 tests** under
+`-m 'not requires_api_keys'` (the API-key cases are excluded). The two
+repository-wide size-budget and status-dead-gate hooks remain pre-existing
+baseline failures and were skipped explicitly for backend commits; all other
+applicable hooks passed. These packages do not change Capture producers,
+schemas, serving, mobile, Atlas state, merges or remote publication.
+
+The remaining Life gates are explicit: resolution repair is still a bounded
+post-commit stage, multi-slice consumer progress still needs a reviewed
+checkpoint/schema only if real affected scopes exceed one transaction, and
+Capture must agree the occurred/place/people evidence envelope before Life can
+materialize richer episode/place/people relations. Unsupported owners remain
+visible in coverage rather than silently promoted.
