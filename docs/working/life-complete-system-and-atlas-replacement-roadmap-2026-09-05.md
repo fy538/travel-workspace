@@ -25,7 +25,7 @@ supersedes:
 **Latest inspected checkpoint — September 7 architecture review and planning:**
 backend local `main` is `7a1d18070`; the latest Life rehearsal, organization and
 repair packages remain on `codex/life-shadow-rehearsal-2026-09-07` at
-`767f70499`, not merged into backend main. The branches have 65 main-only and
+`91024a856`, not merged into backend main. The branches have 65 main-only and
 46 Life-only commits at inspection; these counts do not describe equivalent
 amounts of Life work. Earlier Life foundation packages were integrated; that
 does not include every later receipt below. App `f4401ef73`, currently checked
@@ -159,9 +159,11 @@ reconciler use `maintain_life_owner_change` by default whenever repair is
 requested and no migration projector is injected. It carries the maintainer's
 index result and exposes `repair_pending`/`withdrawal_pending` rather than
 reporting a partially completed repair as final. Existing pure projector
-injection remains available for migration tests. The next M1 checkpoint is
-durable multi-slice progress for affected scopes; no new queue or schema was
-introduced here.
+injection remains available for migration tests. The focused reconciler and
+maintenance tests pass, and the complete Life selection with the connected
+database passes **235 tests** under `-m 'not requires_api_keys'`. The next M1
+checkpoint is durable multi-slice progress for affected scopes; no new queue or
+schema was introduced here.
 
 **Publication-fence follow-through — September 7:** commit `3a44caf0f`
 (`fix(life): fence index and owner materialization`) adds an optional existing

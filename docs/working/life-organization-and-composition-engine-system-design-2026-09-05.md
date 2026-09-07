@@ -1426,7 +1426,7 @@ or mobile integration. The roadmap §12.11 is the canonical receipt.
 ## 17. Maintained-system architecture amendment — September 7
 
 This amendment follows the general architecture review of Life backend
-`767f70499`, canonical backend `7a1d18070` and mobile `f4401ef73`. It specifies
+`91024a856`, canonical backend `7a1d18070` and mobile `f4401ef73`. It specifies
 the next design constraints; it does not claim they are implemented. The
 [roadmap §13](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#13-architecture-review-follow-through--september-7)
 owns package sequencing, code evidence, tests, dependencies and activation gates.

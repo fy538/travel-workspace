@@ -28,7 +28,7 @@ not retrospectively passed. Source and future-intent dependencies follow the
 integration register and its explicitly unadopted decision proposals.
 
 **Architecture review and next plan — September 7:** the latest inspected Life
-backend is `767f70499` on its isolated branch, distinct from backend main
+backend is `91024a856` on its isolated branch, distinct from backend main
 `7a1d18070`; current mobile is `f4401ef73` on the entity completion branch.
 The review passed **194 offline Life tests**, with **34** database cases
 deselected, and reproduced a discarded organization-repair result with an
@@ -63,7 +63,9 @@ continuation persistence and any serving/Atlas transition remain unexecuted.
 repair with the shared maintainer and surfaces pending completion when
 organization work remains. Legacy injected projector callers remain intact;
 the default repair path now cannot silently treat an index-only update as a
-complete Life repair. Durable multi-slice progress and serving remain pending.
+complete Life repair. The complete Life selection with local PostgreSQL passes
+**235 tests** under `-m 'not requires_api_keys'`. Durable multi-slice progress
+and serving remain pending.
 
 The [September 7 operational packet](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#11-bounded-shadow-rehearsal-execution-packet--september-7)
 now has an executed bounded slice. Backend commits `41e07297e`, `ca559b2f7`,
