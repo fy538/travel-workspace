@@ -1918,7 +1918,7 @@ receipt.
 
 The effective Alembic graph has one head, `pipeline_scope_key01`. No mobile
 models or routes changed, so API type generation was not required. The
-focused offline verification completed **224 passed, 7 deselected** across
+focused offline verification completed **226 passed, 7 deselected** across
 ingestion, World Foundry, experience generation/embedding, pipeline/worker,
 Places consumers and vector routing. Ruff lint and format checks pass for the
 changed code and tests.
@@ -1955,5 +1955,5 @@ Two follow-up hardening commits extend the receipt above:
   authoritative.
 
 The focused lifecycle and side-build suites remained green after these
-changes; the aggregate receipt is **224 passed, 7 deselected**, with the same
+changes; the aggregate receipt is **226 passed, 7 deselected**, with the same
 offline/model and pre-commit caveats recorded above.
