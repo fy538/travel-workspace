@@ -58,6 +58,7 @@ checkpoint.
 | R2-G command-ledger race fence | `a6c21a0ca` | Rename, detach, and Undo claim the viewer/version/control-key idempotency boundary before mutating derived state; a concurrent duplicate rereads the committed control result. |
 | R2-G owner-projector organization bridge | `29d2a799b` | Existing Plan/Occasion consumers now materialize owner groups after successful index publication, archive groups on fenced withdrawal, and reactivate superseded memberships only on explicit restore; no new delivery path or canonical owner is introduced. |
 | R2-G resolution application | `04e9ab8fd` | A single active alias/merge target transfers memberships with deterministic evidence/exclusion preservation and redirects the source; multiple split targets remain an explicit ambiguity and do not move memberships. |
+| R2-G ambiguity fence | `3b17dacd9` | Multiple active resolution rows remain ambiguous even if they name the same target; application never picks one hidden resolution kind. |
 
 The existing retained-source, Plan, Occasion, and Outcome projectors all reuse
 the same owner-fenced writer and return explicit `updated`/`withdrawn`/`stale`

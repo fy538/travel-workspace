@@ -1804,6 +1804,8 @@ The bounded packet was implemented in backend worktree
   derived membership layer with exclusion/evidence preservation, while leaving
   multi-target splits explicitly unresolved. The redirected source group and
   target membership updates are revisioned and replay-safe.
+- `3b17dacd9` — treats multiple active resolution rows as ambiguous even when
+  they happen to name the same target, avoiding a hidden alias/merge choice.
 
 The explicitly provisioned local database `vesper_life_rehearsal_20260907` was
 migrated to `lifeorg02` (single head). Evidence executed against that
