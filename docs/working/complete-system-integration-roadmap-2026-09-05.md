@@ -2443,3 +2443,34 @@ owner-revision-advanced unrepresentation restores it without allowing an old
 replay to win. The focused source-to-Life lifecycle suite passes **28 tests**.
 This remains shadow delivery; retained-source serving and any owner-matrix
 promotion remain disabled.
+
+### CC-5 follow-up receipt — bounded Life shadow rehearsal and lease safety — September 7
+
+The receiving Life lane now has a reproducible bounded shadow rehearsal over
+the existing owner/event seams. Plan, Occasion, shared Outcome and retained
+source paths use current-authority reads and specialized consumers; generic
+event delivery cannot acknowledge a graph event in their place or discard an
+Outcome audience dependency token. The rehearsal also records all-lens
+materialization, indexed-owner traversal/reconciliation, withdrawal and
+explicit restoration, out-of-order replay, owner-commit/publication fencing,
+and live-set retry cleanup. Persisted backfill pause/restart, stale claimant
+rejection after lease takeover, and outbox lost-acknowledgement fencing now
+have connected PostgreSQL evidence.
+
+Evidence: `travel-agent` commits `41e07297e`, `ca559b2f7`, `bfb26e6a9`,
+`27258111c`, `d062d1810`, `f9b687055`, `b7425b548`, `d7714e38c`,
+`6c7d07847`, `949fdd524`, and `09d6f9b69`; the isolated Life projection
+selection passes **182 tests** (165 offline and 17 connected on
+`vesper_life_rehearsal_20260907`, migration head `lifebackfill02`). The
+machine-readable report emits `vesper.life-shadow-rehearsal.v1` with
+`supported_scope=pass`, `whole_portfolio_complete=false`, and
+`serving_ready=false`. No API/schema or mobile change was made, and no reader
+cutover or Atlas deletion is authorized.
+
+This is evidence for the supported owner families, not a whole-portfolio
+certificate. Full seven-record/four-viewer parity, broader lease/retry
+interleavings, persisted unresolved-item replay through the runner,
+Atlas/anchor migration, social/authored owner adapters, and serving acceptance
+remain separately gated. Capture still owns source lifecycle/emission; the
+next cross-lane dependency is the agreed owner contract for any additional
+family, not a Life-owned writer.
