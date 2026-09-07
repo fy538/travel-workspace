@@ -2384,6 +2384,10 @@ Life backend branch (recheck branch divergence before integration):
 - `acb8ed40a` adds PostgreSQL evidence that membership refresh advances content
   freshness without changing command revision, and that topology links are
   bounded and cycle-safe.
+- `ce6905139` adds the strict internal evidence-unit envelope, policy-scoped
+  calendar-period seeds and a deterministic source-evidence-to-membership
+  adapter. Model-candidate evidence is rejected from B1 materialization until
+  the separate B2 evaluation path explicitly accepts it.
 
 The local development database was at `lifeorg05`; the additive `lifeorg06` →
 `lifeorg07` upgrade was applied transactionally for test evidence. Focused
@@ -2394,12 +2398,14 @@ isolated worktree environment lacks the hook's SQLAlchemy import), repository
 size budgets, and status-dead-gates were skipped for commits; they are not Life
 regressions and remain release blockers to resolve in the owning baseline.
 
-This receipt completes only the storage/reader foundation of P0/P2/P4. It does
-not implement Capture's structured evidence read, source-only episode/period
-proposal generation, affected-set reconciliation for relationships that
-disappear, retained-source/Outcome organization callbacks, public routes or
-mobile schema integration. The next code package must add those against the
-agreed cross-lane evidence contract; it must not infer them from the new tables.
+This receipt completes the storage/reader and deterministic contract foundation
+of P0/P1/P2/P4. It does not implement Capture's structured evidence read,
+affected-set reconciliation for relationships that disappear,
+retained-source/Outcome organization callbacks, public routes or mobile schema
+integration. Calendar-period identity and evidence adapters are safe primitives,
+not an automatic classifier. The next code package must connect them against
+the agreed cross-lane evidence contract; it must not infer missing fields from
+the new tables.
 
 ### 12.10 Planning verification receipt
 
