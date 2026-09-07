@@ -74,6 +74,29 @@ The September 6 acceptance assignment defers app/device tests for current
 engineering. Preserve native acceptance as an open gate and schedule it when
 that deferral is lifted; do not start a device session as a planning side effect.
 
+### Execution ledger — 2026-09-07
+
+The first implementation batch is on the dedicated app branch
+`codex/entity-object-design-completion` and is intentionally not a public flag
+or main-branch merge:
+
+| Commit | Package | Evidence |
+| --- | --- | --- |
+| `53197236f` | Shell kicker, lighter fact pair, wrapping text verbs, two-column closing facts | 6 focused suites / 87 tests at the slice boundary |
+| `6b52bacf1` | Safe source-owned reservation continuation | Projection + page tests; TypeScript clean |
+| `ec9c6ae0a` | Object-only 96px location variant and typed body blocks | Citation mapping retained across filtered paragraphs |
+| `abc0a0996` | Compact Where row integration | Map policy and location fallback tests |
+| `bd5112e5a` | Authorized exact-place line quotes | Withdrawal removes quote and selected sheet |
+| `46eadd5d0` | Ephemeral research-arrival/source-count treatment | Queued → ready arrival test |
+| `9121c8546` | Unsafe booking URLs suppressed at projection boundary | HTTP(S)-only reservation action test |
+
+The current route-level evidence is 8 focused suites / 100 tests plus a clean
+TypeScript check. The branch remains internal and feature flags remain off by
+default. Native screenshot comparison, design-reference registration, owned
+media retrieval, exact Life record destination, arrangement standing and
+optional useful/keep-words/reply actions remain gated by the dependencies below;
+no backfill has been run.
+
 Retain:
 
 - V2 canonical presentation and full `{type, id}` action identity.
