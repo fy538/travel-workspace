@@ -378,6 +378,12 @@ The defensible work is **what we ask, what we verify, how we judge it for this m
   unresolved gaps keep proposed primitives in review. Four focused regressions
   pass. This is a deterministic handoff seam, not canonical write-back or a
   source-rights grant.
+- **S1 / source metadata and summary boundary — landed in backend `76e9dc41c`:**
+  normalized sources now retain page title/publication metadata, while a
+  provider-generated synthesis is marked `provider_summary` and excluded from
+  canonical observations unless a traceable page supports the claim. This
+  removes a provenance ambiguity without discarding useful graph context.
+  Focused converter/Foundry coverage is **12 passed**.
 - **S2 / event paging guard — landed in backend `5421c66b7`:** the existing
   Ticketmaster fetch keeps its 200-item page size but caps a refresh at five
   pages (the documented first-1,000-result window). A regression fixture proves
