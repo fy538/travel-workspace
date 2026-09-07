@@ -105,6 +105,13 @@ the local bundler was started. The capture run reached the first Maestro journey
 but could not complete in this environment (no usable simulator/device); it was
 stopped after the retry began. This does not count as native visual acceptance.
 
+The full app Jest run completed with **1,192 suites / 8,132 tests passing and
+17 suites / 21 tests failing**. The failures are outside the entity-page
+surface (Life/navigation, chat payloads, card/convention ratchets and mock
+fixtures); the entity rebuild, shell, projection, map and venue/site/experience
+route suites all passed. The focused result above remains the relevant gate for
+this branch, while the unrelated failures stay with their concurrent owners.
+
 Retain:
 
 - V2 canonical presentation and full `{type, id}` action identity.
