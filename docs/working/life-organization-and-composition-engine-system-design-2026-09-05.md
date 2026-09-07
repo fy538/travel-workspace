@@ -39,6 +39,16 @@ still owns package sequence and completion; this is its detailed design for
 R1/R2 and the organization-bearing portions of R3–R7. Execution receipts stay
 in [Life execution status](life-v1-execution-status-2026-09-01.md).
 
+For present-tense work, use the roadmap's
+[current queue](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#current-execution-queue),
+[evidence-stage ledger](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#evidence-stage-ledger)
+and [decision checkpoints](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#decision-and-dependency-checkpoints).
+They distinguish local implementation, integration, authoritative connection,
+user-visible adoption and release. This design preserves detailed requirements;
+its historical inspection tables and original package order are not a second
+current-state ledger. Calendar policy, complete repair scope, evidence revisions,
+model admission and reader usefulness now have explicit checkpoints there.
+
 Read sections 2–4 for product behavior, 5–10 for engineering, and 11–13 for
 evaluation, implementation, and unresolved choices. Section 14 records the
 research patterns being borrowed and their limits.
@@ -63,13 +73,14 @@ tables and receipts are historical, not instructions to recreate completed stora
 extends §16 with primary-source methods, transfer limits, and experiments for
 evidence extraction, episode identity, continuity, hierarchy, incremental
 maintenance, preview selection, and evaluation/economics. Its code baseline is
-Life `b1ab469f0`; it records a pure diagnostic showing that the current quality
-helper's `required_link_recall` measures record recovery, not typed relationship
-recall. The
+Life `b1ab469f0`; it records a pure diagnostic showing that the then-current
+helper's `required_link_recall` measured record recovery, not typed relationship
+recall. The later `4a19414be` implementation corrects it. The
 [roadmap research checkpoint](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#1314-organizing-intelligence-research-checkpoint--september-7)
+preserves the original research follow-through; the roadmap's current queue
 owns the next work. No model comparison or richer organizer was executed by
-that research, and no new architecture, serving path, or product authority was
-adopted.
+the research itself, and no new architecture, serving path, or product authority
+was adopted.
 
 **First research implementation — September 7:** the
 [execution checkpoint](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#1315-executed-measurement-and-first-b1-product-world-checkpoint--september-7)

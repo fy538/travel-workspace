@@ -31,10 +31,14 @@ organization, and presentation. It does **not** establish that our current
 grouping is good, that a particular model is best, or that another memory
 framework should replace the existing Life infrastructure.
 
-The next substantial step is a connected experimental implementation of the
-existing B0/B1/B2 comparison across **all five product worlds**, including
-ordinary life, shared experience, and correction. This is a system-wide behavior
-portfolio, not a proposal to narrow the product to one demonstration loop.
+The recommended experimental program compares B0/B1/B2 across **all five product
+worlds**, including ordinary life, shared experience and correction. The first
+bounded B1 implementation has since executed at `333f447be`; the roadmap's
+[current queue](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#current-execution-queue)
+now prioritizes wider judgments and independent examples, real-owner evidence,
+useful readers and a bounded B2 comparison where justified. This remains a
+system-wide behavior portfolio, not a proposal to narrow the product to one
+demonstration loop or to repeat the completed measurement/compiler work.
 
 | Research area | Recommended first approach | What would justify more complexity? |
 | --- | --- | --- |
@@ -720,6 +724,17 @@ before implementing useful behavior.
 
 ### Next connected checkpoint
 
+**Status after implementation:** the list below is the original experiment
+sequence, not another current work queue. Steps 1–3 have a first bounded
+implementation in `4a19414be` / `333f447be`, with five oracle-interpreted worlds
+and derived-store tests. Wider challenge coverage and independently judged cases
+are still needed; extraction and production owner wiring are not implemented
+by these fixtures. Steps 4–5 remain unevaluated. Use the roadmap's
+[current queue](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#current-execution-queue)
+and [decision checkpoints](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#decision-and-dependency-checkpoints)
+for remaining work and dependencies. E1–E6 retain their research acceptance
+questions; they are not six new pipelines or mandatory model-adoption gates.
+
 1. **Correct and extend the measurement seam.** Preserve record recovery;
    add typed required-edge judgments, group expectations, and explicit fixture
    namespaces. Add regression cases in which all records exist but no required
@@ -739,8 +754,10 @@ before implementing useful behavior.
    techniques earned a place; record failures and cheaper baselines as well
    as wins. Only then propose production wiring and serving criteria.
 
-Steps 1–3 are available without a new design project or production activation.
-Step 4 needs a bounded inference-run decision and eligible data; this research
+At the research checkpoint, steps 1–3 were available without a new design
+project or production activation; do not schedule their initial implementation
+again. Their broader evaluation can continue without the source producer.
+Step 4 still needs a bounded inference-run decision and eligible data; this research
 request itself did not authorize spending or personal-data processing. No
 blanket “everything else is blocked” conclusion follows from a pending producer.
 

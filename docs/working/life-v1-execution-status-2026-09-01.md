@@ -17,9 +17,10 @@ depends_on:
 
 ## September 7 reading order
 
-Use the [replacement roadmap's current baseline](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#current-execution-baseline--september-7)
-for what to execute next. This file is the evidence ledger, not a second
-sequence. The canonical Life tab and four-lens readers have landed; older
+Use the [replacement roadmap's current queue](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#current-execution-queue)
+and [evidence-stage ledger](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#evidence-stage-ledger)
+for what to execute next and what is actually integrated. This file is the
+evidence ledger, not a second sequence. The canonical Life tab and four-lens readers have landed; older
 flag/Atlas descriptions below are historical. The owner-safe shadow section
 records the integrated index/outbox/restore helpers, owner adapters and
 identifier-only delivery bridge; it still does not claim populated data or a
@@ -27,18 +28,53 @@ serving cutover. Native acceptance remains deferred for current engineering,
 not retrospectively passed. Source and future-intent dependencies follow the
 integration register and its explicitly unadopted decision proposals.
 
-**Architecture review and next plan — September 7:** the latest inspected Life
-backend is `b1ab469f0` on its isolated branch, distinct from backend main
-`7a1d18070`; current mobile is `f4401ef73` on the entity completion branch.
+**Latest implementation checkpoint — September 7:** Life backend `333f447be`
+and preceding `4a19414be` remain on `codex/life-shadow-rehearsal-2026-09-07`,
+not merged into inspected backend main `b7df20cdc`. The documentation is on
+`codex/life-organization-value-research-2026-09-07`, based at `62b25a5` before
+this status update; canonical workspace main does not yet contain that cut.
+App `b479c3289` on the entity completion branch does not establish adoption
+of the new organizer. The roadmap records the exact inspection baseline and
+Integration handoff; no merge, push or activation occurred here.
+
+The [latest receipt](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#1315-executed-measurement-and-first-b1-product-world-checkpoint--september-7)
+records separate record-recovery and typed-relationship metrics, plus a bounded
+deterministic B1 compiler exercised across five product worlds and real derived
+store/pagination/correction tests. The recorded selection passed **296 tests**,
+including PostgreSQL, excluding API-key tests; the focused new/updated files
+passed **44**. These are previous implementation receipts, not tests rerun by
+this documentation update. Known repository-wide size/status hook failures
+remain recorded; no complete green-gate claim follows.
+
+All five worlds use supplied interpretations. Nine required relationships are
+recovered; 18 additional relationships remain unjudged. Automatic extraction,
+general grouping quality, human usefulness, public eligible reader adoption and
+serving readiness remain unestablished. The next work is broader independent
+judgments, the real evidence/delivery contract, maintained organization and
+useful bounded readers, with a budgeted B2 comparison only where warranted.
+See the roadmap queue rather than repeating the completed measurement/M1 work.
+
+## Historical September 7 implementation receipts
+
+The receipts below preserve their original revisions and test boundaries.
+Their earlier “remaining” and “first checkpoint” statements are superseded by
+the roadmap's opening queue where later packages have executed; unfulfilled
+acceptance conditions remain. In particular, `b1ab469f0` initially mislabeled
+record recovery as required-link recall; `4a19414be` corrects that measurement.
+
+**Architecture review and next plan — September 7:** at this review checkpoint,
+the inspected Life backend was `b1ab469f0` on its isolated branch, distinct from
+backend main `7a1d18070`; mobile was `f4401ef73` on the entity completion branch.
 The review passed **194 offline Life tests**, with **34** database cases
 deselected, and reproduced a discarded organization-repair result with an
 in-memory Plan projector probe. These are review receipts, not new feature or
 release evidence. The [roadmap §13](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#13-architecture-review-follow-through--september-7)
-now owns the detailed corrective sequence: shared maintenance completion,
+provided the detailed corrective sequence: shared maintenance completion,
 real-owner evidence and scoped organization, bounded eligible readers, four-lens
 receiving, quality/Returns, and gated Atlas replacement. Its M0–M6 packages
-refine existing R0–R8/P0–P7 work; none is executed by writing the plan. The first
-checkpoint is M0's baseline delta and M1's connected maintenance contract.
+refine existing R0–R8/P0–P7 work; none was executed by writing that plan. Its
+original M0/M1 first checkpoint has subsequent receipts below; it is not the
+current work queue.
 
 **M1 maintenance completion — September 7:** backend commit `0b822c3aa`
 introduces the shared typed maintainer used by live owner consumers and
