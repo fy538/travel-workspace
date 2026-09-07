@@ -56,6 +56,8 @@ Focused local suites passed during this batch:
 
 * 114 tests across workflow API/DB, Source continuity, canonical executor,
   worker, serving, workflow, and Source storage;
+* 304 tests across the integrated Home/Places composition, practical delivery,
+  workflow API, Source projection, and Source storage packet;
 * the route pre-commit gates including route-auth, response-model, import-cycle,
   and status-guard checks;
 * `make contract-check` confirmed the OpenAPI snapshots and active projection,
