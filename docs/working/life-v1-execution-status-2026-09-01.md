@@ -28,7 +28,7 @@ not retrospectively passed. Source and future-intent dependencies follow the
 integration register and its explicitly unadopted decision proposals.
 
 **Architecture review and next plan — September 7:** the latest inspected Life
-backend is `bac99b1b0` on its isolated branch, distinct from backend main
+backend is `f0a8d4f69` on its isolated branch, distinct from backend main
 `7a1d18070`; current mobile is `f4401ef73` on the entity completion branch.
 The review passed **194 offline Life tests**, with **34** database cases
 deselected, and reproduced a discarded organization-repair result with an

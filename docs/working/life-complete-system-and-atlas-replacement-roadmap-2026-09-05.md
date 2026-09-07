@@ -23,9 +23,10 @@ supersedes:
 ## Current execution baseline — September 7
 
 **Latest inspected checkpoint — September 7 architecture review and planning:**
-backend local `main` is `7a1d18070`; the latest Life rehearsal, organization and
-repair packages remain on `codex/life-shadow-rehearsal-2026-09-07` at
-`bac99b1b0`, not merged into backend main. The branches have 65 main-only and
+backend local `main` is `7a1d18070`; the latest Life rehearsal, organization,
+repair and scoped-reader packages remain on
+`codex/life-shadow-rehearsal-2026-09-07` at `f0a8d4f69`, not merged into
+backend main. The branches have 65 main-only and
 46 Life-only commits at inspection; these counts do not describe equivalent
 amounts of Life work. Earlier Life foundation packages were integrated; that
 does not include every later receipt below. App `f4401ef73`, currently checked
