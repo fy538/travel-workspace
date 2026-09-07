@@ -92,25 +92,29 @@ or main-branch merge:
 | `50190881f` | Detail save origin envelopes for venue/site/experience | Route smoke tests; bounded `surface` + optional `trip_id` only |
 | `c03677948` | Reset ephemeral research-arrival state on entity replacement | Prevents an old page’s arrival treatment surviving a reused route |
 | `6f0aa5319` | Compact map forwarding coverage | EntityLocationMap policy remains unchanged |
+| `3f199d470` | Review fixes: reservation action merge, research arrival correlation/timer, save trip-ID validation, compatibility map restoration and external-link failure feedback | 8 focused suites / 109 tests; TypeScript passed; targeted lint had no errors |
 
-The current route-level evidence is 8 focused suites / 102 tests plus a clean
+The latest recorded route-level evidence is 8 focused suites / 109 tests plus a clean
 TypeScript check. The branch remains internal and feature flags remain off by
 default. Native screenshot comparison, design-reference registration, owned
 media retrieval, exact Life record destination, arrangement standing and
 optional useful/keep-words/reply actions remain gated by the dependencies below;
 no backfill has been run.
 
-Latest QA note: Metro preflight and the Entity Object Page doctor passed once
-the local bundler was started. The capture run reached the first Maestro journey
-but could not complete in this environment (no usable simulator/device); it was
-stopped after the retry began. This does not count as native visual acceptance.
+QA evidence correction: Metro preflight and the Entity Object Page doctor passed
+once the local bundler was started. The capture run reached the first Maestro
+journey and was stopped after a retry began. The cause of the incomplete capture
+was not established; this does not demonstrate an unavailable simulator/device
+and does not count as native visual acceptance. The later review's doctor stopped
+specifically because Metro was not running on port 8081.
 
 The full app Jest run completed with **1,192 suites / 8,132 tests passing and
 17 suites / 21 tests failing**. The failures are outside the entity-page
 surface (Life/navigation, chat payloads, card/convention ratchets and mock
 fixtures); the entity rebuild, shell, projection, map and venue/site/experience
-route suites all passed. The focused result above remains the relevant gate for
-this branch, while the unrelated failures stay with their concurrent owners.
+route suites all passed. Those failures were not reproduced on the pre-change
+baseline, so their location alone does not prove they are unrelated regressions.
+The focused result above is scoped evidence, not a whole-app green result.
 
 Retain:
 
@@ -575,7 +579,11 @@ flags, uncovered cases, native/design status and next receiving checkpoint.
 
 ## 8. Recommended immediate batch
 
-Start with commits **01–06, 08–10**: references, component extraction, faithful
+The following was the initial batch recommendation. The ledger records the
+subset actually implemented; **section 10 now owns the next execution slice**.
+Do not treat every package below as completed by the previous implementation.
+
+Initial recommendation: commits **01–06, 08–10**: references, component extraction, faithful
 layout, honest facts/actions, sourced body, people read composition and research
 arrival. This gives a coherent core using current sources and synthetic test
 fixtures, with no backfill and no dependency on a new Plan/intention owner.
@@ -605,3 +613,333 @@ Related owner plans: [entity acceptance](entity-system-acceptance-plan-2026-09-0
 [retained-intention proposal](retained-intention-before-plan-decision-proposal-2026-09-06.md),
 [entity design integration response](claude-design-integration-2026-09-04/05-entity-objects-response-2026-09-04.md),
 and the app [entity surface contract](../../travel-app/docs/surfaces/entity-object/contract.md).
+
+## 10. Next slice — complete the existing place reader
+
+### 10.1 Outcome, baseline and scope
+
+Make three existing entity routes deliver a complete, trustworthy read and one
+useful continuation: a restaurant, a museum, and an activity. A person should
+understand which place this is, what supports its description, what is known
+about visiting, their bounded relationship to it, and what the next tap does.
+Rich and sparse versions must both work. This is a bounded continuation of
+O0–O3 and the available portions of O4–O7, not a new entity program.
+
+Planning inspection, September 7:
+
+| Repository | Inspected state | Consequence for execution |
+| --- | --- | --- |
+| App | Clean `codex/entity-object-design-completion`, `3f199d470`; local main `8860a34bd` | Start from the reviewed entity branch. Main contains separately landed root changes; do not assume commit ancestry or duplicate them. |
+| Backend | Main `778494b62`; concurrent product-content document edit | Integration owns shared practical reads and their landing. Isolate any agreed entity adapter change. |
+| Workspace | Main `789dc45`; concurrent strategy, Life, Integration, governance and design edits | Extend this plan only; do not stage or rewrite the other task's work. |
+
+No product tests or device sessions were run in this planning pass. The 109-test result
+above is the previous implementation's evidence. It does not cover every new
+case specified below: notably all three routes' origin payload assertions,
+late reservation-link failure, account replacement during arrival, and complete
+status-before-artifact arrival/readback sequences still need explicit coverage.
+
+**Included:** contract-correct fixtures/references, lifecycle decomposition,
+fact freshness, explicit one-shot distance, supported photo display/acquisition,
+sourced reading, existing-owner action feedback and return continuity.
+
+**Held outside this slice:** new entity families, catalog/media/research backfill,
+provider-cache replacement, root redesign, Life indexing, arrangement commands,
+loose-date Keep, Useful/Keep words/Reply, production flags, paid/live verification
+and public release. Native acceptance remains deferred under the current
+September 6 assignment. Preparing references and native flows can proceed.
+
+### 10.2 Three concrete acceptance stories
+
+| Story | Successful experience | Required negative case |
+| --- | --- | --- |
+| Restaurant: considering dinner | Canonical name and locality; truthful reservation/price information; source-backed reading; valid Reserve destination; optional explicit walking estimate; Keep and return to the originating list | Unknown reservation requirement, expired open-now claim, unsafe/failed booking URL, no photo, denied location |
+| Museum: deciding whether to visit | Same page family with admission/duration/access facts when supported, persisted interpretation and source inspection; Directions or private Ask; no restaurant-specific Table label | Admission/hours absent, long translated name, large text, source missing, no research capability or artifact |
+| Activity: understanding an experience | Canonical activity identity and supported duration/type; permitted description/media; Keep, Ask and exact return; experience-specific capability absence stays honest | No fixed coordinates, no photograph, research unavailable for this type, removed origin, account change |
+
+Use the existing mock venue/site/experience routes and deterministic fixture IDs
+valid for their real contracts. Design names can be reused as synthetic examples;
+their hours, prices, sources and photos are not assertions about the live places.
+No existing catalog row is modified to match a specimen.
+
+### 10.3 N0 — Establish a trustworthy specimen and reference baseline
+
+**Files:** workspace `docs/working/object-page-rebuild/fixtures.json` and
+`fixture-contract-audit-2026-09-04.md`; app
+`docs/surfaces/entity-object/contract.md`, `scripts/polish-qa/surfaces.mjs`,
+existing entity flows and a proposed `docs/surfaces/entity-object/design-refs/`.
+
+1. Reconcile boards 06/06B against current generated V2 types and the surface
+   contract. Keep the original Downloads hashes; create isolated capture roots
+   and an adaptation log without changing the source board's authored design.
+2. Keep the historical design JSON identifiable as a design specimen. Its
+   `fx-*` identities, `reservation_url`, legacy source-number shape, inferred
+   social claims and unsupported entity families must not become runtime
+   contract fixtures. Put typed execution fixtures in the app's existing test
+   fixture convention and record the correspondence in the audit.
+3. Define six primary specimens: rich restaurant, sparse restaurant, museum,
+   activity, research arrival, and large text. Use pairwise fault variants
+   instead of maintaining a separate full screen for every combination.
+4. Specify the intended 393-point/default-text composition and a narrow/large-
+   text variant. Record deviations needed for 44-point actions and source
+   inspection. Preserve the square-corner 230-point plate and square-corner
+   96-point object map target; accommodation and compatibility geometry stay
+   independently covered.
+5. Register fixture/version/ref/expected-state pairs in the existing QA system.
+   A reference manifest with no real pairs is not this package's exit.
+
+**Exit:** all six specimens have valid typed inputs, isolated source references
+and explicit expected behavior. This proves reference readiness, not native
+visual parity. Museum/activity adaptations absent from boards 06/06B must be
+labelled adaptations and reviewed, not attributed to an unprovided reference.
+
+### 10.4 N1 — Extract lifecycle and presentation without losing guards
+
+**Existing files:** `components/places/ObjectPageRebuild.tsx`,
+`objectPageProjection.ts`, `data/entities.ts`, `hooks/useInteractionLifetime.ts`,
+`hooks/useUnexpiredValue.ts`, `utils/accountSessionLifetime.ts`.
+
+**Proposed local modules:** `components/places/object-page/` for fact, reading,
+source, verb and Where components; a narrowly scoped research controller hook.
+Keep the existing `ObjectPageRebuild` entry point and data-facade imports.
+
+1. Lock behavior before extraction: explicit receipt/request ID, status ID,
+   artifact generation, account, canonical entity and visit lifetime remain
+   separate inputs. Do not duplicate backend research types.
+2. Move request/poll/arrival orchestration out of the render component. Clear
+   ephemeral state on account or entity replacement, including A→B→A; late
+   completions must be inert. Timer ownership must survive artifact rerenders.
+3. Cover status-before-artifact and artifact-before-status orderings, fast
+   completion without an intermediate queued render, failed/unavailable/unknown
+   status, polling exhaustion and retry. A fetched ready brief may update the
+   reader without falsely announcing a completion for another request/viewer.
+4. Introduce stable UI segment IDs and explicit source dependencies. Use the
+   original paragraph identity within a brief generation when the contract has
+   no block ID; filtering empty paragraphs cannot shift citation ownership.
+5. Keep initial fact ordering stable during passive research arrival. Expiry
+   and withdrawal still remove unsupported facts or people material immediately.
+
+**Exit:** focused old behavior remains green, lifecycle ordering tests pass,
+and the page component delegates orchestration and sections rather than adding
+another large block of effects. Extraction is complete only after unused inline
+copies are removed.
+
+### 10.5 N2 — Make practical facts current and useful
+
+**App files:** `objectPageProjection.ts`, proposed fact components/controller,
+`data/entities.ts`, `hooks/useUnexpiredValue.ts`, route fixture tests.
+
+**Owner seam:** backend `backend/core/models/owner_read.py::PlaceOperationalFact`,
+`backend/places/cache.py::get_cached_venue_statuses_sync`,
+`backend/places/entity_presentation_read.py`,
+`backend/core/models/entity_presentation.py` and `entity_status.py`.
+
+1. Normalize each fact once: semantic key, display value, current-versus-durable
+   meaning, source evidence, observation and expiry. Preserve reservation truth
+   when attaching Reserve; an external action does not replace the authoritative
+   reservation statement or imply available tables.
+2. Filter expired or malformed current claims before ranking. Schedule the next
+   expiry boundary and re-evaluate on foreground/reconnect. Do not extend truth
+   merely because React Query still has the response or the screen stayed open.
+3. `EntityPresentationFact` already carries `observed_at` and `expires_at`;
+   consume them. The legacy status block has `as_of` but no per-field deadline.
+   Its projection timestamp is not an open-now freshness lease. Do not invent
+   a client TTL or infer open-now from stored schedule text.
+4. Agree a narrow cache-only adapter with Integration to carry current venue
+   evidence and field deadlines into the existing presentation. Reuse its
+   provider/place identity checks. Never call `linker`, discover providers,
+   enqueue refresh or repair the cache from a page read. A cache miss produces
+   unknown. Sites/activities remain unknown where no supported supplier exists.
+5. Prefer existing fact fields for the adapter. If exact evidence references,
+   field identity or deadlines require an additive model field, document that
+   delta and use the required OpenAPI → app projection → generated types sync.
+   Do not invent presentation-v3 or a second operational-fact store.
+6. Unknown place timezone prevents local-evening inference. A current open-now
+   observation and a future-visit schedule answer are different facts. Show
+   an exact closing time only with supported schedule/timezone evidence.
+
+**Exit:** the same entity is covered with fresh/open, fresh/closed, unknown,
+expired, wrong-provider-identity and independently expiring fields. Expiry drops
+the current claim while durable description/price/relationship value survives.
+If Integration's adapter is unavailable, local expiry behavior can land; mark
+current-fact delivery partial until the adapter and receiving tests land.
+
+### 10.6 N3 — Complete explicit distance and media acquisition
+
+These are distinct user gestures with independent pending/error state and
+capability gates. Neither is coupled to opening the page or to Keep.
+
+**Distance files:** `utils/locationService.ts::requestLocationFix`,
+`utils/entitySituationContext.ts`, `data/entities.ts::useEntitySituation`,
+the three routes, proposed object controller and Where/fact components;
+backend `backend/places/entity_situation.py` and its tests where needed.
+
+1. Add one deliberate "Check from here" affordance for an eligible coordinate-
+   backed destination. Use the shared one-shot service, no location watch:
+   `maxAgeMs: 0`, no last-known fallback, bounded timeout and current OS fix.
+2. Validate finite coordinates, observation time and usable accuracy. Proposed
+   initial origin acceptance: at most 2 minutes old and accuracy ≤100 metres;
+   encode and test the same rule at the entity situation boundary before using
+   it. The existing backend accepts origins up to 15 minutes old and does not
+   reject low precision beyond the broad model limit; that needs reconciliation.
+3. Send origin only in the deliberate situation request. Replace the current
+   serialized-coordinate query key for this path with an opaque request/session
+   handle; keep origin out of routes, persistent query caches and telemetry.
+   Disable automatic retry/focus/reconnect refetch for provider-backed origin
+   requests. A retry or fresh route calculation follows a new visible tap.
+4. Feed validated `situation.route` into the fact model using duration, resolved
+   mode, degraded flag and response `valid_until`. Do not parse `summary` for a
+   number. The explicit from-here posture may promote distance; a device clock,
+   generic active trip or absent route must not masquerade as arrival context.
+5. On denial, timeout, missing destination, poor fix or expired result, preserve
+   the page and show a bounded explanation/retry. Directions remains a separate
+   external continuation where supported by map policy.
+
+**Media files:** `data/venues.ts`, `types/placesMedia.ts`,
+`components/places/core/PlacesMedia.tsx`, `ObjectPageShell.tsx`, the three routes;
+backend `backend/api/routes/venues.py` and `backend/media/contracts.py`.
+
+1. Keep the compatibility `useVenueExactPhoto` behavior isolated. Add an explicit
+   acquisition method through `data/` for the rebuilt venue route; a supported
+   "View place photo" tap uses the existing exact-photo endpoint once, with
+   no automatic focus/reconnect fetch or hidden paid retry. Return
+   loading/available/unavailable/error explicitly where the endpoint supports it.
+2. Bind each result to the requesting account/session, visit and canonical
+   entity. `claim_scope=exact_place` alone is not a match to this entity. Reuse
+   server-verified request-to-provider binding; if a wire identity is missing,
+   propose the smallest additive canonical-ref response rather than parsing URLs.
+3. Enforce eligible slot, expiry, required credit and cache directive before
+   rendering. No-store bytes/URLs stay out of persistence; clear session media
+   on leaving, account/entity replacement and expiry. An invalid or late image
+   cannot become the next place's hero.
+4. Retain Bring photo as the existing Capture gesture. Inventory eligible owned
+   media through Source/Life owners first: current artifact-photo reads are
+   artifact-addressed, and trip photos have their own audience/block bindings.
+   Neither is automatically an authorized exact-entity hero reader.
+5. Owned media handoff must specify exact entity, source/photo ID, viewer/audience,
+   source revision, display purpose, expiry/revocation and attribution. Implement
+   a read adapter only when that owner supports those guarantees. A proposal
+   without an owner implementation is a documented gap, not media completion.
+6. Sites/activities may remain no-photo in this slice. A future media adapter
+   can serve them; do not send site/activity IDs to the venue-only endpoint or
+   turn generic imagery into a documentary place photo.
+
+**Exit:** route-level tests prove zero location/provider acquisition on open;
+one explicit tap yields one bounded request; failure/expiry/wrong identity is
+honest; permitted venue photo works end to end with a fake provider. No-photo
+museum/activity specimens meet core acceptance independently of media supply.
+
+### 10.7 N4 — Finish sourced reading and existing-owner actions
+
+**Files:** extracted reading/source/verb components, `PeopleLineSheet.tsx`,
+`hooks/useSaveEntity.ts`, `utils/saveEntityAction.ts`, `hooks/useValueMoment.ts`,
+`utils/consequenceReceipts.ts`, `utils/placesMapReturn.ts` and the three routes.
+
+1. Resolve inline markers and source inspection from one registry keyed by
+   their actual source namespace. Public research citations and private person
+   attribution remain distinct. Keep exact authored words and remove each line,
+   face and selected detail together when its grant disappears.
+2. Provide one accessible Sources entry/inspector with full-size source links;
+   do not enlarge tiny inline marker hitboxes into overlapping targets. Return
+   focus to the invoking control and preserve reading position after dismissal.
+3. Keep reservation statement and Reserve action separately legible; propagate
+   safe external-link feedback to both pair and closing placements. Cover
+   successful open, failure, entity replacement and late failure after leaving.
+4. Keep remains the Save owner. Confirm one pending/success/failure treatment,
+   canonical identity, valid optional trip origin, subsequent owner readback and
+   explicit removal through the existing save toggle. Do not add duplicate toast
+   and inline success announcements.
+5. Do not wire Undo to a generic toggle. The current deletion helper is addressed
+   by user/type/entity, not immutable save revision; an old receipt could remove
+   a newer save. Immediate Undo needs an owner-supported exact save/precondition
+   contract. Until then provide the current explicit Remove action and record the
+   precise owner gap rather than displaying an inert or unsafe Undo button.
+6. Preserve exact Places/root return context and private Ask seed identity.
+   Validate invalid/stale origin independently from canonical page loading.
+   Consume an exact eligible Life destination only if its owner supplies it;
+   omit the door otherwise. Arrangement standing and new social acts remain
+   with their owning workstreams.
+
+**Exit:** each of the three stories opens the same canonical object through its
+supported origins, takes one supported action, reads back its result and returns
+correctly. Withdrawal does not leak into public sharing or leave stale quote UI.
+
+### 10.8 N5 — Verification and review packet
+
+**Behavioral checks:** retain the eight existing page/projection/map/route suites;
+add research-controller, situation, media, source inspector and save-owner tests
+only where their behavior changes. Assertions must prove outcomes and request
+budgets rather than merely checking that mocks received a prop.
+
+| Boundary | Required proof |
+| --- | --- |
+| Base open | Correct canonical identity; zero location/provider/model acquisition; successful sparse render |
+| Fact freshness | Per-field expiry, unknown/malformed input, provider mismatch, foreground expiry; no phone-timezone inference |
+| Research | Correlated receipt/status/artifact; both response orderings; fast completion; failed/unknown/retry; account/entity A→B→A; timer cleanup |
+| Location | Granted/denied/timeout/inaccurate/stale; typed resolved mode and degraded route; no precision in URL/query key/logs; no automatic refetch |
+| Media | Explicit request only; required attribution; wrong place, revoked/expired source, no-store, late result and no-photo fallback |
+| Keep and handoff | Valid/invalid/empty trip origin in all three routes; confirmed readback/removal; pair and closing Reserve; current versus late failure |
+| Reading/people | Citation ownership survives filtering; inspector focus/escape; current grants; selected and inline withdrawal; no private share leakage |
+| Navigation | Origin retained across Keep/Ask/map/source/photo; missing origin fallback; exact canonical type+ID after redirects |
+
+Run targeted Jest, TypeScript, touched-file lint, API-boundary/schema checks and
+`git diff --check`. For backend changes run their offline unit/API tests plus an
+isolated disposable-database readback test where database behavior matters.
+Use fake providers and synthetic test-only data; no production seeding, backfill,
+research queue activation or external acquisition is a verification shortcut.
+Every model/route delta requires workspace `./scripts/sync-types.sh`, review of
+both OpenAPI snapshots and app generated types, and `make api-coverage-check`
+when operation consumers change. Shared generated files must be serialized with
+Integration's work, never staged as an incidental whole-tree change.
+
+Run existing scenario and design-reference validation. Prepare the current-SHA
+flag-on iOS/Android flows, but preserve native execution as deferred. Once resumed,
+use the registered `entity-object` pipeline, matched reference/fixture/viewport,
+full-scroll comparisons, narrow/default/large text and VoiceOver/TalkBack checks.
+A mock screenshot or passing Jest suite does not establish native design parity.
+
+**Deliverable:** update this ledger and the existing surface contract with exact
+commits, fixture/reference versions, checks, unresolved owner contracts and
+capability status. Separate these outcomes:
+
+- code complete for the core three stories;
+- reference-ready with real comparison pairs;
+- current-build native/design acceptance pending or accepted;
+- optional owned media / provider media / research / people acceptance;
+- branch landed and internal/public enablement, each evidenced independently.
+
+### 10.9 Commit sequence and owner handoffs
+
+| Commit | Reviewable change | Dependency |
+| --- | --- | --- |
+| 1 | N0: typed fixtures, reference mapping and accepted adaptations | Reviewed entity branch baseline |
+| 2 | N1: lifecycle tests and controller/section extraction | 1; preserve current route entry points |
+| 3 | N2: local fact normalization, deadline observation and honest unknowns | 2 |
+| 4 | N2: agreed cache-only practical-fact adapter, schema sync and mobile adoption | Integration contract; may land independently of 5 |
+| 5 | N3: explicit origin acquisition, request-only situation adapter and typed distance | 2–3; backend accuracy/freshness alignment |
+| 6 | N3: explicit venue-photo acquisition, eligibility and no-store lifecycle | 2; existing media policy; separate additive identity delta if necessary |
+| 7 | N4: source inspector, reading/people consistency and action/return closure | 2–3; 5–6 where available |
+| 8 | N5: cross-entry regressions, evidence and precise remaining gates | All implemented packages above |
+
+Existing-owned photo display, exact Life door and revision-safe Undo are
+separate follow-through commits only after their named owner contracts exist.
+They do not block local fact/reading/route work and must not be marked completed
+merely because their interfaces were proposed.
+
+The first execution checkpoint is commits 1–3: six valid specimens covering the
+three entity stories, a smaller controller, and expiry-correct practical facts.
+Prepare the exact current-fact adapter request for Integration alongside that
+work as a written contract proposal; do not send messages or start other tasks
+without a user request. Content's world-supply
+and Places-root design work remain outside this implementation. Provider policy
+questions go to that existing supplier work rather than a duplicate research lane.
+
+Planning acceptance means approving this bounded scope. Execution should commit
+each coherent unit, preserve concurrent changes, and stop declaring overall
+completion until the corresponding code, contract and evidence exits are met.
+
+Planning-document validation: targeted lifecycle governance, all six relative
+links and `git diff --check` pass. The workspace-wide link check reports one
+pre-existing false positive in the interaction-kernel V2.3 execution report:
+inline JavaScript array access followed by a function call is parsed as a
+Markdown link. That report and the checker are unchanged by this plan.
