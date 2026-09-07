@@ -92,7 +92,7 @@ continues independently.
 Backend, using the repository virtual environment:
 
 ```text
-160 passed in 6.32s
+227 passed in 7.40s
   /Users/feihuyan/travel-workspace/travel-agent/.venv/bin/python -m pytest -q \
     tests/life_projection \
     tests/workers/test_life_projection_jobs.py \

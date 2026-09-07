@@ -1861,8 +1861,17 @@ The bounded packet was implemented in backend worktree
 - `7c5154740` — adds connected merge evidence with a target-side exclusion;
   the merge keeps that exclusion while unioning the source evidence.
 
+The follow-up repair work is also committed in the isolated Life worktree:
+`c82f6ceb4` provides the first CAS-guarded affected-set rollback,
+`c6cc768fc` adds source/target lifecycle fences and multi-transfer/stale-control
+regressions, `59cab4f88` proves an explicit restored target cannot be overwritten
+by an old transfer, and `4e41b23c4` aligns a retained-source route fixture with
+the canonical `created_at` ordering contract. The connected resolution
+selection passes 8 cases; the full `tests/life_projection` selection passes
+204 cases, and the combined Life worker/event-bus selection passes 227 cases.
+
 The explicitly provisioned local database `vesper_life_rehearsal_20260907` was
-migrated to `lifeorg02` (single head). Evidence executed against that
+migrated to `lifeorg05` (single head). Evidence executed against that
 database:
 
 | Check | Result |
@@ -1875,6 +1884,8 @@ database:
 | R2-G organization proposal/materialization and PostgreSQL control sequence | 12 passed across the focused Plan/Occasion/organization selection; stable identity, evidence revision, replay, exclusion non-resurrection, stale readback, rename/detach, exact Undo, conflict-safe control insertion, owner-group archive, explicit restore, and projector callbacks |
 | R2-G identity-resolution registry and migration | 7 passed across the resolution/organization selection; idempotent alias, merge/split persistence, all-target split readback, and `lifeorg02` downgrade/upgrade |
 | R2-G unambiguous resolution application | 2 passed; merge membership transfer, target-side exclusion preservation, source redirect, idempotent reapplication, and explicit split ambiguity |
+| R2-G CAS-guarded repair lifecycle | 8 passed; multi-transfer reverse rollback, later target detach atomic rejection, archived target fencing, and explicit restored-target stale-repair rejection |
+| Broad Life verification | 227 passed across `tests/life_projection`, Life projection workers, event bus, and projection broadcast suites |
 | Ruff on changed files | Passed |
 
 The rehearsal proves the supported Plan path, linked Occasion lens membership,
@@ -1894,6 +1905,12 @@ reprocessed by the runner, Atlas/anchor migration, social/authored owner
 adapters, or a Life serving
 cutover. The report's false-green protections are intentional: the supported-
 scope pass is not a whole-portfolio certificate.
+
+The new repair cases close the first affected-set mutation boundary but do not
+eliminate the legacy path: transfers without current lineage remain an
+explicit group-rebuild requirement, and restored or archived owner states are
+accepted only through current revisions. No reader, serving, or Atlas
+retirement decision follows from these connected passes.
 
 The local commit hook's repository-wide size-budget check remains red on
 pre-existing unrelated files; it was the only skipped hook for these commits.
