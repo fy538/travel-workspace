@@ -89,6 +89,7 @@ or main-branch merge:
 | `bd5112e5a` | Authorized exact-place line quotes | Withdrawal removes quote and selected sheet |
 | `46eadd5d0` | Ephemeral research-arrival/source-count treatment | Queued → ready arrival test |
 | `9121c8546` | Unsafe booking URLs suppressed at projection boundary | HTTP(S)-only reservation action test |
+| `50190881f` | Detail save origin envelopes for venue/site/experience | Route smoke tests; bounded `surface` + optional `trip_id` only |
 
 The current route-level evidence is 8 focused suites / 100 tests plus a clean
 TypeScript check. The branch remains internal and feature flags remain off by
