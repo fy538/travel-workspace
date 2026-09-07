@@ -55200,6 +55200,7 @@
                 "type": "string",
                 "enum": [
                   "keep",
+                  "dismiss",
                   "open_together"
                 ]
               },
