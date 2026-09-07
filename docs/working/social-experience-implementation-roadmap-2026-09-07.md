@@ -53,12 +53,22 @@ sharing does not have to lead to dinner; dinner does not have to lead to a
 connection; receiving is complete without reciprocation. The four value moves
 remain **Make sense. Open possibility. Help it work. Carry forward.**
 
-### What this planning turn does not authorize
+**Current execution recommendation:** §10 turns this portfolio into the next
+reviewable implementation sequence. Complete ordinary selected sharing,
+original receiving and basic Life refinding together; then extend the same
+contracts into participation and practical adaptation. §9 is the corrected
+branch-local implementation record, not completion of S0–S7. The sequence in
+§10 refines the packages below rather than establishing another roadmap.
 
-No application edits, schema changes, new provider integration, bulk migration,
-runtime flag activation, deployment, message sending, or adoption of the pending
-policies. Execution should obtain the required owner/product rulings where named
-below. Already authorized behavior can advance independently of those rulings.
+### Planning and execution authority
+
+This plan itself does not authorize application edits, schema changes, new
+provider integration, bulk migration, runtime flag activation, deployment,
+message sending, or adoption of pending policies. The first bounded implementation
+batch was subsequently requested and is recorded in §9. The later request to
+plan the next work authorizes this documentation revision, not those additional
+effects. Execution should obtain the required owner/product rulings where named
+below; already authorized behavior can advance independently of those rulings.
 No wholesale Chat, Life or four-root redesign is required by this plan.
 
 ## 2. Evidence and the current starting point
@@ -500,17 +510,18 @@ measured runtime bounds, and no known high-priority cross-user correctness bug.
 | S2 original receiving | S1 readers/audience/repair for real exposure; merged Home baseline | S3 account-based participation and independent world supply |
 | S3 guest/contributor | Canonical Occasion ownership; S1 applicable controls; adopted guest policy for non-account access | S4 practical option-supply work can use existing accounts |
 | S4 live adaptation | Current Plan/Commitment authority, relevant S3 participation semantics, Integration practical suppliers | S5 Life owner-reader/event contract and retrieval work |
-| S5 continuity | S1 source/share lifecycle; applicable S3 identities; selected tested Life interfaces | No need to wait for every indexed reader or generated-piece save design |
+| S5 continuity | S1 source/share lifecycle; selected tested Life interfaces; S3 identity only for guest access | Basic account-based refinding belongs in the first connected sharing delivery alongside S2, not after all S3/S4 work |
 | S6 source-based intelligence | Actual effective use grants, dependency repair, Content/Integration consumer contracts | Original and independent-world value already available through S2 |
 | S7 portfolio and pruning | Each capability's closure, not a blanket prerequisite for all development | Continuous verification throughout S1–S6 |
 
-**Recommended first implementation batch after S0:** S1's selected-source and
-named-recipient owner mapping, corresponding controls/withdrawal, and S2's
-original reader plus Home/Places receiving. Exercise photo, place note and one
-non-photo object together. This establishes shared contracts used by every
-subsequent experience; it is not “prove one behavior loop before designing the
-system.” Begin the guest/practical contract work in parallel once those
-interfaces are stable.
+**Recommended next implementation batch after S0:** S1's selected-source and
+named-recipient owner mapping, corresponding controls/withdrawal, S2's original
+reader and Home/Places receiving, and S5's basic account-based Life refinding.
+Exercise photo, place note and one non-photo object together. §10 specifies
+commit boundaries and acceptance. This establishes shared contracts used by
+every subsequent experience; it is not “prove one behavior loop before designing
+the system.” Guest/practical contract work can proceed independently once those
+interfaces are stable; it need not delay ordinary account-based sharing.
 
 Keep at most two substantive social implementation packets active at once:
 
@@ -598,9 +609,10 @@ claiming attendance from a link tap or tracking where people went.
 
 ## 8. Next action and completion ledger
 
-**Next: close S0 and authorize the S1/S2 execution packet, while receiving the
-active Integration note/seed fixes and Life's corrected contract.** No further
-broad social design exploration is needed before that mapping.
+**Next: reconcile the reviewed branch-local batch, close the specific S0
+decisions in §10.3, then authorize the connected S1/S2/basic-S5 packet.** Receive
+Integration's existing note/seed work and Life's tested contract; don't rebuild
+either. No further broad social design exploration is needed before mapping.
 
 S0 is not marked complete merely because this roadmap exists: exact general
 sharing persistence, effective grant acquisition and the policy rulings still
@@ -608,11 +620,11 @@ need owner review. Record rulings in the existing four proposals and promote
 accepted durable semantics through the normal decision/contract path. Avoid
 adding a second set of strategy documents.
 
-| Package | Status at creation | Evidence needed to advance |
+| Package | Current planning status after the first bounded batch | Evidence needed to advance |
 | --- | --- | --- |
 | S0 | Planned; source/code mapping partially established above | Agreed owner/API/event mapping and scoped decision disposition |
-| S1 | Planned on existing foundations | Connected source/audience/control/withdrawal evidence |
-| S2 | Partial receiving infrastructure already merged; complete social experience planned | Actual original-reader and four-root sender/recipient path |
+| S1 | Pair/place dismissal and withdrawal improved on isolated branches; general sharing/control contract still planned | Connected selected-source/audience/control/withdrawal evidence |
+| S2 | Home note receiving partly integrated; exact Places identity improved on isolated branches; broader original receiving planned | Actual multi-medium original-reader and four-root sender/recipient path |
 | S3 | Existing account-based substrate; guest/contributor completion planned | Adopted guest mapping and bounded participation tests |
 | S4 | Existing proposal-only engine substrate; connected behavior planned | Fresh options, canonical adoption and truthful affected-person readback |
 | S5 | Existing owner projections plus unmerged Life work; social continuity planned | Tested Life interface, shared refinding and correction/replay evidence |
@@ -630,17 +642,23 @@ this planning thread. Contract snapshots are committed in the workspace root.
 | --- | --- | --- | --- |
 | Low-pressure recipient dismissal | `7159a74a4` adds `place_handoff.dismiss.v1`, binds it to the existing recipient-authorized terminal transition, and keeps legacy `Keep` action resolution compatible | `91995b4f8` adds the UUID action type, quiet terminal copy, cache invalidation and no receipt publication; workspace snapshots in `d3b6bc1` | Landed on isolated branches; focused backend 37 tests and mobile 14 tests passed |
 | Exact friend-place doorway | `f9ce20f63` preserves bounded `venue_ids` aligned with friend place names and returns exact IDs from the existing Places query; snapshot `55f2bcb` | `894dfb6b8` makes only verified venue thumbnails open the canonical venue route and adds a profile doorway; legacy name-only rows remain informational | Landed on isolated branches; backend social-section tests (72) and mobile Places tests (47) passed |
-| Sender withdrawal affordance | Existing sender-authorized `revoke` transition is reused; no new authority or route | `8cf8f82e9` retains the returned handoff revision, offers local “Take it back,” and sends a revision-bound revoke; sender component tests (6) and TypeScript passed | Landed on isolated mobile branch |
+| Sender withdrawal affordance | Existing sender-authorized `revoke` transition is reused; no new authority or route | `8cf8f82e9` adds local “Take it back”; `44e9d00e8` subsequently refreshes owner revision, bounds conflict retry and scopes the local control to its entity | Landed on isolated mobile branch; not a durable sender history/control surface |
 | Revocation/expiry projection invariant | Existing Home adapter already rejects terminal and expired handoffs; no runtime change was needed | `4f4ed556c` makes the invariant explicit for Home projection tests (revoked and expired material both omitted) | Landed on isolated backend branch |
+| Review corrections | `b7d98871c` filters unavailable legacy/UUID handoff messages from the recipient conversation-history route | `44e9d00e8` also repairs entity-people cache invalidation and generated enum ordering | Isolated tested cut; not certification of every original/context/search reader |
 
-### What this batch proves—and does not prove
+### What this batch establishes—and does not establish
 
-The current batch proves a coherent, bounded pair/place specialization: a
-sender can leave a place note, a recipient can leave it aside without social
-telemetry, a sender can withdraw it immediately, and Places friend rows open a
-canonical profile or exact venue only when the server supplied that identity.
-Home and Places do not copy revoked or expired note material into their
-projections.
+The batch adds and tests bounded pair/place behavior: a recipient dismissal
+without publishing a local consequence receipt, local sender withdrawal, and
+profile/exact-venue doors where Places receives verified identity. Operational
+action telemetry remains; “no social telemetry” was too broad a claim. The
+Home terminal/expiry invariant and recipient Chat-history filtering have focused
+coverage. The Places venue-save path is a separate Trip-peer reader, not proof
+of a general authored-share lifecycle across Places.
+
+The existing terminal `dismiss` also hides the addressed note from recipient
+history. Do not equate that implementation with a future “clear from Home”
+attention control; §10.3 calls for an explicit distinction before generalizing it.
 
 It does **not** prove the full social portfolio. No multi-recipient audience,
 selected-photo/non-spatial writer, non-account guest, remote contributor,
@@ -651,22 +669,455 @@ redesign was made in this batch.
 
 ### Verification boundary
 
-Focused unit/component suites and the mobile TypeScript check passed for the
-changed slices. The backend pre-existing size-budget formatter gate required a
-targeted skip for the test-only commit; no unrelated formatting churn was
-included. Native two-account, guest-web, connected PostgreSQL and operational
-fan-out evidence remain outstanding. “Committed on an isolated branch” is not
-“merged,” “enabled,” or “released.”
+The final fix turn reported 218 backend tests (including four PostgreSQL tests),
+78 mobile tests, TypeScript, generated-types checking and Ruff passing. These
+are receipts for that isolated cut, not reruns during this planning pass, and
+must not be added to the overlapping earlier slice counts. The new history-route
+test uses mocked owner reads; existing database tests do not establish the entire
+two-account journey. Backend commits required a size-budget hook skip; review
+that debt, including added code in the large conversation route, before further
+expansion. Native two-account, guest-web, full connected social-lifecycle and
+operational fan-out evidence remain outstanding. “Committed on an isolated
+branch” is not “merged,” “enabled,” or “released.”
 
 The workspace `make contract-check` was also run after the snapshot commits.
 Snapshot validation and the active mobile projection passed; the final compare
 was intentionally against the separate dirty `travel-app` checkout on its
 pre-social branch and therefore reported the two expected isolated-branch
 differences (`handoff_action: dismiss` and `PlacesFriendActivity.venue_ids`).
-After the mobile branch is merged or its generated schema is advanced through
-the normal cross-repo workflow, rerun the check before claiming a synchronized
-contract.
+That is the historical check context, not a current expected-failure waiver.
+After receiving the reviewed branches, regenerate from the selected combined
+backend and verify the matching mobile candidate. Other lanes have advanced
+the workspace contract since these social commits; never overwrite their newer
+operations with the old social snapshot.
 
 Update this ledger as implementation lands; retain the design brief for intent
 and the main roadmap for cross-system sequencing. Archive or renew this working
 plan by October 7 rather than let it become another stale source of build truth.
+
+## 10. Connected social execution plan — September 7 rebaseline
+
+### 10.1 Outcome, scope and starting coordinates
+
+**Next milestone: a person can share an existing piece of their world; another
+person receives its actual value, can use it in the appropriate part of Vesper,
+and can find it later while access remains valid. The sender can return and
+control the share after the immediate sending session.**
+
+This milestone includes the common contract, real mobile consumers, basic Life
+continuity, contact controls and lifecycle repair. It is not a new social root,
+an invitation-only product, or a temporary place-note experiment. Build against
+all three A/B/C experiences; deliver the shared foundations before expanding
+guest and practical capabilities that depend on them.
+
+Planning inspection: workspace `80bf5c3`; backend primary main advanced through
+`e65a06e01`; primary mobile `15b38e18f`. Social worktrees are clean at backend
+`b7d98871c` and mobile `44e9d00e8`, both on
+`codex/social-implementation-2026-09-07`, not merged into main at inspection.
+Primary checkouts and workspace documents contain concurrent work. These are
+inspection coordinates, not the next implementation's chosen merge base.
+
+This revision inspected current code and documents. It did not rerun application
+tests, launch a simulator, verify the design export visually, change code,
+merge branches, or adopt the four policy proposals. Follow the current
+[Integration roadmap](complete-system-integration-roadmap-2026-09-05.md),
+especially its connected-value execution/receiving sections, for shared landing.
+
+**Supported first portfolio:** a selected photograph, an authored place note,
+and a non-spatial recipe represented by eligible text or an external-original
+link. Include a send to one person and to several explicitly selected eligible
+account recipients. These are coverage fixtures, not three new product modes.
+A native map/collection can join when its existing owner supports an exact,
+permissioned reader; do not claim arbitrary map sharing from the Trip-map URL
+export. No public publishing or non-account delivery is included by implication.
+
+### 10.2 Concrete owner mapping and architectural recommendation
+
+Paths below are relative to a selected backend/mobile checkout. Reconcile
+current primary and social-branch versions before editing shared files.
+
+| Responsibility | Inspected reuse point | Next implementation responsibility |
+| --- | --- | --- |
+| Custody and selected material | Backend `core/db/intake_v2.py`, `core/db/intake_source_attachments.py`, `api/routes/intake.py`; existing `source_objects` | Retain only the selected material under the actual Share/Bring authority; resolve exact object/component identity. A private upload is not a recipient media grant. |
+| Authored share and audience | Backend `domains/relationships/{models,schema,repository}.py`, `api/routes/relationship_handoffs.py` | Establish bounded general sharing within Relationships, coordinated with original custody; choose the schema at S0, not through client JSON defaults. |
+| Connection and restrictions | Backend `core/db/social_circles.py`, social-circle models/routes; mobile `data/social.ts` | Reuse pair identity and current eligibility. Add only missing consumer controls/enforcement; no second Friends graph or mandatory pair name. |
+| Current delivery and original destination | Backend `root_projection/v2/{home_portfolio,home_source_adapters}.py`; mobile `components/root-projection/`, `utils/rootProjectionNavigation.ts` | Extend the integrated exact-object receiving path to authorized human originals. Do not route every object to generic Chat or the generated-Source worker. |
+| Places social supply | Backend `core/db/trip_save_suggestions.py::get_friend_shared_venue_activity`, `places/friends.py`; mobile `components/places/renderers/socialCard.tsx` | Preserve valid legacy specialization; add owner-authorized authored spatial supply independent of a Trip. Saving with explicit share opt-in is not the whole Friends experience. |
+| Reply / private Ask | Backend `concierge/handoff_entry.py`; existing conversation routes; mobile `data/relationshipPlaceHandoffs.ts` and Chat entry/navigation | Receive Integration's revision-bound note resolver. Reply names a person; Ask names a private job. Neither expands attachment or source-use rights. |
+| Durable retrieval | Backend `life_projection/{owner_contracts,owner_reads,current_authority,retained_source_projector}.py`; mobile `components/life/LifeRootV1Screen.tsx`, `app/you/life-record.tsx` | Supply a social owner adapter and exact reader to Life's tested path. On inspected main, `social_contribution` is explicitly `UNAVAILABLE`; changing that label alone cannot enable it. |
+| Participation and adaptation | Backend `domains/experience_graph/`, invitation commands/routes, `lived_experience/adapters/shared_plan_repair.py` | Consume these same identities/material references, preserving canonical Occasion, Plan and Commitment mutations. No social-owned guest roster or second live engine. |
+
+**Recommended persistence direction, subject to explicit schema review:** keep
+original custody in Source or the existing original-object owner; place a
+bounded share record and per-recipient delivery/access relations inside the
+existing Relationships domain. A literal authored note may remain owned there;
+do not duplicate it into Source and a message merely to satisfy a universal
+shape. The share references the selected original/components and carries the
+author's optional message, purpose and projection intent. It does not own the
+underlying Place, Occasion, Plan, media library or human relationship.
+
+Why prefer this direction:
+
+- The current `PlaceHandoff` and prepared command require a world entity and
+  conversation; the writer authorizes an exact pair. Adding nullable fields
+  alone would leave pair, event, reader and action assumptions throughout it.
+- A separate general SocialPost service would duplicate Source custody,
+  audience checks, notification delivery and Life ownership.
+- A narrow Relationships extension can reuse identity/authority and transport
+  while keeping PlaceHandoff a supported specialization. Existing Trip story,
+  map and Atlas public-share mechanisms are reuse candidates for rendering or
+  delivery only; their public-link authority and statistics are not Friends
+  semantics.
+
+At S0, compare the actual migrations and callers for a versioned extension
+versus a companion share/recipient representation. Record the chosen tables,
+constraints, routes and owner transaction before code. Do not make legacy
+PlaceHandoff records masquerade as the new type or perform dual canonical
+writes. Any eventual migration needs an explicit compatibility adapter, history
+mapping, rollback and consumer inventory; it is not prerequisite to replacing
+new general-share creation.
+
+**Required logical contract (field names are not an approved wire schema):**
+
+| Dimension | Required semantics |
+| --- | --- |
+| Identity | Stable share ID; original owner/kind/ID; selected component IDs; author and relevant subjects; optional actual Place/Occasion context. No invented context to satisfy a schema. |
+| Revision | Separate original content, share/audience and recipient-delivery/attention revisions as needed. Opening an item must not make its author's content edit inherently stale. |
+| Scope | Effective audience bound at Send; permitted display/use; source custody and subject restrictions; projection intent such as addressed versus ambient. Equal recipients do not imply equal interruption. |
+| Recipient relation | One bounded, idempotent delivery result per recipient; current access and reader reference. A multi-recipient share need not create a group conversation or reveal every recipient to the others. |
+| Lifecycle | Current source and grant validity; semantic expiry; withdrawal and explicit restoration where supported. End of relevance is not necessarily end of original access. |
+| Navigation | Exact authorized original/action reference; viewer/account scope; origin root and return context. Never send raw media bytes or bearer credentials in route parameters. |
+| Events | Durable, content-free identity/revision/change envelopes; causal references; affected consumer/recipient scope, including former recipients for repair. Reuse existing outbox/delivery conventions. |
+
+One server-owned reader policy must be used wherever original content is
+exposed. The sender's control read and recipient's content read are different
+views; a participant-only row lookup returning the whole object is not the
+complete current-authority policy.
+
+### 10.3 Decision register — resolve only what the next capability needs
+
+The following are **recommendations for approval**, not amendments made by this
+roadmap. Record adopted semantics in the existing proposals and owning contract;
+do not create a second policy vocabulary in implementation comments.
+
+| Decision | Recommended ruling | Required before / independent work |
+| --- | --- | --- |
+| General-share owner and supported kinds | Source/original custody plus bounded Relationships share/recipient records; first kinds in §10.1 | Shared model/table changes. Existing reader audit and fixture construction can proceed. |
+| First audience | Explicitly selected eligible account recipients, one or several; freeze at Send; no automatic public/follower audience. Friends is an understandable selector, not a second invitation | New writer and audience projection. Do not require a global “all friends” default to begin. |
+| End of connection versus old shares | Disconnect ends new contact eligibility; existing originals follow their own grants. Block closes the applicable contact/read paths without erasing independent originals | Wider social exposure and contact controls. Exact behavior across messages, invitations and known-identity links must be specified. |
+| Clear versus release | Clearing a Home unit should change attention only; it should not destroy otherwise eligible Life retrieval. Giving up access, deleting one's reference and author withdrawal are separate effects | Generalizing `dismiss`. Preserve existing terminal note semantics until an approved migration; do not silently reinterpret old events. |
+| Edit and recipient changes | Ordinary edits can update an author's message under content revision. Replacing selected originals or adding recipients is a fresh explicit audience consequence; no silent attachment substitution | Edit controls. Sender withdrawal remains independently useful and should not wait for rich editing. |
+| Consumer source use | Original display first; independent world information available without using restricted human content. Use friend material in AI only under an effective, understood, purpose-specific grant | Broadening the existing note-only Ask or adding source-dependent composition. No blanket `contextual_only` default as consent. |
+| Guest and non-attending contribution | Use canonical Occasion capabilities; recommend bounded identity verification at the first sensitive/attributed boundary with a reusable session | S3 non-account actions. Existing-account sharing and practical work continue without waiting for a verification vendor. |
+
+The existing [audience](friends-audience-decision-proposal-2026-09-07.md),
+[connection](ongoing-connection-default-decision-proposal-2026-09-07.md),
+[source-use](scoped-source-use-grant-decision-proposal-2026-09-07.md) and
+[guest](guest-identity-and-delivery-decision-proposal-2026-09-07.md) proposals
+remain the decision locations. Include clear-versus-release in the attention/
+connection and reader contract review. Reply-only versus a voluntary private
+acknowledgment need not block this batch: keep Reply usable, do not build a
+reaction/count service, and retain the acknowledgment choice as unresolved.
+
+### 10.4 Implementation sequence and reviewable commit boundaries
+
+These stages refine S0–S7; they are not independent services or new agent lanes.
+Sizes are relative scope/risk, not calendar promises.
+
+#### First — reconcile the existing cut (S0 / S7; small–medium)
+
+1. Record the current social commits, actual Integration/Entity receiving
+   base, Life contract cut and feature flags. Distinguish primary checkout
+   state from main and from the combined candidate.
+2. Audit read coverage before adopting the withdrawal claim: exact handoff
+   GET, conversation history, conversation list/preview/search, contextual Ask,
+   Home, entity people lines, Places and any cached media. The new history
+   filter runs after message pagination; test a page filled by hidden notes
+   followed by eligible older messages. This is a verification target, not a
+   claim that the latest fixes establish all-reader repair.
+   Put reusable read policy in its owning module rather than further growing
+   the oversized conversation route. No blanket hook skip or unrelated cleanup
+   is an accepted completion strategy.
+3. Test current revision/retry/navigation fixes against real owner rows and
+   mobile consumers. Inspect pending-state cleanup on navigation/account
+   change and ambiguous network completion, not only successful responses.
+4. Integration receives the tested cut in its candidate; run contract sync
+   there, preserving newer Source operations. Do not overwrite the primary
+   dirty mobile checkout or force a branch change underneath another session.
+
+**Commit boundary:** targeted remaining defects/tests if established, then
+updated branch/contract receipt. Merge/push/activation remain separately
+authorized actions. **Exit:** one known baseline and honest remaining gaps,
+not a repository-wide cleanup or a declaration that social is complete.
+
+#### Second — settle the general sharing contract (S0; medium, decision-bearing)
+
+1. Complete the §10.2 storage/caller comparison; settle the first five §10.3
+   rulings and exact constraints/operations. Specify original read, sender
+   enumeration, send/recovery, edit/withdraw, recipient clear and access checks.
+2. Define fixture actors and data from the existing shared fixture world.
+   Include excluded and later-connected people; preserve boat versus dinner
+   separation. Add the three media cases to that fixture rather than inventing
+   a second incompatible social world.
+3. Agree the owner event/read interface with Life and the semantic destination
+   interface with Integration. Specify failure, absent/tombstoned source,
+   delayed delivery, cursor, account switch and revision behavior before APIs.
+4. Obtain explicit approval for shared models/tables and pending policy changes
+   under repo rules. No code default should make that decision on the user's
+   behalf. Design only missing states in the existing project; no new round
+   of full-scroll compositions.
+
+**Commit boundary:** approved decision/contract updates plus schema/API/test
+plan. **Checkpoint A:** photo, place note and recipe fit without mandatory
+Trip, Place, group room, AI use or recipient maintenance. If not, revisit the
+contract before building consumers.
+
+#### Third — implement selected sending and current original reads (S1; large)
+
+1. Implement approved persistence/migration through existing owners. Enforce
+   unique author request identity, source selection, per-recipient eligibility,
+   content/audience revisions and transactionally durable delivery intent.
+   Bound fan-out and attachment sizes; record actual chosen limits in the
+   execution receipt rather than deriving product limits from fixture counts.
+2. Establish a canonical safe reader for the selected original and its media.
+   Use current source/share/control state, including direct URL/thumbnail
+   access. Preserve author and optional caption; do not substitute an AI
+   synopsis. Scrub unintended EXIF/location and inherited album/private context
+   from the recipient representation where applicable.
+3. Support exact send-result recovery after an uncertain response/restart.
+   Retry the same operation, not a fresh share; expose per-recipient failure
+   without resending to successful recipients. “Sent” means owner-accepted
+   recipient availability, not a preparation row or proof of reading. External
+   channel delivery, when added, must have its own truthful status.
+4. Implement durable sender enumeration and contextual withdrawal; add bounded
+   edit under the adopted rule. The sender sees their material, selected
+   audience and technical failure recovery, not recipient views/Keep/dwell or
+   the recipient's private attention state.
+5. Emit the source/share change contract at every relevant mutation. Recheck
+   withdrawal before late delivery and fail closed at read even if projection
+   cleanup is delayed. Independent custody follows its own owner.
+
+**Commit boundaries:** persistence/migration tests → authorized original and
+media readers → idempotent send/recovery/outbox → sender controls. Each API
+change includes backend tests, workspace OpenAPI/projection and generated mobile
+types; do not hand-maintain duplicate TypeScript models. Include migration on
+populated legacy data, one Alembic head and rollback/recovery evidence.
+
+#### Fourth — connect the native send/receive experience (S1 / S2; large)
+
+1. Reuse existing object/share/intake entry points. One selection, understandable
+   audience and Send boundary; sending an existing photo does not require an
+   AI conversation. No public-looking composer or forced caption. Add missing
+   server access through `data/`, with generated contracts and real/mock parity.
+   An OS share into Vesper remains private Bring under the contribution contract;
+   it must not publish to friends. Sharing outward is a separately intended
+   audience consequence, even when the same component handles source selection.
+2. Route compact presentations to one logical original destination with
+   medium-specific rendering. Reuse entity, image, text and link primitives;
+   shared reader behavior need not mean one universal visual card or a new
+   screen family per type. Unavailable media must not fall back to stale bytes.
+3. Make human Reply and private Ask separate, contextual continuations. Open a
+   pair conversation only when an authorized reply/contact needs it. Do not
+   create a group thread solely because several people received the same item.
+   A private question may use independent place facts without loading the
+   friend's restricted photo or text; explain unavailability briefly when needed.
+4. Connect Home and Places with the exact placement rules in §10.5. The recipient
+   can consume the original and leave without a task list, Keep, reply prompt,
+   connection solicitation or generated interpretation. Preserve the sender's
+   entry/return context and stable controls after reopening the item.
+
+**Commit boundaries:** share entry and result recovery → original renderer and
+navigation → contextual Reply/Ask → Home/Places adapters. Backend/API integration
+and two-account tests accompany consumer work; mocked cards alone do not pass.
+
+#### Fifth — close basic continuity and trust with that same delivery (S1 / S5 / S7; large)
+
+This is part of the first connected milestone, not optional work deferred until
+after guests, advanced AI or the whole Life redesign.
+
+1. Social supplies original/share enumeration, current read authorization,
+   semantic revisions and content-free events. Life owns its adapter, index,
+   grouping, exclusion and rebuild behavior on the reviewed Life cut. Do not
+   enable `social_contribution` by changing its capability declaration alone.
+2. Refind by person and supported Time/Place lenses after restart without a
+   second Save. A recent share can remain eligible in Life after leaving Home;
+   sender withdrawal and recipient attention changes have different effects.
+   A shared recipe needs no fake trip or map pin to be discoverable.
+3. Implement the adopted mute/disconnect/block controls in existing person and
+   conversation contexts, with server enforcement across relevant routes.
+   Report remains an independent action with an operational owner and honest
+   handling. Pair access must not leak through a known-identity guest link.
+4. Reconcile source deletion, share withdrawal, recipient removal and control
+   changes across projections, exact reads, search/context, thumbnails and
+   in-flight work. Include former recipients in repair. Test stale replay and
+   explicit restore; late events must not silently recreate withdrawn content.
+5. Perform the registered native surface QA with real media, rich/sparse/empty
+   supply, text scaling, keyboard, loading/failure states and account switching.
+   Record exact surface registry IDs at implementation intake. Compare isolated
+   design references, not entire boards. No screenshot claim from typecheck.
+
+**Commit boundaries:** social owner events/enumeration → Life adapter/current
+reader and refinding → contact enforcement and controls → connected lifecycle
+and native receipts. Life can implement against an agreed versioned interface;
+it need not finish Atlas migration first. If its tested reader is unavailable,
+continue private integration work but do not call this milestone complete.
+
+**Checkpoint B — connected everyday social value:** all three media work from
+selection to another account's original, contextual optional use, restart and
+refinding. Several selected recipients have independent access/attention;
+the author can return and withdraw. This is the first complete-system delivery
+boundary, not the limit of the product vision.
+
+#### Sixth — extend into getting together (S3 / S4 / S5; large, guest risk high)
+
+1. Exercise existing-account invitations, optional contributions and Plan
+   changes through canonical owners using the same shared-original references.
+   A recipe may inform dinner without automatically creating an Occasion.
+2. Let an authorized remote contributor send and correct selected material
+   without attendance, arrangement-editing or private-address rights. Reuse
+   the common sharing reader where its scope fits; contribution commands still
+   belong to the Occasion owner, not a new generic Share side effect.
+3. Integrate fresh feasible options from the live-engine/Content owners. Show
+   useful tradeoffs; adopt through current owner authority; reproject affected
+   participants' permitted truth. Test no change, later arrival, decline and
+   abandoning an option, not only everyone accepting the new time.
+4. Resolve the guest proposal before non-account execution. Add bounded preview,
+   verified/otherwise explicitly authorized answer, sensitive arrival facts,
+   contribution and later media under their distinct capabilities. Reuse one
+   suitable session, without forcing account adoption or repeated verification.
+5. Reuse earlier material for another invitation with fresh participation and
+   current constraints. Prior arrival/departure statements are not defaults for
+   the next dinner. Sam's unanswered change cannot become “expected at eight.”
+
+**Commit boundaries:** account contribution/invitation adapters → current shared
+change/readback → approved guest principal/delivery → guest reader/answer/arrival
+→ later material/continuation. **Checkpoint C:** host, attendee and non-attending
+contributor benefit with unequal effort; original sharing still stands alone.
+Coordinate with the existing Plan/Integration owners, not a second planning lane.
+
+#### Seventh — add substantive social intelligence and widen exposure (S6 / S7)
+
+Original enjoyment and independently sourced world depth already belong in
+S2. This stage adds only the source-dependent intelligence that needs additional
+effective permission, production and repair—not “AI on every share.”
+
+- With the adopted source-use scope, select one concrete improvement such as a
+  friend's route detail changing a useful afternoon option, or a contrasting
+  perspective making a place newly understandable. Preserve independent world
+  evidence versus the person's words; do not diagnose closeness or personality.
+- Reuse existing bounded Content/Integration producers. No generation/provider
+  call on scroll; cache authorized reusable world information and fence personal
+  derivatives by source/grant revision. Measure actual production and media costs.
+- Test source withdrawal during generation, before publication and at read;
+  immediate-only Ask does not create retained derivative history by accident.
+- Expand exposure only after the capability's controls, support path, native
+  experience, runtime bounds and explicit release authorization are satisfied.
+  Retire only superseded legacy callers and schemas with migration/rollback
+  evidence. Useful Trip collaboration is not automatically obsolete.
+
+**Checkpoint D:** the same product can deliver valuable human originals, useful
+independent world help and meaningfully better permissioned connections. AI
+availability never determines whether a friend's photograph is worth receiving.
+
+### 10.5 Four-root acceptance: one material, different reasons to appear
+
+| Root / destination | What the user gets | Required implementation behavior |
+| --- | --- | --- |
+| Home | Timely addressed material; shared consequences within the arrangement/possibility they affect; generous independent value | No notification transcript. Respect conditional `Addressed to you`, timeliness and deduplication. Clearing attention creates no access revocation. Ordinary ambient Friends publishing is not automatically an addressed Home item. |
+| Places | Intentional spatial material in `From friends`, useful alongside the world | Independent of a Trip; author-chosen Place/neighborhood/city precision; finite pagination and substantive sparse/empty fallback. No live-person tracker or inferred visit. Exact venue identity alone does not authorize a more precise location. |
+| Chat | Human conversation or a private useful question with the right context | Distinct Reply/Ask recipient and scope; no automatic attachments or retained third-party inference. Original content doesn't require entering Chat. Preserve return to the original root/object. |
+| Life | What was shared, by whom, connected to legitimate time/place/people context | Same eligible original, not a permanent recipient copy. Basic refinding and sender control survive restart; reader authority remains current. No extra filing assignment. |
+| Occasion / Plan | Contributions and useful practical state around doing something together | Existing detail destination and owners. Receiving a share does not enroll anyone; an arrangement edit does not answer for a participant. |
+
+Casual non-spatial material follows accepted placement: a deliberately featured
+Status can have its Home doorway, with Life People continuity; a specifically
+addressed recipe may have timely Home delivery. Neither should acquire a fake
+Place just to qualify for the friends map. Featured Status is a use of a share,
+not a second profile system. No fifth tab or parallel social inbox is proposed.
+
+### 10.6 Acceptance portfolio and evidence required
+
+Use the [existing fixture world](fixtures/shared-fixture-world-2026-09-07.md)
+and add compatible fixtures only where coverage is missing. Fixture statements
+are not real source/provider facts or user observations.
+
+| Scenario | Completion condition | Failure it must catch |
+| --- | --- | --- |
+| Photograph, no extra effort | Maya selects one image; Nora sees that image with attribution and can leave | Entire album/context disclosed; caption/AI/Keep/reply required |
+| Place note with world value | Exact eligible place opens; independent useful context is separate from the friend's voice | Generic Chat destination, invented visit or friend endorsement |
+| Non-spatial recipe | Actual text or eligible external original opens and can be found later | Mandatory Place, Occasion, ingestion questionnaire or copied restricted article |
+| One send, several recipients | Each selected account receives once; failed delivery is recoverable individually | Duplicate shares, accidental group room, recipient-list leakage, future connections included |
+| Original after restart | Refind through the supported Life lens; author can inspect/withdraw later | Component-local state is the only control; recipient forced to Keep |
+| Clear, mute, withdraw | Attention changes preserve eligible refinding; author withdrawal closes applicable readers | “Leave it” unexpectedly erases access; Home-only hiding masquerades as revocation |
+| Source/control race | Current rights win over old events, cached routes and in-flight work | Stale resurrection; stale thumbnail; raw message/search/context bypass |
+| Sparse social supply | Zero or one friend still leaves useful Home/Places, with no invitation pressure | Fabricated friends activity or an empty app demanding recruitment |
+| Dinner and changed timing | Current arrangement, personal answer and protected constraint remain separate | Silence treated as acceptance; old seven-thirty copied into next dinner |
+| Asymmetric contribution | Dana contributes without attending; Sam receives without uploading anything | Membership/attendance/admin work used to unlock receiving |
+
+Required evidence layers for the connected milestone:
+
+1. Unit/route tests of each changed owner and consumer, including unauthorized
+   readers and same-request retry. New canonical readers need real database
+   tests, not only mocked repository return values.
+2. Connected PostgreSQL/API scenarios from Source and share writes through
+   outbox/delivery, reads and repair. Use synchronized races when claiming race
+   protection; separately test ordinary stale replay and migration.
+3. Cross-repo generated contracts on the same combined candidate: workspace
+   `./scripts/sync-types.sh`, `make contract-check`, `make api-coverage-check`,
+   plus mobile typecheck and real/mock consumer tests. Follow script-supported
+   worktree selection; never regenerate into an unrelated dirty checkout.
+4. Registered native two-account walkthrough and visual QA for affected roots
+   and details. Add a third/excluded account for audience tests. Guest browser
+   evidence belongs to S3 after its mechanism is adopted, not the first milestone.
+5. Measured send/read/media/fan-out/recovery bounds, explicit original-only
+   model-call count, and all known bypass/cleanup exceptions. No continuous
+   location monitoring or generated filler to make the fixtures look alive.
+
+Evaluate usefulness as well as correctness: can the recipient enjoy or use the
+actual thing without work, can the sender understand the audience, can both
+find what matters later, and does Vesper reduce coordination burden where it
+participates? Use occasional consented walkthroughs; no per-share questionnaire,
+reply-speed target, equal-contribution metric or passive consumption report to
+the sender. Record friction observed, not an invented universal tap-count goal.
+
+### 10.7 Ownership, checkpoints and stopping rules
+
+- **Social owns:** selected-share semantics and approved writer, sender/recipient
+  operations, contact policy enforcement and original/event interface. It fixes
+  its branch-local defects before requesting shared adoption.
+- **Source/Capture owns:** source custody, upload/selection and original lifecycle.
+  Social obtains a tested narrow interface; it cannot bypass private custody.
+- **Integration owns:** combined candidate, shared receiving/navigation contracts,
+  generated snapshots and bounded production/practical coordination. Social
+  supplies reviewed cuts rather than changing its roadmap underneath it.
+- **Life owns:** social owner adapter, current-authority projection, indexing,
+  exclusion and supported refinding. An interface review is sufficient to work
+  independently; full Atlas cutover is not a blanket prerequisite.
+- **Home/Places/Chat/Plan owners:** targeted consumer changes in their existing
+  surfaces and owners. The approved social experience guides behavior; this lane
+  does not reopen their shells or copy their implementation work.
+
+Execute sequentially by default. If parallel agent work is separately requested,
+the useful split is bounded owner/read work versus consumer/Life integration
+after the interface is agreed. Serialize migrations, generated contracts and
+same-file edits; no permanent agent per root or new orchestration hierarchy.
+This plan does not dispatch or message another lane.
+
+At Checkpoints A–D, or sooner after two substantive implementation packages,
+reassess the remaining work using actual rework and integration receipts. Reopen
+only the affected decision if sharing needs invented context, the sender gains
+a maintenance dashboard, receiving becomes an AI task, Life duplicates custody,
+or guests must administer the host's product. Don't restart philosophy/design
+because one component needs a correction.
+
+Treat unavailable adopted identity/policy, an incompatible owner interface, or
+a cross-user correctness defect as a capability-specific stop. Work on independent
+approved capabilities can continue. Do not turn a conditional launch gate into a
+claim that every subsystem must be finished before implementation starts.
+
+**Immediate next action on execution authorization:** finish the baseline reader
+audit and the exact schema/audience/clear-versus-release contract review. Return
+the proposed migration/API shape for the required approval, then execute selected
+sending → original receiving → basic Life continuity and controls as one connected
+delivery. No new research pack, broad design sprint or guest identity system is
+needed to begin that work.
