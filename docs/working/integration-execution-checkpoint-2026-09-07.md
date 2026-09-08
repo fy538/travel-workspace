@@ -83,6 +83,57 @@ occurred.
    whether to resume the practical-owner Home/Places package. No wave 2 work is
    authorized by this receipt.
 
+## Bounded baseline-repair round — September 7, 23:00 EDT
+
+The first repair round is now partially landed. Integration received the
+Social policy correction, regenerated the mobile projection and generated app
+types once, and landed the bounded Home/Places repairs. These changes remain
+local; no remote publication, deployment, provider activation, flag activation,
+or native acceptance occurred.
+
+| Package | Revision | State |
+| --- | --- | --- |
+| Workspace Social policy/docs | `e80ff66` | landed; sender-history endpoint is active with its reviewed app consumer, while the feature flag, sender-only authority, redaction, and rollout posture remain unchanged |
+| Workspace mobile projection | `60ef47b` | landed; `docs/openapi.app.json` now contains the policy-admitted sender-history operation |
+| Mobile generated contract | `a60a04230` | landed on `travel-app` `main`; generated schema matches the active projection |
+| Mobile Home/Places repair | `6b44041ea` | landed on `travel-app` `main`; budget and bounded surface contracts repaired |
+| Backend Engineering Meta repair | pending | supplier still working on the isolated reliability package; no backend changes have been merged in this round |
+
+### Current receipts
+
+* `make contract-check` passes after the Social policy decision and final
+  projection/type generation: **581** complete-snapshot paths, **446** mobile
+  paths, **491** mobile operations, **1,325** mobile schemas; schema bridge and
+  place-identity checks pass.
+* `make api-coverage-check` passes: **566 active**, **15 dark** (all flagged),
+  and **62 retiring** operations. The sender-history route remains behind
+  `RELATIONSHIP_UUID_HANDOFFS_ENABLED`.
+* Workspace documentation inventory, links, governance, and the API contract
+  audit pass. Workspace `scripts/tests` remains **64 passed** and `make doctor`
+  passes with service probes intentionally unrun.
+* Mobile Home/Places checks pass: the PlacesFeedCardView budget is **25/125**,
+  typecheck passes, lint exits 0 with **169 pre-existing warnings**, and the
+  focused production/surface suites pass (**5 suites / 132 tests**).
+* The exact six-suite receiving rerun is **62 passed / 1 failed**. The sole
+  remaining failure is the previously identified Social-owned
+  `components/places/renderers/socialCard.tsx` hit-target offender; Home did
+  not modify that file and the Social lane has not yet supplied its transfer.
+* The canonical runtime remains unrun. The workspace has no isolated lane
+  manifest and the default Compose stack is stopped, so Integration did not
+  start a shared database or run migrations against it.
+
+### Receiving order from this round
+
+1. Receive and review Engineering Meta's exact backend commit, or record its
+   unchanged gate blocker; do not merge the supplier's dirty worktree.
+2. Decide whether Social should provide the one remaining `socialCard.tsx`
+   control-alignment repair. Do not fold that file into Home by inference.
+3. Run the backend focused failures and the combined mandatory checks once the
+   backend package is landed. Keep the isolated runtime/migration validation a
+   separate gate.
+4. Reassess the complete candidate. No Wave 2 feature or product-surface work
+   begins from this receipt.
+
 ## Landed
 
 ### Retained Opening context is an exact Moment dependency
