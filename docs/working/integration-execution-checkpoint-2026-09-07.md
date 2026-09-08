@@ -238,6 +238,25 @@ known `change_kind` database cluster → separately owned residual fixture and
 contract repairs. No baseline increase, exemption, broad cleanup, or Wave 2
 work is authorized by this section.
 
+### Package A receipt
+
+Meta's first prerequisite package is complete in the isolated staged tree:
+four additional owned paths, **131 staged paths total**, no unstaged changes,
+and manifest SHA256
+`50b3b159530b23ee779d35b45a2266ec8ebb689b40a0d4f683e8cd14a9d4cacc`.
+The status checker now ignores only the explicit in-memory Life repair
+receivers in the two named modules; the `experience_briefs` writer demotes
+only rows currently `complete` inside the existing transaction. Thirty-two
+targeted tests pass, both status guards are green, and no DB constraint,
+product state, baseline, or broad exemption changed.
+
+The size package is not yet complete. A first mechanical extraction of
+`repair_intake_v2_outbox` was fully reverted because it duplicated structure
+and left both sides over budget. The remaining three functions/four files
+therefore remain unchanged pending deliberate phase-level extraction and
+equivalence tests. No backend commit is eligible yet because the full-tree
+size gate still fails; the staged package remains isolated and unlanded.
+
 ## Landed
 
 ### Retained Opening context is an exact Moment dependency
