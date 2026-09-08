@@ -152,6 +152,64 @@ or native acceptance occurred.
 4. Reassess the complete candidate. No Wave 2 feature or product-surface work
    begins from this receipt.
 
+## Baseline close-out — September 7, 23:22 EDT
+
+The remaining mobile baseline failure is now received. The backend package is
+still not eligible to land, so this checkpoint is **not baseline verified**.
+
+| Package / validation | Revision or result | State |
+| --- | --- | --- |
+| Social control-alignment repair | `travel-app` `5f41be821` (supplier `6ab20f227`) | landed on canonical mobile `main`; only `components/places/renderers/socialCard.tsx` changed |
+| Exact mobile six-suite baseline | **6 suites / 63 tests passed** | green on receiving `main` |
+| Mobile gates | typecheck, test typecheck contracts, schema bridge, API boundaries, native compatibility, Home/Places budgets, scoped ESLint, full lint | green; lint reports 169 existing warnings and 0 errors |
+| Disposable runtime | `vesper-mobile-baseline-repair-2026-09-07`, ports `63610–63614` | started with explicit Compose override for the repository's fixed container names; Postgres and Qdrant healthy |
+| Forward migration | `alembic upgrade head` → `lifeorgpipelinemerge01` | passed; `alembic current` and `alembic heads` agree on the single head |
+| Postgres-marked suite | **1,316 passed / 46 failed / 5 skipped**, 21,414 deselected, 2 warnings | executed against the disposable database; not green |
+| API service | startup readiness | unrun: isolated API exited because `ANTHROPIC_API_KEY` is absent; no shared service was touched |
+
+### Runtime failure reconciliation
+
+The 46 Postgres failures do not represent one new regression. The dominant
+cluster is the known `change_kind` `NameError` in
+`outcome_life_propagation.py`, reaching Occasion/life/outcome/account-erasure
+tests; this is directly covered by Engineering Meta's staged seven-path repair.
+The other failures are separate pre-existing contract or fixture debt exposed
+by a fresh database: August 2026 proposal dates are now in the past, several
+tests assume hard-coded seeded place rows, the context loader's internal group
+profile fixture is incomplete, a relationship fixture violates the current
+verified-source receipt constraint, and there are independent receipt
+metadata, UTC-offset formatting, local-plan time, notification, provisional
+place, and dogfood-catalog mismatches. None was silently reclassified as a
+green result or folded into Social/Home.
+
+Engineering Meta's consolidated handoff remains read-only and unlanded: 128
+staged paths at base `afe177b33`, manifest SHA256
+`ce0bf1606d2b3bb077d2758dab3bea377c6ee2898b7a6b3c8a77199422650ab6`, with
+the broad-exception ceiling (**1,190/1,190**), writer boundary (**151**), and
+focused receipt (**241 passed / 9 skipped**) green. The normal commit hook is
+blocked by unrelated repository-wide size/status guard debt, while the bounded
+offline run exposes 10 undeclared-Postgres concierge fixtures and full mypy
+still reports 264 errors across 63 files. No hook, baseline, or quarantine was
+bypassed.
+
+The disposable containers, volumes, network, temporary Compose override, and
+lane venv symlink created for this validation were removed explicitly after
+the run. No remote push, deployment, activation, or shared-daemon restart
+occurred.
+
+### Current prerequisite sequence
+
+1. Decide whether the repository-wide size/status guard debt may be repaired or
+   explicitly accepted so Meta can produce a normal hook-verified backend
+   commit; do not copy its staged package into `travel-agent/main`.
+2. Separately triage the fresh-database fixture/contract failures above; the
+   `change_kind` cluster should be rechecked first once Meta is eligible.
+3. Supply `ANTHROPIC_API_KEY` only if API-lifecycle validation is required,
+   then repeat the isolated runtime smoke; keep provider/model execution
+   separate from migration and Postgres evidence.
+4. Re-run the combined mandatory checks and only then mark the baseline
+   verified. Wave 2 remains paused.
+
 ## Landed
 
 ### Retained Opening context is an exact Moment dependency
