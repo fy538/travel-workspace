@@ -87,6 +87,10 @@ rules:
 
 
 overrides:
+  docs/working/vesper-program-roadmap.md:
+    disposition: keep_authoritative
+    rationale: Compact current cross-lane priority, assignment and dependency map extracted from the Integration roadmap; lane plans retain implementation detail and product, permissions, generated status and release authorities remain unchanged.
+
   docs/working/vesper-v1-supported-offer-2026-09-07.md:
     disposition: keep_reference
     rationale: Reviewable v1 service-offer candidate with inclusion boundaries, three evidence-grounded entrances and mapping to existing integration packages; does not adopt launch coverage, permissions, pricing or release readiness.
@@ -157,7 +161,7 @@ overrides:
 
   docs/working/complete-system-integration-roadmap-2026-09-05.md:
     disposition: keep_authoritative
-    rationale: Current cross-lane coordination register and integration roadmap with code-backed packages, autonomous delivery boundaries and reassessment checkpoints; product canon and release approvals retain their authority.
+    rationale: Shared-system technical sequencing and landing plan with code-backed packages and scoped evidence; the Vesper program roadmap now owns cross-lane priorities and allocation, while product canon and release approvals retain authority.
 
   docs/working/home-connected-experience-plan-2026-09-04.md:
     disposition: keep_reference

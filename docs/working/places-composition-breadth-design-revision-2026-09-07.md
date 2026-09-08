@@ -14,6 +14,13 @@ source_of_truth_for: []
 
 ## 1. Read this first
 
+**Program coordination:** the [program roadmap](vesper-program-roadmap.md)
+owns cross-lane priority. The current queue below remains bounded design/behavior
+support for Integration's receiving package. Home owns its handoff; Social owns
+sharing effects; Integration owns practical judgment and runtime contracts.
+Cross-review should produce one owner handoff, not competing edits or another
+Places generator. This assignment still does not authorize app implementation.
+
 **Latest assignment — September 7, 19:46 export reviewed:** read **§14 first**.
 Keep board 19 as the selected visual direction. Representative photography and
 mixed avatars now render, the compact rows retain their gains, and board 21

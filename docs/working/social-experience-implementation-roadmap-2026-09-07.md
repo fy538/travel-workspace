@@ -18,6 +18,30 @@ depends_on:
 
 # Social implementation roadmap — a shared layer of the lived-world product
 
+## Current execution queue — program-aligned September 7
+
+Use the [program roadmap](vesper-program-roadmap.md) for cross-lane ownership
+and the inspected candidate. Social fixes `68ef73031` and `75743adae` are now
+on backend/mobile local main; older isolated-branch statements below are dated
+receipts. The pair-note implementation is not the complete designed experience.
+
+1. Revalidate the merged sender controls and shared visibility policy across
+   history, previews, search and model context. Do not rebuild those fixes.
+2. Resolve only the selected-source/recipient decisions needed for the next
+   capability, using §10.3. Then connect photographs, place notes and non-spatial
+   originals through existing source and Relationship owners. Wider guests and
+   new friend-source AI use remain independently gated.
+3. Deliver original receiving, optional Reply/private Ask, durable sender
+   controls and basic Life refinding together (§10.4 third–fifth packages).
+   Coordinate surface work with Integration/Home/Places and Life reader changes
+   with Life; do not add a separate social archive or require a reply or plan.
+4. Review the combined experience before extending the same contracts into
+   gatherings, guests and social intelligence. Preserve those later requirements
+   without letting them hold all ordinary authenticated receiving.
+
+This is the current queue. §10 retains file-level scope and decision boundaries;
+§9/§10.8 retain scoped execution evidence, not current branch or rollout status.
+
 ## 1. Recommendation and scope
 
 **Build social as a connected capability of the existing product: deliberately
@@ -53,8 +77,9 @@ sharing does not have to lead to dinner; dinner does not have to lead to a
 connection; receiving is complete without reciprocation. The four value moves
 remain **Make sense. Open possibility. Help it work. Carry forward.**
 
-**Current execution recommendation:** §10 turns this portfolio into the next
-reviewable implementation sequence. Complete ordinary selected sharing,
+**Detailed execution plan:** §10 turns this portfolio into the
+reviewable implementation sequence. The current queue above incorporates its
+later receipts. Complete ordinary selected sharing,
 original receiving and basic Life refinding together; then extend the same
 contracts into participation and practical adaptation. §9 is the corrected
 branch-local implementation record, not completion of S0–S7. The sequence in

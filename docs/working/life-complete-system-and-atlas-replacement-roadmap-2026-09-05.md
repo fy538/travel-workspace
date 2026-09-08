@@ -22,25 +22,17 @@ supersedes:
 
 ## Current execution baseline — September 7
 
-**Rebaseline after the first organizing-intelligence implementation — September 7:**
-the latest inspected Life backend is `333f447be` on
-`codex/life-shadow-rehearsal-2026-09-07`. Its preceding measurement correction
-is `4a19414be`. Backend local `main` is `d8fdb55d6`; ancestry inspection confirms
-that it does not include the latest Life checkpoint. Earlier foundations were
-integrated, but that does not mean all subsequent Life packages are merged.
-App `b479c3289` is on `codex/entity-object-design-completion`; its earlier Life
-route/restoration work does not establish adoption of the new organizer.
-Canonical workspace main is `d439deb`, with concurrent dirty strategy/design
-work; the Life documentation lane is based on `62b25a5` before this update.
-These are inspection pins, not permanent assertions about moving branches.
+**Post-consolidation rebaseline — September 7 evening:** the first organizer
+`333f447be`, measurement correction `4a19414be` and independent holdouts
+`cba46cf22` are now included in local backend main; the Life research/roadmap
+cut is included in workspace main. See the [program baseline](vesper-program-roadmap.md#2-inspected-baseline--september-7-2120-edt)
+for the inspected tuple and its limits. Older receipts saying these cuts are
+isolated describe their execution time, not the current merge state.
 
-The newest roadmap and research remain in the isolated documentation worktree
-`/Users/feihuyan/travel-workspace-life-organization-value-2026-09-07` on
-`codex/life-organization-value-research-2026-09-07`. The canonical workspace's
-older “implementation packages are merged” statement describes an earlier
-checkpoint only. Integration must land the reviewed Life documentation with
-its tested code cut; do not overwrite concurrent main work or infer merge/push
-authority from this rebaseline.
+Combined validation is still outstanding, including reconciliation of the two
+backend migration heads. App Life routes and restoration do not establish
+adoption of the new organizer. Neither merging the experimental code nor this
+rebaseline authorizes indexed serving, a model run, Atlas deletion or a push.
 
 **Read this baseline, the current queue and decision register below first.**
 They are the sole present-tense execution summary. [§10](#10-design-independent-execution-plan--september-6)
@@ -56,11 +48,10 @@ records the latest deterministic organization experiment. Do not restart them.
 
 R0–R8 remains Life's sole forward roadmap. The engine design supplies behavior
 and implementation detail; the execution-status file preserves receipts. The
-[coordination register](complete-system-integration-roadmap-2026-09-05.md#2-current-coordination-register--september-7)
+[program roadmap](vesper-program-roadmap.md)
 owns current cross-lane assignments. Historical findings below describe their
-inspection date, not a request to repeat completed work. Read that register in
-the canonical workspace too: this isolated branch is not its freshest copy.
-The current Integration handoff asks Life for a tested branch cut, bounded
+inspection date, not a request to repeat completed work. Verify the actual
+candidate before testing or landing. The Integration handoff requires bounded
 owner/group/original readers, migration evidence and explicit target-delivery
 limits; it does not authorize serving merely because organization code exists.
 
@@ -82,8 +73,8 @@ isolated branch before integration; no stage silently implies the next.
 
 | Stage | Current evidence | What is not established |
 | --- | --- | --- |
-| Implemented locally | Maintainer/cursor/migration packages plus `4a19414be` and `333f447be`; latest recorded local selection is 296 passing Life/worker/broadcast tests, including PostgreSQL | This documentation pass does not rerun those tests or certify every owner/algorithm |
-| Integrated | Earlier Life tab, reader and delivery foundations have historical landing receipts | Latest Life backend and documentation checkpoints are not on their respective main branches; combined-branch validation is outstanding |
+| Implemented locally | Maintainer/cursor/migration packages, `4a19414be`, `333f447be` and holdouts `cba46cf22`; §13.16 reports 300 Life tests and four focused holdout tests | This documentation pass does not rerun or add these overlapping test totals, or certify every owner/algorithm |
+| Integrated | Organizer/holdout code and Life roadmap/research cuts are now on local main, as recorded in the program baseline | Combined-branch and migration validation is outstanding; no serving or remote-publication claim follows |
 | Connected to authoritative owners | Supported retained-source/Plan/Occasion/Outcome shadow paths have lifecycle/readback evidence; primary graph-owner groups are maintained | Richer B1 source interpretations are supplied by fixtures; automatic extraction, continuity classification and production B1 publication are not connected |
 | User-visible | Earlier Life shell, four-lens access and exact-restoration work exist in the app | No user-visible adoption of the new organizer, complete public group/original reader or measured preview usefulness follows from its internal group tests |
 | Accepted for release | No new release acceptance from these packages | Populated portfolio parity, budgets, native acceptance, rollout/rollback, indexed serving and Atlas retirement remain gated |

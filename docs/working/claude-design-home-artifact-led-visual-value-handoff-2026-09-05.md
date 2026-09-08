@@ -19,7 +19,19 @@ the live project; `03538beb` is retired. Improve the design artifact only. Do
 not implement the mobile app, change backend contracts, or redesign adjacent
 roots.
 
-**Current assignment — September 7, 19:37 export review:** preserve the
+**Current queue — September 7, 19:56 export reviewed in Home:** preserve the
+selected compositions. That task's later rendered review closed §17's return
+screen, fixture consistency and thin-context labeling requests: Maya's original
+leads, practical housekeeping is subordinate, and the coast comparison delivers
+substance. This coordination update does not claim a fresh render or native test.
+Finish only the remaining customer-copy cleanup and concrete destination labels;
+then use the [Home implementation map](home-connected-experience-implementation-map-2026-09-04.md)
+to map selected screens to real owners and missing interfaces. The
+[program roadmap](vesper-program-roadmap.md) owns cross-lane priority. Section 12's
+older kickoff must be read under this queue; do not resend resolved §17 work or
+commission another broad layout exploration.
+
+**Historical assignment — September 7, 19:37 export review:** preserve the
 ordinary Home and artifact improvements; finish the return-after-absence
 composition and selected-state consistency in
 [section 17](#17-september-7-1937-export--close-the-fixes-reconcile-the-selected-states).

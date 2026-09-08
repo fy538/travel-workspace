@@ -12,7 +12,7 @@ supersedes:
 source_of_truth_for:
   - Integration task complete-system sequencing
   - live-engine integration across context, judgment, surfaces and continuity
-  - current cross-lane coordination and receiving interfaces
+  - shared-system technical integration and receiving interfaces
   - integration milestone reassessment and bounded subagent execution
 depends_on:
   - ../systems/four-root-loop-object-surface.md
@@ -24,6 +24,39 @@ depends_on:
 ---
 
 # Complete-system integration roadmap
+
+## Current execution queue — program-aligned September 7
+
+The [Vesper program roadmap](vesper-program-roadmap.md) now owns cross-lane
+priorities, assignments, dependency routing and the inspected repository tuple.
+This document retains I0–I6/CV/SP/E acceptance scope, shared technical sequencing,
+integration and landing. Section 2's earlier lane allocations are historical.
+Do not create another assignment map here or restart completed Source machinery.
+
+1. **Converge the combined candidate (E0/E6).** The latest Life and Social cuts
+   have merged locally. Reconcile the two backend migration heads, receive the
+   Engineering Meta repair cut, and verify exact backend/mobile/workspace
+   revisions and generated contracts. Merging is not combined acceptance or
+   remote publication. Independent owned work continues meanwhile.
+2. **Complete received value and supported practical judgment (E2/E3).** Use
+   Content's actual owner material through Home/Places and exact depth; make
+   supported practical facts change only dependent claims. Review current-job
+   reads as an additive compiler, not a completed replacement. Add timing/fit
+   specialization when a concrete question requires it; keep independent
+   editorial, saved, historical and human value available.
+3. **Finish the user-facing request/result path (remaining E4/E5).** The local
+   HTTP → executor → Postgres → receiving checkpoint `d8fdb55d6` is complete.
+   Have the owning receiving task wire existing mobile hooks into the approved
+   entry, pending, result, reopen and cancellation experience. Do not redesign
+   Chat or build another worker/result store. Receive tested Life/Social
+   interfaces without waiting for their entire roadmaps.
+4. **Review the combined portfolio (E6).** Use the program checkpoint for actual
+   value, remaining user effort, current-owner correction, performance and cost.
+   Record connected, native and release evidence separately. Remove replaced
+   paths only after caller/obligation review and the required authorization.
+
+This queue supersedes older present-tense “next” instructions, not unfinished
+acceptance requirements. Package detail and dated receipts remain below.
 
 ## 0. Decision, scope, and evidence boundary
 
@@ -61,11 +94,11 @@ the existing contribution/agency surface; Life organizes an unfolding life.
 Multiplayer participates throughout. The moves are not tabs, pipeline stages,
 four required cards, or four independently owned services.
 
-The **Integration** task (`01a030af-13a8-74e1-81be-7d526bec3045`) owns this
-cross-system program. The September 7 receiving update in §2 retains Integration
-and Life engineering ownership and adds Content's supplier responsibility. The
-separate **Strategy** task supplies product decisions, not a competing execution
-queue. Assignment here does not claim a task is running or was dispatched.
+The **Integration** task (`01a030af-13a8-74e1-81be-7d526bec3045`) owns shared
+technical execution, candidate verification and landing. **Strategy** maintains
+the [program map](vesper-program-roadmap.md), product decisions and whole-system
+value review; it does not take over domain implementation. Lane owners retain
+their queues. Assignment does not claim a task is running or was dispatched.
 
 **September 7 supply clarification:** the system has three complementary ways
 to obtain value—explicit investigation, bounded reusable public/world
@@ -83,7 +116,7 @@ stop according to actual owner state. This is a planning refinement, not a new
 service launch, continuity agreement or execution queue.
 
 [Section 9.8](#98-connected-system-next-stage--september-7-holistic-rebaseline)
-is the current detailed execution order following the holistic integration
+records the detailed execution rebaseline following the holistic integration
 evaluation. The callback repair, exact backend result reader and Source-specific
 cancellation from §9.7 have landed; do not schedule them again. The remaining
 work is reviewed branch convergence, public supply receiving, meaningful request
@@ -100,14 +133,15 @@ not a new execution queue, continuity policy or release claim.
 [Section 9.9](#99-next-executable-tranche--connected-everyday-value)
 groups the unfinished work into a larger, executable tranche: useful public and
 authorized personal value, shared practical judgment, completed requested work,
-and exact continuation. It refines §9.8's execution waves, not its ownership or
-product scope. Start with E0/E1; do not restart completed Source machinery or
-wait for every supplier's entire roadmap.
+and exact continuation. It refines §9.8's execution waves, not product scope.
+The current queue above incorporates its later receipts: converge the candidate,
+then advance remaining receiving/practical work without restarting completed
+Source machinery or waiting for every supplier's entire roadmap.
 
-This document replaces older cross-system ordering and lane allocation. Lane
-roadmaps retain internal package detail; their code, acceptance cases and
-historical receipts remain evidence. Product canon and operational release
-procedures retain their authority.
+This document retains shared-system technical ordering; the program map
+supersedes its lane allocation. Lane roadmaps retain internal package detail;
+their code, acceptance cases and historical receipts remain evidence. Product
+canon and operational release procedures retain their authority.
 
 This is a planning deliverable. No implementation, schema approval, paid
 generation, provider contact, deployment, feature-flag activation, production
@@ -230,6 +264,16 @@ live assistance, with no visible fifth tab or obligatory "engine" section.
 <a id="2-current-coordination-register--september-6"></a>
 
 ## 2. Current coordination register — September 7
+
+**Coordination authority moved on September 7:** use the
+[program roadmap](vesper-program-roadmap.md) for the current assignment map,
+dependency queue and checkpoint. The heading is retained for existing links.
+The following September 6–7 snapshots preserve provenance and scoped supply
+receipts; their task status, branch state and two-lane allocations are
+historical, not current dispatch instructions. Technical acceptance requirements
+remain applicable unless a later scoped receipt or accepted decision changes them.
+
+### Historical coordination snapshots and supply receipts
 
 **September 7 current coordination:** Integration owns shared execution,
 judgment and root composition; its next detailed packet is
@@ -403,8 +447,8 @@ when a material contradiction appears. Use local tests during current execution;
 the founder deferred app/device testing for now. Keep native/release gates
 explicit without making them a prerequisite for unrelated engineering. A
 checkpoint records what to continue, revise or retire, not another blanket
-revalidation loop. This register is the current assignment map; older task
-activity tables and receipts elsewhere are dated evidence.
+revalidation loop. The current assignment map is now the program roadmap;
+this register and older task activity tables preserve dated evidence only.
 
 ## 3. Milestones and dependency ordering
 

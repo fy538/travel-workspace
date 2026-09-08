@@ -11,27 +11,37 @@ supersedes: []
 
 # Home — connected-experience implementation map
 
-**September 7 planning update:** [§8](#8-september-7-detailed-consumer-delivery-plan)
-is the current Home receiving work plan within A–E and Integration CV-0–CV-4.
-The [next connected slice in §8.8](#88-next-slice--complete-the-available-home-portfolio)
-supersedes the initial coding assignment with a code-grounded execution order.
-Its September 7 post-review rebaseline is the current plan: complete the remaining
-identity/routing repairs, join the available portfolio to actual consumers, and
-receive named upstream results as their owner contracts become ready. The
-historical receipts are not a declaration that these journeys are complete.
-It separates candidate compatibility, useful delivered content, exact continuation,
-and native acceptance. It does not authorize application implementation, paid
-production, a new persistent lane, or a design-canon change by itself.
+## Current execution queue — program-aligned September 7
+
+The [program roadmap](vesper-program-roadmap.md) owns priorities and assignments;
+Integration owns the shared receiving package. Home is its accountable surface
+contributor, not another producer or a competing cross-root program.
+
+1. Preserve the selected Home composition from the Home task's 19:56 export
+   review. Map its useful explanations, human originals, possibilities and
+   practical developments to existing owners, renderers and exact destinations.
+2. Consume actual Content/Integration results and complete the approved mobile
+   request/pending/result/reopen/cancel path using existing hooks. Keep Chat
+   layout and new permission effects out of scope; agree any shared interface
+   change with Integration before writing it.
+3. Verify Home → Places/object depth → return, changed facts and withdrawal over
+   the combined candidate. Earlier semantic-revision, action and return repairs
+   have receipts below; restart them only for a reproduced regression. Inspect
+   actual on-view value and remaining human effort, not only routes and labels.
+
+[§8](#8-september-7-detailed-consumer-delivery-plan) and
+[§8.8](#88-next-slice--complete-the-available-home-portfolio) retain detailed
+scope and evidence. This queue replaces older “next” instructions, not unfinished
+acceptance. Static design acceptance, connected tests and native/release evidence
+remain distinct. No new design, worker, provider or rollout authority follows.
 
 ## September 6 execution rebaseline
 
-This is the **Home/Places consumer plan**, subordinate to the
-[integration coordination register](complete-system-integration-roadmap-2026-09-05.md#2-current-coordination-register--september-7)
-for shared contracts. The latest September 6 two-lane decision assigns its
-execution to Integration, with Home available for bounded consumer support;
-it is not a third persistent lane. Keep J1–J4 and packages A–E; do not create another root
-program. The September 4 code-map rows below are historical observations where
-this rebaseline supersedes them.
+**Historical baseline:** the current queue above and program map supersede
+this date's lane allocation. Keep J1–J4 and packages A–E as consumer acceptance
+scope; Integration retains shared technical contracts and landing. The September
+4 code-map rows below are historical observations where later receipts supersede
+them, not a request to create another root program.
 
 | Existing package | Landed since the original map | Remaining delivery |
 | --- | --- | --- |

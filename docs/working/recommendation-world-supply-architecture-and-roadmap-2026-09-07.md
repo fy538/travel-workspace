@@ -11,6 +11,28 @@ supersedes: []
 
 # Recommendation world supply: architecture and implementation roadmap
 
+## Current execution queue — program-aligned September 7
+
+The [program roadmap](vesper-program-roadmap.md) owns cross-lane priority and
+the current candidate. Content owns supply; Integration owns shared receiving
+and landing. This queue supersedes earlier “next batch” instructions, not their
+remaining acceptance criteria. The research, ingestion and indexing repairs in
+§13.10–§13.11 are landed; do not repeat them or equate them with complete world
+supply. Their one-head migration receipt predates the Life merge; use the
+program baseline for the current combined migration state.
+
+1. Close the remaining real-local-Postgres concurrency, external-writer fencing,
+   temporal-reader and cancellation gaps named in §13.10/§13.8, with bounded
+   inputs and no incidental model download or paid provider activation.
+2. Deliver varied actual material through existing owners: useful explanation,
+   comparison, ordinary possibility and practical fact. Hand Integration and
+   Entities exact identity, evidence, freshness, permitted reuse, depth and
+   known/unknown cost; inspect corrected/expired readback as well as initial output.
+3. Resolve source feasibility and measured coverage/cost at the relevant supplier
+   boundary. Public reusable supply and private preparation remain distinct.
+   End this package with received outputs and explicit unsupported coverage,
+   not a claim that all C0–C6 or all providers are finished.
+
 ## 1. Recommendation
 
 **Borrow broad discovery coverage; own selective, well-supported understanding and personal judgment. Do not build a comprehensive world index, but do not interpret that as storing nothing.**
@@ -33,7 +55,7 @@ whole ingestion lifecycle is complete.
 - [Product Thesis](../../travel-agent/docs/product/Product%20Thesis.md) and [Product Model](../../travel-agent/docs/product/Product%20Model.md): everyday usefulness; current purpose over historical resemblance; four product moves, not a travel-only funnel.
 - [Place canon §6](../../travel-agent/docs/product/Place%20Interpretation%20and%20Content%20Intelligence.md#6-pre-research-live-retrieval-and-runtime-composition): bounded investigation, thin serving, selective reuse, dossier-independent recommendations.
 - [Situated-value matrix §15](situated-value-decision-matrix-2026-09-06.md#15-recommendation-judgment-from-context-to-worthwhile-possibilities) and [NYC specimens](nyc-recommendation-judgment-specimen-pack-2026-09-07.md): character, situational fit and feasibility as separate judgments.
-- [Integration roadmap §2 / CV-3](complete-system-integration-roadmap-2026-09-05.md): Content supplies this handoff; Integration owns shared implementation and landing. Life remains a separate continuity owner.
+- [Program roadmap](vesper-program-roadmap.md) and [Integration CV-3](complete-system-integration-roadmap-2026-09-05.md): Content supplies this handoff; Integration owns shared technical implementation and landing. Life remains a separate continuity owner.
 - [Bounded production decision](../decisions/2026-09-06-bound-source-production-worker.md): no optional provider/model production or enqueue on ordinary root reads; activation remains separately gated.
 
 Snapshot: workspace `ffcb533`, backend main `ea816526d`, mobile branch `codex/entity-object-design-completion` at `6296287ef`. Working-tree strategy edits were present. The matrix and Place canon include this lane's prior uncommitted amendments; treat them as inspected working state, not proof of deployment. This is a targeted code/doc audit, not a claim to have reread every recent document or tested all app routes.

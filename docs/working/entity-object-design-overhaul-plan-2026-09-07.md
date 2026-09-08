@@ -17,6 +17,26 @@ depends_on:
 
 # Entity object page: design-completion and integration overhaul
 
+## Current execution queue — program-aligned September 7
+
+The [program roadmap](vesper-program-roadmap.md) owns cross-lane assignments.
+Entities supplies exact useful destinations to Integration's receiving package;
+it does not own recommendation, research, sharing or Life policy. Core anatomy
+and review repairs through `3f199d470` are included in mobile main. Historical
+branch-local receipts below do not imply those fixes still need merging.
+
+1. Execute §10's first checkpoint, N0–N2: rich/sparse venue, site and experience
+   specimens, bounded lifecycle cleanup and freshness-correct practical facts.
+2. Complete source inspection, exact actions and cross-entry return with the
+   receiving owner. Consume existing Content/Integration contracts; document
+   absent Life/arrangement interfaces precisely rather than inventing substitutes.
+3. Continue explicit media/distance and later acceptance only under their
+   existing source/permission and execution boundaries. Native reference
+   acceptance, whole-system behavior and rollout remain separate evidence.
+
+This queue supersedes earlier immediate-batch instructions. §10 retains the
+file-level sequence and unmet acceptance; no new acquisition/backfill is authorized.
+
 ## 1. Outcome and scope
 
 Make the existing venue, site and experience pages faithfully express the
@@ -24,7 +44,7 @@ chosen object-page design, using actual authorized inputs. Then connect that
 page to the existing Home, Places, Chat, Life and arrangement owners without
 creating a competing place history, plan, receipt or social system.
 
-This is a proposed execution plan, not an implementation or activation receipt.
+This is an execution plan with dated implementation receipts, not activation evidence.
 It adds a focused design-completion batch to the existing entity acceptance
 program; it does not restart its already-landed correctness packages or replace
 the Integration/Life coordination model.
