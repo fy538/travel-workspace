@@ -556,14 +556,16 @@ than extending their expiry. The final checks are green:
   `python3 scripts/render_current_state.py --write`.
 
 Strategy's four context-memory files were compared against the canonical dirty
-backend checkout byte-for-byte; all four match exactly. Those supplier files
-remain preserved as the only canonical backend uncommitted changes until the
-sole landing owner reconciles them with the candidate.
+backend checkout byte-for-byte; all four matched exactly. They were then
+committed as the reviewed authority handoff (`6ef180ee4`) and the candidate's
+Life, audit, and documentation-gate commits were landed locally on backend
+`main`, now clean at `0116a12b4`. The candidate branch remains local as an
+auditable receipt; no remote publication occurred.
 
 ### Boundary and remaining debt
 
 The full mypy baseline remains **262 errors across 62 files**, unchanged. The
 connected failures above are not reclassified as green, and the one offline
 failure is not silently swallowed. The disposable Compose project was stopped
-and removed after evidence collection. The candidate is ready for local
-landing; no additional feature work is authorized by this receiving round.
+and removed after evidence collection. The reviewed candidate is landed locally;
+no additional feature work is authorized by this receiving round.

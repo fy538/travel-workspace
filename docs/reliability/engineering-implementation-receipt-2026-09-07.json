@@ -597,9 +597,22 @@
       "root_current_state": "regenerated with scripts/render_current_state.py --write"
     },
     "strategy_docs_byte_compare": "4 of 4 exact matches with canonical dirty backend files",
+    "canonical_landing": {
+      "workspace": "7044f23",
+      "backend": "0116a12b4",
+      "backend_commits": [
+        "6ef180ee4 docs: receive context memory authority handoff",
+        "6e742e9aa fix(life): reuse maintenance transaction for withdrawals",
+        "809dc3460 test: bound offline suite lifecycle audits",
+        "0116a12b4 chore: reconcile audit and documentation gates"
+      ],
+      "backend_worktree_clean": true,
+      "mobile": "5f41be821",
+      "remote_published": false
+    },
     "mypy": "262 baseline errors across 62 files; unchanged",
     "runtime": "disposable Compose project stopped and removed after evidence",
     "no_push_deploy_activation_or_bypass": true,
-    "status": "candidate_ready_for_local_landing; bounded offline and connected debt explicitly retained"
+    "status": "landed_locally; bounded offline and connected debt explicitly retained"
   }
 }
