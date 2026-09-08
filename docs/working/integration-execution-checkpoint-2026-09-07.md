@@ -316,7 +316,10 @@ Compose project was stopped and removed after the bounded evidence.
 This closes the structural prerequisite and the residual fixture package, but
 does not certify the entire repository. Remaining work is a separate repair
 of the Life projection concurrency failures and the previously recorded
-undeclared-Postgres offline fixtures; no baseline, hook, or test quarantine
+undeclared-Postgres offline fixtures. The post-landing offline run is
+**21,086 passed / 240 undeclared-Postgres failures / 14 skipped / 53 xpassed**;
+the failures are the expected leak family exposed by the tightened baseline,
+not a migration or API-contract failure. No baseline, hook, or test quarantine
 was changed.
 
 The preceding staged-tree measurements are retained as historical pre-landing
