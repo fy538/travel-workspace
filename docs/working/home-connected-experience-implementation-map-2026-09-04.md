@@ -1385,3 +1385,19 @@ sharing remains in Places friends scope as previously agreed. No Home-owned
 generator, booking flow, Chat/Life redesign, or production/provider activation
 was added. The two workspace-wide documentation findings named above remain
 untouched concurrent work.
+
+**Implementation receipt — September 8 source receiving checkpoint:** the
+available mobile receiving seam is now connected without creating a Home-owned
+generator, result store, or retry loop (Travel App `5f6a068cd`, isolated branch
+`codex/home-connected-receiving-2026-09-08`, not merged or pushed).
+
+| Producing owner | Supported scope | Production mode | Payload / renderer | Exact destination / action | Revision / expiry / repair | Evidence |
+| --- | --- | --- | --- | --- | --- | --- |
+| Intake/Source request owner → existing Integration serving | An explicitly authorized source attachment selected from a Home or Places `source.inspect` unit; request is bounded to the active root, represented subjects, source refs, optional Places context, represented time/zone and a 15-minute request horizon | Explicit user `Ask Vesper` action only; source inspection remains read-only; no request on root GET, no implicit retry, no mandatory Keep, and no production/provider activation | `useSubmitSourceContributionRequest` is reached through `useRootSourceInspection`; accepted `workflow_id` opens the existing exact-result hook. `SourceContributionResultScreen` renders pending, ready, unavailable, no-useful-result, expired, changed and terminal outcomes, plus the existing composition/read/direct-state/instrument/link/receipt/silence/week-shape payload families | Home and Places register the selected unit in the existing root return registry, then route to `/source-contribution/[workflowId]` with `root` and the bounded return token. A supported candidate destination uses the canonical root destination/resource resolver; back returns to the originating Home or Places root. | The result is read by workflow identity and current account/path context through the existing result hook. Expired or changed claims are labeled rather than restored as current; unavailable explicitly means no later delivery; original source and independent root value remain available. | App focused Jest: **7 suites / 52 tests passed** (source inspection/request/result, Home connected routing, Places navigation, result screen); `npm run typecheck` passed; `npm run lint` passed with 0 errors and 169 existing warnings; `git diff --check` passed. This is local hook/screen/router evidence with mocked edges, not a populated producer, native run, or production Source activation. |
+
+The checkpoint proves the receiving contract and user-visible failure states, not
+that an Integration worker has produced useful content. The exact supplied
+result remains unavailable until SP-1b/SP-3a (or another authorized producer)
+provides a version-bound result with displayable substance. No backend,
+OpenAPI, generated type, Social transport, Chat/Life layout, booking flow or
+provider flag changed in this package.
