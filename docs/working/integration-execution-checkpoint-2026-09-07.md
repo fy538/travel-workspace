@@ -31,8 +31,7 @@ occurred.
 | --- | --- | --- |
 | Workspace `main` | `5d17bb87a04d00129ed1c44df9b8cb04c47c9c06` | clean; Strategy program map plus Engineering Meta workspace reliability cuts received |
 | Backend `main` | `afe177b33d25dc3563c362de4ff6e3a47b1a8354` | clean; forward-only `lifeorgpipelinemerge01` reconciles the prior `lifeorg07` and `pipeline_scope_key01` heads |
-| Mobile receiving candidate (`travel-app-main-integration`) | `3a41dfc6e6bd9baed1bd99c49d94a07d51eb62b8` | clean; Meta app cut `95b6d39aa` plus generated-contract sync |
-| Primary mobile checkout | `2ebb4318b` on `codex/entity-object-design-completion` | intentionally untouched; do not use as the receiving candidate |
+| Mobile receiving candidate (`travel-app` `main`) | `8dfa19119` | clean; Meta app cut `95b6d39aa`; generated-sync attempt was reverted to preserve type safety while the dark-operation policy is resolved |
 
 ### Evidence
 
@@ -41,17 +40,22 @@ occurred.
 * The backend migration graph is one head (`lifeorgpipelinemerge01`). The merge
   migration is graph/import/pre-commit verified; a disposable database upgrade
   has **not** run because the local database service is unavailable.
-* `make contract-check` passes the complete snapshot and active projection but
-  fails at the canonical app checkout because its generated schema is stale.
-  The receiving candidate's generated schema was regenerated from the exact
-  workspace `docs/openapi.app.json` and passes the explicit `check` command;
-  schema bridge, API-boundary and native-compatibility checks also pass.
+* `make contract-check` is **blocked** at projection: the Social receiving cut
+  calls `GET /api/relationships/place-handoffs/sent` from
+  `travel-app/data/relationshipPlaceHandoffs.ts`, while the operation policy
+  still declares that endpoint dark with no consumers. Removing the generated
+  type breaks app typecheck; promoting the dark endpoint changes governance.
+  The receiving checkout therefore retains the type-safe pre-sync schema and
+  records this as an owner decision, not an automatic contract change.
+  Schema bridge, API-boundary, native-compatibility and app typecheck pass on
+  this retained candidate.
 * The backend canary reports **21,282 passed, 7 failed, 20 skipped, 56
   xpassed**. Failures are existing entity-field coverage, HPL social-authority,
   root-attention fixture identity, and outcome-life producer contracts; this is
   not a green baseline.
-* The receiving app's `verify:fast` reaches typecheck, API-boundary and schema
-  bridge successfully, then fails the existing Home-surface budget:
+* Before the dark-operation mismatch was isolated, the receiving app's
+  `verify:fast` reached typecheck, API-boundary and schema bridge successfully,
+  then failed the existing Home-surface budget:
   `components/places/PlacesFeedCardView.tsx` is **133/125** lines. A full app
   Jest run was not a complete receipt (it exited 139 after broad execution);
   a bounded six-suite rerun recorded **55 passed / 8 failed**, covering existing
