@@ -1138,17 +1138,17 @@ without changing either primary checkout:
   query filters. The focused mock parity suite (6 tests), HTTP suite (84
   tests), API surface parity suite (30 tests), typecheck and schema-bridge all
   pass.
-- Backend `2e98e4c3b` centralizes current-authority handoff visibility across
+- Backend `68ef73031` centralizes current-authority handoff visibility across
   Chat history, previews/unread counts, search windows and concierge model
   context; it also bounds history refill and removes recipient attention from
-  sender detail/transition projections. The focused cross-reader suites pass
-  (329 tests); the backend size-budget hook remains an existing structural
-  blocker.
-- Mobile `b7c614db8` consumes the sender-control projection, rehydrates the
+  sender detail/transition projections. It also fails closed for orphaned or
+  unknown-state handoffs. The focused cross-reader suites pass (330 tests);
+  the backend size-budget hook remains an existing structural blocker.
+- Mobile `d0fa4b6a0` consumes the sender-control projection, rehydrates the
   Place-card withdrawal affordance after remount/navigation, reconciles
-  uncertain completion, and adds a lifecycle regression test. The focused
-  mobile suites pass (99 tests), with typecheck, schema-bridge and API-boundary
-  checks green.
+  uncertain send and withdrawal completion, and adds lifecycle/recovery
+  regression tests. The focused mobile suites pass (100 tests), with
+  typecheck, schema-bridge and API-boundary checks green.
 
 These commits establish the first sender-history API shape, make the current
 Place-card withdrawal affordance durable across navigation/remounts when a
