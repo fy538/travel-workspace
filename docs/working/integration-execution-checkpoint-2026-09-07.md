@@ -836,3 +836,85 @@ admitted by this checkpoint.
 3. Reassess the combined candidate only after those two boundaries are clear;
    keep Source production activation, native/visual acceptance, and social
    writes as separate founder-reviewed gates.
+
+## Concrete supply and anchor-lifecycle checkpoint — September 8
+
+This checkpoint closes the requested receiving recheck without turning a
+renderer or fixture into product evidence. Two dependencies remain explicit:
+the current Content lane has not yet supplied a committed no-Trip sparse/rich
+producer payload, and the existing Capture lifecycle envelope cannot yet be
+consumed as an anchor-owned stream without an authority decision.
+
+### Content → Home: no substantive payload received yet
+
+The current Home consumer is not the limiting seam. It already admits the
+typed composition families and preserves source identity, exact destination,
+return context, expiry and terminal states. The Home lane's current evidence
+therefore proves receiving and rendering only; it does not prove that a user
+opening Home receives a substantive, non-operational result when there is no
+active Trip.
+
+The required next artifact is a Content-owned supplier receipt containing both
+of the following, with the same field-level contract:
+
+* a **sparse** no-Trip result (the honest low-supply state), and
+* a **rich** no-Trip result with an admitted source, bounded freshness,
+  substantive body/value, and an exact Home destination.
+
+For each result the receipt must name the fixture/provider provenance, source
+and owner revision, admission decision, consumer payload family, destination,
+and correction/expiry behavior. Until that exists, no new Home card, generic
+content factory, provider activation, or duplicate result store is justified.
+
+### Capture → Life: current contract inventory and unresolved choice
+
+The Life lane's isolated inventory (`3e04c13`) confirms the following current
+authority chain:
+
+* Capture's authoritative read is the confirmed Intake candidate and its
+  observations; `ExperienceAnchorProjection.anchor_id` is the candidate id and
+  its current revision is `candidate.updated_at`.
+* The graph `experience_anchors` row is a content-free projection with a
+  deterministic id, but no revision or sequence column.
+* Durable confirmation/retraction events currently carry
+  `source-owner-change.v1` with `owner_kind=retained_source`,
+  `owner_id=submission_id`, submission partitioning, and a candidate reference
+  only as a causal dependency. When no revision is supplied, the revision is
+  an event-key hash; retraction has no candidate-level revision.
+* The graph bridge emits the existing retained-source Life event only when
+  retention is `source_and_derived`.
+
+As-is reuse therefore cannot provide candidate/anchor-level stale fencing or
+reliable withdrawal/restore delivery to Life. No consumer write was made. The
+two bounded choices are:
+
+**A — extend the existing candidate lifecycle handoff.** Keep the
+`intake_candidate_confirmed`/`intake_candidate_retracted` family and the
+content-free envelope, but add an explicit anchor/candidate owner identity,
+canonical candidate revision/sequence, anchor/source references, and an
+authoritative restore lifecycle. This keeps one durable delivery path but
+requires an owner-kind/partition decision and updates to the shared event
+model plus Life validation.
+
+**B — add a graph-anchor handoff.** Emit a dedicated graph-anchor lifecycle
+event after admission with anchor id, candidate revision/sequence, source
+references, withdrawal and restore semantics. This is clearer for Life but
+creates a new event family/schema and is outside the current no-new-family
+boundary.
+
+Integration is not selecting A or B implicitly. Capture remains the producer
+of lifecycle truth, Life remains the consumer, and no `experience_anchor`
+owner family, migration, duplicate store, or serving cutover is admitted until
+the authority decision is recorded. The exact missing dependency is therefore
+**the owner identity + revision/sequence + withdrawal/restore semantics for
+anchor delivery**, not a missing renderer or a Life projection bug.
+
+### Next checkpoint
+
+1. Receive the Content supplier's sparse/rich no-Trip payload and run the
+   existing Home consumer/admission tests against the actual output.
+2. Record the founder/owner decision for anchor lifecycle option A or B (or a
+   documented variant) before implementing a Life consumer adapter.
+3. Re-run the combined focused Home/Life tuple only after both inputs exist;
+   keep Source worker activation, native/visual acceptance, provider calls and
+   social writes as separate gates.
