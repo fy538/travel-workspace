@@ -90,6 +90,28 @@ usefulness remain unmeasured where no judgments exist. This is a meaningful
 deterministic implementation checkpoint, not learned grouping or general quality
 evidence. Preserve the exact boundaries in §13.15 when reporting progress.
 
+**Connected retained-source organization checkpoint — September 8:** backend
+commit `ad53c055f` extends the existing retained-source owner projector through
+the existing maintainer into the existing Life organization store. A verified
+Intake source now produces its current shadow record and one conservative
+capture-month navigation membership, using the already-landed source-literal
+evidence adapter and UTC as an explicitly shadow-only calendar policy. A
+representation/deletion transition supersedes only active memberships whose
+supporting revision matches that owner transition; excluded memberships are
+untouched. An explicit unrepresentation restores the index row and reactivates
+the derived membership only when the existing organization materializer permits
+it. No episode, attendance, place, or semantic continuity claim is inferred.
+The PostgreSQL checkpoint uses two real `create_submission` captures and covers
+initial delivery, neighboring-record survival, deliberate detach preservation,
+representation withdrawal, and explicit restoration; the retained-source
+selection passes **3 connected tests**, while the focused offline projector/
+maintenance selection passes **19 tests** and the complete offline Life
+projection selection passes **253 tests** (41 connected Life tests also pass on
+the disposable database). This proves one maintained source-to-group path and
+its correction behavior only: broader source evidence fields, semantic
+interpretation, affected-period reconciliation, public group previews, serving
+cutover, and unsupported-owner coverage remain open.
+
 ### Current execution queue
 
 This is the only current queue. The items refine existing R0–R8/M0–M6; they are
@@ -110,7 +132,9 @@ system. Work on the first three can progress together where dependencies permit.
 2. **M1/M2 — connect real evidence to maintained organization.** Agree Capture's
    bounded current-authority evidence read and Integration's revision/durable
    delivery semantics before source-owned changes. Map fields to real owner
-   data, retaining explicit unsupported coverage. Life can prepare consumer,
+   data, retaining explicit unsupported coverage. The retained-source custody
+   path now has a connected source-literal capture-month organization adapter;
+   treat it as the first adapter, not portfolio completion. Life can prepare consumer,
    replay and stale-result tests now. Connect publication through the existing
    maintainer only with current owner/dependency checks, previous plus new
    affected groups, durable controls and bounded completion/continuation.
