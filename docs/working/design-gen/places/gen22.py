@@ -1,5 +1,6 @@
 """22 · The remaining situations, on the chosen terms (§14.5): another city before arrival; sparse supply; the map unavailable; results pending."""
 from fix import *
+import instruments as I
 def cliff_section():
     """The town on its cliff: a section, not a map. Forty metres between the reading room and the quay."""
     return (f'<svg width="349" height="96" viewBox="0 0 349 96" fill="none" style="display: block; width: 100%; height: auto; margin-top: 8px;">'
@@ -9,7 +10,7 @@ def cliff_section():
             f'<text x="14" y="20" {LK}>THE TOWN · THE READING ROOM</text><text x="335" y="66" text-anchor="end" {LK}>THE QUAY · SEA LEVEL</text><text x="184" y="60" text-anchor="end" {LG}>40 M ↓</text><text x="335" y="20" text-anchor="end" {LB}>180 M ON THE MAP</text></svg>')
 def sorrento():
     inner = anchor('SORRENTO', 'BEFORE ANY VISIT') + orientation('The town is on a cliff; the water is forty metres down.', 'From New York · Capri for a day · the piazza on Thursday evenings') + ask('Anything in Sorrento, any day')
-    inner += gut(kick('WORTH KNOWING BEFORE YOU GO') + cliff_section() + f'<div style="margin-top: 8px;">{serifline("The reading room and the quay walk are 180 metres apart on the map and a cliff apart on the ground.")}</div>' + fn('STAIRS, A LIFT OR A ROAD BETWEEN THEM AREN&rsquo;T LISTED HERE YET', 6) + door('The upper town and the quay, on the map'), top=20)
+    inner += gut(kick('WORTH KNOWING BEFORE YOU GO') + I.section([(0, 40), (150, 40), (180, 36), (200, 0), (330, 0)], 0.3, [(4, 47, 'THE TOWN · THE READING ROOM', 'start', INK), (206, 7, 'THE QUAY · SEA LEVEL', 'start', INK)], scale_m='m', h=118, zmax=54) + f'<div style="margin-top: 8px;">{serifline("The reading room and the quay walk are 180 metres apart on the map and a cliff apart on the ground.")}</div>' + fn('STAIRS, A LIFT OR A ROAD BETWEEN THEM AREN&rsquo;T LISTED HERE YET', 6) + door('The upper town and the quay, on the map'), top=20)
     inner += sect('Worth a day') + gut('<div>' + prow('Capri, for a day', 'FERRIES FROM 7:30 · €22 EACH WAY · 25 MIN ACROSS · LAST BOAT BACK 6:40', unc('Sailings are cancelled in rough seas; check the morning of.'), first=True) + prow('The lemon terraces walk', 'MORNINGS, TILL NOON · FREE · STEPPED PATHS, SHADE UNDER THE NETS', last=True) + '</div>')
     inner += sect('Any evening') + gut('<div>' + prow('Thursday evening market in the piazza', 'THURSDAYS 6–10 PM · FREE · FOOD STALLS AND A BAND AFTER EIGHT', first=True) + prow('The quay walk', 'ANY TIME · FREE · AT SEA LEVEL, STEP-FREE ALONG THE QUAY', last=True) + '</div>')
     inner += sect('Any morning') + gut('<div>' + prow('The reading room, upper town', 'MORNINGS · FREE · AN EXHIBITION PREVIEW · FORTY METRES ABOVE THE QUAY', first=True, last=True) + '</div>')
@@ -17,7 +18,7 @@ def sorrento():
     return phone(inner)
 def sparse():
     inner = anchor('NEW YORK', 'FRIDAY 5:40 PM') + orientation('Playtime on the lawn by the pier. Saturday, 8:30.', 'Free · Sunset Park · the pier at sunset first, 7:04') + ask()
-    inner += gut(kick('SATURDAY, IN THE LIGHT · FREE') + g.daylight_arc(False) + g.film_bar() + f'<div style="margin-top: 10px;">{serifline("Playtime on the lawn by the pier at 8:30, free; the sunset from the west pier first, at 7:04.")}</div>' + fn('TATI&rsquo;S CITY OF GLASS · GET THERE AT EIGHT FOR A SPOT · RAIN PLAN NOT POSTED', 6) + door('Saturday&rsquo;s film'), top=20)
+    inner += gut(kick('SATURDAY AT THE PIER · FREE') + I.pier_day(plan=('18:30', '19:04', 'THE PIER'), after=('20:30', '22:00', 'THE FILM')) + f'<div style="margin-top: 10px;">{serifline("Playtime on the lawn by the pier at 8:30, free; the sunset from the west pier first, at 7:04.")}</div>' + fn('TATI&rsquo;S CITY OF GLASS · GET THERE AT EIGHT FOR A SPOT · RAIN PLAN NOT POSTED', 6) + door('Saturday&rsquo;s film'), top=20)
     inner += sect('This Saturday') + gut('<div>' + prow('The greenmarket', 'SATURDAY 8–1 · DOWNTOWN · BREAD GOES FIRST', first=True, last=True) + '</div>')
     inner += g.understanding(g.COLD).replace(g.sect('Worth understanding'), sect('Worth understanding'), 1)
     inner += gut(door_list(['Another neighborhood', 'Sunday, all day']), top=24)

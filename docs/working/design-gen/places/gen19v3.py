@@ -4,6 +4,7 @@ where they already fit and replaces the opening, the everyday six, the pocket's 
 with kinds and instruments from the a26e3228 canon (field_lead_composition, the daylight arc, the tide curve, field_browse_shelf, the burden strip,
 the day band, path_difference_diagram, field_editorial_cover). Hatched plates are photo slots, never drawings."""
 import os, re, sys, subprocess
+from instruments import pier_day, access_compare, section as ground_section
 S = lambda f: open(os.path.join('src', f)).read()
 p19 = S('p19.html'); parity = S('col_parity.html'); s12 = S('col_s12.html'); notes = S('notes_col.html'); tail = S('tail.html'); foot = S('footblock.html'); tabbar = S('tabbar.html')
 HEAD = p19[:p19.find('<div style="width: 1900px')]
@@ -89,16 +90,14 @@ def two_piers_diagram():
 # ── kinds ──
 def lead_composition(populated=True):
     if populated:
-        inner_ = kick('SATURDAY, IN THE LIGHT · KEPT WITH MAYA') + daylight_arc(True) + film_bar()
-        inner_ += f'<div style="margin-top: 10px;">{serifline("Sunset from the west pier at 7:04; it turns cold fast. The lawn is nine minutes on, and the film starts at 8:30.")}</div>'
+        inner_ = kick('SATURDAY AT THE PIER · KEPT WITH MAYA') + pier_day(plan=('18:30', '19:04', 'THE PIER'), after=('20:30', '22:00', 'THE FILM'))
+        inner_ += f'<div style="margin-top: 10px;">{serifline("Sunset from the west pier at 7:04; it turns cold fast. The lawn is nine minutes on, and the film starts at 8:30. Low water from 2:40, kayaks till 4.")}</div>'
         inner_ += fn('MAYA, TUESDAY · &ldquo;TUESDAY, SEVEN.&rdquo;', 6)
-        inner_ += f'<div style="margin-top: 16px;">{kick("THE PIER, EARLIER · LOW WATER")}</div>' + tide_curve()
         inner_ += f'<div style="margin-top: 8px;">{doors(("The pier, with Maya", GOLDD), ("Reply to Maya", MUTE))}</div>'
     else:
-        inner_ = kick('SATURDAY, IN THE LIGHT · FREE') + daylight_arc(False) + film_bar()
-        inner_ += f'<div style="margin-top: 10px;">{serifline("Playtime on the lawn by the pier at 8:30, free; the sunset from the west pier first, at 7:04.")}</div>'
+        inner_ = kick('SATURDAY AT THE PIER · FREE') + pier_day(plan=('18:30', '19:04', 'THE PIER'), after=('20:30', '22:00', 'THE FILM'))
+        inner_ += f'<div style="margin-top: 10px;">{serifline("Playtime on the lawn by the pier at 8:30, free; the sunset from the west pier first, at 7:04. Low water from 2:40, kayaks till 4.")}</div>'
         inner_ += fn('TATI&rsquo;S CITY OF GLASS · GET THERE AT EIGHT FOR A SPOT · RAIN PLAN NOT POSTED', 6)
-        inner_ += f'<div style="margin-top: 16px;">{kick("THE PIER, EARLIER · LOW WATER")}</div>' + tide_curve()
         inner_ += f'<div style="margin-top: 8px;">{doors(("Saturday&rsquo;s film", GOLDD))}</div>'
     return f'<div style="display: flex; flex-direction: column;">{inner_}</div>'
 def shelf_item(name, line, chip):
@@ -121,16 +120,12 @@ def redhook(col=None):
 def evening(col=None):
     sec = section('Saturday evening', col); body = sec[sec.find('<div style="padding: 0px 22px 0 22px;">'):]
     return sect('Saturday evening') + gut(day_band()) + body
+FLOOD = lambda h=150: ground_section([(0, 0.6), (34, 0.6), (34, 1.2), (60, 1.2)], 0.9, [(2, 0.68, 'THE PIER · CREEK BED', 'start', INK), (36, 1.3, 'THE STREET · SILL 1911', 'start', INK), (2, 0.96, 'HARBOR · HIGH WATER', 'start', WATER)], scale_m='m', h=h, zmax=1.42)
 def understanding(col=None):
-    sec = section('Worth understanding', col)
-    svg_a = sec.find('<svg', sec.find('CREEK BED') - 3000); svg_b = sec.find('</svg>', sec.find('CREEK BED')) + 6; floods = sec[svg_a:svg_b]
-    floods = re.sub(r'^<svg', '<svg style="position: absolute; left: 0; top: -44px; width: 100%; height: auto;"', floods, count=1).replace('>THE PIER &#183; CREEK BED<', '>PIER &#183; CREEK BED<').replace('x="28" y="121"', 'x="22" y="121"')
-    cover = (f'<div style="height: 186px; border-radius: 12px; overflow: hidden; position: relative; background: {WASH};">{floods}'
-             f'<div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(27,23,20,0) 42%, rgba(27,23,20,0.70) 100%);"></div>'
-             f'<div style="position: absolute; left: 15px; right: 15px; bottom: 13px;"><div style="{MONO} font-weight: 700; font-size: 10px; letter-spacing: 1.2px; color: #F2E6CC;">READING · 4 MIN</div>'
-             f'<div style="{SERIF} font-weight: 600; font-size: 20px; line-height: 24px; color: {CARD}; margin-top: 4px;">Why the pier floods before the street does</div></div></div>')
-    piers = (f'<div style="{SERIF} font-size: 17px; line-height: 22px; font-weight: 500; color: {INK};">Two piers, two directions</div><div style="font-size: 13px; line-height: 18px; color: {MUTE}; margin-top: 4px;">Same evening light, opposite views.</div>' + two_piers_diagram())
-    return sect('Worth understanding') + gut(piers) + gut(cover + f'<div style="font-size: 13px; line-height: 18px; color: {MUTE}; margin-top: 8px;">The pier sits on the old creek bed, two feet below the 1911 sill. It drains only when the harbor is lower than the street.</div>' + door('The rest of the reading'), top=26)
+    reading = FLOOD(118) + fn('READING · 4 MIN', 10) + f'<div style="margin-top: 4px;">{serifline("Why the pier floods before the street does", 17, 22)}</div>' + f'<div style="font-size: 13px; line-height: 18px; color: {MUTE}; margin-top: 4px;">The pier sits on the old creek bed, two feet below the 1911 sill. It drains only when the harbor is lower than the street.</div>' + door('The rest of the reading')
+    piers = (f'<div style="{SERIF} font-size: 17px; line-height: 22px; font-weight: 500; color: {INK};">Two piers, two ways in</div><div style="font-size: 13px; line-height: 18px; color: {MUTE}; margin-top: 4px;">Same evening light; a land route and a crossing.</div>'
+             + access_compare([('SUNSET PARK', [(3, 'foot'), (20, 'ride'), (9, 'foot')], 'THE N OR R · A LAND ROUTE, EASY TO SHORTEN'), ('RED HOOK', [(6, 'foot'), (25, 'ride'), (9, 'foot')], 'THE FERRY, EVERY 40 · A SCHEDULED WAY IN')]))
+    return sect('Worth understanding') + gut(piers) + gut(reading, top=26)
 
 def v3(populated=True):
     col = POP if populated else COLD

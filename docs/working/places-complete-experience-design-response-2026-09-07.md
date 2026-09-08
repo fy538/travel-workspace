@@ -321,3 +321,18 @@ Read from full-size crops of 01 and 08, fragment by fragment, and applied to the
 | The page: the map then the photo, two blocks stacked; a three-line basis; three headers in a row | The top of the page was two plates deep before a word; the basis was a paragraph in mono; a section title over two kicks | Photo first at 150, the map at 120; the basis one line; the section title removed, the kicks kept |
 
 Not changed, deliberately: Home's card with its shadow on Maya's note, the serif and sans sizes, the people rows at 15, the chips, the door pair on one line. Each was checked against Home's scroll and matched it.
+
+## 26. Instruments from data (September 8)
+
+**The founder's objection.** The daylight arc, the tide curve, the day band, the two-thresholds diagram and the flood section looked like toy examples: hand-drawn shapes on made-up axes, not the final form. The proposal was to generate assets elsewhere.
+
+**The answer: a renderer, not assets.** `instruments.py` draws instruments from data, on real axes, with labels placed from the geometry:
+
+- **The pier's day.** One time axis, 6 AM to 11 PM, with hour ticks. The sun as a true half-sine of elevation between sunrise and sunset; the plan as gold on the sun; after dark as ink on the line. The water as a 12.42-hour harmonic with the high at 8:40; the low-water window on it; the kayaks under it. Replaces the daylight arc, the film bar and the tide curve with one instrument.
+- **The evening.** The day band from times, not pixels; a mark's label moves right, or to the end anchor, when it would collide.
+- **Two ways in.** Two access structures on one minutes scale, dots on foot and a bar for the ride, with the total. Replaces the arrow-and-squiggle diagram: the difference is drawn, not asserted.
+- **Ground to scale.** A section renderer: points along a line, the sea level, water shown only where the ground is below it, a bar at the right stating the vertical extent. Draws the flood section (the pier on the creek bed, the 1911 sill 0.6 m above it, the harbor at high water) and Sorrento's cliff with the same code.
+
+Inputs are the fixture's times and heights. A live version takes the date and the place: sunrise and sunset by calculation, tide predictions by station, ground by survey. The reading no longer wears a cover: a section with words over it collided, so the reading is the section in the open with its kick, title and door.
+
+**Photographs remain slots.** The one asset class that does belong elsewhere is photography, and it stays a hatched plate until sourced under a grant. The next candidate for a renderer is the map fragment, cut from real map data rather than drawn.

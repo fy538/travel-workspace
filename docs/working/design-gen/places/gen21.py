@@ -1,5 +1,6 @@
 """21 · Three connected journeys, on the chosen terms (§13.6, §14). Ordered static frames; interaction untested."""
 from fix import *
+import instruments as I
 Q1 = 'Near Red Hook, Saturday'
 def e2(opened=False):
     inner = anchor('NEW YORK', 'FRIDAY 5:40 PM') + ask(q=Q1) + gut(map_block() + burden_strip(), top=14)
@@ -48,17 +49,17 @@ Hj = [('THE FIELD', 'The From friends card under the opening', lambda: field(Tru
 H2j = [('REPLY, TYPED', 'The composer says who receives it: Maya', h_reply, False), ('SENT', 'The readback on her page; Ask Vesper still available, not required', lambda: h3(True), False), ('BACK', 'The field as it was; one reply sent to Maya; that is this branch&rsquo;s only effect', lambda: field(True), True)]
 H3j = [('ASK VESPER, PRIVATELY', 'The header says it is private and what it is about; Maya is not a recipient', lambda: h_ask(False), False), ('THE ANSWER', 'What is unconfirmed, what is known, and the crossing drawn', lambda: h_ask(True), False), ('BACK', 'The field as it was; nothing sent to Maya; that is this branch&rsquo;s only effect', lambda: field(True), True)]
 def dinner(sub): return people_row(['M', 'A'], 'Dinner with Maya and Alex', sub)
-def band_evening(dinner_x, dinner_lab, extra_blocks=(), right='COUNTER TILL 10 · CAFÉ TILL 11'):
-    return day_band([(88, 70, 'THE HOUR', 'gold'), (dinner_x, 0, dinner_lab, 'ring')] + list(extra_blocks), [(2, '6:45 DOORS', 'start'), (345, right, 'end')])
+def band_evening(dinner_t, dinner_lab, extra_marks=(), right='COUNTER TILL 10 · CAFÉ TILL 11'):
+    return I.day_band(18, 23, [('19:15', '20:15', 'THE HOUR', 'gold')], [(dinner_t, dinner_lab, 'ring')] + list(extra_marks), [('start', '6:45 DOORS', 'start'), ('end', right, 'end')])
 MSG = 'There&rsquo;s a listening hour at Canal Hall on Saturday at 7:15, Reich&rsquo;s Music for 18 Musicians, that I&rsquo;d like to hear whole. Could we make dinner 8:45 instead of 8:15? I&rsquo;d come straight from the hall; it&rsquo;s three minutes.'
 def p1():
     inner = anchor('NEW YORK', 'FRIDAY 5:40 PM') + ask(q='Saturday evening', ctx='Around dinner') + gut(dinner('Saturday 8:15 · the noodle counter · yours'), top=14)
-    inner += sect('Before dinner') + gut(band_evening(158, 'DINNER 8:15') + hour_unit(sup('Ends about 8:15, when your table is. Heard whole, dinner would be about 8:45.')) + door('Hear it whole, dinner at 8:45'))
+    inner += sect('Before dinner') + gut(band_evening('20:15', 'DINNER 8:15') + hour_unit(sup('Ends about 8:15, when your table is. Heard whole, dinner would be about 8:45.')) + door('Hear it whole, dinner at 8:45'))
     inner += sect('Instead') + gut('<div>' + film_row() + '</div>') + gut(door_list(['All of Saturday', 'All of New York']), top=24)
     return phone(inner)
 def p2():
     inner = anchor('MOVE DINNER?', 'SATURDAY', back=True, sub='With Maya and Alex') + gut(dinner('Saturday 8:15 · the noodle counter · yours'), top=18)
-    inner += gut(title('Dinner at about 8:45, to hear the hour whole', 20, 25, 600) + sup('The hour ends about 8:15. The counter is three minutes from the hall, open till 10, and doesn&rsquo;t hold tables; 8:45 is an arrival, not a booking.') + band_evening(200, 'DINNER 8:45'), top=16)
+    inner += gut(title('Dinner at about 8:45, to hear the hour whole', 20, 25, 600) + sup('The hour ends about 8:15. The counter is three minutes from the hall, open till 10, and doesn&rsquo;t hold tables; 8:45 is an arrival, not a booking.') + band_evening('20:45', 'DINNER 8:45'), top=16)
     inner += gut(card(f'<div class="kickm">TO MAYA AND ALEX · NOT SENT</div><div style="{SERIF} font-size: 17px; line-height: 24px; color: {INK}; margin-top: 8px;">{MSG}</div>'), top=16)
     inner += gut(door('Ask Maya and Alex about 8:45') + door('Change the wording', MUTE), top=8)
     return phone(inner)
@@ -74,19 +75,19 @@ def p4():
     return phone(inner)
 def p5():
     inner = anchor('MOVE DINNER?', 'SATURDAY', back=True, sub='With Maya and Alex') + gut(readback('MOVED', 'Dinner · Saturday 8:45 · the noodle counter · Maya and Alex notified · 2:10 PM'), top=18)
-    inner += gut(dinner('Saturday 8:45 · the noodle counter · yours'), top=12) + gut(band_evening(200, 'DINNER 8:45'), top=10) + gut(door_list(['Back to Saturday evening']), top=8)
+    inner += gut(dinner('Saturday 8:45 · the noodle counter · yours'), top=12) + gut(band_evening('20:45', 'DINNER 8:45'), top=10) + gut(door_list(['Back to Saturday evening']), top=8)
     return phone(inner)
 def p6():
     inner = anchor('NEW YORK', 'SATURDAY 5:50 PM') + ask(q='Saturday evening', ctx='Around dinner') + gut(dinner('Saturday 8:45 · the noodle counter · Maya and Alex notified'), top=14)
     changed = (f'<div class="kickm" style="color: {OX};">CHANGED · 5:40 PM</div>' + f'<div style="margin-top: 6px;">{title("The noodle counter stops taking orders at 9 tonight", 20, 25, 600)}</div>' + sup('An 8:45 arrival leaves fifteen minutes to order.') + fn('FROM THE COUNTER&rsquo;S OWN LISTING · POSTED 5:40 PM', 6)
-               + band_evening(200, 'DINNER 8:45', [(214, 0, '', 'dot')], right='LAST ORDERS 9 · CAFÉ TILL 11')
+               + band_evening('20:45', 'DINNER 8:45', [('21:00', '', 'dot')], right='LAST ORDERS 9 · CAFÉ TILL 11')
                + f'<div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid {HAIR7};">{title("Where else at 8:45", 16, 21, 600)}</div><div>' + prow('The long table at the caf&eacute;', 'OPEN TILL 11 · FOUR MINUTES FROM THE HALL · NO TABLES HELD', first=True, last=True) + '</div>'
                + door('Move dinner to the caf&eacute;, and tell Maya and Alex') + door('Keep 8:45 at the counter', MUTE))
     inner += gut(card(changed), top=14) + sect('Still on tonight') + gut(hour_unit(sup('Doors 6:45.'))) + sect('Instead') + gut('<div>' + film_row() + '</div>')
     return phone(inner)
 def p7():
     inner = anchor('NEW YORK', 'SATURDAY 5:52 PM') + ask(q='Saturday evening', ctx='Around dinner') + gut(readback('MOVED', 'Dinner · Saturday 8:45 · the long table at the caf&eacute; · Maya and Alex notified · 5:52 PM'), top=14)
-    inner += gut(dinner('Saturday 8:45 · the long table · no tables held'), top=10) + sect('Still on tonight') + gut(band_evening(200, 'DINNER 8:45') + hour_unit(sup('Doors 6:45; the caf&eacute; is four minutes after.')))
+    inner += gut(dinner('Saturday 8:45 · the long table · no tables held'), top=10) + sect('Still on tonight') + gut(band_evening('20:45', 'DINNER 8:45') + hour_unit(sup('Doors 6:45; the caf&eacute; is four minutes after.')))
     inner += sect('Instead') + gut('<div>' + film_row() + '</div>') + gut(door_list(['All of Saturday', 'All of New York']), top=24)
     return phone(inner)
 Pj = [('THE POSSIBILITY', 'Saturday evening around an existing dinner; the day band shows the hour ending where the table begins; the film is an evening instead', p1, False),

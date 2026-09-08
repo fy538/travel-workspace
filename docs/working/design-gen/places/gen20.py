@@ -1,5 +1,6 @@
 """20 · The checks and the opening sequence, on the chosen terms (§12.9 items 3–4, §13.3). Before-and-after rows retired: the §12 vocabulary is no longer current."""
 from fix import *
+import instruments as I
 import re
 LONG = {'The noodle counter': 'The hand-pulled noodle counter on Canal Street', 'The lunch counter on Columbia Street': 'The Dominican lunch counter on Columbia Street, Red Hook', 'The reading room at the branch library': 'The second-floor reading room at the Carroll Gardens branch library'}
 def longnames():
