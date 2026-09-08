@@ -780,13 +780,16 @@ remain dark.
 ### Home value is still a supplier question, not a new transport surface
 
 The canonical Home/Places consumer already renders every admitted typed payload
-family and preserves exact destination/return behavior. A bounded Home lane is
-now testing a small supplier-side improvement: Plan rows expose dates already
-present on the Trip owner (for example, `Live now · through Sep 3` or `Begins
-Sep 13 · 4 days`) while unknown dates retain honest non-inferred fallbacks. The
-change is not landed in this receipt yet; it must arrive as a clean backend
-commit with focused adapter tests before Integration reviews it. No card-level
-copy generation, provider call, or new Home endpoint is authorized.
+family and preserves exact destination/return behavior. The bounded Home
+supplier improvement is now locally landed on backend `9dba7ffbb`
+(`feat(home): carry factual trip context into doors`) with its workspace receipt
+in `9e52c0a`. Existing Plan rows expose dates already present on the Trip owner
+(for example, `Live now · through Sep 3` or `Begins Sep 13 · 4 days`) while
+unknown dates retain honest non-inferred fallbacks. The Home lane's **63-test**
+focused backend set, Ruff/format/vulture, diff-check and deterministic root
+rehearsal passed before landing. Destinations, owner/revision/expiry behavior,
+and no-provider/no-schema boundaries are unchanged. No card-level copy
+generation, provider call, or new Home endpoint was authorized.
 
 ### Capture → Life evidence boundary
 
@@ -809,8 +812,9 @@ inference rule is admitted by this checkpoint.
 
 ### Next receiving checkpoint
 
-1. Receive and review the Home date-aware Plan adapter commit and its focused
-   evidence, if the Home lane completes it.
+1. Re-run the focused Home adapter/composition tuple on canonical backend
+   `9dba7ffbb`; this is a local receiving check, not native or populated-data
+   evidence.
 2. Close the Life lane with either a proof-backed narrow existing-contract
    package or an explicit no-code Capture→Life gap receipt.
 3. Reassess the combined candidate only after those two boundaries are clear;
