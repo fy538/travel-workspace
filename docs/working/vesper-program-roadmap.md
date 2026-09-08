@@ -161,7 +161,36 @@ receiving test and affected package—not “blocked on Life/Content/Social.”
   bottleneck and what to continue/change/stop. Replace stale current statements;
   preserve dated evidence in existing receipts, not another appendix here.
 
-## 7. Current coordinated packages — dispatched September 8
+## 7. Current coordinated packages — September 8 completion round
+
+**Latest dispatch supersedes the first-round assignments below.** The founder
+approved the next completion round after Integration landed Home receiving at
+app `6dfd0d8cf` and Life organization at backend `0af5aacef` / `3c76118b0`.
+The five-file lifecycle repair is complete and the actual workspace docs gate
+passed in Integration's receipt. Dispatch baseline: workspace `bf5d096`, backend
+`3c76118b0`, app `6dfd0d8cf`; all canonical trees inspected clean.
+
+- **Home:** inspect actual supported content across sparse/rich Home and Places
+  receiving, then repair bounded supply/adapter/rendering gaps. Status plumbing
+  alone is not acceptance; source production stays dark.
+- **Life:** lead a bounded Life/Capture evidence package, inventorying actual
+  occurrence/time/place/people/uncertainty support and implementing justified
+  relationships beyond capture-month grouping. Missing evidence stays unknown;
+  no serving cutover or new inferred attendance.
+- **Integration:** own shared interfaces, combined verification and reviewed
+  local landing. Prior baseline cleanup is closed; supplier gaps must name the
+  needed output and receiving acceptance.
+- **Strategy:** review Social's unlanded `43ae39a` + `bb23e89` decision packet
+  here with the founder. No new Social execution assignment or policy adoption.
+
+One consolidated assignment was accepted by each of the three existing execution
+tasks, using Luna xhigh. Life leads the Capture seam; no fourth execution lane
+was created. First checkpoint: actual Home content and remaining human work,
+supported Life evidence-to-relationship correction, and Social decisions ready
+for adoption or revision. Native and substantive producer evidence remain
+unrun in the completed first round, not implied by its tests.
+
+### First-round scope and rationale (completed or explicitly pending)
 
 All four assignment messages were accepted by their existing tasks. This records
 dispatch, not completion or acceptance of their future outputs. Integration owns
