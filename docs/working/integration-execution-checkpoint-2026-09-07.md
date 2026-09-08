@@ -19,6 +19,66 @@ This note records the next controlled integration tranche after the
 request-to-root fixture. It is an execution receipt, not a new product
 architecture or a production-activation decision.
 
+## Wave 1 baseline handoff — September 7, 22:25 EDT
+
+This is the receiving checkpoint for **“establish the shared engineering
+baseline.”** It pauses the next practical-owner package until the combined
+candidate is repaired and rechecked. The revisions below are local only; no
+remote publication, deployment, provider activation, or destructive cleanup
+occurred.
+
+| Repository / candidate | Revision | State |
+| --- | --- | --- |
+| Workspace `main` | `5d17bb87a04d00129ed1c44df9b8cb04c47c9c06` | clean; Strategy program map plus Engineering Meta workspace reliability cuts received |
+| Backend `main` | `afe177b33d25dc3563c362de4ff6e3a47b1a8354` | clean; forward-only `lifeorgpipelinemerge01` reconciles the prior `lifeorg07` and `pipeline_scope_key01` heads |
+| Mobile receiving candidate (`travel-app-main-integration`) | `3a41dfc6e6bd9baed1bd99c49d94a07d51eb62b8` | clean; Meta app cut `95b6d39aa` plus generated-contract sync |
+| Primary mobile checkout | `2ebb4318b` on `codex/entity-object-design-completion` | intentionally untouched; do not use as the receiving candidate |
+
+### Evidence
+
+* `make doctor` passes; service probes are unrun because the local Postgres
+  container is not running. `python3 -m pytest scripts/tests -q` passes **64**.
+* The backend migration graph is one head (`lifeorgpipelinemerge01`). The merge
+  migration is graph/import/pre-commit verified; a disposable database upgrade
+  has **not** run because the local database service is unavailable.
+* `make contract-check` passes the complete snapshot and active projection but
+  fails at the canonical app checkout because its generated schema is stale.
+  The receiving candidate's generated schema was regenerated from the exact
+  workspace `docs/openapi.app.json` and passes the explicit `check` command;
+  schema bridge, API-boundary and native-compatibility checks also pass.
+* The backend canary reports **21,282 passed, 7 failed, 20 skipped, 56
+  xpassed**. Failures are existing entity-field coverage, HPL social-authority,
+  root-attention fixture identity, and outcome-life producer contracts; this is
+  not a green baseline.
+* The receiving app's `verify:fast` reaches typecheck, API-boundary and schema
+  bridge successfully, then fails the existing Home-surface budget:
+  `components/places/PlacesFeedCardView.tsx` is **133/125** lines. A full app
+  Jest run was not a complete receipt (it exited 139 after broad execution);
+  a bounded six-suite rerun recorded **55 passed / 8 failed**, covering existing
+  conversation/history, control-alignment, card-policy, contrast, and
+  navigation-contract failures.
+* Engineering Meta's backend package remains **unlanded**: its staged 122-path
+  cut is blocked by the existing broad-exception ratchet (**1,198** handlers vs
+  frozen **1,190** ceiling), with separate writer-boundary, fixture and mypy
+  failures. The zero-new-handler claim does not waive that gate. Its committed
+  workspace and app cuts are received above; its dirty backend worktree remains
+  owned by Meta and was not merged.
+
+### Receiving order after this checkpoint
+
+1. Meta repairs the backend gate/writer/type/fixture blockers and supplies one
+   hook-passing backend commit; Integration then reviews it against
+   `afe177b33` and the migration merge.
+2. Re-run the exact tuple's contract, focused backend and receiving-app gates;
+   repair the Home budget and the bounded app contract failures in their owned
+   lane, without touching the primary dirty checkout.
+3. Start a disposable Postgres/Qdrant runtime and execute the migration upgrade
+   plus the relevant database suites. Record runtime evidence separately from
+   graph-only validation.
+4. Only after those gates are green, reassess the combined candidate and decide
+   whether to resume the practical-owner Home/Places package. No wave 2 work is
+   authorized by this receipt.
+
 ## Landed
 
 ### Retained Opening context is an exact Moment dependency
