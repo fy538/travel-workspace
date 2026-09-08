@@ -1425,6 +1425,10 @@ overrides:
     disposition: keep_reference
     rationale: Current Content-lane source/code audit, provider research and checkpointed supply handoff into Integration CV-2 through CV-4; no provider procurement or runtime activation authority.
 
+  docs/working/content-home-supply-execution-receipt-2026-09-08.md:
+    disposition: keep_reference
+    rationale: Bounded Content-to-Home receiving receipt with deterministic sparse/rich output, exact public-source continuation, honest no-result behavior and the Capture anchor contract gate; it does not claim populated supply or production anchor continuity.
+
   docs/working/social-experience-implementation-roadmap-2026-09-07.md:
     disposition: keep_reference
     rationale: Scoped engineering expansion of the complete-system roadmap's social package, with existing-owner mapping, decision gates, cross-root dependencies and portfolio acceptance; no policy adoption or runtime activation authority.
