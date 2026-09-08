@@ -738,3 +738,81 @@ and production Source evidence remain unrun by design; the worker must still
 provide a version-bound result with substantive content. No backend, OpenAPI,
 generated type, Social transport, Chat/Life layout, booking flow, provider call
 or production flag changed. No remote push or deployment occurred.
+
+## Substantive receiving recheck — September 8
+
+This follow-through rechecked whether the receiving work had crossed from
+transport/renderer plumbing into useful Home value or active Capture-to-Life
+organization. It did not activate the Source worker or broaden the Life owner
+contract.
+
+### Source worker and exact-result boundary
+
+The earlier continuity concern about a fenced completion receiving
+`work_deadline` is resolved on the canonical backend. The workflow-fenced
+completion adapter accepts the deadline passed by the canonical executor and
+rejects a changed deadline before calling the owner completion gateway. The
+focused Source corpus was rerun on backend `78ea8a05f`:
+
+```text
+.venv/bin/python -m pytest -q \
+  tests/root_projection/test_source_contribution_workflow.py \
+  tests/root_projection/test_source_contribution_worker.py \
+  tests/root_projection/test_source_contribution_continuity.py \
+  tests/root_projection/test_source_contribution_canonical_executor.py \
+  tests/api/test_root_source_contribution_wiring.py
+61 passed in 4.77s
+
+.venv/bin/python -m pytest -q \
+  tests/root_projection/test_source_contribution_*.py \
+  tests/api/test_root_source_contribution_wiring.py
+237 passed in 4.95s
+```
+
+The mobile receiving candidate remains app `6dfd0d8cf`; its directly inspected
+Home routing and exact-result screen suites passed **6 tests**, with the
+previous source/inspection/routing receipt still **32 passed**. This proves
+request identity, result routing, and terminal-state rendering only. It does
+not prove populated production content, human usefulness, native visual parity,
+provider economics, or an active worker. The feature flag and worker deployment
+remain dark.
+
+### Home value is still a supplier question, not a new transport surface
+
+The canonical Home/Places consumer already renders every admitted typed payload
+family and preserves exact destination/return behavior. A bounded Home lane is
+now testing a small supplier-side improvement: Plan rows expose dates already
+present on the Trip owner (for example, `Live now · through Sep 3` or `Begins
+Sep 13 · 4 days`) while unknown dates retain honest non-inferred fallbacks. The
+change is not landed in this receipt yet; it must arrive as a clean backend
+commit with focused adapter tests before Integration reviews it. No card-level
+copy generation, provider call, or new Home endpoint is authorized.
+
+### Capture → Life evidence boundary
+
+The landed Life package (`0af5aacef` plus `3c76118b0`) supports only the
+explicit, replay-safe UTC capture-month organization of retained Sources. The
+Capture data inspected in the active Life lane includes typed observation
+metadata, validity windows, truth mode, evidence locators, candidate lifecycle,
+and explicit subject-entity bindings. Those fields are useful evidence, but the
+existing handoff does not yet expose a typed, owner-authorized Life relationship
+for occurred/negative/place/people roles. Capture time or source custody must
+not be promoted into attendance or place/people claims.
+
+The Life lane therefore has a decision checkpoint rather than an automatic
+schema/event expansion: if an existing candidate identity and owner-event
+contract can be demonstrated end-to-end, it may supply a narrow explicit Place
+association or neutral source membership with correction/replay tests; otherwise
+the correct result is a no-code gap receipt naming the missing Capture-owned
+handoff. No new `intake_anchor` owner family, API, migration, public serving, or
+inference rule is admitted by this checkpoint.
+
+### Next receiving checkpoint
+
+1. Receive and review the Home date-aware Plan adapter commit and its focused
+   evidence, if the Home lane completes it.
+2. Close the Life lane with either a proof-backed narrow existing-contract
+   package or an explicit no-code Capture→Life gap receipt.
+3. Reassess the combined candidate only after those two boundaries are clear;
+   keep Source production activation, native/visual acceptance, and social
+   writes as separate founder-reviewed gates.
