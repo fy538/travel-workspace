@@ -91,9 +91,13 @@ architecture or broad visual exploration only when observed failures justify it.
 
 ## 4. Current package register
 
-The next round is planned below; this planning pass does not dispatch execution.
-Use existing tasks and one owner per package. Status messages are not new
-assignments. Integration remains the sole combined landing owner.
+The founder authorized the next round on September 8 after acceptance planning.
+One consolidated assignment was dispatched to each existing Integration, Content,
+Home and Life task with explicit `gpt-5.6-luna` / `xhigh`. Fast mode was requested
+but is not exposed by the dispatch interface and remains unverified; no global
+model or service-tier settings were changed. Dispatch is not completion evidence.
+Use one owner per package. Status messages are not new assignments. Integration
+remains the sole combined landing owner.
 
 | Accountable task / owner plan | Next bounded responsibility | Handoff |
 | --- | --- | --- |
@@ -155,7 +159,15 @@ receiving test and affected package—not “blocked on Life/Content/Social.”
   bottleneck and what to continue/change/stop. Replace stale current statements;
   preserve dated evidence in existing receipts, not another appendix here.
 
-## 7. Next acceptance round — planned, not dispatched
+## 7. Current acceptance round — dispatched September 8
+
+Initial assignments follow the sequence below: Integration prepares the shared
+runtime, Content prepares its corpus, Home performs device-independent QA
+preflight, and Life traces existing readers. Integration may deliver a single
+actionable ready-environment handoff to resume Home; Home/Integration then hand
+the exclusive device to Life. Necessary execution handoffs retain explicit
+Luna/xhigh. Native inspection and runtime readiness are not yet established by
+these assignments. Social decisions remain here for founder review.
 
 ### Order and shared environment
 
