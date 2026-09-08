@@ -198,6 +198,8 @@ graph worker, so Life never competes for its acknowledgement.
 
 Life's consumer package is committed on the isolated backend branch as
 `9e5de617e` (`life: consume candidate-owned anchor lifecycle`) and consists of:
+The follow-up alignment commit `9b461dbce` makes the same candidate revision
+the corpus/adapters' source-revision token (rather than the navigation clock).
 
 * `anchor_projector.py`, a current-authority adapter that reads the exact
   owner-scoped `ExperienceAnchorProjection`, fences the numeric candidate
