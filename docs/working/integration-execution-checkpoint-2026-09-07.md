@@ -705,3 +705,36 @@ connection failure and 37 setup errors; it is infrastructure-invalid evidence,
 not a code verdict, and was superseded by the fresh 41-test run above. No remote
 push or deployment occurred. Temporary disposable Postgres instances are
 stopped/removed after this receipt; active Home/Life worktrees remain preserved.
+
+## Home / Places Source receiving package — September 8
+
+Integration reviewed and locally landed the mobile receiving package from the
+isolated Home lane at Travel App commit `6dfd0d8cf` (`feat(mobile): connect Home
+and Places source results`), based on app `5f41be821`. The existing
+provenance-first `source.inspect` action remains read-only until the user
+explicitly chooses **Ask Vesper**. That action submits the existing
+`SourceContributionRequestCreate` with exact subject/source refs, bounded root,
+context, represented time/zone and a 15-minute request horizon; accepted
+`workflow_id` and the existing root-return token open the exact-result route.
+
+The new result screen consumes the existing exact-result hook and renders
+pending, ready, unavailable, no-useful-result, expired, changed and terminal
+states, including the existing composition/read/direct-state/instrument/link/
+receipt/silence/week-shape payload families. Canonical destination/resource
+resolution returns to the originating Home or Places root. Unavailable does not
+promise later delivery, expiry/change does not present stale claims as current,
+and no second request or result store is created.
+
+Evidence on canonical app `main`:
+
+* focused source/result, inspection and Home-routing suites: **32 passed**;
+* `npm run typecheck`: passed;
+* `npm run lint`: **0 errors / 169 existing warnings**;
+* targeted ESLint and `git diff --check`: passed.
+
+The lane also ran the broader seven-suite/52-test focused set; the canonical
+rerun above is the directly inspected subset. Native/visual, populated producer
+and production Source evidence remain unrun by design; the worker must still
+provide a version-bound result with substantive content. No backend, OpenAPI,
+generated type, Social transport, Chat/Life layout, booking flow, provider call
+or production flag changed. No remote push or deployment occurred.
