@@ -132,6 +132,12 @@ or native acceptance occurred.
   `backend/ingestion/base.py`, `life_projection/organization_projector.py`,
   and `core/db/life_organization_resolution.py`. No hook was bypassed and no
   baseline was raised.
+* The canonical backend focused tuple still reports **7 failures** on
+  `afe177b33`: the Experience source-field fixture, HPL social-authority
+  revision fixture, four OwnerReadPortfolio identity fixtures, and the
+  Occasion-membership producer (`change_kind` is currently undefined). These
+  are the exact behaviors covered by the supplier's declared repair paths; the
+  uncommitted supplier package was not copied into `travel-agent/main`.
 
 ### Receiving order from this round
 
