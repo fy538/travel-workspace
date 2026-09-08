@@ -23,13 +23,16 @@ architecture or a production-activation decision.
 
 ### Retained Opening context is an exact Moment dependency
 
-Backend merge commit `7d9f85488` (`fix: admit retained opening context through
-moment reads`) changes Source-contribution value candidates so an Opening
-resource is read by `moment.read`, while retained Source resources continue to
-be read by `source.inspect`. The compiler now admits the exact `opening`
-resource kind for Moment reads. The owner-admission tests exercise Home and
-Places for an active Opening and suppress the contribution when that Opening
-changes, is dismissed, or expires.
+The source-opening lane was converged in backend merge commit `7d9f85488`
+(`fix: admit retained opening context through moment reads`). Its tree is
+identical to the equivalent `b25702bb1` fix already present on `main`, so the
+merge introduces no duplicate behavior. The resulting code keeps the
+Source-contribution contract explicit: an Opening resource is read by
+`moment.read`, while retained Source resources continue to be read by
+`source.inspect`; the compiler admits the exact `opening` resource kind for
+Moment reads. The owner-admission tests exercise Home and Places for an active
+Opening and suppress the contribution when that Opening changes, is dismissed,
+or expires.
 
 This keeps the dependency graph honest: a retained Source does not borrow
 current Opening state, and a failed optional Moment read cannot silently turn
