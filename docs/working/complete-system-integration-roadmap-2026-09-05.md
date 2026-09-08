@@ -48,6 +48,19 @@ Neither backend test success nor product-doc unit tests alone certify the
 workspace child-document admission command; retain the command in future
 receiving checkpoints.
 
+**Life retained-source organization received — September 8:** backend commits
+`0af5aacef` and `3c76118b0` are now on canonical backend `main`. This is a
+shadow-only real-owner adapter: Capture sources receive deterministic
+capture-month organization, exact owner-revision correction withdraws only the
+affected derived membership, and explicit unrepresentation restores it without
+undoing user exclusions or neighboring records. The package has no API/schema,
+mobile, serving, Atlas or provider change. Fresh connected Life evidence is
+**41 passed** at `lifeorgpipelinemerge01`, with **253 offline** passed; see the
+[execution checkpoint](integration-execution-checkpoint-2026-09-07.md#life-retained-source-organization-package--september-8)
+for the full evidence boundary and the invalidated container run. Capture's
+typed occurred/negative/place/people/locator envelope remains the dependency
+for richer semantic organization.
+
 1. **Preserve the received baseline; scope the next handoffs (E0/E6).** Do not
    repeat the migration merge, structural extraction or residual fixture round.
    Recheck current revisions and changed-file owners before new packages; run

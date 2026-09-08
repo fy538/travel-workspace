@@ -669,3 +669,39 @@ This closes the delegated documentation gate without weakening the validator,
 reviving an August plan, or changing product/runtime behavior. Backend and
 workspace worktrees remain clean; no remote push, deployment, provider or flag
 activation occurred.
+
+## Life retained-source organization package — September 8
+
+Integration reviewed and locally landed the bounded real-owner organization
+adapter from the isolated Life lane. Backend commits `0af5aacef`
+(`life: maintain retained source organization`) and `3c76118b0`
+(`test: cover stale source organization replay`) are now on backend `main`,
+based on the closed baseline `78ea8a05f`. The package extends the existing
+retained-source projector/maintainer only: an eligible Capture creates a
+deterministic UTC capture-month Life group, exact owner-revision
+representation/deletion events supersede only that source's active derived
+memberships, and explicit unrepresentation restores the existing row and
+membership. User exclusions and neighboring independent records remain
+untouched. The calendar bucket is an explicit shadow policy, not an occurrence,
+place, or people interpretation.
+
+No API/OpenAPI/schema/migration, mobile, Home/Places/Chat, serving cutover,
+Atlas deletion, provider call, or production flag changed. The remaining
+dependency is Capture's richer typed occurred/negative/place/people/locator
+evidence envelope; Life must not infer those relations from capture time or
+source custody alone.
+
+Evidence on the canonical backend tree:
+
+* focused retained-source/maintenance/source-evidence tests: **22 passed**;
+* complete offline `tests/life_projection`: **253 passed / 41 deselected**;
+* fresh disposable Postgres at migration head `lifeorgpipelinemerge01`, complete
+  connected `tests/life_projection -m requires_postgres`: **41 passed / 253
+  deselected**;
+* Ruff check and format check for all six changed files: passed.
+
+An earlier run against a concurrently terminated disposable container produced one
+connection failure and 37 setup errors; it is infrastructure-invalid evidence,
+not a code verdict, and was superseded by the fresh 41-test run above. No remote
+push or deployment occurred. Temporary disposable Postgres instances are
+stopped/removed after this receipt; active Home/Life worktrees remain preserved.
