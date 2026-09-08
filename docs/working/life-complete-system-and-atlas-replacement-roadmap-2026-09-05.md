@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Life engineering / cross-repository architecture
 created: 2026-09-05
-last_verified: 2026-09-07
+last_verified: 2026-09-08
 expires: 2026-10-05
 why_new: Rebaselines the executed Life foundation into a complete engineering program with an explicit Atlas replacement, data migration, and deletion outcome requested by the founder.
 depends_on:
@@ -299,6 +299,41 @@ order `begin → materialize → commit → reconcile`; offline Life validation 
 **200 passed, 34 deselected**. This closes the primary publication interleave
 for supported owner groups but does not make resolution repair atomic or add
 multi-slice consumer checkpoints; those remain explicit follow-up work.
+
+**Life projection concurrency correction — September 8:** the bounded
+Integration PostgreSQL run exposed a re-entrant transaction bug in the
+multi-viewer withdrawal path. The default maintainer held one outer transaction
+for index/group publication, but the Occasion projector omitted that connection
+when withdrawing a viewer whose current projection was absent. After a current
+viewer had fenced the Occasion row, the departed viewer opened a nested
+withdrawal transaction and waited on the same row while the outer transaction
+waited for the nested call. The resulting `maintenance → occasion_projector →
+withdraw_life_index_owner_entries → _lock_occasion` timeout was an application
+self-deadlock, not a PostgreSQL lock cycle.
+
+Commit `6d2b84d72` (`fix(life): reuse maintenance transaction for withdrawals`)
+passes the existing maintenance connection through withdrawal for all four
+owner projectors (Occasion, Outcome, Plan and retained source), preserving the
+single owner/index/group transaction and avoiding the same latent shape in the
+other adapters. It also restores the already-designed explicit Outcome
+audience-restoration contract: when the current audience grows during an
+`outcome_audience_changed` handoff, the owner-side event helper emits
+`outcome_audience_restored`; ordinary stale/replay events remain non-resurrecting.
+No Capture transaction, schema, API, migration, reader cutover or activation
+changed.
+
+Validation on disposable PostgreSQL reached migration head `lifeorgpipelinemerge01`:
+the bounded corpus plus replay/withdrawal/projector selection passed **11
+tests**; the complete connected `tests/life_projection -m requires_postgres`
+selection passed **40 tests** (249 offline/API-key cases deselected); the
+producer/owner-event connected selection passed **6 tests**; and the offline
+Life selection passed **249 tests** (40 connected cases deselected). Ruff,
+formatting and all applicable hooks passed; the pre-existing repository-wide
+`check-size-budgets` failure was the only explicitly skipped hook. The corpus
+now asserts both the shared-connection withdrawal boundary and the explicit
+Outcome restoration event kind. The branch is isolated and not merged or
+pushed; Integration must rerun its broader disposable-Postgres tuple against
+`6d2b84d72` before closing the timeout finding.
 
 **Roadmap rebaseline — September 7:** implementation packages for R1/R2-A
 through F have landed. Their functions and tests do not complete every package
