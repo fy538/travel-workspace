@@ -644,3 +644,28 @@ or bypass admission. No backend file or checker was changed in this review.
 Explicit validation of the edited receipt also caught its 31-day review window;
 the expiry was shortened from October 8 to October 7 to meet the existing
 30-day policy. No review period was extended.
+
+## Child documentation lifecycle repair — September 8
+
+The five affected child documents were repaired on an isolated backend branch
+and locally received on backend `main` at `262f0963c` (`docs: archive
+superseded spatial plans`). Their historical content and existing provenance
+links remain intact; only the lifecycle metadata was normalized from invalid
+`working` + historical/superseded combinations to `doc_type: archive`,
+`status: archived`, with an explicit `archived: 2026-09-08` and metadata review
+date. The spatial tracker now explicitly links the current integration roadmap
+and says its status lines are historical evidence, not a live queue.
+
+The actual workspace command was rerun after the landing:
+
+* `make docs-check`: **passed**;
+* child document admission: **403 post-baseline documents checked**;
+* inventory: **600 Markdown files**, with zero merge/investigate/delete-candidate
+  entries;
+* spine, canon, release, current-state, living links, compatibility and
+  Home-surfaces checks: all passed.
+
+This closes the delegated documentation gate without weakening the validator,
+reviving an August plan, or changing product/runtime behavior. Backend and
+workspace worktrees remain clean; no remote push, deployment, provider or flag
+activation occurred.

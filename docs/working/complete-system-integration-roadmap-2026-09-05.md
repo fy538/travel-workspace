@@ -41,9 +41,12 @@ and serial Postgres runs pass. See the [residual receipt](integration-execution-
 for commands, counts, exclusions and limits. Mypy remains separately failed at
 262 errors/62 files. No native, provider, deployment or release acceptance follows.
 The subsequent [Strategy documentation recheck](integration-execution-checkpoint-2026-09-07.md#strategy-documentation-recheck--september-8)
-found five child lifecycle metadata failures. Resolve that bounded docs gate before
-the next combined landing; neither backend test success nor product-doc unit tests
-certify the workspace child-document admission command.
+found five child lifecycle metadata failures. Integration repaired and locally
+received that bounded gate at backend `262f0963c`; the actual workspace
+`make docs-check` now passes, including **403** post-baseline child documents.
+Neither backend test success nor product-doc unit tests alone certify the
+workspace child-document admission command; retain the command in future
+receiving checkpoints.
 
 1. **Preserve the received baseline; scope the next handoffs (E0/E6).** Do not
    repeat the migration merge, structural extraction or residual fixture round.
