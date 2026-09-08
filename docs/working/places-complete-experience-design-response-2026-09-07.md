@@ -257,3 +257,17 @@ Board 21 carries the selected language of 19 through the three paths of §13.6 a
 Reversed from §12: the illustrated places, the sans compact titles, the outlined pill, the boxed field. Unchanged: the composition of 18, the sections, the copy, the fixture, the uncertainty lines. The arc's sunrise and the tide's high are placeholders at the fixture's scale.
 
 **Rebuild note.** The generators for every board on this project were lost with the session's temporary folder. 19 is rebuilt from the pushed HTML: chrome, captions and section markup verbatim, the instruments redrawn from the canon's specimen sheets. The generator and its sources now live in the repo under `docs/working/design-gen/places/`. Boards 20 to 22 remain in the §12 vocabulary until they are rebuilt the same way.
+
+## 21. Boards 20 to 22 rebuilt on the chosen terms (September 8, early)
+
+**What was rebuilt.** A shared kit (`docs/working/design-gen/places/kit3.py`) reconstructed from the pushed HTML of 19 and the canon's specimen sheets: Home's anchor line, orientation sentence and quiet question line; serif rows with mono facts; solid discs and facepile rows; Home's card, sequence rail and doors; the browse shelf, the burden strip, the day band, the editorial cover, the ghost rows; the Red Hook map lifted from 19. Boards 20, 21 and 22 were regenerated from it with their content unchanged in substance.
+
+**20, the checks and the opening sequence.** The before-and-after rows of the §12 polish, the assortment treatments not chosen and the thumbnail row are retired with that vocabulary. What remains: long names and text at 1.3× as the two checks the chosen language changes (SVG labels stay at the 10px mono floor and do not scale, as the canon says instruments should), and the five-frame opening sequence, where the kept possibility's page carries a photo slot, Maya's words, the evening on one day band, three facts and one prepared message.
+
+**21, the journeys.** The same three journeys, with the burden strip on the map-led page and on the Print Room's page, and the day band on every practical frame: the hour as the gold block, dinner as the ring after it at 8:15 then 8:45, last orders as the dot at 9 on Saturday. The three human branches remain independent rows.
+
+**22, the situations.** Sorrento opens with the cliff as a section instrument (the town at forty metres, the quay at sea level, 180 metres on the map); sparse supply opens with the film in the light; the map unavailable keeps the burden strip, the places and the walk with one line in the map's slot; results pending keeps the known pocket and two ghost rows.
+
+**Index, decisions, log.** 00 shows miniatures of the chosen scrolls and two frames each from 21 and 22; 08's third decision now reads photo slots and instruments instead of stand-in drawings and sans rows; 09 records the parity draft and the chosen expression as two passes.
+
+**Observed and not.** Every board was rendered and inspected as crops after generation; label collisions on the day bands and the cliff section were corrected. All transitions remain ordered static frames. The generators are in the repo.
