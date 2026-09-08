@@ -210,7 +210,7 @@ occurred.
 4. Re-run the combined mandatory checks and only then mark the baseline
    verified. Wave 2 remains paused.
 
-## Targeted backend prerequisite round — September 8, in progress
+## Targeted backend prerequisite round — September 8, completed
 
 Strategy authorized a narrow follow-through without reopening product or
 mobile work. Engineering Meta owns the existing 128-path staged reliability
@@ -289,22 +289,42 @@ format, and `git diff --check` pass; the normal backend commit hooks also pass.
 The one warning is the existing optional Nomic acceleration warning from an
 image-pipeline test. The disposable seed and catalog were not committed.
 
-Meta's isolated staged tree is still the prerequisite owner for the measured
-size extraction and the seven canonical backend failures. The latest observed
-isolated tree is **149 staged paths** at the same base (manifest hash
-`4f88ff8c3c2264ca676d0afbda712b07839986d35333d165ad9edc09dc9efb2b`), with `session.py` and
-`conversations.py` now below the budget; the only measured size offenders
-remaining there are `experience_graph/commands.py` and
-`concierge/_prompts_skills.py`. It is still dirty and uncommitted, so this
-Integration commit is not a signal to land either package on canonical
-`main`.
+### Receiving after landing — September 8
 
-The disposable Compose project, volumes, network, temporary override, and
-lane venv symlink are removed after this validation. No remote push,
-deployment, provider activation, generated contract sync, or shared-daemon
-restart occurred. The next receiving order remains: Meta's hook-verified
-commit, the seven canonical failures, then this committed residual package
-and the combined mandatory checks.
+The two backend packages are now landed on canonical backend `main` in this
+order:
+
+1. Meta structural reliability package: `6da6905ac`
+   (`chore: land structural reliability package`, 149 paths; normal commit
+   hooks passed).
+2. Integration residual fixture/contract package: merge commit `7c2addd34`,
+   bringing `a1c841181` onto backend `main`.
+
+The canonical backend candidate is clean at `7c2addd34`. Post-landing
+verification is green for the bounded package: the engineering-focused tuple
+is **243 passed / 9 skipped**, and the exact residual Postgres suite is
+**79 passed / 1 warning**. A fresh disposable migration reaches the single
+head `lifeorgpipelinemerge01` before those tests run.
+
+The broader `-m requires_postgres` run was intentionally stopped after it
+entered the existing Life projection concurrency/deadlock path (the run
+reported an async timeout in `life_projection/occasion_projector.py` and
+additional failures before termination). It is therefore not represented as a
+green full-suite result. No production process was involved; the disposable
+Compose project was stopped and removed after the bounded evidence.
+
+This closes the structural prerequisite and the residual fixture package, but
+does not certify the entire repository. Remaining work is a separate repair
+of the Life projection concurrency failures and the previously recorded
+undeclared-Postgres offline fixtures; no baseline, hook, or test quarantine
+was changed.
+
+The preceding staged-tree measurements are retained as historical pre-landing
+evidence. They are superseded by the receiving record above; the staged tree
+was committed and merged, and the disposable Compose project, volumes,
+network, temporary override, and lane venv symlink were removed after
+validation. No remote push, deployment, provider activation, generated
+contract sync, or shared-daemon restart occurred.
 
 ## Landed
 
