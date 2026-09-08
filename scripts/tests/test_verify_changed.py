@@ -184,3 +184,12 @@ def test_cli_requires_all_three_explicit_base_refs(
 ) -> None:
     assert MODULE.main(["--workspace-base-ref", "HEAD"]) == 2
     assert "travel-agent: base ref is required" in capsys.readouterr().err
+
+
+def test_git_identity_ignores_hook_environment(tmp_path, monkeypatch):
+    repos = _repositories(tmp_path)
+    expected = [MODULE._git(r, ["rev-parse", "HEAD"]).stdout for r in repos]
+    monkeypatch.setenv("GIT_DIR", str(repos[0].root / ".git"))
+    monkeypatch.setenv("GIT_WORK_TREE", str(repos[0].root))
+    assert [MODULE._git(r, ["rev-parse", "HEAD"]).stdout for r in repos] == expected
+    assert len(set(expected)) == 3

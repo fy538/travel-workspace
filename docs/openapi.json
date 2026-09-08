@@ -29636,6 +29636,89 @@
         }
       }
     },
+    "/api/relationships/place-handoffs/sent": {
+      "get": {
+        "tags": [
+          "relationships"
+        ],
+        "summary": "List Sent Relationship Handoffs",
+        "description": "Return the current sender's own addressed handoff history.\n\nUnlike the recipient queue, this projection includes terminal rows for\nsender-owned control and reconciliation. Recipient attention (kept or\ndismissed) is deliberately not exposed in this response.",
+        "operationId": "list_sent_relationship_handoffs_api_relationships_place_handoffs_sent_get",
+        "parameters": [
+          {
+            "name": "world_entity_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "World Entity Id"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 100,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelationshipPlaceHandoffSenderResponse"
+                  },
+                  "title": "Response List Sent Relationship Handoffs Api Relationships Place Handoffs Sent Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/relationships/place-handoffs/{handoff_id}": {
       "get": {
         "tags": [
@@ -55260,6 +55343,7 @@
                 "type": "string",
                 "enum": [
                   "keep",
+                  "dismiss",
                   "open_together"
                 ]
               },
@@ -90970,6 +91054,14 @@
             "type": "array",
             "maxItems": 6,
             "title": "Place Names"
+          },
+          "venue_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "maxItems": 6,
+            "title": "Venue Ids"
           }
         },
         "type": "object",
@@ -101961,6 +102053,165 @@
         ],
         "title": "RelationshipPlaceHandoffResponse",
         "description": "Viewer-safe projection that cannot leak terminal or nearby-only content."
+      },
+      "RelationshipPlaceHandoffSenderResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/backend__domains__relationships__models__RelationshipScope"
+          },
+          "sender_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Sender User Id"
+          },
+          "recipient_user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Recipient User Id"
+          },
+          "world_entity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "World Entity Id"
+          },
+          "conversation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Conversation Id"
+          },
+          "message_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message Id"
+          },
+          "source_anchor_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Anchor Id"
+          },
+          "source_artifact_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Artifact Id"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "artifact_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Artifact Ref"
+          },
+          "permissions": {
+            "$ref": "#/components/schemas/HandoffPermissionEnvelope"
+          },
+          "delivery_mode": {
+            "$ref": "#/components/schemas/HandoffDeliveryMode"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "revoked",
+              "expired"
+            ],
+            "title": "Status"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "title": "Idempotency Key"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "scope",
+          "sender_user_id",
+          "conversation_id",
+          "message",
+          "permissions",
+          "delivery_mode",
+          "status",
+          "revision",
+          "idempotency_key",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "RelationshipPlaceHandoffSenderResponse",
+        "description": "Sender control projection without recipient attention state."
       },
       "RelationshipPlaceHandoffTransition": {
         "properties": {

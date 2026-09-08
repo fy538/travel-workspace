@@ -714,7 +714,13 @@
     },
     "GET /api/me/entities/{entity_type}/{entity_id}/presentation-v2": {
       "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "getEntityDetailPresentationV2", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "getEntityDetailPresentationV2",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "places",
@@ -724,7 +730,13 @@
     },
     "POST /api/me/entities/{entity_type}/{entity_id}/situation": {
       "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "getEntitySituation", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "getEntitySituation",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "places",
@@ -3815,6 +3827,16 @@
       "reason": "Additive typed Life v1 read projection; native client root remains independently flag-gated.",
       "removal_trigger": "Remove only after an equivalent canonical Life read contract is landed.",
       "review_by": "2026-10-30"
+    },
+    "GET /api/relationships/place-handoffs/sent": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "RELATIONSHIP_UUID_HANDOFFS_ENABLED",
+      "lifecycle": "dark",
+      "owner": "relationships",
+      "reason": "Sender-only handoff history exists behind the relationship gate; September 7 source inspection found no mobile transport or product caller. API tests cover the sender projection, not a shipped app consumer.",
+      "removal_trigger": "Add and verify a reviewed sender-control consumer or remove this unused endpoint.",
+      "review_by": "2026-10-07"
     }
   },
   "retired_operations": {

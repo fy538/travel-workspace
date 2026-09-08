@@ -120,10 +120,11 @@ entity-health: ## Print content-free canonical entity queues, redirects, and sta
 
 # ── Tests ─────────────────────────────────────────────────────────────────────
 
-test-backend: ## Run the backend canary against local Postgres; unseeded corpus suites skip
-	@cd travel-agent && TRAVEL_APP_ROOT="$(CURDIR)/travel-app" DATABASE_URL="$${DATABASE_URL:-postgresql://vesper:localdev@localhost:15432/vesper}" SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest tests/ -q -n auto --dist loadfile -k "not requires_postgres and not requires_api_keys and not requires_dogfood_wedge"
+test-backend: ## Run backend offline tests (no database probing or cleanup)
+	@cd travel-agent && TRAVEL_APP_ROOT="$(CURDIR)/travel-app" SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest tests/ -q -n auto --dist loadfile -m "not requires_postgres and not requires_api_keys and not requires_dogfood_wedge"
 
-test-backend-postgres: ## Run marker-gated Postgres integration tests against local Postgres
+test-backend-postgres: ## Run integration tests against an explicitly disposable TEST_DATABASE_URL
+	@test -n "$$TEST_DATABASE_URL" && test "$$TEST_DATABASE_DISPOSABLE" = 1 || { echo "Set TEST_DATABASE_URL and TEST_DATABASE_DISPOSABLE=1 for a disposable DB"; exit 2; }
 	@cd travel-agent && TRAVEL_APP_ROOT="$(CURDIR)/travel-app" DATABASE_URL="$${DATABASE_URL:-postgresql://vesper:localdev@localhost:15432/vesper}" SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest tests/ -q -m "requires_postgres and not requires_dogfood_wedge"
 
 test-frontend: ## Run frontend Jest tests
@@ -240,13 +241,14 @@ chat-card-types-check: ## Gate: generated chat card-type allowlists + pilot sche
 	@python3 scripts/sync-chat-card-types-contract.py --check
 
 certify-logic: ## Tier-2 certify ladder: journey scenario pytest (requires Postgres, excludes corpus-dependent tests)
+	@test -n "$$TEST_DATABASE_URL" && test "$$TEST_DATABASE_DISPOSABLE" = 1 || { echo "Set TEST_DATABASE_URL and TEST_DATABASE_DISPOSABLE=1 for a disposable DB"; exit 2; }
 	@python3 scripts/run_required_pytest.py --cwd travel-agent -- \
-	  env DATABASE_URL="$${DATABASE_URL:-postgresql://vesper:localdev@localhost:15432/vesper}" SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest tests/scenarios/ \
+	  env SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest tests/scenarios/ \
 	  -m "requires_postgres and not requires_dogfood_wedge" -q
 
 certify-corpus: ## Tier-2b certify ladder: discover_queries compose tests (requires seeded wedge corpus)
-	@echo "Running corpus-dependent discover tests (requires 'make dogfood-city CITY=lisbon APPLY=1 ENRICH=1')..."
-	@cd travel-agent && SKIP_AUTH=true PYTHONPATH=. pytest tests/scenarios/ \
+	@test -n "$$TEST_DATABASE_URL" && test "$$TEST_DATABASE_DISPOSABLE" = 1 || { echo "Set TEST_DATABASE_URL and TEST_DATABASE_DISPOSABLE=1 for a seeded disposable DB"; exit 2; }
+	@cd travel-agent && SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest tests/scenarios/ \
 	  -m requires_dogfood_wedge -v --tb=short
 
 certify-visual: ## Tier-3 certify ladder: deterministic PR-smoke Maestro lane (needs simulator + app)

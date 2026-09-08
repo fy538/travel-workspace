@@ -13,6 +13,190 @@ dispositions:
 # Overrides win over rules. Rules deliberately cover stable folder conventions;
 # top-level and working documents are classified one by one below.
 rules:
+  - glob: "docs/working/claude-design-home-artifact-led-visual-value-handoff-2026-09-05.md"
+    disposition: keep_reference
+    rationale: "Dated supporting home — recognizable things that return useful value; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/claude-design-home-artifact-led-visual-value-response-2026-09-05.md"
+    disposition: keep_reference
+    rationale: "Dated supporting home — artifact-led visual value: response; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/claude-design-integration-2026-09-04/01-home-places-response.md"
+    disposition: keep_reference
+    rationale: "Dated supporting home and places — response to `01-home-places.md`; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/claude-design-integration-2026-09-04/05-entity-objects-response-2026-09-04.md"
+    disposition: keep_reference
+    rationale: "Dated supporting entity objects — lane response (2026-09-04); its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/claude-design-interaction-kernel-lab-v2-3-arrangements-execution-report-2026-09-04.md"
+    disposition: keep_reference
+    rationale: "Dated supporting interaction kernel lab v2.3 — lightweight arrangements portfolio — execution report; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/claude-design-life-canonical-project-handoff-2026-09-06.md"
+    disposition: keep_reference
+    rationale: "Dated supporting claude design handoff — vesper life, the current product; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/claude-design-life-current-product-manifest-2026-09-06.md"
+    disposition: keep_reference
+    rationale: "Dated supporting vesper — life / current product — manifest; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/claude-design-life-value-and-continuity-refinement-handoff-2026-09-06.md"
+    disposition: keep_reference
+    rationale: "Dated supporting claude design handoff — life: value and continuity refinement; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/claude-design-plans-in-real-life-execution-report-2026-09-04.md"
+    disposition: keep_reference
+    rationale: "Dated supporting vesper — plans in real life — execution report; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/claude-design-plans-in-real-life-handoff-2026-09-04.md"
+    disposition: keep_reference
+    rationale: "Dated supporting claude code → claude design handover: vesper — plans in real life; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/claude-design-social-experience-inspiration-shelf-2026-09-07.md"
+    disposition: keep_reference
+    rationale: "Dated supporting social experience — inspiration shelf from the live sibling projects; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/claude-design-vesper-home-generous-value-response-2026-09-04.md"
+    disposition: keep_reference
+    rationale: "Dated supporting vesper home — response to the generous-value handoff; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/contribution-capture-cc2-cc4-execution-receipt-2026-09-06.md"
+    disposition: keep_reference
+    rationale: "Dated supporting contribution/capture cc-2 → cc-4 execution receipt; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/contribution-capture-outcome-handoff-receipt-2026-09-06.md"
+    disposition: keep_reference
+    rationale: "Dated supporting contribution/capture → life outcome handoff receipt; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/contribution-copy-consumer-inventory-2026-09-05.md"
+    disposition: keep_reference
+    rationale: "Dated supporting contribution copy / consumer inventory; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/entity-native-qa-receipt-2026-09-04.md"
+    disposition: keep_reference
+    rationale: "Dated supporting entity native qa receipt; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/entity-object-design-overhaul-plan-2026-09-07.md"
+    disposition: keep_reference
+    rationale: "Dated supporting entity object page: design-completion and integration overhaul; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/entity-pilot-release-manifest-2026-09-05.md"
+    disposition: keep_reference
+    rationale: "Dated supporting entity pilot release manifest; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/entity-pilot-runbook-2026-09-04.md"
+    disposition: keep_reference
+    rationale: "Dated supporting entity object-page pilot runbook; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/entity-system-execution-receipt-2026-09-05.md"
+    disposition: keep_reference
+    rationale: "Dated supporting entity system execution receipt — 2026-09-05; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/fixtures/shared-fixture-world-2026-09-07.md"
+    disposition: keep_reference
+    rationale: "Dated supporting shared fixture world — 2026-09-07; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/friends-audience-decision-proposal-2026-09-07.md"
+    disposition: keep_reference
+    rationale: "Dated supporting decision proposal: one connection, deliberate sharing audiences; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/guest-identity-and-delivery-decision-proposal-2026-09-07.md"
+    disposition: keep_reference
+    rationale: "Dated supporting decision proposal: a bounded guest without full app adoption; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/home-places-renderer-coverage-audit-2026-09-05.md"
+    disposition: keep_reference
+    rationale: "Dated supporting home / places renderer coverage audit; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/i3-intake-format-and-custody-audit-2026-09-05.md"
+    disposition: keep_reference
+    rationale: "Dated supporting i3 intake format and custody audit; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/i3-writer-authority-audit-2026-09-05.md"
+    disposition: keep_reference
+    rationale: "Dated supporting i3 writer-authority audit; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/integration-execution-checkpoint-2026-09-07.md"
+    disposition: keep_reference
+    rationale: "Dated supporting integration execution checkpoint — 2026-09-07; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/life-next-owner-family-decision-2026-09-06.md"
+    disposition: keep_reference
+    rationale: "Dated supporting life next owner-family decision — 2026-09-06; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/life-outcome-audience-cas-decision-proposal-2026-09-06.md"
+    disposition: keep_authoritative
+    rationale: "Accepted Outcome CAS contract limited to the Life shadow writer; serving cutover remains separately gated."
+
+  - glob: "docs/working/life-outcome-shared-audience-decision-2026-09-06.md"
+    disposition: keep_authoritative
+    rationale: "Accepted shadow-delivery Outcome audience/revocation contract; no migration or serving activation authority."
+
+  - glob: "docs/working/life-over-time-walkthroughs-2026-09-06.md"
+    disposition: keep_reference
+    rationale: "Dated supporting life over time — walkthroughs and deltas (2026-09-06 pass); its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/life-owner-change-delivery-handoff-2026-09-06.md"
+    disposition: keep_reference
+    rationale: "Dated supporting life owner-change delivery handoff — 2026-09-06; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/life-system-execution-receipt-2026-09-06.md"
+    disposition: keep_reference
+    rationale: "Dated supporting life system execution receipt — september 6, 2026; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/life-unfolding-decision-docket-2026-09-04.md"
+    disposition: keep_reference
+    rationale: "Dated supporting life unfolding — decision docket (2026-09-04 pass); its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/live-engine-owner-path-matrix-2026-09-05.md"
+    disposition: keep_reference
+    rationale: "Dated supporting live-engine owner and path matrix; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/object-page-rebuild/fixture-contract-audit-2026-09-04.md"
+    disposition: keep_reference
+    rationale: "Dated supporting object-page fixture contract audit; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/occasion-life-owner-contract-2026-09-06.md"
+    disposition: keep_reference
+    rationale: "Dated supporting occasion → life owner contract — 2026-09-06; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/ongoing-connection-default-decision-proposal-2026-09-07.md"
+    disposition: keep_reference
+    rationale: "Dated supporting decision proposal: an understandable optional connection; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/places-complete-experience-design-response-2026-09-07.md"
+    disposition: keep_reference
+    rationale: "Dated supporting places — complete experience design: response; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/places-composition-breadth-design-revision-2026-09-07.md"
+    disposition: keep_reference
+    rationale: "Dated supporting places — composition breadth revision for claude design / claude code; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/places-result-set-context-contract-2026-09-05.md"
+    disposition: keep_authoritative
+    rationale: "Defines the active result-set versus context identity seam used by Places readers."
+
+  - glob: "docs/working/scoped-source-use-grant-decision-proposal-2026-09-07.md"
+    disposition: keep_reference
+    rationale: "Dated supporting decision proposal: scoped use of a received contribution; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/social-experience-capability-map-2026-09-07.md"
+    disposition: keep_reference
+    rationale: "Dated supporting social experience — capability map to existing owners; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/social-experience-design-response-2026-09-07.md"
+    disposition: keep_reference
+    rationale: "Dated supporting social experience — design response; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/source-connected-value-execution-receipt-2026-09-07.md"
+    disposition: keep_reference
+    rationale: "Dated supporting connected source value — execution receipt (2026-09-07); its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
+  - glob: "docs/working/source-request-result-control-mapping-2026-09-07.md"
+    disposition: keep_reference
+    rationale: "Dated supporting source request, result, and control mapping — 2026-09-07; its stated proposal, evidence and activation limits remain in force; canonical owner contracts retain authority."
+
   - glob: docs/archive/**/*.md
     disposition: archive
     rationale: Already lives in the non-authoritative historical tree.

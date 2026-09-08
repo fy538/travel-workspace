@@ -66,7 +66,7 @@ The assignment is one coordinated design pass in a dedicated social-experience p
 2. [Multiplayer Product Strategy](../../travel-agent/docs/product/Multiplayer%20Product%20Strategy.md): social benefit, accessibility, participation, gathering and continuity principles already established.
 3. [Home composition amendment](../decisions/2026-09-05-amend-home-composition-canon.md), [four-root contract](../systems/four-root-loop-object-surface.md), [contribution contract](../systems/contribution-and-consequence.md), and [graph legibility](../systems/graph-legibility-doctrine.md): placement and consequences that must remain true.
 4. [Active Places handoff](places-complete-experience-design-handoff-2026-09-07.md): the separate Places lane's current complete-experience composition. Do not replace it with the old friends-only canvas.
-5. [Six-topic research report](../../output/pdf/vesper-social-six-topics-research-2026-09-07.pdf) and [earlier connection research](../../output/pdf/vesper-low-pressure-human-connection-research-2026-09-07.pdf): supporting evidence, source access and limitations.
+5. Six-topic research report (local export: `output/pdf/vesper-social-six-topics-research-2026-09-07.pdf`) and earlier connection research (local export: `output/pdf/vesper-low-pressure-human-connection-research-2026-09-07.pdf`): supporting evidence, source access and limitations.
 
 The [older social-aperture exploration](claude-design-social-aperture-and-shared-world-exploration-handoff-2026-09-02.md) remains provenance for alternatives, not a reason to reopen the accepted root split. This brief adds decisions about receiving, participation and continuation; it does not claim those underlying principles were missing from the canon.
 

@@ -13,7 +13,8 @@ why_new: First machine-recorded verification-loop baseline for this workspace, b
 > Machine: Darwin 25.5.0, arm64, 14 CPUs, Python 3.14.6 (see individual records for exact commit IDs)
 
 Machine-readable evidence: [`test-loop-baseline.json`](test-loop-baseline.json). Full logs for
-every run: [`runs/`](runs/). Produced by [`scripts/measure_verification.py`](../../scripts/measure_verification.py).
+every run were written to local `docs/reliability/runs/` (not retained in Git).
+Produced by [`scripts/measure_verification.py`](../../scripts/measure_verification.py).
 
 ## Headline finding
 

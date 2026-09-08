@@ -1,14 +1,19 @@
 {
   "hooks": {
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "git -C travel-agent log --oneline -3 2>/dev/null; git -C travel-app log --oneline -3 2>/dev/null"
-          }
-        ]
-      }
-    ]
+    "hooks": {
+      "SessionStart": [
+        {
+          "matcher": "startup|resume|compact",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "unset GIT_DIR GIT_WORK_TREE GIT_COMMON_DIR GIT_INDEX_FILE; ROOT=$(git rev-parse --show-toplevel) && if [ -f \"$ROOT/scripts/session-context.py\" ]; then python3 \"$ROOT/scripts/session-context.py\"; elif [ -f \"$ROOT/../scripts/session-context.py\" ]; then python3 \"$ROOT/../scripts/session-context.py\"; else echo \"Workspace context unavailable; establish the coordinated lane\" >&2; exit 1; fi",
+              "timeout": 20,
+              "additionalContextLimit": 4000
+            }
+          ]
+        }
+      ]
+    }
   }
 }

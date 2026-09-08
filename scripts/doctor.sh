@@ -5,6 +5,7 @@
 # then checks for the core tools used in the current workflow.
 
 set -euo pipefail
+unset GIT_DIR GIT_WORK_TREE GIT_COMMON_DIR GIT_INDEX_FILE
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
@@ -53,7 +54,7 @@ header "Workspace"
 
 [ -d "$AGENT_DIR" ] || fail "travel-agent repo missing at $AGENT_DIR"
 [ -d "$APP_DIR" ] || fail "travel-app repo missing at $APP_DIR"
-[ -d "$WORKSPACE_DIR/.git" ] || fail "Workspace repo missing .git at $WORKSPACE_DIR"
+[ -e "$WORKSPACE_DIR/.git" ] || fail "Workspace repo missing .git at $WORKSPACE_DIR"
 ok "Workspace repo present"
 ok "travel-agent repo present"
 ok "travel-app repo present"
@@ -80,13 +81,13 @@ header "Git"
 
 check_command git
 
-if git -C "$AGENT_DIR" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+if [ -e "$AGENT_DIR/.git" ] && git -C "$AGENT_DIR" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   ok "travel-agent git repo healthy"
 else
   fail "travel-agent is not a valid git repo"
 fi
 
-if git -C "$APP_DIR" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+if [ -e "$APP_DIR/.git" ] && git -C "$APP_DIR" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   ok "travel-app git repo healthy"
 else
   fail "travel-app is not a valid git repo"
@@ -145,57 +146,12 @@ else
   warn "travel-app has no origin remote"
 fi
 
-header "Local Postgres (certify / dogfood)"
-
-# Keep this aligned with dev.sh and the workspace test targets. Docker Compose
-# publishes Postgres on 15432 by default; localhost:5432 may be an unrelated
-# host service and must not be presented as the workspace database.
-POSTGRES_HOST_PORT="${POSTGRES_HOST_PORT:-15432}"
-CANONICAL_DATABASE_URL="postgresql://vesper:localdev@localhost:${POSTGRES_HOST_PORT}/vesper"
-ok "Canonical local DSN: $CANONICAL_DATABASE_URL"
-
-if command -v docker >/dev/null 2>&1; then
-  if docker ps --format '{{.Names}}' 2>/dev/null | grep -qx 'research-agent-postgres'; then
-    ok "Docker Postgres container running (research-agent-postgres)"
-    if (cd "$AGENT_DIR" && docker compose exec -T postgres pg_isready -U vesper >/dev/null 2>&1); then
-      ok "Postgres accepts vesper user (matches backend defaults)"
-    else
-      warn "Container up but vesper role not ready — likely an old volume initialized as research_agent"
-      warn "Fix: cd travel-agent && docker compose down -v && docker compose up -d"
-    fi
-  else
-    warn "research-agent-postgres container not running (make dev-backend starts it)"
-  fi
+header "Selected runtime (credentials omitted)"
+python3 "$SCRIPT_DIR/dev_runtime.py" --print-runtime || fail "Runtime configuration is invalid"
+if [ "${1:-}" = "--services" ]; then
+  python3 "$SCRIPT_DIR/dev_runtime.py" --check-services || fail "Selected Compose Postgres is unavailable"
+  ok "Selected Compose Postgres service is ready"
 else
-  warn "Docker not available — skipping container probe"
+  ok "Service probes unrun (use --services after selecting the lane runtime)"
 fi
-
-if command -v psql >/dev/null 2>&1; then
-  if PGPASSWORD=localdev psql -U vesper -h localhost -p "$POSTGRES_HOST_PORT" -d vesper -c 'SELECT 1' >/dev/null 2>&1; then
-    ok "Host psql can connect as vesper@localhost:${POSTGRES_HOST_PORT}/vesper"
-  else
-    warn "Host psql cannot connect as vesper@localhost:${POSTGRES_HOST_PORT}/vesper"
-  fi
-fi
-
-agent_env="$AGENT_DIR/.env"
-if [ -f "$agent_env" ]; then
-  env_database_url="$(grep -E '^DATABASE_URL=' "$agent_env" 2>/dev/null | head -1 | cut -d= -f2- || true)"
-  if [ -n "$env_database_url" ] && [ "$env_database_url" != "$CANONICAL_DATABASE_URL" ]; then
-    warn "travel-agent/.env DATABASE_URL differs from canonical vesper DSN"
-    warn "  set: $env_database_url"
-    warn "  certify/seed expect: $CANONICAL_DATABASE_URL (or unset DATABASE_URL and use POSTGRES_* defaults)"
-  elif [ -n "$env_database_url" ]; then
-    ok "travel-agent/.env DATABASE_URL matches canonical local DSN"
-  else
-    ok "travel-agent/.env has no DATABASE_URL override (workspace commands supply the Docker DSN)"
-  fi
-fi
-
-shell_database_url="${DATABASE_URL:-}"
-if [ -n "$shell_database_url" ] && [ "$shell_database_url" != "$CANONICAL_DATABASE_URL" ]; then
-  warn "Shell DATABASE_URL differs from canonical — make certify-logic / make seed-s4-local may skip or hit wrong DB"
-  warn "  export DATABASE_URL='$CANONICAL_DATABASE_URL'"
-fi
-
 printf "\n\033[32mWorkspace doctor complete.\033[0m\n"

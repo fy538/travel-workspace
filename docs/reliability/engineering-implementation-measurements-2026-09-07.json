@@ -1,0 +1,46 @@
+[
+  {
+    "schema_version": 1,
+    "label": "engineering-workspace-regressions",
+    "command": [
+      "travel-agent/.venv/bin/python",
+      "-m",
+      "pytest",
+      "scripts/tests/",
+      "-q"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "449c048417858eb2762998a2578e14562ef26919",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "0c1f1f3258629001890889c9336ce9bd78452032",
+        "dirty": true
+      },
+      "travel-app": {
+        "commit": "2ebb4318b7c05a0097f2f4e93b6d99cc445e45b0",
+        "dirty": true
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 5.353,
+    "log_path": "/tmp/vesper-engineering-implementation-2026-09-07/engineering-workspace-regressions-20260908T012323Z.log",
+    "test_counts": {
+      "framework": "pytest",
+      "collected": null,
+      "passed": 64,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0
+    }
+  }
+]

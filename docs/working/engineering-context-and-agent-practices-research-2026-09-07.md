@@ -439,3 +439,118 @@ Executed: copied-script bootstrap/doctor and dev-launcher probes with all extern
 The third online wave added five empirical studies, including an August revision and an older industrial mutation-testing study, plus official GitHub, dependency, image, and hook documentation. Initial discovery was followed by targeted version/method checks and counterevidence. GNU Bash documentation retrieval remained unavailable; launcher behavior is supported by the direct isolated reproduction instead. Research stopped when setup findings had direct evidence and research implications had bounded support; further broad browsing would not establish the local productivity effect or repair these defects.
 
 Artifact verification: report metadata, inventory registration, relative links, fenced examples, and Markdown structure passed scoped checks. No rendered visual review was performed; a Markdown renderer was unavailable in the checked Python runtime.
+
+
+## Authorized implementation — September 7
+
+The founder authorized executing the recommendations after repository cleanup.
+The implementation is isolated in `codex/engineering-reliability-2026-09-07`
+across three coordinated worktrees at
+`/Users/feihuyan/travel-workspace-engineering-reliability-2026-09-07`.
+The frontend child is committed locally as `c18cf5b51`; workspace and backend
+changes remain uncommitted because the backend pre-commit ratchet is blocked by
+the pre-existing repository-wide broad-exception count. Nothing is published.
+Remote Actions and required-check repairs are already applied; local
+instruction/tooling adoption and end-to-end rollout are not complete. Research
+observations above remain dated.
+
+Bases: workspace `449c048417858eb2762998a2578e14562ef26919`, backend
+`0c1f1f3258629001890889c9336ce9bd78452032`, app
+`2ebb4318b7c05a0097f2f4e93b6d99cc445e45b0`. The app base is the existing
+entity-object-design branch, not an assertion of clean main. All results below
+refer to these bases plus this lane's working changes.
+
+### Implemented repairs
+
+| Recommendation | Implemented result and evidence boundary |
+|---|---|
+| Actions and required checks | Workspace/backend Actions enabled; incorrect required names replaced with each repository's emitted checks. Strict updates, required review and administrator enforcement preserved. Final settings read back from all three repos. New backend `package-smoke` remains pending remote publication before making it required. |
+| Bootstrap, lanes and runtime | Lowercase/legacy layout and linked checkouts supported; inherited Git identity isolated. Three real worktrees record base commits and separate runtime ports/project. Dev startup checks readiness, propagates failures, and stops its own workers. Landing verifies the coordinated lane before branch publication. Disposable probes pass; real Docker startup remains blocked. |
+| Cross-repository identity | Dispatch validates repository/event/full SHA; only its triggering child replaces the immutable pin. Actual checkout identities are asserted and uploaded. App freshness uses the mobile OpenAPI projection. Remote candidate runs and published dependency pins remain pending. |
+| Offline fixtures and quarantine | DB setup/cleanup requires explicit disposable opt-in. Offline tests cannot acquire real DB engines. Quarantines name exact node IDs and support an unmasked run. Home and trip-route fixture repairs remove 30 demonstrated DB-leak exceptions, reducing 261 to 231; remaining exceptions do not bypass the offline guard. |
+| Checkers and evals | mypy tooling/config failures cannot reset its baseline; audit errors/malformed advisory graphs fail; AST import checks cover alternate spellings; checker registration requires executable wiring. Eval selectors cover each supported agent and return failure on failed checks. Representative positive/negative/tool-failure tests pass. |
+| Visual and data boundaries | Judgment carry binds screenshot/reference bytes and all relevant judgment inputs, preserves original judgment time, and rejects changed inputs. Multi-capture diff identity repaired. Notification writes go through the mock-aware data facade. Focused regressions pass; no new visual judgment is claimed. |
+| Reproducible setup and packaging | Runtime/dev locks generated and clean installed; missing Shapely dependency declared. Reanimated/Worklets and Expo-compatible Screens versions pinned and checked; Metro patch regenerated for its installed version. NanoID patched to 3.3.18. Both Git hook stages installed. Packaged operator dependency and source/container smoke checks added; source smoke and unsigned iOS build pass, container execution remains blocked. |
+| Instruction ownership | Shared AGENTS owners plus actual Claude imports, scoped rule paths, task routing, bounded lane orientation and safe structured Claude hooks implemented. Unique policy content preserved in existing owners. Direct orientation works in five launch locations. Codex hook discovery/trust has an explicit adoption limitation below. |
+| Documentation trust | 46 workspace documents individually inventoried. 86 child documents receive lifecycle metadata preserving original status/content. 21 frozen/generated artifacts retain exact bytes with explicit hash and metadata-owner records checked by governance. Link checker distinguishes examples from links. Workspace governance and contract checks pass; separate backend freshness debt remains. |
+| Productivity experiments | Factual repairs have executable evidence. Controlled startup/review experiments remain conditional on held-out tasks, trustworthy oracles and human review/repair measurements. No speedup or statistically established productivity gain is claimed. |
+
+Unique-content migration: backend Landmines stay in AGENTS with corrected schema
+ownership; eval/output-guard rules move to Eval Framework; lazy-import rationale
+to Architecture; dogfood iteration to Dogfood Runbook; schedule/backup prerequisites
+to Configuration. Frontend visual requirements stay in AGENTS/protocol, data
+ownership in Data vs Hooks, and design translation in its scoped rule. Setup and
+actual merge/credential ownership remain in Workspace Repo Setup and CI Plan.
+
+Initial disk exhaustion was resolved after cleanup. Sparse checkout was disabled;
+both children now have full checkouts and their own clean installed dependencies.
+Verification used macOS arm64, Python 3.13, Node 24.13, Expo 55.0.31, React Native
+0.83.10 and Xcode 26.5. CI's Node 20 execution remains a separate unrun boundary.
+
+### Verification and remaining work
+
+- Workspace regression suite: 64 passed, including linked-checkout creation,
+  inherited Git environment, candidate mismatch, failing supervised processes,
+  link examples, and tampered/missing/escaping preserved evidence.
+- Backend Home unit file: 45 passed, 9 existing skips. Trip route file: all 153
+  passed. The combined focused run, including engineering checkers, packaged-source
+  operator and affected outcome producers, passed 241 tests with 9 existing skips.
+  The broader offline run reached **2,013 passed and 10
+  failed**, stopping at the requested ten-failure bound. Remaining failures in
+  `test_concierge.py` and `test_concierge_documents.py` attempt undeclared DB
+  access. This is not a complete suite or an unmasked quarantine certificate.
+- Frontend engineering tests: 25 passed; notification/network behavior: 24
+  passed. Visual verdict and refresh regressions: 31 and 16 passed. Fresh
+  `npm ci`, production typecheck, `verify:fast`, contract freshness and security
+  policy pass. The audit still contains approved expiring exceptions; passing
+  policy does not mean zero dependency advisories.
+- Native verification: Expo iOS prebuild, CocoaPods install and unsigned generic
+  simulator build passed. Local build used `SENTRY_DISABLE_AUTO_UPLOAD=true`;
+  it did not upload source maps, install on a device, or establish visual/behavioral
+  acceptance. The artifact is retained in the local evidence directory.
+- `make verify` / backend `make ci` fail the itinerary-writer boundary at
+  `tools/eval/plugins/life_refinding/runner.py:LifeRefindingEvalRunner._run_correction_loop`.
+  The direct participation update needs an owner-reviewed canonical writer or
+  justified exact exception. No waiver was added. Separate mypy execution
+  reports 264 errors in 63 files with its zero baseline unchanged.
+- Frontend `verify:pr` stops on 569 test-type errors against the existing 406
+  baseline. The QA tooling suite also reports nine unclassified header routes
+  and seven missing route-matrix entries. These gates remain failing; no baseline
+  increases or invented header/visual approvals were used.
+- Backend doc freshness independently reports one stale research-agent FEATURE
+  header, four expired active working documents, and one abandoned-draft warning.
+  Workspace governance passing does not certify those claims as current.
+- Docker Desktop's daemon did not respond within the bounded probe. Disposable
+  PostgreSQL/migration/real-backend lanes and actual container artifact smoke
+  remain blocked. No shared daemon restart or development DB cleanup occurred.
+- Frontend CI's present `TRAVEL_AGENT_CI_TOKEN` cannot read the private backend
+  repository (run `34120618861`). Renewal with the required read access is pending;
+  token presence alone is not sufficient evidence. New workflows/pins, terminal
+  docs-only outcomes, and all required checks on the intended published tuple
+  must be verified before rollout can be declared complete.
+
+Codex 0.153.3 app-server discovery resolves the workspace worktree's hooks from
+its canonical checkout; child Git roots do not inherit that workspace hook.
+The canonical hook was untrusted and no trust override was made. This lane's
+new SessionStart configuration will require normal publication and explicit
+trust of the reviewed content. Direct `session-context.py` invocation was tested
+from the workspace, docs, backend, backend/core and app/hooks, including a foreign
+Git environment. Automatic activation and full fresh-agent instruction loading
+are not certified. Claude imports/scopes were checked as configuration and source,
+not by asserting an unobserved live Claude session.
+
+Raw logs, the simulator artifact, remote-setting backups, discovery output and
+fixture-removal evidence are retained at
+`/tmp/vesper-engineering-implementation-2026-09-07` (local temporary retention).
+The existing [measurement record](../reliability/engineering-implementation-measurements-2026-09-07.json)
+contains one real timed workspace run; it is not a before/after experiment.
+The [implementation receipt](../reliability/engineering-implementation-receipt-2026-09-07.json)
+records commands, log hashes, revision identity and unresolved boundaries without
+copying environment or credentials into the repository.
+
+Before landing, reconcile the concurrently authorized canonical workspace roadmap
+and inventory edits from the Strategy task, then resolve the listed required
+checks. Publish child commits before updating dependent CI pins; run the intended
+remote tuple and activate its package-smoke requirement after observing that
+check. Keep the controlled A0–A6 context/review experiments conditional; this
+implementation does not reactivate the historical Demo Program.

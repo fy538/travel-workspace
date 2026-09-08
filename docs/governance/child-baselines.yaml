@@ -1,3 +1,5 @@
+# Historical baselines never advance to hide failures. Frozen/generated artifacts
+# have exact byte hashes and independently validated lifecycle owners below.
 version: 1
 repos:
   travel-agent:
@@ -6,7 +8,109 @@ repos:
   travel-app:
     baseline: f7a11e3218785b6b7789335907e1120d5a364e98
     docs_root: docs
-
-# Files present in each baseline are grandfathered. Markdown paths added after
-# the baseline must satisfy the workspace lifecycle metadata policy. Baselines
-# are historical boundaries: do not advance them to make a failing document pass.
+    preserved_artifacts:
+    - path: docs/design-alignment/handoff/chat-artifacts.md
+      metadata_owner: docs/working/vesper-chat-artifact-language-claude-design-brief-2026-08-13.md
+      sha256: 6a39e04cb642cbeb320bbeb2655b1fd3947f7a4587316b92055b0c47a2d220c1
+      reason: Preserve the frozen design packet or generated handoff bytes; lifecycle is owned by the named packet/brief, with no native-acceptance
+        claim.
+    - path: docs/design-packets/vesper-visual-system-2026-08-23/02-fixtures/fixture-sheet.md
+      metadata_owner: docs/design-packets/vesper-visual-system-2026-08-23/README.md
+      sha256: 6afc43b798c979dc1930c2bc2b241799210cec7babaf20213f73bac724ebbe2e
+      reason: Preserve the frozen design packet or generated handoff bytes; lifecycle is owned by the named packet/brief, with no native-acceptance
+        claim.
+    - path: docs/design-packets/vesper-visual-system-2026-08-23/03-foundation/README.md
+      metadata_owner: docs/design-packets/vesper-visual-system-2026-08-23/README.md
+      sha256: 5bd813964a1f58647ea2738f228dfb73e5a575f1c0da273920199d26f9bc326e
+      reason: Preserve the frozen design packet or generated handoff bytes; lifecycle is owned by the named packet/brief, with no native-acceptance
+        claim.
+    - path: docs/design-packets/vesper-visual-system-2026-08-23/04-fixture-assets/README.md
+      metadata_owner: docs/design-packets/vesper-visual-system-2026-08-23/README.md
+      sha256: 046e3e6e7a3e9025da0448dc46fac1d3c77c55aeab5c10b94f2dcb126ef03e70
+      reason: Preserve the frozen design packet or generated handoff bytes; lifecycle is owned by the named packet/brief, with no native-acceptance
+        claim.
+    - path: docs/design-packets/vesper-visual-system-2026-08-23/04-fixture-assets/generation-notes.md
+      metadata_owner: docs/design-packets/vesper-visual-system-2026-08-23/README.md
+      sha256: a8c47222eb2a8996f88f56d74d352042e666d0a3834593dff7db2fc86b931c01
+      reason: Preserve the frozen design packet or generated handoff bytes; lifecycle is owned by the named packet/brief, with no native-acceptance
+        claim.
+    - path: docs/design-packets/vesper-visual-system-2026-08-23/05-moodboard/README.md
+      metadata_owner: docs/design-packets/vesper-visual-system-2026-08-23/README.md
+      sha256: 9706e60d791bcf1a795fa05813e68271d1dcd4808078463b40d5b21644f352d0
+      reason: Preserve the frozen design packet or generated handoff bytes; lifecycle is owned by the named packet/brief, with no native-acceptance
+        claim.
+    - path: docs/design-packets/vesper-visual-system-2026-08-23/05-moodboard/candidates.md
+      metadata_owner: docs/design-packets/vesper-visual-system-2026-08-23/README.md
+      sha256: 04fcf4d1c68fc07763d45bf63c1132d07e096eb5b04482330465a7269b7bdb2e
+      reason: Preserve the frozen design packet or generated handoff bytes; lifecycle is owned by the named packet/brief, with no native-acceptance
+        claim.
+    - path: docs/design-packets/vesper-visual-system-2026-08-23/06-provenance/redaction-log.md
+      metadata_owner: docs/design-packets/vesper-visual-system-2026-08-23/README.md
+      sha256: 6976becbe90bb6a5fee2df1e7e865a15e9a9b962eb32c22a9886fc04b7422b6e
+      reason: Preserve the frozen design packet or generated handoff bytes; lifecycle is owned by the named packet/brief, with no native-acceptance
+        claim.
+    - path: docs/design-packets/vesper-visual-system-2026-08-23/07-qa/packet-checklist.md
+      metadata_owner: docs/design-packets/vesper-visual-system-2026-08-23/README.md
+      sha256: 40bd974eb367cadff9493c243a8cba70fe395637cb88841460f3c91639d62d28
+      reason: Preserve the frozen design packet or generated handoff bytes; lifecycle is owned by the named packet/brief, with no native-acceptance
+        claim.
+    - path: docs/design-packets/vesper-visual-system-2026-08-23/07-qa/validation-report.md
+      metadata_owner: docs/design-packets/vesper-visual-system-2026-08-23/README.md
+      sha256: 556fc58dea05e2be54319d9a15a7998fc4f458e2c05cc59b205234e26164ca25
+      reason: Preserve the frozen design packet or generated handoff bytes; lifecycle is owned by the named packet/brief, with no native-acceptance
+        claim.
+    - path: docs/design-packets/vesper-visual-system-2026-08-23/08-claude-pass-0/README.md
+      metadata_owner: docs/design-packets/vesper-visual-system-2026-08-23/README.md
+      sha256: 715c2a26a186487510c032be9991c5e63e7c27811cd62795a55f7fd6d63d0819
+      reason: Preserve the frozen design packet or generated handoff bytes; lifecycle is owned by the named packet/brief, with no native-acceptance
+        claim.
+    - path: docs/design-packets/vesper-visual-system-2026-08-23/08-claude-pass-0/claude-code-design-sync-runbook.md
+      metadata_owner: docs/design-packets/vesper-visual-system-2026-08-23/README.md
+      sha256: 3a5f4087351cab748bb8230050ac14e3dee290e02e1c10858437cfeae7820be7
+      reason: Preserve the frozen design packet or generated handoff bytes; lifecycle is owned by the named packet/brief, with no native-acceptance
+        claim.
+    - path: docs/design-packets/vesper-visual-system-2026-08-23/08-claude-pass-0/pass-0-prompt.md
+      metadata_owner: docs/design-packets/vesper-visual-system-2026-08-23/README.md
+      sha256: fca321d43df52d3b3cb78188f740440f6bcc1d86182b4f0121a2f4012489c227
+      reason: Preserve the frozen design packet or generated handoff bytes; lifecycle is owned by the named packet/brief, with no native-acceptance
+        claim.
+    - path: docs/design-packets/vesper-visual-system-2026-08-23/08-claude-pass-0/review-rubric.md
+      metadata_owner: docs/design-packets/vesper-visual-system-2026-08-23/README.md
+      sha256: 90e427d54b4376988b5617937a5d7804e6991664f0a723f796b51e23e2cfa12e
+      reason: Preserve the frozen design packet or generated handoff bytes; lifecycle is owned by the named packet/brief, with no native-acceptance
+        claim.
+    - path: docs/design-packets/vesper-visual-system-2026-08-23/08-claude-pass-0/source-boundary.md
+      metadata_owner: docs/design-packets/vesper-visual-system-2026-08-23/README.md
+      sha256: 427c99d8c37f41ab359bc29445b9d8f596c5de1f06ce034751152f870746bee9
+      reason: Preserve the frozen design packet or generated handoff bytes; lifecycle is owned by the named packet/brief, with no native-acceptance
+        claim.
+    - path: docs/design-packets/vesper-visual-system-2026-08-23/08-claude-pass-0/upload/00-pass-0-prompt.md
+      metadata_owner: docs/design-packets/vesper-visual-system-2026-08-23/README.md
+      sha256: fca321d43df52d3b3cb78188f740440f6bcc1d86182b4f0121a2f4012489c227
+      reason: Preserve the frozen design packet or generated handoff bytes; lifecycle is owned by the named packet/brief, with no native-acceptance
+        claim.
+    - path: docs/design-packets/vesper-visual-system-2026-08-23/08-claude-pass-0/upload/02-type-material-doctrine.md
+      metadata_owner: docs/design-packets/vesper-visual-system-2026-08-23/README.md
+      sha256: d5c89aafa8d7edf4778ccd91cb9901f16dd6108846cc75f9d114bbd8de9fc18e
+      reason: Preserve the frozen design packet or generated handoff bytes; lifecycle is owned by the named packet/brief, with no native-acceptance
+        claim.
+    - path: docs/design-packets/vesper-visual-system-2026-08-23/08-claude-pass-0/upload/04-fixture-review.md
+      metadata_owner: docs/design-packets/vesper-visual-system-2026-08-23/README.md
+      sha256: 2a18a10a08e355783eb6b86ebab9e2bcbbe867eb928c36f887796d9b70bd4a6c
+      reason: Preserve the frozen design packet or generated handoff bytes; lifecycle is owned by the named packet/brief, with no native-acceptance
+        claim.
+    - path: docs/design-packets/vesper-visual-system-2026-08-23/08-claude-pass-0/upload/06-source-boundary.md
+      metadata_owner: docs/design-packets/vesper-visual-system-2026-08-23/README.md
+      sha256: 427c99d8c37f41ab359bc29445b9d8f596c5de1f06ce034751152f870746bee9
+      reason: Preserve the frozen design packet or generated handoff bytes; lifecycle is owned by the named packet/brief, with no native-acceptance
+        claim.
+    - path: docs/surfaces/vesper-chat/design-refs/artifact-language-v2.1.1/source/README.md
+      metadata_owner: docs/surfaces/vesper-chat/design-refs/artifact-language-v2.1.1/README.md
+      sha256: 7dfafeb3283cb5a159dec3b11f22308a96846fbe7e285154e495dc75900145ab
+      reason: Preserve the frozen design packet or generated handoff bytes; lifecycle is owned by the named packet/brief, with no native-acceptance
+        claim.
+    - path: docs/surfaces/vesper-chat/design-refs/artifact-language-v2.1.1/source/project/README.md
+      metadata_owner: docs/surfaces/vesper-chat/design-refs/artifact-language-v2.1.1/README.md
+      sha256: 1fd9e39976463c0e21e5ad2a1c400a358c4318f1ab22f5e0b8e5a83fc9919a4b
+      reason: Preserve the frozen design packet or generated handoff bytes; lifecycle is owned by the named packet/brief, with no native-acceptance
+        claim.

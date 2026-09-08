@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / engineering
 created: 2026-06-30
-last_verified: 2026-08-23
+last_verified: 2026-09-05
 why_new: Renders the machine-readable V1 release intent as the authoritative human scope contract.
 supersedes: [docs/working/mvp-scope-and-flag-manifest-2026-06-30.md]
 source_of_truth_for: [v1-release-scope]
@@ -14,7 +14,7 @@ source_of_truth_for: [v1-release-scope]
 > Generated from [`v1-scope.yaml`](v1-scope.yaml). Do not hand-edit this file;
 > run `make docs-release-sync` after changing the manifest or flag registry.
 
-**Status:** scope-locked · **Decided:** 2026-06-30 · **Last verified:** 2026-08-23
+**Status:** scope-locked · **Decided:** 2026-06-30 · **Last verified:** 2026-09-05
 
 ## Promise
 
@@ -75,7 +75,7 @@ uncertified until a current-revision receipt exists.
 - **Open-interval micro-journey doorway:** The sixty-second cold demo. One anchor plus its connective route between two commitments; not a generated multi-stop itinerary. _Gate: Internal builds only; requires a bounded open window, not an active block._
 - **Local Plans beyond travel:** M1 Act 4. Proof that Experience/Plan/Move persists beyond tourism in bounded everyday life; a personal experience is not automatically an Occasion. _Gate: Dogfood cohort only; no external cohort until M1 Act 4 outcome capture is certified._
 - **One permissioned relationship opening:** M1 Act 4 closing beat. A permitted opening addresses another person, who enters through a separately governed personal loop and may choose a bounded shared Occasion. This is not a feed; one decline or insufficient mutual permission produces silence. _Gate: Dark until P06 (consent and silence) has anchors and its negative oracles pass. Double-opt-in only; one decline produces silence._
-- **Booking record, mark-as-booked, and external handoff:** Honest non-transacting handoff is in; provider transaction execution is out.
+- **Booking record, mark-as-booked, and external handoff:** Honest non-transacting handoff and supplied reservation evidence remain in; provider transaction execution is being closed at backend boundaries. The retirement contract governs the transition and preserves authorized historical reads.
 - **Live booking transaction execution:** Duffel cart, hold, and execution remain dark for v1.
 - **Live voice, narration, and microphone entry points:** Code exists but the live experience remains outside v1 until end-to-end certification.
 - **Rendered postcards and postcard sub-surfaces:** Post-trip Story is in; image-generation artifacts are dark.

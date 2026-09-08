@@ -128,7 +128,7 @@ Partiful documents browser access without an app download, with possible login r
 
 ### R6 · The previous research remains the social rationale
 
-The [six-topic brief](vesper-social-experience-design-brief-2026-09-07.md) covers indirect invitations, unequal participation, authored awareness, gathering hospitality, artifact receiving and contextual continuity. Its [research report](../../output/pdf/vesper-social-six-topics-research-2026-09-07.pdf) includes study methods and limits. Apply those recommendations without turning their internal distinctions into six visible workflows.
+The [six-topic brief](vesper-social-experience-design-brief-2026-09-07.md) covers indirect invitations, unequal participation, authored awareness, gathering hospitality, artifact receiving and contextual continuity. Its research report (local export: `output/pdf/vesper-social-six-topics-research-2026-09-07.pdf`) includes study methods and limits. Apply those recommendations without turning their internal distinctions into six visible workflows.
 
 **Synthesis:** prototype the person-to-person exchange and the additional value Vesper supplies, not just the movement of a record between tabs. Make actual consequences understandable; let ordinary receiving stay ordinary.
 

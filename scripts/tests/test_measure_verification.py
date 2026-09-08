@@ -322,3 +322,20 @@ def test_main_rejects_missing_command() -> None:
         assert False, "expected SystemExit from argparse error()"
     except SystemExit as exc:
         assert exc.code != 0
+
+
+def test_identity_ignores_foreign_git_environment(tmp_path, monkeypatch):
+    import subprocess
+    repos = []
+    for name in ("one", "two"):
+        repo = tmp_path / name
+        repo.mkdir()
+        for args in (["init", "-q"], ["-c", "user.name=Test", "-c", "user.email=test@example.test", "commit", "--allow-empty", "-qm", name]):
+            subprocess.run(["git", "-C", str(repo), *args], check=True)
+        repos.append(repo)
+    expected = MODULE.git_commit(repos[1])
+    monkeypatch.setenv("GIT_DIR", str(repos[0] / ".git"))
+    monkeypatch.setenv("GIT_WORK_TREE", str(repos[0]))
+    (repos[1] / "untracked").write_text("dirty")
+    assert MODULE.git_commit(repos[1]) == expected
+    assert MODULE.git_dirty(repos[1]) is True

@@ -43764,6 +43764,7 @@
                 "type": "string",
                 "enum": [
                   "keep",
+                  "dismiss",
                   "open_together"
                 ]
               },
@@ -76233,6 +76234,14 @@
             "type": "array",
             "maxItems": 6,
             "title": "Place Names"
+          },
+          "venue_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "maxItems": 6,
+            "title": "Venue Ids"
           }
         },
         "type": "object",
