@@ -236,3 +236,24 @@ Board 21 carries the selected language of 19 through the three paths of §13.6 a
 **J-4, the remaining situations.** Board 22 carries four situations onto 19's terms: another city before arrival (Sorrento, from Z05, with the cliff as the open reading), sparse supply (three worthwhile things and nothing else, not an abundant feed with the people removed), the map unavailable (only the map slot changes; access, places and the walk stay), and results pending (the question stays readable, the known pocket holds its place, two ghost rows). Open, and why: the city sheet, the Capri page and the return to New York from Z05 are unchanged behaviour, not redrawn; the occurrence opened and no city yet from Z12 are Stage 3 states; a genuinely thin city would need its own fixture.
 
 **Observed and not.** 19, 20, 21 and 22 were rendered and inspected as crops after the changes. Every transition on 20, 21 and 22 is an ordered static frame; nothing was exercised. The kept intention's owner, the arrangement owner and the messaging sender remain unresolved dependencies; nothing here adopts those contracts.
+
+## 20. Parity with Home, then the canon's instruments (September 7, late)
+
+**The founder's observation.** Places lagged Home in polish and component sleekness. A side-by-side of Home's ordinary scroll and Places 19 at the same scale showed why: Home opens with content, not chrome (a mono anchor line, then a serif sentence that is the day); it has one card per screen with a rail and everything else open on the paper; it is photo or nothing; its names are serif and its facts mono; its people are solid discs and its doors are text arrows. Places had a boxed field, stacked bordered cards, pastel drawings, sans row titles, outlined discs and a gold pill.
+
+**First draft: Home's kit alone.** 19 was redrawn with Home's primitives on Places' content. The founder judged it an over-correction: without the drawings it fell to rows of text. The right observation followed: Home is not sleek because it is plain, every picture on it carries data, and the a26e3228 canon holds 34 Places kinds and 23 instruments that Places was not using.
+
+**Selected: Home's kit with the canon's instruments.** 19 is now two scrolls, populated and cold, in this language:
+
+| Section | Kind or instrument | What it shows |
+| --- | --- | --- |
+| The opening | field_lead_composition, the daylight arc, the tide curve | The pier as the gold end of the light, the film as the dark bar after dark; the harbor as water, low 2:40 to 5, the kayaks on its shore |
+| Any day | field_browse_shelf | Six hatched photo slots with a name, one line and a mono chip. Photo or hatch, never a drawing |
+| Red Hook by ferry | The map, the burden strip | Door to door: dots on foot, the crossing as one solid bar, one number |
+| Saturday evening | The day band | The hour as the gold block on the evening's track; doors, the counter and the café as labels |
+| Worth understanding | path_difference_diagram, field_editorial_cover | Two thresholds drawn side by side; the reading as a cover with its own diagram under the gradient |
+| From friends, Seen up close, Sunday, Saturday morning | Home's kit | Author rows, serif quotes, the place strip, facepile rows, arrow doors |
+
+Reversed from §12: the illustrated places, the sans compact titles, the outlined pill, the boxed field. Unchanged: the composition of 18, the sections, the copy, the fixture, the uncertainty lines. The arc's sunrise and the tide's high are placeholders at the fixture's scale.
+
+**Rebuild note.** The generators for every board on this project were lost with the session's temporary folder. 19 is rebuilt from the pushed HTML: chrome, captions and section markup verbatim, the instruments redrawn from the canon's specimen sheets. The generator and its sources now live in the repo under `docs/working/design-gen/places/`. Boards 20 to 22 remain in the §12 vocabulary until they are rebuilt the same way.

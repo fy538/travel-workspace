@@ -1,0 +1,15 @@
+<script>
+(function(){
+  var on = !(location.hash === '#nonotes');
+  function root(){ return document.querySelector('[data-board]'); }
+  function apply(){ var r = root(); if (!r) return; if (r.classList.contains('nonotes') === on) r.classList.toggle('nonotes', !on); var c = document.getElementById('notes-ctl'); if (c) { var want = on ? 'NOTES <b>ON</b> &middot; TAP TO HIDE' : 'NOTES <b>OFF</b> &middot; TAP TO SHOW'; if (c.getAttribute('data-state') !== (on ? '1' : '0')) { c.setAttribute('data-state', on ? '1' : '0'); c.innerHTML = want; } } }
+  function wire(){ var c = document.getElementById('notes-ctl'); if (c && !c.getAttribute('data-wired')) { c.setAttribute('data-wired', '1'); c.addEventListener('click', function(ev){ ev.stopPropagation(); on = !on; apply(); }); } apply(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wire); else wire();
+  window.addEventListener('load', wire);
+  var pending = null;
+  try { new MutationObserver(function(ms){ for (var i = 0; i < ms.length; i++) { var t = ms[i].target; if (t && t.id === 'notes-ctl') continue; if (ms[i].addedNodes && ms[i].addedNodes.length) { if (!pending) pending = setTimeout(function(){ pending = null; wire(); }, 80); return; } } }).observe(document.documentElement, { childList: true, subtree: true }); } catch (e) {}
+  var beats = 0; var hb = setInterval(function(){ wire(); if (++beats > 40) clearInterval(hb); }, 300);
+})();
+</script></x-dc>
+</body>
+</html>
