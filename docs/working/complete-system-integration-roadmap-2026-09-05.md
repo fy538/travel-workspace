@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Integration task
 created: 2026-09-05
-last_verified: 2026-09-07
+last_verified: 2026-09-08
 expires: 2026-10-05
 why_new: Rebaselines the post-pivot system around the real-world live engine and four surfaces, with code-backed correction priorities, explicit Life ownership, bounded Luna delegation, and recurring architectural and product reassessment.
 supersedes:
@@ -25,7 +25,7 @@ depends_on:
 
 # Complete-system integration roadmap
 
-## Current execution queue — program-aligned September 7
+## Current execution queue — program-aligned September 8
 
 The [Vesper program roadmap](vesper-program-roadmap.md) now owns cross-lane
 priorities, assignments, dependency routing and the inspected repository tuple.
@@ -33,11 +33,24 @@ This document retains I0–I6/CV/SP/E acceptance scope, shared technical sequenc
 integration and landing. Section 2's earlier lane allocations are historical.
 Do not create another assignment map here or restart completed Source machinery.
 
-1. **Converge the combined candidate (E0/E6).** The latest Life and Social cuts
-   have merged locally. Reconcile the two backend migration heads, receive the
-   Engineering Meta repair cut, and verify exact backend/mobile/workspace
-   revisions and generated contracts. Merging is not combined acceptance or
-   remote publication. Independent owned work continues meanwhile.
+**Receiving baseline closed locally:** backend `78ea8a05f`, mobile `5f41be821`,
+workspace receipt `b16857d`. Engineering Meta, Life withdrawal/restoration,
+Home/Social mobile repairs and the memory-authority correction are received.
+The disposable migration reached `lifeorgpipelinemerge01`; full selected offline
+and serial Postgres runs pass. See the [residual receipt](integration-execution-checkpoint-2026-09-07.md#residual-baseline-repair-package--september-8)
+for commands, counts, exclusions and limits. Mypy remains separately failed at
+262 errors/62 files. No native, provider, deployment or release acceptance follows.
+The subsequent [Strategy documentation recheck](integration-execution-checkpoint-2026-09-07.md#strategy-documentation-recheck--september-8)
+found five child lifecycle metadata failures. Resolve that bounded docs gate before
+the next combined landing; neither backend test success nor product-doc unit tests
+certify the workspace child-document admission command.
+
+1. **Preserve the received baseline; scope the next handoffs (E0/E6).** Do not
+   repeat the migration merge, structural extraction or residual fixture round.
+   Recheck current revisions and changed-file owners before new packages; run
+   the relevant combined gates when their code changes. The program's
+   [next-package recommendation](vesper-program-roadmap.md#7-next-coordinated-packages--recommended-not-dispatched)
+   owns the Home/Life/Social allocation, not a new assignment table here.
 2. **Complete received value and supported practical judgment (E2/E3).** Use
    Content's actual owner material through Home/Places and exact depth; make
    supported practical facts change only dependent claims. Review current-job
@@ -56,7 +69,10 @@ Do not create another assignment map here or restart completed Source machinery.
    paths only after caller/obligation review and the required authorization.
 
 This queue supersedes older present-tense “next” instructions, not unfinished
-acceptance requirements. Package detail and dated receipts remain below.
+acceptance requirements. In particular §9.9's pre-merge candidate and first
+execution batch are historical; E2–E5 still require their complete receiving
+outcomes. Package detail and dated receipts remain below. This September 8
+reconciliation updates coordination, not runtime behavior or task dispatch.
 
 ## 0. Decision, scope, and evidence boundary
 

@@ -20,19 +20,23 @@ supersedes:
 
 # Life complete system and Atlas replacement roadmap
 
-## Current execution baseline — September 7
+## Current execution baseline — September 8
 
-**Post-consolidation rebaseline — September 7 evening:** the first organizer
+**Post-reliability rebaseline — September 8:** the first organizer
 `333f447be`, measurement correction `4a19414be` and independent holdouts
 `cba46cf22` are now included in local backend main; the Life research/roadmap
-cut is included in workspace main. See the [program baseline](vesper-program-roadmap.md#2-inspected-baseline--september-7-2120-edt)
+cut is included in workspace main. See the [program baseline](vesper-program-roadmap.md#2-inspected-baseline--september-8-after-reliability-landing)
 for the inspected tuple and its limits. Older receipts saying these cuts are
 isolated describe their execution time, not the current merge state.
 
-Combined validation is still outstanding, including reconciliation of the two
-backend migration heads. App Life routes and restoration do not establish
-adoption of the new organizer. Neither merging the experimental code nor this
-rebaseline authorizes indexed serving, a model run, Atlas deletion or a push.
+Integration has now received the Life transaction/restoration repair as
+`6e742e9aa` and closed the residual baseline at backend `78ea8a05f`. The
+single-head disposable migration and full selected offline/serial Postgres
+runs pass; exact counts and exclusions live in the [receiving receipt](integration-execution-checkpoint-2026-09-07.md#residual-baseline-repair-package--september-8).
+This replaces the old combined-test/migration blocker, not the unfulfilled
+Life quality and serving requirements. App routes and restoration do not
+establish adoption of the new organizer. No indexed serving, model run, Atlas
+deletion or remote publication follows.
 
 **Read this baseline, the current queue and decision register below first.**
 They are the sole present-tense execution summary. [§10](#10-design-independent-execution-plan--september-6)
@@ -60,7 +64,7 @@ limits; it does not authorize serving merely because organization code exists.
 | R0 / R4 root and reading | Canonical Life route, Atlas redirects, four depth lenses, exact-owner and identity-restoration improvements | Rich lens organization and complete owner/destination coverage are not certified |
 | R1 common reads | Shared snapshot assembly, chronology, owner revisions and conflict-aware cursors | Routes still assemble owner snapshots; indexed serving has not cut over |
 | R1 / R2 index helpers | Typed bounded reads/writes, all-lens planner, owner capability matrix, owner-specific projectors, resumable backfill, reconciliation and complete typed comparison; bounded four-viewer corpus rehearsal now passes with canonical owner-time ordering | Establish broader corpus/viewer parity and future-version delivery boundaries; future-version targets do not yet receive live owner fanout |
-| R2 change safety | Existing outbox/projectors plus shared typed maintenance for live delivery, backfill and reverse reconciliation; index and primary Plan/Occasion group publication share a transaction; unresolved repair keeps delivery pending | Durable progress for work exceeding a bounded transaction, complete affected-neighborhood repair, combined-branch validation and broader owner coverage remain; Intake keeps its independent acknowledgement |
+| R2 change safety | Existing outbox/projectors plus shared typed maintenance; shared-transaction withdrawal and explicit Outcome audience restoration now received and tested; unresolved repair keeps delivery pending | Durable progress beyond a bounded transaction, complete affected-neighborhood repair and broader owner coverage remain; Intake keeps its independent acknowledgement |
 | R2 organization | Stable groups, typed links, controls, identity resolution and bounded internal reads; conservative source-evidence adapter; B1 compiler with five executable, oracle-interpreted product worlds | Real source interpretation/delivery, general episode/continuity discovery, complete repair wiring and public eligible readers are not established by the experiment |
 | R3 / R5 retrieval | Retained sources and canonical destinations have landed | Broader custody/refinding, dependent repairs and retained booking-reader mapping remain |
 | R6 prospective/shared | Consumer requirements established | [Pre-Plan intention proposal](retained-intention-before-plan-decision-proposal-2026-09-06.md) is unadopted; missing owner adapters cannot be replaced by Life writes |
@@ -74,7 +78,7 @@ isolated branch before integration; no stage silently implies the next.
 | Stage | Current evidence | What is not established |
 | --- | --- | --- |
 | Implemented locally | Maintainer/cursor/migration packages, `4a19414be`, `333f447be` and holdouts `cba46cf22`; §13.16 reports 300 Life tests and four focused holdout tests | This documentation pass does not rerun or add these overlapping test totals, or certify every owner/algorithm |
-| Integrated | Organizer/holdout code and Life roadmap/research cuts are now on local main, as recorded in the program baseline | Combined-branch and migration validation is outstanding; no serving or remote-publication claim follows |
+| Integrated | Organizer/holdout and reliability cuts are on local main; Integration's selected combined suites and fresh disposable migration pass | Does not certify raw interpretation, populated Life usability, serving cutover, native behavior or remote publication |
 | Connected to authoritative owners | Supported retained-source/Plan/Occasion/Outcome shadow paths have lifecycle/readback evidence; primary graph-owner groups are maintained | Richer B1 source interpretations are supplied by fixtures; automatic extraction, continuity classification and production B1 publication are not connected |
 | User-visible | Earlier Life shell, four-lens access and exact-restoration work exist in the app | No user-visible adoption of the new organizer, complete public group/original reader or measured preview usefulness follows from its internal group tests |
 | Accepted for release | No new release acceptance from these packages | Populated portfolio parity, budgets, native acceptance, rollout/rollback, indexed serving and Atlas retirement remain gated |

@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Strategy task
 created: 2026-09-07
-last_verified: 2026-09-07
+last_verified: 2026-09-08
 expires: 2026-10-07
 why_new: Extracts the present-tense cross-lane program map from a long Integration plan and its historical receipts so independent owners can coordinate without competing execution queues.
 supersedes:
@@ -45,25 +45,29 @@ Life page opening. Chat layout redesign remains outside these assignments.
 Pending policies, paid/provider runs, deployment, activation and destructive
 retirement require their existing approvals. Assignment does not dispatch a task.
 
-## 2. Inspected baseline — September 7, 21:20 EDT
+## 2. Inspected baseline — September 8, after reliability landing
 
 | Repository / evidence | Inspected state | Limit |
 | --- | --- | --- |
-| Workspace main | `449c048` before this documentation change | Life/Social documentation consolidated; not release evidence |
-| Backend main | `0c1f1f325` | Includes Source checkpoint `d8fdb55d6`, Social `68ef73031`, Life organizer `333f447be` and holdouts `cba46cf22`; combined acceptance remains open |
-| Mobile main / primary checkout | Main `ad0666c99`; primary checkout `2ebb4318b` on `codex/entity-object-design-completion` | Different checkouts; main contains additional Social work. Verify the intended revision before testing or landing |
-| Database history | Fresh read-only Alembic inspection: `lifeorg07` and `pipeline_scope_key01` are heads | Integration must reconcile and verify migrations before deployment; do not report an upgrade as complete |
-| Reliability work | Engineering Meta active in isolated `codex/engineering-reliability-2026-09-07` worktrees | Repairs and validation ongoing; not part of the inspected main candidate |
+| Workspace main | `b16857d` before this roadmap reconciliation | Receiving receipts committed; no release claim |
+| Backend main | `78ea8a05f` | Includes Life transaction repair, structural reliability, context-memory authority reconciliation and residual test/race repairs |
+| Mobile main / primary checkout | Both `5f41be821` | Includes Home baseline repair `6b44041ea` and Social touch-target repair `5f41be821`; no new native acceptance |
+| Database history | Integration's fresh disposable migration reached the single head `lifeorgpipelinemerge01` | Disposable verification, not a production migration |
+| Combined backend tests | Recorded on the landed tree: offline **21,322 passed**, **14 skipped**, **1,423 deselected**, **53 xpassed**; serial Postgres **1,369 passed**, **23 skipped**, **21,420 deselected** | These are distinct test selections, not additive user journeys, unmasked quarantine certification or provider/device evidence |
+| Remaining engineering debt | Repository-wide mypy **262 errors / 62 files** | Separate failed baseline; the repository is not all-green and publication is not authorized |
+| Documentation recheck in this review | `make docs-check` fails child lifecycle admission for **five** historical/superseded documents still typed `working`; other invoked docs gates pass | Exact paths in the [recheck receipt](integration-execution-checkpoint-2026-09-07.md#strategy-documentation-recheck--september-8); a bounded documentation repair, not a reason to restart structural work |
 
-Primary checkouts were clean before this edit. Remote publication was not
-verified; Repo Clean Up's latest batch explicitly left final verification/push
-unfinished. Other listed product tasks were idle at inspection, not abandoned.
-This is a timestamped observation, not a lock or a claim about moving branches.
-Recheck Git and task status before execution; receipts can predate later merges.
+All three primary checkouts were clean before this edit. The current tasks are
+completed/idle, including Integration's receiving round; no new task was dispatched
+by this review. Completed supplier branches/worktrees may remain as local history,
+not unreceived work by implication. No remote push, deployment or activation was
+performed by the receiving round. Recheck Git and task state before execution.
 
 Evidence already available: [Source execution](source-connected-value-execution-receipt-2026-09-07.md),
 [Integration checkpoint](integration-execution-checkpoint-2026-09-07.md), and the
-linked lane receipts below. Source has connected local HTTP/Postgres evidence,
+linked lane receipts below. The September 7 baseline and later repairs remain
+dated evidence there rather than competing current instructions here. Source has
+connected local HTTP/Postgres evidence,
 but no complete native request consumer; Life holdouts use synthetic interpreted
 evidence, not raw-artifact understanding; Social remains narrower than its design.
 Local test totals are not additive or evidence of compelling consumer value.
@@ -76,29 +80,29 @@ Local test totals are not additive or evidence of compelling consumer value.
 | Recognizable, revisitable Life | Connect source evidence, organization and bounded readers; inspect evolving groups and previews | Compare bounded model assistance on identified misses; broaden coverage, then separately accept serving cutover and Atlas retirement |
 | Enjoyable ordinary sharing | Settle the next source/audience contract; connect original receiving, durable controls and refinding | Extend the same owners into guests, gatherings and permissioned social intelligence; receiving never owes a reply or plan |
 | Practical help within the same experience | Make supported facts change the appropriate offer while independent reading, saved and human value survives | Extend beyond opening status when a concrete timing/fit question requires it; accepted following and external changes need their own authority |
-| Trustworthy combined delivery | Finish reliability repairs and schema/candidate convergence | Verify connected behavior, cost, native/accessibility and rollout requirements at their proper scope; retire replacements only after obligation review |
+| Trustworthy combined delivery | Receiving/reliability round locally landed; preserve its passing test selections and explicit typing debt | Verify new connected product packages, cost, native/accessibility and rollout at their proper scope; retire replacements only after obligation review |
 
-These outcomes overlap. **Start independent supplier/reader work while the
-candidate is reconciled; do not wait for every lane's roadmap or every policy.**
+These outcomes overlap. **Resume independent product packages from the reconciled
+baseline; do not wait for every lane's roadmap or every policy.**
 The current emphasis is existing capabilities becoming useful together. Reopen
 architecture or broad visual exploration only when observed failures justify it.
 
 ## 4. Current package register
 
-One accountable task per package. Contributors do not acquire a second queue for
-the same shared behavior. The linked lane's **Current execution queue** owns
-file-level steps and receipts; this register owns cross-lane priority and handoff.
+One accountable task per package. All listed next packages are recommendations,
+not running assignments. Contributors do not acquire a second queue for the same
+behavior. Lane queues own file-level steps; this register owns priority and handoff.
 
 | Accountable task / plan | Current package and observed stage | Receiver / exact dependency | Next handoff or checkpoint |
 | --- | --- | --- | --- |
-| **[Integration](codex://threads/01a030af-13a8-74e1-81be-7d526bec3045)** · [technical plan](complete-system-integration-roadmap-2026-09-05.md) | Connected receiving and practical help; Source checkpoint and selected supplier cuts integrated, whole experience partial | Content material/facts; Home/Places/Entities consumers; reviewed Life/Social interfaces | Reconciled candidate plus substantive public owner-to-depth, supported practical change and exact requested-result recovery; no new Source framework |
+| **[Integration](codex://threads/01a030af-13a8-74e1-81be-7d526bec3045)** · [technical plan](complete-system-integration-roadmap-2026-09-05.md) | Receiving/reliability round complete and landed; connected product acceptance remains partial | Home receives current public/private material, practical assessments and exact results; Life supplies bounded readers | Agree next receiving interfaces, preserve supported practical behavior, review/land complete packages; do not restart candidate convergence |
 | **[Content](codex://threads/01a07c63-5ebe-71d2-9cb0-314ec4e06963)** · [supply plan](recommendation-world-supply-architecture-and-roadmap-2026-09-07.md) | Useful reusable supply and lifecycle; ingestion/research repairs landed, supplier/cost quality incomplete | Integration and Entities consume canonical identity, supported material, evidence, freshness, reuse limits and measured/unknown cost | Varied actual output and corrected/expired readback; real local concurrency evidence and explicit source-feasibility limits |
-| **[Life](codex://threads/01a06ecc-1a79-74a1-9c47-9f24461313ea)** · [replacement plan](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md) | Evidence-to-organization-to-reader; deterministic organizer/holdouts integrated, raw interpretation and serving incomplete | Capture supplies occurrence/provenance/revision/custody; Social owns shared-original access; Integration receives bounded readers | Inspect recognizable groups and lens previews across evolving worlds; source correction changes organization without destroying deliberate controls |
-| **[Social](codex://threads/01a07c7c-5c29-7b53-a596-fc0a34ee118b)** · [implementation plan](social-experience-implementation-roadmap-2026-09-07.md) | Ordinary selected sharing and later control; pair-note fixes integrated, broader material/audience contract pending | Existing source owners plus Relationships; Integration/Home/Places receive; Life refinds | Photo, place note and non-spatial original with independent enjoyment/Reply/private Ask, durable sender controls and withdrawal across readers |
-| **[Home](codex://threads/01a06f87-e648-74d2-a0ae-f0adb305e44c)** · [consumer map](home-connected-experience-implementation-map-2026-09-04.md) | Bounded receiving implementation under Integration; selected design and earlier consumer repairs available | Integration supplies shared request/result/judgment contracts; Entities supplies exact depth | Map selected composition to real owners; complete pending/result/reopen/cancel behavior in the approved surface, without Chat-layout changes or another generator |
-| **[Places](codex://threads/01a07c7f-871a-70b0-840e-95a0db1e9351)** · [selected design](places-composition-breadth-design-revision-2026-09-07.md) | Bounded behavior/design completion supporting the same receiving package | Integration owns practical judgment; Social owns source/audience effects | Preserve board 19; correct board 21 timing and optional branches; carry future-city and degraded states into selected language |
-| **[Entities](codex://threads/01a0649a-f267-7d31-a788-81669e1822a8)** · [completion plan](entity-object-design-overhaul-plan-2026-09-07.md) | Bounded destination completion; core/review repairs integrated, acceptance partial | Content facts/reading; Integration freshness/returns; Life and Social exact authorized destinations | Rich/sparse venue, site and experience pages with useful sourced depth, correct actions and return; media only under its owner contract |
-| **[Engineering Meta](codex://threads/01a07e12-78fc-7363-b675-9eb6144245f2)** · [repair context](engineering-context-and-agent-practices-research-2026-09-07.md) | Temporary enabling package, active and unintegrated at inspection | Integration receives exact candidate, setup/checker/dependency evidence | Finish reproducible setup and trustworthy checks; distinguish validation failures from product-owner decisions; conclude the package rather than open a permanent process program |
+| **[Life](codex://threads/01a06ecc-1a79-74a1-9c47-9f24461313ea)** · [replacement plan](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md) | Organizer/holdouts and transaction/restoration fixes landed and integration-tested; raw interpretation and serving incomplete | Capture supplies evidence under current custody; Integration receives exact readers; Social supplies only adopted share interfaces | Resume real evidence → maintained organization → useful bounded reads; do not repeat reliability work or turn shadow success into cutover |
+| **[Social](codex://threads/01a07c7c-5c29-7b53-a596-fc0a34ee118b)** · [implementation plan](social-experience-implementation-roadmap-2026-09-07.md) | Place-note lifecycle and latest mobile control repair landed; general material/audience contract remains proposed | Relationships/original owners; Home addressed receiving, Places casual spatial sharing, Life refinding | Resolve the existing S0 decision packet before new general-share writes; inspect photo/note/recipe original value and clear-versus-release semantics together |
+| **[Home](codex://threads/01a06f87-e648-74d2-a0ae-f0adb305e44c)** · [consumer map](home-connected-experience-implementation-map-2026-09-04.md) | Available joined receiving and mobile baseline repairs landed; complete request/result consumer and supply breadth remain | Integration owns backend request/result/judgment; Entities owns exact depth; Content supplies eligible material | Lead the connected receiving package across approved Home/Places entries, exact results and return; no root redesign or new generator |
+| **[Places](codex://threads/01a07c7f-871a-70b0-840e-95a0db1e9351)** · [selected design](places-composition-breadth-design-revision-2026-09-07.md) | Latest design-review assignment complete; not whole-surface implementation | Home coordinates shared receiving; Integration owns practical judgment | Supply selected design decisions and spatial/degraded cases to the same receiving package; avoid a second overlapping renderer queue |
+| **[Entities](codex://threads/01a0649a-f267-7d31-a788-81669e1822a8)** · [completion plan](entity-object-design-overhaul-plan-2026-09-07.md) | Earlier implementation landed; latest six-package completion plan is planning, not execution | Home exact destination needs; Content facts/reading; Integration freshness; Life reader | Select the needed rich/sparse restaurant, museum and activity depth work from §10; isolated supplier package only where a receiver names the missing behavior |
+| **[Engineering Meta](codex://threads/01a07e12-78fc-7363-b675-9eb6144245f2)** · [repair context](engineering-context-and-agent-practices-research-2026-09-07.md) | Structural package `6da6905ac` received; subsequent baseline fixes completed by Integration | No pending structural handoff | Keep closed. A separate typing repair may be scoped by concrete clusters; do not reopen general engineering research |
 | **[Strategy](codex://threads/01a072c6-2735-7152-94ea-bb6958ead53d)** · [supported offer](vesper-v1-supported-offer-2026-09-07.md) | Program coordination, consequential decisions and received-value review | Founder decides promise changes; domain owners identify precise affected interfaces | Resolve decisions below at their first required boundary; review actual outputs, remaining effort and complete cost, not another premium-feature list |
 
 **Repo Clean Up** is an on-demand landing function under Integration, not a
@@ -154,6 +158,50 @@ receiving test and affected package—not “blocked on Life/Content/Social.”
   bottleneck and what to continue/change/stop. Replace stale current statements;
   preserve dated evidence in existing receipts, not another appendix here.
 
+## 7. Next coordinated packages — recommended, not dispatched
+
+The code-and-receipt review finds incomplete receiving, not a reason for another
+architecture rewrite. Two concrete boundaries set the next order:
+
+- Mobile `useSubmitSourceContributionRequest` and
+  `useSourceContributionResult` exist with transport/hook tests but have no
+  application-screen callers at this inspection. Backend request/exact-result
+  persistence is not yet that user experience.
+- Life's `owner_contracts.py` still declares supported source/Plan/Occasion/
+  Outcome projection owners shadow-only and `social_contribution` unavailable.
+  The organizer's typed-evidence tests do not establish raw interpretation,
+  visible organized reads or social-original refinding.
+
+| Next package / accountable task | Complete benefit and first checkpoint | Dependencies and limits |
+| --- | --- | --- |
+| **Connected receiving — Home**, with Integration owning shared backend work | Receive useful public material, an authorized prepared result and supported practical help through approved Home/Places entries; open the exact thing and return without reconstructing the question. First checkpoint: actual emitted payload → real screen consumer → exact destination/return, including unavailable, expired and changed states. | Reuse Home §8.8 and Integration E2–E5, not another worker or result store. Content supplies eligible output plus depth; Entities supplies missing destination behavior. Preserve independent reading/human value when a practical claim expires. |
+| **Recognizable continuity — Life** | Connect supported real owner evidence to maintained organization and bounded original/group/lens reads. First checkpoint: a source correction changes the appropriate group/preview while independent records and deliberate controls survive. | Resume M2–M4 with Capture's actual available evidence; name unsupported fields rather than supply oracle interpretations as extraction. No new intention owner, model run, indexed-serving activation or Atlas deletion. |
+| **Ordinary sharing contract — Social, with Strategy/founder decision review** | Finish the existing S0 choices against photograph, place note and non-spatial recipe: enjoyable original receiving, optional continuation, later access and durable sender control without recipient homework. First checkpoint: explicit adopted/pending rulings and one consistent sender/recipient lifecycle across roots. | General sharing is not implemented by the current pair-note path. Resolve original/share ownership, selected recipients, clear versus release, block/disconnect and source use before affected new writes. Existing note receiving remains usable independently. |
+
+**Execution order:** Integration first resolves the five-file lifecycle gate
+through valid archival/authority treatment and a real workspace docs check;
+do not weaken the validator or revive historical plans. This does not block
+independent product inspection or contract planning. Rebaseline the existing queues, agree exact receiving
+interfaces, then run the Home and Life implementation packages independently
+while the bounded Social decision review proceeds. Integration receives changes
+and owns shared contracts/landing; it is not a fourth feature factory. Content
+and Entities supply concrete requested gaps, not automatically their entire
+roadmaps. Activate a separate supplier package only when its output, owned files
+and receiving test are named; serialize shared composition/navigation changes.
+
+Content supply is not optional or presumed solved: the first Home checkpoint
+must include worthwhile, varied output and honest sparse coverage. If current
+admitted material cannot support that, prioritize a bounded Content supply/read
+package immediately; do not fill the feed with prompts or keep polishing empty
+containers. New paid/provider acquisition still requires its own authority.
+
+For the requested-result path, unavailable production must not promise later
+delivery. Controlled local execution may establish the connected consumer;
+production worker activation is a separate decision. Do not rebrand a dormant
+hook as a shipped service. Likewise, `place.open_now` is not arrival feasibility:
+add a named timing/fit adapter only when the receiving case requires it, using
+existing live-engine owners rather than creating a generic route service.
+
 **Next system checkpoint:** inspect sparse-context help, one-fragment connection,
 human original receiving, practical fit/change and later refinding together.
 Reuse the [shared world](fixtures/shared-fixture-world-2026-09-07.md) and
@@ -162,7 +210,17 @@ authored, synthetic, real-owner and native evidence. The person need not visit
 every tab. Inspect actual content, what context improved, remaining human work,
 identity/return, correction/withdrawal, latency and total known/unknown cost.
 
-Decide **continue, revise or retire** per package. A coherent test transport is
+This review inspected code and recorded outputs/limits; it did not render the
+current app, run new model/provider work, judge native design or measure human
+value. Next receiving evidence must include the actual result/original and
+remaining human work, not only test counts. Review complete compositions for
+substance, repetition, present relevance and effort; do not assign four move
+quotas or require every benefit to become a Plan. Review cost at the existing
+production/reuse owner, including unsuccessful work; unknown remains unknown.
+
+Decide **continue, revise or retire** per package after the first connected
+checkpoint and after at most three integrated subpackages. A coherent test
+transport is
 not sufficient receiving value; a strong static design is not implementation;
 a complete small benefit need not become a plan. Keep this overview approximately
 two to four pages; detailed plans, test logs and research stay with their owners.

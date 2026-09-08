@@ -5,7 +5,7 @@ decision_status: implemented
 owner: Integration
 created: 2026-09-07
 last_verified: 2026-09-08
-expires: 2026-10-08
+expires: 2026-10-07
 why_new: Records the bounded Opening-read and optional Places executor fixes landed after the request-to-root checkpoint without absorbing concurrent lane receipts.
 supersedes: []
 depends_on:
@@ -617,3 +617,30 @@ remains a separate **262 errors across 62 files** and was not broadened into
 this repair. No remote push, deploy, provider activation, feature flag change,
 or shared-daemon restart occurred. The disposable Compose project was removed
 after the connected run.
+
+## Strategy documentation recheck — September 8
+
+During program-roadmap reconciliation at workspace `b16857d`, backend
+`78ea8a05f` and mobile `5f41be821`, `make docs-check` exited 2 because child
+document admission rejects five files typed `working` with historical or
+superseded status. Its accepted working statuses are `active` and `blocked`.
+This does not contradict the recorded passing application suites, but it
+corrects any inference that all cross-repository documentation gates passed.
+
+Affected backend paths under `docs/working/`:
+
+- `editorial-map-qa-gates.md`
+- `outcome-inference-and-reconciliation-2026-08-06.md`
+- `session-log-product-model-and-outcome-inference-2026-08-06.md`
+- `session-log-product-model-and-spatial-intelligence-2026-08-06.md`
+- `spatial-intelligence-roadmap-2026-08-06.md`
+
+Workspace governance, inventory, spine, canon budgets, release projection,
+current-state projection, living links, compatibility and Home-surface governance
+all passed in that same invocation. This is a lifecycle classification/archival
+repair for Integration before the next combined landing, not a new product
+decision or permission to raise a baseline, extend expiry, reactivate old plans,
+or bypass admission. No backend file or checker was changed in this review.
+Explicit validation of the edited receipt also caught its 31-day review window;
+the expiry was shortened from October 8 to October 7 to meet the existing
+30-day policy. No review period was extended.
