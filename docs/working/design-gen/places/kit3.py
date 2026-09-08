@@ -5,7 +5,12 @@ S = lambda f: open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src
 _p19 = S('p19.html')
 HEAD = _p19[:_p19.find('<div style="width: 1900px')]
 _i0 = _p19.find('<div style="width: 1900px'); BOARD_OPEN = _p19[_i0:_p19.find('>', _i0)+1]
-TAIL = S('tail.html'); FOOT = S('footblock.html'); TABBAR = S('tabbar.html'); REDHOOK_MAP = S('redhook_map.html').replace('border-radius: 14px; overflow: hidden;', 'border-radius: 12px; overflow: hidden;', 1)
+TAIL = S('tail.html'); FOOT = S('footblock.html'); TABBAR = S('tabbar.html')
+def fix_map(html):
+    """The map as sliced from 19: plate radius 12; the pool's label to the left of its disc so it does not clip at the edge."""
+    html = html.replace('border-radius: 14px; overflow: hidden;', 'border-radius: 12px; overflow: hidden;', 1)
+    return re.sub(r'<text x="(\d+(?:\.\d+)?)" y="([^"]+)"([^>]*)>THE POOL</text>', lambda m: f'<text x="{float(m.group(1))-28:.0f}" y="{m.group(2)}"{m.group(3)} text-anchor="end">THE POOL</text>', html)
+REDHOOK_MAP = fix_map(S('redhook_map.html'))
 INK='#1B1714'; INK2='#2C2622'; MUTE='#6E6862'; ANCHOR='#8F877C'; GHOST='#B5AFA5'; GOLD='#B0853A'; GOLDD='#8A6628'; UMBER='#4A3428'; OX='#7A2E2E'
 CARD='#FBF7EC'; WASH='#E8E2D4'; WATER='#3D5066'; PAPER='#EFEAE0'; BOARD='#F4F0E7'
 MONO="font-family: 'JetBrains Mono', ui-monospace, monospace;"; SERIF="font-family: 'EB Garamond', Georgia, serif;"; SANS="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;"
@@ -49,8 +54,8 @@ def prow(name, facts, extra='', last=False, first=False, size=16):
     return f'<div style="display: flex; align-items: center; gap: 12px; padding: 10px 0;{bt}{bb}"><div style="flex: 1; min-width: 0;">{title(name, size, size+5)}{fn(facts, 3)}{extra}</div>{CHEV}</div>'
 def nrow(n, name, facts, extra='', last=False, first=False):
     bt = '' if first else f' border-top: 1px solid {HAIR7};'; bb = f' border-bottom: 1px solid {HAIR7};' if last else ''
-    num = f'<span style="width: 22px; height: 22px; border-radius: 11px; background: {INK}; color: {CARD}; display: inline-flex; align-items: center; justify-content: center; {MONO} font-size: 10px; font-weight: 700; flex: none;">{n}</span>'
-    return f'<div style="display: flex; align-items: center; gap: 12px; padding: 10px 0;{bt}{bb}">{num}<div style="flex: 1; min-width: 0;">{title(name, 16, 21)}{fn(facts, 3)}{extra}</div>{CHEV}</div>'
+    num = f'<span style="width: 22px; height: 22px; border-radius: 11px; background: {INK}; color: {CARD}; display: inline-flex; align-items: center; justify-content: center; {MONO} font-size: 10px; font-weight: 700; flex: none; margin-top: 1px;">{n}</span>'
+    return f'<div style="display: flex; align-items: flex-start; gap: 12px; padding: 10px 0;{bt}{bb}">{num}<div style="flex: 1; min-width: 0;">{title(name, 16, 21)}{fn(facts, 3)}{extra}</div>{CHEV.replace("flex: none;", "flex: none; margin-top: 4px;")}</div>'
 def facepile(letters, size=28, tuck=-8):
     out = '<span style="display: inline-flex; align-items: center; flex: none;">'
     for i, l in enumerate(letters):
@@ -83,7 +88,7 @@ def seq_strip(stops, top=10):
 # ── kinds ──
 def shelf_item(name, line, chip_):
     plate = f'<div style="height: 84px; border-radius: 12px; position: relative; background: {HATCH};"><span style="position: absolute; left: 10px; top: 9px; {MONO} font-size: 10px; font-weight: 700; letter-spacing: 0.9px; color: {GOLDD};">PHOTO · TO BE SOURCED</span></div>'
-    return (f'<div>{plate}<div style="font-size: 15px; font-weight: 600; letter-spacing: -0.2px; line-height: 19px; margin-top: 7px;">{name}</div><div style="font-size: 12.5px; line-height: 17px; color: {MUTE};">{line}</div>'
+    return (f'<div>{plate}<div style="font-size: 15px; font-weight: 600; letter-spacing: -0.2px; line-height: 19px; margin-top: 7px; min-height: 38px;">{name}</div><div style="font-size: 12.5px; line-height: 17px; color: {MUTE}; min-height: 34px;">{line}</div>'
             f'<span style="display: inline-block; {MONO} font-size: 10px; font-weight: 700; letter-spacing: 0.9px; color: {GOLDD}; border: 1px solid rgba(138,102,40,0.4); border-radius: 999px; padding: 2.5px 7px; margin-top: 6px;">{chip_}</span></div>')
 def browse_shelf(items, kick_t=None): return f'<div style="display: flex; flex-direction: column; gap: 10px;">' + (kick(kick_t) if kick_t else '') + '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px 11px;">' + ''.join(shelf_item(*it) for it in items) + '</div></div>'
 def cover(svg_or_none, kick_t, t, h=186):

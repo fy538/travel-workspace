@@ -336,3 +336,16 @@ Not changed, deliberately: Home's card with its shadow on Maya's note, the serif
 Inputs are the fixture's times and heights. A live version takes the date and the place: sunrise and sunset by calculation, tide predictions by station, ground by survey. The reading no longer wears a cover: a section with words over it collided, so the reading is the section in the open with its kick, title and door.
 
 **Photographs remain slots.** The one asset class that does belong elsewhere is photography, and it stays a hatched plate until sourced under a grant. The next candidate for a renderer is the map fragment, cut from real map data rather than drawn.
+
+## 27. Second polish pass (September 8)
+
+Read again from full-size crops of 01, 02, 03 and 08 after the instruments landed.
+
+| Fragment as drawn | The reason | Redrawn |
+| --- | --- | --- |
+| Numbered rows centre the disc on a tall row, so the "1" floats between the title and the note | Home's rows put the mark on the first line | The disc and the chevron sit with the first line |
+| Shelf chips at different heights when a name wraps to two lines | The pair reads as two unrelated items | The name block is two lines tall and the line one, so chips align across a pair |
+| "THE POOL" clips at the map's right edge | The label sat to the right of a disc near the edge | The label to the left of its disc, anchored end |
+| "A RAINY TUESDAY" wraps in the half-width comparison on the page | The author row carried name and date on one line in 160 pixels | The date joins the place line under the quote: "A RAINY TUESDAY · THE BACK ROOM" |
+
+Checked and left alone: the people rows' two-line wrap under the disc, which is Home's; the card shadow; the three stacked doors at the field's end; the section spacing after the first pass.

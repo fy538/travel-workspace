@@ -47,5 +47,5 @@ def temporal_posture(state, line, dot=None):
 # ── social ──
 def plural_comparison(a, b):
     def half(who, when, words, left):
-        return f'<div style="flex: 1; min-width: 0; {"padding-right: 14px;" if left else "padding-left: 14px; border-left: 1px solid " + HAIR + ";"}">' + author_row(*who) + f'<div style="{SERIF} font-size: 15px; line-height: 21px; color: {INK}; margin-top: 8px;">&ldquo;{words}&rdquo;</div>{fn(when, 4)}</div>'
+        return f'<div style="flex: 1; min-width: 0; {"padding-right: 14px;" if left else "padding-left: 14px; border-left: 1px solid " + HAIR + ";"}">' + author_row(who[0], who[1], '') + f'<div style="{SERIF} font-size: 15px; line-height: 21px; color: {INK}; margin-top: 8px;">&ldquo;{words}&rdquo;</div>{fn(who[2] + " · " + when, 4)}</div>'
     return '<div style="display: flex;">' + half(a[0], a[1], a[2], True) + half(b[0], b[1], b[2], False) + '</div>'

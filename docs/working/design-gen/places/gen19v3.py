@@ -102,7 +102,7 @@ def lead_composition(populated=True):
     return f'<div style="display: flex; flex-direction: column;">{inner_}</div>'
 def shelf_item(name, line, chip):
     plate = f'<div style="height: 84px; border-radius: 12px; position: relative; background: {HATCH};"><span style="position: absolute; left: 10px; top: 9px; {MONO} font-size: 10px; font-weight: 700; letter-spacing: 0.9px; color: {GOLDD};">PHOTO · TO BE SOURCED</span></div>'
-    return (f'<div>{plate}<div style="font-size: 15px; font-weight: 600; letter-spacing: -0.2px; line-height: 19px; margin-top: 7px;">{name}</div><div style="font-size: 12.5px; line-height: 17px; color: {MUTE};">{line}</div>'
+    return (f'<div>{plate}<div style="font-size: 15px; font-weight: 600; letter-spacing: -0.2px; line-height: 19px; margin-top: 7px; min-height: 38px;">{name}</div><div style="font-size: 12.5px; line-height: 17px; color: {MUTE}; min-height: 34px;">{line}</div>'
             f'<span style="display: inline-block; {MONO} font-size: 10px; font-weight: 700; letter-spacing: 0.9px; color: {GOLDD}; border: 1px solid rgba(138,102,40,0.4); border-radius: 999px; padding: 2.5px 7px; margin-top: 6px;">{chip}</span></div>')
 def browse_shelf():
     items = [('The noodle counter', 'Hand-pulled at the counter', 'CASH'), ('The lunch counter on Columbia Street', 'One plate a day · standing room', 'TILL 4'),
@@ -113,8 +113,10 @@ def browse_shelf():
 def redhook(col=None):
     sec = section('Red Hook, by ferry', col)
     a = sec.find('<div style="border-radius: 14px; overflow: hidden;">'); b = sec.find('</svg></div>', a) + len('</svg></div>')
-    mapdiv = sec[a:b].replace('border-radius: 14px; overflow: hidden;', 'border-radius: 12px; overflow: hidden;', 1)
+    from kit3 import fix_map
+    mapdiv = fix_map(sec[a:b])
     rows_start = sec.find('<div>', b); rows = sec[rows_start:]                       # the numbered places and the walk line, as parity drew them
+    rows = rows.replace('display: flex; align-items: center; gap: 12px; padding: 10px 0;', 'display: flex; align-items: flex-start; gap: 12px; padding: 10px 0;').replace('font-size: 10px; font-weight: 700; flex: none;">', 'font-size: 10px; font-weight: 700; flex: none; margin-top: 1px;">').replace('<svg class="chev" width="13" height="13" viewBox="0 0 13 13" fill="none">', '<svg class="chev" width="13" height="13" viewBox="0 0 13 13" fill="none" style="margin-top: 4px;">')
     fact = sec[sec.find('<div style="display: flex; flex-direction: column; gap: 3px', b):rows_start]
     return sect('Red Hook, by ferry') + gut(mapdiv + burden_strip() + f'<div style="margin-top: 4px;">{rows}</div>')
 def evening(col=None):
