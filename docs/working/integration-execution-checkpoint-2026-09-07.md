@@ -97,7 +97,7 @@ or native acceptance occurred.
 | Workspace mobile projection | `60ef47b` | landed; `docs/openapi.app.json` now contains the policy-admitted sender-history operation |
 | Mobile generated contract | `a60a04230` | landed on `travel-app` `main`; generated schema matches the active projection |
 | Mobile Home/Places repair | `6b44041ea` | landed on `travel-app` `main`; budget and bounded surface contracts repaired |
-| Backend Engineering Meta repair | pending | supplier still working on the isolated reliability package; no backend changes have been merged in this round |
+| Backend Engineering Meta repair | blocked at commit gate | supplier's isolated package reaches the declared reliability gates, but repository-wide size/status guard checks fail on pre-existing unrelated paths; no backend changes have been merged in this round |
 
 ### Current receipts
 
@@ -121,11 +121,23 @@ or native acceptance occurred.
 * The canonical runtime remains unrun. The workspace has no isolated lane
   manifest and the default Compose stack is stopped, so Integration did not
   start a shared database or run migrations against it.
+* Engineering Meta's final handoff is **blocked, not bypassed**: the staged
+  128-path package reaches the exact broad-exception ceiling (**1,190/1,190**),
+  itinerary writer boundary (**151 sites**), and focused reliability receipt
+  (**241 passed / 9 skipped**). Its bounded offline run still exposes **10
+  undeclared-Postgres** concierge DB-leak failures. Repository-wide
+  pre-commit then fails existing size-budget offenders
+  (`intake_v2_jobs.py`, `account_deletion.py`, `concierge/agent.py`, and four
+  oversized files) plus existing status-guard offenders in
+  `backend/ingestion/base.py`, `life_projection/organization_projector.py`,
+  and `core/db/life_organization_resolution.py`. No hook was bypassed and no
+  baseline was raised.
 
 ### Receiving order from this round
 
-1. Receive and review Engineering Meta's exact backend commit, or record its
-   unchanged gate blocker; do not merge the supplier's dirty worktree.
+1. Keep Engineering Meta's dirty worktree isolated. Resolve or explicitly
+   accept the pre-existing repository-wide size/status guard blockers before
+   requesting a backend commit; do not merge a staged-but-uncommitted package.
 2. Decide whether Social should provide the one remaining `socialCard.tsx`
    control-alignment repair. Do not fold that file into Home by inference.
 3. Run the backend focused failures and the combined mandatory checks once the
