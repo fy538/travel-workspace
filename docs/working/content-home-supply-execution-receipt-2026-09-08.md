@@ -6,7 +6,7 @@ owner: Content / Home / Integration
 created: 2026-09-08
 last_verified: 2026-09-08
 expires: 2026-10-08
-why_new: Records the bounded Content-to-Home receiving slice, its sparse/rich evidence, honest absence behavior, and the still-gated Capture anchor contract.
+why_new: Records the bounded Content-to-Home receiving slice, conservative editorial value calibration, sourced review specimens, and the landed Capture anchor shadow contract.
 supersedes: []
 depends_on:
   - vesper-program-roadmap.md
@@ -25,8 +25,11 @@ new Home renderer.
 
 ## 1. What landed
 
-Backend child commit `3cce198dd` (`home: surface bounded public place content`)
-adds:
+Backend child commits `3cce198dd` (`home: surface bounded public place
+content`), `472250bd2` (`content: calibrate Home editorial value signals`),
+and `7e72194b3` (`fix(content): allow bounded non-trip purpose fit`) add. The
+latter two are landed on canonical `travel-agent/main` as `8a092de39` and
+`a7c02cbe1`:
 
 | Layer | Change | Boundary preserved |
 | --- | --- | --- |
@@ -37,8 +40,19 @@ adds:
 
 The adapter deduplicates primitive/version identity, bounds copy and result
 count, preserves source freshness, and uses the existing six-hour read window
-only as a delivery deadline. The richer-context signal changes ranking and
-present relevance; it never invents a personal inference or claims attendance.
+only as a delivery deadline. Public acceptance remains a source-quality and
+eligibility signal, not proof of personal novelty or high explanatory yield.
+Without an authorized known-claim window, novelty is `not_applicable`; an
+explicit matching claim becomes `known_to_person`. Evidence strength derives
+from required observation states. Epistemic yield is high only for a distinct
+interpretive lens with at least two source observations, medium for a distinct
+single-source interpretation, and low for a repeated/weak cue.
+
+An explicit richer context changes ranking and present relevance only when the
+caller names a concrete current-purpose fit (`context_adds_value=True`) and
+provides an authorized context reference. A Trip-shaped scope by itself does
+not earn the `+8` ranking or a personalized explanation; the fit also works
+for a bounded city, area or continuation context.
 
 ## 2. Actual checkpoint output
 
@@ -55,8 +69,8 @@ basis: working piers beside newer public paths; when walking the waterfront betw
 source_ref: place_content_primitive/<fixture-record-id>@aaaaaaaa…aaaaaaaa
 destination: Places / places.open_entity(place/7, exact source ref)
 why_this: A reviewed reading makes one current Place more legible.
-value: world_opening → make_sense → read; high evidence; high epistemic yield;
-       medium present relevance; low burden; complete on view
+value: world_opening → make_sense → read; high evidence; medium epistemic yield;
+       not_applicable novelty; medium present relevance; low burden; complete on view
 ```
 
 This is substantive enough to be worth receiving without asking the person to
@@ -68,13 +82,62 @@ source identity needed for correction, expiry and inspection.
 | Situation | What the implementation does | What it does not claim |
 | --- | --- | --- |
 | Sparse Home, no current Trip | Uses the automatic Places context and its resolved editorial place subtree; emits the same accepted public reading with `present_relevance=medium`, priority `70`, and “A reviewed reading makes one current Place more legible.” | No personal taste, past attendance, trip, or private-history inference. If there is no resolved context or no eligible public source, it stays silent rather than inventing a card. |
-| Richer authorized context, current Trip scope | Reuses the same exact public source under the explicit context, with `present_relevance=high`, priority `78`, and “This adds a grounded reading to a Place already in motion for you.” | It does not claim the person visited the entity, liked the reading, or that the source was produced for them. |
+| Richer authorized context, but no demonstrated current-purpose fit | Reuses the same exact public source with the same `present_relevance=medium`, priority `70`, and copy as sparse Home. | A Trip or rich scope alone does not make a public interpretation more relevant. |
+| Richer authorized context with an explicit current-purpose fit | May use `present_relevance=high`, priority `78`, and “This adds a grounded reading to a Place already in motion for you.” The fit does not require a Trip; a bounded Places context reference is sufficient. | The fit must be named by the producer; it still does not claim attendance, taste, or private meaning. |
 
-The difference is therefore useful but narrow: authorized context changes why
-the item is timely, while Content still supplies the same evidence-backed
-substance. This avoids both flat repetition and creepy personalization.
+The difference is therefore useful but narrow: an authorized current-purpose
+fit may change why the item is timely, while Content still supplies the same
+evidence-backed substance. This avoids both flat repetition and creepy
+personalization.
 
-## 4. Freshness, no-results and cost behavior
+## 4. Sourced local review specimens
+
+The following are **authored review specimens**, not populated production rows,
+provider calls, or permission to republish source prose. They were checked
+read-only on 2026-09-08 against the public operator/park pages:
+
+- [Hudson River Park — Pier 57](https://hudsonriverpark.org/locations/pier-57/)
+  states that the nearly two-acre rooftop park and perimeter walkway are open
+  daily 6:00 a.m.–1:00 a.m.; it also describes a 7,400-square-foot indoor
+  “Living Room” with seating and views.
+- [Pier 57 — Rooftop Park](https://pier57nyc.com/rooftop/) repeats the daily
+  hours, gives the south-gate access route, and identifies the rooftop as a
+  public place for picnics and gatherings.
+- [Pier 57 — About](https://pier57nyc.com/about/) describes the original
+  maritime terminal and its use of three hollow concrete caissons to support
+  the main structure.
+
+The resulting candidate copy is deliberately bounded:
+
+```text
+Pier 57 offers two public settings for a waterfront catch-up: a nearly
+two-acre rooftop park and an indoor Living Room.
+
+The same address can support two kinds of catch-up: open-air views on the roof,
+or seated indoor gathering in the Living Room.
+
+Basis: rooftop hours and indoor seating/views are source-stated; check current
+access and hours. Crowd levels, weather, seating availability and a friend's
+preference remain unknown.
+```
+
+The companion historical specimen is:
+
+```text
+Three hollow concrete caissons support Pier 57’s main structure.
+
+The pier’s engineering is part of its identity: a reused maritime terminal
+whose structure remains part of what you are standing on.
+```
+
+The first combines two source observations into a practical alternative without
+claiming that the roof is calmer, that an indoor move is guaranteed, or that a
+specific friend will prefer it. The second is a single-source interpretation;
+its evidence is high when the required observation is active, but its
+epistemic yield remains medium. Source URLs and research time are retained in
+the authored fixture; no source-rights or current-availability claim follows.
+
+## 5. Freshness, no-results and cost behavior
 
 - The source owner admits only accepted, active, grounded, public,
   policy-bound records valid at the represented clock and explicitly eligible
@@ -92,22 +155,26 @@ substance. This avoids both flat repetition and creepy personalization.
   provider/model acquisition cost belongs to Content's producer and remains
   outside this commit.
 
-## 5. Capture anchor lifecycle remains a shared-contract gate
+## 6. Capture anchor lifecycle and Life shadow status
 
-The current Capture/Life data is not sufficient to publish a reliable anchor
-event: the existing outbox owner is `retained_source`/submission, while graph
-anchors do not yet carry the revision/sequence needed for replay, correction,
-withdrawal and idempotent consumer behavior. This lane therefore did **not**
-invent an anchor event family, schema, or lifecycle.
+The candidate-owned Capture contract is now landed. Integration's producer
+commit `cd0e28f35` adds the monotonic candidate revision and atomic Intake/Life
+outbox handoff. Life's consumer `ac54cefc9` and revision-alignment follow-up
+`9b1009a6a` are also landed on canonical `travel-agent/main`.
 
-Integration must first publish the shared contract (event identity, source
-revision, occurrence/capture time, correction/withdrawal semantics and owner
-read). Life can then consume it in its bounded organization/read path. Until
-that contract lands, Capture's current explicit-subject shadow and the
-documentation checkpoint remain valid but are not evidence of production anchor
-continuity.
+The Life adapter remains shadow/read-only: it re-reads the authoritative
+candidate and source custody, fences candidate revisions, writes only the
+existing private Life Time row, and supports withdrawal, explicit newer
+restore, stale replay, source-access loss, bounded enumeration/backfill and
+user-control preservation. This does not make serving ready, populate
+production candidates, infer attendance/people, activate Source, retire Atlas,
+or add a new event bus.
 
-## 6. Verification boundary
+The remaining gate is therefore serving and broader evidence—not the owner
+identity/revision contract. Capture's current explicit-subject shadow and this
+receipt remain implementation evidence, not proof of production continuity.
+
+## 7. Verification boundary
 
 Executed in the dedicated backend lane:
 
@@ -121,25 +188,26 @@ pytest -q tests/root_projection/test_home_portfolio.py \
   tests/root_projection/test_source_contribution_materials.py \
   tests/api/test_root_composition_service.py \
   tests/api/test_practical_root_delivery.py \
-  tests/core/test_place_content_sources.py             # 91 passed
+  tests/core/test_place_content_sources.py             # 97 passed
 ```
 
-The test packet includes direct sparse/rich adapter tests and a reader test
-with no Trip. The fixture is authored and deterministic; no live provider,
-production database, model, mobile renderer or native Home screenshot was
-exercised. Backend commit hooks also passed Ruff formatting, vulture, secret
-checks, import/cycle/async-call ratchets, contract-key coverage and related
-backend parity checks.
+The test packet includes direct sparse/rich adapter tests, a reader test with
+no Trip, conservative known/repeated/weak-yield cases, the non-Trip
+current-purpose fit regression, and the two Pier 57 review specimens. The
+fixtures are authored and deterministic; no live provider, production
+database, model, mobile renderer or native Home screenshot was exercised.
+Backend commit hooks passed Ruff formatting, vulture, secret checks,
+import/cycle/async-call ratchets, contract-key coverage and related backend
+parity checks.
 
-## 7. Next owner actions
+## 8. Next owner actions
 
 1. **Content:** provide a reviewed populated record for one supported area and
    one richer context, including source provenance, freshness, allowed roots,
    and exact expected copy; state unsupported coverage if no row exists.
-2. **Home:** consume the candidate through the existing receiving lane and
-   return the exact entity/source destination; do not add a new card family or
-   generator for this package.
-3. **Integration:** publish the Capture anchor event contract before any Life
-   production consumer is wired; land this backend commit only after the
-   shared receiving review.
-
+2. **Home:** retain the existing receiving lane and exact entity/source
+   destination; no new card family or generator is required for this package.
+   Native visual acceptance and populated production supply remain unrun.
+3. **Integration:** preserve the landed candidate producer/consumer boundary;
+   any future serving cutover or broader evidence packet is a separate,
+   founder-approved gate.
