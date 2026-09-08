@@ -25,6 +25,12 @@ def sun_y(t, rise, set_, top, base):
     """Elevation as a half-sine between rise and set; below the horizon the curve is not drawn."""
     if t < rise or t > set_: return base
     return base - (top and (base - top)) * math.sin(math.pi * (t - rise) / (set_ - rise))
+def _lowlab(ax, wy, lowt, lw0, lw1):
+    """The low-water label sits above the curve wherever the curve is highest under the label's span: computed, not guessed."""
+    lab = f'LOW WATER {fmt(lw0)}–{fmt(lw1)}'; wpx = len(lab) * 6.4; xr = ax.x(lowt) + 14; xl = xr - wpx
+    tl = ax.t0 + (xl - ax.x0) / (ax.x1 - ax.x0) * (ax.t1 - ax.t0); tr = ax.t0 + (xr - ax.x0) / (ax.x1 - ax.x0) * (ax.t1 - ax.t0)
+    ytop = min(wy(tl + i * (tr - tl) / 20) for i in range(21))
+    return L(xr, ytop - 6, lab, INK, True, 'end')
 def pier_day(rise='6:31', set_='19:04', plan=('18:30', '19:10', 'THE PIER'), after=('20:30', '21:10', 'THE FILM'), high='8:40', low_window=('14:40', '17:00'), kayaks=('13:00', '16:00', 'KAYAKS'), t0=6, t1=23, h=224):
     """The pier's day on one axis: the sun above the line, the water below it; the plan as gold on the sun; after dark as ink on the line; the low-water window on the tide.
     Zones: sun 12..96 (base 96); a label row under the base; water 130..190; the kayaks bar under the water; ticks at the foot."""
@@ -49,7 +55,7 @@ def pier_day(rise='6:31', set_='19:04', plan=('18:30', '19:10', 'THE PIER'), aft
     svg += L(ax.x(rise_), base + 15, f'{rise} SUNRISE') + (L(ax.x(p0) - 8, sun_y(p0, rise_, set__, top, base) - 2, f'{plab} · SUNSET {fmt(set__)}', GOLDD, True, 'end') if plan else L(ax.x(set__) - 8, base - 10, f'SUNSET {fmt(set__)}', MUTE, None, 'end')) + L(ax.x(a1), base + 15, f'{alab} {fmt(a0)}', INK, True, 'end')
     svg += f'<path d="{wfill}" fill="rgba(61,80,102,0.18)"/><path d="{wpath}" stroke="{WATER}" stroke-width="2" stroke-linecap="round"/>'
     svg += f'<line x1="{ax.x(lw0):.1f}" y1="{wy(lowt)+7:.1f}" x2="{ax.x(lw1):.1f}" y2="{wy(lowt)+7:.1f}" stroke="{WATER}" stroke-width="3" stroke-linecap="round"/>'
-    svg += L(ax.x(hi) + 8, wy(hi) - 8, f'HIGH {high}', WATER) + L(ax.x(lowt) + 14, wy(lowt) - 16, f'LOW WATER {fmt(lw0)}–{fmt(lw1)}', INK, True, 'end')
+    svg += L(ax.x(hi) + 8, wy(hi) - 8, f'HIGH {high}', WATER) + _lowlab(ax, wy, lowt, lw0, lw1)
     ky = wtop + amp + 18; svg += f'<rect x="{ax.x(k0):.1f}" y="{ky}" width="{ax.x(k1)-ax.x(k0):.1f}" height="6" rx="3" fill="{GOLD}"/>' + L(ax.x(k1) + 6, ky + 6, f'{klab} {fmt(k0)}–{fmt(k1)}', GOLDD, True)
     svg += ax.ticks(h - 18, every=3)
     return svg + '</svg>'
