@@ -137,14 +137,12 @@ evidence only: `backend/life_projection/adapters.py` and public Places lenses
 remain unchanged, with no API/schema/migration, reader cutover, Atlas deletion,
 or producer-side Capture rewrite.
 
-The next seam is therefore an explicit Capture/Integration contract decision,
-not another Life-owned event family: the graph `experience_anchors` path still
-lacks a revision/sequence field and its bridge emits only the existing
-`retained_source` lifecycle event. Before adding an anchor-backed adapter,
-agree the authoritative owner identity, revision, withdrawal/restore event and
-durable delivery semantics. If that contract is unavailable, continue replay
-and consumer tests against the existing path and record the exact gap rather
-than manufacturing occurrence or attendance evidence.
+The next seam is now the bounded Capture/Integration contract adopted on
+September 8 (see the receipt below). The graph `experience_anchors` row remains
+a projection, not a new owner. Life consumes the candidate-owned handoff through
+the existing Life outbox and re-reads the authoritative Intake candidate and
+source custody before any shadow write. No occurrence or attendance semantics
+are added by this seam.
 
 **Capture candidate-owner contract accepted — September 8:** the paragraph
 above records the pre-decision gap. The founder has now accepted Option A in
@@ -159,6 +157,87 @@ eligibility before writing shadow rows. `candidate_confirmed`,
 change kinds. Reordered events cannot resurrect a withdrawal; source loss and
 user controls remain authoritative. No serving cutover, graph-owned stream,
 new queue, or source activation is implied.
+**Anchor delivery contract inventory — September 8:** the bounded consumer
+investigation confirms that the current Capture/graph path is not yet safe to
+wire into Life's incremental owner projector. The authoritative current read
+is `intake_artifact_candidates` plus its `intake_observations`, exposed as a
+confirmed `ExperienceAnchorProjection` with `anchor_id = candidate.id`,
+`updated_at = candidate.updated_at`, source-object lineage, canonical entity
+links, occurrence/binding/claim fields, unknowns and source availability. The
+content-free graph `experience_anchors` row is keyed by a deterministic anchor
+ID and stores state, source IDs, world entity, time window and confidence, but
+has no owner revision or sequence. Confirmation, correction and retraction are
+durable `intake_outbox_events`, yet their current `source_event` envelope is
+typed as `owner_kind=retained_source`, partitions by submission ID, uses an
+event-key hash when no revision is supplied, and carries `candidate_id` only as
+a dependency. The graph bridge emits the existing retained-source Life event
+only when source retention is enabled.
+
+The accepted contract keeps the existing Intake candidate lifecycle event types
+and adds a nested `candidate-owner-change.v1` envelope for the candidate owner
+(`owner_kind=experience_anchor`, `owner_id=candidate_id`, candidate partition,
+positive decimal owner revision, and confirmed/withdrawn/restored lifecycle).
+Capture writes the candidate mutation, Intake graph handoff and Life outbox
+handoff atomically; retries reuse the event key. Life's adapter is shadow-only,
+uses the candidate revision for CAS, withdraws only the affected candidate row,
+and treats restore as an explicit newer transition after source-custody and
+viewer rechecks. The graph bridge and legacy retained-source envelope remain
+unchanged. This closes the identity/revision/delivery contract gap, but not
+portfolio-wide owner coverage or serving readiness.
+
+### 13.17 Candidate-owned Experience Anchor shadow consumer — September 8
+
+The approved Option A contract is implemented by Integration at backend
+`cd0e28f35` (`feat(capture): deliver candidate-owned lifecycle revisions`). It
+adds the owner-issued `revision` integer to semantic Intake candidates, keeps
+candidate identity separate from submission/source identity, and emits both the
+existing Intake outbox event and the existing Life projection outbox in the
+same owner transaction. The nested `candidate-owner-change.v1` envelope is
+validated at the broadcast boundary; the Intake outbox remains solely for the
+graph worker, so Life never competes for its acknowledgement.
+
+Life's consumer package is committed on the isolated backend branch as
+`9e5de617e` (`life: consume candidate-owned anchor lifecycle`) and consists of:
+
+* `anchor_projector.py`, a current-authority adapter that reads the exact
+  owner-scoped `ExperienceAnchorProjection`, fences the numeric candidate
+  revision, and writes `anchor.<candidate_id>` to the existing Life index with
+  a private Time lens. A confirmed candidate with unavailable custody is
+  withdrawn from the derived row; ordinary replay cannot restore a withdrawn
+  row, while an explicit newer restore can.
+* Candidate-aware registration in the existing maintenance/delivery/subscriber
+  path, with no new queue, graph stream, reader, API, or serving cutover.
+* Anchor owner enumeration/backfill support using the same bounded candidate
+  reader and `revision` token as live delivery. Corpus source revisions now use
+  the candidate revision rather than `updated_at`; `updated_at` remains a sort
+  clock only.
+* A candidate owner publication fence that locks the candidate, submission and
+  custody source rows before an index insert/restore. It rejects stale owner
+  revisions, deleted/revoked/expired sources and malformed lineage while
+  allowing safe owner-authorized withdrawal.
+
+Acceptance evidence on the isolated tree:
+
+* Life offline selection: **270 passed**, 43 connected/API-key cases
+  deselected. The focused anchor consumer selection is **10 passed**; owner
+  matrix, bounded enumeration, backfill, maintenance and shadow regressions are
+  included.
+* Disposable Postgres consumer proof: **1 passed**, covering confirmed
+  candidate → Life row, candidate withdrawal, explicit newer restore, source
+  access loss and non-resurrection. Combined producer/consumer lifecycle
+  selection: **2 passed** (producer outbox contract plus consumer read/write).
+* Ruff, compile, whitespace and diff checks pass for the changed files. The
+  consumer branch has no mobile/API changes and remains unmerged/unpushed; the
+  producer commit is a separate Integration-owned change and must be landed by
+  that lane.
+
+This package establishes the first candidate-owned Life delivery path; it does
+not make `experience_anchor` serving-ready, infer attendance/people, retire
+Atlas, or prove model-based organization. The next checkpoint is review/landing
+of the two commits together, then independent replay/neighbor/control evidence
+for broader owners and extraction-vs-organization quality. Capture's richer
+evidence-unit envelope remains a later contract, not silently implied by this
+candidate lifecycle.
 
 ### Current execution queue
 
