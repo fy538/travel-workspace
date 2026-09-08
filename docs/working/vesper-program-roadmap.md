@@ -163,32 +163,38 @@ receiving test and affected package—not “blocked on Life/Content/Social.”
 
 ## 7. Current coordinated packages — September 8 completion round
 
-**Latest dispatch supersedes the first-round assignments below.** The founder
-approved the next completion round after Integration landed Home receiving at
-app `6dfd0d8cf` and Life organization at backend `0af5aacef` / `3c76118b0`.
-The five-file lifecycle repair is complete and the actual workspace docs gate
-passed in Integration's receipt. Dispatch baseline: workspace `bf5d096`, backend
-`3c76118b0`, app `6dfd0d8cf`; all canonical trees inspected clean.
+**Latest dispatch supersedes the earlier assignments below.** The previous
+round landed factual Plan dates (`9dba7ffbb`) and explicit Capture subject-backed
+shadow `RELATED_PLACE` organization (`be69fe365`). These are useful bounded
+improvements, not completion of substantive Home supply. Ordinary no-Trip
+possibilities remain a named producer dependency. The five-file lifecycle
+repair is complete. Dispatch baseline: workspace `e2e7530`, backend `be69fe365`,
+app `6dfd0d8cf`; all canonical trees inspected clean.
 
-- **Home:** inspect actual supported content across sparse/rich Home and Places
-  receiving, then repair bounded supply/adapter/rendering gaps. Status plumbing
-  alone is not acceptance; source production stays dark.
-- **Life:** lead a bounded Life/Capture evidence package, inventorying actual
-  occurrence/time/place/people/uncertainty support and implementing justified
-  relationships beyond capture-month grouping. Missing evidence stays unknown;
-  no serving cutover or new inferred attendance.
-- **Integration:** own shared interfaces, combined verification and reviewed
-  local landing. Prior baseline cleanup is closed; supplier gaps must name the
-  needed output and receiving acceptance.
+- **Content:** accountable producer for substantive sparse/no-Trip and richer
+  authorized-context supply using existing admitted material and owners.
+  Deliver actual payloads, source/depth/freshness and known/unknown cost; name
+  precise acquisition authority if unavailable, never fabricate populated data.
+- **Home:** accountable receiving partner for that same package: admission,
+  composition, displayed substance and exact depth/return. Coordinate payloads
+  with Content rather than duplicate production or improve only status cards.
+- **Integration:** own the Capture anchor identity/revision/sequence,
+  withdrawal/restore and durable-delivery contract, plus shared interfaces,
+  combined verification and reviewed local landing for both packages. Derive
+  from existing owners; unresolved architecture comes to Strategy before writes.
+- **Life:** consume the agreed anchor lifecycle with bounded organization/read
+  adapters and correction/replay tests. Preserve independent records and user
+  controls; do not invent attendance, activate serving or duplicate producer work.
 - **Strategy:** review Social's unlanded `43ae39a` + `bb23e89` decision packet
   here with the founder. No new Social execution assignment or policy adoption.
 
-One consolidated assignment was accepted by each of the three existing execution
-tasks, using Luna xhigh. Life leads the Capture seam; no fourth execution lane
-was created. First checkpoint: actual Home content and remaining human work,
-supported Life evidence-to-relationship correction, and Social decisions ready
-for adoption or revision. Native and substantive producer evidence remain
-unrun in the completed first round, not implied by its tests.
+One consolidated assignment was accepted by each of the four existing execution
+tasks, using Luna xhigh. Content was resumed for this named supplier gap; no new
+task was created. First checkpoint: actual sparse/rich Home content and remaining
+human work, plus an authoritative anchor lifecycle and Life correction/readback.
+Native and populated producer evidence remain unrun in the completed rounds,
+not implied by their tests. Source stays dark; paid/provider calls, publication,
+new social policy and serving cutover remain outside this dispatch.
 
 ### First-round scope and rationale (completed or explicitly pending)
 
