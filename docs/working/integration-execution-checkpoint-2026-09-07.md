@@ -40,13 +40,15 @@ an old context into a current claim.
 
 ### Optional Places reads have physical admission bounds
 
-Backend merge commit `5a1b8e493` (`bound optional blocking read admission`)
-adds a semaphore around the existing optional Places blocking executor. A
-queued timeout or cancellation marks its work item as cancelled but holds the
-permit until that physical item drains. Repeated root deadlines therefore
-fail closed instead of accumulating unbounded executor work. Submission
-failure releases the permit, and running work still has its existing late
-outcome handling.
+The optional-read lane was converged in backend merge commit `5a1b8e493`
+(`bound optional blocking read admission`). The same implementation was
+already present on `main` as `7a8a6f58c`, so this merge also introduces no
+duplicate behavior. The existing code adds a semaphore around the optional
+Places blocking executor. A queued timeout or cancellation marks its work
+item as cancelled but holds the permit until that physical item drains.
+Repeated root deadlines therefore fail closed instead of accumulating
+unbounded executor work. Submission failure releases the permit, and running
+work still has its existing late-outcome handling.
 
 This is an operational safety correction to the existing owner-read boundary;
 it adds no provider, scheduler, durable watch, or new root workload.
