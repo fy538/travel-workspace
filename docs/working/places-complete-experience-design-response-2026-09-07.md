@@ -271,3 +271,21 @@ Reversed from §12: the illustrated places, the sans compact titles, the outline
 **Index, decisions, log.** 00 shows miniatures of the chosen scrolls and two frames each from 21 and 22; 08's third decision now reads photo slots and instruments instead of stand-in drawings and sans rows; 09 records the parity draft and the chosen expression as two passes.
 
 **Observed and not.** Every board was rendered and inspected as crops after generation; label collisions on the day bands and the cliff section were corrected. All transitions remain ordered static frames. The generators are in the repo.
+
+## 22. The project cleaned up (September 8)
+
+The live project now holds seven boards in reading order. The numbering used in §7 to §21 of this document is the numbering at the time of each pass; this table maps it.
+
+| Now | Content | Was |
+| --- | --- | --- |
+| 00 · Index | Miniatures, where things stand, the board list, the archive pointer | 00 |
+| 01 · The Field | The chosen scroll, populated and cold | 19 |
+| 02 · The Journeys | Exploration; human receiving in three branches; practical continuation | 21 |
+| 03 · The Situations | Before arrival; sparse; no map; pending | 22 |
+| 04 · The Checks and the Opening | Long names; text at 1.3×; the opening sequence | 20 |
+| 05 · Decisions | The five decisions | 08 |
+| 06 · Log | One row per pass | 09 |
+
+**The archive.** Every earlier board was downloaded as pushed HTML into the repository at `docs/working/design-gen/places/archive/` before deletion from the live project: Z01 (the kit), Z02 to Z07 (the five situations and the supply-rich opening), Z10 to Z12 (content-led versus map-led, the two paths, the self-review), Z13 (the packet and vocabulary), Z14 to Z17 (candidates A, B, C and the recommendation), Z18 (the pre-polish synthesis), Z19 (the §12 polish of 19 in its final form before the rename), Z20 (the last §12 form of 20). §14.1 asked for the archive as provenance; git holds it with this document.
+
+**Generators.** `kit3.py`, `fix.py`, `gen19v3.py`, `gen20.py`, `gen21.py`, `gen22.py`, `renumber.py` and the `src/` they slice are in the same folder. `renumber.py` produces the seven live boards.
