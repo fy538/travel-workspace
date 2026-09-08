@@ -4,8 +4,8 @@ status: active
 decision_status: implemented
 owner: Integration
 created: 2026-09-07
-last_verified: 2026-09-07
-expires: 2026-10-07
+last_verified: 2026-09-08
+expires: 2026-10-08
 why_new: Records the bounded Opening-read and optional Places executor fixes landed after the request-to-root checkpoint without absorbing concurrent lane receipts.
 supersedes: []
 depends_on:
@@ -368,6 +368,70 @@ projector-focused selection **23 passed**. Disposable Postgres was unavailable
 in this lane, so the supplier's connected **40 passed / 249 deselected** report
 remains unverified here and must be rerun by Integration before landing. The
 Life source commit was not merged or pushed from this lane.
+
+## Integration receiving close-out — September 8
+
+The receiving candidate was rebuilt from backend `52e2fe31d` and applied only
+the reviewed Life supplier commit `6d2b84d72`. It ran against a newly created,
+explicitly disposable Compose project `vesper-engineering-reliability-2026-09-07`
+(`54572` Postgres; `54573/54574` Qdrant), with `TEST_DATABASE_URL` and
+`TEST_DATABASE_DISPOSABLE=1` set only for the connected lane. The candidate was
+not pointed at the canonical/default stack and no shared daemon was restarted.
+
+The receiving branch is local-only at `codex/integration-execution-2026-09-08`:
+
+| Package | Revision | Evidence / state |
+| --- | --- | --- |
+| Offline lifecycle repair | `7ad926648` | Committed separately; memory recall explicitly exercises lexical fallback offline, and dead-handler audit counts all helpers in one source scan. |
+| Context-memory authority docs | `7c2319879` | Four exact Strategy files received and committed separately; child product-doc governance **5 passed**. |
+| Life receiving candidate | `d029ead4f` | Life commit applied on top of `52e2fe31d`; candidate branch tip is `7c2319879`. |
+
+### Receiving evidence
+
+* Life Postgres suite: **40 passed / 249 deselected** after `alembic upgrade
+  head` reached `lifeorgpipelinemerge01`.
+* Life offline suite: **249 passed / 40 deselected**; projector-focused
+  selection: **23 passed**.
+* Normal pre-commit hooks and backend size budget: **passed** on the combined
+  candidate. The connected Life run is now verified by Integration; the prior
+  supplier-only 40-pass report is no longer the sole evidence.
+* Full offline suite, correctly filtered and run with four workers: **21,308
+  passed / 20 skipped / 1 xfailed / 52 xpassed / 7 failures** in **59.14s**.
+  The prior 99% stall is repaired: there was no end-of-suite hang, unawaited
+  coroutine failure, or content-safety teardown error. The seven remaining
+  failures are bounded environment/authority debt: four backend↔frontend enum
+  parity tests and two frontend snapshot tests cannot resolve the sibling
+  `travel-app` from a standalone backend worktree, plus the former blocked
+  product-spine status (resolved by the received Strategy docs, but not part
+  of the code candidate's original run).
+* A lower-timeout diagnostic identified the former stall's actual causes: the
+  query-recall test was loading the local SentenceTransformer instead of
+  exercising its lexical fallback, and each dead-handler audit repeated a
+  full `git grep` for 155 helpers. Both are now bounded at their ownership
+  boundaries with regression coverage; no timeout was raised, test was
+  excluded, exception swallowed, or baseline changed.
+* Full mypy remains a separate baseline failure: **262 errors across 62 files**.
+  No changed-file typing error was identified in this receiving package.
+
+### Memory-authority handoff
+
+Strategy's exact four documentation files were received without modifying
+checker code, canonical-spine registration, baselines, or tests:
+
+* `docs/architecture/Vesper Unified Context and Memory Plan.md` is now a
+  bounded active integration contract rather than an expired blocked rollout
+  plan.
+* `docs/architecture/Memory Architecture.md` and its README entry route
+  policy/retention/execution authority to the accepted canon and current
+  roadmaps.
+* `docs/archive/vesper-context-memory-plan-pre-reconciliation-2026-09-08.md`
+  preserves the full former plan and original metadata as historical evidence.
+
+No remote push, deployment, provider/flag activation, generated-contract sync,
+blanket exemption, baseline raise, or Life-source merge occurred. The isolated
+Compose project remains disposable and should be stopped/removed by the
+receiving owner after any further database work; its volumes were not used for
+dogfood or production data.
 
 ## Landed
 
