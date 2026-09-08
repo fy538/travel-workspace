@@ -513,5 +513,27 @@
     "contract_check": "passed",
     "no_push_deploy_activation_or_shared_restart": true,
     "status": "bounded_receiving_green_remaining_repository_debt"
+  },
+  "offline_isolation_followthrough_2026_09_08": {
+    "canonical_backend_commit": "52e2fe31d",
+    "commit_message": "test: isolate offline readers across backend suites",
+    "worktree_clean": true,
+    "changed_test_tuple": "1168 passed / 43 xpassed",
+    "undeclared_postgres_failures_in_changed_tuple": 0,
+    "hooks": "ruff, format, vulture, and applicable commit-stage hooks passed",
+    "mypy": "262 pre-existing errors across 62 files; no changed-file typing error identified",
+    "full_offline_suite": "not certified green; prior 99%-complete run was interrupted by known end-of-suite unawaited-task/content-safety hang",
+    "docs_governance": "canonical Unified Context and Memory Plan still reports stale status=blocked; requires Strategy/founder authority decision",
+    "life_combined_candidate": {
+      "supplier_commit": "6d2b84d72",
+      "isolated_combined_candidate": "8db8ee890",
+      "normal_hooks_and_size_gate": "passed",
+      "life_offline": "249 passed / 40 deselected",
+      "projector_focused_offline": "23 passed",
+      "connected_postgres": "unverified in this lane; supplier reported 40 passed / 249 deselected and Integration must rerun with TEST_DATABASE_URL and TEST_DATABASE_DISPOSABLE=1",
+      "canonical_landing": "not performed from this lane"
+    },
+    "no_push_deploy_activation_or_bypass": true,
+    "status": "offline_isolation_committed; life_receipt_ready_for_integration_postgres_rerun"
   }
 }

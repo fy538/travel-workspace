@@ -329,6 +329,46 @@ network, temporary override, and lane venv symlink were removed after
 validation. No remote push, deployment, provider activation, generated
 contract sync, or shared-daemon restart occurred.
 
+## Offline isolation follow-through — September 8
+
+The bounded offline leak-repair round is complete on canonical backend `main`
+at `52e2fe31d` (`test: isolate offline readers across backend suites`). The
+package stays inside the test-isolation boundary, with one small production
+guard in `backend/concierge/group_compose.py` that returns the existing
+`no_members` result before optional trip-context reads when a room has no
+members. It does not change the API contract, migration graph, provider
+activation, notification policy, or surface behavior.
+
+The package explicitly mocks optional DB-backed readers at the test boundary,
+marks true persisted-DB cases `requires_postgres`, aligns the HPL social grant
+fixture with the audience-sensitive Occasion revision, and drains dedicated
+external-health tasks so teardown warnings cannot contaminate another test.
+The canonical backend worktree is clean; no remote push or deployment occurred.
+
+Evidence:
+
+* Ruff, formatting, vulture, and all applicable commit-stage hooks passed.
+* The changed-test tuple is **1,168 passed / 43 xpassed** offline, with no
+  undeclared-Postgres failures.
+* The full offline suite is not claimed green: its prior complete run reached
+  **21,290 passed / 26 failed / 14 skipped / 2 xfailed / 51 xpassed** before
+  the final residual fixes, and a later 99%-complete run was interrupted by the
+  known end-of-suite unawaited-task/content-safety hang. The remaining
+  non-isolation repository signal is the docs-governance stale status for the
+  canonical Unified Context and Memory Plan (`status: blocked`), which needs a
+  Strategy/founder authority decision rather than a test-only change.
+* The full mypy gate remains a pre-existing baseline failure at **262 errors
+  across 62 files**; no changed-file typing error was introduced by this
+  package.
+
+The Life supplier commit `6d2b84d72` was validated separately in an isolated
+combined candidate on top of `52e2fe31d`. Normal applicable hooks and the size
+gate passed; Life offline tests were **249 passed / 40 deselected**, with the
+projector-focused selection **23 passed**. Disposable Postgres was unavailable
+in this lane, so the supplier's connected **40 passed / 249 deselected** report
+remains unverified here and must be rerun by Integration before landing. The
+Life source commit was not merged or pushed from this lane.
+
 ## Landed
 
 ### Retained Opening context is an exact Moment dependency
