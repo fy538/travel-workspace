@@ -61,6 +61,16 @@ for the full evidence boundary and the invalidated container run. Capture's
 typed occurred/negative/place/people/locator envelope remains the dependency
 for richer semantic organization.
 
+**Home / Places Source receiving received — September 8:** mobile commit
+`6dfd0d8cf` is now on canonical app `main`. It connects the existing explicit
+Source request/result path from Home and Places without adding a result store,
+implicit retry, backend schema, provider activation or Chat/Life redesign. The
+result screen preserves exact workflow identity, root return, expiry/change and
+unavailable semantics; its local evidence is recorded in the [integration
+checkpoint](integration-execution-checkpoint-2026-09-07.md#home--places-source-receiving-package--september-8).
+Substantive producer content, native/visual evidence and production Source
+activation remain unproven.
+
 1. **Preserve the received baseline; scope the next handoffs (E0/E6).** Do not
    repeat the migration merge, structural extraction or residual fixture round.
    Recheck current revisions and changed-file owners before new packages; run
