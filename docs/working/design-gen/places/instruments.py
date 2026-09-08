@@ -25,12 +25,6 @@ def sun_y(t, rise, set_, top, base):
     """Elevation as a half-sine between rise and set; below the horizon the curve is not drawn."""
     if t < rise or t > set_: return base
     return base - (top and (base - top)) * math.sin(math.pi * (t - rise) / (set_ - rise))
-def L(ax.x(lowt), wy(lowt) + 22, f'LOW WATER {fmt(lw0)}–{fmt(lw1)}', INK, True, 'middle'):
-    """The low-water label sits above the curve wherever the curve is highest under the label's span: computed, not guessed."""
-    lab = f'LOW WATER {fmt(lw0)}–{fmt(lw1)}'; wpx = len(lab) * 6.4; xr = ax.x(lowt) + 14; xl = xr - wpx
-    tl = ax.t0 + (xl - ax.x0) / (ax.x1 - ax.x0) * (ax.t1 - ax.t0); tr = ax.t0 + (xr - ax.x0) / (ax.x1 - ax.x0) * (ax.t1 - ax.t0)
-    ytop = min(wy(tl + i * (tr - tl) / 20) for i in range(21))
-    return L(xr, ytop - 6, lab, INK, True, 'end')
 def pier_day(rise='6:31', set_='19:04', plan=('18:30', '19:10', 'THE PIER'), after=('20:30', '21:10', 'THE FILM'), high='8:40', low_window=('14:40', '17:00'), kayaks=('13:00', '16:00', 'KAYAKS'), t0=6, t1=23, h=248):
     """The pier's day on one axis: the sun above the line, the water below it; the plan as gold on the sun; after dark as ink on the line; the low-water window on the tide.
     Zones: sun 12..96 (base 96); a label row under the base; water 130..190; the kayaks bar under the water; ticks at the foot."""
