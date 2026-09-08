@@ -1017,10 +1017,10 @@ applicable backend hooks passed. The event-type and enum parity hooks were
 skipped only because their hook interpreter could not import installed
 SQLAlchemy (`No module named 'sqlalchemy'`); they were not reported green.
 
-Life still owns the consumer/projector package and must re-read current
-candidate/source authority before shadow writes. This package does not claim
-Life serving readiness, populated production candidates, native/visual
-acceptance, or remote publication.
+Life owns the consumer/projector package and now has it landed in the canonical
+backend. It must continue to re-read current candidate/source authority before
+shadow writes. This package does not claim Life serving readiness, populated
+production candidates, native/visual acceptance, or remote publication.
 
 ## Life consumer landing — September 8
 
