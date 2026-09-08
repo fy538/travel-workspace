@@ -49,7 +49,7 @@ def pier_day(rise='6:31', set_='19:04', plan=('18:30', '19:10', 'THE PIER'), aft
     svg += L(ax.x(rise_), base + 15, f'{rise} SUNRISE') + (L(ax.x(p0) - 8, sun_y(p0, rise_, set__, top, base) - 2, f'{plab} · SUNSET {fmt(set__)}', GOLDD, True, 'end') if plan else L(ax.x(set__) - 8, base - 10, f'SUNSET {fmt(set__)}', MUTE, None, 'end')) + L(ax.x(a1), base + 15, f'{alab} {fmt(a0)}', INK, True, 'end')
     svg += f'<path d="{wfill}" fill="rgba(61,80,102,0.18)"/><path d="{wpath}" stroke="{WATER}" stroke-width="2" stroke-linecap="round"/>'
     svg += f'<line x1="{ax.x(lw0):.1f}" y1="{wy(lowt)+7:.1f}" x2="{ax.x(lw1):.1f}" y2="{wy(lowt)+7:.1f}" stroke="{WATER}" stroke-width="3" stroke-linecap="round"/>'
-    svg += L(ax.x(hi) + 8, wy(hi) - 8, f'HIGH {high}', WATER) + L((ax.x(lw0) + ax.x(lw1)) / 2, wy((lw0 + lw1) / 2) - 19, f'LOW WATER {fmt(lw0)}–{fmt(lw1)}', INK, True, 'middle')
+    svg += L(ax.x(hi) + 8, wy(hi) - 8, f'HIGH {high}', WATER) + L(ax.x(lowt) + 14, wy(lowt) - 16, f'LOW WATER {fmt(lw0)}–{fmt(lw1)}', INK, True, 'end')
     ky = wtop + amp + 18; svg += f'<rect x="{ax.x(k0):.1f}" y="{ky}" width="{ax.x(k1)-ax.x(k0):.1f}" height="6" rx="3" fill="{GOLD}"/>' + L(ax.x(k1) + 6, ky + 6, f'{klab} {fmt(k0)}–{fmt(k1)}', GOLDD, True)
     svg += ax.ticks(h - 18, every=3)
     return svg + '</svg>'
