@@ -29,7 +29,7 @@ occurred.
 
 | Repository / candidate | Revision | State |
 | --- | --- | --- |
-| Workspace `main` | `5d17bb87a04d00129ed1c44df9b8cb04c47c9c06` | clean; Strategy program map plus Engineering Meta workspace reliability cuts received |
+| Workspace `main` | `021b4e9` | clean; Strategy program map plus Engineering Meta workspace reliability cuts received, with this checkpoint's policy-mismatch receipt |
 | Backend `main` | `afe177b33d25dc3563c362de4ff6e3a47b1a8354` | clean; forward-only `lifeorgpipelinemerge01` reconciles the prior `lifeorg07` and `pipeline_scope_key01` heads |
 | Mobile receiving candidate (`travel-app` `main`) | `8dfa19119` | clean; Meta app cut `95b6d39aa`; generated-sync attempt was reverted to preserve type safety while the dark-operation policy is resolved |
 
