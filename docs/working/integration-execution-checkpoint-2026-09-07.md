@@ -297,10 +297,10 @@ order:
 1. Meta structural reliability package: `6da6905ac`
    (`chore: land structural reliability package`, 149 paths; normal commit
    hooks passed).
-2. Integration residual fixture/contract package: merge commit `7c2addd34`,
+2. Integration residual fixture/contract package: merge commit `5e9d0a190`,
    bringing `a1c841181` onto backend `main`.
 
-The canonical backend candidate is clean at `7c2addd34`. Post-landing
+The canonical backend candidate is clean at `5e9d0a190`. Post-landing
 verification is green for the bounded package: the engineering-focused tuple
 is **243 passed / 9 skipped**, and the exact residual Postgres suite is
 **79 passed / 1 warning**. A fresh disposable migration reaches the single
