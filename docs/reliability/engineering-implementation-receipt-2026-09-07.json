@@ -569,5 +569,37 @@
     "docs_governance": "5 passed",
     "no_push_deploy_activation_or_bypass": true,
     "status": "received_locally; no remote publication; remaining failures are bounded environment/typing debt"
+  },
+  "final_bounded_receiving_round_2026_09_08": {
+    "candidate_branch": "codex/integration-execution-2026-09-08",
+    "candidate_commit": "ab13107b6",
+    "candidate_commit_message": "chore: reconcile audit and documentation gates",
+    "sibling_parity_and_snapshots": "16 passed / 3 skipped",
+    "dead_handler_audit": "155 handlers / 155 alive / 0 dead",
+    "dead_handler_tests": "10 passed",
+    "offline_suite": "21321 passed / 14 skipped / 1 failed / 1422 deselected / 53 xpassed in 167.25s",
+    "offline_failure": "tests/core/test_cross_trip_thread_subscriber.py::test_schedules_recompute_for_each_upcoming_trip; background-memory fixture passes MagicMock into local SentenceTransformer",
+    "connected_postgres": "1364 passed / 23 skipped / 4 failed / 21420 deselected in 207.38s",
+    "connected_failures": [
+      "missing canonical Brooklyn dogfood seed",
+      "read-pointer concurrency flake (passed on targeted rerun)",
+      "retained-projector race (passed on targeted rerun)",
+      "J08 date-rollover fixture at the current UTC boundary (remains failing on targeted rerun)"
+    ],
+    "targeted_connected_rerun": "2 passed / 1 failed (J08 date rollover)",
+    "docs_checks": {
+      "headers": "passed",
+      "status": "passed",
+      "links": "passed for 6721 markdown files",
+      "symbols": "0 dead imports / 0 dead symbols / 0 dead file refs",
+      "feature_coverage": "passed for 36 systems",
+      "child_product_docs_governance": "15 passed",
+      "root_current_state": "regenerated with scripts/render_current_state.py --write"
+    },
+    "strategy_docs_byte_compare": "4 of 4 exact matches with canonical dirty backend files",
+    "mypy": "262 baseline errors across 62 files; unchanged",
+    "runtime": "disposable Compose project stopped and removed after evidence",
+    "no_push_deploy_activation_or_bypass": true,
+    "status": "candidate_ready_for_local_landing; bounded offline and connected debt explicitly retained"
   }
 }
