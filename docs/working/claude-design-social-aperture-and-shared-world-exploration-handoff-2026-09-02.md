@@ -25,6 +25,18 @@ depends_on:
 
 # Claude Design / Claude Code Handoff — Social Aperture and Shared World
 
+> **Current cross-root assignment — September 7:** use the
+> [social experience design brief](vesper-social-experience-design-brief-2026-09-07.md)
+> for the consolidated receiving, participation and continuation decisions.
+> The founder subsequently chose a standalone `Vesper — Social Experience`
+> project; its [execution handoff](claude-design-social-experience-project-handoff-2026-09-07.md)
+> owns the connected prototype assignment and return to the root projects.
+> This document preserves the earlier aperture alternatives; those alternatives
+> do not reopen the accepted root split. The separate
+> [Places handoff](places-complete-experience-design-handoff-2026-09-07.md)
+> owns the current complete Places composition. This pointer does not re-certify
+> the historical boards or runtime claims below.
+
 **Date:** September 2, 2026
 
 **Amended:** September 6 — social-benefit and low-pressure participation

@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / research
 created: 2026-09-06
-last_verified: 2026-09-06
+last_verified: 2026-09-07
 expires: 2026-10-06
 why_new: Consolidates parallel research on dependable value, no-new-input supply, human capability, initiative, recipient-complete social experiences and strategic disconfirmation into recommendations for the existing product and experience manuscripts.
 supersedes: []
@@ -20,6 +20,13 @@ dependable value and disconfirmation, capability and initiative, and social
 recipients. The coordinating pass investigated world-value supply, read the
 relevant product contracts, spot-checked primary sources, and synthesized this
 document. Research was conducted September 6, 2026.
+
+The [September 7 follow-through](#10-taste-deepening-usefulness-ordinary-value-and-service-boundaries)
+researches four remaining distinctions: taste without a prescribed lifestyle,
+deepening usefulness without greater demands, first-class sparse-context value,
+and selective differentiation with dependable foundations. It records the
+founder-authorized documentation refinements and their comparison requirements;
+it does not adopt pending policy proposals or certify delivery.
 
 This is desk research and proposed product reasoning, not a systematic literature
 review, participant study, implementation audit, new canon, or release approval.
@@ -578,6 +585,112 @@ fictional endless novelty. It also separates no-install receiving from identity
 verification and counts unsupported-channel work left to the organizer.
 These are documented design expectations; no guest policy, optional continuity,
 watch, provider service, launch geography or runtime implementation was adopted.
+
+## 10. Taste, deepening usefulness, ordinary value and service boundaries
+
+### 10.1 Conclusion and research status — September 7
+
+**Better judgment need not mean more novelty; better continuity need not mean
+more intervention; ordinary value must not require more documentation; broader
+usefulness does not require owning every operation.** These qualify the existing
+four moves, not four additional pillars or implementation lanes.
+
+This follow-up combines the current thesis, Editorial Canon, this memo, the
+[supported-offer candidate](vesper-v1-supported-offer-2026-09-07.md), and the
+[recommendation judgment work](situated-value-decision-matrix-2026-09-06.md#15-recommendation-judgment-from-context-to-worthwhile-possibilities)
+with primary consumer/HCI research. The [NYC specimen pack](nyc-recommendation-judgment-specimen-pack-2026-09-07.md)
+already makes progress: a catch-up can outrank a food-topic match, and a
+worthwhile outing need not claim personalization. It remains authored working
+material, not a measured recommendation system or observed consumer experience.
+
+On “Let's update the right docs accordingly,” the founder authorized the
+bounded editorial and strategy refinements below. Canonical wording is carried
+by its existing owners; this memo preserves reasoning and limitations. The
+supported offer remains a candidate. No history agreement, guest/audience rule,
+watch, launch area, pricing, runtime activation, or code deletion is adopted.
+
+### 10.2 Evidence and limits
+
+Sources below were inspected as primary papers, author-hosted manuscripts, or
+publication abstracts, as specified. This is targeted desk research, not a
+systematic review. Product implications are our inferences; no study establishes
+Vesper's retention, offline benefit, superiority, or willingness to pay.
+
+| Primary source / access | Finding relevant here | Transfer limit |
+| --- | --- | --- |
+| [Bhattacharjee and Mogilner, 2014](https://www.anderson.ucla.edu/documents/areas/fac/marketing/mogilner/Bhattacharjee_and_Mogilner_JCR_2014_Happy_Experiences.pdf), author-hosted paper, abstract/discussion/data-collection excerpts | Eight studies linked the relative happiness of ordinary and extraordinary experiences to age and perceived time horizon; ordinary experiences could be as rewarding | Challenges universal novelty preference; does not authorize age-based stereotypes or establish what a particular user should do tonight |
+| [Tonietto et al., 2021](https://www.business.rutgers.edu/sites/default/files/documents/tonietto-viewing-leisure-as-wasteful-undermines-enjoyment.pdf), author-hosted paper and publisher study summaries | Four studies, N=1,310: treating leisure as wasteful was associated with lower enjoyment; experimental primes reduced enjoyment of leisure pursued for its own sake. A productive-leisure prime did not increase enjoyment | Do not make enjoyment justify itself as improvement. Mental-health associations are not causal treatment claims, and this is not a Vesper-copy experiment |
+| [Silvia, 2005](https://pubmed.ncbi.nlm.nih.gov/15755222/), primary abstract | Four experiments supported novelty/complexity and perceived ability to understand as appraisals of interest across polygons, art and poetry | Making the unfamiliar approachable is a design hypothesis, not a universal formula or inferred skill profile |
+| [Dukes et al., 2024](https://www.unige.ch/fapse/e3lab/application/files/5417/2513/0101/dukes_2024_scirep.pdf), author-hosted paper abstract | Four studies, total N=993, suggest more complex real-world stimuli require a richer characterization of interest than the simpler two-appraisal model | Do not translate a convenient curiosity theory into one production score or equate all kinds of interest |
+| [Binst, Michiels and Smets, 2025](https://arxiv.org/html/2505.15440v1), methods and findings | Seventeen interviews distinguish forms of discovery, including taste-broadening, taste-deepening, revival and useful difficult-to-find material | Qualitative conceptualization, not a surprise quota, causal retention estimate or proof that every useful recommendation must be serendipitous |
+| [Amershi et al., CHI 2019](https://www.microsoft.com/en-us/research/wp-content/uploads/2019/01/Guidelines-for-Human-AI-Interaction-camera-ready.pdf), paper and guideline table | Eighteen guidelines, evaluated in part with 49 design practitioners across 20 products, cover capability expectations, correction, cautious adaptation and controls | Practitioner validation supports design review, not an observed long-term consumer relationship or a particular default permission |
+| [Dietvorst, Simmons and Massey, 2018](https://faculty.wharton.upenn.edu/wp-content/uploads/2016/08/Dietvorst-Simmons-Massey-2018.pdf), author-hosted paper, abstract and experiment excerpts | Three incentivized forecasting studies found greater willingness to use imperfect algorithms when participants could modify forecasts, even within narrow limits | Meaningful steering may support acceptance; numerical prediction tasks do not establish the right amount of control over personal or shared life |
+| [Fang et al., ACL 2026](https://aclanthology.org/2026.acl-short.43/), paper abstract/methods/limitations | Across 15 models, user profiles altered answers to human-validated emotional-reasoning scenarios, including systematic demographic disparities | A model benchmark, not lived user outcomes. Irrelevant personal context can impair general reasoning; memory volume is not a quality proxy |
+| [Chatterji et al., NBER 2025](https://www.nber.org/papers/w34255), indexed primary abstract; direct page/PDF retrieval failed during this pass | Practical guidance, information seeking and writing account for nearly 80% of conversations in the consumer-use analysis | Establishes existing usage patterns, not Vesper switching, universal demand, or permission to offer every general-assistant task |
+| [Thompson, Hamilton and Rust, 2005](https://thearf-org-unified-admin.s3.amazonaws.com/MSI/2020/06/MSI_Report_05-101.pdf), MSI manuscript, methods/results excerpts | Three studies of web-based products; capability received greater weight before use, while usability mattered more to experienced satisfaction. Not all evaluation measures changed equally | Inspect lived use rather than feature-list appeal. This does not determine an AI product's optimal feature count; its analytical cost assumptions are not Vesper economics |
+| [Joy, Ammari and Sheehan, 2025](https://arxiv.org/html/2506.09220v1), preprint methods/findings/limitations | Nine early-adopter interviews across emerging AI devices/services describe promise–performance gaps and value from specific uses within existing tool ecosystems | Small qualitative sample, not representative adoption evidence or proof that broad products fail; reported products are the study's historical context |
+
+### 10.3 Strategic refinements
+
+**Taste is quality of distinction, not a lifestyle prescription.** Among valid
+options, ask what is rewarding, when, for whom under the current purpose, and
+relative to which alternatives. Familiarity, rest, low cost, and staying home
+can legitimately win. They are not consolation prizes; novelty and wanted
+effort are not defects either. A cooking interest does not decide whether
+tonight is about making, learning, relief, or talking with a friend. Unknown
+constraints remain unknown; do not infer resources or aspirations from a
+demographic category or sparse history. No new universal taste model follows.
+
+**A relationship deepens through reduced negotiation.** The intended observable
+gains are less reconstruction, better fit of assistance, fewer repeated repairs,
+and easier return. Familiarity is not a ladder toward intimacy, notifications,
+capture, or autonomy. Context must earn its effect, not visibly announce its
+presence. Keep local corrections local and durable preferences revisable under
+their actual authority. History can be accurate but irrelevant; removing it may
+leave the best answer unchanged. More content is neither required nor forbidden:
+generous Home receiving and out-of-app interruption remain separate judgments.
+
+**Sparse context is not a lower tier of human value.** These are differences in
+available evidence and wanted participation, not “less interesting lives.” A
+question should help without a biography; eligible world supply should repay a
+Home/Places visit without friends; an original share should reward receiving
+without reciprocal effort; a small Life collection should work without looking
+incomplete. Limited time or money does not imply interest only in efficiency.
+Enjoyment, beauty, curiosity, play and connection need no productivity defense.
+Sparse evidence limits personal claims, not the standard of supported output.
+
+**Differentiate selectively; do not lower the reliability floor.** Invest
+distinctive effort in interpretation, situated selection, continuity, human
+perspectives and practical adaptation. Exact identity, facts, calculations,
+retention and repair still need to be dependable. Providers can own inventory,
+checkout, settlement and navigation. Vesper owns an intelligible continuation:
+preserve the subject and useful context, name the external responsibility,
+retain access to the result when a link fails, and never infer execution from a
+click. Count re-entry, verification and repair left with the user; external
+does not automatically mean effortless or cheap. The live engine interprets
+conditions for an intention; it is neither just a status feed nor a blanket watch.
+
+### 10.4 Documentation follow-through and unresolved evidence
+
+- **Product Thesis:** concise principles for taste, sparse-context value,
+  deepening usefulness and selective ownership; existing identity and four moves
+  remain, within the first-read word budget.
+- **Editorial Canon §§3.4–3.5, Home and evaluation:** contribution-sensitive
+  continuity, affirmative judgment, ordinary receiving, and explicit separation
+  of editorial novelty from the ranking of all useful experiences.
+- **Supported-offer candidate:** same quality bar with less context, selective
+  differentiation, dependable foundations and designed external handoffs. Its
+  geography, materials, access and delivery claims remain conditional.
+- **Situated-value matrix §16:** [four ordinary-life comparison extensions](situated-value-decision-matrix-2026-09-06.md#16-ordinary-life-quality-and-continuity-comparisons),
+  using existing owners and the existing received-value ledger rather than a
+  new scoring framework or implementation lane.
+
+Still unresolved: which judgments people actually prefer, whether authorized
+context reduces total work after capture and repair are counted, whether thin
+participation receives enough repeat value, and whether provider handoffs and
+world supply support a sustainable complete offer. Compare capable alternatives,
+allow ties, and inspect both isolated results and the whole encounter. These
+questions do not require delaying shared-system work until one loop is proven.
 The three documentary alignments in §2 were applied in the same follow-through.
 
 The subsequent [useful-preparation research](vesper-useful-preparation-and-initiative-research-2026-09-06.md)

@@ -63,6 +63,33 @@ or an action.
 
 ## Validation
 
+### What the connected checkpoint repaired
+
+The real HTTP/storage path found two failures that typed handler calls and
+in-memory fixtures had not exposed:
+
+1. The request transport's Python-strict validation rejected valid mobile JSON
+   strings and arrays before a workflow could be created. The transport now
+   normalizes those wire representations while preserving bounded integer
+   expiry, an explicit timezone-aware datetime, allowed roots, private scope and
+   the strict internal work item. Numeric timestamps, extra authority fields
+   and invalid comparison scopes remain rejected.
+2. Exact recovery hashed the stored JSONB representation differently from the
+   typed production used at completion: unordered sets and datetime
+   serialization lost their original types. The Source serving owner now
+   rehydrates the production before computing its existing canonical digest.
+   There is no new result store, schema column or identity algorithm. Malformed
+   retained rows are skipped without hiding a valid matching result.
+
+The fixture uses actual workflow persistence, claiming, completion, JSONB
+storage, HTTP request/result routes and the shared prepared-value reader used
+by each root. Discovery, owner/source material and the producer are authored
+fixtures. This is **not** a full Home/Places HTTP response or native rendering
+test. Cancellation proves a late executor cannot publish; it does not establish
+instant preemption of an already-running external model call.
+
+### Recorded checks
+
 Focused local suites passed during this batch:
 
 * 114 tests across workflow API/DB, Source continuity, canonical executor,
@@ -95,6 +122,56 @@ Focused local suites passed during this batch:
 * 65 checkpoint tests passed, including 15 JSON-boundary tests, 2 loopback
   PostgreSQL request→executor→readback/root/cancellation tests, storage/digest
   regressions and read-only cost-report tests.
+
+The offer-follow-through pass independently ran **152 focused offline tests**
+across HTTP admission, workflow API, canonical execution, worker, exact serving,
+storage/digest, root/practical composition, model accounting and the cost report;
+**2 loopback-PostgreSQL tests** passed separately. Ruff and formatting checks
+passed on the nine implementation/test files. `scripts/sync-types.sh` completed
+with TypeScript clean; `make contract-check` passed. Regeneration also reconciled
+existing handoff-action and Places-note schema drift with the current backend;
+no Chat or Life screen was edited.
+
+The attempted whole offline suite is **not green**: with database construction
+and socket connections explicitly blocked, it stopped after **364 passed,
+9 skipped and 1 failure** (1,368 deselected). The failing
+`test_concierge_home_feed_uses_cold_start_fallback` reaches the database for group
+unread counts and is already listed in `tests/postgres_leak_baseline.txt`. This
+is a known test-isolation gap, not a claim that the rest of the suite passed.
+It was not changed as part of this Source integration package.
+
+The repository-wide living-link check also reports one unrelated existing
+broken `state` link at line 53 of
+`claude-design-interaction-kernel-lab-v2-3-arrangements-execution-report-2026-09-04.md`.
+The linked receipt and cost-report targets added in this pass exist; no clean
+repository-wide documentation gate is claimed.
+
+## Cost evidence — ready to collect, not a measured service price
+
+The read-only [Source cost report](../../travel-agent/scripts/source_service_cost_report.py)
+uses existing workflow and model-call ledgers, not a new billing or metering
+system. Run from `travel-agent`, substituting a real reviewed workflow UUID and
+repeating the option for its amendments/retries as appropriate:
+
+```bash
+PYTHONPATH=. .venv/bin/python scripts/source_service_cost_report.py --workflow-id WORKFLOW_UUID
+```
+
+The report accepts 1–100 explicitly selected Source workflows, includes recorded
+failed calls and earlier attempts, preserves jobs without ledger rows, and
+does not multiply a result's production cost because two roots receive it.
+Missing records remain unknown rather than zero. Reuse can refer to production
+outside the selected set; include that original workflow when assessing cost.
+Late/unlinked records and non-model costs are not reconstructed. No Source
+text, prompt or profile is read, and no provider work is started.
+
+The database test checks worker attribution and the report's actual query,
+then inserts explicitly **synthetic** failed/successful ledger records to test
+aggregation. Those amounts are not observed Vesper usage or a price estimate.
+`whole_service_cost_usd` intentionally stays null: public supply, non-model
+lookups, media, storage, delivery, support and fees still need accounting before
+the commercial worksheet can be populated. A completed result is not evidence
+that a person found it useful or would pay for it.
 
 ## Still gated / not claimed
 

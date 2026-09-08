@@ -20,6 +20,7 @@ worktrees
 
 # Logs and local output
 *.log
+output/
 .cache/
 .tmp/
 tmp/

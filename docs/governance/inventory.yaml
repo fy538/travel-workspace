@@ -275,6 +275,18 @@ overrides:
     disposition: keep_reference
     rationale: Preserves social-aperture alternatives and open choices without adding a root or granting passive location access.
 
+  docs/working/vesper-social-experience-design-brief-2026-09-07.md:
+    disposition: keep_reference
+    rationale: Consolidates six researched social receiving and participation decisions into one cross-root design assignment; existing canon, root contracts and lane ownership retain authority.
+
+  docs/working/claude-design-social-experience-project-handoff-2026-09-07.md:
+    disposition: keep_reference
+    rationale: Founder-requested standalone social experience design project assignment with participant journeys, shared fixtures, research implications and explicit reintegration into existing root designs; does not adopt new canon or certify runtime support.
+
+  docs/working/places-complete-experience-design-handoff-2026-09-07.md:
+    disposition: keep_reference
+    rationale: Bounded cross-thread Places design assignment combining world discovery and social receiving; existing root and contribution contracts retain authority.
+
   docs/working/entity-system-execution-log-2026-09-03.md:
     disposition: keep_reference
     rationale: Commit-level entity-lane evidence; not a catalog backfill or release declaration.
@@ -730,6 +742,10 @@ overrides:
   docs/working/codebase-architecture-and-agent-velocity-research-2026-08-11.md:
     disposition: keep_reference
     rationale: Dated structural measurement of both repos plus an adversarial review of the external evidence on agent-oriented restructuring; source code and the charter-invariant checkers own the resulting truth.
+
+  docs/working/engineering-context-and-agent-practices-research-2026-09-07.md:
+    disposition: keep_reference
+    rationale: Dated primary-source research and three-repository instruction audit with proposed meta-instruction changes; existing contracts and execution authorities remain in force, and performance claims require local evaluation.
 
   docs/working/definition-of-done-consolidation-2026-08-10.md:
     disposition: keep_reference
@@ -1208,3 +1224,15 @@ overrides:
   docs/working/lived-experience-cross-family-rehearsal-runbook-2026-09-02.md:
     disposition: keep_authoritative
     rationale: Current operational procedure for the revision-pinned, two-account, three-family Home and Places consequence rehearsal and release-evidence audit.
+
+  docs/working/nyc-recommendation-judgment-specimen-pack-2026-09-07.md:
+    disposition: keep_reference
+    rationale: Sourced NYC recommendation manuscript comparing selection judgments, exact occurrences, consumer value and research limits without claiming production or experimental results.
+
+  docs/working/recommendation-world-supply-architecture-and-roadmap-2026-09-07.md:
+    disposition: keep_reference
+    rationale: Current Content-lane source/code audit, provider research and checkpointed supply handoff into Integration CV-2 through CV-4; no provider procurement or runtime activation authority.
+
+  docs/working/social-experience-implementation-roadmap-2026-09-07.md:
+    disposition: keep_reference
+    rationale: Scoped engineering expansion of the complete-system roadmap's social package, with existing-owner mapping, decision gates, cross-root dependencies and portfolio acceptance; no policy adoption or runtime activation authority.

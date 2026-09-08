@@ -16,6 +16,13 @@ related:
 **Date:** 2026-08-11
 **Last revised:** 2026-08-12
 
+**September 7 follow-up:** [Engineering context and agent practices](engineering-context-and-agent-practices-research-2026-09-07.md)
+updates the external evidence and audits current instruction/verification behavior.
+It confirms that the router's three-repo discovery and recorder failure propagation
+are implemented and covered by passing focused tests. The historical execution
+status and other A0–A6 acceptance claims below are not re-certified by that result;
+consult the [current workspace execution map](../README.md) before scheduling work.
+
 > Execution status: supporting specification. Through Demo World Program Phase
 > 6, the [Demo World Program](../../travel-agent/docs/working/demo-world-program-2026-08-12.md)
 > and its machine-readable registry are the sole active execution backlog. This

@@ -40,6 +40,7 @@ rounds are dated September 7 with source and access limits beside the findings.
 | --- | --- | --- |
 | What is accepted? | [Consumer-strategy decision §5](../decisions/2026-09-06-reconcile-consumer-strategy.md#5-september-7-refinement-complete-benefits-selective-context-and-voluntary-choice), then Product Thesis / Model | Accepted product and evaluation refinement; not a shipped-service claim |
 | What would the complete first offer include? | [Supported-offer candidate](vesper-v1-supported-offer-2026-09-07.md) | Proposed service boundaries and three entrances; coverage, availability and payment unresolved |
+| What could the paid offer be? | [Commercial-offer candidate §7](vesper-v1-supported-offer-2026-09-07.md#7-commercial-offer-candidate), with [research §20](#20-commercial-offer-research--september-7) below | Ordinary/demanding value, free participation, membership/pass comparison, exit and cost worksheet; no adopted price, allowance or billing implementation |
 | What is the latest memory recommendation? | [Continuity proposal §4](conversation-history-source-expiry-decision-proposal-2026-09-06.md#4-simple-controls-with-exact-consequences) and [§10](conversation-history-source-expiry-decision-proposal-2026-09-06.md#10-selective-long-range-continuity-four-complete-experiences) | Selective long-range use and scoped controls, still unadopted; current Ask/T0 binds |
 | What should a finished encounter feel like? | [§15](#15-complete-encounter-comparison-and-recommended-defaults--september-7), [§16](#16-received-value-against-capable-alternatives--september-7), and [situated-value §11.9](situated-value-decision-matrix-2026-09-06.md#119-whole-experience-review-received-value-context-and-human-work) | Authored comparisons, including capable alternatives; not consumer results |
 | What was actually exercised here? | [§17](#17-executed-receiving-capture-and-remaining-encounter-gaps--september-7) and [§18](#18-addressed-note-to-private-help-implementation--september-7) | Dated local receipts and a bounded note-to-private-help implementation; not live consumer delivery |
@@ -2958,3 +2959,147 @@ for it. The next advance is making its broad usefulness reliably receivable,
 with selective continuity and boundaries a newcomer can understand. This round
 adds research and recommendations only; it changes no canonical agreement,
 application code, runtime flag, billing policy or release claim.
+
+## 20. Commercial offer research — September 7
+
+### 20.1 Scope and conclusion
+
+This round investigates what earns payment, membership versus episodic access,
+free/social boundaries, renewal and exit, and whole-service costs. It follows
+§19.5 rather than replacing the product with a pricing exercise. Sources were
+read September 7, 2026. No consumer interviews, purchase/renewal experiments,
+hands-on competitor quality comparisons or Vesper workload measurements were
+conducted. Current supplier and product prices are dated references, not quotes
+to customers or evidence of our willingness to pay.
+
+**Recommendation:** investigate one personal membership with useful free
+participation. The reason to subscribe is repeated worthwhile assistance;
+depth, capacity and duration are mechanisms for packaging it. Compare a bounded
+non-renewing pass using the same supported benefits before implementing either
+commercial model. The detailed proposal belongs in the existing
+[supported-offer §7](vesper-v1-supported-offer-2026-09-07.md#7-commercial-offer-candidate),
+not a second service authority.
+
+The subsequent [complete-offer review in §8](vesper-v1-supported-offer-2026-09-07.md#8-complete-offer-review-against-current-outputs)
+compares ordinary life, demanding preparation and lightly involved recipients
+against local design exports, captured results and current code. It records
+fresh contract tests and concrete delivery gaps; it does not establish measured
+member economics or upgrade the proposal into a shipped offer.
+
+### 20.2 Consumer research and transfer limits
+
+**Predictable pricing can improve the experience of using a service.** Lambrecht
+and Skiera's four empirical analyses across three datasets examined internet
+tariffs. Flat-rate preferences reflected insurance against variable bills, a
+taxi-meter effect and overestimation of use. These findings do not establish
+that every consumer wants a subscription, or that AI usage can economically be
+unlimited. For Vesper, the inference is to avoid making each casual question
+feel like a new purchasing decision while making costly exceptional work
+understandable. [2006 study, linked reprint](https://retailandmarketingreview.co.za/wp-content/uploads/2021/07/Vol5_2_71-88.pdf).
+
+**Payment persistence is not equivalent to continued benefit.** Einav, Klopack
+and Mahoney's 2025 *American Economic Review* paper studied ten US subscription
+services through payment-card replacement. Cancellation increased when active
+renewal was prompted; their models attribute substantial revenue to inertia.
+The observed variation does not cleanly distinguish inattention from switching
+costs, and model counterfactuals hold initial subscribers fixed. This warns
+against interpreting all paid retention as satisfaction, not against voluntary
+availability value. [Selling Subscriptions](https://web.stanford.edu/~leinav/pubs/AER2025.pdf).
+
+**Expected difficulty leaving can deter entry.** Miller, Sahni and
+Strulov-Shlain's January 22, 2026 paper reports a randomized experiment with
+1.4 million readers of a European newspaper. Auto-renewing promotional offers
+reduced subscription take-up by 35% relative to auto-canceling offers, despite
+stronger initial post-trial subscription rates. The publisher's cancellation
+process was non-trivial; this is not a universal estimate for modern apps or
+a rule that all renewal must be manual. Our inference: compare the whole
+acquisition-to-renewal relationship, not retention conditional on accepting the
+offer. Clear exit is relevant before purchase, not only afterward.
+[Field experiment](https://marketing.wharton.upenn.edu/wp-content/uploads/2026/02/Strulov-Shlain-Avner-PAPER-Subscriptions.pdf).
+
+**AI conversion is not a subscription thesis.** RevenueCat's 2026 report gives
+median annual-plan 12-month retention of 21.1% for AI apps versus 30.7% for non-AI
+apps. The report covers more than 115,000 RevenueCat-integrated apps meeting
+active-revenue and scale thresholds, principally using 2025 data. Retention is
+subscription-level, not person-level. Category mix, selection and business
+differences prevent causal attribution or a Vesper forecast. The report's
+weekly summaries conflict; do not use those values. [Report and methodology](https://www.revenuecat.com/state-of-subscription-apps/).
+
+**Stated willingness does not settle a price.** Schmidt and Bijmolt's meta-analysis
+covered 77 studies and found average hypothetical willingness to pay above real
+willingness to pay. Its 21% average bias is not a correction factor to apply to
+an AI subscription survey. Comprehension, preference, purchase and renewal need
+separate evidence. [Meta-analysis](https://link.springer.com/article/10.1007/s11747-019-00666-6).
+
+### 20.3 Adjacent product mechanisms
+
+| Source, checked September 7 | Observed mechanism | Transfer to Vesper and limit |
+| --- | --- | --- |
+| [Flighty pricing](https://flighty.com/pricing) | Core free tracking; Pro free on the first flight; $59.99 billed annually, with other duration options listed | A first meaningful situation can demonstrate premium value. $4.99/month is the annual equivalent, not evidence of a monthly plan. Neither its pricing nor first-flight offer proves our conversion or renewal |
+| [Flighty cancellation help](https://flighty.com/help/cancel-or-refund) | Cancellation returns users to free tracking; Pro features pause but flights/data are not deleted | New paid functionality can stop without erasing existing material; do not infer all paid history remains accessible or copy its policy wholesale |
+| [Granola pricing](https://www.granola.ai/pricing) | Basic includes notes and meeting chat; Business lists $14/user/month for expanded history, models and integrations | Expand an understood benefit. Workplace seats, budget and recurring meetings differ from personal life; a history gate is not automatically appropriate |
+| [AllTrails premium benefits](https://support.alltrails.com/hc/en-us/articles/37200882853140-The-benefits-of-AllTrails-premium-membership) | Paid plans combine offline access, practical preparation/navigation and deeper exploration | Discovery and practical confidence can belong together. Do not copy its tiers, imply safety guarantees or infer actual paid demand for Vesper |
+| [Apple Invites](https://www.apple.com/newsroom/2025/02/introducing-apple-invites-a-new-app-that-brings-people-together/) | iCloud+ subscribers create invitations; guests can view/RSVP without their own subscription or Apple Account | One payer can benefit through others' participation. Apple's broader bundle does not establish standalone economics, and this does not adopt guest access for Vesper |
+
+These sources establish offered mechanisms, not independently verified product
+quality or the reasons subscribers actually buy. In particular, a visible
+weekly subscription option is not evidence of a non-renewing pass.
+
+### 20.4 Economics: research cost is not just generation cost
+
+The current published first paid-tier Google rates are $32 per 1,000 Pro
+Text/Nearby searches and $20 per 1,000 Enterprise detail requests. Tavily PAYG
+is $0.008 per credit; basic search uses one credit. Thus two Pro searches,
+three Enterprise detail requests and two basic searches total **$0.14** in
+these operations, excluding free allowances, discounts and every other cost.
+This is illustrative arithmetic, not a measured Vesper request or marginal
+bill within a free tier. [Google global prices](https://developers.google.com/maps/billing-and-pricing/pricing),
+[Tavily credits](https://docs.tavily.com/documentation/api-credits).
+
+The [world-supply roadmap §7](recommendation-world-supply-architecture-and-roadmap-2026-09-07.md#7-economics-price-the-completed-useful-answer)
+owns the engineering measurement proposal. Include model work, extraction,
+retries, rejected output, refresh, delivery, storage, free participants and
+variable support. Separate fixed engineering and customer acquisition. Count
+shared acquisition once with an explicit allocation; private work does not
+become reusable public supply just because reuse would be cheaper.
+
+The important design implication is to separate useful receiving from new
+production. Rich Home/Places need not trigger fresh research for every impression.
+Meaningful interpretation, relevant current state, original human material and
+permitted reusable world supply can compose together. Cost limits may bound
+optional depth, but must not fabricate staleness or remove a useful existing
+result to provoke payment. Averages alone cannot establish the economics of
+heavy research or accepted continuing assistance.
+
+### 20.5 Decisions this research sharpens
+
+- **Reason to pay versus meter:** sell repeated worthwhile assistance, not token
+  counts, a larger inferred biography or more generated cards. Different paying
+  motivations can fit one service without separate personality-based tiers.
+- **Differentiation before payment:** free needs representative finished Vesper
+  benefits, including relevant authorized context. It does not need unlimited
+  capacity, every advanced material family or every conditional service.
+- **Social benefit versus paid seats:** preparation paid for by one person can
+  benefit several. Routine receipt must not unexpectedly debit the sender's
+  research allowance; another person's substantial private request needs its
+  own applicable allowance or an explicitly chosen funding arrangement.
+- **Renewal without obligation:** wanted availability is valid, forgotten renewal
+  is not proof of value. Do not use annual prepayment, daily homework, forced
+  narration or difficult exit to conceal weak ordinary-month usefulness.
+- **Same product, alternative duration:** compare membership with non-renewing
+  access without changing all benefits at once or defining episodic use as travel
+  only. Do not implement both simply because both are plausible.
+- **Fair end of service:** specify retained access, new-work limits, accepted-job
+  completion, watch end and failure/remedy before sale. Payment cannot override
+  source expiry, revocation, participant rights or the separate history agreement.
+- **Sustainable scope:** do not promise lifetime unlimited AI work or rely on
+  future affiliate revenue. A service-selection agent must not optimize for
+  billable work. Compare received quality and full cohort costs together.
+
+The user authorized documentation of this proposal, not adoption of prices,
+numerical allowances, renewal defaults, a new retention policy or live billing.
+The next work is the [offer's decision sequence](vesper-v1-supported-offer-2026-09-07.md#79-decisions-and-checkpoints):
+inspect actual ordinary/demanding outputs, specify the supported service,
+measure costs, then make a concrete commercial decision. Continue the existing
+whole-system roadmap; this is not a requirement to prove one behavior loop
+before building the architecture.

@@ -53,6 +53,11 @@ The [September 7 NYC companion](nyc-newcomer-connected-home-specimen-2026-09-07.
 grounds one complete return encounter in real primary sources, with exact
 cross-root continuations, a social variation and inspected implementation gaps.
 It is a sourced design specimen, not a live product output.
+[Section 15](#15-recommendation-judgment-from-context-to-worthwhile-possibilities)
+adds the September 7 investigation of context-led discovery and candidate quality:
+an inspectable judgment brief, comparative experiences and consumer-research
+provenance. It extends this manuscript rather than adding a recommendation
+service, new product grammar or implementation-completion claim.
 Examples are **synthetic design fixtures inspired by the founder's stories**,
 not new claims about the founder,
 real friends, live venues, provider conditions or demonstrated user demand.
@@ -2311,3 +2316,394 @@ remaining gap using the existing Home/integration inventories. No new semantic
 kind is justified solely by a good piece of illustrative copy. Visual composition
 stays with the dedicated design lane. Launch messaging, retention agreements,
 external guest policy and runtime activation still require their own decisions.
+
+## 15. Recommendation judgment: from context to worthwhile possibilities
+
+### 15.1 Decision being developed
+
+The founder approved documenting the September 7 research recommendations:
+make context-to-discovery judgment explicit, clarify the Place canon's thin
+composition boundary, and extend the comparison portfolio. The requirements
+below are working product/evaluation guidance, not a calibrated ranking model,
+completed user study, runtime activation or new retention agreement.
+
+**Recommend worthwhile ways to experience something, not merely entities that
+resemble a person's interests.** A restaurant, a particular event occurrence,
+a museum approached through one exhibit, or a way to make something at home
+may be the appropriate result. Understanding or enjoying the result can be
+complete; discovery need not become an itinerary, transaction or learning task.
+
+This develops existing distinctions rather than replacing them: §3's scoped
+context, §4's judgment sequence, §12's prepared results, §13's changed purposes,
+the Editorial Canon's contribution-fit standard, and the August 28
+[possibility-field proposal](home-possibility-field-and-generative-opportunity-portfolio-2026-08-28.md#3-the-generative-opportunity-model).
+The [Place canon §6](../../travel-agent/docs/product/Place%20Interpretation%20and%20Content%20Intelligence.md#6-pre-research-live-retrieval-and-runtime-composition)
+now distinguishes bounded investigation from final serving. Existing owner,
+source, production and audience contracts remain authoritative.
+
+### 15.2 Three different judgments
+
+| Judgment | Question | Evidence and common failure |
+| --- | --- | --- |
+| Character | What is distinctive or rewarding about this thing? | Specific craft, programming, setting or participation evidence; a category label, popularity or polished description is insufficient |
+| Situational fit | Under what purpose and conditions would that character be desirable? | Current request, wanted participation, relevant people and eligible history; topic resemblance is not the desired benefit |
+| Feasibility | Does this particular option work under the relevant current conditions? | Exact offer/occurrence, timing, access and other decisive operational evidence; venue-level facts cannot establish a particular session's availability |
+
+These are analytical distinctions, not three user-facing scores or new owners.
+Some experiential judgments remain uncertain or legitimately contested. Unknown
+fit is different from uncertain identity, and neither means poor quality.
+Hard constraints and consequential truth cannot be outweighed by novelty or
+engagement. Preserve subjective disagreement when it changes the choice.
+
+The composition often concerns **a Place or offering, experienced a particular
+way, under particular conditions**. Resolve venue, series and occurrence
+separately where applicable. This is not authority for a universal Opportunity
+table, an entity for every suggested activity, or a Plan before one is wanted.
+
+### 15.3 The internal judgment brief
+
+Use this as an inspectable reasoning/evaluation brief, not fields a person must
+complete or a new persisted schema. Resolve only what matters for the current
+job; unknowns may remain unknown.
+
+| Question | Required distinction |
+| --- | --- |
+| What is the present purpose and its basis? | Authored request, exploratory surface or permitted preparation; attention is not intention and no recorded commitment is not free time |
+| What benefit and participation seem wanted? | Understand, enjoy, choose, make, connect or obtain practical relief; preserve work the person wants to do |
+| Which alternative readings are plausible? | Keep uncertainty about the job separate from uncertainty about the world; do not confidently diagnose an unstated motive |
+| What different possibilities should we investigate? | Translate the purpose into distinct search directions; don't limit retrieval to the strongest historical topic |
+| What makes each promising candidate distinctive? | Concrete experience, not a flattering fit sentence or generic venue listing |
+| What evidence would change the choice? | Name the discriminating claim, source role, relevant time and unresolved contradiction; investigate that question rather than commissioning a complete dossier by default |
+| Why choose, qualify or reject it here? | Actual benefit, hard limits, material tradeoff and marginal value against alternatives; explanation must reflect the selection basis |
+| What can the person receive without more work? | Enough substance and practical shape to understand the option; no teaser whose value is a request to research it themselves |
+| What is the optional continuation and ending? | Exact Place/offer/source or supported Chat continuation; no automatic save, invitation, booking, watch or completion debt |
+| What would change the recommendation later? | Specific purpose, evidence, occurrence or condition change; not a global preference rewrite after silence or a tap |
+
+Consider both directions: **context-led search** for a current purpose, and
+**world-first discovery** of an independently worthwhile possibility. A claim
+that something connects to history needs an evidenced bridge. An unfamiliar
+offer does not need a fabricated connection to be admissible. Selecting a city
+alone supplies local relevance, not proof of deep personalization.
+
+Where taste is uncertain, offer a useful bounded starting point and make steering
+easy. Ask only when the missing distinction materially affects the help or a
+consequence and cannot appropriately be resolved otherwise. A person may discover
+what they want through concrete alternatives; do not require an abstract profile
+interview. An explicit request for varied options should actually receive variety.
+
+### 15.4 Same purpose, several search directions
+
+**Synthetic request:** “I'd like to catch up with a friend Saturday. Nothing
+that takes a lot of organizing.” Eligible evidence includes an earlier cooking
+question and an addressed restaurant recommendation. Neither establishes the
+friend's availability, a lasting cooking preference, exact origin or budget.
+
+| Search direction | Decisive investigation | Reason it may lose despite apparent relevance |
+| --- | --- | --- |
+| A meal that allows lingering | Supported atmosphere/service conditions, terms and timing; preserve the friend's actual reason separately | A celebrated tasting menu matches food interest but requires an elaborate fixed commitment or impedes conversation |
+| A flexible walk with a food stop | Access, route burden and conditions appropriate to the requested window | Attractive geography is not enough if the route is impractical or its supposed easy exit is unsupported |
+| A drop-in activity with room to talk | What participants do, whether conversation fits the format, preparation and admission terms | A compelling hands-on session may require concentration rather than support a catch-up |
+
+Vesper should deliver a grounded recommendation and a materially different
+alternative when useful—not expose this research worksheet. In this fixture,
+if verified evidence favors a flexible meal, the compact result identifies the
+exact place, its supported conversational advantage and material tradeoff.
+It must not claim a table is available from general opening hours. If evidence
+instead favors the walk, the cooking history should not force a restaurant lead.
+Names, prices, schedules and availability must come from a supplied fixture or
+real sources before producing finished consumer copy.
+
+The person retains whom to invite and whether to go. Optional preparation can
+make the choice easier; it does not send an invitation. The friend's original
+note remains authored human material rather than an AI endorsement. Shared
+constraints affect feasibility without exposing their private source or treating
+the organizer's enthusiasm as everyone's welfare.
+
+### 15.5 Evidence matched to the experience
+
+| Family | Questions worth resolving when material | Evidence to seek; limitation to preserve |
+| --- | --- | --- |
+| Restaurant | Distinctive dishes, conversation, pacing, price and suitability for this window | Menu/operator terms, specific criticism, relevant recent accounts; aggregate stars do not isolate quality from price or establish atmosphere tonight |
+| Rave / music event | Particular lineup, musical character, participation, start/end and admission conditions | Occurrence-level organizer/artist information, representative material and attributed firsthand context; a venue's reputation does not certify each event |
+| Museum | A compelling entry point, exhibit/program availability and a satisfying bounded visit | Institution/curator material and appropriate criticism, with current access facts; do not equate museum interest with wanting a comprehensive tour |
+| Workshop | Actual activity or take-home result, prerequisites, materials, duration and commitment | Current session terms and representative work; “beginner friendly” needs support and is not universally the desired level |
+| Non-bookable outing / making at home | Rewarding activity, necessary resources, conditions and easy stopping points | Appropriate route/access or technique evidence; no purchasable listing is required, and do not invent a ritual or course the person must maintain |
+
+Research sources by the claim they can support. Operator facts, critical judgment,
+recent firsthand accounts and authorized personal/friend outcomes are complementary,
+not one hierarchy in which “official” establishes taste or “friend” establishes
+accessibility. Preserve observation date, source incentives and applicable
+conditions where material. Repeated copies of one claim are not independent proof.
+
+Sparse documentation is a reason for proportionate investigation or qualification,
+not automatic rejection. Abundant marketing is not experiential superiority.
+Store/reuse only under actual provider and source rights. Search broadly enough
+to find worthwhile candidates; deepen selectively on discriminating questions.
+Stop when the useful result is supported or the remaining uncertainty, time or
+cost warrants a narrower answer. State what is known rather than inventing the
+missing reassuring detail. No local index of everything follows from this work.
+
+### 15.6 Comparable experience portfolio
+
+These are design comparisons, not executed tests or a proposed launch restriction.
+Attach exact source/fixture packets before judging outputs. No row prescribes
+the winning venue without evidence; it specifies what must affect the judgment.
+
+| Case | Context or controlled change | Received value and correct continuation | Failure to expose |
+| --- | --- | --- | --- |
+| J1 — Restaurant, sparse context | Current request for an easy catch-up; no history | Supported conversational option with basic terms and exact Place depth | Preference questionnaire or generic highest-rated list before value |
+| J2 — Same restaurant, different evening | Hold entity facts fixed; add a stated departure deadline | Timing-aware comparison or a qualified alternative; current route check only with justified origin | Unchanged “perfect for you” recommendation despite changed feasibility |
+| J3 — Music event, beginner curiosity | User asks what one particular night would be like | Specific program/participation explanation and source/sample, optional exact occurrence | Inferring rave identity or requiring a full music profile |
+| J4 — Music event, changed occurrence | Same venue; different lineup or date | Revised musical/practical judgment, without transferring last event's facts | Venue dossier substitutes for occurrence evidence |
+| J5 — Museum, engaged curiosity | User names a question, not a tour | One substantive exhibit/lens and optional spatial continuation | Trivia, a repeated connection, or a comprehensive homework itinerary |
+| J6 — Museum, limited room | Same subject interest; stated short window or access need | A genuinely workable bounded encounter or an honest alternative | Interestingness overrides practical constraints; no visit becomes mandatory |
+| J7 — Non-bookable possibility | User wants to enjoy making something at home | A complete supported activity/technique with necessary resources and optional depth | Marketplace inventory defines everything the user can do |
+| J8 — Wanted effort changes | Same activity; “I want to choose and make it myself” versus “help me get this done” | Different assistance with wanted participation preserved | Minimum clicks mistaken for minimum burden or maximum benefit |
+| J9 — Group tradeoff | One shared proposal; different authorized needs and private outcomes | Comparable shared options with relevant practical differences and group-safe explanation | Organizer preference treated as consensus; private evidence exposed |
+| J10 — World-first discovery | Remove the historical bridge; keep a compelling supported offer | Standalone enjoyable/usable possibility without a personal claim | Unknown taste suppresses all unfamiliar offers, or a connection is fabricated |
+| J11 — Changed purpose across days | Earlier curiosity, later practical request; then related new evidence | Present request leads; later evidence changes only supported dependent judgment | Every observation becomes an ongoing assignment or past context dominates |
+| J12 — Repeat Home and thin supply | Same valid candidates, then one expires; no new user input | Non-redundant complete-on-view value, current exact continuations, spent material recedes | Forced novelty, repeated decisions, invented replacement offers or documentation prompts |
+
+Compare three treatments with matched information/tool access and production
+budgets: **A** popularity/category-led selection, **B** eligible topic/history
+matching, and **C** purpose-sensitive discovery plus evidence-based judgment.
+Do not intentionally weaken A or B; each may be adequate or preferable for a
+particular job. A well-known place is not a failed recommendation merely because
+it is popular. The comparison concerns added usefulness, not superiority by label.
+
+Separate two experiments within the portfolio:
+
+1. **Selection:** hold the candidate and evidence packet fixed; compare which
+   option wins, what remains uncertain and whether the decisive reasons are sound.
+2. **Discovery:** allow retrieval under matched access and budgets; inspect whether
+   alternative search directions uncover materially better options. Record coverage,
+   source availability, cost and latency separately from selection quality.
+
+Also compare identical selected results in compact versus over-explained form,
+and complete Home compositions rather than isolated recommendations. This prevents
+fluent copy from concealing poor retrieval, and a strong individual card from
+concealing a repetitive page. Broad browsing and an immediate decision deserve
+different comparison burdens; no fixed number or surprise ratio is established.
+
+Review payoff, purpose fit, evidence, feasibility, meaningful option differences,
+avoided assembly work, wanted effort preserved, exact continuation and cumulative
+demand using [the shared received-value ledger](#119-whole-experience-review-received-value-context-and-human-work).
+Ask what would change the decision, and whether history changed anything
+material. Removing irrelevant history should sometimes leave the answer unchanged.
+Measure later experience only when actual evidence is available; selection,
+attendance and enjoyment are different outcomes. Dwell, silence, saves and model
+ratings do not establish satisfaction or a lasting preference. Research participation
+must not become routine production feedback homework.
+
+### 15.7 Research provenance and limits — September 7
+
+This is desk research, not a systematic review, consumer trial or coverage benchmark.
+Primary papers or author/publisher records were consulted; publisher abstracts
+and accessible excerpts are distinguished below. Research supports hypotheses,
+not numerical ranking weights, universal choice counts or a permanent curiosity
+profile. The implications in this section are Vesper design inferences.
+
+| Research | Finding and access | Implication / limit |
+| --- | --- | --- |
+| [Bettman, Luce and Payne, 1998](https://www.researchgate.net/publication/24099007_Constructive_Consumer_Choice_Process), *Constructive Consumer Choice Processes* | Author-uploaded publication abstract: preferences can be constructed contingently on decision demands rather than simply retrieved | Let concrete possibilities help people discover what they want; this conceptual review is not a Vesper interface experiment |
+| [Silvia, 2005](https://pubmed.ncbi.nlm.nih.gov/15755222/), *What Is Interesting?* | Primary publication abstract reports four experiments supporting novelty/complexity and coping-potential appraisals across polygons, art and poetry | Make unfamiliar experiences approachable; transfer to local recommendations is a hypothesis, not evidence for automatic skill inference |
+| [Binst, Michiels and Smets, 2025](https://arxiv.org/html/2505.15440v1), *What Is Serendipity?* | Full text: 17 interviews distinguish fortuitous, refreshing and enriching encounters, including taste-deepening, broadening and revival; also reports restrictive topic fixation | Preserve multiple forms of discovery; qualitative findings do not establish a surprise quota, universal definition or causal retention effect |
+| [Chernev, Böckenholt and Goodman, 2015](https://myscp.onlinelibrary.wiley.com/doi/10.1016/j.jcps.2014.08.002), *Choice Overload* | Publisher abstract and author-hosted paper: meta-analysis of 99 observations, N=7,202; complexity, difficulty, preference uncertainty and decision goal moderate overload | Reduce comparison/decision burden, not automatically all breadth; no universal top-three rule follows |
+| [Tonietto and Malkoc, 2016](https://doi.org/10.1509/jmr.14.0591), *The Calendar Mindset* | Publisher abstract: 13 studies found precise scheduling could make leisure work-like; rough scheduling avoided that effect in studied conditions | Leave optional experiences loosely shaped until structure helps; do not remove essential timing, reservations or commitments |
+| [Luca and Reshef, 2021](https://www.nber.org/papers/w27405), *The Effect of Price on Firm Reputation* | Primary research record and paper excerpts: restaurant ratings respond to price as well as quality | Treat stars as one signal, not context-free quality; the study does not invalidate reviews or establish Vesper's preferred aggregation model |
+| [Ziegfeld, Di Scala and Cremers, 2025](https://www.sciencedirect.com/science/article/pii/S0885230824000792), *The Effect of Preference Elicitation Methods* | Publisher abstract: 66 European agriculture/forestry participants; no significant questionnaire-construct differences across three methods, but objective interaction and recommendation measures differed | Compare guided and open steering; neither unrestricted chat nor a questionnaire is universally superior, and population/task transfer is limited |
+| [Kang, Zhao and Chen, RecSys 2025](https://arxiv.org/html/2507.17290v1), *Exploring the Potential of LLMs for Serendipity Evaluation* | Full text: shopping/movie datasets; best reported Pearson correlation with user-study judgments was r=.215 | LLMs can assist evaluation, not certify delight; correlation is not accuracy, and tested models/domains do not establish contemporary Vesper performance |
+
+### 15.8 Receiving work and next review
+
+The first sourced comparison is now the [NYC recommendation judgment specimen
+pack](nyc-recommendation-judgment-specimen-pack-2026-09-07.md): four independent
+September 12 situations, actual candidates and source limits, compact consumer
+outputs, and authored category-led/history-weighted/purpose-sensitive contrasts.
+It is not a completed J1–J12 evaluation or a measured algorithm comparison.
+
+The next review object is sourced outputs for J1–J12 and their complete Home/Places
+compositions, not another philosophy rewrite. Use existing design/review tools;
+this section does not commission live provider batches, create test infrastructure
+or require other engineering to stop until a single loop is proven.
+
+- **Discovery/research owners:** carry purpose into query directions and resolve
+  candidate-specific evidence; name actual provider support and bounded budgets.
+- **Entity/world owners:** preserve identity, source-bound character, occurrence
+  distinctions and field validity; dossiers remain depth, not discovery admission.
+- **Live/practical owners:** assess the conditions that can change the recommendation;
+  present assessment is not continuing monitoring or authority to execute it.
+- **Home/Places owners:** receive admitted results, compose meaningful breadth and
+  expose exact depth/continuation without initiating optional production on reads.
+- **Contribution/context owners:** use eligible evidence and scope corrections;
+  this amendment does not adopt pending continuity, intention or inference policies.
+
+Before treating a case as build-ready, attach concrete producer/read owner,
+supported source path, renderer/destination, freshness/repair requirements,
+cost/latency envelope and missing capability. Reuse the existing integration
+inventories rather than creating a separate recommendation authority. Open decisions
+remain source coverage, claim-specific sufficiency, bounded investigation policy,
+comparison burden by situation, and real human experience—not whether the product
+needs to index everything or force every possibility through a dossier.
+
+## 16. Ordinary-life quality and continuity comparisons
+
+### 16.1 Purpose and status — September 7
+
+These four controlled extensions apply the [ordinary-relationship research §10](vesper-ordinary-value-and-relationship-strategy-research-2026-09-06.md#10-taste-deepening-usefulness-ordinary-value-and-service-boundaries)
+to the existing portfolio. They pressure §11's low-participation week, §13's
+changing purposes, §14's independent entrances, and §15's recommendation
+judgment. They do not replace those situations, the sourced NYC specimens, or
+the [received-value ledger](#119-whole-experience-review-received-value-context-and-human-work).
+
+**These are unexecuted design comparisons, not finished consumer outputs or
+runtime evidence.** Their input packets must be attached before evaluating real
+results. Each is independent unless an explicit sequence is stated; none
+describes the founder's actual week. No guest, history, monitoring, source-use,
+or provider policy is adopted. Existing authority and source lifecycle apply.
+
+### 16.2 O1 — An ordinary evening at home, without a personal archive
+
+**Input packet:** an explicit current request to simplify a supplied readable
+recipe for tonight, with the relevant time and ingredient constraints. No prior
+interests, friend graph, outing intention or durable preference is available.
+Use a supported recipe/source with enough information for a grounded adaptation;
+do not fill source gaps with a fabricated claim of what the person has at home.
+
+**Complete encounter:** Chat returns the usable adaptation, with quantities,
+sequence and material caveats appropriate to the question. It does not present
+a menu of future AI jobs or require Keep. The person may cook and leave. If they
+explicitly Keep the adapted result, the exact retaining owner and version must
+be reachable in Life; storing only the original recipe is not equivalent.
+
+A later independent Home/Places visit may offer worthwhile eligible world
+material without a cooking callback. Use existing permitted supply; do not
+commission fresh production just because a root is opened. No cooking project,
+habit, shared Occasion or completion prompt follows from the original Ask.
+
+**Comparison:** hold the recipe and constraints fixed. Compare a capable
+no-history answer, the scoped adaptation, and an overextended treatment that
+adds an outing, a learning program or capture work. Then explicitly change the
+request to “I want to enjoy making this; show me the interesting part.” Wanted
+craft can now warrant depth. Do not infer the changed purpose from sparse data.
+
+**Review:** substantive help, correctness, wanted effort preserved, remaining
+assembly work, and exact optional retention. A simple answer may win; a thin or
+incorrect answer does not pass merely because it is short. History can add
+nothing. Source/Content/Chat own the answer, Life owns actual retention, and
+Home/Places own eligible receiving—not a new domestic-assistance service.
+
+### 16.3 O2 — Different purposes across days, then an easy return
+
+**Input packet:** on day 1 the person deliberately retains a supported recipe
+or explanation under its existing Source/result policy. On day 2 they ask a
+related question and say “just the practical answer for this one.” On day 5
+they supply new related evidence and explicitly ask for a deeper comparison.
+The comparison may use the retained source only within its actual grant;
+the day-2 Ask does not silently become durable preference evidence.
+
+**Complete encounter:** day 2 provides relief without destroying access to
+depth. Day 5 uses the new evidence and relevant retained material to contribute
+a real comparison; it does not recite the older answer or suppress detail
+because of the local brevity instruction. Repeating the topic does not create
+a permanent cooking identity or an ongoing assignment.
+
+After several weeks away, the person opens Home for current value and later
+asks to refind the retained result. Home does not lead with a missed-content
+queue or ask them to account for the absence. Life returns the exact requested
+material. Ended operational claims recede; useful durable explanation need not
+be discarded. No assumed attendance, learning, free time, or changed taste fills
+the gap between visits.
+
+**Comparison:** preserve the same current evidence with and without eligible
+history. Inspect whether it reduces reconstruction or changes judgment; allow
+a tie. Add an explicitly scoped correction to the retained source, then verify
+that only dependent claims change and stale versions do not reappear as truth.
+Separate source correction from a temporary request about answer style.
+
+**Review:** less reconstruction, better assistance fit, fewer repeated repairs,
+and easy return—not memory mentions, session frequency or greater intervention.
+Use current Source/context/correction owners, Chat, Life, and Home/Places.
+Proposed conversation-history behavior may be compared separately as a labeled
+design variant, never treated as the implemented default.
+
+### 16.4 O3 — A lightly involved recipient, with no reciprocal obligation
+
+**Input packet:** an authorized addressed note containing the sender's own
+perspective and an exact place reference. Add an original photograph only in a
+separately labeled supported-media variant; displaying an attachment does not
+establish that private assistance can read it. No rich recipient history,
+ongoing connection, or reciprocal contribution is assumed.
+
+**Complete encounter:** the recipient sees the actual offering and author,
+already worth receiving. They may leave without replying, asking AI, saving,
+joining an Occasion or sending something back. Exact place depth and private
+help are available only through their supported paths. Preserve the friend's
+voice and the distinction between their recommendation and checked world facts.
+
+Home can receive addressed/shared-consequential material; casual spatial sharing
+belongs in Places under current placement rules. Life receives only eligible
+retained material or its owner-backed relation, not an automatically assembled
+relationship dossier. If the people later choose to gather, show the minimum
+useful arrangement without forcing an Occasion profile or moving every human
+message into Vesper.
+
+**Comparison:** original receiving versus unnecessary AI embellishment; existing
+messenger versus a source-preserving Vesper handoff with optional useful help.
+Include later lookup and one genuinely changed arrangement. A no-install
+variant must name its actual identity/access requirement; if unsupported, mark
+it unavailable and count the remaining work rather than assuming public access.
+
+**Review:** enjoyment, intelligibility, authorship, sender packaging effort,
+recipient effort and any later host repair. No reply can be legitimate but is
+not proof of enjoyment. Social/recipient authority, Place, and existing
+arrangement owners remain; Chat/Content/Life participate only when invoked or
+otherwise authorized. Do not create a new messenger or infer mutual availability.
+
+### 16.5 O4 — A worthwhile possibility with an external operation
+
+**Input packet:** a specific real offering with sourced character, current
+occurrence/identity, an explicit user purpose and relevant constraints. The
+provider owns availability and checkout. Include a known missing operational
+fact and a link-failure variant; do not equate published hours with inventory.
+
+**Complete encounter:** Home/Places provides a worthwhile, intelligible option.
+An invoked assessment or requested preparation explains the decisive tradeoff,
+checks supported conditions and gives a usable next step. The live engine
+changes judgment when a condition changes the fit; it does not start a watch.
+The external continuation names its job and preserves the exact destination and
+parameters where supported. Any re-entry work or unresolved availability remains
+honest, not hidden behind “handled.”
+
+Returning from the provider without evidence changes no reservation or
+attendance state. A later supplied confirmation can update the appropriate
+owner under its custody and action rules. Keep/refind preserves the exact useful
+result when offered. If the link fails, the result and a supported alternative
+continuation remain available; do not rebuild checkout to conceal the boundary.
+
+**Comparison:** generic provider homepage versus exact supported handoff;
+status-only reporting versus a grounded explanation of what the condition means
+for the intention. Compare actual context transfer, not merely button labels.
+Repeat with familiar or non-bookable alternatives; inventory must not define
+the whole candidate set or displace a better option.
+
+**Review:** worthwhile selection, appropriate responsibility, factual reliability,
+total re-entry/checking/repair burden and exact continuation. Providers execute;
+Place/Source identify evidence, live/practical owners assess, and Plan/Commitment
+owners accept only authorized changes. Fewer screens do not permit approximate
+arithmetic, fabricated state or a second transaction authority.
+
+### 16.6 How to use these comparisons
+
+At existing integration/design checkpoints, attach a supported source packet,
+actual output, owner/read path, renderer, material limits and cost/latency evidence.
+Record gaps rather than presenting these requirements as completed features.
+Keep candidate information and resources comparable; include strong alternatives
+and cases where personalization adds nothing. Inspect the whole encounter and
+later return, not just a polished first card.
+
+Carry results into §11.9's ledger: payoff, relevant context, avoided work, wanted
+participation, remaining effort and exact continuation. These comparisons supply
+no numerical launch threshold, permanent persona, novelty quota or mandatory
+research survey in the app. They broaden the existing system review; they do not
+create four new lanes or gate all engineering on proving one behavior loop.
