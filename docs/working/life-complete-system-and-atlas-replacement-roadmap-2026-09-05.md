@@ -196,10 +196,12 @@ same owner transaction. The nested `candidate-owner-change.v1` envelope is
 validated at the broadcast boundary; the Intake outbox remains solely for the
 graph worker, so Life never competes for its acknowledgement.
 
-Life's consumer package is committed on the isolated backend branch as
-`9e5de617e` (`life: consume candidate-owned anchor lifecycle`) and consists of:
-The follow-up alignment commit `9b461dbce` makes the same candidate revision
-the corpus/adapters' source-revision token (rather than the navigation clock).
+Life's consumer package was authored on the isolated backend branch as
+`9e5de617e` (`life: consume candidate-owned anchor lifecycle`) and is now
+landed on canonical `travel-agent/main` as `ac54cefc9`. The follow-up
+alignment commit `9b461dbce`, landed as `9b1009a6a`, makes the same candidate
+revision the corpus/adapters' source-revision token (rather than the
+navigation clock).
 
 * `anchor_projector.py`, a current-authority adapter that reads the exact
   owner-scoped `ExperienceAnchorProjection`, fences the numeric candidate
@@ -220,7 +222,7 @@ the corpus/adapters' source-revision token (rather than the navigation clock).
 
 Acceptance evidence on the isolated tree:
 
-* Life offline selection: **270 passed**, 43 connected/API-key cases
+* Life offline selection: **271 passed**, 43 connected/API-key cases
   deselected. The focused anchor consumer selection is **10 passed**; owner
   matrix, bounded enumeration, backfill, maintenance and shadow regressions are
   included.
@@ -229,17 +231,15 @@ Acceptance evidence on the isolated tree:
   access loss and non-resurrection. Combined producer/consumer lifecycle
   selection: **2 passed** (producer outbox contract plus consumer read/write).
 * Ruff, compile, whitespace and diff checks pass for the changed files. The
-  consumer branch has no mobile/API changes and remains unmerged/unpushed; the
-  producer commit is a separate Integration-owned change and must be landed by
-  that lane.
+  consumer has no mobile/API changes and is landed alongside the separate
+  Integration-owned producer (`cd0e28f35`) on canonical `travel-agent/main`.
 
 This package establishes the first candidate-owned Life delivery path; it does
 not make `experience_anchor` serving-ready, infer attendance/people, retire
-Atlas, or prove model-based organization. The next checkpoint is review/landing
-of the two commits together, then independent replay/neighbor/control evidence
-for broader owners and extraction-vs-organization quality. Capture's richer
-evidence-unit envelope remains a later contract, not silently implied by this
-candidate lifecycle.
+Atlas, or prove model-based organization. The next checkpoint is independent
+replay/neighbor/control evidence for broader owners and extraction-vs-
+organization quality. Capture's richer evidence-unit envelope remains a later
+contract, not silently implied by this candidate lifecycle.
 
 ### Current execution queue
 

@@ -1022,6 +1022,39 @@ candidate/source authority before shadow writes. This package does not claim
 Life serving readiness, populated production candidates, native/visual
 acceptance, or remote publication.
 
+## Life consumer landing — September 8
+
+The Life lane has now landed the bounded candidate-owned consumer on canonical
+`travel-agent/main`. The consumer source commit `9e5de617e` is landed as
+`ac54cefc9`; the follow-up corpus/adapters revision alignment `9b461dbce` is
+landed as `9b1009a6a`. The workspace roadmap receipt is recorded in
+`docs/working/life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md`
+and the corresponding workspace commits are `6463f3f` and `27d58ed`.
+
+The adapter is shadow/read-only: it consumes `experience_anchor` events from
+the existing Life outbox, re-reads the owner-scoped Intake candidate and source
+custody, fences the candidate revision, and writes only the existing private
+Life Time row. It supports withdrawal, explicit newer restore, stale replay,
+source-access loss, bounded enumeration/backfill and user-control preservation.
+It does not change APIs or mobile surfaces, enable serving, infer attendance or
+people, create a new queue/stream, activate Source, or retire Atlas.
+
+Canonical evidence after landing:
+
+```text
+travel-agent: tests/life_projection offline selection
+271 passed, 43 deselected (connected/API-key/dogfood cases)
+
+travel-agent: focused producer/consumer contract selection
+75 passed
+```
+
+The disposable Postgres consumer proof covered confirmed candidate → Life row,
+withdrawal, explicit newer restore, source-access loss and non-resurrection;
+the producer's connected lifecycle packet remains recorded above. Connected
+selection is evidence of the shadow adapter only, not serving readiness or
+populated production data.
+
 ## Home addressed-human receiving landing — September 8
 
 The Home lane supplied and Integration reviewed a separate, already-supported
@@ -1072,5 +1105,6 @@ coverage, model economics, native visual parity, or production activation.
 
 The remaining Content dependency is one reviewed populated record for a
 supported area/subject with real provenance and freshness. The Capture anchor
-contract gate is unchanged: no anchor event family, revision/sequence policy,
-Life consumer adapter, migration or serving cutover was added.
+contract and shadow Life consumer are now implemented; the serving gate remains
+closed pending the independent replay/neighbor/control evidence and any later
+founder-approved serving decision.
