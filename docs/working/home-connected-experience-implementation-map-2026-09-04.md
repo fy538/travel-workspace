@@ -1401,3 +1401,19 @@ result remains unavailable until SP-1b/SP-3a (or another authorized producer)
 provides a version-bound result with displayable substance. No backend,
 OpenAPI, generated type, Social transport, Chat/Life layout, booking flow or
 provider flag changed in this package.
+
+**Implementation receipt — September 8 Home substantive Plan-context checkpoint:**
+the existing Trips/Plan adapter now carries canonical date facts into Home's
+typed Plan doors instead of repeating status-only relations (Travel Agent
+`57ebb9565`, isolated branch `codex/home-substance-2026-09-08`, not merged or
+published).
+
+| Producing owner | Supported scope | Production mode | Payload / renderer | Exact destination / action | Revision / expiry / repair | Evidence |
+| --- | --- | --- | --- | --- | --- | --- |
+| Trips/Plan → Home legacy bridge | Existing live, upcoming, recent-return and open Plan records whose `start_date`/`end_date` are already present on the canonical `Trip` model | Deterministic local adapter only; no provider call, generation, booking flow or new Home store | Existing `RootLink` payload now says `Live now · through {date}`, `Begins {date} · {n} days`, `Returned {date} · refind in Life`, or `Open Plan · starts {date}`. Unknown dates retain the prior honest fallback rather than inventing one | Live and returned records still open Life; upcoming records still open Places context; open Plans still continue in Chat. No destination or owner write changed | Existing trip revision remains the identity; existing six-hour Home candidate expiry remains in force. Changed/expired records recompose through the current selector; no stale date is restored | Focused backend Home portfolio/page/composition/practical-delivery/service set: **63 passed** offline; `ruff`, format, `vulture`, `git diff --check`, and the deterministic root rehearsal passed. This is adapter/composition evidence; mobile rendering, populated data and native acceptance remain unverified |
+
+This improves the amount of useful canonical context a person receives from an
+already-supported Plan without claiming that a planned date proves attendance,
+capacity, or current provider availability. Ordinary no-Trip possibilities are
+still blocked on the named Content/Integration producer handoff; the Home lane
+did not substitute another status door or input request for that missing supply.
