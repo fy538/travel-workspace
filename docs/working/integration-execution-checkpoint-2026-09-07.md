@@ -793,30 +793,46 @@ generation, provider call, or new Home endpoint was authorized.
 
 ### Capture → Life evidence boundary
 
-The landed Life package (`0af5aacef` plus `3c76118b0`) supports only the
-explicit, replay-safe UTC capture-month organization of retained Sources. The
-Capture data inspected in the active Life lane includes typed observation
-metadata, validity windows, truth mode, evidence locators, candidate lifecycle,
-and explicit subject-entity bindings. Those fields are useful evidence, but the
-existing handoff does not yet expose a typed, owner-authorized Life relationship
-for occurred/negative/place/people roles. Capture time or source custody must
-not be promoted into attendance or place/people claims.
+The landed Life package (`be69fe365`, with the workspace receipt in `a317cb0`)
+keeps the existing explicit, replay-safe UTC capture-month organization and adds
+one supported shadow relationship: an owner-explicit, currently visible,
+place-like Capture subject is carried as `subject_ref` and materialized as one
+owner-backed `RELATED_PLACE` membership. Captured time remains `CAPTURED`; the
+package does not infer attendance, occurrence, people roles, negative evidence,
+or continuity. Malformed, unresolved, expired, non-place, or absent subjects
+omit the relationship while preserving the original source, and correction /
+replay withdraws only the changed source's period and place memberships.
 
-The Life lane therefore has a decision checkpoint rather than an automatic
-schema/event expansion: if an existing candidate identity and owner-event
-contract can be demonstrated end-to-end, it may supply a narrow explicit Place
-association or neutral source membership with correction/replay tests; otherwise
-the correct result is a no-code gap receipt naming the missing Capture-owned
-handoff. No new `intake_anchor` owner family, API, migration, public serving, or
-inference rule is admitted by this checkpoint.
+Evidence on the isolated package and the canonical receiving tree:
+
+```text
+pytest -q tests/life_projection -m \
+  'not requires_postgres and not requires_api_keys and not requires_dogfood_wedge'
+259 passed, 42 deselected
+
+pytest -q tests/life_projection/test_retained_source_projector_postgres.py \
+  -m requires_postgres
+4 passed
+
+focused Life/Home receiving tuple after landing: 100 passed
+```
+
+Ruff, format, diff-check and applicable backend commit hooks passed. The
+package changes no API/OpenAPI/schema/migration and does not modify Life
+adapters or public Places lenses. It introduces no new owner event family;
+Capture/Integration still own the missing revision/sequence and durable
+withdrawal/restore contract for any future anchor-backed adapter. No new
+`intake_anchor` owner family, public serving cutover, or inference rule is
+admitted by this checkpoint.
 
 ### Next receiving checkpoint
 
 1. Re-run the focused Home adapter/composition tuple on canonical backend
    `9dba7ffbb`; this is a local receiving check, not native or populated-data
    evidence.
-2. Close the Life lane with either a proof-backed narrow existing-contract
-   package or an explicit no-code Capture→Life gap receipt.
+2. Re-run the Life shadow package's broader projection selection against the
+   canonical receiving tree; keep the four-test disposable Postgres result as
+   bounded evidence, not a full migration/serving certificate.
 3. Reassess the combined candidate only after those two boundaries are clear;
    keep Source production activation, native/visual acceptance, and social
    writes as separate founder-reviewed gates.
