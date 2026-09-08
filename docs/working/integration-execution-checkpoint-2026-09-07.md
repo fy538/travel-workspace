@@ -290,8 +290,9 @@ The one warning is the existing optional Nomic acceleration warning from an
 image-pipeline test. The disposable seed and catalog were not committed.
 
 Meta's isolated staged tree is still the prerequisite owner for the measured
-size extraction and the seven canonical backend failures. Its latest receipt
-is **145 staged paths** at the same base, with `session.py` and
+size extraction and the seven canonical backend failures. The latest observed
+isolated tree is **149 staged paths** at the same base (manifest hash
+`4f88ff8c3c2264ca676d0afbda712b07839986d35333d165ad9edc09dc9efb2b`), with `session.py` and
 `conversations.py` now below the budget; the only measured size offenders
 remaining there are `experience_graph/commands.py` and
 `concierge/_prompts_skills.py`. It is still dirty and uncommitted, so this
