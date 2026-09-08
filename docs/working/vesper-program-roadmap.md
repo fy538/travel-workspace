@@ -47,30 +47,32 @@ retirement require their existing approvals. Assignment does not dispatch a task
 
 ## 2. Inspected baseline — September 8, after reliability landing
 
-| Repository / evidence | Inspected state | Limit |
+**Acceptance-planning recheck:** workspace `33cceef`, backend `a7c02cbe1`,
+mobile `e2e792913`, all on canonical main. The child trees were clean; root
+has concurrent Places generator edits in `docs/working/design-gen/places/`,
+which this plan leaves untouched. These observations are dated, not locks.
+
+| Layer | Landed / recorded evidence | Remaining boundary |
 | --- | --- | --- |
-| Workspace main | `b16857d` before this roadmap reconciliation | Receiving receipts committed; no release claim |
-| Backend main | `78ea8a05f` | Includes Life transaction repair, structural reliability, context-memory authority reconciliation and residual test/race repairs |
-| Mobile main / primary checkout | Both `5f41be821` | Includes Home baseline repair `6b44041ea` and Social touch-target repair `5f41be821`; no new native acceptance |
-| Database history | Integration's fresh disposable migration reached the single head `lifeorgpipelinemerge01` | Disposable verification, not a production migration |
-| Combined backend tests | Recorded on the landed tree: offline **21,322 passed**, **14 skipped**, **1,423 deselected**, **53 xpassed**; serial Postgres **1,369 passed**, **23 skipped**, **21,420 deselected** | These are distinct test selections, not additive user journeys, unmasked quarantine certification or provider/device evidence |
-| Remaining engineering debt | Repository-wide mypy **262 errors / 62 files** | Separate failed baseline; the repository is not all-green and publication is not authorized |
-| Documentation recheck in this review | `make docs-check` fails child lifecycle admission for **five** historical/superseded documents still typed `working`; other invoked docs gates pass | Exact paths in the [recheck receipt](integration-execution-checkpoint-2026-09-07.md#strategy-documentation-recheck--september-8); a bounded documentation repair, not a reason to restart structural work |
+| Engineering baseline | Earlier backend `78ea8a05f`: 21,322 offline and 1,369 serial connected tests passed with documented skips/exclusions | Not a full-suite result on today's HEAD; mypy's last measured 262 errors/62 files remains unresolved |
+| Home / Places | Exact requested-result states and return; attributed human/public-content receiving; exact Place-depth fix `e2e792913` | Native acceptance and populated coverage unrun; Source production remains dark |
+| Content | Public owner-to-Home adapter; conservative quality labels `8a092de39`; bounded non-Trip purpose fit `a7c02cbe1` | Researched Pier 57 records are local authored review fixtures, not production coverage or measured enjoyment |
+| Capture / Life | Candidate lifecycle option A producer `cd0e28f35`, shadow consumer `ac54cefc9`, revision alignment and fixtures | No indexed serving cutover, general occurrence/people inference or Atlas retirement |
+| Latest focused evidence | Content/Home 98 backend tests, 45 app tests and typecheck; Life 271 offline and 43 connected tests; documentation and API coverage checks passed in owner receipts | Overlapping selections, not additive journeys, native proof or complete release verification |
+| Social | Ordinary-sharing decision packet prepared on isolated branch; existing bounded addressed receiving tested | Generic sharing policy, friend-source AI use and general Life refinding remain unadopted/unimplemented |
 
-All three primary checkouts were clean before this edit. The current tasks are
-completed/idle, including Integration's receiving round; no new task was dispatched
-by this review. Completed supplier branches/worktrees may remain as local history,
-not unreceived work by implication. No remote push, deployment or activation was
-performed by the receiving round. Recheck Git and task state before execution.
+The previous rounds are closed at their stated boundaries. Their detailed
+history, commands and failures remain in the [Integration checkpoint](integration-execution-checkpoint-2026-09-07.md)
+and [Content receipt](content-home-supply-execution-receipt-2026-09-08.md).
+Do not restart repaired documentation gates, reimplement connected hooks or
+describe the adopted anchor contract as a current decision blocker.
 
-Evidence already available: [Source execution](source-connected-value-execution-receipt-2026-09-07.md),
-[Integration checkpoint](integration-execution-checkpoint-2026-09-07.md), and the
-linked lane receipts below. The September 7 baseline and later repairs remain
-dated evidence there rather than competing current instructions here. Source has
-connected local HTTP/Postgres evidence,
-but no complete native request consumer; Life holdouts use synthetic interpreted
-evidence, not raw-artifact understanding; Social remains narrower than its design.
-Local test totals are not additive or evidence of compelling consumer value.
+Native feasibility was inspected read-only: Xcode 26.5 build 17F42, Maestro on
+PATH, available iOS 18.2/26.5 simulators, none booted; no listener found on default
+Metro port 8081. Runtime printout reports canonical ports, not a reserved lane.
+App build installation/compatibility, design-reference hashes, Maestro health
+and isolated runtime readiness remain unverified. No device or service was
+started by this planning pass.
 
 ## 3. Whole-product outcomes and sequence
 
@@ -89,31 +91,23 @@ architecture or broad visual exploration only when observed failures justify it.
 
 ## 4. Current package register
 
-One accountable task per package. On September 8, the founder approved the next
-round and Strategy dispatched one consolidated assignment each to Integration,
-Home, Life and Social, using Luna with xhigh reasoning. Social's assignment is
-decision preparation, not adoption or new policy implementation. Other suppliers
-remain on demand. Contributors do not acquire a second queue for the same
-behavior. Lane queues own file-level steps; this register owns priority and handoff.
+The next round is planned below; this planning pass does not dispatch execution.
+Use existing tasks and one owner per package. Status messages are not new
+assignments. Integration remains the sole combined landing owner.
 
-| Accountable task / plan | Current package and observed stage | Receiver / exact dependency | Next handoff or checkpoint |
-| --- | --- | --- | --- |
-| **[Integration](codex://threads/01a030af-13a8-74e1-81be-7d526bec3045)** · [technical plan](complete-system-integration-roadmap-2026-09-05.md) | Receiving/reliability round complete and landed; connected product acceptance remains partial | Home receives current public/private material, practical assessments and exact results; Life supplies bounded readers | Agree next receiving interfaces, preserve supported practical behavior, review/land complete packages; do not restart candidate convergence |
-| **[Content](codex://threads/01a07c63-5ebe-71d2-9cb0-314ec4e06963)** · [supply plan](recommendation-world-supply-architecture-and-roadmap-2026-09-07.md) | Useful reusable supply and lifecycle; ingestion/research repairs landed, supplier/cost quality incomplete | Integration and Entities consume canonical identity, supported material, evidence, freshness, reuse limits and measured/unknown cost | Varied actual output and corrected/expired readback; real local concurrency evidence and explicit source-feasibility limits |
-| **[Life](codex://threads/01a06ecc-1a79-74a1-9c47-9f24461313ea)** · [replacement plan](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md) | Organizer/holdouts and transaction/restoration fixes landed and integration-tested; raw interpretation and serving incomplete | Capture supplies evidence under current custody; Integration receives exact readers; Social supplies only adopted share interfaces | Resume real evidence → maintained organization → useful bounded reads; do not repeat reliability work or turn shadow success into cutover |
-| **[Social](codex://threads/01a07c7c-5c29-7b53-a596-fc0a34ee118b)** · [implementation plan](social-experience-implementation-roadmap-2026-09-07.md) | Place-note lifecycle and latest mobile control repair landed; general material/audience contract remains proposed | Relationships/original owners; Home addressed receiving, Places casual spatial sharing, Life refinding | Resolve the existing S0 decision packet before new general-share writes; inspect photo/note/recipe original value and clear-versus-release semantics together |
-| **[Home](codex://threads/01a06f87-e648-74d2-a0ae-f0adb305e44c)** · [consumer map](home-connected-experience-implementation-map-2026-09-04.md) | Available joined receiving and mobile baseline repairs landed; complete request/result consumer and supply breadth remain | Integration owns backend request/result/judgment; Entities owns exact depth; Content supplies eligible material | Lead the connected receiving package across approved Home/Places entries, exact results and return; no root redesign or new generator |
-| **[Places](codex://threads/01a07c7f-871a-70b0-840e-95a0db1e9351)** · [selected design](places-composition-breadth-design-revision-2026-09-07.md) | Latest design-review assignment complete; not whole-surface implementation | Home coordinates shared receiving; Integration owns practical judgment | Supply selected design decisions and spatial/degraded cases to the same receiving package; avoid a second overlapping renderer queue |
-| **[Entities](codex://threads/01a0649a-f267-7d31-a788-81669e1822a8)** · [completion plan](entity-object-design-overhaul-plan-2026-09-07.md) | Earlier implementation landed; latest six-package completion plan is planning, not execution | Home exact destination needs; Content facts/reading; Integration freshness; Life reader | Select the needed rich/sparse restaurant, museum and activity depth work from §10; isolated supplier package only where a receiver names the missing behavior |
-| **[Engineering Meta](codex://threads/01a07e12-78fc-7363-b675-9eb6144245f2)** · [repair context](engineering-context-and-agent-practices-research-2026-09-07.md) | Structural package `6da6905ac` received; subsequent baseline fixes completed by Integration | No pending structural handoff | Keep closed. A separate typing repair may be scoped by concrete clusters; do not reopen general engineering research |
-| **[Strategy](codex://threads/01a072c6-2735-7152-94ea-bb6958ead53d)** · [supported offer](vesper-v1-supported-offer-2026-09-07.md) | Program coordination, consequential decisions and received-value review | Founder decides promise changes; domain owners identify precise affected interfaces | Resolve decisions below at their first required boundary; review actual outputs, remaining effort and complete cost, not another premium-feature list |
+| Accountable task / owner plan | Next bounded responsibility | Handoff |
+| --- | --- | --- |
+| **[Integration](codex://threads/01a030af-13a8-74e1-81be-7d526bec3045)** · [technical plan](complete-system-integration-roadmap-2026-09-05.md) | Isolated runtime/data readiness, contracts, combined acceptance and landing | Ready revision/data/device tuple to Home; shared Life reader decisions |
+| **[Content](codex://threads/01a07c63-5ebe-71d2-9cb0-314ec4e06963)** · [supply plan](recommendation-world-supply-architecture-and-roadmap-2026-09-07.md) | Bounded provenance-bearing local corpus and honest coverage | Owner-admitted records to Home, not prose pasted into screenshots |
+| **[Home](codex://threads/01a06f87-e648-74d2-a0ae-f0adb305e44c)** · [consumer map](home-connected-experience-implementation-map-2026-09-04.md) | Home/Places actual-app composition and exact-depth review | Named content/consumer defects with native evidence |
+| **[Life](codex://threads/01a06ecc-1a79-74a1-9c47-9f24461313ea)** · [replacement plan](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md) | Recognizable records, existing readers and shadow-to-visible gap comparison | Concrete read/organization gaps and controlled-serving prerequisites |
+| **Strategy / [Social](codex://threads/01a07c7c-5c29-7b53-a596-fc0a34ee118b)** · [Social plan](social-experience-implementation-roadmap-2026-09-07.md) | Resolve the already-prepared consequential choices here | Adopted decisions before affected new writes; no repeated research packet |
 
-**Repo Clean Up** is an on-demand landing function under Integration, not a
-second merger/release owner. **Contribution and Capture**, **Components and Plan**,
-and **Retirement** remain bounded supplier responsibilities: source evidence and
-custody, intention/arrangement commands, and replacement/obligation removal
-respectively. A receiver names the needed interface before asking for support;
-an idle supplier does not block unrelated work or authorize taking over its files.
+Places design, Entities, Capture and Components/Plan remain suppliers for named
+gaps, not automatically restarted lanes. Existing Places design work is
+concurrent; coordinate reference selection without editing its generators.
+Engineering Meta and repository cleanup are not additional execution queues.
+Life and Home must serialize native device use even if their file work is parallel.
 
 ## 5. Consequential decisions and narrow dependencies
 
@@ -123,7 +117,7 @@ an idle supplier does not block unrelated work or authorize taking over its file
 | [Pre-Plan intention](retained-intention-before-plan-decision-proposal-2026-09-06.md) | Components and Plan, reviewed by Life/Capture/Integration; founder adopts | New durable loose-intention writes wait; existing Plan, Source and read-only exploration continue |
 | [Sharing source/audience contract](social-experience-implementation-roadmap-2026-09-07.md#103-decision-register--resolve-only-what-the-next-capability-needs) | Social with source owners/Life/Integration; founder adopts permission changes | Wider audiences, guests and new friend-source AI uses wait on their respective decisions, not all authenticated original receiving |
 | Practical responsibility / live-family activation | Integration + existing action owners; Strategy/founder for promise or authority changes | New accepted watches/provider actions wait on signal, freshness, reevaluation, expiry/cancel and consequence contracts; supported current assessment continues |
-| Capture → Life evidence | Capture proposes source facts/locators, occurrence versus capture time, revision and withdrawal interface; Life accepts consumer behavior | Production use of unsupported evidence waits; Life fixtures, extraction comparisons and supported-owner readers continue |
+| Capture → Life evidence | Candidate lifecycle option A is accepted and landed; Capture owns truth, Life consumes projections | Broader semantics and serving remain separate gates; the revision/delivery decision is no longer a blocker |
 | Offer, coverage and payment | Strategy; founder adopts | New geographic/service promises, prices and allowances wait; cost instrumentation and useful free receiving continue |
 
 Keep detailed alternatives and evidence in the linked proposal. This register
@@ -161,130 +155,134 @@ receiving test and affected package—not “blocked on Life/Content/Social.”
   bottleneck and what to continue/change/stop. Replace stale current statements;
   preserve dated evidence in existing receipts, not another appendix here.
 
-## 7. Current coordinated packages — September 8 completion round
+## 7. Next acceptance round — planned, not dispatched
 
-**Latest founder-approved round:** [candidate lifecycle option A is accepted](../decisions/2026-09-08-capture-candidate-lifecycle.md).
-Integration owns its versioned producer contract and implementation; Life owns
-the consumer. No graph-owned truth stream or serving activation follows.
-Content owns removal of unsupported automatic novelty/high-yield labels and
-genuinely sourced local review specimens; Home owns exact receiving checks.
-Public source acceptance alone does not prove novelty or explanatory value.
-Use Pier 57's operator/park sources as bounded research inputs, not production
-coverage or live availability evidence. No paid/provider API or production-data
-write is authorized; local fixtures must retain provenance and their evidence label.
+### Order and shared environment
 
-Dispatch baseline: workspace `25c707d`, backend `74d5c614b`, app `12cc59a51`,
-canonical trees inspected clean. Integration also recovers Home's unreceived
-`f5213e1d` / `6067b1491` / `cb7ec7a` handoff after its later turn failed with
-unsupported `minimal` effort. Every dispatch explicitly requests Luna xhigh;
-requested settings and observed turn settings are separate evidence. Prior
-landings remain valid; Social policy is still pending.
+1. **Integration prepares the inspection tuple first:** isolated coordinated
+   workspace/children, exact commits, disposable local dataset, Compose/Expo
+   ports, one exclusively assigned simulator, installed development build and
+   registered design references. Read `--print-runtime` before startup.
+   Document startup failures and disable unintended provider/background execution
+   in the inspection environment through existing supported controls. Do not
+   point tests or cleanup at the ambient development database.
+2. **Content prepares supply while Home verifies its capture harness.** Life
+   inventories reader/organization gaps independently. Neither waits for all
+   Social decisions or an entire roadmap to finish.
+3. **Home inspects the populated app first, then Life uses the reserved device.**
+   Use current supported serving for each; shadow results must be compared
+   explicitly, not secretly substituted into product reads.
+4. **Strategy and owners review the first complete outputs before widening
+   implementation.** Fix concrete defects in owned layers, verify and land in
+   small packages; reassess after the first inspection and at most three
+   integrated subpackages. No deadline or daily-use target is implied.
 
-### Previous round (landed bounded supply; anchor decision was then pending)
+### A. Home and Places: worthwhile populated receiving
 
-**Latest dispatch supersedes the earlier assignments below.** The previous
-round landed factual Plan dates (`9dba7ffbb`) and explicit Capture subject-backed
-shadow `RELATED_PLACE` organization (`be69fe365`). These are useful bounded
-improvements, not completion of substantive Home supply. Ordinary no-Trip
-possibilities remain a named producer dependency. The five-file lifecycle
-repair is complete. Dispatch baseline: workspace `e2e7530`, backend `be69fe365`,
-app `6dfd0d8cf`; all canonical trees inspected clean.
+**Person's outcome:** open the app without a new question and receive useful
+understanding, possibility, practical help or an authorized human contribution;
+open appropriate depth and return without reconstructing context.
 
-- **Content:** accountable producer for substantive sparse/no-Trip and richer
-  authorized-context supply using existing admitted material and owners.
-  Deliver actual payloads, source/depth/freshness and known/unknown cost; name
-  precise acquisition authority if unavailable, never fabricate populated data.
-- **Home:** accountable receiving partner for that same package: admission,
-  composition, displayed substance and exact depth/return. Coordinate payloads
-  with Content rather than duplicate production or improve only status cards.
-- **Integration:** own the Capture anchor identity/revision/sequence,
-  withdrawal/restore and durable-delivery contract, plus shared interfaces,
-  combined verification and reviewed local landing for both packages. Derive
-  from existing owners; unresolved architecture comes to Strategy before writes.
-- **Life:** consume the agreed anchor lifecycle with bounded organization/read
-  adapters and correction/replay tests. Preserve independent records and user
-  controls; do not invent attendance, activate serving or duplicate producer work.
-- **Strategy:** review Social's unlanded `43ae39a` + `bb23e89` decision packet
-  here with the founder. No new Social execution assignment or policy adoption.
+**Data and acceptance portfolio:** use the same bounded supported area and local
+corpus for three situations: sparse/no Trip; richer authorized context without
+a Trip; and a changed practical condition or purpose. Include an eligible
+original human contribution under the existing adopted sharing contract.
+Use enough materially different material to assess the whole scroll, not a
+fixed card count or one mandatory unit per product move.
 
-One consolidated assignment was accepted by each of the four existing execution
-tasks, using Luna xhigh. Content was resumed for this named supplier gap; no new
-task was created. First checkpoint: actual sparse/rich Home content and remaining
-human work, plus an authoritative anchor lifecycle and Life correction/readback.
-Native and populated producer evidence remain unrun in the completed rounds,
-not implied by their tests. Source stays dark; paid/provider calls, publication,
-new social policy and serving cutover remain outside this dispatch.
+Content supplies provenance, retrieval time, claim-level evidence, permitted
+use, canonical identities, revisions and freshness to existing owner admission.
+Use reviewed public sources and deliberately authored test-person context;
+do not reuse real private histories without authority. A locally populated
+record based on real research is still local evidence, not production coverage.
+Public web research/local deterministic admission is in scope; paid API/model
+generation, ambient ingestion, broad seeded-world batches and production writes
+require their separate approval. Missing coverage becomes a named supply gap,
+not filler or another input prompt.
 
-### First-round scope and rationale (completed or explicitly pending)
+**App inspection:** Home and Places full scroll, first viewport, exact content
+and source depth, Back/return, long copy/text sizing, stale/withdrawn content,
+empty supply and unavailable requests. Compare registered current design
+references, not a screenshot of a whole Claude board. Explain differences
+between the latest design export and registered authority before an intent
+verdict; do not silently bless an old bundle or promote a new export.
 
-All four assignment messages were accepted by their existing tasks. This records
-dispatch, not completion or acceptance of their future outputs. Integration owns
-the gate repair and combined landing; Home and Life own the implementation
-packages below; Social owns the bounded decision packet. Strategy reviews the
-first connected checkpoint and consequential decisions. No supplier-wide restart,
-production activation or automatic monitoring was authorized by this dispatch.
+**Pass / revise / stop:** the received contribution is specific and supported;
+the page offers materially different value without redundant prose or chores;
+current purpose can matter without a Trip; independent value survives expired
+practical claims; exact identity and return are maintained. Equal sparse/rich
+answers are acceptable when context adds nothing. Reviewer judgment is recorded
+as judgment, not measured consumer enjoyment. If data never reaches the app,
+the package remains incomplete even when its adapters pass.
 
-The code-and-receipt review finds incomplete receiving, not a reason for another
-architecture rewrite. Two concrete boundaries set the next order:
+No root redesign, new card taxonomy, Home generator, mandatory Keep/Plan, booking
+execution or Chat redesign follows. `open_now` is not arrival feasibility:
+existing live-engine owners must supply any stronger practical conclusion.
 
-- Mobile `useSubmitSourceContributionRequest` and
-  `useSourceContributionResult` exist with transport/hook tests but have no
-  application-screen callers at this inspection. Backend request/exact-result
-  persistence is not yet that user experience.
-- Life's `owner_contracts.py` still declares supported source/Plan/Occasion/
-  Outcome projection owners shadow-only and `social_contribution` unavailable.
-  The organizer's typed-evidence tests do not establish raw interpretation,
-  visible organized reads or social-original refinding.
+### B. Life: recognizable continuity and exact originals
 
-| Next package / accountable task | Complete benefit and first checkpoint | Dependencies and limits |
-| --- | --- | --- |
-| **Connected receiving — Home**, with Integration owning shared backend work | Receive useful public material, an authorized prepared result and supported practical help through approved Home/Places entries; open the exact thing and return without reconstructing the question. First checkpoint: actual emitted payload → real screen consumer → exact destination/return, including unavailable, expired and changed states. | Reuse Home §8.8 and Integration E2–E5, not another worker or result store. Content supplies eligible output plus depth; Entities supplies missing destination behavior. Preserve independent reading/human value when a practical claim expires. |
-| **Recognizable continuity — Life** | Connect supported real owner evidence to maintained organization and bounded original/group/lens reads. First checkpoint: a source correction changes the appropriate group/preview while independent records and deliberate controls survive. | Resume M2–M4 with Capture's actual available evidence; name unsupported fields rather than supply oracle interpretations as extraction. No new intention owner, model run, indexed-serving activation or Atlas deletion. |
-| **Ordinary sharing contract — Social, with Strategy/founder decision review** | Finish the existing S0 choices against photograph, place note and non-spatial recipe: enjoyable original receiving, optional continuation, later access and durable sender control without recipient homework. First checkpoint: explicit adopted/pending rulings and one consistent sender/recipient lifecycle across roots. | General sharing is not implemented by the current pair-note path. Resolve original/share ownership, selected recipients, clear versus release, block/disconnect and source use before affected new writes. Existing note receiving remains usable independently. |
+**Person's outcome:** locate an entrusted item naturally through relevant
+time/place/group views, recognize why it is there, open its original and correct
+it without maintaining an inferred biography.
 
-**Execution order:** Integration first resolves the five-file lifecycle gate
-through valid archival/authority treatment and a real workspace docs check;
-do not weaken the validator or revive historical plans. This does not block
-independent product inspection or contract planning. Rebaseline the existing queues, agree exact receiving
-interfaces, then run the Home and Life implementation packages independently
-while the bounded Social decision review proceeds. Integration receives changes
-and owns shared contracts/landing; it is not a fourth feature factory. Content
-and Entities supply concrete requested gaps, not automatically their entire
-roadmaps. Activate a separate supplier package only when its output, owned files
-and receiving test are named; serialize shared composition/navigation changes.
+Use existing supported Sources and confirmed candidates with an original,
+explicit Place relation, uncertain/late capture time, neighboring records and
+a deliberate exclusion. Exercise correction, withdrawal and explicit restoration.
+Include Plan/Occasion/shared records only where their current owner supports
+them; do not fabricate social refinding or occurrence/people evidence.
 
-Content supply is not optional or presumed solved: the first Home checkpoint
-must include worthwhile, varied output and honest sparse coverage. If current
-admitted material cannot support that, prioritize a bounded Content supply/read
-package immediately; do not fill the feed with prompts or keep polishing empty
-containers. New paid/provider acquisition still requires its own authority.
+Compare three stages: authoritative record, maintained shadow organization and
+current app reader. Name exactly what the user can and cannot currently see.
+Inspect whether labels, ordering, grouping, previews and original-return paths
+help recognition; count/replay correctness alone is not acceptance. Preserve
+unknowns and distinguish capture time from occurrence time.
 
-For the requested-result path, unavailable production must not promise later
-delivery. Controlled local execution may establish the connected consumer;
-production worker activation is a separate decision. Do not rebrand a dormant
-hook as a shipped service. Likewise, `place.open_now` is not arrival feasibility:
-add a named timing/fit adapter only when the receiving case requires it, using
-existing live-engine owners rather than creating a generic route service.
+Life owns consumer/organization improvements justified by the comparison;
+Integration owns shared reader contracts and schema synchronization. First
+checkpoint is a record-to-reader trace plus actual-app inspection of supported
+reads, and a concrete gap list for shadow-only outputs. If visibility requires
+a serving change, prepare a bounded cohort/parity/rollback/repair plan for
+founder review. Do not activate indexed serving or retire Atlas merely to get a
+screenshot. An explicitly labelled internal comparison is not shipped Life.
 
-**Next system checkpoint:** inspect sparse-context help, one-fragment connection,
-human original receiving, practical fit/change and later refinding together.
-Reuse the [shared world](fixtures/shared-fixture-world-2026-09-07.md) and
-[three-situation value review](vesper-v1-supported-offer-2026-09-07.md); label
-authored, synthetic, real-owner and native evidence. The person need not visit
-every tab. Inspect actual content, what context improved, remaining human work,
-identity/return, correction/withdrawal, latency and total known/unknown cost.
+### C. Social: decision review, not another implementation round
 
-This review inspected code and recorded outputs/limits; it did not render the
-current app, run new model/provider work, judge native design or measure human
-value. Next receiving evidence must include the actual result/original and
-remaining human work, not only test counts. Review complete compositions for
-substance, repetition, present relevance and effort; do not assign four move
-quotas or require every benefit to become a Plan. Review cost at the existing
-production/reuse owner, including unsuccessful work; unknown remains unknown.
+Use the existing isolated packet `43ae39a` + `bb23e89`, not another research
+document. Strategy presents consequences and recommendations for five decisions:
+recipient snapshot, disconnect/block old access, clear/release/withdraw,
+caption edit versus replacement/new audience, and friend-source AI
+purpose/retention. Original-first receiving remains complete without AI or reply.
 
-Decide **continue, revise or retire** per package after the first connected
-checkpoint and after at most three integrated subpackages. A coherent test
-transport is
-not sufficient receiving value; a strong static design is not implementation;
-a complete small benefit need not become a plan. Keep this overview approximately
-two to four pages; detailed plans, test logs and research stay with their owners.
+Keep distinct internal controls without making three equal removal choices a
+routine user task. A recipient's Ask cannot grant the sender's source-use rights.
+Founder adoption must name the permitted consumer/purpose/retention boundary.
+The candidate lifecycle ADR does not approve any of these choices.
+After adoption, Social receives one original-receive → optional continuation →
+authorized refind → sender-control package. Until then current bounded human
+receiving can be inspected independently.
+
+### Native evidence and closeout
+
+Use the app's existing surface QA registry, contracts and verdict protocol:
+scenario validation, canonical design check, surface doctor, capture,
+comparison and structured verdict. Resolve actual Home/Places/Life surface IDs
+from current contracts; compatibility Trip/Atlas captures are not substitutes.
+Reserve one simulator; record build, environment, dataset, route, reference
+hashes, screenshots and executed navigation. A doctor failure gets a concrete
+repair or exact blocker, not permanent native deferral. Dry runs produce no
+native evidence; manual fallback needs the documented screenshot receipt.
+
+Report separately: implemented, locally integrated, owner-connected,
+native-observed, reviewer-assessed and release-approved. Retain focused tests,
+real-backend parity where affected, schema/API checks and current delivery
+gates. Known failures stay explicit; do not bypass a gate or sum overlapping
+tests into a journey claim. Record timing with the existing measurement tool;
+include known/unknown source and generation costs.
+
+The next shared review asks: what was worth receiving; what context actually
+improved; how much input/navigation/reconstruction remains; what did correction
+change; and which owner must fix the limiting gap? Choose continue, revise or
+retire per package. No automatic monitoring, paid execution, deployment,
+publication, production Source activation or Social policy expansion is
+authorized by this plan. Historical dispatches and receipts stay in Git and
+existing lane records; this overview owns only the current sequence.
