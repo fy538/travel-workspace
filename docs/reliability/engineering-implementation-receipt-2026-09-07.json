@@ -320,7 +320,7 @@
   "verified_db_leak_exceptions_removed": 30,
   "native_artifact": "/tmp/vesper-engineering-implementation-2026-09-07/DerivedData/Build/Products/Debug-iphonesimulator/TravelApp.app",
   "blocked_or_unrun": [
-    "Docker daemon unresponsive: actual container package smoke, disposable DB migration/integration lanes and service startup not executed.",
+    "Docker final probe responded with server 27.4.0 without a restart, but the isolated image build remained at docker/dockerfile:1.7 frontend resolution until the bounded client was stopped; actual container package smoke, disposable DB migration/integration lanes and service startup remain unverified.",
     "Frontend TRAVEL_AGENT_CI_TOKEN lacks private backend checkout access; renewal and real candidate verification pending.",
     "New workflow publication, immutable cross-repo pin updates and terminal required checks on that candidate pending. Add package-smoke as required only after its remote workflow emits it.",
     "Codex hook remains untrusted; current CLI resolves the canonical workspace hook in worktrees and does not inherit it in child Git roots. New hook is not active.",

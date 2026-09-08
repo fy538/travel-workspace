@@ -522,9 +522,12 @@ Verification used macOS arm64, Python 3.13, Node 24.13, Expo 55.0.31, React Nati
 - Backend doc freshness independently reports one stale research-agent FEATURE
   header, four expired active working documents, and one abandoned-draft warning.
   Workspace governance passing does not certify those claims as current.
-- Docker Desktop's daemon did not respond within the bounded probe. Disposable
-  PostgreSQL/migration/real-backend lanes and actual container artifact smoke
-  remain blocked. No shared daemon restart or development DB cleanup occurred.
+- The final Docker probe responded with server `27.4.0` without a restart. An
+  isolated backend image build was then attempted, but remained at Dockerfile
+  frontend resolution (`docker/dockerfile:1.7`) until the bounded client was
+  stopped. Disposable PostgreSQL/migration/real-backend lanes and actual
+  container artifact smoke therefore remain unverified. No shared daemon
+  restart or development DB cleanup occurred.
 - Frontend CI's present `TRAVEL_AGENT_CI_TOKEN` cannot read the private backend
   repository (run `34120618861`). Renewal with the required read access is pending;
   token presence alone is not sufficient evidence. New workflows/pins, terminal
