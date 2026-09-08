@@ -500,5 +500,18 @@
     "unstaged_paths": 0,
     "worktree": "/Users/feihuyan/travel-workspace-engineering-reliability-2026-09-07/travel-agent"
   },
-  "verified_db_leak_exceptions_removed": 30
+  "verified_db_leak_exceptions_removed": 30,
+  "post_landing_2026_09_08": {
+    "canonical_backend_commit": "5e9d0a190",
+    "meta_structural_commit": "6da6905ac",
+    "integration_fixture_commit": "a1c841181",
+    "engineering_focused": "243 passed / 9 skipped",
+    "residual_postgres": "79 passed / 1 warning",
+    "migration_head": "lifeorgpipelinemerge01",
+    "offline_suite": "21086 passed / 240 undeclared-Postgres failures / 14 skipped / 53 xpassed",
+    "broad_postgres_suite": "stopped after an existing Life projection concurrency timeout; not green",
+    "contract_check": "passed",
+    "no_push_deploy_activation_or_shared_restart": true,
+    "status": "bounded_receiving_green_remaining_repository_debt"
+  }
 }
