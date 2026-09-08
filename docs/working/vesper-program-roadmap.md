@@ -163,6 +163,25 @@ receiving test and affected package—not “blocked on Life/Content/Social.”
 
 ## 7. Current coordinated packages — September 8 completion round
 
+**Latest founder-approved round:** [candidate lifecycle option A is accepted](../decisions/2026-09-08-capture-candidate-lifecycle.md).
+Integration owns its versioned producer contract and implementation; Life owns
+the consumer. No graph-owned truth stream or serving activation follows.
+Content owns removal of unsupported automatic novelty/high-yield labels and
+genuinely sourced local review specimens; Home owns exact receiving checks.
+Public source acceptance alone does not prove novelty or explanatory value.
+Use Pier 57's operator/park sources as bounded research inputs, not production
+coverage or live availability evidence. No paid/provider API or production-data
+write is authorized; local fixtures must retain provenance and their evidence label.
+
+Dispatch baseline: workspace `25c707d`, backend `74d5c614b`, app `12cc59a51`,
+canonical trees inspected clean. Integration also recovers Home's unreceived
+`f5213e1d` / `6067b1491` / `cb7ec7a` handoff after its later turn failed with
+unsupported `minimal` effort. Every dispatch explicitly requests Luna xhigh;
+requested settings and observed turn settings are separate evidence. Prior
+landings remain valid; Social policy is still pending.
+
+### Previous round (landed bounded supply; anchor decision was then pending)
+
 **Latest dispatch supersedes the earlier assignments below.** The previous
 round landed factual Plan dates (`9dba7ffbb`) and explicit Capture subject-backed
 shadow `RELATED_PLACE` organization (`be69fe365`). These are useful bounded
