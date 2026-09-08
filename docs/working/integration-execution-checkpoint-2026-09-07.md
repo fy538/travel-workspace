@@ -210,6 +210,34 @@ occurred.
 4. Re-run the combined mandatory checks and only then mark the baseline
    verified. Wave 2 remains paused.
 
+## Targeted backend prerequisite round — September 8, in progress
+
+Strategy authorized a narrow follow-through without reopening product or
+mobile work. Engineering Meta owns the existing 128-path staged reliability
+package plus three prerequisite repairs in its isolated worktree
+`/Users/feihuyan/travel-workspace-engineering-reliability-2026-09-07/travel-agent`
+at base `afe177b33`: preserve genuine Life status detection while correcting
+the five false-positive dead gates, guard the `experience_briefs` writer race
+under its existing lifecycle, and extract only the measured size-budget
+offenders without changing behavior. Integration has not copied or staged any
+of that dirty worktree.
+
+Fresh canonical gate measurements before the repair are:
+
+* size: `repair_intake_v2_outbox` **855**, `delete_user_data` **835**, and
+  `handle_turn` **801** lines; files `concierge/session.py` **2565**,
+  `experience_graph/commands.py` **2492**, `api/routes/conversations.py`
+  **2452**, and `concierge/_prompts_skills.py` **2451**;
+* status write guard: one unguarded `experience_briefs` status update;
+* status parity: green;
+* status dead gates: five Life comparisons against values absent from the DB
+  CHECK constraints.
+
+The receiving order is Meta package → seven canonical backend failures → the
+known `change_kind` database cluster → separately owned residual fixture and
+contract repairs. No baseline increase, exemption, broad cleanup, or Wave 2
+work is authorized by this section.
+
 ## Landed
 
 ### Retained Opening context is an exact Moment dependency
