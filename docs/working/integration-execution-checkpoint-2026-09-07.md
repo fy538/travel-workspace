@@ -957,3 +957,37 @@ selection **48 passed**, the new attributed-note proof **1 passed**, and the
 Home screen suite **9 passed**. App typecheck passed. Native/visual acceptance
 and populated production handoffs remain unrun. No API/OpenAPI/schema,
 Chat/Life layout, booking flow, provider call, or production flag changed.
+
+## Content → Home bounded public supply landing — September 8
+
+The Content lane supplied a narrow producer-to-consumer slice, which
+Integration reviewed and landed on backend `74d5c614b`
+(`3cce198dd`, `home: surface bounded public place content`) and workspace
+receipt `f3ea961` (`40044cd`). It consumes only already accepted,
+evidence-linked public `PlaceContentPrimitiveRecord` rows through the existing
+Home `places_context` reader:
+
+* at most six records, with exact `place_content_primitive` source identity and
+  immutable revision;
+* a complete-on-view `HORIZON_EDITORIAL_PASSAGE` containing claim,
+  interpretation and evidence basis, with an exact Places continuation;
+* sparse automatic context receives medium present relevance and a bounded
+  priority; explicit Trip context receives a higher ranking only, never a
+  personal attendance/taste inference; and
+* missing context, empty/unsupported sources, expiry, withdrawal or owner-read
+  failure yields honest absence or the existing Places-context candidates—no
+  generated placeholder, provider call, index write, or second store.
+
+The concrete fixture output is recorded in
+`docs/working/content-home-supply-execution-receipt-2026-09-08.md`. It is a
+synthetic authored record passed through deterministic production code, not
+populated production data or a live provider result. The canonical focused
+Content/Home set passed **92 tests** after landing; Ruff and format checks
+passed, and the offline Life selection passed **259 tests**. This proves the
+supplier→admission→consumer seam and its sparse/rich behavior, not provider
+coverage, model economics, native visual parity, or production activation.
+
+The remaining Content dependency is one reviewed populated record for a
+supported area/subject with real provenance and freshness. The Capture anchor
+contract gate is unchanged: no anchor event family, revision/sequence policy,
+Life consumer adapter, migration or serving cutover was added.
