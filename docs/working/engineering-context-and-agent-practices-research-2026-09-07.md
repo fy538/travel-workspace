@@ -447,12 +447,14 @@ The founder authorized executing the recommendations after repository cleanup.
 The implementation is isolated in `codex/engineering-reliability-2026-09-07`
 across three coordinated worktrees at
 `/Users/feihuyan/travel-workspace-engineering-reliability-2026-09-07`.
-The frontend child is committed locally as `c18cf5b51`; workspace and backend
-changes remain uncommitted because the backend pre-commit ratchet is blocked by
-the pre-existing repository-wide broad-exception count. Nothing is published.
-Remote Actions and required-check repairs are already applied; local
-instruction/tooling adoption and end-to-end rollout are not complete. Research
-observations above remain dated.
+The workspace reliability package is committed locally as `8eb5cde`; the
+frontend child is committed locally as `c18cf5b51`. The backend changes remain
+staged but uncommitted because its pre-commit ratchet is blocked by the
+pre-existing repository-wide broad-exception count. This report update is part
+of the follow-up workspace packaging commit. Nothing is published. Remote
+Actions and required-check repairs are already applied; local instruction/tooling
+adoption and end-to-end rollout are not complete. Research observations above
+remain dated.
 
 Bases: workspace `449c048417858eb2762998a2578e14562ef26919`, backend
 `0c1f1f3258629001890889c9336ce9bd78452032`, app
