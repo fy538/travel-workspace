@@ -257,6 +257,54 @@ therefore remain unchanged pending deliberate phase-level extraction and
 equivalence tests. No backend commit is eligible yet because the full-tree
 size gate still fails; the staged package remains isolated and unlanded.
 
+### Integration residual fixture/contract package — September 8
+
+Integration kept the backend residual work in the isolated worktree
+`/Users/feihuyan/travel-workspace--mobile-baseline-repair-2026-09-07/travel-agent`
+and did not touch Meta-owned source or the canonical runtime. The package is
+test-only and is committed there as `a1c841181`
+(`test: make backend residual fixtures self-contained`). It repairs only
+fixtures whose assumptions drifted from the current contracts:
+
+* proposal/confirmation dates no longer depend on past August 2026 dates;
+* trip-save suggestions, provisional places, and inbound text/audio/image
+  cases create their own catalog rows and clean them up;
+* context-loader profiles carry explicit privacy-source identity and revision;
+* save-root assertions compare the serialized UTC representation at the API
+  boundary;
+* local-occasion closure resolves the venue timezone instead of treating
+  Lisbon as UTC;
+* group booking receipts assert the current audience contract (provider-proof
+  availability without controller-only confirmation details);
+* leave-by stubbing patches the route-fact seam actually used by the
+  dispatcher;
+* relationship persistence supplies a valid custody receipt for a verified
+  intake source, preserving the database check constraint; and
+* the Brooklyn Home certifier was exercised against a disposable, canonical
+  dogfood seed (no certifier write path was changed).
+
+Evidence from the isolated migrated database (Postgres `63610`, Qdrant
+`63611`): **79 passed, 1 warning** across the exact residual suite. Ruff,
+format, and `git diff --check` pass; the normal backend commit hooks also pass.
+The one warning is the existing optional Nomic acceleration warning from an
+image-pipeline test. The disposable seed and catalog were not committed.
+
+Meta's isolated staged tree is still the prerequisite owner for the measured
+size extraction and the seven canonical backend failures. Its latest receipt
+is **145 staged paths** at the same base, with `session.py` and
+`conversations.py` now below the budget; the only measured size offenders
+remaining there are `experience_graph/commands.py` and
+`concierge/_prompts_skills.py`. It is still dirty and uncommitted, so this
+Integration commit is not a signal to land either package on canonical
+`main`.
+
+The disposable Compose project, volumes, network, temporary override, and
+lane venv symlink are removed after this validation. No remote push,
+deployment, provider activation, generated contract sync, or shared-daemon
+restart occurred. The next receiving order remains: Meta's hook-verified
+commit, the seven canonical failures, then this committed residual package
+and the combined mandatory checks.
+
 ## Landed
 
 ### Retained Opening context is an exact Moment dependency
