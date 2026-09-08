@@ -14,7 +14,7 @@ MONO="font-family: 'JetBrains Mono', ui-monospace, monospace;"; SERIF="font-fami
 CHEV = '<svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="flex: none;"><path d="M4.5 2.5L9 6.5L4.5 10.5" stroke="#B5AFA5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 ARROW = lambda c=GOLDD: f'<svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="margin-left: 6px;"><path d="M2 6.5H10M6.5 3L10 6.5L6.5 10" stroke="{c}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 HATCH = 'repeating-linear-gradient(135deg, rgba(176,133,58,0.12) 0 6px, rgba(176,133,58,0.04) 6px 12px)'
-LB = f'font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="0.8" fill="{ANCHOR}"'
+LB = f'font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="0.8" fill="{MUTE}"'
 LG = f'font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" letter-spacing="0.8" fill="{GOLDD}"'
 LK = f'font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" letter-spacing="0.8" fill="{INK}"'
 
@@ -25,23 +25,23 @@ class Col:
         self.open = html[self.ph:html.find('>', self.ph)+1]; self.inner = html[html.find('>', self.ph)+1:]
         self.sects = sects; self.pos = {k: self._sect_pos(k) for k in sects}
         self.doors_at = self.inner.find('<div style="padding: 30px 22px 0 22px;">', self.pos[sects[-1]]); self.tab_at = self.inner.find('<div style="flex-grow: 1;"></div>')
-        self.top = self.inner[:self.inner.find('<div style="padding: 20px 22px 0 22px;">')]; self.doors = self.inner[self.doors_at:self.tab_at]
+        self.top = self.inner[:self.inner.find('<div style="padding: 20px 22px 0 22px;">')].replace('<span class="fn" style="margin-left: auto;">', '<span class="fn" style="margin-left: auto; color: #6E6862;">'); self.doors = self.inner[self.doors_at:self.tab_at].replace('min-height: 44px;', 'min-height: 40px;')
     def _sect_pos(self, label):
         m = self.inner.find(f'letter-spacing: 0.1px; color: #1B1714;">{label}</span>'); assert m > 0, label
         return self.inner.rfind('<div style="padding: 40px 22px 0 22px;">', 0, m)
     def section(self, label):
         i = self.sects.index(label); a = self.pos[label]; b = self.pos[self.sects[i+1]] if i+1 < len(self.sects) else self.doors_at
-        return self.inner[a:b]
+        return self.inner[a:b].replace('<div style="padding: 40px 22px 0 22px;">', '<div style="padding: 36px 22px 0 22px;">', 1).replace('color: #8F877C;', 'color: #6E6862;').replace('min-height: 44px;"><span style="font-size: 13px; font-weight: 500;', 'min-height: 40px;"><span style="font-size: 13px; font-weight: 500;')
 POP = Col(parity, ['From friends', 'Any day', 'Red Hook, by ferry', 'Saturday evening', 'Worth understanding', 'Seen up close', 'Sunday', 'Saturday morning, downtown'])
 COLD = Col(S('col_cold_only.html'), ['Any day', 'Red Hook, by ferry', 'Saturday evening', 'Worth understanding', 'Sunday', 'Saturday morning, downtown'])
 CAP_TPL = POP.cap; PHONE_OPEN = POP.open
 def section(label, col=None): return (col or POP).section(label)
-def sect(t): return f'<div style="padding: 40px 22px 0 22px;"><div style="display: flex; align-items: center; gap: 12px; padding-bottom: 10px;"><span style="font-size: 13px; font-weight: 600; letter-spacing: 0.1px; color: {INK};">{t}</span><span style="flex: 1; height: 1px; background: rgba(27,23,20,0.12);"></span></div></div>'
+def sect(t): return f'<div style="padding: 36px 22px 0 22px;"><div style="display: flex; align-items: center; gap: 12px; padding-bottom: 10px;"><span style="font-size: 13px; font-weight: 600; letter-spacing: 0.1px; color: {INK};">{t}</span><span style="flex: 1; height: 1px; background: rgba(27,23,20,0.12);"></span></div></div>'
 def gut(h, top=0): return f'<div style="padding: {top}px 22px 0 22px;">{h}</div>'
 def kick(t): return f'<div style="display: flex; align-items: center; gap: 10px; {MONO} font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: {GOLDD};"><span>{t}</span><span style="flex:1;height:1px;background:rgba(27,23,20,0.10);"></span></div>'
 def serifline(t, size=18, lh=25): return f'<div style="{SERIF} font-size: {size}px; line-height: {lh}px; color: {INK};">{t}</div>'
-def fn(t, top=4): return f'<div class="fn" style="margin-top: {top}px; color: {ANCHOR};">{t}</div>'
-def door(t, c=GOLDD, top=2): return f'<div style="display: flex; align-items: center; margin-top: {top}px; min-height: 44px;"><span style="font-size: 13px; font-weight: 500; color: {c};">{t}</span>{ARROW(c)}</div>'
+def fn(t, top=4): return f'<div class="fn" style="margin-top: {top}px; color: {MUTE};">{t}</div>'
+def door(t, c=GOLDD, top=2): return f'<div style="display: flex; align-items: center; margin-top: {top}px; min-height: 40px;"><span style="font-size: 13px; font-weight: 500; color: {c};">{t}</span>{ARROW(c)}</div>'
 def doors(*ts): return '<div style="display: flex; gap: 18px; align-items: center;">' + ''.join(door(t, c) for t, c in ts) + '</div>'
 
 # ── instruments, at phone width (349) ──
@@ -55,7 +55,7 @@ def daylight_arc(populated=True):
             f'<text x="4" y="82" {LB}>6:31 SUNRISE</text><text x="339" y="82" text-anchor="end" {LG}>{pier}</text></svg>')
 def film_bar():
     """After dark: the film as a dark bar on the same baseline, with its own label; a second row so it never sits on the arc."""
-    return (f'<svg width="349" height="30" viewBox="0 0 349 30" fill="none" style="display: block; width: 100%; height: auto;">'
+    return (f'<svg width="349" height="30" viewBox="0 0 349 30" fill="none" style="display: block; width: 100%; height: auto; margin-top: 8px;">'
             f'<rect x="2" y="9" width="345" height="4" rx="2" fill="rgba(27,23,20,0.07)"/><rect x="250" y="5" width="60" height="12" rx="6" fill="{INK}" opacity="0.8"/>'
             f'<text x="250" y="29" {LK}>8:30 THE FILM</text><text x="4" y="29" {LB}>AFTER DARK · THE LAWN, 9 MIN ON</text></svg>')
 def tide_curve():
@@ -102,7 +102,7 @@ def lead_composition(populated=True):
         inner_ += f'<div style="margin-top: 8px;">{doors(("Saturday&rsquo;s film", GOLDD))}</div>'
     return f'<div style="display: flex; flex-direction: column;">{inner_}</div>'
 def shelf_item(name, line, chip):
-    plate = f'<div style="height: 96px; border-radius: 12px; position: relative; background: {HATCH};"><span style="position: absolute; left: 10px; top: 9px; {MONO} font-size: 10px; font-weight: 700; letter-spacing: 0.9px; color: {GOLDD};">PHOTO · TO BE SOURCED</span></div>'
+    plate = f'<div style="height: 84px; border-radius: 12px; position: relative; background: {HATCH};"><span style="position: absolute; left: 10px; top: 9px; {MONO} font-size: 10px; font-weight: 700; letter-spacing: 0.9px; color: {GOLDD};">PHOTO · TO BE SOURCED</span></div>'
     return (f'<div>{plate}<div style="font-size: 15px; font-weight: 600; letter-spacing: -0.2px; line-height: 19px; margin-top: 7px;">{name}</div><div style="font-size: 12.5px; line-height: 17px; color: {MUTE};">{line}</div>'
             f'<span style="display: inline-block; {MONO} font-size: 10px; font-weight: 700; letter-spacing: 0.9px; color: {GOLDD}; border: 1px solid rgba(138,102,40,0.4); border-radius: 999px; padding: 2.5px 7px; margin-top: 6px;">{chip}</span></div>')
 def browse_shelf():
@@ -110,11 +110,11 @@ def browse_shelf():
              ('The reading room at the branch library', 'Long tables, lamps, quiet', 'NO ONE ASKING'), ('The long table at the caf&eacute;', 'One communal table', 'ROOM FOR STRANGERS'),
              ('The waterfront loop', 'Five kilometres, flat', 'SHADED AFTER 2'), ('The old ferry waiting room', 'Benches, the harbor', 'USUALLY NOBODY')]
     grid = '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px 11px;">' + ''.join(shelf_item(*it) for it in items) + '</div>'
-    return f'<div style="display: flex; flex-direction: column; gap: 10px;">{kick("ANY DAY · SIX PLACES")}{grid}</div>'
+    return f'<div style="display: flex; flex-direction: column; gap: 10px;">{grid}</div>'
 def redhook(col=None):
     sec = section('Red Hook, by ferry', col)
     a = sec.find('<div style="border-radius: 14px; overflow: hidden;">'); b = sec.find('</svg></div>', a) + len('</svg></div>')
-    mapdiv = sec[a:b]
+    mapdiv = sec[a:b].replace('border-radius: 14px; overflow: hidden;', 'border-radius: 12px; overflow: hidden;', 1)
     rows_start = sec.find('<div>', b); rows = sec[rows_start:]                       # the numbered places and the walk line, as parity drew them
     fact = sec[sec.find('<div style="display: flex; flex-direction: column; gap: 3px', b):rows_start]
     return sect('Red Hook, by ferry') + gut(mapdiv + burden_strip() + f'<div style="margin-top: 4px;">{rows}</div>')
@@ -124,7 +124,7 @@ def evening(col=None):
 def understanding(col=None):
     sec = section('Worth understanding', col)
     svg_a = sec.find('<svg', sec.find('CREEK BED') - 3000); svg_b = sec.find('</svg>', sec.find('CREEK BED')) + 6; floods = sec[svg_a:svg_b]
-    floods = re.sub(r'^<svg', '<svg style="position: absolute; left: 0; top: -44px; width: 100%; height: auto;"', floods, count=1)
+    floods = re.sub(r'^<svg', '<svg style="position: absolute; left: 0; top: -44px; width: 100%; height: auto;"', floods, count=1).replace('>THE PIER &#183; CREEK BED<', '>PIER &#183; CREEK BED<').replace('x="28" y="121"', 'x="22" y="121"')
     cover = (f'<div style="height: 186px; border-radius: 12px; overflow: hidden; position: relative; background: {WASH};">{floods}'
              f'<div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(27,23,20,0) 42%, rgba(27,23,20,0.70) 100%);"></div>'
              f'<div style="position: absolute; left: 15px; right: 15px; bottom: 13px;"><div style="{MONO} font-weight: 700; font-size: 10px; letter-spacing: 1.2px; color: #F2E6CC;">READING · 4 MIN</div>'
@@ -134,7 +134,7 @@ def understanding(col=None):
 
 def v3(populated=True):
     col = POP if populated else COLD
-    body = col.top + gut(lead_composition(populated), top=20)
+    body = col.top + gut(lead_composition(populated), top=26)
     if populated: body += section('From friends')
     body += sect('Any day') + gut(browse_shelf())
     body += redhook(col) + evening(col) + understanding(col)

@@ -4,14 +4,14 @@ from kinds import *
 PRIYA_ROOM = 'The back room to myself for an hour.'
 def page(state='populated'):
     pop = state != 'cold'; changed = state == 'changed'
-    inner = anchor('THE PRINT ROOM', 'FRI 5:42 PM' if not changed else 'SAT 9:10 AM', back=True, sub='The Harbor Print Room · Red Hook')
+    inner = anchor('THE PRINT ROOM', 'FRI 5:42 PM' if not changed else 'SAT 9:10 AM', back=True, sub='Red Hook')
     inner += orientation('Rooms Remade, through Sunday. Open till 6.' if not changed else 'Closed today. Rooms Remade runs to Sunday.', 'Van Brunt Street · nine minutes from the ferry landing · ' + ('kept, from Maya&rsquo;s share' if pop else 'not kept'), 26, 31)
-    inner += gut(identity_map(150), top=16)
-    inner += gut(photo_plate(160), top=10)
+    inner += gut(photo_plate(150), top=16)
+    inner += gut(identity_map(120), top=10)
     # verdict and its basis
     if changed: inner += gut(verdict('Sunday, then: the last day of the rooms upstairs, and the crossing on a Sunday morning.', 'CLOSED TODAY, POSTED 8:40 · SUNDAY UNCHANGED · TICKETING UNCONFIRMED'), top=18)
-    elif pop: inner += gut(verdict('Go on a weekday for the side room; Saturday for the crossing itself.', 'MAYA&rsquo;S NOTE, THURSDAY · PRIYA&rsquo;S, A RAINY TUESDAY · HOURS FROM THE WORKSHOP&rsquo;S LISTING · TICKETING UNCONFIRMED'), top=18)
-    else: inner += gut(verdict('A print workshop with the exhibition upstairs; the crossing is half the visit.', 'HOURS FROM THE WORKSHOP&rsquo;S LISTING · TICKETING UNCONFIRMED · NO ONE YOU KNOW HAS BEEN'), top=18)
+    elif pop: inner += gut(verdict('Go on a weekday for the side room; Saturday for the crossing itself.', 'MAYA AND PRIYA · HOURS FROM THE LISTING · TICKETING UNCONFIRMED'), top=18)
+    else: inner += gut(verdict('A print workshop with the exhibition upstairs; the crossing is half the visit.', 'HOURS FROM THE LISTING · TICKETING UNCONFIRMED · NO ONE YOU KNOW HAS BEEN'), top=18)
     # hours register
     rows = [('HOURS', 'Tue–Sun 11–6' if not changed else 'Closed Saturday 8 · Tue–Sun 11–6 otherwise'), ('THE EXHIBITION', 'Rooms Remade, in the two upstairs rooms, to Sunday'), ('TICKETS', 'Not confirmed either way')]
     inner += sect('Hours and the exhibition') + gut(hours_register(rows, change='Closed today for a private event; posted this morning on the workshop&rsquo;s own listing. Sunday is unchanged.' if changed else None))
@@ -19,14 +19,14 @@ def page(state='populated'):
     if pop:
         inner += sect('From Maya and Priya') + gut(plural_comparison((('M', 'Maya', 'THURSDAY'), 'THE SIDE ROOM', MAYA_ROOM), (('P', 'Priya', 'A RAINY TUESDAY'), 'THE BACK ROOM', PRIYA_ROOM)))
         inner += gut(door('Reply to Maya') + door('Ask Vesper privately', MUTE), top=8)
-        inner += gut(relationship_trace('Kept Tuesday, from Maya&rsquo;s share; not visited.', 'YOUR TRACE HERE · ONE KEPT PLACE · NO CONFIRMED VISIT'), top=18)
+        inner += gut(relationship_trace('Kept Tuesday, from Maya&rsquo;s share; not visited.', 'ONE KEPT PLACE · NO VISIT'), top=18)
     else:
-        inner += gut(relationship_trace('Not kept, not visited.', 'YOUR TRACE HERE · NOTHING YET'), top=18)
+        inner += gut(relationship_trace('Not kept, not visited.', 'NOTHING YET'), top=18)
     # getting there
     inner += sect('Getting there') + gut(burden_strip('TO PIER 11', 'THE FERRY · 25 MIN · EVERY 40', '9 MIN ON FOOT', '~40') + horizon_doors([('ACCESS', 'The ferry against the B61: what each asks of the afternoon'), ('AROUND', 'The pier and the pool, from the landing')]))
     inner += gut(burden_receipt('WHAT THE CROSSING ASKS', 'ON FOOT', '9 minutes from the landing, level, exposed along the water'), top=14)
     # path: evidence, consequence
-    inner += sect('Why Saturday, and what it changes') + gut(evidence_apparatus('WHY VESPER THINKS THIS', ['Rooms Remade closes Sunday; Saturday is the last day the crossing and the exhibition line up', 'The workshop closes at 6; a 2:00 ferry leaves two hours upstairs and the walk', 'Maya and Priya both went on weekdays, for the empty rooms']) if not changed else evidence_apparatus('WHY THIS CHANGED', ['Closed today, posted this morning', 'Sunday is the last day of Rooms Remade and is unchanged', 'The crossing itself is untouched']))
+    inner += gut('<div style="height: 36px;"></div>' + evidence_apparatus('WHY VESPER THINKS THIS', ['Rooms Remade closes Sunday; Saturday is the last day the crossing and the exhibition line up', 'The workshop closes at 6; a 2:00 ferry leaves two hours upstairs and the walk', 'Maya and Priya both went on weekdays, for the empty rooms']) if not changed else evidence_apparatus('WHY THIS CHANGED', ['Closed today, posted this morning', 'Sunday is the last day of Rooms Remade and is unchanged', 'The crossing itself is untouched']))
     inner += gut(consequence('WHAT THIS CHANGES SATURDAY', 'The Print Room by 2:30, the crossing back at 5:10; the pier at sunset is another neighborhood, and Red Hook to Sunset Park after 6 isn&rsquo;t listed here yet.' if not changed else 'Saturday in Red Hook is the pier, the pool and the counter; the Print Room moves to Sunday, its last day.'), top=18)
     # live posture and fallback
     inner += sect('Today') + gut(temporal_posture('HOLD' if not changed else 'ACT NOW', 'Nothing needs booking. The ferry is every 40 minutes; the workshop holds no times.' if not changed else 'Sunday is the last day; the 11:20 ferry puts you upstairs by noon.', 'NOTHING TO CONFIRM' if not changed else 'SUNDAY, THE LAST DAY'))

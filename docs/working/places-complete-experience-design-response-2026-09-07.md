@@ -305,3 +305,19 @@ Board 07 renders every piece the seven boards use, once, at phone width, from th
 **Left out, with the reason.** Candidate set, candidate rows and "Add to day" served the plan surface retired with the Home pivot, and adding to a day is a mechanism. The stage and the arrangement registers are Plan's and Home's; Places shows one arrangement as a strip and a readback. The lag register is Home's job. Relational relevance is doctrine inside the phone. Search and map as a toolbar contradict the quiet question line. The live instrument as a sequence duplicates the rail.
 
 **08, The Page.** The Harbor Print Room opened from the field, in three states: populated, cold, and after a change (closed Saturday for a private event, posted that morning). Order: identity from the seed, the identity map, the photo slot, the verdict and its basis, the hours register, Maya and Priya side by side, the trace, the crossing with horizon doors and the burden receipt, why and what it changes, the posture and the fallback, what is near, the doors. Behaviour follows the object-page canon: photo or nothing; identity from the seed, never an opinion; Read up as an explicit door; people as their own lines; the relationship as a readback. Open: whether a page needs both a verdict and an evidence list; pending and unavailable states for a page. Interaction untested.
+
+## 25. The aesthetic pass (September 8)
+
+Read from full-size crops of 01 and 08, fragment by fragment, and applied to the kit so every board carries it.
+
+| Fragment as drawn | The reason | Redrawn |
+| --- | --- | --- |
+| Mono fact lines, the anchor time, the instrument labels in anchor grey (#8F877C) | The earlier finisher rule: no words below 4.5:1 on paper; anchor and ghost greys are for hairlines, not text | All of them in mute (#6E6862); ghost stays for the composer's placeholder only |
+| Sections at 40 above, doors 44 tall, rows 10 padded | Units ended at different heights, so the gap above each section read as uneven | Sections 36 above, doors 40 tall; the rhythm is one value again |
+| "Any day" with a section header and a kick saying the same | Two labels for one section | The kick goes; kicks appear only where there is no section header, as on the opening |
+| The opening's kick 20 under the question line; the film bar directly under the arc's labels | Two hairlines stacked; two label rows in 26 pixels | 26 above the opening; 8 above the film bar |
+| The map at 14 radius among 12 plates; shelf plates at 96 with six labels | One odd corner; the shelf weighed more than its rows | The map at 12; plates at 84 |
+| The cover's diagram label crossing the sill line | Two marks on one spot | The label shortened and moved left of the line |
+| The page: the map then the photo, two blocks stacked; a three-line basis; three headers in a row | The top of the page was two plates deep before a word; the basis was a paragraph in mono; a section title over two kicks | Photo first at 150, the map at 120; the basis one line; the section title removed, the kicks kept |
+
+Not changed, deliberately: Home's card with its shadow on Maya's note, the serif and sans sizes, the people rows at 15, the chips, the door pair on one line. Each was checked against Home's scroll and matched it.
