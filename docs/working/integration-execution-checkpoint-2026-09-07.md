@@ -569,3 +569,51 @@ connected failures above are not reclassified as green, and the one offline
 failure is not silently swallowed. The disposable Compose project was stopped
 and removed after evidence collection. The reviewed candidate is landed locally;
 no additional feature work is authorized by this receiving round.
+
+## Residual baseline-repair package — September 8
+
+The four residuals from the preceding receiving run were repaired on canonical
+backend `main` and landed locally at `78ea8a05f` (`fix: close residual
+integration test boundaries`). The package is intentionally narrow: it fixes a
+real read-pointer race and repairs three test contracts without changing the
+feature surface, baselines, hooks, or coverage policy.
+
+### Repairs
+
+* `mark_as_read` now serializes each `(conversation_id, user_id)` pair with a
+  transaction-scoped PostgreSQL advisory lock, reads the marker under
+  `FOR UPDATE`, and applies the monotonic message/timestamp comparison before
+  updating or inserting. The previous scalar subquery was not safely correlated
+  to the conflict target and produced PostgreSQL `CardinalityViolation` under
+  concurrent writers (`more than one row returned by a subquery used as an
+  expression`).
+* The cross-trip subscriber test drains only the subscriber-owned background
+  task set; it no longer gathers unrelated event-loop tasks that can feed a
+  `MagicMock` into the local embedding model.
+* The Brooklyn runtime certifier test creates and removes only its exact
+  `elif@dogfood.local` user and `paulie-gees-greenpoint` venue when a disposable
+  database does not already contain the canonical seed.
+* J08 seeds an explicit Tokyo-local date/instant and is parametrized on both
+  sides of the UTC/local-midnight boundary.
+
+### Evidence on the landed tree
+
+* Full offline suite (required exclusions: `not requires_postgres`, `not
+  requires_dogfood_wedge`, `not requires_api_keys`): **21,322 passed / 14
+  skipped / 1,423 deselected / 53 xpassed / 6 warnings** in 199.07s.
+* Full serial connected suite against a fresh disposable Compose project
+  (`vesper-residual-20260908`, Postgres `54772`, Qdrant REST `54773`, Qdrant
+  gRPC `54774`, migration head `lifeorgpipelinemerge01`): **1,369 passed / 23
+  skipped / 21,420 deselected / 1 warning** in 239.29s.
+* Focused residual checks: cross-trip subscriber **9 passed**; full read-state
+  file **11 passed**; read-pointer concurrency **10/10 repeated passes**;
+  retained-source projector **10/10 repeated passes** plus **5/5** sibling-order
+  rounds; Brooklyn plus both J08 rollover cases **3 passed**.
+* Commit-stage hooks and `git diff --check` passed. The final tested backend
+  tree is exactly the landed `main` tree at `78ea8a05f`; its worktree is clean.
+
+This closes the delegated residual package. The repository-wide mypy baseline
+remains a separate **262 errors across 62 files** and was not broadened into
+this repair. No remote push, deploy, provider activation, feature flag change,
+or shared-daemon restart occurred. The disposable Compose project was removed
+after the connected run.

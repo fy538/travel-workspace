@@ -614,5 +614,41 @@
     "runtime": "disposable Compose project stopped and removed after evidence",
     "no_push_deploy_activation_or_bypass": true,
     "status": "landed_locally; bounded offline and connected debt explicitly retained"
+  },
+  "residual_baseline_repair_2026_09_08": {
+    "backend_commit": "78ea8a05f",
+    "backend_commit_message": "fix: close residual integration test boundaries",
+    "scope": [
+      "serialize message read-pointer updates per conversation/user pair",
+      "isolate cross-trip subscriber-owned background tasks",
+      "self-seed the Brooklyn runtime contract in disposable Postgres",
+      "make J08 deterministic across the Tokyo local-midnight boundary"
+    ],
+    "offline_command": "PYTHONPATH=. .venv/bin/python -m pytest tests/ -q -m 'not requires_postgres and not requires_dogfood_wedge and not requires_api_keys' --tb=short --durations=20",
+    "offline_suite": "21322 passed / 14 skipped / 1423 deselected / 53 xpassed / 6 warnings in 199.07s",
+    "connected_command": "TEST_DATABASE_URL=postgresql://vesper:localdev@localhost:54772/vesper TEST_DATABASE_DISPOSABLE=1 DATABASE_URL=postgresql://vesper:localdev@localhost:54772/vesper QDRANT_URL=http://localhost:54773 PYTHONPATH=. .venv/bin/python -m pytest tests/ -q -m requires_postgres --tb=short --durations=20",
+    "connected_suite": "1369 passed / 23 skipped / 21420 deselected / 1 warning in 239.29s",
+    "runtime": {
+      "compose_project": "vesper-residual-20260908",
+      "postgres_host_port": 54772,
+      "qdrant_rest_host_port": 54773,
+      "qdrant_grpc_host_port": 54774,
+      "migration_head": "lifeorgpipelinemerge01",
+      "database": "disposable only"
+    },
+    "focused_evidence": {
+      "cross_trip_subscriber": "9 passed",
+      "read_state_file": "11 passed",
+      "read_pointer_repeated": "10/10 passes",
+      "retained_projector_repeated": "10/10 passes",
+      "retained_projector_sibling_order": "5/5 rounds passed",
+      "brooklyn_and_j08": "3 passed"
+    },
+    "root_cause_fixed": "The prior read-pointer CardinalityViolation came from an uncorrelated scalar subquery inside ON CONFLICT DO UPDATE; advisory-lock serialization plus an explicit locked read/update path now protects the pair.",
+    "tested_tree_equals_landed_backend_main": true,
+    "mypy": "262 baseline errors across 62 files; separate and unchanged",
+    "no_push_deploy_activation_or_shared_restart": true,
+    "runtime_removed_after_evidence": true,
+    "status": "residual_package_green; repository-wide typing baseline remains separate"
   }
 }
