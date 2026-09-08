@@ -938,3 +938,22 @@ passed (566 active, 15 dark, 62 retiring)
 These checks prove the current code and contract remain internally consistent;
 they do not substitute for the missing Content supplier output or the anchor
 owner/revision authority decision.
+
+## Home addressed-human receiving landing — September 8
+
+The Home lane supplied and Integration reviewed a separate, already-supported
+source family: an addressed human Place contribution. This does **not** close
+the no-Trip Content dependency and does not authorize casual social feed
+behavior.
+
+| Repository | Revision | Evidence |
+| --- | --- | --- |
+| `travel-agent` | `81058e219` (supplier `52133029e`) | Real `compose_home_root_v2` path proves recipient authority, owner-read admission, exact sender message/attribution, canonical venue first, and handoff provenance second. |
+| `travel-app` | `12cc59a51` (supplier `ed4dc678b`) | Real `HomeRootV2Screen` consumer renders the exact copy and invokes the typed `places.open_entity` destination. |
+| Workspace | `9998023` (supplier `fe984df`) | Existing Home implementation map records the evidence level and preserves the remaining Content/continuity boundaries. |
+
+Focused evidence after local landing: backend Home portfolio/practical
+selection **48 passed**, the new attributed-note proof **1 passed**, and the
+Home screen suite **9 passed**. App typecheck passed. Native/visual acceptance
+and populated production handoffs remain unrun. No API/OpenAPI/schema,
+Chat/Life layout, booking flow, provider call, or production flag changed.
