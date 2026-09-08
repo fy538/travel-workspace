@@ -89,8 +89,11 @@ architecture or broad visual exploration only when observed failures justify it.
 
 ## 4. Current package register
 
-One accountable task per package. All listed next packages are recommendations,
-not running assignments. Contributors do not acquire a second queue for the same
+One accountable task per package. On September 8, the founder approved the next
+round and Strategy dispatched one consolidated assignment each to Integration,
+Home, Life and Social, using Luna with xhigh reasoning. Social's assignment is
+decision preparation, not adoption or new policy implementation. Other suppliers
+remain on demand. Contributors do not acquire a second queue for the same
 behavior. Lane queues own file-level steps; this register owns priority and handoff.
 
 | Accountable task / plan | Current package and observed stage | Receiver / exact dependency | Next handoff or checkpoint |
@@ -158,7 +161,14 @@ receiving test and affected package—not “blocked on Life/Content/Social.”
   bottleneck and what to continue/change/stop. Replace stale current statements;
   preserve dated evidence in existing receipts, not another appendix here.
 
-## 7. Next coordinated packages — recommended, not dispatched
+## 7. Current coordinated packages — dispatched September 8
+
+All four assignment messages were accepted by their existing tasks. This records
+dispatch, not completion or acceptance of their future outputs. Integration owns
+the gate repair and combined landing; Home and Life own the implementation
+packages below; Social owns the bounded decision packet. Strategy reviews the
+first connected checkpoint and consequential decisions. No supplier-wide restart,
+production activation or automatic monitoring was authorized by this dispatch.
 
 The code-and-receipt review finds incomplete receiving, not a reason for another
 architecture rewrite. Two concrete boundaries set the next order:
