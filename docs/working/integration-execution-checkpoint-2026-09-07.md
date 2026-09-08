@@ -918,3 +918,23 @@ anchor delivery**, not a missing renderer or a Life projection bug.
 3. Re-run the combined focused Home/Life tuple only after both inputs exist;
    keep Source worker activation, native/visual acceptance, provider calls and
    social writes as separate gates.
+
+### Verification boundary for this checkpoint
+
+The receiving checks run after the documentation update, without starting a
+service or calling a provider:
+
+```text
+travel-agent: Home portfolio + practical root delivery + offline Life selection
+306 passed, 42 deselected
+travel-app: npm run typecheck
+passed
+workspace: make docs-check
+passed (403 child documents checked)
+workspace: make api-coverage-check
+passed (566 active, 15 dark, 62 retiring)
+```
+
+These checks prove the current code and contract remain internally consistent;
+they do not substitute for the missing Content supplier output or the anchor
+owner/revision authority decision.
