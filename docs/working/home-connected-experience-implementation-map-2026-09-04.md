@@ -1449,3 +1449,43 @@ coverage, a live provider pipeline, or an always-available no-Trip feed: Content
 must still supply populated eligible records for real users. The ordinary Home
 lane now has an honest substantive path when such a record exists, and remains
 silent when the supported context or source is absent.
+consumer both preserve substance and continuation. It does not close the
+upstream Content dependency for sparse no-Trip ordinary possibilities, and it
+does not move casual friend/place browse out of Places. No shared schema,
+OpenAPI, Chat/Life layout, booking flow, or production activation changed.
+
+**Implementation receipt — September 8 Content quality and exact Place-area
+receiving checkpoint:** Content supplied a conservative, source-backed public
+Place specimen and Home verified the consumer path against the actual read
+renderer. This is a distinct receiving correction after the earlier Content
+adapter package; it does not repeat or replace the producer work.
+
+| Producing owner | Supported scope | Production mode | Payload / renderer | Exact destination / action | Revision / expiry / repair | Evidence |
+| --- | --- | --- | --- | --- | --- | --- |
+| Content accepted public Place primitive → Home substantive read | Accepted, grounded, public `PlaceContentPrimitiveRecord` rows already eligible for Home/Places; reviewed Pier 57 specimens cover a practical alternative and a bounded historical explanation | Deterministic read of the existing Content owner; no GET-time acquisition, provider/model call, universal index, or Home-owned generator. Quality signals are conservative: no personal novelty without an authorized known-claim window; evidence/yield follow the source observations | Content backend adapter emits `HORIZON_EDITORIAL_PASSAGE` / `RootRead` with claim, interpretation, and evidence basis. Home `GenericBody` renders all three fields as complete-on-view value; no input request is required | `places.open_entity` preserves the exact `place` subject and `place_content_primitive` source ref. Home now opens the Places area reader at `/place/[placeSlug]` with Home-depth route family, context handle when present, and the short root return token, rather than falling back to the generic Places root | Content source revision and `valid_until` remain authoritative; Home's bounded read expiry still applies. Withdrawal/expiry must remove dependent display. Return registry keeps the exact destination/source refs for recomposition; the source URL is evidence, not a current-availability claim | Content backend `472250bd2` (quality signals/specimens; not part of this Home lane) plus workspace receipt `bb549af3`; Content packet reports **96 backend tests passed** including sparse/rich, known/repeated/weak-yield, and both Pier 57 specimens. Home app `70453a0bd` adds exact `place`/`neighborhood` routing and a real-screen test; **44 app tests passed** across navigation and Home screen, `tsc --noEmit --pretty false` passed. Fixtures are authored/source-researched, not populated production; no native/provider/production activation claim |
+
+The actual authored specimen is intentionally bounded rather than a generic
+“waterfront” label:
+
+```text
+Pier 57 offers two public settings for a waterfront catch-up: a nearly
+two-acre rooftop park and an indoor Living Room.
+
+The same address can support two kinds of catch-up: open-air views on the roof,
+or seated indoor gathering in the Living Room.
+
+Basis: rooftop hours and indoor seating/views are source-stated; check current
+access and hours.
+```
+
+This is useful on sparse Home because it delivers a practical alternative and
+an explanation without asking the person to add an artifact or answer a prompt.
+The app test checks the visible claim, interpretation and basis rather than
+only a metadata label, then presses the typed destination and asserts the
+exact Place/source-bearing destination object. It does not prove a live
+provider row, current crowding/seating, a friend's preference, or native visual
+acceptance. A Trip-shaped context alone remains sparse-equivalent; only an
+explicit producer-named current-purpose fit may raise ranking/relevance. Until
+Integration lands `472250bd2` and its receipt, the canonical backend baseline
+remains `74d5c614b`; the Home consumer commit is independently reviewable and
+does not change the backend schema or Content producer.
