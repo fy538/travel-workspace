@@ -329,5 +329,97 @@
     "Reconcile concurrent canonical roadmap/inventory changes before landing; do not overwrite the Strategy task."
   ],
   "retention": "Raw logs/build outputs/backups are local temporary artifacts, not guaranteed durable. Log hashes identify evidence but do not make missing logs reconstructible.",
-  "productivity_claim": null
+  "productivity_claim": null,
+  "bounded_backend_closeout_2026_09_08": {
+    "status": "blocked_at_repository_commit_gate; staged package preserved; no bypass",
+    "base_revision": "afe177b33d25dc3563c362de4ff6e3a47b1a8354",
+    "worktree": "/Users/feihuyan/travel-workspace-engineering-reliability-2026-09-07/travel-agent",
+    "branch": "codex/engineering-reliability-2026-09-07",
+    "staged_paths": 128,
+    "staged_path_manifest_sha256": "ce0bf1606d2b3bb077d2758dab3bea377c6ee2898b7a6b3c8a77199422650ab6",
+    "unstaged_paths": 0,
+    "repair_paths": [
+      "backend/core/trip_kind_events.py",
+      "backend/preference_engine/edit_inference.py",
+      "backend/ingestion/registry.py",
+      "backend/core/vector/experience_briefs_search.py",
+      "backend/research_agent/tasks/experience_brief_embedding.py",
+      "backend/domains/experience_graph/outcome_life_propagation.py",
+      "tools/eval/plugins/life_refinding/runner.py"
+    ],
+    "passed": [
+      {
+        "command": "PYTHONPATH=. python scripts/check_broad_exceptions.py --ci",
+        "result": "1190 handlers; ceiling 1190"
+      },
+      {
+        "command": "PYTHONPATH=. python scripts/check_itinerary_writer_boundary.py --ci",
+        "result": "OK; 151 sites"
+      },
+      {
+        "command": "PATH=\"$PWD/.venv/bin:$PATH\" PYTHONPATH=. python -m pytest tests/scripts/test_engineering_checks.py tests/dogfood/test_deploy_config.py tests/domains/experience_graph/test_outcome_life_producers.py tests/api/test_concierge_home.py tests/api/test_trips_api.py -q --tb=short",
+        "result": "241 passed, 9 skipped"
+      },
+      {
+        "command": "git diff --check",
+        "result": "passed"
+      },
+      {
+        "command": "pre-commit commit-stage subset",
+        "result": "detect-secrets, import boundaries, lazy imports, module-state, client timeouts, broad ratchet, and other applicable checks passed"
+      }
+    ],
+    "failed_or_blocked": [
+      {
+        "classification": "pre-existing legitimate debt / repository-wide",
+        "gate": "check-size-budgets",
+        "offenders": [
+          "backend/workers/intake_v2_jobs.py:repair_intake_v2_outbox (855 lines)",
+          "backend/core/db/account_deletion.py:delete_user_data (835)",
+          "backend/concierge/agent.py:handle_turn (801)",
+          "backend/concierge/session.py (2565 lines)",
+          "backend/domains/experience_graph/commands.py (2492)",
+          "backend/api/routes/conversations.py (2452)",
+          "backend/concierge/_prompts_skills.py (2451)"
+        ]
+      },
+      {
+        "classification": "pre-existing legitimate debt / repository-wide",
+        "gate": "check-status-guards",
+        "offenders": [
+          "backend/ingestion/base.py unguarded experience_briefs status UPDATE",
+          "backend/life_projection/organization_projector.py dead status gates ambiguous/none/transfer_repair_required",
+          "backend/core/db/life_organization_resolution.py dead status gates none/transfer_repair_required"
+        ]
+      },
+      {
+        "classification": "exposed pre-existing fixture debt",
+        "gate": "bounded offline suite",
+        "result": "2013 passed, 10 failed; undeclared Postgres access in concierge tests; stopped at maxfail=10"
+      },
+      {
+        "classification": "pre-existing/unowned typing debt",
+        "gate": "mypy",
+        "result": "264 errors across 63 files; package-local outcome propagation diagnostics were repaired, but transitive source_owner_events and unrelated errors remain"
+      },
+      {
+        "classification": "pre-existing documentation debt",
+        "gate": "doc freshness",
+        "result": "1 stale FEATURE header, 4 expired active docs, 1 abandoned-draft warning"
+      },
+      {
+        "classification": "environment-blocked",
+        "gate": "runtime integration",
+        "result": "Postgres/Qdrant service and disposable migration suite not run; no service restart or activation performed"
+      }
+    ],
+    "dependency_sequence": [
+      "1. Integration resolves or explicitly accepts the repository-wide size/status gate debt; do not raise ceilings, widen quarantines, or bypass hooks.",
+      "2. Commit the preserved staged backend package plus seven repair paths on this base; Integration owns landing.",
+      "3. Re-run focused reliability receipt, broad/writer/type checks, and the bounded offline suite; separately classify the ten concierge DB-leak fixtures.",
+      "4. Run disposable Postgres/Qdrant migration and database suites, then re-run the seven canonical-main failures against the landed candidate.",
+      "5. Only after those gates are green, reassess downstream workspace/mobile integration."
+    ],
+    "smallest_next_approval": "Resolve or explicitly accept the existing size-budget and status-guard blockers so a normal hook-verified backend commit can be created; no additional feature authorization is requested."
+  }
 }
