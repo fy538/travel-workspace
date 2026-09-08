@@ -1144,7 +1144,7 @@ without changing either primary checkout:
   sender detail/transition projections. It also fails closed for orphaned or
   unknown-state handoffs. The focused cross-reader suites pass (330 tests);
   the backend size-budget hook remains an existing structural blocker.
-- Mobile `d0fa4b6a0` consumes the sender-control projection, rehydrates the
+- Mobile `75743adae` consumes the sender-control projection, rehydrates the
   Place-card withdrawal affordance after remount/navigation, reconciles
   uncertain send and withdrawal completion, and adds lifecycle/recovery
   regression tests. The focused mobile suites pass (100 tests), with
