@@ -146,6 +146,20 @@ durable delivery semantics. If that contract is unavailable, continue replay
 and consumer tests against the existing path and record the exact gap rather
 than manufacturing occurrence or attendance evidence.
 
+**Capture candidate-owner contract accepted — September 8:** the paragraph
+above records the pre-decision gap. The founder has now accepted Option A in
+[`2026-09-08-capture-candidate-lifecycle.md`](../decisions/2026-09-08-capture-candidate-lifecycle.md).
+Integration commit `cd0e28f35` adds the scoped candidate revision migration and
+the content-free `candidate-owner-change.v1` envelope on the existing Intake
+and Life outboxes. Life's consumer package should read
+`owner_kind=experience_anchor` with `owner_id=<candidate id>`, use the decimal
+candidate revision as its CAS token, and recheck current candidate/source
+eligibility before writing shadow rows. `candidate_confirmed`,
+`candidate_withdrawn`, and explicit `candidate_restored` are the only delivery
+change kinds. Reordered events cannot resurrect a withdrawal; source loss and
+user controls remain authoritative. No serving cutover, graph-owned stream,
+new queue, or source activation is implied.
+
 ### Current execution queue
 
 This is the only current queue. The items refine existing R0–R8/M0–M6; they are

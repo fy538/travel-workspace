@@ -647,6 +647,26 @@ outbox. This is delivery/read validation only: Capture emits source metadata,
 Life owns projector/index rows, and the unadopted history/continuity proposals
 remain inactive.
 
+### Candidate-owned anchor handoff — 2026-09-08
+
+The accepted Capture lifecycle decision keeps semantic candidates as a separate
+owner from retained Source custody. Candidate transitions use the existing
+Intake and Life outboxes but carry a nested `candidate-owner-change.v1` envelope
+with `owner_kind=experience_anchor`, `owner_id=intake_artifact_candidates.id`,
+and a positive decimal owner revision issued by the candidate row. Its partition
+is the candidate ID; the submission/source references are dependencies, not the
+owner identity. `confirmed`, `withdrawn`, and explicit `restored` transitions
+reuse the exact event key across both durable outboxes. The candidate mutation,
+Intake graph handoff, and Life handoff are one transaction.
+
+Life must validate the candidate owner identity, revision/sequence, lifecycle,
+viewer scope, current submission custody, source eligibility and applicable
+controls before shadow projection. An older or reordered event cannot resurrect
+a withdrawn candidate; restoration is a newer owner-authorized transition and
+does not revive deleted/revoked sources or user exclusions by implication. The
+graph remains a rebuildable projection, and this contract does not activate
+indexed Life serving or widen retention/audience.
+
 ## 13. Migration order
 
 1. Inventory every durable writer reached from ordinary Chat, inbound share,

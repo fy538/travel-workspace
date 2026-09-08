@@ -939,6 +939,89 @@ These checks prove the current code and contract remain internally consistent;
 they do not substitute for the missing Content supplier output or the anchor
 owner/revision authority decision.
 
+## Accepted candidate-owner lifecycle implementation — September 8
+
+The founder accepted Option A in
+[`2026-09-08-capture-candidate-lifecycle.md`](../decisions/2026-09-08-capture-candidate-lifecycle.md).
+The earlier choice section above remains historical context; the blocker is
+closed and the implementation is now bounded as follows.
+
+### Producer contract
+
+Capture owns the Intake candidate row and its lifecycle. A new owner-issued
+`revision` integer (migration `candidateowner01`) starts at `1` and increments
+on each actual candidate transition. It is distinct from submission/source
+custody timestamps and from the graph projection ID. Candidate identity remains
+the stable `intake_artifact_candidates.id`.
+
+The existing Intake outbox event types remain unchanged:
+`intake_candidate_confirmed` and `intake_candidate_retracted`. Their existing
+top-level `source_event` remains the retained-source compatibility envelope.
+Each candidate event now also carries a content-free `candidate_event`:
+
+```yaml
+candidate_event:
+  schema_version: candidate-owner-change.v1
+  owner_kind: experience_anchor
+  owner_id: <intake_artifact_candidates.id>
+  viewer_id: <submission.owner_id>
+  owner_revision: "<positive decimal candidate revision>"
+  lifecycle: confirmed | withdrawn | restored
+  scope: {viewer_id: <same>, audience: private, purpose: projection_repair}
+  source_refs: [intake_candidate@revision, source_object refs]
+  causal_dependencies: [intake_submission]
+  affected_consumers: [life, graph]
+  ordering:
+    partition: <candidate id>
+    sequence: <same decimal revision>
+    retry_identity: <event key>
+  occurred_at: <UTC timestamp>
+```
+
+Event keys include the candidate revision, for example
+`intake-candidate:<candidate>:revision:4:restored:v1`. The candidate mutation,
+the Intake graph event, and the existing `life_projection_outbox` handoff are
+committed in one transaction. Life receives `owner_kind=experience_anchor`,
+`owner_id=<candidate id>`, the same revision and event key, and one of
+`candidate_confirmed`, `candidate_withdrawn`, or `candidate_restored` as its
+change kind. The broadcast bridge validates identity, revision, lifecycle,
+partition and viewer scope before forwarding only metadata.
+
+### Restore and withdrawal rules
+
+`restore` is an explicit owner action from `dismissed` or `rejected`; it is not
+an implicit replay of an old confirmation. Capture rechecks current verified
+submission custody, unrevoked/verified source rows and custody receipts before
+restoring. Deleted or revoked source access therefore blocks restoration, while
+independent records and user controls are not rewritten by a stale event.
+Graph remains a projection and Life remains a shadow/read consumer; no serving
+cutover, Source activation, Atlas retirement, provider/model call or new event
+bus was introduced.
+
+### Implementation and evidence
+
+| Repository | Revision | Evidence |
+| --- | --- | --- |
+| `travel-agent` | `cd0e28f35` | Candidate revision migration/model, candidate-owner envelope/builders, atomic Intake + Life outbox producers, strict Life broadcast validation, explicit restore/source-loss fencing, and disposable-Postgres lifecycle proof. |
+| `travel-agent` | `2778f5fd0` | Distinct Home root-composition receiving test landed; Content prerequisite was not duplicated. |
+| `travel-app` | `b2f337662`, `e2e792913` | Existing supplied-content rendering proof plus sourced Place interpretation and exact Place-area routing tests. |
+| workspace | `364af87`, `66ab100` | Home implementation-map receiving receipts for public content and quality/exact-depth correction. |
+
+Focused evidence on the producer commit: **237 offline Intake/Life tests**,
+**33 lifecycle/broadcast contract tests**, **22 connected Postgres tests** in
+the combined packet, and a dedicated candidate lifecycle test proving revision
+2 confirmation → revision 3 withdrawal → revision 4 explicit restore,
+duplicate restore idempotency, matching Intake/Life outbox records, and source
+loss blocking a later restore. Ruff/formatting, migration single-head and
+applicable backend hooks passed. The event-type and enum parity hooks were
+skipped only because their hook interpreter could not import installed
+SQLAlchemy (`No module named 'sqlalchemy'`); they were not reported green.
+
+Life still owns the consumer/projector package and must re-read current
+candidate/source authority before shadow writes. This package does not claim
+Life serving readiness, populated production candidates, native/visual
+acceptance, or remote publication.
+
 ## Home addressed-human receiving landing — September 8
 
 The Home lane supplied and Integration reviewed a separate, already-supported
