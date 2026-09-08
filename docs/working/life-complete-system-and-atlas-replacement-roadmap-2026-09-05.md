@@ -22,33 +22,164 @@ supersedes:
 
 ## Current execution baseline — September 7
 
-**Latest inspected integration checkpoint:** backend local `main` was
-`3f7e25da6` during the September 7 rehearsal planning pass. It includes the
-Life restore correction `7b1d8a6b0` and subsequent Integration work. The Life
-implementation packages are merged
-into the current backend line; app `38d3a6521` includes lens/refind-destination
-continuity. The [execution receipt](life-system-execution-receipt-2026-09-06.md)
-records the package evidence. [§10](#10-design-independent-execution-plan--september-6)
-is retained as the acceptance checklist; [§11](#11-bounded-shadow-rehearsal-execution-packet--september-7)
-owns the immediate operational plan. Original implementation instructions are
-historical where a package has landed. None of this establishes a
-populated real corpus, complete parity, indexed serving or release.
+**Rebaseline after the first organizing-intelligence implementation — September 7:**
+the latest inspected Life backend is `333f447be` on
+`codex/life-shadow-rehearsal-2026-09-07`. Its preceding measurement correction
+is `4a19414be`. Backend local `main` is `d8fdb55d6`; ancestry inspection confirms
+that it does not include the latest Life checkpoint. Earlier foundations were
+integrated, but that does not mean all subsequent Life packages are merged.
+App `b479c3289` is on `codex/entity-object-design-completion`; its earlier Life
+route/restoration work does not establish adoption of the new organizer.
+Canonical workspace main is `d439deb`, with concurrent dirty strategy/design
+work; the Life documentation lane is based on `62b25a5` before this update.
+These are inspection pins, not permanent assertions about moving branches.
+
+The newest roadmap and research remain in the isolated documentation worktree
+`/Users/feihuyan/travel-workspace-life-organization-value-2026-09-07` on
+`codex/life-organization-value-research-2026-09-07`. The canonical workspace's
+older “implementation packages are merged” statement describes an earlier
+checkpoint only. Integration must land the reviewed Life documentation with
+its tested code cut; do not overwrite concurrent main work or infer merge/push
+authority from this rebaseline.
+
+**Read this baseline, the current queue and decision register below first.**
+They are the sole present-tense execution summary. [§10](#10-design-independent-execution-plan--september-6)
+retains acceptance scope, [§11](#11-bounded-shadow-rehearsal-execution-packet--september-7)
+retains rehearsal requirements, [§12](#12-connected-organization-and-reader-implementation-plan--september-7)
+retains organization/reader contracts, and [§13](#13-architecture-review-follow-through--september-7)
+provides M0–M6 implementation detail. Later receipts supersede earlier findings
+and “next” instructions, not unfulfilled acceptance requirements. In particular,
+[§13.13](#1313-execution-receipt--m0m1-and-conservative-m2-follow-through--september-7)
+records maintenance/cursor/migration foundations and
+[§13.15](#1315-executed-measurement-and-first-b1-product-world-checkpoint--september-7)
+records the latest deterministic organization experiment. Do not restart them.
 
 R0–R8 remains Life's sole forward roadmap. The engine design supplies behavior
 and implementation detail; the execution-status file preserves receipts. The
-[coordination register](complete-system-integration-roadmap-2026-09-05.md#2-current-coordination-register--september-6)
+[coordination register](complete-system-integration-roadmap-2026-09-05.md#2-current-coordination-register--september-7)
 owns current cross-lane assignments. Historical findings below describe their
-inspection date, not a request to repeat completed work.
+inspection date, not a request to repeat completed work. Read that register in
+the canonical workspace too: this isolated branch is not its freshest copy.
+The current Integration handoff asks Life for a tested branch cut, bounded
+owner/group/original readers, migration evidence and explicit target-delivery
+limits; it does not authorize serving merely because organization code exists.
 
-| Layer | Current implementation | Next work / limitation |
+| Layer | Local implementation and evidence | Remaining scope, not work to restart |
 | --- | --- | --- |
 | R0 / R4 root and reading | Canonical Life route, Atlas redirects, four depth lenses, exact-owner and identity-restoration improvements | Rich lens organization and complete owner/destination coverage are not certified |
 | R1 common reads | Shared snapshot assembly, chronology, owner revisions and conflict-aware cursors | Routes still assemble owner snapshots; indexed serving has not cut over |
 | R1 / R2 index helpers | Typed bounded reads/writes, all-lens planner, owner capability matrix, owner-specific projectors, resumable backfill, reconciliation and complete typed comparison; bounded four-viewer corpus rehearsal now passes with canonical owner-time ordering | Establish broader corpus/viewer parity and future-version delivery boundaries; future-version targets do not yet receive live owner fanout |
-| R2 change safety | Revision guards, withdrawal/restore, dependency CAS, separate Life outbox and repair; retained-source, Plan, Occasion and Outcome projectors, audience repair and fenced publication/delivery | Add PostgreSQL interleaving evidence and verify remaining owner contracts; preserve Intake's independent acknowledgement |
+| R2 change safety | Existing outbox/projectors plus shared typed maintenance for live delivery, backfill and reverse reconciliation; index and primary Plan/Occasion group publication share a transaction; unresolved repair keeps delivery pending | Durable progress for work exceeding a bounded transaction, complete affected-neighborhood repair, combined-branch validation and broader owner coverage remain; Intake keeps its independent acknowledgement |
+| R2 organization | Stable groups, typed links, controls, identity resolution and bounded internal reads; conservative source-evidence adapter; B1 compiler with five executable, oracle-interpreted product worlds | Real source interpretation/delivery, general episode/continuity discovery, complete repair wiring and public eligible readers are not established by the experiment |
 | R3 / R5 retrieval | Retained sources and canonical destinations have landed | Broader custody/refinding, dependent repairs and retained booking-reader mapping remain |
 | R6 prospective/shared | Consumer requirements established | [Pre-Plan intention proposal](retained-intention-before-plan-decision-proposal-2026-09-06.md) is unadopted; missing owner adapters cannot be replaced by Life writes |
-| R7 / R8 richness and replacement | Design/scenario portfolio and migration obligations are explicit | Returns, organization quality, whole-corpus cutover and Atlas deletion remain incomplete |
+| R7 / R8 richness and replacement | Separate record/typed-relationship metrics, first product-world persistence tests and a historical-schema upgrade test; design/scenario and replacement obligations remain | Independent and raw-artifact evaluation, useful previews/Returns, cross-version rebuild/controls, portfolio-wide acceptance, cutover and Atlas retirement remain incomplete |
+
+### Evidence-stage ledger
+
+Track these stages separately for each package. A connected test can run on an
+isolated branch before integration; no stage silently implies the next.
+
+| Stage | Current evidence | What is not established |
+| --- | --- | --- |
+| Implemented locally | Maintainer/cursor/migration packages plus `4a19414be` and `333f447be`; latest recorded local selection is 296 passing Life/worker/broadcast tests, including PostgreSQL | This documentation pass does not rerun those tests or certify every owner/algorithm |
+| Integrated | Earlier Life tab, reader and delivery foundations have historical landing receipts | Latest Life backend and documentation checkpoints are not on their respective main branches; combined-branch validation is outstanding |
+| Connected to authoritative owners | Supported retained-source/Plan/Occasion/Outcome shadow paths have lifecycle/readback evidence; primary graph-owner groups are maintained | Richer B1 source interpretations are supplied by fixtures; automatic extraction, continuity classification and production B1 publication are not connected |
+| User-visible | Earlier Life shell, four-lens access and exact-restoration work exist in the app | No user-visible adoption of the new organizer, complete public group/original reader or measured preview usefulness follows from its internal group tests |
+| Accepted for release | No new release acceptance from these packages | Populated portfolio parity, budgets, native acceptance, rollout/rollback, indexed serving and Atlas retirement remain gated |
+
+The B1 result is **nine required source-evidence links recovered, zero explicitly
+forbidden fixture links admitted, and 18 additional links still unjudged**.
+Interpretations are supplied; literal text is not parsed. Findability and human
+usefulness remain unmeasured where no judgments exist. This is a meaningful
+deterministic implementation checkpoint, not learned grouping or general quality
+evidence. Preserve the exact boundaries in §13.15 when reporting progress.
+
+### Current execution queue
+
+This is the only current queue. The items refine existing R0–R8/M0–M6; they are
+not new lanes or a requirement to finish every experiment before connecting the
+system. Work on the first three can progress together where dependencies permit.
+
+1. **M2/M5 — complete the first quality baseline.** The six independently
+   authored synthetic holdouts in §13.16 now cover ambiguous identity,
+   conflicting context, negative occurrence, late import, shared privacy and
+   repeated-place separation. Their emitted relations have explicit judgment
+   coverage. Continue by reviewing the remaining 18 relationships from the
+   oracle worlds, adding independently reviewed labels and the missing challenge
+   variants. Separate oracle-evidence organization from raw-artifact extraction.
+   Exit with per-world required, accepted, forbidden and unjudged relationships,
+   grouping expectations and evolving-update results over ordinary life,
+   journeys, continuing attention, shared perspectives and kept-but-not-lived
+   material; passing synthetic holdouts is not system completion.
+2. **M1/M2 — connect real evidence to maintained organization.** Agree Capture's
+   bounded current-authority evidence read and Integration's revision/durable
+   delivery semantics before source-owned changes. Map fields to real owner
+   data, retaining explicit unsupported coverage. Life can prepare consumer,
+   replay and stale-result tests now. Connect publication through the existing
+   maintainer only with current owner/dependency checks, previous plus new
+   affected groups, durable controls and bounded completion/continuation.
+   Exit with owner change → evidence read → organization → corrected shadow
+   readback, including replay, reordering, withdrawal and explicit restore.
+3. **M3/M4 — make organized evidence useful to read.** Continue bounded root,
+   depth, exact-original, Everything kept, refind and anchor-seek contracts over
+   shared eligibility/identity semantics. Evaluate lens-specific previews and
+   recognition alongside group correctness; the visible result must reduce
+   work, not expose an organization-maintenance queue. Contract/fixture work
+   is unblocked; connected acceptance depends on the relevant owner inputs.
+   Mobile adoption follows reviewed public contracts and schema sync, with
+   final visual/device acceptance still separately scheduled.
+4. **M5 — compare model assistance on identified misses.** Prepare B2 over the
+   same candidates/corpus and existing model gateway. Before inference, name
+   eligible data, model/prompt versions, call/token/cost limits and stop rules.
+   Keep extraction, relation classification and preview selection separately
+   measured; compare against B0/B1 and simpler alternatives. Adopt only useful
+   improvements without hard truth/audience/control regressions. A model win
+   is not a prerequisite for already useful deterministic readers.
+5. **M0/M6, with R7 — prepare and certify the connected cut progressively.**
+   Keep a reviewed code/docs overlap inventory and exact test baseline for
+   Integration while owned work continues. Revalidate migrations and combined
+   owner/read paths on that candidate; do not require every later research
+   technique or manual editor before an eligible cut. Complete useful Returns,
+   real-owner coverage, target-version delivery, workload budgets and native
+   acceptance before the corresponding promotion. Activation and Atlas deletion
+   need separate acceptance/authority; neither follows from this docs update.
+
+R7 retains its complete-system requirement for at least two complementary
+useful Return families. M5's first admitted family is an intermediate checkpoint,
+not a reduction of R7. Later manual-first composition remains a compatibility
+requirement and subsequent extension, not a hidden prerequisite to replace Atlas.
+
+### Decision and dependency checkpoints
+
+These are unresolved implementation decisions, not a new product backlog. Close
+each at the named boundary; none authorizes another lane's writes or a model run.
+
+| Decision / seam | Accountable lane | Required artifact or acceptance before proceeding |
+| --- | --- | --- |
+| Calendar placement | Life, with product/design review | Declare evidence timezone versus viewer calendar policy, interval/multi-period treatment, unknown dates and late imports; test stable navigation. B1's fixed-zone/start-of-interval policy remains experimental until this is resolved before production placement |
+| Affected scope and long repair | Life | Discover old/new groups through indexed dependencies, retain current group revisions, preserve independent support and controls, and specify durable continuation for oversized sets. Test interruption/retry, transfers, stale completion and rebuild-control survival before production B1 maintenance |
+| Evidence and asynchronous extraction | Capture + Integration; Life receives | Field availability and typed time/place/people/locator roles, purpose/grant/current-owner read, source and evidence revision relationship, and durable wake-up when extraction changes without a source revision. Content-free lifecycle delivery is not this richer evidence contract |
+| Quality and model admission | Life; founder approves inference data/budget | Independently judged corpus, extraction-versus-organization results, hard failure rules, coverage/abstention, measured build/update/read/retry costs and a bounded B2 run specification before inference or method adoption |
+| Preview and reader usefulness | Life + design/mobile; Home/Places receive exact destinations | Examples and judgments for Time/Places/People/Threads, counts, originals, update stability and low-effort refinding. Separate recognition/human value from SQL/cursor correctness; no model calls on reads |
+| Returns and later authored composition | Life + existing production/reuse owner; later custody decision by its owner | Useful output, cross-root allocation, evidence/version repair and exact kept-version access for R7. Decide later authored selection/title/order custody without inventing a Life writer now |
+| Integration, rollout and retirement | Integration + Life + mobile/retirement owners | Reviewed branch/schema cut, owner/lens/destination coverage, cross-version controls and live fanout, measured workload budgets, native evidence and safe reader rollback; explicit activation and later retirement decisions |
+
+**Documentation landing handoff:** take this roadmap, the execution-status
+pointer, engine-design pointer and technical-research status together from the
+Life documentation lane. Reconcile the canonical integration register's Life
+row/receiving checkpoint against the actual tested cut, not an obsolete “all
+merged” headline. That shared register remains Integration-owned and is not
+edited independently here. After each connected package, update this opening
+ledger/queue as well as appending a receipt; do not solve freshness only by
+adding another “next step” at the end of the file.
+
+### Historical receipts and investigation checkpoints
+
+The dated material below preserves findings and test evidence at its original
+revision. Its earlier “current,” “remaining” and “next” statements are historical
+where superseded by the opening ledger and later receipts. Acceptance scope
+remains binding unless an explicit decision changes it.
 
 **Target-capability checkpoint:** backend `77eb3780b` now exposes
 `owner_fanout_status` and `receives_live_owner_fanout` on the existing backfill
@@ -93,6 +224,90 @@ committed as `6fefdb756` on the isolated Life worktree and the mobile patch as
 `17eea1980` on the app branch. The repository-wide backend size-budget hook
 remains a pre-existing failure and was explicitly skipped for the backend
 commit; all other commit hooks passed.
+
+**Code-review closure — September 7:** the follow-up pass in the same isolated
+worktree is committed as `163b18e8b` (`fix(life): close organization and reader
+safety gaps`). It closes the remaining reviewed R1/R2 edges without changing
+the serving path or adding a second index: owner-self exclusions remain
+effective when `supports_occurrence` rows migrate to neutral containment;
+complete-set reconciliation requires the current per-group content revision;
+episode memberships can be explicitly restored while ordinary replay remains
+non-resurrecting; and organization evidence now preserves purpose/time-role
+metadata and rejects scheduled/refind evidence from occurrence relations.
+Topology checks serialize per viewer/version so disjoint concurrent links
+cannot close a longer cycle. Evidence refreshes advance content/read epochs,
+resolution repairs fence affected groups, and membership/child cursors carry
+viewer, version, group scope and freshness. Immediate child reads are bounded
+with an explicit continuation cursor. The Life corpus route now rejects
+non-object or incomplete cursor payloads as typed 422 errors before constructing
+the pagination model.
+
+The retained-source worker test now waits on its own durable outbox row rather
+than assuming a globally bounded repair sweep will claim that event first; this
+removes a local-queue ordering flake while preserving worker-path coverage.
+Validation: the complete `tests/life_projection` selection passed **228 tests**
+on the isolated PostgreSQL-backed environment; the focused migration,
+organization, reader and route selection passed **29 tests**; Ruff and
+whitespace checks passed. The commit hook's repository-wide size-budget and
+status-dead-gate checks remain pre-existing baseline failures and were skipped
+explicitly; all other applicable hooks passed. This is still shadow-index
+evidence only: no serving cutover, owner-producer change, migration, Atlas
+deletion or remote publication follows from this package.
+
+**Maintained-delivery follow-through — September 7:** commit `0b822c3aa`
+(`fix(life): unify maintenance completion`) adds the shared
+`LifeMaintenanceResult` boundary and routes Plan, Occasion, Outcome and
+retained-source live handlers through it. Required organization repair can now
+remain `pending` instead of being acknowledged as success, while a stale owner
+whose successor is current is explicitly `superseded`. Production backfill uses
+the same maintainer by default; injected projectors remain a migration-test
+seam. Commit `767f70499` preserves explicit non-default shadow projection
+versions through the identifier-only event bridge, restores retained-source
+rows through an exact owner-state read rather than a viewer-wide scan, and adds
+regressions for default backfill dispatch and authorized restore. The offline
+Life selection passes **199 tests** with **34** database/API-key cases
+deselected. The repository-wide size-budget and status-dead-gate hooks remain
+pre-existing baseline failures and were skipped explicitly; all other
+applicable hooks passed. This closes the shared completion and bounded-lookup
+package, but not the transaction-atomicity requirement: index and
+organization still use separate repository transactions and require the
+controlled race package below.
+
+**Reverse-reconciliation follow-through — September 7:** commit `91024a856`
+(`fix(life): align reconciliation with maintenance`) makes the bounded reverse
+reconciler use `maintain_life_owner_change` by default whenever repair is
+requested and no migration projector is injected. It carries the maintainer's
+index result and exposes `repair_pending`/`withdrawal_pending` rather than
+reporting a partially completed repair as final. Existing pure projector
+injection remains available for migration tests. The focused reconciler and
+maintenance tests pass, and the complete Life selection with the connected
+database passes **235 tests** under `-m 'not requires_api_keys'`. The next M1
+checkpoint is durable multi-slice progress for affected scopes; no new queue or
+schema was introduced here.
+
+**M2 source-evidence handoff — September 7:** commit `bac99b1b0` adds a
+read-only `retained_source_evidence_unit` adapter over the existing
+authoritative retained-source projection. It records exact submission/source
+references, owner revision and immutable capture time with `CAPTURED` role;
+the evidence contract rejects using that unit as `supports_occurrence` proof.
+No Capture transaction, producer, organization write or new owner is added.
+The offline Life selection passes **204 tests** with **34** database/API-key
+cases deselected. The next dependency is Capture's agreed bounded evidence
+read (occurred/place/people roles and lifecycle/locator semantics); until that
+seam exists, retained originals remain safely findable but ungrouped beyond
+source-only organization.
+
+**Publication-fence follow-through — September 7:** commit `3a44caf0f`
+(`fix(life): fence index and owner materialization`) adds an optional existing
+connection to the index writer and primary organization materializer/archive.
+The default maintainer now opens one short transaction for the index plus
+owner-group publication, and queues resolution repair until that lock is
+released while still folding its result into `pending` completion. Injected
+projectors retain their old call shape. A barrier-style regression proves the
+order `begin → materialize → commit → reconcile`; offline Life validation is
+**200 passed, 34 deselected**. This closes the primary publication interleave
+for supported owner groups but does not make resolution repair atomic or add
+multi-slice consumer checkpoints; those remain explicit follow-up work.
 
 **Roadmap rebaseline — September 7:** implementation packages for R1/R2-A
 through F have landed. Their functions and tests do not complete every package
@@ -164,6 +379,55 @@ owns derived indexing. Home/Places consumes exact record destinations, not a
 Life-owned generator. Retirement supplies the existing booking-evidence mapping
 for R3/R5. Keep the newer Life walkthroughs in the existing W1–W6/design portfolio,
 not a competing engine or roadmap; illustrative transitions are not test passes.
+
+### Organization and reader-value investigation — September 7
+
+This is the pre-implementation investigation. The occurrence-relation correction,
+historical upgrade test and first B1 fixture compiler now have later receipts;
+use the [current queue](#current-execution-queue), not the original action wording
+below, to decide what remains.
+
+The [engine design §16](life-organization-and-composition-engine-system-design-2026-09-05.md#16-organization-quality-and-reader-value-investigation--september-7)
+now contains the bounded research findings, five executed code probes, W1–W5
+grouping/read examples, twelve challenge variants, update policy and B0/B1/B2
+comparison protocol. This refines R2-G and R3–R7; it is not a second roadmap
+or a completed model/user-quality evaluation.
+
+**New code-backed findings:** the current organization primitive automatically
+groups only Plan/Occasion owner rows; source-only periods/episodes and their
+useful readers remain to connect. Its owner-containment proposal is typed
+`supports_occurrence` even for a Plan without occurrence evidence. Correct that
+relation boundary, including stored-row/consumer treatment, before interpreting
+memberships as lived evidence. A dark organization group is not an occurrence
+owner. The existing W2 fixture's hidden Plan prerequisite was removed and a
+validator guard added; separate Plan coverage remains in the broader portfolio.
+
+**Next connected product package:** R2-G source-backed organization together
+with R3–R5 bounded group previews/depth and exact originals. Carry source-only
+ordinary life, journeys, separate visits, explicit continuity and shared
+contributions through the same package; unsupported owner capabilities remain
+explicit. Final visual composition stays in Claude Design. Bounded model
+assistance is an experiment for supported misses, not a prerequisite for
+deterministic organization or a selected new memory framework. R7 evaluates
+factual reconstruction and attributed social value separately from AI novelty.
+
+**Parallel engineering acceptance:** reconcile the unmerged Life branch and
+finish migration evidence. In particular, a current-row
+`legacy_rebuild_required` test does not establish a populated
+`lifeorg04` → `lifeorg05` upgrade; that real historical upgrade test remains
+open. Research does not authorize merge/push, serving cutover, Atlas deletion
+or production activation. Capture supplies exact source/claim references and
+repair identities; Life owns derived organization/readers; Integration owns
+current delivery. No source-owned transaction or pending intention writer was
+changed here.
+
+**Research verification:** five pure-code probes executed; fourteen existing
+focused Life backend tests passed. The corrected replay manifest, six fixture
+validator regressions, scoped lifecycle metadata, Ruff and whitespace checks
+passed. The initial investigation checked 57 relative links across these two
+documents, resolving child-repository targets against the canonical workspace.
+These results are not measured clustering quality or native usability evidence.
+Section 12 records the subsequent implementation plan, not executed product code.
 
 ## 1. Outcome and authority
 
@@ -1918,3 +2182,1253 @@ retirement decision follows from these connected passes.
 
 The local commit hook's repository-wide size-budget check remains red on
 pre-existing unrelated files; it was the only skipped hook for these commits.
+
+## 12. Connected organization and reader implementation plan — September 7
+
+### 12.1 Decision, scope and implementation baseline
+
+**Build the source-backed organizer and the reader experience together.** The
+next system increment should turn eligible material into recognizable periods,
+journeys, outings and continuity, expose the evidence through four useful
+lenses, and maintain those records when reality or the user's choices change.
+This is the next connected R2-G / R3–R5 package, not a new roadmap, a single
+travel demo, a cosmetic card pass or another indexing framework.
+
+Use the existing W1–W5 portfolio throughout: journey, ordinary local life,
+explicit continuity, shared occasion, and kept-but-not-lived evidence. W6's
+later human-composition custody remains a separate R7 dependency. A small
+first commit is a review boundary, not a narrower definition of the product.
+
+Planning inspection: Life backend branch `6f4a977bb`; canonical backend main
+advanced to `9efb3d9d9`; app `c3feb89f0`; research workspace branch
+`codex/life-organization-value-research-2026-09-07` based at `83e2ae1`.
+Canonical root main was `517744f` during this pass and contains concurrent
+work. The Life branch's later packages remain unmerged. Recheck these facts
+before implementation; this document does not authorize integration or moving
+someone else's work. Edit in an isolated `codex/` lane and stage explicit files.
+
+The existing [engine design §16](life-organization-and-composition-engine-system-design-2026-09-05.md#16-organization-quality-and-reader-value-investigation--september-7)
+contains product judgments, probes and comparison baselines. This section
+adds implementation decisions and work packages. New fields, helpers and
+relation names below are **proposed**, unless explicitly described as existing.
+No production migration, model experiment or app implementation ran in this
+planning pass.
+
+### 12.2 What the targeted online research changes
+
+Sources accessed September 7, 2026. These support specific choices; none
+validates Life's whole product or supplies Vesper performance thresholds.
+
+| Question | Primary evidence and limitation | Recommendation for this repository |
+| --- | --- | --- |
+| Should one AI memory hierarchy determine Life's groups? | [ES-Mem, January 2026 preprint](https://arxiv.org/html/2601.07582v1) separates dialogue by topic/intent; its limitations explicitly identify relatively static memories and primarily text-modal inputs | Borrow coherent source-passage retrieval if useful. Keep conversation segmentation, real-life grouping and presentation separate; do not adopt its hierarchy as lived-event identity |
+| How should grouping change as evidence arrives? | [Incremental constrained clustering, CP 2023](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.CP.2023.10) studies stable partition changes as expert constraints accumulate, including a satellite-data case | Prefer the smallest justified affected-set change. Do not import its expert-labeling workflow, solver or relaxable constraints; withdrawal and explicit exclusion are hard boundaries |
+| What should a reader make easy? | [Stuff I've Seen, SIGIR 2003](https://www.microsoft.com/en-us/research/publication/stuff-ive-seen-a-system-for-personal-information-retrieval-and-re-use/) reports time and people as useful refinding cues in an internal workplace deployment | Test recognition and exact-original retrieval through several cues, not summary attractiveness alone. Its workplace findings are not validation of our consumer Life design |
+| Can a revision plus several ordinary SQL reads form one coherent page? | [PostgreSQL 15 isolation](https://www.postgresql.org/docs/15/transaction-iso.html) documents statement snapshots at Read Committed and transaction snapshots at Repeatable Read | Assemble a bounded response in one statement where practical, otherwise one short read-only consistent transaction. Keep current-authority fencing distinct; do not hold transactions across mobile pagination or change isolation globally |
+| Does a hierarchy require new graph infrastructure? | [PostgreSQL recursive queries](https://www.postgresql.org/docs/15/queries-with.html) supports traversal and cycle detection; an outer LIMIT is not a reliable production traversal bound | Use narrow relational group links, explicit ordering and bounded immediate-child reads. Validate cycles on writes. No graph database or eager whole-tree expansion |
+| How do we paginate stable groups? | [PostgreSQL LIMIT/OFFSET](https://www.postgresql.org/docs/15/queries-limit.html) requires unique ordering for predictable subsets and notes that skipped OFFSET rows still require computation | Extend existing keyset/cursor conventions with group scope and content freshness; restore by stable row identity, not array index |
+| How do index and organization updates survive crashes? | [AWS transactional-outbox guidance](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html) describes atomic producer-side event persistence and duplicate-safe consumers | Reuse Life's awaited consumer and downstream outbox. Ensure replay completes organization even when the index is already current; don't add another source producer or treat cache invalidation as delivery |
+| How should existing shadow data evolve? | [Alembic data-migration guidance](https://alembic.sqlalchemy.org/en/latest/cookbook.html#data-migrations-general-techniques) distinguishes schema changes from application-specific data migration and warns that data downgrades can be unsafe | Separate additive DDL from bounded, resumable relation repair. Rehearse populated historical upgrades; do not reset shadow data merely to make migration tests green |
+
+**Research conclusion:** enough is known to design and implement the connected
+system. Remaining research should measure a named organizer/reader failure,
+not restart a broad search for a memory platform. B1 structured evidence and
+B2 bounded semantic assistance remain comparison candidates, not a claim that
+either already produces the intended experience.
+
+### 12.3 Verified gaps that determine the order
+
+Paths in this subsection are relative to the Life backend branch above.
+
+| Inspected implementation | What exists | What the next package must add |
+| --- | --- | --- |
+| `backend/life_projection/organization.py` | Owner seeds for Plan/Occasion, explicit proposals, exclusion filtering and deduplication | Source-backed periods/episodes; supported continuity; neutral containment instead of treating owner inclusion as occurrence support |
+| `backend/core/models/retained_source.py` and `backend/core/db/intake_anchors.py` | Authored note, source refs, custody/status and created/updated clocks; exact retained-source read | Agreed, purpose-permitted structured evidence and exact locators. These fields do not currently provide occurrence intervals, participant roles or canonical places |
+| `backend/core/models/source_owner_event.py` | Content-free lifecycle contract; purposes `source_refind` and `projection_repair` | Explicit agreement on whether/how organization can consume eligible evidence. Receiving an event is not extraction authorization |
+| `backend/core/db/_tables/life_organization.py` | Groups, record memberships and controls with revision checks | Typed group-to-group navigation, queryable temporal scope, efficient reverse evidence lookup and content-read freshness |
+| `backend/core/db/life_organization.py` | Add/update proposal materialization; member revisions; durable rename/detach/Undo | Scoped reconciliation of relationships that disappeared. Ordinary member writes do not advance group revision; future group cursors cannot rely on it alone |
+| `organization_projector.py`, Plan/Occasion projectors | Awaited organization callbacks after index writes | Retained-source/Outcome organization coverage and crash/retry completion for each stage, including restore replays |
+| `backend/core/life_projection_broadcast.py` | `emit_and_wait`, durable defer, lease-fenced acknowledgement | Keep organization completion or a durable continuation before Life acknowledgement; no second Intake acknowledgement |
+| `corpus_query.py`, `index_records.py`, root routes | Shared canonical snapshot; bounded indexed record primitives; stable record semantics | One lens/scope-aware group query used by root and depth, bounded previews/members, exact-source bypass and content-aware cursors |
+| `lifeorg05_transfer_repair_cas.py` | Current-schema lineage/CAS safety; legacy rows explicitly marked for rebuilding | Actual populated `lifeorg04` → `lifeorg05` test, schema-constraint audit and subsequent semantic relation migration |
+
+Do not reinterpret a `ResourceRef` for a whole submission as an exact passage,
+an internal sort timestamp as attendance, an Outcome creation time as when its
+subject happened, or a shared Occasion as permission to read private Outcomes.
+Confirmed anchors, retained originals and graph records need explicit coverage;
+an original disappearing from the retained-only projection after representation
+must not disappear from Life's complete custody/refinding path.
+
+### 12.4 Proposed evidence and organization contracts
+
+#### A. An owner-readable evidence view, not a new fact owner
+
+Define a small Life-internal envelope with the owning lanes. Reuse existing
+models and source locators where they fit; do not add a parallel public API
+merely to carry this internal view. Each supported relation needs:
+
+- canonical owner/source identity, opaque current revision and original route;
+- exact source locator and locator revision where finer-than-source evidence
+  exists; original lineage for crops/duplicates, without multiplying witnesses;
+- typed time basis, precision/timezone and any negative or disputed assertion;
+- canonical place/participant/occasion refs **when actually supported**, with
+  attributed roles such as author, contributor or explicitly reported attendee;
+- relationship basis and permitted purpose/audience, plus the owner event or
+  dependency identity that makes withdrawal/correction repair discoverable.
+
+Missing fields remain missing. A label alone does not become a canonical Place;
+a name in prose does not become a participant. Whole-source association is
+allowed only when the whole-source meaning justifies it. A multi-event note
+requires narrower locators before selective event attachment. Do not run a
+model over raw chats to fill gaps outside the accepted contribution lifecycle.
+
+**Exact Capture dependency:** an authorized read contract for already-retained
+evidence/claims with locators, revisions, time roles and repair identity; explicit
+organization-purpose treatment; and represented/unrepresented handoff to the
+confirmed owner without losing the original. Capture owns any required source
+producer/transaction change. Life can implement the consumer contract, mocks,
+safe kept-date periods and original readers while that agreement is pending.
+Those fallbacks do not complete source-backed event organization.
+
+#### B. Stable groups with several relationships and a simple default path
+
+Keep `owner`, `episode`, `period` and `thread` in the existing registry. A derived
+journey can use an episode group with supported children; it does not require a
+new Journey owner or a Plan. The group key is allocated/reused through the
+registry, not hashed from the current title, summary or member set.
+
+Propose a narrow relational group-link seam alongside existing record
+memberships: default containment and calendar reference are different roles.
+Allow at most one active default parent per child, scoped by viewer/version;
+allow a journey to be referenced from two calendar periods without duplicating
+it. Enforce same-scope foreign keys, no self-link and no containment cycles.
+Serialize topology changes within the relevant viewer/version scope before
+cycle checks; document lock order shared with member/control writes. Do not
+rely on two concurrent application-only preflight checks. Read immediate
+children by default; don't implement a general-purpose relationship graph UI.
+
+Places and People initially use canonical-subject facets over these same
+records and relationships. They are not additional generic group kinds or
+Life-owned world-place/person records. Two supported visits can appear under
+one Place without merging their episodes. A People reader shows eligible shared
+records and attributed contributions, not a generated dossier. Threads need an
+explicit retained continuity relation first; semantic resemblance can propose
+a relation but does not establish one.
+
+For calendar navigation, persist the calendar/timezone policy and date role.
+Month/year scaffolding is sufficient initially; a week/day layer is optional
+when it improves recognition. Separate supported lived intervals from captured,
+authored, scheduled and kept-date navigation. Unknown-time material remains
+directly findable. Device timezone changes must not re-key existing periods.
+
+#### C. Minimal storage additions, reviewed before migration
+
+Reuse the current registry, membership, control and resolution-transfer tables.
+The migration proposal should cover only these missing responsibilities:
+
+1. Typed group navigation and indexed scope/time lookup as described above.
+2. Reverse-queryable supporting dependencies linking owner/source/locator
+   identity and revision to the derived membership/consumer. Reuse any compatible
+   shared dependency facility after inspecting it; otherwise add a narrow Life
+   relation table, not another corpus or event framework. Bounded JSON preview
+   refs are not the complete repair inventory.
+3. A content epoch for group reads, separate from current command CAS revision,
+   plus a conservative viewer/version/lens scope epoch for list membership and
+   ordering. Advance affected epochs transactionally on observable changes,
+   including source content changes with unchanged membership. No-op replay
+   should advance neither. Measure contention before adding finer partitions.
+4. A small renderer-neutral preview selection manifest: selected stable refs,
+   evidence revision, selection-policy version and authored-label status. Reuse
+   an existing derived-payload seam where appropriate; do not create a second
+   copy of source bytes or a server-selected layout language.
+
+Membership revisions continue to fence membership edits; existing group
+revisions continue to protect their current command/repair dependencies. Do not
+silently redefine Undo to fail on every unrelated preview refresh. Audit all
+existing revision checks before introducing the separate read epoch.
+
+#### D. Correct owner containment without erasing genuine occurrence evidence
+
+Propose `contained_record` as the neutral owner/group membership relation;
+reserve `supports_occurrence` for evidence actually supporting an occurrence.
+Confirm the vocabulary against shared consumers before finalizing it. A stored
+membership row is not a new assertion that somebody attended an event.
+
+The migration must identify generated owner-self memberships by their exact
+owner/group/record shape and provenance, not globally rename every
+`supports_occurrence` row. Preserve stable row IDs, exclusions, accepted control
+targets, idempotency results and transfer before-images. Produce a dry-run
+inventory of convertible, genuine, ambiguous and colliding rows. Ambiguous
+rows remain non-occurrence evidence to readers and require scoped repair;
+never choose an active row over a conflicting exclusion. This must include
+legacy control/replay compatibility, not just a new enum and clean fixtures.
+
+### 12.5 How changes become maintained records
+
+Use the existing owner-change → Life outbox → current-authority projector →
+shadow index path. Extend the awaited Life consumer with organization work:
+
+1. Re-read the exact current owner and applicable purpose/audience. Stale events
+   are hints, not a license to republish old facts. Opaque revision strings must
+   not be ordered lexicographically as a substitute for owner authority.
+2. Resolve previous memberships and reverse dependencies for the changed
+   evidence. Build a bounded candidate neighborhood from explicit context,
+   compatible typed time/place and existing groups; do not scan all raw chats
+   or compare the whole corpus pairwise.
+3. Compute B1 proposals outside write transactions: justified links, forbidden
+   joins, no-link outcomes and affected previous/new scopes. Time/place helps
+   select candidates but cannot establish the same dinner by itself. Preserve
+   independent support when only one contributing source changes.
+4. Recheck owner/dependency/control revisions, lock in a documented order, then
+   reconcile the affected relation set. Add justified relations; supersede
+   unsupported old ones; preserve exclusions and explicit title choices.
+   Superseding a membership does not delete its original or unrelated facets.
+5. Update dependencies, navigation, eligible preview selection and read epochs
+   in the same derived transaction. Repair both the old and new parents when
+   an item moves. Identity resolution uses the existing lineage registry;
+   ambiguous splits return all valid targets, never an arbitrary first child.
+6. Acknowledge the Life delivery only after this bounded work completes or an
+   explicit durable continuation is committed. A crash after index success
+   must replay organization even when that index row is already current.
+   Replaying a completed authorized restore must converge rather than require
+   the row to still be withdrawn. It must not authorize ordinary resurrection.
+
+Keep this first deterministic path in the existing awaited consumer. If measured
+fan-out exceeds a safe job bound, extend Life's existing repair/checkpoint work
+with a resumable affected-scope continuation before acknowledging. Record its
+dedupe identity, lease, target revision, cursor and supersession behavior; do not
+launch untracked background work or create a parallel Intake acknowledgement.
+
+Safety invalidation cannot wait for enrichment. Current-owner checks remove
+revoked/expired support, counts and previews from read eligibility; asynchronous
+repair then converges stored organization. A dependency mismatch hides/rebuilds
+the dependent excerpt, not independent originals. On transient worker failure,
+the original can remain available while enrichment is pending. No root/depth
+GET runs a model, mutates organization or starts a corpus rebuild.
+
+Duplicate-source handling distinguishes display deduplication from deletion.
+Retain exact original routes and lineage; do not collapse separately authored
+accounts because they share a photograph or subject. Late imports should change
+their supported historical context, not take over the user's current month.
+
+### 12.6 Reader contract and the actual user payoff
+
+Extend the canonical Life query abstraction so root and depth use the same
+viewer, projection version, lens, scope, eligibility and ordering semantics.
+Keep the legacy snapshot adapter while indexed/group serving remains dark.
+Do not create a separate root compiler with a different definition of belonging.
+
+The group reader returns a bounded recognition preview, typed date/context,
+stable group identity, eligible count **with its unit**, immediate child
+references, selected evidence with exact routes, coverage/availability, content
+revision and a continuation. Original-record lookup remains a separate exact
+operation on the same authority model. A preview list is not an exhaustive
+manifest; page the full membership/dependency set on its own bounded path.
+
+| Lens or entry path | Recognition/payoff | Reader obligation |
+| --- | --- | --- |
+| Time | A recognizable journey or local period with the meaningful parts visible | Distinguish actual, planned and kept dates; don't force city → day → meal traversal to retrieve an original |
+| Places | Different visits/accounts related to the same Place | Keep visits distinct; show kept-not-lived evidence truthfully; don't duplicate the Places root's discovery feed |
+| People | The shared dinner and what a person actually contributed | Preserve author/source identity and viewer-relative access; no mention-as-attendance or composite group voice |
+| Threads | The observation, retained explanation and explicitly connected later attempt | Preserve source-backed steps; no culinary/personality label synthesized from similarity alone |
+| Everything kept / source search | Find a ticket, note or reading directly | Include retained and represented originals without duplicate witnesses; no mandatory group path or generic full-record substitute |
+
+Selection baseline: prefer evidence that helps distinguish this record and
+recover useful details. Keep a still-useful incumbent preview when new material
+adds no better recognition; replace invalid/withdrawn evidence immediately.
+Use text, receipts or attributed contributions without requiring a photo.
+Don't optimize for one item from every owner type. Reconstruction may be useful
+without novelty; human contribution does not require AI rewriting. An AI Return
+still needs substantive added work under the Editorial Canon.
+
+**Pagination and restoration:** use a unique stable sort tuple and keyset cursor
+bound to viewer/version/lens/scope and content epoch. Check cursor context and
+version using existing conflict conventions. A changed scope produces explicit
+stale-cursor readback; the client restarts and resolves the previous stable
+group/record/block anchor where still eligible. Do not silently concatenate old
+and new snapshots. Revisions changing on unrelated groups should not reset an
+open exact reader. Measure list-level epoch churn before making it more granular.
+
+Assemble each bounded response under one consistent database snapshot; release
+it before the next request. Preserve the current-authority publication/read
+boundary, including eligibility checks at a defined point before response.
+An old cursor or consistent snapshot is never authorization to show revoked
+content. Bound scanned candidates as well as returned rows; when authority
+filtering creates a sparse page, return a truthful continuation/coverage result
+instead of scanning indefinitely or falsely declaring the corpus exhausted.
+
+Mobile implementation should reuse `components/life/LifeRootV1Screen.tsx`,
+`app/you/life-record.tsx`, existing hooks and
+`utils/lifeReadingPositionStorage.ts`. Add only the semantic distinctions the
+approved Life design needs. Keep exact-source search, grouped depth and
+Everything kept distinct; preserve loading, unavailable, empty, sparse and
+retry states. Final card geometry stays in Claude Design; no new Chat surface,
+composition editor or generic dossier shell is part of this package.
+
+### 12.7 Reviewable implementation packages
+
+These labels subdivide existing R2-G/R3–R5/R7 work, not new roadmap tracks.
+Each package ends with explicit code/test evidence in this section. Commit only
+owned files; do not push/merge or switch serving as an internal implementation
+choice. File boundaries below are existing extension points; new small modules
+may separate evidence, reconciliation and readers rather than growing the
+already large `backend/core/db/life_organization.py` into a whole engine.
+
+| Package | Concrete work and principal surfaces | Exit evidence / next dependency |
+| --- | --- | --- |
+| P0 — baseline and migration evidence | Inspect branch divergence, current schema head and shared lane changes. Add a populated `lifeorg04` → `lifeorg05` test; audit table declarations, historical transfer FKs, legacy flags and repair refusal | Fresh-schema and historical-upgrade results agree with intended current constraints. Legacy sentinel revisions are never trusted as real before-images. Record branch-integration needs without merging |
+| P1 — evidence and semantic contract | Agree Capture/graph evidence envelope, supported owners and purpose. Specify neutral containment and old-row inventory in `organization.py`, owner models and organization storage | Fixtures distinguish kept/planned/occurred/negative claims; exact field-by-field availability matrix and producer dependencies. Reviewed additive schema/migration proposal before table changes |
+| P2 — stable organization and reconciliation | Extend existing group/member storage with justified navigation, temporal lookup, reverse dependencies and read epochs. Implement B1 periods/episodes, explicit continuity, scoped set reconciliation and revision-safe preview selection | Source-only W2 works without Plan/Occasion. Separate visits, cross-month journey identity, undated refinding, exclusions, no-op replay and multi-event source locators tested. Unsupported real owner reads remain named gaps |
+| P3 — connect durable maintenance | Extend retained-source/Outcome and existing Plan/Occasion organization callbacks; connect previous/new affected groups, withdrawal, current-authority restore and bounded continuations if needed | Crash after index write, retry after organization commit, lost ack lease, new revision overtaking old work, withdrawal during work and restore replay all converge. No second queue framework or source-side producer authored by Life |
+| P4 — one bounded group query and exact readers | Extend `corpus_query.py`/indexed adapter, `compiler.py`, Life models and existing routes with shared scope semantics, immediate children, previews, counts and exact-original bypass | Root/depth agree; lexical/exact retrieval bypasses hierarchy; tie-heavy keyset pages, stale cursors, sparse filtering, alias/split destinations and current-authority checks pass. Still dark |
+| P5 — native data integration | Run cross-repo schema sync; reuse Life root/depth/hooks/storage to consume typed group and original destinations and restore stable anchors | Generated schema/typecheck, focused Jest and route/restoration regressions pass. All W1–W5 are inspectable through fixtures; app/device session remains deferred, not claimed complete |
+| P6 — quality and bounded semantic experiment | Extend existing replay/rehearsal reporting with organization/reader judgments. Compare B0/B1; only run B2 for evidenced misses through the registered model gateway with an authorized budget/data scope | Report per-world useful grouping, false joins, exact findability, churn, latency/cost and unsupported coverage separately. B2 earns adoption only if it improves supported misses without relaxing hard constraints |
+| P7 — replacement readiness, not automatic activation | Reuse §11 corpus parity and R8 custody/Atlas mapping, broaden supported owner coverage and verify fallback preserves originals/controls | A release decision has populated migration evidence, durable delivery coverage, exact destinations, performance budgets, native acceptance when resumed and explicit activation authority. This planning package does not grant it |
+
+**Dependency order (refined by §13 after implementation):** P0 and P1 establish
+the baseline and contracts; P2 and P3 form one maintained organization capability;
+P4 is designed alongside P1/P2
+so storage earns its place in the reader; P5 follows the typed reader contract.
+P6's corpus and evaluation work starts with P1, not after all the implementation.
+P7 uses their receipts plus the existing broader R0–R8 acceptance conditions.
+This is an engineering sequence, not a promise of a one-week calendar schedule.
+
+When an owner seam is unavailable, continue P0, internal contract tests,
+bounded reader fixtures, deterministic safe fallbacks and replay simulations.
+Do not mark P2/P3 portfolio-complete using fabricated owner reads. Return the
+exact missing interface and which acceptance scenario it blocks. The first
+review checkpoint is P0 plus P1's contract/storage proposal; the next connected
+checkpoint is P2–P4 working against all currently supported W1–W5 evidence.
+
+### 12.8 Verification and evaluation matrix
+
+All cases here are planned, except historical receipts explicitly recorded
+above. Tests that use authored/mock evidence do not establish production owner
+coverage, and inspecting an example does not count as a model experiment.
+
+| Area | Required cases and assertions |
+| --- | --- |
+| Truth and semantic types | Plan self-containment without attendance; unused ticket plus explicit nonattendance; source/event/import clocks differ; conflicting participant accounts; retention purpose does not widen |
+| Organization | W1–W5 plus design §16's V1–V12; source-only W2; same Place/two dates; month boundary; uncertain midnight/timezone; long multi-event note; no photo; duplicate lineage; sparse unplaced reading |
+| Stability and voluntary edits | Late import preserves unrelated IDs and open anchors; unchanged replay preserves epochs; rename survives automatic refresh; detach survives replay/rebuild; exact Undo rejects genuine intervening conflicts without unrelated-preview conflicts |
+| Scoped repair | Source correction moves only justified memberships; old and new parents updated; remaining independent support survives; preview/count dependencies withdrawn; explicit restored evidence obeys current exclusions; unresolved repair has a reachable checkpoint |
+| PostgreSQL concurrency | Duplicate first insert, concurrent detach/materialize, opposing containment-edge insertion, alias/split repair versus source update, revoke during selection, duplicate restore, lost worker lease and out-of-order delivery; use controlled interleavings, not sleeps as proof |
+| Migration | Seed pre-upgrade groups, active/excluded memberships, controls and transferred lineage at `lifeorg04`; upgrade; inspect constraints and legacy repair behavior. Separately test neutral-relation conversion/collisions/control replay and resumable interruption |
+| Reader bounds | Multiple small page sizes, equal sort values, empty/partial page, sparse authorization, changing cursor scope, missing owner, redirected/split handle and deep/wide hierarchy. Assert bounded scanned/returned work, no N+1 full-corpus reads and no duplicate/omitted rows within an unchanged scope |
+| Native data integration | Same typed identity through root → group → original → back; exact source deep link bypasses grouping; lens/query preserved; removed-anchor safe fallback; no repeated failed cursor loop; offline/retry/unavailable handled |
+| Useful value | Recognize the right outing, retrieve the specific original, distinguish visits, find someone's actual contribution, understand a corrected movement without entering new data; report backtracking and wrong doors as well as successful completion |
+
+Run focused offline backend tests before connected PostgreSQL selections;
+keep migration databases isolated and disposable under the repository's test
+workflow. The historical upgrade is not simulated by changing a status field
+in a current-schema row. `lifeorg05` intentionally removes cascading membership
+FKs to retain transfer lineage; its downgrade does not currently recreate them.
+Audit and test the intended rollback contract explicitly, including historical
+rows whose referenced membership was removed. Do not promise a lossless data
+downgrade or execute one against the user's working/production database.
+
+For a public model/route change, run the required workspace
+`scripts/sync-types.sh` workflow, review both OpenAPI snapshots and generated
+`travel-app/utils/api/schema.gen.ts`, then run TypeScript and relevant Jest.
+No hand-maintained TypeScript copy of the backend group contract. Scope tests
+to explicit files, record commands and branch hashes, and distinguish any
+pre-existing repository gate failure from a Life regression.
+
+**Quality reporting:** evaluate required-link recall and false joins together;
+counting only forbidden joins rewards an organizer that never groups anything.
+Measure exact-source findability, useful subgroup coverage and unplaced-but-
+findable material. Track visible intermediate churn separately from final-state
+equivalence after incremental versus rebuilt processing. Allow several valid
+hierarchies; compare meaning, authority, controls and preserved registry identity
+rather than require byte-identical generated titles or one universal tree.
+
+For B2, freeze calibration cases and independently prepare unseen variants
+before the measured run. Reuse the existing model gateway/registry, structured
+output validation, timeouts and bounded candidate set. A model may suggest a
+relationship with exact support or abstain; it may not mint canonical identities,
+rewrite authored meaning or override exclusions. Measure marginal quality gain,
+cost and latency per task. Paper leaderboard numbers are not our thresholds.
+Choose explicit product tolerances from local baselines before promotion;
+audience leakage, invented attendance, resurrection and lost originals are hard
+failures, not average-score tradeoffs. No private artifacts or paid inference
+were sent to external models during this documentation pass.
+
+### 12.9 Cross-lane handoffs and rollout boundaries
+
+| Owner | Exact handoff needed | Not delegated to Life |
+| --- | --- | --- |
+| Capture / confirmed-source owners | Permitted evidence/locator read; claim and source revisions; original/representation mapping; withdrawal and restore dependency identities | Raw-chat retention, source-side transaction changes, duplicate intake acknowledgement or source repair authority |
+| Plan / Occasion / Outcome and social owners | Explicit context/participant roles, negative/occurrence claims where owned, canonical subject refs, current/former viewer scopes and repair events | Synthetic Plans for ordinary life, a pre-Plan intention writer or access to another person's private Outcome |
+| Home / Places / Integration | Stable record/original destination, eligible content revision, exact lens/return anchor and affected-consumer repair identity | A second Life-owned current-world engine, duplicate delivery allocation or public release activation |
+| Design / mobile | Reader semantics, representative evidence examples and every sparse/error/restoration state using the current Life boards | Another visual-language sprint or a new filing workflow |
+| R7 human composition | Eventual custody for selected refs, stable block IDs, authored ordering/captions and revision-pinned edits | Saving an authored composition into a disposable projection or letting later grouping overwrite it |
+
+Raw-index parity and richer-group usefulness are different checks. Preserve
+owner eligibility, original custody, exact destinations and canonical claim
+semantics; grouping intentionally changes presentation, so do not require its
+cards to equal the old flat list. Conversely, better-looking group previews do
+not waive raw-record coverage or durable repair requirements.
+
+Keep indexed/group readers dark until the relevant acceptance and activation
+decision. Any later fallback must preserve current-authority checks, original
+access, group handle resolution and human controls; a stale legacy snapshot is
+not automatically a safe fallback. Future projection versions still need the
+documented live-fanout capability. No serving switch, Atlas deletion, destructive
+migration, remote push/merge or deployment is included here.
+
+**Recommended next action, updated after architecture review:** execute §13's
+M0 baseline delta and M1 unified maintenance package. P1/P2/P4 already have the
+storage, evidence-envelope and bounded-reader foundations in §12.11; do not
+recreate them. Prepare the missing real-owner evidence mapping and reader
+composition alongside M1, then connect them through M2–M4. This remains the
+complete organizer-and-reader increment across W1–W5.
+
+### 12.11 Execution receipt — connected storage and bounded depth reader
+
+The first unblocked implementation slices are now committed on the isolated
+Life backend branch (recheck branch divergence before integration):
+
+- `43043a035` separates generated owner containment from occurrence evidence,
+  adds the incremental `lifeorg06` relation migration, and covers the exact
+  owner-self conversion/collision guard. Existing genuine `supports_occurrence`
+  rows and control/lineage IDs are preserved.
+- `49b92b3ad` adds `content_revision` and `read_epoch` as freshness fields
+  distinct from command CAS revision, creates typed `life_organization_group_links`
+  for `contains` and `calendar_reference`, locks topology endpoints in stable
+  order, rejects self/cyclic containment, and adds `lifeorg07`.
+- `9e34fc03d` adds a bounded renderer-neutral group-depth reader with immediate
+  children, active membership keyset pagination, stable identity restoration,
+  and stale content/read-epoch rejection.
+- `acb8ed40a` adds PostgreSQL evidence that membership refresh advances content
+  freshness without changing command revision, and that topology links are
+  bounded and cycle-safe.
+- `ce6905139` adds the strict internal evidence-unit envelope, policy-scoped
+  calendar-period seeds and a deterministic source-evidence-to-membership
+  adapter. Model-candidate evidence is rejected from B1 materialization until
+  the separate B2 evaluation path explicitly accepts it.
+- `a11aae244` adds an opt-in, complete-set membership reconciliation seam. It
+  plans and applies only the supplied group's affected set, supersedes active
+  relations that disappeared, preserves excluded and historical rows, and is
+  replay-safe. The default incremental materializer remains unchanged, so an
+  incomplete owner read cannot cause an accidental withdrawal.
+- `36ff8053e` makes the canonical corpus continuation typed and shared by the
+  root/depth route path. `LifeCorpusCursor` fences lens, represented-at time,
+  corpus revision and the `(sort_at, record_id)` identity boundary in one
+  pure contract; malformed partial boundaries are rejected before a page can
+  be concatenated with a different scope.
+- `8893cf518` tightens the evidence envelope's contract version to a closed
+  literal and adds a regression for unknown versions, preventing a future
+  producer from silently changing the meaning of an organization unit.
+- `0f2d004db` makes the bounded group reader assemble group metadata, immediate
+  topology and membership pages in one short `REPEATABLE READ` snapshot. The
+  connection is released before pagination; freshness epochs still fence a
+  later continuation.
+- `622ab741e` adds runtime type checks to `LifeCorpusCursor`, so an invalid
+  lens, timestamp, identity or revision cannot cross the pure pagination
+  boundary merely because a caller bypassed HTTP validation.
+
+The local development database was at `lifeorg05`; the additive `lifeorg06` →
+`lifeorg07` upgrade was applied transactionally for test evidence. Focused
+organization, migration, reader and PostgreSQL tests passed (**20**), and the
+full `tests/life_projection` selection passed (**221**, including the scoped
+reconciliation, typed-cursor and evidence-version cases). The typed
+corpus-cursor and route selection passed their focused suite (**21**). Ruff and
+migration-chain checks passed. Pre-existing
+repository hooks for event-type parity (the
+isolated worktree environment lacks the hook's SQLAlchemy import), repository
+size budgets, and status-dead-gates were skipped for commits; they are not Life
+regressions and remain release blockers to resolve in the owning baseline.
+
+This receipt completes the storage/reader and deterministic contract foundation
+of P0/P1/P2/P4 and the first scoped P2 reconciliation mutation. It does not
+implement Capture's structured evidence read, retained-source/Outcome
+organization callbacks, public routes or mobile schema integration. The
+reconciliation seam still requires a caller with a complete, authority-checked
+proposal set; broad owner coverage, durable continuations and automatic
+classifier evaluation remain future packages. Calendar-period identity and
+evidence adapters are safe primitives, not an automatic classifier. The next
+code package must connect them against the agreed cross-lane evidence contract;
+it must not infer missing fields from the new tables.
+
+### 12.10 Planning verification receipt
+
+- Re-read the retained-source model/read, source event purposes, awaited Life
+  delivery, organization storage/materialization, owner callback wiring,
+  historical migration, canonical corpus and native reader extension points.
+- Consulted the eight primary sources in §12.2; recommendations and transfer
+  limits are explicit. No clustering benchmark, user study or inference call
+  was performed by this planning pass.
+- Replay manifest validation and all six fixture-validator regressions passed;
+  Ruff on both checker files passed. These preserve the preceding research's
+  source-only W2 correction, not a newly implemented organizer.
+- Scoped lifecycle metadata and `git diff --check` passed. All 59 relative
+  links across the updated roadmap and engine design resolve, with child-repo
+  targets checked against the canonical workspace.
+- Existing backend test results quoted earlier are their historical receipts;
+  no additional backend/database/mobile tests were represented as run here.
+  Product code, APIs, source transactions, serving flags and design canvases
+  were not changed. The additions are research, planning and the preceding
+  fixture correction, isolated from concurrent canonical-workspace changes.
+
+## 13. Architecture review follow-through — September 7
+
+### 13.1 Decision and definition of completion
+
+Continue R0–R8 with one maintained Life system. Preserve canonical owners,
+the existing corpus index, durable Life outbox, typed organization, human
+controls and native readers. The correction is to connect their execution and
+completion contracts. M0–M6 below are subdivisions of existing work, not a new
+roadmap or a new indexing framework.
+
+**Connected completion:** an eligible owner change reaches current index state,
+required organization, reverse dependencies and read freshness; either all
+required work completes or its remainder stays durably reachable. A successful
+index write, cache invalidation or acknowledged source event alone is not that
+completion. Original access need not wait for optional enrichment.
+
+The product outcome is recognizable, useful continuity without filing:
+Time explains periods and episodes; Places distinguishes experiences at a
+Place; People preserves attributed shared records; Threads exposes supported
+continuity. Exact originals remain directly findable across these views.
+Home/Places can consume exact eligible references, while the live engine keeps
+reading canonical owners independently of whether Life has ever been opened.
+
+This section is the execution plan and ledger. Packages are marked executed
+only by the receipts below; inclusion does not authorize schema changes,
+source-owned producer edits, prompt changes, paid inference, merges, pushes,
+activation or destructive retirement. Follow the owning repository's approval
+rules when a later implementation requires those boundaries.
+
+### 13.2 Review evidence and what it changes
+
+Paths below refer to the Life backend at `767f70499` unless an app path is named.
+The canonical backend has overlapping fixes absent from that branch, including
+`270acb53e` passing target projection versions through withdrawal fences.
+Reconcile those changes before evaluating an integrated candidate.
+
+| Finding | Code evidence | Planning consequence |
+| --- | --- | --- |
+| Organization repair can be silently treated as success | `plan_projector.py::project_plan_change` discards `reconcile_organization`'s return; its subscriber returns `True`. Occasion uses the same callback shape | M1 gives required maintenance a typed completion result and connects that result to durable acknowledgement |
+| Organization publication follows a separately committed index write | `index_writer.py` and `core/db/life_organization.py` open independent transactions; ordinary owner materialization lacks a current-owner publication fence | M1 closes the interleaving boundary instead of relying on group-local CAS to establish current source authority |
+| Backfill and live delivery have different effects | `backfill.py` calls bare projectors without organization callbacks and short-circuits on current index revision | M1 routes every entry path through the same maintainer; current index plus missing organization remains pending work |
+| Automatic organization coverage is narrow | `organization_projector.py` materializes Plan/Occasion owner containment; the evidence envelope and period seeds are not an owner evidence producer | M2 connects authorized evidence across source-only life and Outcomes; unavailable owners stay explicit dependencies |
+| Public reads do not use the new organization | `api/routes/root_projections.py::_read_life_snapshot` gathers graph/Intake/timeline snapshots; `organization_reader.py` is internal and not route-wired | M3 composes one reader contract with bounded index/group adapters before M4 adopts it |
+| Some bounded-looking operations still do lifetime work | `retained_source_projector.py` asks `read_life_index_owner_rows` for every viewer row; root/depth fan-in drains source pages; `timeline_source.py` may ensure Atlas projection during a GET | M1 makes changed-record lookup exact; M3 bounds scanned candidates, moves maintenance off the future read path, and preserves historical originals |
+| Refinding and organized browsing use different substrates | `life/refind_sources.py` remains itinerary/participation/booking based | M3/M4 preserve its useful truth-aware envelope while moving retrieval to the common identity/eligibility contract |
+
+Review verification: the Life offline selection passed **194**, with **34**
+database-dependent cases deselected. A separate in-memory probe supplied
+`requires_repair=True` and observed `updated=1, withdrawn=0, stale=0` from the
+Plan projector. This confirms discarded repair status, not a production
+incident. The cross-transaction ordering concern was identified by inspection;
+M1 must reproduce it with controlled database interleavings. Earlier connected
+test receipts remain historical evidence, not tests rerun by this planning pass.
+
+### 13.3 Execution map
+
+| Package | Existing scope | Deliverable | Depends on |
+| --- | --- | --- | --- |
+| M0 — integration and migration baseline | P0 / R0–R2 | Exact change inventory, test baseline, schema/rollback evidence, integration handoff | Current branches and worktrees |
+| M1 — one maintained-owner operation | P3 plus P2 repair / R1–R2 | Same completion semantics for delivery, replay, backfill and reconciliation | M0 delta inspection; no new source extraction required |
+| M2 — evidence-backed organization | P1/P2/P3 / R2, R6 | Source-only and graph-backed organization with scoped repair and durable controls | M1; agreed owner evidence read |
+| M3 — bounded, eligible Life reads | P4 / R1, R3, R5 | Digest, group depth, exact-original and refinding contracts over shared semantics | Contract design can start with M1; connected validation needs M2 |
+| M4 — complete four-lens receiving | P5 / R3–R6 | Existing mobile roots/depths receive useful groups and exact destinations | M3 public contracts and generated schema |
+| M5 — quality and substantive value | P6 / R2, R7 | Organization evaluation, justified model assistance, one admitted Return family | Evaluation starts immediately; model adoption follows measured deterministic gaps |
+| M6 — coverage, cutover and Atlas retirement | P7 / R8 | Reviewed replacement candidate, safe rollback and separately authorized retirement | M0–M5 evidence and relevant owner/native acceptance |
+
+M1 is the first engineering checkpoint, not the product's finish line. M2–M4
+form the next connected product checkpoint across W1–W5. M5 evaluation is
+continuous; later manual composition remains separate work inside R7.
+Use dependency checkpoints rather than a fixed one-week schedule.
+
+### 13.4 M0 — establish the integration baseline without sweeping other lanes
+
+1. Recheck root/backend/app branches, worktrees, staged files and dirty paths.
+   Record the exact Life, integration and mobile revisions used for each test.
+   Read live workspace roadmap edits that may not be committed; do not copy
+   another lane's uncommitted implementation into the Life branch.
+2. Inventory overlapping main changes by file and behavior. Preserve source
+   lifecycle/expiry, explicit restoration, target-version fences, generated
+   contracts and exact Home destinations. Identify which Life-only commits
+   are foundations, repairs, tests, or documentation rather than proposing a
+   blanket replay based on a historical branch commit count.
+3. Prepare an isolated integration candidate only under an execution request
+   that authorizes it. Record remaining conflicts/dependencies for Integration;
+   no merging, rebasing another lane or pushing follows from this plan.
+   M1's independent regressions may proceed on the pinned Life branch while
+   integration is coordinated; revalidate them on the candidate before landing.
+4. Verify one Alembic head on the eventual combined branch and the populated
+   historical-schema upgrade obligations in P0/§12.8. Use a disposable test
+   database; do not migrate or downgrade the shared development database for
+   convenience. Classify rollback as reader rollback versus data downgrade;
+   do not promise lossless downgrade of retained transfer lineage.
+5. Restore navigability: add/update the Life projection `FEATURE.md` and feature
+   map as part of implementation; distinguish `life/` refinding from
+   `life_projection/` organization/serving. Update current-state pointers,
+   not every historical receipt or legacy filename.
+6. Audit capability declarations separately from rollout permission. In
+   particular, the current `can_incrementally_write` predicate excludes opaque
+   revisions, although Occasion uses an opaque composite revision with an owner
+   fence. Promotion must depend on a validated equality/fencing contract, not
+   require changing that owner to a fictitious sortable revision or marking its
+   shadow implementation unavailable for the wrong reason.
+
+**Exit:** a named branch/schema baseline, an overlap/landing list, focused test
+results and an explicit unresolved integration list. Clean worktree status is
+not evidence of deployed behavior or permission to activate Life readers.
+
+### 13.5 M1 — one maintained-owner operation and honest completion
+
+#### A. Keep owner-specific authority; centralize execution obligations
+
+Introduce a small Life-internal orchestration boundary (working name
+`maintain_life_owner_change`) using existing Plan, Occasion, Outcome and
+retained-source adapters. Reuse builders and fences; do not create a universal
+owner model or merge domain-specific authority into a generic callback.
+
+The boundary accepts typed owner identity, viewer scope, target projection
+version, event/repair identity and reason. It loads current authority and
+previous indexed state, prepares required changes, publishes, and returns a
+typed result. Pure tests may inject collaborators; runtime callers must use one
+explicit adapter registry, not optional organization callbacks whose omission
+changes correctness.
+
+Proposed result dimensions, internal until reviewed:
+
+- observed owner/dependency revisions and maintained projection version;
+- index result: applied, already current, withdrawn or not applicable;
+- organization result: current, changed, valid no-link, unsupported, retryable
+  or blocked, with affected-scope identity and repair reason;
+- completion: complete, superseded with a durable successor, or pending;
+- durable continuation/checkpoint identity when one exists.
+
+Only required stages determine completion. Unsupported organization coverage
+may be reported while authorized original/index work completes; it must not
+be counted as complete organization or silently loop forever. An ambiguous
+association may validly remain unplaced. An accepted identity resolution that
+still requires repair is pending correctness work, not that valid no-link case.
+Telemetry is content-free and separates index progress, organization progress,
+pending age, retries, supersession and unsupported coverage.
+
+#### B. Close the transaction boundary for bounded deterministic maintenance
+
+For the currently bounded Plan/Occasion path, prefer one short derived
+transaction covering the fenced index write and required organization changes.
+Extract narrow in-transaction primitives from existing repository functions;
+keep standalone wrappers for appropriate callers. Do not call helpers that
+open another `get_tx()` and assume the outer transaction makes them atomic.
+
+Prepare candidates outside the transaction. Inside it, recheck the canonical
+owner, relevant policy/dependency revisions, controls, and expected group
+content. Then apply normalized rows, memberships, identity-resolution effects,
+reverse-dependency changes and affected read epochs together. Audit the lock
+order across publication, detach/Undo, topology and resolution before combining
+them; preserve sorted multi-group locking and the topology scope lock where
+needed. Any conflicting evidence causes a fresh preparation/retry, not a stale
+proposal applied after a newer index write. No model/provider calls or full
+corpus scans occur under these locks.
+
+If an existing resolution operation cannot safely fit that bounded transaction,
+retain the original Life event as unfinished, durably identify the remaining
+scope, and recheck current authority in its own publication transaction. Do
+not retain the present commit-index/ignore-repair behavior as a fallback.
+
+#### C. Make every entry path use the same completion rule
+
+| Entry path | Required change |
+| --- | --- |
+| Live `life_projection.changed` subscribers | Dispatch through the runtime maintainer; acknowledge only required completed work or a safely recorded handoff |
+| Duplicate/replay | Re-evaluate missing organization even if index revision is current; unchanged completed work does not churn epochs |
+| Backfill | Replace bare projector dispatch and index-only skip with maintenance-aware completion; preserve existing budgets, leases and family checkpoints |
+| Reverse reconciliation | Compare required organization/dependency state as well as index state; absence remains owner-proven, never inferred from omission |
+| Withdrawal | Immediately invalidate eligibility; remove only unsupported derived relations and preview/count support, retaining independent originals/evidence |
+| Explicit restore | Replayed authorized restore converges even after an earlier index restore committed; current exclusions and grants still apply |
+| Stale event | Never publish its stale payload; complete it only when current state needs no work or a reachable successor owns that work |
+
+Replace the retained-source event's whole-viewer index lookup with the existing
+exact record-state operation, extending its returned lifecycle fields if needed.
+Keep bulk/reconciliation enumeration explicitly separate; eliminate the API
+shape that returns an unbounded mapping for one call and a bounded tuple for
+another when touching those callers.
+
+#### D. Bounded continuation, when the affected set exceeds a transaction
+
+The existing Life outbox owns live-delivery recovery; existing backfill run
+rows own historical progress. Keep them. The first implementation should retain
+unfinished events for retry without adding a scheduler or another source queue.
+
+Before expanding to fan-out beyond a bounded transaction, review a minimal
+consumer-progress extension to that Life journal. Preferred shape: separate
+consumer-owned checkpoint metadata, not mutations to the immutable source-event
+payload. Record maintainer version, viewer/target scope, stage, stable scan
+cursor, examined revision/epoch, pending reason and supersession evidence.
+Use the existing event identity, lease token and retry schedule. Do not persist
+raw source content or an unbounded list of members in that checkpoint.
+
+Each slice commits its derived changes and checkpoint together under the
+current lease. A reclaimed worker cannot advance progress or acknowledge.
+Moving evidence to another group requires revisiting both old and new scopes;
+an interrupted scan must not skip them. Newer owner revisions invalidate stale
+prepared work. A successor may subsume prior work only if withdrawal, restore,
+exclusion and both parent repairs are preserved. Terminal unsupported/blocked
+work gets a visible operator reason and resumable recovery, not rapid endless
+retry or a user-facing maintenance queue.
+
+Shared table/model changes remain a reviewed migration proposal, not something
+approved by this text. Until continuation persistence exists, do not acknowledge
+a truncated correctness operation as complete.
+
+#### E. Reviewable commit order and acceptance
+
+1. Add failing regressions for discarded repair, current-index/missing-group
+   replay, and live/backfill divergence using existing tests and adapters.
+2. Add typed maintenance results and runtime dispatch; wire required completion
+   through event handling. No public API change is necessary for this step.
+3. Close the publication transaction/fence boundary and add controlled race
+   tests. A callback throwing after index work must not strand organization.
+4. Adopt the maintainer in backfill/reconciliation; make exact source lookups
+   bounded. Test already-current, withdrawal, restoration and stale successors.
+5. Add continuation persistence only for the demonstrated affected-scope need,
+   with schema review, lease-loss/interruption tests and operator diagnostics.
+6. Update this roadmap with actual commits, commands, gaps and next checkpoint.
+
+**M1 exit:** live, replay, backfill and repair yield equivalent required index,
+organization and eligibility state for currently supported adapters. There is
+no success acknowledgement while required repair has no durable owner. Include
+newer revision overtaking old organization, withdrawal between prepare/publish,
+duplicate restore, lease takeover, merge/split repair, and user detach racing
+materialization. Use synchronization barriers, not timing sleeps, for races.
+
+### 13.6 M2 — turn admitted evidence into maintained experience
+
+Do not repeat `LifeEvidenceUnit`, group/link storage, content epochs or the
+complete-set reconciliation foundation. Connect their real inputs and callers.
+
+**Owner handoff:** Capture supplies an authorized bounded evidence/locator read;
+Life consumes it. Agree its exact method/shape before editing source-owned
+transactions. Existing content-free events trigger reads but do not grant an
+`organization` purpose merely because they allow `source_refind` or repair.
+Map every required envelope field to a real owner field or mark it unavailable.
+
+| Evidence | Minimum usable owner information | Missing-data treatment |
+| --- | --- | --- |
+| Retained original | Exact source/owner identity, revision, lawful custody, original route and current eligibility | Preserve findability; no graph object required |
+| Time | Role, supported interval, precision/timezone or explicit unknown | Import/capture time cannot masquerade as occurrence; undated material stays findable |
+| Place | Resolved Place reference and evidence basis | Do not geocode a label or infer a visit merely to fill the lens |
+| People | Author/contributor/subject/attendee roles when owner-supported | Mention is not attendance; preserve separate perspectives |
+| Multi-event source | Stable locator and locator revision for each supported unit | No selective event attachment from an undifferentiated whole-source note |
+| Lifecycle/dependencies | Current owner/grant checks, dependency identities, correction/withdrawal/restore coverage | Unsupported scope is withheld; independent support remains |
+
+Implement the deterministic path with bounded affected-neighborhood reads:
+explicit owner context and links first, compatible time/place for candidate
+selection second, unsupported associations left unplaced. Preserve one default
+containment path plus typed cross-links. Calendar references do not create a
+second journey; two dinners at the same restaurant do not become one event.
+Explicit continuity can connect episodes without turning a thread into a task.
+
+Use indexed reverse dependencies to discover prior and new affected groups.
+Audit existing membership-by-record lookup and shared dependency stores first;
+JSON evidence is useful provenance but is not a complete reverse-repair index.
+Add only the missing relational edges through a reviewed migration. Track exact
+support so retracting one source does not erase another participant's account.
+Repairs must reach transferred memberships and redirected identities, not only
+the original owner group.
+
+Human controls and accepted identity choices are durable inputs. Verify their
+mapping across projection versions: current storage scopes groups/controls by
+projection version, so rebuilding into a new version must explicitly port or
+resolve them. A new target version must not reset exclusions or mint a new
+episode merely because its title or members changed. This is part of rebuild
+acceptance, separate from algorithm re-derivation.
+
+**M2 exit portfolio:** W1 cross-month journey; W2 source-only ordinary week;
+W3 explicitly continued attention; W4 attributed shared occasion with two
+viewer scopes; W5 retained-but-not-lived evidence. Test late import, sparse/no
+photo, negative occurrence, conflicting accounts, source move, revoke/restore,
+and durable rename/detach. For each, report real-owner coverage separately from
+fixture-only expectations. W6 reserves composition authorship; it is not a
+reason to build an editor now or to declare that owner implemented.
+
+### 13.7 M3 — one semantic reader contract, several bounded operations
+
+Extend `corpus_query.py`, indexed adapters and the existing Life models/routes.
+Keep the legacy snapshot implementation dark-switch compatible until acceptance;
+do not switch the public route merely because the new query compiles.
+
+Share viewer, target version, owner eligibility, stable record/group identity,
+time semantics, typed count units and destination resolution. Keep specialized
+query plans for distinct jobs:
+
+| Operation | Required result and bound |
+| --- | --- |
+| Root digest | Finite recognizable groups with eligible preview, count unit, stable handle and coverage; no full-history collection to choose a handful of rows |
+| Group depth | Metadata, immediate child handles and paged eligible members; preserve independent child/member continuations and freshness fences |
+| Exact original | Direct identity lookup/readback through its owner; no requirement to traverse episodes or paginate all history |
+| Everything kept | Paged custody-oriented originals, including represented originals through canonical mapping; display deduplication does not delete witnesses |
+| Refinding | Exact/lexical/contextual retrieval over supported corpus families, opening the same objects and preserving negative/unknown occurrence truth |
+| Anchor resolution | Seek an eligible record/group/block and its local continuation by stable identity; do not make mobile scan all preceding pages |
+
+The internal group reader is not sufficient public authorization by itself.
+Compose bounded current-owner/purpose/audience checks before returning visible
+text, previews, counts or source access. A stored group, cached audience, old
+cursor or repeatable-read snapshot is not an authorization grant. Define the
+response's eligibility checkpoint, fail closed on unknown restricted support,
+and preserve safe independent originals. Observe current restrictions even
+when chronology is pinned to an earlier represented-at time.
+
+Bind continuations to viewer/version/lens/scope and appropriate content epoch;
+extend the shadow index cursor before exposing it as a public continuation.
+Keep a consistent short database snapshot per bounded response and release it
+before the next request. Cap scanned candidates as well as returned rows; a
+sparse filtered page returns honest continuation/coverage. Unrelated group
+changes should not force an exact open reader to restart. Scope invalidation
+as narrowly as justified, retaining explicit stale-cursor handling.
+
+Migration work moves `ensure_timeline_projected` and historical gathering off
+the future GET path into existing maintenance/backfill. Retained Atlas/booking
+evidence stays readable until its owner mapping and original routes are
+certified. Refinding's envelope can survive while its substrate changes.
+Add dependency-safe reuse for digest previews; do not invoke models on reads.
+
+**M3 exit:** root, group, original and refinding agree on identity/eligibility;
+query-count/rows-scanned tests show bounded work; source removal changes all
+dependent counts/previews; repeated small-page reads have no duplicates or
+omissions within unchanged scope; direct old-record access requires no lifetime
+scan. Public models/routes require schema review and the workspace sync workflow.
+
+### 13.8 M4 — connect the four-lens experience and cross-root continuity
+
+Reuse `components/life/LifeRootV1Screen.tsx`, `app/you/life-record.tsx`,
+`data/rootProjections.ts`, exact resource routing and reading-position storage.
+The current shell and cursor recovery are foundations, not replacements to
+rewrite. Detailed visual composition stays in the approved Life design lane.
+
+- **Time:** recognizable periods/journeys/episodes, truthful date roles and
+  direct access to originals. Late imports enrich their supported period.
+- **Places:** distinguish visits and kept-not-lived material at the same Place;
+  do not recreate the Places discovery feed inside Life.
+- **People:** shared records and actual contributions with attribution and
+  viewer-relative visibility; no person dossier or implicit relationship score.
+- **Threads:** supported steps across moments, with complete useful material;
+  no unresolved-task count or prompt to finish a personal project.
+
+Adopt typed group/original destinations without implementing a parallel entity
+shell. Preserve origin/lens/record anchor through Home or Places → Life →
+original → back. A missing or split target gets exact unavailable/choice
+readback, never an arbitrary child or generic archive substitution. Deep anchor
+restoration uses M3's seek operation. Preserve empty, thin, yielded, partial,
+offline, stale-cursor and retry states without adding filing homework.
+
+Before implementation, agree the exact destination and eligible revision
+contract with Home/Places/Integration. Their roots consume it; they do not
+write Life state or depend on Life rendering to activate the live engine.
+Current production/reuse owners remain responsible for generated-result
+invalidation; React Query invalidation is only foreground freshness.
+
+**M4 exit:** run `scripts/sync-types.sh` from the correctly paired workspace;
+review full OpenAPI, active app projection and generated TypeScript; then run
+focused Jest, typecheck and operation governance. W1–W5 work through the
+actual data contracts, not mobile-only invented projections. Device and visual
+acceptance remain explicitly deferred until resumed through the app's QA path;
+no screenshot or usability claim follows from Jest.
+
+### 13.9 M5 — useful organization, optional models, and substantive Returns
+
+Begin the evaluation dataset with M1 and add assertions as M2/M3 connect. Reuse
+existing W1–W6 fixtures, validators and rehearsal reporting rather than create
+another quality framework. Track both required links and forbidden joins;
+an organizer that leaves everything unplaced is not automatically good.
+
+Report exact-original findability, recognizable episode coverage, multiple
+visits kept distinct, attributed contribution recovery, stable controls/IDs,
+visible churn during updates, bounded query cost and maintenance lag. Keep
+index parity, organization usefulness, model quality and native usability as
+separate evidence levels. Resource budgets must be explicit before promotion;
+measure a local baseline before promising latency or throughput numbers.
+
+B0/B1 deterministic behavior is the mandatory comparison. Evaluate B2 model
+assistance only on evidenced misses with authorized data/budget, held-out
+variants and the existing model registry/gateway. The model returns bounded,
+evidence-addressed relationship proposals or abstention. It cannot create
+occurrence truth, durable personal traits, permissions, identity decisions or
+silent edits to authored material. Preserve useful output when model work is
+unavailable; hard truth/audience/control failures cannot be averaged away.
+
+R7's first Return family should use the existing production/reuse contract,
+versioned evidence and cross-root allocation. It must contribute reconstruction,
+explanation or a supported new distinction, not paraphrase the user's attention
+or ask for more input. Separate generating value from choosing its surface.
+Manual-first composition remains later: select its custody owner, authored
+block/version model and edit-preservation rules before any saved-editor API.
+
+### 13.10 M6 — certify replacement before activation or deletion
+
+Use R8 and §11/§12 acceptance, adding the maintained-organization evidence:
+
+1. Inventory all retained Atlas/source families and exact legacy destinations;
+   account for represented originals, private/shared scopes and negative truth.
+2. Rebuild a shadow target from current owners plus durable controls/identity
+   decisions. Catch up through the same M1 operation. Non-default targets remain
+   historical until their explicit live-fanout mechanism is implemented and
+   verified; capability metadata alone is not freshness.
+3. Compare raw coverage and authority independently of richer presentation.
+   Test historical-schema upgrades, race recovery, dependency repair, targeted
+   source access, query budgets and cross-version control survival.
+4. Prepare reader rollback that preserves current revocations, exact-original
+   routes and user controls. Document any old-reader limitation rather than
+   silently falling back to unsafe or incomplete content.
+5. Obtain relevant native acceptance and explicit serving/production authority.
+   Integrate a reviewed candidate with its actual generated contracts. Only
+   then activate using the owning rollout process and observe lag/errors.
+6. After accepted replacement and its agreed rollback window, separately
+   approve removal of Atlas presentation, obsolete call paths and eventually
+   storage. Retain necessary historical ownership/read mappings. No blanket
+   deletion based on an `atlas` filename search.
+
+### 13.11 Dependencies, unblocked work and first checkpoint
+
+| Adjacent owner | Exact interface/decision needed | Life can continue without it |
+| --- | --- | --- |
+| Capture | Revisioned, purpose-authorized bounded evidence units/locators; original-to-representation mapping; current eligibility and lifecycle repair identity | M1; evidence consumer/contract tests; exact-original lookup; safe source-only retention/refinding |
+| Graph / social | Author/participant roles, claim/occurrence truth, current/former viewer fan-out, owner revisions and explicit restoration | Existing Plan/Occasion/Outcome maintenance; viewer-isolation tests; mark additional real-owner coverage unsupported |
+| Integration | Reviewed branch baseline, shared schema landing, target-version live-fanout and eventual activation authority | Isolated owned work and local regressions; no unilateral merge or producer changes |
+| Home / Places | Exact record/group/original destination, eligible revision and return anchor; generated-result repair ownership | Life query/destination fixtures and depth implementation; do not edit their composition policy |
+| Design / mobile | Approved semantic anatomy and sparse/error/redirect states; final geometry later | Backend contracts, generated types, existing component integration and non-device tests |
+| Founder / canon | Any adoption of pre-Plan intention, ordinary-Ask continuity, wider social use or later composition custody | All already-authorized evidence/organization work; do not reinterpret an open proposal as permission |
+
+**Historical first checkpoint:** the M0/M1 maintainer, primary publication fence
+and live/backfill/reconciliation packages have since been executed on the Life
+branch; see §13.13. M0 integration and M1 oversized/complete-scope repair are not
+therefore complete. Use the [current queue](#current-execution-queue) for remaining
+M2/M3/M5 work and the tested Integration handoff. Do not rerun the original
+implementation sequence merely because this section predates its receipts.
+
+After each connected package, append commits, test commands/results, remaining
+owner/activation gaps and next checkpoint here. Maintain the execution-status
+pointer; offer an exact handoff for shared contracts rather than editing the
+concurrently active integration register or source producer independently.
+If Capture's evidence read is unavailable, name the blocked W2/W3/W4 behavior
+and continue maintenance, safe originals, readers and fixtures. Do not call a
+fixture stub production coverage or declare Life complete after the first owner.
+
+### 13.12 Planning verification and mutation boundary
+
+This pass rechecked branch/worktree/dirty state, the live workspace coordination
+register, source/contribution policy, Life experience contract, prior execution
+packets, and the relevant projector/outbox/backfill/evidence/reader extension
+points. It edited only the isolated Life roadmap, companion system-design
+amendment and execution-status pointer. Scoped lifecycle metadata validation
+passed for all three documents; all 66 relative link targets and the new section
+anchors resolve (child-repository links checked against the canonical
+workspace); `git diff --check` passed. Review test results in §13.2 are from
+the preceding architecture review, not a new connected run in this planning
+turn. No code, schema, database, mobile UI, design project, deployment or remote
+branch was changed. The planning edits and execution receipts are committed in
+the isolated documentation lane; no source-owned producer, public reader,
+mobile UI, deployment or remote branch was changed by this section.
+
+### 13.13 Execution receipt — M0/M1 and conservative M2 follow-through — September 7
+
+The first architecture checkpoint is now executed in bounded packages on the
+isolated Life backend branch. M0's branch/dirty-state and dependency audit was
+performed before mutation; no concurrent source-owned or mobile work was
+swept into the lane. M1's shared maintainer is implemented by commits
+`0b822c3aa`, `767f70499`, `91024a856` and `3a44caf0f`: live owner delivery,
+non-dry-run backfill and reverse reconciliation now share typed completion;
+stale successors are superseded; explicit retained-source restoration uses an
+exact owner-state read; target projection versions survive the identifier-only
+bridge; and index plus primary Plan/Occasion owner-group publication share one
+short transaction. Resolution repair remains a bounded post-commit stage and
+is surfaced as pending rather than acknowledged as complete.
+
+The conservative M2 consumer seam is `bac99b1b0`. It exposes retained-source
+capture-time evidence with exact source references and owner revision while
+rejecting that unit as occurrence proof. Capture producers and source-owned
+transactions were not changed. The complete Life projection selection passes
+**238 tests** on the local PostgreSQL-backed environment with API-key cases
+excluded; focused maintenance, backfill, reconciliation, delivery, restore,
+ordering and evidence regressions are included. Backend repository-wide
+size-budget and status-dead-gate hooks remain pre-existing baseline failures
+and were explicitly skipped only for these commits; other applicable hooks and
+whitespace checks pass.
+
+The first bounded M3 reader seam is `bb2677abd` plus the fail-closed follow-up
+`f0a8d4f69` (`fix(life): reject unscoped index cursors`). Newly issued
+derived-index cursors now carry viewer, lens and projection-version scope;
+replaying a cursor across any of those dimensions, or passing a legacy
+two-field cursor to a repository reader, is rejected before the bounded SQL
+query. Invalid lens values fail closed. Legacy two-field cursors remain
+accepted only by pure comparison fixtures; repository readers always bind the
+new scope fields. Focused index, typed-reader, comparator and connected corpus
+checks pass. The Life package passes **226 tests** when the unrelated root-route
+test is excluded because this isolated worktree does not have the pre-existing
+`openai` dependency; collection failure is recorded rather than presented as
+a Life regression. This closes only the internal cursor boundary: public route
+wiring, complete authorization composition, scanned-candidate budgets and
+serving cutover remain M3 work.
+
+M0's historical migration obligation is now covered by
+`c4af8dfee` (`test(life): verify historical organization upgrade`). A
+disposable-schema PostgreSQL test seeds the pre-`lifeorg05` transfer table,
+runs the real Alembic upgrade, verifies preserved source evidence and lineage,
+checks the intentionally conservative `legacy_rebuild_required` and
+revision sentinels, confirms the membership foreign keys are removed while
+viewer/resolution ownership remains, and drops the schema in the same
+transaction. The migration-specific and offline guards pass **10 tests**.
+This is rollback evidence for the historical upgrade, not permission to
+downgrade or migrate the shared development database.
+
+The first M5 measurement seam is `b1ab469f0` (`feat(life): measure
+organization quality outcomes`). `measure_life_quality` deduplicates fixture
+identities and undirected joins, reports required-link recall, false-join rate,
+exact-original findability, useful coverage, and explicit denominators, and
+returns `None` for unmeasured zero-denominator rates. It performs no grouping,
+model call, or promotion decision; callers can place its stable dictionary in
+the existing rehearsal `measurements` payload. Five focused quality tests and
+the full Life selection pass **232 tests** with the unrelated root-route test
+excluded for the isolated worktree's missing pre-existing `openai` dependency.
+Quality thresholds, held-out worlds, model evaluation and Returns remain open.
+
+These receipts do not close M2's richer evidence contract, M3 bounded public
+reader composition, M4 mobile receiving, M5 evaluation/Returns, or M6
+replacement/Atlas retirement. Capture's agreed occurred/place/people/locator
+read and any demonstrated affected scope requiring reviewed multi-slice
+continuation metadata remain integration dependencies. The research checkpoint
+below identifies useful unblocked M2/M5 work; those dependencies do not mean
+all organizing-intelligence work must wait. Keep Life
+shadow-only, preserve unsupported owner coverage, and do not merge, push,
+activate readers, migrate/delete Atlas, or add another indexing framework.
+
+### 13.14 Organizing-intelligence research checkpoint — September 7
+
+Historical research-to-implementation plan: §13.15 records its first bounded
+implementation. Measurement correction and the initial five-world B1 compiler
+are no longer future work. Broader judgments, independent cases, real evidence
+and model/reader evaluation follow the [current queue](#current-execution-queue).
+
+The [technical research report](life-organizing-intelligence-technical-research-2026-09-07.md)
+covers all seven requested areas: multimodal evidence, episode identity,
+cross-experience continuity, hierarchy, incremental maintenance, representative
+selection, and evaluation/uncertainty/economics. It distinguishes published
+results from Life-specific hypotheses, with 2025–2026 methods and foundational
+event-relation, retrieval, clustering and summarization research. It proposes
+one experiment corpus and harness, not seven new delivery lanes or a new
+roadmap. Code inspection is pinned to Life `b1ab469f0`; no model benchmark or
+backend implementation was run in this research package.
+
+**Measurement correction before comparison:** a pure call to the existing
+`measure_life_quality` with two required/actual record IDs and zero joins returns
+`required_link_recall=1.0`. The field currently measures record recovery, not
+relationship recovery. Preserve that useful measurement under an accurate
+name; add required typed, directed-where-relevant, source-located relationships
+and group judgments. Existing undirected forbidden-join measurements remain
+useful but cannot express the entire relation model. Preserve explicit
+denominators and do not reinterpret historical receipts as measured grouping.
+
+Also distinguish product-world W1–W6 from the backend shadow-rehearsal W1–W6
+lifecycle cases using fixture namespace plus scenario ID. Passing lifecycle
+fixtures does not close product-world organization acceptance.
+
+**Next connected package inside M2/M5:**
+
+1. Correct the evaluation seam and add regression cases for recovered records
+   with missing/wrong relationships, direction, evidence spans and scope.
+2. Make the five existing product worlds executable as evolving organization
+   fixtures: journey, ordinary local life, continuing attention, shared dinner,
+   and ambiguous/nonattendance evidence. Include sparse/no-photo cases and
+   existing twelve perturbations; keep oracle-evidence and extraction runs
+   separate. Later authored composition remains a compatibility case.
+3. Exercise B1 through the existing evidence/proposal/maintainer seams with
+   explicit fixture evidence, including source-only organization. No independent
+   source parser, Capture producer, or second durable index.
+4. Propose a bounded offline B2 inference run using the same corpus and existing
+   model gateway. Compare typed relation assistance with deterministic B1,
+   conservative B0, and useful simpler challengers. Choose the run budget and
+   eligible data before model execution; research is not spending authorization.
+5. Evaluate resulting groups, exact-original access, lens-appropriate previews
+   and update stability together. Report construction/update/read/retry costs
+   and failed cases, not just query accuracy. Use results to choose which
+   methods earn production wiring; serving acceptance remains separate.
+
+The first three steps can proceed while the richer Capture owner-read envelope
+is pending. The producer contract must identify how extraction completion and
+revised evidence reach durable delivery, especially if evidence can change
+without a source revision. Life owns consumer/replay work and reports that
+dependency; it must not implement Capture's source-owned transaction. These
+research findings do not authorize a serving cutover, migration, Atlas deletion,
+or an autonomous Life-owned memory/intention writer.
+
+Research-package validation: lifecycle metadata passes for the report and both
+linked Life documents; all 65 scoped relative link targets resolve, with
+child-repository paths checked against the canonical workspace; whitespace
+checks pass. The full inventory check still reports 37 unclassified documents,
+verified to be the same failures as the documentation branch's pre-change
+HEAD. The new report is classified and adds no inventory failure. This package
+does not claim a repository-wide green documentation gate or rerun backend
+engineering tests; the executed code evidence is the pure metric diagnostic
+described above.
+
+### 13.15 Executed measurement and first B1 product-world checkpoint — September 7
+
+The first implementation following §13.14 is committed on the isolated backend
+branch `codex/life-shadow-rehearsal-2026-09-07`. These packages are not merged
+or pushed. Canonical workspace/backend/app concurrent changes were left alone.
+Task classification is `safe-backend`: internal Life logic, fixtures and
+documentation; no public API, shared owner schema, prompt, model default or
+background activation changed. Therefore no OpenAPI/mobile type regeneration
+was required.
+
+| Package | Code evidence | What changed |
+| --- | --- | --- |
+| Measurement correction | `4a19414be` | Record recovery is accurately named/versioned; typed relationship measurements include direction, source span, source/owner/locator revisions, viewer, purpose and projection version. Accepted, forbidden and unjudged output are distinct. |
+| B1 compiler and five product worlds | `333f447be` | Added bounded evidence-to-proposal compilation using existing evidence/group/membership interfaces; executable oracle fixtures and real organization persistence/reader tests; source-locator associations survive proposal merging; missing human/refinding judgments remain unmeasured. |
+
+Implementation map:
+
+- `backend/life_projection/quality.py` emits `life-record-quality.v2` with
+  `required_record_recall`; missing findability/usefulness judgments are `None`,
+  not zero or fabricated success. Supplied judgments cannot count absent records.
+- `backend/life_projection/quality_relations.py` measures actual required edges;
+  only `same_source` normalizes endpoint direction. Judgment coverage accompanies
+  precision, so unknown output cannot silently become correct output.
+- `backend/life_projection/evidence_organization.py` compiles at most 256 record
+  snapshots and 512 evidence units. It returns scoped proposals, observed
+  revisions, rejections and unplaced originals. It does not persist or serve.
+- `backend/life_projection/organization.py` preserves each evidence marker's
+  exact source/locator/revisions even when several passages share one record
+  membership. No original is cloned to represent multiple evidence units.
+- `backend/life_projection/FEATURE.md` now documents this package separately
+  from the older `backend/life/` refinding implementation.
+
+The B1 compiler admits declared time-role calendar navigation, source-only
+episodes from explicit occurred claims, explicit owner-context associations,
+and explicitly supplied continuity references. Dates, nearby places, similar
+food or filenames do not establish a common event. Pending retained sources can
+support literal capture navigation; current live canonical Occasions are not
+mistaken for transient Ask material. A ticket mentioning an occurrence does
+not create an episode without occurrence support. Calendar placement uses a
+declared fixed timezone and the start of each evidence interval; this is an
+experimental policy, not a newly activated user preference or universal
+multi-period coverage rule.
+
+#### Product-world output, with limited judgments made explicit
+
+All evidence is synthetic and **oracle-interpreted**. The illustrative literal
+text is not parsed by a model. Namespace `product-life.organization.v1` is
+separate from the backend delivery W1–W6 fixture namespace.
+
+| World | Observable result | Required links recovered | Additional unjudged links |
+| --- | --- | --- | --- |
+| W1 Europe | Kept ferry ticket and explicit train account relate to a journey; only the occurred account supports occurrence; late capture remains dated navigation | 2/2 | 4 |
+| W2 ordinary NYC | Two passages in one text become separate cafe episodes; one original remains; undated reading stays unplaced and available in the supplied corpus | 2/2 | 4 |
+| W3 continuity | Three explicitly connected sources relate through a Thread without merging their episodes; unrelated food and transient Ask do not join it | 3/3 | 6 |
+| W4 dinner | Viewer-relative contributions retain attribution; another person's private account is absent from the other viewer's proposed record | 1/1 | 4 |
+| W5 unused ticket | Corrected ticket remains calendar-organized; stale occurrence evidence is rejected; no episode or occurrence relationship is created | 1/1 | 0 |
+
+B0 owner containment recovers none of these nine **source-evidence** links;
+B1 recovers nine, with none of the explicitly forbidden fixture links admitted.
+This verifies the added deterministic behavior, not a general model-quality
+win: 18 other output links remain unjudged by this small rubric, source
+interpretations are supplied, and there is no held-out or human-value result.
+W5 does not establish free-text understanding of negation; it checks the
+organization consequence of current typed evidence versus a stale old claim.
+
+#### Connected validation
+
+The PostgreSQL tests materialize each of the five worlds through the existing
+organization store, replay without rewriting unchanged memberships, and page
+the actual group reader at two rows per page while checking exact membership
+and provenance. A sixth connected case exercises a shared dinner through
+rename, detach, complete-set withdrawal reconciliation, non-resurrecting replay
+and explicit restoration. The title and exclusion survive. Each test creates
+and removes its own disposable user; no shared development schema was migrated.
+
+The writer receives the previous affected groups plus current group content
+revisions for complete-set reconciliation. A new compiler batch alone is not
+proof that an omitted group is empty. These tests establish derived-store/group
+metadata compatibility, not canonical source-reader authorization, producer
+delivery, visual composition, or indexed public serving.
+
+Final local selection: **296 passed**, including PostgreSQL, with API-key tests
+excluded. Focused new/updated measurement and product-world files: **44 passed**.
+Command (using the existing repository virtual environment):
+
+```bash
+PYTHONPATH=. python -m pytest tests/life_projection \
+  tests/workers/test_life_projection_jobs.py \
+  tests/core/test_life_projection_broadcast.py \
+  -m 'not requires_api_keys' -q
+```
+
+Ruff, formatting, whitespace and the new FEATURE metadata check pass. Applicable
+commit hooks passed except the already recorded repository-wide size-budget
+and status-guard baseline failures, explicitly skipped for these commits. No
+unrelated code was changed to satisfy those gates. No model calls, app/device
+tests, production actions, merge, push, Atlas migration or deletion occurred.
+
+#### Next checkpoint and remaining interfaces
+
+This receipt's follow-ups are consolidated in the opening
+[current queue](#current-execution-queue) and
+[decision register](#decision-and-dependency-checkpoints). Keep those current;
+the list here records the interfaces remaining at this commit.
+
+M2/M5 are not complete. The first B1 executable is an experiment over explicit
+interpretation—not an automatic source extractor, general clusterer, or
+production owner adapter. Continue with:
+
+1. Label the additional output relationships and add independently authored
+   holdout sequences, including ambiguous identity and conflicting context.
+   Keep extraction correctness separate from downstream organization correctness.
+2. Prepare the bounded B2 candidate/classification comparison over the same
+   fixtures and existing model gateway. Agree eligible input data and a run
+   budget before paid inference; do not add another framework or memory writer.
+3. Obtain Capture's current-authority evidence envelope and revisioned delivery
+   for occurred/negative claims, Place/people attribution, source locators and
+   corrections. Experimental `context_ref`/`continuity_ref` inputs are not an
+   independently adopted producer contract. Publication must recheck owner and
+   dependency authority through the maintainer, not trust old indexed snapshots.
+4. Continue M3/expression evaluation of exact source reads and lens-specific
+   previews. Group metadata tests do not measure recognition, useful new value
+   or human refinding. Resolve calendar policy and complete affected-scope
+   handling before production source-only organization wiring.
+
+Source-owned transactions, Intake acknowledgement, live-engine canonical reads,
+current serving gates, and the prohibition on a Life-owned intention writer
+remain unchanged.
+
+### 13.16 Independent holdout quality slice — September 7
+
+The first quality-baseline item in the current queue is now exercised in a
+separate evaluator fixture, without changing the production organizer or adding
+another index. `organization_holdouts_v1.json` uses namespace
+`product-life.organization.holdout.v1`, distinct record identities and an
+`independent-evaluator` authorship marker. Six synthetic holdouts cover:
+ambiguous same-place identity (H1), conflicting stale context (H2), scheduled
+nonattendance (H3), late import and unknown date (H4), viewer-relative shared
+contribution (H5), and repeated-place meal separation (H6).
+
+`test_life_organization_holdouts.py` runs the existing B0/B1 compiler and typed
+relationship evaluator over those cases. Every expected output relation is
+explicitly accepted or forbidden; therefore this slice reports judgment
+coverage rather than silently treating extra output as correct. The shared case
+also compiles for two viewers and checks that a private contribution is not
+leaked while the attributed contribution remains attributable.
+
+Validation: the focused holdout selection passed **4 tests**. Together with the
+previous product-world selection this is **300 Life/organization tests** when
+the previously recorded PostgreSQL and worker/broadcast selection is included;
+the holdout command itself emits a deterministic
+`product-life.organization.holdout.v1` report with `model_calls=0`,
+`human_value_measured=false` and `serving_ready=false`. The fixture remains
+oracle-interpreted: it does not parse raw text, establish automatic extraction,
+measure human usefulness or authorize a B2 model run. No source producer,
+schema, mobile contract, serving path, migration, merge, push or Atlas action
+changed.
+
+This closes only the initial independent-judgment harness item. The next
+quality gates are independently reviewed labels/held-out variants beyond these
+synthetic cases, explicit extraction-vs-organization measurements, and a
+budgeted B2 comparison only after eligible data and stop rules are agreed.
+The real-owner evidence/durable-delivery seam and M3 bounded readers remain
+parallel current-queue work.
