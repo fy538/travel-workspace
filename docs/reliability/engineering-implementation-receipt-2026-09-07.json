@@ -1,324 +1,4 @@
 {
-  "schema_version": 1,
-  "kind": "one-time engineering implementation audit",
-  "recorded_at": "2026-09-08T01:35:13.638062+00:00",
-  "status": "implemented locally; workspace and frontend packages committed; backend commit blocked; required gates and rollout incomplete",
-  "scope": "Three independent coordinated worktrees. The workspace reliability package parent commit is 8eb5cde; Travel App is committed locally as c18cf5b51; Travel Agent remains staged but uncommitted because its pre-commit broad-exception ratchet is blocked. This receipt was captured before the follow-up workspace report commit. Nothing is pushed or merged. Remote Actions/required-check repairs and local Git-hook installation are already applied.",
-  "repositories": {
-    "workspace": {
-      "base_commit": "449c048417858eb2762998a2578e14562ef26919",
-      "branch": "codex/engineering-reliability-2026-09-07",
-      "dirty": true,
-      "changed_paths_excluding_receipt": 45,
-      "delta_content_sha256": "ef14f668eb511ad4cd05c428cd1bbbe0d9e963b130a3766d630063ab7ad6d0fe"
-    },
-    "travel-agent": {
-      "base_commit": "0c1f1f3258629001890889c9336ce9bd78452032",
-      "branch": "codex/engineering-reliability-2026-09-07",
-      "dirty": true,
-      "changed_paths_excluding_receipt": 122,
-      "delta_content_sha256": "58314543a49c1e312048c4ffa7d84f85c16f23b2323a5ea730314bcddd8ba578"
-    },
-    "travel-app": {
-      "base_commit": "c18cf5b51c564dc163bc4fd670c0f6c2299cfb63",
-      "branch": "codex/engineering-reliability-2026-09-07",
-      "dirty": false,
-      "changed_paths_excluding_receipt": 58,
-      "delta_content_sha256": "1b865b2bcd2ff506bf2c05f84cde24577d6bb0e0089019736151d3ee37a7b5b2"
-    }
-  },
-  "fingerprint_boundary": "Current base commits plus hash of sorted changed-path/content records at receipt creation, excluding this receipt. Individual logs span implementation and are not per-run clean-commit attestations. Untracked and tracked source changes included; ignored dependencies/build outputs excluded.",
-  "environment": {
-    "os": "macOS Darwin 25.5.0",
-    "architecture": "arm64",
-    "backend_python": "3.13.0",
-    "frontend_node": "24.13.0",
-    "ci_node": "20 (not executed in remote candidate)",
-    "expo": "55.0.31",
-    "react_native": "0.83.10",
-    "xcode": "26.5",
-    "codex_bundled_cli": "0.153.3",
-    "measurement_python_note": "The timing recorder reported Python 3.14.6 for itself; its child pytest command used travel-agent/.venv Python 3.13."
-  },
-  "checks": [
-    {
-      "name": "workspace regressions",
-      "status": "passed",
-      "cwd": "workspace",
-      "command": "travel-agent/.venv/bin/python -m pytest scripts/tests/ -q",
-      "exit_code": 0,
-      "summary": "64 passed",
-      "log": "/tmp/vesper-engineering-implementation-2026-09-07/workspace-regressions-final.log",
-      "log_sha256": "ba731c5edc07888c2674a1d949784c6e3b742c06c66da09a6c00660c0f6445b4"
-    },
-    {
-      "name": "backend focused engineering",
-      "status": "passed",
-      "cwd": "travel-agent",
-      "command": ".venv/bin/python -m pytest tests/scripts/test_engineering_checks.py tests/dogfood/test_deploy_config.py tests/domains/experience_graph/test_outcome_life_producers.py tests/api/test_concierge_home.py tests/api/test_trips_api.py -q --tb=short",
-      "exit_code": 0,
-      "summary": "241 passed, 9 existing skips",
-      "log": "/tmp/vesper-engineering-implementation-2026-09-07/backend-engineering-final.log",
-      "log_sha256": "a97bf53b94e94768cc8ec409277b8714e704cf50161c497c2cc7429656f1afcc"
-    },
-    {
-      "name": "backend offline bounded suite",
-      "status": "failed",
-      "cwd": "travel-agent",
-      "command": ".venv/bin/python -m pytest -n 4 --dist loadfile -m 'not requires_postgres and not requires_api_keys and not requires_dogfood_wedge' --maxfail=10 -q --tb=line",
-      "exit_code": 2,
-      "summary": "2013 passed, 10 failed; stopped at ten undeclared DB-access failures in concierge tests; full suite and unmasked quarantines not certified",
-      "log": "/tmp/vesper-engineering-implementation-2026-09-07/backend-offline-final.log",
-      "log_sha256": "404a667f683693d35f27d5e1714f94bda156dfdb28ac0a6d0841773eb129fa26"
-    },
-    {
-      "name": "frontend engineering",
-      "status": "passed",
-      "cwd": "travel-app",
-      "command": "node --test scripts/security-audit.test.mjs scripts/check-api-boundaries.test.mjs scripts/native-compatibility.test.mjs scripts/polish-qa/judgment-inputs.test.mjs",
-      "exit_code": 0,
-      "summary": "25 passed",
-      "log": "/tmp/vesper-engineering-implementation-2026-09-07/frontend-engineering-final.log",
-      "log_sha256": "10aa30d59e80b9307868b8805e1e72524efb415e4ed6a8374291ec530cf18958"
-    },
-    {
-      "name": "frontend affected behavior",
-      "status": "passed",
-      "cwd": "travel-app",
-      "command": "npx jest __tests__/data/notifications.test.ts __tests__/hooks/useNetworkState.test.tsx --runInBand",
-      "exit_code": 0,
-      "summary": "24 passed",
-      "log": "/tmp/vesper-engineering-implementation-2026-09-07/frontend-behavior-final.log",
-      "log_sha256": "3288ca8eef53cc1093bb7eedbfce9b532d90f2a64de0e26e304fde0f24bf91c2"
-    },
-    {
-      "name": "visual verdict regressions",
-      "status": "passed",
-      "cwd": "travel-app",
-      "command": "node scripts/polish-qa/verdict-schema.test.mjs",
-      "exit_code": 0,
-      "summary": "31 passed",
-      "log": "/tmp/vesper-engineering-implementation-2026-09-07/verdict-tests-final.log",
-      "log_sha256": "38d6193ad0d7da68258884eff05a41992d22ec338809bda7150ec84d0e5af243"
-    },
-    {
-      "name": "visual refresh regressions",
-      "status": "passed",
-      "cwd": "travel-app",
-      "command": "node scripts/design-alignment/refresh-stale.test.mjs",
-      "exit_code": 0,
-      "summary": "16 passed",
-      "log": "/tmp/vesper-engineering-implementation-2026-09-07/refresh-tests-final.log",
-      "log_sha256": "a1b1725dbbdf213fb7026cd47bc58994a4ffe5bbefbabb44028f17c40233ecd8"
-    },
-    {
-      "name": "frontend fast gate",
-      "status": "passed",
-      "cwd": "travel-app",
-      "command": "npm run verify:fast",
-      "exit_code": 0,
-      "summary": "Production typecheck, native compatibility, icons, lint, API boundaries, schema bridge, Home budgets and contract test types passed; 169 lint warnings remain",
-      "log": "/tmp/vesper-engineering-implementation-2026-09-07/app-verify-fast-final.log",
-      "log_sha256": "945cf90efcdab1d15e6b1e889cffe40f594bf2a1a0653ea40efdc0e3f55f9e76"
-    },
-    {
-      "name": "frontend PR gate",
-      "status": "failed",
-      "cwd": "travel-app",
-      "command": "npm run verify:pr",
-      "exit_code": 1,
-      "summary": "569 test-type errors exceed baseline 406; baseline not increased",
-      "log": "/tmp/vesper-engineering-implementation-2026-09-07/app-verify-pr.log",
-      "log_sha256": "68efca636daf2db82dbd1bf79a08828f3a947e6ed4d2817088988b920b151cce"
-    },
-    {
-      "name": "frontend QA tooling",
-      "status": "failed",
-      "cwd": "travel-app",
-      "command": "npm run qa:polish:test",
-      "exit_code": 1,
-      "summary": "Nine unclassified header routes and seven missing route-matrix entries",
-      "log": "/tmp/vesper-engineering-implementation-2026-09-07/app-polish-tests.log",
-      "log_sha256": "ae2c8029d5052c746520972ea94818266460ad17ed755910e59068eca55693d0"
-    },
-    {
-      "name": "frontend security policy",
-      "status": "passed",
-      "cwd": "travel-app",
-      "command": "npm run security-audit",
-      "exit_code": 0,
-      "summary": "No unapproved high/critical production advisories; existing expiring image-size exceptions remain",
-      "log": "/tmp/vesper-engineering-implementation-2026-09-07/app-security-final.log",
-      "log_sha256": "cc8f2a778bce84a902558f62bac382aa0a5b2a43b4618bbeb35ee58e79b1d920"
-    },
-    {
-      "name": "frontend locked clean install",
-      "status": "passed",
-      "cwd": "travel-app",
-      "command": "npm ci",
-      "exit_code": 0,
-      "summary": "Own clean node_modules; metro-runtime 0.83.8 patch applied",
-      "log": "/tmp/vesper-engineering-implementation-2026-09-07/npm-ci-final.log",
-      "log_sha256": "d6708bae4c52865eb14d16c165741d9ad79b2517de971bd6fcc89354b104d599"
-    },
-    {
-      "name": "backend locked install",
-      "status": "passed",
-      "cwd": "travel-agent",
-      "command": ".venv/bin/python -m pip install -r requirements-dev.txt",
-      "exit_code": 0,
-      "summary": "Own Python 3.13 environment with generated runtime/dev dependency locks",
-      "log": "/tmp/vesper-engineering-implementation-2026-09-07/dev-lock-install.log",
-      "log_sha256": "5d547d7d830e0cba9a7d6374c7a9a074278adc605682d5355fb9af66368d7f06"
-    },
-    {
-      "name": "native prebuild",
-      "status": "passed",
-      "cwd": "travel-app",
-      "command": "npx expo prebuild --platform ios --no-install",
-      "exit_code": 0,
-      "summary": "Generated ignored native project; no device install",
-      "log": "/tmp/vesper-engineering-implementation-2026-09-07/ios-prebuild.log",
-      "log_sha256": "3b2e6596c1771ffea2387c0ae890c1259215125c0e09be07597e26389ace5974"
-    },
-    {
-      "name": "native CocoaPods install",
-      "status": "passed",
-      "cwd": "travel-app/ios",
-      "command": "pod install",
-      "exit_code": 0,
-      "summary": "141 dependencies, 158 pods installed",
-      "log": "/tmp/vesper-engineering-implementation-2026-09-07/pod-install.log",
-      "log_sha256": "376b0300981ccabbc0be81389c35d7b3e08cab82b123056a78f7ad1d857ec2cf"
-    },
-    {
-      "name": "unsigned iOS simulator build",
-      "status": "passed",
-      "cwd": "travel-app",
-      "command": "SENTRY_DISABLE_AUTO_UPLOAD=true xcodebuild -workspace ios/TravelApp.xcworkspace -scheme TravelApp -configuration Debug -sdk iphonesimulator -destination \"generic/platform=iOS Simulator\" -derivedDataPath /tmp/vesper-engineering-implementation-2026-09-07/DerivedData CODE_SIGNING_ALLOWED=NO build",
-      "exit_code": 0,
-      "summary": "BUILD SUCCEEDED; no source-map upload, device install, UI capture, or visual approval",
-      "log": "/tmp/vesper-engineering-implementation-2026-09-07/ios-build-candidate.log",
-      "log_sha256": "1dfbfc4766d8276900373364ae794359988d82f7d4973f2eda32cfe283892eaf"
-    },
-    {
-      "name": "coordinated gate",
-      "status": "failed",
-      "cwd": "workspace",
-      "command": "PATH=\"$PWD/travel-agent/.venv/bin:$PATH\" make verify",
-      "exit_code": 2,
-      "summary": "Itinerary writer boundary rejects LifeRefindingEvalRunner._run_correction_loop update of itinerary_block_participation; no exception added",
-      "log": "/tmp/vesper-engineering-implementation-2026-09-07/workspace-verify-final.log",
-      "log_sha256": "ecb8aa7a932cd4954de3d1df32a423ec2a8699e46260724f93f3a17c7054a675"
-    },
-    {
-      "name": "backend typing",
-      "status": "failed",
-      "cwd": "travel-agent",
-      "command": "PATH=\"$PWD/.venv/bin:$PATH\" ./scripts/mypy_gate.sh",
-      "exit_code": 1,
-      "summary": "264 errors in 63 files, baseline zero retained",
-      "log": "/tmp/vesper-engineering-implementation-2026-09-07/backend-mypy.log",
-      "log_sha256": "d229af23d77941d66025a49ecab8478ce6951cccaa5167c9c8bc5d2e00810c5c"
-    },
-    {
-      "name": "backend documentation freshness",
-      "status": "failed",
-      "cwd": "travel-agent",
-      "command": ".venv/bin/python scripts/check_doc_freshness.py",
-      "exit_code": 1,
-      "summary": "One stale FEATURE header, four expired active docs, one abandoned-draft warning",
-      "log": "/tmp/vesper-engineering-implementation-2026-09-07/backend-doc-freshness.log",
-      "log_sha256": "f6075f1c5065e92a906ac93fda6dc0916164ea1c7472d6eeb1ce9d239a204dd3"
-    },
-    {
-      "name": "workspace docs and contracts",
-      "status": "passed",
-      "cwd": "workspace",
-      "command": "make docs-check contract-check",
-      "exit_code": 0,
-      "summary": "Workspace lifecycle/inventory/link/spine/generated-state/child admission and OpenAPI projection/generated-type contracts pass",
-      "log": "/tmp/vesper-engineering-implementation-2026-09-07/workspace-docs-contract-final.log",
-      "log_sha256": "0517894727e67dacc433a0ffbc662a2ce8fc7e5517f9b281f33bbd09505ce39f"
-    }
-  ],
-  "remote_enforcement": [
-    {
-      "repo": "travel-workspace",
-      "actions_enabled": true,
-      "required_checks": [
-        "Contract and golden paths"
-      ],
-      "strict": true,
-      "review_count": 1,
-      "enforce_admins": true
-    },
-    {
-      "repo": "travel-agent",
-      "actions_enabled": true,
-      "required_checks": [
-        "lint",
-        "import-boundaries",
-        "typecheck",
-        "test",
-        "test-db-migrate",
-        "test-db",
-        "dogfood-persona-gate",
-        "eval-replay"
-      ],
-      "strict": true,
-      "review_count": 1,
-      "enforce_admins": true
-    },
-    {
-      "repo": "travel-app",
-      "actions_enabled": true,
-      "required_checks": [
-        "Lint",
-        "Type check",
-        "Test",
-        "API types freshness",
-        "Logic QA journeys",
-        "QA tooling contracts",
-        "Design alignment gate",
-        "Frontend governance",
-        "Security audit",
-        "Visual evidence contracts"
-      ],
-      "strict": true,
-      "review_count": 1,
-      "enforce_admins": true
-    }
-  ],
-  "proof_files": [
-    {
-      "path": "/tmp/vesper-engineering-implementation-2026-09-07/orientation-check.json",
-      "sha256": "b66a959fc4989d8dcb83c55ea2d16d2cdd8b7a1b3a05d83ff21e5a832930155f"
-    },
-    {
-      "path": "/tmp/vesper-engineering-implementation-2026-09-07/hook-discovery.json",
-      "sha256": "a1faa9334d32f175339618762143ab9049e3eea8275f63c7b9cadd2b5e565163"
-    },
-    {
-      "path": "/tmp/vesper-engineering-implementation-2026-09-07/hook-install.json",
-      "sha256": "ba7c8d8de23dfc1296143e2387f93f8c21b98b069d6696f7b74b2cefe9052bd6"
-    },
-    {
-      "path": "/tmp/vesper-engineering-implementation-2026-09-07/doc-metadata-dispositions.json",
-      "sha256": "a5cfb673a3e5473d2c9142090e73520a6dfac710929f1030358e5524d79b29c7"
-    },
-    {
-      "path": "/tmp/vesper-engineering-implementation-2026-09-07/trips-baseline-removals.json",
-      "sha256": "a2049e40affe970bd23c4fc07b73744535eec77b94fb8196984e3ab64752fa9e"
-    },
-    {
-      "path": "/tmp/vesper-engineering-implementation-2026-09-07/final-static-validation.json",
-      "sha256": "d3a605b9bb9abddcb42a45645822133883ff21b1bedff0d28218eea2ffd05bc7"
-    }
-  ],
-  "remaining_db_leak_baseline": 231,
-  "verified_db_leak_exceptions_removed": 30,
-  "native_artifact": "/tmp/vesper-engineering-implementation-2026-09-07/DerivedData/Build/Products/Debug-iphonesimulator/TravelApp.app",
   "blocked_or_unrun": [
     "Docker final probe responded with server 27.4.0 without a restart, but the isolated image build remained at docker/dockerfile:1.7 frontend resolution until the bounded client was stopped; actual container package smoke, disposable DB migration/integration lanes and service startup remain unverified.",
     "Frontend TRAVEL_AGENT_CI_TOKEN lacks private backend checkout access; renewal and real candidate verification pending.",
@@ -328,46 +8,15 @@
     "No real provider calls, visual certification or device behavior evidence.",
     "Reconcile concurrent canonical roadmap/inventory changes before landing; do not overwrite the Strategy task."
   ],
-  "retention": "Raw logs/build outputs/backups are local temporary artifacts, not guaranteed durable. Log hashes identify evidence but do not make missing logs reconstructible.",
-  "productivity_claim": null,
   "bounded_backend_closeout_2026_09_08": {
-    "status": "blocked_at_repository_commit_gate; staged package preserved; no bypass",
     "base_revision": "afe177b33d25dc3563c362de4ff6e3a47b1a8354",
-    "worktree": "/Users/feihuyan/travel-workspace-engineering-reliability-2026-09-07/travel-agent",
     "branch": "codex/engineering-reliability-2026-09-07",
-    "staged_paths": 128,
-    "staged_path_manifest_sha256": "ce0bf1606d2b3bb077d2758dab3bea377c6ee2898b7a6b3c8a77199422650ab6",
-    "unstaged_paths": 0,
-    "repair_paths": [
-      "backend/core/trip_kind_events.py",
-      "backend/preference_engine/edit_inference.py",
-      "backend/ingestion/registry.py",
-      "backend/core/vector/experience_briefs_search.py",
-      "backend/research_agent/tasks/experience_brief_embedding.py",
-      "backend/domains/experience_graph/outcome_life_propagation.py",
-      "tools/eval/plugins/life_refinding/runner.py"
-    ],
-    "passed": [
-      {
-        "command": "PYTHONPATH=. python scripts/check_broad_exceptions.py --ci",
-        "result": "1190 handlers; ceiling 1190"
-      },
-      {
-        "command": "PYTHONPATH=. python scripts/check_itinerary_writer_boundary.py --ci",
-        "result": "OK; 151 sites"
-      },
-      {
-        "command": "PATH=\"$PWD/.venv/bin:$PATH\" PYTHONPATH=. python -m pytest tests/scripts/test_engineering_checks.py tests/dogfood/test_deploy_config.py tests/domains/experience_graph/test_outcome_life_producers.py tests/api/test_concierge_home.py tests/api/test_trips_api.py -q --tb=short",
-        "result": "241 passed, 9 skipped"
-      },
-      {
-        "command": "git diff --check",
-        "result": "passed"
-      },
-      {
-        "command": "pre-commit commit-stage subset",
-        "result": "detect-secrets, import boundaries, lazy imports, module-state, client timeouts, broad ratchet, and other applicable checks passed"
-      }
+    "dependency_sequence": [
+      "1. Integration resolves or explicitly accepts the repository-wide size/status gate debt; do not raise ceilings, widen quarantines, or bypass hooks.",
+      "2. Commit the preserved staged backend package plus seven repair paths on this base; Integration owns landing.",
+      "3. Re-run focused reliability receipt, broad/writer/type checks, and the bounded offline suite; separately classify the ten concierge DB-leak fixtures.",
+      "4. Run disposable Postgres/Qdrant migration and database suites, then re-run the seven canonical-main failures against the landed candidate.",
+      "5. Only after those gates are green, reassess downstream workspace/mobile integration."
     ],
     "failed_or_blocked": [
       {
@@ -413,13 +62,443 @@
         "result": "Postgres/Qdrant service and disposable migration suite not run; no service restart or activation performed"
       }
     ],
-    "dependency_sequence": [
-      "1. Integration resolves or explicitly accepts the repository-wide size/status gate debt; do not raise ceilings, widen quarantines, or bypass hooks.",
-      "2. Commit the preserved staged backend package plus seven repair paths on this base; Integration owns landing.",
-      "3. Re-run focused reliability receipt, broad/writer/type checks, and the bounded offline suite; separately classify the ten concierge DB-leak fixtures.",
-      "4. Run disposable Postgres/Qdrant migration and database suites, then re-run the seven canonical-main failures against the landed candidate.",
-      "5. Only after those gates are green, reassess downstream workspace/mobile integration."
+    "passed": [
+      {
+        "command": "PYTHONPATH=. python scripts/check_broad_exceptions.py --ci",
+        "result": "1190 handlers; ceiling 1190"
+      },
+      {
+        "command": "PYTHONPATH=. python scripts/check_itinerary_writer_boundary.py --ci",
+        "result": "OK; 151 sites"
+      },
+      {
+        "command": "PATH=\"$PWD/.venv/bin:$PATH\" PYTHONPATH=. python -m pytest tests/scripts/test_engineering_checks.py tests/dogfood/test_deploy_config.py tests/domains/experience_graph/test_outcome_life_producers.py tests/api/test_concierge_home.py tests/api/test_trips_api.py -q --tb=short",
+        "result": "241 passed, 9 skipped"
+      },
+      {
+        "command": "git diff --check",
+        "result": "passed"
+      },
+      {
+        "command": "pre-commit commit-stage subset",
+        "result": "detect-secrets, import boundaries, lazy imports, module-state, client timeouts, broad ratchet, and other applicable checks passed"
+      }
     ],
-    "smallest_next_approval": "Resolve or explicitly accept the existing size-budget and status-guard blockers so a normal hook-verified backend commit can be created; no additional feature authorization is requested."
-  }
+    "repair_paths": [
+      "backend/core/trip_kind_events.py",
+      "backend/preference_engine/edit_inference.py",
+      "backend/ingestion/registry.py",
+      "backend/core/vector/experience_briefs_search.py",
+      "backend/research_agent/tasks/experience_brief_embedding.py",
+      "backend/domains/experience_graph/outcome_life_propagation.py",
+      "tools/eval/plugins/life_refinding/runner.py"
+    ],
+    "smallest_next_approval": "Resolve or explicitly accept the existing size-budget and status-guard blockers so a normal hook-verified backend commit can be created; no additional feature authorization is requested.",
+    "staged_path_manifest_sha256": "ce0bf1606d2b3bb077d2758dab3bea377c6ee2898b7a6b3c8a77199422650ab6",
+    "staged_paths": 128,
+    "status": "blocked_at_repository_commit_gate; staged package preserved; no bypass",
+    "unstaged_paths": 0,
+    "worktree": "/Users/feihuyan/travel-workspace-engineering-reliability-2026-09-07/travel-agent"
+  },
+  "checks": [
+    {
+      "command": "travel-agent/.venv/bin/python -m pytest scripts/tests/ -q",
+      "cwd": "workspace",
+      "exit_code": 0,
+      "log": "/tmp/vesper-engineering-implementation-2026-09-07/workspace-regressions-final.log",
+      "log_sha256": "ba731c5edc07888c2674a1d949784c6e3b742c06c66da09a6c00660c0f6445b4",
+      "name": "workspace regressions",
+      "status": "passed",
+      "summary": "64 passed"
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/scripts/test_engineering_checks.py tests/dogfood/test_deploy_config.py tests/domains/experience_graph/test_outcome_life_producers.py tests/api/test_concierge_home.py tests/api/test_trips_api.py -q --tb=short",
+      "cwd": "travel-agent",
+      "exit_code": 0,
+      "log": "/tmp/vesper-engineering-implementation-2026-09-07/backend-engineering-final.log",
+      "log_sha256": "a97bf53b94e94768cc8ec409277b8714e704cf50161c497c2cc7429656f1afcc",
+      "name": "backend focused engineering",
+      "status": "passed",
+      "summary": "241 passed, 9 existing skips"
+    },
+    {
+      "command": ".venv/bin/python -m pytest -n 4 --dist loadfile -m 'not requires_postgres and not requires_api_keys and not requires_dogfood_wedge' --maxfail=10 -q --tb=line",
+      "cwd": "travel-agent",
+      "exit_code": 2,
+      "log": "/tmp/vesper-engineering-implementation-2026-09-07/backend-offline-final.log",
+      "log_sha256": "404a667f683693d35f27d5e1714f94bda156dfdb28ac0a6d0841773eb129fa26",
+      "name": "backend offline bounded suite",
+      "status": "failed",
+      "summary": "2013 passed, 10 failed; stopped at ten undeclared DB-access failures in concierge tests; full suite and unmasked quarantines not certified"
+    },
+    {
+      "command": "node --test scripts/security-audit.test.mjs scripts/check-api-boundaries.test.mjs scripts/native-compatibility.test.mjs scripts/polish-qa/judgment-inputs.test.mjs",
+      "cwd": "travel-app",
+      "exit_code": 0,
+      "log": "/tmp/vesper-engineering-implementation-2026-09-07/frontend-engineering-final.log",
+      "log_sha256": "10aa30d59e80b9307868b8805e1e72524efb415e4ed6a8374291ec530cf18958",
+      "name": "frontend engineering",
+      "status": "passed",
+      "summary": "25 passed"
+    },
+    {
+      "command": "npx jest __tests__/data/notifications.test.ts __tests__/hooks/useNetworkState.test.tsx --runInBand",
+      "cwd": "travel-app",
+      "exit_code": 0,
+      "log": "/tmp/vesper-engineering-implementation-2026-09-07/frontend-behavior-final.log",
+      "log_sha256": "3288ca8eef53cc1093bb7eedbfce9b532d90f2a64de0e26e304fde0f24bf91c2",
+      "name": "frontend affected behavior",
+      "status": "passed",
+      "summary": "24 passed"
+    },
+    {
+      "command": "node scripts/polish-qa/verdict-schema.test.mjs",
+      "cwd": "travel-app",
+      "exit_code": 0,
+      "log": "/tmp/vesper-engineering-implementation-2026-09-07/verdict-tests-final.log",
+      "log_sha256": "38d6193ad0d7da68258884eff05a41992d22ec338809bda7150ec84d0e5af243",
+      "name": "visual verdict regressions",
+      "status": "passed",
+      "summary": "31 passed"
+    },
+    {
+      "command": "node scripts/design-alignment/refresh-stale.test.mjs",
+      "cwd": "travel-app",
+      "exit_code": 0,
+      "log": "/tmp/vesper-engineering-implementation-2026-09-07/refresh-tests-final.log",
+      "log_sha256": "a1b1725dbbdf213fb7026cd47bc58994a4ffe5bbefbabb44028f17c40233ecd8",
+      "name": "visual refresh regressions",
+      "status": "passed",
+      "summary": "16 passed"
+    },
+    {
+      "command": "npm run verify:fast",
+      "cwd": "travel-app",
+      "exit_code": 0,
+      "log": "/tmp/vesper-engineering-implementation-2026-09-07/app-verify-fast-final.log",
+      "log_sha256": "945cf90efcdab1d15e6b1e889cffe40f594bf2a1a0653ea40efdc0e3f55f9e76",
+      "name": "frontend fast gate",
+      "status": "passed",
+      "summary": "Production typecheck, native compatibility, icons, lint, API boundaries, schema bridge, Home budgets and contract test types passed; 169 lint warnings remain"
+    },
+    {
+      "command": "npm run verify:pr",
+      "cwd": "travel-app",
+      "exit_code": 1,
+      "log": "/tmp/vesper-engineering-implementation-2026-09-07/app-verify-pr.log",
+      "log_sha256": "68efca636daf2db82dbd1bf79a08828f3a947e6ed4d2817088988b920b151cce",
+      "name": "frontend PR gate",
+      "status": "failed",
+      "summary": "569 test-type errors exceed baseline 406; baseline not increased"
+    },
+    {
+      "command": "npm run qa:polish:test",
+      "cwd": "travel-app",
+      "exit_code": 1,
+      "log": "/tmp/vesper-engineering-implementation-2026-09-07/app-polish-tests.log",
+      "log_sha256": "ae2c8029d5052c746520972ea94818266460ad17ed755910e59068eca55693d0",
+      "name": "frontend QA tooling",
+      "status": "failed",
+      "summary": "Nine unclassified header routes and seven missing route-matrix entries"
+    },
+    {
+      "command": "npm run security-audit",
+      "cwd": "travel-app",
+      "exit_code": 0,
+      "log": "/tmp/vesper-engineering-implementation-2026-09-07/app-security-final.log",
+      "log_sha256": "cc8f2a778bce84a902558f62bac382aa0a5b2a43b4618bbeb35ee58e79b1d920",
+      "name": "frontend security policy",
+      "status": "passed",
+      "summary": "No unapproved high/critical production advisories; existing expiring image-size exceptions remain"
+    },
+    {
+      "command": "npm ci",
+      "cwd": "travel-app",
+      "exit_code": 0,
+      "log": "/tmp/vesper-engineering-implementation-2026-09-07/npm-ci-final.log",
+      "log_sha256": "d6708bae4c52865eb14d16c165741d9ad79b2517de971bd6fcc89354b104d599",
+      "name": "frontend locked clean install",
+      "status": "passed",
+      "summary": "Own clean node_modules; metro-runtime 0.83.8 patch applied"
+    },
+    {
+      "command": ".venv/bin/python -m pip install -r requirements-dev.txt",
+      "cwd": "travel-agent",
+      "exit_code": 0,
+      "log": "/tmp/vesper-engineering-implementation-2026-09-07/dev-lock-install.log",
+      "log_sha256": "5d547d7d830e0cba9a7d6374c7a9a074278adc605682d5355fb9af66368d7f06",
+      "name": "backend locked install",
+      "status": "passed",
+      "summary": "Own Python 3.13 environment with generated runtime/dev dependency locks"
+    },
+    {
+      "command": "npx expo prebuild --platform ios --no-install",
+      "cwd": "travel-app",
+      "exit_code": 0,
+      "log": "/tmp/vesper-engineering-implementation-2026-09-07/ios-prebuild.log",
+      "log_sha256": "3b2e6596c1771ffea2387c0ae890c1259215125c0e09be07597e26389ace5974",
+      "name": "native prebuild",
+      "status": "passed",
+      "summary": "Generated ignored native project; no device install"
+    },
+    {
+      "command": "pod install",
+      "cwd": "travel-app/ios",
+      "exit_code": 0,
+      "log": "/tmp/vesper-engineering-implementation-2026-09-07/pod-install.log",
+      "log_sha256": "376b0300981ccabbc0be81389c35d7b3e08cab82b123056a78f7ad1d857ec2cf",
+      "name": "native CocoaPods install",
+      "status": "passed",
+      "summary": "141 dependencies, 158 pods installed"
+    },
+    {
+      "command": "SENTRY_DISABLE_AUTO_UPLOAD=true xcodebuild -workspace ios/TravelApp.xcworkspace -scheme TravelApp -configuration Debug -sdk iphonesimulator -destination \"generic/platform=iOS Simulator\" -derivedDataPath /tmp/vesper-engineering-implementation-2026-09-07/DerivedData CODE_SIGNING_ALLOWED=NO build",
+      "cwd": "travel-app",
+      "exit_code": 0,
+      "log": "/tmp/vesper-engineering-implementation-2026-09-07/ios-build-candidate.log",
+      "log_sha256": "1dfbfc4766d8276900373364ae794359988d82f7d4973f2eda32cfe283892eaf",
+      "name": "unsigned iOS simulator build",
+      "status": "passed",
+      "summary": "BUILD SUCCEEDED; no source-map upload, device install, UI capture, or visual approval"
+    },
+    {
+      "command": "PATH=\"$PWD/travel-agent/.venv/bin:$PATH\" make verify",
+      "cwd": "workspace",
+      "exit_code": 2,
+      "log": "/tmp/vesper-engineering-implementation-2026-09-07/workspace-verify-final.log",
+      "log_sha256": "ecb8aa7a932cd4954de3d1df32a423ec2a8699e46260724f93f3a17c7054a675",
+      "name": "coordinated gate",
+      "status": "failed",
+      "summary": "Itinerary writer boundary rejects LifeRefindingEvalRunner._run_correction_loop update of itinerary_block_participation; no exception added"
+    },
+    {
+      "command": "PATH=\"$PWD/.venv/bin:$PATH\" ./scripts/mypy_gate.sh",
+      "cwd": "travel-agent",
+      "exit_code": 1,
+      "log": "/tmp/vesper-engineering-implementation-2026-09-07/backend-mypy.log",
+      "log_sha256": "d229af23d77941d66025a49ecab8478ce6951cccaa5167c9c8bc5d2e00810c5c",
+      "name": "backend typing",
+      "status": "failed",
+      "summary": "264 errors in 63 files, baseline zero retained"
+    },
+    {
+      "command": ".venv/bin/python scripts/check_doc_freshness.py",
+      "cwd": "travel-agent",
+      "exit_code": 1,
+      "log": "/tmp/vesper-engineering-implementation-2026-09-07/backend-doc-freshness.log",
+      "log_sha256": "f6075f1c5065e92a906ac93fda6dc0916164ea1c7472d6eeb1ce9d239a204dd3",
+      "name": "backend documentation freshness",
+      "status": "failed",
+      "summary": "One stale FEATURE header, four expired active docs, one abandoned-draft warning"
+    },
+    {
+      "command": "make docs-check contract-check",
+      "cwd": "workspace",
+      "exit_code": 0,
+      "log": "/tmp/vesper-engineering-implementation-2026-09-07/workspace-docs-contract-final.log",
+      "log_sha256": "0517894727e67dacc433a0ffbc662a2ce8fc7e5517f9b281f33bbd09505ce39f",
+      "name": "workspace docs and contracts",
+      "status": "passed",
+      "summary": "Workspace lifecycle/inventory/link/spine/generated-state/child admission and OpenAPI projection/generated-type contracts pass"
+    }
+  ],
+  "environment": {
+    "architecture": "arm64",
+    "backend_python": "3.13.0",
+    "ci_node": "20 (not executed in remote candidate)",
+    "codex_bundled_cli": "0.153.3",
+    "expo": "55.0.31",
+    "frontend_node": "24.13.0",
+    "measurement_python_note": "The timing recorder reported Python 3.14.6 for itself; its child pytest command used travel-agent/.venv Python 3.13.",
+    "os": "macOS Darwin 25.5.0",
+    "react_native": "0.83.10",
+    "xcode": "26.5"
+  },
+  "fingerprint_boundary": "Current base commits plus hash of sorted changed-path/content records at receipt creation, excluding this receipt. Individual logs span implementation and are not per-run clean-commit attestations. Untracked and tracked source changes included; ignored dependencies/build outputs excluded.",
+  "kind": "one-time engineering implementation audit",
+  "native_artifact": "/tmp/vesper-engineering-implementation-2026-09-07/DerivedData/Build/Products/Debug-iphonesimulator/TravelApp.app",
+  "productivity_claim": null,
+  "proof_files": [
+    {
+      "path": "/tmp/vesper-engineering-implementation-2026-09-07/orientation-check.json",
+      "sha256": "b66a959fc4989d8dcb83c55ea2d16d2cdd8b7a1b3a05d83ff21e5a832930155f"
+    },
+    {
+      "path": "/tmp/vesper-engineering-implementation-2026-09-07/hook-discovery.json",
+      "sha256": "a1faa9334d32f175339618762143ab9049e3eea8275f63c7b9cadd2b5e565163"
+    },
+    {
+      "path": "/tmp/vesper-engineering-implementation-2026-09-07/hook-install.json",
+      "sha256": "ba7c8d8de23dfc1296143e2387f93f8c21b98b069d6696f7b74b2cefe9052bd6"
+    },
+    {
+      "path": "/tmp/vesper-engineering-implementation-2026-09-07/doc-metadata-dispositions.json",
+      "sha256": "a5cfb673a3e5473d2c9142090e73520a6dfac710929f1030358e5524d79b29c7"
+    },
+    {
+      "path": "/tmp/vesper-engineering-implementation-2026-09-07/trips-baseline-removals.json",
+      "sha256": "a2049e40affe970bd23c4fc07b73744535eec77b94fb8196984e3ab64752fa9e"
+    },
+    {
+      "path": "/tmp/vesper-engineering-implementation-2026-09-07/final-static-validation.json",
+      "sha256": "d3a605b9bb9abddcb42a45645822133883ff21b1bedff0d28218eea2ffd05bc7"
+    }
+  ],
+  "recorded_at": "2026-09-08T01:35:13.638062+00:00",
+  "remaining_db_leak_baseline": 231,
+  "remote_enforcement": [
+    {
+      "actions_enabled": true,
+      "enforce_admins": true,
+      "repo": "travel-workspace",
+      "required_checks": [
+        "Contract and golden paths"
+      ],
+      "review_count": 1,
+      "strict": true
+    },
+    {
+      "actions_enabled": true,
+      "enforce_admins": true,
+      "repo": "travel-agent",
+      "required_checks": [
+        "lint",
+        "import-boundaries",
+        "typecheck",
+        "test",
+        "test-db-migrate",
+        "test-db",
+        "dogfood-persona-gate",
+        "eval-replay"
+      ],
+      "review_count": 1,
+      "strict": true
+    },
+    {
+      "actions_enabled": true,
+      "enforce_admins": true,
+      "repo": "travel-app",
+      "required_checks": [
+        "Lint",
+        "Type check",
+        "Test",
+        "API types freshness",
+        "Logic QA journeys",
+        "QA tooling contracts",
+        "Design alignment gate",
+        "Frontend governance",
+        "Security audit",
+        "Visual evidence contracts"
+      ],
+      "review_count": 1,
+      "strict": true
+    }
+  ],
+  "repositories": {
+    "travel-agent": {
+      "base_commit": "0c1f1f3258629001890889c9336ce9bd78452032",
+      "branch": "codex/engineering-reliability-2026-09-07",
+      "changed_paths_excluding_receipt": 122,
+      "delta_content_sha256": "58314543a49c1e312048c4ffa7d84f85c16f23b2323a5ea730314bcddd8ba578",
+      "dirty": true
+    },
+    "travel-app": {
+      "base_commit": "c18cf5b51c564dc163bc4fd670c0f6c2299cfb63",
+      "branch": "codex/engineering-reliability-2026-09-07",
+      "changed_paths_excluding_receipt": 58,
+      "delta_content_sha256": "1b865b2bcd2ff506bf2c05f84cde24577d6bb0e0089019736151d3ee37a7b5b2",
+      "dirty": false
+    },
+    "workspace": {
+      "base_commit": "449c048417858eb2762998a2578e14562ef26919",
+      "branch": "codex/engineering-reliability-2026-09-07",
+      "changed_paths_excluding_receipt": 45,
+      "delta_content_sha256": "ef14f668eb511ad4cd05c428cd1bbbe0d9e963b130a3766d630063ab7ad6d0fe",
+      "dirty": true
+    }
+  },
+  "retention": "Raw logs/build outputs/backups are local temporary artifacts, not guaranteed durable. Log hashes identify evidence but do not make missing logs reconstructible.",
+  "schema_version": 1,
+  "scope": "Three independent coordinated worktrees. The workspace reliability package parent commit is 8eb5cde; Travel App is committed locally as c18cf5b51; Travel Agent remains staged but uncommitted because its pre-commit broad-exception ratchet is blocked. This receipt was captured before the follow-up workspace report commit. Nothing is pushed or merged. Remote Actions/required-check repairs and local Git-hook installation are already applied.",
+  "status": "implemented locally; workspace and frontend packages committed; backend commit blocked; required gates and rollout incomplete",
+  "targeted_backend_followthrough_2026_09_08": {
+    "base_revision": "afe177b33d25dc3563c362de4ff6e3a47b1a8354",
+    "branch": "codex/engineering-reliability-2026-09-07",
+    "current_staged_manifest_sha256": "50b3b159530b23ee779d35b45a2266ec8ebb689b40a0d4f683e8cd14a9d4cacc",
+    "current_staged_paths": 131,
+    "delivery": {
+      "backend_commit": "none; normal hook-passing commit not yet possible while full-tree size/status gates remain red",
+      "integration_owner": "01a030af-13a8-74e1-81be-7d526bec3045",
+      "no_push_deploy_activation_or_bypass": true
+    },
+    "original_staged_manifest_sha256": "ce0bf1606d2b3bb077d2758dab3bea377c6ee2898b7a6b3c8a77199422650ab6",
+    "package_A_invariants": [
+      "The checker ignores only explicit in-memory Life repair receivers in the two named modules; ordinary persisted status gates remain scanned.",
+      "Provider invalidation demotes only complete experience briefs to draft, preventing a concurrent newer non-complete state from being clobbered while preserving the existing transaction and dirty-state update.",
+      "No DB constraints, product state names, baselines, or broad exemptions were changed."
+    ],
+    "package_A_paths": [
+      "scripts/check_status_dead_gates.py",
+      "backend/ingestion/base.py",
+      "tests/scripts/test_engineering_checks.py",
+      "tests/ingestion/test_ingest_integration.py"
+    ],
+    "package_B_deferred_for_safe_review": {
+      "attempt": "inspected private nested normalization pipeline; a mechanical closure extraction left both the worker and extracted builder over budget and introduced duplicate structure before being reverted",
+      "decision": "reverted experimental edit; no speculative refactor committed or staged",
+      "diff_check": "passed",
+      "measured_lines": 855,
+      "staged_manifest_sha256": "50b3b159530b23ee779d35b45a2266ec8ebb689b40a0d4f683e8cd14a9d4cacc",
+      "staged_package_preserved": true,
+      "staged_path_count": 131,
+      "status": "deferred_for_safe_review",
+      "surface": "backend/workers/intake_v2_jobs.py:repair_intake_v2_outbox"
+    },
+    "package_B_measurements_and_dependency": {
+      "decision": "deferred; safe extraction requires dedicated review of transaction boundaries, deletion ordering, async cancellation, patchable public symbols, and exact prompt assembly. No speculative refactor was made.",
+      "fresh_measurements": {
+        "files": {
+          "backend/api/routes/conversations.py": 2452,
+          "backend/concierge/_prompts_skills.py": 2451,
+          "backend/concierge/session.py": 2565,
+          "backend/domains/experience_graph/commands.py": 2492
+        },
+        "functions": {
+          "backend/concierge/agent.py:handle_turn": 801,
+          "backend/core/db/account_deletion.py:delete_user_data": 835,
+          "backend/workers/intake_v2_jobs.py:repair_intake_v2_outbox": 855
+        }
+      },
+      "smallest_next_approval": "Authorize a separate size-extraction lane with one owner per surface and equivalence tests before any edits to the eight measured offenders."
+    },
+    "passed": [
+      {
+        "command": "PYTHONPATH=. python scripts/check_status_dead_gates.py --ci",
+        "result": "no new dead gates; 31 grandfathered"
+      },
+      {
+        "command": "PYTHONPATH=. python scripts/check_status_write_guard.py --ci",
+        "result": "no new unguarded status updates; 16 grandfathered"
+      },
+      {
+        "command": "PATH=\"$PWD/.venv/bin:$PATH\" PYTHONPATH=. python -m pytest tests/scripts/test_engineering_checks.py tests/ingestion/test_ingest_integration.py -q --tb=short",
+        "result": "32 passed"
+      },
+      {
+        "command": "git diff --cached --check",
+        "result": "passed"
+      }
+    ],
+    "remaining_repository_blockers": [
+      "pre-existing full-tree size-budget failures on the seven measured offenders",
+      "pre-existing full-tree mypy: 264 errors across 63 files",
+      "bounded offline fixture debt: 10 undeclared-Postgres concierge failures after 2,013 passes",
+      "runtime Postgres/Qdrant migration and DB suites unrun because services are unavailable",
+      "canonical-main seven-failure tuple remains Integration-owned and has not been rerun against a landed backend commit"
+    ],
+    "status": "package_A_complete; package_B_deferred_for_safe_review; existing_128_path_package_preserved",
+    "unstaged_paths": 0,
+    "worktree": "/Users/feihuyan/travel-workspace-engineering-reliability-2026-09-07/travel-agent"
+  },
+  "verified_db_leak_exceptions_removed": 30
 }
