@@ -3830,13 +3830,18 @@
     },
     "GET /api/relationships/place-handoffs/sent": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "listSentRelationshipPlaceHandoffs"
+        }
+      ],
       "feature_flag": "RELATIONSHIP_UUID_HANDOFFS_ENABLED",
-      "lifecycle": "dark",
+      "lifecycle": "active",
       "owner": "relationships",
-      "reason": "Sender-only handoff history exists behind the relationship gate; September 7 source inspection found no mobile transport or product caller. API tests cover the sender projection, not a shipped app consumer.",
-      "removal_trigger": "Add and verify a reviewed sender-control consumer or remove this unused endpoint.",
-      "review_by": "2026-10-07"
+      "reason": "Sender-only handoff history is consumed by the reviewed Place-card sender control to restore withdrawal state and reconcile uncertain delivery; the response omits recipient attention and remains behind the relationship gate.",
+      "removal_trigger": "Remove only with an equivalent sender-control history reader or when the sender withdrawal/reconciliation capability is retired.",
+      "review_by": "2026-10-30"
     }
   },
   "retired_operations": {

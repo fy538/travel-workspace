@@ -1149,38 +1149,51 @@ needed to begin that work.
 
 ### 10.8 Execution receipts — September 7
 
-The first baseline fixes are now committed on the isolated social candidate,
-without changing either primary checkout:
+The baseline fixes were developed on the isolated Social candidate and are now
+received on the local receiving mains (`travel-agent` `afe177b33` and
+`travel-app` `8dfa19119`). The receipt below preserves the original commit
+identities and focused evidence; it does not imply remote publication,
+deployment, flag activation, native acceptance, or a full-system pass:
 
 - Backend `20d22e75b` refills conversation-history pages after terminal
   relationship handoff messages are filtered. Its targeted conversation API
-  suite passes (164 tests).
+  suite passes (164 tests) and is included in the receiving backend main.
 - Backend `05c87064b` adds a sender-scoped UUID handoff-history reader. It
   includes terminal rows for owner reconciliation while the response projection
   continues to redact terminal material. Relationship route + conversation
-  suites pass together (183 tests).
+  suites pass together (183 tests); it is included in the receiving backend
+  main.
 - Mobile `946b418aa` adds the matching API/data/mock surface and bounded HTTP
   query filters. The focused mock parity suite (6 tests), HTTP suite (84
   tests), API surface parity suite (30 tests), typecheck and schema-bridge all
-  pass.
+  pass; it is included in the receiving mobile main.
 - Backend `68ef73031` centralizes current-authority handoff visibility across
   Chat history, previews/unread counts, search windows and concierge model
   context; it also bounds history refill and removes recipient attention from
   sender detail/transition projections. It also fails closed for orphaned or
   unknown-state handoffs. The focused cross-reader suites pass (330 tests);
-  the backend size-budget hook remains an existing structural blocker.
+  it is included in receiving backend merge `63e0e6929`; the backend
+  size-budget hook remains an existing structural blocker.
 - Mobile `75743adae` consumes the sender-control projection, rehydrates the
   Place-card withdrawal affordance after remount/navigation, reconciles
   uncertain send and withdrawal completion, and adds lifecycle/recovery
   regression tests. The focused mobile suites pass (100 tests), with
-  typecheck, schema-bridge and API-boundary checks green.
+  typecheck, schema-bridge and API-boundary checks green; it is included in
+  receiving mobile merge `ad0666c997`.
+
+The policy correction for `GET /api/relationships/place-handoffs/sent` is
+bounded to this existing sender-only consumer. It changes the governance
+classification from `dark` with no consumers to `active` with the
+`listSentRelationshipPlaceHandoffs` app caller while preserving
+`RELATIONSHIP_UUID_HANDOFFS_ENABLED`, sender-only authority, redaction and
+rollout posture. Integration still owns regenerating the active mobile
+projection and generated types from this policy change.
 
 These commits establish the first sender-history API shape, make the current
 Place-card withdrawal affordance durable across navigation/remounts when a
 single pair scope is unambiguous, and close one conversation-history
 pagination case. They do not establish general sharing, original-media
 receiving, Life refinding, or complete reader repair. The workspace OpenAPI
-snapshots remain unchanged until these isolated branches are combined with the
-current primary app/backend and the generated contract is regenerated once.
-Do not treat the endpoint as released or enabled from these branch-local
-receipts.
+snapshots remain unchanged pending Integration's contract-sync run; the
+endpoint remains feature-gated and is not enabled or released by this policy
+classification alone.
