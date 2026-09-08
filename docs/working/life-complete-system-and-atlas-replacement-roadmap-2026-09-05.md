@@ -112,6 +112,40 @@ its correction behavior only: broader source evidence fields, semantic
 interpretation, affected-period reconciliation, public group previews, serving
 cutover, and unsupported-owner coverage remain open.
 
+**Capture subject shadow follow-through — September 8:** backend commit
+`5dbf7eb01` extends that first retained-source adapter without changing the
+owner event family or serving contract. The existing authoritative Capture
+read now carries a validated, canonical `subject_ref` only when the owner
+explicitly associated the source with a currently visible place-like entity.
+The existing Life evidence/organization path materializes the source's
+capture-month membership plus one owner-backed `RELATED_PLACE` membership;
+captured time remains `CAPTURED`, and no occurrence, attendance, person role,
+negative claim or inferred continuity is created. The pointer is resolved
+under owner visibility and malformed, expired, non-place or unresolved subjects
+are omitted while the original source remains readable. `represented_refs` are
+deduplicated and bounded, and withdrawal/replay supersedes only the departing
+source's period and place memberships, preserving a neighboring source's active
+membership and durable controls.
+
+Evidence: the complete offline Life selection passed **259 tests** (42
+connected/API-key cases deselected); the retained-source PostgreSQL selection
+passed **4 tests** on migration head, including two sources sharing one place
+and source-scoped withdrawal/replay; Ruff, formatting and whitespace checks
+passed, and all applicable backend commit hooks passed. The isolated workspace
+branch is not merged or pushed. This is still shadow organization/readback
+evidence only: `backend/life_projection/adapters.py` and public Places lenses
+remain unchanged, with no API/schema/migration, reader cutover, Atlas deletion,
+or producer-side Capture rewrite.
+
+The next seam is therefore an explicit Capture/Integration contract decision,
+not another Life-owned event family: the graph `experience_anchors` path still
+lacks a revision/sequence field and its bridge emits only the existing
+`retained_source` lifecycle event. Before adding an anchor-backed adapter,
+agree the authoritative owner identity, revision, withdrawal/restore event and
+durable delivery semantics. If that contract is unavailable, continue replay
+and consumer tests against the existing path and record the exact gap rather
+than manufacturing occurrence or attendance evidence.
+
 ### Current execution queue
 
 This is the only current queue. The items refine existing R0–R8/M0–M6; they are
