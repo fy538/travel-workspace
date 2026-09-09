@@ -412,6 +412,29 @@ production writes and Postgres crash/concurrency evidence remain deferred to
 C1b/C2b. No UI, Chat, Life, Social, route, schema or Integration changes were
 made; workspace receipts are `1c485df` and `8a16d54`.
 
+**C2b evidence-admission checkpoint — September 9, bounded:** the Content lane
+exercised the existing reviewed World Foundry/source-owner handoff without
+adding a schema, owner, route, caller, provider, vector index, public
+publication path, or consumer surface. Backend test commit `e41efb43b`
+(`test(content): exercise foundry evidence admission`) proves that a typed,
+source-bound observation and fact claim use deterministic Foundry-scoped keys,
+one transaction connection and stable result identities when the same
+`PromotionPlan` is replayed. It also proves that a volatile operating-status
+fact backed only by `research_aggregate` is rejected before transaction start,
+accepted editorial remains `PROPOSED`, and owner `ConflictError` propagates.
+Workspace receipt `dd93657` records the evidence and boundaries. Focused
+provider-free evidence was `27 passed, 1 deselected` (the guarded Postgres
+test); Ruff, format, compile, hooks and docs checks passed. Live Postgres
+transaction/idempotency, rollback, crash recovery and provider execution
+remain unverified. The current owner key includes `run_id` and
+`assignment_id`, so equivalent re-acquisition under a new run receives new
+observation/claim/editorial identities; no approved policy yet decides when
+that is a new observation versus the same useful version. No reachable C2a
+caller currently constructs typed Foundry drafts automatically. This is a
+contract checkpoint, not cross-run deduplication or automatic publication;
+the isolated child/workspace commits remain unmerged while Integration is
+paused.
+
 <a id="sequence-and-system-checkpoints"></a>
 
 ### Execution order and event-triggered reviews

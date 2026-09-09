@@ -5261,3 +5261,25 @@ persistence, hard monetary reservation/settlement, paid/provider runs,
 production writes and Postgres crash/concurrency evidence remain C1b/C2b work.
 No UI, Chat, Life, Social, route, schema or Integration changes were made;
 workspace receipts are `1c485df` and `8a16d54`.
+
+### C2b evidence-admission checkpoint — September 9
+
+Content exercised the existing reviewed World Foundry/source-owner boundary in
+isolated commits `e41efb43b` (backend tests) and `dd93657` (workspace receipt).
+The packet proves provider-free same-run admission of a typed, source-bound
+observation and fact claim through the existing owners, deterministic
+Foundry-scoped keys, one transaction connection, stable replay identities,
+pre-transaction rejection of a volatile fact backed only by
+`research_aggregate`, `PROPOSED` editorial disposition (no silent public
+publication), and propagation of owner `ConflictError`. The focused suite was
+`27 passed, 1 deselected`; Ruff/format/compile, hooks and docs checks passed.
+
+This remains a bounded contract checkpoint. `TEST_DATABASE_URL` was unset, so
+live Postgres transaction/idempotency, rollback, crash-recovery and provider
+execution evidence remain unrun. Because current owner keys include `run_id`
+and `assignment_id`, equivalent re-acquisition under a new run receives new
+observation/claim/editorial identities; a founder/owner policy is still needed
+to distinguish a genuinely new observation from the same useful version. No
+reachable C2a caller currently constructs typed Foundry drafts automatically.
+No UI, Chat, Life, Social, route, schema, provider, or Integration change was
+made, and the isolated commits remain unmerged while Integration is paused.
