@@ -31,6 +31,13 @@ its input model is ready. Do not add a second mini-composer or intention form in
 Places. Places should remain the field that answers a named question with local
 evidence; Home may receive the resulting judgment as one useful piece of value.
 
+The current Claude designs already show the intended aperture. Places opens an
+exact place with **Ask Vesper privately** or a typed journey-frame question;
+Home's **Why this** sheet has **Ask about this**; Chat receives the object as
+context and answers without mutating Home until the person explicitly asks for a
+change. Reuse that pattern. Do not add a global “check a visit” form, a second
+Places composer, or a persistent practical-intention profile.
+
 Until that producer is selected, keep the current seam dark except for fixtures,
 contract tests and owner-read verification. A developer fixture is not a launch
 experience and must not be represented as ordinary personalized supply.
@@ -44,6 +51,32 @@ This preserves the product grammar:
   other value.
 - **Life:** no new record is created merely because a practical question was
   asked.
+
+## First user-facing composition
+
+The first composition should be designed across the existing Claude projects as
+one target-preserving turn:
+
+1. **Entry from the object:** on a canonical Place page or a consequential
+   Place unit, the person taps **Ask Vesper privately** / **Ask about this**.
+2. **Seeded question:** Chat opens with the exact Place, current scope and a
+   compact prompt such as “Can I fit this between 3–5pm for 90 minutes?” The
+   user may edit the words; no profile or setup step appears.
+3. **Bounded read:** the producer sends only the explicit place, window and
+   duration to the existing Places v2 seam. If a required field is genuinely
+   missing, ask one clarifying question in Chat; never infer it from the card.
+4. **Answer:** Chat returns one concise supported / does-not-fit / cannot-tell
+   judgment with the evidence boundary. The original Place explanation,
+   destination and independent value remain intact.
+5. **Optional consequence:** a supported result may be visible on the originating
+   Home/Places unit on return. Nothing is booked, arranged, written to Life,
+   notified or watched unless a later, separately authorized action says so.
+
+The Places project’s “journey frame” and constrained-afternoon boards are visual
+references for the result, not permission to create another interaction surface.
+The Home project’s “one Chat aperture per page” and “Home is unchanged until
+asked” rules are the continuity contract. The exact visual composition remains
+with Claude Design; this brief defines behavior and evidence only.
 
 ## Concrete acceptance cases
 
@@ -92,8 +125,20 @@ not just route correctness.
 **Input:** a person opens Home or browses Places normally.
 
 **Required behavior:** no `PracticalVisitIntent` is created. Ordinary cards may
-  show opening facts where already supported, but they must not silently become
-  future visit-fit judgments or a homework list.
+show opening facts where already supported, but they must not silently become
+future visit-fit judgments or a homework list.
+
+## Design-state acceptance
+
+Each state must be legible without making the person diagnose the system:
+
+| State | What the person receives | What must not happen |
+| --- | --- | --- |
+| Supported | One useful fit statement, its exact evidence boundary, and the Place door | No checklist, booking prompt or forced Plan |
+| Does not fit | The decisive conflict (for example, the stated window exceeds the supported hours) plus the unchanged Place value | No invented alternative or automatic reschedule |
+| Cannot tell | A direct uncertainty statement naming the missing/stale evidence and preserving the Place read | No optimistic default, silent omission or request to fill a profile |
+| Evidence changed/expired | A refreshed or clearly dated result, with the original scope preserved | No stale result presented as current |
+| Return | Back to the exact Place/Home scope and original question context | No generic Chat landing or lost target |
 
 ## Acceptance bar for a real producer
 
