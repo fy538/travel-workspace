@@ -5283,3 +5283,33 @@ to distinguish a genuinely new observation from the same useful version. No
 reachable C2a caller currently constructs typed Foundry drafts automatically.
 No UI, Chat, Life, Social, route, schema, provider, or Integration change was
 made, and the isolated commits remain unmerged while Integration is paused.
+
+### C1b acquisition-envelope checkpoint — September 9
+
+Content audited the reachable research/Places acquisition paths and added only
+provider-free characterization of the existing commercial reservation owner.
+Backend test commit `0bbd18340` covers partial settlement of known units,
+typed `CommercialAccessUnavailable` on settlement failure, and best-effort
+release failure; workspace receipts are `3cd1039` and `614d237`. The focused
+offline packet was `45 passed`; Ruff/format/compile, hooks and docs checks
+passed. The audit keeps logical query/deadline bounds, provider attempts and
+retries, Places call telemetry, LLM job safety, and customer entitlement
+reservations separate. Disposable Postgres was unavailable, so atomic
+concurrency, rollback, append-only reconciliation, expiry/crash recovery and
+provider-cost evidence remain unrun. No approved provider-cost policy defines
+operation units, retry/page/detail accounting, sponsor/scope, replay identity
+or unknown-charge settlement; therefore no provider reservation was wired and
+no hard monetary COGS cap is claimed. No UI, Chat, Life, Social, route, schema,
+provider or Integration change was made.
+
+### C3a event-lifecycle omission repair — September 9
+
+Places repaired one narrow existing-owner defect in backend commit
+`16858e745`, with workspace receipt `7794848`: a partial provider refresh that
+omits `status` no longer compares against or writes the insert default
+`active`, preserving an existing cancelled/postponed lifecycle value while
+allowing other supplied fields to update. A focused regression proves the
+generated upsert contains no status write. This does not establish the
+date-only/TBA schema, full operational/semantic field split, provider
+conformance, or a complete event supply path. The isolated Places commits
+remain unmerged while Integration is paused.

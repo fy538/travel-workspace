@@ -435,6 +435,35 @@ contract checkpoint, not cross-run deduplication or automatic publication;
 the isolated child/workspace commits remain unmerged while Integration is
 paused.
 
+**C1b acquisition-envelope checkpoint — September 9, bounded:** the Content
+lane audited actual research/Places callers and characterized the existing
+reservation mechanisms without activating providers or repurposing customer
+entitlement accounting. Backend test commit `0bbd18340` covers known-unit
+partial settlement, typed `CommercialAccessUnavailable` on settlement
+failure, and best-effort release failure; workspace receipts are `3cd1039`
+and `614d237`. The offline packet was `45 passed`; Ruff/format/compile, hooks
+and docs checks passed. The audit confirms that quick-research operation
+counts, provider fan-out/retries, Places' precheck-plus-audit, the LLM job
+budget, and the commercial usage ledger have different semantics. Real
+Postgres atomic last-allowance/rollback/reconciliation/expiry evidence was
+guarded and unrun because the disposable test environment was absent. No
+approved policy yet defines provider operation units, retry/page/detail/index
+accounting, sponsor/scope, replay identity, or unknown-charge settlement, so
+no acquisition reservation was wired and no hard COGS cap is claimed. No UI,
+Chat, Life, Social, route, schema, provider or Integration change was made.
+
+**C3a event-lifecycle omission repair — September 9, bounded:** the Places
+lane fixed one concrete refresh defect in backend commit `16858e745`
+(`fix(events): preserve lifecycle status on omission`), with workspace receipt
+`7794848`. A partial provider refresh that omits `status` no longer compares
+against or writes the insert default `active`; an existing cancelled or
+postponed lifecycle value is preserved while other supplied fields may update.
+The focused regression proves the generated upsert contains no status write.
+This is a narrow omission repair, not a date-only/TBA schema, full
+field-specific operational/semantic split, provider conformance claim, or
+complete event supply path. The isolated Places child/workspace commits remain
+unmerged while Integration is paused.
+
 <a id="sequence-and-system-checkpoints"></a>
 
 ### Execution order and event-triggered reviews
