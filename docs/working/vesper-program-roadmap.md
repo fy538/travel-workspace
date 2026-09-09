@@ -20,11 +20,16 @@ depends_on:
 
 # Vesper program roadmap
 
-**September 9 current posture:** the founder authorized A/B implementation and
-both assignments have been dispatched to existing Home/Places sessions. This is
-not a restart of the September 8 acceptance exercise. Integration remains
-**PAUSED by the founder**. Dispatch details below identify isolated checkouts and
-ownership; no shared runtime, landing or pending product agreement is activated.
+**September 9 current posture:** the received-material, practical-route,
+Content consumer/hydration and temporal-map packages have verified isolated
+results at the boundaries recorded below. The latest Content and Places turns
+are complete, not waiting for a design canvas. This is not whole-roadmap or
+native acceptance: broader semantic/time retrieval, supply activation,
+Social/Life adoption and combined delivery remain unfinished. The proposed
+cross-run editorial reuse policy has been presented to the founder and is
+not yet approved. Integration remains **PAUSED by the founder**; no shared
+runtime, landing, publishing or pending product agreement is activated.
+Earlier dispatch and review entries below preserve the execution history.
 Section 7 preserves the older acceptance scope as history.
 
 **Latest September 9 continuation:** isolated Content PostgreSQL is now
@@ -233,6 +238,31 @@ the tested readers, not production latency, active-release throughput,
 live supply breadth or native acceptance. Content's assigned hydration
 package is complete at this boundary; temporal map repair remains active.
 No merge, publishing, source activation or Integration resume follows.
+
+**Temporal map package verified — September 9:** Places backend `50763e5b5`
+repairs inclusive final-day filtering through the existing authenticated map
+endpoint and spatial reader. Application-validated timezone data compiles exact
+UTC window predicates before the database LIMIT; this avoids both first-page
+loss and an unbounded application pagination loop. The result shape, historical
+requests, recurring/on-demand browse semantics and explicit invalid/missing
+timezone fallback remain intact. Earlier reviewed revisions passed the original
+40-test packet but were not sufficient: Strategy reproduced omissions for a
+tab-padded New York timezone and `America/Coyhaique`, which the application
+recognizes but this PostgreSQL image does not. Both actual-reader reproductions
+now return the expected event; only their test-owned rows were created/deleted.
+
+Strategy independently reran the four-suite temporal/Places/map endpoint packet
+against lane-owned disposable PostgreSQL on port 55572: **42 passed**, zero
+skipped, 8.385s, at clean backend `50763e5b5`, workspace `5efb55c`, app
+`500aa7299`. Full command and measurement are in
+`/tmp/vesper-places-temporal-review-20260909/`. The real endpoint case overrides
+authentication but executes the map service/readers; the many-adjacent-events
+case enforces one experience query with the correct later result. This proves
+the tested predicate/result and roundtrip boundary, not a production query-plan
+or latency budget, all temporal discovery, provider freshness, or native UI.
+The Places assignment is complete at this boundary. Both execution lanes are
+idle; their temporary PostgreSQL services are stopped after Strategy's checks,
+with volumes retained. No main landing or Integration restart follows.
 
 **C3a parser completion:** Strategy found that Ticketmaster normalization still
 converted raw status omission into `onsale`, bypassing the earlier writer-only
