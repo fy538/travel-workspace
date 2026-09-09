@@ -1416,6 +1416,55 @@ relative links, same-document anchors, code-fence pairing and whitespace
 remain to be rerun at commit time; the earlier planning-pass counts are not
 reused as current verification claims.
 
+### 12.7 September 9 recommendations for the remaining policy choices
+
+These are reviewable recommendations, not adopted changes to persistence,
+publication or commercial policy. Transaction fixes and tests of existing
+guarantees can proceed while these choices are reviewed.
+
+**Cross-run evidence and content identity.** Preserve each independently
+retrieved observation with its actual retrieval time, source, rights and
+evidence. Retry the same acquisition using its original key. A new retrieval
+can be meaningful even when the source body is unchanged: it may refresh an
+operating fact, but cannot renew unrelated claims or expand permitted uses.
+Keep observation history distinct from the identity of a displayed explanation.
+For editorial reuse, compare exact subject, claim, supporting evidence,
+conditions, validity and permissions before proposing reuse of an existing
+version. Text similarity alone is insufficient. Unchanged reading should not
+be presented as new just because another acquisition ran.
+
+Current code supplies observation and claim replay/conflict guards and ordered
+primitive versions. The Foundry bridge, however, embeds run and assignment IDs
+in each primitive key and starts it at version 1; a new run creates another
+primitive identity rather than incrementing one existing editorial version.
+The concrete decision is whether an explicit editorial reuse adapter should
+select an existing identity before publication. Recommendation: yes, using the
+strict comparison above and existing current-reader/eligibility checks. Keep
+this adapter outside immutable observation persistence. The acceptance cases
+are identical retry, unchanged later observation, changed evidence, expired
+support, revoked source rights and a corrected explanation. No automatic
+cross-run merge is implemented or approved by this recommendation.
+
+**Acquisition cost policy.** Keep customer entitlements separate from supplier
+cost. Recommend a run allowance and a provider/time-window allowance, with an
+attempt identity for every dispatched request, retry, page and detail call.
+An idempotent retry of reservation bookkeeping reuses the attempt identity;
+another network attempt consumes another allowance. A fallback shares the
+original run ceiling. Reserve a configured conservative cost before dispatch;
+an operation with unknown cost cannot be admitted under a claimed monetary cap.
+Keep a timeout with uncertain billing held until reconciliation, and release
+only work known not to have incurred a charge. Exhaustion should return the
+supported result already obtained.
+
+The concrete approval inputs are supplier/operation cost schedules and their
+versions, the sponsoring scope, run and shared ceilings, and how unresolved
+charges are eventually reconciled. No prices, accounts or monetary limits are
+chosen here. Existing atomic posting mechanics can inform implementation, but
+their customer billing subjects must not silently become provider budgets.
+Disposable local PostgreSQL setup and tests of those existing mechanics are
+ordinary engineering work; an initially unset test URL is not itself a policy
+decision or a reason to stop implementation elsewhere.
+
 ## 13. Content ingestion investigation and implementation plan
 
 ### 13.1 Decision and scope
