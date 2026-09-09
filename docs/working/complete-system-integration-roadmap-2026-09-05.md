@@ -5313,3 +5313,49 @@ generated upsert contains no status write. This does not establish the
 date-only/TBA schema, full operational/semantic field split, provider
 conformance, or a complete event supply path. The isolated Places commits
 remain unmerged while Integration is paused.
+
+### September 9 continuation: setup and route-contract reassessment
+
+This continuation supersedes the earlier environment and blanket route-owner
+stops at their specific boundaries. The program roadmap holds current lane
+status; historical receipts above retain their original evidence limits.
+
+- Content provisioned its own disposable PostgreSQL under Compose project
+  `vesper-content-quality-correction-2026-09-08`, port 60716, and migrated it
+  using existing setup. Backend `bcafb2146` adds real Foundry replay, evidence
+  conflict, editorial rollback and projection rollback/retry tests. Owner
+  receipt `1b4b419` reports 14 connected Foundry/source/ledger/content/projection
+  tests and 9 entity-fact/identity tests passed. Strategy inspected the tests.
+  This is not a process-kill or concurrent-Foundry result. Missing test
+  environment variables were a setup task, not founder policy.
+- E2 app `500aa7299` has now passed Strategy's focused Places destination
+  suite (4 tests) and TypeScript check using the existing installation with a
+  matching dependency lockfile. Native and combined release evidence remain
+  separate. Recorded measurements are in `/tmp/vesper-e2-mobile-depth-20260909/`.
+- C3a backend `7802fe99d` repairs Ticketmaster's raw-response normalization as
+  well as the earlier writer seam. Missing status remains omitted; explicit
+  `onsale` remains active. Strategy's affected ingestion suites passed 34 tests;
+  the database boundary in those suites is mocked. The earlier writer-only
+  regression manually removed normalized status and did not prove this path.
+
+The E3 reassessment in lane receipt `484280c` concludes that a request-scoped
+adapter can reuse existing route semantics without a new product policy or
+durable owner. It is continued as implementation, with these constraints:
+
+1. Bind route evidence to the exact viewer/request, origin observation,
+   destination revision, requested/resolved modes, departure applicability,
+   provider use and freshness. An origin reference alone does not authorize
+   background location or route acquisition.
+2. Preserve `route_refs` as references; carry route observation fields in an
+   explicit typed payload. Keep origin coordinates and internal binding out of
+   root payloads/logs. A coordinate hash alone does not establish anonymity.
+3. Reuse the existing RouteFact gateway and authorized specialist result.
+   Ordinary Home/Places reads never dispatch a provider. A current route must
+   not be presented as evidence for an unsupported future departure.
+4. Cap the dependent fit assessment at route expiry; absent, stale, mismatched
+   or policy-denied evidence leaves travel fit unknown while independent
+   content remains useful. Refresh belongs to an explicit request or existing
+   foreground owner, with no new monitor or scheduler.
+
+This records implementation direction, not E3 completion. Product policy,
+source activation, Integration landing and publication remain separate.

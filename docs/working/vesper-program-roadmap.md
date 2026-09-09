@@ -27,6 +27,51 @@ not a restart of the September 8 acceptance exercise. Integration remains
 ownership; no shared runtime, landing or pending product agreement is activated.
 Section 7 preserves the older acceptance scope as history.
 
+**Latest September 9 continuation:** isolated Content PostgreSQL is now
+provisioned and the existing Foundry transaction guarantees have connected
+evidence. Backend `bcafb2146` adds same-run replay, immutable evidence conflict,
+editorial rollback and projection-failure/retry tests; the owner reports
+14 connected Foundry/source/ledger/content/projection tests and 9 entity
+fact/identity tests passed. Workspace receipt `1b4b419` holds the detailed
+commands and environment. Strategy inspected the test implementation and
+receipt; this is not a process-kill or concurrent-Foundry proof. Earlier
+statements that the test database was unavailable are historical. The lane's
+Compose project owns PostgreSQL on port 60716; this does not resume Integration.
+
+E2's previously unrun mobile destination suite has also been executed by
+Strategy against clean app `500aa7299`: 4/4 Jest cases passed, followed by a
+passing TypeScript check. The lane and installed canonical dependency lockfiles
+match; an ignored dependency symlink supplied the existing installation without
+a package install. Measurements and full logs are in
+`/tmp/vesper-e2-mobile-depth-20260909/` (6.499s Jest, 12.952s typecheck).
+The backend was concurrently edited by its owner and is outside this app-only
+evidence. Native presentation and combined release verification remain unrun.
+
+The [remaining Content policy recommendations](recommendation-world-supply-architecture-and-roadmap-2026-09-07.md#127-september-9-recommendations-for-the-remaining-policy-choices)
+now specify the choices for cross-run editorial reuse and acquisition cost
+accounting. They are proposals; fixes to existing transaction or parser
+semantics do not wait on them.
+
+**E3 blocker correction:** Places' reassessment `484280c` identifies a missing
+request-scoped route adapter, not a required new durable route owner or product
+policy. Existing RouteFact, Entity situation and foreground movement contracts
+supply the semantics. Implementation is continued in the same lane: bind exact
+viewer/request, origin, destination, mode, departure applicability and expiry;
+consume authorized route evidence through the existing owner family; keep
+ordinary root reads provider-free. No E3 completion is claimed yet. The earlier
+blanket statement that no code change was safe is superseded by this reassessment.
+
+**C3a parser completion:** Strategy found that Ticketmaster normalization still
+converted raw status omission into `onsale`, bypassing the earlier writer-only
+repair. Backend `7802fe99d` preserves that omission through normalization and
+the SQL update while retaining explicit `onsale`. Strategy inspected the patch
+and ran both affected ingestion suites: 34 passed against that clean backend
+revision (1.301s). Full output/measurement is in
+`/tmp/vesper-event-omission-20260909/`; an earlier invocation ran from the wrong
+directory and collected no tests, then was corrected. This establishes the
+raw-response-to-generated-update boundary with a mocked database, not provider
+conformance or a live ingestion deployment.
+
 **Velocity refinement, September 9:** keep implementation autonomous and
 compatibility continuous, but make coordinated integration demand-driven.
 Reviews below are triggers, not a fixed sequence of stop gates. Package readiness,
