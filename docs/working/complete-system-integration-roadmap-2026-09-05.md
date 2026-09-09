@@ -5164,6 +5164,12 @@ No API/schema/mobile/UI/provider/booking/DB/Chat/Life change or Integration wake
 was made. The legacy scenario planner remains available for compatibility;
 removing it requires a caller inventory and production-key migration.
 
+Strategy subsequently reran the current-job, root-composition and public
+Place-to-depth boundary from the dependency-complete canonical Python 3.13
+environment: **32 tests passed in 4.88s**. The lane's optional-import collection
+limit remains true for its own environment; this focused rerun does not certify
+provider supply, production, native/device or Integration acceptance.
+
 ### E2 follow-up receipt — public Place interpretation reaches Places depth — September 9
 
 The first missing Places consumer wiring is now present for the existing public
@@ -5195,3 +5201,8 @@ root-projection suites are unverified in this lane because optional `openai`
 unrun because this checkout has no `node_modules`. This proves adapter/contract
 wiring, not live provider supply or native visual rendering. No
 API/schema/generated-type/DB/provider/booking/Chat/Life changes were made.
+
+The same focused owner-to-depth, current-job and root-composition selection was
+independently rerun from the canonical dependency-complete environment with
+**32 tests passing in 4.88s**. This is supplemental boundary evidence only;
+broader root projection, live supply and native rendering remain unverified.

@@ -338,6 +338,12 @@ no workaround was used. Workspace receipt `6cc9f00` records the technical
 roadmap update. No API/schema/mobile/UI/provider/booking/DB/Chat/Life change or
 Integration wake was made.
 
+Strategy then reran the lane's current-job, root-composition and public
+Place-to-depth tests from the dependency-complete canonical Python 3.13
+environment: **32 tests passed in 4.88s**. This closes the optional-import
+collection limit for that focused boundary without changing the lane's broader
+provider, native, production or Integration evidence limits.
+
 **Canonical frontend baseline — September 9:** the clean `travel-app` main
 checkout at `e2e792913` was exercised with `make test-frontend`. It produced
 **1,201 passing suites / 8,187 passing tests**, but failed **13 suites / 16
@@ -365,6 +371,12 @@ is unverified because optional `openai` (and broader `shapely`/`redis`) imports
 are absent; app Jest/typecheck were unrun in that checkout because
 `node_modules` is unavailable. This proves code-path wiring, not live provider
 supply or native rendering. No Chat/Life/Integration wake followed.
+
+The focused owner-to-depth, current-job and root-composition boundary was then
+rerun from the dependency-complete canonical Python 3.13 environment: **32
+tests passed in 4.88s**. This supplements, but does not replace, the lane's
+unverified broader root-projection, provider-supply and native-rendering
+boundaries.
 
 <a id="sequence-and-system-checkpoints"></a>
 
