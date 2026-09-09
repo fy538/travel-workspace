@@ -91,10 +91,11 @@ architecture or broad visual exploration only when observed failures justify it.
 
 ## 4. Current package register
 
-The founder authorized the repair-and-integration round on September 8 after
-reviewing the first native inspection. One consolidated assignment was dispatched
-to each existing Integration, Home and Life task; Content remains parked with
-its completed supplier packet. Execution uses explicit `gpt-5.6-luna` / `xhigh`;
+The September 8 repair assignments have stopped; an idle lane is not evidence
+that its outcome passed. The operational review found all three execution lanes
+idle and Content parked. No product lane is restarted by this process update.
+Reconcile the combined candidate under section 6 before the next native run;
+section 7 records the remaining acceptance boundary. Execution uses explicit `gpt-5.6-luna` / `xhigh`;
 reports back to Strategy use explicit `gpt-6-astra` / `high`. These settings
 configure the recipient: never select `minimal` or `none` for a short report.
 Fast mode was requested
@@ -105,10 +106,10 @@ remains the sole combined landing owner.
 
 | Accountable task / owner plan | Next bounded responsibility | Handoff |
 | --- | --- | --- |
-| **[Integration](codex://threads/01a030af-13a8-74e1-81be-7d526bec3045)** · [technical plan](complete-system-integration-roadmap-2026-09-05.md) | Review supplier patches, admit the prepared corpus, assemble and verify the combined candidate | Exact owner-backed data/runtime tuple; serialized device access and landing |
+| **[Integration](codex://threads/01a030af-13a8-74e1-81be-7d526bec3045)** · [technical plan](complete-system-integration-roadmap-2026-09-05.md) | Next: reconcile final candidate, outstanding suppliers and evidence applicability before another run | One combined closeout and explicit next package; no identical XCTest retry |
 | **[Content](codex://threads/01a07c63-5ebe-71d2-9cb0-314ec4e06963)** · [supply plan](recommendation-world-supply-architecture-and-roadmap-2026-09-07.md) | Parked: backend `870d83d94` / receipt `7dc6875` ready for review | Integration uses existing records before requesting more supply |
-| **[Home](codex://threads/01a06f87-e648-74d2-a0ae-f0adb305e44c)** · [consumer map](home-connected-experience-implementation-map-2026-09-04.md) | Repair Places harness paths, investigate Search-cancel shell, rerun native and owner-backed receiving | Tested consumer/harness patches and actual content/depth evidence |
-| **[Life](codex://threads/01a06ecc-1a79-74a1-9c47-9f24461313ea)** · [replacement plan](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md) | Repair direct-row record target and stale return assertion; preserve genuine unavailable states | Root-to-reader regression and native evidence, without serving cutover |
+| **[Home](codex://threads/01a06f87-e648-74d2-a0ae-f0adb305e44c)** · [consumer map](home-connected-experience-implementation-map-2026-09-04.md) | Paused after repairs; latest Home/Places native portfolio and owner-backed receiving remain incomplete | Final commit/coverage handoff; next run only on agreed candidate |
+| **[Life](codex://threads/01a06ecc-1a79-74a1-9c47-9f24461313ea)** · [replacement plan](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md) | Paused: target repair integrated in acceptance, focused tests pass; native replay hit driver failure | Preserve genuine-unavailable tests and exact unverified native boundary |
 | **Strategy / [Social](codex://threads/01a07c7c-5c29-7b53-a596-fc0a34ee118b)** · [Social plan](social-experience-implementation-roadmap-2026-09-07.md) | Resolve the already-prepared consequential choices here | Adopted decisions before affected new writes; no repeated research packet |
 
 Places design, Entities, Capture and Components/Plan remain suppliers for named
@@ -134,36 +135,105 @@ receiving test and affected package—not “blocked on Life/Content/Social.”
 
 ## 6. Coordination, completion and next system review
 
-- **Independent execution:** owners proceed inside accepted contracts and owned
-  files. Before an API/shared-model/navigation/invalidation change, agree its
-  owner and receiving test with Integration. Use isolated worktrees, declare
-  overlapping files and serialize generated contracts and landing. Review staged
-  paths; never sweep another task's edits. A handoff is not permission to push,
-  enable flags, run paid work or delete old obligations.
-- **One small package agreement:** record outcome, accountable owner, receiving
-  owner, interface/version, owned files, exact base/commit, acceptance, exclusions
-  and next checkpoint in the lane plan. Recipient feedback goes directly to its
-  supplier; Strategy handles only promise/conflict/priority decisions.
-- **Separate completion dimensions:** report implementation/integration state,
-  owner-connected versus mocked/synthetic evidence, user-visible behavior, and
-  release/activation status separately. Attach revision/command/result and known
-  failures to the existing receipt. “All unblocked work complete” is insufficient
-  without naming the bounded package and unfinished outcome.
-- **Review/landing:** lane owners run focused tests, including actual payloads
-  and cross-reader effects. Integration verifies the combined candidate and
-  migration/schema contract; native and release evidence stay explicit. Do not
-  rerun every broad suite independently in every worktree or bypass a failed
-  gate because another slice passed. Integration records and retires obsolete
-  paths only after replacement and remaining-obligation acceptance.
-- **Maintenance:** Strategy is the single editor of this overview; owners keep
-  their lane's current queue and evidence fresh. Refresh this snapshot at a
-  handoff/material dependency change and after at most three integrated packages;
-  during intensive work, use a short daily review when the founder resumes.
-  This schedules no automation. Record what changed, who receives it, the next
-  bottleneck and what to continue/change/stop. Replace stale current statements;
-  preserve dated evidence in existing receipts, not another appendix here.
+### Outcome ownership and assignment
+
+Standing lanes supply expertise; a package has one accountable **outcome owner**
+who follows it through receiving-side verification, even when another lane owns
+a dependency. Strategy owns priority, product coherence and consequential
+decisions. Integration owns the combined candidate, shared runtime and landing;
+it need not implement every supplier fix. Integration is the outcome owner for
+a cross-system package unless the assignment names another owner.
+
+Use one consolidated assignment per round, recorded in the existing lane plan
+or Integration receipt, with this compact agreement:
+
+> Outcome and accountable owner; receiving owner and dependencies; exact repo
+> bases and owned files; authority and exclusions; required behavior/tests and
+> evidence level; handoff/checkpoint; escalation conditions.
+
+The owner carries authorized work through diagnosis, implementation, focused
+tests, integration handoff and receiving feedback. Ordinary fixture/harness
+repairs and bounded documented recovery do not require a new Strategy prompt.
+Escalate new authority/product decisions, incompatible shared contracts,
+destructive or external actions, or an exhausted technical alternative with
+evidence and a proposed next option. Do not repeat an unchanged failing retry.
+These permissions do not expand the package, weaken gates or authorize release.
+
+### Independent files, serialized shared resources
+
+Implement and test in isolated checkouts; simulator availability does not block
+independent file work. Agree overlapping files, shared APIs/navigation/models
+and receiving tests directly with their owners and Integration. Only Integration
+assembles supplier changes into the shared acceptance checkout. An explicit
+bounded file handoff is possible when no inspection is running; a clean Git
+status alone is not permission to edit another owner's checkout.
+
+Before inspection, Integration records a **candidate tuple** in its existing
+receipt: workspace/backend/app revisions, harness revision, dirty diff if any,
+build, effective flags, dataset/identity and mock-versus-owner mode, API/Metro
+origins, simulator, current operator and next recipient. Confirm the intended
+surface and data path before a long run. Treat source, harness, flags and data
+as stable for that inspection. A required change ends that candidate's run;
+record the new tuple and rerun affected checks. Preserve earlier results at
+their original scope; never silently carry a pass onto changed behavior.
+
+Device release and result acceptance are different. The operator hands over
+the tuple, evidence location and unfinished actions directly to Integration and
+the next recipient. Integration schedules use or shutdown after confirming no
+owner still relies on the runtime; emergency cleanup remains permitted with an
+explicit interruption record. This is a small handoff, not a new lock service.
+
+### Messages, evidence and reconciled closeout
+
+Keep progress and raw attempts in existing receipts. Send messages for a usable
+handoff, a material dependency change or a consequential blocker; do not start
+turns for acknowledgement-only/status-only traffic. Strategy receives the first
+substantive result, consequential decisions and one reconciled round closeout,
+not every lane's intermediate update. Necessary corrections may still be sent
+mid-round. Destination model/effort follows section 4; never infer it from how
+short the message is. This policy creates no polling loop or automation.
+
+Before closing a round, Integration verifies:
+
+1. Every participating owner has completed its handoff or is explicitly deferred;
+   no late supplier change is being mistaken for the inspected candidate.
+2. Final repo/harness revisions, staged/unlanded patches and relevant dirty state
+   are recorded, with release and publication status separate.
+3. Required checks are passed, failed, blocked, unrun or stale against that tuple.
+   Tool crashes prove no app assertion. Fixture, owner-backed HTTP, native and
+   reviewer evidence remain distinct; unsupported carry-forward is not a pass.
+4. Each unresolved defect has an owner, next action and restart condition. A
+   paused or failed round can close administratively without claiming acceptance.
+5. Runtime/device ownership is released or explicitly transferred. Strategy
+   synthesizes the combined result and the few decisions needed from the founder.
+
+Keep proportionate tests and the existing coordinated delivery gates; do not
+rerun every broad suite in every supplier lane or waive failures. Update one
+existing package receipt at meaningful checkpoints, preserving necessary raw
+evidence without creating a new document/commit for every message. Product
+commits remain small and coherent. No new task board or meta roadmap is needed.
+
+Review these operations after the next reconciled package: completed outcome,
+avoidable redispatches, waiting on shared resources, invalidated runs and founder
+interventions. Use actual timestamps/receipts (and the existing measurement tool
+for command timing); do not claim faster delivery from fewer messages or commits.
+Strategy maintains this overview; owners maintain their detailed queues. Reassess
+product direction after at most three integrated packages or a material conflict.
 
 ## 7. Current acceptance round — dispatched September 8
+
+**Operational closeout recheck:** acceptance app is clean at `8c9422342`;
+its prior Life target repair is `99daf978e`. The last Integration receipt
+`a392428` predates Home's final report, so the round still needs one reconciled
+closeout, not another automatic native retry. Home reports a later 6/7 capture
+with a quiet assertion failure; the earlier 7/7 pass is historical fixture
+evidence. Places repairs advanced the flows but the final assertion revision
+has no native pass. Life's 18 focused tests pass; XCTest failed before native
+assertions after bounded recovery. Content is owner-backed at the HTTP boundary,
+not native receiving. Runtime is reported stopped. These are execution/evidence
+boundaries, not production acceptance. The next operational assignment is a
+candidate/evidence reconciliation in the existing Integration receipt; no product
+lane or simulator is restarted by this document edit.
 
 **First inspection is complete, not product acceptance.** Isolated receipt
 `309b65e` records Home's 7/7 mock posture pass, Places' three failed paths plus

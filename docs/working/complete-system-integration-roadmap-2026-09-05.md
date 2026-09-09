@@ -33,6 +33,13 @@ This document retains I0–I6/CV/SP/E acceptance scope, shared technical sequenc
 integration and landing. Section 2's earlier lane allocations are historical.
 Do not create another assignment map here or restart completed Source machinery.
 
+The program's [operating agreement](vesper-program-roadmap.md#6-coordination-completion-and-next-system-review)
+owns outcome assignments, direct dependency handoffs, stable inspection tuples
+and reconciled closeout. Use it for the next round; older per-lane completion
+messages are evidence inputs, not a combined verdict. Integration consolidates
+the existing receipt after all final supplier handoffs and before declaring the
+round closed. No new roadmap or acknowledgement-only dispatch follows.
+
 **Receiving baseline closed locally:** backend `78ea8a05f`, mobile `5f41be821`,
 workspace receipt `b16857d`. Engineering Meta, Life withdrawal/restoration,
 Home/Social mobile repairs and the memory-authority correction are received.
@@ -75,7 +82,7 @@ activation remain unproven.
    repeat the migration merge, structural extraction or residual fixture round.
    Recheck current revisions and changed-file owners before new packages; run
    the relevant combined gates when their code changes. The program's
-   [next-package recommendation](vesper-program-roadmap.md#7-next-coordinated-packages--recommended-not-dispatched)
+   [current acceptance round](vesper-program-roadmap.md#7-current-acceptance-round--dispatched-september-8)
    owns the Home/Life/Social allocation, not a new assignment table here.
 2. **Complete received value and supported practical judgment (E2/E3).** Use
    Content's actual owner material through Home/Places and exact depth; make
@@ -486,8 +493,9 @@ paths before committing and never reset another lane to obtain a clean tree.
 
 Review after a connected package, after at most three integrated packages, or
 when a material contradiction appears. Use local tests during current execution;
-the founder deferred app/device testing for now. Keep native/release gates
-explicit without making them a prerequisite for unrelated engineering. A
+the earlier app/device deferral is superseded by the program's current native
+acceptance assignments. Keep native/release gates explicit without making them
+a prerequisite for unrelated engineering. A
 checkpoint records what to continue, revise or retire, not another blanket
 revalidation loop. The current assignment map is now the program roadmap;
 this register and older task activity tables preserve dated evidence only.
@@ -1017,19 +1025,20 @@ or action as a control: the engine must not operationalize every valuable moment
 
 ## 7. Parallel Luna execution policy
 
-The founder explicitly requested bounded **Luna-max / Luna-extra-high** subagents.
-Use `gpt-5.6-luna` with `max` for difficult bounded architecture/owner reasoning
-and independent reviews, and `xhigh` for well-scoped implementation, tests,
-migration inventories or consumer integration. Do not silently substitute a
-different model/effort if those settings are unavailable; report the limitation.
-No new user-owned tasks are required for temporary subagents.
+Current founder selection is `gpt-5.6-luna` / `xhigh` for execution recipients
+and `gpt-6-astra` / `high` for Strategy. The destination rule in program section 4
+supersedes earlier max/xhigh selection guidance. Fast mode is requested but must
+not be claimed enabled without evidence. Do not change global settings to route
+a handoff or silently substitute another model/effort.
 
-The Integration parent owns architecture coordination, the roadmap, shared contracts,
-integration review and final status. Delegate only concrete work that can proceed
-alongside useful parent work. Start with at most two implementation workers;
-use the third available worker slot for independent review when useful. The
-current read-only investigation used three workers because their scopes do not
-mutate shared files. Subagents should not recursively expand the team.
+Use existing named lanes for the current program; no new task is required.
+Temporary subagents require current user or applicable instruction authorization
+and a concrete independent subtask. They do not recursively expand the team.
+Integration owns shared technical coordination, its execution plan, review and
+reconciled final status; Strategy owns the cross-lane program and product review.
+Neither should relay routine supplier messages that can go directly to the
+receiving owner. Keep simultaneous work bounded by actual independent file and
+contract ownership, not a target number of running agents.
 
 Every dispatch must specify:
 
