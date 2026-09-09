@@ -213,6 +213,27 @@ own manifest/runtime and finish the implementation plus connected evidence in
 one handback. No design, Trip creation, UI change, provider acquisition or
 Integration restart is required or authorized by this repair.
 
+**Source hydration package verified — September 9:** Content backend
+`60029f1ba` replaces per-record auxiliary reads with set-based hydration and
+SQL latest-per-observation lifecycle selection; `e5fe426e8` bounds all affected
+readers to eight-record hydration batches, including entity/no-callback reads.
+The real scan regression now enforces SQL budgets, not merely a relative
+query-count assertion, and exercises stored policy/disagreement preservation.
+Another connected case preserves the full ordered entity output through
+`[8, 8, 2]` batches. Strategy inspected both commits and independently ran the
+expanded twelve-suite root/content/DB-owner packet: **130 passed**, zero
+skipped, 9.213s, at clean backend `e5fe426e8`, workspace `9de0d55`, app
+`12cc59a51`, using the isolated disposable PostgreSQL on port 60716.
+Full command and measurement: `/tmp/vesper-content-batching-review-20260909/`.
+The owner reports actual scan costs of five SQL executions/eight hydrated
+records and 22/forty, versus the previous 49/eight and 242/forty. Strategy's
+rerun verifies the enforced budget and row-count assertions; those precise
+SQL totals are owner measurements. This proves bounded roundtrip work for
+the tested readers, not production latency, active-release throughput,
+live supply breadth or native acceptance. Content's assigned hydration
+package is complete at this boundary; temporal map repair remains active.
+No merge, publishing, source activation or Integration resume follows.
+
 **C3a parser completion:** Strategy found that Ticketmaster normalization still
 converted raw status omission into `onsale`, bypassing the earlier writer-only
 repair. Backend `7802fe99d` preserves that omission through normalization and
