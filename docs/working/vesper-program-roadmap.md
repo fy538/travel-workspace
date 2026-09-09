@@ -47,23 +47,31 @@ projection identities; old and withdrawn content must fail the exact reader as
 well as disappear from enumeration. The barrier coordinates worker starts, not
 a prescribed database-lock interleaving. The owner reports 10 focused tests and
 25 adjacent connected tests passed, plus formatting and documentation checks;
-Strategy has not independently rerun this new packet. No production code changed
+Strategy subsequently reran this test file within the C4b packet below, not the
+entire 25-test adjacent selection. No production code changed
 in this increment. Process-kill recovery, cross-run editorial reuse policy,
 provider activation and user-facing acceptance remain outside this evidence.
 These commits remain isolated and unmerged.
 
-**Next Content assignment — C4b dispatched:** the existing Content session
-`01a07c63-5ebe-71d2-9cb0-314ec4e06963` continues in its
-`content-quality-correction-2026-09-08` coordinated lane, with Luna xhigh
-requested. It owns bounded retained-material discovery by place, time and
-question through existing structured/derived readers, followed by authoritative
-current-record validation. The assignment includes implementation and connected
-tests for useful no-history and cross-place material, useful empty results and
-stale-index exclusion. A configured vector client is not evidence of an active
-admitted corpus; any missing semantic path must be named separately. No routine
-read may initiate research, embedding or provider work. Places retains ownership
-of the shared practical/root seams. No Chat/Life/UI work, new source policy,
-provider activation, or Integration restart is authorized by this dispatch.
+**C4b structured/lexical slice reviewed:** Content backend `53879cbe4` adds
+bounded multi-place retrieval through existing place-membership and content
+readers; `284312179` repairs represented-clock eligibility and distinguishes an
+unmatchable explicit question from no-query browsing. It searches up to eight
+caller-resolved places, scans beyond a nonmatching initial page within an explicit
+budget, preserves supported anchor representation, and returns current eligible
+material or an honest empty result. Strategy inspected both commits and ran the
+full focused packet against the lane-owned disposable PostgreSQL on port 60716:
+**38 passed**, zero skipped, 3.989s, at clean backend `284312179`, workspace
+`9de0d55`, app `12cc59a51`. Command and measurement are in
+`/tmp/vesper-c4b-review-20260909/`. The owner subsequently stopped PostgreSQL and
+retained its volume.
+
+This is not all of C4b: `now` governs freshness, not future event-window search;
+anchors are supplied, not geocoded; matching is bounded ASCII lexical matching,
+not semantic retrieval. Mocked stale records prove eligibility filtering, not a
+live stale-vector path. No new runtime vector consumer, provider/model call,
+root producer, UI, source activation or Integration landing follows. These are
+explicit remaining consumer/supply seams, not reasons to rebuild the owners.
 
 E2's previously unrun mobile destination suite has also been executed by
 Strategy against clean app `500aa7299`: 4/4 Jest cases passed, followed by a
@@ -85,12 +93,33 @@ policy. Existing RouteFact, Entity situation and foreground movement contracts
 supply the semantics. Implementation is continued in the same lane: bind exact
 viewer/request, origin, destination, mode, departure applicability and expiry;
 consume authorized route evidence through the existing owner family; keep
-ordinary root reads provider-free. No E3 completion is claimed yet. The earlier
+ordinary root reads provider-free. The earlier
 blanket statement that no code change was safe is superseded by this reassessment.
 Implementation review additionally requires private route inputs to remain out
 of serializable value candidates, hashable exact request binding, and no invented
 expiry or unsupported departure-time applicability. Provider isolation must be
 tested through the actual root composition path, not only the generic compiler.
+
+**E3 adapter and practical-consumer slice reviewed:** backend `edc91997a` adds
+the request-local route adapter and fit assessment; `ad992f0da` repairs the exact
+canonical-ref assertion and proves a positive compiler → registered executor →
+value-judgment path. A longer duration changes the admission result. Strategy's
+first run at `edc91997a` found 135 passed / 1 failed; the repaired four-suite
+packet passed **137**, zero skipped, in 4.305s at clean backend `ad992f0da`,
+workspace `afceb11`, app `500aa7299`. Logs and measurements are in
+`/tmp/vesper-e3-route-review-20260909/`. Provider and entity boundaries in this
+packet are stubbed; this is not a live-provider, HTTP-caller or native proof.
+Route-only acquired observations may follow request start; ordinary historical
+owner-read clocks remain constrained. The route input is kept out of serialized
+value candidates and owner requests.
+
+**Next implementation boundary:** connect these tested capabilities through
+real, explicitly authorized consumers. Neither the new multi-place retrieval
+helper nor the route-input mapping currently has a new production caller. Trace
+existing producer/foreground paths before choosing the adapter; preserve no
+acquisition on ordinary root reads, exact request context, useful delivered
+content, and current eligibility. Do not call these helpers a complete system,
+restart Integration, or wait for a visual canvas to investigate this wiring.
 
 **C3a parser completion:** Strategy found that Ticketmaster normalization still
 converted raw status omission into `onsale`, bypassing the earlier writer-only
