@@ -262,6 +262,9 @@ focused synthetic/owner-read evidence: no native/device, populated production
 provider, route-owner, or UI request-control acceptance is claimed. Integration
 remains paused; no shared runtime, landing or publication is implied.
 
+The producer decision and user-facing acceptance bar are captured in the
+[practical-judgment producer brief](practical-judgment-producer-acceptance-brief-2026-09-09.md).
+
 <a id="sequence-and-system-checkpoints"></a>
 
 ### Execution order and event-triggered reviews
