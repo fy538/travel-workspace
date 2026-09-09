@@ -289,6 +289,24 @@ coverage and docs checks at their stated boundaries. This is synthetic/
 owner-read proof only: no native/device, populated production provider,
 route-owner or UI request-control acceptance is claimed.
 
+**E3 follow-up — deterministic matrix and request telemetry, September 9:**
+the Places lane further hardened the same seam without changing its producer or
+consumer. Backend `2d481660a` now rejects duplicate/ambiguous exact reads,
+multiple targets, missing evidence, stale/expired or viewer-mismatched reads,
+and malformed intent as unknown or non-admitted; independent ordinary Place
+value survives practical failure, and ordinary cards remain non-practical. The
+existing `Event.ROOT_COMPOSITION_MEASURED` event carries only bounded aggregate
+fields (state counts, evidence count/class, freshness/expiry and read-only
+status), never raw text, IDs, refs, coordinates or provider cost. The lane's
+workspace receipt is `65ff6ac`.
+
+Focused evidence is 71/71 backend tests (37 value-composition plus 34 adjacent
+graph/commitment/owner-read), Ruff/format and Python compilation, with backend
+hooks passing. Root-projection telemetry/API rehearsal collection remains
+unverified because the lane lacks optional `openai` (and the broader import
+surface lacks `shapely`/`redis`); no workaround was used. No OpenAPI/mobile,
+Chat, Life, provider, enqueue, route-owner or durable-write behavior changed.
+
 These handbacks establish useful, source-backed seams—not a combined acceptance
 or complete-system result. The next dependency is populated/native acceptance
 and any legitimate non-Chat producer that can call the explicit seam; no ordinary
@@ -5061,3 +5079,5 @@ checkpoint/schema only if real affected scopes exceed one transaction, and
 Capture must agree the occurred/place/people evidence envelope before Life can
 materialize richer episode/place/people relations. Unsupported owners remain
 visible in coverage rather than silently promoted.
+the existing `Event.ROOT_COMPOSITION_MEASURED` event carries only bounded aggregate
+fields), Ruff/format and Python compilation, with backend
