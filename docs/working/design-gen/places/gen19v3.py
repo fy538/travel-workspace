@@ -20,33 +20,33 @@ def lead_composition(populated=True):
     day = I.pier_day(plan=('18:30', '19:04', 'THE PIER'), after=('20:30', '22:00', 'THE FILM'))
     if populated:
         inner_ = kick('SATURDAY AT THE PIER · KEPT WITH MAYA') + day + f'<div style="margin-top: 10px;">{serifline("Sunset from the west pier at 7:04; it turns cold fast. The lawn is nine minutes on, the film at 8:30.")}</div>'
-        inner_ += fn('MAYA, TUESDAY · &ldquo;TUESDAY, SEVEN.&rdquo;', 6) + f'<div style="margin-top: 8px;">{doors(("The pier, with Maya", GOLDD), ("Reply to Maya", MUTE))}</div>'
+        inner_ += fn('MAYA, TUESDAY · &ldquo;TUESDAY, SEVEN.&rdquo;', 8) + f'<div style="margin-top: 8px;">{doors(("The pier, with Maya", GOLDD), ("Reply to Maya", MUTE))}</div>'
     else:
         inner_ = kick('SATURDAY AT THE PIER · FREE') + day + f'<div style="margin-top: 10px;">{serifline("Playtime on the lawn at 8:30, free; the sunset from the west pier first, at 7:04.")}</div>'
-        inner_ += fn('TATI&rsquo;S CITY OF GLASS · GET THERE AT EIGHT FOR A SPOT · RAIN PLAN NOT POSTED', 6) + f'<div style="margin-top: 8px;">{doors(("Saturday&rsquo;s film", GOLDD))}</div>'
+        inner_ += fn('TATI&rsquo;S CITY OF GLASS · GET THERE AT EIGHT FOR A SPOT · RAIN PLAN NOT POSTED', 8) + f'<div style="margin-top: 8px;">{doors(("Saturday&rsquo;s film", GOLDD))}</div>'
     return f'<div style="display: flex; flex-direction: column;">{inner_}</div>'
 def friends():
     c = card(author_row('M', 'Maya', 'THURSDAY · TO FRIENDS') + quote(MAYA_ROOM) + place_strip('The Harbor Print Room', 'RED HOOK · TUE–SUN 11–6') + door('Reply to Maya'))
     rows = arow('Priya · the greenmarket · ' + dim('the pigeons have a system · Saturday'), avatars=['P']) + arow('Theo · the bread stall · ' + dim('sells out by ten · Tuesday'), avatars=['T']) + arow('Sam · Canal Hall · ' + dim('sit on the left, that&rsquo;s where the speakers are'), avatars=['S'], last=True)
-    return sect('From friends') + gut(c + '<div style="height: 14px;"></div>' + rows + door('Everything from friends'))
+    return sect('From friends') + gut(c + '<div style="height: 12px;"></div>' + rows + door('Everything from friends'))
 def redhook(populated=True):
     rows = ('<div>' + nrow(1, 'The Harbor Print Room', 'TUE–SUN 11–6 · ROOMS REMADE, TO SUNDAY', unc(UNK_ROOM) + (fn('MAYA WAS THERE THURSDAY', 4) if populated else ''), first=True) + nrow(2, 'The Red Hook pier', 'FACES THE HARBOR AND THE STATUE') + nrow(3, 'The Red Hook pool', 'LAP SWIM 7–8:30 AM · BRING A LOCK') + nrow(4, 'The lunch counter on Columbia Street', 'TILL 4 · $11 PLATE · STANDING ROOM', last=True) + '</div>')
     walk = f'<div style="font-size: 14px; line-height: 19px; color: {INK2}; margin-top: 10px; padding-top: 10px; border-top: 1px solid {HAIR7};">Everything here is within twelve minutes of the landing on foot.</div>'
     return sect('Red Hook, by ferry') + gut(REDHOOK_MAP + burden_strip() + f'<div style="margin-top: 4px;">{rows}</div>' + walk)
 def evening(populated=True):
     band = I.day_band(18, 23, [('19:15', '20:15', 'THE HOUR', 'gold')], [], [('start', '6:45 DOORS', 'start'), ('end', 'COUNTER TILL 10 · CAFÉ TILL 11', 'end')])
-    unit = title('The listening hour at Canal Hall', 17, 22) + sup('Reich, Music for 18 Musicians, heard whole. Lights down, no talking; doors 6:45.') + unc(UNK_HOUR) + fn('SATURDAY 7:15 PM · $12 · CANAL STREET', 8)
+    unit = title('The listening hour at Canal Hall', 17, 22) + sup('Reich, Music for 18 Musicians, heard whole. Lights down, no talking; doors 6:45.') + unc(UNK_HOUR) + fn('SATURDAY 7:15 PM · $12 · CANAL STREET', 4)
     if populated: unit += '<div style="margin-top: 10px;">' + arow('Sam · ' + dim('sit on the left side, that&rsquo;s where the speakers are'), avatars=['S'], last=True) + '</div>'
     unit += door('This Saturday&rsquo;s hour') + '<div style="margin-top: 6px;">' + prow('The noodle counter', 'TILL 10 · THREE MINUTES FROM THE HALL', first=True) + prow('The long table at the caf&eacute;', 'TILL 11 · FOUR MINUTES', last=True) + '</div>'
     return sect('Saturday evening') + gut(band + unit)
 def understanding(col=None):
-    reading = FLOOD(118) + fn('READING · 4 MIN', 10) + f'<div style="margin-top: 4px;">{serifline("Why the pier floods before the street does", 17, 22)}</div>' + f'<div style="font-size: 13px; line-height: 18px; color: {MUTE}; margin-top: 4px;">The pier sits on the old creek bed, two feet below the 1911 sill. It drains only when the harbor is lower than the street.</div>' + door('The rest of the reading')
+    reading = FLOOD(118) + fn('READING · 4 MIN', 12) + f'<div style="margin-top: 4px;">{serifline("Why the pier floods before the street does", 17, 22)}</div>' + f'<div style="font-size: 13px; line-height: 18px; color: {MUTE}; margin-top: 4px;">The pier sits on the old creek bed, two feet below the 1911 sill. It drains only when the harbor is lower than the street.</div>' + door('The rest of the reading')
     piers = (f'<div style="{SERIF} font-size: 17px; line-height: 22px; font-weight: 500; color: {INK};">Two piers, two ways in</div><div style="font-size: 13px; line-height: 18px; color: {MUTE}; margin-top: 4px;">Same evening light; a land route and a crossing.</div>'
              + I.access_compare([('SUNSET PARK', [(3, 'foot'), (20, 'ride'), (9, 'foot')], 'THE N OR R · A LAND ROUTE, EASY TO SHORTEN'), ('RED HOOK', [(6, 'foot'), (25, 'ride'), (9, 'foot')], 'THE FERRY, EVERY 40 · A SCHEDULED WAY IN')]))
-    return sect('Worth understanding') + gut(piers) + gut(reading, top=26)
+    return sect('Worth understanding') + gut(piers) + gut(reading, top=24)
 def upclose(): return sect('Seen up close') + gut(author_row('P', 'Priya', 'SATURDAY · TO FRIENDS') + quote(PRIYA_PIGEONS) + place_strip('The greenmarket', 'DOWNTOWN · SATURDAY 8–1'))
 def sunday(populated=True):
-    u = title('Bach on the organ at the old church', 17, 22) + sup('The Passacaglia and two chorale preludes, forty minutes.') + fn('SUNDAY 4 PM · FREE', 8)
+    u = title('Bach on the organ at the old church', 17, 22) + sup('The Passacaglia and two chorale preludes, forty minutes.') + fn('SUNDAY 4 PM · FREE', 4)
     if populated: u += '<div style="margin-top: 10px;">' + arow('Maya · ' + dim('sat at the back; forty minutes, then coffee · last month'), avatars=['M']) + arow('Priya · ' + dim('fell asleep in the Passacaglia, happily · last month'), avatars=['P'], last=True) + '</div>'
     return sect('Sunday') + gut(u + door('Sunday&rsquo;s organ'))
 def morning(populated=True):
@@ -54,11 +54,11 @@ def morning(populated=True):
     if populated: u += '<div style="margin-top: 6px;">' + arow('Theo · ' + dim('the bread stall sells out by ten; go early or don&rsquo;t bother'), avatars=['T'], last=True) + '</div>'
     return sect('Saturday morning, downtown') + gut(u + door('All of Saturday morning'))
 def v3(populated=True):
-    body = top(populated) + gut(lead_composition(populated), top=26)
+    body = top(populated) + gut(lead_composition(populated), top=24)
     if populated: body += friends()
     body += sect('Any day') + gut(browse_shelf(SHELF)) + redhook(populated) + evening(populated) + understanding()
     if populated: body += upclose()
-    body += sunday(populated) + morning(populated) + gut(door_list(['Another neighborhood', 'Sunday, all day'] + (['From friends, everything'] if populated else [])), top=30)
+    body += sunday(populated) + morning(populated) + gut(door_list(['Another neighborhood', 'Sunday, all day'] + (['From friends, everything'] if populated else [])), top=24)
     return phone(body)
 def board(h=5400):
     c1 = col(v3(True), caption('THE CANON&rsquo;S INSTRUMENTS &middot; POPULATED &middot; FRIDAY, NEW YORK', 'HOME&rsquo;S KIT, THE CANON&rsquo;S KINDS', 'Each section carries one instrument that earns its ink: the pier&rsquo;s day on the opening, hatched photo slots on the everyday six, the burden strip on the crossing, the day band on the evening, two ways in on one scale, the flood section to scale'))

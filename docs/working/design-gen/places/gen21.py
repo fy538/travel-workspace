@@ -3,46 +3,46 @@ from fix import *
 import instruments as I
 Q1 = 'Near Red Hook, Saturday'
 def e2(opened=False):
-    inner = anchor('NEW YORK', 'FRIDAY 5:40 PM') + ask(q=Q1) + gut(map_block() + burden_strip(), top=14)
-    inner += sect('In Red Hook', 22) + gut(redhook_rows(True, opened)) + sect('Getting in') + gut(getting_in())
-    inner += gut(body('Everything here is within twelve minutes of the landing on foot.'), top=14) + gut(door_list(['All of New York', 'Sunset Park instead']), top=24)
+    inner = anchor('NEW YORK', 'FRIDAY 5:40 PM') + ask(q=Q1) + gut(map_block() + burden_strip(), top=12)
+    inner += sect('In Red Hook', 24) + gut(redhook_rows(True, opened)) + sect('Getting in') + gut(getting_in())
+    inner += gut(body('Everything here is within twelve minutes of the landing on foot.'), top=12) + gut(door_list(['All of New York', 'Sunset Park instead']), top=24)
     return phone(inner)
 def e3():
-    inner = anchor('RED HOOK', 'SATURDAY', back=True, sub=Q1) + gut(map_block().replace('height="200"', 'height="200"'), top=14) + gut(burden_strip(), top=4)
-    inner += gut(redhook_rows(True, facts=False), top=10)
+    inner = anchor('RED HOOK', 'SATURDAY', back=True, sub=Q1) + gut(map_block().replace('height="200"', 'height="200"'), top=12) + gut(burden_strip(), top=4)
+    inner += gut(redhook_rows(True, facts=False), top=12)
     return phone(inner)
 def e4():
-    inner = anchor('THE HARBOR PRINT ROOM', '', back=True, sub='Red Hook · Tue–Sun 11–6') + gut(photo_plate(190), top=18)
-    inner += gut(title('Rooms Remade, through Sunday', 20, 25, 600) + sup('A print workshop in a former warehouse on Van Brunt Street; the exhibition is in the two upstairs rooms.') + unc(UNK_ROOM), top=14)
-    inner += gut(f'<div style="padding-top: 12px; border-top: 1px solid {HAIR7};">' + author_row('M', 'Maya', 'THURSDAY') + quote(MAYA_ROOM, 16, 22) + '</div>', top=14)
+    inner = anchor('THE HARBOR PRINT ROOM', '', back=True, sub='Red Hook · Tue–Sun 11–6') + gut(photo_plate(190), top=16)
+    inner += gut(title('Rooms Remade, through Sunday', 20, 25, 600) + sup('A print workshop in a former warehouse on Van Brunt Street; the exhibition is in the two upstairs rooms.') + unc(UNK_ROOM), top=12)
+    inner += gut(f'<div style="padding-top: 12px; border-top: 1px solid {HAIR7};">' + author_row('M', 'Maya', 'THURSDAY') + quote(MAYA_ROOM, 16, 22) + '</div>', top=12)
     inner += sect('Getting there') + gut(burden_strip('TO PIER 11', 'THE FERRY · 25 MIN', '9 MIN ON FOOT', '~40') + getting_in())
-    inner += gut(door_list(['Reply to Maya', 'Ask Vesper privately']), top=14)
+    inner += gut(door_list(['Reply to Maya', 'Ask Vesper privately']), top=12)
     return phone(inner)
 E = [('THE FIELD', 'Friday, as it stands; the first viewport', lambda: field(True), True), ('A QUESTION TYPED', 'The page becomes map-led because orientation was asked for; the burden strip says what the crossing costs', e2, False),
      ('THE MAP', 'The same exploration, larger; the question stays in the header; the four places without their facts', e3, False), ('A RESULT', 'The Print Room: its photo slot, what is unconfirmed, Maya&rsquo;s words, the crossing; two doors, no primary', e4, False),
      ('BACK', 'The question, the four places and the position preserved; the opened one says so', lambda: e2(True), False)]
 def h2():
-    inner = anchor('FROM FRIENDS', 'THIS WEEK', back=True, sub='Four people') + gut('<div style="margin-top: 6px;">' + share_row('M', 'Maya', 'THURSDAY', MAYA_ROOM, 'THE HARBOR PRINT ROOM · RED HOOK') + share_row('M', 'Maya', 'TUESDAY', MAYA_PIER, 'THE PIER AT SUNSET · KEPT, WITH MAYA') + share_row('P', 'Priya', 'SATURDAY', PRIYA_PIGEONS, 'THE GREENMARKET · DOWNTOWN') + share_row('T', 'Theo', 'TUESDAY', THEO_BREAD, 'THE GREENMARKET · DOWNTOWN') + share_row('S', 'Sam', 'NOT THIS SATURDAY', SAM_HALL, 'THE LISTENING HOUR AT CANAL HALL', last=True) + '</div>', top=10)
-    inner += gut(door_list(['All of New York']), top=20)
+    inner = anchor('FROM FRIENDS', 'THIS WEEK', back=True, sub='Four people') + gut('<div style="margin-top: 6px;">' + share_row('M', 'Maya', 'THURSDAY', MAYA_ROOM, 'THE HARBOR PRINT ROOM · RED HOOK') + share_row('M', 'Maya', 'TUESDAY', MAYA_PIER, 'THE PIER AT SUNSET · KEPT, WITH MAYA') + share_row('P', 'Priya', 'SATURDAY', PRIYA_PIGEONS, 'THE GREENMARKET · DOWNTOWN') + share_row('T', 'Theo', 'TUESDAY', THEO_BREAD, 'THE GREENMARKET · DOWNTOWN') + share_row('S', 'Sam', 'NOT THIS SATURDAY', SAM_HALL, 'THE LISTENING HOUR AT CANAL HALL', last=True) + '</div>', top=12)
+    inner += gut(door_list(['All of New York']), top=24)
     return phone(inner)
 def h3(sent=False):
-    inner = anchor('MAYA', 'THURSDAY', back=True, sub='To friends') + gut(author_row('M', 'Maya', 'THURSDAY') + quote(MAYA_ROOM, 20, 28), top=18)
-    inner += gut(place_strip('The Harbor Print Room', 'RED HOOK · TUE–SUN 11–6'), top=10)
-    if sent: inner += gut(readback('SENT', 'To Maya · just now · &ldquo;Saturday afternoon, then? I want the side room.&rdquo;'), top=14)
+    inner = anchor('MAYA', 'THURSDAY', back=True, sub='To friends') + gut(author_row('M', 'Maya', 'THURSDAY') + quote(MAYA_ROOM, 20, 28), top=16)
+    inner += gut(place_strip('The Harbor Print Room', 'RED HOOK · TUE–SUN 11–6'), top=12)
+    if sent: inner += gut(readback('SENT', 'To Maya · just now · &ldquo;Saturday afternoon, then? I want the side room.&rdquo;'), top=12)
     inner += gut(door_list((['Reply to Maya'] if not sent else []) + ['Ask Vesper privately']), top=8)
     return phone(inner)
 def h_reply():
-    inner = anchor('MAYA', 'THURSDAY', back=True, sub='To friends') + gut(author_row('M', 'Maya', 'THURSDAY') + quote(MAYA_ROOM, 20, 28), top=18)
-    inner += gut(composer('Reply', 'Saturday afternoon, then? I want the side room.', to='TO MAYA'), top=22)
+    inner = anchor('MAYA', 'THURSDAY', back=True, sub='To friends') + gut(author_row('M', 'Maya', 'THURSDAY') + quote(MAYA_ROOM, 20, 28), top=16)
+    inner += gut(composer('Reply', 'Saturday afternoon, then? I want the side room.', to='TO MAYA'), top=24)
     return phone(inner)
 def h_ask(answered=False):
     inner = f'<div style="padding: 24px 22px 0 22px;"><div style="display: flex; align-items: center; gap: 10px;">{BACK}<span style="{MONO} font-weight: 700; font-size: 11px; letter-spacing: 1.15px;">ASK VESPER</span><span class="fn" style="margin-left: auto;">PRIVATE</span></div></div>'
-    inner += gut(f'<div style="display: inline-flex; align-items: center; gap: 8px; border: 1px solid {HAIR}; background: {CARD}; border-radius: 12px; padding: 8px 12px;"><span style="width: 6px; height: 6px; border-radius: 3px; background: {GOLD};"></span><span style="font-size: 13px; color: {INK};">The Harbor Print Room · from Maya&rsquo;s note</span></div>', top=18)
+    inner += gut(f'<div style="display: inline-flex; align-items: center; gap: 8px; border: 1px solid {HAIR}; background: {CARD}; border-radius: 12px; padding: 8px 12px;"><span style="width: 6px; height: 6px; border-radius: 3px; background: {GOLD};"></span><span style="font-size: 13px; color: {INK};">The Harbor Print Room · from Maya&rsquo;s note</span></div>', top=16)
     if answered:
-        inner += gut(bubble('is it ticketed? and can I get there by ferry on Saturday?'), top=18)
+        inner += gut(bubble('is it ticketed? and can I get there by ferry on Saturday?'), top=16)
         inner += gut(answer('Whether Rooms Remade is ticketed hasn&rsquo;t been confirmed; the workshop itself is open Tuesday to Sunday, 11 to 6. The ferry from Pier 11 runs every 40 minutes and takes 25; the Print Room is nine minutes on foot from the landing.'), top=16)
-        inner += gut(burden_strip('TO PIER 11', 'THE FERRY · 25 MIN · EVERY 40', '9 MIN ON FOOT', '~40'), top=10) + gut(composer('Ask, or change something'), top=22)
-    else: inner += gut(composer('Ask', 'is it ticketed? and can I get there by ferry on Saturday?'), top=22)
+        inner += gut(burden_strip('TO PIER 11', 'THE FERRY · 25 MIN · EVERY 40', '9 MIN ON FOOT', '~40'), top=12) + gut(composer('Ask, or change something'), top=24)
+    else: inner += gut(composer('Ask', 'is it ticketed? and can I get there by ferry on Saturday?'), top=24)
     return phone(inner)
 Hj = [('THE FIELD', 'The From friends card under the opening', lambda: field(True), True), ('FROM FRIENDS', 'Five lines from four people, each once, under its place', h2, False),
       ('THE ORIGINAL', 'Maya&rsquo;s words as a page; the place; two doors, neither required', h3, False), ('BRANCH 1 · BACK', 'Read, and return; nothing sent, nothing required; the field as it was', lambda: field(True), True)]
@@ -53,41 +53,41 @@ def band_evening(dinner_t, dinner_lab, extra_marks=(), right='COUNTER TILL 10 ·
     return I.day_band(18, 23, [('19:15', '20:15', 'THE HOUR', 'gold')], [(dinner_t, dinner_lab, 'ring')] + list(extra_marks), [('start', '6:45 DOORS', 'start'), ('end', right, 'end')])
 MSG = 'There&rsquo;s a listening hour at Canal Hall on Saturday at 7:15, Reich&rsquo;s Music for 18 Musicians, that I&rsquo;d like to hear whole. Could we make dinner 8:45 instead of 8:15? I&rsquo;d come straight from the hall; it&rsquo;s three minutes.'
 def p1():
-    inner = anchor('NEW YORK', 'FRIDAY 5:40 PM') + ask(q='Saturday evening', ctx='Around dinner') + gut(dinner('Saturday 8:15 · the noodle counter · yours'), top=14)
+    inner = anchor('NEW YORK', 'FRIDAY 5:40 PM') + ask(q='Saturday evening', ctx='Around dinner') + gut(dinner('Saturday 8:15 · the noodle counter · yours'), top=12)
     inner += sect('Before dinner') + gut(band_evening('20:15', 'DINNER 8:15') + hour_unit(sup('Ends about 8:15, when your table is. Heard whole, dinner would be about 8:45.')) + door('Hear it whole, dinner at 8:45'))
     inner += sect('Instead') + gut('<div>' + film_row() + '</div>') + gut(door_list(['All of Saturday', 'All of New York']), top=24)
     return phone(inner)
 def p2():
-    inner = anchor('MOVE DINNER?', 'SATURDAY', back=True, sub='With Maya and Alex') + gut(dinner('Saturday 8:15 · the noodle counter · yours'), top=18)
+    inner = anchor('MOVE DINNER?', 'SATURDAY', back=True, sub='With Maya and Alex') + gut(dinner('Saturday 8:15 · the noodle counter · yours'), top=16)
     inner += gut(title('Dinner at about 8:45, to hear the hour whole', 20, 25, 600) + sup('The hour ends about 8:15. The counter is three minutes from the hall, open till 10, and doesn&rsquo;t hold tables; 8:45 is an arrival, not a booking.') + band_evening('20:45', 'DINNER 8:45'), top=16)
     inner += gut(card(f'<div class="kickm">TO MAYA AND ALEX · NOT SENT</div><div style="{SERIF} font-size: 17px; line-height: 24px; color: {INK}; margin-top: 8px;">{MSG}</div>'), top=16)
     inner += gut(door('Ask Maya and Alex about 8:45') + door('Change the wording', MUTE), top=8)
     return phone(inner)
 def p3():
-    inner = anchor('MOVE DINNER?', 'SATURDAY', back=True, sub='With Maya and Alex') + gut(dinner('Saturday 8:15 · the noodle counter · yours'), top=18)
+    inner = anchor('MOVE DINNER?', 'SATURDAY', back=True, sub='With Maya and Alex') + gut(dinner('Saturday 8:15 · the noodle counter · yours'), top=16)
     inner += gut(readback('SENT', 'Asked Maya and Alex about 8:45 · Friday 12:34 PM · no answer yet'), top=16) + gut(body('Dinner is still Saturday 8:15.'), top=12)
-    inner += gut(door_list(['Back to Saturday evening', 'The hour, at Canal Hall']), top=6)
+    inner += gut(door_list(['Back to Saturday evening', 'The hour, at Canal Hall']), top=8)
     return phone(inner)
 def p4():
-    inner = anchor('MOVE DINNER?', 'SATURDAY', back=True, sub='With Maya and Alex') + gut(dinner('Saturday 8:15 · the noodle counter · yours'), top=18)
+    inner = anchor('MOVE DINNER?', 'SATURDAY', back=True, sub='With Maya and Alex') + gut(dinner('Saturday 8:15 · the noodle counter · yours'), top=16)
     inner += gut(card(author_row('M', 'Maya', '2:04 PM') + quote('8:45 is fine for both of us. Alex says he&rsquo;ll be hungry either way.', 17, 24)), top=16)
-    inner += gut(door('Move dinner to 8:45') + door('Leave it at 8:15', MUTE), top=10)
+    inner += gut(door('Move dinner to 8:45') + door('Leave it at 8:15', MUTE), top=12)
     return phone(inner)
 def p5():
-    inner = anchor('MOVE DINNER?', 'SATURDAY', back=True, sub='With Maya and Alex') + gut(readback('MOVED', 'Dinner · Saturday 8:45 · the noodle counter · Maya and Alex notified · 2:10 PM'), top=18)
-    inner += gut(dinner('Saturday 8:45 · the noodle counter · yours'), top=12) + gut(band_evening('20:45', 'DINNER 8:45'), top=10) + gut(door_list(['Back to Saturday evening']), top=8)
+    inner = anchor('MOVE DINNER?', 'SATURDAY', back=True, sub='With Maya and Alex') + gut(readback('MOVED', 'Dinner · Saturday 8:45 · the noodle counter · Maya and Alex notified · 2:10 PM'), top=16)
+    inner += gut(dinner('Saturday 8:45 · the noodle counter · yours'), top=12) + gut(band_evening('20:45', 'DINNER 8:45'), top=12) + gut(door_list(['Back to Saturday evening']), top=8)
     return phone(inner)
 def p6():
-    inner = anchor('NEW YORK', 'SATURDAY 5:50 PM') + ask(q='Saturday evening', ctx='Around dinner') + gut(dinner('Saturday 8:45 · the noodle counter · Maya and Alex notified'), top=14)
+    inner = anchor('NEW YORK', 'SATURDAY 5:50 PM') + ask(q='Saturday evening', ctx='Around dinner') + gut(dinner('Saturday 8:45 · the noodle counter · Maya and Alex notified'), top=12)
     changed = (f'<div class="kickm" style="color: {OX};">CHANGED · 5:40 PM</div>' + f'<div style="margin-top: 6px;">{title("The noodle counter stops taking orders at 9 tonight", 20, 25, 600)}</div>' + sup('An 8:45 arrival leaves fifteen minutes to order.') + fn('FROM THE COUNTER&rsquo;S OWN LISTING · POSTED 5:40 PM', 6)
                + band_evening('20:45', 'DINNER 8:45', [('21:00', '', 'dot')], right='LAST ORDERS 9 · CAFÉ TILL 11')
                + f'<div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid {HAIR7};">{title("Where else at 8:45", 16, 21, 600)}</div><div>' + prow('The long table at the caf&eacute;', 'OPEN TILL 11 · FOUR MINUTES FROM THE HALL · NO TABLES HELD', first=True, last=True) + '</div>'
                + door('Move dinner to the caf&eacute;, and tell Maya and Alex') + door('Keep 8:45 at the counter', MUTE))
-    inner += gut(card(changed), top=14) + sect('Still on tonight') + gut(hour_unit(sup('Doors 6:45.'))) + sect('Instead') + gut('<div>' + film_row() + '</div>')
+    inner += gut(card(changed), top=12) + sect('Still on tonight') + gut(hour_unit(sup('Doors 6:45.'))) + sect('Instead') + gut('<div>' + film_row() + '</div>')
     return phone(inner)
 def p7():
-    inner = anchor('NEW YORK', 'SATURDAY 5:52 PM') + ask(q='Saturday evening', ctx='Around dinner') + gut(readback('MOVED', 'Dinner · Saturday 8:45 · the long table at the caf&eacute; · Maya and Alex notified · 5:52 PM'), top=14)
-    inner += gut(dinner('Saturday 8:45 · the long table · no tables held'), top=10) + sect('Still on tonight') + gut(band_evening('20:45', 'DINNER 8:45') + hour_unit(sup('Doors 6:45; the caf&eacute; is four minutes after.')))
+    inner = anchor('NEW YORK', 'SATURDAY 5:52 PM') + ask(q='Saturday evening', ctx='Around dinner') + gut(readback('MOVED', 'Dinner · Saturday 8:45 · the long table at the caf&eacute; · Maya and Alex notified · 5:52 PM'), top=12)
+    inner += gut(dinner('Saturday 8:45 · the long table · no tables held'), top=12) + sect('Still on tonight') + gut(band_evening('20:45', 'DINNER 8:45') + hour_unit(sup('Doors 6:45; the caf&eacute; is four minutes after.')))
     inner += sect('Instead') + gut('<div>' + film_row() + '</div>') + gut(door_list(['All of Saturday', 'All of New York']), top=24)
     return phone(inner)
 Pj = [('THE POSSIBILITY', 'Saturday evening around an existing dinner; the day band shows the hour ending where the table begins; the film is an evening instead', p1, False),

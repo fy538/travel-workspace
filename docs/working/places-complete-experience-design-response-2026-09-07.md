@@ -368,3 +368,19 @@ The founder asked what was wrong in two fragments of the page, "Near it" and "Ge
 | Getting there | Three label columns that almost matched (72, 64, and a card's padding); a hairline on the first row crowding the strip; gaps of 8, 0 and 14 in one section; 7-pixel rows in the register beside 10-pixel rows elsewhere | One label column at 72 with a 14 gap, shared by horizon rows, the hours register and the receipt, whose inner label shrinks by the card's padding so values align; the first row of any group has no top hairline; 12 below an instrument; rows at 10 |
 
 The fault underneath was the absence of a scale: paddings and gaps set by eye per component, each fine alone and wrong beside its neighbour. The kit now declares the only vertical distances (4, 8, 12, 16, 24, 36), one row padding, and one label column, and the components read them.
+
+## 30. The rest of the spacing faults (September 8)
+
+An audit of every vertical distance and inset in the kit and the generators, after §29, and the rules that replaced them:
+
+| Found | Rule now |
+| --- | --- |
+| Gaps between units of 6, 10, 14, 18, 20, 22, 26, 28 and 30 in the generators | Snapped to the scale: 8, 12, 16 or 24 |
+| Strips padded 10 by 14, 12 by 14 and 0 by 20 (the arrangement strip, the readback, the change, the receipt, the map's slot) | Strips 12 by 14; cards 16 |
+| A mono fact line 3, 4, 6 or 8 under its predecessor depending on the unit | 4 after a title or a line; 8 after a quote, a paragraph or a verdict |
+| Doors trimmed to 40 for rhythm in §25 | Back to 44, the floor for a tappable row; the section gap is measured from the text, so the rhythm holds |
+| The shelf's grid at 14 by 11 | 12 by 12 |
+| The question line 18 under the sentence | 16 |
+| The quote 10 under its author row | 8 |
+
+Verified on the field, the proposal frame of the journeys and the page at full size after regeneration. The boards' heights moved by a few pixels each; nothing else changed.

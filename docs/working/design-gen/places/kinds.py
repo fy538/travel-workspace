@@ -21,10 +21,10 @@ def identity_map(h=150):
             f'<circle cx="236" cy="{h*0.42:.0f}" r="9" fill="{INK}" stroke="{GOLD}" stroke-width="2.5"/><circle cx="118" cy="{h*0.78:.0f}" r="4" fill="{INK}"/>'
             f'<text x="252" y="{h*0.42+4:.0f}" {LK}>THE PRINT ROOM</text><text x="126" y="{h*0.78+4:.0f}" {LB}>THE LANDING · 9 MIN</text></svg></div>')
 def verdict(claim, basis):
-    return f'<div style="{SERIF} font-size: 20px; line-height: 26px; color: {INK};">{claim}</div>' + fn(basis, 6)
+    return f'<div style="{SERIF} font-size: 20px; line-height: 26px; color: {INK};">{claim}</div>' + fn(basis, 8)
 def hours_register(rows, change=None):
     out = '<div style="display: flex; flex-direction: column;">' + ''.join(f'<div style="display: flex; gap: {LABEL_GAP}px; align-items: baseline; padding: {ROW_PAD}px 0;{"" if i == 0 else " border-top: 1px solid " + HAIR7 + ";"}"><span class="fn" style="width: {LABEL_W}px; flex: none; color: {MUTE};">{k}</span><span style="font-size: 14px; line-height: 19px; color: {INK};">{v}</span></div>' for i, (k, v) in enumerate(rows)) + '</div>'
-    if change: out += f'<div style="margin-top: 8px; padding: 10px 14px; border-radius: 12px; background: {CARD}; border: 1px solid {HAIR}; display: flex; gap: 12px; align-items: center;"><span style="{MONO} font-weight: 700; font-size: 11px; letter-spacing: 1.15px; color: {OX}; flex: none;">CHANGED</span><div style="font-size: 13px; line-height: 18px; color: {INK2};">{change}</div></div>'
+    if change: out += f'<div style="margin-top: 12px; padding: 12px 14px; border-radius: 12px; background: {CARD}; border: 1px solid {HAIR}; display: flex; gap: 12px; align-items: center;"><span style="{MONO} font-weight: 700; font-size: 11px; letter-spacing: 1.15px; color: {OX}; flex: none;">CHANGED</span><div style="font-size: 13px; line-height: 18px; color: {INK2};">{change}</div></div>'
     return out
 def relationship_trace(t, sub): return f'<div style="display: flex; gap: 10px; align-items: flex-start;"><span style="width: 7px; height: 7px; border-radius: 4px; background: {UMBER}; flex: none; margin-top: 6px;"></span><div><div style="font-size: 14px; line-height: 19px; color: {INK};">{t}</div>{fn(sub, 3)}</div></div>'
 def horizon_doors(items):

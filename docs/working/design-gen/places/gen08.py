@@ -11,15 +11,15 @@ def page(state='populated'):
     elif gone: inner += orientation('Closed for good. The workshop has left Van Brunt Street.', 'Posted Tuesday on its own listing · kept, from Maya&rsquo;s share', 26, 31)
     elif changed: inner += orientation('Closed today. Rooms Remade runs to Sunday.', 'Van Brunt Street · nine minutes from the ferry landing · kept, from Maya&rsquo;s share', 26, 31)
     else: inner += orientation('Rooms Remade, through Sunday. Open till 6.', 'Van Brunt Street · nine minutes from the ferry landing · ' + ('kept, from Maya&rsquo;s share' if pop else 'not kept'), 26, 31)
-    inner += gut(photo_plate(150), top=16) + gut(identity_map(120), top=10)
+    inner += gut(photo_plate(150), top=16) + gut(identity_map(120), top=12)
     if pending:
-        inner += gut(ghost_rows(2), top=18)
+        inner += gut(ghost_rows(2), top=16)
     elif gone:
-        inner += gut(verdict('The rooms upstairs are gone; the crossing and the pier remain.', 'CLOSED FOR GOOD, POSTED TUESDAY · KEPT TUESDAY, FROM MAYA · NEVER VISITED'), top=18)
-    elif changed: inner += gut(verdict('Sunday, then: the last day of the rooms upstairs, and the crossing on a Sunday morning.', 'CLOSED TODAY, POSTED 8:40 · SUNDAY UNCHANGED · TICKETING UNCONFIRMED'), top=18)
-    elif unavailable: inner += gut(verdict('Go on a weekday for the side room; Saturday for the crossing itself.', 'MAYA AND PRIYA · HOURS AS LAST SEEN THURSDAY · THE LISTING IS NOT REACHABLE'), top=18)
-    elif pop: inner += gut(verdict('Go on a weekday for the side room; Saturday for the crossing itself.', 'MAYA AND PRIYA · HOURS FROM THE LISTING · TICKETING UNCONFIRMED'), top=18)
-    else: inner += gut(verdict('A print workshop with the exhibition upstairs; the crossing is half the visit.', 'HOURS FROM THE LISTING · TICKETING UNCONFIRMED · NO ONE YOU KNOW HAS BEEN'), top=18)
+        inner += gut(verdict('The rooms upstairs are gone; the crossing and the pier remain.', 'CLOSED FOR GOOD, POSTED TUESDAY · KEPT TUESDAY, FROM MAYA · NEVER VISITED'), top=16)
+    elif changed: inner += gut(verdict('Sunday, then: the last day of the rooms upstairs, and the crossing on a Sunday morning.', 'CLOSED TODAY, POSTED 8:40 · SUNDAY UNCHANGED · TICKETING UNCONFIRMED'), top=16)
+    elif unavailable: inner += gut(verdict('Go on a weekday for the side room; Saturday for the crossing itself.', 'MAYA AND PRIYA · HOURS AS LAST SEEN THURSDAY · THE LISTING IS NOT REACHABLE'), top=16)
+    elif pop: inner += gut(verdict('Go on a weekday for the side room; Saturday for the crossing itself.', 'MAYA AND PRIYA · HOURS FROM THE LISTING · TICKETING UNCONFIRMED'), top=16)
+    else: inner += gut(verdict('A print workshop with the exhibition upstairs; the crossing is half the visit.', 'HOURS FROM THE LISTING · TICKETING UNCONFIRMED · NO ONE YOU KNOW HAS BEEN'), top=16)
     if not pending:
         if gone: rows = [('HOURS', 'Closed for good'), ('THE EXHIBITION', 'Rooms Remade ended Sunday'), ('THE LISTING', 'Says the workshop has left Van Brunt Street; no new address')]
         elif unavailable: rows = [('HOURS', 'Tue–Sun 11–6, as last seen Thursday'), ('THE EXHIBITION', 'Rooms Remade, to Sunday, as last seen'), ('THE LISTING', 'Not reachable since Thursday 5:42 PM')]
@@ -29,10 +29,10 @@ def page(state='populated'):
     if pop and not pending:
         inner += sect('From Maya and Priya') + gut(plural_comparison((('M', 'Maya', 'THURSDAY'), 'THE SIDE ROOM', MAYA_ROOM), (('P', 'Priya', 'A RAINY TUESDAY'), 'THE BACK ROOM', PRIYA_ROOM)))
         inner += gut(door('Reply to Maya') + door('Ask Vesper privately', MUTE), top=8)
-    if pending: inner += gut(relationship_trace('Kept Tuesday, from Maya&rsquo;s share; not visited.', 'ONE KEPT PLACE · NO VISIT'), top=18)
-    elif gone: inner += gut(relationship_trace('Kept Tuesday, from Maya&rsquo;s share; never visited. The keeping stays in the record.', 'ONE KEPT PLACE · CLOSED BEFORE A VISIT'), top=18)
-    elif pop: inner += gut(relationship_trace('Kept Tuesday, from Maya&rsquo;s share; not visited.', 'ONE KEPT PLACE · NO VISIT'), top=18)
-    else: inner += gut(relationship_trace('Not kept, not visited.', 'NOTHING YET'), top=18)
+    if pending: inner += gut(relationship_trace('Kept Tuesday, from Maya&rsquo;s share; not visited.', 'ONE KEPT PLACE · NO VISIT'), top=16)
+    elif gone: inner += gut(relationship_trace('Kept Tuesday, from Maya&rsquo;s share; never visited. The keeping stays in the record.', 'ONE KEPT PLACE · CLOSED BEFORE A VISIT'), top=16)
+    elif pop: inner += gut(relationship_trace('Kept Tuesday, from Maya&rsquo;s share; not visited.', 'ONE KEPT PLACE · NO VISIT'), top=16)
+    else: inner += gut(relationship_trace('Not kept, not visited.', 'NOTHING YET'), top=16)
     if not gone:
         inner += sect('Getting there') + gut(burden_strip('TO PIER 11', 'THE FERRY · 25 MIN · EVERY 40', '9 MIN ON FOOT', '~40') + horizon_doors([('ACCESS', 'The ferry against the B61: what each asks of the afternoon'), ('AROUND', 'The pier and the pool, from the landing')]))
         if not pending: inner += gut(burden_receipt('WHAT THE CROSSING ASKS', 'ON FOOT', '9 minutes from the landing, level, exposed along the water'))
@@ -40,11 +40,11 @@ def page(state='populated'):
         inner += gut('<div style="height: 36px;"></div>' + ghost_rows(2), top=0)
     elif gone:
         inner += gut('<div style="height: 36px;"></div>' + evidence_apparatus('WHY THIS CHANGED', ['The listing says the workshop has left; no new address is given', 'Rooms Remade ended Sunday, as scheduled', 'The pier, the pool and the counter are unchanged']), top=0)
-        inner += gut(consequence('WHAT THIS CHANGES', 'Red Hook by ferry is still the pier, the pool and the counter. The kept place stays in the record as closed; nothing asks you to do anything about it.'), top=18)
+        inner += gut(consequence('WHAT THIS CHANGES', 'Red Hook by ferry is still the pier, the pool and the counter. The kept place stays in the record as closed; nothing asks you to do anything about it.'), top=16)
         inner += sect('Today') + gut(temporal_posture('DONE', 'Nothing to hold. Maya and Priya&rsquo;s notes stay with the place.', 'CLOSED FOR GOOD'))
     else:
         inner += gut('<div style="height: 36px;"></div>' + (evidence_apparatus('WHY VESPER THINKS THIS', ['Rooms Remade closes Sunday; Saturday is the last day the crossing and the exhibition line up', 'The workshop closes at 6; a 2:00 ferry leaves two hours upstairs and the walk', 'Maya and Priya both went on weekdays, for the empty rooms']) if not changed else evidence_apparatus('WHY THIS CHANGED', ['Closed today, posted this morning', 'Sunday is the last day of Rooms Remade and is unchanged', 'The crossing itself is untouched'])), top=0)
-        inner += gut(consequence('WHAT THIS CHANGES SATURDAY', 'The Print Room by 2:30, the crossing back at 5:10; the pier at sunset is another neighborhood, and Red Hook to Sunset Park after 6 isn&rsquo;t listed here yet.' if not changed else 'Saturday in Red Hook is the pier, the pool and the counter; the Print Room moves to Sunday, its last day.'), top=18)
+        inner += gut(consequence('WHAT THIS CHANGES SATURDAY', 'The Print Room by 2:30, the crossing back at 5:10; the pier at sunset is another neighborhood, and Red Hook to Sunset Park after 6 isn&rsquo;t listed here yet.' if not changed else 'Saturday in Red Hook is the pier, the pool and the counter; the Print Room moves to Sunday, its last day.'), top=16)
         if unavailable: inner += sect('Today') + gut(temporal_posture('HOLD', 'Nothing needs booking. The listing has been unreachable since Thursday; the hours above are the last seen.', 'LISTING UNREACHABLE'))
         else: inner += sect('Today') + gut(temporal_posture('HOLD' if not changed else 'ACT NOW', 'Nothing needs booking. The ferry is every 40 minutes; the workshop holds no times.' if not changed else 'Sunday is the last day; the 11:20 ferry puts you upstairs by noon.', 'NOTHING TO CONFIRM' if not changed else 'SUNDAY, THE LAST DAY'))
         inner += gut(live_fallback('IF THE EXHIBITION IS TICKETED AND SOLD OUT' if not unavailable else 'IF THE LISTING STAYS UNREACHABLE', 'The workshop floor is open without a ticket; the pier and the pool are the afternoon.' if not unavailable else 'Go on the hours last seen, or ask Maya; the crossing is the same either way.'), top=16)
