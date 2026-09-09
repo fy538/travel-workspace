@@ -12,7 +12,7 @@ def opening(stage):
     elif stage == 3:
         k = kick('SATURDAY AT THE PIER · KEPT WITH MAYA'); line = serifline('Sunset from the west pier at 7:04; it turns cold fast. The lawn is nine minutes on, the film at 8:30.'); f = fn('MAYA, TUESDAY · &ldquo;TUESDAY, SEVEN.&rdquo;', 8); d = doors(('The pier, with Maya', GOLDD), ('Reply to Maya', MUTE))
     else:
-        k = kick('SATURDAY AT THE PIER · KEPT WITH MAYA · YOUR THIRD THIS YEAR'); line = serifline('Sunset from the west pier at 7:04; it turns cold fast. You were last here in May, at low water; the film on the lawn is new.'); f = fn('MAYA, TUESDAY · &ldquo;TUESDAY, SEVEN.&rdquo; · YOU, MAY 9 AND JULY 20', 8); d = doors(('The pier, with Maya', GOLDD), ('Reply to Maya', MUTE))
+        k = kick('SATURDAY AT THE PIER · YOUR THIRD THIS YEAR'); line = serifline('Sunset from the west pier at 7:04; it turns cold fast. You were last here in May, at low water; the film on the lawn is new.'); f = fn('MAYA: &ldquo;TUESDAY, SEVEN.&rdquo; · YOU, MAY 9 AND JULY 20', 8); d = doors(('The pier, with Maya', GOLDD), ('Reply to Maya', MUTE))
     return gut(f'<div style="display: flex; flex-direction: column;">{k}{day}<div style="margin-top: 12px;">{line}</div>{f}<div style="margin-top: 8px;">{d}</div></div>', top=24)
 def top(stage):
     a = anchor('NEW YORK', 'FRIDAY 5:40 PM')
@@ -32,7 +32,7 @@ def redhook(stage):
     return sect('Red Hook, by ferry') + gut(REDHOOK_MAP + burden_strip() + f'<div style="margin-top: 4px;">{rows}</div>' + walk)
 def evening(stage):
     band = I.day_band(18, 23, [('19:15', '20:15', 'THE HOUR', 'gold')], [], [('start', '6:45 DOORS', 'start'), ('end', 'COUNTER TILL 10 · CAFÉ TILL 11', 'end')])
-    unit = title('The listening hour at Canal Hall', 17, 22) + sup('Reich, Music for 18 Musicians, heard whole. Lights down, no talking; doors 6:45.') + unc(UNK_HOUR) + fn('SATURDAY 7:15 PM · $12 · CANAL STREET' + (' · YOU HEARD THE GLASS PIECES HERE IN MARCH' if stage == 4 else ''), 4)
+    unit = title('The listening hour at Canal Hall', 17, 22) + sup('Reich, Music for 18 Musicians, heard whole. Lights down, no talking; doors 6:45.') + unc(UNK_HOUR) + fn('SATURDAY 7:15 PM · $12 · CANAL STREET' + (' · YOU, IN MARCH' if stage == 4 else ''), 4)
     if stage >= 3: unit += '<div style="margin-top: 12px;">' + arow('Sam · ' + dim('sit on the left side, that&rsquo;s where the speakers are'), avatars=['S'], last=True) + '</div>'
     unit += door('This Saturday&rsquo;s hour') + '<div style="margin-top: 8px;">' + prow('The noodle counter', 'TILL 10 · THREE MINUTES FROM THE HALL', first=True) + prow('The long table at the caf&eacute;', 'TILL 11 · FOUR MINUTES', last=True) + '</div>'
     return sect('Saturday evening') + gut(band + unit)
