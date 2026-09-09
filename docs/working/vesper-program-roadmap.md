@@ -146,6 +146,24 @@ runtime, Chat/Life/UI redesign, canonical landing or publishing is authorized.
 Necessary wire changes, if justified, retain normal contract synchronization and
 consumer verification. Owners coordinate specific overlaps directly.
 
+**Foreground route consumer verified — September 9:** Places backend
+`9d8183513` connects the existing authenticated entity-situation POST/service
+and canonical route reader through `core.distance.request`, with no
+Places-to-agent dependency or new wire shape. Strategy's five-suite packet
+passed 159 tests, but an additional executed advancing-time reproduction showed
+that a route expiring between request start and completion was still accepted.
+Backend `27f4d7420` repairs that boundary for both route and origin validity.
+Strategy reran the same packet: **159 passed**, zero skipped, 4.615s; the three
+new clock regressions also passed (1.554s). The original reproduction now yields
+`route_expired`. Logs/measurement are in
+`/tmp/vesper-foreground-route-review-20260909/`; backend was clean at that
+revision, app unchanged at `500aa7299`. Workspace `72857a1` was clean for the
+five-suite run and had owner documentation edits during the separate clock run.
+The HTTP test executes the actual service/shared validation with stubbed entity,
+relationship and route-provider boundaries. It is not live-provider, native,
+route geometry, deployment or combined-system evidence. Content's producer
+package remains in progress; neither lane is merged or activated.
+
 **C3a parser completion:** Strategy found that Ticketmaster normalization still
 converted raw status omission into `onsale`, bypassing the earlier writer-only
 repair. Backend `7802fe99d` preserves that omission through normalization and
