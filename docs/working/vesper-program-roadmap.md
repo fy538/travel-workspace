@@ -52,6 +52,19 @@ in this increment. Process-kill recovery, cross-run editorial reuse policy,
 provider activation and user-facing acceptance remain outside this evidence.
 These commits remain isolated and unmerged.
 
+**Next Content assignment — C4b dispatched:** the existing Content session
+`01a07c63-5ebe-71d2-9cb0-314ec4e06963` continues in its
+`content-quality-correction-2026-09-08` coordinated lane, with Luna xhigh
+requested. It owns bounded retained-material discovery by place, time and
+question through existing structured/derived readers, followed by authoritative
+current-record validation. The assignment includes implementation and connected
+tests for useful no-history and cross-place material, useful empty results and
+stale-index exclusion. A configured vector client is not evidence of an active
+admitted corpus; any missing semantic path must be named separately. No routine
+read may initiate research, embedding or provider work. Places retains ownership
+of the shared practical/root seams. No Chat/Life/UI work, new source policy,
+provider activation, or Integration restart is authorized by this dispatch.
+
 E2's previously unrun mobile destination suite has also been executed by
 Strategy against clean app `500aa7299`: 4/4 Jest cases passed, followed by a
 passing TypeScript check. The lane and installed canonical dependency lockfiles
