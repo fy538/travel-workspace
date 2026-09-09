@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Strategy task
 created: 2026-09-07
-last_verified: 2026-09-08
+last_verified: 2026-09-09
 expires: 2026-10-07
 why_new: Extracts the present-tense cross-lane program map from a long Integration plan and its historical receipts so independent owners can coordinate without competing execution queues.
 supersedes:
@@ -19,6 +19,19 @@ depends_on:
 ---
 
 # Vesper program roadmap
+
+**September 9 current posture:** the founder authorized A/B implementation and
+both assignments have been dispatched to existing Home/Places sessions. This is
+not a restart of the September 8 acceptance exercise. Integration remains
+**PAUSED by the founder**. Dispatch details below identify isolated checkouts and
+ownership; no shared runtime, landing or pending product agreement is activated.
+Section 7 preserves the older acceptance scope as history.
+
+**Velocity refinement, September 9:** keep implementation autonomous and
+compatibility continuous, but make coordinated integration demand-driven.
+Reviews below are triggers, not a fixed sequence of stop gates. Package readiness,
+landing and whole-product acceptance are distinct; no per-commit, per-day or
+three-package integration ceremony is required. Required delivery gates remain.
 
 ## 1. Purpose and authority
 
@@ -45,7 +58,31 @@ Life page opening. Chat layout redesign remains outside these assignments.
 Pending policies, paid/provider runs, deployment, activation and destructive
 retirement require their existing approvals. Assignment does not dispatch a task.
 
-## 2. Inspected baseline — September 8, after reliability landing
+## 2. Inspected baseline — September 9
+
+Read-only recheck: workspace `1cc28e26cfa8bb2f575718177718854a086bb68a`, backend
+`a7c02cbe15940d13303ae98ada8d6e8192fc85a4`, app
+`e2e792913b1902007ad237b05a3a58784a80332c`, all on main. Children are clean;
+workspace has concurrent design reviews, handoffs, delivery records and generators.
+There are 16/18/17 worktrees respectively; no other checkout was adopted or
+fast-forwarded. These are observations, not locked dispatch bases.
+
+Source inspection confirms a shared Home/Places composition pipeline, additive
+current-job owner-read compilation, exact Source result retrieval, delivery
+exposure/known-claim checks, object-page projection and internal Life organization
+readers. Do not rebuild these. In the inspected shared value-composition path,
+the only admitted practical question is `place.open_now`; other questions are
+explicitly unknown. This is not a claim that the wider live engine lacks movement
+or other specialists. Entity viewer context ranks facts but does not currently
+enter `composeObjectBodyBlocks`; Life's internal organization reader remains
+distinct from serving adoption. These observations motivate the next packages.
+
+No fresh product tests or native certification were run for this rebaseline.
+The documentation-only check found an unrelated `design-gen/social/README.md`
+missing metadata/inventory registration; do not carry September 8's docs pass
+onto today's dirty tree or silently repair another lane's generator output.
+
+### Historical September 8 reliability and acceptance evidence
 
 **Acceptance-planning recheck:** workspace `33cceef`, backend `a7c02cbe1`,
 mobile `e2e792913`, all on canonical main. The child trees were clean; root
@@ -84,41 +121,212 @@ started by this planning pass.
 | Practical help within the same experience | Make supported facts change the appropriate offer while independent reading, saved and human value survives | Extend beyond opening status when a concrete timing/fit question requires it; accepted following and external changes need their own authority |
 | Trustworthy combined delivery | Receiving/reliability round locally landed; preserve its passing test selections and explicit typing debt | Verify new connected product packages, cost, native/accessibility and rollout at their proper scope; retire replacements only after obligation review |
 
-These outcomes overlap. **Resume independent product packages from the reconciled
-baseline; do not wait for every lane's roadmap or every policy.**
-The current emphasis is existing capabilities becoming useful together. Reopen
-architecture or broad visual exploration only when observed failures justify it.
+These outcomes overlap. **On explicit dispatch, implement independent packages
+without waiting for every design or policy.** An unavailable dependency blocks
+its affected work, not the whole package. The emphasis is existing capabilities
+becoming useful together, with consumer-path completion rather than more layers.
+Reopen architecture when evidence exposes an owner or dependency contradiction.
 
 ## 4. Current package register
 
-The prior round is reconciled in isolated receipt `f3bd44b`, not accepted for
-release. The founder approved and Strategy dispatched one Integration-owned
-package: inspect the combined product with owner-backed data and reconcile the
-receiving/return results. Home and Life are bounded suppliers only when needed;
-Content stays parked. A distinct supported driver recovery or documented manual
-inspection may proceed; identical failed XCTest retries may not. Manual product
-evidence never substitutes for automated certification. Execution uses explicit `gpt-5.6-luna` / `xhigh`;
-reports back to Strategy use explicit `gpt-6-astra` / `high`. These settings
-configure the recipient: never select `minimal` or `none` for a short report.
-Fast mode was requested
-but is not exposed by the dispatch interface and remains unverified; no global
-model or service-tier settings were changed. Dispatch is not completion evidence.
-Use one owner per package. Status messages are not new assignments. Integration
-remains the sole combined landing owner.
+The prior isolated receipt `f3bd44b` retains its evidence and gaps, not a current
+execution instruction. The detailed implementation scope is the leading
+[September 9 tranche in the technical plan](complete-system-integration-roadmap-2026-09-05.md#current-engineering-tranche--september-9).
+Use two substantial packages, not six engineering lanes mirroring design projects.
 
-| Accountable task / owner plan | Next bounded responsibility | Handoff |
+| Package / role | Status and complete outcome | Dependency / handback |
 | --- | --- | --- |
-| **[Integration](codex://threads/01a030af-13a8-74e1-81be-7d526bec3045)** · [technical plan](complete-system-integration-roadmap-2026-09-05.md) | Active outcome owner: stabilize candidate, establish inspection method, verify owner-backed Home/Places receiving and supported Life return | One reconciled assessment of useful output, remaining effort and exact evidence gaps |
-| **[Content](codex://threads/01a07c63-5ebe-71d2-9cb0-314ec4e06963)** · [supply plan](recommendation-world-supply-architecture-and-roadmap-2026-09-07.md) | Parked: backend `870d83d94` / receipt `7dc6875` ready for review | Integration uses existing records before requesting more supply |
-| **[Home](codex://threads/01a06f87-e648-74d2-a0ae-f0adb305e44c)** · [consumer map](home-connected-experience-implementation-map-2026-09-04.md) | Paused after repairs; latest Home/Places native portfolio and owner-backed receiving remain incomplete | Final commit/coverage handoff; next run only on agreed candidate |
-| **[Life](codex://threads/01a06ecc-1a79-74a1-9c47-9f24461313ea)** · [replacement plan](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md) | Paused: target repair integrated in acceptance, focused tests pass; native replay hit driver failure | Preserve genuine-unavailable tests and exact unverified native boundary |
-| **Strategy / [Social](codex://threads/01a07c7c-5c29-7b53-a596-fc0a34ee118b)** · [Social plan](social-experience-implementation-roadmap-2026-09-07.md) | Resolve the already-prepared consequential choices here | Adopted decisions before affected new writes; no repeated research packet |
+| **A — Received material and continuity** | Dispatched to **Home**; implementation slice complete at its supported boundary. Luna xhigh requested. Retained-image receiving/return, existing human/text receiving and the explicit practical-assessment consumer binding are delivered; exact recipient-side human media remains an unimplemented dependency. | Uses existing content/source/social owners; owns shared root/consumer seams. No new source store or Life serving cutover. Final handback records commits/evidence and precise relationship-media/practical receiver boundaries. |
+| **B — Practical judgment and contextual projection** | Dispatched to **Places**; backend contract and self-review complete at its supported boundary. Luna xhigh requested. `place.fit_window` now handles exact place/commitment evidence, closure, expiry and viewer binding; its first root consumer is delivered through the bounded Home-owned explicit Places v2 request seam. | Uses existing place/route/commitment owners. The delivered seam proves one explicit request end to end without changing Chat or ordinary cards. Future producers, route-owner coverage and adaptive Entity/recommendation-policy exceptions remain separate decisions. |
+| **Strategy / this thread** | Own priorities, consequential decisions, package boundaries and whole-product review. | Resolve only the few choices that block named capabilities; inspect evidence rather than require approval after each step. |
+| **Integration** | PAUSED. Retains combined candidate, shared runtime and landing ownership; not the approval desk for local implementation. | A future explicit resume names a bounded landing or combined acceptance task, not necessarily both. Receive relevant ready cuts without waiting for unrelated packages; existing gates and publication authority remain. |
+| **Existing Content, Life, Social, Entity and Plan lanes** | References/suppliers, not automatically restarted. Their branch-local work is not assumed merged. | Reuse owner plans and tested cuts. Assign a separate supplier only for independent work that reduces blocking, with one file owner. |
 
-Places design, Entities, Capture and Components/Plan remain suppliers for named
-gaps, not automatically restarted lanes. Existing Places design work is
-concurrent; coordinate reference selection without editing its generators.
-Engineering Meta and repository cleanup are not additional execution queues.
-Life and Home must serialize native device use even if their file work is parallel.
+### September 9 dispatch record
+
+| Package | Existing session / isolated coordinated checkout | Initial isolated ports / progress owner |
+| --- | --- | --- |
+| A | Home `01a06f87-e648-74d2-a0ae-f0adb305e44c`; `/Users/feihuyan/travel-workspace--received-value-2026-09-09`; branch `codex/received-value-2026-09-09` in all three repos | Postgres 55566, Qdrant 55567/55568, API 55569, Expo 55570; lane-local `home-connected-experience-implementation-map-2026-09-04.md` |
+| B | Places `01a07c7f-871a-70b0-840e-95a0db1e9351`; `/Users/feihuyan/travel-workspace--practical-judgment-2026-09-09`; branch `codex/practical-judgment-2026-09-09` in all three repos | Postgres 55572, Qdrant 55573/55574, API 55575, Expo 55576; dated progress section in its lane-local technical roadmap |
+
+Both coordinated lanes were created from §2's complete September 9 tuple and
+checked clean before dispatch. The tool accepted one consolidated assignment
+per existing session with explicit `gpt-5.6-luna` / `xhigh`; both turns completed
+without a reported tool error. The response does not expose effective model/
+effort or Fast readback: requested settings are recorded, Fast and effective-
+setting verification remain unavailable. No model defaults, global configuration,
+extra task or monitoring automation changed. The OpenAI Docs check supports
+explicit model selection, not a claim of verified runtime settings from a title
+or prompt.
+
+The latest canonical roadmaps/design reviews are uncommitted and therefore not
+in these new worktrees. Both assignments explicitly require read-only intake of
+the canonical September 9 versions, recording inspected versions/hashes, while
+all implementation and progress edits stay in the owner's lane. Strategy owns
+canonical roadmap/recommendation updates; do not import all canonical dirty work.
+
+A writes root composition/selectors, receiving/navigation/Life consumer changes
+and final generated contract synchronization. B writes practical assessment and
+necessary assessment model fields, coordinating exact shared files before edits.
+A receives an immutable B cut and verifies the real consumer. Existing domain
+truth/grants remain with their owners. Both can perform necessary local tests,
+bounded repairs and explicit-file local commits; no publishing/main landing,
+paid/provider work, flag activation or broad retirement. Local disposable runtime
+requires manifest/port recheck and explicit DB safety; neither lane starts with
+an allocated device. Integration is not a dependency for ordinary file work.
+
+Strategy's [two concrete design recommendations](vesper-five-project-design-consolidation-2026-09-08.md#september-9-implementation-round-recommendations--two-narrow-choices)
+remain ready for founder selection. They do not amend accepted decisions. Only
+the dependent new anatomy/Plan continuation waits; present assessment and
+supported receiving continue. The completed package handbacks are evidence at
+their stated boundaries, not a complete-system or native acceptance claim.
+
+**A first handback — September 9, returned for receiving repair:** isolated app
+`90da37e83` and workspace `c5f5836` add a separate Source-original door and route
+`source_attachment` to its Intake submission. The owner reports 73 focused Jest
+tests, typecheck/lint and 99 offline backend tests passed; Strategy inspected the
+diff/receipt but did not rerun them. The actual destination currently shows
+notes/count/lifecycle rather than the original attachment, and ignores the passed
+`rootReturnToken`. Producer code confirms attachment identity currently equals
+submission identity, but route identity alone does not prove useful consumption
+or return. Package A remains incomplete: the owner has one consolidated repair
+instruction covering actual source receiving, destination/return tests and the
+remaining originally assigned material families. No Integration restart, landing
+or new acceptance campaign follows. B was still active at this receipt check.
+
+**A second handback — September 9, repair still required:** backend `250e4cd3a`,
+app `9a8ecbc9c`, workspace `016c652` add authenticated Intake media and an image
+reader with root return. Owner-reported evidence is 77 app and 127 offline backend
+tests plus typecheck/lint/API/docs checks, not independently rerun or native
+acceptance. Source review found same-object custody-loss display handling missing,
+a duplicate API-origin resolver bypassing the shared runtime override, uncaught
+storage SDK failures, and unavailable-screen return gaps. One consolidated repair
+request also retains the originally assigned directed human-original path, which
+the handback leaves venue-only. The slice is improved, but Package A is not yet
+complete or ready for landing; no integration ceremony was started.
+
+**Latest partial cuts — September 9:** A backend `95f5e201c`, app `cbcf98f53`,
+workspace `1f88e98` address the named custody-display, API-origin, SDK-error and
+state-return defects at source-review level. A reports 79 app/128 offline backend
+tests; real disposable-DB owner authorization and native/private-cache behavior
+remain unverified. This is a delivered retained-image slice, not all of A.
+B backend `311c4b995`/`e40c09e25`, workspace `f8ccc84`/`f6e8b45` supply bounded
+window arithmetic and viewer checks; the receipt still leaves producer/consumer
+wiring outstanding. Strategy requested precise claim/operational boundaries,
+exact commitment filtering and waiting-versus-overlap correction before binding.
+Both owners were continued under their original assignments to reconcile that
+dependency directly and finish permitted human-original receiving or name a
+specific genuine blocker. Their final handbacks now identify the supported
+consumer outcomes and precise remaining seams. Neither package is a complete
+system acceptance; no extra lane, main landing or shared acceptance round
+follows. The next dependent implementation requires an explicitly assigned
+landing/consumer task after B's backend contract is adopted, not a recurring
+Integration ceremony.
+
+**Final package handbacks — September 9:** Home workspace `490b6dc`, backend
+`95f5e201c`, app `cbcf98f53`; Places workspace `d8b2c42` (with backend
+`e67b84e1a`). Home reports 79 focused app and 128 focused offline backend tests,
+typecheck/lint/Ruff/hooks and API/docs checks at their stated boundaries; Places
+reports value 28/28 and graph/owner-read 34/34 plus Ruff/hooks. These are owner
+receipts, not rerun by Strategy. Home's retained-image media reader and exact
+Home/Places-origin return are now a useful supported result. Its directed human
+path is honestly complete only as attributed words plus the canonical venue door;
+an exact recipient-readable original-media seam would require a new relationship
+authority/API and remains deferred. Non-image source objects, populated producer
+supply, disposable-DB authorization and native/cache evidence remain unverified.
+
+Places' `place.fit_window` is a bounded, read-only assessment from explicit
+visit window/duration, exact `place.read` and optional exact `commitment.read`.
+It rejects current closure/permanent closure, filters exact commitment refs,
+preserves evidence expiry/viewer binding and keeps route origin unknown without
+an admitted `route.evaluate` owner. It deliberately does not judge hospitality
+or waiting cost. Ordinary Home/Places cards do not emit this intent; the bounded
+Places v2 caller seam now carries the exact fields and a root-visible receiving
+fixture is proven. No API/provider/booking expansion, new policy, Chat redesign
+or Integration wake followed this round.
+
+**Consumer-bound follow-up — September 9, completed:** the remaining dependency
+was one bounded Home-lane assignment, not a new parallel lane. In
+`/Users/feihuyan/travel-workspace--received-value-2026-09-09`
+(`codex/received-value-2026-09-09`), Home adopted the complete Places backend
+range `311c4b995^..e67b84e1a`, added an explicit target/window/duration request
+seam, and proved one truthful `place.fit_window` result through root selection,
+OpenAPI serialization and the existing Home/Places semantic renderers. The
+assignment forbade ordinary-card inference, Chat/Life changes,
+route/booking/provider expansion and fabricated fields; those boundaries held.
+Workspace `81df98a`, backend `a5326eec0`, and app `954a43c1e` are clean lane
+handbacks. Owner evidence: backend focused packet 127 passed; app renderer
+suites 9/9, TypeScript/schema bridge, changed-file lint and full lint error
+count passed; API-coverage, docs-links and governance passed. This remains
+focused synthetic/owner-read evidence: no native/device, populated production
+provider, route-owner, or UI request-control acceptance is claimed. Integration
+remains paused; no shared runtime, landing or publication is implied.
+
+<a id="sequence-and-system-checkpoints"></a>
+
+### Execution order and event-triggered reviews
+
+1. **Dispatch preparation, not a housekeeping project:** verify current relevant
+   branches/cuts, exact owned files and settled contracts; choose isolated
+   coordinated checkouts. Record existing code versus the actual missing consumer
+   behaviors. Do not merge every branch or recreate a runtime just to begin.
+2. **A and B implement concurrently on explicit assignment.** Each owns several
+   dependent substeps through tests and self-review. A does not wait on B to fix
+   exact-source receiving; B does not wait on final card design to calculate
+   supported fit. Shared schema/root files have one writer and an exact handoff.
+3. **Exchange a dependency when it is usable.** Owners agree ordinary interfaces
+   and run affected producer/consumer checks directly in their isolated lanes.
+   Only a consequential architecture, authority or priority conflict returns to
+   Strategy. A tested B assessment can reach A before either package is finished;
+   no coordinated runtime or central approval is needed for that exchange.
+4. **Finish and report independently.** Each owner self-reviews code, real owner
+   paths, change/loss behavior, remaining human work and serving characteristics.
+   A DTO without its intended consumer does not finish the outcome. Record
+   unsupported parts and readiness precisely; one package does not wait for the
+   other's final report. Continue already assigned independent work without
+   waiting for Strategy to acknowledge the handback; new scope needs assignment.
+5. **Review when the decision becomes useful.** A meaningful connected capability,
+   material contract risk, observed costly branch divergence, or a consequential
+   product conflict triggers the relevant review—not elapsed time or commit
+   count. Strategy can review capability evidence asynchronously without a
+   shared build. Combined runtime/acceptance work requires explicit Integration
+   resume and a named implemented experience, affected surfaces and current tuple.
+   No proof of one loop is required before whole-system design.
+
+### Compatibility, landing and acceptance are different work
+
+| Work | Trigger and owner | What it does not require |
+| --- | --- | --- |
+| Local implementation and verification | Package owner, throughout the assigned outcome; focused tests plus applicable owner/Task Intake evidence | Waiting for other packages, shared device access or a Strategy review after each commit |
+| Interface compatibility | Changed producer/consumer contract or a usable dependency; the two owners plus the assigned shared-file writer | Restarting Integration, synchronizing all branches, or retesting unrelated surfaces |
+| Ready for landing | A coherent tested cut with receiving coverage, exact revisions and remaining evidence limits | Both A/B being finished or a new whole-product design review; readiness is not permission to merge |
+| Bounded landing | Explicit assignment to the landing owner; required coordinated `make verify` and applicable delivery gates | Automatically replaying the September 8 acceptance campaign; no tests required by an owner/release contract are waived |
+| Combined product acceptance | A meaningful implemented cross-lane experience or identified system risk, with explicitly resumed Integration | Every historical branch or all six design projects being complete; unrelated engineering continues |
+
+Avoid both extremes: constant assembly ceremonies and weeks of unexamined drift.
+At a real shared change/handoff, check relevant ancestry, interface compatibility
+and migration/generated-consumer effects; adopt only needed immutable cuts in
+the lane's own checkout. Rising conflicts, mutually incompatible consumers or
+blocked downstream work justify a **bounded** integration request. Do not turn
+that risk check into a recurring all-repository cleanup or full acceptance run.
+While Integration is paused, owners can establish readiness and exchange cuts;
+this roadmap does not reassign landing, authorize merges or resume the lane.
+
+Success is fewer broken consumer paths, stronger supported judgment, less
+re-explanation/checking, and usable outputs—not commits, agents, tests or new
+schemas counted. Measure cost/latency through existing telemetry. Do not add a
+third package just to coordinate the two or restart all historical roadmaps.
+
+### Design coverage without six implementation queues
+
+The technical plan's [six-project design-to-capability map](complete-system-integration-roadmap-2026-09-05.md#six-project-design-to-capability-map)
+connects the latest handoffs to A/B and named later work. Preserve substantial
+Home/Places receiving, original-first social value, purposeful Life retrieval,
+restrained Entity depth and practical care before disruption. Do not defer all
+surface work because final layout details remain open, or interpret A/B as the
+complete product. Select the next missing capability from that map when its
+dependencies are usable; completing a central acceptance round is not a blanket
+prerequisite. Pending policies still block their dependent implementation.
 
 ## 5. Consequential decisions and narrow dependencies
 
@@ -130,6 +338,7 @@ Life and Home must serialize native device use even if their file work is parall
 | Practical responsibility / live-family activation | Integration + existing action owners; Strategy/founder for promise or authority changes | New accepted watches/provider actions wait on signal, freshness, reevaluation, expiry/cancel and consequence contracts; supported current assessment continues |
 | Capture → Life evidence | Candidate lifecycle option A is accepted and landed; Capture owns truth, Life consumes projections | Broader semantics and serving remain separate gates; the revision/delivery decision is no longer a blocker |
 | Offer, coverage and payment | Strategy; founder adopts | New geographic/service promises, prices and allowances wait; cost instrumentation and useful free receiving continue |
+| [Six-project design decisions](vesper-five-project-design-consolidation-2026-09-08.md#strategy-alignment-and-consequential-choices) | Entity/Places and Plans propose; founder resolves | Final purpose-responsive anatomy and seven-sentences assistance exception wait; exact identity/context transport, supported facts, readback and existing renderers continue |
 
 Keep detailed alternatives and evidence in the linked proposal. This register
 does not adopt them. A dependency request names missing fields/behavior,
@@ -137,14 +346,118 @@ receiving test and affected package—not “blocked on Life/Content/Social.”
 
 ## 6. Coordination, completion and next system review
 
+### September 9 operating rule — longer slices, quieter coordination
+
+One assignment is a **bounded product outcome**, carried through investigation,
+implementation, consumer wiring, focused tests, self-review, repair and handback.
+It is not “research first, then ask whether to implement,” one file, one commit
+or one green test. Longer slices can span multiple coherent commits and context
+compactions, but do not grant unlimited time, new product policy or new scope.
+Package A/B each has its own outcome owner; neither wakes paused Integration to
+obtain permission for ordinary local implementation.
+
+**Dispatch mechanics:** set the destination explicitly to `gpt-5.6-luna` with
+`xhigh` reasoning for each execution start/resume/steering call that supports those
+fields. Do not trust the title or prompt text to configure the model. Record the
+requested settings and observed effective settings if available; unavailable
+readback remains unverified, never “confirmed.” Reports that start a turn in this
+Strategy session use `gpt-6-astra` / `high`, not `minimal` or `none`. Those are
+destination settings, not the sender's settings. If the selected API cannot set
+them, choose a supported mechanism or surface that limitation—do not silently
+fall back to medium. Model settings are independent of Fast service tier; current
+thread-dispatch tools expose no Fast field. No global settings are changed here.
+Official [Codex command guidance](https://learn.chatgpt.com/docs/developer-commands#built-in-slash-commands)
+separates model/effort selection from Fast, whose availability depends on the
+catalog. This document records our operating policy, not a runtime configuration.
+
+**Give permission to finish ordinary work inside the package:** reproduce causes,
+read adjacent owners, implement the bounded fix, update affected docs/tests,
+regenerate contracts where required, repair regressions introduced by the change,
+and self-review the complete diff. Commit coherent changes when the assignment
+authorizes it. Do not stop at a normal technical obstacle to request the same
+authority again. Exhaust relevant safe alternatives, then report the exact
+dependency; continue independent in-scope work while it is unresolved. Do not
+rewrite unrelated infrastructure or weaken checks to avoid a blocker.
+
+**Contact another owner directly for a material dependency:** name the exact
+field/behavior, proposed contract, receiving test, owned files and immutable
+revision needed. Send one coherent request, not a sequence of corrections as
+each thought occurs. A handoff is available evidence, not a new assignment.
+Only the assigned writer changes shared files; agreement does not permit editing
+someone else's checkout. Escalate incompatible contracts or competing priorities
+here; do not route every technical question through Strategy.
+
+**Cross-session messages are event-driven:**
+
+- A usable interface/cut another active owner needs; keep working afterward.
+- A consequential blocker requiring authority or a material scope decision.
+- One implementation-complete or genuinely blocked final handback.
+
+No acknowledgement-only turns, “tests passed, what next?” messages, per-commit
+reports, repeated unchanged blockers or automatic ping-pong replies. The
+orchestrator does not send “continue” merely because a substep finished; the
+original assignment already authorizes the remaining named work. Batch review
+feedback into one prioritized correction assignment. Necessary user-facing
+progress updates within the execution session still follow its host instructions;
+less cross-session chatter is not permission to hide failures or ignore questions.
+
+**Long-run continuity:** keep the current state in one existing owner receipt or
+the assigned package section: decisions, exact revisions, work completed, next
+in-scope action, pending command/session and blockers. Update at meaningful
+boundaries and before compaction/handoff, not after every command. On resume,
+read it and verify Git; do not reconstruct the entire strategy history or restart
+completed work. If usage limits or interruption end the run, report incomplete
+work truthfully with a resumable next action; never claim completion to fit a budget.
+
+**Stop for:** an unresolved authority/policy or consequential architecture choice;
+overlapping file ownership that cannot be resolved; destructive changes outside
+the assignment; paid/external activation without approval; or exhausted safe
+technical alternatives. Stop only the dependent work unless the whole package
+truly depends on it. No unsolicited nested lane expansion; any delegated helper
+needs explicit authorization, independent useful work and the same model/effort
+and ownership rules. Existing seeded-world model policy is a separate exception;
+seeded-world acquisition is outside A/B.
+
+### Reusable long-slice dispatch brief
+
+Fill this into **one message**, with exact paths/revisions instead of placeholders.
+Do not paste the entire multi-week thread or dispatch the template unfilled.
+
+> Own package [A/B] through implementation, receiving-side tests, self-review,
+> repairs and one final handback. Execution: Luna xhigh, explicitly configured
+> by the dispatch call. Outcome: [person-visible capability and supported scope].
+> Work in [isolated coordinated checkout], from [three repo revisions]; own
+> [files/subsystems]. Read AGENTS, Task Intake, the program's §4/§6, the technical
+> tranche's relevant package, and [specific owner/design contracts]. Preserve
+> [already complete code]; implement [ordered missing behaviors]. [Other owner]
+> owns [shared files/interface]; coordinate directly on [exact dependency].
+> You may implement, repair, test, update affected owner docs and commit coherent
+> local changes inside this package without another approval after each step.
+> Do not change [pending policy/layout], start paused Integration, publish,
+> activate production/provider work, retire broad legacy paths or weaken gates.
+> Required evidence: [commands, real-owner scope, receiving and failure cases];
+> local runtime/device ownership: [explicit allocation or unavailable]. Continue
+> independent work if a dependency blocks. Communicate only actionable handoffs,
+> consequential blockers and final completion; keep normal progress local.
+> Review triggers: [specific shared contract/product risk or meaningful connected
+> capability]. Do not pause for commit-count checkpoints, routine acknowledgement
+> or another package's final report. Landing: [named owner and authorization or
+> deferred]; combined acceptance: [separate scope or deferred]. Keep required
+> compatibility and delivery checks; do not resume Integration by implication.
+> Finish with [capability result, revisions, commands/results, evidence limits,
+> unresolved decisions and precise receiving instructions]. A DTO, receipt or
+> passing unit test alone does not finish the package. If interrupted, leave one
+> resumable state record and report what remains rather than ask to start over.
+
 ### Outcome ownership and assignment
 
 Standing lanes supply expertise; a package has one accountable **outcome owner**
 who follows it through receiving-side verification, even when another lane owns
 a dependency. Strategy owns priority, product coherence and consequential
-decisions. Integration owns the combined candidate, shared runtime and landing;
-it need not implement every supplier fix. Integration is the outcome owner for
-a cross-system package unless the assignment names another owner.
+decisions. Integration owns an explicitly assigned combined candidate, shared
+runtime and landing; it need not implement every supplier fix. Crossing repository
+or surface boundaries does not automatically transfer a package to Integration:
+A/B retain their named outcome owners through consumer wiring and local evidence.
 
 Use one consolidated assignment per round, recorded in the existing lane plan
 or Integration receipt, with this compact agreement:
@@ -154,7 +467,7 @@ or Integration receipt, with this compact agreement:
 > evidence level; handoff/checkpoint; escalation conditions.
 
 The owner carries authorized work through diagnosis, implementation, focused
-tests, integration handoff and receiving feedback. Ordinary fixture/harness
+tests, dependency handoff and receiving feedback. Ordinary fixture/harness
 repairs and bounded documented recovery do not require a new Strategy prompt.
 Escalate new authority/product decisions, incompatible shared contracts,
 destructive or external actions, or an exhausted technical alternative with
@@ -165,13 +478,15 @@ These permissions do not expand the package, weaken gates or authorize release.
 
 Implement and test in isolated checkouts; simulator availability does not block
 independent file work. Agree overlapping files, shared APIs/navigation/models
-and receiving tests directly with their owners and Integration. Only Integration
-assembles supplier changes into the shared acceptance checkout. An explicit
-bounded file handoff is possible when no inspection is running; a clean Git
+and receiving tests directly with the affected owners. Involve Integration only
+for assigned landing/shared-runtime work or a risk requiring its decision. Only
+Integration assembles supplier changes into the shared acceptance checkout;
+this does not prevent an owner adopting an agreed dependency in its own lane.
+An explicit bounded file handoff is possible when no inspection is running; a clean Git
 status alone is not permission to edit another owner's checkout.
 
-Before inspection, Integration records a **candidate tuple** in its existing
-receipt: workspace/backend/app revisions, harness revision, dirty diff if any,
+Before a resumed shared inspection, Integration records a **candidate tuple**
+in its existing receipt: workspace/backend/app revisions, harness revision, dirty diff if any,
 build, effective flags, dataset/identity and mock-versus-owner mode, API/Metro
 origins, simulator, current operator and next recipient. Confirm the intended
 surface and data path before a long run. Treat source, harness, flags and data
@@ -189,13 +504,13 @@ explicit interruption record. This is a small handoff, not a new lock service.
 
 Keep progress and raw attempts in existing receipts. Send messages for a usable
 handoff, a material dependency change or a consequential blocker; do not start
-turns for acknowledgement-only/status-only traffic. Strategy receives the first
-substantive result, consequential decisions and one reconciled round closeout,
-not every lane's intermediate update. Necessary corrections may still be sent
-mid-round. Destination model/effort follows section 4; never infer it from how
+turns for acknowledgement-only/status-only traffic. Strategy receives actionable
+interface/decision requests and one reconciled closeout, not an obligatory report
+for every substep or first green test. Necessary corrections may still be sent
+mid-round. Destination model/effort follows this section; never infer it from how
 short the message is. This policy creates no polling loop or automation.
 
-Before closing a round, Integration verifies:
+For a resumed combined round only, Integration verifies before closeout:
 
 1. Every participating owner has completed its handoff or is explicitly deferred;
    no late supplier change is being mistaken for the inspected candidate.
@@ -215,14 +530,26 @@ existing package receipt at meaningful checkpoints, preserving necessary raw
 evidence without creating a new document/commit for every message. Product
 commits remain small and coherent. No new task board or meta roadmap is needed.
 
-Review these operations after the next reconciled package: completed outcome,
-avoidable redispatches, waiting on shared resources, invalidated runs and founder
-interventions. Use actual timestamps/receipts (and the existing measurement tool
-for command timing); do not claim faster delivery from fewer messages or commits.
-Strategy maintains this overview; owners maintain their detailed queues. Reassess
-product direction after at most three integrated packages or a material conflict.
+Use the next completed capability's existing handback to assess time from
+assignment to working consumer, dependency waiting, avoidable redispatches,
+integration/rework effort, invalidated runs and founder interventions. Do not
+require a new tracking system or a synchronous meeting to record these. Use
+actual timestamps/receipts (and the existing measurement tool for command timing);
+do not claim faster delivery from fewer messages, tests or commits. Strategy
+maintains this overview; owners maintain their detailed queues. Reassess product
+direction when new capability evidence can change the next scope, or a material
+conflict appears. The previous “at most three integrated packages” cadence is
+superseded; no automatic pause or scheduled monitoring follows.
 
-## 7. Current acceptance round — dispatched September 8
+<a id="7-current-acceptance-round--dispatched-september-8"></a>
+
+## 7. Historical acceptance round — dispatched September 8, now paused
+
+**Superseded as an execution queue by September 9 §4.** The founder paused
+Integration after this assignment. The scope and unfinished evidence below are
+preserved, not waived; imperative “next” and “dispatched” language in this dated
+record does not restart it. A future explicit resume must name a current tuple
+and the implemented package being accepted, not blindly replay this whole round.
 
 **Reconciled closeout and next outcome:** the inspected isolated tuple is clean
 workspace `f3bd44b`, backend `4b30edeb2`, app `8c9422342`; the Life target repair
