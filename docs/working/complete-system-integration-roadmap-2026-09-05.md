@@ -325,6 +325,35 @@ unverified because the lane lacks optional `openai` (and the broader import
 surface lacks `shapely`/`redis`); no workaround was used. No OpenAPI/mobile,
 Chat, Life, provider, enqueue, route-owner or durable-write behavior changed.
 
+**A follow-up — exact text-original receiving, September 9:** the Home lane
+completed the remaining consumer gap in its existing isolated checkout. App
+`e274d22aa` now renders a verified inline `text/*` source original and keeps the
+retained-image reader, while preserving the originating Home/Places return
+token. The destination distinguishes pending, expired, revoked, missing,
+unsupported and unknown originals and never substitutes the user note, counts
+or lifecycle receipt. Workspace `10a70ce` records the implementation-map
+receipt; the backend media/custody commits already present in the lane are
+`250e4cd3a` and `95f5e201c`. Focused app evidence is 3 suites / 15 tests plus
+TypeScript and lint; the prior package's 127 focused backend tests remain the
+backend evidence boundary. Directed human recipient-media authority, native or
+device acceptance, disposable-DB authorization and populated producer supply
+remain unverified. No Chat/Life redesign, new producer/store, provider,
+publication or Integration resume followed.
+
+**B cross-root replay follow-up — September 9:** the Places lane added a
+test-only deterministic shared-source replay in backend `0b7fa0107` and
+workspace receipt `2cf651b`. One bounded Source world is produced twice and
+keeps a stable digest; Home and Places preserve the same authority/evidence
+refs, evidence cluster, value move, result family, freshness and lifecycle while
+retaining distinct root-native candidate IDs, seats, payloads, states and
+projection revisions. Both selectors suppress an unchanged repeat, and the
+independent-value matrix covers unknown, stale and closed practical evidence
+without erasing ordinary value. Focused value/replay evidence is 40 tests, with
+Ruff/format/compile and backend hooks passing. Root-projection/API rehearsal
+remains unverified because optional `openai` (and broader `shapely`/`redis`)
+dependencies are absent. No production/schema/UI/provider/Chat/Life/route or
+persistence behavior changed.
+
 These handbacks establish useful, source-backed seams—not a combined acceptance
 or complete-system result. The next dependency is populated/native acceptance
 and any legitimate non-Chat producer that can call the explicit seam; no ordinary

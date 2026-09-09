@@ -156,7 +156,7 @@ Use two substantial packages, not six engineering lanes mirroring design project
 
 | Package / role | Status and complete outcome | Dependency / handback |
 | --- | --- | --- |
-| **A — Received material and continuity** | Dispatched to **Home**; implementation slice complete at its supported boundary. Luna xhigh requested. Retained-image receiving/return, existing human/text receiving and the explicit practical-assessment consumer binding are delivered; exact recipient-side human media remains an unimplemented dependency. | Uses existing content/source/social owners; owns shared root/consumer seams. No new source store or Life serving cutover. Final handback records commits/evidence and precise relationship-media/practical receiver boundaries. |
+| **A — Received material and continuity** | Dispatched to **Home**; implementation slice complete at its supported boundary. Luna xhigh requested. Retained-image and exact text-original receiving/return, existing human/text receiving and the explicit practical-assessment consumer binding are delivered; exact recipient-side human media remains an unimplemented dependency. | Uses existing content/source/social owners; owns shared root/consumer seams. No new source store or Life serving cutover. Final handback records commits/evidence and precise relationship-media/practical receiver boundaries. |
 | **B — Practical judgment and contextual projection** | Dispatched to **Places**; backend contract and self-review complete at its supported boundary. Luna xhigh requested. `place.fit_window` now handles exact place/commitment evidence, closure, expiry and viewer binding; its first root consumer is delivered through the bounded Home-owned explicit Places v2 request seam. | Uses existing place/route/commitment owners. The delivered seam proves one explicit request end to end without changing Chat or ordinary cards. Future producers, route-owner coverage and adaptive Entity/recommendation-policy exceptions remain separate decisions. |
 | **Strategy / this thread** | Own priorities, consequential decisions, package boundaries and whole-product review. | Resolve only the few choices that block named capabilities; inspect evidence rather than require approval after each step. |
 | **Integration** | PAUSED. Retains combined candidate, shared runtime and landing ownership; not the approval desk for local implementation. | A future explicit resume names a bounded landing or combined acceptance task, not necessarily both. Receive relevant ready cuts without waiting for unrelated packages; existing gates and publication authority remain. |
@@ -291,6 +291,38 @@ the judgment matrix now rejects ambiguous or stale evidence and the existing
 root-composition measurement carries privacy-safe aggregate practical fields.
 This improves readiness without creating a producer, changing ordinary cards or
 claiming populated/native acceptance.
+
+**A exact-original follow-up — September 9, completed:** the Home lane continued
+the same isolated package to close the remaining text-original gap. Travel App
+`e274d22aa` renders an eligible exact `text/*` original from verified inline
+source material, keeps the existing authenticated retained-image reader, and
+labels pending, expired, revoked, missing, unsupported and unknown custody
+states without substituting a note, count or lifecycle report. The existing
+`rootReturnToken` is read and returns directly to the originating Home or Places
+root. Travel Agent `250e4cd3a`/`95f5e201c` remain the owner-scoped media/custody
+foundation already present in this lane; no new producer, store or policy was
+added. Workspace receipt `10a70ce` records the implementation map update.
+The follow-up's focused app suites (3 suites / 15 tests), TypeScript and lint
+passed; the earlier package's 127 focused backend tests remain the applicable
+backend evidence. The exact recipient-side original for directed human handoffs,
+native/device behavior, disposable-DB authorization and populated producer
+supply remain unverified or separately scoped. Integration remains paused; no
+merge or publication is implied.
+
+**B cross-root replay follow-up — September 9, completed:** the Places lane added
+an isolated deterministic replay contract rather than waiting for final Home or
+Places composition. Backend `0b7fa0107` composes one bounded Source world twice,
+proves a stable production digest, preserves the same represented/owner/subject/
+source/evidence refs and supported value facts across Home and Places, and keeps
+root-specific candidate IDs, seats, payloads, states and revisions distinct.
+The selectors independently suppress an unchanged repeat as
+`repeated_exposure`; the practical matrix also proves unknown, stale and closed
+evidence cannot erase an independent ordinary value. Workspace receipt
+`2cf651b` records the test-only handback. Focused value/replay evidence is 40
+tests, with Ruff/format/compile and hooks passing; optional `openai` (and broader
+`shapely`/`redis`) imports leave root-projection/API rehearsal unverified. No
+production schema, UI, provider, Chat/Life, route or persistence behavior
+changed, and Integration remains paused.
 
 <a id="sequence-and-system-checkpoints"></a>
 
