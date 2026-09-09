@@ -33,16 +33,17 @@ def board():
           col(field(True), caption('04.3 · BACK, NOTHING SENT', 'THE FIELD WHERE IT WAS', 'Entry, question and position restored; nothing has changed'), clip=1000),
           col(destination(True), caption('04.4 · IF THE MESSAGE IS SENT', 'A COMPACT READBACK', 'Asked, when, no answer yet. Asking is not arranging: Maya has not accepted anything and no arrangement exists')),
           col(returned_sent(), caption('04.5 · BACK, AFTER SENDING', 'THE SAME FIELD, ONE LINE MORE', 'The opening carries the readback under Maya&rsquo;s words; the rest of the field is untouched'), clip=1000)]
-    dest = tbl(['DOOR ON THE FIELD', 'WHERE IT GOES', 'DRAWN AT', 'OWNER'], [
-        ['The pier (the opening)', 'The place, as a page', '08.1', 'Place; the object-page canon'],
-        ['Ask Maya about Saturday', 'One prepared message to Maya; sent on Send', '04.2, 04.4', 'The messaging sender (Social)'],
-        ['Reply to Maya (From friends)', 'Her original, then a reply to her only', '02 H3, H2.1', 'Social: original-first, Reply'],
-        ['Ask Vesper privately', 'A private question about the place; Maya is never a recipient', '02 H3.1', 'Chat&rsquo;s owner, in context'],
-        ['Make it Saturday, with Maya', 'One proposal through the arrangement owner; nothing arranged until she answers', '02 H4.1', 'The arrangement owner (Plan)'],
-        ['Everything from friends, here and elsewhere', 'Friends&rsquo; originals in this city and beyond it', '02 H2; Social&rsquo;s Elsewhere', 'Social'],
-        ['Your last evening here', 'The exact record of an earlier encounter', '09.2', 'Life'],
-        ['A place typed into the question', 'The field, map-led, then the place', '02 E2, E4', 'Places']])
-    r3 = [notecol('Where the doors go (review, bounded pass 3)', [('THE MAP OF DESTINATIONS', dest), ('THE RULE', N('The field connects to its actual destinations rather than describing them: the page is 08, the human branches are Social&rsquo;s original, Reply and private Ask, the arrangement is the owner&rsquo;s command, the record is Life&rsquo;s. Non-spatial sharing needs no map pin. Social owns its proposed destination; this project draws the door and the return, not the destination&rsquo;s interior.'))], w=1180),
+    dest = tbl(['DOOR ON THE FIELD', 'WHERE IT GOES', 'DRAWN AT', 'OWNER · STATUS'], [
+        ['The pier (the opening)', 'The place, as a page', 'Places 08.1', 'Place; the object-page canon · selected'],
+        ['Ask Maya about Saturday', 'One prepared message to Maya; sent on Send', 'Places 04.2, 04.4', 'The messaging sender (Social) · selected'],
+        ['Reply to Maya (From friends)', 'Her original first, then a reply to her only', 'Places 02 H3, H2.1 · Social 02.5', 'Social, original-first receiving · selected'],
+        ['Ask Vesper privately', 'A private question about the place; Maya is never a recipient', 'Places 02 H3.1 · Social 02.6', 'Chat&rsquo;s owner, in context · selected'],
+        ['Make it Saturday, with Maya', 'One proposal through the arrangement owner; nothing arranged until she answers', 'Places 02 H4.1', 'The arrangement owner (Plan) · selected; the owner&rsquo;s view not drawn here'],
+        ['Everything from friends, here and elsewhere', 'Friends&rsquo; originals in this city; a friend&rsquo;s original without a place is not pinned here', 'Places 02 H2 · Social 08.1&ndash;08.3', 'Social · Elsewhere selected; non-spatial placement is Social&rsquo;s named proposal (Home&rsquo;s addressed region, Life&rsquo;s reader, Life &middot; People), not adopted here'],
+        ['Your last evening here', 'The exact record of an earlier encounter, found by the place', 'Places 09.2 · Life 03b, 05', 'Life, direct retrieval · selected'],
+        ['What has changed since', 'The current plan against the remembered one', 'Life P3', 'Life, current against remembered · selected; not drawn on this project'],
+        ['A place typed into the question', 'The field, map-led, then the place', 'Places 02 E2, E4', 'Places · selected']])
+    r3 = [notecol('Where the doors go (review, bounded pass 3)', [('THE MAP OF DESTINATIONS', dest), ('THE RULE', N('The field connects to its actual destinations rather than describing them. Social 08.1 to 08.3 were inspected before citing: a friend&rsquo;s original without a place arrives once in Home&rsquo;s addressed region, opens to Life&rsquo;s exact-source reader, and is found again under the person; that placement is Social&rsquo;s named proposal and is not adopted here, so nothing non-spatial is pinned on the field, and Elsewhere keeps the geographic social value. Life&rsquo;s retrieval (03b, 05) and current-against-remembered (P3) were inspected for the record door. This project draws the door and the return, not a destination&rsquo;s interior.'))], w=1180),
           notecol('Opening, destination, return (§13.3)', [
               ('THE TARGET', N('&ldquo;The pier&rdquo; opens the place; &ldquo;Ask Maya about Saturday&rdquo; opens one prepared message. A possibility kept from her share is not an outing with her: the sentence says from, the fact line says kept, not yet arranged, and only her answer would make it with. Frames 04.4 and 04.5 show the send as a readback; nothing says the outing is arranged.')),
               ('OWNER DEPENDENCY', N('The kept possibility&rsquo;s page (04.2) is a design proposal. Its owner is unresolved: the retained-intention proposal of September 6 is unadopted, and the Life manifest lists the intention owner as pending. Nothing here claims a canonical writer.')),

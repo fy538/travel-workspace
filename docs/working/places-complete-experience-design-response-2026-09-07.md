@@ -428,3 +428,37 @@ The active assignment in `vesper-places-design-review-2026-09-08.md` is the cons
 **Also from the audit.** Each person's line appears once, under its place (the From friends rows and the Seen up close note that duplicated them are gone from 01). The provenance label lost "rendered from what Home sent"; the balanced fallback lost its backstage labels; the trace no longer renders "nothing yet" for a newcomer; the posture module and the separate burden receipt are gone from the page's default reading.
 
 **Handback.** Selected versions are the boards as pushed on September 9; the index says so and every earlier version is in the repository archive, including the Stages board. Inspected with annotations hidden (01, 08) and at 1.3× (04.7–04.10). Every transition remains an ordered static frame; no door, Send or Back was exercised. Remaining decisions: whether the identity map belongs in the page's depth; the lift question is a fixture unknown; column 09.2's skipped introduction is a judgment, not a visit-count rule. Integration remains paused; nothing here dispatches an execution lane.
+
+## 34. The September 9 receiving and reconciliation, applied (September 9)
+
+The four items of the current assignment in `vesper-places-design-review-2026-09-08.md`, applied to the existing project. Boards 00, 03, 04, 06 and 08 were regenerated and pushed on September 9; 01, 02, 05, 07 and 09 are unchanged from §33. Generators and every superseded board remain in `docs/working/design-gen/places/`.
+
+**Changed frame IDs.**
+
+| Frame | Before | Now |
+|---|---|---|
+| 08.1 | The exhibition, the upstairs rooms, Sunday and the ticket doubt appeared in the title, the register and the Saturday line | Each fact once: "Rooms Remade, through Sunday." carries the exhibition and its last day; the register carries HOURS (Tue–Sun 11–6), THE ROOMS ("Upstairs, by a flight of stairs") and TICKETS ("Not confirmed"); FOR SATURDAY says "Saturday works, and Sunday is the last day." The subline no longer repeats the hours. The stairs stay in the register and in the whole arrival, so the access limit is not hidden by the shorter reading |
+| 08.3 | "The Print Room moves to Sunday" read as an adopted arrangement | "Closed today." leads; the register turns HOURS into SUNDAY ("Open 11–6 · the last day"); the consequence is titled IF YOU STILL WANT THE ROOMS and says Sunday is the last chance, the 11:20 ferry would have you upstairs by noon, nothing is arranged, and Red Hook is still the pier, the pool and the counter. No plan is moved; the dependent route and the return are unchanged because no event of the person's changed |
+| 03.3 | Kingston, a second city, standing in for "unsupported geography" | The place-relative view of Home 14's bounded New York set at the same time (Saturday 9:30, the set 14.3 opens): the flea under the bridge until three with its own notice; Open House October 17–18 as walk-in sites and timed sites with the registration closed Thursday; the L and the tide as getting-around facts; The Harbor Book chapter 4 as the reading, with the section instrument. Nothing generated, nothing asked |
+| 03 notes | Four absences | The four absences are now missing history, missing friends, bounded supply (the pair with Home 14) and unavailable information; the ledger table below is drawn on the board |
+| 04 destinations table | Cited Social 02.5/02.6 and Life by name | Cites the inspected donor frames: Places 08.1; 04.2/04.4; 02 H3, H2.1 · Social 02.5; 02 H3.1 · Social 02.6; 02 H4.1; 02 H2 · Social 08.1–08.3 (proposal, not adopted); 09.2 · Life 03b/05; Life P3 (not drawn here); 02 E2/E4 |
+| 03.4, 03.6, 08.6 captions | Explained the design to a reviewer | Say only what the person sees; the doctrine stays in the notes |
+| 00, 06 | Selected September 9 (early) | Index rows and log row for the receiving and reconciliation pass |
+
+**The paired example, Home 14 ↔ Places 03.3.** One locality (New York), one time (Saturday 9:30 AM), one source set. Home 14.1 opens the set, 14.2 names it, 14.3 shows the one live thing at 9:30; Places 03.3 renders the same set from the place side. The facts are the same in both; the differences are in what each root leads with.
+
+| Item | Source | Dates · expiry | Unknown | Home 14 | Places 03.3 |
+|---|---|---|---|---|---|
+| The flea, under the bridge | The market's own notice | Saturdays through October; today 8 to 3 | Whether the bread stall holds past ten | 14.2 named, 14.3 the one live thing | The place, its hours, directions |
+| Open House New York | OHNY listing | Oct 17–18; timed registration Tue noon to Thu, expired; walk-ins need none | Which sites are walk-in this year | 14.1 opens, 14.2 open until Sunday, 14.3 closed | The walk-in sites as places; the timed sites marked closed |
+| The L service notice | MTA | After 11 PM Mon–Thu; daytime normal | End date of the work | 14.1 | A getting-around fact; normal today |
+| Forecast and tide | Two stations; the tide table | Today: clear, 41°; low 2:40–5, high 8:40 | None | 14.1–14.3 the reading | A getting-around fact |
+| The Harbor Book, ch. 4 | The book | No expiry | None | 14.1 the card, 14.2–14.3 the row | The reading, with the section |
+
+The two earlier specimens (the sparse New York morning in 03.1 and the retired Kingston frame) were independent examples; they are not declared contradictory. Kingston is archived with the generator, not redrawn. No new city and no supply system was added.
+
+**Sibling deltas, as inspected.** Social 08.1–08.3 draw a friend's original without a place arriving once in Home's addressed region, opening to Life's exact-source reader, and found again under the person. That placement is Social's named proposal and is not adopted here: 04's table cites it as "proposal, not adopted", nothing non-spatial is pinned on the field, and Elsewhere keeps the geographic social value. Life 03b and 05 (direct retrieval of an earlier encounter) are what 09.2's "Your last evening here" door opens to; Life P3 (the current plan against the remembered one) owns "What has changed since" and is not drawn on this project. No Chat redesign, no booking, no new component inventory.
+
+**Static versus exercised.** Every frame is an ordered static illustration. The doors on 01 and 04, Send on 04.3, Reply and Ask privately on 02, and Back on 08 were not exercised; the destinations table records where each would go and who owns it. 04.7–04.10 (1.3×) were re-rendered after the 08 and 03 changes; annotations-hidden inspection was repeated on 08.1, 08.3 and 03.3.
+
+**Pending decisions.** (1) Whether the "Not confirmed" ticket line should carry a door to the workshop's own listing or stay a register row. (2) Whether 08.3's "the 11:20 ferry would have you upstairs by noon" should be a consequence sentence, as drawn, or a horizon door, since it names a time without arranging anything. (3) Social's proposed Home placement for non-spatial originals remains Social's decision; Places only cites it. (4) The identity-map question from §33 is unchanged. Integration remains paused; nothing here dispatches a lane.
