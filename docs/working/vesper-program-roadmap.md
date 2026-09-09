@@ -33,6 +33,26 @@ Reviews below are triggers, not a fixed sequence of stop gates. Package readines
 landing and whole-product acceptance are distinct; no per-commit, per-day or
 three-package integration ceremony is required. Required delivery gates remain.
 
+### Design independence rule — September 9
+
+A Claude canvas, screenshot, or other design export is a reference consumer,
+hypothesis set, and validation target—not an engineering gate. When a design is
+unavailable, changing, or unresolved, continue render-independent work against
+the accepted product grammar and system contracts: domain truth, read models,
+state transitions, authority, provenance, privacy, evidence and affordance
+intents. Keep those seams stable and adaptable; do not encode disputed card
+anatomy, navigation, visual hierarchy or copy into the substrate merely to make
+progress visible.
+
+The arrival of a design should cause a bounded presentation validation and any
+necessary adapter work, not a repository-wide restart. The design-dependent
+parts are the final composition, visual treatment, interaction details and
+native acceptance evidence. A missing design can block only work whose meaning,
+policy or contract genuinely depends on that choice. It must not block
+independent capability implementation, focused tests, fixtures, telemetry or
+owner-backed read/write paths. Conversely, design-independent tests do not
+claim visual or product acceptance.
+
 ## 1. Purpose and authority
 
 Make Vesper's capabilities work together as a useful everyday product: immediate

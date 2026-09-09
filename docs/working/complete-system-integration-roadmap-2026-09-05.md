@@ -46,6 +46,24 @@ combined-build/acceptance ceremony is not. Landing readiness, authorized landing
 and product acceptance are separate. Existing required gates and unfinished
 evidence remain; the Integration pause is unchanged.
 
+### Design is a consumer, not a dependency
+
+The six Claude projects and their exported compositions are valuable reference
+consumers and product probes, but none is a prerequisite for the shared
+substrate. Continue work that is independent of exact presentation—owner-backed
+reads and writes, render-neutral composition payloads, authority/provenance and
+privacy checks, state/error behavior, deterministic fixtures, telemetry and
+contract tests—while a design is absent or still moving. Do not turn a drawn
+card, section order or visual language into an accidental API or domain-model
+commitment.
+
+When a selected design delta becomes available, validate it against the same
+fixtures and contracts, then change only the affected renderer/adapter and
+interaction edges. A design can block a task only when the unresolved choice
+changes product meaning, policy or a required contract; it cannot block
+unrelated capability work. Passing render-independent checks proves the stated
+technical boundary, not native visual or whole-product acceptance.
+
 ### Aim and inspected foundation
 
 Build the capabilities that make the design possible: exact useful receiving,
