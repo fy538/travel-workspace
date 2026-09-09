@@ -76,6 +76,27 @@ consolidated completion pass, including real search-to-detail lifecycle
 readback and consistent reader/control-plane/release eligibility. Existing
 commits are preserved; no whole-package, native or activation acceptance follows.
 
+**Independent follow-up verification:** at clean workspace `65193c1`, backend
+`1ba22dcdd` and app `c9f9533d5`, Strategy passed 81 backend tests in 6.961s
+(including real PostgreSQL search/detail lifecycle reads), 89 mobile tests in
+7.011s, app and test-contract typechecks in 11.175s, and API coverage (566 active,
+15 dark, 62 retiring). Logs are under
+`/tmp/vesper-places-search-review-20260909/`. The control-plane bypass was first
+reproduced at `5f9f2b80a` with primitive reads enabled; the independent four-case
+gate matrix now passes. Canonical subject labels, real accepted version-2
+replacement and all four entity-route transports are present. Correction,
+evidence withdrawal and release-scope exclusion are separate evidence boundaries.
+Search context/catalog collaborators remain stubbed in the connected database
+test; this is not live-provider, native, latency or release certification.
+
+One final receiving check remains assigned: accommodation/experience route
+tests mock the shared renderer and cannot prove actual reading text display.
+Exercise the real renderer/projection with exact selected, unavailable and
+malformed selections; prevent a generic take becoming the apparent replacement
+when selection parameters are incomplete. Preserve useful entity context and
+label the test boundary honestly. No additional design or activation is needed
+for this correction; the package remains open until it is verified.
+
 **Latest September 9 continuation:** isolated Content PostgreSQL is now
 provisioned and the existing Foundry transaction guarantees have connected
 evidence. Backend `bcafb2146` adds same-run replay, immutable evidence conflict,
