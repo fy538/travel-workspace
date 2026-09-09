@@ -6,7 +6,7 @@ MAYA_ROOM = 'The side room was my favorite. Go on a weekday, it was empty.'; MAY
 PRIYA_PIGEONS = 'The pigeons at the market have a system. I have watched it for twenty minutes.'; THEO_BREAD = 'The bread stall sells out by ten; go early or don&rsquo;t bother.'; SAM_HALL = 'Sit on the left side, that&rsquo;s where the speakers are.'
 def field(populated=True): return g.v3(populated)
 def field_with(extra_after_fact):
-    h = field(True); k = 'MAYA, TUESDAY · &ldquo;TUESDAY, SEVEN.&rdquo;</div>'; assert k in h
+    h = field(True); k = 'MAYA, TUESDAY · &ldquo;TUESDAY, SEVEN.&rdquo; · KEPT, NOT YET ARRANGED</div>'; assert k in h
     return h.replace(k, k + extra_after_fact, 1)
 def map_block(): return REDHOOK_MAP
 def redhook_rows(populated=True, opened=False, facts=True):

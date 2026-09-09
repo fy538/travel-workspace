@@ -13,22 +13,21 @@ SHELF = [('The noodle counter', 'Hand-pulled at the counter', 'CASH'), ('The lun
 
 def top(populated=True):
     out = anchor('NEW YORK', 'FRIDAY 5:40 PM')
-    if populated: out += orientation('The pier at sunset, with Maya. Saturday, 7:04.', 'Kept from her share · Sunset Park · the film on the lawn after · Red Hook by ferry, Saturday or Sunday')
+    if populated: out += orientation('The pier at sunset. Saturday, 7:04.', 'From Maya&rsquo;s share, kept · not yet arranged with her · Sunset Park · the film on the lawn after')
     else: out += orientation('Playtime on the lawn by the pier. Saturday, 8:30.', 'Free · Sunset Park · the pier at sunset first, 7:04 · Red Hook by ferry, Saturday or Sunday')
     return out + ask()
 def lead_composition(populated=True):
     day = I.pier_line()
     if populated:
-        inner_ = kick('SATURDAY AT THE PIER · KEPT WITH MAYA') + day + f'<div style="margin-top: 10px;">{serifline("Sunset from the west pier at 7:04; it turns cold fast. The lawn is nine minutes on, the film at 8:30.")}</div>'
-        inner_ += fn('MAYA, TUESDAY · &ldquo;TUESDAY, SEVEN.&rdquo;', 8) + f'<div style="margin-top: 8px;">{doors(("The pier, with Maya", GOLDD), ("Reply to Maya", MUTE))}</div>'
+        inner_ = kick('SATURDAY AT THE PIER · FROM MAYA&rsquo;S SHARE') + day + f'<div style="margin-top: 10px;">{serifline("Sunset from the west pier at 7:04; it turns cold fast. The lawn is nine minutes on, the film at 8:30.")}</div>'
+        inner_ += fn('MAYA, TUESDAY · &ldquo;TUESDAY, SEVEN.&rdquo; · KEPT, NOT YET ARRANGED', 8) + f'<div style="margin-top: 8px;">{doors(("The pier", GOLDD), ("Ask Maya about Saturday", MUTE))}</div>'
     else:
         inner_ = kick('SATURDAY AT THE PIER · FREE') + day + f'<div style="margin-top: 10px;">{serifline("Playtime on the lawn at 8:30, free; the sunset from the west pier first, at 7:04.")}</div>'
         inner_ += fn('TATI&rsquo;S CITY OF GLASS · GET THERE AT EIGHT FOR A SPOT · RAIN PLAN NOT POSTED', 8) + f'<div style="margin-top: 8px;">{doors(("Saturday&rsquo;s film", GOLDD))}</div>'
     return f'<div style="display: flex; flex-direction: column;">{inner_}</div>'
 def friends():
     c = card(author_row('M', 'Maya', 'THURSDAY · TO FRIENDS') + quote(MAYA_ROOM) + place_strip('The Harbor Print Room', 'RED HOOK · TUE–SUN 11–6') + door('Reply to Maya'))
-    rows = arow('Priya · the greenmarket · ' + dim('the pigeons have a system · Saturday'), avatars=['P']) + arow('Theo · the bread stall · ' + dim('sells out by ten · Tuesday'), avatars=['T']) + arow('Sam · Canal Hall · ' + dim('sit on the left, that&rsquo;s where the speakers are'), avatars=['S'], last=True)
-    return sect('From friends') + gut(c + '<div style="height: 12px;"></div>' + rows + door('Everything from friends'))
+    return sect('From friends') + gut(c + door('Everything from friends, here and elsewhere'))
 def redhook(populated=True):
     rows = ('<div>' + nrow(1, 'The Harbor Print Room', 'TUE–SUN 11–6 · ROOMS REMADE, TO SUNDAY', unc(UNK_ROOM) + (fn('MAYA WAS THERE THURSDAY', 4) if populated else ''), first=True) + nrow(2, 'The Red Hook pier', 'FACES THE HARBOR AND THE STATUE') + nrow(3, 'The Red Hook pool', 'LAP SWIM 7–8:30 AM · BRING A LOCK') + nrow(4, 'The lunch counter on Columbia Street', 'TILL 4 · $11 PLATE · STANDING ROOM', last=True) + '</div>')
     walk = f'<div style="font-size: 14px; line-height: 19px; color: {INK2}; margin-top: 10px; padding-top: 10px; border-top: 1px solid {HAIR7};">Everything here is within twelve minutes of the landing on foot.</div>'
@@ -57,12 +56,11 @@ def v3(populated=True):
     body = top(populated) + gut(lead_composition(populated), top=24)
     if populated: body += friends()
     body += sect('Any day') + gut(browse_shelf(SHELF)) + redhook(populated) + evening(populated) + understanding()
-    if populated: body += upclose()
     body += sunday(populated) + morning(populated) + gut(door_list(['Another neighborhood', 'Sunday, all day'] + (['From friends, everything'] if populated else [])), top=24)
     return phone(body)
 def board(h=5400):
-    c1 = col(v3(True), caption('THE CANON&rsquo;S INSTRUMENTS &middot; POPULATED &middot; FRIDAY, NEW YORK', 'HOME&rsquo;S KIT, THE CANON&rsquo;S KINDS', 'Each section carries one instrument that earns its ink: the pier&rsquo;s day on the opening, hatched photo slots on the everyday six, the burden strip on the crossing, the day band on the evening, two ways in on one scale, the flood section to scale'))
-    c2 = col(v3(False), caption('THE CANON&rsquo;S INSTRUMENTS &middot; COLD START', 'THE SAME WORLD, NO HISTORY, NO FRIENDS', 'The film leads the light; no From friends, no contributions; the everyday six, the pocket, the evening, the comparison, the reading and Sunday as before'))
+    c1 = col(v3(True), caption('01.1 &middot; THE FIELD &middot; POPULATED &middot; FRIDAY, NEW YORK', 'HOME&rsquo;S KIT, THE CANON&rsquo;S KINDS', 'From Maya&rsquo;s share, kept, not yet arranged with her; each person&rsquo;s line once, under its place; one instrument per section where there is data to show'))
+    c2 = col(v3(False), caption('01.2 &middot; THE FIELD &middot; COLD START', 'THE SAME WORLD, NO HISTORY, NO FRIENDS', 'The film leads the light; no From friends, no contributions; the everyday six, the pocket, the evening, the comparison, the reading and Sunday as before'))
     n = notes.replace('>The parity pass</div>', '>The instrument pass</div>' + instrument_notes(), 1).replace('<div class="kickm">WHAT HOME DECIDED THAT PLACES NOW ADOPTS</div>', '<div class="kickm">WHAT HOME DECIDED THAT PLACES ADOPTS (THE PARITY DRAFT, 09-07 EVENING)</div>', 1)
     hb = headblock('01 &middot; THE FIELD &middot; 09-08', '01 &middot; The field', 'The selected direction, chosen by the founder on September 7: Home&rsquo;s kit for the chrome, the rows and the people; the kinds and instruments of the a26e3228 canon wherever a section has data to show, drawn from data; a photo slot is a hatched plate, never a drawing. Populated and cold. Generated entirely from the kit since September 8.')
     op = BOARD_OPEN.replace(re.search(r'min-height: \d+px', BOARD_OPEN).group(0), f'min-height: {h}px')

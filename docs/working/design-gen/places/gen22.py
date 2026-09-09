@@ -1,53 +1,66 @@
-"""22 · The remaining situations, on the chosen terms (§14.5): another city before arrival; sparse supply; the map unavailable; results pending."""
+"""03 · The situations, recomposed (review: bounded pass items 1 and 2). Row 1, bounded supply: four different absences, told apart, none answered with an input request.
+Row 2, one afternoon two ways: unhurried exploration against a constrained visit with an access and a time requirement, Plans' parent-aware response as the donor."""
 from fix import *
+from kinds import *
 import instruments as I
-def cliff_section():
-    """The town on its cliff: a section, not a map. Forty metres between the reading room and the quay."""
-    return (f'<svg width="349" height="96" viewBox="0 0 349 96" fill="none" style="display: block; width: 100%; height: auto; margin-top: 8px;">'
-            f'<rect x="0" y="0" width="349" height="96" rx="12" fill="{WASH}"/><path d="M14 30 L170 30 L190 34 L206 78 L335 78" stroke="{INK}" stroke-width="1.6" fill="none" stroke-linecap="round"/>'
-            f'<path d="M206 78 L335 78 L335 90 L206 90 Z" fill="rgba(61,80,102,0.20)"/><path d="M206 78 L335 78" stroke="{WATER}" stroke-width="2" stroke-linecap="round"/><path d="M14 30 L170 30 L190 34 L206 78 L206 90 L14 90 Z" fill="rgba(176,133,58,0.10)"/>'
-            f'<circle cx="150" cy="30" r="4" fill="{GOLD}"/><circle cx="240" cy="78" r="4" fill="{WATER}"/>'
-            f'<text x="14" y="20" {LK}>THE TOWN · THE READING ROOM</text><text x="335" y="66" text-anchor="end" {LK}>THE QUAY · SEA LEVEL</text><text x="184" y="60" text-anchor="end" {LG}>40 M ↓</text><text x="335" y="20" text-anchor="end" {LB}>180 M ON THE MAP</text></svg>')
-def sorrento():
-    inner = anchor('SORRENTO', 'BEFORE ANY VISIT') + orientation('The town is on a cliff; the water is forty metres down.', 'From New York · Capri for a day · the piazza on Thursday evenings') + ask('Anything in Sorrento, any day')
-    inner += gut(kick('WORTH KNOWING BEFORE YOU GO') + I.section([(0, 40), (150, 40), (180, 36), (200, 0), (330, 0)], 0.3, [(4, 47, 'THE TOWN · THE READING ROOM', 'start', INK), (206, 7, 'THE QUAY · SEA LEVEL', 'start', INK)], scale_m='m', h=118, zmax=54) + f'<div style="margin-top: 8px;">{serifline("The reading room and the quay walk are 180 metres apart on the map and a cliff apart on the ground.")}</div>' + fn('STAIRS, A LIFT OR A ROAD BETWEEN THEM AREN&rsquo;T LISTED HERE YET', 6) + door('The upper town and the quay, on the map'), top=24)
-    inner += sect('Worth a day') + gut('<div>' + prow('Capri, for a day', 'FERRIES FROM 7:30 · €22 EACH WAY · 25 MIN ACROSS · LAST BOAT BACK 6:40', unc('Sailings are cancelled in rough seas; check the morning of.'), first=True) + prow('The lemon terraces walk', 'MORNINGS, TILL NOON · FREE · STEPPED PATHS, SHADE UNDER THE NETS', last=True) + '</div>')
-    inner += sect('Any evening') + gut('<div>' + prow('Thursday evening market in the piazza', 'THURSDAYS 6–10 PM · FREE · FOOD STALLS AND A BAND AFTER EIGHT', first=True) + prow('The quay walk', 'ANY TIME · FREE · AT SEA LEVEL, STEP-FREE ALONG THE QUAY', last=True) + '</div>')
-    inner += sect('Any morning') + gut('<div>' + prow('The reading room, upper town', 'MORNINGS · FREE · AN EXHIBITION PREVIEW · FORTY METRES ABOVE THE QUAY', first=True, last=True) + '</div>')
-    inner += gut(door_list(['The upper town', 'Across the harbor', 'Back to New York']), top=24)
+import gen19v3 as g
+def missing_history():
+    """No history: the world is full; nothing is missing but the person's past. This is 01's cold start, unchanged."""
+    return g.v3(False)
+def missing_friends():
+    """History but no friends: the person's own returns are on the places; From friends is simply absent, not an empty invitation."""
+    body = anchor('NEW YORK', 'FRIDAY 5:40 PM') + orientation('The pier at sunset. Saturday, 7:04.', 'Kept Tuesday · your third this year · the film on the lawn after') + ask()
+    body += gut(f'<div style="display: flex; flex-direction: column;">{kick("SATURDAY AT THE PIER · YOUR THIRD THIS YEAR")}{I.pier_line()}<div style="margin-top: 12px;">{serifline("Sunset from the west pier at 7:04; it turns cold fast. You were last here in May, at low water; the film on the lawn is new.")}</div>{fn("YOU, MAY 9 AND JULY 20", 8)}<div style="margin-top: 8px;">{doors(("The pier", GOLDD))}</div></div>', top=24)
+    sh = list(g.SHELF); sh[0] = ('The noodle counter', 'Hand-pulled · you, twice in August', 'CASH')
+    body += sect('Any day') + gut(browse_shelf(sh)) + g.redhook(False) + g.evening(False) + g.understanding() + g.sunday(False) + g.morning(False) + gut(door_list(['Another neighborhood', 'Sunday, all day']), top=24)
+    return phone(body)
+def unsupported_geography():
+    """A city the world supply does not cover: what exists is offered plainly, its scope named, and the person is not asked to fill the gap."""
+    body = anchor('KINGSTON', 'FRIDAY 5:40 PM') + orientation('Kingston, this weekend.', 'Three places Vesper can stand behind here · the rest of the town is not covered yet') + ask()
+    body += sect('What is covered', 24) + gut('<div>' + prow('The farmers&rsquo; market on the waterfront', 'SATURDAY 9–2 · FROM THE MARKET&rsquo;S OWN LISTING', first=True) + prow('The rail trail to the reservoir', 'ANY TIME · FREE · 11 KM, FLAT · FROM THE COUNTY&rsquo;S MAP') + prow('The old cement works, from the road', 'ANY TIME · SEEN FROM OUTSIDE · A READING BELOW', last=True) + '</div>')
+    body += gut(consequence('THE SCOPE', 'Hours and closures are from the places&rsquo; own listings; nothing here is checked on the ground yet. Home carries the same three, nothing more, until coverage grows.'), top=16)
+    body += sect('Worth understanding') + gut(fn('READING · 5 MIN', 0) + f'<div style="margin-top: 4px;">{serifline("Why the cement works face the river and the town faces away", 17, 22)}</div>' + sup('The kilns needed the river for barges; the town grew along the road behind them.') + door('The rest of the reading'))
+    body += gut(door_list(['Back to New York']), top=24)
+    return phone(body)
+def unavailable_information():
+    """Current information unavailable: the field keeps what it knows, dates it, and does not ask the person to supply it."""
+    body = anchor('NEW YORK', 'FRIDAY 5:40 PM') + orientation('The pier at sunset, from Maya&rsquo;s share. Saturday, 7:04.', 'Hours and tides as last seen Thursday · the listings are not reachable right now') + ask()
+    body += gut(f'<div style="display: flex; flex-direction: column;">{kick("SATURDAY AT THE PIER · AS LAST SEEN THURSDAY")}{I.pier_line()}<div style="margin-top: 12px;">{serifline("Sunset from the west pier at 7:04; it turns cold fast. Low water from 2:40 as of Thursday; the film at 8:30 if the lawn&rsquo;s listing still holds.")}</div>{fn("MAYA, TUESDAY · &ldquo;TUESDAY, SEVEN.&rdquo; · NOTHING FRESH SINCE THURSDAY", 8)}<div style="margin-top: 8px;">{doors(("The pier", GOLDD), ("Ask Maya about Saturday", MUTE))}</div></div>', top=24)
+    body += sect('Any day') + gut(browse_shelf(g.SHELF[:2])) + gut(consequence('WHAT IS NOT FRESH', 'Every hour and every tide here is Thursday&rsquo;s. Nothing is invented to fill the gap, and nothing asks you to.'), top=16)
+    body += g.redhook(True) + gut(door_list(['Another neighborhood', 'Try again']), top=24)
+    return phone(body)
+def unhurried():
+    """One afternoon, unhurried: the crossing is the point; the rooms upstairs if the mood takes; no times."""
+    inner = anchor('THE PRINT ROOM', 'SAT 12:40 PM', back=True, sub='Red Hook · this afternoon')
+    inner += orientation('The crossing, then the rooms upstairs if you like.', 'No times to keep · the workshop is open till 6 · the pier and the pool are on the way back', 26, 31)
+    inner += gut(photo_plate(150), top=16)
+    inner += gut(hours_register([('THE ROOMS', 'Rooms Remade, upstairs, to Sunday'), ('THE CROSSING', 'Every 40 from Pier 11; the boat is half the visit'), ('AROUND', 'The pier, nine minutes; the pool till 8:30 tomorrow')]), top=16)
+    inner += sect('Maya and Priya were there') + gut(plural_comparison((('M', 'Maya', 'THURSDAY'), 'THE SIDE ROOM', MAYA_ROOM), (('P', 'Priya', 'A RAINY TUESDAY'), 'THE BACK ROOM', 'The back room to myself for an hour.')))
+    inner += gut(door_list(['The next ferry', 'Reply to Maya']), top=24)
     return phone(inner)
-def sparse():
-    inner = anchor('NEW YORK', 'FRIDAY 5:40 PM') + orientation('Playtime on the lawn by the pier. Saturday, 8:30.', 'Free · Sunset Park · the pier at sunset first, 7:04') + ask()
-    inner += gut(kick('SATURDAY AT THE PIER · FREE') + I.pier_line() + f'<div style="margin-top: 10px;">{serifline("Playtime on the lawn by the pier at 8:30, free; the sunset from the west pier first, at 7:04.")}</div>' + fn('TATI&rsquo;S CITY OF GLASS · GET THERE AT EIGHT FOR A SPOT · RAIN PLAN NOT POSTED', 6) + door('Saturday&rsquo;s film'), top=24)
-    inner += sect('This Saturday') + gut('<div>' + prow('The greenmarket', 'SATURDAY 8–1 · DOWNTOWN · BREAD GOES FIRST', first=True, last=True) + '</div>')
-    inner += g.understanding()
-    inner += gut(door_list(['Another neighborhood', 'Sunday, all day']), top=24)
-    return phone(inner)
-def map_unavailable():
-    slot = f'<div style="height: 72px; border-radius: 12px; background: {WASH}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-align: center; padding: 0 20px;"><div style="font-size: 14px; font-weight: 600; color: {INK};">The map isn&rsquo;t available right now</div><div style="font-size: 13px; color: {MUTE};">Everything here is still here</div></div>'
-    inner = anchor('NEW YORK', 'FRIDAY 5:40 PM').replace('<svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex: none;"><path d="M3 6.5', '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex: none; opacity: 0.35;"><path d="M3 6.5', 1)
-    inner += orientation('The pier at sunset, with Maya. Saturday, 7:04.', 'Kept from her share · Sunset Park · the film on the lawn after · Red Hook by ferry, Saturday or Sunday') + ask()
-    inner += sect('Any day', 24) + gut(browse_shelf([('The noodle counter', 'Hand-pulled at the counter', 'CASH'), ('The lunch counter on Columbia Street', 'One plate a day · standing room', 'TILL 4')]))
-    inner += sect('Red Hook, by ferry') + gut(slot + burden_strip() + '<div style="margin-top: 4px;">' + redhook_rows(True) + '</div>' + body('Everything here is within twelve minutes of the landing on foot.').replace('<div style=', '<div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(27,23,20,0.07);" data-x=', 1))
-    inner += gut(door_list(['Try the map again', 'Saturday evening']), top=24)
-    return phone(inner)
-def pending():
-    inner = anchor('NEW YORK', 'FRIDAY 5:40 PM') + ask(q='Near Red Hook, Saturday')
-    inner += f'<div style="margin: 10px 22px 0 22px; height: 2px; border-radius: 1px; background: rgba(27,23,20,0.08); position: relative;"><div style="position: absolute; left: 0; top: 0; height: 2px; width: 38%; border-radius: 1px; background: {GOLDD};"></div></div>'
-    inner += sect('Red Hook, by ferry', 24) + gut(map_block() + burden_strip() + '<div style="margin-top: 4px;">' + redhook_rows(True) + '</div>')
-    inner += sect('Saturday, near Red Hook') + gut(ghost_rows(2))
+def constrained():
+    """The same afternoon with a parent who does not do stairs and a 5 o'clock to be back for: the arrival traced through the entrance and the interior; the decisive fact on the surface; a useful alternative that still serves the purpose."""
+    inner = anchor('THE PRINT ROOM', 'SAT 12:40 PM', back=True, sub='Red Hook · with your father, back by 5')
+    inner += orientation('The rooms are up a flight of stairs; no lift is listed.', 'The crossing and the workshop floor are level · back by 5 means the 3:20 boat', 26, 31)
+    inner += gut(I.access_compare([('BY FERRY', [(6, 'foot'), (20, 'wait'), (25, 'ride'), (9, 'foot'), (2, 'stairs')], 'PIER 11 · WAIT UP TO 40 · LEVEL, THEN STAIRS'), ('BY THE B61', [(4, 'foot'), (6, 'wait'), (28, 'ride'), (3, 'foot'), (2, 'stairs')], 'EVERY 12 · TWO BLOCKS · THE SAME STAIRS')], origin='FROM CANAL STREET', h=118), top=16)
+    inner += gut(consequence('THE DECISIVE FACT', 'The exhibition is upstairs and the listing names no lift. The workshop floor, the crossing and the pier are level; that is the afternoon that serves you both, unless the workshop confirms a lift.'), top=16)
+    inner += gut(I.day_band(12, 18, [('13:20', '13:45', '', 'ink'), ('14:00', '15:00', 'THE FLOOR 2–3', 'gold'), ('15:20', '15:45', '', 'ink')], [('17:00', 'BACK BY 5', 'ring')], [('start', 'NOON · 1:20 BOAT OUT', 'start'), ('end', '3:20 BACK', 'end')]), top=16)
+    inner += gut(door('Ask the workshop about a lift') + door('The level afternoon: the crossing, the floor, the pier', MUTE), top=8)
+    inner += gut(relationship_trace('Maya and Priya wrote about the rooms upstairs; their notes stay with the place.', 'THEIR PERSPECTIVE · NOT THIS VISIT&rsquo;S'), top=16)
     return phone(inner)
 def board():
-    cols = [col(sorrento(), caption('ANOTHER CITY, BEFORE ARRIVAL', '', 'Sorrento from New York: the cliff as a section that leads, then a day, an evening, a morning; the anchor says before any visit')),
-            col(sparse(), caption('SPARSE SUPPLY', '', 'Three worthwhile things and nothing else: the film in the light, the market, the reading; no history, no friends, no pocket; not an abundant feed with the people removed')),
-            col(map_unavailable(), caption('THE MAP UNAVAILABLE', '', 'The pocket keeps its burden strip, its numbered places and its walk; the map slot says so in one line; the anchor&rsquo;s map is dimmed')),
-            col(pending(), caption('RESULTS PENDING', '', 'The question stays readable; what the field already knew about Red Hook holds its place; two quiet rows below, no loading report')),
-            notecol('What is carried, what stays open (§14.5)', [
-                ('CARRIED', tbl(['SITUATION', 'FROM', 'ON THE CHOSEN TERMS'], [['Another city before arrival', 'Z05, the field', 'The cliff as a section instrument with one serif line; serif rows with mono facts; the ferry&rsquo;s uncertainty as an unconfirmed line; the anchor names the city and says before any visit'], ['Sparse supply', '19 cold start; Z10 sparse', 'The film in the light as the opening, one row, one reading as a cover; sections that would be empty are absent rather than thin'], ['Map unavailable', 'Z12', 'Only the map slot changes; the burden strip, the places and the walk stay; one line says what happened, in the slot, not a banner'], ['Results pending', 'Z12', 'The question chip stays; the known pocket holds its place with its map and strip; two ghost rows; no percentage, no words about mechanics']])),
-                ('OPEN', N('From Z05: the city sheet and city selection, the Capri page, the return to New York; behaviour unchanged, not redrawn. From Z12: the occurrence opened and no city yet; Stage 3 states. Sparse supply is drawn for New York on the existing fixture; a genuinely thin city would need its own fixture. Nothing here requires new input as the only fallback.')),
-                ('NOT EXERCISED', N('Four static states. Nothing verifies the map failing or a query resolving on a device.'))], w=760)]
-    return rows_page(2760, '22 · THE REMAINING SITUATIONS · 09-07 (§14.5)', '22 · The remaining situations, on the chosen terms',
-                     'Another city before arrival, sparse supply, the map unavailable and results pending, each drawn in the language of 19 from the scenario content of Z05 and Z12 and the cold start of 19. Not a portfolio and not a fixed allocation of sections per state.',
-                     [('FOUR SITUATIONS', 'Before arrival; sparse; no map; pending', cols)], 3400)
+    r1 = [viewport(col(missing_history(), caption('03.1 · MISSING HISTORY', 'THE WORLD IS FULL', 'The cold start: nothing missing but the person&rsquo;s past; no invitation to supply it'))),
+          viewport(col(missing_friends(), caption('03.2 · MISSING FRIENDS', 'A YEAR OF RETURNS, NO ONE IN THE APP', 'The person&rsquo;s own returns are on the places; From friends is absent, not an empty prompt'))),
+          viewport(col(unsupported_geography(), caption('03.3 · UNSUPPORTED GEOGRAPHY', 'KINGSTON: THREE PLACES VESPER CAN STAND BEHIND', 'What is covered, offered plainly with its sources; the scope named; Home carries the same three; no request to fill the gap'))),
+          viewport(col(unavailable_information(), caption('03.4 · UNAVAILABLE INFORMATION', 'NOTHING FRESH SINCE THURSDAY', 'Every hour and tide dated; nothing invented; a door to Maya, not a form')))]
+    r2 = [viewport(col(unhurried(), caption('03.5 · ONE AFTERNOON · UNHURRIED', 'THE CROSSING IS THE POINT', 'No times to keep; the rooms if the mood takes; the pier and the pool on the way back'))),
+          viewport(col(constrained(), caption('03.6 · THE SAME AFTERNOON · CONSTRAINED', 'WITH YOUR FATHER, BACK BY 5', 'The arrival traced through the entrance to the stairs; the decisive fact leads; the level afternoon that still serves both of you; one honest ask to the workshop'))),
+          notecol('Bounded supply, and one afternoon two ways (review, bounded pass 1 and 2)', [
+              ('FOUR ABSENCES, TOLD APART', N('Missing history is 01&rsquo;s cold start. Missing friends keeps the person&rsquo;s returns and simply has no From friends section. Unsupported geography offers what Vesper can stand behind, names its sources and its scope, and says Home carries the same three. Unavailable information dates every fact and invents nothing. None of them asks the person for input as the fallback; input requests are not the universal answer.')),
+              ('ONE AFTERNOON, TWO PURPOSES', N('The same place and afternoon. Unhurried: the crossing is the point, no times, the rooms if the mood takes. Constrained, with a parent who does not do stairs and a 5 o&rsquo;clock: the arrival is traced from Canal Street through the wait, the crossing, the level walk and the stairs; the decisive fact leads; the level afternoon that still serves both is offered as the useful alternative, and one honest ask goes to the workshop about a lift. Plans&rsquo; parent-aware response is the donor; this is not a persona and not an accessibility badge.')),
+              ('WHAT MOVED', N('Sorrento before arrival moves to 07 as the section instrument&rsquo;s specimen; the map-unavailable and pending cases fold into unavailable information here and pending on 08. Kingston is a fixture town; its three places and sources are fixture.')),
+              ('OPEN', N('Whether unsupported geography should show Home&rsquo;s three as one shared list or two views of it; drawn as a sentence. The lift question is a fixture unknown; a live version reads the venue&rsquo;s access listing. Interaction untested.'))], w=760)]
+    return rows_page(2560, '03 · THE SITUATIONS · 09-08 · REVIEW, BOUNDED PASS', '03 · The situations', 'Bounded supply: four different absences told apart, none answered with an input request. Then one afternoon two ways: unhurried, and constrained by access and time.',
+                     [('BOUNDED SUPPLY', 'Missing history; missing friends; unsupported geography; unavailable information', r1), ('ONE AFTERNOON, TWO WAYS', 'Unhurried; constrained', r2)], 7000)
 if __name__ == '__main__':
-    import os; os.makedirs('out', exist_ok=True); h = board(); open('out/22 - The Remaining Situations.dc.html', 'w').write(h); print('wrote 22', len(h))
+    import os; os.makedirs('out2', exist_ok=True); h = board(); open('out2/03 - The Situations.dc.html', 'w').write(h); print('wrote 03', len(h))

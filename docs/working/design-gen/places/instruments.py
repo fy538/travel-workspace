@@ -72,19 +72,23 @@ def day_band(t0, t1, blocks, marks=(), labels=(), h=56):
             svg += L(lx, 14, lab, INK, True, anchor); used.append((lx - (w if anchor == 'end' else 0), lx + (w if anchor == 'start' else 0)))
     for t, lab, anchor in labels: svg += L(ax.x(hm(t)) if ':' in t else (2 if t == 'start' else 347), h - 2, lab, MUTE, None, anchor)
     return svg + '</svg>'
-def access_compare(rows, h=None):
-    """Two ways to a place on one minutes scale: dots on foot, a solid bar for the ride, the total at the end. Same scale for both, so the difference is visible, not asserted."""
-    total = max(sum(m for m, k in r[1]) for r in rows); ax = Axis(0, total, 100, 300); h = h or 20 + 44 * len(rows)
-    svg = f'<svg width="349" height="{h}" viewBox="0 0 349 {h}" fill="none" style="display: block; width: 100%; height: auto; margin-top: 8px;">'
+def access_compare(rows, origin='FROM CANAL STREET', h=None):
+    """Ways in on one minutes scale, from a named origin. Legs: 'foot' dots, 'ride' a solid bar, 'wait' a hollow bar (up to the headway), 'stairs' a stepped mark.
+    Waiting is drawn apart from movement, so the decisive premise of each way is visible: a scheduled crossing costs a wait; a train does not. The total names its scope."""
+    total = max(sum(m for m, k in r[1]) for r in rows); ax = Axis(0, total, 100, 300); h = h or 26 + 44 * len(rows)
+    svg = f'<svg width="349" height="{h}" viewBox="0 0 349 {h}" fill="none" style="display: block; width: 100%; height: auto; margin-top: 8px;">' + L(2, 10, origin, MUTE)
     for i, (name, legs, note) in enumerate(rows):
-        y = 22 + i * 44; svg += L(2, y + 4, name, INK, True); t = 0
+        y = 28 + i * 44; svg += L(2, y + 4, name, INK, True); t = 0; moving = 0
         for m, kind in legs:
             x0, x1 = ax.x(t), ax.x(t + m)
-            if kind == 'foot': svg += f'<path d="M{x0+4:.1f} {y} L{x1-2:.1f} {y}" stroke="rgba(27,23,20,0.30)" stroke-width="8" stroke-dasharray="0.1 12" stroke-linecap="round"/>'
-            else: svg += f'<rect x="{x0:.1f}" y="{y-6}" width="{x1-x0:.1f}" height="12" rx="6" fill="{INK}" opacity="0.78"/>'
+            if kind == 'foot': svg += f'<path d="M{x0+4:.1f} {y} L{max(x0+4, x1-2):.1f} {y}" stroke="rgba(27,23,20,0.30)" stroke-width="8" stroke-dasharray="0.1 12" stroke-linecap="round"/>'; moving += m
+            elif kind == 'wait': svg += f'<rect x="{x0:.1f}" y="{y-5}" width="{x1-x0:.1f}" height="10" rx="5" fill="none" stroke="rgba(27,23,20,0.35)" stroke-width="1.5" stroke-dasharray="3 3"/>'
+            elif kind == 'stairs': svg += f'<path d="M{x0:.1f} {y+4} h4 v-4 h4 v-4 h4" stroke="{INK}" stroke-width="1.6" fill="none"/>'; moving += m
+            else: svg += f'<rect x="{x0:.1f}" y="{y-6}" width="{x1-x0:.1f}" height="12" rx="6" fill="{INK}" opacity="0.78"/>'; moving += m
             t += m
-        svg += L(ax.x(t) + 8, y + 4, f'~{t}', INK, True) + L(2, y + 18, note, MUTE)
-    svg += L(100, h - 2, '0', MUTE) + L(300, h - 2, f'{total} MIN', MUTE, None, 'end')
+        wait = t - moving
+        svg += L(ax.x(t) + 8, y + 4, f'~{t}' if not wait else f'{moving}–{t}', INK, True) + L(2, y + 18, note, MUTE)
+    svg += L(100, h - 2, '0', MUTE) + L(300, h - 2, f'{total} MIN · DASHED IS WAITING', MUTE, None, 'end')
     return svg + '</svg>'
 def section(points, sea, labels, scale_m=None, h=110, w=349, zmax=None):
     """Ground to scale: points (x_m, z_m) along a line; the sea level; labels (x_m, z_m, text, anchor, fill). Water shows only where the ground is below it. A bar at the right says how tall the picture is."""
