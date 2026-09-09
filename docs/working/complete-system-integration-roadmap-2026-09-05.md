@@ -3675,6 +3675,18 @@ Social owns its fixes; Integration owns receiving and verifying the reviewed cut
 Current Life work likewise owns maintenance and organization internals rather
 than becoming another implementation queue here.
 
+### Repository-wide offline baseline — September 9
+
+The canonical `travel-agent` Python 3.13 environment completed `make
+test-offline` after the independent Home exact-original and Places cross-root
+replay slices: **21,358 passed, 14 skipped, 53 xpassed and 6 warnings** from
+21,425 selected tests (1,427 deselected), in 196.73s. The command's follow-up
+concierge offline subset passed **76 tests** in 2.84s. This is backend offline
+baseline evidence for the tested checkout only. It does not certify native or
+device receiving, live providers, a production database, Chat/Life serving, or
+the paused Integration candidate; warnings remain explicit and no checker was
+weakened.
+
 #### 9.9.3 Architectural decisions proposed for this execution
 
 1. **One logical receiving path, several legitimate producers.** Public content,

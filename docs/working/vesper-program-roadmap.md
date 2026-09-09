@@ -603,6 +603,19 @@ direction when new capability evidence can change the next scope, or a material
 conflict appears. The previous “at most three integrated packages” cadence is
 superseded; no automatic pause or scheduled monitoring follows.
 
+### September 9 offline baseline — completed
+
+After the independent Home exact-original and Places cross-root replay slices,
+the canonical backend's intended Python 3.13 environment completed the
+repository-wide offline suite. From `travel-agent/`, `make test-offline`
+selected **21,425 tests** after deselecting 1,427 cases; **21,358 passed, 14
+skipped, 53 xpassed and 6 warnings** in 196.73s. Its follow-up concierge
+offline subset passed **76 tests** in 2.84s. The command and environment are
+valid baseline evidence for the canonical backend checkout, not a claim about
+native/device, live-provider, production-database, Chat/Life serving or the
+paused Integration candidate. The six warnings are retained as warnings; no
+gate was weakened and no unrelated dirty workspace files were staged.
+
 <a id="7-current-acceptance-round--dispatched-september-8"></a>
 
 ## 7. Historical acceptance round — dispatched September 8, now paused
