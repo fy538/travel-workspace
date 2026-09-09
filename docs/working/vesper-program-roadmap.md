@@ -91,9 +91,13 @@ architecture or broad visual exploration only when observed failures justify it.
 
 ## 4. Current package register
 
-The founder authorized the next round on September 8 after acceptance planning.
-One consolidated assignment was dispatched to each existing Integration, Content,
-Home and Life task with explicit `gpt-5.6-luna` / `xhigh`. Fast mode was requested
+The founder authorized the repair-and-integration round on September 8 after
+reviewing the first native inspection. One consolidated assignment was dispatched
+to each existing Integration, Home and Life task; Content remains parked with
+its completed supplier packet. Execution uses explicit `gpt-5.6-luna` / `xhigh`;
+reports back to Strategy use explicit `gpt-6-astra` / `high`. These settings
+configure the recipient: never select `minimal` or `none` for a short report.
+Fast mode was requested
 but is not exposed by the dispatch interface and remains unverified; no global
 model or service-tier settings were changed. Dispatch is not completion evidence.
 Use one owner per package. Status messages are not new assignments. Integration
@@ -101,10 +105,10 @@ remains the sole combined landing owner.
 
 | Accountable task / owner plan | Next bounded responsibility | Handoff |
 | --- | --- | --- |
-| **[Integration](codex://threads/01a030af-13a8-74e1-81be-7d526bec3045)** · [technical plan](complete-system-integration-roadmap-2026-09-05.md) | Isolated runtime/data readiness, contracts, combined acceptance and landing | Ready revision/data/device tuple to Home; shared Life reader decisions |
-| **[Content](codex://threads/01a07c63-5ebe-71d2-9cb0-314ec4e06963)** · [supply plan](recommendation-world-supply-architecture-and-roadmap-2026-09-07.md) | Bounded provenance-bearing local corpus and honest coverage | Owner-admitted records to Home, not prose pasted into screenshots |
-| **[Home](codex://threads/01a06f87-e648-74d2-a0ae-f0adb305e44c)** · [consumer map](home-connected-experience-implementation-map-2026-09-04.md) | Home/Places actual-app composition and exact-depth review | Named content/consumer defects with native evidence |
-| **[Life](codex://threads/01a06ecc-1a79-74a1-9c47-9f24461313ea)** · [replacement plan](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md) | Recognizable records, existing readers and shadow-to-visible gap comparison | Concrete read/organization gaps and controlled-serving prerequisites |
+| **[Integration](codex://threads/01a030af-13a8-74e1-81be-7d526bec3045)** · [technical plan](complete-system-integration-roadmap-2026-09-05.md) | Review supplier patches, admit the prepared corpus, assemble and verify the combined candidate | Exact owner-backed data/runtime tuple; serialized device access and landing |
+| **[Content](codex://threads/01a07c63-5ebe-71d2-9cb0-314ec4e06963)** · [supply plan](recommendation-world-supply-architecture-and-roadmap-2026-09-07.md) | Parked: backend `870d83d94` / receipt `7dc6875` ready for review | Integration uses existing records before requesting more supply |
+| **[Home](codex://threads/01a06f87-e648-74d2-a0ae-f0adb305e44c)** · [consumer map](home-connected-experience-implementation-map-2026-09-04.md) | Repair Places harness paths, investigate Search-cancel shell, rerun native and owner-backed receiving | Tested consumer/harness patches and actual content/depth evidence |
+| **[Life](codex://threads/01a06ecc-1a79-74a1-9c47-9f24461313ea)** · [replacement plan](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md) | Repair direct-row record target and stale return assertion; preserve genuine unavailable states | Root-to-reader regression and native evidence, without serving cutover |
 | **Strategy / [Social](codex://threads/01a07c7c-5c29-7b53-a596-fc0a34ee118b)** · [Social plan](social-experience-implementation-roadmap-2026-09-07.md) | Resolve the already-prepared consequential choices here | Adopted decisions before affected new writes; no repeated research packet |
 
 Places design, Entities, Capture and Components/Plan remain suppliers for named
@@ -161,32 +165,49 @@ receiving test and affected package—not “blocked on Life/Content/Social.”
 
 ## 7. Current acceptance round — dispatched September 8
 
-Initial assignments follow the sequence below: Integration prepares the shared
-runtime, Content prepares its corpus, Home performs device-independent QA
-preflight, and Life traces existing readers. Integration may deliver a single
-actionable ready-environment handoff to resume Home; Home/Integration then hand
-the exclusive device to Life. Necessary execution handoffs retain explicit
-Luna/xhigh. Native inspection and runtime readiness are not yet established by
-these assignments. Social decisions remain here for founder review.
+**First inspection is complete, not product acceptance.** Isolated receipt
+`309b65e` records Home's 7/7 mock posture pass, Places' three failed paths plus
+a Search-cancel shell anomaly, and Life's failed flow with a stale return
+selector and a direct-row unavailable-record mismatch. The runtime was shut
+down after inspection. Owner-backed corpus receiving is still unperformed.
+Canonical children remain backend `a7c02cbe1` / app `e2e792913`; new supplier
+patches and receipts remain isolated. This dated recheck found workspace
+`118723b` with concurrent Home-design edits, which this round preserves.
+
+The founder has now authorized repairs and combined acceptance. The header QA
+pair `3c0ea94af` + `768f8bc5a` requires Integration review together, including
+pending-versus-conformant audit summaries; three Life chrome decisions remain
+pending, not waived. Home harness `2060afa31` and the prepared Content packet
+are candidates, not evidence that current main passed native acceptance.
+Social decisions remain here for founder review.
 
 ### Order and shared environment
 
-1. **Integration prepares the inspection tuple first:** isolated coordinated
+1. **Integration restores the existing inspection tuple:** isolated coordinated
    workspace/children, exact commits, disposable local dataset, Compose/Expo
    ports, one exclusively assigned simulator, installed development build and
    registered design references. Read `--print-runtime` before startup.
    Document startup failures and disable unintended provider/background execution
    in the inspection environment through existing supported controls. Do not
    point tests or cleanup at the ambient development database.
-2. **Content prepares supply while Home verifies its capture harness.** Life
-   inventories reader/organization gaps independently. Neither waits for all
-   Social decisions or an entire roadmap to finish.
-3. **Home inspects the populated app first, then Life uses the reserved device.**
+2. **Home and Life implement the observed bounded repairs in parallel.** Home
+   scopes search force-state, pins the supported urgency context, corrects the
+   cold scroll/tap sequence and investigates missing navigation. Life repairs
+   direct-row identity/return while retaining real missing-record warnings.
+   Integration reviews/adopts the existing Content corpus through owner paths;
+   no new Content research round is dispatched. Legacy booking/reflective
+   fixture expectations must be reconciled with current authority, not restored
+   indiscriminately or silently removed to make tests pass.
+3. **Home inspects the combined candidate first, then Life uses the reserved device.**
    Use current supported serving for each; shadow results must be compared
    explicitly, not secretly substituted into product reads.
-4. **Strategy and owners review the first complete outputs before widening
-   implementation.** Fix concrete defects in owned layers, verify and land in
-   small packages; reassess after the first inspection and at most three
+   Record mock-mode and actual owner-backed HTTP receiving separately. Device
+   order may change by explicit Integration handoff if repair readiness differs.
+4. **Stop for system review at corrected native flows plus first owner-backed
+   receiving.** Review useful full-scroll material, exact depth/original return
+   and supported Life continuity. Do not invent a persistence mapping merely
+   to join the evidence. Verify and land reviewed small packages under existing
+   gates; report blocked seams explicitly and reassess after at most three
    integrated subpackages. No deadline or daily-use target is implied.
 
 ### A. Home and Places: worthwhile populated receiving
