@@ -5148,3 +5148,50 @@ materialize richer episode/place/people relations. Unsupported owners remain
 visible in coverage rather than silently promoted.
 the existing `Event.ROOT_COMPOSITION_MEASURED` event carries only bounded aggregate
 fields), Ruff/format and Python compilation, with backend
+### E1 follow-up receipt — current-job owner reads are authoritative in root composition — September 9
+
+Backend `9ca596a89` makes current-job owner reads authoritative at the
+root-composition execution boundary. `PortfolioSituation` remains available
+for fixtures, legacy callers, Source continuity and telemetry, but it no longer
+selects runtime capabilities when exact value/current-job requests exist.
+Explicit practical origin refs are included as request-local Place subjects;
+this does not schedule unsupported routing. Evidence is 24 focused owner-read
+tests and 74 combined owner/value/portfolio tests, with compile, Ruff/format and
+diff checks passing. The root-composition service test remains unverified in the
+lane because optional `openai` (and broader `shapely`/`redis`) imports are absent;
+no workaround was used. Workspace receipt `6cc9f00` records the implementation.
+No API/schema/mobile/UI/provider/booking/DB/Chat/Life change or Integration wake
+was made. The legacy scenario planner remains available for compatibility;
+removing it requires a caller inventory and production-key migration.
+
+### E2 follow-up receipt — public Place interpretation reaches Places depth — September 9
+
+The first missing Places consumer wiring is now present for the existing public
+Place-content Source family. The root path remains read-only and bounded:
+
+- `travel-agent/backend/api/services/root_composition.py` derives up to sixteen
+  canonical Place subjects from the resolved Places context and existing feed
+  cards, reads up to four current public Sources through
+  `list_current_public_place_content_sources`, and adds only Places-native
+  candidates before the shared judgment stage. It does not call a provider,
+  generate content, or add a second Home portfolio.
+- `travel-agent/backend/root_projection/v2/adapters.py` maps each accepted
+  interpretation into `PlacesUnitKind.FIELD_EDITORIAL_COVER` with a substantive
+  `RootRead`, exact `place_content_primitive` revision, evidence-bound
+  `source.inspect` requirement, and a `places.open_entity` destination carrying
+  the exact Place plus Source. Existing semantic cards and the root destination
+  resolver retain the native semantic kind and exact entity depth.
+- `travel-app/components/places/PlacesSemanticUnitCard.tsx` exposes the
+  already-declared unit destination through the existing `Door` primitive;
+  `PlacesRootV2Screen` receives the typed destination without inventing a route
+  or changing Places visual composition.
+
+Evidence: workspace receipt `5567119`, backend `5700c4207`, app `500aa7299`.
+The existing owner/content offline suites pass **94 tests** (20 content/
+lived-experience and 74 owner/value/read). Ruff, format, Python compilation,
+diff and backend hooks pass. The new owner-to-depth test and broader
+root-projection suites are unverified in this lane because optional `openai`
+(and broader `shapely`/`redis`) imports are absent; app Jest and TypeScript were
+unrun because this checkout has no `node_modules`. This proves adapter/contract
+wiring, not live provider supply or native visual rendering. No
+API/schema/generated-type/DB/provider/booking/Chat/Life changes were made.

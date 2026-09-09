@@ -348,6 +348,24 @@ acceptance. Chat and Life remain out of scope here; the failures are recorded
 for their owning lanes rather than repaired opportunistically. The command
 completed in 283.121s with its warnings/log output retained outside the repo.
 
+**E2 public Place-to-depth follow-up — September 9, completed:** the Places
+lane wired one existing public Place-content Source family through the real
+owner boundary, shared judgment and the existing Places semantic renderer.
+Backend `5700c4207` derives bounded Place subjects from current Places context
+and feed cards, reads current public Sources without provider calls, and emits a
+Places-native `FIELD_EDITORIAL_COVER` with the exact
+`place_content_primitive` revision, evidence-bound `source.inspect` and typed
+`places.open_entity` destination carrying Place and Source refs. App
+`500aa7299` exposes that already-declared destination through the existing Door
+primitive; no route, taxonomy, schema, provider or visual-composition change
+was introduced. Workspace receipt `5567119` records the lane handback. Evidence
+is 20 content/lived-experience plus 74 owner/value/read tests, with
+Ruff/format/compile/diff and backend hooks passing. The new root-projection test
+is unverified because optional `openai` (and broader `shapely`/`redis`) imports
+are absent; app Jest/typecheck were unrun in that checkout because
+`node_modules` is unavailable. This proves code-path wiring, not live provider
+supply or native rendering. No Chat/Life/Integration wake followed.
+
 <a id="sequence-and-system-checkpoints"></a>
 
 ### Execution order and event-triggered reviews
