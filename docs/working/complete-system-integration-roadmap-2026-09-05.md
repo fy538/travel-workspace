@@ -5206,3 +5206,40 @@ The same focused owner-to-depth, current-job and root-composition selection was
 independently rerun from the canonical dependency-complete environment with
 **32 tests passing in 4.88s**. This is supplemental boundary evidence only;
 broader root projection, live supply and native rendering remain unverified.
+
+### E3 follow-up receipt — route-owner seam audit and bounded stop — September 9
+
+The next practical extension was audited against the existing RouteFact,
+movement, object-page situation, owner-read, and lived-experience contracts.
+No additional implementation is safe in this lane yet: `place.fit_window`
+already provides the narrow route-free assessment (exact Place evidence,
+stated window and duration, and optional exact Commitment windows), while an
+origin-bearing fit remains explicitly `unknown` because no canonical route
+owner can return a request-bound route observation.
+
+The blocker is concrete:
+
+- `canonical_owner_reads._read_place_identity` rejects `route.evaluate` with
+  `canonical_route_reader_not_available`; the registry maps that operation to
+  the Place reader, but it does not return a route payload.
+- `PlaceOwnerRead.route_refs` is an empty extension point, not a populated
+  RouteFact contract. `OwnerReadPayload` has no typed route payload carrying
+  origin/destination identity, mode, departure/arrival window, provider/use
+  policy, observation identity, degradation and expiry.
+- `RouteFact` is produced by the distance gateway for specialized callers;
+  `resolve_route_fact` can perform provider/cache work but has no canonical
+  `OwnerReadRequest` binding or owner readback identity. Object-page situation
+  and foreground movement are scoped consumers, not a generic route owner.
+
+Accordingly, this package adds no fake reader, route lookup, provider call,
+schema/table, route taxonomy or optimistic fallback. A future route package
+must first specify and obtain approval for the owner contract, required fields,
+authority, refresh/readback and degradation semantics. Until then, origin-
+dependent fit remains an honest unknown and ordinary Place value survives.
+
+Evidence: workspace receipt `88c43dd`; 34 route/movement/value/owner focused
+offline tests passed, with Ruff, format, Python compilation and diff checks
+passing. Direct canonical-reader collection remains unverified in that lane
+because optional `openai` (and broader `shapely`/`redis`) imports are absent.
+No app/API/schema/provider/DB/Chat/Life/Social/UI changes were made. This is a
+documented owner-contract stop, not E3 completion or a live-engine claim.

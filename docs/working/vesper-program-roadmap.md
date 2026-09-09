@@ -378,6 +378,23 @@ tests passed in 4.88s**. This supplements, but does not replace, the lane's
 unverified broader root-projection, provider-supply and native-rendering
 boundaries.
 
+**E3 route-owner seam audit — September 9, bounded stop:** the Places lane
+confirmed that `place.fit_window` is the complete supported route-free
+assessment (exact Place evidence, stated window/duration and optional exact
+Commitment windows). Origin-dependent fit remains honestly `unknown` because
+there is no canonical route owner: `route.evaluate` fails closed as
+`canonical_route_reader_not_available`, `PlaceOwnerRead.route_refs` is only an
+empty extension point, and `OwnerReadPayload` has no typed RouteFact payload
+with origin/destination, mode, time, provider/use policy, revision, expiry and
+degradation. The existing `RouteFact` gateway and foreground movement service
+are specialized/request-scoped, not owner-bound readback. Workspace receipt
+`88c43dd` records the audit; 34 route/movement/value/owner tests plus
+Ruff/format/compile/diff passed. No code or schema change was safe, and no
+provider, API, UI, Chat, Life, Social or Integration work was started. A future
+route package first needs an adopted owner contract and refresh/readback
+authority; until then origin-dependent claims stay unknown while ordinary Place
+value survives.
+
 <a id="sequence-and-system-checkpoints"></a>
 
 ### Execution order and event-triggered reviews
