@@ -61,6 +61,21 @@ and activation boundary. The audit used an older lane roadmap copy for part of
 its recommendation; current program/policy instructions must be read from this
 canonical workspace, while implementation stays in the isolated lane.
 
+**Search-consumer review checkpoint, not acceptance:** Content returned backend
+`b681845a2`, app `3b79e5579` and workspace `f35dfe0`. The implementation adds
+metadata-only reading results, exact Source/version query parameters and
+source-keyed mobile caches. Strategy independently ran 28 database-free
+presentation/compiler/search tests at clean backend `578d44311` in 4.007s;
+the app/workspace were still dirty, so this is only that backend boundary.
+The first handback remains incomplete: rows lack canonical subject labels,
+successful detail responses with a missing selected reading lack an explicit
+receiving state, new mobile tests prove navigation rather than selected-content
+render/return, and the final search filter drops accommodation/experience
+readings instead of establishing their receiving path. Content is assigned one
+consolidated completion pass, including real search-to-detail lifecycle
+readback and consistent reader/control-plane/release eligibility. Existing
+commits are preserved; no whole-package, native or activation acceptance follows.
+
 **Latest September 9 continuation:** isolated Content PostgreSQL is now
 provisioned and the existing Foundry transaction guarantees have connected
 evidence. Backend `bcafb2146` adds same-run replay, immutable evidence conflict,
