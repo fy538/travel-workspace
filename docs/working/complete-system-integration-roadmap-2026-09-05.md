@@ -3687,6 +3687,14 @@ device receiving, live providers, a production database, Chat/Life serving, or
 the paused Integration candidate; warnings remain explicit and no checker was
 weakened.
 
+The clean canonical `travel-app` main checkout at `e2e792913` was also run with
+`make test-frontend`: **1,201 suites / 8,187 tests passed**, with **13 suites /
+16 tests failing** out of 1,214 suites / 8,203 tests. The failing set includes
+conversation/card contract, navigation, dev-gallery and mock-walk expectations.
+This is a frontend baseline and not a regression attribution to the A/B slices;
+it does not certify native/device behavior. Chat/Life failures remain with their
+owners and are not repaired or waived by this roadmap.
+
 #### 9.9.3 Architectural decisions proposed for this execution
 
 1. **One logical receiving path, several legitimate producers.** Public content,

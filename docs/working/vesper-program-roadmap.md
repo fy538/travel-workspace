@@ -324,6 +324,30 @@ tests, with Ruff/format/compile and hooks passing; optional `openai` (and broade
 production schema, UI, provider, Chat/Life, route or persistence behavior
 changed, and Integration remains paused.
 
+**E1 current-job read follow-up — September 9, completed:** in the existing
+Places lane, backend `9ca596a89` makes current-job owner reads authoritative at
+the root-composition execution boundary. `PortfolioSituation` remains available
+for fixtures, legacy callers, Source continuity and telemetry, but no longer
+selects runtime capabilities when exact value/current-job requests exist.
+Explicit practical origin refs are included as request-local Place subjects;
+this does not schedule unsupported routing. Evidence is 24 focused owner-read
+tests and 74 combined owner/value/portfolio tests, with compile, Ruff/format and
+diff checks passing. The root-composition service test remains unverified in the
+lane because optional `openai` (and broader `shapely`/`redis`) imports are absent;
+no workaround was used. Workspace receipt `6cc9f00` records the technical
+roadmap update. No API/schema/mobile/UI/provider/booking/DB/Chat/Life change or
+Integration wake was made.
+
+**Canonical frontend baseline — September 9:** the clean `travel-app` main
+checkout at `e2e792913` was exercised with `make test-frontend`. It produced
+**1,201 passing suites / 8,187 passing tests**, but failed **13 suites / 16
+tests** (8,203 total); the failures include existing conversation/card
+contract, navigation, dev-gallery and mock-walk expectations. This is a
+current baseline, not a regression attribution to the A/B slices and not native
+acceptance. Chat and Life remain out of scope here; the failures are recorded
+for their owning lanes rather than repaired opportunistically. The command
+completed in 283.121s with its warnings/log output retained outside the repo.
+
 <a id="sequence-and-system-checkpoints"></a>
 
 ### Execution order and event-triggered reviews
