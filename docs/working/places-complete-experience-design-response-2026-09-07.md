@@ -384,3 +384,11 @@ An audit of every vertical distance and inset in the kit and the generators, aft
 | The quote 10 under its author row | 8 |
 
 Verified on the field, the proposal frame of the journeys and the page at full size after regeneration. The boards' heights moved by a few pixels each; nothing else changed.
+
+## 31. Stages of use (September 8)
+
+Board 09 draws the same Friday in New York for one person at four points of use, side by side: first open (nothing kept, no one; the world's film leads), first week (two kept places, no friends; the kept pier leads because it is worthwhile, its keeping one mono line), settled (the current 01), and a year in (returns to five places as mono facts on the places that have them, the Sorrento understanding under the comparison, the sentence gaining one clause). A delta table below says, section by section, what appears, what leaves, and what never changes.
+
+**The rule.** Stage changes what leads and what is attributed. It never changes the composition: the same sections in the same order at every stage, the world's offering first, the person's record as facts under world places. A year in, the field must not become a diary: no sections of the person's own, and no door to the record from here. Life holds the record.
+
+**Open.** Whether a year in should surface a lapse, a place stopped going to, and where. Whether the kept possibility should lead in the first week at all when the film is the better offering; drawn as leading, per decision 1, and marked as a judgment.
