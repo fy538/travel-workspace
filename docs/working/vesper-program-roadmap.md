@@ -395,6 +395,23 @@ route package first needs an adopted owner contract and refresh/readback
 authority; until then origin-dependent claims stay unknown while ordinary Place
 value survives.
 
+**C1a Content accounting follow-up — September 9, completed:** the Content
+lane closed measured research-usage accounting across executor/thread
+boundaries. Backend implementation `10ecea2c4` snapshots usage before terminal
+DB writes, keeps uncached/cache-read/cache-creation/output classes distinct
+(including a valid zero uncached count), and scopes the direct
+`scripts/run_research.py` caller alongside queue, angle and quick-research
+paths. Test commits `25c132fc8` and `d5ee6c38a` cover executor-boundary discard
+and success, multiple calls, cache variants, absent usage, concurrent isolation,
+an async provider-error-to-discard fallback and metadata-only discard without
+private draft/source leakage. Evidence is 42 accounting tests, 5 async error
+tests and 78 adjacent regression tests;
+Ruff/format/compile, hooks and workspace docs checks passed. Experience-table
+token persistence, hard monetary reservation/settlement, paid/provider runs,
+production writes and Postgres crash/concurrency evidence remain deferred to
+C1b/C2b. No UI, Chat, Life, Social, route, schema or Integration changes were
+made; workspace receipts are `1c485df` and `8a16d54`.
+
 <a id="sequence-and-system-checkpoints"></a>
 
 ### Execution order and event-triggered reviews
