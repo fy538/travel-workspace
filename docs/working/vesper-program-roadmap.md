@@ -121,6 +121,31 @@ acquisition on ordinary root reads, exact request context, useful delivered
 content, and current eligibility. Do not call these helpers a complete system,
 restart Integration, or wait for a visual canvas to investigate this wiring.
 
+**Caller-connection round dispatched — September 9:** both existing sessions
+continue in their isolated lanes with Luna xhigh requested, owning complete
+implementation/test handbacks rather than another helper-only audit:
+
+- **Content:** connect current place scope to admitted child-entity material
+  through `home_portfolio.py` and `source_contribution_discovery.py`. Exact
+  place-only enumeration currently misses site/venue-owned primitives. Preserve
+  canonical child subjects, exact Source versions, release/eligibility gates,
+  bounded work and honest geographic versus personal relevance; prove the real
+  sparse-history producer path and correction/withdrawal behavior. Content owns
+  these discovery/producer files and necessary content-reader adapters.
+- **Places:** connect shared route evidence semantics to the existing
+  authenticated entity-situation POST/service. Reconcile its separate route
+  expiry/origin handling with the new adapter under an existing neutral owner,
+  preserving import boundaries, useful existing response semantics and Plan
+  information. Prove the actual foreground caller and retain route-backed fit
+  tests. Places owns entity-situation and route/owner-read files; it must not
+  introduce a Places-to-agent dependency or a second routing engine.
+
+These are scoped consumer implementation assignments, not Integration activation.
+No new source/provider activation, location collection, background work, shared
+runtime, Chat/Life/UI redesign, canonical landing or publishing is authorized.
+Necessary wire changes, if justified, retain normal contract synchronization and
+consumer verification. Owners coordinate specific overlaps directly.
+
 **C3a parser completion:** Strategy found that Ticketmaster normalization still
 converted raw status omission into `onsale`, bypassing the earlier writer-only
 repair. Backend `7802fe99d` preserves that omission through normalization and
