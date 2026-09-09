@@ -91,11 +91,13 @@ architecture or broad visual exploration only when observed failures justify it.
 
 ## 4. Current package register
 
-The September 8 repair assignments have stopped; an idle lane is not evidence
-that its outcome passed. The operational review found all three execution lanes
-idle and Content parked. No product lane is restarted by this process update.
-Reconcile the combined candidate under section 6 before the next native run;
-section 7 records the remaining acceptance boundary. Execution uses explicit `gpt-5.6-luna` / `xhigh`;
+The prior round is reconciled in isolated receipt `f3bd44b`, not accepted for
+release. The founder approved and Strategy dispatched one Integration-owned
+package: inspect the combined product with owner-backed data and reconcile the
+receiving/return results. Home and Life are bounded suppliers only when needed;
+Content stays parked. A distinct supported driver recovery or documented manual
+inspection may proceed; identical failed XCTest retries may not. Manual product
+evidence never substitutes for automated certification. Execution uses explicit `gpt-5.6-luna` / `xhigh`;
 reports back to Strategy use explicit `gpt-6-astra` / `high`. These settings
 configure the recipient: never select `minimal` or `none` for a short report.
 Fast mode was requested
@@ -106,7 +108,7 @@ remains the sole combined landing owner.
 
 | Accountable task / owner plan | Next bounded responsibility | Handoff |
 | --- | --- | --- |
-| **[Integration](codex://threads/01a030af-13a8-74e1-81be-7d526bec3045)** · [technical plan](complete-system-integration-roadmap-2026-09-05.md) | Next: reconcile final candidate, outstanding suppliers and evidence applicability before another run | One combined closeout and explicit next package; no identical XCTest retry |
+| **[Integration](codex://threads/01a030af-13a8-74e1-81be-7d526bec3045)** · [technical plan](complete-system-integration-roadmap-2026-09-05.md) | Active outcome owner: stabilize candidate, establish inspection method, verify owner-backed Home/Places receiving and supported Life return | One reconciled assessment of useful output, remaining effort and exact evidence gaps |
 | **[Content](codex://threads/01a07c63-5ebe-71d2-9cb0-314ec4e06963)** · [supply plan](recommendation-world-supply-architecture-and-roadmap-2026-09-07.md) | Parked: backend `870d83d94` / receipt `7dc6875` ready for review | Integration uses existing records before requesting more supply |
 | **[Home](codex://threads/01a06f87-e648-74d2-a0ae-f0adb305e44c)** · [consumer map](home-connected-experience-implementation-map-2026-09-04.md) | Paused after repairs; latest Home/Places native portfolio and owner-backed receiving remain incomplete | Final commit/coverage handoff; next run only on agreed candidate |
 | **[Life](codex://threads/01a06ecc-1a79-74a1-9c47-9f24461313ea)** · [replacement plan](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md) | Paused: target repair integrated in acceptance, focused tests pass; native replay hit driver failure | Preserve genuine-unavailable tests and exact unverified native boundary |
@@ -222,18 +224,22 @@ product direction after at most three integrated packages or a material conflict
 
 ## 7. Current acceptance round — dispatched September 8
 
-**Operational closeout recheck:** acceptance app is clean at `8c9422342`;
-its prior Life target repair is `99daf978e`. The last Integration receipt
-`a392428` predates Home's final report, so the round still needs one reconciled
-closeout, not another automatic native retry. Home reports a later 6/7 capture
+**Reconciled closeout and next outcome:** the inspected isolated tuple is clean
+workspace `f3bd44b`, backend `4b30edeb2`, app `8c9422342`; the Life target repair
+is `99daf978e`. Receipt `f3bd44b` reconciles the later Home report with Integration's
+earlier closeout. Home reports a later 6/7 capture
 with a quiet assertion failure; the earlier 7/7 pass is historical fixture
 evidence. Places repairs advanced the flows but the final assertion revision
 has no native pass. Life's 18 focused tests pass; XCTest failed before native
 assertions after bounded recovery. Content is owner-backed at the HTTP boundary,
 not native receiving. Runtime is reported stopped. These are execution/evidence
-boundaries, not production acceptance. The next operational assignment is a
-candidate/evidence reconciliation in the existing Integration receipt; no product
-lane or simulator is restarted by this document edit.
+boundaries, not production acceptance. The newly dispatched package first fixes
+candidate-generated status drift and genuinely stale test expectations, then
+performs supported native or documented manual inspection on a stable tuple.
+It must include actual owner-backed receiving (not just HTTP or mock postures),
+fair same-area context comparisons, exact depth/original return and supported
+Life valid/missing-target behavior. Integration may request bounded supplier
+help without restarting whole lane roadmaps; one closeout returns to Strategy.
 
 **First inspection is complete, not product acceptance.** Isolated receipt
 `309b65e` records Home's 7/7 mock posture pass, Places' three failed paths plus
