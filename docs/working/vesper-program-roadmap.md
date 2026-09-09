@@ -195,6 +195,24 @@ work; no provider, UI, source activation, main landing or Integration restart
 follows. Semantic/time retrieval and the broader C4b/C5a/C6a boundaries remain
 unfinished.
 
+**Independent temporal-consumer repair dispatched — September 9:** Places
+continues in its existing practical-judgment lane. The current
+`/api/places/map` already accepts explicit dates without a Trip, but
+`get_discover_map_experiences` compares `starts_at <= date_to` directly against
+a date. This inspected boundary can omit later events on the final requested
+day; existing connected cases do not test that edge. The owner must reproduce
+it, repair complete calendar-window handling through the actual map reader,
+and verify authoritative timezone/default-day semantics, spatial scope,
+historical requests and unchanged recurring/on-demand browse behavior. Reuse
+existing time owners; do not invent a timezone, occurrence or second event
+engine. `load_place_experience_previews` already supplies a local-window helper
+but has no production caller; its existence is neither a complete temporal
+consumer nor permission to widen the API. Places owns the map/entity query
+and temporal tests, disjoint from Content's Source hydration files. Use its
+own manifest/runtime and finish the implementation plus connected evidence in
+one handback. No design, Trip creation, UI change, provider acquisition or
+Integration restart is required or authorized by this repair.
+
 **C3a parser completion:** Strategy found that Ticketmaster normalization still
 converted raw status omission into `onsale`, bypassing the earlier writer-only
 repair. Backend `7802fe99d` preserves that omission through normalization and
