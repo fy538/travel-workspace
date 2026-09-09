@@ -32,6 +32,35 @@ runtime, landing, publishing or pending product agreement is activated.
 Earlier dispatch and review entries below preserve the execution history.
 Section 7 preserves the older acceptance scope as history.
 
+**Next consumer package — September 9: retained readings in Places search.**
+The C4b audit found that the actual authenticated Places search response carries
+catalog rows, while the retained-content reader has no corresponding typed
+search-result destination. This is an implementation gap, not a reason to
+reopen the existing Places direction: the four-root contract permits spatially
+anchored Sources/compositions, and the Places handoff's exploration contract
+already includes explanations, reading destinations and search continuation.
+Content owns an isolated cross-repository package connecting eligible retained
+readings to that actual search route and the existing mobile Source/detail
+destination, preserving catalog search and context on return. Reuse current
+renderers; do not settle new visual composition or create another detail system.
+
+Use the existing bounded structured/lexical owner reader and current public,
+review, evidence, rights, freshness and release gates. Preserve their default
+posture: this assignment does not activate supply or semantic serving. The
+response must distinguish a reading from a catalog entity, carry exact owner
+identity/revision, and support an honest empty or independently failed reading
+branch without losing valid catalog results. Verify real route-to-owner reads,
+correction/withdrawal exclusion, schema generation, mobile selection and return;
+record native evidence separately if unavailable. No Chat/Life changes, new
+permissions, retention, editorial reuse, provider work, landing or publishing.
+
+This completes the receiving contract needed by broader C4b; lexical matching
+is not a substitute for semantic retrieval or evidence that C4b is finished.
+The semantic index remains non-runtime pending its separately reviewed reader
+and activation boundary. The audit used an older lane roadmap copy for part of
+its recommendation; current program/policy instructions must be read from this
+canonical workspace, while implementation stays in the isolated lane.
+
 **Latest September 9 continuation:** isolated Content PostgreSQL is now
 provisioned and the existing Foundry transaction guarantees have connected
 evidence. Backend `bcafb2146` adds same-run replay, immutable evidence conflict,
