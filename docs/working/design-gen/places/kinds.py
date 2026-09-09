@@ -23,23 +23,30 @@ def identity_map(h=150):
 def verdict(claim, basis):
     return f'<div style="{SERIF} font-size: 20px; line-height: 26px; color: {INK};">{claim}</div>' + fn(basis, 6)
 def hours_register(rows, change=None):
-    out = '<div style="display: flex; flex-direction: column;">' + ''.join(f'<div style="display: flex; gap: 12px; align-items: baseline; padding: 7px 0; border-top: 1px solid {HAIR7};"><span class="fn" style="width: 96px; flex: none; color: {ANCHOR};">{k}</span><span style="font-size: 14px; line-height: 19px; color: {INK};">{v}</span></div>' for k, v in rows) + '</div>'
+    out = '<div style="display: flex; flex-direction: column;">' + ''.join(f'<div style="display: flex; gap: {LABEL_GAP}px; align-items: baseline; padding: {ROW_PAD}px 0;{"" if i == 0 else " border-top: 1px solid " + HAIR7 + ";"}"><span class="fn" style="width: {LABEL_W}px; flex: none; color: {MUTE};">{k}</span><span style="font-size: 14px; line-height: 19px; color: {INK};">{v}</span></div>' for i, (k, v) in enumerate(rows)) + '</div>'
     if change: out += f'<div style="margin-top: 8px; padding: 10px 14px; border-radius: 12px; background: {CARD}; border: 1px solid {HAIR}; display: flex; gap: 12px; align-items: center;"><span style="{MONO} font-weight: 700; font-size: 11px; letter-spacing: 1.15px; color: {OX}; flex: none;">CHANGED</span><div style="font-size: 13px; line-height: 18px; color: {INK2};">{change}</div></div>'
     return out
 def relationship_trace(t, sub): return f'<div style="display: flex; gap: 10px; align-items: flex-start;"><span style="width: 7px; height: 7px; border-radius: 4px; background: {UMBER}; flex: none; margin-top: 6px;"></span><div><div style="font-size: 14px; line-height: 19px; color: {INK};">{t}</div>{fn(sub, 3)}</div></div>'
 def horizon_doors(items):
-    return '<div>' + ''.join(f'<div style="display: flex; gap: 14px; align-items: center; padding: 10px 0;{"" if i else " border-top: 0;"} border-top: 1px solid {HAIR7};"><span class="fn" style="width: 72px; flex: none; color: {GOLDD};">{k}</span><span style="font-size: 14px; line-height: 19px; color: {INK}; flex: 1;">{t}</span>{ARROW()}</div>' for i, (k, t) in enumerate(items)) + '</div>'
+    return f'<div style="margin-top: {SP["m"]}px;">' + ''.join(f'<div style="display: flex; gap: {LABEL_GAP}px; align-items: flex-start; padding: {ROW_PAD}px 0;{"" if i == 0 else " border-top: 1px solid " + HAIR7 + ";"}"><span class="fn" style="width: {LABEL_W}px; flex: none; color: {GOLDD}; margin-top: 4px;">{k}</span><span style="font-size: 14px; line-height: 19px; color: {INK}; flex: 1;">{t}</span><span style="margin-top: 3px;">{ARROW()}</span></div>' for i, (k, t) in enumerate(items)) + '</div>'
 def possibility_row(name, line, when):
-    return f'<div style="display: flex; gap: 14px; align-items: center;">{glyph_plate("", 56)}<div style="flex: 1; min-width: 0;">{title(name, 16, 21)}<div style="font-size: 13px; line-height: 18px; color: {MUTE};">{line}</div>{fn(when, 3)}</div>{CHEV}</div>'
+    """A nearby possibility: one reason and one burden, as a row on the same edge as the rows below it. No plate: a hatched slot with nothing to show does not earn 56 pixels."""
+    return f'<div style="display: flex; gap: 12px; align-items: flex-start; padding: {ROW_PAD}px 0;"><div style="flex: 1; min-width: 0;">{title(name, 16, 21)}<div style="font-size: 13px; line-height: 18px; color: {MUTE}; margin-top: 2px;">{line}</div>{fn(when, 3)}</div><span style="margin-top: 4px;">{CHEV}</span></div>'
 def stub(name, known, last_line='Nothing more is known about it yet.'):
     return title(name, 17, 22) + sup(known) + f'<div style="font-size: 13px; line-height: 18px; color: {MUTE}; margin-top: 8px; padding-top: 8px; border-top: 1px solid {HAIR7};">{last_line}</div>'
 # ── path ──
 def evidence_apparatus(kick_t, items):
     return kick(kick_t) + '<div style="display: flex; flex-direction: column; gap: 6px; margin-top: 8px;">' + ''.join(f'<div style="display: flex; gap: 12px; align-items: baseline;"><span style="{SERIF} font-size: 18px; font-weight: 600; color: {GOLDD}; width: 16px; flex: none;">{i+1}</span><span style="font-size: 14px; line-height: 19px; color: {INK};">{t}</span></div>' for i, t in enumerate(items)) + '</div>'
 def consequence(kick_t, t, door_t=None): return kick(kick_t) + f'<div style="margin-top: 8px;">{serifline(t, 16, 22)}</div>' + (door(door_t) if door_t else '')
-def next_rows(items): return '<div>' + ''.join(f'<div style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid {HAIR7};"><span style="font-size: 14px; line-height: 19px; color: {INK}; flex: 1;">{t}</span>{ARROW()}</div>' for t in items) + '</div>'
+def next_rows(items, places=True):
+    """Typed next steps. Places open with a chevron; continuations with an arrow."""
+    mark = CHEV if places else ARROW()
+    return '<div>' + ''.join(f'<div style="display: flex; align-items: center; gap: 12px; padding: {ROW_PAD}px 0; border-top: 1px solid {HAIR7};"><span style="font-size: 14px; line-height: 19px; color: {INK}; flex: 1;">{t}</span>{mark}</div>' for t in items) + '</div>'
 # ── live ──
-def burden_receipt(kick_t, k, v): return f'<div style="padding: 12px 14px; border-radius: 12px; background: {CARD}; border: 1px solid {HAIR};"><div class="kickm" style="color: {GOLDD};">{kick_t}</div><div style="display: flex; gap: 12px; align-items: baseline; margin-top: 6px;"><span class="fn" style="color: {ANCHOR}; width: 64px; flex: none;">{k}</span><span style="font-size: 14px; line-height: 19px; color: {INK};">{v}</span></div></div>'
+def burden_receipt(kick_t, k, v):
+    """The receipt is a card; its label column is the page's, less the card's own padding, so its value sits on the same edge as the rows above."""
+    pad = 14
+    return f'<div style="margin-top: {SP["m"]}px; padding: 12px {pad}px; border-radius: 12px; background: {CARD}; border: 1px solid {HAIR};"><div class="kickm" style="color: {GOLDD};">{kick_t}</div><div style="display: flex; gap: {LABEL_GAP}px; align-items: baseline; margin-top: 8px;"><span class="fn" style="color: {MUTE}; width: {LABEL_W - pad}px; flex: none;">{k}</span><span style="font-size: 14px; line-height: 19px; color: {INK};">{v}</span></div></div>'
 def live_fallback(kick_t, t): return kick(kick_t) + f'<div style="margin-top: 8px;">{serifline(t, 16, 22)}</div>'
 def temporal_posture(state, line, dot=None):
     col = {'HOLD': GOLD, 'ACT NOW': OX, 'DONE': INK}.get(state, GOLD)

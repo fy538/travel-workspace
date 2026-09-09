@@ -357,3 +357,14 @@ Checked and left alone: the people rows' two-line wrap under the disc, which is 
 **The page's missing states.** 08 now has six states in two rows. Pending keeps what the seed already gives (identity, the slot, the map, the trace) and draws ghost rows where the register and the reasons will be; no verdict is invented. The listing unreachable dates every fact as last seen and says so in the basis; the posture holds and the fallback names the two honest moves, go on the hours last seen or ask Maya. Closed for good re-reads the verdict, drops the crossing and the read-up door, keeps the keeping in the record as closed, and asks nothing of the person.
 
 **Copy and the 1.3× checks elsewhere.** The opening's sentence gives up the times the instrument already shows and is two sentences again, populated and cold. 04 gains a row of 1.3× checks beyond the field: the page, a journey frame (the question typed) and a situation (Sorrento). Instruments keep their size and their labels at the mono floor; chips, rows and registers grow and wrap; nothing truncates. To watch: the page's two-column comparison narrows to about 150 pixels a column at 1.3×.
+
+## 29. Spacing and padding (September 8)
+
+The founder asked what was wrong in two fragments of the page, "Near it" and "Getting there". The diagnosis, and the fix in the kit:
+
+| Fragment | The fault | The rule now |
+| --- | --- | --- |
+| Near it | Two trailing marks in one group (a chevron, then arrows); three left edges (a plate indenting one row, none on the rest); no padding at the seam; an orphaned word | Chevron for rows that open a place, arrow only for doors; the possibility row drops its plate and sits on the rows' edge; every row 10 above and below; one-line copy |
+| Getting there | Three label columns that almost matched (72, 64, and a card's padding); a hairline on the first row crowding the strip; gaps of 8, 0 and 14 in one section; 7-pixel rows in the register beside 10-pixel rows elsewhere | One label column at 72 with a 14 gap, shared by horizon rows, the hours register and the receipt, whose inner label shrinks by the card's padding so values align; the first row of any group has no top hairline; 12 below an instrument; rows at 10 |
+
+The fault underneath was the absence of a scale: paddings and gaps set by eye per component, each fine alone and wrong beside its neighbour. The kit now declares the only vertical distances (4, 8, 12, 16, 24, 36), one row padding, and one label column, and the components read them.

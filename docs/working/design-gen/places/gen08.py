@@ -35,7 +35,7 @@ def page(state='populated'):
     else: inner += gut(relationship_trace('Not kept, not visited.', 'NOTHING YET'), top=18)
     if not gone:
         inner += sect('Getting there') + gut(burden_strip('TO PIER 11', 'THE FERRY · 25 MIN · EVERY 40', '9 MIN ON FOOT', '~40') + horizon_doors([('ACCESS', 'The ferry against the B61: what each asks of the afternoon'), ('AROUND', 'The pier and the pool, from the landing')]))
-        if not pending: inner += gut(burden_receipt('WHAT THE CROSSING ASKS', 'ON FOOT', '9 minutes from the landing, level, exposed along the water'), top=14)
+        if not pending: inner += gut(burden_receipt('WHAT THE CROSSING ASKS', 'ON FOOT', '9 minutes from the landing, level, exposed along the water'))
     if pending:
         inner += gut('<div style="height: 36px;"></div>' + ghost_rows(2), top=0)
     elif gone:
@@ -49,7 +49,7 @@ def page(state='populated'):
         else: inner += sect('Today') + gut(temporal_posture('HOLD' if not changed else 'ACT NOW', 'Nothing needs booking. The ferry is every 40 minutes; the workshop holds no times.' if not changed else 'Sunday is the last day; the 11:20 ferry puts you upstairs by noon.', 'NOTHING TO CONFIRM' if not changed else 'SUNDAY, THE LAST DAY'))
         inner += gut(live_fallback('IF THE EXHIBITION IS TICKETED AND SOLD OUT' if not unavailable else 'IF THE LISTING STAYS UNREACHABLE', 'The workshop floor is open without a ticket; the pier and the pool are the afternoon.' if not unavailable else 'Go on the hours last seen, or ask Maya; the crossing is the same either way.'), top=16)
     if not pending:
-        inner += sect('Near it') + gut(possibility_row('The Red Hook pool, before', 'Lap swim, then the Print Room when it opens' if not gone else 'Lap swim, then the pier', 'SATURDAY 7–8:30 AM · BRING A LOCK') + next_rows(['The pier, faces the harbor and the Statue', 'The lunch counter on Columbia Street, till 4']))
+        inner += sect('Near it') + gut(possibility_row('The Red Hook pool, before', 'Lap swim, then the Print Room at 11' if not gone else 'Lap swim, then the pier', 'SATURDAY 7–8:30 AM · BRING A LOCK') + next_rows(['The pier, faces the harbor and the Statue', 'The lunch counter on Columbia Street, till 4'], places=True))
     inner += gut(door_list((['Read up on Rooms Remade'] if not gone else []) + ['Back to Red Hook']), top=24)
     return phone(inner)
 def board():

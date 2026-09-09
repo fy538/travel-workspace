@@ -16,6 +16,9 @@ CARD='#FBF7EC'; WASH='#E8E2D4'; WATER='#3D5066'; PAPER='#EFEAE0'; BOARD='#F4F0E7
 MONO="font-family: 'JetBrains Mono', ui-monospace, monospace;"; SERIF="font-family: 'EB Garamond', Georgia, serif;"; SANS="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;"
 HAIR='rgba(27,23,20,0.10)'; HAIR7='rgba(27,23,20,0.07)'; HAIR6='rgba(27,23,20,0.06)'
 HATCH='repeating-linear-gradient(135deg, rgba(176,133,58,0.12) 0 6px, rgba(176,133,58,0.04) 6px 12px)'
+SP = dict(xs=4, s=8, m=12, l=16, xl=24, sect=36)   # the only vertical distances
+LABEL_W, LABEL_GAP = 72, 14                         # one label column for registers, horizon rows and receipts
+ROW_PAD = 10
 CHEV='<svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="flex: none;"><path d="M4.5 2.5L9 6.5L4.5 10.5" stroke="#B5AFA5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 ARROW=lambda c=GOLDD: f'<svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="margin-left: 6px;"><path d="M2 6.5H10M6.5 3L10 6.5L6.5 10" stroke="{c}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 MAPI='<svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex: none;"><path d="M3 6.5L8 4.5L12 6.5L17 4.5V13.5L12 15.5L8 13.5L3 15.5V6.5Z" stroke="#6E6862" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 4.5V13.5M12 6.5V15.5" stroke="#6E6862" stroke-width="1.5"/></svg>'
@@ -65,7 +68,7 @@ def facepile(letters, size=28, tuck=-8):
 def arow(text, avatars=None, last=False, muted=False):
     lead = facepile(avatars, 28, -8) if avatars else f'<span style="width: 7px; height: 7px; border-radius: 4px; background: {MUTE}; flex: none;"></span>'
     bb = f' border-bottom: 1px solid {HAIR6};' if last else ''
-    return f'<div class="row" style="padding: 8px 0;{bb}">{lead}<span style="font-size: 15px; line-height: 20px; flex: 1; color: {MUTE if muted else INK};">{text}</span>{CHEV}</div>'
+    return f'<div class="row" style="padding: {ROW_PAD}px 0;{bb}">{lead}<span style="font-size: 15px; line-height: 20px; flex: 1; color: {MUTE if muted else INK};">{text}</span>{CHEV}</div>'
 def dim(t): return f'<span style="color: {MUTE};">{t}</span>'
 def author_row(letter, who, when): return f'<div style="display: flex; align-items: center; gap: 10px;"><span style="width: 28px; height: 28px; border-radius: 14px; background: {INK}; color: {CARD}; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex: none;">{letter}</span><span style="font-size: 13px; font-weight: 600; color: {INK};">{who}</span><span class="fn" style="color: {MUTE};">{when}</span></div>'
 def quote(t, size=18, lh=25): return f'<div style="{SERIF} font-size: {size}px; line-height: {lh}px; color: {INK}; margin-top: 10px;">&ldquo;{t}&rdquo;</div>'
