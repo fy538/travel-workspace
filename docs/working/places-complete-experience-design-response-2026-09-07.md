@@ -404,3 +404,5 @@ The founder judged the data-driven chart of §26 still a toy: true geometry, but
 **C is chosen.** It is the canon's day band applied to the whole day, so it reads as the same instrument family as the evening's band on 02. A says more but is still three bars; B keeps a shape that carries nothing the wash does not. Positions come from the times; the sentence under it carries the rest. Applied to 01, 03, 07 and 09 and to the field frames on 02 and 04. The two-curve chart and the reduced arc remain in the renderer.
 
 **Still to source from data, not to redesign:** the ground sections and the map, which need terrain and map data to look like ground and streets.
+
+**Addendum to §32.** The founder asked for the low water as an overlapping bar rather than a bracket, and for the ink pill to say what it is. The day line now carries two overlapping bars on one track, the light in gold from sunrise to sunset and the water in blue for the low-water window, offset by a few pixels so both read where they overlap in the afternoon. The film's pill is labelled "Film 8:30". Three labels: the pier and sunset above, low water and the film below, anchored so none touch.

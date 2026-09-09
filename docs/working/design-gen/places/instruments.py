@@ -125,12 +125,14 @@ def pier_arc_small(rise='6:31', set_='19:04', plan=('18:30', '19:04'), after=('2
     svg += f'<path d="M{ax.x(l0):.1f} {base+8} v6 h{ax.x(l1)-ax.x(l0):.1f} v-6" stroke="{WATER}" stroke-width="1.5" fill="none"/>'
     svg += L(ax.x(p0) - 8, sun_y(p0, r, s_, top, base) - 2, f'THE PIER · SUNSET {fmt(s_)}', GOLDD, True, 'end') + L((ax.x(l0) + ax.x(l1)) / 2, base + 26, f'LOW WATER {fmt(l0)}–{fmt(l1)}', WATER, True, 'middle')
     return svg + '</svg>'
-def pier_line(rise='6:31', set_='19:04', plan=('18:30', '19:04'), after=('20:30', '22:00'), low=('14:40', '17:00'), t0=6, t1=23, h=52):
-    """One line: the day. Light as a gold wash on the line from sunrise to sunset; the pier as the gold pill; the film as ink; low water as a bracket below. Two labels, mono."""
-    ax = Axis(t0, t1, 2, 347); r, s_, p0, p1, a0, a1, l0, l1 = map(hm, (rise, set_, plan[0], plan[1], after[0], after[1], low[0], low[1])); y = 22
+def pier_line(rise='6:31', set_='19:04', plan=('18:30', '19:04'), after=('20:30', '22:00'), low=('14:40', '17:00'), t0=6, t1=23, h=62):
+    """One track, the day. Two overlapping bars: the light (gold wash, sunrise to sunset) and the water (a water bar for the low-water window), offset so both read where they overlap.
+    The pier is the gold pill at the light's end; the film is the ink pill after dark, labelled. Three labels, mono."""
+    ax = Axis(t0, t1, 2, 347); r, s_, p0, p1, a0, a1, l0, l1 = map(hm, (rise, set_, plan[0], plan[1], after[0], after[1], low[0], low[1])); y = 26
     svg = f'<svg width="349" height="{h}" viewBox="0 0 349 {h}" fill="none" style="display: block; width: 100%; height: auto; margin-top: 8px;">'
-    svg += f'<rect x="2" y="{y-4}" width="345" height="8" rx="4" fill="rgba(27,23,20,0.07)"/><rect x="{ax.x(r):.1f}" y="{y-4}" width="{ax.x(s_)-ax.x(r):.1f}" height="8" rx="4" fill="rgba(176,133,58,0.28)"/>'
-    svg += f'<rect x="{ax.x(p0):.1f}" y="{y-8}" width="{ax.x(p1)-ax.x(p0):.1f}" height="16" rx="8" fill="{GOLD}"/><rect x="{ax.x(a0):.1f}" y="{y-6}" width="{ax.x(a1)-ax.x(a0):.1f}" height="12" rx="6" fill="{INK}" opacity="0.8"/>'
-    svg += f'<path d="M{ax.x(l0):.1f} {y+12} v5 h{ax.x(l1)-ax.x(l0):.1f} v-5" stroke="{WATER}" stroke-width="1.5" fill="none"/>'
-    svg += L(ax.x(p0) - 8, y - 10, f'THE PIER · SUNSET {fmt(s_)}', GOLDD, True, 'end') + L((ax.x(l0) + ax.x(l1)) / 2, y + 30, f'LOW WATER {fmt(l0)}–{fmt(l1)}', WATER, True, 'middle')
+    svg += f'<rect x="2" y="{y-4}" width="345" height="8" rx="4" fill="rgba(27,23,20,0.07)"/>'
+    svg += f'<rect x="{ax.x(r):.1f}" y="{y-6}" width="{ax.x(s_)-ax.x(r):.1f}" height="8" rx="4" fill="rgba(176,133,58,0.30)"/>'
+    svg += f'<rect x="{ax.x(l0):.1f}" y="{y-1}" width="{ax.x(l1)-ax.x(l0):.1f}" height="8" rx="4" fill="rgba(61,80,102,0.45)"/>'
+    svg += f'<rect x="{ax.x(p0):.1f}" y="{y-9}" width="{ax.x(p1)-ax.x(p0):.1f}" height="16" rx="8" fill="{GOLD}"/><rect x="{ax.x(a0):.1f}" y="{y-7}" width="{ax.x(a1)-ax.x(a0):.1f}" height="12" rx="6" fill="{INK}" opacity="0.8"/>'
+    svg += L(ax.x(p0) - 8, y - 12, f'THE PIER · SUNSET {fmt(s_)}', GOLDD, True, 'end') + L(ax.x(l1), y + 24, f'LOW WATER {fmt(l0)}–{fmt(l1).split(":")[0]}', WATER, True, 'end') + L(347, y + 24, f'FILM {fmt(a0)}', INK, True, 'end')
     return svg + '</svg>'
