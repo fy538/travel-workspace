@@ -4,7 +4,7 @@ from kinds import returned_understanding
 import instruments as I
 import gen19v3 as g
 def opening(stage):
-    day = I.pier_day(plan=('18:30', '19:04', 'THE PIER'), after=('20:30', '22:00', 'THE FILM'))
+    day = I.pier_line()
     if stage == 1:
         k = kick('SATURDAY AT THE PIER · FREE'); line = serifline('Playtime on the lawn at 8:30, free; the sunset from the west pier first, at 7:04.'); f = fn('TATI&rsquo;S CITY OF GLASS · GET THERE AT EIGHT FOR A SPOT · RAIN PLAN NOT POSTED', 8); d = doors(('Saturday&rsquo;s film', GOLDD))
     elif stage == 2:

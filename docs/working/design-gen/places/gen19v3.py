@@ -17,7 +17,7 @@ def top(populated=True):
     else: out += orientation('Playtime on the lawn by the pier. Saturday, 8:30.', 'Free · Sunset Park · the pier at sunset first, 7:04 · Red Hook by ferry, Saturday or Sunday')
     return out + ask()
 def lead_composition(populated=True):
-    day = I.pier_day(plan=('18:30', '19:04', 'THE PIER'), after=('20:30', '22:00', 'THE FILM'))
+    day = I.pier_line()
     if populated:
         inner_ = kick('SATURDAY AT THE PIER · KEPT WITH MAYA') + day + f'<div style="margin-top: 10px;">{serifline("Sunset from the west pier at 7:04; it turns cold fast. The lawn is nine minutes on, the film at 8:30.")}</div>'
         inner_ += fn('MAYA, TUESDAY · &ldquo;TUESDAY, SEVEN.&rdquo;', 8) + f'<div style="margin-top: 8px;">{doors(("The pier, with Maya", GOLDD), ("Reply to Maya", MUTE))}</div>'

@@ -392,3 +392,15 @@ Board 09 draws the same Friday in New York for one person at four points of use,
 **The rule.** Stage changes what leads and what is attributed. It never changes the composition: the same sections in the same order at every stage, the world's offering first, the person's record as facts under world places. A year in, the field must not become a diary: no sections of the person's own, and no door to the record from here. Life holds the record.
 
 **Open.** Whether a year in should surface a lapse, a place stopped going to, and where. Whether the kept possibility should lead in the first week at all when the film is the better offering; drawn as leading, per decision 1, and marked as a judgment.
+
+## 32. The pier's day, redesigned (September 8)
+
+The founder judged the data-driven chart of §26 still a toy: true geometry, but 224 pixels, nine labels, two curves and an axis, against a canon that draws instruments at 44 to 70 pixels with few marks and two labels. Three candidates were drawn beside it on the same data:
+
+- **A, three tracks.** Light, water and plan as three bars on one axis; the low-water window as a gap in the water band. 76 pixels, two labels.
+- **B, the arc reduced.** The sun as a thin arc with a gold end, the film as ink on the baseline, low water as a bracket. 72 pixels, two labels.
+- **C, one line.** The whole day as one track: the light as a gold wash from sunrise to sunset, the pier as the gold pill at its end, the film as ink after dark, low water as a bracket below. 52 pixels, two labels.
+
+**C is chosen.** It is the canon's day band applied to the whole day, so it reads as the same instrument family as the evening's band on 02. A says more but is still three bars; B keeps a shape that carries nothing the wash does not. Positions come from the times; the sentence under it carries the rest. Applied to 01, 03, 07 and 09 and to the field frames on 02 and 04. The two-curve chart and the reduced arc remain in the renderer.
+
+**Still to source from data, not to redesign:** the ground sections and the map, which need terrain and map data to look like ground and streets.
