@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Integration task
 created: 2026-09-05
-last_verified: 2026-09-08
+last_verified: 2026-09-09
 expires: 2026-10-05
 why_new: Rebaselines the post-pivot system around the real-world live engine and four surfaces, with code-backed correction priorities, explicit Life ownership, bounded Luna delegation, and recurring architectural and product reassessment.
 supersedes:
@@ -25,7 +25,400 @@ depends_on:
 
 # Complete-system integration roadmap
 
-## Current execution queue — program-aligned September 8
+## Current engineering tranche — September 9
+
+**A/B dispatched September 9; Integration is PAUSED by the founder.** The current
+[program register](vesper-program-roadmap.md#4-current-package-register) owns
+assignment, exact isolated checkouts and the dispatch evidence boundary. This
+section details two longer implementation
+packages that can advance while the six design projects settle. It replaces
+the September 8 queue as forward scope, not its outstanding acceptance evidence.
+The founder's subsequent “Let's do all” authorized the two implementation
+assignments and local verification/commits. No shared runtime, merge, publication,
+production flag or pending policy is activated by that dispatch.
+
+**Velocity refinement, September 9:** package owners finish substantial consumer
+capabilities with local verification and direct dependency exchange. The
+[program's event-triggered review rules](vesper-program-roadmap.md#execution-order-and-event-triggered-reviews)
+replace older fixed checkpoints and “after three integrated packages” cadence
+throughout this document. Continuous compatibility is required; a recurring
+combined-build/acceptance ceremony is not. Landing readiness, authorized landing
+and product acceptance are separate. Existing required gates and unfinished
+evidence remain; the Integration pause is unchanged.
+
+### Aim and inspected foundation
+
+Build the capabilities that make the design possible: exact useful receiving,
+continuity and supported practical judgment across roots. Do not restart the
+old acceptance exercise before the relevant implementation exists, or replace it
+with another infrastructure-only round. Architecture serves the whole behavior
+portfolio; a narrowly successful loop is not a prerequisite to system thinking.
+
+September 9 source inspection at backend `a7c02cbe1` and app `e2e792913` found:
+
+- `backend/api/services/root_composition.py::compose_root_projection` already
+  joins treatment/action binding, owner reads, value assessment, selection and
+  delivery. `current_job_owner_reads` and
+  `portfolio_reads.py::compile_current_job_owner_read_requests` exist; situation
+  labels still have other consumers. Do not repeat the old “build current-job
+  reads” package or declare all scenario coupling removed by its existence.
+- Source submission and exact result retrieval are already connected to mobile;
+  `hooks/useSourceContributionResult.ts` separates reads from submission and
+  does not silently resubmit failed/unavailable work.
+- `delivery_exposure.py` separates exposure from stronger receipt signals;
+  `known_to_person.py` is a bounded lexical check, not general semantic knowledge.
+  Composition and Source telemetry already exist.
+- `value_composition.py::_assess_practical_claim` currently admits only
+  `place.open_now` in this shared path. Other practical questions become unknown.
+  Route/movement specialists elsewhere do not automatically make root visit-fit
+  claims supported.
+- `objectPageProjection.ts` ranks facts using viewer context, but
+  `composeObjectBodyBlocks` receives presentation/research, not that context.
+  Exact identity and contextual facts can be improved without selecting a new
+  body layout or generating on read.
+- Life maintenance and renderer-neutral organization readers exist; their
+  internal availability does not approve indexed serving, inferred occurrence,
+  new source retention or Atlas retirement.
+
+These are source observations, not fresh test/native results. The program records
+the complete revision tuple and dirty-tree boundary. Relevant branch-local cuts
+must be inspected for ancestry and compatibility before adoption, not assumed
+present because another task reported completion.
+
+### Six-project design-to-capability map
+
+Use the leading September 9 assignments in the [six-project consolidation](vesper-five-project-design-consolidation-2026-09-08.md#current-handoff-map--september-9),
+not every historical critique or canvas as an implementation requirement. These
+are design-derived requirements and sequencing recommendations, not a new claim
+that the current code or all exported treatments have been verified. At intake,
+name the actual missing behavior and selected reference; reuse what is already
+implemented. A component index is neither a display quota nor a backlog to port
+one-for-one. Six projects inform two current packages and later capability work,
+not six engineering teams or a universal UI engine.
+
+| Design and received benefit | Work in the current packages | Narrow dependency or later capability |
+| --- | --- | --- |
+| **[Home](vesper-home-design-review-2026-09-08.md):** substantial receiving in ordinary life—understanding, worthwhile possibilities, human originals and practical help, not a task dashboard | A completes supported depth/original/return, preserves varied existing semantic treatments and bounded repeat-open supply. B contributes relevant judgment without suppressing independent content. Use the actual same-source Home 14/Places 03 comparison, not an assumed match. | Final headline/card/section hierarchy follows selected design deltas; do not freeze all consumer work. Greater supply breadth requires a named coverage/cost gap, not bespoke generation or a freshness quota. Rich scrolls and finite completion can both be valid. |
+| **[Places](vesper-places-design-review-2026-09-08.md):** a substantial world-facing field, including causal/cultural connections, human perspectives and useful arrival/access comparisons | A preserves exact explanations, sources and place destinations; B connects supported visit/window/access facts and changed-purpose judgment. Do not encode the export's blanket Home-only discovery exclusion. | The shared Entity/Places reading needs a selected purpose-responsive treatment. Preserve existing useful access depth; do not prematurely flatten it into two facts or add an explanation to every original. |
+| **[Life](claude-design-life-canonical-project-handoff-2026-09-06.md):** exact entrusted material, factual reconstruction and useful continuity through Time/Places/Threads/People | A completes supported reader/query/origin restoration and source correction, distinguishing capture time from current arrangements. An exact-ticket request should not require browsing an inventory first. | Ordinary-interest continuation can use already authorized material; inferred progress and new history retention cannot. Broader lens coverage/indexed serving and retirement need their own bounded implementation/adoption scope, not a new archive or logging ritual. |
+| **[Social](claude-design-social-experience-project-handoff-2026-09-07.md):** original-first enjoyment, low-pressure connection and offline hospitality with asymmetric effort | A supports the existing permitted original route, attribution and exact return; preserve human Reply and private Ask where supported, with no required Keep or reciprocal contribution. B evaluates participant costs using the right person's evidence. | Wider Friends/guest eligibility, fuller Home placement and new retention uses await their specific decisions. Do not import Entity's automatic use visibility or turn a casual Saturday suggestion into the recipient's agenda. Later shared benefit is not an obligation attached to every share. |
+| **[Plans](claude-design-plans-in-real-life-handoff-2026-09-04.md):** readable arrangements and practical care, before and during change | B tests the 160-minute displaced wait, arrival/next-commitment tradeoffs and useful uncertainty. A/B keep the same captured/current/changed arrangement across supported readers, without pretending an offered alternative changed a reservation. | The prepared-assistance exception to seven sentences needs a narrow decision; generalized watching/external execution remains out of scope. The later full service must include its stop/failure/return behavior, not just a drawn watch card. |
+| **[Entity](object-page-rebuild-implementation-handoff-2026-09-03.md#current-design-assignment--september-9-six-project-consolidation):** recognizable, restrained depth that helps with the actual purpose | A preserves exact subject versus original and origin-stack return. B carries discovery/visit/reservation context and supported facts into existing safe readback. Keep source identity, photography-or-none and no generation on read. | Select the purpose-responsive body/approach treatment with Places before implementing disputed anatomy. External-link interstitials are proposals, not mandatory extra screens; avoid unnecessary handoff tax without hiding real consequences. |
+
+Across these rows, the four moves are benefits, not steps or one move per root.
+Home and Places deliver value; Life organizes and reopens entrusted material;
+Chat remains the clean input/conversation surface and is not redesigned here.
+The live engine reads the relevant domain owners directly and improves fit and
+reevaluation; it must not depend on opening Life or accepting a Trip. Current
+purpose may make historical context irrelevant. Factual reconstruction and a
+friend's original need not acquire an AI interpretation to count as value.
+
+**Avoid design-to-code overreach:** a drawn state is not a shipped capability,
+selected policy or production supply. Preserve existing solved design encounters
+(Life's later cooking explanation and captured/current sequence, Social's
+original-only ending, Plans' corrected near-match and early-departure examples).
+Use them as references where their semantics are accepted, not missing-screen
+assignments. The roadmap adopts no pending design alternative.
+
+### A — Received material and continuity
+
+**Outcome:** supported material can deliver value on Home/Places, open its exact
+depth or original, return to the originating context, and appear in supported
+Life retrieval when its owner permits it. Different roots may present the same
+material differently without creating competing identities or copies.
+
+**One outcome owner:** Home session, Luna xhigh requested; exact dispatch in the
+program register. Own root receiving,
+destination/return adapters and bounded Life consumer work inside an isolated
+coordinated checkout. Existing Source/Content/Capture/Social domains keep their
+truth and grants. Consult existing owner plans; do not restart all those lanes.
+
+Carry this sequence through without stopping for approval after each substep:
+
+1. **Trace the real missing paths.** For existing public explanation, requested
+   Source result, permitted human original and a supported Life record, identify
+   producer → owner read → candidate → semantic unit → native destination →
+   return. Mark each supported, fallback, dark, branch-local or absent. Correct
+   stale roadmap assertions where code already solves the step. This trace is
+   intake within the package, not a research-only deliverable.
+2. **Complete exact receiving.** Reuse `home_source_adapters.py`, root composition,
+   `HomeRootV2UnitRenderer`, `PlacesSemanticUnitCard`, `resourceDestination.ts`
+   and existing data hooks. Keep subject, source, request and output revision
+   distinct. A card about a place must not accidentally open that place when
+   the person requested the explanation; source citations do not replace depth.
+   Replace identified fallbacks only where an actual owner reader is supported.
+   Leave genuine unavailable targets honest and recoverable.
+3. **Preserve origin and useful state.** A depth push preserves its originating
+   root, scroll/query and selected target; deliberate root crossing is a distinct
+   action. Owner labels are not tab-switch instructions. Keep pending, terminal,
+   expired and superseded exact-result behavior through reopen, refresh and
+   request cancellation under existing contracts. Do not add a second inbox,
+   worker, result store or Chat layout.
+4. **Finish bounded Life consumption and repair.** Use supported canonical
+   readers and the maintained derived projection appropriately. Trace an
+   entrusted source through legitimate formation, exact original access and
+   correction/withdrawal into affected readers/previews. Preserve late capture
+   versus occurred time, similar occasions, valid absence and another viewer's
+   grants. Do not silently route public reads through shadow organization. If a
+   needed result exists only internally, complete an explicitly non-serving
+   comparison and prepare the precise serving decision/rollback boundary; do
+   not label that portion consumer-complete or activate it.
+5. **Use existing selection/reuse machinery.** Inspect repeated opens from one
+   bounded admitted source set: unchanged, expired, updated and optionally richer
+   authorized context. Correct actual redundant delivery or identity defects;
+   do not turn rendered/opened into inferred knowledge or force novelty into
+   human originals and factual records. Home/Places must agree on source facts,
+   though their selection can differ. Use existing latency/read-count/reuse
+   telemetry; no new analytics framework or generation on every open.
+6. **Verify and self-review the whole cut.** Add affected regression/contract
+   tests, exercise the real local owner-backed request/reader path, review the
+   consumer diff and repair in-scope regressions. Follow Task Intake's parity
+   and visual requirements for changed UI. Missing native evidence remains a
+   named boundary; it does not block independent implementation or permit an
+   unsupported completion claim.
+
+**Entry evidence and focused checks:** existing backend
+`tests/api/test_root_composition_service.py`,
+`tests/api/test_practical_root_delivery.py`,
+`tests/root_projection/test_delivery_exposure.py`,
+`tests/root_projection/test_known_to_person.py`, and relevant Life owner/reader
+tests; app exact-result hooks, resource-destination and Home/Places component
+tests. Extend the appropriate existing suites for identified gaps. These are
+test selections to execute at dispatch, not claims they passed in this planning
+turn. Real-owner tests must identify any mocked provider/authority boundary.
+
+**Completion:** the chosen supported material families reach their actual
+consumer and exact return; change/withdrawal affects the appropriate dependent
+view; unrelated material survives; no extra input/Keep is required to receive a
+permitted result. Report implementation, local owner-backed, native and policy
+coverage separately. A trace, DTO, adapter or fixture screenshot alone is not
+the outcome. Finish with one coherent handback and exact remaining gaps.
+
+### B — Practical judgment and contextual projection
+
+**Outcome:** an existing supported possibility can be assessed for the intended
+visit/time window, and that assessment improves the existing receiving surface
+without accepting a watch, moving a plan or making an external reservation.
+This extends the existing live engine into ordinary preparation, not a separate
+trip-only product or another generic planner.
+
+**One outcome owner:** Places session, Luna xhigh requested; exact dispatch in the
+program register. Own the bounded practical
+assessment, relevant owner-read adapters and tests, plus contextual projection
+inputs that do not settle the pending Entity/Places layout. A owns shared root
+binding and consumer destinations; coordinate the tested interface directly.
+
+1. **Trace admitted evidence and choose the supported question.** Inspect
+   `value_composition.py`, existing `PracticalAssessment`/owner-read contracts,
+   route/movement, Place and commitment owners. Name the bounded assessment and
+   necessary subjects, origin, time/window and authority. Do not claim generic
+   `route.evaluate`, complete accessibility or universal feasibility. A new
+   operation/shared schema or consequential owner change follows Task Intake's
+   founder review; present the smallest decision once, while continuing unrelated
+   implementation. Keep proposed names out of accepted runtime contracts until
+   the required decision is resolved.
+2. **Implement supported fit, not optimistic defaults.** Combine available
+   arrival/travel, waiting, event/opening and next-commitment facts. Keep unknown
+   or contradictory evidence explicit. A place open now is not proof it is open
+   at arrival, reachable before closing or appropriate for known access needs.
+   Access facts may constrain judgment when present; absence is not an assertion
+   that access is suitable. Bound each conclusion by its own evidence lifetime.
+3. **Preserve purpose and participant cost.** Test a visit that fits, one that
+   fits only with a tradeoff, an incompatible commitment and an unknown. Include
+   the design's 160-minute displaced wait without importing another story's
+   participant constraints. Expose the cost and supported alternatives; do not
+   calculate a fictional personal utility score or invent preferences. Ask one
+   essential question only where the missing answer changes the recommendation.
+4. **Connect the actual receiving path with A.** A changed fact updates only
+   the dependent assessment/offer while explanation, saved material and human
+   originals can survive. Return the assessment through existing semantic
+   payloads and native-supported treatments, with useful uncertainty rather
+   than only removing a stale card. Keep generation/provider acquisition outside
+   ordinary root reads; explicit approved checks stay separately scoped.
+5. **Preserve purpose through Entity arrival.** Trace discovery, a specified
+   visit, an existing reservation and a friend's original. Preserve available
+   source/arrangement identity and supported contextual facts; do not implement
+   a generic personalized body generator. The design choice about paragraph
+   selection, access comparison and body anatomy remains pending. Transport and
+   existing safe readback improvements can finish before that choice.
+6. **Verify time/change/authority behavior and repair.** Extend existing practical
+   root delivery tests and relevant movement/owner tests with future/expired/
+   conflicting observations, changed departure windows and different viewers.
+   Compare no Trip, a relevant commitment and irrelevant history. Exercise the
+   assessment through an existing consumer with A, not only a pure unit function.
+
+**Completion:** the named assessment has actual admitted evidence and a receiving
+consumer, changed conditions cause useful bounded reevaluation, and unsupported
+cases do not retain an optimistic feasible default. Decline/ignore/reopen requires
+no new obligation. No following, notifications, booking, provider acquisition,
+social visibility or mutation is implied. Separately record any requested
+assistance-policy or schema decision; do not mark dependent work complete while
+it remains unapproved.
+
+### September 9 package handback status
+
+The two dispatched packages completed their bounded implementation rounds in
+isolated coordinated lanes. **A (Home)** finished the supported retained-image
+Source result → authenticated Intake media → originating Home/Places return, and
+traced directed human receiving to its existing exact attributed-message/
+canonical-Place path. Backend `95f5e201c`, app `cbcf98f53`, workspace `490b6dc`
+are clean; owner-reported focused evidence is 79 app tests and 128 offline
+backend tests, plus typecheck/lint/Ruff/hooks and API/docs checks. The exact
+recipient-side original-media reader is not present in the current relationship
+authority and remains a separately scoped future seam. Non-image originals,
+producer population, disposable-DB authorization and native/cache behavior are
+not certified.
+
+**B (Places)** completed the deterministic `place.fit_window` assessment from an
+explicit visit window/duration, exact `place.read` and optional exact
+`commitment.read`. It rejects current/permanent closure, filters exact
+commitments, requires attributable evidence, preserves expiry/viewer binding,
+and leaves route-origin travel time unknown because `route.evaluate` is not
+admitted. Backend `e67b84e1a`, workspace `d8b2c42` are clean; the final focused
+run is 62 passed (28 value-composition + 34 graph/projection/owner-read), with
+Ruff/hooks green. The subsequent Home consumer slice adopted the complete B
+range and carries one explicit target/window/duration request through the
+Places v2 endpoint, root selection, OpenAPI serialization and existing
+Home/Places semantic renderers. Ordinary Home/Places cards still do not emit
+`PracticalVisitIntent`; the delivered caller seam is explicit and bounded.
+
+Home's consumer handback is workspace `81df98a`, backend `a5326eec0`, app
+`954a43c1e`, all clean in the isolated lane. Owner evidence is 127 focused
+backend tests, 9/9 renderer suites, TypeScript/schema-bridge, lint, API
+coverage and docs checks at their stated boundaries. This is synthetic/
+owner-read proof only: no native/device, populated production provider,
+route-owner or UI request-control acceptance is claimed.
+
+These handbacks establish useful, source-backed seams—not a combined acceptance
+or complete-system result. The next dependency is populated/native acceptance
+and any legitimate non-Chat producer that can call the explicit seam; no ordinary
+card may infer intent. A new recipient-media authority/API requires its own
+product and permission decision. Neither needs recurring Integration assembly;
+Integration remains paused until the founder explicitly assigns bounded landing
+or combined acceptance. No policy, booking, provider, Chat-layout, production
+or publication change followed this round.
+
+### Shared files, contracts and delivery order
+
+These are the proposed ownership boundaries to concretize with exact paths and
+revisions in the dispatch; they are not permission to edit a supplier's checkout.
+
+| Boundary | Single writer / responsibility | Other owner interaction |
+| --- | --- | --- |
+| Root composition, selectors, Home/Places receiving and navigation | A | B supplies the assessment contract, tested fixture and exact binding requirements. A returns real consumer evidence. |
+| Practical evaluation and its bounded owner-read requirements | B | A consumes reviewed interfaces; do not independently implement a second feasibility judgment in a card. |
+| Shared model/OpenAPI/app projection/generated TypeScript | Name one writer, normally A for the coordinated sync after B's backend contract is ready | B supplies the immutable backend cut; run this lane's sync, inspect both snapshots/generated consumers and API coverage. No hand-edited wire types or concurrent regeneration. |
+| Existing Life maintenance/source truth | Existing domain owner; A owns agreed consumer changes | Preserve lifecycle/revisions; serving changes require a distinct approval. A does not take over Capture or social grants. |
+| Entity/Places final anatomy, seven-sentences assistance exception, new social/retention agreements | Founder via design/Strategy owners | Both packages continue policy-independent work and return precise blocked parts. |
+| Combined candidate, shared runtime and landing | Integration, currently paused | A/B finish isolated local implementation/tests and direct dependency adoption without waking Integration. Any local runtime/device use needs explicit allocation; combined assembly/landing needs a separately authorized scope. |
+
+At intake agree the minimum interface; exchange a usable immutable cut when it
+unblocks the other owner; keep working on the remaining package. Rebase/adopt
+only agreed cuts in the lane's own checkout, without force pushes, shared-tree
+switching or publication. On dependency change, revise the affected tests and
+record the new tuple—do not carry old evidence forward silently.
+
+**A/B are not an all-or-nothing release batch.** Agree the smallest useful tested
+interface, not every internal implementation choice. A can finish receiving and
+Life repairs against existing contracts while B develops assessment; B can hand
+off its tested assessment before finishing remaining cases. The receiving owner
+checks the actual consumer and repairs its side. Where dependencies conflict,
+stop only the affected binding and escalate the precise choice. A compatible
+subset may be ready for landing before the other package is done, but a backend
+adapter awaiting its consumer remains a partial result, not the completed outcome.
+
+Do not delay compatibility until the final merge: check it at shared-contract
+changes and needed cut adoption, including generated consumers and migrations
+where affected. Do not repeatedly synchronize unrelated branches. A genuine
+conflict or downstream blockage can justify a narrowly scoped integration task;
+commit counts and routine status updates cannot. Record readiness separately
+from landing, native acceptance, activation and release approval.
+
+Local package verification follows affected Task Intake/owner contracts: focused
+tests during iteration, disposable Postgres with explicit test environment where
+needed, coordinated type sync/API coverage for wire changes, real-backend parity
+for affected consumers, and registered visual evidence for UI changes. Existing
+`make verify`/child delivery gates remain required for landing; no new blanket
+waiver or repeated full-suite run after every small commit. Measure commands with
+the existing measurement script. Report a failed tool as an error, not a passed
+product assertion. Do not spend or deploy merely to complete an evidence column.
+
+### Review, efficient delegation and explicit deferrals
+
+Use the program's [long-slice operating agreement and dispatch template](vesper-program-roadmap.md#6-coordination-completion-and-next-system-review):
+explicit Luna xhigh execution, one consolidated assignment, routine autonomy,
+direct actionable dependency handoffs, local progress records and one final
+handback. No implementation/review ping-pong after each substep. An owner finishes
+its assigned scope without a required Strategy checkpoint; Strategy can inspect
+its final evidence asynchronously. Only consequential conflicts need a decision
+before dependent work continues. Neither first green tests nor package completion
+automatically dispatch Integration or pause another lane.
+
+When actual readiness or risk warrants Integration, its explicit resume must say
+which job is needed: **bounded landing/compatibility**, or **combined product
+acceptance**. The former runs required delivery gates on the relevant cuts; it
+does not implicitly restart all old native/design acceptance work. The latter
+names the implemented experience, affected roots, source/identity mode, exact
+candidate/build and remaining evidence needed. UI/contract/release checks that
+are required for the particular change still apply. Review coherent full scrolls
+and connected destinations when affected, not only isolated cards; unrelated
+canvases and engineering need not join the session.
+
+Use existing handbacks to measure assignment-to-working-consumer time, dependency
+waiting, rework and founder intervention alongside capability quality/cost. No
+new reporting service or fixed meeting cadence is requested. Reassess the next
+scope when the result changes what is sensible to build; more infrastructure or
+fewer messages is not evidence of velocity by itself.
+
+### Following capability work — not blocked on a ceremonial acceptance round
+
+A/B are the current implementation scope, not the end of the system roadmap.
+When a usable dependency or selected design delta is ready, choose the next
+bounded missing capability without waiting for all six projects to settle:
+
+- **Selected Home/Places/Entity composition:** translate the reconciled hierarchy,
+  meaningful depth, purpose-responsive treatment and responsive/larger-text
+  behavior into existing native components, supported by A/B. Keep one shared
+  source world for paired examples. Do not turn final pixel decisions into a
+  reason to defer all root implementation, or import every proposed component.
+- **Deeper Life and ordinary continuity:** widen demonstrably useful retrieval
+  and selected lens coverage from existing owner evidence. A serving cutover,
+  new history agreement and replacement retirement remain distinct decisions;
+  basic retrieval and present help must not wait for them all.
+- **Casual social value and complete bounded assistance:** once the precise
+  source/audience or assistance decision is accepted, extend the same receiving
+  and practical owners through the whole authorized encounter. Receiving can
+  end without contribution; preparing a message is not sending it. No social
+  platform, booking stack or universal scheduler is implied.
+- **Justified contraction and operational readiness:** remove a replaced path
+  only after its consumers/obligations are accounted for; establish measured
+  supply, runtime and rollout readiness for the selected exposure. These are
+  targeted implementation/delivery tasks, not a repository-wide cleanup gate
+  before useful work or authorization for public release.
+
+These are unassigned follow-on directions. Select exact scope from current code,
+design decisions and missing user benefit; do not auto-dispatch more lanes or
+expand A/B indefinitely. A temporary test double can unblock development but
+does not satisfy real receiving evidence. No complete-system claim follows until
+the relevant connected behavior is actually verified.
+
+**Deferred, not forgotten:** disputed final composition/Entity anatomy (not all
+surface implementation);
+new Friends/guest use and retention; ambient conversational continuity;
+generalized watches and external action; indexed Life serving and Atlas retirement;
+broad booking/legacy screen deletion; paid production supply and public rollout.
+Do not make all design projects settle before A/B proceed, or use a long
+assignment to adopt any of these decisions indirectly. No third coordination
+lane, new universal data object or replacement program is requested.
+
+<a id="current-execution-queue--program-aligned-september-8"></a>
+
+## Historical execution queue — program-aligned September 8
+
+**Dated record, not a restart instruction.** The current tranche and program §4
+supersede the forward queue below. Preserve its accepted obligations and exact
+evidence, but recheck current code before reassigning historical missing hooks,
+reader wiring or stale gate findings. Integration remains paused.
 
 The [Vesper program roadmap](vesper-program-roadmap.md) now owns cross-lane
 priorities, assignments, dependency routing and the inspected repository tuple.
@@ -491,14 +884,13 @@ serialize shared schema/route generation and landing. Explicit filename staging
 does not protect against another task's already-staged changes. Inspect staged
 paths before committing and never reset another lane to obtain a clean tree.
 
-Review after a connected package, after at most three integrated packages, or
-when a material contradiction appears. Use local tests during current execution;
-the earlier app/device deferral is superseded by the program's current native
-acceptance assignments. Keep native/release gates explicit without making them
-a prerequisite for unrelated engineering. A
-checkpoint records what to continue, revise or retire, not another blanket
-revalidation loop. The current assignment map is now the program roadmap;
-this register and older task activity tables preserve dated evidence only.
+The September 9 program now owns event-triggered reviews; the older three-package
+cadence and September 8 native acceptance dispatch are not current instructions.
+Use local checks during implementation and direct receiving-side compatibility
+checks at affected dependencies. Integration remains paused until explicitly
+resumed for named work. Keep required native/release gates explicit without
+making a combined acceptance session a prerequisite for unrelated engineering.
+This register and older task activity tables preserve dated evidence only.
 
 ## 3. Milestones and dependency ordering
 
@@ -955,10 +1347,13 @@ into a pass by a large unit-test count.
 
 ## 5. Direction reviews: built into execution
 
-Review at **each milestone, after at most three integrated packages within a
-milestone, or immediately on a material contradiction**, whichever comes first.
-This is an execution checkpoint policy, not a scheduled automation or a request
-to stop on every uncertain detail. Independent Life work need not pause.
+**September 9 cadence correction:** review when a meaningful connected capability
+can change the next scope, or a consequential product/architecture conflict or
+compatibility risk requires a decision. This supersedes the former mandatory
+milestone/three-package stop rule. Use the program's event-triggered review and
+landing/acceptance distinctions; independent work does not wait for acknowledgement.
+The questions below remain useful review criteria, not a requirement to assemble
+a shared runtime or write another receipt after every completed package.
 
 Each review produces a short decision with these fields:
 
@@ -1025,8 +1420,14 @@ or action as a control: the engine must not operationalize every valuable moment
 
 ## 7. Parallel Luna execution policy
 
+**September 9 precedence:** the program's [§6 long-slice operating agreement](vesper-program-roadmap.md#6-coordination-completion-and-next-system-review)
+owns current delegation, model routing, cadence and the reusable dispatch brief.
+The leading A/B tranche owns current scope. Retain the safety and file-ownership
+constraints below; older Integration-led execution language does not resume the
+paused lane or require approval between ordinary package substeps.
+
 Current founder selection is `gpt-5.6-luna` / `xhigh` for execution recipients
-and `gpt-6-astra` / `high` for Strategy. The destination rule in program section 4
+and `gpt-6-astra` / `high` for Strategy. The destination rule in program section 6
 supersedes earlier max/xhigh selection guidance. Fast mode is requested but must
 not be claimed enabled without evidence. Do not change global settings to route
 a handoff or silently substitute another model/effort.
@@ -1064,8 +1465,10 @@ time. Worktree isolation does not make incompatible contracts safe to merge.
 Workers do not deploy, flip flags, contact providers, run paid models, perform
 production backfills/deletion, or approve schema/auth decisions by implication.
 Use explicit filenames for staging; never `git add .` or `git add -A`. Commit
-coherent packages during authorized execution, inspect each diff, then integrate
-and run affected tests before starting another dependent package.
+coherent changes during authorized execution and inspect each diff. Adopt the
+required dependency and run affected compatibility tests before relying on its
+behavior; this is not a requirement to land or run combined acceptance before
+starting another already assigned dependent step.
 
 Suitable parallel batches after contracts settle:
 
