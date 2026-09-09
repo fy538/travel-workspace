@@ -6,8 +6,8 @@ import instruments as I
 import gen19v3 as g
 def field_a():
     """A little context improves a possibility: one kept place, nothing else known. The keeping changes one line: the pier leads because it is worthwhile and kept; the film follows."""
-    body = anchor('NEW YORK', 'FRIDAY 5:40 PM') + orientation('The pier at sunset. Saturday, 7:04.', 'Kept Tuesday · Sunset Park · the film on the lawn after') + ask()
-    body += gut(f'<div style="display: flex; flex-direction: column;">{kick("SATURDAY AT THE PIER · KEPT TUESDAY")}{I.pier_line()}<div style="margin-top: 12px;">{serifline("Sunset from the west pier at 7:04; it turns cold fast. The lawn is nine minutes on, the film at 8:30.")}</div>{fn("YOU KEPT THIS ON TUESDAY", 8)}<div style="margin-top: 8px;">{doors(("The pier", GOLDD))}</div></div>', top=24)
+    body = anchor('NEW YORK', 'FRIDAY 5:40 PM') + orientation('The pier at sunset, then the film on the lawn. Saturday.', 'Kept Tuesday · Sunset Park') + ask()
+    body += gut(f'<div style="display: flex; flex-direction: column;">{kick("SATURDAY AT THE PIER · KEPT TUESDAY")}{I.pier_line()}<div style="margin-top: 12px;">{serifline("It turns cold fast after sunset; the lawn is nine minutes on, and the film is free if the listing holds.")}</div>{fn("YOU KEPT THIS ON TUESDAY", 8)}<div style="margin-top: 8px;">{doors(("The pier", GOLDD))}</div></div>', top=24)
     body += sect('Any day') + gut(browse_shelf(g.SHELF)) + g.redhook(False) + g.evening(False) + g.understanding() + g.sunday(False) + g.morning(False) + gut(door_list(['Another neighborhood', 'Sunday, all day']), top=24)
     return phone(body)
 def field_b():
@@ -37,7 +37,7 @@ def board():
         ['What leads', 'The kept pier, because it is worthwhile', 'The practical fact for tonight; the introduction is skipped', 'Her share; the pier as a Saturday with her', 'The crossing, whole, with its wait'],
         ['What context adds', 'One line: kept Tuesday', 'Two facts the person already learned, applied, not displayed', 'Her words, and a door to her', 'Nothing; a year of visits is silent'],
         ['What is dropped', 'Nothing', 'The pitch for places already known; the shelf stays for the rest', 'Nothing', 'The opening sentence about the pier; the shelf'],
-        ['Doors', 'The pier', 'Check seats; your last evening here, in Life', 'The pier with Maya; reply to Maya', 'All of New York; Sunday; friends'],
+        ['Doors', 'The pier', 'Check seats; your last evening here, in Life', 'The pier; reply to Maya', 'All of New York; Sunday; friends'],
         ['Depth kept', 'Everything below', 'Everything below', 'Everything below', 'The evening, the comparison, the reading']])
     notes = [notecol('The rule, revised (review §P1, §P10, §P4)', [('THE RULE', N('Keep a recognisable visual and interaction grammar. Let present purpose, relevant context and available evidence change selection, emphasis and depth. History earns its place by improving the result, not by being displayed. The four columns are a controlled comparison on one city and one day, not engagement levels: someone can have a year of history, no friends in the app and infrequent use, and the same excellent public answer can be right for the newcomer and the long-term user.')),
                       ('WHAT CHANGED FROM THE STAGES BOARD', N('The earlier 09 held the composition fixed and let stages add visit counts. That rule is withdrawn as a universal; it survives only as the observation that the grammar stays recognisable. Column 2 now skips an introduction because the person has learned it; column 4 shows a year of history saying nothing because the purpose is new. A door to the exact Life record is allowed where it recovers an earlier encounter (column 2); Places is still not the archive.')),

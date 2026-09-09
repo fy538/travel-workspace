@@ -13,16 +13,16 @@ SHELF = [('The noodle counter', 'Hand-pulled at the counter', 'CASH'), ('The lun
 
 def top(populated=True):
     out = anchor('NEW YORK', 'FRIDAY 5:40 PM')
-    if populated: out += orientation('The pier at sunset. Saturday, 7:04.', 'From Maya&rsquo;s share, kept · not yet arranged with her · Sunset Park · the film on the lawn after')
-    else: out += orientation('Playtime on the lawn by the pier. Saturday, 8:30.', 'Free · Sunset Park · the pier at sunset first, 7:04 · Red Hook by ferry, Saturday or Sunday')
+    if populated: out += orientation('The pier at sunset, then the film on the lawn. Saturday.', 'From Maya&rsquo;s share, kept · not yet arranged with her · Sunset Park')
+    else: out += orientation('Playtime on the lawn by the pier. Saturday.', 'Free · Sunset Park · the pier at sunset first · Red Hook by ferry, Saturday or Sunday')
     return out + ask()
 def lead_composition(populated=True):
     day = I.pier_line()
     if populated:
-        inner_ = kick('SATURDAY AT THE PIER · FROM MAYA&rsquo;S SHARE') + day + f'<div style="margin-top: 10px;">{serifline("Sunset from the west pier at 7:04; it turns cold fast. The lawn is nine minutes on, the film at 8:30.")}</div>'
-        inner_ += fn('MAYA, TUESDAY · &ldquo;TUESDAY, SEVEN.&rdquo; · KEPT, NOT YET ARRANGED', 8) + f'<div style="margin-top: 8px;">{doors(("The pier", GOLDD), ("Ask Maya about Saturday", MUTE))}</div>'
+        inner_ = kick('SATURDAY · THE PIER, THEN THE LAWN') + day + f'<div style="margin-top: 10px;">{serifline("It turns cold fast after sunset; the lawn is nine minutes on, and the film is free if the listing holds.")}</div>'
+        inner_ += fn('MAYA, TUESDAY · &ldquo;TUESDAY, SEVEN.&rdquo; · HER SHARE', 8) + f'<div style="margin-top: 8px;">{doors(("The pier", GOLDD), ("Ask Maya about Saturday", MUTE))}</div>'
     else:
-        inner_ = kick('SATURDAY AT THE PIER · FREE') + day + f'<div style="margin-top: 10px;">{serifline("Playtime on the lawn at 8:30, free; the sunset from the west pier first, at 7:04.")}</div>'
+        inner_ = kick('SATURDAY · THE PIER, THEN THE LAWN · FREE') + day + f'<div style="margin-top: 10px;">{serifline("Free, on the lawn; the sunset from the west pier first, nine minutes away. It turns cold fast.")}</div>'
         inner_ += fn('TATI&rsquo;S CITY OF GLASS · GET THERE AT EIGHT FOR A SPOT · RAIN PLAN NOT POSTED', 8) + f'<div style="margin-top: 8px;">{doors(("Saturday&rsquo;s film", GOLDD))}</div>'
     return f'<div style="display: flex; flex-direction: column;">{inner_}</div>'
 def friends():

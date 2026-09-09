@@ -26,7 +26,7 @@ def rows(p):
     return w,h,bpp,out
 def ink_end(p):
     w,h,bpp,R=rows(p); bg=R[2][:bpp]
-    for y in range(h-1,0,-1):
+    for y in range(h-6,0,-1):
         if any(R[y][x*bpp:(x+1)*bpp]!=bg for x in range(0,w,5)): return y
     return h
 def shot(src, w, h, out):
