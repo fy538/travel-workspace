@@ -34,9 +34,23 @@ editorial rollback and projection-failure/retry tests; the owner reports
 14 connected Foundry/source/ledger/content/projection tests and 9 entity
 fact/identity tests passed. Workspace receipt `1b4b419` holds the detailed
 commands and environment. Strategy inspected the test implementation and
-receipt; this is not a process-kill or concurrent-Foundry proof. Earlier
+receipt; that initial packet was not a process-kill or concurrent-Foundry proof. Earlier
 statements that the test database was unavailable are historical. The lane's
 Compose project owns PostgreSQL on port 60716; this does not resume Integration.
+
+**Content lifecycle continuation reviewed:** backend `6c060a36a` and lane
+workspace receipt `9de0d55` extend that packet with barrier-started concurrent
+same-plan promotion and reviewed public Source readback through correction,
+validity-window exclusion and withdrawal. Strategy inspected the committed
+tests: both workers must converge on the same observation, claim, primitive and
+projection identities; old and withdrawn content must fail the exact reader as
+well as disappear from enumeration. The barrier coordinates worker starts, not
+a prescribed database-lock interleaving. The owner reports 10 focused tests and
+25 adjacent connected tests passed, plus formatting and documentation checks;
+Strategy has not independently rerun this new packet. No production code changed
+in this increment. Process-kill recovery, cross-run editorial reuse policy,
+provider activation and user-facing acceptance remain outside this evidence.
+These commits remain isolated and unmerged.
 
 E2's previously unrun mobile destination suite has also been executed by
 Strategy against clean app `500aa7299`: 4/4 Jest cases passed, followed by a
@@ -60,6 +74,10 @@ viewer/request, origin, destination, mode, departure applicability and expiry;
 consume authorized route evidence through the existing owner family; keep
 ordinary root reads provider-free. No E3 completion is claimed yet. The earlier
 blanket statement that no code change was safe is superseded by this reassessment.
+Implementation review additionally requires private route inputs to remain out
+of serializable value candidates, hashable exact request binding, and no invented
+expiry or unsupported departure-time applicability. Provider isolation must be
+tested through the actual root composition path, not only the generic compiler.
 
 **C3a parser completion:** Strategy found that Ticketmaster normalization still
 converted raw status omission into `onsale`, bypassing the earlier writer-only
