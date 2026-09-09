@@ -9,7 +9,6 @@ def renum(html):
 os.makedirs('out2', exist_ok=True)
 # 01 · The Field
 h = gen19v3.board()
-h = h.replace('19 &middot; THE SYNTHESIS, WITH THE CANON&rsquo;S INSTRUMENTS &middot; 09-07', '01 &middot; THE FIELD &middot; 09-07').replace('19 &middot; The synthesis, with the canon&rsquo;s instruments', '01 &middot; The field')
 h = renum(h); open('out2/01 - The Field.dc.html', 'w').write(h); print('01', len(h))
 # 02 · The Journeys
 h = gen21.board().replace('21 · THREE CONNECTED JOURNEYS · ORDERED FRAMES · 09-07 (§13.6, §14)', '02 · THE JOURNEYS · ORDERED FRAMES · 09-07 (§13.6, §14)').replace('21 · Three connected journeys, on the chosen terms', '02 · The journeys')

@@ -1,15 +1,17 @@
 """20 · The checks and the opening sequence, on the chosen terms (§12.9 items 3–4, §13.3). Before-and-after rows retired: the §12 vocabulary is no longer current."""
 from fix import *
 import instruments as I
+import gen08, gen21, gen22
 import re
 LONG = {'The noodle counter': 'The hand-pulled noodle counter on Canal Street', 'The lunch counter on Columbia Street': 'The Dominican lunch counter on Columbia Street, Red Hook', 'The reading room at the branch library': 'The second-floor reading room at the Carroll Gardens branch library'}
 def longnames():
     h = field(True)
     for a, b in LONG.items(): h = h.replace(a, b)
     return h
-def enlarged():
+def enlarge(html):
     """Text at 1.3×: every CSS font-size in the phone scaled; the instruments' SVG labels keep the 10px mono floor, as the canon says they should."""
-    return re.sub(r'font-size: (\d+(?:\.\d+)?)px', lambda m: f'font-size: {float(m.group(1))*1.3:.1f}px', field(True))
+    return re.sub(r'font-size: (\d+(?:\.\d+)?)px', lambda m: f'font-size: {float(m.group(1))*1.3:.1f}px', html)
+def enlarged(): return enlarge(field(True))
 def destination(sent=False):
     inner = anchor('THE PIER AT SUNSET', 'SATURDAY', back=True, sub='Kept, with Maya') + gut(photo_plate(200), top=18)
     inner += gut(author_row('M', 'Maya', 'TUESDAY') + quote(MAYA_PIER, 18, 25) + fn('YOU KEPT THIS TO DO WITH MAYA, FROM HER SHARE', 8), top=14)
@@ -22,6 +24,10 @@ def board():
     r1 = [col(longnames(), caption('CHECK · LONG NAMES', 'THREE NAMES LENGTHENED', 'Serif names wrap to two lines; the mono facts stay one; the shelf&rsquo;s plates keep their height'), clip=1100),
           col(enlarged(), caption('CHECK · TEXT AT 1.3×', 'EVERY CSS SIZE SCALED', 'Nothing truncates; the instruments keep their labels at the 10px mono floor and their size, as the canon says instruments should'), clip=1100),
           notecol('The checks', [('WHAT IS CHECKED', N('The two checks that the chosen language changes: long names in serif rows and on the shelf, and text at 1.3×. The no-media check is no longer a check: a photo slot is a hatched plate by default, so the scroll as drawn is the no-photograph state. The map unavailable and results pending cases are on 22.')), ('WHAT THE INSTRUMENTS DO AT 1.3×', N('SVG labels are attributes, not CSS, so they do not scale; the canon sets a 10px mono floor inside instruments and the sentence beneath each instrument is its accessibility label. At 1.3× the serif sentence grows and the instrument does not; the reading stays whole.'))], w=560)]
+    r1b = [col(enlarge(gen08.page('populated')), caption('CHECK · 1.3× · THE PAGE', 'THE PRINT ROOM ENLARGED', 'The register, the comparison and the reasons hold; the two-column comparison stays two columns'), clip=1100),
+           col(enlarge(gen21.e2()), caption('CHECK · 1.3× · A JOURNEY FRAME', 'THE QUESTION TYPED, ENLARGED', 'The chip grows with the text; the map and the burden strip keep their size and labels'), clip=1100),
+           col(enlarge(gen22.sorrento()), caption('CHECK · 1.3× · A SITUATION', 'SORRENTO ENLARGED', 'The section keeps its scale bar and labels; serif rows wrap to two lines'), clip=1100),
+           notecol('The checks, elsewhere', [('WHAT HOLDS', N('The page, a journey frame and a situation at 1.3×. Instruments keep their size and their labels at the mono floor; the sentence under each is the reading. Chips, rows and registers grow with the text and wrap; nothing truncates.')), ('WHAT TO WATCH', N('The two-column comparison on the page narrows to about 150 pixels a column at 1.3×; a third line in a quote would cramp it. The map fragment&rsquo;s labels do not grow, by design.'))], w=560)]
     r2 = [viewport(col(field(True), caption('1 · THE OPENING', 'THE PIER, WITH MAYA', 'The door on the opening'), clip=1000)),
           col(destination(), caption('2 · WHAT IT OPENS', 'THE KEPT POSSIBILITY', 'Its photo slot, her words, the kept line; the evening on one band; the three facts; one prepared message to Maya as the door, the venue as a second. Nothing to re-keep')),
           col(field(True), caption('3 · BACK, NOTHING SENT', 'THE FIELD WHERE IT WAS', 'Entry, question and position restored; nothing has changed'), clip=1000),
@@ -34,6 +40,6 @@ def board():
           notecol('What this board no longer carries', [('RETIRED', N('The before-and-after crops of the §12 polish, the two assortment treatments not chosen, and the thumbnail selection are retired with the §12 vocabulary; they are recorded in the response doc, §16, §17 and §20. The media and identity comparison was withdrawn at the founder&rsquo;s request on September 7.'))], w=560)]
     return rows_page(2260, '20 · THE CHECKS · THE OPENING SEQUENCE · 09-07 (§12.9, §13.3)', '20 · The checks, the opening sequence',
                      'The two checks the chosen language changes, long names and text at 1.3×; and the opening&rsquo;s door, what it opens, and how the person returns, with a readback only where a message was sent. Interaction untested.',
-                     [('CHECKS', 'Long names; text at 1.3×', r1), ('OPENING, DESTINATION, RETURN (§13.3)', 'Five ordered frames; a readback only where a message was sent', r2), ('NOTES', 'Where the correction lives, what was exercised, what was retired', r3)], 4600)
+                     [('CHECKS', 'Long names; text at 1.3×', r1), ('CHECKS, ELSEWHERE', 'Text at 1.3× on the page, a journey frame, a situation', r1b), ('OPENING, DESTINATION, RETURN (§13.3)', 'Five ordered frames; a readback only where a message was sent', r2), ('NOTES', 'Where the correction lives, what was exercised, what was retired', r3)], 4600)
 if __name__ == '__main__':
     import os; os.makedirs('out', exist_ok=True); h = board(); open('out/20 - Before and After.dc.html', 'w').write(h); print('wrote 20', len(h))

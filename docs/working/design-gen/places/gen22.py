@@ -20,7 +20,7 @@ def sparse():
     inner = anchor('NEW YORK', 'FRIDAY 5:40 PM') + orientation('Playtime on the lawn by the pier. Saturday, 8:30.', 'Free · Sunset Park · the pier at sunset first, 7:04') + ask()
     inner += gut(kick('SATURDAY AT THE PIER · FREE') + I.pier_day(plan=('18:30', '19:04', 'THE PIER'), after=('20:30', '22:00', 'THE FILM')) + f'<div style="margin-top: 10px;">{serifline("Playtime on the lawn by the pier at 8:30, free; the sunset from the west pier first, at 7:04.")}</div>' + fn('TATI&rsquo;S CITY OF GLASS · GET THERE AT EIGHT FOR A SPOT · RAIN PLAN NOT POSTED', 6) + door('Saturday&rsquo;s film'), top=20)
     inner += sect('This Saturday') + gut('<div>' + prow('The greenmarket', 'SATURDAY 8–1 · DOWNTOWN · BREAD GOES FIRST', first=True, last=True) + '</div>')
-    inner += g.understanding(g.COLD).replace(g.sect('Worth understanding'), sect('Worth understanding'), 1)
+    inner += g.understanding()
     inner += gut(door_list(['Another neighborhood', 'Sunday, all day']), top=24)
     return phone(inner)
 def map_unavailable():

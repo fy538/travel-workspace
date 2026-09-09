@@ -349,3 +349,11 @@ Read again from full-size crops of 01, 02, 03 and 08 after the instruments lande
 | "A RAINY TUESDAY" wraps in the half-width comparison on the page | The author row carried name and date on one line in 160 pixels | The date joins the place line under the quote: "A RAINY TUESDAY · THE BACK ROOM" |
 
 Checked and left alone: the people rows' two-line wrap under the disc, which is Home's; the card shadow; the three stacked doors at the field's end; the section spacing after the first pass.
+
+## 28. Three more improvements (September 8)
+
+**The field, generated from the kit.** 01 no longer slices any section from the pushed HTML of the earlier draft; every section is drawn by kit3, fix and instruments. No visual change beyond the place strip's mark; the point is that the next polish lands in one codebase. The sliced generator is kept beside it as a backup.
+
+**The page's missing states.** 08 now has six states in two rows. Pending keeps what the seed already gives (identity, the slot, the map, the trace) and draws ghost rows where the register and the reasons will be; no verdict is invented. The listing unreachable dates every fact as last seen and says so in the basis; the posture holds and the fallback names the two honest moves, go on the hours last seen or ask Maya. Closed for good re-reads the verdict, drops the crossing and the read-up door, keeps the keeping in the record as closed, and asks nothing of the person.
+
+**Copy and the 1.3× checks elsewhere.** The opening's sentence gives up the times the instrument already shows and is two sentences again, populated and cold. 04 gains a row of 1.3× checks beyond the field: the page, a journey frame (the question typed) and a situation (Sorrento). Instruments keep their size and their labels at the mono floor; chips, rows and registers grow and wrap; nothing truncates. To watch: the page's two-column comparison narrows to about 150 pixels a column at 1.3×.
