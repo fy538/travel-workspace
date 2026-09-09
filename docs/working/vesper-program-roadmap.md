@@ -162,7 +162,38 @@ five-suite run and had owner documentation edits during the separate clock run.
 The HTTP test executes the actual service/shared validation with stubbed entity,
 relationship and route-provider boundaries. It is not live-provider, native,
 route geometry, deployment or combined-system evidence. Content's producer
-package remains in progress; neither lane is merged or activated.
+package was still in progress at this route review; neither lane is merged or activated.
+
+**Content caller package verified — September 9:** backend `709e27466` connects
+current place scope to admitted child-entity Sources in Home and Source discovery.
+`12d30676e` adds short-circuitable hydration and local omission when a child's
+canonical identity cannot be resolved; `e6d0edd10` adds real SQL scan measurement.
+Strategy inspected these changes and independently ran the seven-suite
+core/root/Foundry/side-build packet against the lane-owned disposable PostgreSQL
+on port 60716: **112 passed**, zero skipped, 9.479s, at clean backend
+`e6d0edd10`, workspace `9de0d55`, app `12cc59a51`. Full command, output and
+revision measurement are in `/tmp/vesper-content-root-review-20260909/`.
+The actual discovery producer uses the real Source reader and canonical child
+resolution in its connected test; external/context branches are stubbed and
+dogfood activation is disabled. Exact parent/child release composition retains
+focused unit evidence, not a new production activation claim.
+
+**Next design-independent package: bounded set-based Source hydration.** The
+owner measured 49 SQL executions for eight hydrated records on early success,
+and 242 for forty records when the first 32 are stale. Strategy's rerun verifies
+the committed real-reader regression's relative-query and exact-row assertions;
+the exact SQL totals are owner-reported. Source inspection confirms repeated
+policy/evidence/disagreement/lifecycle reads inside `_load_record`, including
+duplicate required-evidence lifecycle work. Content is dispatched to eliminate
+this per-record amplification through the existing canonical reader, retaining
+bounded early termination, complete record semantics, correction/withdrawal,
+expiry, evidence/policy and release eligibility. Compare actual SQL counts,
+hydrated records and useful output before/after; do not introduce a cache,
+alternate owner or eligibility shortcut. This is an implementation package,
+not another helper-only audit. The private database remains available for this
+work; no provider, UI, source activation, main landing or Integration restart
+follows. Semantic/time retrieval and the broader C4b/C5a/C6a boundaries remain
+unfinished.
 
 **C3a parser completion:** Strategy found that Ticketmaster normalization still
 converted raw status omission into `onsale`, bypassing the earlier writer-only
