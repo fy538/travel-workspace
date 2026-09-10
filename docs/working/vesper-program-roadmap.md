@@ -67,6 +67,42 @@ not a claim of two concurrent Luna execution agents. Existing completed workers
 are not reconfigured silently. Report one substantive boundary proposal, genuine
 authority/dependency changes and the verified handback—not each ordinary step.
 
+### Current-round completion — bounded search improvement, not full C4b
+
+Content backend `5ffded6c5` completes the first contextual-discovery increment
+at clean workspace `65193c1` and unchanged app `dfe84b3c4`. Actual Places
+retained-reading search now normalizes supported Latin case/diacritics, scores
+query-term presence once per authored field, and rewards contiguous normalized
+query phrases without dropping short words or repeated query tokens. Verbose
+repetition cannot inflate a field's score. Existing owner identities, anchor
+coverage, admission and optional-read budgets remain in force; no API or mobile
+contract changed. This is lexical ranking, not semantic understanding,
+translation, future-event applicability, or activation of the derived index.
+
+Strategy independently reran 112 backend tests at that clean tuple in 4.295s,
+plus Ruff and revision diff checks. The tests cover the retained reader, actual
+Places search consumer, source contracts, Home portfolio and entity presentation.
+Search context/catalog and per-place selections are stubbed in the new consumer
+regressions; this is not a database-to-native or consumer-quality acceptance
+claim. The measured command and output are recorded in
+`/tmp/vesper-contextual-discovery-20260909/contextual-discovery-final-20260910T012522Z.log`.
+Full `make verify`, native, provider and combined-lane checks were not run.
+
+The parallel social investigation is recorded in the
+[Social roadmap, section 10.4](social-experience-implementation-roadmap-2026-09-07.md).
+Existing recipient display intent does not yet establish an exact selected
+source/object binding and current original-byte authorization. The proposed
+extension binds that selection to the existing handoff and delegates reads to
+the custody owner; it does not broaden audiences, imply AI-use permission, or
+backfill ambiguous historical shares. Its 54 passing baseline contract tests
+do not prove a new recipient-media path. This remains an explicit decision and
+implementation boundary, not an activated capability.
+
+Both outcomes are local. Integration stays paused; no landing, publishing,
+provider work, Chat/Life redesign or product-policy change occurred. Broader
+semantic/event-time retrieval and social-original receiving remain separately
+scoped follow-on work, not hidden completion claims for this package.
+
 ### Completed search package and repair history
 
 **Earlier consumer package — September 9: retained readings in Places search.**
