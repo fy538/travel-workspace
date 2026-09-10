@@ -40,8 +40,8 @@ on architecture/authority and review. The bounded
 [one-recipient original-display rule](../decisions/2026-09-09-exact-original-recipient-display.md)
 is adopted; broader AI use, audience and general-share decisions are not.
 
-- **Discovery:** Content lane `65193c1` / `5ffded6c5` / `dfe84b3c4`; assess
-  and connect the existing derived semantic index through actual Places search
+- **Discovery — implemented locally:** Content lane `65193c1` / `6c808727c` /
+  `dfe84b3c4`; connects the existing derived semantic index through actual Places search
   and exact reading destinations. Rehydrate candidates from current owners;
   preserve geographic scope, source/revision, rights, surface/release admission,
   independent catalog results and bounded lexical fallback. No new supply,
@@ -49,7 +49,8 @@ is adopted; broader AI use, audience and general-share decisions are not.
   applicability remains separate from freshness. Compare paraphrase retrieval
   against the lexical baseline with geography controlled; fake vectors do not
   establish semantic quality.
-- **Original receiving:** received-value lane `2bf01ac` / `2d33a5380` /
+- **Original receiving — implementation assigned after architecture review:**
+  received-value lane `2bf01ac` / `2d33a5380` /
   `ddf9866f9`; exact selected-source Send, sender readback/control, currently
   authorized recipient original, Home entry/return and lifecycle repair. Follow
   Social §10.4 and the adopted contract. No invented Place for non-spatial
@@ -75,9 +76,43 @@ and ranking, not model/network invocation. Reuse the configured embedding and
 collection contract behind a separate default-off serving gate; do not invent
 a local-only runtime. Preserve the total 350 ms optional-reading envelope,
 finished lexical results and catalog independence, with bounded physical work
-and no database connection held across provider work. Current draft code was
-returned for this reorganization before acceptance. Tests use fake providers;
+and no database connection held across provider work. The committed implementation
+incorporates this reorganization. Tests use fake providers;
 no production provider or collection is activated by implementation.
+
+**Discovery completion:** backend `6c808727c` adds the contract-aware vector
+adapter, bounded optional Places execution and provider-free exact-version
+rehydration. A separate default-off gate protects serving. Lexical reads retain
+their full 350 ms budget; semantic work uses only remaining time, capped at
+120 ms, with isolated bounded physical work so timeout/cancellation does not
+accumulate an unbounded queue or starve catalog/lexical work. Current owner
+membership, accepted version, rights, evidence, lifecycle and release checks
+remain authoritative. The bounded global vector shortlist is post-filtered by
+requested place: it can miss eligible local matches below that shortlist.
+Complete geographic recall needs reviewed place-filter metadata and a fresh
+derived build; neither semantic quality nor event-time applicability is claimed.
+
+Strategy independently verified the clean `65193c1` / `6c808727c` /
+`dfe84b3c4` tuple: 136 offline tests passed in 5.374s and one disposable
+PostgreSQL search/receiving regression passed in 4.539s. Measured commands,
+revisions and outputs are in
+`/tmp/vesper-semantic-discovery-20260909/semantic-discovery-final-20260910T022733Z.log`
+and `semantic-discovery-db-final-20260910T022734Z.log` in that directory.
+The DB test uses fake vector hits; no live-provider quality, native acceptance,
+full `make verify`, combined delivery or activation is established.
+
+**Original receiving architecture decision:** the existing `PlaceHandoff`
+requires a Place and conversation; keep that specialization intact. A narrow
+one-recipient exact-original delivery component and companion operation belong
+to the existing Relationships owner, with Source/Intake retaining custody.
+This implements the adopted display rule for spatial and non-spatial originals;
+it does not adopt a general sharing owner, broader audience, AI permission or
+independent recipient copy. Existing current account/relationship eligibility
+must hold; do not invent a Place, connection or conversation to satisfy it.
+The worker reported this schema boundary before implementation and Strategy
+approved the bounded owner-preserving extension. Any genuinely new eligibility
+policy remains a founder decision. Caption is optional; receiving/return is
+complete without Ask, Keep, reply or sender-visible consumption metrics.
 
 ## Previous round — contextual discovery and exact human receiving
 

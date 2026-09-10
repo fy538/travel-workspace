@@ -871,16 +871,22 @@ Use the existing received-value coordinated lane, inspected clean at workspace
 `2bf01ac`, backend `2d33a5380`, app `ddf9866f9`. One local Luna xhigh worker
 will own exact selected-original sending/readback, current recipient read,
 Home-to-original receiving/return and withdrawal/expiry behavior as a complete
-backend/mobile package. The session refused a second worker; this package is
-queued after that worker's discovery package, not running in a second session.
+backend/mobile package. The session refused a second worker; discovery is now
+committed at backend `6c808727c`, and this worker has begun the social package
+after a read-only architecture checkpoint, not in a second session.
 Strategy records the contract and reviews while implementation proceeds.
 
 Preserve the existing owner-only Intake endpoint, note-only receiving and
 current flags. Do not fabricate Place context, silently generalize the legacy
 handoff, or pass shared media into contextual Ask. Reuse receiving components
-instead of adding a screen per type. A missing general/non-spatial share owner
-is a named schema decision, not permission to widen scope or stop all supported
-original receiving. Chat/Life redesign and Integration remain paused.
+instead of adding a screen per type. The checkpoint identified the legacy
+Place/conversation requirements. Strategy approved a narrow one-recipient
+original-delivery companion in the **existing Relationships owner**, leaving
+`PlaceHandoff` nullability intact and Source/Intake custody unchanged. The
+adopted display rule is not place-only: this owner-preserving implementation
+does not create general sharing architecture or new audience/AI rights.
+Use current real account/relationship eligibility; a genuinely new eligibility
+policy remains a named decision. Chat/Life redesign and Integration remain paused.
 
 Acceptance includes persisted sender/recipient rows, selection/revision binding,
 retry idempotency, wrong-recipient and wrong-object denial, withdrawal/expiry
@@ -904,9 +910,10 @@ real mobile consumer. Keep native, mocked, database and release evidence distinc
 - `HandoffPermissionEnvelope.inference` currently defaults to `contextual_only`.
   This is not an AI grant for new selected media. Keep the established note-only
   Ask behavior separate and never automatically add original media to its seed.
-- The current specialization requires a real world entity and pair conversation.
-  Complete eligible spatial-original receiving without inventing context;
-  identify the precise general-share decision needed for non-spatial material.
+- The current Place specialization requires a real world entity and pair conversation.
+  Preserve it; the reviewed companion original delivery must not require a
+  fabricated Place or conversation for non-spatial material. Reuse current
+  relationship eligibility rather than inventing a new connection policy.
   Do not require a new explanatory note merely to make an original worth sending.
 - Home's existing source adapter carries a handoff reference and optional graph
   artifact reference. Its current door/Ask seed is not an original reader.
