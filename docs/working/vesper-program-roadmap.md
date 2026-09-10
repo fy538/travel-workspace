@@ -89,13 +89,103 @@ evidence withdrawal and release-scope exclusion are separate evidence boundaries
 Search context/catalog collaborators remain stubbed in the connected database
 test; this is not live-provider, native, latency or release certification.
 
-One final receiving check remains assigned: accommodation/experience route
-tests mock the shared renderer and cannot prove actual reading text display.
-Exercise the real renderer/projection with exact selected, unavailable and
-malformed selections; prevent a generic take becoming the apparent replacement
-when selection parameters are incomplete. Preserve useful entity context and
-label the test boundary honestly. No additional design or activation is needed
-for this correction; the package remains open until it is verified.
+**Receiving renderer follow-up completed:** app `b5d10917f` exercises the actual
+renderer/projection for selected, unavailable and malformed readings, including
+accommodation/experience. An unavailable selection does not become a generic
+Take. Strategy independently passed 91 focused app tests across seven suites.
+This closes that renderer gap, not native or whole-package acceptance.
+
+**September 9 deep-review repair round — local fixes verified; Integration paused.** Independent
+review found six remaining cross-consumer defects despite the earlier focused
+checks. Repair existing owners in their isolated lanes; do not start a new
+architecture or wait for another design canvas.
+
+| Repair | Owning implementation lane | Required evidence |
+|---|---|---|
+| Apply receiving-surface/release eligibility to direct Home/Places content, not only search | Content + Places backend | Denied surface and disabled/restricted delivery remain excluded through actual composition; valid delivery survives. |
+| Remove an already-mounted private original at its authority deadline | Home app | Fake-clock mounted expiry, resumed/focused revalidation and revoked/expired source handling; no generic private-image caching. |
+| Return useful negative/unknown answers to explicit practical-fit questions | Home + Places backend | Real explicit-request path returns honest supported/unsupported/unknown assessments without promoting infeasible unsolicited recommendations or action authority. |
+| Preserve exact reading identity/revision through root doors | Content app's complete selected-reading receiver | All supported entity destinations keep selection and return context; incomplete selection fails closed. |
+| Carry and enforce the selected Take's authorized deadline | Content backend + app | Deadline survives projection and an already-mounted selection becomes unavailable without substituting another Take. |
+| Bound optional content retrieval so it cannot hold base results hostage | Content + Places backend | Bounded scan plus success, failure and slow-producer tests; catalog/base results remain independently available. |
+
+The founder requested local Luna xhigh subagents, not separate execution
+threads. One worker started; the session refused additional agents because its
+retained-agent limit was reached. Luna implemented content admission/budgets;
+Strategy completed receiver and candidate-scoped practical-answer repairs
+and independently reviewed and verified. Strategy coordinated shared schemas
+and commits. No parallel owner may overwrite another bundle's
+changes, and unrelated canonical design edits remain untouched.
+
+Review evidence before repair: 151 Content backend tests, 146 Places backend
+tests (13 deselected), 108 Home backend tests, 53 canonical Life/capture tests,
+91 Content app tests and 51 Home app tests passed in their stated isolated
+environments. A new mounted-original expiry regression failed as expected;
+these prior passes do not refute the six findings. Commands, revisions and
+measurements are under `/tmp/vesper-review-20260909/`. Connected PostgreSQL
+evidence uses only Content's explicitly disposable lane database on port 60716.
+Native acceptance, full `make verify`, combined delivery and production latency
+remain unverified. Integration is still **PAUSED**: no landing, publishing,
+shared-runtime restart, supply activation or new product-policy authorization.
+
+Receiver repair checkpoint: Content app `ea8888f4e` preserves exact root
+reading selection; Content backend `250a3810c` and app `dfe84b3c4` preserve and
+enforce the selected Take's validity deadline. Home app `4424d8d59` and
+`04d12c754` enforce original-source custody while mounted and across suspended
+foreground return. Independent combined checks passed 139 Content app tests
+and 61 Home app tests, both app/test-contract typechecks, and Content's surface
+size gate. The Take backend test file passed 19 tests. Evidence is under
+`/tmp/vesper-fixes-20260909/`. Home's verification borrowed Content's installed
+dependencies only after both package manifests and lockfiles compared
+byte-identical. Existing Object-page lint warnings remain; no native evidence
+was collected. The older Home/Places mobile branches still require Content's
+complete selected-reading receiver at eventual integration; query parameters
+alone are not a receiving implementation. These isolated commits do not
+resume Integration.
+
+Backend repair checkpoint: Home backend `5922f9a3e` preserves a directly
+requested assessment as a read-only answer, including a useful unsupported or
+unknown result. Activity feasibility stays false; unsolicited recommendations,
+stale/unauthorized owner reads and action authority do not inherit the exception.
+Places backend `027786a43` carries the shared answer contract while preserving
+its newer route-fact evaluator, and gates/budgets public-content delivery.
+The explicit request-to-answer route is verified in the Home lane; eventual
+integration must retain that request binding alongside Places' newer evaluator.
+Do not replace either branch's entire evaluator/adapter with the other.
+
+Content backend `26c2d6244` closes receiving admission and optional search
+budget/hydration gaps. Producer regressions cover disabled flags, incompatible
+surfaces, disallowed consequences, absent release authority and valid delivery.
+Slow/failed optional readers preserve base results; the existing bounded pool
+continues observing workers after request timeout.
+
+Independent measured checks passed 95 Home practical tests, 97 Places
+admission/practical tests, 107 adjacent Places tests, and 91 Content
+admission/reading tests. Some packets overlap; these are not unique-test totals.
+Five Content database tests also passed against its explicitly disposable
+PostgreSQL on port 60716. SQL-limit regression checks the constructed query
+before hydration; the database packet is not a production latency measurement.
+Offline OpenAPI export, app projection, generated types, TypeScript and API
+coverage passed in Home and Places. Home schema commits are workspace
+`2bf01ac` / app `ddf9866f9`; Places are workspace `8a17eca` / app `ca8860966`.
+Places regeneration also reconciles already-implemented PracticalVisitIntent,
+revision and time fields absent from its older snapshot; none is a new API
+promise introduced by this repair. No generated file was hand-edited.
+
+The expanded Home packet initially failed seven tests because its MagicMock
+clock replaced a datetime query annotation during FastAPI app construction.
+A test-only concrete clock repair restores the real datetime schema. The final
+combined Home packet passed **151 tests** (root service/routes, Home portfolio,
+practical route delivery, value composition and v2 contracts). No tests were
+quarantined. Backend Ruff and applicable local commit hooks passed; formatting
+hooks required a reviewed formatting-only retry in Content and Places.
+This closes all six reviewed defects at the isolated implementation/test
+boundary, not combined integration or native acceptance. Full `make verify`
+and native device tests remain **unrun**. Existing Object-page lint warnings
+remain. Canonical child repos were not changed; concurrent canonical design
+documents remain outside this repair. The roadmap's local pre-commit checks
+are invoked explicitly before its scoped commit to avoid auto-stashing those
+concurrent edits; repository hook configuration is unchanged.
 
 **Latest September 9 continuation:** isolated Content PostgreSQL is now
 provisioned and the existing Foundry transaction guarantees have connected
