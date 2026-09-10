@@ -24,7 +24,7 @@ def field_c():
 def field_d():
     """History is irrelevant: a year of visits, but tonight's purpose is a first: Red Hook by ferry, never done. The field leads with the crossing and says nothing about the year."""
     body = anchor('NEW YORK', 'FRIDAY 5:40 PM') + orientation('Red Hook by ferry, Saturday or Sunday.', 'Twenty-five minutes across from Pier 11 · four places within twelve minutes of the landing · the Print Room to Sunday') + ask(q='Red Hook, this weekend')
-    body += gut(REDHOOK_MAP + I.access_compare([('BY FERRY', [(6, 'foot'), (20, 'wait'), (25, 'ride'), (9, 'foot')], 'PIER 11 · WAIT UP TO 40 · LEVEL TO THE LANDING'), ('BY THE B61', [(4, 'foot'), (6, 'wait'), (28, 'ride'), (3, 'foot')], 'EVERY 12 · TWO BLOCKS')], origin='FROM CANAL STREET', h=112) + '<div style="margin-top: 4px;">' + redhook_rows(True) + '</div>', top=24)
+    body += gut(REDHOOK_MAP + I.access_compare([('BY FERRY', [(6, 'foot'), (20, 'wait'), (25, 'ride'), (9, 'foot')], 'PIER 11 · EVERY 40 · 40 MOVING, 20 DRAWN, 40 TO 80 IN ALL'), ('BY THE B61', [(4, 'foot'), (6, 'wait'), (28, 'ride'), (3, 'foot')], 'EVERY 12 · 35 MOVING, 6 DRAWN, 35 TO 47 IN ALL')], origin='FROM CANAL STREET', h=112) + '<div style="margin-top: 4px;">' + redhook_rows(True) + '</div>', top=24)
     body += sect('Saturday evening') + g.evening(True).replace(sect('Saturday evening'), '', 1) + g.understanding() + gut(door_list(['All of New York', 'Sunday, all day', 'From friends, everything']), top=24)
     return phone(body)
 def board():

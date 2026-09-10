@@ -73,8 +73,9 @@ def day_band(t0, t1, blocks, marks=(), labels=(), h=56):
     for t, lab, anchor in labels: svg += L(ax.x(hm(t)) if ':' in t else (2 if t == 'start' else 347), h - 2, lab, MUTE, None, anchor)
     return svg + '</svg>'
 def access_compare(rows, origin='FROM CANAL STREET', h=None):
-    """Ways in on one minutes scale, from a named origin. Legs: 'foot' dots, 'ride' a solid bar, 'wait' a hollow bar (up to the headway), 'stairs' a stepped mark.
-    Waiting is drawn apart from movement, so the decisive premise of each way is visible: a scheduled crossing costs a wait; a train does not. The total names its scope."""
+    """Ways in on one minutes scale, from a named origin. Legs: 'foot' dots, 'ride' a solid bar, 'wait' a hollow bar, 'stairs' a stepped mark.
+    Waiting is drawn apart from movement, so the decisive premise of each way is visible: a scheduled crossing costs a wait; a train does not.
+    Each row reads moving+wait for the wait actually drawn. It is not a min-max range: the possible total depends on the headway, which the row note names."""
     total = max(sum(m for m, k in r[1]) for r in rows); ax = Axis(0, total, 100, 300); h = h or 26 + 44 * len(rows)
     svg = f'<svg width="349" height="{h}" viewBox="0 0 349 {h}" fill="none" style="display: block; width: 100%; height: auto; margin-top: 8px;">' + L(2, 10, origin, MUTE)
     for i, (name, legs, note) in enumerate(rows):
@@ -87,8 +88,8 @@ def access_compare(rows, origin='FROM CANAL STREET', h=None):
             else: svg += f'<rect x="{x0:.1f}" y="{y-6}" width="{x1-x0:.1f}" height="12" rx="6" fill="{INK}" opacity="0.78"/>'; moving += m
             t += m
         wait = t - moving
-        svg += L(ax.x(t) + 8, y + 4, f'~{t}' if not wait else f'{moving}–{t}', INK, True) + L(2, y + 18, note, MUTE)
-    svg += L(100, h - 2, '0', MUTE) + L(300, h - 2, f'{total} MIN · DASHED IS WAITING', MUTE, None, 'end')
+        svg += L(ax.x(t) + 8, y + 4, f'{t} MOVING' if not wait else f'{moving}+{wait}', INK, True) + L(2, y + 18, note, MUTE)
+    svg += L(100, h - 2, '0', MUTE) + L(300, h - 2, 'MOVING + THE WAIT AS DRAWN · NOT A RANGE', MUTE, None, 'end')
     return svg + '</svg>'
 def section(points, sea, labels, scale_m=None, h=110, w=349, zmax=None):
     """Ground to scale: points (x_m, z_m) along a line; the sea level; labels (x_m, z_m, text, anchor, fill). Water shows only where the ground is below it. A bar at the right says how tall the picture is."""
@@ -139,4 +140,22 @@ def pier_line(rise='6:31', set_='19:04', plan=('18:30', '19:04'), after=('20:30'
     svg += f'<rect x="{ax.x(l0):.1f}" y="{y-1}" width="{ax.x(l1)-ax.x(l0):.1f}" height="8" rx="4" fill="rgba(61,80,102,0.45)"/>'
     svg += f'<rect x="{ax.x(p0):.1f}" y="{y-9}" width="{ax.x(p1)-ax.x(p0):.1f}" height="16" rx="8" fill="{GOLD}"/><rect x="{ax.x(a0):.1f}" y="{y-7}" width="{ax.x(a1)-ax.x(a0):.1f}" height="12" rx="6" fill="{INK}" opacity="0.8"/>'
     svg += L(ax.x(p0) - 8, y - 12, f'THE PIER · SUNSET {fmt(s_)}', GOLDD, True, 'end') + L(ax.x(l1), y + 24, f'LOW WATER {fmt(l0)}–{fmt(l1).split(":")[0]}', WATER, True, 'end') + L(347, y + 24, f'FILM {fmt(a0)}', INK, True, 'end')
+    return svg + '</svg>'
+
+def gates_and_sill(h=150, w=349):
+    """Two grounds against one harbour at the same height: the street raised above the 1911 sill, which drains by itself, and the park built on the fill behind gates, which has to be pumped.
+    The relationship is the whole subject, so there are two grounds, one water line, one gate and three pumps."""
+    base, water = h - 30, h - 60
+    svg = f'<svg width="{w}" height="{h}" viewBox="0 0 {w} {h}" fill="none" style="display: block; width: 100%; height: auto; margin-top: 8px;">'
+    svg += f'<rect x="0" y="{water}" width="{w}" height="{base - water}" fill="{WATER}" opacity="0.16"/><line x1="0" y1="{water}" x2="{w}" y2="{water}" stroke="{WATER}" stroke-width="1.4"/>'
+    svg += f'<path d="M60 {base} L60 {base - 58} L190 {base - 58} L190 {base} Z" fill="{WASH}" stroke="rgba(27,23,20,0.30)" stroke-width="1"/>'
+    svg += f'<path d="M240 {base} L240 {base - 16} L340 {base - 16} L340 {base} Z" fill="{WASH}" stroke="rgba(27,23,20,0.30)" stroke-width="1"/>'
+    svg += f'<path d="M240 {base} L240 {water - 14}" stroke="{INK}" stroke-width="3" stroke-linecap="round"/>'
+    for px in (272, 296, 320):
+        svg += f'<path d="M{px} {base - 8} L{px} {water - 12}" stroke="{GOLDD}" stroke-width="1.6"/><path d="M{px - 4} {water - 6} L{px} {water - 13} L{px + 4} {water - 6}" stroke="{GOLDD}" stroke-width="1.6" fill="none"/>'
+    svg += f'<line x1="215" y1="16" x2="215" y2="{base}" stroke="rgba(27,23,20,0.12)" stroke-width="1" stroke-dasharray="3 4"/>'
+    svg += L(4, water - 6, 'THE HARBOUR, HIGH', WATER, True)
+    svg += L(125, base - 64, 'THE STREET', INK, True, 'middle') + L(125, base + 16, 'RAISED TO THE SILL, 1911', MUTE, None, 'middle')
+    svg += L(236, water - 18, 'GATES', INK, True, 'end') + L(296, water - 20, 'PUMPS', GOLDD, True, 'middle') + L(290, base + 16, 'BUILT ON THE FILL', MUTE, None, 'middle')
+    svg += L(110, 12, 'DRAINS BY ITSELF', MUTE, None, 'middle') + L(280, 12, 'ONLY WHEN PUMPED', MUTE, None, 'middle')
     return svg + '</svg>'

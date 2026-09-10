@@ -588,3 +588,30 @@ The shell is unchanged in every frame: photograph plate and its two controls, ki
 **Inspection.** Fresh renders this pass, not carried claims: 03 full scroll at three rows including the new correction sequence, 08 full scroll at four rows, 00, and the Entity board at its own width. Larger text: 04.7–04.12 are unchanged from §36 and still hold; the three new 03 frames reuse the register, readback, consequence and trace units already checked at 1.3×, and were not separately enlarged.
 
 **Pending decisions.** (1) Whether "That is not right" should be a door on the page, as drawn, or a reply in the question line. (2) Whether the correction should be visible afterwards anywhere, for instance on the March afternoon itself; nothing is stored as drawn. (3) The invariant-body amendment now sits with the Entity lab as its board 14. (4) The Open House walk-in pocket, unchanged from §36. Integration remains paused; no mode, tour or source policy is added.
+
+## 38. The September 9 selected direction and residual corrections (September 10)
+
+The five residual items in `vesper-places-design-review-2026-09-08.md` ("Current assignment — September 9 selected direction and residual corrections"), applied against the accepted decision `docs/decisions/2026-09-09-select-design-convergence-and-prepared-continuations.md`. Places boards 00, 01, 02, 03, 04, 06, 07, 08 and 09 were pushed; the Entity lab's board 14 was revised and pushed there.
+
+**1. One clock and one service (02 P1–P6).** The chain ran 5:40 → 5:12 → 12:34/2:10, so the proposal preceded its evidence. It now runs on one Friday clock, and the check is a check.
+
+| Frame | Was | Now |
+|---|---|---|
+| P1 | Friday 5:40 PM, seats "posted at 5" | Friday 4:40 PM, twenty minutes before the hall posts |
+| P2 | Friday 5:40 PM; "you'll hear here and on Home when they are" | Friday 4:42 PM; "Not posted yet · this was one look at the hall's page, not a watch", with a door reading "Check again after 5" |
+| P3 | Friday 5:12 PM, seats "posted 5:10" arriving with no one looking | Friday 5:12 PM, "You checked at 5:12 · posted 5:10": the person's own second look, then the proposal |
+| P4 | Friday 2:10 PM, sent 12:34 PM, Maya at 2:04 | Friday 6:06 PM: sent 5:14, Maya at 6:02, moved 6:06 |
+
+The promise of later delivery is gone, because no continuing mandate exists; new evidence arrives only when the person looks again. The prepared message is labelled as what the decision allows: "to Maya and Alex · prepared, not sent · you send it", and the readback after sending says "a proposal, not a change". The café in P5 is unchanged: a near alternative found in that same check, explained, watched by nobody.
+
+**2. 03.8 answers the person (03.7 unchanged as review evidence).** The corrected phone no longer reads back a scope audit. It says "Understood — that was for your father", carries the person's own words once, and goes to the result. The whose / which days / how long analysis moved to the board's notes, with a line saying why: someone correcting a wrong assumption wants the acknowledgment and the consequence, not an audit. The contradiction is resolved by naming the one feasible chance: Rooms Remade ends Sunday and the correction lasts only today, so Sunday is the last day and the person would be going up alone. That is stated, not arranged. 03.9's record now says the level afternoons were planned and claims no visit.
+
+**3. 08.13 has the drawing it is about.** The reused pier section is replaced by a new instrument: two grounds at one tide, the street raised above the 1911 sill and draining by itself, the park on the fill behind its gates with the pumps lifting the water out. Four short labels, one water line, one gate, three pumps, and the prose now says "the pumps" rather than naming a count the drawing does not show.
+
+**4. Three numbers, kept apart.** The comparison prints moving+wait for the one wait drawn, and the axis legend says "moving + the wait as drawn · not a range". Each row's note carries the headway and the possible total: by ferry "42 moving, 20 drawn, 42 to 82 in all", every forty; by the B61 "37 moving, 6 drawn, 37 to 49 in all", every twelve. The same treatment is applied on 01, 03.6, 03.9, 07 and 09.4. The component donor's caption says the strip's number is moving time, all it means, and that the wait it implies is never folded in. Building access is untouched: the stairs remain the last leg everywhere they were.
+
+**5. Entity receiving, and the ending.** Board 08's rules table now marks the lab's 09, 11 and 12 as its older rules cited as evidence, not current defaults, and a note records that the decision accepts the direction while selecting the treatment and not the fixture sentences. Board 14 in the lab was revised the same way: the amendment note became an acceptance note, a second note says every capacity, access, hour and kitchen claim in those frames is a fixture needing support, and the two invented claims were re-attributed to the fixture sources already cited. **08.12 is now the reader's own last page**: the chapter's closing two paragraphs, the source line, and Back to the pier. The separate "That is the whole of it" ceremony is gone, with no acknowledgment and no advance to lunch; nearby places stay on the place page where someone wanting lunch will look.
+
+**Inspection.** Full scrolls re-rendered this pass: 02 (three rows), 03 (three rows), 08 (four rows), 00 and 06, plus the Entity board at its own width. Larger text: 08.12, 08.13, 03.8 and 02 P3 re-rendered at 1.3× together; nothing truncates, the new instrument keeps its size and its labels at the 10px mono floor, and the anchor on P3 wraps to two lines.
+
+**Pending decisions.** (1) Whether "That is not right" belongs as a door on the page or as a reply in the question line, unchanged. (2) Whether the correction should be visible anywhere after the day it was said. (3) The fixture claims on Entity 14 need sourcing before anyone builds from those frames. (4) The Open House walk-in pocket. Integration remains paused; no mode, tour, monitoring or Chat change was added.

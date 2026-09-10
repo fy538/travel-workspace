@@ -41,7 +41,7 @@ def evening(populated=True):
 def understanding(col=None):
     reading = FLOOD(118) + fn('READING · 4 MIN', 12) + f'<div style="margin-top: 4px;">{serifline("Why the pier floods before the street does", 17, 22)}</div>' + f'<div style="font-size: 13px; line-height: 18px; color: {MUTE}; margin-top: 4px;">The pier sits on the old creek bed, two feet below the 1911 sill. It drains only when the harbor is lower than the street.</div>' + door('The rest of the reading')
     piers = (f'<div style="{SERIF} font-size: 17px; line-height: 22px; font-weight: 500; color: {INK};">Two piers, two ways in</div><div style="font-size: 13px; line-height: 18px; color: {MUTE}; margin-top: 4px;">Same evening light; a land route and a crossing.</div>'
-             + I.access_compare([('SUNSET PARK', [(3, 'foot'), (20, 'ride'), (9, 'foot')], 'THE N OR R · A LAND ROUTE, EASY TO SHORTEN'), ('RED HOOK', [(6, 'foot'), (25, 'ride'), (9, 'foot')], 'THE FERRY, EVERY 40 · A SCHEDULED WAY IN')]))
+             + I.access_compare([('SUNSET PARK', [(3, 'foot'), (20, 'ride'), (9, 'foot')], 'THE N OR R · 32 MOVING, NO SCHEDULED WAIT'), ('RED HOOK', [(6, 'foot'), (25, 'ride'), (9, 'foot')], 'THE FERRY · 40 MOVING, EVERY 40 · 40 TO 80 IN ALL')]))
     return sect('Worth understanding') + gut(piers) + gut(reading, top=24)
 def upclose(): return sect('Seen up close') + gut(author_row('P', 'Priya', 'SATURDAY · TO FRIENDS') + quote(PRIYA_PIGEONS) + place_strip('The greenmarket', 'DOWNTOWN · SATURDAY 8–1'))
 def sunday(populated=True):

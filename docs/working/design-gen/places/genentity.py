@@ -29,7 +29,7 @@ def discover():
     return phone(ctx('FROM THE MAP &middot; SORRENTO &middot; OPENED TO LOOK'),
                  pair([('OPEN UNTIL', '11 tonight', 'LISTING &middot; 4:02 PM'), ('THE ROOM', 'A garden, three terraces', 'THE LOWEST ONE IS THE CLIFF EDGE')]),
                  body([P_GARDEN, P_KITCHEN,
-                       'The set sequence is a lemon-terrace habit, not a chef&rsquo;s conceit: the kitchen is small because the terraces were dug for trees, so one sequence a night is what the room can cook. It is why the fish changes and the courses do not.<span class="c">2</span>']),
+                       'The column that named the sequence puts it down to the terraces: the kitchen was built into one, so the room cooks the same order every night and lets the fish change instead.<span class="c">2</span>']),
                  srcs(SRC_LIST[:2] + [SRC_LIST[2]]),
                  verbs(['Ask Vesper', 'Leave for someone']),
                  two(('PRICE', '&euro;&euro;&euro; &middot; about &euro;55 a head'), ('TABLE', 'Reserve &rarr; &middot; weekends fill')))
@@ -47,7 +47,7 @@ def arrangement():
     """Opened from the reservation that exists. The page reads the arrangement back, says when to leave, and sells nothing."""
     return phone(ctx('RESERVED &middot; SATURDAY 8:00 &middot; FROM YOUR CONFIRMATION &middot; ON MAYA&rsquo;S DINNER'),
                  pair([('SATURDAY 8:00', 'Table for four', 'YOUR CONFIRMATION &middot; AUG 21'), ('FROM THE HOTEL', '9 min walk', 'THE PIAZZA, THEN VIA ROTA')]),
-                 body(['The courses run about two hours, so a table at eight is the last full sequence of the night.<span class="c">2</span>',
+                 body(['The guide puts the full sequence at about two hours, which makes eight the last table that gets all of it.<span class="c">1</span>',
                        'Ask for the edge table when you arrive; Dana&rsquo;s line was <em>&ldquo;the table at the edge, order whatever they caught, nothing else.&rdquo;</em><span class="f">D</span>',
                        'The walk is level to the piazza and then two streets back; nothing here changes the booking, which is the restaurant&rsquo;s.<span class="c">3</span>']),
                  srcs([SRC_LIST[1], SRC_LIST[2], SRC_LIST[3]]),
@@ -91,14 +91,15 @@ def board():
           + note('WHAT THIS BOARD IS', 'The four readings Places was asked to supply to this lab&rsquo;s September 9 comparison, drawn in this lab&rsquo;s own shell, sliced from board 09 so that the only difference is the body. Nothing here is adopted; it is what Places selects, offered for the shared destination decision. The fixture is this lab&rsquo;s: Hortus, Dana, Maya&rsquo;s dinner.')
           + note('THE SHELL IS PRESERVED', 'Photograph plate with the same two controls, kind and town, name, faces, one context line, the source list, the map with the seeded identity and the address, the stop. Every frame above carries them unchanged. The proposal is about the body only.')
           + note('WHAT CHANGES, FRAME BY FRAME', tbl(['READING', 'WHAT LEADS', 'WHAT IS NOT SHOWN', 'WHY'], [
-              ['R1 &middot; discovery', 'What the place is, and one connection that explains it', 'The reservation push; the weeknight advice; distance from you', 'Nothing is being decided, so advice for a decision would be noise'],
+              ['R1 &middot; discovery', 'What the place is, and one sourced connection that explains it', 'The reservation push; the weeknight advice; distance from you', 'Nothing is being decided, so advice for a decision would be noise'],
               ['R2 &middot; a visit assessed', 'The table on a Saturday; who it is for; the booking boundary', '&ldquo;On a weeknight you can walk in before eight&rdquo;', 'The person is asking about Saturday; weeknight advice answers a question they did not ask'],
               ['R3 &middot; an arrangement', 'The confirmation, the two hours, what to ask at the door', 'Reserve as a verb; the case for the place', 'The decision is made; selling it again is the failure this frame fixes'],
               ['R4 &middot; a friend&rsquo;s original', 'Her words, whole', 'Four sourced paragraphs before them', 'The reason for opening was her line, so it is what opens'],
               ['R5 &middot; unvisited', 'The mechanism itself', 'Hours, route, an invitation to go', 'What must survive is the contrast, not a teaser for a page']]))
-          + note('THE ONE AMENDMENT PROPOSED', 'Withdraw the invariant-body rule; keep the invariant shell. A body that cannot change loses the reason the page was opened, which is what 09C shows when Saturday&rsquo;s dinner is answered with weeknight advice, and what 09B shows when four paragraphs precede the line the person came for. Emphasis, order and selection among already-sourced material change; identity, ownership, sources and the return do not, and nothing is generated on open.')
+          + note('ACCEPTED, AND WHAT THAT SETTLES', 'The founder&rsquo;s decision of September 9, <b>Select coherent destinations and bounded prepared continuations</b>, accepts this direction: stable identity and shell, purpose-responsive reading. The invariant-body rule is rejected; the restrained photographic and minimal-body design is not. Emphasis, order and selection among already-sourced material may change; identity, ownership, sources and the return do not, and nothing is generated on opening. This lab&rsquo;s 09, 11 and 12 and its indexes are reconciled with this board rather than left as a competing specification.')
+          + note('WHAT IS NOT SETTLED BY IT', 'The decision selects the treatment, not the fixture sentences. Every capacity, access, hour and kitchen claim in the four frames above is a fixture written for this comparison: the terrace explanation, the two hours of courses, the nine-minute walk, the eleven o&rsquo;clock close. They must be sourced or corrected before anyone treats these frames as a specification. The photograph plates are slots.')
           + note('NOT PROPOSED', 'No universal renderer, no automatic copying between projects, no new object owner, no stored personalised take, no generation on opening, and no change to social placement. Places&rsquo; own comparison and its selected column live on Places 08; this board is the receiving half.')
-          + note('STATUS', 'Static frames, drawn September 9 by the Places lane and pushed here for the lab to accept, amend or refuse. No door was exercised. Every fact, person and address is a fixture, and the photograph plates are slots.')
+          + note('STATUS', 'Static frames, drawn September 9 by the Places lane. The direction is now accepted by decision; these drawings are its evidence, not its specification. No door was exercised.')
           + '</div></div>')
     inner = ('<div style="display:flex; flex-direction:column;">'
              + rowdiv('14 &middot; RECEIVED FROM PLACES &middot; 09-09', 'What Places supplies to the shared destination decision', 'Four readings of one place in this lab&rsquo;s shell, plus the unvisited-understanding test, offered for the September 9 comparison of discovery, a visit being assessed and an existing arrangement. The shell is unchanged in every frame; the body follows the reason the page was opened.', first=True)

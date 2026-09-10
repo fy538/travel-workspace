@@ -57,35 +57,36 @@ def hour_unit(extra=''):
     return (title('The listening hour at Canal Hall', 17, 22) + sup('Reich, Music for 18 Musicians, heard whole. Lights down, no talking; doors 6:45.') + fn('SATURDAY 7:15 PM · $12 · CANAL STREET', 4) + extra)
 MSG = 'There&rsquo;s a listening hour at Canal Hall on Saturday at 7:15 that I&rsquo;d like to hear whole; it ends about 8:15. Could we make dinner 8:45? I&rsquo;d come straight from the hall.'
 def p1():
-    """The possibility, with the decisive constraint on the surface: seats are not confirmed. Nothing moves until they are."""
-    inner = anchor('NEW YORK', 'FRIDAY 5:40 PM') + ask(q='Saturday evening', ctx='Around dinner') + gut(dinner('Saturday 8:15 · the noodle counter · yours'), top=12)
-    inner += sect('Before dinner') + gut(band_evening([('20:15', 'DINNER 8:15', 'ring')], hour_kind='faint') + hour_unit(unc('Seats for Saturday aren&rsquo;t confirmed; the hall posts them at 5.') + sup('Heard whole, it ends when your table begins; dinner would be about 8:45.')) + door('Check seats, then ask about 8:45') + door('Keep dinner at 8:15 and skip the hour', MUTE))
+    """The possibility, with the decisive constraint on the surface: seats are not confirmed. Nothing moves until they are. Friday, before the hall posts at five."""
+    inner = anchor('NEW YORK', 'FRIDAY 4:40 PM') + ask(q='Saturday evening', ctx='Around dinner') + gut(dinner('Saturday 8:15 · the noodle counter · yours'), top=12)
+    inner += sect('Before dinner') + gut(band_evening([('20:15', 'DINNER 8:15', 'ring')], hour_kind='faint') + hour_unit(unc('Seats for Saturday aren&rsquo;t confirmed; the hall posts them at 5, in twenty minutes.') + sup('Heard whole, it ends when your table begins; dinner would be about 8:45.')) + door('Check seats, then ask about 8:45') + door('Keep dinner at 8:15 and skip the hour', MUTE))
     inner += sect('Instead') + gut('<div>' + film_row() + '</div>') + gut(door_list(['All of Saturday', 'All of New York']), top=24)
     return phone(inner)
 def p2():
     """The conditional step: seats first. The rearrangement is not offered as ready until the hour is."""
-    inner = anchor('THE HOUR, SATURDAY', 'FRIDAY 5:40 PM', back=True, sub='Canal Hall')
-    inner += gut(K.hours_register([('SEATS', 'Posted by the hall at 5 PM Friday; not yet'), ('DOORS', '6:45; about an hour, ends 8:15'), ('YOUR TABLE', '8:15 at the noodle counter, three minutes away')]), top=16)
+    inner = anchor('THE HOUR, SATURDAY', 'FRIDAY 4:42 PM', back=True, sub='Canal Hall')
+    inner += gut(K.hours_register([('SEATS', 'The hall posts them at 5 today; not yet, as of 4:42'), ('DOORS', '6:45; about an hour, ends 8:15'), ('YOUR TABLE', '8:15 at the noodle counter, three minutes away')]), top=16)
     inner += gut(K.consequence('WHAT DEPENDS ON WHAT', 'If there are seats, dinner would move to about 8:45 and Maya and Alex would be asked. If not, dinner stays at 8:15 and the hour plays again next Saturday.'), top=16)
-    inner += gut(readback('WAITING', 'Seats not posted yet · you&rsquo;ll hear here and on Home when they are'), top=16)
-    inner += gut(door_list(['Back to Saturday evening']), top=24)
+    inner += gut(readback('CHECKED 4:42', 'Not posted yet · this was one look at the hall&rsquo;s page, not a watch'), top=16)
+    inner += gut(door('Check again after 5') + door('Back to Saturday evening', MUTE), top=16)
     return phone(inner)
 def p3():
-    """Seats confirmed at 5:10. The proposal, now grounded; asking is the primary; the dinner is unchanged until answered."""
+    """The person checks again after five. The evidence arrives first, and only then the proposal; asking is the primary; the dinner is unchanged until answered.
+    The prepared message is the accepted Plans exception: one door opens it, addressed and editable, and the person sends."""
     inner = anchor('THE HOUR, SATURDAY', 'FRIDAY 5:12 PM', back=True, sub='Canal Hall')
-    inner += gut(readback('SEATS', 'Posted 5:10 PM · seats left for Saturday · $12 at the door'), top=16)
+    inner += gut(readback('YOU CHECKED AT 5:12', 'Posted 5:10 · seats left for Saturday · $12 at the door'), top=16)
     inner += gut(band_evening([('20:45', 'DINNER 8:45?', 'ring')]), top=12)
-    inner += gut(card(f'<div class="kickm">TO MAYA AND ALEX · NOT SENT</div><div style="{SERIF} font-size: 17px; line-height: 24px; color: {INK}; margin-top: 8px;">{MSG}</div>'), top=16)
+    inner += gut(card(f'<div class="kickm">TO MAYA AND ALEX · PREPARED, NOT SENT · YOU SEND IT</div><div style="{SERIF} font-size: 17px; line-height: 24px; color: {INK}; margin-top: 8px;">{MSG}</div>'), top=16)
     inner += gut(door('Ask Maya and Alex about 8:45') + door('Change the wording', MUTE) + door('Leave dinner at 8:15', MUTE), top=8)
     return phone(inner)
 def p4():
     """Sent, answered, moved: one page, three lines of state, because the person acts once. Notified appears only after the move."""
-    inner = anchor('MOVE DINNER?', 'FRIDAY 2:10 PM', back=True, sub='With Maya and Alex')
-    inner += gut(readback('SENT', 'Asked Maya and Alex about 8:45 · Friday 12:34 PM'), top=16)
-    inner += gut(card(author_row('M', 'Maya', '2:04 PM') + quote('8:45 is fine for both of us. Alex says he&rsquo;ll be hungry either way.', 17, 24)), top=12)
+    inner = anchor('MOVE DINNER?', 'FRIDAY 6:06 PM', back=True, sub='With Maya and Alex')
+    inner += gut(readback('SENT', 'You asked Maya and Alex about 8:45 · Friday 5:14 PM · a proposal, not a change'), top=16)
+    inner += gut(card(author_row('M', 'Maya', '6:02 PM') + quote('8:45 is fine for both of us. Alex says he&rsquo;ll be hungry either way.', 17, 24)), top=12)
     inner += gut(band_evening([('20:45', 'DINNER 8:45', 'ring')]), top=12)
     inner += gut(door('Move dinner to 8:45') + door('Leave it at 8:15', MUTE), top=8)
-    inner += gut(readback('MOVED', 'Dinner · Saturday 8:45 · the noodle counter · Maya and Alex notified · 2:10 PM'), top=16)
+    inner += gut(readback('MOVED', 'Dinner · Saturday 8:45 · the noodle counter · Maya and Alex notified · 6:06 PM'), top=16)
     inner += gut(door_list(['Back to Saturday evening']), top=16)
     return phone(inner)
 def p5():
@@ -106,9 +107,9 @@ def p6():
     inner += sect('Instead') + gut('<div>' + film_row() + '</div>') + gut(door_list(['All of Saturday', 'All of New York']), top=24)
     return phone(inner)
 Pj = [('THE POSSIBILITY', 'The decisive constraint on the surface: seats are not confirmed, so the hour is faint on the band and nothing moves; the existing dinner is a door of its own', p1, False),
-      ('SEATS FIRST', 'The conditional step: what depends on what, and a waiting readback; no rearrangement is offered as ready', p2, False),
-      ('SEATS CONFIRMED, THE PROPOSAL', 'Grounded now; the message is short and editable; asking is the primary, leaving the dinner is a door', p3, False),
-      ('ASKED, ANSWERED, MOVED', 'One page for the person&rsquo;s one act: the send, Maya&rsquo;s words, the move, and notified only after it', p4, False),
+      ('SEATS FIRST', 'The conditional step at 4:42, before the hall posts: what depends on what, one look at its page said to be one look, and a door to check again. Nothing is watched and nothing is promised later', p2, False),
+      ('CHECKED AGAIN, THEN THE PROPOSAL', 'The person looks again at 5:12 and the posting is there; only then the message, prepared under the accepted exception, short and editable, with the person sending', p3, False),
+      ('ASKED, ANSWERED, MOVED', 'Sent 5:14, answered 6:02, moved 6:06: the send is a proposal, her answer alone changes nothing, and the move is the person&rsquo;s own act; notified only after it', p4, False),
       ('CHANGED CIRCUMSTANCES', 'Last orders at 9 as the dot; the evening re-read whole; three honest ways, and the caf&eacute; offered only as what it is: open late, a table not held', p5, False),
       ('RETURN', 'The field reads the current state: dinner as arranged, order on arrival; nothing moved on an unconfirmed table', p6, False)]
 def h3(sent=False):
