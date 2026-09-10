@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Strategy task
 created: 2026-09-07
-last_verified: 2026-09-09
+last_verified: 2026-09-10
 expires: 2026-10-07
 why_new: Extracts the present-tense cross-lane program map from a long Integration plan and its historical receipts so independent owners can coordinate without competing execution queues.
 supersedes:
@@ -20,10 +20,12 @@ depends_on:
 
 # Vesper program roadmap
 
-**September 9 current posture:** the received-material, practical-route,
+**September 10 current posture:** the received-material, practical-route,
 Content consumer/hydration and temporal-map packages have verified isolated
 results at the boundaries recorded below. The latest Content and Places turns
-are complete, not waiting for a design canvas. This is not whole-roadmap or
+are complete, not waiting for a design canvas. Meaning-based discovery and
+bounded exact-original social receiving now have committed isolated implementations
+and focused verification below. This is not whole-roadmap or
 native acceptance: broader semantic/time retrieval, supply activation,
 Social/Life adoption and combined delivery remain unfinished. The proposed
 cross-run editorial reuse policy has been presented to the founder and is
@@ -49,25 +51,26 @@ is adopted; broader AI use, audience and general-share decisions are not.
   applicability remains separate from freshness. Compare paraphrase retrieval
   against the lexical baseline with geography controlled; fake vectors do not
   establish semantic quality.
-- **Original receiving — implementation assigned after architecture review:**
-  received-value lane `2bf01ac` / `2d33a5380` /
-  `ddf9866f9`; exact selected-source Send, sender readback/control, currently
+- **Original receiving — implemented locally:**
+  received-value lane `c4a4296` / `de76cf417` /
+  `930ecee68`; exact selected-source Send, sender readback/control, currently
   authorized recipient original, Home entry/return and lifecycle repair. Follow
   Social §10.4 and the adopted contract. No invented Place for non-spatial
   material, generalized social owner by accident, new AI-use grant or Chat/Life
-  redesign. Complete supported work and escalate only a real owner/authority
-  boundary.
+  redesign. The implemented scope is retained plain text and JPEG/PNG/GIF/WebP
+  originals, one existing eligible account per send, not the whole Social roadmap.
 - **Orchestration:** a second local spawn was refused by the session's retained
-  agent limit. The existing Luna xhigh worker is resumed for discovery, then
-  original receiving; Strategy prepares the social contract and handoff in
-  parallel. No second session or model substitution was dispatched. Local
+  agent limit. The existing Luna xhigh worker completed discovery, then
+  original receiving; Strategy handled the contract, independent review and
+  regression follow-ups in parallel. No second session or model substitution was dispatched. Local
   implementation, focused verification and explicit commits are authorized;
   Integration, landing, publishing and activation remain paused/separate.
 
 Each assignment owns diagnosis through implementation, self-review, tests and
 coherent commits. Checkpoints are the first substantial architecture boundary,
 a consequential blocker, and final verified handback—not routine step approvals.
-This is active execution scope, not completion or a whole-product acceptance claim.
+These two bounded implementations are complete locally; broader execution scope
+and whole-product acceptance are not complete.
 
 **Discovery architecture checkpoint:** keep embedding/vector lookup in the
 existing vector owner, and its optional execution/budget in Places. The
@@ -116,6 +119,47 @@ The worker reported this schema boundary before implementation and Strategy
 approved the bounded owner-preserving extension. Any genuinely new eligibility
 policy remains a founder decision. Caption is optional; receiving/return is
 complete without Ask, Keep, reply or sender-visible consumption metrics.
+
+**Original receiving completion — September 10:** clean coordinated candidate
+`c4a4296` / `de76cf417` / `930ecee68` (workspace/backend/app). Relationships
+owns a narrow delivery repository and a shared eligibility-policy module;
+Source/Intake owns exact custody, supported original roles, MIME, size and
+revision validation. Reads enforce current grant/source/linked-pair access and
+effective expiry, including reauthorization after a private download. Dismissal
+is not withdrawal. Recipient status/expiry filtering precedes the list limit.
+The real Home v2 server portfolio supplies the typed unit without displacing
+urgent work; mobile supplies a bounded 280-character preview, original depth
+reader/root return, account/expiry handling, sender history, retry reconciliation
+and withdrawal. Sender and read hooks preserve the existing default-off gate.
+
+Strategy independently ran **120 offline backend tests** (5.611s), **two real
+PostgreSQL scenarios** (6.091s, isolated disposable port 55566), and **55 mobile
+tests across seven suites** (2.959s), all passing with zero skips. The original
+broader mobile run found a stale renderer-registry assertion; `930ecee68`
+corrects it and adds mounted denial coverage with previously cached text.
+Measured commands, revisions and results are under
+`/tmp/vesper-social-original-20260909/`: `social-original-final-offline-20260910T043237Z.log`,
+`social-original-final-postgres-20260910T043258Z.log`, and
+`social-original-final-mobile-hardened-20260910T043517Z.log`. Backend tests run
+with the existing Python 3.13 environment, not the measurement wrapper's 3.14.
+Backend commit hooks passed; the independent size check passed. Offline export
+from actual backend code, generated-contract sync/typecheck, API boundaries,
+schema bridge, Home surface budgets and API coverage passed (574 active,
+15 dark/zero unflagged, 62 retiring). Default export initially used an environment
+without FastAPI; selecting the installed Python 3.13 environment resolved that
+tooling failure without changing the exporter or weakening a check.
+
+**Remaining boundaries:** these are lane commits, not merged or serving. Full
+`make verify`, ASGI authentication acceptance, native/visual acceptance and live
+semantic-provider quality remain unrun. Mocked route functions and mounted React
+tests are not native/HTTP evidence; the React tests still emit act warnings.
+Mobile global size/query-key checks retain inherited violations; the new API
+family is extracted rather than added inline to the oversized implementations.
+Original lists remain bounded (including the sender's latest 50 sends); do not
+promise exhaustive history or complete source/pair-filtered recall. Broader
+recipient refinding, guests, Reply/Ask and onward/AI-use rights are not delivered
+by this package. Integration, merge/push, provider activation and deployment
+remain paused or separately authorized.
 
 ## Previous round — contextual discovery and exact human receiving
 

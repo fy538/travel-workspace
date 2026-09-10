@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / social experience / complete-system integration
 created: 2026-09-07
-last_verified: 2026-09-09
+last_verified: 2026-09-10
 expires: 2026-10-07
 why_new: Expands the complete-system roadmap's social package into reviewable cross-repo implementation packages; the design handoff owns experience intent and the capability map owns its earlier audit, neither owns engineering dependencies and acceptance.
 supersedes: []
@@ -18,12 +18,12 @@ depends_on:
 
 # Social implementation roadmap — a shared layer of the lived-world product
 
-## Current execution queue — program-aligned September 9
+## Current execution queue — program-aligned September 10
 
-**Immediate assignment:** exact selected-original sending and receiving under
+**Completed locally, still gated:** bounded exact selected-original sending and receiving under
 the [adopted one-recipient display rule](../decisions/2026-09-09-exact-original-recipient-display.md).
-See §10.4 for its inspected lane, implementation scope and tests. The display
-decision is resolved; general/non-spatial sharing architecture, broader audience
+See §10.4 for its committed lane, implementation scope and tests. The display
+decision is resolved for spatial and non-spatial originals; general sharing architecture, broader audience
 and friend-source AI rights are not. Integration is paused and no Life redesign
 or serving cutover is included in this assignment. The sequence below preserves
 the broader social roadmap, not additional work automatically dispatched now.
@@ -856,6 +856,48 @@ acknowledgment need not block this batch: keep Reply usable, do not build a
 reaction/count service, and retain the acknowledgment choice as unresolved.
 
 ### 10.4 Implementation sequence and reviewable commit boundaries
+
+#### September 10 bounded implementation complete locally
+
+Received-value candidate: workspace `c4a4296`, backend `de76cf417`, app
+`930ecee68`, all clean on `codex/received-value-2026-09-09`. These remain
+isolated commits, not merged or activated. The assignment below is preserved
+as the implementation contract and starting-state history, not an open dispatch.
+
+Implemented: exact selected retained plain text or JPEG/PNG/GIF/WebP original;
+one existing eligible account per send; sender history, idempotent retry and
+withdrawal; current recipient display; ordinary server-composed Home v2 entry,
+bounded preview and original reader/root return. Current Source/Intake custody,
+role/MIME/size/revision, delivery expiry, and any linked handoff's specific pair
+remain authoritative. A different active pair cannot restore that linked access;
+dismissing a handoff does not revoke its original. Reauthorization after storage
+download prevents a stale in-flight response from completing after authority
+loss. No Source storage reference is exposed and no AI-use/copy/audience right
+is inferred. Shared eligibility policy is a dependency leaf within Relationships,
+not a cyclic repository split or a new general social owner.
+
+Independent verification: 120 offline backend tests, two disposable PostgreSQL
+scenarios and 55 mobile tests across seven suites passed, zero skipped. These
+include role/revision denial, linked-pair/dismissal behavior, expired/revoked row
+filtering before the recipient limit, exact route bytes/headers/storage failure,
+sender retry/readback, gate-off UI, account changes, mounted deadline and cached
+reader denial. The database scenarios call production route functions and the
+default Home reader/composer, not the ASGI authentication stack. Actual offline
+schema export, generated types/typecheck, API boundaries, schema bridge, Home
+budgets and API coverage pass. Backend commit hooks/size checks pass. See the
+[program completion record](vesper-program-roadmap.md#current-round--meaning-based-discovery-and-exact-original-receiving)
+for exact commands/logs and the initially failing renderer test repaired in
+`930ecee68`.
+
+Limits are explicit: existing default-off backend/mobile gates stay off; no
+native acceptance, full `make verify`, combined serving or guest delivery.
+Global mobile size/query-key violations predate this package and remain failed;
+React tests retain act warnings. The sender UI reads the latest 50 sends, and
+current source/pair filtering follows bounded candidate reads: exhaustive
+refinding/withdrawal history and complete eligible recall are not established.
+Do not treat this as complete Social/Life adoption or permission to add originals
+to private Ask, Reply, recipient copies or broader audiences. Those remain the
+separate packages/decisions below.
 
 #### September 9 adoption and implementation assignment
 
