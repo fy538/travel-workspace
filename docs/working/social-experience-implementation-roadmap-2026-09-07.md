@@ -18,7 +18,15 @@ depends_on:
 
 # Social implementation roadmap — a shared layer of the lived-world product
 
-## Current execution queue — program-aligned September 7
+## Current execution queue — program-aligned September 9
+
+**Immediate assignment:** exact selected-original sending and receiving under
+the [adopted one-recipient display rule](../decisions/2026-09-09-exact-original-recipient-display.md).
+See §10.4 for its inspected lane, implementation scope and tests. The display
+decision is resolved; general/non-spatial sharing architecture, broader audience
+and friend-source AI rights are not. Integration is paused and no Life redesign
+or serving cutover is included in this assignment. The sequence below preserves
+the broader social roadmap, not additional work automatically dispatched now.
 
 Use the [program roadmap](vesper-program-roadmap.md) for cross-lane ownership
 and the inspected candidate. Social fixes `68ef73031` and `75743adae` are now
@@ -27,8 +35,8 @@ receipts. The pair-note implementation is not the complete designed experience.
 
 1. Revalidate the merged sender controls and shared visibility policy across
    history, previews, search and model context. Do not rebuild those fixes.
-2. Resolve only the selected-source/recipient decisions needed for the next
-   capability, using §10.3. Then connect photographs, place notes and non-spatial
+2. Resolve only the remaining selected-source/recipient decisions needed beyond
+   the adopted exact one-recipient display rule, using §10.3. Connect photographs, place notes and non-spatial
    originals through existing source and Relationship owners. Wider guests and
    new friend-source AI use remain independently gated.
 3. Deliver original receiving, optional Reply/private Ask, durable sender
@@ -39,7 +47,7 @@ receipts. The pair-note implementation is not the complete designed experience.
    gatherings, guests and social intelligence. Preserve those later requirements
    without letting them hold all ordinary authenticated receiving.
 
-This is the current queue. §10 retains file-level scope and decision boundaries;
+This is the broader sequence. §10 retains file-level scope and decision boundaries;
 §9/§10.8 retain scoped execution evidence, not current branch or rollout status.
 
 ## 1. Recommendation and scope
@@ -94,6 +102,9 @@ batch was subsequently requested and is recorded in §9. The later request to
 plan the next work authorizes this documentation revision, not those additional
 effects. Execution should obtain the required owner/product rulings where named
 below; already authorized behavior can advance independently of those rulings.
+The September 9 approval subsequently authorizes the exact-original package
+and narrow display contract recorded in §10.4; the remaining proposals and
+deployment/activation actions are not adopted by that approval.
 No wholesale Chat, Life or four-root redesign is required by this plan.
 
 ## 2. Evidence and the current starting point

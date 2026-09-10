@@ -68,6 +68,17 @@ coherent commits. Checkpoints are the first substantial architecture boundary,
 a consequential blocker, and final verified handback—not routine step approvals.
 This is active execution scope, not completion or a whole-product acceptance claim.
 
+**Discovery architecture checkpoint:** keep embedding/vector lookup in the
+existing vector owner, and its optional execution/budget in Places. The
+provider-free lived-experience reader owns authoritative candidate admission
+and ranking, not model/network invocation. Reuse the configured embedding and
+collection contract behind a separate default-off serving gate; do not invent
+a local-only runtime. Preserve the total 350 ms optional-reading envelope,
+finished lexical results and catalog independence, with bounded physical work
+and no database connection held across provider work. Current draft code was
+returned for this reorganization before acceptance. Tests use fake providers;
+no production provider or collection is activated by implementation.
+
 ## Previous round — contextual discovery and exact human receiving
 
 **Authorized September 9 after the six-finding repair:** use local Luna xhigh
