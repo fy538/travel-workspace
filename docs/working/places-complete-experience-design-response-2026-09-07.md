@@ -556,3 +556,35 @@ Home's one returned correction is applied: the Open House row now carries the da
 **Static versus exercised.** Every frame is an ordered static illustration. The doors on 03.7, 03.8, 08.10–08.13 were not exercised. Full scrolls were rendered and read at this pass rather than carried from earlier claims: 03 (five frames plus the pair), 08 (four rows), 04 (four rows), 00. Larger text: 04.7–04.12 at 1.3×, including the two new readings; the plan readback wraps to two lines and the not-sensed line wraps to two lines, neither truncates, and the instruments keep their size and their labels at the 10px mono floor.
 
 **Pending decisions.** (1) Whether a correction like 03.7's should leave any trace at all beyond the visit record on 03.8; nothing is stored as drawn. (2) Whether the ending on 08.12 should offer any continuation or stop at the pier; drawn with one, the lunch counter. (3) The invariant-body amendment is still proposed to the Entity lab, which has not yet applied its own September 9 assignment. (4) Whether the Open House walk-in sites deserve a pocket with a map once the sites are known. Source reading does not establish on-site benefit, provider coverage or native behaviour. Integration remains paused.
+
+## 37. The September 9 selection and correction, applied (September 9, late night)
+
+The leading assignment in `vesper-places-design-review-2026-09-08.md` ("Current assignment — September 9 selection and correction"). Places boards 00, 03, 06 and 08 were regenerated and pushed. One new board was drawn in the Entity object-page lab (project dd48304b): **14 - Received from Places**.
+
+**1. The correction, made legible (03.7–03.9, replacing the earlier 03.7–03.8).** The old pair showed a correction whose prior mistake was invisible, so the outcome looked like no change at all. It is now three frames.
+
+| Frame | What it draws |
+|---|---|
+| 03.7 · What Vesper had understood | The page before the correction, stating its belief and its source: "Step-free, the way your afternoons usually go", the rooms upstairs marked "kept off your afternoons", and a trace reading "because of the March afternoon: you asked for a level way in, so stairs are kept off what you are shown". One door: "That is not right." |
+| 03.8 · The correction, made legible | "That was for my parents." Three rows settle it: whose, "your father's, not yours"; which days, "the March afternoon, and today, because he is with you"; after today, "nothing is kept; stairs come back on this page tomorrow". Then what it changes, and the row that returns: Rooms Remade upstairs, to Sunday, for a Saturday alone. |
+| 03.9 · Three weeks on, alone | A new show upstairs. The stairs are a fact of the building again. The record says an afternoon was planned in March with the father; it does not claim a visit happened, because nothing in this design observes one. |
+
+The board carries a before-and-after table of the five questions the correction settles. The honest outcome is that today still reads level, because the father is there; the useful difference is the row that comes back to the page and the sentence that says why today is level. No persona exercise, no stored preference, no mode.
+
+**2. The Entity exchange, finished from this side.** The four readings were drawn again in the Entity lab's own shell, sliced from its board 09 so the only difference is the body, and pushed to that project as board 14.
+
+| Frame | What leads | What is not shown | Why |
+|---|---|---|---|
+| R1 · discovery | What the place is, and one connection that explains it: the set sequence is a lemon-terrace habit, not a chef's conceit | The reservation push, the weeknight advice, distance from you | Nothing is being decided |
+| R2 · a visit assessed | The table on a Saturday, who it is for, the booking boundary | "On a weeknight you can usually walk in before eight" | It answers a question the person did not ask; this is Entity 09C's fault |
+| R3 · an arrangement | The confirmation, the two hours, what to ask at the door | Reserve as a verb, the case for the place | The decision is made; selling it again is the fault in 12.3 |
+| R4 · a friend's original | Dana's words, whole, with the place one line below | Four sourced paragraphs in front of them | The reason for opening was her line; this is 09B's fault |
+| R5 · unvisited | The mechanism itself, supplied as Places 08.13 in the Places kit | Hours, route, an invitation to go | What must survive the destination is the contrast, not a teaser |
+
+The shell is unchanged in every frame: photograph plate and its two controls, kind and town, name, faces, one context line, the source list, the map with the seeded identity and the address, the stop. The single amendment proposed is to withdraw the invariant-body rule and keep the invariant shell; the lab decides. No universal renderer, no copying in the other direction, no new owner, no generation on open.
+
+**3. The endings, and what leaves the phone.** The reviewer-facing lines are gone from inside the frames. 08.11 now says "The harbour is below the sill; the gates are open" where it said nothing is being sensed; the boundary is stated in the caption and the notes instead, where it belongs. 08.12 loses "no photograph asked for"; 08.13 loses "no route, no hours, no invitation to go" and its consequence is retitled "the counter-case to the pier". **Selected: the ending stops.** Two lines and the way back, no continuation. A continuation would pull attention back into the app at the one moment the design is trying to give it away, and the lunch counter is not lost, it already sits on the place page under Near it.
+
+**Inspection.** Fresh renders this pass, not carried claims: 03 full scroll at three rows including the new correction sequence, 08 full scroll at four rows, 00, and the Entity board at its own width. Larger text: 04.7–04.12 are unchanged from §36 and still hold; the three new 03 frames reuse the register, readback, consequence and trace units already checked at 1.3×, and were not separately enlarged.
+
+**Pending decisions.** (1) Whether "That is not right" should be a door on the page, as drawn, or a reply in the question line. (2) Whether the correction should be visible afterwards anywhere, for instance on the March afternoon itself; nothing is stored as drawn. (3) The invariant-body amendment now sits with the Entity lab as its board 14. (4) The Open House walk-in pocket, unchanged from §36. Integration remains paused; no mode, tour or source policy is added.
