@@ -17,7 +17,7 @@ def e4():
     inner = anchor('THE HARBOR PRINT ROOM', '', back=True, sub='Red Hook · Tue–Sun 11–6') + gut(photo_plate(190), top=16)
     inner += gut(title('Rooms Remade, through Sunday', 20, 25, 600) + sup('A print workshop in a former warehouse on Van Brunt Street; the exhibition is in the two upstairs rooms.') + unc(UNK_ROOM), top=12)
     inner += gut(f'<div style="padding-top: 12px; border-top: 1px solid {HAIR7};">' + author_row('M', 'Maya', 'THURSDAY') + quote(MAYA_ROOM, 16, 22) + '</div>', top=12)
-    inner += sect('Getting there') + gut(burden_strip('TO PIER 11', 'THE FERRY · 25 MIN', '9 MIN ON FOOT', '~40') + getting_in())
+    inner += sect('Getting there') + gut(burden_strip('TO PIER 11', 'THE FERRY · 25 MIN · EVERY 40', '9 MIN ON FOOT', '40 MOVING') + getting_in())
     inner += gut(door_list(['Reply to Maya', 'Ask Vesper privately']), top=12)
     return phone(inner)
 E = [('THE FIELD', 'Friday, as it stands; the first viewport', lambda: field(True), True), ('A QUESTION TYPED', 'The page becomes map-led because orientation was asked for; the burden strip says what the crossing costs', e2, False),
@@ -43,7 +43,7 @@ def h_ask(answered=False):
     if answered:
         inner += gut(bubble('is it ticketed? and can I get there by ferry on Saturday?'), top=16)
         inner += gut(answer('Whether Rooms Remade is ticketed hasn&rsquo;t been confirmed; the workshop itself is open Tuesday to Sunday, 11 to 6. The ferry from Pier 11 runs every 40 minutes and takes 25; the Print Room is nine minutes on foot from the landing.'), top=16)
-        inner += gut(burden_strip('TO PIER 11', 'THE FERRY · 25 MIN · EVERY 40', '9 MIN ON FOOT', '~40'), top=12) + gut(composer('Ask, or change something'), top=24)
+        inner += gut(burden_strip('TO PIER 11', 'THE FERRY · 25 MIN · EVERY 40', '9 MIN ON FOOT', '40 MOVING'), top=12) + gut(composer('Ask, or change something'), top=24)
     else: inner += gut(composer('Ask', 'is it ticketed? and can I get there by ferry on Saturday?'), top=24)
     return phone(inner)
 Hj = [('THE FIELD', 'The From friends card under the opening', lambda: field(True), True), ('FROM FRIENDS', 'Five lines from four people, each once, under its place', h2, False),
@@ -138,7 +138,7 @@ def frames(js, prefix):
     return out
 def board():
     notes = [notecol('What each journey shows (§13.6, §14)', [
-        ('EXPLORATION', N('Field and map are expressions of the same exploration: the question typed into the field makes the page map-led, the burden strip says what the crossing costs door to door, the map page carries the same four places and the same question, the result page carries the place and Maya&rsquo;s words with two doors and no primary, and Back preserves the question, the four places and the position, marking the one opened. The map&rsquo;s geometry is illustrative, not routing. Five frames; no target exercised.')),
+        ('EXPLORATION', N('Field and map are expressions of the same exploration: the question typed into the field makes the page map-led, the burden strip says what the crossing costs in movement, with the headway named and the wait left to the comparison on 08, the map page carries the same four places and the same question, the result page carries the place and Maya&rsquo;s words with two doors and no primary, and Back preserves the question, the four places and the position, marking the one opened. The map&rsquo;s geometry is illustrative, not routing. Five frames; no target exercised.')),
         ('HUMAN RECEIVING', N('From friends is a list of people&rsquo;s own words, once each, under the place each concerns. The original is enjoyed as itself; the two continuations are doors, independent, and neither is prerequisite to the other (§14.4). Branch 1 reads and returns with nothing sent. Branch 2 replies to Maya: the composer names her, the readback sits on her page, the field is unchanged. Branch 3 asks Vesper privately: the header says it is private and what it is about; the answer draws the crossing; Maya is never a recipient. No combined completion state is drawn. The requirements live here, not in the phone (§14.3).')),
         ('PRACTICAL CONTINUATION (REVIEW §P8)', N('The chain is complete now. Seats for the hour were unconfirmed, so the possibility shows that as the decisive constraint (the hour faint on the band) and offers a seat check before any rearrangement; the existing dinner is a door of its own at every step. Once seats are posted, the proposal is grounded and short; asking is the primary. The send, Maya&rsquo;s answer and the move share one page because the person acts once; notified appears only after the move. On Saturday the change is re-read against the whole evening: 8:45 leaves fifteen minutes to order, so three honest ways are offered, and the caf&eacute; is described as what it is, open late with no table for three confirmed, never as a workable dinner. The person keeps the counter; nothing moves on an unconfirmed table.'))], w=640),
         notecol('What is current at the end; what is not exercised', [

@@ -510,3 +510,49 @@ The four items of the leading assignment in `vesper-places-design-review-2026-09
 **Static versus wired.** Every frame is an ordered static illustration. 08.7's "Why the pier floods" door, 08.9's Open the plan and Message Maya, 03.3's The pier and Around the pier were not exercised. Inspected with annotations hidden: 01.1, 03.3, 08.7, 08.9. Larger text: 04.7–04.10 re-rendered at 1.3× with the new 01 copy; 08.7 and 08.9 were not enlarged.
 
 **Pending decisions.** (1) The invariant-body amendment is proposed to the Entity lab, not adopted for it; the founder decides. (2) Whether 08.7's earned connection (the presses a flight up for the sill's reason) is a fixture worth keeping or should be replaced by a sourced fact when the seed exists; it is marked fixture. (3) 09's copy was aligned but its composition was not reopened. (4) The review cites Product Model §3 for causal, historical, cultural, relational and counterfactual understanding and the Entity handoff cites §4.1 and Canon §7.3; the Product Model file is not in this workspace's tree, so the citation is carried from the review, not re-read. Integration remains paused; no lane is dispatched.
+
+## 36. The September 9 second-pass strategy alignment, applied (September 9, night)
+
+The leading assignment in `vesper-places-design-review-2026-09-08.md` ("Current assignment — September 9 second-pass strategy alignment"). Boards 00, 01, 02, 03, 04, 06, 07, 08 and 09 were regenerated and pushed; 05 is unchanged. Home's response §18 and its generator were read before the pair was touched; Entity 09, 11 and 12 were already inspected in §35 and are unchanged since.
+
+**The revision race, resolved.** For half of September 9 each project moved to the other's set. Home dropped its Red Hook pairing for the flea and Open House; this project dropped the flea for Home's film and pier. Neither ignored the other's feedback; both were reading a version that had already moved. Home's §18.3 names its current fixture, so 03.3 is drawn on that set with Home's own dates, and the board carries a note saying what happened.
+
+| Item | Source | Dates · expiry | Home 14 | Places 03.3 |
+|---|---|---|---|---|
+| The flea, under the bridge | The market's own notice | Saturdays through October; today 8 to 3; the bread stall by ten | 14.2 named, 14.3 and 14.3b the one live thing | The place, its hours, directions |
+| Open House New York | The OHNY listing | Oct 17–18; timed registration Tuesday noon to Thursday; walk-ins need none | 14.1 opens today at noon, 14.2 closes tonight, 14.3 closed Thursday, 14.3b the walk-ins | The walk-in sites as places; the timed sites marked closed, with the window that ran |
+| The L | MTA | After 11 PM Mon–Thu; daytime normal; end date unknown | 14.1, and tonight's last on 14.2 | A getting-around fact; normal today |
+| Forecast and tide | Two stations; the tide table | Today clear, 41°; low 2:40 to 5, high 8:40 | The reading on all three opens | The line under the sentence; the tide as a getting-around fact |
+| The Harbor Book, ch. 4 | The book | No expiry | 14.1 the card, 14.2 and 14.3 the row | The reading, with the section instrument |
+
+Home's one returned correction is applied: the Open House row now carries the dated window instead of "open until Sunday". The film, the greenmarket, the pierogi table, the Print Room and the 1911 sill stay this project's own material on 01, 03.1 and 08, labelled as independent examples rather than as the pair.
+
+**Changed frame IDs.**
+
+| Frame | Change |
+|---|---|
+| 03.3 | Back on the flea and Open House set at Saturday 9:30, with Home's dates and the timed window that ran, not only its closure. |
+| 03 · notes | The ledger rebuilt on that set; a new note, "the revision race, resolved". |
+| 03.7 (new) | Home's scoped help received on a place. The person corrects the purpose of the constrained afternoon, "that was for my parents"; the level afternoon is offered, the stairs are named as today's problem, and one line says the correction is scoped to the afternoon and not kept. |
+| 03.8 (new) | The same place three weeks later, alone, for a new show. The stairs are a fact of the building again, not a limit on the person; the record says a visit happened on the level floor; nothing infers a preference from it, and the arrangement and the building's access facts survive as evidence. |
+| 08.10–08.13 (new) | One connected extension: the Harbor Book reading on Friday evening naming what will be visible; the pier at 3:10 on Saturday with the section redrawn at today's water and the intakes dry; the ending at 3:40 that gives attention back, with one ordinary continuation and nothing recorded; and the same mechanism for a place across the harbour no one will stand in. |
+| 08 · rules table | One row added, "what understanding survives". Understanding is part of the reading, not a fourth mode: it appears when it changes what the person will notice and it must survive the destination as a relationship, a contrast or a mechanism, never as "read more about this place". |
+| 01, 02, 07, 08 · totals | The strip's number is now labelled moving time, not a door-to-door total; the ferry's row note says the wait is drawn at 20 against a headway of 40; 08's annotation quotes the numbers the drawing shows, 42 moving and 62 with the wait by ferry, 37 and 43 by the B61; 02's note no longer says the strip measures door to door; 07's caption says the wait is never folded into the strip's number. |
+| 04.11, 04.12 (new) | The two September 9 readings checked at 1.3×: the page opened from an arrangement, and the pier. |
+| 00, 06 | Index miniatures and boards table updated; a log row for this pass. |
+
+**Situated understanding, and what it must survive.** The sequence is four moments in one journey, not a new page mode. The instrument does the argument twice: the section at high water on 08.10, the same section at today's low water on 08.11, so the sill and the dry intakes are visible rather than described. Nothing is sensed: 08.11 is opened by the person and says so on its face, and no presence, location permission or arrival detection is invented. The ending asks for no photograph and records nothing. 08.13 is the check for an unvisited place: the counter-case survives as gates against a raised sill, with no route, no hours and no read-up teaser.
+
+**Before and after, human work and perceptual benefit.**
+
+| Frame | Before | After |
+|---|---|---|
+| 03.3 | A set Home no longer draws | The set Home draws, dated as Home dates it; the pair can be checked line by line |
+| 03.7 | A correction had nowhere to land; the constrained afternoon was the only reading | One sentence from the person changes what is offered for the afternoon. Effort asked: the correction itself, nothing more; nothing is stored |
+| 03.8 | Nothing showed what a correction does later | The later visit inherits no constraint; what survives is the visit record and the building's own facts |
+| 08.10–08.12 | The reading sat on the field and was never drawn where it is used | Four minutes before, one thing to see at the pier, and an ending that stops. No detour and no capture |
+| The totals | The strip said ~40 door to door while the comparison drew 62 | One scope per number: 40 moving on the strip, 42 and 62 in the comparison, the headway on the bar |
+
+**Static versus exercised.** Every frame is an ordered static illustration. The doors on 03.7, 03.8, 08.10–08.13 were not exercised. Full scrolls were rendered and read at this pass rather than carried from earlier claims: 03 (five frames plus the pair), 08 (four rows), 04 (four rows), 00. Larger text: 04.7–04.12 at 1.3×, including the two new readings; the plan readback wraps to two lines and the not-sensed line wraps to two lines, neither truncates, and the instruments keep their size and their labels at the 10px mono floor.
+
+**Pending decisions.** (1) Whether a correction like 03.7's should leave any trace at all beyond the visit record on 03.8; nothing is stored as drawn. (2) Whether the ending on 08.12 should offer any continuation or stop at the pier; drawn with one, the lunch counter. (3) The invariant-body amendment is still proposed to the Entity lab, which has not yet applied its own September 9 assignment. (4) Whether the Open House walk-in sites deserve a pocket with a map once the sites are known. Source reading does not establish on-site benefit, provider coverage or native behaviour. Integration remains paused.

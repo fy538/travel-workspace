@@ -5,7 +5,7 @@ import instruments as I
 PRIYA_ROOM = 'The back room to myself for an hour.'
 def arrival(stairs=True):
     """The whole arrival, from a named origin: the wait for the ferry, the crossing, the level walk, then the stairs to the rooms upstairs. The last leg is the decisive one for some visits."""
-    return I.access_compare([('BY FERRY', [(6, 'foot'), (20, 'wait'), (25, 'ride'), (9, 'foot')] + ([(2, 'stairs')] if stairs else []), 'PIER 11 · WAIT UP TO 40 · LEVEL, THEN STAIRS UP'),
+    return I.access_compare([('BY FERRY', [(6, 'foot'), (20, 'wait'), (25, 'ride'), (9, 'foot')] + ([(2, 'stairs')] if stairs else []), 'PIER 11 · EVERY 40 · THE WAIT DRAWN AT 20'),
                              ('BY THE B61', [(4, 'foot'), (6, 'wait'), (28, 'ride'), (3, 'foot')] + ([(2, 'stairs')] if stairs else []), 'EVERY 12 · TWO BLOCKS · THE SAME STAIRS')], origin='FROM CANAL STREET', h=118)
 def ctx(t): return f'<div style="padding: 0 22px;">{fn(t, 8)}</div>'
 def page(state='populated', context=None):
@@ -73,6 +73,43 @@ def page_purpose(purpose):
     inner += sect('Getting there for 2:30') + gut(I.access_compare([('THE 1:20 FERRY', [(6, 'foot'), (8, 'wait'), (25, 'ride'), (9, 'foot'), (2, 'stairs')], 'PIER 11 · LEAVE BY 1:06 · UPSTAIRS BEFORE 2'), ('THE B61', [(4, 'foot'), (6, 'wait'), (28, 'ride'), (3, 'foot'), (2, 'stairs')], 'EVERY 12 · LEAVE BY 1:35 · THE SAME STAIRS')], origin='FROM CANAL STREET', h=118))
     inner += gut(door_list(['Open the plan', 'Message Maya', 'Back to Saturday']), top=24)
     return phone(inner)
+SECT_HIGH = lambda h=118: I.section([(0, 0.6), (34, 0.6), (34, 1.2), (60, 1.2)], 0.9, [(2, 0.68, 'THE PIER · CREEK BED', 'start', INK), (36, 1.3, 'THE STREET · SILL 1911', 'start', INK), (2, 0.96, 'HARBOR · HIGH WATER', 'start', WATER)], scale_m='m', h=h, zmax=1.42)
+SECT_LOW = lambda h=118: I.section([(0, 0.6), (34, 0.6), (34, 1.2), (60, 1.2)], 0.34, [(2, 0.68, 'THE PIER · WHERE YOU ARE', 'start', INK), (36, 1.3, 'THE STREET · SILL 1911', 'start', INK), (2, 0.40, 'HARBOR · LOW WATER NOW', 'start', WATER)], scale_m='m', h=h, zmax=1.42)
+def extension(part):
+    """One connected extension: understanding before an encounter, the encounter itself, an ending that gives attention back, and the same understanding for a place no one will stand in.
+    Nothing is sensed: every frame is opened by the person. No detour, no photograph, no comprehension check."""
+    if part == 'before':
+        inner = anchor('THE RED HOOK PIER', 'FRI 6:10 PM', back=True, sub='Red Hook')
+        inner += orientation('Why the pier floods before the street does.', 'The Harbor Book, ch. 4 · four minutes · read before you go, or not at all', 26, 31)
+        inner += gut(SECT_HIGH() + fn('THE 1911 SILL · TWO FEET ABOVE THE CREEK BED', 12), top=16)
+        inner += gut(f'<div style="margin-top: 4px;">{serifline("The pier sits on the old creek bed, two feet below the sill the street was raised to in 1911. It drains only when the harbour is lower than the street; until then the gates hold and the pumps do the rest.", 16, 22)}</div>', top=8)
+        inner += gut(consequence('WHAT YOU WILL BE ABLE TO SEE', 'Two iron squares in the paving at the crossing. They are the pump intakes, and at low water they are dry.'), top=16)
+        inner += gut(door_list(['The rest of the chapter', 'The pier']), top=24)
+        return phone(inner)
+    if part == 'there':
+        inner = anchor('THE RED HOOK PIER', 'SAT 3:10 PM', back=True, sub='Red Hook')
+        inner += orientation('Low water until five. The squares at the crossing are dry.', 'You opened this at the pier · nothing is being sensed or kept', 26, 31)
+        inner += gut(SECT_LOW() + fn('THE HARBOR IS BELOW THE SILL · THE GATES ARE OPEN', 12), top=16)
+        inner += gut(f'<div style="margin-top: 4px;">{serifline("Stand on the crossing and the street is a step above you; that step is the sill. The two iron squares are the intakes you read about, and today there is nothing in them.", 16, 22)}</div>', top=8)
+        inner += gut(hours_register([('LOW WATER', 'Until 5; the harbour turns after that'), ('THE SQUARES', 'In the paving where the pier meets the street')]), top=16)
+        inner += gut(door_list(['The rest of the chapter']), top=24)
+        return phone(inner)
+    if part == 'after':
+        inner = anchor('THE RED HOOK PIER', 'SAT 3:40 PM', back=True, sub='Red Hook')
+        inner += orientation('That is the whole of it.', 'Nothing to answer, nothing to keep · the tide turns at five', 26, 31)
+        inner += gut(f'<div style="margin-top: 4px;">{serifline("The chapter is finished and the pier is in front of you. The counter on Columbia Street is open till four if you want it afterwards.", 16, 22)}</div>', top=20)
+        inner += gut('<div>' + prow('The lunch counter on Columbia Street', 'TILL 4 · $11 PLATE · NINE MINUTES BACK', first=True, last=True) + '</div>', top=16)
+        inner += gut(fn('NO PHOTOGRAPH ASKED FOR · NOTHING RECORDED ABOUT THIS AFTERNOON', 0), top=16)
+        inner += gut(door_list(['Back to Red Hook']), top=24)
+        return phone(inner)
+    inner = anchor('THE PARK PUMPS', 'FRI 6:20 PM', back=True, sub='Across the harbour')
+    inner += orientation('The pumps under the park finish what the gates cannot.', 'The Harbor Book, ch. 4 · a place you are not going to · four minutes', 26, 31)
+    inner += gut(SECT_HIGH() + fn('THE SAME SILL, THE OTHER SIDE OF THE HARBOR', 12), top=16)
+    inner += gut(f'<div style="margin-top: 4px;">{serifline("The park was built on the same fill and given gates instead of a sill. When the harbour is high the gates simply hold the water in, so four pumps under the lawn move it out; the lawn dries in the order they run.", 16, 22)}</div>', top=8)
+    inner += gut(consequence('WHY IT IS WORTH KNOWING FROM HERE', 'It is the counter-case to the pier: same water, same year, one place raised and one pumped. Knowing which you are standing on tells you when it will be dry.'), top=16)
+    inner += gut(fn('NO ROUTE, NO HOURS, NO INVITATION TO GO · THIS IS THE READING', 0), top=16)
+    inner += gut(door_list(['The rest of the chapter', 'Back to Red Hook']), top=24)
+    return phone(inner)
 def rules_table():
     return tbl(['THE RULE', 'ENTITY 09 · 11 · 12', 'PLACES 08', 'SELECTED · PROPOSED'], [
         ['The shell', 'Photo, kind and town, name, faces, one context line; the same every time (09 A to C)', 'Anchor, sentence, plate, people', 'Selected: Entity&rsquo;s invariant shell, drawn here as the anchor, one sentence, the plate, the people line and one context line'],
@@ -82,6 +119,7 @@ def rules_table():
         ['A friend&rsquo;s contribution', 'Her line where it always is on the page; the context line says you came from her note (09 B)', 'Her words in the people section; Reply to her', 'Selected: opening her contribution goes straight to the exact original (Social 02.5), not to this page; the page cites her words and offers Reply'],
         ['Your history', 'One relationship line and the door &ldquo;Your history here&rdquo; (11 B); Life holds the record and returns with &ldquo;Open the place&rdquo; (11 C)', 'One trace line; 09.2&rsquo;s door into Life', 'Selected: Entity 11&rsquo;s pair of doors, as drawn; no door when there is no history (08.2)'],
         ['Handoffs and the arrangement', 'Directions and Reserve as interstitials; return is not a booking; a forwarded confirmation belongs to the arrangement and the page projects it (12.1 to 12.3)', 'The plan as a readback; Open the plan first', 'Selected: Entity 12 as drawn; 08.9 projects the plan and books nothing. Vesper does not book, hold or pay'],
+        ['What understanding survives', 'The body carries two sourced paragraphs and a food writer&rsquo;s line, the same on every opening (09 A to C)', 'One earned connection when the purpose is discovery (08.7); the mechanism itself, not a teaser, when the place will not be visited (08.13)', 'Selected: understanding is part of the reading, not a fourth mode. It appears when it changes what the person will notice, and it must survive the destination: a relationship, a contrast or a mechanism, never &ldquo;read more about this place&rdquo;'],
         ['Not adopted', 'A universal renderer; automatic copying between pages; a new object owner', 'The section-heavy Focus anatomy (Entity 11 A)', 'Neither: one shell, purpose-chosen readings, the existing owners; no sections']])
 def board():
     row1 = [viewport(col(page('populated', context='FROM MAYA&rsquo;S SHARE · FOR SATURDAY, NOT YET ARRANGED'), caption('08.1 · THE PAGE · A NORMAL VISIT', 'THE HARBOR PRINT ROOM, OPENED FROM 01', 'Each fact once: the exhibition and its last day in the sentence, the hours, the stairs and the tickets in the register, one line for Saturday; then Maya and Priya; then the whole arrival'))),
@@ -91,16 +129,26 @@ def board():
             viewport(col(page_purpose('assess'), caption('08.8 · OPENED TO ASSESS A VISIT', 'FROM MAYA&rsquo;S SHARE, FOR SATURDAY · THIS IS 08.1', 'The same shell; the reading is what matters for Saturday: the register, one consequence, the people, the whole arrival with its stairs'))),
             viewport(col(page_purpose('arrangement'), caption('08.9 · OPENED FROM AN ARRANGEMENT', 'SATURDAY 2:30 WITH MAYA · FROM THE PLAN', 'The same shell; the plan projected as a readback, the arrival timed to 2:30, the first door back to the plan; the page chooses, books and moves nothing'))),
             notecol('The place reading, selected versus proposed (Entity 09, 11, 12 inspected September 9)', [('THE COMPARISON', N('One place, three purposes, one shell. Entity&rsquo;s rule is an invariant body with two fact rows; this project&rsquo;s is a reading chosen by purpose. Both keep the shell and the source rules. The table says what is selected here and what is proposed back to the Entity lab; nothing is copied automatically and no owner changes.')), ('THE RULES', rules_table()), ('THE EARNED CONNECTION', N('08.7 carries the optional breadth item once: a causal connection, drawn from the same 1911 sill the field explains, that changes what a visitor notices about the stairs without asking for an outing. It is not a quota; 08.1 to 08.6 carry none.'))], w=1180)]
+    row4 = [viewport(col(extension('before'), caption('08.10 · BEFORE · THE UNDERSTANDING', 'FRIDAY EVENING, FROM THE FIELD', 'Four minutes on why the pier floods first, and one sentence naming what will be visible tomorrow: two iron squares at the crossing'))),
+            viewport(col(extension('there'), caption('08.11 · AT THE PIER · WHAT IS VISIBLE', 'SATURDAY 3:10 PM · OPENED BY THE PERSON', 'The same section at today&rsquo;s water: the harbour below the sill, the squares dry. Nothing is sensed; the frame says so. No detour and no photograph is asked for'))),
+            viewport(col(extension('after'), caption('08.12 · THE ENDING · ATTENTION BACK', 'SATURDAY 3:40 PM', 'The chapter is finished, the pier is in front of them, one ordinary continuation is offered and nothing is recorded about the afternoon'))),
+            viewport(col(extension('unvisited'), caption('08.13 · THE SAME UNDERSTANDING, UNVISITED', 'A PLACE ACROSS THE HARBOUR, NOT ON THE WAY', 'The counter-case survives the destination: gates and pumps against a raised sill, same water and same year. No route, no hours, no invitation to go'))),
+            notecol('One connected extension (September 9, second pass)', [
+                ('THE SEQUENCE', N('Understanding before the encounter, the encounter, and an ending that gives attention back to the world. The reading is the Harbor Book chapter the field already carries; the only new thing is that it is drawn where it is used. 08.11 is opened by the person at the pier: no presence, location permission or arrival detection is invented, and the frame says so on its face.')),
+                ('WHAT BECOMES VISIBLE', N('The claim is not &ldquo;go here&rdquo; but &ldquo;you will see two iron squares and know what they are&rdquo;. The instrument does the work twice: at high water on 08.10 and at today&rsquo;s low water on 08.11, so the section is the argument rather than an illustration.')),
+                ('THE UNVISITED CHECK', N('08.13 is the same mechanism for a place the person will not stand in. What survives the destination is the contrast, gates against a sill, not a summary of a park; there is no route, no hours and no read-up teaser. If the contrast did not survive, the piece would not be worth drawing here.')),
+                ('NOT A MODE', N('These are four moments in one journey, not a fourth permanent page reading. The comparison table above gains one row for what understanding survives; 08.7 to 08.9 remain the three readings.')),
+                ('OPEN', N('Whether the ending should offer any continuation at all, or stop at the pier. Drawn with one, the lunch counter, because it is the ordinary thing nine minutes back. Interaction untested.'))], w=1180)]
     row2 = [viewport(col(page('pending'), caption('08.4 · PENDING', 'OPENED; THE FACTS NOT BACK YET', 'Identity and the slot hold their place; two ghost rows; no verdict, no route, no rationale until there is one'))),
             viewport(col(page('unavailable'), caption('08.5 · THE LISTING UNREACHABLE', 'NOTHING FRESH SINCE THURSDAY', 'Every fact dated as last seen; the implication is honest: ask Maya, or go on the hours last seen; no confident instruction survives underneath'))),
             viewport(col(page('gone'), caption('08.6 · CLOSED FOR GOOD', 'THE WORKSHOP HAS LEFT', 'The register says what is gone; the consequence names what Red Hook still is; no route, no nearby row that leads back in, no read up; the keeping stays in the record'))),
             notecol('The page, recomposed (review §P2, §P6, §P8)', [
                 ('THE FIRST READING', N('Three answers in order, then depth, and each fact once: the exhibition and its last day live in the sentence; the hours, the stairs and the tickets live in the register; the Saturday line says only what follows. What matters for the visit replaces the verdict, the basis line, the reasons list and the posture. A contributed perspective (Maya and Priya), when there is one. Why is a door.')),
-                ('THE ARRIVAL, WHOLE', N('The access comparison now starts from a named origin, Canal Street, draws waiting apart from movement (dashed), and ends on the stairs to the rooms upstairs. Its totals name their scope: 60 to 80 minutes by ferry depending on the wait; 41 to 47 by bus. The level walk from the landing no longer stands for arrival.')),
+                ('THE ARRIVAL, WHOLE', N('The access comparison now starts from a named origin, Canal Street, draws waiting apart from movement (dashed), and ends on the stairs to the rooms upstairs. Each way carries the two numbers the drawing shows: 42 minutes moving and 62 with the wait as drawn by ferry, 37 and 43 by the B61. The ferry is every 40, so its wait is anything from none to forty; 20 is what is drawn. The level walk from the landing no longer stands for arrival.')),
                 ('AFTER A CHANGE', N('A change re-reads the dependent lines. Closed today offers Sunday as the last chance for the rooms and names the ferry that would do it; it does not move a visit, because this is a kept place, not an arrangement, and a changed plan needs its own event through the arrangement owner. Unreachable leaves no confident instruction under the dated facts. Closed for good drops the route, the read-up door and any nearby row that leads back in. Cold carries no rationale about people who are not here.')),
                 ('WHAT WAS REMOVED', N('The posture module (HOLD to say an ordinary visit needs no booking), the separate burden receipt (folded into the arrival), the reasons list as a default (behind the door), the &ldquo;nothing yet&rdquo; trace for a newcomer, the identity map as a second plate above the fold (the field&rsquo;s map already places it; the arrival draws the approach).')),
                 ('OPEN', N('Whether the identity map belongs in depth for someone approaching on foot; drawn nowhere here, kept on 07. Pending and unreachable for the arrival comparison itself. Interaction untested; the doors are not exercised.'))], w=760)]
-    return rows_page(2560, '08 · THE PAGE · 09-09 · ENTITY 09, 11, 12 COMPARED', '08 · The page', 'The Harbor Print Room in six states, then the same place opened for three purposes against the Entity lab&rsquo;s invariant page: one shell, a reading chosen by purpose, the whole arrival when a visit is judged or timed.',
-                     [('THE FIRST READING, THREE STATES', 'A normal visit; cold; a material change', row1), ('THREE MORE', 'Pending; the listing unreachable; closed for good', row2), ('ONE PLACE, THREE PURPOSES', 'Discover; assess a visit; use an arrangement · against Entity 09, 11, 12', row3)], 9000)
+    return rows_page(2560, '08 · THE PAGE · 09-09 · THREE PURPOSES, AND ONE EXTENSION', '08 · The page', 'The Harbor Print Room in six states, then the same place opened for three purposes against the Entity lab&rsquo;s invariant page: one shell, a reading chosen by purpose, the whole arrival when a visit is judged or timed; then one connected extension, from the reading to the pier and back to the world.',
+                     [('THE FIRST READING, THREE STATES', 'A normal visit; cold; a material change', row1), ('THREE MORE', 'Pending; the listing unreachable; closed for good', row2), ('ONE PLACE, THREE PURPOSES', 'Discover; assess a visit; use an arrangement · against Entity 09, 11, 12', row3), ('ONE CONNECTED EXTENSION', 'Before; at the pier; the ending; and the same understanding for a place no one will stand in', row4)], 12000)
 if __name__ == '__main__':
     import os; os.makedirs('out2', exist_ok=True); h = board(); open('out2/08 - The Page.dc.html', 'w').write(h); print('wrote 08', len(h))

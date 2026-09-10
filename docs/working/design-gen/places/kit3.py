@@ -101,7 +101,7 @@ def cover(svg_or_none, kick_t, t, h=186):
             + ('' if svg_or_none else f'<span style="position: absolute; left: 15px; top: 12px; {MONO} font-size: 10px; font-weight: 700; letter-spacing: 0.9px; color: #F2E6CC;">PHOTOGRAPH · TO BE SOURCED</span>')
             + f'<div style="position: absolute; left: 15px; right: 15px; bottom: 13px;"><div style="{MONO} font-weight: 700; font-size: 10px; letter-spacing: 1.2px; color: #F2E6CC;">{kick_t}</div><div style="{SERIF} font-weight: 600; font-size: 20px; line-height: 24px; color: {CARD}; margin-top: 4px;">{t}</div></div></div>')
 def map_box(svg_html): return svg_html
-def burden_strip(a='TO PIER 11', bar='THE FERRY · 25 MIN · EVERY 40', b='9 MIN ON FOOT', n='~40'):
+def burden_strip(a='TO PIER 11', bar='THE FERRY · 25 MIN · EVERY 40', b='9 MIN ON FOOT', n='40 MOVING'):
     return (f'<svg width="349" height="46" viewBox="0 0 349 46" fill="none" style="display: block; width: 100%; height: auto; margin-top: 8px;">'
             f'<path d="M8 24 L44 24" stroke="rgba(27,23,20,0.30)" stroke-width="8" stroke-dasharray="0.1 14" stroke-linecap="round"/><rect x="52" y="18" width="196" height="12" rx="6" fill="{INK}" opacity="0.78"/>'
             f'<path d="M258 24 L306 24" stroke="rgba(27,23,20,0.30)" stroke-width="8" stroke-dasharray="0.1 14" stroke-linecap="round"/><text x="318" y="28" {LK}>{n}</text>'
