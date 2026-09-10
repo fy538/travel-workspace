@@ -24385,6 +24385,66 @@
         }
       }
     },
+    "/api/life/originals/refind": {
+      "post": {
+        "tags": [
+          "life"
+        ],
+        "summary": "Life Original Refind",
+        "description": "Current owner-only original metadata; no query retention or body indexing.",
+        "operationId": "life_original_refind_api_life_originals_refind_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LifeOriginalRefindRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LifeOriginalRefindResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/life/refind": {
       "post": {
         "tags": [
@@ -80354,6 +80414,106 @@
           "threads"
         ],
         "title": "LifeLens"
+      },
+      "LifeOriginalMatch": {
+        "properties": {
+          "entry": {
+            "$ref": "#/components/schemas/LifeRecordEntry"
+          },
+          "captured_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Captured At"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "media_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Media Type"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "entry",
+          "captured_at"
+        ],
+        "title": "LifeOriginalMatch"
+      },
+      "LifeOriginalRefindRequest": {
+        "properties": {
+          "q": {
+            "type": "string",
+            "maxLength": 200,
+            "title": "Q",
+            "default": ""
+          },
+          "limit": {
+            "type": "integer",
+            "maximum": 100.0,
+            "minimum": 1.0,
+            "title": "Limit",
+            "default": 20
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "LifeOriginalRefindRequest"
+      },
+      "LifeOriginalRefindResponse": {
+        "properties": {
+          "viewer_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Viewer Id"
+          },
+          "entries": {
+            "items": {
+              "$ref": "#/components/schemas/LifeOriginalMatch"
+            },
+            "type": "array",
+            "title": "Entries"
+          },
+          "scan_limit": {
+            "type": "integer",
+            "title": "Scan Limit",
+            "default": 100
+          },
+          "has_more_sources": {
+            "type": "boolean",
+            "title": "Has More Sources"
+          },
+          "has_more_matches": {
+            "type": "boolean",
+            "title": "Has More Matches"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "viewer_id",
+          "entries",
+          "has_more_sources",
+          "has_more_matches"
+        ],
+        "title": "LifeOriginalRefindResponse"
       },
       "LifeRecordEntry": {
         "properties": {

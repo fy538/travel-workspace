@@ -3032,6 +3032,16 @@
       "removal_trigger": null,
       "review_by": null
     },
+    "POST /api/life/originals/refind": {
+      "audience": "app",
+      "consumers": [{ "kind": "app_source", "name": "lifeOriginalRefind", "source": "travel-app/utils/api/http.ts" }],
+      "feature_flag": "EXPO_PUBLIC_LIFE_REFIND_LANE",
+      "lifecycle": "active",
+      "owner": "life",
+      "reason": "Internal Life metadata refinding of at most 100 current owner-retained originals; no body indexing or new custody.",
+      "removal_trigger": "Retire only with a successor preserving owner-scoped exact original re-entry.",
+      "review_by": "2026-10-31"
+    },
     "POST /api/life/refind": {
       "audience": "app",
       "consumers": [
