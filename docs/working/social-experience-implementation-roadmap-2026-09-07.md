@@ -846,6 +846,37 @@ reaction/count service, and retain the acknowledgment choice as unresolved.
 
 ### 10.4 Implementation sequence and reviewable commit boundaries
 
+#### September 9 adoption and implementation assignment
+
+The founder approved the exact-original receiving package and bounded display
+rule after the investigation below. The durable
+[display decision](../decisions/2026-09-09-exact-original-recipient-display.md)
+and [owning contract](../systems/contribution-and-consequence.md#361-exact-original-send-to-one-recipient)
+now govern implementation. The earlier “still proposed” language below records
+the investigation before approval; it is no longer a blocker for this exact
+one-recipient display specialization. Broader §10.3 decisions remain unresolved.
+
+Use the existing received-value coordinated lane, inspected clean at workspace
+`2bf01ac`, backend `2d33a5380`, app `ddf9866f9`. One local Luna xhigh worker
+will own exact selected-original sending/readback, current recipient read,
+Home-to-original receiving/return and withdrawal/expiry behavior as a complete
+backend/mobile package. The session refused a second worker; this package is
+queued after that worker's discovery package, not running in a second session.
+Strategy records the contract and reviews while implementation proceeds.
+
+Preserve the existing owner-only Intake endpoint, note-only receiving and
+current flags. Do not fabricate Place context, silently generalize the legacy
+handoff, or pass shared media into contextual Ask. Reuse receiving components
+instead of adding a screen per type. A missing general/non-spatial share owner
+is a named schema decision, not permission to widen scope or stop all supported
+original receiving. Chat/Life redesign and Integration remain paused.
+
+Acceptance includes persisted sender/recipient rows, selection/revision binding,
+retry idempotency, wrong-recipient and wrong-object denial, withdrawal/expiry
+at read and while mounted, account switch, storage failure, sender control and
+return without Keep/reply/view notification. Regenerate contracts and test the
+real mobile consumer. Keep native, mocked, database and release evidence distinct.
+
 #### September 9 exact-original investigation — narrow decision, not activation
 
 Strategy inspected the received-value lane at backend `2d33a5380`, app

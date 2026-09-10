@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / product / architecture / engineering
 created: 2026-08-29
-last_verified: 2026-09-06
+last_verified: 2026-09-09
 why_new: Defines one cross-repository boundary from human contribution through immediate value, retention, consequence, projection, receipt, and causal repair across Chat, Intake, Occasions, Home, Places, and Life.
 supersedes: []
 source_of_truth_for:
@@ -269,6 +269,29 @@ invitation, messaging, or public Place use.
 Every multiplayer flow preserves distinct roles for contributor, subject or
 affected principal, custodian, recipient, and canonical owner. One person may
 hold several roles; policy may not assume they always coincide.
+
+### 3.6.1 Exact-original Send to one recipient
+
+Under the [September 9 display decision](../decisions/2026-09-09-exact-original-recipient-display.md),
+an explicit Send of one selected original to one named eligible account
+recipient grants display of that exact source/object or component at its
+applicable revision, while the share and source remain valid. Relationships
+owns the addressed share and selection; the original owner retains custody.
+Resolve current recipient, share, selection, source and applicable subject/
+precision restrictions before original access. A participant-only row lookup,
+old attachment string or private upload is not sufficient authority.
+
+Display does not authorize AI use, inference, onward distribution, the remaining
+source bundle, or an independent retained recipient copy. Opening requires no
+Keep, reply or sender-visible read receipt. Do not widen an owner-only route or
+impersonate the sender. Withdrawal, expiry and loss of source/access eligibility
+invalidate subsequent receiving and dependent caches; already received bytes
+and screenshots cannot be promised erased. Preserve distinct source, share and
+attention revisions and independently authorized value.
+
+This is an adopted implementation contract, not runtime activation or general
+Friends/guest/AI-use policy. Do not backfill ambiguous historical shares or
+invent spatial context for an original that has none.
 
 ### 3.7 Co-owned material separates custody from projection
 

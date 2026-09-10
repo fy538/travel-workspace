@@ -29,6 +29,13 @@ social intelligence policy and not a blanket ban on future Home/Places value.
 
 ## 2. Three distinct receiving capabilities
 
+The [September 9 decision](../decisions/2026-09-09-exact-original-recipient-display.md)
+now adopts exact selected-original display following an explicit Send to one
+eligible account recipient. It does not adopt this document's immediate-question
+AI-use proposal, grant acquisition alternatives or later composition rights.
+Original display implementation and AI-use policy must not block or silently
+authorize each other.
+
 | Capability | Value | Authority boundary |
 | --- | --- | --- |
 | Original human material | Enjoy the person's photo, words or eligible object without AI. | Effective delivery/display, audience and custody rights. |

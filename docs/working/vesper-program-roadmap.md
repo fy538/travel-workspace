@@ -32,7 +32,43 @@ runtime, landing, publishing or pending product agreement is activated.
 Earlier dispatch and review entries below preserve the execution history.
 Section 7 preserves the older acceptance scope as history.
 
-## Current round — contextual discovery and exact human receiving
+## Current round — meaning-based discovery and exact-original receiving
+
+**Authorized September 9 following the lexical increment:** complete two
+consumer capabilities with local Luna xhigh subagents, keeping Strategy focused
+on architecture/authority and review. The bounded
+[one-recipient original-display rule](../decisions/2026-09-09-exact-original-recipient-display.md)
+is adopted; broader AI use, audience and general-share decisions are not.
+
+- **Discovery:** Content lane `65193c1` / `5ffded6c5` / `dfe84b3c4`; assess
+  and connect the existing derived semantic index through actual Places search
+  and exact reading destinations. Rehydrate candidates from current owners;
+  preserve geographic scope, source/revision, rights, surface/release admission,
+  independent catalog results and bounded lexical fallback. No new supply,
+  generated-on-read content, provider spend or serving activation. Future-event
+  applicability remains separate from freshness. Compare paraphrase retrieval
+  against the lexical baseline with geography controlled; fake vectors do not
+  establish semantic quality.
+- **Original receiving:** received-value lane `2bf01ac` / `2d33a5380` /
+  `ddf9866f9`; exact selected-source Send, sender readback/control, currently
+  authorized recipient original, Home entry/return and lifecycle repair. Follow
+  Social §10.4 and the adopted contract. No invented Place for non-spatial
+  material, generalized social owner by accident, new AI-use grant or Chat/Life
+  redesign. Complete supported work and escalate only a real owner/authority
+  boundary.
+- **Orchestration:** a second local spawn was refused by the session's retained
+  agent limit. The existing Luna xhigh worker is resumed for discovery, then
+  original receiving; Strategy prepares the social contract and handoff in
+  parallel. No second session or model substitution was dispatched. Local
+  implementation, focused verification and explicit commits are authorized;
+  Integration, landing, publishing and activation remain paused/separate.
+
+Each assignment owns diagnosis through implementation, self-review, tests and
+coherent commits. Checkpoints are the first substantial architecture boundary,
+a consequential blocker, and final verified handback—not routine step approvals.
+This is active execution scope, not completion or a whole-product acceptance claim.
+
+## Previous round — contextual discovery and exact human receiving
 
 **Authorized September 9 after the six-finding repair:** use local Luna xhigh
 subagents under Strategy rather than dispatching separate execution chats.

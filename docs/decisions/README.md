@@ -18,6 +18,7 @@ Durable choices that constrain future work belong here. Use the
 
 | Date | Decision | Status |
 |---|---|---|
+| 2026-09-09 | [Exact selected-original display for one recipient](2026-09-09-exact-original-recipient-display.md) | accepted bounded Send/display contract; AI use, broader audiences and runtime activation remain separate |
 | 2026-09-08 | [Capture owns candidate lifecycle; graph anchors remain projections](2026-09-08-capture-candidate-lifecycle.md) | accepted ownership and implementation boundary; serving remains gated |
 | 2026-09-06 | [Reconcile consumer strategy: everyday entry, continuity, responsibility and economics](2026-09-06-reconcile-consumer-strategy.md), with [September 7 refinement](2026-09-06-reconcile-consumer-strategy.md#5-september-7-refinement-complete-benefits-selective-context-and-voluntary-choice) | accepted direction and evaluation standard; history/use agreement, launch coverage and pricing unresolved |
 | 2026-09-05 | [Adopt the Plan in seven sentences](2026-09-05-adopt-the-plan-in-seven-sentences.md) | accepted |
