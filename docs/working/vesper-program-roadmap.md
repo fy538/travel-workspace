@@ -32,7 +32,44 @@ runtime, landing, publishing or pending product agreement is activated.
 Earlier dispatch and review entries below preserve the execution history.
 Section 7 preserves the older acceptance scope as history.
 
-**Next consumer package — September 9: retained readings in Places search.**
+## Current round — contextual discovery and exact human receiving
+
+**Authorized September 9 after the six-finding repair:** use local Luna xhigh
+subagents under Strategy rather than dispatching separate execution chats.
+Integration stays paused. This is implementation plus one bounded authority
+investigation, not supply activation, a new design sprint, or a global merge.
+
+- **Contextual discovery — implementation:** continue in the clean Content
+  coordinated lane, workspace `65193c1`, backend `26c2d6244`, app `dfe84b3c4`.
+  Trace the current question/context path and implement a bounded improvement
+  through actual Places retained-reading search and its existing destination.
+  Preserve current flags, exact source/revision, geographic scope, consequence
+  and release admission, independent catalog results and optional-read budgets.
+  Do not describe lexical improvements as semantic understanding or use source
+  freshness as event applicability. The non-runtime semantic index, external
+  acquisition, generated-on-read content and new serving activation stay gated.
+  Finish independent supported work and name precise remaining dependencies.
+- **Exact human-original receiving — read-only investigation:** inspect current
+  Relationship grants, source custody, recipient reads and mobile entry/return
+  against the existing Social plan. Establish whether an exact selected original
+  is already authorized, and which source-to-share binding or permission decision
+  is actually missing. No new audience, media exposure, AI-use permission, source
+  retention or Chat/Life redesign follows from this investigation.
+- **Strategy:** owns the canonical roadmap, architecture review and final
+  verification. Agents own explicit files and lane-local commits; no overlapping
+  writer, automatic sibling merge or shared-runtime restart is authorized.
+
+The first Luna worker started successfully; a second spawn and an old-worker
+resume were rejected by the session's agent limit. The available worker is
+assigned the implementation after its short initial social read; Strategy
+completes social investigation concurrently. This is one worker plus the parent,
+not a claim of two concurrent Luna execution agents. Existing completed workers
+are not reconfigured silently. Report one substantive boundary proposal, genuine
+authority/dependency changes and the verified handback—not each ordinary step.
+
+### Completed search package and repair history
+
+**Earlier consumer package — September 9: retained readings in Places search.**
 The C4b audit found that the actual authenticated Places search response carries
 catalog rows, while the retained-content reader has no corresponding typed
 search-result destination. This is an implementation gap, not a reason to

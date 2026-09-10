@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / social experience / complete-system integration
 created: 2026-09-07
-last_verified: 2026-09-07
+last_verified: 2026-09-09
 expires: 2026-10-07
 why_new: Expands the complete-system roadmap's social package into reviewable cross-repo implementation packages; the design handoff owns experience intent and the capability map owns its earlier audit, neither owns engineering dependencies and acceptance.
 supersedes: []
@@ -845,6 +845,65 @@ acknowledgment need not block this batch: keep Reply usable, do not build a
 reaction/count service, and retain the acknowledgment choice as unresolved.
 
 ### 10.4 Implementation sequence and reviewable commit boundaries
+
+#### September 9 exact-original investigation — narrow decision, not activation
+
+Strategy inspected the received-value lane at backend `2d33a5380`, app
+`ddf9866f9`, workspace `2bf01ac`, with no source edits. The latest ordinary
+receiving work does not settle recipient access to original media:
+
+- `backend/domains/relationships/models.py::HandoffPermissionEnvelope` already
+  names recipient-only media visibility. `PlaceHandoff` can carry a
+  `source_artifact_id`, but this is not a verified selection of one exact
+  Intake object/component or an implemented byte-reader grant.
+- `repository.py::_authorize_create` checks the sender's source relationship
+  and live custody. The stronger `_entity_people_line_read_is_eligible` also
+  checks current pair/source state for entity projections. The ordinary
+  `get_place_handoff` is a participant-scoped row read; it must not be reused
+  alone as current original-media authorization.
+- `api.py::RelationshipPlaceHandoffResponse.from_handoff` redacts terminal and
+  nearby-only material. This protects that projection, not every underlying
+  source endpoint or arbitrary attachment referenced by the record.
+- `backend/api/routes/intake.py::get_intake_source_object_media` calls
+  `get_submission(owner_id=actor.id)`, validates current custody, and streams
+  without exposing a storage key. This is the correct owner-original path;
+  replacing the authenticated actor with the sender would be an unsafe bypass,
+  not recipient sharing support.
+- Mobile `data/relationshipPlaceHandoffs.ts` reads handoff metadata. Its exact
+  note seed in `utils/rootProjectionNavigation.ts` preserves note identity for
+  contextual Ask; that is not an original-media destination.
+
+**Recommended next decision, still proposed:** an explicit selected-source Send
+may bind recipient display of that exact source/object revision to the existing
+Relationship handoff, subject to current source custody and applicable person/
+precision restrictions. Do not backfill this permission from old `artifact_ref`
+strings, infer selection from an anchor's entire source bundle, or broaden the
+existing owner-only Intake endpoint. Confirm that this bounded specialization
+is the next approved reader scope before adding its API/writer binding.
+
+The implementation should resolve handoff + recipient + exact selected source
+through one current reader policy, then delegate bytes to the source owner.
+Source, share and recipient attention revisions remain distinct. Opening must
+not create a recipient-owned copy, announce a view to the sender, require Keep,
+or grant AI use. Source loss, share withdrawal/expiry, wrong-recipient requests
+and incompatible precision/subject restrictions deny access; original text and
+independently sourced world value remain usable where separately authorized.
+Do not promise removal of screenshots or previously received bytes.
+
+This decision does not require settling multi-recipient Friends, guests,
+automatic composition, broader connection defaults or a new social archive.
+It also does not invent their behavior: use currently applicable access rules
+until each outstanding policy is adopted. Existing S2 rendering/return can then
+consume the approved reader without a new screen per media kind.
+
+Read-only regression evidence: **54 passed**, zero skipped, across
+`tests/api/test_relationship_handoffs.py`, `tests/api/test_intake_route.py`,
+`tests/domains/relationships/test_models.py` and `test_repository.py`, using
+Python 3.13 via the canonical backend virtualenv. Measured command/output:
+`/tmp/vesper-contextual-discovery-20260909/social-original-authority-baseline-20260910T011018Z.log`.
+These use mocked boundaries; they do not prove recipient media delivery,
+database authorization, native cache revocation or production activation.
+No social behavior or permission was changed in this investigation.
 
 These stages refine S0–S7; they are not independent services or new agent lanes.
 Sizes are relative scope/risk, not calendar promises.
