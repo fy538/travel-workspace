@@ -21502,6 +21502,445 @@
         }
       }
     },
+    "/api/relationships/original-deliveries": {
+      "post": {
+        "tags": [
+          "relationships"
+        ],
+        "summary": "Create Relationship Original Delivery",
+        "description": "Send one exact retained original to one existing eligible account.",
+        "operationId": "create_relationship_original_delivery_api_relationships_original_deliveries_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RelationshipOriginalDeliveryCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RelationshipOriginalDeliveryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "relationships"
+        ],
+        "summary": "List Relationship Original Deliveries",
+        "description": "Return the recipient's current original-first doorway queue.",
+        "operationId": "list_relationship_original_deliveries_api_relationships_original_deliveries_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelationshipOriginalDeliveryResponse"
+                  },
+                  "title": "Response List Relationship Original Deliveries Api Relationships Original Deliveries Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/relationships/original-deliveries/eligible-recipients": {
+      "get": {
+        "tags": [
+          "relationships"
+        ],
+        "summary": "List Relationship Original Recipients",
+        "description": "Return only existing eligible accounts for the exact-original picker.",
+        "operationId": "list_relationship_original_recipients_api_relationships_original_deliveries_eligible_recipients_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelationshipOriginalEligibleRecipient"
+                  },
+                  "title": "Response List Relationship Original Recipients Api Relationships Original Deliveries Eligible Recipients Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/relationships/original-deliveries/sent": {
+      "get": {
+        "tags": [
+          "relationships"
+        ],
+        "summary": "List Sent Relationship Original Deliveries",
+        "description": "Return sender-owned readback/control history without recipient reads.",
+        "operationId": "list_sent_relationship_original_deliveries_api_relationships_original_deliveries_sent_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelationshipOriginalDeliveryResponse"
+                  },
+                  "title": "Response List Sent Relationship Original Deliveries Api Relationships Original Deliveries Sent Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/relationships/original-deliveries/{delivery_id}": {
+      "get": {
+        "tags": [
+          "relationships"
+        ],
+        "summary": "Get Relationship Original Delivery",
+        "description": "Read delivery metadata for one explicit participant.",
+        "operationId": "get_relationship_original_delivery_api_relationships_original_deliveries__delivery_id__get",
+        "parameters": [
+          {
+            "name": "delivery_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Delivery Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RelationshipOriginalDeliveryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/relationships/original-deliveries/{delivery_id}/withdraw": {
+      "post": {
+        "tags": [
+          "relationships"
+        ],
+        "summary": "Withdraw Relationship Original Delivery",
+        "description": "Withdraw sender custody without creating a recipient read receipt.",
+        "operationId": "withdraw_relationship_original_delivery_api_relationships_original_deliveries__delivery_id__withdraw_post",
+        "parameters": [
+          {
+            "name": "delivery_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Delivery Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RelationshipOriginalDeliveryWithdrawRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RelationshipOriginalDeliveryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/relationships/original-deliveries/{delivery_id}/content": {
+      "get": {
+        "tags": [
+          "relationships"
+        ],
+        "summary": "Read Relationship Original Delivery Content",
+        "description": "Stream the current source bytes only after recipient grant checks.",
+        "operationId": "read_relationship_original_delivery_content_api_relationships_original_deliveries__delivery_id__content_get",
+        "parameters": [
+          {
+            "name": "delivery_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Delivery Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/relationships/pair-conversations": {
       "post": {
         "tags": [
@@ -59628,7 +60067,8 @@
           "horizon_prepared_alternatives",
           "horizon_world_fact_row",
           "people_authored_region",
-          "now_sample_demonstration"
+          "now_sample_demonstration",
+          "people_original_delivery"
         ],
         "title": "HomeUnitKind"
       },
@@ -73446,6 +73886,17 @@
         ],
         "title": "OrganizerHandoffLeaveResponse"
       },
+      "OriginalDeliveryStatus": {
+        "type": "string",
+        "enum": [
+          "prepared",
+          "active",
+          "revoked",
+          "expired"
+        ],
+        "title": "OriginalDeliveryStatus",
+        "description": "Lifecycle for one exact original delivered to one account."
+      },
       "OwnerLinkResult": {
         "properties": {
           "result_id": {
@@ -85609,6 +86060,282 @@
         "title": "RelationshipMemoryClaim",
         "description": "One governed claim; corrections supersede rather than erase history."
       },
+      "RelationshipOriginalDeliveryCreateRequest": {
+        "properties": {
+          "recipient_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Recipient User Id"
+          },
+          "submission_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Submission Id"
+          },
+          "source_object_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Source Object Id"
+          },
+          "source_revision": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 64,
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Source Revision"
+          },
+          "custody_receipt_sha256": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 64,
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Custody Receipt Sha256"
+          },
+          "caption": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 280
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Caption"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "recipient_user_id",
+          "submission_id",
+          "source_object_id",
+          "source_revision",
+          "custody_receipt_sha256",
+          "idempotency_key"
+        ],
+        "title": "RelationshipOriginalDeliveryCreateRequest",
+        "description": "Bind one exact owner-controlled Intake source to one recipient."
+      },
+      "RelationshipOriginalDeliveryResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "handoff_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Handoff Id"
+          },
+          "sender_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Sender User Id"
+          },
+          "sender_display_name": {
+            "type": "string",
+            "title": "Sender Display Name"
+          },
+          "recipient_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Recipient User Id"
+          },
+          "selection": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RelationshipOriginalSelection"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "media_type": {
+            "type": "string",
+            "title": "Media Type"
+          },
+          "byte_count": {
+            "type": "integer",
+            "title": "Byte Count"
+          },
+          "original_filename": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Original Filename"
+          },
+          "caption": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Caption"
+          },
+          "status": {
+            "$ref": "#/components/schemas/OriginalDeliveryStatus"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "effective_read_expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Effective Read Expires At"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "sender_user_id",
+          "sender_display_name",
+          "recipient_user_id",
+          "media_type",
+          "byte_count",
+          "status",
+          "revision",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "RelationshipOriginalDeliveryResponse",
+        "description": "Participant-safe metadata; source IDs are sender-only projections."
+      },
+      "RelationshipOriginalDeliveryWithdrawRequest": {
+        "properties": {
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Revision"
+          }
+        },
+        "type": "object",
+        "required": [
+          "expected_revision"
+        ],
+        "title": "RelationshipOriginalDeliveryWithdrawRequest"
+      },
+      "RelationshipOriginalEligibleRecipient": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "display_name"
+        ],
+        "title": "RelationshipOriginalEligibleRecipient"
+      },
+      "RelationshipOriginalSelection": {
+        "properties": {
+          "submission_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Submission Id"
+          },
+          "source_object_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Source Object Id"
+          },
+          "source_revision": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 64,
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Source Revision"
+          },
+          "custody_receipt_sha256": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 64,
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Custody Receipt Sha256"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "submission_id",
+          "source_object_id",
+          "source_revision",
+          "custody_receipt_sha256"
+        ],
+        "title": "RelationshipOriginalSelection",
+        "description": "The exact Source/Intake component a sender chose to deliver.\n\n``source_revision`` and ``custody_receipt_sha256`` are snapshots, not\nauthority by themselves.  The Source owner rechecks both against the\ncurrent Intake rows immediately before a recipient read."
+      },
       "RelationshipOutcomeSummary": {
         "properties": {
           "verdict": {
@@ -85848,6 +86575,16 @@
             "maxLength": 200,
             "minLength": 1,
             "title": "Idempotency Key"
+          },
+          "selected_original": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RelationshipOriginalSelection"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -87649,6 +88386,9 @@
                 "$ref": "#/components/schemas/RootRead"
               },
               {
+                "$ref": "#/components/schemas/RootOriginalDelivery"
+              },
+              {
                 "$ref": "#/components/schemas/RootSilence"
               },
               {
@@ -87663,6 +88403,7 @@
                 "direct_state": "#/components/schemas/RootDirectState",
                 "instrument": "#/components/schemas/RootInstrument",
                 "link": "#/components/schemas/RootLink",
+                "original_delivery": "#/components/schemas/RootOriginalDelivery",
                 "read": "#/components/schemas/RootRead",
                 "receipt": "#/components/schemas/RootReceipt",
                 "silence": "#/components/schemas/RootSilence",
@@ -88678,6 +89419,78 @@
         ],
         "title": "RootLink"
       },
+      "RootOriginalDelivery": {
+        "properties": {
+          "family": {
+            "type": "string",
+            "const": "original_delivery",
+            "title": "Family",
+            "default": "original_delivery"
+          },
+          "delivery_id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Delivery Id"
+          },
+          "delivery_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Delivery Revision"
+          },
+          "sender_display_name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Sender Display Name"
+          },
+          "media_type": {
+            "type": "string",
+            "enum": [
+              "image/jpeg",
+              "image/png",
+              "image/gif",
+              "image/webp",
+              "text/plain"
+            ],
+            "title": "Media Type"
+          },
+          "caption": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 280
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Caption"
+          },
+          "effective_read_expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Effective Read Expires At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "delivery_id",
+          "delivery_revision",
+          "sender_display_name",
+          "media_type"
+        ],
+        "title": "RootOriginalDelivery",
+        "description": "Recipient-safe Home preview of an exact human original.\n\nThis payload carries no source identifiers or storage references.  The\nRelationships delivery remains the grant and source owner; the native\nreader rehydrates its current metadata/content through that owner."
+      },
       "RootProjectionDegradation": {
         "properties": {
           "owner_kind": {
@@ -89273,6 +90086,9 @@
                 "$ref": "#/components/schemas/RootRead"
               },
               {
+                "$ref": "#/components/schemas/RootOriginalDelivery"
+              },
+              {
                 "$ref": "#/components/schemas/RootSilence"
               },
               {
@@ -89287,6 +90103,7 @@
                 "direct_state": "#/components/schemas/RootDirectState",
                 "instrument": "#/components/schemas/RootInstrument",
                 "link": "#/components/schemas/RootLink",
+                "original_delivery": "#/components/schemas/RootOriginalDelivery",
                 "read": "#/components/schemas/RootRead",
                 "receipt": "#/components/schemas/RootReceipt",
                 "silence": "#/components/schemas/RootSilence",
