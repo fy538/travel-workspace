@@ -40,7 +40,7 @@ on architecture/authority and review. The bounded
 [one-recipient original-display rule](../decisions/2026-09-09-exact-original-recipient-display.md)
 is adopted; broader AI use, audience and general-share decisions are not.
 
-- **Discovery — implemented locally:** Content lane `65193c1` / `6c808727c` /
+- **Discovery — implemented locally:** Content lane `65193c1` / `a49068dad` /
   `dfe84b3c4`; connects the existing derived semantic index through actual Places search
   and exact reading destinations. Rehydrate candidates from current owners;
   preserve geographic scope, source/revision, rights, surface/release admission,
@@ -92,12 +92,15 @@ requested place: it can miss eligible local matches below that shortlist.
 Complete geographic recall needs reviewed place-filter metadata and a fresh
 derived build; neither semantic quality nor event-time applicability is claimed.
 
-Strategy independently verified the clean `65193c1` / `6c808727c` /
-`dfe84b3c4` tuple: 136 offline tests passed in 5.374s and one disposable
-PostgreSQL search/receiving regression passed in 4.539s. Measured commands,
+Review follow-up `a49068dad` preserves lexical fallback for provider HTTP
+status failures as well as transport failures; 401/429/503 regressions failed
+before the fix and passed afterward. Strategy independently verified the clean
+`65193c1` / `a49068dad` / `dfe84b3c4` tuple: 139 offline tests passed in
+4.928s and one disposable PostgreSQL search/receiving regression passed in
+4.305s. Measured commands,
 revisions and outputs are in
-`/tmp/vesper-semantic-discovery-20260909/semantic-discovery-final-20260910T022733Z.log`
-and `semantic-discovery-db-final-20260910T022734Z.log` in that directory.
+`/tmp/vesper-semantic-discovery-20260909/semantic-discovery-hardened-final-20260910T023646Z.log`
+and `semantic-discovery-db-hardened-final-20260910T023648Z.log` in that directory.
 The DB test uses fake vector hits; no live-provider quality, native acceptance,
 full `make verify`, combined delivery or activation is established.
 
