@@ -28053,6 +28053,231 @@
         }
       }
     },
+    "/api/trips/{trip_id}/stops/{block_id}/assistance": {
+      "post": {
+        "tags": [
+          "plan-assistance"
+        ],
+        "summary": "Ask Plan Stop",
+        "operationId": "ask_plan_stop_api_trips__trip_id__stops__block_id__assistance_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Block Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlanAssistanceAsk"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanAssistanceAnswer"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/stops/{block_id}/assistance/messages": {
+      "post": {
+        "tags": [
+          "plan-assistance"
+        ],
+        "summary": "Send Plan Stop Message",
+        "operationId": "send_plan_stop_message_api_trips__trip_id__stops__block_id__assistance_messages_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Block Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlanAssistanceSend"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanAssistanceMessage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "plan-assistance"
+        ],
+        "summary": "Get Plan Stop Messages",
+        "operationId": "get_plan_stop_messages_api_trips__trip_id__stops__block_id__assistance_messages_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Block Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanAssistanceReadback"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/places/map": {
       "get": {
         "tags": [
@@ -70072,6 +70297,12 @@
             "title": "Status",
             "default": "confirmed"
           },
+          "revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Revision",
+            "default": 1
+          },
           "correction_action": {
             "anyOf": [
               {
@@ -93495,6 +93726,315 @@
         ],
         "title": "PlacesVenueAddPreviewRequest",
         "description": "A displayed bounded Places selection; Trips supplies all write authority."
+      },
+      "PlanAssistanceAnswer": {
+        "properties": {
+          "stop": {
+            "$ref": "#/components/schemas/PlanAssistanceStop"
+          },
+          "answer": {
+            "type": "string",
+            "title": "Answer"
+          },
+          "draft": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlanAssistanceDraft"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "stop",
+          "answer"
+        ],
+        "title": "PlanAssistanceAnswer"
+      },
+      "PlanAssistanceAsk": {
+        "properties": {
+          "question": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "Question"
+          },
+          "history": {
+            "items": {
+              "$ref": "#/components/schemas/PlanAssistanceExchange"
+            },
+            "type": "array",
+            "maxItems": 6,
+            "title": "History"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "question"
+        ],
+        "title": "PlanAssistanceAsk"
+      },
+      "PlanAssistanceAudience": {
+        "properties": {
+          "conversation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Conversation Id"
+          },
+          "recipients": {
+            "items": {
+              "$ref": "#/components/schemas/PlanAssistancePerson"
+            },
+            "type": "array",
+            "title": "Recipients"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "conversation_id",
+          "recipients"
+        ],
+        "title": "PlanAssistanceAudience"
+      },
+      "PlanAssistanceDraft": {
+        "properties": {
+          "audience": {
+            "$ref": "#/components/schemas/PlanAssistanceAudience"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "audience",
+          "text"
+        ],
+        "title": "PlanAssistanceDraft"
+      },
+      "PlanAssistanceExchange": {
+        "properties": {
+          "question": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "Question"
+          },
+          "answer": {
+            "type": "string",
+            "maxLength": 3000,
+            "minLength": 1,
+            "title": "Answer"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "question",
+          "answer"
+        ],
+        "title": "PlanAssistanceExchange"
+      },
+      "PlanAssistanceMessage": {
+        "properties": {
+          "message_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Message Id"
+          },
+          "audience": {
+            "$ref": "#/components/schemas/PlanAssistanceAudience"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "effect": {
+            "type": "string",
+            "const": "message_only",
+            "title": "Effect",
+            "default": "message_only"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "message_id",
+          "audience",
+          "text",
+          "created_at"
+        ],
+        "title": "PlanAssistanceMessage"
+      },
+      "PlanAssistancePerson": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "user_id",
+          "display_name"
+        ],
+        "title": "PlanAssistancePerson"
+      },
+      "PlanAssistanceReadback": {
+        "properties": {
+          "stop": {
+            "$ref": "#/components/schemas/PlanAssistanceStop"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/PlanAssistanceMessage"
+            },
+            "type": "array",
+            "title": "Messages"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "stop",
+          "messages"
+        ],
+        "title": "PlanAssistanceReadback"
+      },
+      "PlanAssistanceSend": {
+        "properties": {
+          "conversation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Conversation Id"
+          },
+          "recipient_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "maxItems": 30,
+            "minItems": 1,
+            "title": "Recipient Ids"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Revision"
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 10000,
+            "minLength": 1,
+            "title": "Text"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Idempotency Key"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "conversation_id",
+          "recipient_ids",
+          "expected_revision",
+          "text",
+          "idempotency_key"
+        ],
+        "title": "PlanAssistanceSend"
+      },
+      "PlanAssistanceStop": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "block_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Block Id"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "time_start": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Start"
+          },
+          "time_end": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time End"
+          },
+          "timezone": {
+            "type": "string",
+            "title": "Timezone"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "trip_id",
+          "block_id",
+          "revision",
+          "title",
+          "timezone"
+        ],
+        "title": "PlanAssistanceStop"
       },
       "PlanBlock": {
         "properties": {
