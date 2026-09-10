@@ -877,6 +877,35 @@ at read and while mounted, account switch, storage failure, sender control and
 return without Keep/reply/view notification. Regenerate contracts and test the
 real mobile consumer. Keep native, mocked, database and release evidence distinct.
 
+**Concrete intake for the implementation owner:**
+
+- `source_artifact_id` currently names a graph `source_objects` row, not an
+  exact Intake object. Its metadata can name several submissions and objects.
+  Persist the explicit selected component/revision; do not choose the first
+  attachment or parse an old display string as authority.
+- `repository.py::_source_custody_is_active` currently checks a subset of
+  lifecycle state. Original reads must also enforce the Source owner's live
+  retention deadline and verified-object policy, not rely on cleanup having run.
+- `get_place_handoff` is a participant row lookup. Reuse/extend current
+  Relationships policy rather than treating this lookup as byte authorization.
+  Bind prepared commands, direct creation, retries and resulting readback to
+  the same exact selection; fail mismatched idempotent retries.
+- `HandoffPermissionEnvelope.inference` currently defaults to `contextual_only`.
+  This is not an AI grant for new selected media. Keep the established note-only
+  Ask behavior separate and never automatically add original media to its seed.
+- The current specialization requires a real world entity and pair conversation.
+  Complete eligible spatial-original receiving without inventing context;
+  identify the precise general-share decision needed for non-spatial material.
+  Do not require a new explanatory note merely to make an original worth sending.
+- Home's existing source adapter carries a handoff reference and optional graph
+  artifact reference. Its current door/Ask seed is not an original reader.
+  Bind the new original destination explicitly, preserve attribution and return,
+  and keep independent note/world content when original access disappears.
+- The owner Intake detail already has image/text previews and mounted deadline
+  handling. Reuse presentation where appropriate, not its owner-only data loader.
+  Recipient authorization, account-keyed cache identity, pending responses and
+  in-flight storage completion need their own current read/revalidation tests.
+
 #### September 9 exact-original investigation — narrow decision, not activation
 
 Strategy inspected the received-value lane at backend `2d33a5380`, app
