@@ -24253,7 +24253,7 @@
           "root-projections"
         ],
         "summary": "Get Life Record Page V1",
-        "description": "Return one stable, merged page of the canonical Life corpus.",
+        "description": "Return one stable, merged page of the canonical Life corpus.\n\n``group_key`` is an additive depth scope. It reads the existing derived\norganization layer, then rehydrates every pointer through this same\ncurrent Life owner snapshot before it can render. It never serves the\norganization table as an alternate corpus.",
         "operationId": "get_life_record_page_v1_api_root_projections_v1_life_record_get",
         "parameters": [
           {
@@ -24274,6 +24274,113 @@
               "maximum": 200,
               "minimum": 1,
               "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 2048
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          },
+          {
+            "name": "group_key",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 2,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Group Key"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LifeRecordPageV1"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/root-projections/v1/life/organization/groups": {
+      "get": {
+        "tags": [
+          "root-projections"
+        ],
+        "summary": "Get Life Organization Groups V1",
+        "description": "List current groups that can safely open an organized Life read.\n\nThe derived group page is only a doorway. Every row is checked against\nactive membership pointers and the same current owner Life snapshot so a\ndelayed archive/revocation cannot disclose a stale group title.",
+        "operationId": "get_life_organization_groups_v1_api_root_projections_v1_life_organization_groups_get",
+        "parameters": [
+          {
+            "name": "lens",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/LifeLens",
+              "default": "time"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 100,
               "title": "Limit"
             }
           },
@@ -24318,7 +24425,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LifeRecordPageV1"
+                  "$ref": "#/components/schemas/LifeOrganizationGroupPageV1"
                 }
               }
             }
@@ -68084,6 +68191,126 @@
         ],
         "title": "LifeLens"
       },
+      "LifeOrganizationGroupPageV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "life-organization-group-page.v1",
+            "title": "Schema Version",
+            "default": "life-organization-group-page.v1"
+          },
+          "viewer_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "projection_version": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Projection Version"
+          },
+          "groups": {
+            "items": {
+              "$ref": "#/components/schemas/LifeOrganizationGroupV1"
+            },
+            "type": "array",
+            "maxItems": 100,
+            "title": "Groups"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          },
+          "authority": {
+            "$ref": "#/components/schemas/LifeAuthority",
+            "default": "complete"
+          },
+          "source_revisions": {
+            "items": {
+              "$ref": "#/components/schemas/RootSourceRevision"
+            },
+            "type": "array",
+            "title": "Source Revisions",
+            "default": []
+          },
+          "degradations": {
+            "items": {
+              "$ref": "#/components/schemas/RootDegradation"
+            },
+            "type": "array",
+            "title": "Degradations",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "viewer_ref",
+          "projection_version",
+          "groups"
+        ],
+        "title": "LifeOrganizationGroupPageV1",
+        "description": "Bounded group identities used to open an organized Life view."
+      },
+      "LifeOrganizationGroupV1": {
+        "properties": {
+          "group_key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,199}$",
+            "title": "Group Key"
+          },
+          "group_kind": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Group Kind"
+          },
+          "display_title": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 180
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Title"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Revision"
+          },
+          "content_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Content Revision"
+          },
+          "read_epoch": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Read Epoch"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "group_key",
+          "group_kind",
+          "revision",
+          "content_revision",
+          "read_epoch"
+        ],
+        "title": "LifeOrganizationGroupV1",
+        "description": "One current, owner-scoped organization identity."
+      },
       "LifeOriginalMatch": {
         "properties": {
           "entry": {
@@ -68402,6 +68629,42 @@
             "type": "array",
             "title": "Degradations",
             "default": []
+          },
+          "organization_group_key": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_.:-]{1,199}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Organization Group Key"
+          },
+          "organization_group_title": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 180
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Organization Group Title"
+          },
+          "organization_group_kind": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Organization Group Kind"
           }
         },
         "additionalProperties": false,
