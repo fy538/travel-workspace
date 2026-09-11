@@ -656,3 +656,28 @@ A consolidation pass under the shared consolidation brief §19–§21 and this p
 **Verification.** Served captures of `before/` and the adopted boards for 01, 03, 04, 07 and 08 at each board's own width, with matched crops of the changed regions: the field's lead and card, the Red Hook map, the two-ways strip, the 1.3× check, the 07 shared row, the correction sequence and the place page. The shared reader mounts on every served instance checked. Not verified: the Claude Design editor view, narrow 320px widths for the adopted boards, native rendering, and live cross-project propagation.
 
 **Files.** In the Places project: the ten boards, `before/` with all ten originals and `support.js`, `vdl.css`, `vdl-package.json` (0.3), the kernel `styles.css`, and the ten component files. Generators in `docs/working/design-gen/places/`, with `build.py` as the single entry point and `cap.py` for served comparisons.
+
+## 40. Shared reader patch consumed — vdl-stage1 0.4.1 (September 11)
+
+The current assignment in `vesper-places-design-review-2026-09-08.md` ("adoption reviewed September 11"), under shared brief §22. One named correction: the reader card's practical place line had become too faint. No composition changed, and no local override was added.
+
+**Consumed version.** `vdl-stage1 0.4.1`, from the shared workbench `c13ae951`. The Social project named in the request still holds the 0.3 reader (11,643 bytes) and no manifest; the corrected revision exists only in the workbench, so it was consumed from there. Changed files in the Places project:
+
+| File | Before | After |
+|---|---|---|
+| `OriginalReader.dc.html` | 0.3, 11,643 bytes | 0.4.1, 13,559 bytes (workbench etag `1789153753071940`) |
+| `vdl-package.json` | 0.3, 4,244 bytes | 0.4.1, 6,699 bytes |
+
+Everything else in the package is byte-unchanged since 0.3: `vdl.css` (sha256 `7b6fa1d3…`), the kernel `styles.css` (sha256 `a843ca5b…`) and the other nine components. Per the manifest's identity note, `vdl.css` still carries a 0.3 version string; the manifest is the identity.
+
+**The change.** The card's `placeMeta` line (RED HOOK · TUE–SUN 11–6) moves from ink80 to ink60, the value Places originally drew: 2.03:1 back to 5.14:1 on the card, per the shared owner's measurement. The date and audience beside the author stay quiet at ink80. The 0.4 full-reader additions (supplied media, split reader and Ask) are present in the file but unused: Places' cards and its local direct-original receivers are unchanged, as the assignment requires.
+
+**Changed canvases.**
+
+- **Through the shared component, with no board edit:** 01, 02, 04, 09 and the index miniature on 00, which carry the reader cards. The source count is 15 card instances (00: 1, 01: 1, 02: 6, 04: 5, 07: 1, 09: 1); the review's count of sixteen was not reproduced.
+- **Board text updated to record the version:** 00 (header and project line), 06 (a log row) and 07 (the shared row's origin labels and one note), rebuilt and pushed.
+- **Unchanged:** 03, 05 and 08, which carry no reader card, and every `before/` reference.
+
+**Kept local, as instructed.** Row chevrons, the anchor-first page head, labelled fact links and the direct-original receivers on 02 H3 and 04. The utensil glyph on the card remains a queued shared variant (neutral or supplied place glyph); it is not overridden here. Fixed map labels at larger text remain an adaptation dependency, and this is not an accessibility acceptance.
+
+**Evidence.** Served captures of 01 and 04 before and after the copy, at each board's own width, with matched crops of the card and of the 1.3× check (04.7). The place line is visibly readable after; the header, words, place name, Reply and the surrounding composition are identical; at 1.3× the card scales as before. Not re-checked at 320px in Places; the shared owner reports no spill or clip at 320px and 1.3× for the card density.
