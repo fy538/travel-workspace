@@ -615,3 +615,44 @@ The promise of later delivery is gone, because no continuing mandate exists; new
 **Inspection.** Full scrolls re-rendered this pass: 02 (three rows), 03 (three rows), 08 (four rows), 00 and 06, plus the Entity board at its own width. Larger text: 08.12, 08.13, 03.8 and 02 P3 re-rendered at 1.3× together; nothing truncates, the new instrument keeps its size and its labels at the 10px mono floor, and the anchor on P3 wraps to two lines.
 
 **Pending decisions.** (1) Whether "That is not right" belongs as a door on the page or as a reply in the question line, unchanged. (2) Whether the correction should be visible anywhere after the day it was said. (3) The fixture claims on Entity 14 need sourcing before anyone builds from those frames. (4) The Open House walk-in pocket. Integration remains paused; no mode, tour, monitoring or Chat change was added.
+
+## 39. Shared design language adopted — vdl-stage1 0.3 (September 11)
+
+A consolidation pass under the shared consolidation brief §19–§21 and this project's handoff, not a redesign. Every board in the Places project was rebuilt on the shared package from workbench `c13ae951`; the originals are kept under `before/` in the same project. Matched before/after captures were taken from the served boards, so the shared components are resolved as a reader sees them.
+
+**Access and version.** The actual files were read and copied server-side, not reconstructed: `vdl.css` (16,055 bytes, sha256 `7b6fa1d3…`, matching the manifest), the kernel `styles.css` copy (29,657 bytes, sha256 `a843ca5b…`, identical to the published kernel), and the ten component files. The workbench advanced its manifest to **vdl-stage1 0.4** during this pass; 0.4 changes only `OriginalReader` (supplied media, `show=reader|ask`, a 48px thumbnail), is backward compatible and touches nothing Places draws. Because 0.3 was requested, the Places project carries the owner's exact 0.3 bytes of `OriginalReader.dc.html` (11,643) and `vdl-package.json` (4,244), copied from Entity's byte-identical adoption (§21.4), since the workbench no longer serves them. Re-adopting 0.4 later is a file copy with no visible change.
+
+**What changed.**
+
+| Area | Before | After |
+|---|---|---|
+| Styles | Inline literals only | Every board links the kernel `styles.css` and `vdl.css`; exact colour matches resolve to kernel tokens (`--vk-ink00`, `--vk-ink60`, `--vk-gold80`, `--vk-paper00`, `--vk-borderHairline` and ten more). Map and instrument drawings keep their own drawn colours. |
+| Type | Inline font declarations | Shared roles: `vdl-t-sectionHeading`, `vdl-t-metaLine`, `vdl-t-supportLine`, `vdl-t-unitTitle`, `vdl-t-excerpt`, `vdl-t-placeName`, `vdl-t-placeStamp`, and the kernel's `vk-t-serifTitle` and `vk-t-bodySmMedium`. The root mast is `vk-t-serifMast` (700), the ruling 03B names. |
+| Doors | Local span and drawn arrow | The shared Door construction (`.vdl-door`) everywhere: 32 on 00, 17 on 01, 90 on 02, 32 on 03, 67 on 04, 9 on 07, 38 on 08, 29 on 09. |
+| Maya's share on the field | Local card | Shared `OriginalReader density=card`, with the same props as the workbench's Places 01.1 specimen; used on 01, 02, 04, 07, 09 and the index miniature. |
+| Fit corrections (§19.4) | Labels clipped or colliding | COLUMBIA ST moves 34px west along its street and no longer touches VAN BRUNT ST; both street names rise from 8 to the 10px floor; "40 MOVING" sits inside the map strip on its label line; the two-ways "40 MOVING" moves above its bar end inside the instrument. |
+| Larger text | Size scaled, leading fixed | 1.3× scales leading with size and reaches the shared role classes, including inside the shared reader. |
+| 07 | A kit sheet | Opens with the shared row: the card reader, doors and roles as rendered by the package, and a table of what stays Places' and why. |
+| 07, 09 totals | Stale builds carried `~40` and `40–60` | Rebuilt; zero stale totals on any board. One build script now rebuilds all ten boards, so no board can go stale again. |
+
+**What remains project-specific, and the variants it needs.** None of these is a competing component; each stays as drawn until the shared owner provides an equivalent.
+
+- **Place rows (numbered and plain).** `PlaceIdentity density=preview` has no trailing chevron, and a Places row opens a place. Needed: a trailing open affordance on the preview row.
+- **The place page head (08).** `PlaceHead` is a media-led identity head; 08 opens on the anchor, one sentence and the plate. Needed: an anchor-and-sentence opening, already in the queue as "absent/map/photo openings".
+- **Registers (hours, the rooms, tickets).** No shared labelled-rows register exists; `FactPair` is a two-cell pair. Needed: a labelled-rows register with an optional change strip.
+- **Readbacks and consequences.** `Notice` is a toned message, not a label-and-fact state line. Needed: a compact readback line.
+- **Her original opened (02 H3).** `OriginalReader` has no direct-original variant without media and a pill field; already in the queue as "direct original".
+- **Maps, the day line, two ways in, the sections.** Places-owned drawings, per 03B; fit-corrected, not replaced.
+- **People lines, the shelf, the seam of rooms and people on 08.** Places-local constructions with no shared equivalent in 0.3.
+
+**Findings for the shared owner.**
+
+- **The card reader's place glyph.** It draws a knife and fork beside the Harbor Print Room, a print workshop. It is fixed in the component, so a Places card now misstates the kind of place. Needed: a glyph by kind, or a neutral place mark.
+- **The card reader's metadata line.** It sits at ink80, about 2:1 on the card, so "THURSDAY · TO FRIENDS" reads fainter than in the Places original. This is §20.8's systemic kernel colour question, not a Places edit.
+- **The manifest moved during adoption.** Consumers copying "the package" mid-change can end up with a 0.4 manifest beside a 0.3 reader, as happened here before it was corrected. A versioned folder or a frozen tag per version would prevent it.
+
+**The September 10 additive review, applied in the same pass.** 03.7–03.9 now carry the causal repair: the notes name the mistaken relation ("this person avoids stairs"), say it is invalidated at its owner with its dependent uses repaired, keep the father's own constraint for outings he joins, separate today's expiring level treatment from the permanent repair, and point to 03.9 as the next-day evidence. 03.9's trace no longer says "nothing kept about stairs", which would have discarded his context. The stale `~40` and `40–60` totals on 07 and 09.4 are gone. 02 P1–P4 and 08.12–08.13 were rechecked and are unchanged.
+
+**Verification.** Served captures of `before/` and the adopted boards for 01, 03, 04, 07 and 08 at each board's own width, with matched crops of the changed regions: the field's lead and card, the Red Hook map, the two-ways strip, the 1.3× check, the 07 shared row, the correction sequence and the place page. The shared reader mounts on every served instance checked. Not verified: the Claude Design editor view, narrow 320px widths for the adopted boards, native rendering, and live cross-project propagation.
+
+**Files.** In the Places project: the ten boards, `before/` with all ten originals and `support.js`, `vdl.css`, `vdl-package.json` (0.3), the kernel `styles.css`, and the ten component files. Generators in `docs/working/design-gen/places/`, with `build.py` as the single entry point and `cap.py` for served comparisons.

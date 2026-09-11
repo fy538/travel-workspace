@@ -9,6 +9,8 @@ TAIL = S('tail.html'); FOOT = S('footblock.html'); TABBAR = S('tabbar.html')
 def fix_map(html):
     """The map as sliced from 19: plate radius 12; the pool's label to the left of its disc so it does not clip at the edge."""
     html = html.replace('border-radius: 14px; overflow: hidden;', 'border-radius: 12px; overflow: hidden;', 1)
+    html = re.sub(r'<text ([^>]*)font-size="8"([^>]*)>(VAN BRUNT ST|COLUMBIA ST)</text>', lambda m: f'<text {m.group(1)}font-size="10"{m.group(2)}>{m.group(3)}</text>', html)
+    html = html.replace('<text x="128" y="117"', '<text x="95.5" y="126.9"', 1).replace('rotate(-17 128 117)', 'rotate(-17 95.5 126.9)', 1)
     return re.sub(r'<text x="(\d+(?:\.\d+)?)" y="([^"]+)"([^>]*)>THE POOL</text>', lambda m: f'<text x="{float(m.group(1))-28:.0f}" y="{m.group(2)}"{m.group(3)} text-anchor="end">THE POOL</text>', html)
 REDHOOK_MAP = fix_map(S('redhook_map.html'))
 INK='#1B1714'; INK2='#2C2622'; MUTE='#6E6862'; ANCHOR='#8F877C'; GHOST='#B5AFA5'; GOLD='#B0853A'; GOLDD='#8A6628'; UMBER='#4A3428'; OX='#7A2E2E'
@@ -28,26 +30,33 @@ LB=f'font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="0.8"
 # ── chrome ──
 def anchor(scope, time, back=False, sub=None):
     left = BACK if back else ''
-    sc = f'<span style="{MONO} font-weight: 700; font-size: 11px; letter-spacing: 1.15px; display: inline-flex; align-items: center; gap: 5px;">{scope}' + ('' if back else f'<svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M2 3.5L4.5 6L7 3.5" stroke="{INK}" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>') + '</span>'
-    if sub: sc = f'<div style="display: flex; flex-direction: column; gap: 2px;">{sc}<span style="font-size: 12.5px; line-height: 17px; color: {MUTE};">{sub}</span></div>'
+    sc = f'<span class="vdl-t-placeStamp" style="display: inline-flex; align-items: center; gap: 5px;">{scope}' + ('' if back else f'<svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M2 3.5L4.5 6L7 3.5" stroke="{INK}" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>') + '</span>'
+    if sub: sc = f'<div style="display: flex; flex-direction: column; gap: 2px;">{sc}<span class="vdl-t-supportLine" style="line-height: 17px; color: {MUTE};">{sub}</span></div>'
     return f'<div style="padding: 24px 22px 0 22px;"><div style="display: flex; align-items: center; gap: 10px;">{left}{sc}<span class="fn" style="margin-left: auto; color: {MUTE};">{time}</span><span style="margin-left: 10px; display: inline-flex;">{MAPI}</span></div></div>'
-def orientation(read, sub, size=30, lh=34): return f'<div style="padding: 6px 22px 0 22px;"><div style="{SERIF} font-weight: 600; font-size: {size}px; line-height: {lh}px; letter-spacing: -0.01em;">{read}</div><div style="font-size: 12.5px; line-height: 17px; color: {MUTE}; margin-top: 7px;">{sub}</div></div>'
+def orientation(read, sub, size=30, lh=34):
+    head = f'<div class="vk-t-serifMast">{read}</div>' if (size, lh) == (30, 34) else f'<div style="{SERIF} font-weight: 600; font-size: {size}px; line-height: {lh}px; letter-spacing: -0.01em;">{read}</div>'
+    return f'<div style="padding: 6px 22px 0 22px;">{head}<div class="vdl-t-supportLine" style="line-height: 17px; color: {MUTE}; margin-top: 7px;">{sub}</div></div>'
 def chip(t): return f'<span style="display: inline-flex; align-items: center; gap: 6px; background: {INK}; color: {CARD}; border-radius: 999px; padding: 4px 10px; font-size: 13px; font-weight: 500; flex: none;">{t}<span style="font-size: 12px; opacity: 0.7;">&times;</span></span>'
 def ask(hint='A place, a time, a kind of evening', q=None, ctx=None):
     body = (chip(q) + (chip(ctx) if ctx else '')) if q else f'<span style="font-size: 14px; color: {MUTE}; flex: 1;">{hint}</span>'
     return (f'<div style="margin: 16px 22px 0 22px; display: flex; align-items: center; gap: 10px; padding: 8px 0; min-height: 44px; box-sizing: border-box; border-top: 1px solid {HAIR}; border-bottom: 1px solid {HAIR};">'
             f'<svg width="15" height="15" viewBox="0 0 16 16" fill="none" style="flex: none;"><circle cx="7" cy="7" r="4.5" stroke="{MUTE}" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="{MUTE}" stroke-width="1.5" stroke-linecap="round"/></svg>{body}</div>')
-def sect(t, top=36): return f'<div style="padding: {top}px 22px 0 22px;"><div style="display: flex; align-items: center; gap: 12px; padding-bottom: 10px;"><span style="font-size: 13px; font-weight: 600; letter-spacing: 0.1px; color: {INK};">{t}</span><span style="flex: 1; height: 1px; background: rgba(27,23,20,0.12);"></span></div></div>'
+def sect(t, top=36): return f'<div style="padding: {top}px 22px 0 22px;"><div style="display: flex; align-items: center; gap: 12px; padding-bottom: 10px;"><span class="vdl-t-sectionHeading" style="color: {INK};">{t}</span><span style="flex: 1; height: 1px; background: rgba(27,23,20,0.12);"></span></div></div>'
 def gut(h, top=0): return f'<div style="padding: {top}px 22px 0 22px;">{h}</div>'
 def kick(t): return f'<div style="display: flex; align-items: center; gap: 10px; {MONO} font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: {GOLDD};"><span>{t}</span><span style="flex:1;height:1px;background:{HAIR};"></span></div>'
-def title(t, size=17, lh=22, w=500): return f'<div style="{SERIF} font-size: {size}px; line-height: {lh}px; font-weight: {w}; color: {INK};">{t}</div>'
+def title(t, size=17, lh=22, w=500):
+    if (size, lh, w) == (17, 22, 500): return f'<div class="vdl-t-unitTitle" style="color: {INK};">{t}</div>'
+    if (size, w) == (16, 500): return f'<div class="vk-t-serifTitle" style="color: {INK};">{t}</div>'
+    return f'<div style="{SERIF} font-size: {size}px; line-height: {lh}px; font-weight: {w}; color: {INK};">{t}</div>'
 def serifline(t, size=18, lh=25): return f'<div style="{SERIF} font-size: {size}px; line-height: {lh}px; color: {INK};">{t}</div>'
 def sup(t, col=None): return f'<div style="font-size: 13px; line-height: 18px; color: {col or MUTE}; margin-top: 4px;">{t}</div>'
 def body(t): return f'<div style="font-size: 14px; line-height: 19px; color: {INK2};">{t}</div>'
-def fn(t, top=4): return f'<div class="fn" style="margin-top: {top}px; color: {MUTE};">{t}</div>'
+def fn(t, top=4): return f'<div class="vdl-t-metaLine" style="margin-top: {top}px; color: {MUTE};">{t}</div>'
 def meta(t, top=3): return fn(t, top)
 def unc(t): return f'<div style="font-size: 13px; line-height: 18px; color: {MUTE}; margin-top: 4px;">{t}</div>'
-def door(t, c=GOLDD, top=0): return f'<div style="display: flex; align-items: center; margin-top: {top}px; min-height: 44px;"><span style="font-size: 13px; font-weight: 500; color: {c};">{t}</span>{ARROW(c)}</div>'
+def door(t, c=GOLDD, top=0):
+    col = '' if c == GOLDD else f' style="color: {c};"'
+    return f'<div style="display: flex; align-items: center; margin-top: {top}px; min-height: 44px;"><span class="vdl-door vk-t-bodySmMedium"{col}>{t}</span></div>'
 def doors(*ts): return '<div style="display: flex; gap: 18px; align-items: center; flex-wrap: wrap;">' + ''.join(door(t, c) for t, c in ts) + '</div>'
 def door_list(items): return '<div style="display: flex; flex-direction: column;">' + ''.join(door(t) for t in items) + '</div>'
 def card(inner, pad='16px', bg=CARD): return f'<div style="background: {bg}; border-radius: 18px; box-shadow: 0 6px 18px rgba(27,23,20,0.10), 0 1px 3px rgba(27,23,20,0.06); padding: {pad}; display: flex; flex-direction: column; overflow: hidden;">{inner}</div>'
@@ -70,9 +79,11 @@ def arow(text, avatars=None, last=False, muted=False):
     bb = f' border-bottom: 1px solid {HAIR6};' if last else ''
     return f'<div class="row" style="padding: {ROW_PAD}px 0;{bb}">{lead}<span style="font-size: 15px; line-height: 20px; flex: 1; color: {MUTE if muted else INK};">{text}</span>{CHEV}</div>'
 def dim(t): return f'<span style="color: {MUTE};">{t}</span>'
-def author_row(letter, who, when): return f'<div style="display: flex; align-items: center; gap: 10px;"><span style="width: 28px; height: 28px; border-radius: 14px; background: {INK}; color: {CARD}; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex: none;">{letter}</span><span style="font-size: 13px; font-weight: 600; color: {INK};">{who}</span><span class="fn" style="color: {MUTE};">{when}</span></div>'
-def quote(t, size=18, lh=25): return f'<div style="{SERIF} font-size: {size}px; line-height: {lh}px; color: {INK}; margin-top: 8px;">&ldquo;{t}&rdquo;</div>'
-def place_strip(name, line): return f'<div style="display: flex; align-items: center; gap: 10px; margin-top: 12px; padding-top: 12px; border-top: 1px solid {HAIR7};"><span style="width: 7px; height: 7px; border-radius: 4px; background: {GOLD}; flex: none;"></span><div style="flex: 1; min-width: 0;"><div style="{SERIF} font-size: 16px; line-height: 20px; font-weight: 600; color: {INK};">{name}</div><div class="fn" style="color: {MUTE}; margin-top: 2px;">{line}</div></div></div>'
+def author_row(letter, who, when): return f'<div style="display: flex; align-items: center; gap: 10px;"><span style="width: 28px; height: 28px; border-radius: 14px; background: {INK}; color: {CARD}; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex: none;">{letter}</span><span class="vdl-t-sectionHeading" style="color: {INK};">{who}</span><span class="fn" style="color: {MUTE};">{when}</span></div>'
+def quote(t, size=18, lh=25):
+    if (size, lh) == (18, 25): return f'<div class="vdl-t-excerpt" style="color: {INK}; margin-top: 8px;">&ldquo;{t}&rdquo;</div>'
+    return f'<div style="{SERIF} font-size: {size}px; line-height: {lh}px; color: {INK}; margin-top: 8px;">&ldquo;{t}&rdquo;</div>'
+def place_strip(name, line): return f'<div style="display: flex; align-items: center; gap: 10px; margin-top: 12px; padding-top: 12px; border-top: 1px solid {HAIR7};"><span style="width: 7px; height: 7px; border-radius: 4px; background: {GOLD}; flex: none;"></span><div style="flex: 1; min-width: 0;"><div class="vdl-t-placeName" style="color: {INK};">{name}</div><div class="fn" style="color: {MUTE}; margin-top: 2px;">{line}</div></div></div>'
 def people_row(letters, t, sub): return f'<div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; background: {CARD}; border: 1px solid {HAIR};">{facepile(letters)}<div style="flex: 1; min-width: 0;"><div style="font-size: 15px; font-weight: 600; color: {INK};">{t}</div><div style="font-size: 13px; color: {MUTE};">{sub}</div></div>{CHEV}</div>'
 def readback(k, t, color=GOLDD): return f'<div style="display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 12px; background: {CARD}; border: 1px solid {HAIR};"><span style="{MONO} font-weight: 700; font-size: 11px; letter-spacing: 1.15px; color: {color}; flex: none;">{k}</span><div style="flex: 1; font-size: 13px; line-height: 18px; color: {INK2};">{t}</div></div>'
 def composer(placeholder, text=None, to=None):
@@ -104,7 +115,7 @@ def map_box(svg_html): return svg_html
 def burden_strip(a='TO PIER 11', bar='THE FERRY · 25 MIN · EVERY 40', b='9 MIN ON FOOT', n='40 MOVING'):
     return (f'<svg width="349" height="46" viewBox="0 0 349 46" fill="none" style="display: block; width: 100%; height: auto; margin-top: 8px;">'
             f'<path d="M8 24 L44 24" stroke="rgba(27,23,20,0.30)" stroke-width="8" stroke-dasharray="0.1 14" stroke-linecap="round"/><rect x="52" y="18" width="196" height="12" rx="6" fill="{INK}" opacity="0.78"/>'
-            f'<path d="M258 24 L306 24" stroke="rgba(27,23,20,0.30)" stroke-width="8" stroke-dasharray="0.1 14" stroke-linecap="round"/><text x="318" y="28" {LK}>{n}</text>'
+            f'<path d="M258 24 L306 24" stroke="rgba(27,23,20,0.30)" stroke-width="8" stroke-dasharray="0.1 14" stroke-linecap="round"/><text x="347" y="10" text-anchor="end" {LK}>{n}</text>'
             f'<text x="52" y="10" {LG}>{bar}</text><text x="8" y="44" {LB}>{a}</text><text x="306" y="44" text-anchor="end" {LB}>{b}</text></svg>')
 def day_band(blocks, labels, track=(2, 345), h=56):
     """blocks: (x, w, label) gold; labels: (x, text, anchor). One evening on one track."""
@@ -145,3 +156,7 @@ def rows_page(w, kick_t, ttl, sub, rows, h=6000):
     op = BOARD_OPEN.replace('width: 1900px', f'width: {w}px').replace(re.search(r'min-height: \d+px', BOARD_OPEN).group(0), f'min-height: {h}px')
     return HEAD + op + headblock(kick_t, ttl, sub) + out + FOOT + TAIL
 def set_height(html, h): return re.sub(r'(<div style="width: \d+px; min-height: )\d+(px; background: #F4F0E7)', lambda m: f'{m.group(1)}{h}{m.group(2)}', html, count=1)
+
+# ---- shared design language: vdl-stage1 0.3 (workbench c13ae951), consumed, not forked ----
+VDL_LINKS = '<link rel="stylesheet" href="_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css" /><link rel="stylesheet" href="vdl.css" />'
+if 'vdl.css' not in HEAD: HEAD = HEAD.replace('<helmet>', '<helmet>' + VDL_LINKS, 1)

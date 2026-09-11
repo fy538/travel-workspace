@@ -8,9 +8,13 @@ def longnames():
     h = field(True)
     for a, b in LONG.items(): h = h.replace(a, b)
     return h
+LT13 = ('<style>.lt13 .vk-t-serifMast{font-size:39px;line-height:44.2px}.lt13 .vdl-t-unitTitle{font-size:22.1px;line-height:28.6px}.lt13 .vk-t-serifTitle,.lt13 .vdl-t-placeName{font-size:20.8px;line-height:26px}'
+        '.lt13 .vdl-t-excerpt{font-size:23.4px;line-height:32.5px}.lt13 .vdl-t-sectionHeading,.lt13 .vk-t-bodySmMedium{font-size:16.9px}.lt13 .vdl-t-supportLine{font-size:16.25px}.lt13 .vdl-t-metaLine{font-size:13px}.lt13 .vdl-t-placeStamp{font-size:14.3px}</style>')
 def enlarge(html):
     """Text at 1.3×: every CSS font-size in the phone scaled; the instruments' SVG labels keep the 10px mono floor, as the canon says they should."""
-    return re.sub(r'font-size: (\d+(?:\.\d+)?)px', lambda m: f'font-size: {float(m.group(1))*1.3:.1f}px', html)
+    h = re.sub(r'font-size: (\d+(?:\.\d+)?)px', lambda m: f'font-size: {float(m.group(1))*1.3:.1f}px', html)
+    h = re.sub(r'line-height: (\d+(?:\.\d+)?)px', lambda m: f'line-height: {float(m.group(1))*1.3:.1f}px', h)
+    return LT13 + f'<div class="lt13">{h}</div>'
 def enlarged(): return enlarge(field(True))
 def destination(sent=False):
     inner = anchor('THE PIER AT SUNSET', 'SATURDAY', back=True, sub='Kept, with Maya') + gut(photo_plate(200), top=16)

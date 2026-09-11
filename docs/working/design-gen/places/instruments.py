@@ -88,7 +88,9 @@ def access_compare(rows, origin='FROM CANAL STREET', h=None):
             else: svg += f'<rect x="{x0:.1f}" y="{y-6}" width="{x1-x0:.1f}" height="12" rx="6" fill="{INK}" opacity="0.78"/>'; moving += m
             t += m
         wait = t - moving
-        svg += L(ax.x(t) + 8, y + 4, f'{t} MOVING' if not wait else f'{moving}+{wait}', INK, True) + L(2, y + 18, note, MUTE)
+        lab = f'{t} MOVING' if not wait else f'{moving}+{wait}'
+        lx = ax.x(t) + 8
+        svg += (L(347, y - 9, lab, INK, True, 'end') if lx + len(lab) * 6.4 > 347 else L(lx, y + 4, lab, INK, True)) + L(2, y + 18, note, MUTE)
     svg += L(100, h - 2, '0', MUTE) + L(300, h - 2, 'MOVING + THE WAIT AS DRAWN · NOT A RANGE', MUTE, None, 'end')
     return svg + '</svg>'
 def section(points, sea, labels, scale_m=None, h=110, w=349, zmax=None):

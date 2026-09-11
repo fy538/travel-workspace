@@ -25,9 +25,9 @@ def lead_composition(populated=True):
         inner_ = kick('SATURDAY · THE PIER, THEN THE LAWN · FREE') + day + f'<div style="margin-top: 10px;">{serifline("Free, on the lawn; the sunset from the west pier first, nine minutes away. It turns cold fast.")}</div>'
         inner_ += fn('TATI&rsquo;S CITY OF GLASS · GET THERE AT EIGHT FOR A SPOT · RAIN PLAN NOT POSTED', 8) + f'<div style="margin-top: 8px;">{doors(("Saturday&rsquo;s film", GOLDD))}</div>'
     return f'<div style="display: flex; flex-direction: column;">{inner_}</div>'
+READER_CARD = '<dc-import name="OriginalReader" density="card" author="Maya" meta="THURSDAY · TO FRIENDS" words="The side room was my favorite. Go on a weekday, it was empty." place="The Harbor Print Room" placeMeta="RED HOOK · TUE–SUN 11–6" door="Reply to Maya" hint-size="349px,230px"></dc-import>'
 def friends():
-    c = card(author_row('M', 'Maya', 'THURSDAY · TO FRIENDS') + quote(MAYA_ROOM) + place_strip('The Harbor Print Room', 'RED HOOK · TUE–SUN 11–6') + door('Reply to Maya'))
-    return sect('From friends') + gut(c + door('Everything from friends, here and elsewhere'))
+    return sect('From friends') + gut(READER_CARD + door('Everything from friends, here and elsewhere'))
 def redhook(populated=True):
     rows = ('<div>' + nrow(1, 'The Harbor Print Room', 'TUE–SUN 11–6 · ROOMS REMADE, TO SUNDAY', unc(UNK_ROOM) + (fn('MAYA WAS THERE THURSDAY', 4) if populated else ''), first=True) + nrow(2, 'The Red Hook pier', 'FACES THE HARBOR AND THE STATUE') + nrow(3, 'The Red Hook pool', 'LAP SWIM 7–8:30 AM · BRING A LOCK') + nrow(4, 'The lunch counter on Columbia Street', 'TILL 4 · $11 PLATE · STANDING ROOM', last=True) + '</div>')
     walk = f'<div style="font-size: 14px; line-height: 19px; color: {INK2}; margin-top: 10px; padding-top: 10px; border-top: 1px solid {HAIR7};">Everything here is within twelve minutes of the landing on foot.</div>'
