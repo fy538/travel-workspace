@@ -681,3 +681,36 @@ Everything else in the package is byte-unchanged since 0.3: `vdl.css` (sha256 `7
 **Kept local, as instructed.** Row chevrons, the anchor-first page head, labelled fact links and the direct-original receivers on 02 H3 and 04. The utensil glyph on the card remains a queued shared variant (neutral or supplied place glyph); it is not overridden here. Fixed map labels at larger text remain an adaptation dependency, and this is not an accessibility acceptance.
 
 **Evidence.** Served captures of 01 and 04 before and after the copy, at each board's own width, with matched crops of the card and of the 1.3× check (04.7). The place line is visibly readable after; the header, words, place name, Reply and the surrounding composition are identical; at 1.3× the card scales as before. Not re-checked at 320px in Places; the shared owner reports no spill or clip at 320px and 1.3× for the card density.
+
+## 41. Scope and selection — the September 12 coverage sequences (September 15)
+
+The current coverage assignment in `vesper-places-design-review-2026-09-08.md`, under shared brief §23. Two small interaction sequences, drawn in this project on the field it already has. One new board, **10 · Scope and selection**, plus the index and log. Nothing else changed: no map redesign, no second navigation, no reader migration.
+
+**A · scope, in six frames.**
+
+| Frame | What it shows |
+|---|---|
+| 10.A1 | The field as drawn. Scope lives in the anchor's city chevron and the question line; there is no filter console. |
+| 10.A2 | What the chevron opens: a bounded chooser on the shared sheet construction, listing the city and the pockets this field already holds, with one way out to typing. |
+| 10.A3 | Sorrento, looked up from New York. The town keeps its own clock (8:41 in the morning there), the places keep their hours, and a line states plainly that nothing here is near you. No distance, walk or route from the person is offered, because the person is not there. |
+| 10.A4 | The question refined inside the scope. The scope chip and the question chip are separate, and either comes off on its own. |
+| 10.A5 | No match, honestly: what is true instead, then what is open but not quiet. The world content stays and nothing asks for more input. |
+| 10.A6 | Cleared and back: the chips are gone, the field, its pocket and the place in the scroll are as they were. |
+
+**B · marker and row, in seven frames.**
+
+| Frame | What it shows |
+|---|---|
+| 10.B1 | The pocket as drawn: the map and its numbered rows, one set of numbers. |
+| 10.B2 | A marker tapped: the marker takes a ring, the row takes the wash, and a line says which way the tap went. Nothing has opened. |
+| 10.B3 | The row tapped: the same selection reached the other way. One selection, two ways in, one way to clear it. |
+| 10.B4 | The selected entity: the place page as 08 draws it, with a context line saying it was opened from the map. Entity owns the destination. |
+| 10.B5 | A practical question or the provider: the private question asks Vesper and never the workshop; Directions hands off to the map app and says Vesper is not navigating and does not learn where you go. |
+| 10.B6 | Back, unchanged: the same pocket, scope, selection and place in the scroll. Nothing was recorded by going. |
+| 10.B7 | Larger text, drawn at 1.3×: the map's labels cannot grow, so the pocket reads as its rows and its access comparison, with the map one door away. |
+
+**Donors and what is added.** A1, B1 and B4 are the existing field, pocket and page. New are the chooser's contents, the no-match reading, the two-way selection, the provider return, the restored scroll and the larger-text alternative. The board carries the donor table, the owners (Entity for the destination, Social for recipients), and the line between illustrative geometry and actual map behaviour.
+
+**Not claimed.** No turn-by-turn navigation, no standalone map or search product, no filter console, no scope that outlives the visit. Pan, zoom, focus transfer, keyboard order, the back stack and the restored scroll are native work; these frames draw the contract, they do not exercise it.
+
+**Build note.** The new board is in `build.py`, so it rebuilds with the rest. That is the same guard that ended the stale 07 and 09 builds.

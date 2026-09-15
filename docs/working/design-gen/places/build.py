@@ -1,6 +1,6 @@
 """Build every Places board on the shared package vdl-stage1 0.3, then measure. One entry point, so no board is left stale."""
 import re, subprocess, sys, os, json
-BOARDS = ['00 - Index', '01 - The Field', '02 - The Journeys', '03 - The Situations', '04 - The Checks and the Opening', '05 - Decisions', '06 - Log', '07 - Components', '08 - The Page', '09 - Purposes']
+BOARDS = ['00 - Index', '01 - The Field', '02 - The Journeys', '03 - The Situations', '04 - The Checks and the Opening', '05 - Decisions', '06 - Log', '07 - Components', '08 - The Page', '09 - Purposes', '10 - Scope and Selection']
 LINKS = '<link rel="stylesheet" href="_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css" /><link rel="stylesheet" href="vdl.css" />'
 # exact matches only: a Places literal becomes the kernel token of the same value (vdl-port's rule, applied rather than annotated)
 TOK = [('#1B1714', 'var(--vk-ink00)'), ('#2C2622', 'var(--vk-ink20)'), ('#6E6862', 'var(--vk-ink60)'), ('#8F877C', 'var(--vk-color-surface-ghostAnchor)'), ('#B5AFA5', 'var(--vk-ink80)'),
@@ -18,7 +18,7 @@ def post(html):
     html = html.replace('class="fn" style="', 'class="vdl-t-metaLine" style="color: #B5AFA5; ')
     return tokenize(html)
 if __name__ == '__main__':
-    for g in ['gen07.py', 'gen08.py', 'gen09.py', 'renumber.py']:
+    for g in ['gen07.py', 'gen08.py', 'gen09.py', 'gen10.py', 'renumber.py']:
         r = subprocess.run([sys.executable, g], capture_output=True, text=True)
         if r.returncode: print(r.stderr[-1500:]); sys.exit(1)
         print(g, 'ok')
