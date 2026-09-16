@@ -878,6 +878,33 @@ product across three circumstances, not three customer personas, premium modes
 or a required sequence. A person can stop after understanding, enjoying a
 friend's note or receiving practical relief.
 
+**September 15 review refinement:** the
+[2026 literature follow-through](vesper-ordinary-value-and-relationship-strategy-research-2026-09-06.md#11-2026-literature-follow-through-received-benefit-not-another-product-layer)
+sharpens how these existing situations should be reviewed. It does not refresh
+the September 7 implementation observations below or establish new availability,
+commercial terms or runtime authority. Preserve the three circumstances; do
+not turn them into fixed personas, sequential steps or a required action funnel.
+
+| Existing situation | What the next receiving review should make explicit | What is insufficient |
+| --- | --- | --- |
+| Almost no history (§9.2) | A specific reason to care is visible before a tap; depth adds useful substance. If practical fit is requested, return an intelligible assessment of the same possibility without forcing a Plan or reconstructing its subject | A teaser, a directory entry, an isolated open-now fact or an input request standing in for the initial benefit |
+| One fragment (§9.3) | A comparison or explanation adds something the person did not supply; deeper exploration is optional. Distinguish what current input already explains from any improvement due to authorized history | A callback, profile narration, or a claim that opening the result proves learning |
+| A friend and real constraints (§9.4) | The original offering is worthwhile to receive; optional private help or shared preparation preserves attribution, each person's choice and exact object continuity | More AI prose, reply pressure, equal-effort participation or treating an invitation as agreement |
+
+**Proactive counterexample:** where current authority permits preparation, making
+a useful recipe adaptation available can help without demanding “Have you
+cooked it yet?” Remembered interest does not authorize recurring check-ins,
+monitoring or an obligation to report progress. Production, on-visit availability,
+interruption and external action remain separate under the
+[useful-preparation owner discussion](vesper-useful-preparation-and-initiative-research-2026-09-06.md#6-when-the-work-happensand-when-its-result-appears);
+opening Home is not a new production trigger. Asked-for coaching is a separate
+job, not a default inferred from an interest.
+
+Use the [existing received-value ledger](situated-value-decision-matrix-2026-09-06.md#119-whole-experience-review-received-value-context-and-human-work)
+to separate felt benefit, demonstrated benefit and any later outcome. An
+explanation, enjoyable share or practical relief can finish without further
+action. These are review refinements, not new capabilities to promise.
+
 ### 9.1 Evidence and overall judgment
 
 Inspected backend `d8fdb55d6` on `main` and mobile `b479c3289` on
