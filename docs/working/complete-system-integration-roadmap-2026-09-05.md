@@ -102,10 +102,10 @@ honest balanced-field fallback, the native owner-backed evidence register, the
 supplied-experience comparison, the plural social perspective, the
 standalone-only Places feed-state repair, the addressed Place-contribution
 region, and the same-place public-reading sequence in backend `c18470b4a` and
-app `8cd899b6d`; the latest workspace verification receipt before this
-roadmap maintenance is `3a102f8`, which records the persisted Life
-graph/People HTTP readback after the native
-sender-withdrawal evidence. This
+app `8cd899b6d`; the latest code receipt before this documentation
+maintenance is backend `651628265` with app `242d309f0`, which records the
+persisted Life graph/People HTTP readback after the native sender-withdrawal
+evidence. Workspace `49d438a` is a documentation-only alignment. This
 documentation
 advance does not merge, publish, enable or
 resume shared Integration/landing. Apply this
@@ -175,9 +175,10 @@ package should be an existing-authority downstream result or a
 sparse/pending/failure treatment, not another route-only happy path.
 
 Current candidate tuple after the latest rebaseline: workspace
-`3a102f8`, backend `651628265`, app `242d309f0`, all on
+`49d438a`, backend `651628265`, app `242d309f0`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
-not main or production. The dedicated shared Integration/landing lane remains
+not main or production. The workspace head is a documentation-only alignment;
+the child code heads are unchanged. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
 verification can continue; no shared runtime, publishing, flag activation,
 paid/provider run or pending product policy is enabled by this rebaseline.
@@ -206,6 +207,19 @@ open, and it does not establish provider-backed supply, recurring content,
 Claude-design parity, or release readiness. The shared Integration/landing lane
 remains paused; no merge, activation, publication, or full device campaign was
 performed for this receipt.
+
+### September 21 current-candidate integrity pass
+
+After the Life-roadmap alignment receipt, the same isolated tuple was checked
+with the bounded offline backend packet (**129 passed**), the Home/Places native
+packet (**45 passed**) and the Life native packet (**32 passed**). This is a
+fresh contract check for the current tuple, not a new product slice: it does
+not close R05 process interruption/transient failure or R09
+persisted/native cross-device/DST evidence, and it does not establish
+provider-backed supply, recurring content, design parity, merge, activation,
+or publication. Keep the next implementation focused on one existing
+owner-backed value-depth or Life/social downstream result with exact
+destination, return and honest sparse/pending/failure behavior.
 
 ### September 21 Life · People receipt — shared outcomes reach the record
 

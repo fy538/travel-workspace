@@ -59,14 +59,13 @@ documentation drift that had called several already-renderable kinds "dark";
 it does not claim source admission, recurring content supply, runtime
 full-scroll quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
-**Current candidate tuple after the latest rebaseline:** workspace `3a102f8`,
+**Current candidate tuple after the latest rebaseline:** workspace `49d438a`,
 backend `651628265`, and app `242d309f0`, all on the isolated
-`codex/functional-implementation-2026-09-20` lane. The latest workspace
+`codex/functional-implementation-2026-09-20` lane. The preceding code
 advance records the persisted Life graph/People HTTP readback after the
-disposable owner-loop and renderer-ledger corrections; the backend advance
-adds the canonical Home same-Place composition proof, persisted public-Place
-HTTP readback, and persisted Life graph/People HTTP readback. The child-code
-tuple also includes the Places typed notice bridge,
+disposable owner-loop and renderer-ledger corrections; the current workspace
+advance is documentation-only. The child-code tuple also includes the Places
+typed notice bridge,
 native sender-withdrawal proof, shared Home/Places semantic-state treatment,
 and the explicit People-bound anchor index repair. Nothing is merged to main,
 published, flag-activated, or resumed in shared Integration/landing. The next
@@ -74,10 +73,21 @@ substantive implementation remains one selected sparse/pending/failure state
 or supplied Life/social downstream value, with R05/R09 edge work continuing
 only where its required environment is available.
 
-The latest workspace documentation head before this documentation receipt is
-`3a102f8`; backend and app code are `651628265` and `242d309f0`. The backend
-advance is integration-test coverage only; it does not alter production
-behavior or release state.
+The latest workspace documentation head is `49d438a`; backend and app code are
+`651628265` and `242d309f0`. The workspace advance is documentation-only and
+the backend advance is integration-test coverage only; neither changes
+production behavior or release state.
+
+### September 21 current-candidate integrity pass
+
+After the Life-roadmap alignment receipt, the same isolated tuple was checked
+with the bounded offline backend packet (**129 passed**), the Home/Places native
+packet (**45 passed**) and the Life native packet (**32 passed**). These runs
+confirm that the documented tuple still preserves the existing projection,
+renderer and Life-reader contracts; they do not replace `make verify`, prove
+device acceptance, or widen the evidence for recurring supply, provider-backed
+generation, visual parity, R05 process recovery or R09 persisted/native
+timezone edges. No merge, activation or publication occurred.
 
 ### September 21 canonical Home sequence readback
 
