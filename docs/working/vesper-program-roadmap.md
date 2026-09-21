@@ -2024,3 +2024,26 @@ users, venue, submission, source and outbox rows were removed and the API was
 stopped. The next package should repair or explicitly bypass that unrelated
 Atlas fixture boundary for a clean Life Places → exact Intake → return proof;
 do not weaken Atlas authority or widen the new source policy.
+
+## September 21 correction — combined Life Places route proof
+
+The earlier HTTP boundary was a dev setup error, not a Life or Atlas behavior
+failure: the probe process used a configured user id that was absent from the
+disposable Postgres database, so auth fell back to the synthetic
+`00000000-0000-0000-0000-000000000005` identity and Atlas correctly rejected its
+foreign-key write. A clean retry created the configured temporary user in the
+same database, seeded one verified `photo_library` source with an explicit
+venue subject, registered the existing retained-source projector, and repaired
+the outbox event.
+
+The real `GET /api/root-projections/v1/life?lens=places` returned **200** with
+one private durable `source_submission`, the explicit venue in
+`represented_refs`, and the exact `/you/intake-submissions/[submissionId]`
+destination. The entry remained `pending` (the existing custody state); no
+attendance or occurrence claim was added. This closes the combined backend
+route boundary for this narrow source case. It does not prove a physical
+native tap/back return, populated multi-lens corpus behavior, production
+activation, or visual parity. Temporary users, venue, source, outbox rows and
+API process were removed; no advisory locks remain. The next package is the
+native return/refind proof or another supported receiving/action seam, not an
+Atlas workaround.
