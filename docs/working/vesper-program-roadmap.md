@@ -64,6 +64,43 @@ visual acceptance. Next execution should consume this candidate through the
 combined receiving/runtime check, then take the next highest-value Home/Places
 receiving gap rather than reopening the completed Life slice.
 
+## September 20 functional implementation receipt — Home/Places and practical depth
+
+The second execution slice is complete in the same isolated lane. It adopts only
+the bounded commits from the existing native-receiving work; the much larger
+candidate branch remains unmerged. The slice now carries a real result through
+the Home/Places destinations and one supported practical/social action:
+
+- **Places:** purpose and visit context survive root → search/reading → entity
+  depth; retained readings have explicit lifecycle/owner gates, exact-selection
+  navigation, expiry behavior and fail-closed handling. Practical visit checks
+  preserve the evidence-backed origin and current-purpose boundary.
+- **Home and plans:** exact Places visits lead with value, and a private stop
+  question can receive a bounded answer or send a reviewed human message into
+  an eligible existing room. The assistance routes now expose explicit trip
+  membership checks before service work and their content contract has a named
+  enforcement site.
+- **Mobile receiving:** practical checks, retained-reading destinations,
+  graph/context doors, exact return state and native receiving controls are
+  connected without changing Chat or the four-root rollout gate. Life row
+  wrappers now use the shared row primitives rather than creating a new shell.
+
+Evidence on the lane: backend focused Places/root/practical/plan/Life coverage
+**1,208 passed, 43 deselected**; mobile focused Home/Places/Life/plan receiving
+**462 passed**; mobile typecheck passed; package auth and content-contract
+regressions **23 passed**. A full offline backend sweep reached **21,526 passed**
+before the package repairs; after those repairs, the only remaining full-sweep
+compatibility failure is the pre-existing expired-deadline check for two legacy
+AI bridges. The standard API audit still reports the pre-existing 55 expired
+policy review dates. Native device acceptance, disposable-Postgres execution,
+merge/publication and rollout activation remain unproven.
+
+The implementation commits are backend `5dd8e6938` and mobile `9fee2d46c`, in
+the isolated branch `codex/functional-implementation-2026-09-20`. The next
+package is the combined receiving/runtime check followed by the next uncovered
+Home or Places supply gap; do not merge the broad 181/204-commit candidate
+wholesale.
+
 ## Current round — meaning-based discovery and exact-original receiving
 
 **Authorized September 9 following the lexical increment:** complete two
