@@ -31,9 +31,9 @@ and supplied-experience comparison is:
 
 | Repository | Current HEAD |
 |---|---|
-| Workspace | `a2a62e3` |
-| Backend | `7d036bb7c` |
-| App | `4c53af70d` |
+| Workspace | `bd1e821` |
+| Backend | `c3f64589e` |
+| App | `62c5982a8` |
 
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes.
@@ -47,10 +47,24 @@ while preserving exact context/experience refs, the existing read requirement,
 expiry and the single-experience aperture fallback. App `b7d025044` and
 `4c53af70d` add the native comparison treatment, registry contract and exact
 action-door regression. Backend focused
-Home/contract/composition tests pass **80**; Home native smoke tests pass
-**15**; TypeScript, targeted ESLint, Ruff and formatting pass (the existing
-Home renderer max-lines warning remains). Review found no new service, ranking,
+Home/contract/composition tests pass **80**; the combined Home/Places renderer
+packet passes **80**; TypeScript, targeted ESLint, Ruff and formatting pass
+(the existing Home/Places renderer max-lines warnings remain). Review found no
+new service, ranking,
 booking, persistence or route family and no design-parity claim is made.
+
+### September 21 plural social perspective review
+
+The relationship owner already supplies privacy-eligible friend activity with
+bounded place names and optional exact venue IDs. Backend `c3f64589e` groups two
+eligible cards into `social_plural_comparison`, preserves attribution and
+combined relationship reads, and falls back to the existing single-person row
+when a second perspective is absent. App `62c5982a8` renders the comparison
+through the existing composition renderer and preserves exact Place doors.
+The focused backend packet passes **81 tests**; the combined Home/Places app
+packet passes **80 tests**; TypeScript, targeted ESLint, Ruff and formatting
+pass (the existing Places renderer max-lines warning remains). No activity
+feed, notification, location inference or response debt was introduced.
 
 ### September 21 Home surface follow-up
 

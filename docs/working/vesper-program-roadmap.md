@@ -50,8 +50,8 @@ same tour. Frontend polish is part of each surface's completion. Retention/
 refinding is further along than context materially improving a later answer,
 possibility or action.
 
-**Current candidate tuple after this receipt:** workspace `a2a62e3`, backend
-`7d036bb7c`, and app `4c53af70d`, all on the isolated
+**Current candidate tuple after this receipt:** workspace `bd1e821`, backend
+`c3f64589e`, and app `62c5982a8`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; it does not change the child-code tuple, merge the
 lane, enable a flag, or resume shared Integration/landing. The next substantive
@@ -65,8 +65,9 @@ selected-trip fit, attributed friend-place preview, public-reading limits, and
 native social-evidence treatment, exact social venue doors, Home editorial/
 aperture anatomy, Places editorial-cover anatomy, the native starter browse
 shelf, native branch/continuity/returned-understanding treatments, the honest
-balanced-field fallback, the native owner-backed evidence register, and the
-supplied-experience comparison in backend `7d036bb7c` and app `4c53af70d`.
+balanced-field fallback, the native owner-backed evidence register, the
+supplied-experience comparison, and the plural social perspective in backend
+`c3f64589e` and app `62c5982a8`.
 The next
 implementation should therefore be selected from an
 existing owner-backed Home/Places payload and add substantive received value
@@ -99,6 +100,27 @@ format checks pass (the existing Home renderer max-lines warning remains).
 This is a value-depth improvement over already supplied data: it adds no
 provider acquisition, ranking policy, generator, store, route family, booking
 flow or design-parity claim.
+
+## September 21 functional receipt — plural social perspective in Places
+
+The relationship owner already supplies up to two privacy-eligible friends,
+their bounded place names, and exact venue IDs for a Places context. Places now
+keeps two such perspectives together as one `social_plural_comparison`
+composition rather than rendering an activity-feed-like pair of rows. The
+comparison preserves attribution, names each perspective, provides up to six
+exact Place doors, carries one combined relationship read requirement, expires
+with the current social projection, and explicitly says no response is owed.
+Sections with fewer than two eligible friends retain the existing attributed
+row behavior.
+
+Backend commit `c3f64589e` adds the bounded producer and regression; app commit
+`62c5982a8` adds the native plural-social treatment and exact-door regression.
+The focused backend root packet passes **81 tests**; the combined app Home/
+Places renderer packet passes **80 tests**; TypeScript, targeted ESLint and
+backend Ruff/format checks pass (the existing Places renderer max-lines
+warning remains). This extends the existing casual-sharing owner; it adds no
+social feed, notification, friend-location inference, response obligation,
+new store, audience policy or occasion model.
 
 **Scope decision — Places group waiting remains deferred.** The legacy Places
 `group_waiting` producer still reads itinerary proposals alongside booking
@@ -1424,9 +1446,9 @@ implementation, and docs closeout.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `c06c904` (current documentation receipt) | `b6e7014` |
-| Backend | `aa96caff7` | `a7c02cbe1` |
-| App | `e601a9dfd` | `e2e792913` |
+| Workspace | `bd1e821` (current documentation receipt) | `b6e7014` |
+| Backend | `c3f64589e` | `a7c02cbe1` |
+| App | `62c5982a8` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent
@@ -1437,7 +1459,7 @@ and ownership before execution; this tuple is a dated observation.
 
 | Capability | Implemented / recorded evidence | Remaining product or evidence boundary |
 | --- | --- | --- |
-| Home / Places | Owner-backed Save/readback, public Place and child-entity readings, consented place pulls, nearby open-now options, saved-place closure/reopening dismissal; named local API/iOS flows | Varied worthwhile full-scroll supply, section/design breadth, selection quality across situations, complete failure/empty states and visual parity |
+| Home / Places | Owner-backed Save/readback, public Place and child-entity readings, consented place pulls, nearby open-now options, supplied experience comparisons, plural social perspectives, saved-place closure/reopening dismissal; named local API/iOS flows | Varied worthwhile full-scroll supply, broader section/design breadth, selection quality across situations, complete failure/empty states and visual parity |
 | Life | Retained text originals, exact refinding/return, explicit place-bound sources and organized period groups; named local API/iOS flows | Broader media/corpus and People/Threads experience, later permitted reuse, indexed serving cutover and Atlas retirement |
 | Social | Existing-owner venue-bound pulls and one-recipient original-text receiving through Life/Home; named local API/iOS flows; sender-control authority rehearsal | Casual media/group/gathering breadth and useful juxtaposition; no new sharing or friend-source AI-use policy is adopted here; R04 native UI evidence remains |
 | Practical/live engine | Current open-now facts and saved-place changes affect surfaces; explicit fit contract and private stop-assistance/reviewed Send implemented | Provider-backed fit rehearsal, wider fresh-world coverage, purpose-preserving adaptation and accepted watching mandates; R09 code correction is complete, persisted/native timezone evidence remains |

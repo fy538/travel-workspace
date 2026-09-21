@@ -56,10 +56,10 @@ selected-trip fit, attributed friend-place preview, public-reading limits, and
 native social-evidence treatment, exact social venue doors, Home
 editorial/aperture anatomy, Places editorial-cover anatomy, the native starter
 browse shelf, native branch/continuity/returned-understanding treatments, the
-honest balanced-field fallback, the native owner-backed evidence register, and
-the supplied-experience comparison in backend `7d036bb7c` and app
-`4c53af70d`; the latest workspace documentation
-receipt is `a2a62e3`. This
+honest balanced-field fallback, the native owner-backed evidence register, the
+supplied-experience comparison, and the plural social perspective in backend
+`c3f64589e` and app `62c5982a8`; the latest workspace documentation
+receipt is `bd1e821`. This
 documentation
 advance does not merge, publish, enable or
 resume shared Integration/landing. Apply this
@@ -72,7 +72,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R04,
 R05 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after the latest lane-local corrections: workspace
-`a2a62e3`, backend `7d036bb7c`, app `4c53af70d`, all on
+`bd1e821`, backend `c3f64589e`, app `62c5982a8`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
@@ -97,6 +97,17 @@ no new generator, provider, ranking, persistence, booking or route abstraction
 was introduced. Backend `7d036bb7c` and app `b7d025044`/`4c53af70d` carry the implementation
 and focused regressions. The package is a richer received result, not proof of
 general supply breadth or Claude-design parity.
+
+### September 21 multiplayer value-depth receipt — plural social perspective
+
+The existing recipient-eligible friend activity owner now reaches Places as a
+bounded plural comparison when two friends contribute to the same context.
+The composition compares attribution and each person's supplied perspective,
+keeps exact venue actions, combines the relationship read requirement, and
+states that no response is expected. One friend remains the existing compact
+social row. Backend `c3f64589e` and app `62c5982a8` carry the implementation and
+focused regressions. This is casual sharing in Places, not Home duplication,
+an activity feed, a friend-location signal or a new multiplayer service.
 
 ### Coordination ownership decision — keep group waiting in Home
 
