@@ -59,11 +59,12 @@ uses the existing workflow event/lease fence and records
 `source_worker_lease_exhausted` without creating new work or broadening worker
 admission.
 
-Focused worker/workflow tests now pass **29 tests** with Ruff, format and
-compile checks. This proves the branch selection and sweep wiring in-process;
-it does not yet prove the SQL reaper against disposable Postgres, a still-
-current provider failure followed by retry, or a real process-kill/restart
-queue run. Those are the remaining R05 evidence cases.
+Focused worker/workflow tests pass **29 tests** with Ruff, format and compile
+checks. The new SQL reaper proof and the existing workflow/source-attempt
+packet pass **17 disposable-Postgres tests**. This proves the branch selection,
+durable terminalization and sweep wiring; a still-current provider failure
+followed by retry and a real process-kill/restart queue run remain the final
+R05 evidence cases.
 
 Three parallel reviewers were explicitly dispatched as **`gpt-6-astra`, high**:
 
@@ -191,7 +192,7 @@ Focused correction receipts on the candidate tuple:
 | R02 | P2 | Places reading bypasses active release/cohort eligibility | Content / Places | Fixed; governed outsider/cohort matrix still required |
 | R03 | P2 | Pull-consent revocation leaves attached original readable | Relationships read policy | Fixed; disposable-Postgres attached-read regression passes |
 | R04 | P2 | Sender loses withdrawal controls after relationship disconnect | Mobile original sharing | Code-fixed; real API sender-control rehearsal passes; native UI matrix remains unrun (no simulator) |
-| R05 | P2 | Source worker throws while serializing its actual result type | Worker adapter | Serializer and exhausted-lease recovery code fixed; 29 focused tests plus real wrapper/expired recovery pass; disposable-Postgres reaper, transient retry and process-restart evidence remain open |
+| R05 | P2 | Source worker throws while serializing its actual result type | Worker adapter | Serializer and exhausted-lease recovery code fixed; 29 focused tests, 17 disposable-Postgres tests, and real wrapper/expired recovery pass; transient retry and process-restart evidence remain open |
 | R06 | P2 | Nine expanded place IDs silently remove Home public supply | Home / Places scope | Fixed with 8-ID batching; scale regression still required |
 | R07 | P2 | Site, accommodation and experience fit checks cannot succeed | Practical assessment | Fixed; focused backend tests pass |
 | R08 | P2 | Primary Plan details entrance hides arrangement information | Plan / object navigation | Fixed; typecheck passes |
