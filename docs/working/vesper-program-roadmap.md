@@ -53,8 +53,8 @@ are evidence, not an invitation to repeat the same tour. Frontend polish is
 part of each surface's completion. Retention/refinding is further along than
 context materially improving a later answer, possibility or action.
 
-**Current candidate tuple after this receipt:** workspace `e59e242`, backend
-`17f20921b`, and app `ac6e08235`, all on the isolated
+**Current candidate tuple after this receipt:** workspace `d4ead84`, backend
+`c18470b4a`, and app `8cd899b6d`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; it does not change the child-code tuple, merge the
 lane, enable a flag, or resume shared Integration/landing. The next substantive
@@ -3220,3 +3220,35 @@ that authority exists, the honest unknown/fallback path remains the supported
 behavior and the next implementation should be another existing
 owner → destination → return seam or the separately authorized Source-worker
 dogfood checkpoint.
+
+## September 21 functional receipt — composed Home reading reaches the exact entity door
+
+The same-place sequence now has an explicit destination/return contract for
+the case that matters most to the user: a composed Home unit has more than one
+reading, so Places must not pretend that the first reading represents the
+whole composition. App commit `8cd899b6d` keeps the existing one-reading path
+exact (including its source revision), while routing a valid multi-reading
+unit to the one exact venue/site/accommodation/experience entity and carrying
+the Home return context and short root-return token. Incomplete or ambiguous
+reading refs still fail closed. No new route, store, provider, generator or
+source model was added.
+
+Backend commit `c18470b4a` extends the existing disposable Home child-source
+rehearsal with an opt-in `--reading-count 2` mode. It creates two accepted,
+source-linked readings for the same run-owned entity and anchor, while the
+default one-reading fixture and cleanup contract remain unchanged. App flow
+`78-home-public-reading-sequence` and its runner derive the canonical Home
+unit from the real projection, assert both readings, open the exact entity,
+return to Home, and verify cleanup. The runner is deliberately explicit about
+the local owner, database, API and QA account; it does not silently fall back
+to a fixture or a different account.
+
+Focused evidence passes: **45** navigation tests, **3** static runner/flow
+contracts, TypeScript, shell syntax, Python compilation, Ruff and formatting.
+The real API/iOS rehearsal is **unrun/blocked**, not passed: the lane's
+isolated API startup stops before health because `travel-agent/.env.dev` has
+an empty `ANTHROPIC_API_KEY`. Therefore this receipt proves the route and
+rehearsal contract, not canonical runtime readback, native visual fidelity,
+recurring supply, or release readiness. Once a governed local key and QA
+account are available, run flow 78; otherwise select another independently
+supplied value seam rather than weakening the guard or claiming parity.
