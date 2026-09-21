@@ -32,7 +32,7 @@ and latest workspace documentation receipt is:
 | Repository | Current HEAD |
 |---|---|
 | Workspace | `6d839e` |
-| Backend | `052284b33` |
+| Backend | `0dcc26db0` |
 | App | `7b735a71e` |
 
 This correction updates tuple identity only; it does not imply merge,

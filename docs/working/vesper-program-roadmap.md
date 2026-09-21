@@ -51,7 +51,7 @@ refinding is further along than context materially improving a later answer,
 possibility or action.
 
 **Current candidate tuple after this receipt:** workspace `6d839e`, backend
-`052284b33`, and app `7b735a71e`, all on the isolated
+`0dcc26db0`, and app `7b735a71e`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; it does not change the child-code tuple, merge the
 lane, enable a flag, or resume shared Integration/landing. The next substantive
@@ -88,6 +88,22 @@ anatomy and passive surface treatment. The focused Home renderer/smoke packet
 passes **21 tests** and `npx tsc --noEmit` passes. This is a native treatment
 improvement for an already supplied value family, not full Claude-design parity
 or evidence that additional semantic kinds are supported.
+
+## September 21 functional receipt — preserve attributed Place perspective
+
+Places friend-activity cards already arrive from the relationship owner with
+the names of the shared places. The root adapter previously discarded those
+names and rendered only the friend plus a count/sentence. It now carries a
+bounded preview of up to three names (with a `+N more` suffix when needed) in
+the existing attributed social row. The exact person owner, privacy-scoped
+relationship read, Places destination and no-response-debt behavior are
+unchanged.
+
+Backend commit `0dcc26db0` adds the adapter behavior and regression coverage.
+The focused Places/Home contract packet passes **33 tests**; Ruff, formatting
+and Python compile checks pass. This is a consumer-value improvement over an
+existing social owner payload, not a new sharing model, audience policy or
+group-occasion implementation.
 
 The dedicated shared Integration/landing lane remains **PAUSED by the founder**.
 That pause does not cancel the subsequently authorized isolated implementation
