@@ -50,7 +50,7 @@ same tour. Frontend polish is part of each surface's completion. Retention/
 refinding is further along than context materially improving a later answer,
 possibility or action.
 
-**Current candidate tuple before this documentation receipt:** workspace `7cfafa2`, backend
+**Current candidate tuple after this receipt:** workspace `4aa1d7d`, backend
 `90fe88f88`, and app `ecdecaffe`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; it does not change the child-code tuple, merge the
@@ -1472,7 +1472,7 @@ implementation, and docs closeout.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `7cfafa2` (current documentation receipt) | `b6e7014` |
+| Workspace | `4aa1d7d` (current documentation receipt) | `b6e7014` |
 | Backend | `90fe88f88` | `a7c02cbe1` |
 | App | `ecdecaffe` | `e2e792913` |
 
