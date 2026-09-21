@@ -2366,3 +2366,27 @@ boundary. It does not claim general social publishing, multiplayer occasion
 composition, notifications, production activation, or Claude visual parity.
 The next slice should target a supported practical/current-world action or a
 different bounded receiving seam, not add a second social model.
+
+## September 21 functional implementation receipt — Home practical/open-now possibility
+
+The next functional slice is complete. The Places nearby producer is now
+eligible in anchored `quiet` and `starter` contexts, so Home can surface a
+bounded current-world possibility even when no trip is active. It reuses the
+existing nearby corpus/taste floor, operational cache, common admission
+contract, and Places destination; no provider call, booking flow, or new
+recommendation store was introduced.
+
+Backend commit `596bc9429` adds the serving correction, regression coverage, and a
+disposable fixture that writes three verified NYC venues with ten-minute
+`open_now` evidence into the existing cache. App commit `cbef1acaa` adds the real
+API/iOS Maestro flow and static runner contracts. The native run passed: Home
+showed the typed `place.open_now` assessment, opened the exact fixture venue,
+and returned to the identical Home unit. Fixture cleanup withdrew all status,
+venue, and temporary-home rows. Evidence: **69** focused backend tests, **3**
+static app tests, TypeScript pass, and real simulator pass.
+
+The receipt is bounded: it does not claim live provider acquisition, route or
+fit-window evaluation, booking, notifications, production activation, or
+Claude-design parity. Keep the next implementation wave on existing producer →
+owner-read → native destination → return chains; reassess after each complete
+loop before widening the grammar or adding infrastructure.

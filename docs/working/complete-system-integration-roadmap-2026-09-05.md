@@ -6055,3 +6055,29 @@ boundary. It does not claim general social publishing, multiplayer occasion
 composition, notifications, production activation, or Claude visual parity.
 The next slice should target a supported practical/current-world action or a
 different bounded receiving seam, not add a second social model.
+
+## September 21 functional implementation receipt — Home practical/open-now possibility
+
+Home now admits the existing Places nearby choice set for both `quiet` and
+`starter` anchored non-trip postures. This is a small serving correction, not a
+second recommendation system: the same corpus-first, taste-floored nearby
+reader and the same cached operational truth remain authoritative. When a
+fresh status cache row proves `open_now`, the existing root adapter can now
+attach the typed `place.open_now` assessment and exact Places destination to a
+Home horizon unit. Sparse or unanchored contexts still omit the section.
+
+Backend commit `596bc9429` adds the starter admission and a disposable local-Postgres
+fixture with three verified nearby venues plus fresh normalized status-cache
+rows. App commit `cbef1acaa` adds `.maestro/80-home-practical-open-now.yaml`, its
+runner, and static contracts. The real iOS flow passed: Home displayed a
+supported practical assessment, opened the exact venue in Places, and returned
+to the same Home unit; cleanup removed the cache rows, venues, and temporary
+Home anchor. Focused backend tests passed **69**, the app static packet passed
+**3**, and TypeScript passed.
+
+This proves a bounded practical value loop, not provider acquisition, route or
+fit-window claims, booking, notifications, production rollout, or Claude visual
+parity. The next unblocked work should continue with another existing
+capability whose producer, owner read, native destination, and return path are
+already modeled—preferably a practical or Life return seam—rather than add a
+new provider or generalized action architecture.
