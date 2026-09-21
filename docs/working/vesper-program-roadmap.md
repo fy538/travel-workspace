@@ -52,11 +52,12 @@ Retention/refinding is further along than context materially improving a later
 answer, possibility or action.
 
 **Current candidate tuple after this receipt:** workspace `3b47cf9`, backend
-`014313121`, and app `9a597abd4`, all on the isolated
+`67b617d85`, and app `9a597abd4`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; the child-code tuple now includes the Places typed
-notice bridge, native sender-withdrawal proof, and shared Home/Places semantic
-state treatment. Nothing is merged to main,
+notice bridge, native sender-withdrawal proof, shared Home/Places semantic
+state treatment, and the explicit People-bound anchor index repair. Nothing is
+merged to main,
 published, flag-activated, or resumed in shared Integration/landing. The next
 substantive implementation remains one selected sparse/pending/failure state
 or supplied Life/social downstream value, with R05/R09 edge work continuing
@@ -167,6 +168,21 @@ Home/Places/Life native packet passes **54 tests**; and TypeScript plus the
 resource-destination packet pass. The result proves a bounded structured
 People record, not broader media/contribution richness, names, social
 juxtaposition, provider supply, design parity, or release readiness.
+
+### September 21 Life · People follow-through — explicit person-bound originals remain findable
+
+The Life owner already admitted an intake anchor with an explicit
+`people=resolved` binding to the direct People read, but the shadow/index
+projector wrote every anchor as Time-only. Backend `67b617d85` now preserves
+the owner-declared lens set: Time always, Places only for an explicit place
+binding, and People only for an explicit people binding. The anchor remains
+private and opens its exact artifact owner; no audience, person dossier or
+social inference is added.
+
+The focused anchor/projection/route/index packet passes **59 tests**, and the
+full root-projection packet passes **442 tests** on this backend head. This
+closes a bounded Life continuity gap between direct and shadow reads; it does
+not claim shared-media breadth, names, later permitted reuse or design parity.
 
 ### September 21 native receipt — honest semantic unit states
 

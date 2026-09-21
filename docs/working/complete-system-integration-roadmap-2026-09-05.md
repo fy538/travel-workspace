@@ -89,7 +89,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R05
 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after this receipt: workspace
-`3b47cf9`, backend `014313121`, app `9a597abd4`, all on
+`3b47cf9`, backend `67b617d85`, app `9a597abd4`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
@@ -137,6 +137,16 @@ tests, and **54** Home/Places/Life native tests, with TypeScript and resource
 destination checks passing. This remains a bounded People-record seam, not a
 general social feed, person dossier, contribution inference, or design-parity
 claim.
+
+### September 21 Life · People follow-through — explicit person-bound anchors
+
+The direct Life adapter already admitted an intake anchor whose owner supplied
+`people=resolved`, but the shadow/index projector wrote all anchors as Time-only.
+Backend `67b617d85` now preserves the explicit owner lens set: Time always,
+Places for an explicit place binding, and People for an explicit people binding.
+The anchor remains private and opens its exact artifact owner; this is not a
+new audience, person dossier, or social inference. The focused Life packet
+passes **59 tests** and the root-projection packet passes **442 tests**.
 
 ### September 21 value-depth receipt — supplied experience comparison
 

@@ -34,7 +34,7 @@ state treatment is:
 | Repository | Current HEAD |
 |---|---|
 | Workspace | `3b47cf9` (current documentation receipt) |
-| Backend | `014313121` |
+| Backend | `67b617d85` |
 | App | `9a597abd4` |
 
 This correction updates tuple identity only; it does not imply merge,
@@ -74,6 +74,15 @@ Life route/projection/index packet passes **47**, and the combined native root
 packet passes **54**, with TypeScript and destination tests green. No new
 Occasion producer, audience policy, feed, or inference is introduced; broader
 attribution, media and social juxtaposition remain open.
+
+### September 21 Life · People follow-through review
+
+The direct Life adapter already admitted explicit `people=resolved` intake
+anchors, but the shadow/index projector serialized every anchor as Time-only.
+Backend `67b617d85` preserves the owner-declared lens set while keeping the
+anchor private and artifact-owned. The focused anchor/projection/route/index
+packet passes **59 tests**, and the root-projection packet passes **442 tests**.
+No audience, person dossier, social inference or new storage path was added.
 
 ### September 21 native semantic-state treatment review
 
