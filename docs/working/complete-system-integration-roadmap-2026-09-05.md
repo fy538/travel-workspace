@@ -66,6 +66,19 @@ the disposable-Postgres and transient-provider rehearsals now pass; a real
 process-restart queue rehearsal is still required before calling preparation
 reliable.
 
+## September 21 continuation — supplied reading comprehension affordance
+
+The first post-closeout Home breadth cut is deliberately small: contextual
+Places angles and accepted public Place interpretations now expose the existing
+typed `source.inspect` action as **Why this?**. The action stays optional,
+keeps the exact source/Place destination unchanged, and reuses the existing
+mobile inspection hook. It does not create a new content generator, feed,
+store, or route family. Backend commit `c4b4ff031` carries the adapter and
+regression coverage (**47 focused Home portfolio/composition tests**,
+Ruff/format/compile clean). This is comprehension support, not a claim that
+the full Home/Places design supply is implemented; the next package must
+increase substantive received value on the scroll.
+
 ## September 21 evidence closeout — current boundary
 
 On the isolated lane, disposable Postgres ran on `localhost:61460`, the API on

@@ -63,6 +63,24 @@ available; R05's exhausted-lease code correction is committed with focused
 tests, but disposable-Postgres/transient-restart evidence remains open; R09
 timezone edge coverage remains open.
 
+## September 21 functional receipt — Why-this on supplied Home readings
+
+The first bounded breadth slice after the receiving proofs is now implemented
+in backend commit `c4b4ff031`. Home's existing contextual Places angles and
+accepted public Place interpretations now carry the typed `source.inspect`
+navigation action, rendered by the existing Home V2 action/inspection path as
+the optional **Why this?** affordance. It does not add a source store, a new
+generator, or a new route: the candidate keeps its existing exact source and
+Place destination, while the existing inspection hook explains the item's
+grounding and preserves the owner-removal/request path for source attachments.
+
+Evidence: the focused Home portfolio/composition packet passed **47 tests**;
+Ruff, format and Python compile checks passed; the backend child is clean at
+`c4b4ff031`. This is a small receiving/comprehension improvement, not proof of
+full Claude-design parity or broad content supply. The next Home breadth slice
+should add substantive supplied value or a supported consequence to the full
+scroll, not another explanatory control.
+
 ## September 21 evidence closeout — current boundary
 
 The isolated lane ran the exact candidate against disposable Postgres on
