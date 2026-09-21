@@ -51,8 +51,9 @@ refinding is further along than context materially improving a later answer,
 possibility or action.
 
 **September 21 afternoon execution rule:** the latest product behavior is the
-supplied-reading `Why this?` slice followed by the mechanism-row adaptation in
-backend `507cefd38` and app `df490cb56`. The next implementation should therefore be selected from an
+supplied-reading `Why this?` slice, mechanism-row adaptation, and explicit
+selected-trip fit in backend `052284b33` and app `df490cb56`. The next
+implementation should therefore be selected from an
 existing owner-backed Home/Places payload and add substantive received value
 (for example, a truthful comparison, sequence, evidence view or practical
 consequence only when its structured inputs already exist). It must preserve an
@@ -75,6 +76,23 @@ passes and its native UI runner is committed but unrun because no simulator is
 available; R05's exhausted-lease code correction is committed with focused
 tests, but disposable-Postgres/transient-restart evidence remains open; R09
 timezone edge coverage remains open.
+
+## September 21 functional receipt — honor explicit selected-trip fit
+
+Home's bounded public-Place reader now carries through an existing
+server-owned Places selection reason. When the automatic context is explicitly
+`live_trip`, `imminent_trip`, or `recent_return`, accepted public readings for
+that context are admitted with the higher current-fit relevance and the
+grounded “already in motion” explanation. Home, area, anywhere, and ordinary
+continuation contexts remain conservative; a rich scope alone does not create
+personal relevance.
+
+This uses `PlacesContextRef.selection_reason` already resolved by the Places
+owner. It adds no sensor inference, profile field, notification, generator,
+store, or new route. Backend commit `052284b33` adds the caller wiring and a
+trip-selected regression case; **49** focused Home portfolio/composition tests
+pass, with Ruff and formatting clean. The result is still a public reading,
+not a claim about the viewer's taste or attendance.
 
 ## September 21 functional receipt — preserve supplied mechanism cues
 
@@ -1202,8 +1220,8 @@ updated after the bounded Source recovery correction and docs closeout.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `3622897` (current tranche candidate before this receipt) | `b6e7014` |
-| Backend | `507cefd38` | `a7c02cbe1` |
+| Workspace | `a6d17e0` (current tranche candidate before this receipt) | `b6e7014` |
+| Backend | `052284b33` | `a7c02cbe1` |
 | App | `df490cb56` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,

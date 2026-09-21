@@ -31,8 +31,8 @@ proof is:
 
 | Repository | Current HEAD |
 |---|---|
-| Workspace | `3622897` |
-| Backend | `507cefd38` |
+| Workspace | `a6d17e0` |
+| Backend | `052284b33` |
 | App | `df490cb56` |
 
 This correction updates tuple identity only; it does not imply merge,
