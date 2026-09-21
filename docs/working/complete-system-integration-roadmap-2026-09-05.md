@@ -1623,6 +1623,12 @@ acceptance is not established. The next checkpoint is a real Home/Places supply
 or social-receiving seam; do not restart Life or merge the broad
 native-receiving candidate wholesale.
 
+The broader backend offline sweep is **21,546 passed, 14 skipped and 53
+expected passes**, with the same two expired AI-compatibility registrations
+(`concierge_home_card_metadata` and `sse_tool_calls_made`) as its only failure.
+This is broader regression evidence, not disposable-Postgres, native, provider
+supply or release evidence.
+
 The same candidate now also includes Life organization: owner-backed grouped
 records, eligibility fences, pagination/refresh semantics, and the mobile
 time/places/people/threads reader with exact return context. The package is

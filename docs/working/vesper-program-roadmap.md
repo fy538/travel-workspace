@@ -168,6 +168,12 @@ quality, merge/publication or rollout activation. The next build target is a
 real Home/Places supply or social-receiving seam, selected from an existing owner
 contract rather than a new generator or store.
 
+The broader backend offline sweep then reached **21,546 passed, 14 skipped and
+53 xpassed**, with one failure in the pre-existing expired AI-compatibility
+registry for `concierge_home_card_metadata` and `sse_tool_calls_made`. That
+failure is unchanged from the baseline and is not hidden by this receipt; the
+full API audit and expiry cleanup remain separate work.
+
 ## Current round — meaning-based discovery and exact-original receiving
 
 **Authorized September 9 following the lexical increment:** complete two
