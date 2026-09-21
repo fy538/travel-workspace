@@ -54,12 +54,14 @@ more happy-path rehearsals alone are not the next product milestone.
 The first substantive value-depth package in this tranche is now landed:
 multiple accepted public readings for the same Place can compose into one
 Home sequence while retaining every source/entity/context reference and the
-existing Places continuation. This improves received value, but it does not
-prove recurring supply or complete full-scroll runtime quality. The next
-package must verify this through the canonical Home runtime with honest
-sparse/pending/failure behavior, or choose another already supplied
-owner-backed value family. Do not respond by adding a generator, store, route
-family or new semantic kind.
+existing Places continuation. The follow-through also proves bounded
+expanded-place batching and positive practical owner-adapter coverage for all
+four catalog kinds exposed by the mobile surface. This improves received
+value, but it does not prove recurring supply or complete full-scroll runtime
+quality. The next package must verify the sequence through the canonical Home
+runtime with honest sparse/pending/failure behavior, or choose another already
+supplied owner-backed value family. Do not respond by adding a generator,
+store, route family or new semantic kind.
 
 The current lane now includes the bounded mechanism-row adaptation, explicit
 selected-trip fit, attributed friend-place preview, public-reading limits, and
@@ -69,9 +71,9 @@ browse shelf, native branch/continuity/returned-understanding treatments, the
 honest balanced-field fallback, the native owner-backed evidence register, the
 supplied-experience comparison, the plural social perspective, the
 standalone-only Places feed-state repair, the addressed Place-contribution
-region, and the same-place public-reading sequence in backend `27a6ea73d` and
-app `b1f37eac4`; the latest workspace
-documentation receipt is `9205cd0`. This
+region, and the same-place public-reading sequence in backend `17f20921b` and
+app `ac6e08235`; the latest workspace
+documentation receipt is `e59e242`. This
 documentation
 advance does not merge, publish, enable or
 resume shared Integration/landing. Apply this
@@ -84,7 +86,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R04,
 R05 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after this receipt: workspace
-`9205cd0`, backend `27a6ea73d`, app `b1f37eac4`, all on
+`e59e242`, backend `17f20921b`, app `ac6e08235`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
@@ -6711,3 +6713,23 @@ fit claim. Until that authority is explicitly available, keep the honest
 unknown/fallback behavior and move the functional lane to the next supported
 owner/destination/return seam or the separately authorized Source-worker
 dogfood checkpoint.
+
+## September 21 contract-hardening follow-through — sequence scale and practical catalog kinds
+
+The same-place sequence now has regression coverage beyond its basic composition
+path. Backend `7fc1858df` proves that an expanded nine-place Home scope is
+batched at the existing eight-record owner-read bound and preserves all nine
+current public records. Backend `248237edd` proves positive practical fit
+results through the real owner adapters for `venue`, `site`, `accommodation`,
+and `experience`; unsupported and stale owner evidence remains fail-closed.
+Backend `17f20921b` updates a stale Home assertion to retain the intended public
+reading limit in the composed output.
+
+The combined backend packet passes **94 tests** and the native sequence/Home
+packet passes **20 tests**; TypeScript, Ruff, formatting and compilation are
+green. This closes the local contract-hardening gap, not deployed subtree
+scale/cost measurement, provider-backed fit rehearsal, recurring supply,
+canonical runtime readback, or Claude-design parity. The next integration
+package remains one substantive supplied Home/Places result with sparse,
+pending, failure, expiry and return behavior, or an independently owned Life
+downstream-value seam.

@@ -38,24 +38,23 @@ are historical and do not form additional queues. Update these summaries when
 a substantial package finishes instead of appending a competing next step.
 
 **Next emphasis:** stop repeating receiving-boundary proofs and deepen the
-composed scroll with supplied material. The first bounded package is now the
-same-place public-reading sequence recorded below: it proves that multiple
-reviewed readings can become one substantive Home unit while preserving exact
-source and Places continuation. It is not yet proof of recurring supply or a
-complete full-scroll experience. The next package must either verify that
-sequence through the real canonical Home runtime with honest sparse/pending /
-failure states, or select another already supplied owner-backed value family
-(practical consequence, social perspective or retained consequence) whose
-structured inputs are present. Reuse current owners, destinations and return
-state rather than add a generator, feed, or storage family. Permissioned
-Life/social downstream value can proceed where its files and authority are
-independent. The named native/database happy paths are evidence, not an
-invitation to repeat the same tour. Frontend polish is part of each surface's
-completion. Retention/refinding is further along than context materially
-improving a later answer, possibility or action.
+composed scroll with supplied material. The same-place public-reading sequence
+now survives adapter selection, Home compilation, native sequence anatomy,
+expanded-place batching and the combined regression packet. It is still not
+proof of recurring supply or a complete full-scroll experience. The next
+package must either verify that sequence through the real canonical Home
+runtime with honest sparse/pending/failure states, or select another already
+supplied owner-backed value family (practical consequence, social perspective
+or retained consequence) whose structured inputs are present. Reuse current
+owners, destinations and return state rather than add a generator, feed, or
+storage family. Permissioned Life/social downstream value can proceed where
+its files and authority are independent. The named native/database happy paths
+are evidence, not an invitation to repeat the same tour. Frontend polish is
+part of each surface's completion. Retention/refinding is further along than
+context materially improving a later answer, possibility or action.
 
-**Current candidate tuple after this receipt:** workspace `9205cd0`, backend
-`27a6ea73d`, and app `b1f37eac4`, all on the isolated
+**Current candidate tuple after this receipt:** workspace `e59e242`, backend
+`17f20921b`, and app `ac6e08235`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; it does not change the child-code tuple, merge the
 lane, enable a flag, or resume shared Integration/landing. The next substantive
@@ -123,6 +122,27 @@ This checkpoint is a progress rebaseline, not a feature-completion claim. No
 overall percentage is meaningful until the Claude design inventory, supplied
 content breadth and native acceptance are measured against the same candidate
 and evidence boundary.
+
+### September 21 contract-hardening follow-through — sequence scale and practical catalog kinds
+
+The sequence package received two bounded backend follow-through checks. The
+expanded-place public-content reader now batches a nine-place scope as
+eight-plus-one owner calls rather than dropping the entire Home reader; the
+focused regression preserves all nine current records in backend commit
+`7fc1858df`. The practical fit path now has a positive owner-adapter matrix for
+every catalog kind the mobile surface exposes (`venue`, `site`,
+`accommodation`, and `experience`) in backend commit `248237edd`, while
+unsupported and stale evidence remain fail-closed. A stale Home assertion
+about the intentional public-reading limit was corrected in `17f20921b`.
+
+The combined backend packet for content-source, practical-catalog and Home
+portfolio coverage passes **94 tests**. The native sequence/rendering and Home
+smoke packet passes **20 tests**; TypeScript, Ruff, formatting and compile
+checks pass. These are contract and focused-regression receipts, not deployed
+scale measurements, provider-backed fit evidence, recurring generation,
+canonical runtime readback or design parity. The next package remains a
+substantive supplied Home/Places result or an independently authorized Life
+downstream value seam; do not widen infrastructure to manufacture fullness.
 
 ## September 21 functional receipt — same-place public readings compose into a sequence
 
@@ -1630,9 +1650,9 @@ source/original distinction, and docs closeout.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `9205cd0` (current documentation receipt) | `b6e7014` |
-| Backend | `953e2bc69` | `a7c02cbe1` |
-| App | `b1f37eac4` | `e2e792913` |
+| Workspace | `e59e242` (current documentation receipt) | `b6e7014` |
+| Backend | `17f20921b` | `a7c02cbe1` |
+| App | `ac6e08235` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent

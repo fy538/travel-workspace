@@ -27,13 +27,14 @@ All three repositories use `codex/functional-implementation-2026-09-20`.
 
 The table below is the historical baseline for the 12-hour review. The current
 clean candidate after the Home timezone correction, source retry-budget proof,
-and supplied-experience comparison is:
+supplied-experience comparison, sequence scale hardening and practical catalog
+coverage is:
 
 | Repository | Current HEAD |
 |---|---|
-| Workspace | `9205cd0` |
-| Backend | `953e2bc69` |
-| App | `b1f37eac4` |
+| Workspace | `e59e242` |
+| Backend | `17f20921b` |
+| App | `ac6e08235` |
 
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes.
@@ -650,6 +651,21 @@ backend commit `248237edd` now covers positive supported results for `venue`,
 preserving exact identity and current route evidence. Unsupported and stale
 owner-read cases remain covered by the existing matrix; no provider booking
 behavior is implied.
+
+### September 21 follow-through packet
+
+The sequence and practical-kind corrections were rerun together with the
+content-source and Home portfolio suites. The combined backend packet passes
+**94 tests**. The native sequence/renderer and Home smoke packet passes **20
+tests**; TypeScript, Ruff, formatting and compilation are green. The stale
+Home assertion corrected in backend `17f20921b` preserves the intended public
+reading-limit text rather than weakening the contract.
+
+This closes the local regression gap for R06 and R07 at the stated evidence
+boundary. It does not measure deployed expanded-place cost, prove a
+provider-backed fit run, establish recurring source generation, or close the
+remaining R04/R05/R09 environment-dependent evidence. The ledger therefore
+remains active.
 
 ## R08 — Primary Plan inspection drops the arrangement purpose
 
