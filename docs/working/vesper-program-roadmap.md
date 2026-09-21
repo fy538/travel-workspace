@@ -50,8 +50,8 @@ same tour. Frontend polish is part of each surface's completion. Retention/
 refinding is further along than context materially improving a later answer,
 possibility or action.
 
-**Current candidate tuple after this receipt:** workspace `8358a28`, backend
-`f9fa3d82b`, and app `659f572ae`, all on the isolated
+**Current candidate tuple after this receipt:** workspace `7d8fd11`, backend
+`a516ce26d`, and app `34c3651c1`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; it does not change the child-code tuple, merge the
 lane, enable a flag, or resume shared Integration/landing. The next substantive
@@ -64,8 +64,8 @@ supplied-reading `Why this?` slice, mechanism-row adaptation, explicit
 selected-trip fit, attributed friend-place preview, public-reading limits, and
 native social-evidence treatment, exact social venue doors, Home editorial/
 aperture anatomy, Places editorial-cover anatomy, the native starter browse
-shelf, and native branch/continuity/returned-understanding treatments in
-backend `f9fa3d82b` and app `f4a190b56`.
+shelf, native branch/continuity/returned-understanding treatments, and the
+honest balanced-field fallback in backend `a516ce26d` and app `34c3651c1`.
 The next
 implementation should therefore be selected from an
 existing owner-backed Home/Places payload and add substantive received value
@@ -188,6 +188,20 @@ module to keep the renderer under its size budget, and root regressions. The
 focused Places root/expiry packet passes **30 tests**, TypeScript passes, and
 targeted ESLint has no errors. This is native coverage of admitted payloads; it
 does not claim returned-understanding supply or full Places design parity.
+
+## September 21 functional receipt — Places balanced-field fallback
+
+When the current scope has no eligible World Field lead (including a feed made
+entirely of deferred encounter-state sections), the backend now emits the
+admitted `field_balanced_fallback` kind with an explicit absence explanation
+and the existing search/map actions. The native client renders that state as an
+open-field orientation treatment and preserves exact expiry/source/action
+behavior. Backend commit `a516ce26d` adds the producer contract and regression;
+focused backend Places packets pass **39 tests**. App commit `34c3651c1` adds
+the native treatment and regression; the focused Places root/expiry packet
+passes **31 tests**, TypeScript passes, and targeted ESLint has no errors. This
+closes an honest sparse-state seam; it does not add provider acquisition, media
+supply or a recommendation.
 
 ## September 21 functional receipt — preserve social Place destinations
 
@@ -1363,9 +1377,9 @@ implementation, and docs closeout.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `8358a28` (current documentation receipt) | `b6e7014` |
-| Backend | `f9fa3d82b` | `a7c02cbe1` |
-| App | `f4a190b56` | `e2e792913` |
+| Workspace | `7d8fd11` (current documentation receipt) | `b6e7014` |
+| Backend | `a516ce26d` | `a7c02cbe1` |
+| App | `34c3651c1` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent

@@ -31,9 +31,9 @@ and latest workspace documentation receipt is:
 
 | Repository | Current HEAD |
 |---|---|
-| Workspace | `8358a28` |
-| Backend | `f9fa3d82b` |
-| App | `f4a190b56` |
+| Workspace | `7d8fd11` |
+| Backend | `a516ce26d` |
+| App | `34c3651c1` |
 
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes.
@@ -78,6 +78,20 @@ keep the renderer under its size budget, and root regressions. The focused
 Places root/expiry packet passes **30 tests**, TypeScript passes, and targeted
 ESLint has no errors. This is native coverage of admitted payloads; it does
 not claim returned-understanding supply or full Places design parity.
+
+### September 21 Places balanced-field follow-up
+
+When the current scope has no eligible World Field lead (including a feed made
+entirely of deferred encounter-state sections), the backend now emits the
+admitted `field_balanced_fallback` kind with an explicit absence explanation
+and the existing search/map actions. The native client renders that state as an
+open-field orientation treatment and preserves exact expiry/source/action
+behavior. Backend `a516ce26d` adds the producer contract and regression;
+focused backend Places packets pass **39 tests**. App `34c3651c1` adds the
+native treatment and regression; the focused Places root/expiry packet passes
+**31 tests**, TypeScript passes, and targeted ESLint has no errors. This closes
+an honest sparse-state seam; it does not add provider acquisition, media supply
+or a recommendation.
 
 ### September 21 post-receiving-surface recheck
 
