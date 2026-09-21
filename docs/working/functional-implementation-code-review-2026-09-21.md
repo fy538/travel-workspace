@@ -34,7 +34,7 @@ state treatment is:
 | Repository | Current HEAD |
 |---|---|
 | Workspace | `03c6fef` (current documentation receipt) |
-| Backend | `67b617d85` |
+| Backend | `9d52e71b3` |
 | App | `9a597abd4` |
 
 This correction updates tuple identity only; it does not imply merge,
@@ -47,7 +47,7 @@ heads are the Life People implementation/test commits shown above.
 
 After the explicit People-bound anchor follow-through, the candidate ran the
 backend root projection packet (**442 passed**), focused Life
-anchor/projection/route/index-projector packet (**59 passed**), focused
+anchor/projection/route/index-projector packet (**60 passed**), focused
 Home/Places/Life native packet (**54 passed**),
 and persisted schedule-zone unit packet (**36 passed**). These are named
 focused regressions, not `make verify`, full device acceptance, or release
@@ -80,9 +80,10 @@ attribution, media and social juxtaposition remain open.
 
 The direct Life adapter already admitted explicit `people=resolved` intake
 anchors, but the shadow/index projector serialized every anchor as Time-only.
-Backend `67b617d85` preserves the owner-declared lens set while keeping the
+Backend `9d52e71b3` preserves the owner-declared lens set while keeping the
 anchor private and artifact-owned. The focused anchor/projection/route/index
-packet passes **59 tests**, and the root-projection packet passes **442 tests**.
+packet passes **60 tests**, including the complete-record `lens=people` read,
+and the root-projection packet passes **442 tests**.
 No audience, person dossier, social inference or new storage path was added.
 
 ### September 21 native semantic-state treatment review

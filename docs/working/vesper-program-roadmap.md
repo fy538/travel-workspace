@@ -52,7 +52,7 @@ Retention/refinding is further along than context materially improving a later
 answer, possibility or action.
 
 **Current candidate tuple after this receipt:** workspace `03c6fef`, backend
-`67b617d85`, and app `9a597abd4`, all on the isolated
+`9d52e71b3`, and app `9a597abd4`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; the child-code tuple now includes the Places typed
 notice bridge, native sender-withdrawal proof, shared Home/Places semantic
@@ -129,7 +129,7 @@ and evidence boundary.
 After the People-bound anchor follow-through, the latest candidate was checked
 without changing production state or claiming a full gate. Backend root projection regressions
 passed **442 tests**; the focused Life route/projection/index-projector packet
-passed **59 tests**; the focused Home/Places/Life native packet passed **54
+passed **60 tests**; the focused Home/Places/Life native packet passed **54
 tests**; and the persisted schedule-zone unit packet passed **36 tests**.
 These packets overlap the broader historical receipts and prove only their
 named contracts. They do not close R05's process-interruption/transient-failure
@@ -163,7 +163,7 @@ regressions; app
 commits `76af974a0` and `9a597abd4` prove the native entry restores the exact
 Life reader with `lens=people` (while other owners retain `lifeLens` return
 context). The latest backend root packet passes **442 tests**;
-the Life route/projection/index packet passes **47 tests**; the combined
+the Life anchor/projection/route/index packet passes **60 tests**; the combined
 Home/Places/Life native packet passes **54 tests**; and TypeScript plus the
 resource-destination packet pass. The result proves a bounded structured
 People record, not broader media/contribution richness, names, social
@@ -173,16 +173,17 @@ juxtaposition, provider supply, design parity, or release readiness.
 
 The Life owner already admitted an intake anchor with an explicit
 `people=resolved` binding to the direct People read, but the shadow/index
-projector wrote every anchor as Time-only. Backend `67b617d85` now preserves
+projector wrote every anchor as Time-only. Backend `9d52e71b3` now preserves
 the owner-declared lens set: Time always, Places only for an explicit place
 binding, and People only for an explicit people binding. The anchor remains
 private and opens its exact artifact owner; no audience, person dossier or
 social inference is added.
 
-The focused anchor/projection/route/index packet passes **59 tests**, and the
-full root-projection packet passes **442 tests** on this backend head. This
-closes a bounded Life continuity gap between direct and shadow reads; it does
-not claim shared-media breadth, names, later permitted reuse or design parity.
+The focused anchor/projection/route/index packet passes **60 tests**, including
+the complete-record `lens=people` read, and the full root-projection packet
+passes **442 tests** on this backend head. This closes a bounded Life
+continuity gap between direct, shadow and depth reads; it does not claim
+shared-media breadth, names, later permitted reuse or design parity.
 
 ### September 21 native receipt — honest semantic unit states
 
@@ -1729,7 +1730,7 @@ source/original distinction, and docs closeout.
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
 | Workspace | `03c6fef` (current documentation receipt) | `b6e7014` |
-| Backend | `67b617d85` | `a7c02cbe1` |
+| Backend | `9d52e71b3` | `a7c02cbe1` |
 | App | `9a597abd4` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,

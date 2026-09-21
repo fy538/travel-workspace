@@ -89,7 +89,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R05
 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after this receipt: workspace
-`03c6fef`, backend `67b617d85`, app `9a597abd4`, all on
+`03c6fef`, backend `9d52e71b3`, app `9a597abd4`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
@@ -111,7 +111,7 @@ safety.
 The candidate was rechecked after the Life People depth and explicit anchor
 follow-through:
 backend root projection **442 passed**, focused Life route/projection/index
-projector **59 passed**, focused Home/Places/Life native suites **54 passed**,
+projector **60 passed**, focused Home/Places/Life native suites **54 passed**,
 and the persisted schedule-zone unit packet **36 passed**. This is a bounded
 regression packet, not a latest-tuple full gate. It leaves R05 process
 interruption/transient failure and R09 persisted/native cross-device/DST cases
@@ -133,7 +133,7 @@ material is not treated as social material. Backend `014313121` and app
 `76af974a0` and `9a597abd4` contain the implementation and focused
 regressions; the exact Life reader consumes `lens=people` while other owners
 retain `lifeLens` return context. The latest
-packet is **442** backend root tests, **47** Life route/projection/index
+packet is **442** backend root tests, **60** Life anchor/projection/route/index
 tests, and **54** Home/Places/Life native tests, with TypeScript and resource
 destination checks passing. This remains a bounded People-record seam, not a
 general social feed, person dossier, contribution inference, or design-parity
@@ -143,11 +143,12 @@ claim.
 
 The direct Life adapter already admitted an intake anchor whose owner supplied
 `people=resolved`, but the shadow/index projector wrote all anchors as Time-only.
-Backend `67b617d85` now preserves the explicit owner lens set: Time always,
+Backend `9d52e71b3` now preserves the explicit owner lens set: Time always,
 Places for an explicit place binding, and People for an explicit people binding.
 The anchor remains private and opens its exact artifact owner; this is not a
 new audience, person dossier, or social inference. The focused Life packet
-passes **59 tests** and the root-projection packet passes **442 tests**.
+passes **60 tests**, including the complete-record `lens=people` read, and the
+root-projection packet passes **442 tests**.
 
 ### September 21 value-depth receipt — supplied experience comparison
 
