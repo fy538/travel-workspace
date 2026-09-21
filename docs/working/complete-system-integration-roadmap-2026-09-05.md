@@ -53,6 +53,14 @@ another happy-path rehearsal. Native polish belongs in each surface package.
 Focused regressions accompany delivery; more happy-path rehearsals alone are
 not the next product milestone.
 
+The Home/Places renderer ledger has now been refreshed against the current
+child heads: Home exposes 17 explicit semantic renderers plus its three chrome
+components, Places exposes 12 semantic renderers, and the focused native
+packets pass 43 and 27 tests respectively. This corrects documentation drift,
+not product supply: source admission, recurring content, canonical runtime
+full-scroll quality and design parity remain open. See [the coverage
+audit](home-places-renderer-coverage-audit-2026-09-05.md).
+
 ### September 21 roadmap maintenance — post-review queue correction
 
 The latest review does not require a new integration architecture. It does

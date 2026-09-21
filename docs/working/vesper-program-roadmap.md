@@ -51,6 +51,14 @@ to repeat the same tour. Frontend polish is part of each surface's completion.
 Retention/refinding is further along than context materially improving a later
 answer, possibility or action.
 
+The renderer ledger was refreshed after this rebaseline: the Home transport
+union is 36 kinds, with 17 explicit Home semantic renderers plus the three
+chrome components; Places has 12 explicit semantic renderers. The focused
+Home packet is 43 tests and the focused Places packet is 27 tests. This closes
+documentation drift that had called several already-renderable kinds "dark";
+it does not claim source admission, recurring content supply, runtime
+full-scroll quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
+
 **Current candidate tuple at the last code review:** workspace `f8fa48a`,
 backend `306eb51a4`, and app `242d309f0`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
@@ -62,6 +70,11 @@ published, flag-activated, or resumed in shared Integration/landing. The next
 substantive implementation remains one selected sparse/pending/failure state
 or supplied Life/social downstream value, with R05/R09 edge work continuing
 only where its required environment is available.
+
+The latest workspace documentation head after the renderer-ledger refresh is
+`3ba4e5e`; backend and app code remain `306eb51a4` and `242d309f0`. This is a
+documentation-only advance and does not alter the implementation candidate or
+release state.
 
 ### September 21 roadmap maintenance — post-review execution order
 
