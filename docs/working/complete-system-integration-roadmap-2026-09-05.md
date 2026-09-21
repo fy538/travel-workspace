@@ -124,6 +124,11 @@ under Place `1`. With `PLACE_CONTENT_PRIMITIVE_READS_ENABLED=true` and
 - The temporary user context, venue, primitive, policy/evidence rows and
   lifecycle event were removed immediately afterward.
 
+The corresponding mobile packet passed **87 Jest tests** for Home root
+rendering, root-projection navigation, Places home receiving and entity-route
+construction; `tsc --noEmit` also passed. This remains contract/renderer
+evidence, not simulator capture or native visual acceptance.
+
 This is the first populated Home-to-destination API proof for the child-owned
 Source connection. It does not establish native visual acceptance, production
 flag activation or a child-Source card in the Places collection; that collection

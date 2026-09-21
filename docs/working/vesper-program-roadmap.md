@@ -104,6 +104,12 @@ control-plane flags enabled **only for this local probe**:
   lifecycle rows were removed after the request. No production flag or dataset
   was changed.
 
+The matching mobile destination/return packet is also green: **87 Jest tests**
+across Home root rendering, root-projection navigation, Places home receiving
+and entity-route construction, with TypeScript `tsc --noEmit` passing. These
+are focused contract and renderer checks; no simulator capture or native
+visual verdict is implied.
+
 This proves the populated Home → exact entity destination/reader boundary, not
 native rendering, a production rollout, or an independent child-Source card in
 the Places collection. The latter remains intentionally scoped to exact Place
