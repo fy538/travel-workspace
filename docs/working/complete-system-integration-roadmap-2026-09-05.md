@@ -6165,3 +6165,29 @@ provider acquisition, alternative selection, notifications, or broad Places
 parity. The next wave should continue the same bounded owner/destination/
 return discipline, with the roadmap re-evaluated after another complete
 user-visible loop rather than widening infrastructure.
+
+## September 21 functional implementation receipt — saved-place reopening consequence
+
+The positive counterpart to the saved-place closure path is now proven against
+the same existing current-world owner path. Backend commit `908b0a600` adds a
+disposable rehearsal that creates a private Save, writes fresh normalized
+operating-status evidence showing a venue reopen, and emits the existing
+`changed` notice with the exact `OPEN AGAIN` assessment. It does not add a
+provider, scheduler, notification channel, or second notice store.
+
+App commit `179235f76` adds `.maestro/84-places-saved-reopen.yaml`, its
+run-scoped runner, and static contracts. The real local API/iOS simulator flow
+passed: Places displayed the saved venue's reopening notice, the user cleared
+that exact notice, the notice disappeared on the next feed read, and the Save
+remained present. Cleanup removed the temporary venue, cache evidence, Save
+effects, notice and claims. The direct owner rehearsal also passed before the
+native run.
+
+Evidence: **367** focused backend tests, **12** combined static mobile
+contracts, TypeScript, shell/fixture checks, and the real native flow passed on
+simulator `D7C8FEF4-237B-4347-841C-6FE920BFABFA`. This closes the bounded
+current-world reopening consequence, not provider acquisition, scheduler
+activation, notifications, alternative selection, broad Places parity,
+production rollout, or Claude visual parity. Continue with the next supported
+user-visible producer → owner read → destination → return seam and reassess
+after another complete loop.
