@@ -1112,18 +1112,16 @@ fresh certification of every path on the latest tuple.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `95aa909` (pre-doc update) | `b6e7014` |
+| Workspace | `c74fa42` | `b6e7014` |
 | Backend | `79c4b1d8a` | `a7c02cbe1` |
 | App | `44872d0c2` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent
-repositories. Backend and app corrections are committed; workspace roadmap
-edits are the current lane's uncommitted documentation work until the closing
-commit. Canonical main has concurrent documentation/design edits; those remain
-untouched. The candidate is committed in its lane, not landed on main or
-released. Recheck Git and ownership before execution; this tuple is a dated
-observation.
+repositories. All three candidate trees are clean at this inspection. Canonical
+main has concurrent documentation/design edits; those remain untouched. The
+candidate is committed in its lane, not landed on main or released. Recheck Git
+and ownership before execution; this tuple is a dated observation.
 
 | Capability | Implemented / recorded evidence | Remaining product or evidence boundary |
 | --- | --- | --- |
