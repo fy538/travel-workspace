@@ -37,14 +37,18 @@ their results, limitations and rationale; their embedded "next" instructions
 are historical and do not form additional queues. Update these summaries when
 a substantial package finishes instead of appending a competing next step.
 
-**Next emphasis:** finish the remaining evidence matrices that materially
-gate the candidate (R04 native sender controls, R05 disposable-Postgres /
-transient-restart rehearsal, and R09 timezone edges) while building fuller supplied
-Home/Places experiences. Permissioned Life/social downstream value can proceed
-where its files and authority are independent. The named native/database happy
-paths are now evidence, not an invitation to repeat the same tour. Frontend
-polish is part of each surface's completion. Retention/refinding is further
-along than context materially improving a later answer, possibility or action.
+**Next emphasis:** keep the remaining evidence matrices bounded (R04 native
+sender controls, R05 process-restart queue rehearsal, and R09 persisted/native
+timezone edges) while taking one user-visible Home/Places breadth slice. That
+slice must make an existing supplied reading, social contribution, practical
+assessment, or retained consequence materially richer on the real scroll; it
+must reuse current owners, destinations and return state rather than add a new
+generator, feed, or storage family. Permissioned Life/social downstream value
+can proceed where its files and authority are independent. The named
+native/database happy paths are now evidence, not an invitation to repeat the
+same tour. Frontend polish is part of each surface's completion. Retention/
+refinding is further along than context materially improving a later answer,
+possibility or action.
 
 The dedicated shared Integration/landing lane remains **PAUSED by the founder**.
 That pause does not cancel the subsequently authorized isolated implementation
@@ -1148,7 +1152,7 @@ updated after the bounded Source recovery correction and docs closeout.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `2450d72` (current tranche candidate) | `b6e7014` |
+| Workspace | `c2578a2` (current tranche candidate) | `b6e7014` |
 | Backend | `aa9b47849` | `a7c02cbe1` |
 | App | `4d51c1db0` | `e2e792913` |
 
@@ -1257,7 +1261,7 @@ tasks. The present update plans work; it does not start agents or services.
 | Package / role | Status and complete outcome | Dependency / handback |
 | --- | --- | --- |
 | **First — review evidence closeout** | R01/R03 disposable-Postgres authority/revocation regressions now pass. R04 withdrawal controls and R09 schedule-zone propagation are code-fixed with focused regressions. Named disposable-Postgres/native paths, one real Arq/Redis wrapper path, one expired due-work recovery path, and the R04 sender-control API rehearsal now pass. R04 native UI, R05 disposable-Postgres/transient-restart evidence and R09 timezone-edge evidence remain open. Not complete. | Run only the specific missing matrices, with an explicitly disposable database/queue/device where required; preserve truthful gate status and do not repeat the completed happy-path tour. Independent product work can proceed outside affected files. |
-| **Primary build — Home/Places useful breadth** | Complete selected design sections as a coherent full scroll with real supplied value, useful depth/actions, practical context and existing social contributions. Not yet complete. | Reuse current Source/content/relationship/Place owners. Include bounded preparation recovery when needed for reliable supply; no new generator/store. One owner for shared root composition, contracts and receiving adapters. |
+| **Primary build — Home/Places useful breadth** | In progress. The current candidate has real Home/Places owner reads, social receiving, practical fit/open-now, exact Place destinations and return; the remaining gap is a supplied full-scroll experience with enough substantive, varied value. | Choose one bounded content-depth seam per package. Reuse current Source/content/relationship/Place owners. Include bounded preparation recovery when needed for reliable supply; no new generator/store. One owner for shared root composition, contracts and receiving adapters. |
 | **Complementary build — Life/social downstream value** | Extend retention/refinding into useful later permissioned context and supported human contributions, with recognizable organization and exact return. Not yet complete. | Existing source, Life and relationship owners; no inference of permission from custody. Hand exact projections to the receiving owner; defer only genuinely policy-dependent media/group/use expansion. |
 | **Across both builds — native polish** | Required within each completed surface: design hierarchy, card/media treatment, interaction, accessibility and sparse/pending/failure states. Not accepted yet. | Use current inspected Claude exports and handoffs; record actual canvas/version. Unresolved visual choices do not block unrelated owner/supply work. |
 | **Orchestration / this thread** | Own scope, current queue, cross-system decisions and package review; dispatch only when requested. | Review first working composition, consequential blocker and completed package. Judge delivered behavior and remaining user effort, not commit/test counts. |

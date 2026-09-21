@@ -23,6 +23,21 @@ in this window are included; author dates alone do not define the change set.
 Reviewed checkout: `/Users/feihuyan/travel-workspace--functional-implementation-2026-09-20`.
 All three repositories use `codex/functional-implementation-2026-09-20`.
 
+### September 21 current tuple correction
+
+The table below is the historical baseline for the 12-hour review. The current
+clean candidate after the Home timezone correction and source retry-budget
+proof is:
+
+| Repository | Current HEAD |
+|---|---|
+| Workspace | `c2578a2` |
+| Backend | `aa9b47849` |
+| App | `4d51c1db0` |
+
+This correction updates tuple identity only; it does not imply merge,
+publication, shared-runtime activation, or production flag changes.
+
 | Repository | Baseline | Reviewed HEAD | Changed files |
 |---|---|---|---:|
 | Workspace | `b6e7014b2f0f03a18dafc0f87f1f256a58fb1d8a` | `13573d5d4983ee227ba3536f31d037a3657e34da` | 7 |

@@ -42,14 +42,17 @@ historical receipts retain their evidence boundaries, not separate dispatch
 authority. Existing I0–I6/CV contracts still govern implementation. Do not
 rebuild foundations merely because an older table described them as missing.
 
-Current order: close the remaining review defects; make supplied Home/Places
-experiences substantially fuller; advance permissioned Life/social downstream
-value in parallel where files are independent. Native polish belongs in each
-surface package. Focused regressions accompany delivery; more happy-path
-rehearsals alone are not the next product milestone.
+Current order: close only the remaining evidence defects that materially change
+the candidate; make one supplied Home/Places experience substantially fuller;
+then advance permissioned Life/social downstream value in parallel where files
+are independent. The next Home/Places package must be a user-visible content
+depth or consequence seam using existing owners and exact destinations—not a
+new generator, feed, storage family, or another happy-path rehearsal. Native
+polish belongs in each surface package. Focused regressions accompany delivery;
+more happy-path rehearsals alone are not the next product milestone.
 
-Candidate tuple used for this implementation tranche: workspace `2450d72`,
-backend `aa9b47849`, app `4d51c1db0`, all on
+Current candidate tuple after the latest lane-local corrections: workspace
+`c2578a2`, backend `aa9b47849`, app `4d51c1db0`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
