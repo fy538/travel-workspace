@@ -43,9 +43,10 @@ existing Places `From your people` section can consume recipient-consented
 audience model:
 
 - **Authority:** the relationship repository now exposes a strict readable
-  place-pull reader that rechecks the active pair room, message receipt,
+  place-pull reader that rechecks the active pair room, relationship record,
   recipient grant, expiry/status and linked Source custody before any Places
-  projection sees the handoff.
+  projection sees the handoff. Place-pull is deliberately not a chat send and
+  therefore does not require a `message_id` receipt.
 - **Scope:** Places resolves the current editorial subtree first, maps accepted
   graph identities to canonical venue owners, and keeps only venue-bound notes
   inside that visible scope. `Anywhere`/`Saved` contexts without a proven
@@ -62,8 +63,32 @@ and diff checks passed. The feature remains candidate-level: flag activation,
 populated accepted handoffs, native capture, merge/publication and rollout are
 unverified. This slice deliberately supports only venue-bound recipient pulls;
 broader casual media, group audiences, person ranking, and Life adoption remain
-separate decisions. Backend commit: `8253038be`; the workspace receipt is still
-candidate-only and must not be read as flag activation or publication.
+separate decisions. A follow-up backend fix in `travel-agent` commit
+`76e0ea9e2` removes the accidental chat-receipt filter and adds a Postgres
+regression assertion for a pull with no message row. The workspace receipt is
+still candidate-only and must not be read as flag activation or publication.
+
+## September 21 runtime supply probe — consented Places social read
+
+The newly adopted social seam was exercised end to end against the isolated
+lane database and API, rather than only through patched producer tests. The
+probe created a disposable sender, active pair circle and personal room,
+recipient-owned pull grant, accepted graph→venue binding, venue under the
+resolved New York Home subtree, and a venue-bound `place_pull` handoff. It then
+read the real `/api/places/feed?context_handle=home` response with the existing
+flag enabled locally. The exact note, sender, venue identity and handoff id
+were present in the existing `From your people` section; the direct owner
+reader returned one eligible handoff. Every temporary user, relationship,
+graph, venue and Home-location row was removed in `finally`.
+
+Evidence: `DIRECT_READABLE_COUNT 1`, `PLACES_FEED_STATUS 200`,
+`PLACES_FEED_NOTE_SEEN True`, `PLACES_FEED_SENDER_SEEN True`,
+`PLACES_FEED_VENUE_SEEN True`, `PLACES_FEED_HANDOFF_ID_SEEN True`, with one
+`friend_activity` section. This proves the local persistence→owner read→Places
+feed boundary for a venue-bound pull. It does not prove native visual behavior,
+production flag activation, broader media/group sharing, Life adoption, or
+publication. The manual API was stopped after the probe; no provider or
+background loop was enabled.
 
 ## September 21 runtime supply probe — child-owned public Source
 

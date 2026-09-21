@@ -73,8 +73,8 @@ then reassess the remaining bounded social-receiving seam.
 The functional lane then closed one bounded social-receiving seam without
 starting a general social feed. Places can now project an explicitly granted
 `place_pull` handoff through the existing `From your people` section, but only
-after the relationship owner revalidates active pair membership, message
-receipt, expiry/status, recipient grant and linked Source custody. Places maps
+after the relationship owner revalidates active pair membership, relationship
+record, expiry/status, recipient grant and linked Source custody. Places maps
 the accepted graph identity to a canonical venue, checks it belongs to the
 current editorial subtree, and preserves the sender's original note plus exact
 venue destination. Contexts with no proven place subtree stay empty. The path
@@ -88,7 +88,30 @@ not flag activation or populated production supply. Native capture,
 merge/publication and rollout remain open. Broader casual media/group sharing,
 person ranking and Life adoption remain unadopted; this slice supports only
 the existing venue-bound recipient-consent contract. Backend commit:
-`8253038be`; review and workspace receipt are the next handoff boundaries.
+`8253038be`; a follow-up fix in `76e0ea9e2` removes an accidental
+`message_id` filter (place-pull deliberately does not create a chat message)
+and adds a Postgres regression assertion. Review and workspace receipt remain
+the next handoff boundaries.
+
+## September 21 runtime supply probe — consented Places social read
+
+The bounded social receiving seam now has a real local runtime receipt. A
+disposable sender/recipient pair, confirmed pair circle and personal room,
+recipient-owned pull grant, accepted graph identity binding, venue and
+venue-bound `place_pull` handoff were created in the isolated Postgres. The
+real Places feed endpoint, with `PLACE_HANDOFF_PULL_ENABLED` enabled only for
+the probe, returned the existing `From your people` section containing the
+exact note, sender, venue id and handoff id. Cleanup removed every temporary
+row and restored the recipient's Home location.
+
+Evidence: `DIRECT_READABLE_COUNT 1`, `PLACES_FEED_STATUS 200`,
+`PLACES_FEED_NOTE_SEEN True`, `PLACES_FEED_SENDER_SEEN True`,
+`PLACES_FEED_VENUE_SEEN True`, `PLACES_FEED_HANDOFF_ID_SEEN True`, with one
+`friend_activity` section. This proves the local persistence→owner read→Places
+feed boundary for a venue-bound pull. It does not prove native visual behavior,
+production flag activation, broader media/group sharing, Life adoption, or
+publication. Keep Integration paused until the founder chooses the next
+shared-runtime/native checkpoint.
 
 ## September 21 persistence boundary — child-owned public Source
 
