@@ -5813,3 +5813,9 @@ not claim native tap/back execution for this newly seeded path, broad corpus or
 social parity, production activation, or visual parity with Claude designs.
 The next unblocked work remains another supported receiving/action seam or a
 bounded native return proof.
+
+The destination contract was then checked through the broader composition
+boundary: the practical/root delivery packet passes **36 tests**, including
+Home composition with the new context → Place → immutable Source ordering.
+Backend commit `fc443b21d` updates the stale contract assertion; this is
+verification of the production adapter path, not fixture-only insertion.
