@@ -5981,3 +5981,30 @@ boundary. It does not claim broad Home/Places corpus parity, social delivery,
 provider supply, production rollout, or Claude-design visual parity. The next
 useful slice remains another supported receiving/action connection or a bounded
 Life/native return seam, not a new content generator, store, or route family.
+
+## September 21 functional implementation receipt — native Life Places source continuity
+
+The next Life seam is now proven with a real local-Postgres fixture. Backend
+script `provision_life_places_source_return_rehearsal.py` creates one
+disposable venue and one retained inline source whose typed
+`capture_context.subject_entity_ref` points to that venue. The fixture verifies
+that the retained-source owner preserves the explicit venue association, then
+withdraws both the source and venue during cleanup. It does not claim that the
+owner visited the venue or create an occurrence, booking, provider result, or
+new Life model.
+
+App commit `de621f0c0`'s native Life root is exercised by the new
+`.maestro/78-life-places-source-return.yaml` runner and its three static
+contract tests. With the real local API and iOS simulator, the flow proves:
+the source appears in Life's Places lens; its exact entry opens the canonical
+Intake original-material reader; Back returns to the same Places lens and
+entry; cleanup withdraws the source and the HTTP Places-lens projection no
+longer exposes it. The run passed end to end, with the existing Life return
+resolver preserving `lifeLens=places`.
+
+This closes the narrow Life Places source → exact original → Places return
+boundary. It does not claim broad Life corpus population, semantic place
+attendance, social delivery, provider supply, production activation, or
+Claude-design visual parity. The next slice should therefore move to another
+supported receiving/action connection or a bounded practical/social seam,
+not add another content store, generator, or route family.
