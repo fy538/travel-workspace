@@ -1945,14 +1945,15 @@ R04 now keeps sender withdrawal history visible through recipient loading/error/
 empty states, and R09 propagates the schedule timezone needed for UTC-stored
 arrangements. Focused regressions pass; persisted-database, queue-environment
 and native-device evidence remain open in the review ledger.
-Source worker registration is implemented behind gates; automatic recovery of
-due work after enqueue/disabled-job/transient failure is not established.
+Source worker registration and its gated deterministic due-work recovery sweep
+are implemented behind the same named cohort; actual Arq/Redis recovery after
+enqueue/disabled-job/transient failure remains unverified.
 
 | Package | State at September 21 candidate | Next concrete action |
 | --- | --- | --- |
 | I0 | Inventory and decision-alignment foundation recorded; current candidate and evidence scopes now rebaselined | Keep unresolved retention/watch/reuse agreements gated only where relevant; close review findings without restarting architecture |
 | I1 | Source/graph/Outcome delivery, repair, backfill and reconciliation foundation; additional retained-source revisions and Life adoption paths in this lane | Build population and later-use coverage over existing owners; do not infer indexed serving cutover or cross-context authority from retention |
-| I2 | Bounded serving, prepared results, cancellation and publication fences; explicit Source Arq registration and serializer repair | Complete bounded recovery needed for reliable requested supply, then inspect actual outputs; cost/cohort/provider activation remains separately gated |
+| I2 | Bounded serving, prepared results, cancellation and publication fences; explicit Source Arq registration, serializer repair and gated due-work recovery sweep | Run actual Arq/Redis recovery and inspect outputs; cost/cohort/provider activation remains separately gated |
 | I3 | Contribution authority and useful-first intake; exact retained/received text-original paths with scoped native receipts | R04 code correction is complete; persisted/native control evidence, broader supported originals and permissioned downstream use remain; pending history/audience policy is not silently adopted |
 | I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots | Primary Home/Places full-scroll section/value completion and design-quality treatment; sparse/pending/failure states and real supply breadth |
 | I5 | Open-now and saved-world changes reach surfaces; explicit fit and reviewed assistance contracts implemented | R09 code correction is complete; persisted/native timezone matrix, current practical facts, permitted-context adaptations, provider-backed fit rehearsal and broader mandates remain separate |

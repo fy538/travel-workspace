@@ -274,9 +274,12 @@ content is lost; it does make queue completion and terminal-failure telemetry
 incorrect. The disabled-worker early return is unaffected.
 
 **Applied:** use the actual serializer contract or deliberately convert the
-result to a validated model. **Regression:** execute the queue entry point
-with real completed, not-claimed and expired result objects. Existing tests
-cover admission/registration without executing this result boundary.
+result to a validated model. The controlled worker now also has a gated,
+deterministic due-work sweep that re-enqueues durable workflow rows after a
+restart without creating new work. **Focused regression:** the queue-entry
+serializer contract and recovery registration/enqueue behavior pass. Actual
+Arq/Redis execution with completed, not-claimed and expired result objects
+remains unrun.
 
 ## R06 — Expanded geography is incompatible with Home's eight-anchor limit
 
