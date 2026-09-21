@@ -52,7 +52,7 @@ Retention/refinding is further along than context materially improving a later
 answer, possibility or action.
 
 **Current candidate tuple after this receipt:** workspace `8eeb14c`, backend
-`e9ad26f7f`, and app `76af974a0`, all on the isolated
+`e9ad26f7f`, and app `9a597abd4`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; the child-code tuple now includes the Places typed
 notice bridge, native sender-withdrawal proof, and shared Home/Places semantic
@@ -159,8 +159,9 @@ policy, or contribution inference.
 
 Backend commits `ef4167163` and `e9ad26f7f` carry the adapter and route
 regressions; app
-commit `76af974a0` proves the native entry preserves `lifeLens=people` when it
-opens the exact record. The latest backend root packet passes **442 tests**;
+commits `76af974a0` and `9a597abd4` prove the native entry restores the exact
+Life reader with `lens=people` (while other owners retain `lifeLens` return
+context). The latest backend root packet passes **442 tests**;
 the Life route/projection/index packet passes **46 tests**; the combined
 Home/Places/Life native packet passes **54 tests**; and TypeScript plus the
 resource-destination packet pass. The result proves a bounded structured
@@ -1713,7 +1714,7 @@ source/original distinction, and docs closeout.
 | --- | --- | --- |
 | Workspace | `8eeb14c` (verification baseline; later docs are receipts) | `b6e7014` |
 | Backend | `e9ad26f7f` | `a7c02cbe1` |
-| App | `76af974a0` | `e2e792913` |
+| App | `9a597abd4` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent

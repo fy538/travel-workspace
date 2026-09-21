@@ -35,7 +35,7 @@ state treatment is:
 |---|---|
 | Workspace | `8eeb14c` (verification baseline; later docs are receipts) |
 | Backend | `e9ad26f7f` |
-| App | `76af974a0` |
+| App | `9a597abd4` |
 
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes. The
@@ -64,8 +64,9 @@ Outcomes only when the viewer-relative Occasion has another active participant
 and admit non-private multi-participant Commitments through the existing
 commitment grant, preserving grant/member refs and leaving viewer-only
 material out of People.
-App `76af974a0` proves that the native row opens the exact record while
-preserving `lifeLens=people`. The latest root packet passes **442** tests, the
+App `76af974a0` and `9a597abd4` prove that the native row opens the exact
+record while the exact Life reader receives `lens=people` (other owners keep
+`lifeLens` return context). The latest root packet passes **442** tests, the
 Life route/projection/index packet passes **46**, and the combined native root
 packet passes **54**, with TypeScript and destination tests green. No new
 Occasion producer, audience policy, feed, or inference is introduced; broader
