@@ -6806,3 +6806,43 @@ provider-backed generation, recurring supply, social breadth, visual parity or
 release-readiness claim. The next build should move to another substantive
 owner/action seam or bounded Life downstream value, not duplicate this
 full-scroll harness.
+
+## September 21 functional implementation receipt — native Places full-scroll across reading, social, and change
+
+The Places counterpart is now proven as one composed native scroll rather than
+three isolated cards. Backend commit `35765fdb5` closes the admission seam that
+was exposed by the governed runtime: a typed saved-place change notice now
+resolves its exact venue owner through the reviewed notice grammar. Generic or
+unrecognized notices remain ownerless and fail closed; the v2 adapter does not
+invent a venue or add a second notice producer.
+
+App commit `e4a4823d5` adds flow `90-places-full-scroll`, its static contract
+test, and a run-scoped runner. The runner composes the existing disposable
+owner writers for one accepted public Place reading, one recipient-consented
+`place_pull` contribution, and one saved-place reopen notice in the same
+`place:1` workspace. It preflights the canonical reading/feed responses,
+scrolls through all three source families, and checks the saved-place notice's
+user-controlled `OPEN AGAIN` action. Cleanup is armed before the first dynamic
+projection lookup and verifies that the public reading and notice withdraw
+after the run.
+
+Using the local replay API (`AI_MODE=replay`, placeholder key `local-test`,
+`DISABLE_LLM_BACKGROUND_LOOPS=true`) with
+`RELATIONSHIP_UUID_HANDOFFS_ENABLED=true`, `PLACE_HANDOFF_PULL_ENABLED=true`,
+`PLACE_CONTENT_PRIMITIVE_READS_ENABLED=true` and
+`CONTENT_CONTROL_PLANE_PLACE_ENABLED=true`, the governed four-root/Object Page
+bundle passed on simulator
+`D7C8FEF4-237B-4347-841C-6FE920BFABFA`. The public reading claim, “From your
+people” contribution, and saved-place reopen notice all appeared in one real
+Places scroll. The existing standalone saved-reopen flow was rerun afterward
+and passed through notice dismissal and retained-place return.
+
+Evidence: the focused backend typed/generic notice packet **2 passed**;
+backend commit hooks passed; the new mobile static packet **3 passed**;
+Maestro syntax, shell syntax and TypeScript passed; the combined native
+full-scroll flow passed; and the standalone saved-reopen native flow passed.
+This is a local supplied-owner proof. It does not claim provider-backed
+generation, production corpus breadth, recurring social supply, notifications,
+alternative selection, broad visual parity, or release readiness. The next
+useful slice is another supported producer/action seam or bounded Life
+downstream value—not another parallel Places scroll harness.
