@@ -73,11 +73,11 @@ substantive implementation remains one selected sparse/pending/failure state
 or supplied Life/social downstream value, with R05/R09 edge work continuing
 only where its required environment is available.
 
-The latest workspace documentation head is `49d438a`; backend and app code are
-`651628265` and `c37e85f83`. The workspace advance is documentation-only; the
-backend advance is integration-test coverage only, and the app advance adds
-only the bounded Home partial-read treatment. None changes production release
-state.
+The workspace code/documentation baseline for this candidate is `49d438a`;
+this receipt is a documentation-only follow-up. Backend and app code are
+`651628265` and `c37e85f83`. The backend advance is integration-test coverage
+only, and the app advance adds only the bounded Home partial-read treatment.
+None changes production release state.
 
 ### September 21 current-candidate integrity pass
 
