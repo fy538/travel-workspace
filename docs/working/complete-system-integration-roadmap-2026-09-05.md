@@ -302,6 +302,23 @@ still intentionally reads exact Place-owned Sources. The next boundary is the
 mobile receiving/return check or another supported consumer gap, not a new
 content store or generator.
 
+## September 21 continuation — explicit Places reading scope
+
+The Places section composer now passes the root's already-resolved context
+handle into its Reading producer (`8a22bf36d`). This prevents an explicit
+`place:*` continuation from silently falling back to automatic context while
+the visible Places sections use the selected scope. The repair preserves the
+current contract: Places Reading doors still admit exact Place-owned Sources;
+Home is the consumer that may enumerate bounded child-owned Sources and route
+them to an exact child entity. No schema, provider, generator, store or flag
+activation changed.
+
+The focused backend collection/section packet passes **29 tests**, with Ruff,
+format and repository hooks green. This closes a continuation/read consistency
+gap only. Populated native Reading tap/back evidence remains open and requires
+an exact Place-owned accepted Source in the disposable runtime; fixture-only
+cards or the existing Home child-source proof are not substitutes.
+
 **A/B dispatched September 9; Integration is PAUSED by the founder.** The current
 [program register](vesper-program-roadmap.md#4-current-package-register) owns
 assignment, exact isolated checkouts and the dispatch evidence boundary. This

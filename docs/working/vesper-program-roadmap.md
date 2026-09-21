@@ -2218,3 +2218,21 @@ boundary: the practical/root delivery packet passes **36 tests**, including
 Home composition with the new context → Place → immutable Source ordering.
 Backend commit `fc443b21d` updates the stale contract assertion; this is
 verification of the production adapter path, not fixture-only insertion.
+
+## September 21 functional implementation receipt — preserve Places reader context
+
+The Places section composer had one remaining continuation defect: its Reading
+producer rebuilt the automatic Places context even when the root had already
+resolved an explicit `place:*` handle. The reading collection could therefore
+be sourced from a different scope than the visible Places root. Backend commit
+`8a22bf36d` forwards the resolved context handle into the existing reader while
+leaving the exact Place-owned Source contract intact. No child-owned material is
+relabeled as a Place reading; Home remains the bounded parent→child consumer,
+and Places keeps its current exact Place destination semantics.
+
+Evidence: `tests/places/test_collections.py` and
+`tests/places/test_sections_feed.py` pass **29 tests**; Ruff, format and the
+repository pre-commit hooks pass. This is a read-path continuation repair, not
+a new generator, store, provider call, schema, flag activation, native capture,
+or production rollout. A populated native Places Reading tap/back proof remains
+open and should be exercised only with an admitted exact Place Source.
