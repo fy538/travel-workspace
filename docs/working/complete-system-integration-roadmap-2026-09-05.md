@@ -91,6 +91,31 @@ package should consume another real supplied Home/Places variant or a bounded
 practical/social action, not widen Life storage or add a second refinding
 engine.
 
+## September 21 native/runtime receipt — Places recipient-consented social read
+
+The existing Places `From your people` section now has a real native receiving
+and return rehearsal for the bounded `place_pull` contract. A disposable
+sender/recipient pair, recipient-owned pull grant, accepted graph-to-venue
+binding, and venue-bound handoff were created under the recipient's explicit
+New York Place context. With the existing pull flag enabled only for the local
+process, the simulator rendered the exact note, opened the canonical venue,
+showed the venue reader, and returned to the same Places context. The runner
+then removed the temporary handoff and verified that the canonical feed no
+longer represented it.
+
+Evidence: `travel-app/scripts/maestro/run-places-real-social-pull.sh` passed on
+simulator `D7C8FEF4-237B-4347-841C-6FE920BFABFA` for run
+`places-social-native-20260921-e`; its contract packet passed **9/9** tests,
+and TypeScript, backend compile, Ruff and format checks passed. The fixture
+cleanup removed all temporary sender, relationship, graph, venue and handoff
+rows. This closes one native recipient-consented, venue-bound social receiving
+boundary. It does not prove a general social feed, group/media sharing, Life
+adoption, production activation, visual parity with the Claude designs,
+merge/publication or release readiness. The next integration slice should
+reuse this owner/destination seam for a bounded practical/social action or a
+supplied Home/Places variant rather than create a second social store or feed
+architecture.
+
 ## September 20 functional implementation receipts
 
 The current isolated implementation lane has now delivered four bounded,

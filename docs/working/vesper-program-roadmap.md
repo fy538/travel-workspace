@@ -26,9 +26,9 @@ results at the boundaries recorded below. The latest Content and Places turns
 are complete, not waiting for a design canvas. Meaning-based discovery,
 bounded exact-original social receiving, and a feature-flagged recipient-consented
 Home/Places social read now have committed isolated implementations and focused
-verification below. Native Home/Places Save consequence and Life exact-source
-return/readback rehearsals now also have real disposable-runtime receipts. This
-is not whole-roadmap or
+verification below. Native Home/Places Save consequence, Life exact-source
+return/readback, and recipient-consented Places social receiving now also have
+real disposable-runtime receipts. This is not whole-roadmap or
 native acceptance: broader semantic/time retrieval, supply activation,
 Social/Life adoption and combined delivery remain unfinished. The proposed
 cross-run editorial reuse policy has been presented to the founder and is
@@ -103,6 +103,35 @@ media, visual parity with Claude designs, production flag activation,
 merge/publication or release readiness. The next useful work is another
 supported supplied Home/Places variant or a practical/social action seam—not
 another Life storage abstraction.
+
+## September 21 native/runtime receipt — Places recipient-consented social read
+
+The existing Places `From your people` section now has a real native receiving
+and return rehearsal for the bounded `place_pull` contract. The provisioner
+created a disposable sender, active pair room, recipient-owned pull grant,
+accepted graph-to-venue binding, venue under the recipient's explicit New York
+Place context, and one venue-bound handoff. With the existing pull flag enabled
+only in the local process, the iOS simulator then:
+
+- rendered the exact sender note in `From your people`;
+- opened the handoff's canonical venue through the stable venue tile target;
+- showed the venue reader and its exact generated fixture name;
+- returned to the same Places context through the native back control; and
+- verified the social card was still present before the runner removed the
+  temporary handoff and re-read the canonical feed.
+
+Evidence: `run-places-real-social-pull.sh` passed on simulator
+`D7C8FEF4-237B-4347-841C-6FE920BFABFA` for run
+`places-social-native-20260921-e`; the runner contract packet passed **9/9**
+tests, and app TypeScript, backend compile, Ruff and format checks passed. The
+fixture cleanup removed the sender, relationship, graph, venue and handoff;
+the post-cleanup feed no longer contained the handoff. This is native proof of
+one recipient-consented venue-bound pull, not general social-feed parity,
+group/media sharing, Life adoption, production activation, visual parity,
+merge/publication or release readiness. The next useful work is a supported
+practical/social action or supplied Home/Places variant that reuses the same
+owner and destination contracts; do not add a second social store or a new
+generic feed architecture.
 
 ## September 21 functional implementation receipt — consented Places social read
 
