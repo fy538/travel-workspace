@@ -129,6 +129,17 @@ visual-parity, R05 process-restart/transient-failure, or R09
 persisted/native-timezone evidence. No merge, activation or publication was
 performed.
 
+### September 21 Home partial-read treatment review
+
+App `c37e85f83` adds a generic **A partial read** notice for Home v2 envelopes
+with owner degradations. The notice keeps supplied content visible, does not
+render backend owner or diagnostic strings, and exposes Retry only when any
+degradation is marked retryable. The focused Home screen/experience packet
+passes **32 tests**, TypeScript and targeted lint pass, and polish
+scenario/design-reference checks are structurally green; native screenshot or
+device acceptance was not run. No new backend, schema, route, producer,
+storage, policy or release surface was introduced.
+
 ### September 21 follow-up — same-Place sequence through Home composition
 
 Backend `bdc05c02f` adds a two-case regression around the already supplied

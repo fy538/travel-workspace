@@ -175,10 +175,11 @@ package should be an existing-authority downstream result or a
 sparse/pending/failure treatment, not another route-only happy path.
 
 Current candidate tuple after the latest rebaseline: workspace
-`49d438a`, backend `651628265`, app `242d309f0`, all on
+`49d438a`, backend `651628265`, app `c37e85f83`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The workspace head is a documentation-only alignment;
-the child code heads are unchanged. The dedicated shared Integration/landing lane remains
+the backend head is unchanged and the app head adds only the bounded Home
+partial-read treatment. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
 verification can continue; no shared runtime, publishing, flag activation,
 paid/provider run or pending product policy is enabled by this rebaseline.
@@ -220,6 +221,18 @@ provider-backed supply, recurring content, design parity, merge, activation,
 or publication. Keep the next implementation focused on one existing
 owner-backed value-depth or Life/social downstream result with exact
 destination, return and honest sparse/pending/failure behavior.
+
+### September 21 Home partial-read treatment
+
+App `c37e85f83` now presents a generic **A partial read** notice when the
+existing Home v2 envelope carries one or more owner degradations. It preserves
+the supplied orientation and units, hides backend owner/diagnostic strings,
+and offers Retry only when a degradation is explicitly retryable. The focused
+Home screen/experience packet passes **32 tests**, TypeScript and targeted lint
+pass, and the Home polish scenario/design-reference checks are structurally
+green; native screenshot/device acceptance remains unrun. This is a bounded
+consumer-state improvement, not a new producer, route, schema, storage or
+policy surface.
 
 ### September 21 Life · People receipt — shared outcomes reach the record
 
