@@ -63,8 +63,8 @@ available.
 supplied-reading `Why this?` slice, mechanism-row adaptation, explicit
 selected-trip fit, attributed friend-place preview, public-reading limits, and
 native social-evidence treatment, exact social venue doors, Home editorial/
-aperture anatomy, and Places editorial-cover anatomy in backend `f9fa3d82b`
-and app `659f572ae`.
+aperture anatomy, Places editorial-cover anatomy, and the native starter browse
+shelf in backend `f9fa3d82b` and app `17c2c4472`.
 The next
 implementation should therefore be selected from an
 existing owner-backed Home/Places payload and add substantive received value
@@ -165,6 +165,16 @@ expiry behavior. App commit `659f572ae` adds the treatment and regression.
 Focused Places root/expiry tests pass **28 tests**; TypeScript and targeted
 ESLint pass. This improves the native expression of supplied Places value; it
 does not claim new content supply or full Claude-design parity.
+
+## September 21 native receipt — Places starter browse shelf
+
+The admitted `field_browse_shelf` starter kind now has a native way-in tile
+instead of falling through to the generic field card. The treatment preserves
+the existing source, exact destination, capability and practical-expiry seams;
+it does not fabricate the riso/photo media that the design manifest still
+requires from a future media-bearing payload. App commit `17c2c4472` adds the
+native treatment and root regression. The focused Places root/expiry packet
+passes **29 tests**, TypeScript passes, and targeted ESLint has no errors.
 
 ## September 21 functional receipt — preserve social Place destinations
 
@@ -1342,7 +1352,7 @@ implementation, and docs closeout.
 | --- | --- | --- |
 | Workspace | `8358a28` (current documentation receipt) | `b6e7014` |
 | Backend | `f9fa3d82b` | `a7c02cbe1` |
-| App | `659f572ae` | `e2e792913` |
+| App | `17c2c4472` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent

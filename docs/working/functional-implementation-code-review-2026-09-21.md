@@ -33,7 +33,7 @@ and latest workspace documentation receipt is:
 |---|---|
 | Workspace | `8358a28` |
 | Backend | `f9fa3d82b` |
-| App | `659f572ae` |
+| App | `17c2c4472` |
 
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes.
@@ -56,6 +56,16 @@ treatment and regression; the focused Places root/expiry packet passes **28
 tests**, TypeScript passes, and targeted ESLint has no errors. This improves
 native expression of supplied Places value; it does not claim new content supply
 or full Claude-design parity.
+
+### September 21 Places starter follow-up
+
+The admitted `field_browse_shelf` starter kind now has a native way-in tile
+instead of falling through to the generic field card. The treatment preserves
+the existing source, exact destination, capability and practical-expiry seams;
+it does not fabricate the riso/photo media that the design manifest still
+requires from a future media-bearing payload. App `17c2c4472` adds the native
+treatment and root regression. The focused Places root/expiry packet passes
+**29 tests**, TypeScript passes, and targeted ESLint has no errors.
 
 ### September 21 post-receiving-surface recheck
 
