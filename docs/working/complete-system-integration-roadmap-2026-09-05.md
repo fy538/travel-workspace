@@ -108,6 +108,29 @@ publish a dataset. The remaining boundary is a small populated composition and
 native receiving check; do not respond by widening the Source model or adding a
 new generator/store.
 
+## September 21 populated composition — Home → exact entity destination
+
+The next runtime boundary was exercised through the actual API, using only
+temporary lane data. A disposable user received an authoritative New York Home
+coordinate and a temporary accepted, grounded public primitive owned by a venue
+under Place `1`. With `PLACE_CONTENT_PRIMITIVE_READS_ENABLED=true` and
+`CONTENT_CONTROL_PLANE_PLACE_ENABLED=true` set only on the local process:
+
+- `/api/root-projections/v2/home?timezone=UTC` returned **200** and contained
+  the exact primitive revision, child venue identity and claim.
+- `/api/me/entities/venue/{id}/presentation-v2` with the exact Source id and
+  revision returned **200**, `reading_selection_state=available`, and the
+  Source-backed presentation.
+- The temporary user context, venue, primitive, policy/evidence rows and
+  lifecycle event were removed immediately afterward.
+
+This is the first populated Home-to-destination API proof for the child-owned
+Source connection. It does not establish native visual acceptance, production
+flag activation or a child-Source card in the Places collection; that collection
+still intentionally reads exact Place-owned Sources. The next boundary is the
+mobile receiving/return check or another supported consumer gap, not a new
+content store or generator.
+
 **A/B dispatched September 9; Integration is PAUSED by the founder.** The current
 [program register](vesper-program-roadmap.md#4-current-package-register) owns
 assignment, exact isolated checkouts and the dispatch evidence boundary. This

@@ -85,6 +85,32 @@ are exercised with an approved dataset. The next useful package is therefore a
 small populated Home/Places composition check or the next supported receiving
 gap, not another rewrite of the Source contract.
 
+## September 21 populated composition probe — Home to exact entity destination
+
+The next boundary was exercised through the actual lane API with a temporary
+Home context. A disposable user was given an authoritative New York Home
+coordinate, and a temporary accepted, grounded public primitive was attached to
+a venue beneath Place `1`. With the existing primitive-read and Places detail
+control-plane flags enabled **only for this local probe**:
+
+- `GET /api/root-projections/v2/home?timezone=UTC` returned **200** and the
+  serialized response contained the exact Source revision, venue identity and
+  claim from the temporary record.
+- The existing exact destination,
+  `GET /api/me/entities/venue/{id}/presentation-v2` with the Source id and
+  revision, returned **200**, `reading_selection_state=available`, and the
+  Source-backed claim/body.
+- The temporary Home location, venue, primitive, policy binding, observation and
+  lifecycle rows were removed after the request. No production flag or dataset
+  was changed.
+
+This proves the populated Home → exact entity destination/reader boundary, not
+native rendering, a production rollout, or an independent child-Source card in
+the Places collection. The latter remains intentionally scoped to exact Place
+owners by the current collection contract. The next work should consume this
+destination on the mobile surface or close another supported receiving gap;
+there is no evidence for widening the Source model.
+
 ## September 20 functional implementation receipt — Life continuity slice
 
 The first execution slice under the functional-implementation goal is complete
