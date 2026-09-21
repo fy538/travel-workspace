@@ -113,6 +113,24 @@ production flag activation, broader media/group sharing, Life adoption, or
 publication. Keep Integration paused until the founder chooses the next
 shared-runtime/native checkpoint.
 
+## September 21 runtime continuation — Home recipient-consented pull
+
+The same venue-bound, recipient-consented `place_pull` now reaches Home through
+the existing addressed Place-note adapter when the existing pull flag is
+enabled. Home does not create a second social owner or re-rank the note: it
+reuses the relationship reader's pair/grant/expiry/custody checks, preserves
+the sender's original copy, and carries the canonical venue and existing Places
+destination. The existing mobile Home destination contract remains sufficient;
+no generated schema change was needed.
+
+Evidence: focused Home/Places/relationship coverage **48 passed**; the real
+local runtime returned HTTP 200 from `/api/root-projections/v2/home` with the
+exact pull note, sender, venue id and handoff id. All temporary database rows
+and the Home context were removed after the request. The flag remains dark by
+default, and native visual acceptance, rollout, broader group/media sharing,
+Life adoption and publication remain unverified. This is a receiving
+continuation, not authorization for a general social feed.
+
 ## September 21 persistence boundary — child-owned public Source
 
 The real disposable-Postgres check for the preceding Home supply connection

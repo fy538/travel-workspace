@@ -25,7 +25,7 @@ Content consumer/hydration and temporal-map packages have verified isolated
 results at the boundaries recorded below. The latest Content and Places turns
 are complete, not waiting for a design canvas. Meaning-based discovery,
 bounded exact-original social receiving, and a feature-flagged recipient-consented
-Places social read now have committed isolated implementations and focused
+Home/Places social read now have committed isolated implementations and focused
 verification below. This is not whole-roadmap or
 native acceptance: broader semantic/time retrieval, supply activation,
 Social/Life adoption and combined delivery remain unfinished. The proposed
@@ -89,6 +89,26 @@ feed boundary for a venue-bound pull. It does not prove native visual behavior,
 production flag activation, broader media/group sharing, Life adoption, or
 publication. The manual API was stopped after the probe; no provider or
 background loop was enabled.
+
+## September 21 functional implementation receipt — Home social receiving
+
+Home now consumes the same recipient-consented, venue-bound `place_pull`
+records through its existing addressed Place-note adapter when
+`PLACE_HANDOFF_PULL_ENABLED` is enabled. It does not add a Home-specific social
+store, ranking path, or copy transformation: the relationship owner remains
+responsible for pair/grant/expiry/custody checks, and Home preserves the
+sender's note, exact venue identity and existing Places destination. The flag
+keeps the new read dark by default.
+
+Evidence: the focused Home/Places/relationship packet passed **48 tests**, and
+the real disposable runtime returned HTTP 200 from
+`/api/root-projections/v2/home?timezone=UTC` with the exact pull note, sender,
+venue and handoff id present. Temporary users, relationship rows, graph
+identity, venue and Home context were cleaned up. No mobile schema change was
+needed because the existing Home destination contract already handles the
+typed Place door. This remains local candidate evidence: native capture,
+production activation, broader group/media sharing, Life adoption and
+publication remain open.
 
 ## September 21 runtime supply probe — child-owned public Source
 
