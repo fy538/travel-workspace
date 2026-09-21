@@ -31,9 +31,9 @@ and supplied-experience comparison is:
 
 | Repository | Current HEAD |
 |---|---|
-| Workspace | `bd1e821` |
+| Workspace | `95d8377` |
 | Backend | `c3f64589e` |
-| App | `62c5982a8` |
+| App | `ecdecaffe` |
 
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes.
@@ -65,6 +65,17 @@ The focused backend packet passes **81 tests**; the combined Home/Places app
 packet passes **80 tests**; TypeScript, targeted ESLint, Ruff and formatting
 pass (the existing Places renderer max-lines warning remains). No activity
 feed, notification, location inference or response debt was introduced.
+
+### September 21 canonical Places workspace follow-up
+
+The internal `PlacesRootV2Screen` packet did not by itself prove that semantic
+units reached the production `PlacesWorkspace`. App `ecdecaffe` adds that
+boundary regression: a standalone `social_plural_comparison` unit from the
+runtime envelope is forwarded into the canonical `PlacesSectionFeed`. The
+focused workspace suite passes **16 tests**, targeted ESLint is clean, and the
+app typecheck remains green. This closes an evidence gap in the receiving path;
+it does not add a producer, route, rollout, storage family or design-parity
+claim.
 
 ### September 21 Home surface follow-up
 

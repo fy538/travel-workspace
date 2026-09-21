@@ -58,8 +58,8 @@ editorial/aperture anatomy, Places editorial-cover anatomy, the native starter
 browse shelf, native branch/continuity/returned-understanding treatments, the
 honest balanced-field fallback, the native owner-backed evidence register, the
 supplied-experience comparison, and the plural social perspective in backend
-`c3f64589e` and app `62c5982a8`; the latest workspace documentation
-receipt is `bd1e821`. This
+`c3f64589e` and app `ecdecaffe`; the latest workspace documentation
+receipt is `95d8377`. This
 documentation
 advance does not merge, publish, enable or
 resume shared Integration/landing. Apply this
@@ -71,8 +71,8 @@ choose another supported producer → owner read → destination → return seam
 leave the missing supply explicit. Evidence-only work remains bounded to R04,
 R05 and R09, and visual polish travels with the selected surface package.
 
-Current candidate tuple after the latest lane-local corrections: workspace
-`bd1e821`, backend `c3f64589e`, app `62c5982a8`, all on
+Current candidate tuple before this documentation receipt: workspace
+`95d8377`, backend `c3f64589e`, app `ecdecaffe`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
@@ -108,6 +108,17 @@ states that no response is expected. One friend remains the existing compact
 social row. Backend `c3f64589e` and app `62c5982a8` carry the implementation and
 focused regressions. This is casual sharing in Places, not Home duplication,
 an activity feed, a friend-location signal or a new multiplayer service.
+
+### September 21 canonical Places workspace reachability receipt
+
+The semantic units were already rendered by the internal v2 screen, but the
+production `PlacesWorkspace` → `PlacesSectionFeed` boundary lacked a direct
+regression. App `ecdecaffe` now proves that a standalone
+`social_plural_comparison` unit from the runtime envelope is passed into the
+canonical feed. Its focused workspace suite passes **16 tests**, targeted
+ESLint is clean, and the app typecheck passes. This is a receiving-boundary
+proof only; it introduces no new producer, route, rollout, storage or design
+parity claim.
 
 ### Coordination ownership decision — keep group waiting in Home
 

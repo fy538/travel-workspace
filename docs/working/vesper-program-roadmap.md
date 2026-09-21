@@ -50,8 +50,8 @@ same tour. Frontend polish is part of each surface's completion. Retention/
 refinding is further along than context materially improving a later answer,
 possibility or action.
 
-**Current candidate tuple after this receipt:** workspace `bd1e821`, backend
-`c3f64589e`, and app `62c5982a8`, all on the isolated
+**Current candidate tuple before this documentation receipt:** workspace `95d8377`, backend
+`c3f64589e`, and app `ecdecaffe`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; it does not change the child-code tuple, merge the
 lane, enable a flag, or resume shared Integration/landing. The next substantive
@@ -67,7 +67,7 @@ aperture anatomy, Places editorial-cover anatomy, the native starter browse
 shelf, native branch/continuity/returned-understanding treatments, the honest
 balanced-field fallback, the native owner-backed evidence register, the
 supplied-experience comparison, and the plural social perspective in backend
-`c3f64589e` and app `62c5982a8`.
+`c3f64589e` and app `ecdecaffe`.
 The next
 implementation should therefore be selected from an
 existing owner-backed Home/Places payload and add substantive received value
@@ -121,6 +121,18 @@ backend Ruff/format checks pass (the existing Places renderer max-lines
 warning remains). This extends the existing casual-sharing owner; it adds no
 social feed, notification, friend-location inference, response obligation,
 new store, audience policy or occasion model.
+
+## September 21 functional receipt — canonical Places workspace reachability
+
+The plural-social and other semantic field units were already exercised by the
+internal `PlacesRootV2Screen`, but the production `PlacesWorkspace` boundary
+did not have a direct regression proving that the runtime envelope's standalone
+units reached its `PlacesSectionFeed`. App commit `ecdecaffe` adds that
+canonical-workspace test: a `social_plural_comparison` unit is supplied through
+the real workspace prop and remains visible to the feed. The focused workspace
+suite passes **16 tests**, the targeted ESLint check is clean, and the app
+typecheck remains green. This closes a receiving-boundary evidence gap only; it
+adds no producer, route, rollout flag, storage family or design-parity claim.
 
 **Scope decision — Places group waiting remains deferred.** The legacy Places
 `group_waiting` producer still reads itinerary proposals alongside booking
@@ -1448,7 +1460,7 @@ implementation, and docs closeout.
 | --- | --- | --- |
 | Workspace | `bd1e821` (current documentation receipt) | `b6e7014` |
 | Backend | `c3f64589e` | `a7c02cbe1` |
-| App | `62c5982a8` | `e2e792913` |
+| App | `ecdecaffe` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent
