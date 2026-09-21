@@ -115,6 +115,19 @@ choose another supported producer → owner read → destination → return seam
 leave the missing supply explicit. Evidence-only work remains bounded to R05
 and R09, and visual polish travels with the selected surface package.
 
+### September 21 canonical Home sequence readback
+
+Backend `bdc05c02f` now proves the same-Place public-reading sequence through
+the real `compose_home_root_v2` service pipeline. With two accepted source
+records, the test preserves both source revisions, the Places context/place
+destination, and the sequence medium. With the source owner unavailable, the
+candidate is omitted and the response carries a retryable `source_unavailable`
+degradation. This closes the service-composition proof for this supplied
+family, not disposable-Postgres HTTP readback, native/device acceptance,
+recurring supply, or full-scroll design parity. Do not add a new semantic kind
+in response; the next proof should be runtime/database/device evidence only
+when the required environment is safely disposable.
+
 Current candidate tuple at the last code review: workspace
 `f8fa48a`, backend `306eb51a4`, app `242d309f0`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,

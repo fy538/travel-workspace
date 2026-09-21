@@ -71,6 +71,19 @@ persisted/native cross-device/DST evidence open; they also do not prove
 provider-backed supply, recurring generated content, full-scroll quality,
 design parity, merge, activation or publication.
 
+### September 21 follow-up — same-Place sequence through Home composition
+
+Backend `bdc05c02f` adds a two-case regression around the already supplied
+same-Place public-reading sequence. It runs the real `compose_home_root_v2`
+service pipeline, preserves both source revisions and the exact Places
+context/place/source destination, and confirms the sequence remains one
+substantive Home unit. When the source owner read is unavailable, the unit is
+omitted and the response carries a retryable `source_unavailable`
+degradation. This is a stronger service-composition receipt than the earlier
+adapter/selection test, but it still uses controlled owner-read inputs; it is
+not disposable-Postgres HTTP readback, native/device acceptance, recurring
+supply, or design-parity evidence.
+
 ### September 21 Life · People outcome review
 
 The Life adapter previously admitted shared Occasions to People but dropped

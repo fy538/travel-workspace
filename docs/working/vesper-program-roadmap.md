@@ -72,9 +72,30 @@ or supplied Life/social downstream value, with R05/R09 edge work continuing
 only where its required environment is available.
 
 The latest workspace documentation head after the renderer-ledger refresh is
-`3ba4e5e`; backend and app code remain `306eb51a4` and `242d309f0`. This is a
-documentation-only advance and does not alter the implementation candidate or
-release state.
+`3ba4e5e`; backend and app code are now `bdc05c02f` and `242d309f0`. The
+backend advance is a focused composition-proof test only; it does not alter
+production behavior or release state.
+
+### September 21 canonical Home sequence readback
+
+Backend `bdc05c02f` adds a production-composition test for the already supplied
+same-Place sequence. It runs the real `compose_home_root_v2` pipeline with the
+existing public-content adapter and verifies that two source revisions remain
+substantive, preserve the Places context/place/source destination, and return
+as one sequence. The same test also makes a source-owner read unavailable and
+verifies that the sequence is omitted with an explicit retryable degradation
+rather than shown as if it were current.
+
+This is stronger than adapter-to-compiler evidence, but it is still a
+controlled owner-read composition test, not a disposable-Postgres HTTP
+readback, device acceptance run, recurring supply receipt, or visual parity
+claim. The next runtime proof should use a safe supplied database/device when
+available; otherwise preserve this boundary and select another supported
+owner-backed value seam.
+
+The child-code tuple after this proof is backend `bdc05c02f` and app
+`242d309f0`. The earlier `306eb51a4` tuple remains the lease-repair baseline;
+the new backend commit changes tests only.
 
 ### September 21 roadmap maintenance — post-review execution order
 

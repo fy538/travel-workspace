@@ -21,7 +21,7 @@ promise that every kind is renderable. The client must continue to reject an
 unknown or unpromoted kind rather than route it through a generic card.
 
 This audit was refreshed on 2026-09-21 against the current lane tuple:
-workspace `3ba4e5e`, backend `306eb51a4`, and app `242d309f0`.
+workspace `3ba4e5e`, backend `bdc05c02f`, and app `242d309f0`.
 
 ## Current promotion boundary
 
