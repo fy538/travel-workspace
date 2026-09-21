@@ -33,7 +33,7 @@ and supplied-experience comparison is:
 |---|---|
 | Workspace | `f5d34e3` |
 | Backend | `5cfcae1c4` |
-| App | `ecdecaffe` |
+| App | `66079f456` |
 
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes.
@@ -99,6 +99,18 @@ sparse/pending/failure behavior and return. If the selected owner payload is
 not sufficient, the gap should remain explicit and the next supported seam
 should be chosen; no new generator, feed, store or route family should be
 introduced just to fill visual space.
+
+### September 21 standalone-only feed-state repair
+
+The prior workspace regression proved semantic-unit forwarding only when the
+mature feed also rendered cards. App `66079f456` closes the remaining state
+seam: a runtime envelope with an admitted renderable standalone unit and zero
+mature sections now remains a feed composition, so `PlacesSectionFeed` mounts
+the unit instead of showing an empty/unavailable hero. The app checks the same
+native semantic renderer registry before treating the rail as content. The
+focused presentation/workspace packet passes **40 tests**, TypeScript and
+targeted ESLint pass. No producer, route, store, rollout or policy surface
+changed.
 
 ### September 21 Home surface follow-up
 

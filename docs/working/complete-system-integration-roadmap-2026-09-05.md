@@ -57,9 +57,9 @@ native social-evidence treatment, exact social venue doors, Home
 editorial/aperture anatomy, Places editorial-cover anatomy, the native starter
 browse shelf, native branch/continuity/returned-understanding treatments, the
 honest balanced-field fallback, the native owner-backed evidence register, the
-supplied-experience comparison, and the plural social perspective in backend
-`5cfcae1c4` and app `ecdecaffe`; the latest workspace documentation
-receipt is `4aa1d7d`. This
+supplied-experience comparison, the plural social perspective, and the
+standalone-only Places feed-state repair in backend `5cfcae1c4` and app
+`66079f456`; the latest workspace documentation receipt is `b36a021`. This
 documentation
 advance does not merge, publish, enable or
 resume shared Integration/landing. Apply this
@@ -72,7 +72,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R04,
 R05 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after this receipt: workspace
-`d3ccf56`, backend `5cfcae1c4`, app `ecdecaffe`, all on
+`f5d34e3`, backend `5cfcae1c4`, app `66079f456`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
@@ -132,6 +132,17 @@ cannot silently bypass the native renderer registry. The focused runtime suite
 passes **9 tests** and the combined backend root packet passes **96 tests**;
 Ruff, formatting and compilation pass. This is a contract/connection repair,
 not new supply, a new route, a store, a rollout, or a design-parity claim.
+
+### September 21 standalone-only feed-state receipt
+
+The runtime rail could still be hidden by the native workspace state model: a
+valid standalone semantic unit with zero mature browse sections was classified
+as an empty or unavailable Places page before `PlacesSectionFeed` mounted. App
+`66079f456` makes a renderable standalone unit count as received content and
+uses the same native renderability registry as the final guard. The focused
+presentation/workspace packet passes **40 tests**, TypeScript and targeted
+ESLint pass. This is a receiving-state correction only; no producer, route,
+store, rollout or policy surface changed.
 
 ### Coordination ownership decision — keep group waiting in Home
 

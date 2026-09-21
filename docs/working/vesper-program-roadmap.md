@@ -54,13 +54,30 @@ completion. Retention/refinding is further along than context materially
 improving a later answer, possibility or action.
 
 **Current candidate tuple after this receipt:** workspace `f5d34e3`, backend
-`5cfcae1c4`, and app `ecdecaffe`, all on the isolated
+`5cfcae1c4`, and app `66079f456`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; it does not change the child-code tuple, merge the
 lane, enable a flag, or resume shared Integration/landing. The next substantive
 implementation remains the selected populated Home/Places value-depth package
 described below, with edge-matrix work continuing only where its required
 environment is available.
+
+## September 21 functional receipt — standalone Places rail survives an empty feed
+
+The backend/runtime and canonical workspace forwarding seam could still be
+hidden by the app's mature-feed state classifier: when `workspace_feed.sections`
+was empty, Places became an empty/unavailable root before `field_units` reached
+the feed renderer. App commit `66079f456` makes admitted, natively renderable
+standalone semantic units count as received Places content even when there are
+no mature browse cards. The client uses the existing semantic renderer registry
+as the renderability gate, so an unsupported kind cannot make an empty page look
+healthy.
+
+The focused presentation/workspace packet passes **40 tests**, TypeScript and
+targeted ESLint pass. This is a receiving-state correction, not new supply,
+producer, route, storage, rollout or design-parity work. A populated standalone
+unit now has a complete path to the canonical scroll; the next package still
+needs substantive full-scroll value and exact destination/return evidence.
 
 **September 21 afternoon execution rule:** the latest product behavior is the
 supplied-reading `Why this?` slice, mechanism-row adaptation, explicit
@@ -1472,13 +1489,13 @@ database mutations or simulator runs were performed for the rebaseline itself.
 Earlier runtime results below are carried evidence at their named scopes, not
 fresh certification of every path on the latest tuple. The tuple below was
 updated after the bounded Source recovery correction, receiving-surface
-implementation, and docs closeout.
+implementation, standalone Places feed-state repair, and docs closeout.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `d3ccf56` (current documentation receipt) | `b6e7014` |
+| Workspace | `b36a021` (current documentation receipt) | `b6e7014` |
 | Backend | `5cfcae1c4` | `a7c02cbe1` |
-| App | `ecdecaffe` | `e2e792913` |
+| App | `66079f456` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent
