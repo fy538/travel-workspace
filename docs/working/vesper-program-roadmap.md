@@ -51,7 +51,7 @@ refinding is further along than context materially improving a later answer,
 possibility or action.
 
 **Current candidate tuple after this receipt:** workspace `d28096549`, backend
-`cee8a4474`, and app `6c8b0cd14`, all on the isolated
+`f9fa3d82b`, and app `6c8b0cd14`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; it does not change the child-code tuple, merge the
 lane, enable a flag, or resume shared Integration/landing. The next substantive
@@ -63,7 +63,7 @@ available.
 supplied-reading `Why this?` slice, mechanism-row adaptation, explicit
 selected-trip fit, attributed friend-place preview, public-reading limits, and
 native social-evidence treatment and exact social venue doors in backend
-`cee8a4474` and app `6c8b0cd14`.
+`f9fa3d82b` and app `6c8b0cd14`.
 The next
 implementation should therefore be selected from an
 existing owner-backed Home/Places payload and add substantive received value
@@ -149,8 +149,8 @@ legacy rows retain their existing person/field door and never guess a venue
 from display text. No new social store, audience policy, notification,
 occasion model or route was added.
 
-Backend commit `cee8a4474` adds bounded venue refs/actions and contract
-coverage; app commit `6c8b0cd14` preserves duplicate-action test identity and
+Backend commits `cee8a4474` and `f9fa3d82b` add bounded venue refs/actions,
+legacy-row tolerance and contract coverage; app commit `6c8b0cd14` preserves duplicate-action test identity and
 verifies both exact venue doors. Backend focused Places contract/runtime tests
 pass (**39 tests**); app focused Places root/expiry tests pass (**27 tests**),
 with TypeScript and targeted ESLint clean. This is a completion improvement for
@@ -1314,7 +1314,7 @@ implementation, and docs closeout.
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
 | Workspace | `d28096549` (current documentation receipt) | `b6e7014` |
-| Backend | `cee8a4474` | `a7c02cbe1` |
+| Backend | `f9fa3d82b` | `a7c02cbe1` |
 | App | `6c8b0cd14` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,

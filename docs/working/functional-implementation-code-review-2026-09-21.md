@@ -32,7 +32,7 @@ and latest workspace documentation receipt is:
 | Repository | Current HEAD |
 |---|---|
 | Workspace | `d28096549` |
-| Backend | `cee8a4474` |
+| Backend | `f9fa3d82b` |
 | App | `6c8b0cd14` |
 
 This correction updates tuple identity only; it does not imply merge,
@@ -53,7 +53,8 @@ certify multiplayer supply, general social policy, or full visual parity.
 
 The same recipient-consented friend activity path now carries up to three
 owner-provided venue refs into the Places unit and exposes named exact-place
-actions. Name-only rows remain fail-closed. Backend `cee8a4474` and app
+actions. Name-only rows remain fail-closed. Backend `f9fa3d82b` (with the
+preceding venue-action commit `cee8a4474`) and app
 `6c8b0cd14` add the contract and native action regressions; the backend Places
 contract/runtime packet passes 39 tests and the app Places root/expiry packet
 passes 27 tests, with TypeScript and targeted ESLint clean. This closes an
