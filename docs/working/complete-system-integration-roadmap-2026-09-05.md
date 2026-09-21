@@ -89,7 +89,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R05
 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after this receipt: workspace
-`8eeb14c`, backend `e9ad26f7f`, app `9a597abd4`, all on
+`8eeb14c`, backend `014313121`, app `9a597abd4`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
@@ -128,11 +128,11 @@ without requiring an Occasion, using the existing commitment-scoped grant.
 Entries carry the existing grant and member owner refs, retain an exact
 Life-record destination, and the exact Life reader receives `lens=people`;
 other owner routes retain `lifeLens` as return context. Viewer-only
-material is not treated as social material. Backend `e9ad26f7f` and app
+material is not treated as social material. Backend `014313121` and app
 `76af974a0` and `9a597abd4` contain the implementation and focused
 regressions; the exact Life reader consumes `lens=people` while other owners
 retain `lifeLens` return context. The latest
-packet is **442** backend root tests, **46** Life route/projection/index
+packet is **442** backend root tests, **47** Life route/projection/index
 tests, and **54** Home/Places/Life native tests, with TypeScript and resource
 destination checks passing. This remains a bounded People-record seam, not a
 general social feed, person dossier, contribution inference, or design-parity

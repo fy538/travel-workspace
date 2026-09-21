@@ -59,15 +59,18 @@ design parity, merge, activation or publication.
 
 The Life adapter previously admitted shared Occasions to People but dropped
 their shared Outcomes, and it lacked a commitment-scoped grant when a shared
-Commitment had no Occasion. Backend `ef4167163` and `e9ad26f7f` admit those
+Commitment had no Occasion. Backend `ef4167163`, `e9ad26f7f` and
+`014313121` admit those
 Outcomes only when the viewer-relative Occasion has another active participant
 and admit non-private multi-participant Commitments through the existing
 commitment grant, preserving grant/member refs and leaving viewer-only
 material out of People.
 App `76af974a0` and `9a597abd4` prove that the native row opens the exact
 record while the exact Life reader receives `lens=people` (other owners keep
-`lifeLens` return context). The latest root packet passes **442** tests, the
-Life route/projection/index packet passes **46**, and the combined native root
+`lifeLens` return context); backend `014313121` also proves the depth route
+returns the same shared commitment with its exact commitment grant and
+destination. The latest root packet passes **442** tests, the
+Life route/projection/index packet passes **47**, and the combined native root
 packet passes **54**, with TypeScript and destination tests green. No new
 Occasion producer, audience policy, feed, or inference is introduced; broader
 attribution, media and social juxtaposition remain open.

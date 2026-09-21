@@ -52,7 +52,7 @@ Retention/refinding is further along than context materially improving a later
 answer, possibility or action.
 
 **Current candidate tuple after this receipt:** workspace `8eeb14c`, backend
-`e9ad26f7f`, and app `9a597abd4`, all on the isolated
+`014313121`, and app `9a597abd4`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; the child-code tuple now includes the Places typed
 notice bridge, native sender-withdrawal proof, and shared Home/Places semantic
@@ -157,12 +157,12 @@ relabeled as social material. This is an additive read/return seam; it does not
 create an Occasion producer, person dossier, activity feed, new audience
 policy, or contribution inference.
 
-Backend commits `ef4167163` and `e9ad26f7f` carry the adapter and route
+Backend commits `ef4167163`, `e9ad26f7f` and `014313121` carry the adapter and route
 regressions; app
 commits `76af974a0` and `9a597abd4` prove the native entry restores the exact
 Life reader with `lens=people` (while other owners retain `lifeLens` return
 context). The latest backend root packet passes **442 tests**;
-the Life route/projection/index packet passes **46 tests**; the combined
+the Life route/projection/index packet passes **47 tests**; the combined
 Home/Places/Life native packet passes **54 tests**; and TypeScript plus the
 resource-destination packet pass. The result proves a bounded structured
 People record, not broader media/contribution richness, names, social
@@ -1713,7 +1713,7 @@ source/original distinction, and docs closeout.
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
 | Workspace | `8eeb14c` (verification baseline; later docs are receipts) | `b6e7014` |
-| Backend | `e9ad26f7f` | `a7c02cbe1` |
+| Backend | `014313121` | `a7c02cbe1` |
 | App | `9a597abd4` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
