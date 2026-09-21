@@ -93705,8 +93705,48 @@
       "PlacesReadingItem": {
         "properties": {
           "dossier_id": {
-            "type": "integer",
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Dossier Id"
+          },
+          "source_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "primitive_type": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 100,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Primitive Type"
           },
           "title": {
             "type": "string",
@@ -93771,10 +93811,10 @@
         },
         "type": "object",
         "required": [
-          "dossier_id",
           "title"
         ],
-        "title": "PlacesReadingItem"
+        "title": "PlacesReadingItem",
+        "description": "One reading door backed by either a legacy dossier or a Place Source.\n\nDossiers remain the compatibility corpus.  Public Place primitives use\ntheir immutable Source and subject refs so the root can open the existing\nexact owner read rather than pretending the primitive is a dossier."
       },
       "PlacesReadingPage": {
         "properties": {

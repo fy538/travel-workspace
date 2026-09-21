@@ -1682,3 +1682,35 @@ retire per package. No automatic monitoring, paid execution, deployment,
 publication, production Source activation or Social policy expansion is
 authorized by this plan. Historical dispatches and receipts stay in Git and
 existing lane records; this overview owns only the current sequence.
+
+## September 20 functional implementation receipt — Places public Source readings
+
+The next Home/Places supply seam is now implemented in the isolated functional
+lane. Places Reading doors can carry either the retained dossier identity or an
+exact accepted public `place_content_primitive` Source plus its canonical Place
+subject. When the existing primitive-read and `app.place.detail` control-plane
+flags are enabled, the Reading producer reads bounded current public Sources
+through `list_current_public_place_content_sources`, projects only claim and
+interpretation metadata into the existing reading card, and sends selection to
+the already-supported exact Place owner read. No generator, provider, second
+content store, personal-history inference or new card family was added. Legacy
+dossier reading behavior remains compatible and the default-off gates remain
+unchanged.
+
+The mobile root card and Reading collection preserve the Source revision/entity
+identity and open `/place/[placeSlug]` through the existing exact-reader route;
+stale or malformed selections still fail closed. `places_card_resource_ref` and
+the shared value requirements recognize the Source owner rather than treating it
+as a dossier. Focused backend Places/Home coverage is **66 passed**; the focused
+mobile Places/route/object suite is **397 passed** and TypeScript passes. The
+standard projection command remains blocked by the repository's pre-existing
+expired API-policy entries and one unrelated intake-media missing-consumer
+finding; derived snapshots were refreshed for this additive schema change using
+an explicitly temporary local policy copy, with the committed policy untouched.
+
+This is a committed candidate, not live populated supply, native visual
+acceptance, disposable-Postgres evidence, merge/publication or rollout
+activation. The next package should exercise this Source-backed reading with a
+real accepted record in the combined runtime, then choose the next uncovered
+Home/Places or bounded social-receiving seam. Do not widen the primitive feature
+flags or add a new generator/store as part of this package.

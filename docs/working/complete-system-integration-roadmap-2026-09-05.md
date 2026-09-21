@@ -5416,3 +5416,24 @@ durable owner. It is continued as implementation, with these constraints:
 
 This records implementation direction, not E3 completion. Product policy,
 source activation, Integration landing and publication remain separate.
+
+### September 20 continuation — public Place Source reading supply
+
+The isolated functional lane now closes the next concrete Home/Places gap:
+accepted public Place-content Sources can reach the Places Reading root and its
+collection destination without masquerading as legacy dossiers. The additive
+contract carries an exact Source revision, canonical Place entity and primitive
+type; the existing exact reader remains the only prose owner. Root and
+collection navigation preserve context/return ancestry and fail closed on
+missing or stale identity. Serving remains behind the existing default-off
+primitive/control-plane flags, so this change does not silently activate public
+content or provider work.
+
+Evidence: backend focused Places/collections/sections/Home **66 passed**; mobile
+Places, route, object and root suites **397 passed**; TypeScript passed. The
+regular projection gate still reports the known policy backlog (expired review
+dates plus one unrelated missing consumer); the committed policy was not
+relaxed. Combined runtime, real accepted database supply, native visual QA,
+landing and rollout activation remain open. The next integration check should
+use a real admitted Source and verify Home/Places → exact Place reader → return,
+not reopen the contract or create another content system.
