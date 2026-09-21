@@ -32,8 +32,8 @@ and supplied-experience comparison is:
 | Repository | Current HEAD |
 |---|---|
 | Workspace | `f5d34e3` |
-| Backend | `5cfcae1c4` |
-| App | `66079f456` |
+| Backend | `953e2bc69` |
+| App | `4c507e1c4` |
 
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes.
@@ -111,6 +111,21 @@ native semantic renderer registry before treating the rail as content. The
 focused presentation/workspace packet passes **40 tests**, TypeScript and
 targeted ESLint pass. No producer, route, store, rollout or policy surface
 changed.
+
+### September 21 addressed Place-contribution region
+
+The relationship owner already delivered recipient-authorized Place notes to
+Home one at a time. Backend `953e2bc69` adds the admitted
+`people_authored_region` candidate when at least two eligible notes are present;
+the comparison keeps each sender's exact words and grant/handoff revision and
+emits one exact `places.open_entity` action per note. A single note retains the
+existing `people_note_door` path, and eligibility is checked before grouping.
+App `4c507e1c4` adds the native **Addressed to you** renderer and registry
+promotion. Backend root-projection tests pass **438 tests**; focused Home
+renderer/smoke tests pass **32 tests**, TypeScript passes, and targeted ESLint
+has no errors (the existing max-lines warning remains). No new social store,
+audience policy, notification, generator or route was added. Real relationship
+backing and native/device evidence are still required for a broader receipt.
 
 ### September 21 Home surface follow-up
 

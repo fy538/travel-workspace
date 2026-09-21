@@ -54,7 +54,7 @@ completion. Retention/refinding is further along than context materially
 improving a later answer, possibility or action.
 
 **Current candidate tuple after this receipt:** workspace `f5d34e3`, backend
-`5cfcae1c4`, and app `66079f456`, all on the isolated
+`953e2bc69`, and app `4c507e1c4`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; it does not change the child-code tuple, merge the
 lane, enable a flag, or resume shared Integration/landing. The next substantive
@@ -78,6 +78,25 @@ targeted ESLint pass. This is a receiving-state correction, not new supply,
 producer, route, storage, rollout or design-parity work. A populated standalone
 unit now has a complete path to the canonical scroll; the next package still
 needs substantive full-scroll value and exact destination/return evidence.
+
+## September 21 functional receipt — addressed Place contributions compose on Home
+
+Home already received one recipient-authorized Place contribution as a
+`people_note_door`. Backend commit `953e2bc69` now composes two or more eligible
+contributions into the admitted `people_authored_region` comparison form. Each
+case keeps the sender's exact words and attribution, while each action carries
+its own exact Place and handoff references. A single contribution retains the
+existing note-door behavior; revoked, expired, misaddressed or malformed
+material is excluded before composition.
+
+App commit `4c507e1c4` promotes the existing Home renderer registry and adds a
+native **Addressed to you** treatment using the shared composition renderer and
+typed action callbacks. Backend root-projection tests pass **438 tests**;
+focused Home renderer/smoke tests pass **32 tests**, TypeScript passes, and
+targeted ESLint reports no errors (only the existing Home renderer max-lines
+warning). This is a bounded social-receiving/value-depth improvement: no new
+store, audience policy, notification, generator or route was introduced. A
+real relationship-backed native/device receipt remains outside this change.
 
 **September 21 afternoon execution rule:** the latest product behavior is the
 supplied-reading `Why this?` slice, mechanism-row adaptation, explicit
@@ -1506,7 +1525,7 @@ and ownership before execution; this tuple is a dated observation.
 
 | Capability | Implemented / recorded evidence | Remaining product or evidence boundary |
 | --- | --- | --- |
-| Home / Places | Owner-backed Save/readback, public Place and child-entity readings, consented place pulls, nearby open-now options, supplied experience comparisons, plural social perspectives, saved-place closure/reopening dismissal; named local API/iOS flows | Varied worthwhile full-scroll supply, broader section/design breadth, selection quality across situations, complete failure/empty states and visual parity |
+| Home / Places | Owner-backed Save/readback, public Place and child-entity readings, consented place pulls, nearby open-now options, supplied experience comparisons, plural social perspectives, addressed Place-contribution region, saved-place closure/reopening dismissal; named local API/iOS flows | Varied worthwhile full-scroll supply, broader section/design breadth, selection quality across situations, complete failure/empty states and visual parity |
 | Life | Retained text originals, exact refinding/return, explicit place-bound sources and organized period groups; named local API/iOS flows | Broader media/corpus and People/Threads experience, later permitted reuse, indexed serving cutover and Atlas retirement |
 | Social | Existing-owner venue-bound pulls and one-recipient original-text receiving through Life/Home; named local API/iOS flows; sender-control authority rehearsal | Casual media/group/gathering breadth and useful juxtaposition; no new sharing or friend-source AI-use policy is adopted here; R04 native UI evidence remains |
 | Practical/live engine | Current open-now facts and saved-place changes affect surfaces; explicit fit contract and private stop-assistance/reviewed Send implemented | Provider-backed fit rehearsal, wider fresh-world coverage, purpose-preserving adaptation and accepted watching mandates; R09 code correction is complete, persisted/native timezone evidence remains |

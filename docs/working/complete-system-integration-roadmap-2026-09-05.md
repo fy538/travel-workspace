@@ -57,9 +57,10 @@ native social-evidence treatment, exact social venue doors, Home
 editorial/aperture anatomy, Places editorial-cover anatomy, the native starter
 browse shelf, native branch/continuity/returned-understanding treatments, the
 honest balanced-field fallback, the native owner-backed evidence register, the
-supplied-experience comparison, the plural social perspective, and the
-standalone-only Places feed-state repair in backend `5cfcae1c4` and app
-`66079f456`; the latest workspace documentation receipt is `b36a021`. This
+supplied-experience comparison, the plural social perspective, the
+standalone-only Places feed-state repair, and the addressed Place-contribution
+region in backend `953e2bc69` and app `4c507e1c4`; the latest workspace
+documentation receipt is `b36a021`. This
 documentation
 advance does not merge, publish, enable or
 resume shared Integration/landing. Apply this
@@ -72,7 +73,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R04,
 R05 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after this receipt: workspace
-`f5d34e3`, backend `5cfcae1c4`, app `66079f456`, all on
+`f5d34e3`, backend `953e2bc69`, app `4c507e1c4`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
@@ -143,6 +144,21 @@ uses the same native renderability registry as the final guard. The focused
 presentation/workspace packet passes **40 tests**, TypeScript and targeted
 ESLint pass. This is a receiving-state correction only; no producer, route,
 store, rollout or policy surface changed.
+
+### September 21 addressed Place-contribution region receipt
+
+Home's existing relationship owner already supplied recipient-authorized Place
+contributions, but multiple contributions were emitted as competing note doors.
+Backend `953e2bc69` composes two or more eligible notes into the admitted
+`people_authored_region` comparison form while preserving each sender's exact
+words, grant scope and handoff revision. The native Home renderer in app
+`4c507e1c4` presents the region as **Addressed to you** and keeps one exact
+Places action per contribution. A single note retains the prior note-door
+path; revoked, expired or misaddressed material is filtered before grouping.
+The backend root-projection packet passes **438 tests** and the focused Home
+renderer/smoke packet passes **32 tests**; TypeScript and targeted ESLint have
+no errors. No new store, audience policy, notification, generator or route was
+introduced, and real relationship-backed device evidence remains open.
 
 ### Coordination ownership decision — keep group waiting in Home
 
