@@ -23,10 +23,11 @@ in this window are included; author dates alone do not define the change set.
 Reviewed checkout: `/Users/feihuyan/travel-workspace--functional-implementation-2026-09-20`.
 All three repositories use `codex/functional-implementation-2026-09-20`.
 
-### September 21 current tuple correction
+### September 21 historical review baseline
 
-The table below is the historical baseline for the 12-hour review. The current
-clean candidate after the Home timezone correction, source retry-budget proof,
+The table below is the historical baseline for the 12-hour review. It is kept
+to preserve the review's original evidence boundary. The clean candidate after
+the Home timezone correction, source retry-budget proof,
 supplied-experience comparison, sequence scale hardening, practical catalog
 coverage, typed notice admission, native sender-withdrawal proof and semantic
 state treatment is:
@@ -40,9 +41,11 @@ state treatment is:
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes. Earlier
 runtime-boundary receipts at workspace `0fd06b7` and `f127543` remain
-historical; the current workspace receipt observed before this maintenance is
-`f8fa48a`, and the current child
-heads are the Life People implementation/test commits shown above.
+historical. The subsequent candidate is workspace `c586de3`, backend
+`bdc05c02f`, and app `242d309f0`; workspace `c586de3` records the disposable
+owner-loop and renderer-ledger updates, while backend `bdc05c02f` adds the
+canonical Home same-Place composition proof. Those later receipts do not
+retroactively widen this review's evidence claims.
 
 ### September 21 Source lease-renewal repair
 
