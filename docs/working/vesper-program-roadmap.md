@@ -2519,3 +2519,30 @@ owner-authorized retained source, not whole-history search, semantic body
 indexing, shared-original breadth, production flag activation, visual parity,
 or release readiness. Continue with another supported producer → owner read →
 destination → return seam and keep the refinding bounds explicit.
+
+## September 21 functional implementation receipt — native recipient original delivery
+
+The approved one-recipient original-sharing seam now has a real native
+recipient proof. Backend commit `212c185cb` adds a disposable fixture using
+the existing Relationships owner: a temporary sender, active pair
+conversation, verified inline text source, and exact one-recipient delivery
+to the local QA account. It adds no audience model, copy store, notification
+path, or new custody authority.
+
+App commit `c3471c169` adds `.maestro/86-life-original-delivery.yaml`, its
+real-API runner, and three static contracts. With the UUID relationship and
+Life-refind gates enabled only in the local internal development build, the
+iOS simulator flow passed: Life showed the current shared original, the
+recipient opened the exact original-material reader, the text bytes rendered,
+Back returned to the same Life results, and cleanup withdrew the delivery and
+temporary sender/source rows. The post-cleanup recipient list no longer
+contained the delivery.
+
+Evidence: **18** combined static mobile contracts, TypeScript, Python
+compile/Ruff/format checks, backend commit hooks, and the real native flow
+passed on simulator `D7C8FEF4-237B-4347-841C-6FE920BFABFA`. This closes the
+native recipient-side original-read/return boundary for one retained text
+source, not binary-media breadth, guest/group audiences, onward sharing,
+production flag activation, visual parity, or release readiness. Keep the
+existing exact-source, current-custody and one-recipient bounds while moving
+to the next supported producer or consequence seam.
