@@ -59,13 +59,13 @@ documentation drift that had called several already-renderable kinds "dark";
 it does not claim source admission, recurring content supply, runtime
 full-scroll quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
-**Current candidate tuple after the latest rebaseline:** workspace `c586de3`,
-backend `96d264c41`, and app `242d309f0`, all on the isolated
+**Current candidate tuple after the latest rebaseline:** workspace `494df01`,
+backend `f0826e223`, and app `242d309f0`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The latest workspace
 advance records the disposable owner-loop verification and renderer-ledger
 correction; the backend advance adds the canonical Home same-Place composition
-proof plus the persisted public-Place HTTP readback. The child-code tuple also
-includes the Places typed notice bridge,
+proof, persisted public-Place HTTP readback, and persisted Life graph HTTP
+readback. The child-code tuple also includes the Places typed notice bridge,
 native sender-withdrawal proof, shared Home/Places semantic-state treatment,
 and the explicit People-bound anchor index repair. Nothing is merged to main,
 published, flag-activated, or resumed in shared Integration/landing. The next
@@ -74,7 +74,7 @@ or supplied Life/social downstream value, with R05/R09 edge work continuing
 only where its required environment is available.
 
 The latest workspace documentation head before this documentation receipt is
-`c586de3`; backend and app code are `96d264c41` and `242d309f0`. The backend
+`494df01`; backend and app code are `f0826e223` and `242d309f0`. The backend
 advance is integration-test coverage only; it does not alter production
 behavior or release state.
 
@@ -130,6 +130,26 @@ Fixtures are removed after each case. This closes the disposable-Postgres/API
 boundary for the supplied public-Place sequence; the remaining gap is supply
 breadth and full default-portfolio/native experience quality, not another
 content storage or route abstraction.
+
+### September 21 persisted Life graph HTTP readback
+
+Backend `f0826e223` adds a fresh disposable-PostgreSQL integration proof for
+the existing Life graph owner. A Plan created through the real graph command
+reaches both `/api/root-projections/v1/life` and
+`/api/root-projections/v1/life/record`; the compact root preserves the Plan
+title and exact `/you/life-record` destination, while the depth entry preserves
+the viewer-owned Life ref and the same Plan identity. Intake and Atlas readers
+are isolated as empty owners for this bounded test; the graph projection, Life
+corpus assembly, route fan-in and HTTP serialization remain real. The new case
+passes on a freshly migrated database, and the offline Life route packet passes
+**30 tests**.
+
+This closes the persisted graph-to-Life HTTP boundary for one existing Plan
+family. It does not establish full corpus breadth, People/Threads serving,
+organization coverage, native/device acceptance, visual parity, or later
+permitted context benefit. The next Life package should therefore be a useful
+existing-authority downstream result or a sparse/pending/failure treatment,
+not another route-only happy path.
 
 ### September 21 roadmap maintenance — post-review execution order
 

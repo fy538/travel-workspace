@@ -150,8 +150,27 @@ supplied public sequence. It does not establish broad recurring supply, a
 full default-portfolio latency run, native/device acceptance, visual parity or
 provider-backed generation.
 
+### September 21 persisted Life graph HTTP readback
+
+Backend `f0826e223` adds a fresh disposable-PostgreSQL proof for the existing
+Life graph owner. A Plan created through the real graph command reaches both
+`/api/root-projections/v1/life` and `/api/root-projections/v1/life/record`;
+the compact root preserves the Plan title and exact `/you/life-record`
+destination, and the depth entry preserves the viewer-owned Life ref and Plan
+identity. Intake and Atlas are isolated as empty owners for this bounded test;
+graph projection, Life corpus assembly, route fan-in and HTTP serialization
+remain real. The new case passes on a freshly migrated database, and the
+offline Life route packet passes **30 tests**.
+
+This closes the persisted graph-to-Life HTTP boundary for one existing Plan
+family. It does not establish full corpus breadth, People/Threads serving,
+organization coverage, native/device acceptance, visual parity or later
+permitted context benefit. The next Life package should be an existing-
+authority downstream result or a sparse/pending/failure treatment, not another
+route-only happy path.
+
 Current candidate tuple after the latest rebaseline: workspace
-`c586de3`, backend `96d264c41`, app `242d309f0`, all on
+`494df01`, backend `f0826e223`, app `242d309f0`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable

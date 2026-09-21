@@ -41,11 +41,12 @@ state treatment is:
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes. Earlier
 runtime-boundary receipts at workspace `0fd06b7` and `f127543` remain
-historical. The subsequent candidate is workspace `c586de3`, backend
-`96d264c41`, and app `242d309f0`; workspace `c586de3` records the disposable
+historical. The subsequent candidate is workspace `494df01`, backend
+`f0826e223`, and app `242d309f0`; workspace `494df01` records the disposable
 owner-loop and renderer-ledger updates, while backend `96d264c41` adds the
 canonical Home same-Place composition proof plus the persisted public-Place
-HTTP readback. Those later receipts do not retroactively widen this review's
+HTTP readback, and backend `f0826e223` adds the persisted Life graph HTTP
+readback. Those later receipts do not retroactively widen this review's
 historical evidence claims.
 
 ### September 21 persisted public-Place HTTP readback
@@ -66,6 +67,24 @@ Home/Places/content packet passes **106 tests**. This closes the disposable
 Postgres/API boundary for this supplied family, not recurring supply, the full
 default-portfolio latency envelope, native/device acceptance, visual parity or
 provider-backed generation.
+
+### September 21 persisted Life graph HTTP readback
+
+Backend `f0826e223` adds one fresh disposable-PostgreSQL integration case for
+the existing Life graph owner. A Plan created through the real graph command
+reaches both Life HTTP routes; the compact root preserves its title and exact
+`/you/life-record` destination, and the depth entry preserves the viewer-owned
+Life ref and Plan identity. Intake and Atlas are empty test owners so the
+graph projection, Life corpus assembly, route fan-in and serialization remain
+real. The connected case passes on a freshly migrated database; the offline
+Life route packet passes **30 tests**.
+
+This closes the persisted graph-to-Life HTTP boundary for one existing Plan
+family only. It does not prove complete corpus breadth, People/Threads serving,
+organization coverage, native/device acceptance, visual parity or later
+permitted context benefit. The next Life work should deliver an existing-
+authority downstream result or an honest sparse/pending/failure state rather
+than another route-only happy-path receipt.
 
 ### September 21 Source lease-renewal repair
 
