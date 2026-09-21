@@ -108,7 +108,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R05
 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple at the last code review: workspace
-`f8fa48a`, backend `9d52e71b3`, app `242d309f0`, all on
+`f8fa48a`, backend `306eb51a4`, app `242d309f0`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
@@ -118,9 +118,10 @@ The [review ledger](functional-implementation-code-review-2026-09-21.md) remains
 open for the remaining authority, queue and edge-case evidence. R04 and R09
 are code-fixed; R04 now also has native sender-control evidence, while R09's
 persisted/native timezone edge matrix remains open. R05's exhausted-final-lease
-recovery is code-fixed and covered by focused tests; the disposable-Postgres
-and transient-provider rehearsals pass, and a current disposable Source
-workflow completed on the registered Arq/Redis worker with `producer_silence`.
+recovery and in-flight lease renewal are code-fixed and covered by focused
+tests; the disposable-Postgres and transient-provider rehearsals pass, and a
+current disposable Source workflow completed on the registered Arq/Redis
+worker with `producer_silence`.
 A real process-restart queue rehearsal is still required: the job completed
 before the worker could be interrupted, so this run does not prove restart
 safety.
@@ -2262,9 +2263,9 @@ Save/readback, Life source return and Places social receiving paths already pass
 on the isolated device.
 Source worker registration and its gated deterministic due-work recovery sweep
 are implemented behind the same named cohort; real Arq/Redis wrapper execution,
-current-work completion, and expired due-work recovery now pass. Still-current
-restart recovery, disabled-job handling and transient failure remain
-unverified.
+current-work completion, expired due-work recovery and the in-flight
+lease-renewal code path now pass focused evidence. Still-current restart
+recovery and live transient-provider failure/retry remain unverified.
 
 | Package | State at September 21 candidate | Next concrete action |
 | --- | --- | --- |

@@ -34,7 +34,7 @@ state treatment is:
 | Repository | Current HEAD |
 |---|---|
 | Workspace | `f8fa48a` (docs head observed before this maintenance receipt) |
-| Backend | `9d52e71b3` |
+| Backend | `306eb51a4` |
 | App | `242d309f0` |
 
 This correction updates tuple identity only; it does not imply merge,
@@ -43,6 +43,20 @@ runtime-boundary receipts at workspace `0fd06b7` and `f127543` remain
 historical; the current workspace receipt observed before this maintenance is
 `f8fa48a`, and the current child
 heads are the Life People implementation/test commits shown above.
+
+### September 21 Source lease-renewal repair
+
+Backend `306eb51a4` closes a code-level reliability gap in the controlled
+Source worker: the existing deployment lease is renewed while the bounded
+provider/readback executor runs, and renewal remains fenced by the durable
+workflow owner. The focused Source worker/workflow/contract/canonical/runtime
+packet passes **79 tests**, Ruff/formatting and backend pre-commit checks pass.
+The repair prevents an in-flight execution from being mistaken for abandoned
+work merely because it approaches the original lease window.
+
+This is not process-restart evidence. The worker still needs a real interrupted
+process recovered by the disposable queue/database, plus a live transient
+provider-failure/retry case, before R05 can be marked closed.
 
 ### September 21 latest-candidate regression packet
 
@@ -494,7 +508,7 @@ Focused correction receipts on the candidate tuple:
 | R02 | P2 | Places reading bypasses active release/cohort eligibility | Content / Places | Fixed; governed outsider/cohort matrix still required |
 | R03 | P2 | Pull-consent revocation leaves attached original readable | Relationships read policy | Fixed; disposable-Postgres attached-read regression passes |
 | R04 | P2 | Sender loses withdrawal controls after relationship disconnect | Mobile original sharing | Code-fixed; real API and native sender-control rehearsals pass, including revoked readback; broader audiences/media remain out of scope |
-| R05 | P2 | Source worker throws while serializing its actual result type | Worker adapter | Serializer and exhausted-lease recovery code fixed; 29 focused tests, 25 disposable-Postgres tests, and real wrapper/expired recovery pass; only process-restart queue evidence remains open |
+| R05 | P2 | Source worker throws while serializing its actual result type | Worker adapter | Serializer, exhausted-lease recovery and in-flight lease renewal code fixed; 79 focused Source tests, 25 disposable-Postgres tests, and real wrapper/expired recovery pass; process-restart and live transient-provider evidence remain open |
 | R06 | P2 | Nine expanded place IDs silently remove Home public supply | Home / Places scope | Fixed with 8-ID batching; nine-ID scale regression passes; deployed scale/cost still unmeasured |
 | R07 | P2 | Site, accommodation and experience fit checks cannot succeed | Practical assessment | Fixed; positive catalog-kind owner-adapter matrix passes |
 | R08 | P2 | Primary Plan details entrance hides arrangement information | Plan / object navigation | Fixed; typecheck passes |

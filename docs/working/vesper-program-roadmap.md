@@ -52,7 +52,7 @@ Retention/refinding is further along than context materially improving a later
 answer, possibility or action.
 
 **Current candidate tuple at the last code review:** workspace `f8fa48a`,
-backend `9d52e71b3`, and app `242d309f0`, all on the isolated
+backend `306eb51a4`, and app `242d309f0`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; the child-code tuple now includes the Places typed
 notice bridge, native sender-withdrawal proof, shared Home/Places semantic
@@ -90,6 +90,21 @@ disposable queue/database/device that can produce the named evidence; an
 unavailable environment is unverified, not a reason to serialize independent
 product work. The dedicated Integration/landing lane remains paused. This
 maintenance note is a queue correction, not a new architecture program.
+
+### September 21 Source worker lease-renewal repair
+
+Backend `306eb51a4` now renews the existing durable Source workflow lease
+while the bounded provider/readback executor is running, using the deployment
+envelope's lease duration and renewal cadence. Renewal remains owner-fenced;
+database renewal errors allow the existing completion/recovery fence to decide
+the outcome rather than fabricating success. The focused Source worker,
+workflow, contract, canonical-executor and runtime packet passes **79 tests**;
+backend pre-commit checks pass.
+
+This closes the code-level lease-renewal gap, but not the remaining R05
+process-interruption/restart rehearsal or a live transient-provider retry
+receipt. Those remain environment-dependent evidence tasks and do not justify
+activating the worker or widening generation scope.
 
 ## September 21 post-execution rebaseline — after the 12-hour functional window
 
@@ -1765,7 +1780,7 @@ source/original distinction, and docs closeout.
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
 | Workspace | `f8fa48a` (docs head observed before this maintenance receipt) | `b6e7014` |
-| Backend | `9d52e71b3` | `a7c02cbe1` |
+| Backend | `306eb51a4` | `a7c02cbe1` |
 | App | `242d309f0` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
