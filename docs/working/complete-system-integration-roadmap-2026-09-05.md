@@ -27,6 +27,39 @@ depends_on:
 
 ## Current engineering tranche — September 9
 
+## September 21 native/runtime receipt — Home Save → Places consequence and readback
+
+The functional lane now has a real-owner native proof for the current
+Home/Places destination seam. A disposable Postgres fixture and local API
+provided one private Save for the exact venue **Vesper Rehearsal Bookshop**;
+the iOS simulator rendered the governed four-root shell and the real Home
+projection. The rehearsal opened Home's `save.<id>` door, read the exact
+Places venue, tapped the native save control, and then checked canonical state
+outside the UI before restoring the fixture:
+
+- the Places reader exposed the native accessibility label
+  **Remove place from saved places**;
+- after the tap, `/api/users/{user}/saves` contained no matching venue and
+  Home no longer represented that venue;
+- the owner writer restored the Save, and a second native readback reopened
+  the exact venue with its saved state and non-empty reading.
+
+Evidence: `travel-app/scripts/maestro/run-home-places-real-save-readback.sh`
+passed preflight, unsave and restored readback on simulator
+`D7C8FEF4-237B-4347-841C-6FE920BFABFA`; the harness contract passed **3/3**
+Node tests and app `npm run typecheck` passed. App commit `c05d0827b`
+makes the runner honor isolated API ports, removes its checkout `.env`
+assumption, aligns both flows with the native label, and disables retries for
+the canonical-state mutation. The disposable fixture was restored after the
+run; no production flag, dataset or shared runtime was changed.
+
+This is a native receiving/consequence proof for one supported Save path. It
+does not establish Claude-design visual parity, general Home/Places coverage,
+Life original-byte return, multiplayer media/group delivery, rollout or
+release readiness. The next useful package remains a supported return/action
+seam—preferably Life exact source return/refind—or another real supplied
+Home/Places variant, not a new generator, social store or route family.
+
 ## September 20 functional implementation receipts
 
 The current isolated implementation lane has now delivered four bounded,

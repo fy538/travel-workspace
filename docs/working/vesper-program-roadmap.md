@@ -35,6 +35,42 @@ runtime, landing, publishing or pending product agreement is activated.
 Earlier dispatch and review entries below preserve the execution history.
 Section 7 preserves the older acceptance scope as history.
 
+## September 21 native/runtime receipt — Home Save → Places consequence and readback
+
+The first real-owner native rehearsal for the current Home/Places receiving
+surface now passes in the isolated functional lane. The lane used the running
+local API, disposable Postgres fixture and iOS simulator rather than mocked
+Home data. The existing rehearsal provisioned one private Save for the named
+venue **Vesper Rehearsal Bookshop**, then exercised the real app:
+
+- Home admitted the exact `save.<id>` destination and opened the canonical
+  Places venue reader;
+- the native save control exposed the actual accessibility contract,
+  **Remove place from saved places**, and the tap completed the unsave;
+- the runner read the canonical `/api/users/{user}/saves` owner state and
+  Home projection, confirming the venue Save and its Home representation were
+  absent after the action;
+- the fixture was restored through the owner writer, and the readback flow
+  reopened the restored venue from Home with the saved state and non-empty
+  Places reading.
+
+Evidence: `run-home-places-real-save-readback.sh` passed all three flows
+(preflight, destructive unsave, restored readback) on simulator
+`D7C8FEF4-237B-4347-841C-6FE920BFABFA`; the focused runner contract had
+**3/3 tests passed** and `npm run typecheck` passed. App commit
+`c05d0827b` makes the rehearsal lane-port aware, removes its implicit `.env`
+requirement, prevents retries of the destructive step, and aligns both flows
+with the native accessibility label. The canonical fixture was restored and
+no production flag or dataset was changed.
+
+This closes one native receiving/consequence boundary. It does not prove
+visual parity with the Claude designs, broad Places/Home corpus coverage,
+Life original-byte return, multiplayer media/group behavior, production flag
+activation, merge/publication or release readiness. The next bounded work
+should be another supported return/action seam (preferably Life's exact
+source return/refind) or a real supplied Home/Places content variant; do not
+respond by adding a new generator, social store or route family.
+
 ## September 21 functional implementation receipt — consented Places social read
 
 The next bounded social seam is now implemented in the same isolated lane. The
