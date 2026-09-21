@@ -2546,3 +2546,28 @@ source, not binary-media breadth, guest/group audiences, onward sharing,
 production flag activation, visual parity, or release readiness. Keep the
 existing exact-source, current-custody and one-recipient bounds while moving
 to the next supported producer or consequence seam.
+
+## September 21 functional implementation receipt — native Home original delivery
+
+The one-recipient original-sharing seam now reaches Home as well as Life.
+Backend commit `b08f28bf1` maps `relationship.original_delivery` through the
+shared owner-read compiler and canonical relationship reader, preserving
+recipient, active-status, expiry, represented-at, and exact-source checks.
+App commit `1142de74f` adds the real-API Maestro flow and runner
+`87-home-original-delivery`; it introduces no new audience, copy, notification,
+or custody system.
+
+The local API/iOS simulator rehearsal passed after restarting Metro with a
+clean governed-shell bundle: Home showed the current addressed original, the
+recipient opened the exact material reader, the inline text rendered, Back
+returned to the same Home unit, and cleanup withdrew the delivery and temporary
+sender/source rows. Evidence: **67** focused backend owner-read/portfolio
+tests, **6** static mobile contracts, TypeScript, Python compile/Ruff, and the
+real native flow passed on simulator
+`D7C8FEF4-237B-4347-841C-6FE920BFABFA`.
+
+This closes Home placement and exact return for one retained text original,
+not binary-media breadth, guest/group audiences, onward sharing, notification
+delivery, production flag activation, visual parity, or release readiness.
+Keep the exact-source, current-custody, one-recipient bounds and continue with
+the next supported producer → owner read → destination → return seam.
