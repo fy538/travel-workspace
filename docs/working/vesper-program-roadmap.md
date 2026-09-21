@@ -52,7 +52,7 @@ Retention/refinding is further along than context materially improving a later
 answer, possibility or action.
 
 **Current candidate tuple after this receipt:** workspace `8eeb14c`, backend
-`ef4167163`, and app `76af974a0`, all on the isolated
+`e9ad26f7f`, and app `76af974a0`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; the child-code tuple now includes the Places typed
 notice bridge, native sender-withdrawal proof, and shared Home/Places semantic
@@ -148,17 +148,20 @@ object architecture in response to these passing counts.
 
 The Life adapter now admits a shared Outcome into the People lens when its
 existing owner projection ties it to an Occasion with at least one other active
-participant. The entry retains the Occasion audience grant, attributed member
+participant. It also admits a non-private shared Commitment with multiple
+authorized participants even when no Occasion exists, using the existing
+commitment-scoped grant. Entries retain their audience grant, attributed member
 owner refs, exact Life-record destination and the copy `Shared with your
-people`. Viewer-only Occasions and their Outcomes remain out of People rather
-than being relabeled as social material. This is an additive read/return seam;
-it does not create an Occasion producer, person dossier, activity feed, new
-audience policy, or contribution inference.
+people`. Viewer-only material remains out of People rather than being
+relabeled as social material. This is an additive read/return seam; it does not
+create an Occasion producer, person dossier, activity feed, new audience
+policy, or contribution inference.
 
-Backend commit `ef4167163` carries the adapter and route regressions; app
+Backend commits `ef4167163` and `e9ad26f7f` carry the adapter and route
+regressions; app
 commit `76af974a0` proves the native entry preserves `lifeLens=people` when it
 opens the exact record. The latest backend root packet passes **442 tests**;
-the Life route/projection/index packet passes **45 tests**; the combined
+the Life route/projection/index packet passes **46 tests**; the combined
 Home/Places/Life native packet passes **54 tests**; and TypeScript plus the
 resource-destination packet pass. The result proves a bounded structured
 People record, not broader media/contribution richness, names, social
@@ -1709,7 +1712,7 @@ source/original distinction, and docs closeout.
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
 | Workspace | `8eeb14c` (verification baseline; later docs are receipts) | `b6e7014` |
-| Backend | `ef4167163` | `a7c02cbe1` |
+| Backend | `e9ad26f7f` | `a7c02cbe1` |
 | App | `76af974a0` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,

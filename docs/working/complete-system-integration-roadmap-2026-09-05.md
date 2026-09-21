@@ -89,7 +89,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R05
 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after this receipt: workspace
-`8eeb14c`, backend `ef4167163`, app `76af974a0`, all on
+`8eeb14c`, backend `e9ad26f7f`, app `76af974a0`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
@@ -122,12 +122,14 @@ performed for this receipt.
 ### September 21 Life · People receipt — shared outcomes reach the record
 
 The existing Life owner read now admits a shared Outcome to the People lens
-only when its Occasion projection contains another active participant. The
-entry carries the existing Occasion grant and member owner refs, retains an
-exact Life-record destination, and returns with `lifeLens=people`. A
-viewer-only Occasion is not treated as social material. Backend `ef4167163`
-and app `76af974a0` contain the implementation and focused regressions. The
-latest packet is **442** backend root tests, **45** Life route/projection/index
+only when its Occasion projection contains another active participant. It also
+admits a non-private shared Commitment with multiple authorized participants
+without requiring an Occasion, using the existing commitment-scoped grant.
+Entries carry the existing grant and member owner refs, retain an exact
+Life-record destination, and return with `lifeLens=people`. Viewer-only
+material is not treated as social material. Backend `e9ad26f7f` and app
+`76af974a0` contain the implementation and focused regressions. The latest
+packet is **442** backend root tests, **46** Life route/projection/index
 tests, and **54** Home/Places/Life native tests, with TypeScript and resource
 destination checks passing. This remains a bounded People-record seam, not a
 general social feed, person dossier, contribution inference, or design-parity

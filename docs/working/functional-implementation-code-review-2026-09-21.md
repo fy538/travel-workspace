@@ -34,7 +34,7 @@ state treatment is:
 | Repository | Current HEAD |
 |---|---|
 | Workspace | `8eeb14c` (verification baseline; later docs are receipts) |
-| Backend | `ef4167163` |
+| Backend | `e9ad26f7f` |
 | App | `76af974a0` |
 
 This correction updates tuple identity only; it does not imply merge,
@@ -58,12 +58,15 @@ design parity, merge, activation or publication.
 ### September 21 Life · People outcome review
 
 The Life adapter previously admitted shared Occasions to People but dropped
-their shared Outcomes. Backend `ef4167163` admits those Outcomes only when the
-viewer-relative Occasion has another active participant, preserves the
-existing grant/member refs, and leaves viewer-only material out of People.
+their shared Outcomes, and it lacked a commitment-scoped grant when a shared
+Commitment had no Occasion. Backend `ef4167163` and `e9ad26f7f` admit those
+Outcomes only when the viewer-relative Occasion has another active participant
+and admit non-private multi-participant Commitments through the existing
+commitment grant, preserving grant/member refs and leaving viewer-only
+material out of People.
 App `76af974a0` proves that the native row opens the exact record while
 preserving `lifeLens=people`. The latest root packet passes **442** tests, the
-Life route/projection/index packet passes **45**, and the combined native root
+Life route/projection/index packet passes **46**, and the combined native root
 packet passes **54**, with TypeScript and destination tests green. No new
 Occasion producer, audience policy, feed, or inference is introduced; broader
 attribution, media and social juxtaposition remain open.
