@@ -6083,3 +6083,31 @@ parity. The next unblocked work should continue with another existing
 capability whose producer, owner read, native destination, and return path are
 already modeled—preferably a practical or Life return seam—rather than add a
 new provider or generalized action architecture.
+
+## September 21 functional implementation receipt — cross-root Home → Places → Life continuity
+
+The four-root shell now has one combined native receiving/continuity rehearsal,
+using the existing owner contracts rather than introducing a new integration
+layer. App commit `a9e466e61` adds
+`.maestro/81-cross-root-home-places-life.yaml`, its run-scoped real-Postgres
+runner, and three static runner/flow contract tests. The runner provisions the
+existing addressed `SEND_NOW` Home handoff and the existing place-bound Life
+source independently, then checks both canonical projections before opening
+the device flow.
+
+On the iOS simulator with the real local API, the flow proves: Home displays
+the addressed social unit; its exact venue destination opens and returns to the
+same Home unit; the four-root shell switches to Places; Life opens in the
+explicit Places lens; the retained source opens the canonical original reader;
+and the existing return control restores the same Life entry. The runner then
+withdraws both fixtures and verifies that Home and Life no longer expose them.
+The native run passed end to end, and the new static packet passed **3 tests**;
+shell syntax and child-repository diff checks also passed.
+
+This closes a combined shell/owner/return boundary across Home, Places and
+Life. It does not claim a single shared occasion, broad multiplayer media,
+binary-original playback, provider acquisition, production flag activation,
+Claude-design parity, or release readiness. The next implementation wave
+should therefore target a remaining supported user-visible capability (such as
+Life organized-record native depth or another practical consequence) and keep
+the same producer → owner read → destination → return discipline.

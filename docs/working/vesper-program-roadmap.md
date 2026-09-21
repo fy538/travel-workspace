@@ -2392,3 +2392,27 @@ fit-window evaluation, booking, notifications, production activation, or
 Claude-design parity. Keep the next implementation wave on existing producer →
 owner-read → native destination → return chains; reassess after each complete
 loop before widening the grammar or adding infrastructure.
+
+## September 21 functional implementation receipt — cross-root Home → Places → Life continuity
+
+The current lane now has a combined native checkpoint across the four-root
+shell's receiving and continuity seams. App commit `a9e466e61` adds the real
+local-API Maestro flow and runner `81-cross-root-home-places-life`. It composes
+two already-supported disposable fixtures: an addressed Home `SEND_NOW` venue
+handoff and a place-bound retained Life source. No new store, provider,
+generator, social model or route family was added.
+
+The simulator run passed through Home social value → exact venue object → the
+Places root → Life's explicit Places lens → the canonical original reader →
+Life return. Cleanup removed both fixtures and HTTP checks confirmed their
+withdrawal from Home and Life. The runner's **3 static contract tests**,
+`bash -n`, and child-repository diff checks passed. This is stronger than the
+individual flow receipts because it proves the same shell can leave one root,
+enter another, and still preserve exact owner-backed return behavior.
+
+The evidence remains bounded: it does not establish a shared occasion across
+the fixtures, broad group/media sharing, binary-original playback, provider
+acquisition, production activation, design parity or release readiness. Keep
+the next slice on a remaining supported user-visible capability, preferably
+Life organized-record native depth or another practical consequence, rather
+than adding integration infrastructure.
