@@ -2571,3 +2571,28 @@ not binary-media breadth, guest/group audiences, onward sharing, notification
 delivery, production flag activation, visual parity, or release readiness.
 Keep the exact-source, current-custody, one-recipient bounds and continue with
 the next supported producer → owner read → destination → return seam.
+
+## September 21 functional implementation receipt — controlled Source worker rail
+
+The explicit Source preparation path now connects to the existing shared Arq
+worker rail without changing the product surface. Backend commit `913f5a7ae`
+adds `run_root_source_contribution`, which reuses the existing
+workflow lease, canonical owner-read executor, retained-production readback,
+telemetry and exact result reader. The request route dispatches only when the
+existing producer gate and a separate worker gate are enabled with a named
+cohort; `WorkerSettings` registers the job under the same condition, and the
+shared queue refuses inline execution for it. No new queue, provider, result
+store, or ordinary Home/Places production path was introduced.
+
+Evidence: **31** focused backend tests passed across the deployment contract,
+feature flags, request JSON/dispatch boundary and worker registration, plus
+Ruff and Python compile checks. The default remains dark: without
+`ROOT_SOURCE_CONTRIBUTION_PRODUCTION_ENABLED=1`,
+`ROOT_SOURCE_CONTRIBUTION_WORKER_ENABLED=1`, and a non-`none`
+`ROOT_SOURCE_CONTRIBUTION_WORKER_COHORT`, the worker is not registered and
+submission only persists the existing content-free workflow. This is an
+implementation/rail receipt, not controlled provider activation, cost
+approval, production scheduling, or proof of a generated result. The next
+checkpoint is a separately authorized local/dogfood Redis execution with a
+real source/context fixture and native result readback; do not enable these
+environment gates by default.
