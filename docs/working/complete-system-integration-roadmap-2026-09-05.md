@@ -131,6 +131,22 @@ default, and native visual acceptance, rollout, broader group/media sharing,
 Life adoption and publication remain unverified. This is a receiving
 continuation, not authorization for a general social feed.
 
+## September 21 runtime supply probe — Life original refinding
+
+The exact-original continuity path now has a real HTTP receipt in addition to
+its owner-level tests. A temporary retained, confirmed Intake source was
+inserted for the lane's default user with a valid custody receipt and bounded
+retention. `POST /api/life/originals/refind` returned HTTP 200 and one exact
+source metadata match for the supplied query. Cleanup removed the source and
+submission rows immediately afterward.
+
+Evidence: `LIFE_ORIGINAL_STATUS 200`, `LIFE_ORIGINAL_MARKER_SEEN True`,
+`LIFE_ORIGINAL_SOURCE_ID_SEEN True`, `LIFE_ORIGINAL_ENTRY_COUNT 1`, and
+`LIFE_ORIGINAL_CLEANUP_DONE True`; the relationship original-delivery Postgres
+packet passes **3 tests**. This proves the owner-authorized Life metadata
+refind boundary and typed destination only. Life organization, original-body
+rendering/return, native capture, indexed serving and rollout remain open.
+
 ## September 21 persistence boundary — child-owned public Source
 
 The real disposable-Postgres check for the preceding Home supply connection

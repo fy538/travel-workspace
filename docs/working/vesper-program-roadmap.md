@@ -110,6 +110,22 @@ typed Place door. This remains local candidate evidence: native capture,
 production activation, broader group/media sharing, Life adoption and
 publication remain open.
 
+## September 21 runtime supply probe — Life original refinding
+
+The exact-original continuity boundary now also has a real HTTP receipt. A
+temporary retained, confirmed Intake source owned by the lane's default user
+was inserted with a valid custody receipt and one-hour retention. The running
+API answered `POST /api/life/originals/refind` with HTTP 200 and returned one
+metadata match containing the exact source identity for the query. The
+submission and source rows were removed immediately after the request.
+
+Evidence: `LIFE_ORIGINAL_STATUS 200`, `LIFE_ORIGINAL_MARKER_SEEN True`,
+`LIFE_ORIGINAL_SOURCE_ID_SEEN True`, `LIFE_ORIGINAL_ENTRY_COUNT 1`, followed
+by `LIFE_ORIGINAL_CLEANUP_DONE True`. The relationship original-delivery
+Postgres packet also passes **3 tests**. This proves owner-authorized metadata
+refinding and its typed Life destination, not full Life corpus organization,
+native original rendering/return, or indexed serving adoption.
+
 ## September 21 runtime supply probe — child-owned public Source
 
 The promised persistence boundary was exercised against the isolated lane's
