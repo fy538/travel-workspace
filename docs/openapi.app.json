@@ -13455,6 +13455,69 @@
         }
       }
     },
+    "/api/intake/submissions/{submission_id}/objects/{object_id}/media": {
+      "get": {
+        "tags": [
+          "intake"
+        ],
+        "summary": "Get Intake Source Object Media",
+        "description": "Stream one current owner-scoped Intake original.\n\nThe submission reader intentionally returns custody metadata, not a storage\nURL. This route is the matching permitted-media reader: it reuses the\nIntake owner/custody boundary, keeps the storage key server-side, and\nrefuses expired, revoked, deleted, or otherwise unverified originals.",
+        "operationId": "get_intake_source_object_media_api_intake_submissions__submission_id__objects__object_id__media_get",
+        "parameters": [
+          {
+            "name": "submission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Submission Id"
+            }
+          },
+          {
+            "name": "object_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Object Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/intake/submissions/{submission_id}/lifecycle": {
       "get": {
         "tags": [
@@ -21291,7 +21354,7 @@
           "places"
         ],
         "summary": "Get Places Reading",
-        "description": "Return manually approved reading inside an explicit Places context.",
+        "description": "Return a scoped reading collection or one exact selected primitive.",
         "operationId": "get_places_reading_api_places_reading_get",
         "parameters": [
           {
@@ -21334,6 +21397,60 @@
                 }
               ],
               "title": "Context Handle"
+            }
+          },
+          {
+            "name": "selected_source_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Selected Source Id"
+            }
+          },
+          {
+            "name": "selected_source_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Selected Source Revision"
+            }
+          },
+          {
+            "name": "selected_entity_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Selected Entity Id"
             }
           },
           {
@@ -23500,6 +23617,207 @@
             }
           },
           {
+            "name": "visit_place_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Place Id"
+            }
+          },
+          {
+            "name": "visit_place_kind",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40,
+              "default": "venue",
+              "title": "Visit Place Kind"
+            }
+          },
+          {
+            "name": "visit_window_start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Window Start"
+            }
+          },
+          {
+            "name": "visit_window_end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Window End"
+            }
+          },
+          {
+            "name": "visit_duration_minutes",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 1440,
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Duration Minutes"
+            }
+          },
+          {
+            "name": "visit_travel_mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Travel Mode"
+            }
+          },
+          {
+            "name": "visit_origin_ref",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Origin Ref"
+            }
+          },
+          {
+            "name": "visit_origin_lat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "maximum": 90,
+                  "minimum": -90
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Origin Lat"
+            }
+          },
+          {
+            "name": "visit_origin_lng",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "maximum": 180,
+                  "minimum": -180
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Origin Lng"
+            }
+          },
+          {
+            "name": "visit_origin_accuracy_m",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Origin Accuracy M"
+            }
+          },
+          {
+            "name": "visit_origin_observed_at",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Origin Observed At"
+            }
+          },
+          {
+            "name": "visit_origin_max_age_seconds",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 86400,
+              "minimum": 1,
+              "default": 900,
+              "title": "Visit Origin Max Age Seconds"
+            }
+          },
+          {
             "name": "authorization",
             "in": "header",
             "required": false,
@@ -23565,6 +23883,207 @@
                 }
               ],
               "title": "Context Handle"
+            }
+          },
+          {
+            "name": "visit_place_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Place Id"
+            }
+          },
+          {
+            "name": "visit_place_kind",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40,
+              "default": "venue",
+              "title": "Visit Place Kind"
+            }
+          },
+          {
+            "name": "visit_window_start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Window Start"
+            }
+          },
+          {
+            "name": "visit_window_end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Window End"
+            }
+          },
+          {
+            "name": "visit_duration_minutes",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 1440,
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Duration Minutes"
+            }
+          },
+          {
+            "name": "visit_travel_mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Travel Mode"
+            }
+          },
+          {
+            "name": "visit_origin_ref",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Origin Ref"
+            }
+          },
+          {
+            "name": "visit_origin_lat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "maximum": 90,
+                  "minimum": -90
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Origin Lat"
+            }
+          },
+          {
+            "name": "visit_origin_lng",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "maximum": 180,
+                  "minimum": -180
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Origin Lng"
+            }
+          },
+          {
+            "name": "visit_origin_accuracy_m",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Origin Accuracy M"
+            }
+          },
+          {
+            "name": "visit_origin_observed_at",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Origin Observed At"
+            }
+          },
+          {
+            "name": "visit_origin_max_age_seconds",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 86400,
+              "minimum": 1,
+              "default": 900,
+              "title": "Visit Origin Max Age Seconds"
             }
           },
           {
@@ -34606,6 +35125,76 @@
             }
           },
           {
+            "name": "trip_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Block Id"
+            }
+          },
+          {
+            "name": "reading_source_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Reading Source Id"
+            }
+          },
+          {
+            "name": "reading_source_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Reading Source Revision"
+            }
+          },
+          {
             "name": "authorization",
             "in": "header",
             "required": false,
@@ -34908,6 +35497,76 @@
             "schema": {
               "type": "string",
               "title": "Entity Id"
+            }
+          },
+          {
+            "name": "trip_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Block Id"
+            }
+          },
+          {
+            "name": "reading_source_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Reading Source Id"
+            }
+          },
+          {
+            "name": "reading_source_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Reading Source Revision"
             }
           },
           {
@@ -54237,6 +54896,16 @@
               }
             ]
           },
+          "reading_selection_state": {
+            "type": "string",
+            "enum": [
+              "not_requested",
+              "available",
+              "unavailable"
+            ],
+            "title": "Reading Selection State",
+            "default": "not_requested"
+          },
           "interpretation": {
             "anyOf": [
               {
@@ -54332,6 +55001,16 @@
                 "type": "null"
               }
             ]
+          },
+          "reading_selection_state": {
+            "type": "string",
+            "enum": [
+              "not_requested",
+              "available",
+              "unavailable"
+            ],
+            "title": "Reading Selection State",
+            "default": "not_requested"
           },
           "interpretation": {
             "anyOf": [
@@ -55205,6 +55884,58 @@
               }
             ],
             "title": "Active Trip Title"
+          },
+          "arrangement_state": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "planned",
+                  "confirmed",
+                  "user_reported_booked"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Arrangement State"
+          },
+          "confirmation_reference": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confirmation Reference"
+          },
+          "arrangement_starts_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Arrangement Starts At"
+          },
+          "arrangement_ends_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Arrangement Ends At"
           }
         },
         "additionalProperties": false,
@@ -76865,6 +77596,91 @@
         "title": "PlacesEncounterTruth",
         "description": "Factual, non-preference evidence connecting this viewer to a venue.\n\nThe source distinguishes explicit member attendance from a shared Plan\noutcome. Neither establishes that the viewer selected or enjoyed it. The\nlatest originating Plan remains inspectable provenance rather than being\ncollapsed into an affinity score."
       },
+      "PlacesExactReading": {
+        "properties": {
+          "source_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "entity_ref": {
+            "$ref": "#/components/schemas/EntityRef"
+          },
+          "place_name": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Place Name"
+          },
+          "place_slug": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Place Slug"
+          },
+          "primitive_type": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Primitive Type"
+          },
+          "headline": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "Headline"
+          },
+          "body": {
+            "type": "string",
+            "maxLength": 12000,
+            "minLength": 1,
+            "title": "Body"
+          },
+          "conditions": {
+            "type": "string",
+            "maxLength": 4000,
+            "minLength": 1,
+            "title": "Conditions"
+          },
+          "limits": {
+            "type": "string",
+            "maxLength": 4000,
+            "minLength": 1,
+            "title": "Limits"
+          },
+          "source_artifact": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 1,
+            "title": "Source Artifact"
+          },
+          "valid_until": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid Until"
+          }
+        },
+        "type": "object",
+        "required": [
+          "source_ref",
+          "entity_ref",
+          "place_name",
+          "place_slug",
+          "primitive_type",
+          "headline",
+          "body",
+          "conditions",
+          "limits",
+          "source_artifact"
+        ],
+        "title": "PlacesExactReading",
+        "description": "One exact public primitive selected by a typed Home/Places door."
+      },
       "PlacesExperienceAvailability": {
         "type": "string",
         "enum": [
@@ -78014,6 +78830,16 @@
           "has_more": {
             "type": "boolean",
             "title": "Has More"
+          },
+          "selected": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesExactReading"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -78531,6 +79357,77 @@
         ],
         "title": "PlacesScopeKind"
       },
+      "PlacesSearchReadingItem": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "title": "Kind",
+            "default": "reading"
+          },
+          "id": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Id"
+          },
+          "source_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "entity_ref": {
+            "$ref": "#/components/schemas/EntityRef"
+          },
+          "subject_label": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Subject Label"
+          },
+          "primitive_type": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Primitive Type"
+          },
+          "content_version": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Content Version"
+          },
+          "valid_until": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid Until"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "source_ref",
+          "entity_ref",
+          "subject_label",
+          "primitive_type",
+          "content_version"
+        ],
+        "title": "PlacesSearchReadingItem",
+        "description": "A retained, source-bound reading door beside catalog search rows.\n\nThe source ref is the exact immutable primitive version that was\nrevalidated by the canonical owner reader.  The entity ref is the existing\ndetail destination; it is deliberately separate so a reading is never\nmistaken for a catalog row.  Discovery is metadata-only: the prose stays\nbehind the existing eligible entity-detail owner read."
+      },
+      "PlacesSearchReadingState": {
+        "type": "string",
+        "enum": [
+          "available",
+          "empty",
+          "unavailable"
+        ],
+        "title": "PlacesSearchReadingState",
+        "description": "Independent status of retained reading discovery for one search."
+      },
       "PlacesSearchResponse": {
         "properties": {
           "query": {
@@ -78571,6 +79468,22 @@
             },
             "type": "array",
             "title": "Items"
+          },
+          "reading_items": {
+            "items": {
+              "$ref": "#/components/schemas/PlacesSearchReadingItem"
+            },
+            "type": "array",
+            "title": "Reading Items"
+          },
+          "reading_state": {
+            "$ref": "#/components/schemas/PlacesSearchReadingState",
+            "default": "unavailable"
+          },
+          "readings_has_more": {
+            "type": "boolean",
+            "title": "Readings Has More",
+            "default": false
           },
           "limit": {
             "type": "integer",
@@ -81588,6 +82501,57 @@
         "title": "PracticalAssessmentState",
         "description": "Evidence state for one explicitly named practical claim."
       },
+      "PracticalVisitIntent": {
+        "properties": {
+          "window_start": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Window Start"
+          },
+          "window_end": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Window End"
+          },
+          "visit_duration_minutes": {
+            "type": "integer",
+            "maximum": 1440.0,
+            "minimum": 1.0,
+            "title": "Visit Duration Minutes"
+          },
+          "origin_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "travel_mode": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_.:-]{1,39}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Travel Mode"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "window_start",
+          "window_end",
+          "visit_duration_minutes"
+        ],
+        "title": "PracticalVisitIntent",
+        "description": "Explicit timing supplied for one bounded place-fit question.\n\nThis is intent, not inferred availability.  A producer may ask whether a\nvisit of a known duration fits inside a stated window; it may optionally\nname an origin, but the assessment must remain unknown until a matching\nroute owner read exists for that case."
+      },
       "PredictedRecovery": {
         "type": "string",
         "enum": [
@@ -82409,6 +83373,16 @@
             "type": "string",
             "title": "Provider State",
             "default": "unbound"
+          },
+          "time": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TimeWindow"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "participant_ids": {
             "items": {
@@ -87532,6 +88506,52 @@
             "type": "string",
             "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@+-]{0,159}$",
             "title": "Source Ref"
+          },
+          "arrangement_state": {
+            "type": "string",
+            "enum": [
+              "planned",
+              "confirmed",
+              "user_reported_booked"
+            ],
+            "title": "Arrangement State",
+            "default": "planned"
+          },
+          "confirmation_reference": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confirmation Reference"
+          },
+          "starts_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Starts At"
+          },
+          "ends_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ends At"
           }
         },
         "additionalProperties": false,
@@ -90650,6 +91670,16 @@
                 "week_shape": "#/components/schemas/RootWeekShape"
               }
             }
+          },
+          "practical_assessment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PracticalAssessment"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "actions": {
             "items": {
@@ -105957,6 +106987,21 @@
               }
             ],
             "title": "Practical Question"
+          },
+          "practical_answer_requested": {
+            "type": "boolean",
+            "title": "Practical Answer Requested",
+            "default": false
+          },
+          "practical_intent": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PracticalVisitIntent"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "practical_assessment": {
             "anyOf": [
