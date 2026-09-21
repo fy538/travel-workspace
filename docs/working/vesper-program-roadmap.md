@@ -2060,3 +2060,20 @@ contract: a retained source with an explicit venue subject is emitted in the
 Places lens as a private `source_submission`, includes the venue in
 `represented_refs`, and points to the exact Intake submission. The focused Life
 route suite passes **26 tests**.
+
+## September 21 E2 repair — source-backed Places reading depth
+
+The Places adapter had a narrower exact-depth gap: a source-backed editorial
+card preserved its immutable `place_content_primitive` ref but dropped the
+reading's canonical Place subject. Its native destination could therefore
+fall back to the generic Places root even though the Home/Places contract had
+promised an exact reading. Backend commit `fbc1fa018` preserves that subject in
+represented refs, value-contract subjects, and the typed destination resource
+set. Legacy dossier cards remain unchanged.
+
+Evidence: the focused Home/Places backend packet passes **72 tests** and the
+native root-navigation packet passes **44 tests**. The existing client resolver
+now receives both the exact immutable reading and its Place area, so it can
+open the Place reader with the reading source and preserve the originating
+return token. This is a bounded receiving repair; it does not add a content
+store, provider, generator, or new route family.
