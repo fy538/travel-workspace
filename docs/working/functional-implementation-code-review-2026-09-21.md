@@ -64,7 +64,7 @@ unchanged throughout.
 
 The requested correction pass landed in the independent child repositories:
 
-- Backend `ea403ec0a`, `2935757fe`, `79c4b1d8a` plus `70b607e34` — authority gates,
+- Backend `ea403ec0a`, `2935757fe`, `79c4b1d8a`, `70b607e34` plus `7f993a3cb` — authority gates,
   release-scoped reading, bounded geography batching, practical entity coverage,
   worker serialization, async DB boundaries, run-isolated rehearsal fixtures
   and schedule-timezone propagation.
