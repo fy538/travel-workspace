@@ -31,12 +31,21 @@ and latest workspace documentation receipt is:
 
 | Repository | Current HEAD |
 |---|---|
-| Workspace | `d28096549` |
+| Workspace | `45fa3c070` |
 | Backend | `f9fa3d82b` |
-| App | `6c8b0cd14` |
+| App | `fda51a42c` |
 
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes.
+
+### September 21 Home surface follow-up
+
+Home now renders the existing editorial-passage and aperture-row kinds with
+distinct native anatomy while retaining the shared source, destination,
+action, practical-expiry and composition contracts. App `fda51a42c` adds the
+two treatments and regressions; the focused Home renderer/smoke packet passes
+22 tests, TypeScript passes, and targeted ESLint has no errors. The existing
+max-lines warning remains a maintainability note, not a functional failure.
 
 ### September 21 post-receiving-surface recheck
 
