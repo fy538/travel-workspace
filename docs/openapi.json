@@ -69009,6 +69009,18 @@
             ],
             "title": "Confirmation Reference"
           },
+          "schedule_timezone": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Schedule Timezone"
+          },
           "arrangement_starts_at": {
             "anyOf": [
               {
@@ -105103,6 +105115,18 @@
               }
             ],
             "title": "Confirmation Reference"
+          },
+          "schedule_timezone": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Schedule Timezone"
           },
           "starts_at": {
             "anyOf": [

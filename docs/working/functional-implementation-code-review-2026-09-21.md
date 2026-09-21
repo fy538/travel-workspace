@@ -35,7 +35,9 @@ deploy, enable features, or mutate a running database or simulator; the later
 fix pass is recorded below.
 
 **Result: 11 actionable findings — one P1, nine P2, one P3. The repair pass
-changed all 11 areas, but fresh inspection reopens R04 and R09 as partial fixes.**
+changed all 11 areas; the later R04/R09 correction closes their code-level gaps,
+while persisted-database, queue-environment and native-device evidence remains
+open.**
 The other nine retain their recorded implementation status and stated
 verification limits; this recheck did not recertify them. The implementation has useful
 end-to-end paths, but happy-path evidence misses
@@ -62,14 +64,15 @@ unchanged throughout.
 
 The requested correction pass landed in the independent child repositories:
 
-- Backend `ea403ec0a` plus `2935757fe` — authority gates, release-scoped reading, bounded
-  geography batching, practical entity coverage, worker serialization, async
-  DB boundaries and run-isolated rehearsal fixtures.
-- App `7a478fd2e` — sender withdrawal history, arrangement-purpose navigation,
-  and source-offset arrangement time presentation.
+- Backend `ea403ec0a`, `2935757fe` plus `79c4b1d8a` — authority gates,
+  release-scoped reading, bounded geography batching, practical entity coverage,
+  worker serialization, async DB boundaries, run-isolated rehearsal fixtures
+  and schedule-timezone propagation.
+- App `44872d0c2` — sender withdrawal history, arrangement-purpose navigation,
+  and schedule-zone-aware arrangement time presentation.
 - Workspace contract refresh — `docs/openapi.json` and
-  `docs/openapi.app.json` now agree with the route's 768-character cursor
-  maximum.
+  `docs/openapi.app.json` now include the relationship `schedule_timezone`
+  field and agree with the route's 768-character cursor maximum.
 
 The fixes preserve the original findings and their evidence boundaries. The
 disposable-Postgres and native-device regressions remain required acceptance
@@ -84,22 +87,34 @@ environment and an explicitly disposable test DB when needed.
 
 ### September 21 post-fix recheck
 
-At backend `2935757fe` and app `7a478fd2e`, a read-only code inspection found:
+At backend `79c4b1d8a` and app `44872d0c2`, the two reopened code gaps were
+implemented and focused regressions passed:
 
-- **R04 remains open:** the recipient eligibility filter was removed from
-  `activeSentDeliveries`, but recipient loading/error/empty returns still occur
-  before the existing-delivery controls render. Losing the final eligible
-  recipient therefore still hides Withdraw. The passing sender test packet
-  does not establish the empty-recipient regression.
-- **R09 remains open:** explicit-offset formatting improves the reported
-  Lisbon example, but the projection does not carry the arrangement's schedule
-  timezone. A `Z` timestamp is rendered in UTC wall-clock with no timezone label;
-  the nonmatching-format fallback still uses the device zone. UTC storage cannot
-  establish destination wall-clock by itself.
+- **R04 code correction:** sender-owned history and Withdraw remain rendered
+  through recipient loading, error and empty states; new-send selection remains
+  gated by current eligibility. The focused sender suite includes the final
+  eligible-recipient disconnect case.
+- **R09 code correction:** the existing Trip/primary-destination schedule zone
+  now flows through the relationship read contract and generated app schema;
+  object presentation formats UTC instants in that zone and labels an honest
+  fallback when zone evidence is unavailable. Focused backend and projection
+  suites cover the propagation and Lisbon conversion.
 
-No product code, database or native runtime was changed during this recheck.
-The roadmap/ledger update corrects completion claims; it does not implement
-the remaining repairs or establish a new full-suite result.
+No disposable-Postgres, queue-environment or native-device acceptance was
+established by this correction pass. The ledger should treat R04 and R09 as
+code-fixed with those evidence boundaries still open.
+
+Focused correction receipts on the candidate tuple:
+
+- Backend relationship/presentation packet: **35 passed** with Ruff check and
+  format verification.
+- App sender/object-projection packet: **40 passed**; `npx tsc --noEmit`
+  passed. ESLint reported no errors and one existing-style max-lines warning
+  on the sender screen (803 lines versus the 800-line budget).
+- The canonical OpenAPI projector regenerated `docs/openapi.app.json` and
+  `travel-app/utils/api/schema.gen.ts` with `schedule_timezone`. The normal
+  `sync-types` audit remains blocked by the pre-existing expired API-operation
+  policy findings and missing consumer; this is not claimed as a full gate pass.
 
 ## Defect index
 
@@ -108,12 +123,12 @@ the remaining repairs or establish a new full-suite result.
 | R01 | P1 | Rejected original can still commit a recipient handoff/message | Relationships transaction | Fixed; DB regression still required |
 | R02 | P2 | Places reading bypasses active release/cohort eligibility | Content / Places | Fixed; governed outsider/cohort matrix still required |
 | R03 | P2 | Pull-consent revocation leaves attached original readable | Relationships read policy | Fixed; persisted readback matrix still required |
-| R04 | P2 | Sender loses withdrawal controls after relationship disconnect | Mobile original sharing | Partial fix; reopened: recipient early returns still hide history/Withdraw |
+| R04 | P2 | Sender loses withdrawal controls after relationship disconnect | Mobile original sharing | Code-fixed; focused empty-recipient regression passes; persisted/native evidence still required |
 | R05 | P2 | Source worker throws while serializing its actual result type | Worker adapter | Serializer fix applied; actual queue-environment acceptance unrun |
 | R06 | P2 | Nine expanded place IDs silently remove Home public supply | Home / Places scope | Fixed with 8-ID batching; scale regression still required |
 | R07 | P2 | Site, accommodation and experience fit checks cannot succeed | Practical assessment | Fixed; focused backend tests pass |
 | R08 | P2 | Primary Plan details entrance hides arrangement information | Plan / object navigation | Fixed; typecheck passes |
-| R09 | P2 | Reservation time is shown in device timezone without a label | Object presentation | Partial fix; reopened: schedule-zone propagation and honest UTC fallback missing |
+| R09 | P2 | Reservation time is shown in device timezone without a label | Object presentation | Code-fixed; focused schedule-zone/UTC conversion passes; persisted/native matrix still required |
 | R10 | P2 | Cleanup for one rehearsal can delete another run's venue | Local fixture tooling | Fixed with run-scoped fixture identity |
 | R11 | P3 | Life organization cursor contract snapshot is stale | Cross-repo API contract | Fixed; generated snapshots agree |
 
@@ -224,14 +239,14 @@ Backend sender history and withdrawal intentionally remain available after
 disconnection. Re-establishing an eligible relationship can make the old grant
 readable again, so hiding its controls is consequential.
 
-**Partially applied:** sender-owned grants are no longer filtered by current
-recipient eligibility. **Still required:** move existing-delivery/withdrawal
-rendering outside the recipient picker loading/error/empty branches (current
-lines 178–196), not merely outside its filter. **Regression:** remove the final
-eligible recipient after Send, reopen with persisted history and check that the
-grant and Withdraw remain usable; also cover unavailable/loading recipient
-selection. New-send eligibility remains restricted. This is a traced
-UI/repository mismatch; no device reproduction was run in the recheck.
+**Applied:** sender-owned grants are no longer filtered by current recipient
+eligibility, and existing-delivery/withdrawal rendering is independent of the
+recipient picker loading/error/empty branches. **Focused regression:** remove
+the final eligible recipient after Send and verify the persisted grant and
+Withdraw remain usable; unavailable/loading recipient selection remains covered
+by the rendering branches. New-send eligibility remains restricted. Persisted
+native-device reproduction is still required before calling the finding fully
+verified.
 
 ## R05 — The Source worker calls an unsupported result serializer signature
 
@@ -351,17 +366,13 @@ The reservation is at 7 PM Lisbon time. The text provides no device-time
 qualifier, so it misrepresents a concrete arrangement while the person plans
 from another timezone. Date-boundary cases can show the wrong day too.
 
-**Partially applied:** preserve the wall-clock represented by an explicit ISO
-offset in both fact and body, and label non-UTC offsets. **Still required:**
-carry the existing arrangement schedule timezone through owner/API projection
-when available and use it to format stored instants. Missing zone evidence
-needs a qualified fallback rather than an unlabeled UTC or device-local time.
-The current formatter at lines 269–293 cannot solve this from the timestamp
-alone; schedule-zone propagation is part of this repair, not optional polish.
-**Regression:** UTC-stored instants, different device/destination zones,
-missing-zone fallback and midnight/DST boundaries.
-The reproduction transpiled and executed the actual TypeScript projection with
-an existing fixture in memory; it was not a native device run.
+**Applied:** preserve the wall-clock represented by an explicit ISO offset in
+both fact and body, carry the existing Trip/primary-destination schedule
+timezone through owner/API projection, and use it to format UTC-stored instants.
+Missing zone evidence receives a qualified fallback rather than an unlabeled
+device-local value. Focused regressions cover schedule-zone propagation and the
+Lisbon conversion; persisted data, cross-device zones, midnight/DST boundaries
+and native rendering remain required acceptance evidence.
 
 ## R10 — Rehearsal cleanup is not isolated by run
 
@@ -484,8 +495,9 @@ full `make verify`, device run or publishing was performed.
 
 ## Recommended correction order
 
-**Current:** finish R04 and R09, then close the outstanding evidence boundaries
-for already-applied repairs in the correct environment. Include Source recovery
+**Current:** R04 and R09 code-level corrections are complete; close their
+outstanding persisted-database and native-device evidence boundaries in the
+correct environment. Include Source recovery
 in the next reliably supplied-value package; registration/serialization fixes
 do not establish recovery. Do not rerun the initial repair list as though the
 implemented changes were absent, or call the ledger closed based on happy-path

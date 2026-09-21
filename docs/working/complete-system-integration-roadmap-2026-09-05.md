@@ -47,14 +47,14 @@ surface package. Focused regressions accompany delivery; more happy-path
 rehearsals alone are not the next product milestone.
 
 Inspected candidate before this doc edit: workspace `95aa909`, backend
-`2935757fe`, app `7a478fd2e`, all on
+`79c4b1d8a`, app `44872d0c2`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
 verification can continue; no shared runtime, publishing, flag activation,
 paid/provider run or pending product policy is enabled by this rebaseline.
 The [review ledger](functional-implementation-code-review-2026-09-21.md) remains
-open: R04 and R09 are partial fixes, not closed findings.
+open for persisted/native evidence, while R04 and R09 are now code-fixed.
 
 <a id="current-engineering-tranche--september-9"></a>
 
@@ -1941,9 +1941,10 @@ not a successful full audit. Recheck the actual gate before landing rather
 than adopting an exemption or treating the historical count as current.
 
 No product suite or runtime was rerun for this documentation-only rebaseline.
-R04 still hides sender withdrawal history when recipient selection is empty or
-unavailable. R09 preserves explicit offsets but does not propagate the schedule
-timezone needed for UTC-stored arrangements. Both are open in the review ledger.
+R04 now keeps sender withdrawal history visible through recipient loading/error/
+empty states, and R09 propagates the schedule timezone needed for UTC-stored
+arrangements. Focused regressions pass; persisted-database, queue-environment
+and native-device evidence remain open in the review ledger.
 Source worker registration is implemented behind gates; automatic recovery of
 due work after enqueue/disabled-job/transient failure is not established.
 
@@ -1952,9 +1953,9 @@ due work after enqueue/disabled-job/transient failure is not established.
 | I0 | Inventory and decision-alignment foundation recorded; current candidate and evidence scopes now rebaselined | Keep unresolved retention/watch/reuse agreements gated only where relevant; close review findings without restarting architecture |
 | I1 | Source/graph/Outcome delivery, repair, backfill and reconciliation foundation; additional retained-source revisions and Life adoption paths in this lane | Build population and later-use coverage over existing owners; do not infer indexed serving cutover or cross-context authority from retention |
 | I2 | Bounded serving, prepared results, cancellation and publication fences; explicit Source Arq registration and serializer repair | Complete bounded recovery needed for reliable requested supply, then inspect actual outputs; cost/cohort/provider activation remains separately gated |
-| I3 | Contribution authority and useful-first intake; exact retained/received text-original paths with scoped native receipts | R04 durable controls; broader supported originals and permissioned downstream use; pending history/audience policy is not silently adopted |
+| I3 | Contribution authority and useful-first intake; exact retained/received text-original paths with scoped native receipts | R04 code correction is complete; persisted/native control evidence, broader supported originals and permissioned downstream use remain; pending history/audience policy is not silently adopted |
 | I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots | Primary Home/Places full-scroll section/value completion and design-quality treatment; sparse/pending/failure states and real supply breadth |
-| I5 | Open-now and saved-world changes reach surfaces; explicit fit and reviewed assistance contracts implemented | R09 schedule-zone correctness; connect current practical facts and permitted context to useful adaptations; provider-backed fit rehearsal and broader mandates remain separate |
+| I5 | Open-now and saved-world changes reach surfaces; explicit fit and reviewed assistance contracts implemented | R09 code correction is complete; persisted/native timezone matrix, current practical facts, permitted-context adaptations, provider-backed fit rehearsal and broader mandates remain separate |
 | I6 | Retirement inventories/guards exist; candidate remains isolated and rollout internal | Keep obsolete execution paths out of new work; complete obligation review and authorized cutovers/landing only when their dependencies are ready |
 
 ### Current build sequence and finish conditions
@@ -1965,17 +1966,17 @@ can contain several independent implementation tasks; it is not a one-loop
 definition of Vesper. The program register owns assignment. No agents are
 dispatched by this document update.
 
-**First: bounded review closeout.**
+**First: bounded review evidence closeout.**
 
-- R04 owner: app original-sharing screen and tests. Existing sender-owned
-  deliveries and Withdraw must remain usable when new-send recipients are
-  empty, disconnected, loading or unavailable. Separate history/withdrawal
-  rendering from the picker; test persisted grants after eligible-list loss.
-- R09 owner: arrangement owner projection/API and object presentation. Carry
-  the existing schedule timezone through the read contract when available;
-  format UTC-stored instants in that zone and label honest fallback when zone
-  evidence is absent. Cover cross-device zones, midnight and DST; do not infer
-  destination time from the phone. Any wire change requires normal type sync.
+- R04 code correction is complete: sender-owned deliveries and Withdraw remain
+  usable when new-send recipients are empty, disconnected, loading or unavailable.
+  Run the persisted-grant and native-device matrix; new-send eligibility remains
+  restricted to current recipients.
+- R09 code correction is complete: the existing schedule timezone flows through
+  the read contract and UTC-stored instants format in that zone with honest
+  fallback. Run persisted data, cross-device zones, midnight/DST and native
+  rendering; do not infer destination time from the phone. The wire snapshots
+  have already been regenerated from the canonical projector.
 - Recheck the ledger's remaining authority/transaction and queue-wrapper
   boundaries in the correct environment. The `.venv` import probe succeeds;
   do not perpetuate the failed system-interpreter dependency diagnosis. Run

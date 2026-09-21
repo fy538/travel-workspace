@@ -48,7 +48,7 @@ and lane-local disposable-runtime work recorded here. This rebaseline does not
 resume shared runtime, authorize landing/publishing, enable production flags or
 adopt pending product agreements. Cross-run editorial reuse remains pending.
 The [review ledger](functional-implementation-code-review-2026-09-21.md) is
-**not closed**: R04 and R09 are partially fixed, with remaining regression and
+**not closed**: R04 and R09 are code-fixed, with persisted/native regression and
 environment boundaries recorded there.
 
 ## September 21 native/runtime receipt — Home Save → Places consequence and readback
@@ -1112,23 +1112,25 @@ fresh certification of every path on the latest tuple.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `95aa909` | `b6e7014` |
-| Backend | `2935757fe` | `a7c02cbe1` |
-| App | `7a478fd2e` | `e2e792913` |
+| Workspace | `95aa909` (pre-doc update) | `b6e7014` |
+| Backend | `79c4b1d8a` | `a7c02cbe1` |
+| App | `44872d0c2` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent
-repositories. All three candidate trees were clean at inspection. Canonical
-main has concurrent documentation/design edits; those remain untouched. The
-candidate is committed in its lane, not landed on main or released. Recheck
-Git and ownership before execution; this tuple is a dated observation.
+repositories. Backend and app corrections are committed; workspace roadmap
+edits are the current lane's uncommitted documentation work until the closing
+commit. Canonical main has concurrent documentation/design edits; those remain
+untouched. The candidate is committed in its lane, not landed on main or
+released. Recheck Git and ownership before execution; this tuple is a dated
+observation.
 
 | Capability | Implemented / recorded evidence | Remaining product or evidence boundary |
 | --- | --- | --- |
 | Home / Places | Owner-backed Save/readback, public Place and child-entity readings, consented place pulls, nearby open-now options, saved-place closure/reopening dismissal; named local API/iOS flows | Varied worthwhile full-scroll supply, section/design breadth, selection quality across situations, complete failure/empty states and visual parity |
 | Life | Retained text originals, exact refinding/return, explicit place-bound sources and organized period groups; named local API/iOS flows | Broader media/corpus and People/Threads experience, later permitted reuse, indexed serving cutover and Atlas retirement |
-| Social | Existing-owner venue-bound pulls and one-recipient original-text receiving through Life/Home; named local API/iOS flows | Casual media/group/gathering breadth and useful juxtaposition; no new sharing or friend-source AI-use policy is adopted here; R04 control repair remains open |
-| Practical/live engine | Current open-now facts and saved-place changes affect surfaces; explicit fit contract and private stop-assistance/reviewed Send implemented | Provider-backed fit rehearsal, wider fresh-world coverage, purpose-preserving adaptation and accepted watching mandates; R09 schedule-zone repair remains open |
+| Social | Existing-owner venue-bound pulls and one-recipient original-text receiving through Life/Home; named local API/iOS flows | Casual media/group/gathering breadth and useful juxtaposition; no new sharing or friend-source AI-use policy is adopted here; R04 code correction is complete, persisted/native control evidence remains |
+| Practical/live engine | Current open-now facts and saved-place changes affect surfaces; explicit fit contract and private stop-assistance/reviewed Send implemented | Provider-backed fit rehearsal, wider fresh-world coverage, purpose-preserving adaptation and accepted watching mandates; R09 code correction is complete, persisted/native timezone evidence remains |
 | Preparation | Explicit Source work registered on the shared Arq rail behind production/worker/cohort gates; result serialization repaired | Registration is not activation; enqueue/disabled-job/transient-failure recovery lacks an automatic due-work drain; live output quality/cost remain unverified |
 | Native / delivery | Specific real-owner happy paths now run through the internal four-root shell | No comprehensive native/design acceptance, latest-tuple full gate, default-shell promotion, main landing or release |
 
@@ -1220,7 +1222,7 @@ tasks. The present update plans work; it does not start agents or services.
 
 | Package / role | Status and complete outcome | Dependency / handback |
 | --- | --- | --- |
-| **First — review closeout** | Orchestration assigns bounded repair of R04 withdrawal controls and R09 schedule-zone propagation; remaining authority/worker/contract evidence follows the bug ledger. Not complete. | Focused negative-case regressions and truthful gate status; no repeated full happy-path tour. Independent product work can proceed outside affected files. |
+| **First — review evidence closeout** | R04 withdrawal controls and R09 schedule-zone propagation are code-fixed with focused regressions; remaining authority/worker/contract, persisted-database and native evidence follows the bug ledger. Not complete. | Run the specific missing matrices and preserve truthful gate status; no repeated full happy-path tour. Independent product work can proceed outside affected files. |
 | **Primary build — Home/Places useful breadth** | Complete selected design sections as a coherent full scroll with real supplied value, useful depth/actions, practical context and existing social contributions. Not yet complete. | Reuse current Source/content/relationship/Place owners. Include bounded preparation recovery when needed for reliable supply; no new generator/store. One owner for shared root composition, contracts and receiving adapters. |
 | **Complementary build — Life/social downstream value** | Extend retention/refinding into useful later permissioned context and supported human contributions, with recognizable organization and exact return. Not yet complete. | Existing source, Life and relationship owners; no inference of permission from custody. Hand exact projections to the receiving owner; defer only genuinely policy-dependent media/group/use expansion. |
 | **Across both builds — native polish** | Required within each completed surface: design hierarchy, card/media treatment, interaction, accessibility and sparse/pending/failure states. Not accepted yet. | Use current inspected Claude exports and handoffs; record actual canvas/version. Unresolved visual choices do not block unrelated owner/supply work. |
