@@ -71,8 +71,8 @@ choose another supported producer → owner read → destination → return seam
 leave the missing supply explicit. Evidence-only work remains bounded to R04,
 R05 and R09, and visual polish travels with the selected surface package.
 
-Current candidate tuple before this documentation receipt: workspace
-`4aa1d7d`, backend `5cfcae1c4`, app `ecdecaffe`, all on
+Current candidate tuple after this receipt: workspace
+`d3ccf56`, backend `5cfcae1c4`, app `ecdecaffe`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
