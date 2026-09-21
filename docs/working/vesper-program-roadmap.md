@@ -2236,3 +2236,29 @@ repository pre-commit hooks pass. This is a read-path continuation repair, not
 a new generator, store, provider call, schema, flag activation, native capture,
 or production rollout. A populated native Places Reading tap/back proof remains
 open and should be exercised only with an admitted exact Place Source.
+
+## September 21 functional implementation receipt — native Place reading continuity
+
+The bounded native proof for the remaining Places Reading seam is now complete.
+Backend commit `93e7889b7` adds a disposable local-Postgres fixture that creates
+two accepted, policy-bound, exact Place-owned `interpretive_lens` Sources. It
+does not widen the Places collection to child-owned material: the fixture and
+the production reader continue to require `entity_ref.type = place`.
+
+App commit `ff06e6ff9` adds `.maestro/76-places-public-reading.yaml` and its
+runner/static contract. With the real local API, the flow proves: the exact
+Place Sources appear in the scoped `place:1` Places workspace; a reading card
+opens the immutable Place reader with the expected claim and interpretation;
+Back returns to the same Places workspace and preserves the same reading card;
+the runner removes all fixture rows and verifies the canonical collection no
+longer exposes the Source. The native simulator run passed end to end, and the
+runner's three static contract tests passed. The focused backend Places packet
+remains **29 passed**, with Ruff, format, py_compile and repository hooks
+passing.
+
+This closes the narrow native Places Source → exact Place reader → scoped return
+boundary. It does not claim broad content-corpus parity, provider supply,
+production flag activation, Claude-design visual parity, or child-owned Source
+support in the Places collection. The next useful slice should therefore move
+to another supported receiving/action connection rather than add a new content
+store, generator, or route family.
