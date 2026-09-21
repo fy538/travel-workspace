@@ -5625,3 +5625,10 @@ acceptance. The next combined runtime package should seed one accepted bounded
 dataset and capture a populated Home → exact Places reader → Life refind/return
 journey. Keep production defaults unchanged and clean up the temporary runtime
 after the checkpoint.
+
+The native pass also found a concrete navigation defect: Expo Router treated
+Life as `life/index`, so the configured title/icon were ignored and a missing
+`life` route warning was emitted. App commit `3c23c2116` adds the minimal Life
+stack layout; the simulator now renders the tab as **Life**. Three focused
+route/convention suites (10 tests) and TypeScript pass. This is a shell repair,
+not evidence of populated Life data or end-to-end continuity.

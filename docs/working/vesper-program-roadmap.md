@@ -1927,6 +1927,13 @@ threshold” — and the Home/Chat/Places/Life navigation shell. This is real na
 reachability and empty-account behavior, not a fixture screenshot. A direct
 deep link with the runtime mock override disabled also reached the real API.
 
+The same checkpoint exposed and repaired a route-registration defect: without a
+nested Life stack, Expo Router surfaced the tab as `life/index`, ignored the
+configured Life title/icon and logged that no `life` route existed. App commit
+`3c23c2116` adds the minimal `life/_layout.tsx` stack, after which the native
+tab renders as **Life** with the configured icon. The route contract tests
+(three suites, 10 tests) and TypeScript check pass.
+
 This receipt does **not** claim populated native receiving, production flag
 activation, Home→Places→Life return, visual parity with the Claude references,
 or release readiness. The temporary API user and local services are disposable
