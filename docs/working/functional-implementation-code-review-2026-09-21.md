@@ -130,6 +130,10 @@ now executed evidence, not plans:
   in the scoped `From your people` section, opened the canonical venue, returned
   to Places, and disappeared after fixture cleanup. The flag was not enabled in
   the app bundle, production, or any shared runtime.
+- `run-cross-root-home-places-life.sh`: passed. Home's addressed social note
+  opened the exact Place and returned; Places remained reachable; Life's Places
+  lens opened the exact retained original and returned to the same entry. The
+  runner verified both temporary fixtures were absent after cleanup.
 
 These receipts close the earlier persisted/native boundary for the named happy
 paths. They do **not** close R01's rejected-command zero-effect matrix, R03's

@@ -71,6 +71,15 @@ sender-control and timezone edge matrices, broader supplied Home/Places
 coverage, later permitted Life/social value, Claude-design visual parity and
 release/landing gates remain unfinished.
 
+The existing `run-cross-root-home-places-life.sh` then passed as a combined
+journey on the same simulator and lane runtime: Home's addressed social note
+opened the exact Place and returned; the Places tab remained reachable; Life's
+Places lens opened the exact retained original and returned to the same Life
+entry. The runner verified both Home and Life no longer represented their
+temporary fixtures after cleanup. This proves connected navigation and
+withdrawal for these two supported fixtures, not shared Occasion semantics,
+general media/group behavior, or full design parity.
+
 ## September 21 native/runtime receipt — Home Save → Places consequence and readback
 
 The first real-owner native rehearsal for the current Home/Places receiving

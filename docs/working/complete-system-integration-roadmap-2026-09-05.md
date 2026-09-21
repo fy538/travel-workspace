@@ -76,6 +76,14 @@ post-revocation authority matrices, sender-control and timezone edge cases,
 actual Arq/Redis execution, broader supplied Home/Places value, later permitted
 Life/social benefit, visual parity and release/landing gates remain open.
 
+The existing `run-cross-root-home-places-life.sh` also passed on the same lane
+runtime and simulator. It traversed Home social note → exact Place → Home
+return, then Places → Life Places lens → exact retained original → Life return,
+and verified both temporary fixtures disappeared from their canonical
+projections after cleanup. This is connected navigation/withdrawal evidence
+for the two supported fixtures, not proof of shared Occasion semantics,
+general media/group behavior or complete design parity.
+
 <a id="current-engineering-tranche--september-9"></a>
 
 ## Dated receipts and earlier tranche rationale
