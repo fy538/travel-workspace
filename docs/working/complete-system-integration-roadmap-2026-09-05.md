@@ -89,7 +89,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R05
 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after this receipt: workspace
-`3b47cf9`, backend `67b617d85`, app `9a597abd4`, all on
+`03c6fef`, backend `67b617d85`, app `9a597abd4`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
@@ -108,9 +108,10 @@ safety.
 
 ### September 21 latest-candidate verification receipt
 
-The candidate was rechecked after the Life People depth receipt:
+The candidate was rechecked after the Life People depth and explicit anchor
+follow-through:
 backend root projection **442 passed**, focused Life route/projection/index
-projector **47 passed**, focused Home/Places/Life native suites **54 passed**,
+projector **59 passed**, focused Home/Places/Life native suites **54 passed**,
 and the persisted schedule-zone unit packet **36 passed**. This is a bounded
 regression packet, not a latest-tuple full gate. It leaves R05 process
 interruption/transient failure and R09 persisted/native cross-device/DST cases

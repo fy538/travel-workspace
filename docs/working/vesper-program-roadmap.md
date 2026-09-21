@@ -51,7 +51,7 @@ to repeat the same tour. Frontend polish is part of each surface's completion.
 Retention/refinding is further along than context materially improving a later
 answer, possibility or action.
 
-**Current candidate tuple after this receipt:** workspace `3b47cf9`, backend
+**Current candidate tuple after this receipt:** workspace `03c6fef`, backend
 `67b617d85`, and app `9a597abd4`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; the child-code tuple now includes the Places typed
@@ -126,10 +126,10 @@ and evidence boundary.
 
 ### September 21 verification receipt — latest candidate
 
-After the rebaseline, the latest candidate was checked without changing
-production state or claiming a full gate. Backend root projection regressions
+After the People-bound anchor follow-through, the latest candidate was checked
+without changing production state or claiming a full gate. Backend root projection regressions
 passed **442 tests**; the focused Life route/projection/index-projector packet
-passed **47 tests**; the focused Home/Places/Life native packet passed **54
+passed **59 tests**; the focused Home/Places/Life native packet passed **54
 tests**; and the persisted schedule-zone unit packet passed **36 tests**.
 These packets overlap the broader historical receipts and prove only their
 named contracts. They do not close R05's process-interruption/transient-failure
@@ -1728,8 +1728,8 @@ source/original distinction, and docs closeout.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `8eeb14c` (verification baseline; later docs are receipts) | `b6e7014` |
-| Backend | `014313121` | `a7c02cbe1` |
+| Workspace | `03c6fef` (current documentation receipt) | `b6e7014` |
+| Backend | `67b617d85` | `a7c02cbe1` |
 | App | `9a597abd4` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
