@@ -6008,3 +6008,50 @@ attendance, social delivery, provider supply, production activation, or
 Claude-design visual parity. The next slice should therefore move to another
 supported receiving/action connection or a bounded practical/social seam,
 not add another content store, generator, or route family.
+
+## September 21 functional implementation receipt — recipient-consented Places social pull
+
+The existing multiplayer seam is now re-run on the same real local API and
+iOS simulator. Backend fixture `provision_places_social_pull_rehearsal.py`
+creates a disposable sender, venue, accepted graph binding, recipient-consent
+grant, and expiring `PLACE_PULL` handoff. It reads through the canonical
+relationship repository and removes the sender, graph, venue, and handoff rows
+on cleanup; it adds no social ranking, public feed, or second social store.
+
+The existing `.maestro/75-places-real-social-pull.yaml` flow proves: a
+recipient-consented note appears in the scoped Places workspace under “From
+your people”; the friend contribution opens the exact canonical venue owner;
+Back returns to the same Places context with the contribution still present;
+cleanup withdraws the handoff and the canonical feed no longer exposes it.
+The native run passed end to end, and the three static runner/flow contract
+tests passed.
+
+This closes the narrow social pull → exact Place → scoped return boundary. It
+does not claim general social publishing, multiplayer occasion composition,
+Home social delivery, notification cadence, production activation, or Claude
+visual parity. The next slice should target another supported practical or
+Home receiving connection, not add a second social model.
+
+## September 21 functional implementation receipt — Home addressed social receiving
+
+The companion Home multiplayer seam is now packaged and proven. The existing
+Places social fixture accepts a `SEND_NOW` mode without changing its default
+recipient-consented `PLACE_PULL` behavior. It creates the same disposable
+sender, venue, graph binding, personal pair, and expiring handoff, then removes
+the sender account and graph/venue rows during cleanup.
+
+The new `.maestro/79-home-real-social-send.yaml` runner first verifies the
+canonical `/api/root-projections/v2/home` response contains the exact
+`home.place-handoff.<handoff>` unit, attributed read, and venue destination.
+The native flow proves: the note appears on Home, the exact venue opens, Back
+returns to the same Home unit, and cleanup withdraws it from the projection.
+The iOS run passed end to end; the three static runner/flow tests and app
+typecheck passed. The existing Places `PLACE_PULL` flow was re-run afterward
+and also passed, confirming the mode extension did not regress Places social
+receiving.
+
+This closes the narrow addressed social note → Home → exact Place → Home return
+boundary. It does not claim general social publishing, multiplayer occasion
+composition, notifications, production activation, or Claude visual parity.
+The next slice should target a supported practical/current-world action or a
+different bounded receiving seam, not add a second social model.
