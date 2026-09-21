@@ -38,8 +38,8 @@ are historical and do not form additional queues. Update these summaries when
 a substantial package finishes instead of appending a competing next step.
 
 **Next emphasis:** close the remaining correctness matrices that materially
-gate the candidate (R04 sender controls, R05 queue recovery/failure behavior,
-and R09 timezone edges) while building fuller supplied
+gate the candidate (R04 sender controls, R05 transient/restart failure
+behavior, and R09 timezone edges) while building fuller supplied
 Home/Places experiences. Permissioned Life/social downstream value can proceed
 where its files and authority are independent. The named native/database happy
 paths are now evidence, not an invitation to repeat the same tour. Frontend
@@ -53,8 +53,8 @@ resume shared runtime, authorize landing/publishing, enable production flags or
 adopt pending product agreements. Cross-run editorial reuse remains pending.
 The [review ledger](functional-implementation-code-review-2026-09-21.md) is
 **not closed**: the named native/database happy paths now pass and the R01/R03
-authority matrices are verified, while R04 sender-control coverage, R05 queue
-recovery/failure behavior and R09 timezone edge coverage remain open.
+authority matrices are verified, while R04 sender-control coverage, R05
+transient/restart failure behavior and R09 timezone edge coverage remain open.
 
 ## September 21 evidence closeout — current boundary
 
@@ -1161,7 +1161,7 @@ and ownership before execution; this tuple is a dated observation.
 | Life | Retained text originals, exact refinding/return, explicit place-bound sources and organized period groups; named local API/iOS flows | Broader media/corpus and People/Threads experience, later permitted reuse, indexed serving cutover and Atlas retirement |
 | Social | Existing-owner venue-bound pulls and one-recipient original-text receiving through Life/Home; named local API/iOS flows | Casual media/group/gathering breadth and useful juxtaposition; no new sharing or friend-source AI-use policy is adopted here; R04 code correction is complete, persisted/native control evidence remains |
 | Practical/live engine | Current open-now facts and saved-place changes affect surfaces; explicit fit contract and private stop-assistance/reviewed Send implemented | Provider-backed fit rehearsal, wider fresh-world coverage, purpose-preserving adaptation and accepted watching mandates; R09 code correction is complete, persisted/native timezone evidence remains |
-| Preparation | Explicit Source work registered on the shared Arq rail behind production/worker/cohort gates; result serialization and gated deterministic due-work recovery repaired | Registration/recovery are not activation; actual Arq/Redis execution, live output quality and cost remain unverified |
+| Preparation | Explicit Source work registered on the shared Arq rail behind production/worker/cohort gates; result serialization and gated deterministic due-work recovery repaired | Real Arq/Redis wrapper and expired due-work recovery now pass; registration/recovery are not activation, and live output quality, cost, still-current restart recovery and transient failure remain unverified |
 | Native / delivery | Specific real-owner happy paths now run through the internal four-root shell | No comprehensive native/design acceptance, latest-tuple full gate, default-shell promotion, main landing or release |
 
 No overall feature-completion percentage is asserted: these evidence scopes
@@ -1252,7 +1252,7 @@ tasks. The present update plans work; it does not start agents or services.
 
 | Package / role | Status and complete outcome | Dependency / handback |
 | --- | --- | --- |
-| **First — review evidence closeout** | R01/R03 disposable-Postgres authority/revocation regressions now pass. R04 withdrawal controls and R09 schedule-zone propagation are code-fixed with focused regressions. Named disposable-Postgres/native paths and one real Arq/Redis wrapper path now pass; R04 sender-control, R05 recovery/failure and R09 timezone-edge evidence remain open. Not complete. | Run only the specific missing matrices, with an explicitly disposable database/queue/device where required; preserve truthful gate status and do not repeat the completed happy-path tour. Independent product work can proceed outside affected files. |
+| **First — review evidence closeout** | R01/R03 disposable-Postgres authority/revocation regressions now pass. R04 withdrawal controls and R09 schedule-zone propagation are code-fixed with focused regressions. Named disposable-Postgres/native paths, one real Arq/Redis wrapper path, and one real expired due-work recovery path now pass; R04 sender-control, R05 transient/restart failure and R09 timezone-edge evidence remain open. Not complete. | Run only the specific missing matrices, with an explicitly disposable database/queue/device where required; preserve truthful gate status and do not repeat the completed happy-path tour. Independent product work can proceed outside affected files. |
 | **Primary build — Home/Places useful breadth** | Complete selected design sections as a coherent full scroll with real supplied value, useful depth/actions, practical context and existing social contributions. Not yet complete. | Reuse current Source/content/relationship/Place owners. Include bounded preparation recovery when needed for reliable supply; no new generator/store. One owner for shared root composition, contracts and receiving adapters. |
 | **Complementary build — Life/social downstream value** | Extend retention/refinding into useful later permissioned context and supported human contributions, with recognizable organization and exact return. Not yet complete. | Existing source, Life and relationship owners; no inference of permission from custody. Hand exact projections to the receiving owner; defer only genuinely policy-dependent media/group/use expansion. |
 | **Across both builds — native polish** | Required within each completed surface: design hierarchy, card/media treatment, interaction, accessibility and sparse/pending/failure states. Not accepted yet. | Use current inspected Claude exports and handoffs; record actual canvas/version. Unresolved visual choices do not block unrelated owner/supply work. |

@@ -1971,21 +1971,23 @@ than adopting an exemption or treating the historical count as current.
 The combined root rehearsal and named native/database packets are now executed
 evidence, not a documentation-only rebaseline. R04 keeps sender withdrawal
 history visible through recipient loading/error/empty states, and R09
-propagates the schedule timezone needed for UTC-stored arrangements. The
-remaining open evidence is narrower: R04 sender-control coverage, R05
-Arq/Redis recovery/failure behavior, and R09 persisted/native timezone edge
-cases. Do not describe all
+propagates the schedule timezone needed for UTC-stored arrangements. A real
+Arq/Redis recovery sweep also moved an expired Source work item through the
+registered wrapper into durable terminal stale-state readback. The remaining
+open evidence is narrower: R04 sender-control coverage, R05 transient/restart
+failure behavior, and R09 persisted/native timezone edge cases. Do not describe all
 native-device evidence as unrun; the named Home Save/readback, Life source
 return and Places social receiving paths already pass on the isolated device.
 Source worker registration and its gated deterministic due-work recovery sweep
-are implemented behind the same named cohort; actual Arq/Redis recovery after
-enqueue/disabled-job/transient failure remains unverified.
+are implemented behind the same named cohort; real Arq/Redis wrapper execution
+and expired due-work recovery now pass. Still-current restart recovery,
+disabled-job handling and transient failure remain unverified.
 
 | Package | State at September 21 candidate | Next concrete action |
 | --- | --- | --- |
 | I0 | Inventory and decision-alignment foundation recorded; current candidate and evidence scopes now rebaselined | Keep unresolved retention/watch/reuse agreements gated only where relevant; close review findings without restarting architecture |
 | I1 | Source/graph/Outcome delivery, repair, backfill and reconciliation foundation; additional retained-source revisions and Life adoption paths in this lane | Build population and later-use coverage over existing owners; do not infer indexed serving cutover or cross-context authority from retention |
-| I2 | Bounded serving, prepared results, cancellation and publication fences; explicit Source Arq registration, serializer repair and gated due-work recovery sweep; one real `not_claimed` wrapper execution | Run due-work recovery and failure/retry scenarios in isolated Arq/Redis; cost/cohort/provider activation remains separately gated |
+| I2 | Bounded serving, prepared results, cancellation and publication fences; explicit Source Arq registration, serializer repair and gated due-work recovery sweep; real `not_claimed` wrapper and expired due-work recovery executions | Run still-current restart recovery and transient failure/retry scenarios in isolated Arq/Redis; cost/cohort/provider activation remains separately gated |
 | I3 | Contribution authority and useful-first intake; exact retained/received text-original paths with scoped native receipts | R01/R03 authority and revocation are verified, R04 code correction and the named Life/Home original-receiving paths are complete; persisted sender-control coverage, broader supported originals and permissioned downstream use remain; pending history/audience policy is not silently adopted |
 | I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots | Primary Home/Places full-scroll section/value completion and design-quality treatment; sparse/pending/failure states and real supply breadth |
 | I5 | Open-now and saved-world changes reach surfaces; explicit fit and reviewed assistance contracts implemented | R09 code correction and the named current-world native paths are complete; persisted/native timezone edge matrix, permitted-context adaptations, provider-backed fit rehearsal and broader mandates remain separate |

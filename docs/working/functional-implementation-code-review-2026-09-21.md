@@ -139,8 +139,8 @@ now executed evidence, not plans:
 These receipts close the earlier persisted/native boundary for the named happy
 paths. A real Arq/Redis `run_root_source_contribution` job also completed the
 `not_claimed` result path. They do **not** close R04's sender-withdrawal-control
-matrix, R09's persisted/native timezone matrix, R05's due-work recovery or
-failure/retry behavior, or the full
+matrix, R09's persisted/native timezone matrix, or R05's transient
+failure/restart recovery behavior, or the full
 cohort/release and design-parity gates. The review ledger therefore remains
 open and should not be marked release-ready.
 
@@ -173,7 +173,7 @@ Focused correction receipts on the candidate tuple:
 | R02 | P2 | Places reading bypasses active release/cohort eligibility | Content / Places | Fixed; governed outsider/cohort matrix still required |
 | R03 | P2 | Pull-consent revocation leaves attached original readable | Relationships read policy | Fixed; disposable-Postgres attached-read regression passes |
 | R04 | P2 | Sender loses withdrawal controls after relationship disconnect | Mobile original sharing | Code-fixed; named Life return path passes; sender-control matrix still required |
-| R05 | P2 | Source worker throws while serializing its actual result type | Worker adapter | Serializer fix applied; actual queue-environment acceptance unrun |
+| R05 | P2 | Source worker throws while serializing its actual result type | Worker adapter | Serializer fixed; real wrapper and expired due-work recovery pass; transient retry/restart recovery remain open |
 | R06 | P2 | Nine expanded place IDs silently remove Home public supply | Home / Places scope | Fixed with 8-ID batching; scale regression still required |
 | R07 | P2 | Site, accommodation and experience fit checks cannot succeed | Practical assessment | Fixed; focused backend tests pass |
 | R08 | P2 | Primary Plan details entrance hides arrangement information | Plan / object navigation | Fixed; typecheck passes |
@@ -338,9 +338,22 @@ lane and the real `audio_jobs.WorkerSettings`, an enqueued
 `run_root_source_contribution` job for a nonexistent workflow completed with
 the serialized result `status=not_claimed` and `workflow_id`; the worker shut
 down with **18 jobs complete, 0 failed, 0 retries**. This proves the actual
-registered wrapper/result serialization path without provider work. Completed
-or expired workflows, due-work recovery after restart, and transient failure
-retry behavior remain unverified.
+registered wrapper/result serialization path without provider work.
+
+**Additional recovery evidence:** in the same isolated Postgres/Redis lane, a
+real expired Source work item was inserted for a disposable user. The actual
+`resume_due_source_contribution_workflows` sweep returned **1** and enqueued
+the deterministic Arq job; `audio_jobs.WorkerSettings` then ran the registered
+`run_root_source_contribution` wrapper, which returned `status=expired`.
+Postgres readback showed `status=failed_terminal`,
+`last_error_code=source_work_item_expired`, `last_error_category=stale_state`
+and `attempt_count=1`. A second recovery sweep returned **0**, proving a
+terminal expired row is not re-enqueued. This closes the due-work → queue →
+terminal stale-state recovery boundary. Restart recovery for a still-current
+row, transient provider failure/retry exhaustion, and disabled-worker behavior
+with a due row remain unverified. The worker process also ran unrelated
+fixture cron jobs that logged pre-existing intake/semantic errors; those were
+outside this Source workflow and are not included as R05 success evidence.
 
 ## R06 — Expanded geography is incompatible with Home's eight-anchor limit
 
@@ -528,10 +541,11 @@ python3 scripts/measure_verification.py --label review-openapi-freshness -- zsh 
 - OpenAPI freshness before the fix: **failed**, 7.110 seconds; R11. The
   refreshed snapshots now agree; the full freshness command still encounters
   the pre-existing expired API-operation policies listed in its output.
-- Actual worker-wrapper probe: **failed as expected for R05** with the exact
-  TypeError above; canonical execution and deployment builders were patched,
-  while the decorator, wrapper and result object were real. Its measured
-  record includes the complete reproduction command.
+- Actual worker-wrapper probe: the original reproduction **failed as expected
+  for R05** with the exact TypeError above; canonical execution and deployment
+  builders were patched, while the decorator, wrapper and result object were
+  real. A later real wrapper run completed the `not_claimed` path, and a real
+  expired due-work recovery run reached durable `failed_terminal` readback.
 - Reviewer probes for R02–R03 and R06–R09 were executed offline without
   persisted measurement receipts; their specific evidence boundaries are
   documented above. They do not constitute PostgreSQL or native acceptance.
