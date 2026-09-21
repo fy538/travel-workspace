@@ -36,9 +36,9 @@ fix pass is recorded below.
 
 **Result: 11 actionable findings — one P1, nine P2, one P3. The repair pass
 changed all 11 areas; the later R04/R09 correction closes their code-level gaps.
-The evidence closeout below now covers disposable-Postgres authority/readback
-and three named native receiving paths; queue-environment execution and the
-remaining edge-case matrices remain open.**
+The evidence closeout below now covers disposable-Postgres authority/readback,
+three named native receiving paths and one real Arq/Redis wrapper execution;
+recovery/failure behavior and the remaining edge-case matrices remain open.**
 The other nine retain their recorded implementation status and stated
 verification limits; this recheck did not recertify them. The implementation has useful
 end-to-end paths, but happy-path evidence misses
@@ -76,8 +76,8 @@ The requested correction pass landed in the independent child repositories:
   `docs/openapi.app.json` now include the relationship `schedule_timezone`
   field and agree with the route's 768-character cursor maximum.
 
-The fixes preserve the original findings and their evidence boundaries. The
-queue-environment and remaining edge-case regressions remain required
+The fixes preserve the original findings and their evidence boundaries. Queue
+recovery/failure and the remaining edge-case regressions remain required
 acceptance checks. The prior attempt reported a missing `openai` dependency and no configured
 test database; this was not proof that the supported backend environment was
 unavailable. The September 21 rebaseline successfully ran
@@ -137,8 +137,10 @@ now executed evidence, not plans:
   runner verified both temporary fixtures were absent after cleanup.
 
 These receipts close the earlier persisted/native boundary for the named happy
-paths. They do **not** close R04's sender-withdrawal-control matrix, R09's
-persisted/native timezone matrix, R05's actual Arq/Redis wrapper, or the full
+paths. A real Arq/Redis `run_root_source_contribution` job also completed the
+`not_claimed` result path. They do **not** close R04's sender-withdrawal-control
+matrix, R09's persisted/native timezone matrix, R05's due-work recovery or
+failure/retry behavior, or the full
 cohort/release and design-parity gates. The review ledger therefore remains
 open and should not be marked release-ready.
 
@@ -147,8 +149,8 @@ Focused correction receipts on the candidate tuple:
 - Backend relationship/presentation packet: **35 passed** with Ruff check and
   format verification.
 - Source worker/registration/recovery packet: **27 passed** with Ruff check and
-  format verification; this is offline wiring/contract evidence, not Arq/Redis
-  execution.
+  format verification; the separate local Arq/Redis receipt below covers one
+  wrapper result, while recovery/failure behavior remains unverified.
 - Broader Home/Places/root backend packet: **1,142 passed**, with 42 explicitly
   deselected environment/provider cases. This is the current offline owner,
   selection and route packet; it is not populated-database or native acceptance.
@@ -331,10 +333,14 @@ incorrect. The disabled-worker early return is unaffected.
 **Applied:** use the actual serializer contract or deliberately convert the
 result to a validated model. The controlled worker now also has a gated,
 deterministic due-work sweep that re-enqueues durable workflow rows after a
-restart without creating new work. **Focused regression:** the queue-entry
-serializer contract and recovery registration/enqueue behavior pass. Actual
-Arq/Redis execution with completed, not-claimed and expired result objects
-remains unrun.
+restart without creating new work. **Verified:** with Redis on the isolated
+lane and the real `audio_jobs.WorkerSettings`, an enqueued
+`run_root_source_contribution` job for a nonexistent workflow completed with
+the serialized result `status=not_claimed` and `workflow_id`; the worker shut
+down with **18 jobs complete, 0 failed, 0 retries**. This proves the actual
+registered wrapper/result serialization path without provider work. Completed
+or expired workflows, due-work recovery after restart, and transient failure
+retry behavior remain unverified.
 
 ## R06 — Expanded geography is incompatible with Home's eight-anchor limit
 
@@ -502,9 +508,9 @@ maximum was not established.
 The initial review used Python 3.13.0 in the backend virtual environment and
 offline fixtures. The measurement launcher itself reports system Python 3.14.6;
 those are different interpreter roles. The later evidence closeout (above) ran
-only the explicitly disposable Postgres and local simulator packets; no live
-provider, Redis/Arq job, full `make verify`, or visual-parity review was
-performed.
+only the explicitly disposable Postgres, local simulator and one isolated
+Redis/Arq wrapper packet; no live provider, recovery/failure queue scenario,
+full `make verify`, or visual-parity review was performed.
 
 Measured parent runs, from the lane root:
 
