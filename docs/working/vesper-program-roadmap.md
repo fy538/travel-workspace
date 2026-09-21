@@ -23,8 +23,9 @@ depends_on:
 **September 21 rebaseline, after implementation and review:** Vesper is a
 connected, partially complete internal product candidate. Home/Places receiving,
 Life originals/refinding/organization, bounded social receiving and practical
-consequences now have committed implementations and several real
-disposable-Postgres/API/iOS paths. These are meaningful continuity improvements;
+consequences now have committed implementations and real disposable-Postgres,
+API and iOS paths for the named Save/readback, Life source return and
+recipient-consented social cases. These are meaningful continuity improvements;
 they do not establish complete design coverage, worthwhile recurring supply,
 general later-context benefit, production activation or release readiness.
 
@@ -48,8 +49,27 @@ and lane-local disposable-runtime work recorded here. This rebaseline does not
 resume shared runtime, authorize landing/publishing, enable production flags or
 adopt pending product agreements. Cross-run editorial reuse remains pending.
 The [review ledger](functional-implementation-code-review-2026-09-21.md) is
-**not closed**: R04 and R09 are code-fixed, with persisted/native regression and
-environment boundaries recorded there.
+**not closed**: the named native/database happy paths now pass, while R01/R03
+authority matrices, R04 sender-control coverage, R05 queue execution and R09
+timezone edge coverage remain open.
+
+## September 21 evidence closeout — current boundary
+
+The isolated lane ran the exact candidate against disposable Postgres on
+`localhost:61460`, API `http://127.0.0.1:61463`, and simulator
+`D7C8FEF4-237B-4347-841C-6FE920BFABFA` (iOS 18.2). The persistence packet
+passed **8 tests** with 22 deselected, and the relationship/content packet
+passed **2 tests** with 47 deselected. The three existing native runners then
+passed: Life retained-source return/withdrawal, Home Save → Places unsave and
+readback, and Places recipient-consented social pull → venue → return. The
+social runner required `PLACE_HANDOFF_PULL_ENABLED=true` in the disposable API
+process; no production or shared runtime flag was changed.
+
+This closes those named owner/readback boundaries, not the whole product. The
+queue wrapper, rejected-command and post-revocation authority matrices,
+sender-control and timezone edge matrices, broader supplied Home/Places
+coverage, later permitted Life/social value, Claude-design visual parity and
+release/landing gates remain unfinished.
 
 ## September 21 native/runtime receipt — Home Save → Places consequence and readback
 
@@ -1112,7 +1132,7 @@ fresh certification of every path on the latest tuple.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `6345a22` (current tranche candidate) | `b6e7014` |
+| Workspace | `046ba64` (current tranche candidate) | `b6e7014` |
 | Backend | `7f993a3cb` | `a7c02cbe1` |
 | App | `44872d0c2` | `e2e792913` |
 

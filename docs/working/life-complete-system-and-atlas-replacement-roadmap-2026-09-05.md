@@ -20,7 +20,7 @@ supersedes:
 
 # Life complete system and Atlas replacement roadmap
 
-## Current execution baseline — September 8
+## Current execution baseline — September 21
 
 **Post-reliability rebaseline — September 8:** the first organizer
 `333f447be`, measurement correction `4a19414be` and independent holdouts
@@ -47,7 +47,10 @@ confirms the source is absent. Backend provisioner `e752cdbd4` and app/native
 runner `5313f3b36` provide the repeatable local proof. This is a bounded
 owner-authorized return/readback receipt—not full indexed-serving cutover,
 binary-original playback, multi-lens corpus parity, Atlas retirement or
-release acceptance. The cross-lane program roadmap records the complete
+release acceptance. Disposable-Postgres persistence selections also passed in
+the same lane (8 original/persistence/Life-refind tests and 2 relationship/
+content tests, with environment-specific deselections recorded in the
+cross-lane ledger). The cross-lane program roadmap records the complete
 command/evidence boundary.
 
 **Read this baseline, the current queue and decision register below first.**

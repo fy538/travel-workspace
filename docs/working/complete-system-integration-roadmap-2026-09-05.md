@@ -29,9 +29,11 @@ depends_on:
 
 The functional lane now has a connected, partially complete internal product:
 Home/Places value and practical consequences, Life originals/refinding/groups,
-and bounded social receiving have implementations plus named real-owner native
-paths. Rich recurring supply, later permitted context benefit, complete design
-coverage/polish and production readiness remain unfinished.
+and bounded social receiving have implementations plus real disposable-
+Postgres/API/iOS paths for the named Save/readback, Life source return and
+recipient-consented social cases. Rich recurring supply, later permitted
+context benefit, complete design coverage/polish and production readiness
+remain unfinished.
 
 **Read the [program baseline](vesper-program-roadmap.md#2-inspected-baseline--september-21)
 and [§9 current execution plan](#9-current-execution-ledger-and-next-batch)
@@ -46,7 +48,7 @@ value in parallel where files are independent. Native polish belongs in each
 surface package. Focused regressions accompany delivery; more happy-path
 rehearsals alone are not the next product milestone.
 
-Candidate tuple used for this implementation tranche: workspace `6345a22`,
+Candidate tuple used for this implementation tranche: workspace `046ba64`,
 backend `7f993a3cb`, app `44872d0c2`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
@@ -54,7 +56,25 @@ not main or production. The dedicated shared Integration/landing lane remains
 verification can continue; no shared runtime, publishing, flag activation,
 paid/provider run or pending product policy is enabled by this rebaseline.
 The [review ledger](functional-implementation-code-review-2026-09-21.md) remains
-open for persisted/native evidence, while R04 and R09 are now code-fixed.
+open for the remaining authority, queue and edge-case evidence, while R04 and
+R09 are now code-fixed and the named native/database happy paths pass.
+
+## September 21 evidence closeout — current boundary
+
+On the isolated lane, disposable Postgres ran on `localhost:61460`, the API on
+`http://127.0.0.1:61463`, and the iOS 18.2 simulator was
+`D7C8FEF4-237B-4347-841C-6FE920BFABFA`. The persistence packet passed **8 tests**
+with 22 deselected; the relationship/content packet passed **2 tests** with 47
+deselected. The existing native runners also passed for Life retained-source
+return/withdrawal, Home Save → Places unsave/readback, and Places
+recipient-consented social pull → venue → return. The social run required
+`PLACE_HANDOFF_PULL_ENABLED=true` only in this disposable API process. No
+shared runtime or production flag was enabled.
+
+These receipts close named owner/readback boundaries only. Rejected-command and
+post-revocation authority matrices, sender-control and timezone edge cases,
+actual Arq/Redis execution, broader supplied Home/Places value, later permitted
+Life/social benefit, visual parity and release/landing gates remain open.
 
 <a id="current-engineering-tranche--september-9"></a>
 

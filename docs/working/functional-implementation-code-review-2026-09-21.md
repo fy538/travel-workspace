@@ -35,9 +35,10 @@ deploy, enable features, or mutate a running database or simulator; the later
 fix pass is recorded below.
 
 **Result: 11 actionable findings — one P1, nine P2, one P3. The repair pass
-changed all 11 areas; the later R04/R09 correction closes their code-level gaps,
-while persisted-database, queue-environment and native-device evidence remains
-open.**
+changed all 11 areas; the later R04/R09 correction closes their code-level gaps.
+The evidence closeout below now covers disposable-Postgres authority/readback
+and three named native receiving paths; queue-environment execution and the
+remaining edge-case matrices remain open.**
 The other nine retain their recorded implementation status and stated
 verification limits; this recheck did not recertify them. The implementation has useful
 end-to-end paths, but happy-path evidence misses
@@ -75,8 +76,8 @@ The requested correction pass landed in the independent child repositories:
   field and agree with the route's 768-character cursor maximum.
 
 The fixes preserve the original findings and their evidence boundaries. The
-disposable-Postgres and native-device regressions remain required acceptance
-checks. The prior attempt reported a missing `openai` dependency and no configured
+queue-environment and remaining edge-case regressions remain required
+acceptance checks. The prior attempt reported a missing `openai` dependency and no configured
 test database; this was not proof that the supported backend environment was
 unavailable. The September 21 rebaseline successfully ran
 `.venv/bin/python -c "import sys,openai; print(sys.executable); print(openai.__version__)"`
@@ -100,9 +101,42 @@ implemented and focused regressions passed:
   fallback when zone evidence is unavailable. Focused backend and projection
   suites cover the propagation and Lisbon conversion.
 
-No disposable-Postgres, queue-environment or native-device acceptance was
-established by this correction pass. The ledger should treat R04 and R09 as
-code-fixed with those evidence boundaries still open.
+Before the evidence closeout below, no disposable-Postgres, queue-environment or
+native-device acceptance had been established by this correction pass. The
+ledger should treat R04 and R09 as code-fixed with their stated persisted/native
+matrices still open.
+
+### September 21 evidence closeout
+
+The isolated lane subsequently ran the supported local runtime with disposable
+Postgres on `localhost:61460`, API `http://127.0.0.1:61463`, and simulator
+`D7C8FEF4-237B-4347-841C-6FE920BFABFA` (iOS 18.2). The following receipts are
+now executed evidence, not plans:
+
+- Disposable-Postgres persistence/readback packet: **8 passed, 22 deselected**
+  for original-delivery, persistence, Life exact-refind and Place presentation;
+  **2 passed, 47 deselected** for relationship handoffs, source-request
+  delivery, entity relationship reads, social sections and original-delivery
+  content. The commands used `TEST_DATABASE_DISPOSABLE=1` and the exact lane
+  `DATABASE_URL`; no ambient or production database was used.
+- `run-life-real-source-return.sh`: passed. A real retained text source was
+  created, rendered in Life, opened through the exact original-material reader,
+  returned to Life, withdrawn, and absent after owner cleanup.
+- `run-home-places-real-save-readback.sh`: passed. A real Save was removed via
+  the native Place owner, absent from canonical Saves and Home, restored, and
+  read back through Home → Places with a non-empty brief.
+- `run-places-real-social-pull.sh`: passed after restarting only the lane API
+  with `PLACE_HANDOFF_PULL_ENABLED=true`. The recipient-consented note appeared
+  in the scoped `From your people` section, opened the canonical venue, returned
+  to Places, and disappeared after fixture cleanup. The flag was not enabled in
+  the app bundle, production, or any shared runtime.
+
+These receipts close the earlier persisted/native boundary for the named happy
+paths. They do **not** close R01's rejected-command zero-effect matrix, R03's
+post-revocation original matrix, R04's sender-withdrawal-control matrix, R09's
+persisted/native timezone matrix, R05's actual Arq/Redis wrapper, or the full
+cohort/release and design-parity gates. The review ledger therefore remains
+open and should not be marked release-ready.
 
 Focused correction receipts on the candidate tuple:
 
@@ -132,12 +166,12 @@ Focused correction receipts on the candidate tuple:
 | R01 | P1 | Rejected original can still commit a recipient handoff/message | Relationships transaction | Fixed; DB regression still required |
 | R02 | P2 | Places reading bypasses active release/cohort eligibility | Content / Places | Fixed; governed outsider/cohort matrix still required |
 | R03 | P2 | Pull-consent revocation leaves attached original readable | Relationships read policy | Fixed; persisted readback matrix still required |
-| R04 | P2 | Sender loses withdrawal controls after relationship disconnect | Mobile original sharing | Code-fixed; focused empty-recipient regression passes; persisted/native evidence still required |
+| R04 | P2 | Sender loses withdrawal controls after relationship disconnect | Mobile original sharing | Code-fixed; named Life return path passes; sender-control matrix still required |
 | R05 | P2 | Source worker throws while serializing its actual result type | Worker adapter | Serializer fix applied; actual queue-environment acceptance unrun |
 | R06 | P2 | Nine expanded place IDs silently remove Home public supply | Home / Places scope | Fixed with 8-ID batching; scale regression still required |
 | R07 | P2 | Site, accommodation and experience fit checks cannot succeed | Practical assessment | Fixed; focused backend tests pass |
 | R08 | P2 | Primary Plan details entrance hides arrangement information | Plan / object navigation | Fixed; typecheck passes |
-| R09 | P2 | Reservation time is shown in device timezone without a label | Object presentation | Code-fixed; focused schedule-zone/UTC conversion passes; persisted/native matrix still required |
+| R09 | P2 | Reservation time is shown in device timezone without a label | Object presentation | Code-fixed; focused schedule-zone/UTC conversion passes; named native packets pass; persisted/native timezone matrix still required |
 | R10 | P2 | Cleanup for one rehearsal can delete another run's venue | Local fixture tooling | Fixed with run-scoped fixture identity |
 | R11 | P3 | Life organization cursor contract snapshot is stale | Cross-repo API contract | Fixed; generated snapshots agree |
 
@@ -453,11 +487,12 @@ maximum was not established.
 
 ## Verification evidence and boundaries
 
-Review used Python 3.13.0 in the backend virtual environment and offline
-fixtures. The measurement launcher itself reports system Python 3.14.6; those
-are different interpreter roles. No live providers, Redis jobs, disposable
-Postgres mutation, simulator run, full `make verify`, or visual-parity review
-was performed in this review turn.
+The initial review used Python 3.13.0 in the backend virtual environment and
+offline fixtures. The measurement launcher itself reports system Python 3.14.6;
+those are different interpreter roles. The later evidence closeout (above) ran
+only the explicitly disposable Postgres and local simulator packets; no live
+provider, Redis/Arq job, full `make verify`, or visual-parity review was
+performed.
 
 Measured parent runs, from the lane root:
 
@@ -507,9 +542,10 @@ full `make verify`, device run or publishing was performed.
 
 ## Recommended correction order
 
-**Current:** R04 and R09 code-level corrections are complete; close their
-outstanding persisted-database and native-device evidence boundaries in the
-correct environment. Include Source recovery
+**Current:** R04 and R09 code-level corrections are complete, and the named
+Life/Home/Places happy paths now have disposable-database and native receipts.
+Close the remaining authority/revocation, sender-control and timezone matrices
+in the correct environment. Include Source recovery
 in the next reliably supplied-value package; registration/serialization fixes
 do not establish recovery. Do not rerun the initial repair list as though the
 implemented changes were absent, or call the ledger closed based on happy-path
