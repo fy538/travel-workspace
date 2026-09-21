@@ -3263,8 +3263,9 @@ create another sequence architecture.
 ## September 21 functional implementation receipt — native Home full-scroll across three owner families
 
 The next substantive Home/Places package is now proven as one composed native
-scroll rather than three isolated happy paths. App commit `1b3396ebc` adds
-flow `89-home-full-scroll`, its static contract test and a run-scoped runner.
+scroll rather than three isolated happy paths. App commits `1b3396ebc` and
+`7427b1833` add flow `89-home-full-scroll`, its static contract test and a
+run-scoped runner with typed destination preflight.
 The runner reuses the existing disposable owner writers—two accepted public
 Place readings for one child venue, one addressed human Place contribution,
 and one recipient-authorized text original. It adds no generator, provider,
