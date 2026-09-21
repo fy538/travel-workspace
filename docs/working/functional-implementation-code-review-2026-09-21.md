@@ -108,6 +108,9 @@ Focused correction receipts on the candidate tuple:
 
 - Backend relationship/presentation packet: **35 passed** with Ruff check and
   format verification.
+- Source worker/registration/recovery packet: **27 passed** with Ruff check and
+  format verification; this is offline wiring/contract evidence, not Arq/Redis
+  execution.
 - App sender/object-projection packet: **40 passed**; `npx tsc --noEmit`
   passed. ESLint reported no errors and one existing-style max-lines warning
   on the sender screen (803 lines versus the 800-line budget).
