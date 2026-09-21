@@ -1968,11 +1968,15 @@ additive progress or a latest-tuple full pass. The recorded full API gate has
 not a successful full audit. Recheck the actual gate before landing rather
 than adopting an exemption or treating the historical count as current.
 
-No product suite or runtime was rerun for this documentation-only rebaseline.
-R04 now keeps sender withdrawal history visible through recipient loading/error/
-empty states, and R09 propagates the schedule timezone needed for UTC-stored
-arrangements. Focused regressions pass; persisted-database, queue-environment
-and native-device evidence remain open in the review ledger.
+The combined root rehearsal and named native/database packets are now executed
+evidence, not a documentation-only rebaseline. R04 keeps sender withdrawal
+history visible through recipient loading/error/empty states, and R09
+propagates the schedule timezone needed for UTC-stored arrangements. The
+remaining open evidence is narrower: R01/R03 persisted authority and
+revocation matrices, R04 sender-control coverage, R05 actual Arq/Redis
+execution, and R09 persisted/native timezone edge cases. Do not describe all
+native-device evidence as unrun; the named Home Save/readback, Life source
+return and Places social receiving paths already pass on the isolated device.
 Source worker registration and its gated deterministic due-work recovery sweep
 are implemented behind the same named cohort; actual Arq/Redis recovery after
 enqueue/disabled-job/transient failure remains unverified.
@@ -1982,9 +1986,9 @@ enqueue/disabled-job/transient failure remains unverified.
 | I0 | Inventory and decision-alignment foundation recorded; current candidate and evidence scopes now rebaselined | Keep unresolved retention/watch/reuse agreements gated only where relevant; close review findings without restarting architecture |
 | I1 | Source/graph/Outcome delivery, repair, backfill and reconciliation foundation; additional retained-source revisions and Life adoption paths in this lane | Build population and later-use coverage over existing owners; do not infer indexed serving cutover or cross-context authority from retention |
 | I2 | Bounded serving, prepared results, cancellation and publication fences; explicit Source Arq registration, serializer repair and gated due-work recovery sweep | Run actual Arq/Redis recovery and inspect outputs; cost/cohort/provider activation remains separately gated |
-| I3 | Contribution authority and useful-first intake; exact retained/received text-original paths with scoped native receipts | R04 code correction is complete; persisted/native control evidence, broader supported originals and permissioned downstream use remain; pending history/audience policy is not silently adopted |
+| I3 | Contribution authority and useful-first intake; exact retained/received text-original paths with scoped native receipts | R04 code correction and the named Life/Home original-receiving paths are complete; persisted sender-control coverage, broader supported originals and permissioned downstream use remain; pending history/audience policy is not silently adopted |
 | I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots | Primary Home/Places full-scroll section/value completion and design-quality treatment; sparse/pending/failure states and real supply breadth |
-| I5 | Open-now and saved-world changes reach surfaces; explicit fit and reviewed assistance contracts implemented | R09 code correction is complete; persisted/native timezone matrix, current practical facts, permitted-context adaptations, provider-backed fit rehearsal and broader mandates remain separate |
+| I5 | Open-now and saved-world changes reach surfaces; explicit fit and reviewed assistance contracts implemented | R09 code correction and the named current-world native paths are complete; persisted/native timezone edge matrix, permitted-context adaptations, provider-backed fit rehearsal and broader mandates remain separate |
 | I6 | Retirement inventories/guards exist; candidate remains isolated and rollout internal | Keep obsolete execution paths out of new work; complete obligation review and authorized cutovers/landing only when their dependencies are ready |
 
 ### Current build sequence and finish conditions
@@ -1995,7 +1999,9 @@ can contain several independent implementation tasks; it is not a one-loop
 definition of Vesper. The program register owns assignment. No agents are
 dispatched by this document update.
 
-**First: bounded review evidence closeout.**
+**First: bounded review evidence closeout (edge matrices only).** The named
+Home/Places/Life receiving rehearsals are already complete; the next run should
+not be another broad happy-path tour.
 
 - R04 code correction is complete: sender-owned deliveries and Withdraw remain
   usable when new-send recipients are empty, disconnected, loading or unavailable.
