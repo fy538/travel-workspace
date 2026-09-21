@@ -6999,3 +6999,39 @@ text-original scope. It does not claim group/media sharing, broader audience
 policy, notifications, production activation, or visual parity. Remaining
 review evidence is R05 process-restart/transient queue behavior and R09
 persisted/native timezone edges.
+
+## September 21 shared-engine consolidation — compatible cut
+
+The independent engine lane completed the shared protections needed by the
+current functional and presentation lanes. Backend `fd133c493` adopts the
+physical owner-read executor and portfolio deadline boundary: individual
+timeouts remain, but process admission is also bounded across synchronous
+work; queued cancellation cannot run later; timed-out work retains capacity
+until it physically finishes; and completed results retain typed omission,
+ordering and exact authority identity. Backend `ed4c2779d` adds
+evidence-bound Personal Memory publication and currentness checks across
+single/batch reads, context compilation, preference affinity and refresh. Its
+`pmevidence02` migration follows this candidate's `originaldelivery02` head;
+the donor branch's unrelated Source-history migration was deliberately not
+carried over.
+
+The selective retirement pass is backend `22c8fbe39`: the private group-safety
+corpus no longer queries `personal_memories` directly and therefore cannot
+reintroduce an unbound or withdrawn aggregate into a privacy check. No second
+memory store, new generator, Source worker, route, app change or feature
+activation was added.
+
+Evidence on the cut: owner-read tests **23 passed**; memory/refresh/claims/
+reflection/traveler tests **162 passed**; privacy-corpus/currentness tests
+**121 passed**; Ruff, format, vulture, secret, import-boundary, lazy-import,
+cycle-ratchet, async-DB and size checks passed. Two local commit hooks remain
+unverified because their checker process could not import `sqlalchemy`:
+event-type parity and enum parity. They remain required before landing. No
+`make verify`, disposable-Postgres migration rehearsal, full backend CI,
+native acceptance, merge or publication was performed by this receipt.
+
+The cut is ready for compatibility review against the functional lane. Before
+landing, run the migration upgrade against an explicit disposable database,
+re-run the parity hooks with the backend environment installed, and inspect
+the affected consumer contracts. Integration remains paused; this receipt is
+not permission to activate the worker, flags or release paths.

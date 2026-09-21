@@ -78,6 +78,39 @@ The latest workspace documentation head before this documentation receipt is
 advance is integration-test coverage only; it does not alter production
 behavior or release state.
 
+### September 21 shared-engine consolidation receipt
+
+The independent engine lane completed the bounded consolidation packages that
+support both the functional and native-presentation lanes. Backend
+`fd133c493` carries forward the existing physical owner-read admission and
+whole-portfolio deadline protections: slow synchronous work remains bounded
+after caller timeout, queued cancellation cannot start later, independent
+owner results preserve order, and exact authority-bearing request identities
+remain the coalescing boundary. Backend `ed4c2779d` adds evidence manifests to
+Personal Memory synthesis. Publication checks the exact eligible observations,
+constraints, facts, membership and prior-trip inputs used by the prompt; later
+single-user, batch, context-compiler, affinity and preference reads withhold an
+unbound or changed aggregate. Migration `pmevidence02` follows this candidate's
+actual `originaldelivery02` head; it does not import the donor branch's
+unrelated Source-history migration.
+
+The cleanup follow-through in backend `22c8fbe39` routes the private group-safety
+corpus through the same current Personal Memory reader rather than selecting a
+row directly. This closes a concrete stale-memory bypass without changing
+historical-memory browsing or adding a second memory store.
+
+Focused evidence: owner-read tests **23 passed**; memory, refresh, claims,
+reflection and traveler tests **162 passed**; privacy-corpus and affected
+currentness tests **121 passed**. Ruff, formatting, vulture, secret checks,
+import boundaries, lazy-import checks, cycle ratchet, async-DB and size checks
+passed. The pre-commit event-type and enum-parity hooks were **unverified** in
+this environment because their checker process could not import `sqlalchemy`;
+they were skipped only for the local commit and remain required before landing.
+No app code, source-worker activation, feature flag, merge, publication or
+shared Integration resumption occurred. The two execution lanes can continue
+against their existing contracts; this lane's next review is compatibility and
+landing readiness, not another engine framework.
+
 ### September 21 canonical Home sequence readback
 
 Backend `bdc05c02f` adds a production-composition test for the already supplied
