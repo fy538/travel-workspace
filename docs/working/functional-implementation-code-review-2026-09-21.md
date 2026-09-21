@@ -111,9 +111,15 @@ Focused correction receipts on the candidate tuple:
 - Source worker/registration/recovery packet: **27 passed** with Ruff check and
   format verification; this is offline wiring/contract evidence, not Arq/Redis
   execution.
+- Broader Home/Places/root backend packet: **1,142 passed**, with 42 explicitly
+  deselected environment/provider cases. This is the current offline owner,
+  selection and route packet; it is not populated-database or native acceptance.
 - App sender/object-projection packet: **40 passed**; `npx tsc --noEmit`
   passed. ESLint reported no errors and one existing-style max-lines warning
   on the sender screen (803 lines versus the 800-line budget).
+- Broader Home/Places/Life mobile packet: **422 passed** across 47 suites,
+  including the real Home v2 renderer, Places object/workspace surfaces, Life
+  original/refinding paths and return-state tests.
 - The canonical OpenAPI projector regenerated `docs/openapi.app.json` and
   `travel-app/utils/api/schema.gen.ts` with `schedule_timezone`. The normal
   `sync-types` audit remains blocked by the pre-existing expired API-operation
