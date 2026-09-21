@@ -190,6 +190,16 @@ content breadth or a complete full-scroll runtime receipt. The next check is
 canonical Home runtime readback with honest sparse/pending/failure behavior,
 or another already supplied owner-backed value family.
 
+### September 21 sequence contract-hardening receipt
+
+Backend `7e7095f57` now covers the same-place sequence through Home selection
+and `compile_home_v2`, preserving one typed Horizons composition, its sequence
+steps and Places destination. App `ac6e08235` covers the native composition
+renderer with ordered sequence-step assertions. The focused backend Home
+packet passes **47 tests** and the native composition/Home packet passes **20**.
+This closes a regression seam for the prior value-depth increment; it does not
+replace the required canonical runtime readback or establish recurring supply.
+
 ### September 21 native Life source/original distinction receipt
 
 The existing Life root and paginated record already opened exact retained
