@@ -89,7 +89,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R05
 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after this receipt: workspace
-`03c6fef`, backend `9d52e71b3`, app `9a597abd4`, all on
+`03c6fef`, backend `9d52e71b3`, app `242d309f0`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
@@ -148,7 +148,10 @@ Places for an explicit place binding, and People for an explicit people binding.
 The anchor remains private and opens its exact artifact owner; this is not a
 new audience, person dossier, or social inference. The focused Life packet
 passes **60 tests**, including the complete-record `lens=people` read, and the
-root-projection packet passes **442 tests**.
+root-projection packet passes **442 tests**. App `242d309f0` adds the matching
+native Life-root regression: the private People-bound anchor opens its exact
+artifact and preserves `lifeLens=people`; the focused Life-root suite passes
+**13 tests** and TypeScript passes.
 
 ### September 21 value-depth receipt — supplied experience comparison
 

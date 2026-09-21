@@ -35,7 +35,7 @@ state treatment is:
 |---|---|
 | Workspace | `03c6fef` (current documentation receipt) |
 | Backend | `9d52e71b3` |
-| App | `9a597abd4` |
+| App | `242d309f0` |
 
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes. Earlier
@@ -85,6 +85,12 @@ anchor private and artifact-owned. The focused anchor/projection/route/index
 packet passes **60 tests**, including the complete-record `lens=people` read,
 and the root-projection packet passes **442 tests**.
 No audience, person dossier, social inference or new storage path was added.
+
+App `242d309f0` adds the matching native Life-root contract: a private
+People-bound anchor opens its exact artifact and preserves `lifeLens=people`.
+The focused `LifeRootV1Screen` suite passes **13 tests** and TypeScript passes;
+the previously recorded 54-test combined native packet remains a separate,
+unchanged packet.
 
 ### September 21 native semantic-state treatment review
 

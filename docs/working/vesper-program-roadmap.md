@@ -52,7 +52,7 @@ Retention/refinding is further along than context materially improving a later
 answer, possibility or action.
 
 **Current candidate tuple after this receipt:** workspace `03c6fef`, backend
-`9d52e71b3`, and app `9a597abd4`, all on the isolated
+`9d52e71b3`, and app `242d309f0`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; the child-code tuple now includes the Places typed
 notice bridge, native sender-withdrawal proof, shared Home/Places semantic
@@ -184,6 +184,13 @@ the complete-record `lens=people` read, and the full root-projection packet
 passes **442 tests** on this backend head. This closes a bounded Life
 continuity gap between direct, shadow and depth reads; it does not claim
 shared-media breadth, names, later permitted reuse or design parity.
+
+The native Life root now has the matching private-anchor return regression in
+app `242d309f0`: the People lens opens an `anchor` entry to its exact artifact
+and preserves `lifeLens=people` without turning the private source into a
+shared item. The focused `LifeRootV1Screen` suite passes **13 tests** and
+TypeScript passes. The previously recorded 54-test combined native packet is
+unchanged and remains scoped to the suites it actually ran.
 
 ### September 21 native receipt — honest semantic unit states
 
@@ -1731,7 +1738,7 @@ source/original distinction, and docs closeout.
 | --- | --- | --- |
 | Workspace | `03c6fef` (current documentation receipt) | `b6e7014` |
 | Backend | `9d52e71b3` | `a7c02cbe1` |
-| App | `9a597abd4` | `e2e792913` |
+| App | `242d309f0` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent
