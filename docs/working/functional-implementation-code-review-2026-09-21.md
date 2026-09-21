@@ -60,9 +60,9 @@ provider-failure/retry case, before R05 can be marked closed.
 
 ### September 21 latest-candidate regression packet
 
-After the explicit People-bound anchor follow-through, the candidate ran the
-backend root projection packet (**442 passed**), focused Life
-anchor/projection/route/index-projector packet (**60 passed**), focused
+After the explicit People-bound anchor follow-through and Source lease-renewal
+repair, the candidate ran the backend root projection packet (**443 passed**),
+focused Life anchor/projection/route/index-projector packet (**60 passed**), focused
 Home/Places/Life native packet (**54 passed**),
 and persisted schedule-zone unit packet (**36 passed**). These are named
 focused regressions, not `make verify`, full device acceptance, or release

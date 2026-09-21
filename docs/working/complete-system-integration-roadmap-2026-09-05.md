@@ -128,9 +128,9 @@ safety.
 
 ### September 21 latest-candidate verification receipt
 
-The candidate was rechecked after the Life People depth and explicit anchor
-follow-through:
-backend root projection **442 passed**, focused Life route/projection/index
+The candidate was rechecked after the Life People depth, explicit anchor
+follow-through and Source lease-renewal repair:
+backend root projection **443 passed**, focused Life route/projection/index
 projector **60 passed**, focused Home/Places/Life native suites **54 passed**,
 and the persisted schedule-zone unit packet **36 passed**. This is a bounded
 regression packet, not a latest-tuple full gate. It leaves R05 process

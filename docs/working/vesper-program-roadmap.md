@@ -169,10 +169,11 @@ and evidence boundary.
 
 ### September 21 verification receipt — latest candidate
 
-After the People-bound anchor follow-through, the latest candidate was checked
-without changing production state or claiming a full gate. Backend root projection regressions
-passed **442 tests**; the focused Life route/projection/index-projector packet
-passed **60 tests**; the focused Home/Places/Life native packet passed **54
+After the People-bound anchor follow-through and Source lease-renewal repair,
+the latest candidate was checked without changing production state or claiming
+a full gate. Backend root projection regressions passed **443 tests**; the
+focused Life route/projection/index-projector packet passed **60 tests**; the
+focused Home/Places/Life native packet passed **54
 tests**; and the persisted schedule-zone unit packet passed **36 tests**.
 These packets overlap the broader historical receipts and prove only their
 named contracts. They do not close R05's process-interruption/transient-failure
