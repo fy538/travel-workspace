@@ -50,6 +50,20 @@ same tour. Frontend polish is part of each surface's completion. Retention/
 refinding is further along than context materially improving a later answer,
 possibility or action.
 
+**September 21 afternoon execution rule:** the latest lane change is a
+documentation tuple correction (`53c1a11`); the latest product behavior remains
+the supplied-reading `Why this?` slice in backend `c4b4ff031` and app
+`4d51c1db0`. The next implementation should therefore be selected from an
+existing owner-backed Home/Places payload and add substantive received value
+(for example, a truthful comparison, sequence, evidence view or practical
+consequence only when its structured inputs already exist). It must preserve an
+exact destination, return state, expiry and empty/failure behavior, and ship
+with focused regression evidence. Do not open a new generator, feed, store,
+route family or broad visual-parity program to make this slice appear fuller.
+If the payload cannot support a truthful result, keep the gap explicit and
+move to the next supported owner/destination/return seam rather than inventing
+content.
+
 The dedicated shared Integration/landing lane remains **PAUSED by the founder**.
 That pause does not cancel the subsequently authorized isolated implementation
 and lane-local disposable-runtime work recorded here. This rebaseline does not
@@ -1170,7 +1184,7 @@ updated after the bounded Source recovery correction and docs closeout.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `72114ce` (current tranche candidate) | `b6e7014` |
+| Workspace | `53c1a11` (current tranche candidate) | `b6e7014` |
 | Backend | `c4b4ff031` | `a7c02cbe1` |
 | App | `4d51c1db0` | `e2e792913` |
 
