@@ -47,7 +47,7 @@ surface package. Focused regressions accompany delivery; more happy-path
 rehearsals alone are not the next product milestone.
 
 Current candidate after the September 21 correction/docs updates: workspace
-`1863296`, backend `70b607e34`, app `44872d0c2`, all on
+`f82664e`, backend `70b607e34`, app `44872d0c2`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
