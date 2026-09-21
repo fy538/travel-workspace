@@ -50,10 +50,9 @@ same tour. Frontend polish is part of each surface's completion. Retention/
 refinding is further along than context materially improving a later answer,
 possibility or action.
 
-**September 21 afternoon execution rule:** the latest lane change is a
-documentation tuple correction (`53c1a11`); the latest product behavior remains
-the supplied-reading `Why this?` slice in backend `c4b4ff031` and app
-`4d51c1db0`. The next implementation should therefore be selected from an
+**September 21 afternoon execution rule:** the latest product behavior is the
+supplied-reading `Why this?` slice followed by the mechanism-row adaptation in
+backend `507cefd38` and app `df490cb56`. The next implementation should therefore be selected from an
 existing owner-backed Home/Places payload and add substantive received value
 (for example, a truthful comparison, sequence, evidence view or practical
 consequence only when its structured inputs already exist). It must preserve an
@@ -76,6 +75,25 @@ passes and its native UI runner is committed but unrun because no simulator is
 available; R05's exhausted-lease code correction is committed with focused
 tests, but disposable-Postgres/transient-restart evidence remains open; R09
 timezone edge coverage remains open.
+
+## September 21 functional receipt — preserve supplied mechanism cues
+
+The first substantive Home breadth slice after the receiving proofs is now
+implemented. Accepted public Place primitives authored as `perceptual_cue` or
+`approach_cue` retain their existing Source-backed `RootRead` payload but emit
+the already-admitted `horizon_mechanism_row` anatomy. Interpretive lenses and
+other primitive types remain editorial passages until their narrower owner
+contracts are explicit. The native Home registry now renders the mechanism row
+instead of dropping an otherwise valid unit as an unpromoted kind.
+
+This is an adaptation of existing owner data, not a new generator, store,
+route, or inference layer. Exact Source/Place destinations, `Why this?`, expiry,
+and return behavior are unchanged. Backend commit `507cefd38` adds the typed
+selection and regression coverage; app commit `df490cb56` promotes the native
+registry entry. Evidence: **48** focused backend Home portfolio/composition
+tests, **20** focused Home renderer/smoke tests, TypeScript, Ruff, formatting,
+and Python compile checks passed. This does not establish `horizon_world_fact_row`,
+prepared alternatives, broad source supply, or full Claude-design parity.
 
 ## September 21 functional receipt — Why-this on supplied Home readings
 
@@ -1184,9 +1202,9 @@ updated after the bounded Source recovery correction and docs closeout.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `53c1a11` (current tranche candidate) | `b6e7014` |
-| Backend | `c4b4ff031` | `a7c02cbe1` |
-| App | `4d51c1db0` | `e2e792913` |
+| Workspace | `3622897` (current tranche candidate before this receipt) | `b6e7014` |
+| Backend | `507cefd38` | `a7c02cbe1` |
+| App | `df490cb56` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent

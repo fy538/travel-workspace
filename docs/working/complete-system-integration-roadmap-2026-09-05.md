@@ -51,8 +51,9 @@ new generator, feed, storage family, or another happy-path rehearsal. Native
 polish belongs in each surface package. Focused regressions accompany delivery;
 more happy-path rehearsals alone are not the next product milestone.
 
-The current lane has no behavioral change after backend `c4b4ff031` and app
-`4d51c1db0`; workspace `53c1a11` only corrects the recorded tuple. Apply this
+The current lane now includes the bounded mechanism-row adaptation in backend
+`507cefd38` and app `df490cb56`; the workspace `3622897` is the last committed
+roadmap baseline before this receipt. Apply this
 selection test to the next package: can an existing owner-backed payload
 truthfully support a richer received result (comparison, sequence, evidence or
 practical consequence), with exact destination, return, expiry and empty/error
@@ -62,7 +63,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R04,
 R05 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after the latest lane-local corrections: workspace
-`53c1a11`, backend `c4b4ff031`, app `4d51c1db0`, all on
+`3622897`, backend `507cefd38`, app `df490cb56`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
@@ -75,6 +76,21 @@ exhausted-final-lease recovery is now code-fixed and covered by focused tests;
 the disposable-Postgres and transient-provider rehearsals now pass; a real
 process-restart queue rehearsal is still required before calling preparation
 reliable.
+
+## September 21 continuation — supplied mechanism cue anatomy
+
+The first substantive Home/Places breadth cut after receiving proofs is now
+implemented without expanding infrastructure. Accepted public Place
+`perceptual_cue` and `approach_cue` primitives emit the existing
+`horizon_mechanism_row` Home kind, and the native registry explicitly renders
+it. Other primitive types remain `horizon_editorial_passage` until their owner
+grammar earns a narrower treatment. The exact Source/Place continuation,
+`Why this?`, expiry and return registry are unchanged.
+
+Backend `507cefd38` passes **48** focused Home portfolio/composition tests;
+app `df490cb56` passes **20** focused renderer/smoke tests and TypeScript, with
+Ruff, formatting and Python compile checks clean. This is not a world-fact,
+prepared-alternatives, generator, supply-coverage or visual-parity claim.
 
 ## September 21 continuation — supplied reading comprehension affordance
 

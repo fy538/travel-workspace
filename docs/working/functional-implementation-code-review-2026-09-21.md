@@ -31,9 +31,9 @@ proof is:
 
 | Repository | Current HEAD |
 |---|---|
-| Workspace | `53c1a11` |
-| Backend | `c4b4ff031` |
-| App | `4d51c1db0` |
+| Workspace | `3622897` |
+| Backend | `507cefd38` |
+| App | `df490cb56` |
 
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes.
