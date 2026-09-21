@@ -2378,8 +2378,9 @@ recommendation store was introduced.
 
 Backend commit `596bc9429` adds the serving correction, regression coverage, and a
 disposable fixture that writes three verified NYC venues with ten-minute
-`open_now` evidence into the existing cache. App commit `cbef1acaa` adds the real
-API/iOS Maestro flow and static runner contracts. The native run passed: Home
+`open_now` evidence into the existing cache. App commits `cbef1acaa` and
+`13e981a20` add the real API/iOS Maestro flow and static runner contracts. The
+native run passed: Home
 showed the typed `place.open_now` assessment, opened the exact fixture venue,
 and returned to the identical Home unit. Fixture cleanup withdrew all status,
 venue, and temporary-home rows. Evidence: **69** focused backend tests, **3**

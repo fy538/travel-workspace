@@ -6068,8 +6068,9 @@ Home horizon unit. Sparse or unanchored contexts still omit the section.
 
 Backend commit `596bc9429` adds the starter admission and a disposable local-Postgres
 fixture with three verified nearby venues plus fresh normalized status-cache
-rows. App commit `cbef1acaa` adds `.maestro/80-home-practical-open-now.yaml`, its
-runner, and static contracts. The real iOS flow passed: Home displayed a
+rows. App commits `cbef1acaa` and `13e981a20` add
+`.maestro/80-home-practical-open-now.yaml`, its runner, and static contracts.
+The real iOS flow passed: Home displayed a
 supported practical assessment, opened the exact venue in Places, and returned
 to the same Home unit; cleanup removed the cache rows, venues, and temporary
 Home anchor. Focused backend tests passed **69**, the app static packet passed
