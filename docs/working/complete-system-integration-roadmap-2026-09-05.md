@@ -58,7 +58,7 @@ editorial/aperture anatomy, Places editorial-cover anatomy, the native starter
 browse shelf, native branch/continuity/returned-understanding treatments, the
 honest balanced-field fallback, and the native owner-backed evidence register
 in backend `aa96caff7` and app `e601a9dfd`; the latest workspace documentation
-receipt is `7d8fd11`. This
+receipt is `9ee782f`. This
 documentation
 advance does not merge, publish, enable or
 resume shared Integration/landing. Apply this
@@ -71,7 +71,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R04,
 R05 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after the latest lane-local corrections: workspace
-`7d8fd11`, backend `aa96caff7`, app `e601a9dfd`, all on
+`9ee782f`, backend `aa96caff7`, app `e601a9dfd`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
@@ -84,6 +84,18 @@ exhausted-final-lease recovery is now code-fixed and covered by focused tests;
 the disposable-Postgres and transient-provider rehearsals now pass; a real
 process-restart queue rehearsal is still required before calling preparation
 reliable.
+
+### Coordination ownership decision — keep group waiting in Home
+
+The existing Places `group_waiting` section remains intentionally deferred in
+the v2 adapter. Its producer is coupled to the legacy Places urgency read,
+which also loads booking holds and emits an operational proposal notice. The
+canonical open Plan proposal already reaches Home as a group coordination
+candidate and opens the supported Chat review route. A second Places notice
+would duplicate that consequence, reintroduce the operational/booking surface
+we are pruning, and create two competing return paths. This is a product and
+ownership decision, not missing renderer work. Only a distinct Place-owned
+consequence with its own permitted value should reopen it.
 
 ## September 21 continuation — explicit selected-trip fit
 

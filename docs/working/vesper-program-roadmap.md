@@ -50,7 +50,7 @@ same tour. Frontend polish is part of each surface's completion. Retention/
 refinding is further along than context materially improving a later answer,
 possibility or action.
 
-**Current candidate tuple after this receipt:** workspace `7d8fd11`, backend
+**Current candidate tuple after this receipt:** workspace `9ee782f`, backend
 `aa96caff7`, and app `e601a9dfd`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; it does not change the child-code tuple, merge the
@@ -78,6 +78,17 @@ route family or broad visual-parity program to make this slice appear fuller.
 If the payload cannot support a truthful result, keep the gap explicit and
 move to the next supported owner/destination/return seam rather than inventing
 content.
+
+**Scope decision — Places group waiting remains deferred.** The legacy Places
+`group_waiting` producer still reads itinerary proposals alongside booking
+holds. The v2 adapter intentionally does not surface that section: canonical
+open Plan proposals already have a Home-owned coordination candidate whose
+destination is the supported Chat review route. Promoting the Places copy would
+duplicate coordination, revive the operational urgency surface we are pruning,
+and bypass the Home → Chat return contract. Revisit only if the Plan owner
+supplies a distinct, permission-safe Place consequence with new value beyond
+the existing proposal review; do not add a second proposal route to fill the
+Places scroll.
 
 ## September 21 native receipt — mechanism-row anatomy
 
@@ -1392,7 +1403,7 @@ implementation, and docs closeout.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `7d8fd11` (current documentation receipt) | `b6e7014` |
+| Workspace | `9ee782f` (current documentation receipt) | `b6e7014` |
 | Backend | `aa96caff7` | `a7c02cbe1` |
 | App | `e601a9dfd` | `e2e792913` |
 
