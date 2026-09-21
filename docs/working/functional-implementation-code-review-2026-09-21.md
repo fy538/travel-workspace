@@ -31,7 +31,7 @@ and supplied-experience comparison is:
 
 | Repository | Current HEAD |
 |---|---|
-| Workspace | `95d8377` |
+| Workspace | `22c9f82` |
 | Backend | `c3f64589e` |
 | App | `ecdecaffe` |
 
