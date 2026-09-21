@@ -31,9 +31,9 @@ and latest workspace documentation receipt is:
 
 | Repository | Current HEAD |
 |---|---|
-| Workspace | `45fa3c070` |
+| Workspace | `8358a28` |
 | Backend | `f9fa3d82b` |
-| App | `fda51a42c` |
+| App | `659f572ae` |
 
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes.
@@ -46,6 +46,16 @@ action, practical-expiry and composition contracts. App `fda51a42c` adds the
 two treatments and regressions; the focused Home renderer/smoke packet passes
 22 tests, TypeScript passes, and targeted ESLint has no errors. The existing
 max-lines warning remains a maintainability note, not a functional failure.
+
+### September 21 Places surface follow-up
+
+Places now renders the existing `field_editorial_cover` read/composition kind
+with a native field-reading rail, authored substance and the same source,
+destination, capability and expiry behavior. App `659f572ae` adds the
+treatment and regression; the focused Places root/expiry packet passes **28
+tests**, TypeScript passes, and targeted ESLint has no errors. This improves
+native expression of supplied Places value; it does not claim new content supply
+or full Claude-design parity.
 
 ### September 21 post-receiving-surface recheck
 

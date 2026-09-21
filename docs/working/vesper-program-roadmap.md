@@ -50,8 +50,8 @@ same tour. Frontend polish is part of each surface's completion. Retention/
 refinding is further along than context materially improving a later answer,
 possibility or action.
 
-**Current candidate tuple after this receipt:** workspace `45fa3c070`, backend
-`f9fa3d82b`, and app `fda51a42c`, all on the isolated
+**Current candidate tuple after this receipt:** workspace `8358a28`, backend
+`f9fa3d82b`, and app `659f572ae`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; it does not change the child-code tuple, merge the
 lane, enable a flag, or resume shared Integration/landing. The next substantive
@@ -62,8 +62,9 @@ available.
 **September 21 afternoon execution rule:** the latest product behavior is the
 supplied-reading `Why this?` slice, mechanism-row adaptation, explicit
 selected-trip fit, attributed friend-place preview, public-reading limits, and
-native social-evidence treatment, exact social venue doors, and Home editorial/
-aperture anatomy in backend `f9fa3d82b` and app `fda51a42c`.
+native social-evidence treatment, exact social venue doors, Home editorial/
+aperture anatomy, and Places editorial-cover anatomy in backend `f9fa3d82b`
+and app `659f572ae`.
 The next
 implementation should therefore be selected from an
 existing owner-backed Home/Places payload and add substantive received value
@@ -154,6 +155,16 @@ focused Home renderer/smoke packet passes **22 tests**, TypeScript passes, and
 targeted ESLint has no errors (the renderer's pre-existing max-lines warning
 remains). This improves the native expression of supplied Home value; it does
 not claim new content supply or full Claude-design parity.
+
+## September 21 native receipt — Places editorial field anatomy
+
+Places now gives the existing `field_editorial_cover` read/composition kind a
+native field-reading rail, authored substance and an “A field reading” label,
+while preserving source inspection, exact destination, actions and practical
+expiry behavior. App commit `659f572ae` adds the treatment and regression.
+Focused Places root/expiry tests pass **28 tests**; TypeScript and targeted
+ESLint pass. This improves the native expression of supplied Places value; it
+does not claim new content supply or full Claude-design parity.
 
 ## September 21 functional receipt — preserve social Place destinations
 
@@ -1329,9 +1340,9 @@ implementation, and docs closeout.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `d28096549` (current documentation receipt) | `b6e7014` |
+| Workspace | `8358a28` (current documentation receipt) | `b6e7014` |
 | Backend | `f9fa3d82b` | `a7c02cbe1` |
-| App | `fda51a42c` | `e2e792913` |
+| App | `659f572ae` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent
