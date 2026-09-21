@@ -102,7 +102,7 @@ supplied-experience comparison, the plural social perspective, the
 standalone-only Places feed-state repair, the addressed Place-contribution
 region, and the same-place public-reading sequence in backend `c18470b4a` and
 app `8cd899b6d`; the latest workspace verification receipt before this
-roadmap maintenance is `f8fa48a`, which also records the native
+roadmap maintenance is `c586de3`, which also records the native
 sender-withdrawal evidence. This
 documentation
 advance does not merge, publish, enable or
@@ -128,8 +128,8 @@ recurring supply, or full-scroll design parity. Do not add a new semantic kind
 in response; the next proof should be runtime/database/device evidence only
 when the required environment is safely disposable.
 
-Current candidate tuple at the last code review: workspace
-`f8fa48a`, backend `306eb51a4`, app `242d309f0`, all on
+Current candidate tuple after the latest rebaseline: workspace
+`c586de3`, backend `bdc05c02f`, app `242d309f0`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable

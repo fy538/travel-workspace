@@ -59,22 +59,24 @@ documentation drift that had called several already-renderable kinds "dark";
 it does not claim source admission, recurring content supply, runtime
 full-scroll quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
-**Current candidate tuple at the last code review:** workspace `f8fa48a`,
-backend `306eb51a4`, and app `242d309f0`, all on the isolated
-`codex/functional-implementation-2026-09-20` lane. The workspace advance is a
-documentation receipt only; the child-code tuple now includes the Places typed
-notice bridge, native sender-withdrawal proof, shared Home/Places semantic
-state treatment, and the explicit People-bound anchor index repair. Nothing is
-merged to main,
+**Current candidate tuple after the latest rebaseline:** workspace `c586de3`,
+backend `bdc05c02f`, and app `242d309f0`, all on the isolated
+`codex/functional-implementation-2026-09-20` lane. The latest workspace
+advance records the disposable owner-loop verification and renderer-ledger
+correction; the backend advance adds the canonical Home same-Place composition
+proof. The child-code tuple also includes the Places typed notice bridge,
+native sender-withdrawal proof, shared Home/Places semantic-state treatment,
+and the explicit People-bound anchor index repair. Nothing is merged to main,
 published, flag-activated, or resumed in shared Integration/landing. The next
 substantive implementation remains one selected sparse/pending/failure state
 or supplied Life/social downstream value, with R05/R09 edge work continuing
 only where its required environment is available.
 
-The latest workspace documentation head after the renderer-ledger refresh is
-`3ba4e5e`; backend and app code are now `bdc05c02f` and `242d309f0`. The
-backend advance is a focused composition-proof test only; it does not alter
-production behavior or release state.
+The latest workspace documentation head after the renderer-ledger refresh and
+disposable owner-loop verification is `c586de3`; backend and app code are
+`bdc05c02f` and `242d309f0`. The backend advance is a focused
+composition-proof test only; it does not alter production behavior or release
+state.
 
 ### September 21 canonical Home sequence readback
 
@@ -1821,8 +1823,8 @@ source/original distinction, and docs closeout.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `f8fa48a` (docs head observed before this maintenance receipt) | `b6e7014` |
-| Backend | `306eb51a4` | `a7c02cbe1` |
+| Workspace | `c586de3` | `b6e7014` |
+| Backend | `bdc05c02f` | `a7c02cbe1` |
 | App | `242d309f0` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
