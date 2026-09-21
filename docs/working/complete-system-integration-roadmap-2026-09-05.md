@@ -49,7 +49,7 @@ surface package. Focused regressions accompany delivery; more happy-path
 rehearsals alone are not the next product milestone.
 
 Candidate tuple used for this implementation tranche: workspace `2450d72`,
-backend `8bbd8391e`, app `108f4e70b`, all on
+backend `aa9b47849`, app `108f4e70b`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
@@ -59,8 +59,9 @@ The [review ledger](functional-implementation-code-review-2026-09-21.md) remains
 open for the remaining authority, queue and edge-case evidence, while R04 and
 R09 are now code-fixed and the named native/database happy paths pass. R05's
 exhausted-final-lease recovery is now code-fixed and covered by focused tests;
-the disposable-Postgres, transient-provider and process-restart rehearsals are
-still required before calling preparation reliable.
+the disposable-Postgres and transient-provider rehearsals now pass; a real
+process-restart queue rehearsal is still required before calling preparation
+reliable.
 
 ## September 21 evidence closeout — current boundary
 
