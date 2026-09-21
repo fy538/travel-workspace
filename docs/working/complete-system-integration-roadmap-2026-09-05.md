@@ -6136,3 +6136,31 @@ multi-lens breadth, semantic place attendance, people/thread grouping, binary
 original playback, social adoption, production activation, design parity, or
 release readiness. Continue with another supported user-visible consequence
 only after preserving the same owner projector and cleanup boundary.
+
+## September 21 functional implementation receipt — saved-place closure consequence
+
+Places now has a real-runtime proof for a current-world change to something the
+traveler deliberately saved. Backend fixture
+`provision_places_saved_closure_rehearsal.py` creates one disposable canonical
+venue, one private Save through `create_save_with_effects`, and fresh
+normalized `permanently_closed` evidence in the existing provider-status
+cache. No provider call, booking, trip, or second notice store is introduced.
+
+The new app flow `.maestro/83-places-saved-closure.yaml` and runner prove on
+the local API and iOS simulator: the saved-place notice appears in the
+canonical scoped Places feed; the user clears the exact notice; the notice is
+absent on the subsequent feed read; and the underlying Save is still present.
+Cleanup then removes the fixture venue, cache row, Save effects, and dismissal
+event. The owner-level rehearsal also passed directly: `changed` emitted the
+closure card, `clear_places_notice` recorded a neutral dismissal, the card
+disappeared, and the Save remained.
+
+Evidence: backend return/section tests passed **52**; the new static mobile
+contract passed **3**; shell syntax, Python compilation, Ruff, and formatting
+passed; and the real native flow passed end to end on simulator
+`D7C8FEF4-237B-4347-841C-6FE920BFABFA`. This closes one practical consequence
+loop (current-world evidence → user-controlled dismissal) without claiming
+provider acquisition, alternative selection, notifications, or broad Places
+parity. The next wave should continue the same bounded owner/destination/
+return discipline, with the roadmap re-evaluated after another complete
+user-visible loop rather than widening infrastructure.

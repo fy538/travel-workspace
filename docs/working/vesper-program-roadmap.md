@@ -37,6 +37,13 @@ runtime, landing, publishing or pending product agreement is activated.
 Earlier dispatch and review entries below preserve the execution history.
 Section 7 preserves the older acceptance scope as history.
 
+The latest bounded implementation is the saved-place closure consequence:
+fresh provider-status evidence reaches the Places feed, clearing it records a
+neutral dismissal, and the underlying Save remains intact. This is a practical
+current-world loop, not a reason to add provider orchestration or a generalized
+notice system; continue with existing producer → owner read → destination or
+return seams and reassess after each complete native loop.
+
 ## September 21 native/runtime receipt — Home Save → Places consequence and readback
 
 The first real-owner native rehearsal for the current Home/Places receiving
@@ -2433,3 +2440,31 @@ mobile contracts, TypeScript, and a real iOS simulator pass. This is one
 conservative period-group path; people/thread grouping, semantic attendance,
 binary original playback, social adoption, production activation, design
 parity and release readiness remain outside the claim.
+
+## September 21 functional implementation receipt — saved-place closure consequence
+
+Places now has a real-runtime proof for a current-world change to something the
+traveler deliberately saved. Backend fixture
+`provision_places_saved_closure_rehearsal.py` creates one disposable canonical
+venue, one private Save through `create_save_with_effects`, and fresh
+normalized `permanently_closed` evidence in the existing provider-status
+cache. No provider call, booking, trip, or second notice store is introduced.
+
+The new app flow `.maestro/83-places-saved-closure.yaml` and runner prove on
+the local API and iOS simulator: the saved-place notice appears in the
+canonical scoped Places feed; the user clears the exact notice; the notice is
+absent on the subsequent feed read; and the underlying Save is still present.
+Cleanup then removes the fixture venue, cache row, Save effects, and dismissal
+event. The owner-level rehearsal also passed directly: `changed` emitted the
+closure card, `clear_places_notice` recorded a neutral dismissal, the card
+disappeared, and the Save remained.
+
+Evidence: backend return/section tests passed **52**; the new static mobile
+contract passed **3**; shell syntax, Python compilation, Ruff, and formatting
+passed; and the real native flow passed end to end on simulator
+`D7C8FEF4-237B-4347-841C-6FE920BFABFA`. This closes one practical consequence
+loop (current-world evidence → user-controlled dismissal) without claiming
+provider acquisition, alternative selection, notifications, or broad Places
+parity. The next wave should continue the same bounded owner/destination/
+return discipline, with the roadmap re-evaluated after another complete
+user-visible loop rather than widening infrastructure.
