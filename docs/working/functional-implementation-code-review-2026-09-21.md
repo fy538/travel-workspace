@@ -31,7 +31,7 @@ and latest workspace documentation receipt is:
 
 | Repository | Current HEAD |
 |---|---|
-| Workspace | `9ee782f` |
+| Workspace | `c06c904` |
 | Backend | `aa96caff7` |
 | App | `e601a9dfd` |
 
