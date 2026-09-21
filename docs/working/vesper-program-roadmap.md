@@ -1730,9 +1730,10 @@ Places continuation instead of being dropped or relabeled as a container.
 No provider, generator, semantic index, new store, schema, card family or
 personal-history inference was added. The exact-entity Source listing remains
 unchanged for callers that intentionally ask for one owner. Focused backend
-Source/Home coverage is **64 passed** (including the child-source regression);
-Ruff, format and backend hooks pass. The change is backend commit
-`1de6fa954`; app behavior and the existing generated contract are unchanged.
+Source/Home coverage is **65 passed** (including the child-source continuation
+regression); Ruff, format and backend hooks pass. The implementation is backend
+commit `1de6fa954`, with test follow-up `2fbf828e6`; app behavior and the
+existing generated contract are unchanged.
 
 This remains local candidate evidence: the accepted database rows, combined
 runtime, native visual receiving, merge/publication and rollout flags are not

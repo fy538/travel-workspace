@@ -59,8 +59,9 @@ revalidates current public/root eligibility at the represented clock, and feeds
 the unchanged Home candidate/destination adapter. Exact-entity listing remains
 separate and unchanged.
 
-Evidence: backend Source/Home focused suite **64 passed**, Ruff/format/hooks and
-diff checks passed; backend commit `1de6fa954`. This is a read-only consumer
+Evidence: backend Source/Home focused suite **65 passed**, Ruff/format/hooks and
+diff checks passed; backend implementation commit `1de6fa954` and test
+follow-up `2fbf828e6`. This is a read-only consumer
 connection, not a new generator, provider, index, schema or retention owner.
 Accepted database supply, combined runtime, native visual receiving,
 merge/publication and rollout remain unverified. The next checkpoint should use
