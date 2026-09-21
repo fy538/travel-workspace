@@ -1984,8 +1984,9 @@ without inventing a visit from a photo, note, or capture context.
 Backend commit `b3c832c40` adds the behavior and regression coverage. Focused
 Life projection tests pass (**41 passed**), and the adjacent corpus/index
 regressions pass (**25 passed**); Ruff, format, vulture and repository hooks
-pass at commit time. No schema, API wire contract, mobile code, generator,
-provider, or new store was added. The broader Life route suite remains bounded
+pass at commit time. No schema, API wire contract, or mobile production surface,
+generator, provider, or new store was added; app commit `81e876156` adds the
+focused Life-root Places-source handoff regression. The broader Life route suite remains bounded
 by the existing local environment: its Postgres/API collection requires
 `TEST_DATABASE_URL` and the optional `openai` dependency, so this receipt is
 unit/contract evidence rather than populated database or native Places proof.

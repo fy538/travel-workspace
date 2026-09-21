@@ -5691,7 +5691,8 @@ turn capture-time association into attendance or occurrence evidence.
 Evidence: backend commit `b3c832c40`; focused Life projection tests **41
 passed**, adjacent corpus/index regressions **25 passed**, and repository hooks
 (Ruff, format, vulture and boundary checks) passed. No contract or mobile
-surface changed. Full route/database collection is still unverified in this
+production surface changed; app commit `81e876156` adds the focused Life-root
+Places-source handoff regression. Full route/database collection is still unverified in this
 checkout because it requires the disposable Postgres test environment and an
 optional `openai` install. Combined runtime seeding, native Places proof,
 physical return/refind, and rollout activation remain open. The next package
