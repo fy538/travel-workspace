@@ -62,6 +62,67 @@ implementation remains the selected populated Home/Places value-depth package
 described below, with edge-matrix work continuing only where its required
 environment is available.
 
+## September 21 post-execution rebaseline — after the 12-hour functional window
+
+The window produced a coherent receiving/continuity increment rather than a
+new subsystem. Home can now compare already-supplied experiences, compose
+multiple addressed Place contributions, and keep admitted standalone Places
+units visible through the canonical feed even when mature browse cards are
+absent. Places can compare two privacy-eligible perspectives. Life now makes
+the distinction between a retained source and an exact retained original
+legible in both the digest and complete-record readers. These changes reuse
+existing owner reads, composition kinds, renderer registration, exact
+destinations, custody checks and return parameters. They add no generator,
+feed, store, route family, booking flow, audience policy or notification
+system.
+
+This changes the product's implementation position in three specific ways:
+
+1. **Receiving is no longer the principal unknown.** The backend selection
+   rail, canonical Home/Places workspace, native semantic renderer gate and
+   Life source/original readers are connected for the named cases. Repeating
+   injected-unit, workspace-reachability or single-happy-path proofs is not a
+   roadmap milestone.
+2. **Value depth is now the principal product gap.** The candidate can deliver
+   comparisons, social perspective and addressed material when structured
+   inputs exist, but it still does not prove a worthwhile, varied full scroll
+   or recurring prepared supply. A successful transport path is not evidence
+   that the result is interesting, useful or worth returning for.
+3. **Life continuity is clearer but not broad.** Source/original recognition,
+   refinding and organization have a real native seam. Broader media/corpus
+   coverage, later permitted reuse, useful Returns and People/Threads breadth
+   remain M3/M4/M5 work; this receipt does not justify a new inference or
+   storage architecture.
+
+### Forward order after this rebaseline
+
+1. **Close only consequential edge evidence** when its disposable database,
+   queue or device is available: R04 native sender control, R05 transient /
+   restart recovery, and R09 persisted/native timezone edges. Do not block
+   independent product work on unavailable environments or rerun completed
+   receiving tours.
+2. **Build one substantive Home/Places full-scroll package** from a real,
+   already supplied owner payload. It must show worthwhile content, exact
+   depth/action destinations, consequence/return, expiry and honest
+   sparse/pending/failure behavior in the composed scroll. Choose comparison,
+   evidence, social perspective or practical consequence according to the
+   available structured data; do not add infrastructure to manufacture
+   fullness.
+3. **Advance Life/social downstream value** on independent files: extend
+   bounded readers and permissioned later use beyond the exact-source seam,
+   while keeping source authority, audience and custody explicit. The visible
+   result must reduce user work rather than expose organization maintenance.
+4. **Reassess the complete cut only after those outcomes.** Shared Integration,
+   main landing, activation, release certification and any Atlas retirement
+   remain separately authorized and paused. Frontend polish and accessibility
+   are finish conditions for each selected surface package, not a reason to
+   open a repository-wide visual rewrite.
+
+This checkpoint is a progress rebaseline, not a feature-completion claim. No
+overall percentage is meaningful until the Claude design inventory, supplied
+content breadth and native acceptance are measured against the same candidate
+and evidence boundary.
+
 ## September 21 functional receipt — standalone Places rail survives an empty feed
 
 The backend/runtime and canonical workspace forwarding seam could still be
