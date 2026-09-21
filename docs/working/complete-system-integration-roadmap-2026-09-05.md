@@ -60,6 +60,37 @@ release readiness. The next useful package remains a supported return/action
 seam—preferably Life exact source return/refind—or another real supplied
 Home/Places variant, not a new generator, social store or route family.
 
+## September 21 native/runtime receipt — Life exact source return and withdrawal
+
+The Life return boundary is now exercised with a real retained source rather
+than a mock record. The reusable backend provisioner creates one inline-text
+Capture submission with `source_and_derived` custody, and synchronously runs
+the existing retained-source owner projector. The native runner opens the
+result through the actual Life v1 projection and then through the exact Intake
+destination:
+
+- Life renders the private `source_submission` entry and its authored note;
+- the exact Intake reader shows the retained original-material section;
+- the native return control restores the same Life root/lens; and
+- owner deletion revokes the source, the Life owner row is withdrawn, and a
+  final HTTP read confirms no `source.<submission_id>` remains.
+
+Evidence: `travel-agent` commit `e752cdbd4` adds the run-scoped,
+local-database-gated provisioner; `travel-app` commit `5313f3b36` adds
+`74-life-real-source-return.yaml`, the runner, focused runner tests and a
+stable native return test id. The complete runner passed on simulator
+`D7C8FEF4-237B-4347-841C-6FE920BFABFA`; six runner-contract tests, the
+Life/Intake Jest packet (**29 tests**), TypeScript, Python compile, Ruff and
+format checks passed. The fixture and Life row were removed after the run;
+production flags, providers and shared runtime were unchanged.
+
+This is one owner-authorized retained-text proof, not full Life corpus or
+binary-original playback, multi-lens coverage, social/group delivery, visual
+parity, rollout, merge/publication or release acceptance. The next integration
+package should consume another real supplied Home/Places variant or a bounded
+practical/social action, not widen Life storage or add a second refinding
+engine.
+
 ## September 20 functional implementation receipts
 
 The current isolated implementation lane has now delivered four bounded,

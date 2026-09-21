@@ -26,7 +26,9 @@ results at the boundaries recorded below. The latest Content and Places turns
 are complete, not waiting for a design canvas. Meaning-based discovery,
 bounded exact-original social receiving, and a feature-flagged recipient-consented
 Home/Places social read now have committed isolated implementations and focused
-verification below. This is not whole-roadmap or
+verification below. Native Home/Places Save consequence and Life exact-source
+return/readback rehearsals now also have real disposable-runtime receipts. This
+is not whole-roadmap or
 native acceptance: broader semantic/time retrieval, supply activation,
 Social/Life adoption and combined delivery remain unfinished. The proposed
 cross-run editorial reuse policy has been presented to the founder and is
@@ -70,6 +72,37 @@ activation, merge/publication or release readiness. The next bounded work
 should be another supported return/action seam (preferably Life's exact
 source return/refind) or a real supplied Home/Places content variant; do not
 respond by adding a new generator, social store or route family.
+
+## September 21 native/runtime receipt — Life exact source return and withdrawal
+
+The next unblocked boundary is now also proven with real owner data. A
+disposable retained Intake source was created through the existing Capture
+writer using inline text, projected through the canonical retained-source Life
+owner, and exposed by the real Life v1 API. The native rehearsal then:
+
+- rendered the retained `source_submission` in the Life Time lens;
+- opened its exact `/you/intake-submissions/{submissionId}` destination;
+- showed the retained note and `ORIGINAL MATERIAL` section;
+- returned to the same Life root/lens through the native return control; and
+- revoked the source through the owner delete path, withdrew its Life row, and
+  verified the canonical Life API no longer represented it.
+
+The reusable provisioner and runner are now committed: backend
+`e752cdbd4`, app `5313f3b36`. The runner requires an explicit local database,
+QA owner and API origin, uses a run-scoped idempotency key, and cleans up on
+success or failure. Evidence: the complete `run-life-real-source-return.sh`
+passed on simulator `D7C8FEF4-237B-4347-841C-6FE920BFABFA`; its six focused
+runner-contract tests passed, the Life/Intake Jest packet passed **29 tests**,
+and TypeScript, Python compile, Ruff and format checks passed. Existing
+non-fatal React `act(...)` warnings remain in the original-source tests.
+
+This closes the native Life exact-source return/readback boundary for one
+owner-authorized retained text source. It does not establish full Life corpus
+coverage, original binary media playback, multi-lens breadth, social/group
+media, visual parity with Claude designs, production flag activation,
+merge/publication or release readiness. The next useful work is another
+supported supplied Home/Places variant or a practical/social action seam—not
+another Life storage abstraction.
 
 ## September 21 functional implementation receipt — consented Places social read
 
