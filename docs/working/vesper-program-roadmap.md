@@ -37,16 +37,17 @@ their results, limitations and rationale; their embedded "next" instructions
 are historical and do not form additional queues. Update these summaries when
 a substantial package finishes instead of appending a competing next step.
 
-**Next emphasis:** stop repeating receiving-boundary proofs and take one
-populated Home/Places full-scroll value package. The standalone Places rail is
-now wired from real backend runtime selection through the canonical workspace;
-the next package must show that an already supplied reading, social
-contribution, practical assessment, or retained consequence is actually
-worthwhile in the composed scroll, with its exact destination, action,
-expiry, empty/pending/failure behavior and return state. Reuse current owners,
-destinations and return state rather than add a generator, feed, or storage
-family. If the selected payload cannot support truthful substance, move to the
-next supported owner/destination seam instead of fabricating copy. Permissioned
+**Next emphasis:** stop repeating receiving-boundary proofs and deepen the
+composed scroll with supplied material. The first bounded package is now the
+same-place public-reading sequence recorded below: it proves that multiple
+reviewed readings can become one substantive Home unit while preserving exact
+source and Places continuation. It is not yet proof of recurring supply or a
+complete full-scroll experience. The next package must either verify that
+sequence through the real canonical Home runtime with honest sparse/pending /
+failure states, or select another already supplied owner-backed value family
+(practical consequence, social perspective or retained consequence) whose
+structured inputs are present. Reuse current owners, destinations and return
+state rather than add a generator, feed, or storage family. Permissioned
 Life/social downstream value can proceed where its files and authority are
 independent. The named native/database happy paths are evidence, not an
 invitation to repeat the same tour. Frontend polish is part of each surface's
@@ -54,13 +55,13 @@ completion. Retention/refinding is further along than context materially
 improving a later answer, possibility or action.
 
 **Current candidate tuple after this receipt:** workspace `9205cd0`, backend
-`953e2bc69`, and app `b1f37eac4`, all on the isolated
+`7f7bc8e24`, and app `b1f37eac4`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; it does not change the child-code tuple, merge the
 lane, enable a flag, or resume shared Integration/landing. The next substantive
-implementation remains the selected populated Home/Places value-depth package
-described below, with edge-matrix work continuing only where its required
-environment is available.
+implementation remains runtime verification of the selected Home value-depth
+package or the next supplied value family described below, with edge-matrix
+work continuing only where its required environment is available.
 
 ## September 21 post-execution rebaseline — after the 12-hour functional window
 
@@ -122,6 +123,29 @@ This checkpoint is a progress rebaseline, not a feature-completion claim. No
 overall percentage is meaningful until the Claude design inventory, supplied
 content breadth and native acceptance are measured against the same candidate
 and evidence boundary.
+
+## September 21 functional receipt — same-place public readings compose into a sequence
+
+The public Place-content owner already supplied accepted, evidence-linked
+interpretations to Home one at a time. Backend commit `7f7bc8e24` adds an
+opt-in Home adapter mode used by the real `places_context` reader: when at
+least two current records describe the same entity, Home emits one
+`horizon_editorial_passage` whose lead medium is the existing `sequence`
+anatomy. Each step preserves its source id and exact claim/interpretation;
+the unit carries every source/entity/context reference, one provenance action,
+and a Places destination. Unpaired entities retain the existing single-reading
+path. The adapter does not merge records, generate a new claim, reorder beyond
+the supplied owner order, or change Places serving.
+
+The focused Home portfolio/projection packet passes **90 tests**; Ruff,
+formatting, compile and diff checks pass. The existing native sequence anatomy
+and Home smoke packet pass **24 tests**, TypeScript remains green, and no API
+schema/types, generator, route, store, policy or rollout surface changed. This
+is the first substantive value-depth package in the current window, not proof
+of broad content supply, recurring generation, design parity or a complete
+full-scroll runtime receipt. The next proof must use the canonical Home runtime
+or move to another supplied value family; it must retain exact destinations,
+expiry and sparse/pending/failure behavior.
 
 ## September 21 functional receipt — standalone Places rail survives an empty feed
 

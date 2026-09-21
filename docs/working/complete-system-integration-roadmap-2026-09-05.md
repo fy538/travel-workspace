@@ -51,6 +51,16 @@ new generator, feed, storage family, or another happy-path rehearsal. Native
 polish belongs in each surface package. Focused regressions accompany delivery;
 more happy-path rehearsals alone are not the next product milestone.
 
+The first substantive value-depth package in this tranche is now landed:
+multiple accepted public readings for the same Place can compose into one
+Home sequence while retaining every source/entity/context reference and the
+existing Places continuation. This improves received value, but it does not
+prove recurring supply or complete full-scroll runtime quality. The next
+package must verify this through the canonical Home runtime with honest
+sparse/pending/failure behavior, or choose another already supplied
+owner-backed value family. Do not respond by adding a generator, store, route
+family or new semantic kind.
+
 The current lane now includes the bounded mechanism-row adaptation, explicit
 selected-trip fit, attributed friend-place preview, public-reading limits, and
 native social-evidence treatment, exact social venue doors, Home
@@ -58,8 +68,9 @@ editorial/aperture anatomy, Places editorial-cover anatomy, the native starter
 browse shelf, native branch/continuity/returned-understanding treatments, the
 honest balanced-field fallback, the native owner-backed evidence register, the
 supplied-experience comparison, the plural social perspective, the
-standalone-only Places feed-state repair, and the addressed Place-contribution
-region in backend `953e2bc69` and app `b1f37eac4`; the latest workspace
+standalone-only Places feed-state repair, the addressed Place-contribution
+region, and the same-place public-reading sequence in backend `7f7bc8e24` and
+app `b1f37eac4`; the latest workspace
 documentation receipt is `9205cd0`. This
 documentation
 advance does not merge, publish, enable or
@@ -73,7 +84,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R04,
 R05 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after this receipt: workspace
-`9205cd0`, backend `953e2bc69`, app `b1f37eac4`, all on
+`9205cd0`, backend `7f7bc8e24`, app `b1f37eac4`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
@@ -159,6 +170,24 @@ The backend root-projection packet passes **438 tests** and the focused Home
 renderer/smoke packet passes **32 tests**; TypeScript and targeted ESLint have
 no errors. No new store, audience policy, notification, generator or route was
 introduced, and real relationship-backed device evidence remains open.
+
+### September 21 Home value-depth receipt — same-place public reading sequence
+
+The public Place-content owner already supplied accepted, evidence-linked
+interpretations to Home one at a time. Backend `7f7bc8e24` adds a bounded
+Home-only composition mode: two or more current records for the same entity
+become one `horizon_editorial_passage` with the existing `sequence` medium.
+Each step retains its source id and exact claim/interpretation; the unit keeps
+all source/entity/context refs, a provenance action and a Places destination.
+Unpaired entities retain the ordinary single-reading path. The focused Home
+packet passes **90 tests**; the existing native sequence/Home smoke packet
+passes **24 tests**, with Ruff, formatting, compile and TypeScript checks
+green. No schema, generator, route, store, policy or rollout surface changed.
+
+This is a substantive supplied-value improvement, not proof of recurring
+content breadth or a complete full-scroll runtime receipt. The next check is
+canonical Home runtime readback with honest sparse/pending/failure behavior,
+or another already supplied owner-backed value family.
 
 ### September 21 native Life source/original distinction receipt
 
