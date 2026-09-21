@@ -51,7 +51,7 @@ refinding is further along than context materially improving a later answer,
 possibility or action.
 
 **Current candidate tuple after this receipt:** workspace `d28096549`, backend
-`a5914bd82`, and app `6aedd2c00`, all on the isolated
+`cee8a4474`, and app `6c8b0cd14`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; it does not change the child-code tuple, merge the
 lane, enable a flag, or resume shared Integration/landing. The next substantive
@@ -62,7 +62,8 @@ available.
 **September 21 afternoon execution rule:** the latest product behavior is the
 supplied-reading `Why this?` slice, mechanism-row adaptation, explicit
 selected-trip fit, attributed friend-place preview, public-reading limits, and
-native social-evidence treatment in backend `a5914bd82` and app `6aedd2c00`.
+native social-evidence treatment and exact social venue doors in backend
+`cee8a4474` and app `6c8b0cd14`.
 The next
 implementation should therefore be selected from an
 existing owner-backed Home/Places payload and add substantive received value
@@ -137,6 +138,23 @@ App commit `6aedd2c00` adds the renderer and a regression in the Places root
 screen. Focused Places root/expiry tests pass (**27 tests**), TypeScript and
 targeted ESLint pass. The renderer is not full Claude-design parity and does
 not prove broad social supply or general multiplayer behavior.
+
+## September 21 functional receipt — preserve social Place destinations
+
+The existing recipient-consented friend activity path now carries its bounded
+owner-provided venue IDs through the Places v2 unit. The native social row can
+therefore expose named **Open …** actions for up to three shared Places, each
+with an exact venue destination and the normal root return token. Name-only
+legacy rows retain their existing person/field door and never guess a venue
+from display text. No new social store, audience policy, notification,
+occasion model or route was added.
+
+Backend commit `cee8a4474` adds bounded venue refs/actions and contract
+coverage; app commit `6c8b0cd14` preserves duplicate-action test identity and
+verifies both exact venue doors. Backend focused Places contract/runtime tests
+pass (**39 tests**); app focused Places root/expiry tests pass (**27 tests**),
+with TypeScript and targeted ESLint clean. This is a completion improvement for
+an existing social receiving path, not general multiplayer coverage.
 
 The dedicated shared Integration/landing lane remains **PAUSED by the founder**.
 That pause does not cancel the subsequently authorized isolated implementation
@@ -1296,8 +1314,8 @@ implementation, and docs closeout.
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
 | Workspace | `d28096549` (current documentation receipt) | `b6e7014` |
-| Backend | `a5914bd82` | `a7c02cbe1` |
-| App | `6aedd2c00` | `e2e792913` |
+| Backend | `cee8a4474` | `a7c02cbe1` |
+| App | `6c8b0cd14` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent

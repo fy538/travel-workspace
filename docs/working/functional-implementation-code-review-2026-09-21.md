@@ -32,8 +32,8 @@ and latest workspace documentation receipt is:
 | Repository | Current HEAD |
 |---|---|
 | Workspace | `d28096549` |
-| Backend | `a5914bd82` |
-| App | `6aedd2c00` |
+| Backend | `cee8a4474` |
+| App | `6c8b0cd14` |
 
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes.
@@ -48,6 +48,16 @@ rendering. App commit `6aedd2c00` adds the renderer and root-screen regression;
 27 focused Places root/expiry tests, TypeScript and targeted ESLint pass. This
 closes a presentation gap in the supported social payload only. It does not
 certify multiplayer supply, general social policy, or full visual parity.
+
+### September 21 social destination follow-up
+
+The same recipient-consented friend activity path now carries up to three
+owner-provided venue refs into the Places unit and exposes named exact-place
+actions. Name-only rows remain fail-closed. Backend `cee8a4474` and app
+`6c8b0cd14` add the contract and native action regressions; the backend Places
+contract/runtime packet passes 39 tests and the app Places root/expiry packet
+passes 27 tests, with TypeScript and targeted ESLint clean. This closes an
+exact-destination gap in the existing social receiving path only.
 
 | Repository | Baseline | Reviewed HEAD | Changed files |
 |---|---|---|---:|
