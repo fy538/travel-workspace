@@ -31,7 +31,7 @@ and supplied-experience comparison is:
 
 | Repository | Current HEAD |
 |---|---|
-| Workspace | `d3ccf56` |
+| Workspace | `f5d34e3` |
 | Backend | `5cfcae1c4` |
 | App | `ecdecaffe` |
 
@@ -87,6 +87,18 @@ supports, excludes card-bound units, and rejects unsupported kinds. The focused
 Places-runtime suite passes **9 tests**; the combined backend packet passes
 **96 tests**, with Ruff, formatting and compilation clean. No producer, route,
 store, rollout or policy surface changed.
+
+### September 21 next-slice decision
+
+The review does not recommend another receiving-boundary or injected-unit
+proof. Backend runtime forwarding and the canonical `PlacesWorkspace` rail are
+now covered. The next implementation should select one populated,
+owner-backed Home/Places payload and prove received value through the complete
+scroll: substantive content, exact depth/action destination, expiry,
+sparse/pending/failure behavior and return. If the selected owner payload is
+not sufficient, the gap should remain explicit and the next supported seam
+should be chosen; no new generator, feed, store or route family should be
+introduced just to fill visual space.
 
 ### September 21 Home surface follow-up
 

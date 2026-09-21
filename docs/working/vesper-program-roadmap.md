@@ -37,27 +37,30 @@ their results, limitations and rationale; their embedded "next" instructions
 are historical and do not form additional queues. Update these summaries when
 a substantial package finishes instead of appending a competing next step.
 
-**Next emphasis:** keep the remaining evidence matrices bounded (R04 native
-sender controls, R05 process-restart queue rehearsal, and R09 persisted/native
-timezone edges) while taking one user-visible Home/Places breadth slice. That
-slice must make an existing supplied reading, social contribution, practical
-assessment, or retained consequence materially richer on the real scroll; it
-must reuse current owners, destinations and return state rather than add a new
-generator, feed, or storage family. Permissioned Life/social downstream value
-can proceed where its files and authority are independent. The named
-native/database happy paths are now evidence, not an invitation to repeat the
-same tour. Frontend polish is part of each surface's completion. Retention/
-refinding is further along than context materially improving a later answer,
-possibility or action.
+**Next emphasis:** stop repeating receiving-boundary proofs and take one
+populated Home/Places full-scroll value package. The standalone Places rail is
+now wired from real backend runtime selection through the canonical workspace;
+the next package must show that an already supplied reading, social
+contribution, practical assessment, or retained consequence is actually
+worthwhile in the composed scroll, with its exact destination, action,
+expiry, empty/pending/failure behavior and return state. Reuse current owners,
+destinations and return state rather than add a generator, feed, or storage
+family. If the selected payload cannot support truthful substance, move to the
+next supported owner/destination seam instead of fabricating copy. Permissioned
+Life/social downstream value can proceed where its files and authority are
+independent. The named native/database happy paths are evidence, not an
+invitation to repeat the same tour. Frontend polish is part of each surface's
+completion. Retention/refinding is further along than context materially
+improving a later answer, possibility or action.
 
-**Current candidate tuple after this receipt:** workspace `d3ccf56`, backend
+**Current candidate tuple after this receipt:** workspace `f5d34e3`, backend
 `5cfcae1c4`, and app `ecdecaffe`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; it does not change the child-code tuple, merge the
 lane, enable a flag, or resume shared Integration/landing. The next substantive
-implementation remains the selected Home/Places value-depth package described
-below, with edge-matrix work continuing only where its required environment is
-available.
+implementation remains the selected populated Home/Places value-depth package
+described below, with edge-matrix work continuing only where its required
+environment is available.
 
 **September 21 afternoon execution rule:** the latest product behavior is the
 supplied-reading `Why this?` slice, mechanism-row adaptation, explicit

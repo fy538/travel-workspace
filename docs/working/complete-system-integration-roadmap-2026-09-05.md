@@ -2118,7 +2118,7 @@ disabled-job handling and transient failure remain unverified.
 | I1 | Source/graph/Outcome delivery, repair, backfill and reconciliation foundation; additional retained-source revisions and Life adoption paths in this lane | Build population and later-use coverage over existing owners; do not infer indexed serving cutover or cross-context authority from retention |
 | I2 | Bounded serving, prepared results, cancellation and publication fences; explicit Source Arq registration, serializer repair and gated due-work recovery sweep; real `not_claimed` wrapper and expired due-work recovery executions | Run still-current restart recovery and transient failure/retry scenarios in isolated Arq/Redis; cost/cohort/provider activation remains separately gated |
 | I3 | Contribution authority and useful-first intake; exact retained/received text-original paths with scoped native receipts | R01/R03 authority and revocation are verified, R04 code correction plus the real API sender-control rehearsal and named Life/Home original-receiving paths are complete; native sender presentation, broader supported originals and permissioned downstream use remain; pending history/audience policy is not silently adopted |
-| I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots | Primary Home/Places full-scroll section/value completion and design-quality treatment; sparse/pending/failure states and real supply breadth |
+| I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots; standalone Places semantic units now reach the canonical workspace rail | Primary Home/Places full-scroll value completion from a populated, already supplied payload; prove substantive depth, exact actions/destinations, and sparse/pending/failure states with real supply breadth |
 | I5 | Open-now and saved-world changes reach surfaces; explicit fit and reviewed assistance contracts implemented | R09 code correction and the named current-world native paths are complete; persisted/native timezone edge matrix, permitted-context adaptations, provider-backed fit rehearsal and broader mandates remain separate |
 | I6 | Retirement inventories/guards exist; candidate remains isolated and rollout internal | Keep obsolete execution paths out of new work; complete obligation review and authorized cutovers/landing only when their dependencies are ready |
 
@@ -2157,6 +2157,17 @@ not be another broad happy-path tour.
   without the relevant evidence.
 
 **Primary build: fuller, reliably supplied Home/Places experiences.**
+
+The standalone Places runtime rail is no longer the next seam: backend
+selection now forwards the admitted semantic-unit kinds, and the canonical
+`PlacesWorkspace` passes them into `PlacesSectionFeed`. The next package must
+therefore be judged on received value, not on another injected-unit or
+workspace-reachability test. Select one real owner-backed payload with enough
+structured substance to compose a complete scroll (for example, a comparison,
+evidence view, social perspective, or practical consequence), then verify the
+native presentation, exact depth/action destination, expiry, sparse/pending/
+failure state and return. Do not broaden the renderer registry, producer,
+generator, store or route family merely to make the scroll look populated.
 
 - Start from the existing [Home implementation map](home-connected-experience-implementation-map-2026-09-04.md)
   and [design handoff index](claude-design-integration-2026-09-04/00-handoff-index.md).
