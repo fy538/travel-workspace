@@ -27,16 +27,29 @@ All three repositories use `codex/functional-implementation-2026-09-20`.
 
 The table below is the historical baseline for the 12-hour review. The current
 clean candidate after the Home timezone correction, source retry-budget proof,
-and latest workspace documentation receipt is:
+and supplied-experience comparison is:
 
 | Repository | Current HEAD |
 |---|---|
-| Workspace | `c06c904` |
-| Backend | `aa96caff7` |
-| App | `e601a9dfd` |
+| Workspace | `4597d92` |
+| Backend | `7d036bb7c` |
+| App | `b7d025044` |
 
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes.
+
+### September 21 supplied-experience comparison review
+
+The new Home value-depth slice is bounded to already supplied Places
+experience previews. Backend `7d036bb7c` groups two to four experiences from
+one section into a comparison composition over timing, length and price,
+while preserving exact context/experience refs, the existing read requirement,
+expiry and the single-experience aperture fallback. App `b7d025044` adds the
+native comparison treatment and exact action-door regression. Backend focused
+Home/contract/composition tests pass **80**; Home native smoke tests pass
+**15**; TypeScript, targeted ESLint, Ruff and formatting pass (the existing
+Home renderer max-lines warning remains). Review found no new service, ranking,
+booking, persistence or route family and no design-parity claim is made.
 
 ### September 21 Home surface follow-up
 

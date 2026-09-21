@@ -56,9 +56,10 @@ selected-trip fit, attributed friend-place preview, public-reading limits, and
 native social-evidence treatment, exact social venue doors, Home
 editorial/aperture anatomy, Places editorial-cover anatomy, the native starter
 browse shelf, native branch/continuity/returned-understanding treatments, the
-honest balanced-field fallback, and the native owner-backed evidence register
-in backend `aa96caff7` and app `e601a9dfd`; the latest workspace documentation
-receipt is `c06c904`. This
+honest balanced-field fallback, the native owner-backed evidence register, and
+the supplied-experience comparison in backend `7d036bb7c` and app
+`b7d025044`; the latest workspace documentation
+receipt is `4597d92`. This
 documentation
 advance does not merge, publish, enable or
 resume shared Integration/landing. Apply this
@@ -71,7 +72,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R04,
 R05 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after the latest lane-local corrections: workspace
-`c06c904`, backend `aa96caff7`, app `e601a9dfd`, all on
+`4597d92`, backend `7d036bb7c`, app `b7d025044`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
@@ -84,6 +85,18 @@ exhausted-final-lease recovery is now code-fixed and covered by focused tests;
 the disposable-Postgres and transient-provider rehearsals now pass; a real
 process-restart queue rehearsal is still required before calling preparation
 reliable.
+
+### September 21 value-depth receipt — supplied experience comparison
+
+The existing Places experience owner now reaches Home as one bounded comparison
+when a section supplies at least two experiences. The composition compares only
+the owner-provided timing, length and price fields, caps the cases at four,
+keeps the exact Places context/experience refs on each action, and expires with
+the source projection. A single experience remains the existing aperture row;
+no new generator, provider, ranking, persistence, booking or route abstraction
+was introduced. Backend `7d036bb7c` and app `b7d025044` carry the implementation
+and focused regressions. The package is a richer received result, not proof of
+general supply breadth or Claude-design parity.
 
 ### Coordination ownership decision — keep group waiting in Home
 

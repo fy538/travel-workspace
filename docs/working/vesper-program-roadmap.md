@@ -50,8 +50,8 @@ same tour. Frontend polish is part of each surface's completion. Retention/
 refinding is further along than context materially improving a later answer,
 possibility or action.
 
-**Current candidate tuple after this receipt:** workspace `c06c904`, backend
-`aa96caff7`, and app `e601a9dfd`, all on the isolated
+**Current candidate tuple after this receipt:** workspace `4597d92`, backend
+`7d036bb7c`, and app `b7d025044`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; it does not change the child-code tuple, merge the
 lane, enable a flag, or resume shared Integration/landing. The next substantive
@@ -65,8 +65,8 @@ selected-trip fit, attributed friend-place preview, public-reading limits, and
 native social-evidence treatment, exact social venue doors, Home editorial/
 aperture anatomy, Places editorial-cover anatomy, the native starter browse
 shelf, native branch/continuity/returned-understanding treatments, the honest
-balanced-field fallback, and the native owner-backed evidence register in
-backend `aa96caff7` and app `e601a9dfd`.
+balanced-field fallback, the native owner-backed evidence register, and the
+supplied-experience comparison in backend `7d036bb7c` and app `b7d025044`.
 The next
 implementation should therefore be selected from an
 existing owner-backed Home/Places payload and add substantive received value
@@ -78,6 +78,27 @@ route family or broad visual-parity program to make this slice appear fuller.
 If the payload cannot support a truthful result, keep the gap explicit and
 move to the next supported owner/destination/return seam rather than inventing
 content.
+
+## September 21 functional receipt — compare supplied experience options
+
+Places already supplies bounded experience previews with timing, duration and
+price. Home previously flattened each experience into a separate aperture, so
+the person had to open several doors before understanding how the options
+differed. When one Places section contains at least two owner-backed
+experiences, the backend now emits one `horizon_prepared_alternatives`
+comparison composition with two to four cases and one exact Places action per
+case. One-experience sections retain the existing aperture behavior.
+
+Backend commit `7d036bb7c` adds the bounded comparison adapter, preserves the
+existing owner/read requirements and expiry, and covers the multi-option and
+single-option paths. App commit `b7d025044` registers a native comparison
+treatment and verifies the exact action destinations. The focused backend
+Home/contract/composition packet passes **80 tests**; the Home native smoke
+packet passes **15 tests**; TypeScript, targeted ESLint and backend Ruff/
+format checks pass (the existing Home renderer max-lines warning remains).
+This is a value-depth improvement over already supplied data: it adds no
+provider acquisition, ranking policy, generator, store, route family, booking
+flow or design-parity claim.
 
 **Scope decision — Places group waiting remains deferred.** The legacy Places
 `group_waiting` producer still reads itinerary proposals alongside booking
