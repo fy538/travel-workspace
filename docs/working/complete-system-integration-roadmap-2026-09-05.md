@@ -5603,3 +5603,25 @@ relaxed. Combined runtime, real accepted database supply, native visual QA,
 landing and rollout activation remain open. The next integration check should
 use a real admitted Source and verify Home/Places → exact Place reader → return,
 not reopen the contract or create another content system.
+
+### September 21 continuation — native dependency and four-root shell checkpoint
+
+The functional lane also exercised the current native shell instead of treating
+offline tests as device evidence. The simulator's first launch exposed a stale
+local dependency installation: JavaScript Worklets **0.11.4** / Reanimated
+**4.5.3** did not match the committed lockfile's native versions Worklets
+**0.12.1** / Reanimated **4.6.0**. A lockfile-preserving `npm ci` restored the
+declared environment and the native build then launched without the Worklets
+mismatch. No source or package-manifest change was made.
+
+Using only the existing opt-in feature flags, a real API endpoint and the
+current simulator, the four-root shell rendered Home's empty owned-state
+admission screen with Home/Chat/Places/Life navigation. A deep link with the
+runtime mock override disabled confirmed the app could reach the lane API; the
+empty result was expected for the disposable account. This proves native shell
+reachability and a local setup repair, not populated Home/Places/Life content,
+return behavior, visual design parity, production activation, or release
+acceptance. The next combined runtime package should seed one accepted bounded
+dataset and capture a populated Home → exact Places reader → Life refind/return
+journey. Keep production defaults unchanged and clean up the temporary runtime
+after the checkpoint.

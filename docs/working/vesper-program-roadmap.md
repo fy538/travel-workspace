@@ -1907,3 +1907,30 @@ proven. The next useful check is a real admitted child-owned Source through
 Home → exact Places reader → return, followed by reassessment of the bounded
 social-receiving seam. Do not broaden the child enumeration beyond the existing
 eight-anchor/owner-read bounds or turn it into acquisition.
+
+## September 21 functional implementation receipt — native shell checkpoint
+
+The lane completed a bounded native checkpoint against the current four-root
+shell. The installed simulator build initially crashed before rendering because
+its local `node_modules` contained `react-native-worklets` **0.11.4** and
+`react-native-reanimated` **4.5.3**, while the committed lockfile requires
+Worklets **0.12.1** and Reanimated **4.6.0**. Running the lockfile-preserving
+`npm ci` in `travel-app/` repaired the local dependency/build mismatch; no
+source or dependency manifest change was needed. A second launch reached the
+native app without the Worklets crash.
+
+With the existing opt-in flags enabled locally (`FOUR_ROOT_SHELL`, root
+projection v2, Places renderer v2 and Life root/refind flags), the simulator
+opened the current Home root against the lane API. The screen rendered the
+owned-state admission result — “No owned current state clears Home's admission
+threshold” — and the Home/Chat/Places/Life navigation shell. This is real native
+reachability and empty-account behavior, not a fixture screenshot. A direct
+deep link with the runtime mock override disabled also reached the real API.
+
+This receipt does **not** claim populated native receiving, production flag
+activation, Home→Places→Life return, visual parity with the Claude references,
+or release readiness. The temporary API user and local services are disposable
+and must be cleaned up after the checkpoint. The next useful native package is
+one admitted, bounded dataset that visibly exercises a populated Home item,
+its exact Places destination and a Life refind/return path; do not alter the
+production defaults or add another shell to obtain that evidence.
