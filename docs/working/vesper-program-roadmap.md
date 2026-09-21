@@ -148,6 +148,23 @@ full-scroll runtime receipt. The next proof must use the canonical Home runtime
 or move to another supplied value family; it must retain exact destinations,
 expiry and sparse/pending/failure behavior.
 
+### September 21 contract-hardening receipt — the sequence reaches the page and native anatomy
+
+The same-place reading package now has regression evidence at both seams that
+matter for delivery. Backend commit `7e7095f57` proves that the composed
+candidate survives Home selection and `compile_home_v2` as one Horizons unit,
+retaining its typed sequence anatomy and Places destination. App commit
+`ac6e08235` proves that the existing native composition renderer presents the
+ordered steps rather than reducing the payload to a generic editorial label.
+
+The focused backend Home portfolio packet passes **47 tests** and the focused
+native composition/Home smoke packet passes **20 tests**. This is contract
+hardening for the previous receipt, not a new producer or a claim that the
+canonical runtime has supplied multiple readings for a real account. The next
+substantive slice remains a real sparse/pending/failure runtime readback or
+another already-supplied owner-backed value family; no new generator, store,
+route, or feed should be introduced to manufacture breadth.
+
 ## September 21 functional receipt — standalone Places rail survives an empty feed
 
 The backend/runtime and canonical workspace forwarding seam could still be
