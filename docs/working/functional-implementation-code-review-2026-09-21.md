@@ -32,7 +32,7 @@ and supplied-experience comparison is:
 | Repository | Current HEAD |
 |---|---|
 | Workspace | `4aa1d7d` |
-| Backend | `90fe88f88` |
+| Backend | `5cfcae1c4` |
 | App | `ecdecaffe` |
 
 This correction updates tuple identity only; it does not imply merge,
@@ -80,11 +80,12 @@ claim.
 ### September 21 backend runtime follow-up
 
 The first canonical-workspace test supplied `field_units` directly and did not
-prove the backend join. Backend `90fe88f88` broadens the runtime adapter's
+prove the backend join. Backend commits `90fe88f88` (implementation) and
+`5cfcae1c4` (real plural-adapter regression) broaden the runtime adapter's
 standalone rail to the kinds the native Places semantic renderer actually
 supports, excludes card-bound units, and rejects unsupported kinds. The focused
-Places-runtime suite passes **8 tests**; the combined backend packet passes
-**95 tests**, with Ruff, formatting and compilation clean. No producer, route,
+Places-runtime suite passes **9 tests**; the combined backend packet passes
+**96 tests**, with Ruff, formatting and compilation clean. No producer, route,
 store, rollout or policy surface changed.
 
 ### September 21 Home surface follow-up
