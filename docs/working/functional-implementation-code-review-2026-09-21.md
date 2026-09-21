@@ -34,8 +34,10 @@ other work and were not changed. The initial review did not fix, merge, publish,
 deploy, enable features, or mutate a running database or simulator; the later
 fix pass is recorded below.
 
-**Result: 11 actionable findings — one P1, nine P2, one P3. All 11 have now
-received code or contract fixes in this lane.** The implementation has useful
+**Result: 11 actionable findings — one P1, nine P2, one P3. The repair pass
+changed all 11 areas, but fresh inspection reopens R04 and R09 as partial fixes.**
+The other nine retain their recorded implementation status and stated
+verification limits; this recheck did not recertify them. The implementation has useful
 end-to-end paths, but happy-path evidence misses
 authorization changes, realistic place hierarchy sizes, non-venue practical
 checks, entry-point differences, timezone handling, and the actual queue wrapper.
@@ -71,9 +73,33 @@ The requested correction pass landed in the independent child repositories:
 
 The fixes preserve the original findings and their evidence boundaries. The
 disposable-Postgres and native-device regressions remain required acceptance
-checks; the local environment could not collect them in this pass because the
-backend test environment lacks the `openai` dependency and no test database was
-configured.
+checks. The prior attempt reported a missing `openai` dependency and no configured
+test database; this was not proof that the supported backend environment was
+unavailable. The September 21 rebaseline successfully ran
+`.venv/bin/python -c "import sys,openai; print(sys.executable); print(openai.__version__)"`
+from this lane's backend, reporting the shared backend virtual environment and
+`openai` **2.32.0**. That import check does not execute a regression or authorize
+an ambient database. Retry the affected commands with the repository virtual
+environment and an explicitly disposable test DB when needed.
+
+### September 21 post-fix recheck
+
+At backend `2935757fe` and app `7a478fd2e`, a read-only code inspection found:
+
+- **R04 remains open:** the recipient eligibility filter was removed from
+  `activeSentDeliveries`, but recipient loading/error/empty returns still occur
+  before the existing-delivery controls render. Losing the final eligible
+  recipient therefore still hides Withdraw. The passing sender test packet
+  does not establish the empty-recipient regression.
+- **R09 remains open:** explicit-offset formatting improves the reported
+  Lisbon example, but the projection does not carry the arrangement's schedule
+  timezone. A `Z` timestamp is rendered in UTC wall-clock with no timezone label;
+  the nonmatching-format fallback still uses the device zone. UTC storage cannot
+  establish destination wall-clock by itself.
+
+No product code, database or native runtime was changed during this recheck.
+The roadmap/ledger update corrects completion claims; it does not implement
+the remaining repairs or establish a new full-suite result.
 
 ## Defect index
 
@@ -82,12 +108,12 @@ configured.
 | R01 | P1 | Rejected original can still commit a recipient handoff/message | Relationships transaction | Fixed; DB regression still required |
 | R02 | P2 | Places reading bypasses active release/cohort eligibility | Content / Places | Fixed; governed outsider/cohort matrix still required |
 | R03 | P2 | Pull-consent revocation leaves attached original readable | Relationships read policy | Fixed; persisted readback matrix still required |
-| R04 | P2 | Sender loses withdrawal controls after relationship disconnect | Mobile original sharing | Fixed; focused mobile test passes |
-| R05 | P2 | Source worker throws while serializing its actual result type | Worker adapter | Fixed; worker environment unavailable here |
+| R04 | P2 | Sender loses withdrawal controls after relationship disconnect | Mobile original sharing | Partial fix; reopened: recipient early returns still hide history/Withdraw |
+| R05 | P2 | Source worker throws while serializing its actual result type | Worker adapter | Serializer fix applied; actual queue-environment acceptance unrun |
 | R06 | P2 | Nine expanded place IDs silently remove Home public supply | Home / Places scope | Fixed with 8-ID batching; scale regression still required |
 | R07 | P2 | Site, accommodation and experience fit checks cannot succeed | Practical assessment | Fixed; focused backend tests pass |
 | R08 | P2 | Primary Plan details entrance hides arrangement information | Plan / object navigation | Fixed; typecheck passes |
-| R09 | P2 | Reservation time is shown in device timezone without a label | Object presentation | Fixed with source-offset formatting; device matrix still required |
+| R09 | P2 | Reservation time is shown in device timezone without a label | Object presentation | Partial fix; reopened: schedule-zone propagation and honest UTC fallback missing |
 | R10 | P2 | Cleanup for one rehearsal can delete another run's venue | Local fixture tooling | Fixed with run-scoped fixture identity |
 | R11 | P3 | Life organization cursor contract snapshot is stale | Cross-repo API contract | Fixed; generated snapshots agree |
 
@@ -198,11 +224,14 @@ Backend sender history and withdrawal intentionally remain available after
 disconnection. Re-establishing an eligible relationship can make the old grant
 readable again, so hiding its controls is consequential.
 
-**Applied:** render existing sender-owned grants and withdrawal independently
-of the picker for new sends. **Regression:** remove a recipient from the
-eligible list after Send; its existing grant and Withdraw action must remain.
-This finding is based on a traced UI/repository mismatch; no device reproduction
-was run.
+**Partially applied:** sender-owned grants are no longer filtered by current
+recipient eligibility. **Still required:** move existing-delivery/withdrawal
+rendering outside the recipient picker loading/error/empty branches (current
+lines 178–196), not merely outside its filter. **Regression:** remove the final
+eligible recipient after Send, reopen with persisted history and check that the
+grant and Withdraw remain usable; also cover unavailable/loading recipient
+selection. New-send eligibility remains restricted. This is a traced
+UI/repository mismatch; no device reproduction was run in the recheck.
 
 ## R05 — The Source worker calls an unsupported result serializer signature
 
@@ -322,10 +351,15 @@ The reservation is at 7 PM Lisbon time. The text provides no device-time
 qualifier, so it misrepresents a concrete arrangement while the person plans
 from another timezone. Date-boundary cases can show the wrong day too.
 
-**Applied:** preserve the wall-clock represented by the stored ISO offset in
-both the fact and body, and label non-UTC offsets explicitly. A future API
-revision can carry an IANA schedule zone when one is available.
-**Regression:** different device/destination zones and midnight/DST boundaries.
+**Partially applied:** preserve the wall-clock represented by an explicit ISO
+offset in both fact and body, and label non-UTC offsets. **Still required:**
+carry the existing arrangement schedule timezone through owner/API projection
+when available and use it to format stored instants. Missing zone evidence
+needs a qualified fallback rather than an unlabeled UTC or device-local time.
+The current formatter at lines 269–293 cannot solve this from the timestamp
+alone; schedule-zone propagation is part of this repair, not optional polish.
+**Regression:** UTC-stored instants, different device/destination zones,
+missing-zone fallback and midnight/DST boundaries.
 The reproduction transpiled and executed the actual TypeScript projection with
 an existing fixture in memory; it was not a native device run.
 
@@ -344,8 +378,7 @@ The local-database and explicit database-name guards reduce scope; they do not
 establish run ownership of this row.
 
 **Applied:** give the venue a run-specific identity, and clean only that exact
-run-owned venue. **Regression:**
-unless exclusive ownership is established. **Regression:** A/B coexistence,
+run-owned venue. **Regression:** A/B coexistence,
 cleanup of a missing run and idempotent cleanup. This is a static SQL-selector
 finding; no destructive fixture command was executed during review.
 
@@ -365,8 +398,10 @@ comparison found this one schema difference, rather than mere JSON ordering.
 generators, review the full
 snapshot, app projection, generated types and consumers together. No hand edit
 of generated files. **Regression:** freshness and projection/type parity checks.
-This currently blocks the freshness gate; a separate mobile runtime failure
-from the wider accepted maximum was not established.
+The initial mismatch blocked snapshot freshness; the refresh corrects that
+field. The full contract gate remains separately blocked by its recorded
+policy/consumer findings. A mobile runtime failure from the wider accepted
+maximum was not established.
 
 ## Important limitations and investigated non-findings
 
@@ -439,7 +474,25 @@ Their references and the unclassified file predate this review window's root
 baseline. No new-document link error was reported. These baseline documentation
 issues were left unchanged and are not counted in R01–R11.
 
+September 21 roadmap/ledger rebaseline validation: measured
+`python3 scripts/check_docs.py --governance --inventory --spine --links`
+passed the spine and new-file governance checks (no new documents); inventory
+and links still failed on the same one unclassified document and five missing
+design-document links above. Receipt label: `roadmap-rebaseline-docs`, under
+`docs/reliability/runs/`. This is a documentation-only update; no product suite,
+full `make verify`, device run or publishing was performed.
+
 ## Recommended correction order
+
+**Current:** finish R04 and R09, then close the outstanding evidence boundaries
+for already-applied repairs in the correct environment. Include Source recovery
+in the next reliably supplied-value package; registration/serialization fixes
+do not establish recovery. Do not rerun the initial repair list as though the
+implemented changes were absent, or call the ledger closed based on happy-path
+test totals. Independent feature implementation can proceed outside these
+affected ownership/file boundaries.
+
+The following preserves the initial repair ordering and its rationale:
 
 1. **Authority and transaction correctness:** R01, R03 and R04; review R02's
    release-policy reuse in the same correction wave with a separate file owner.

@@ -20,29 +20,36 @@ depends_on:
 
 # Vesper program roadmap
 
-**September 21 current posture:** the received-material, practical-route,
-Content consumer/hydration and temporal-map packages have verified isolated
-results at the boundaries recorded below. The latest Content and Places turns
-are complete, not waiting for a design canvas. Meaning-based discovery,
-bounded exact-original social receiving, and a feature-flagged recipient-consented
-Home/Places social read now have committed isolated implementations and focused
-verification below. Native Home/Places Save consequence, Life exact-source
-return/readback, and recipient-consented Places social receiving now also have
-real disposable-runtime receipts. This is not whole-roadmap or
-native acceptance: broader semantic/time retrieval, supply activation,
-Social/Life adoption and combined delivery remain unfinished. The proposed
-cross-run editorial reuse policy has been presented to the founder and is
-not yet approved. Integration remains **PAUSED by the founder**; no shared
-runtime, landing, publishing or pending product agreement is activated.
-Earlier dispatch and review entries below preserve the execution history.
-Section 7 preserves the older acceptance scope as history.
+**September 21 rebaseline, after implementation and review:** Vesper is a
+connected, partially complete internal product candidate. Home/Places receiving,
+Life originals/refinding/organization, bounded social receiving and practical
+consequences now have committed implementations and several real
+disposable-Postgres/API/iOS paths. These are meaningful continuity improvements;
+they do not establish complete design coverage, worthwhile recurring supply,
+general later-context benefit, production activation or release readiness.
 
-The latest bounded implementation is the saved-place closure consequence:
-fresh provider-status evidence reaches the Places feed, clearing it records a
-neutral dismissal, and the underlying Save remains intact. This is a practical
-current-world loop, not a reason to add provider orchestration or a generalized
-notice system; continue with existing producer → owner read → destination or
-return seams and reassess after each complete native loop.
+Use [§2](#2-inspected-baseline--september-21) for the current evidence boundary,
+[§4](#4-current-package-register) for the sole current execution queue, and
+[Integration §9](complete-system-integration-roadmap-2026-09-05.md#9-current-execution-ledger-and-next-batch)
+for implementation scope and finish conditions. Older dated receipts preserve
+their results, limitations and rationale; their embedded "next" instructions
+are historical and do not form additional queues. Update these summaries when
+a substantial package finishes instead of appending a competing next step.
+
+**Next emphasis:** a short review closeout, then fuller supplied Home/Places
+experiences and permissioned Life/social downstream value. Frontend polish is
+part of each surface's completion. Existing happy-path rehearsals are a
+regression floor, not the next product milestone. Retention/refinding is further
+along than context materially improving a later answer, possibility or action.
+
+The dedicated shared Integration/landing lane remains **PAUSED by the founder**.
+That pause does not cancel the subsequently authorized isolated implementation
+and lane-local disposable-runtime work recorded here. This rebaseline does not
+resume shared runtime, authorize landing/publishing, enable production flags or
+adopt pending product agreements. Cross-run editorial reuse remains pending.
+The [review ledger](functional-implementation-code-review-2026-09-21.md) is
+**not closed**: R04 and R09 are partially fixed, with remaining regression and
+environment boundaries recorded there.
 
 ## September 21 native/runtime receipt — Home Save → Places consequence and readback
 
@@ -1094,7 +1101,46 @@ Life page opening. Chat layout redesign remains outside these assignments.
 Pending policies, paid/provider runs, deployment, activation and destructive
 retirement require their existing approvals. Assignment does not dispatch a task.
 
-## 2. Inspected baseline — September 9
+<a id="2-inspected-baseline--september-9"></a>
+
+## 2. Inspected baseline — September 21
+
+Inspected before this documentation update; no product tests, provider calls,
+database mutations or simulator runs were performed for the rebaseline itself.
+Earlier runtime results below are carried evidence at their named scopes, not
+fresh certification of every path on the latest tuple.
+
+| Repository | Functional candidate HEAD | Canonical main HEAD |
+| --- | --- | --- |
+| Workspace | `95aa909` | `b6e7014` |
+| Backend | `2935757fe` | `a7c02cbe1` |
+| App | `7a478fd2e` | `e2e792913` |
+
+Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
+branch `codex/functional-implementation-2026-09-20` in all three independent
+repositories. All three candidate trees were clean at inspection. Canonical
+main has concurrent documentation/design edits; those remain untouched. The
+candidate is committed in its lane, not landed on main or released. Recheck
+Git and ownership before execution; this tuple is a dated observation.
+
+| Capability | Implemented / recorded evidence | Remaining product or evidence boundary |
+| --- | --- | --- |
+| Home / Places | Owner-backed Save/readback, public Place and child-entity readings, consented place pulls, nearby open-now options, saved-place closure/reopening dismissal; named local API/iOS flows | Varied worthwhile full-scroll supply, section/design breadth, selection quality across situations, complete failure/empty states and visual parity |
+| Life | Retained text originals, exact refinding/return, explicit place-bound sources and organized period groups; named local API/iOS flows | Broader media/corpus and People/Threads experience, later permitted reuse, indexed serving cutover and Atlas retirement |
+| Social | Existing-owner venue-bound pulls and one-recipient original-text receiving through Life/Home; named local API/iOS flows | Casual media/group/gathering breadth and useful juxtaposition; no new sharing or friend-source AI-use policy is adopted here; R04 control repair remains open |
+| Practical/live engine | Current open-now facts and saved-place changes affect surfaces; explicit fit contract and private stop-assistance/reviewed Send implemented | Provider-backed fit rehearsal, wider fresh-world coverage, purpose-preserving adaptation and accepted watching mandates; R09 schedule-zone repair remains open |
+| Preparation | Explicit Source work registered on the shared Arq rail behind production/worker/cohort gates; result serialization repaired | Registration is not activation; enqueue/disabled-job/transient-failure recovery lacks an automatic due-work drain; live output quality/cost remain unverified |
+| Native / delivery | Specific real-owner happy paths now run through the internal four-root shell | No comprehensive native/design acceptance, latest-tuple full gate, default-shell promotion, main landing or release |
+
+No overall feature-completion percentage is asserted: these evidence scopes
+are neither equally sized nor equivalent to design inventory coverage. The
+review fixes have focused test receipts, but the ledger's remaining edge cases
+and full contract gate must not be described as passed. A previous dependency
+failure is not a standing tooling verdict: the inspected backend `.venv`
+imports `openai`; the affected regression commands still need correct-environment
+execution.
+
+### Historical September 9 baseline
 
 Read-only recheck: workspace `1cc28e26cfa8bb2f575718177718854a086bb68a`, backend
 `a7c02cbe15940d13303ae98ada8d6e8192fc85a4`, app
@@ -1153,9 +1199,9 @@ started by this planning pass.
 | --- | --- | --- |
 | Useful material with real depth and return | Connect prepared public/personal material to varied Home/Places output and exact destinations | Complete requested-work UI, sparse/failure states, useful depth and reuse; widen supply based on measured gaps |
 | Recognizable, revisitable Life | Connect source evidence, organization and bounded readers; inspect evolving groups and previews | Compare bounded model assistance on identified misses; broaden coverage, then separately accept serving cutover and Atlas retirement |
-| Enjoyable ordinary sharing | Settle the next source/audience contract; connect original receiving, durable controls and refinding | Extend the same owners into guests, gatherings and permissioned social intelligence; receiving never owes a reply or plan |
+| Enjoyable ordinary sharing | Complete durable sender controls and build on bounded original/pull receiving and refinding | Extend the same owners into supported media, gatherings and permissioned social intelligence; pending audience/use policies block only their dependent work; receiving never owes a reply or plan |
 | Practical help within the same experience | Make supported facts change the appropriate offer while independent reading, saved and human value survives | Extend beyond opening status when a concrete timing/fit question requires it; accepted following and external changes need their own authority |
-| Trustworthy combined delivery | Receiving/reliability round locally landed; preserve its passing test selections and explicit typing debt | Verify new connected product packages, cost, native/accessibility and rollout at their proper scope; retire replacements only after obligation review |
+| Trustworthy combined delivery | Functional candidate committed in its isolated lane; preserve scoped receipts, open review items and explicit typing debt | Verify new product packages, cost, native/accessibility and rollout at their proper scope; main landing remains separate and paused; retire replacements only after obligation review |
 
 These outcomes overlap. **On explicit dispatch, implement independent packages
 without waiting for every design or policy.** An unavailable dependency blocks
@@ -1165,20 +1211,40 @@ Reopen architecture when evidence exposes an owner or dependency contradiction.
 
 ## 4. Current package register
 
-The prior isolated receipt `f3bd44b` retains its evidence and gaps, not a current
-execution instruction. The detailed implementation scope is the leading
-[September 9 tranche in the technical plan](complete-system-integration-roadmap-2026-09-05.md#current-engineering-tranche--september-9).
-Use two substantial packages, not six engineering lanes mirroring design projects.
+This register supersedes the September 9 dispatch as the forward queue. Its
+technical work and exits live in
+[Integration §9](complete-system-integration-roadmap-2026-09-05.md#9-current-execution-ledger-and-next-batch).
+The earlier A/B handbacks remain supporting evidence, not active assignments.
+These are work packages within I1–I5, not new subsystems or a redispatch of old
+tasks. The present update plans work; it does not start agents or services.
 
 | Package / role | Status and complete outcome | Dependency / handback |
 | --- | --- | --- |
-| **A — Received material and continuity** | Dispatched to **Home**; implementation slice complete at its supported boundary. Luna xhigh requested. Retained-image and exact text-original receiving/return, existing human/text receiving and the explicit practical-assessment consumer binding are delivered; exact recipient-side human media remains an unimplemented dependency. | Uses existing content/source/social owners; owns shared root/consumer seams. No new source store or Life serving cutover. Final handback records commits/evidence and precise relationship-media/practical receiver boundaries. |
-| **B — Practical judgment and contextual projection** | Dispatched to **Places**; backend contract and self-review complete at its supported boundary. Luna xhigh requested. `place.fit_window` now handles exact place/commitment evidence, closure, expiry and viewer binding; its first root consumer is delivered through the bounded Home-owned explicit Places v2 request seam. | Uses existing place/route/commitment owners. The delivered seam proves one explicit request end to end without changing Chat or ordinary cards. Future producers, route-owner coverage and adaptive Entity/recommendation-policy exceptions remain separate decisions. |
-| **Strategy / this thread** | Own priorities, consequential decisions, package boundaries and whole-product review. | Resolve only the few choices that block named capabilities; inspect evidence rather than require approval after each step. |
-| **Integration** | PAUSED. Retains combined candidate, shared runtime and landing ownership; not the approval desk for local implementation. | A future explicit resume names a bounded landing or combined acceptance task, not necessarily both. Receive relevant ready cuts without waiting for unrelated packages; existing gates and publication authority remain. |
-| **Existing Content, Life, Social, Entity and Plan lanes** | References/suppliers, not automatically restarted. Their branch-local work is not assumed merged. | Reuse owner plans and tested cuts. Assign a separate supplier only for independent work that reduces blocking, with one file owner. |
+| **First — review closeout** | Orchestration assigns bounded repair of R04 withdrawal controls and R09 schedule-zone propagation; remaining authority/worker/contract evidence follows the bug ledger. Not complete. | Focused negative-case regressions and truthful gate status; no repeated full happy-path tour. Independent product work can proceed outside affected files. |
+| **Primary build — Home/Places useful breadth** | Complete selected design sections as a coherent full scroll with real supplied value, useful depth/actions, practical context and existing social contributions. Not yet complete. | Reuse current Source/content/relationship/Place owners. Include bounded preparation recovery when needed for reliable supply; no new generator/store. One owner for shared root composition, contracts and receiving adapters. |
+| **Complementary build — Life/social downstream value** | Extend retention/refinding into useful later permissioned context and supported human contributions, with recognizable organization and exact return. Not yet complete. | Existing source, Life and relationship owners; no inference of permission from custody. Hand exact projections to the receiving owner; defer only genuinely policy-dependent media/group/use expansion. |
+| **Across both builds — native polish** | Required within each completed surface: design hierarchy, card/media treatment, interaction, accessibility and sparse/pending/failure states. Not accepted yet. | Use current inspected Claude exports and handoffs; record actual canvas/version. Unresolved visual choices do not block unrelated owner/supply work. |
+| **Orchestration / this thread** | Own scope, current queue, cross-system decisions and package review; dispatch only when requested. | Review first working composition, consequential blocker and completed package. Judge delivered behavior and remaining user effort, not commit/test counts. |
+| **Dedicated Integration / landing** | PAUSED; combined shared runtime, main landing and publishing are not enabled by this update. | Lane-local implementation/verification remains distinct. On explicit resume, receive selected clean cuts and run required gates without pretending candidate receipts certify production. |
+| **Existing specialist lanes** | Reference suppliers, not automatically restarted or assumed merged. | Use immutable relevant cuts; independently assigned work needs file ownership and direct dependency exchange, not six standing lanes matching six design projects. |
+
+The primary and complementary builds can advance together after file boundaries
+are assigned. Share contract needs early; reserve one writer for schema sync,
+root composition and device/runtime resources. Use longer outcome assignments
+through implementation and focused review, escalating product/authority choices
+or real dependencies rather than every ordinary repair. No fixed integration
+ceremony is added. Required pre-push gates remain required.
+
+At each substantial handback, update §2 and this register in place: what became
+useful, what supplied it, how it behaves after action/correction/return, what
+design coverage remains, and which evidence actually ran. Preserve underlying
+receipts, but do not append another current execution queue.
 
 ### September 9 dispatch record
+
+Historical dispatch only. The current package register above replaces its
+assignments and "next" language; permissions and unresolved evidence are not
+silently broadened.
 
 | Package | Existing session / isolated coordinated checkout | Initial isolated ports / progress owner |
 | --- | --- | --- |

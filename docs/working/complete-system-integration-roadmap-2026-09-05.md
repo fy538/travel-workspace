@@ -25,7 +25,45 @@ depends_on:
 
 # Complete-system integration roadmap
 
-## Current engineering tranche — September 9
+## Current engineering tranche — September 21
+
+The functional lane now has a connected, partially complete internal product:
+Home/Places value and practical consequences, Life originals/refinding/groups,
+and bounded social receiving have implementations plus named real-owner native
+paths. Rich recurring supply, later permitted context benefit, complete design
+coverage/polish and production readiness remain unfinished.
+
+**Read the [program baseline](vesper-program-roadmap.md#2-inspected-baseline--september-21)
+and [§9 current execution plan](#9-current-execution-ledger-and-next-batch)
+first.** They supersede earlier scheduling and "next slice" prose below;
+historical receipts retain their evidence boundaries, not separate dispatch
+authority. Existing I0–I6/CV contracts still govern implementation. Do not
+rebuild foundations merely because an older table described them as missing.
+
+Current order: close the remaining review defects; make supplied Home/Places
+experiences substantially fuller; advance permissioned Life/social downstream
+value in parallel where files are independent. Native polish belongs in each
+surface package. Focused regressions accompany delivery; more happy-path
+rehearsals alone are not the next product milestone.
+
+Inspected candidate before this doc edit: workspace `95aa909`, backend
+`2935757fe`, app `7a478fd2e`, all on
+`codex/functional-implementation-2026-09-20`. This is isolated committed work,
+not main or production. The dedicated shared Integration/landing lane remains
+**PAUSED**. Subsequently authorized lane-local implementation and disposable
+verification can continue; no shared runtime, publishing, flag activation,
+paid/provider run or pending product policy is enabled by this rebaseline.
+The [review ledger](functional-implementation-code-review-2026-09-21.md) remains
+open: R04 and R09 are partial fixes, not closed findings.
+
+<a id="current-engineering-tranche--september-9"></a>
+
+## Dated receipts and earlier tranche rationale
+
+The dated entries below are preserved history. For example, a receipt that
+predates a later native run correctly describes what was unverified then; it
+does not override the present evidence summary in §9. Apply the same rule to
+old assignment tables and suggestions to rehearse another already-covered path.
 
 ## September 21 native/runtime receipt — Home Save → Places consequence and readback
 
@@ -1871,70 +1909,168 @@ document's creation.
 
 ## 9. Current execution ledger and next batch
 
-### Functional implementation checkpoint — September 20
+### Functional implementation checkpoint — September 21 rebaseline
 
-The isolated lane `codex/functional-implementation-2026-09-20` has now completed
-four bounded user-visible slices. Life continuity covers exact original refinding,
-one-recipient original delivery/readback/withdrawal, and bounded practical visit
-judgment. The follow-on Home/Places slice carries visit purpose through reading
-and entity depth, preserves retained-reading lifecycle and exact destinations,
-adds evidence-backed practical checks, and connects private stop assistance to
-reviewed human Send. Life organization adds owner-backed grouped records with
-eligibility fences and exact return. Cold-world Home now promotes one admitted
-world-opening passage into a substantive optional invitation without claiming it
-as owner history. The routes have explicit trip-membership checks and named
-content-contract enforcement. The workspace contract registration and generated
-snapshots cover the Life/original/assistance/organization routes.
+The candidate includes Life exact originals/refinding, one-recipient original
+receiving, owner-backed grouped records, Home/Places public Source and consented
+social receiving, visit-purpose propagation, practical open-now options,
+saved-place closure/reopening notices, private stop assistance/reviewed Send,
+and explicit Source preparation on the existing worker rail. Cold-world Home
+can expose admitted world material without pretending it is personal history.
+These are implementations with differing evidence scopes, not complete product
+or design acceptance.
 
-This remains a candidate handoff: the four-root rollout gate, integration
-landing, provider activation, native visual acceptance and publication are
-unchanged. The combined offline rehearsal is now **152 backend + 407 mobile
-tests passed**; the full API gate still has 55 pre-existing expired policy dates
-and one unrelated missing-consumer entry, and native/disposable-Postgres
-acceptance is not established. The next checkpoint is a real Home/Places supply
-or social-receiving seam; do not restart Life or merge the broad
-native-receiving candidate wholesale.
+Named disposable-Postgres/API/iOS receipts now cover Home Save/readback,
+public/child Source reading and return, Life retained-text original and place
+lens, organized period groups, refinding, recipient original-text receiving in
+Home/Life, consented Places social reads, nearby practical options, and saved
+closure/reopening dismissal. A combined Home → Places → Life run establishes
+navigation across supplied fixtures, not a shared Occasion or complete semantic
+connection between unrelated fixtures. Broader media, corpus, behavior and
+visual acceptance remain open. No blanket "native acceptance unestablished"
+or blanket "native acceptance complete" claim is accurate.
 
-The broader backend offline sweep is **21,546 passed, 14 skipped and 53
-expected passes**, with the same two expired AI-compatibility registrations
-(`concierge_home_card_metadata` and `sse_tool_calls_made`) as its only failure.
-This is broader regression evidence, not disposable-Postgres, native, provider
-supply or release evidence.
+The prior **152 backend + 407 mobile** packet and **21,546 passed, 14 skipped,
+53 expected passes** backend sweep remain dated evidence. The latter reported
+two expired AI-compatibility registrations (`concierge_home_card_metadata` and
+`sse_tool_calls_made`). The latest repair packet recorded **54 backend + 38
+mobile** passes. These are overlapping selections at different revisions, not
+additive progress or a latest-tuple full pass. The recorded full API gate has
+55 expired policy dates and one missing-consumer finding; snapshot refresh is
+not a successful full audit. Recheck the actual gate before landing rather
+than adopting an exemption or treating the historical count as current.
 
-The same candidate now also includes Life organization: owner-backed grouped
-records, eligibility fences, pagination/refresh semantics, and the mobile
-time/places/people/threads reader with exact return context. The package is
-locally tested but not disposable-Postgres or native evidenced. This is a
-continuation of Life’s existing record contract, not a new Atlas or storage
-architecture.
+No product suite or runtime was rerun for this documentation-only rebaseline.
+R04 still hides sender withdrawal history when recipient selection is empty or
+unavailable. R09 preserves explicit offsets but does not propagate the schedule
+timezone needed for UTC-stored arrangements. Both are open in the review ledger.
+Source worker registration is implemented behind gates; automatic recovery of
+due work after enqueue/disabled-job/transient failure is not established.
 
-| Package | State with September 7 integration correction | Next concrete action |
+| Package | State at September 21 candidate | Next concrete action |
 | --- | --- | --- |
-| I0 | Implemented/integrated at inventory level; live-engine path matrix and 2026-09-06 decision-alignment audit recorded | Keep D1 retained-intention ownership and family-specific D6 watch contracts gated; consume accepted general D2–D5 policy through I1–I3 adapters without treating D4's history/source-expiry proposal as adopted |
-| I1 | Integrated for request-clock, consequence fan-out, source/graph Life delivery, owner-fenced publication, audience/withdrawal repair, bounded enumeration, resumable backfill, reconciliation and full typed comparison; source representation transitions and Outcome adapters are no longer missing foundation | Establish population/coverage and target-version live delivery before indexed serving; PostgreSQL interleaving evidence remains distinct from offline tests |
-| I2 | Bounded reads, prepared serving, dark execution, publication fences, callback repair, exact backend result retrieval and Source-specific effective stop have local receipts | Follow §9.8 Packages 1–3: public receiving, semantic request/runnable ingress/mobile results, then practical specialization. Worker registration, cost/cohort evidence and activation remain distinct; do not rebuild result/cancel foundations |
-| I3 | CC-0/1 reader/authority/retry repairs, deadline/custody/processing-copy restrictions, source-owner handoff metadata, bounded writer conformance (itinerary, Atlas, Discover), and useful-first capture ordering are locally evidenced; history-specific lifecycle and owner commands remain gated | Capture coordinates Life readback/correction over the existing envelope; review the two September 6 decision proposals before dependent writes; native/content evidence stays deferred for current engineering |
-| I4 | Renderer promotion, result-set identity, source-backed revision, native returns, stale-source treatment and a four-value-family owner-backed Home portfolio are implemented and locally tested; rollout remains internal | Receive prepared results through existing native kinds and complete practical/social/continuity handoffs; real-data and native quality remain unevidenced by these tests |
-| I5 | Graph/consequence foundations present; movement signal→judgment shadow path is locally evidenced; lightweight experience remains incomplete | Complete adaptation and shared consequences over I1–I3, preserving purpose, plural participation, and meaningful stop/wait behavior |
-| I6 | Inventories, guards, retained booking-evidence and assisted-expense contracts are recorded and locally validated; destructive cutovers remain incomplete | Run environment obligation audits, migrate actual retained readers, and remove only execution paths with no remaining consumer or obligation |
+| I0 | Inventory and decision-alignment foundation recorded; current candidate and evidence scopes now rebaselined | Keep unresolved retention/watch/reuse agreements gated only where relevant; close review findings without restarting architecture |
+| I1 | Source/graph/Outcome delivery, repair, backfill and reconciliation foundation; additional retained-source revisions and Life adoption paths in this lane | Build population and later-use coverage over existing owners; do not infer indexed serving cutover or cross-context authority from retention |
+| I2 | Bounded serving, prepared results, cancellation and publication fences; explicit Source Arq registration and serializer repair | Complete bounded recovery needed for reliable requested supply, then inspect actual outputs; cost/cohort/provider activation remains separately gated |
+| I3 | Contribution authority and useful-first intake; exact retained/received text-original paths with scoped native receipts | R04 durable controls; broader supported originals and permissioned downstream use; pending history/audience policy is not silently adopted |
+| I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots | Primary Home/Places full-scroll section/value completion and design-quality treatment; sparse/pending/failure states and real supply breadth |
+| I5 | Open-now and saved-world changes reach surfaces; explicit fit and reviewed assistance contracts implemented | R09 schedule-zone correctness; connect current practical facts and permitted context to useful adaptations; provider-backed fit rehearsal and broader mandates remain separate |
+| I6 | Retirement inventories/guards exist; candidate remains isolated and rollout internal | Keep obsolete execution paths out of new work; complete obligation review and authorized cutovers/landing only when their dependencies are ready |
 
-**Next connected work:** execute §9.8's reviewed candidate and connected delivery
-sequence within the existing CV/SP/I packages, alongside Content C0–C6, Home's
-receiving/presentation plan and Life's corpus/recovery work. CV-2 A–D has local implementation receipts;
-do not restart it from the older sequencing text. CV-2E practical specialist
-expansion follows a named timing need rather than preceding all supply work.
-The first CV-1/target-capability receipt is in §9.2.
-Do not rebuild source delivery, representation withdrawal,
-Outcome adapters, backfill or reconciliation from older receipts. The next
-stage connects existing capabilities and makes migration claims precise. New
-persistence, paid/provider work, watches and activation retain their own gates.
-Use §2's register for responsibility and the existing lane plans for detail.
+### Current build sequence and finish conditions
+
+This sequence is the forward plan within the existing I/CV packages. It replaces
+older suggestions to select another isolated happy-path rehearsal. A package
+can contain several independent implementation tasks; it is not a one-loop
+definition of Vesper. The program register owns assignment. No agents are
+dispatched by this document update.
+
+**First: bounded review closeout.**
+
+- R04 owner: app original-sharing screen and tests. Existing sender-owned
+  deliveries and Withdraw must remain usable when new-send recipients are
+  empty, disconnected, loading or unavailable. Separate history/withdrawal
+  rendering from the picker; test persisted grants after eligible-list loss.
+- R09 owner: arrangement owner projection/API and object presentation. Carry
+  the existing schedule timezone through the read contract when available;
+  format UTC-stored instants in that zone and label honest fallback when zone
+  evidence is absent. Cover cross-device zones, midnight and DST; do not infer
+  destination time from the phone. Any wire change requires normal type sync.
+- Recheck the ledger's remaining authority/transaction and queue-wrapper
+  boundaries in the correct environment. The `.venv` import probe succeeds;
+  do not perpetuate the failed system-interpreter dependency diagnosis. Run
+  required DB cases only against an explicitly disposable database. Record
+  unavailable runs as unverified, not fixed by reviewer agreement.
+- Finish with focused regressions, explicit code/contract commits and updated
+  ledger status. Independent feature work need not wait for unrelated runtime
+  availability; changed authority-sensitive paths cannot claim completion
+  without the relevant evidence.
+
+**Primary build: fuller, reliably supplied Home/Places experiences.**
+
+- Start from the existing [Home implementation map](home-connected-experience-implementation-map-2026-09-04.md)
+  and [design handoff index](claude-design-integration-2026-09-04/00-handoff-index.md).
+  Inspect the current Home/Places Claude exports read-only and record their
+  canvas/version; concurrent main design edits are not implicitly in this lane.
+  Inventory the selected full-scroll sections against actual mobile consumers,
+  owner reads and supply. Keep a compact section → value/source → reader/action
+  → remaining implementation mapping in the existing owner plan, not a new
+  generic inventory service or another roadmap.
+- Complete multiple useful value families together: world understanding and
+  discovery, available possibilities, practical current-world help, and already
+  authorized human contributions. Keep source depth, exact destination, action
+  consequences and return coherent. Do not fill the scroll with empty section
+  shells, repeated summaries, requests for more input or unsupported fixtures.
+- Reuse `backend/root_projection/v2/`, existing content/Place/relationship owners,
+  root composition and mobile receiving adapters. Preserve one writer for
+  shared composition, schema synchronization and navigation seams. Reuse
+  prepared results across valid consumers without inventing a new generator,
+  queue, store or reuse permission.
+- Make requested preparation dependable where its gaps prevent useful supply:
+  inspect explicit enqueue failure, jobs consumed while disabled, transient
+  execution failure and the unconsumed due-work listing. Complete bounded
+  recovery on the existing workflow/lease/Arq rail, with retry limits, current
+  source/authority revalidation and existing stop/cost/cohort gates. Ordinary
+  root GETs remain acquisition-free; failed polling cannot silently resubmit.
+  This is recovery work under existing authority, not approval for unsolicited
+  production, paid runs or new watch policy.
+- **Finish condition:** a selected complete Home and Places composition has
+  worthwhile supplied substance, functioning depth/actions/return, and honest
+  sparse, pending and failed states. Show thin-context and populated/current-
+  situation cases using named real owners. Inspect actual content quality
+  separately from transport success. Record missing provider/production supply
+  honestly; prepared fixtures demonstrate presentation, not recurring supply.
+
+**Complementary build: Life/social value after retention.**
+
+- Build on the [Life owner plan](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md),
+  retained Source and relationship owners. Broaden supported organization and
+  human-material consumption without replacing Life storage or implying an
+  Atlas/indexed-serving cutover. Text-original receiving is implemented; broader
+  media, People/Threads and group experiences are not complete by association.
+- Connect already permitted context to a materially better later answer,
+  possibility, preparation or practical judgment. Trace evidence and purpose
+  from source through selection to useful output, not merely a "remembered"
+  label or another refind card. Compare equivalent situations with/without
+  eligible context so location or fixture differences cannot masquerade as
+  personalization. This is implementation acceptance, not a prerequisite
+  experiment before building the rest of the system.
+- Human contributions should add a useful perspective or opening without
+  requiring equal recipient effort. Retention, reading, inference, audience and
+  action are separate: friendship, custody or receipt does not grant AI reuse.
+  Current permissions can support work now; unresolved media/group/audience
+  choices block only the dependent capability. Do not silently widen policy.
+- **Finish condition:** supported material is recognizable/refindable and can
+  improve a subsequent permitted result with exact evidence and return. Show
+  correction/withdrawal removing its future influence while preserving unrelated
+  useful content. Keep unsupported inference and policy-dependent breadth open.
+
+**Polish and delivery throughout both builds.**
+
+Each completed surface must meet the selected Claude reference's standard for
+hierarchy, typography, cards/media, spacing, interaction and meaningful states,
+adapted to native behavior and accessibility. Device inspection covers the
+complete selected scroll, depth and return, not only isolated green taps.
+Visual polish is part of the package exit; unresolved visual choices do not
+block independent capability work. Do not redesign Chat under these packages.
+
+The receiving owner integrates relevant supplier cuts locally and owns shared
+contract synchronization; other owners coordinate direct handoffs and reserved
+runtime/device access. On authorized delegation, use outcome-sized assignments
+through implementation and focused review. Reassess at the first working
+composition, a consequential dependency/product decision, and the completed
+package. No fixed per-slice integration ceremony is required. Required
+`make verify`/API gates remain mandatory for publishing; no shared landing or
+release activation follows automatically. Update this checkpoint and the
+program register in place after each substantial handback.
 
 ### 9.1 Connected-value execution sequence
 
-This is the next sequence within I1–I5, not a new product architecture or a
-one-loop proof program. All four moves remain represented by the acceptance
-portfolio. A package is reviewable scope, not the definition of Vesper.
+This foundational sequence within I1–I5 preserves implementation contracts and
+their rationale. The September 21 build sequence above owns current scheduling;
+read later receipts before treating any CV step here as unimplemented. All four
+moves remain represented by the acceptance portfolio. A package is reviewable
+scope, not the definition of Vesper or a one-loop proof prerequisite.
 
 | Order | Outcome / implementation boundary | Exit and reassessment |
 | --- | --- | --- |
