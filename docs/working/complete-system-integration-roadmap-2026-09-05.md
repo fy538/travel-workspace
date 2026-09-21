@@ -1602,23 +1602,26 @@ document's creation.
 ### Functional implementation checkpoint — September 20
 
 The isolated lane `codex/functional-implementation-2026-09-20` has now completed
-two bounded user-visible slices. Life continuity covers exact original refinding,
+four bounded user-visible slices. Life continuity covers exact original refinding,
 one-recipient original delivery/readback/withdrawal, and bounded practical visit
 judgment. The follow-on Home/Places slice carries visit purpose through reading
 and entity depth, preserves retained-reading lifecycle and exact destinations,
 adds evidence-backed practical checks, and connects private stop assistance to
-reviewed human Send. Its routes have explicit trip-membership checks and named
+reviewed human Send. Life organization adds owner-backed grouped records with
+eligibility fences and exact return. Cold-world Home now promotes one admitted
+world-opening passage into a substantive optional invitation without claiming it
+as owner history. The routes have explicit trip-membership checks and named
 content-contract enforcement. The workspace contract registration and generated
-snapshots cover the Life/original routes.
+snapshots cover the Life/original/assistance/organization routes.
 
 This remains a candidate handoff: the four-root rollout gate, integration
 landing, provider activation, native visual acceptance and publication are
-unchanged. Focused evidence is strong, but the full API gate still has 55
-pre-existing expired policy dates and one unrelated missing-consumer entry, and
-native/disposable-Postgres acceptance is not established. The next checkpoint is
-a combined receiving/runtime read
-against both slices, followed by the next highest-value Home/Places supply gap;
-do not restart Life or merge the broad native-receiving candidate wholesale.
+unchanged. The combined offline rehearsal is now **152 backend + 407 mobile
+tests passed**; the full API gate still has 55 pre-existing expired policy dates
+and one unrelated missing-consumer entry, and native/disposable-Postgres
+acceptance is not established. The next checkpoint is a real Home/Places supply
+or social-receiving seam; do not restart Life or merge the broad
+native-receiving candidate wholesale.
 
 The same candidate now also includes Life organization: owner-backed grouped
 records, eligibility fences, pagination/refresh semantics, and the mobile

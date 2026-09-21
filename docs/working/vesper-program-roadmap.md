@@ -148,6 +148,26 @@ take the next uncovered Home/Places supply or social receiving gap. The standard
 API audit remains bounded by the pre-existing 55 expired policy dates and one
 unrelated intake-media missing-consumer finding.
 
+## September 20 combined receiving/runtime rehearsal
+
+The four slices were exercised together through the existing offline owner and
+consumer boundaries after the Plan Assistance auth repair. Backend Home/Places,
+practical assistance, original receiving, root composition and Life organization
+tests passed **152/152**. The corresponding mobile Home, Places, Plan Assistance,
+original receiving, Life organization/refinding and return suites passed
+**407/407** with `TZ=UTC`, the explicit boundary used by the arrangement-time
+fixtures. A default New York shell exposes one pre-existing timezone-sensitive
+expectation in the object-page projection; it is not a functional failure of
+these slices, but native/device timezone acceptance remains open.
+
+The repair is backend `9e8214eb5` and is test-only: offline response-mode tests
+stub the new DB-backed membership boundary while a separate denial test proves
+membership is checked before assistance context. This rehearsal still does not
+prove a disposable-Postgres run, populated provider supply, native visual
+quality, merge/publication or rollout activation. The next build target is a
+real Home/Places supply or social-receiving seam, selected from an existing owner
+contract rather than a new generator or store.
+
 ## Current round — meaning-based discovery and exact-original receiving
 
 **Authorized September 9 following the lexical increment:** complete two
