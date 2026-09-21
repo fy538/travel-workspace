@@ -1600,6 +1600,13 @@ a combined receiving/runtime read
 against both slices, followed by the next highest-value Home/Places supply gap;
 do not restart Life or merge the broad native-receiving candidate wholesale.
 
+The same candidate now also includes Life organization: owner-backed grouped
+records, eligibility fences, pagination/refresh semantics, and the mobile
+time/places/people/threads reader with exact return context. The package is
+locally tested but not disposable-Postgres or native evidenced. This is a
+continuation of Life’s existing record contract, not a new Atlas or storage
+architecture.
+
 | Package | State with September 7 integration correction | Next concrete action |
 | --- | --- | --- |
 | I0 | Implemented/integrated at inventory level; live-engine path matrix and 2026-09-06 decision-alignment audit recorded | Keep D1 retained-intention ownership and family-specific D6 watch contracts gated; consume accepted general D2–D5 policy through I1–I3 adapters without treating D4's history/source-expiry proposal as adopted |

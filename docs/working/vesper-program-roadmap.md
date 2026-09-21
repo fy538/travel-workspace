@@ -102,6 +102,29 @@ package is the combined receiving/runtime check followed by the next uncovered
 Home or Places supply gap; do not merge the broad 181/204-commit candidate
 wholesale.
 
+## September 20 functional implementation receipt — Life organized records
+
+The third execution slice completes the missing organization layer of Life. The
+backend now serves owner-backed, bounded group reads with eligibility binding,
+pagination metadata and focus-safe refresh. The mobile Life record can open
+the organized groups surface for its time/places/people/threads lenses, preserve
+exact destinations and return context, and refresh without turning a stale
+cursor into an implicit new record. The matching OpenAPI snapshot and generated
+mobile types are committed.
+
+Evidence on the lane: backend Life/root projection package **731 passed, 48
+deselected**; mobile organized-record/refinding/row package **49 passed**;
+mobile typecheck passed; the row ratchet remains green. This is still offline
+and candidate-level evidence: the disposable-Postgres organization test is
+present but not executed here, native visual acceptance and rollout activation
+remain unproven.
+
+The implementation commits are backend `7471c597c` (with `c73732aa8` and
+`aceba2193`) and mobile `19c53b42a` (with `8c5efbe32`, `d7c8ba697` and
+`c253e15bb`), with contract refresh `34e2c1b`. The next execution should run
+the combined receiving/runtime check across all three slices, then return to the
+highest-value uncovered Home/Places supply or social receiving gap.
+
 ## Current round — meaning-based discovery and exact-original receiving
 
 **Authorized September 9 following the lexical increment:** complete two
