@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Life engineering / cross-repository architecture
 created: 2026-09-05
-last_verified: 2026-09-08
+last_verified: 2026-09-21
 expires: 2026-10-05
 why_new: Rebaselines the executed Life foundation into a complete engineering program with an explicit Atlas replacement, data migration, and deletion outcome requested by the founder.
 depends_on:
@@ -37,6 +37,18 @@ This replaces the old combined-test/migration blocker, not the unfulfilled
 Life quality and serving requirements. App routes and restoration do not
 establish adoption of the new organizer. No indexed serving, model run, Atlas
 deletion or remote publication follows.
+
+**Native exact-source return receipt — September 21:** the functional lane
+now provisions one disposable retained text source through the existing
+Capture writer, projects it with the retained-source Life owner, opens it from
+the real Life v1 root into the exact Intake reader, and returns to the same
+Life lens. Owner deletion then withdraws the Life row and the final API read
+confirms the source is absent. Backend provisioner `e752cdbd4` and app/native
+runner `5313f3b36` provide the repeatable local proof. This is a bounded
+owner-authorized return/readback receipt—not full indexed-serving cutover,
+binary-original playback, multi-lens corpus parity, Atlas retirement or
+release acceptance. The cross-lane program roadmap records the complete
+command/evidence boundary.
 
 **Read this baseline, the current queue and decision register below first.**
 They are the sole present-tense execution summary. [§10](#10-design-independent-execution-plan--september-6)
