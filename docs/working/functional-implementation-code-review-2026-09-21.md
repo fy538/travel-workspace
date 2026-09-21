@@ -406,7 +406,7 @@ Focused correction receipts on the candidate tuple:
 | R03 | P2 | Pull-consent revocation leaves attached original readable | Relationships read policy | Fixed; disposable-Postgres attached-read regression passes |
 | R04 | P2 | Sender loses withdrawal controls after relationship disconnect | Mobile original sharing | Code-fixed; real API sender-control rehearsal passes; native UI matrix remains unrun (no simulator) |
 | R05 | P2 | Source worker throws while serializing its actual result type | Worker adapter | Serializer and exhausted-lease recovery code fixed; 29 focused tests, 25 disposable-Postgres tests, and real wrapper/expired recovery pass; only process-restart queue evidence remains open |
-| R06 | P2 | Nine expanded place IDs silently remove Home public supply | Home / Places scope | Fixed with 8-ID batching; scale regression still required |
+| R06 | P2 | Nine expanded place IDs silently remove Home public supply | Home / Places scope | Fixed with 8-ID batching; nine-ID scale regression passes; deployed scale/cost still unmeasured |
 | R07 | P2 | Site, accommodation and experience fit checks cannot succeed | Practical assessment | Fixed; focused backend tests pass |
 | R08 | P2 | Primary Plan details entrance hides arrangement information | Plan / object navigation | Fixed; typecheck passes |
 | R09 | P2 | Reservation time is shown in device timezone without a label | Object presentation | Code-fixed; focused schedule-zone/UTC conversion passes; named native packets pass; persisted/native timezone matrix still required |
@@ -617,8 +617,10 @@ An offline probe invoking the actual Home `places_context` reader gave:
 
 **Applied:** batch expanded scopes at the existing per-read bound and preserve
 useful results for large scopes; do not silently empty the whole reader.
-**Regression:** one city with more than eight descendants and a multi-city
-Trip. Actual deployed subtree sizes and runtime query cost were not measured.
+**Regression:** the focused scale case now passes in backend commit
+`7fc1858df`: nine expanded IDs are read as eight-plus-one owner calls and all
+nine current records survive the bounded listing. Actual deployed subtree
+sizes and runtime query cost were not measured.
 
 ## R07 — Practical fit rejects entity kinds the app explicitly offers
 
