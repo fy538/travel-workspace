@@ -50,8 +50,8 @@ same tour. Frontend polish is part of each surface's completion. Retention/
 refinding is further along than context materially improving a later answer,
 possibility or action.
 
-**Current candidate tuple after this receipt:** workspace `22c9f82`, backend
-`c3f64589e`, and app `ecdecaffe`, all on the isolated
+**Current candidate tuple before this documentation receipt:** workspace `7cfafa2`, backend
+`90fe88f88`, and app `ecdecaffe`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; it does not change the child-code tuple, merge the
 lane, enable a flag, or resume shared Integration/landing. The next substantive
@@ -121,6 +121,20 @@ backend Ruff/format checks pass (the existing Places renderer max-lines
 warning remains). This extends the existing casual-sharing owner; it adds no
 social feed, notification, friend-location inference, response obligation,
 new store, audience policy or occasion model.
+
+## September 21 functional receipt — standalone Places units reach production rail
+
+The preceding workspace regression used an injected `field_units` value and
+therefore proved only the native receiving boundary. Backend commit
+`90fe88f88` closes the upstream seam: the Places runtime adapter now forwards
+all explicitly supported standalone kinds (including plural social perspective,
+evidence, and the admitted field families) while excluding units already
+represented by mature browse cards. The runtime model rejects unsupported
+standalone kinds instead of exposing an unregistered renderer. The focused
+Places-runtime suite passes **8 tests** and the combined root packet passes
+**95 tests**, with Ruff, formatting and compilation clean. This changes no
+producer, route, store, rollout flag or policy; provider-backed supply and
+native full-scroll acceptance remain open.
 
 ## September 21 functional receipt — canonical Places workspace reachability
 
@@ -1458,8 +1472,8 @@ implementation, and docs closeout.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `22c9f82` (current documentation receipt) | `b6e7014` |
-| Backend | `c3f64589e` | `a7c02cbe1` |
+| Workspace | `7cfafa2` (current documentation receipt) | `b6e7014` |
+| Backend | `90fe88f88` | `a7c02cbe1` |
 | App | `ecdecaffe` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,

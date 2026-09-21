@@ -58,8 +58,8 @@ editorial/aperture anatomy, Places editorial-cover anatomy, the native starter
 browse shelf, native branch/continuity/returned-understanding treatments, the
 honest balanced-field fallback, the native owner-backed evidence register, the
 supplied-experience comparison, and the plural social perspective in backend
-`c3f64589e` and app `ecdecaffe`; the latest workspace documentation
-receipt is `95d8377`. This
+`90fe88f88` and app `ecdecaffe`; the latest workspace documentation
+receipt is `7cfafa2`. This
 documentation
 advance does not merge, publish, enable or
 resume shared Integration/landing. Apply this
@@ -71,8 +71,8 @@ choose another supported producer → owner read → destination → return seam
 leave the missing supply explicit. Evidence-only work remains bounded to R04,
 R05 and R09, and visual polish travels with the selected surface package.
 
-Current candidate tuple after this receipt: workspace
-`22c9f82`, backend `c3f64589e`, app `ecdecaffe`, all on
+Current candidate tuple before this documentation receipt: workspace
+`7cfafa2`, backend `90fe88f88`, app `ecdecaffe`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
@@ -119,6 +119,18 @@ canonical feed. Its focused workspace suite passes **16 tests**, targeted
 ESLint is clean, and the app typecheck passes. This is a receiving-boundary
 proof only; it introduces no new producer, route, rollout, storage or design
 parity claim.
+
+### September 21 standalone Places runtime rail receipt
+
+The canonical workspace test alone used an injected standalone unit. Backend
+`90fe88f88` now makes the production runtime adapter forward the supported
+standalone semantic kinds—including plural social, evidence, and the admitted
+field families—while excluding semantic units already bound to mature feed
+cards. The model rejects unsupported standalone kinds, so transport admission
+cannot silently bypass the native renderer registry. The focused runtime suite
+passes **8 tests** and the combined backend root packet passes **95 tests**;
+Ruff, formatting and compilation pass. This is a contract/connection repair,
+not new supply, a new route, a store, a rollout, or a design-parity claim.
 
 ### Coordination ownership decision — keep group waiting in Home
 

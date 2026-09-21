@@ -31,8 +31,8 @@ and supplied-experience comparison is:
 
 | Repository | Current HEAD |
 |---|---|
-| Workspace | `22c9f82` |
-| Backend | `c3f64589e` |
+| Workspace | `7cfafa2` |
+| Backend | `90fe88f88` |
 | App | `ecdecaffe` |
 
 This correction updates tuple identity only; it does not imply merge,
@@ -76,6 +76,16 @@ focused workspace suite passes **16 tests**, targeted ESLint is clean, and the
 app typecheck remains green. This closes an evidence gap in the receiving path;
 it does not add a producer, route, rollout, storage family or design-parity
 claim.
+
+### September 21 backend runtime follow-up
+
+The first canonical-workspace test supplied `field_units` directly and did not
+prove the backend join. Backend `90fe88f88` broadens the runtime adapter's
+standalone rail to the kinds the native Places semantic renderer actually
+supports, excludes card-bound units, and rejects unsupported kinds. The focused
+Places-runtime suite passes **8 tests**; the combined backend packet passes
+**95 tests**, with Ruff, formatting and compilation clean. No producer, route,
+store, rollout or policy surface changed.
 
 ### September 21 Home surface follow-up
 
