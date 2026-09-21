@@ -128,8 +128,29 @@ recurring supply, or full-scroll design parity. Do not add a new semantic kind
 in response; the next proof should be runtime/database/device evidence only
 when the required environment is safely disposable.
 
+### September 21 persisted public-Place HTTP readback
+
+Backend `96d264c41` now proves the supplied same-Place sequence through the
+real `/api/root-projections/v2/home` route on a fresh disposable PostgreSQL
+database migrated to the current Alembic head. Two accepted public primitives
+are read from their persisted evidence/policy rows, resolved through the
+authoritative Home location to a distinct seeded city, and composed into one
+Home sequence with exact Source, Place and Places-context doors. A companion
+case retracts one source observation and verifies that only that source is
+withheld while the still-active source remains.
+
+The proof isolates unrelated Home owners as empty readers so this test measures
+the persisted Places owner rather than cold-connection timing for unrelated
+systems; the HTTP route, Home composer, context resolver and public-content DB
+reader remain real. The two cases plus the existing persisted Save → Places →
+Home loop pass **3 tests**, and the broader Home/Places/content packet passes
+**106 tests**. This closes the disposable-Postgres/API boundary for the
+supplied public sequence. It does not establish broad recurring supply, a
+full default-portfolio latency run, native/device acceptance, visual parity or
+provider-backed generation.
+
 Current candidate tuple after the latest rebaseline: workspace
-`c586de3`, backend `bdc05c02f`, app `242d309f0`, all on
+`c586de3`, backend `96d264c41`, app `242d309f0`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable

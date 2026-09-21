@@ -60,11 +60,12 @@ it does not claim source admission, recurring content supply, runtime
 full-scroll quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
 **Current candidate tuple after the latest rebaseline:** workspace `c586de3`,
-backend `bdc05c02f`, and app `242d309f0`, all on the isolated
+backend `96d264c41`, and app `242d309f0`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The latest workspace
 advance records the disposable owner-loop verification and renderer-ledger
 correction; the backend advance adds the canonical Home same-Place composition
-proof. The child-code tuple also includes the Places typed notice bridge,
+proof plus the persisted public-Place HTTP readback. The child-code tuple also
+includes the Places typed notice bridge,
 native sender-withdrawal proof, shared Home/Places semantic-state treatment,
 and the explicit People-bound anchor index repair. Nothing is merged to main,
 published, flag-activated, or resumed in shared Integration/landing. The next
@@ -72,11 +73,10 @@ substantive implementation remains one selected sparse/pending/failure state
 or supplied Life/social downstream value, with R05/R09 edge work continuing
 only where its required environment is available.
 
-The latest workspace documentation head after the renderer-ledger refresh and
-disposable owner-loop verification is `c586de3`; backend and app code are
-`bdc05c02f` and `242d309f0`. The backend advance is a focused
-composition-proof test only; it does not alter production behavior or release
-state.
+The latest workspace documentation head before this documentation receipt is
+`c586de3`; backend and app code are `96d264c41` and `242d309f0`. The backend
+advance is integration-test coverage only; it does not alter production
+behavior or release state.
 
 ### September 21 canonical Home sequence readback
 
@@ -105,6 +105,31 @@ head and the existing Save → Places → Home owner loop passed
 confirms the current checkout still migrates and serves a real persisted owner
 path; it does not turn the controlled same-Place sequence test into a
 public-content HTTP readback or prove recurring supply.
+
+### September 21 persisted public-Place HTTP readback
+
+Backend `96d264c41` adds two integration cases on a fresh disposable PostgreSQL
+database migrated to the current Alembic head. The real
+`GET /api/root-projections/v2/home` route reads two accepted, evidence-linked
+public Place primitives from the database, resolves the user's persisted Home
+coordinates to the seeded test city, and composes one Home sequence. The
+response preserves both immutable Source refs, the exact `place` entity ref,
+and the Places context/entity destination. A second case retracts one source
+observation and verifies that source disappears while the still-active source
+remains readable.
+
+The test keeps the actual HTTP route, Home composer, context resolver and
+Places content reader live, while making unrelated Home owners empty so cold
+database connection timing cannot decide this bounded owner proof. It is
+therefore stronger than the controlled service-composition test but still not
+a full default-portfolio performance run, recurring supply receipt, native
+device acceptance, visual parity or provider-backed generation. The focused
+HTTP cases and the existing Save → Places → Home persisted loop pass **3
+tests** together; the broader Home/Places/content packet passes **106 tests**.
+Fixtures are removed after each case. This closes the disposable-Postgres/API
+boundary for the supplied public-Place sequence; the remaining gap is supply
+breadth and full default-portfolio/native experience quality, not another
+content storage or route abstraction.
 
 ### September 21 roadmap maintenance — post-review execution order
 
@@ -1824,7 +1849,7 @@ source/original distinction, and docs closeout.
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
 | Workspace | `c586de3` | `b6e7014` |
-| Backend | `bdc05c02f` | `a7c02cbe1` |
+| Backend | `96d264c41` | `a7c02cbe1` |
 | App | `242d309f0` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,

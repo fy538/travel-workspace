@@ -42,10 +42,30 @@ This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes. Earlier
 runtime-boundary receipts at workspace `0fd06b7` and `f127543` remain
 historical. The subsequent candidate is workspace `c586de3`, backend
-`bdc05c02f`, and app `242d309f0`; workspace `c586de3` records the disposable
-owner-loop and renderer-ledger updates, while backend `bdc05c02f` adds the
-canonical Home same-Place composition proof. Those later receipts do not
-retroactively widen this review's evidence claims.
+`96d264c41`, and app `242d309f0`; workspace `c586de3` records the disposable
+owner-loop and renderer-ledger updates, while backend `96d264c41` adds the
+canonical Home same-Place composition proof plus the persisted public-Place
+HTTP readback. Those later receipts do not retroactively widen this review's
+historical evidence claims.
+
+### September 21 persisted public-Place HTTP readback
+
+Backend `96d264c41` adds two integration cases on a fresh disposable
+PostgreSQL database migrated to the current Alembic head. The real
+`GET /api/root-projections/v2/home` route reads two accepted, evidence-linked
+public Place primitives, resolves the persisted Home location to the seeded
+test city, and composes one Home sequence with exact Source, Place and
+Places-context destinations. Retracting one source observation removes only
+that source while the still-active source remains readable.
+
+The cases keep the route, Home composer, context resolver and public-content
+database reader live while making unrelated Home owners empty, so cold
+connection timing cannot decide this bounded owner proof. The two cases plus
+the existing persisted Save → Places → Home loop pass **3 tests**; the broader
+Home/Places/content packet passes **106 tests**. This closes the disposable
+Postgres/API boundary for this supplied family, not recurring supply, the full
+default-portfolio latency envelope, native/device acceptance, visual parity or
+provider-backed generation.
 
 ### September 21 Source lease-renewal repair
 
