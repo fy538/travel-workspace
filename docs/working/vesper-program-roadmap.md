@@ -54,7 +54,7 @@ completion. Retention/refinding is further along than context materially
 improving a later answer, possibility or action.
 
 **Current candidate tuple after this receipt:** workspace `d6d7e51`, backend
-`953e2bc69`, and app `4c507e1c4`, all on the isolated
+`953e2bc69`, and app `b1f37eac4`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; it does not change the child-code tuple, merge the
 lane, enable a flag, or resume shared Integration/landing. The next substantive
@@ -97,6 +97,20 @@ targeted ESLint reports no errors (only the existing Home renderer max-lines
 warning). This is a bounded social-receiving/value-depth improvement: no new
 store, audience policy, notification, generator or route was introduced. A
 real relationship-backed native/device receipt remains outside this change.
+
+## September 21 functional receipt — Life distinguishes retained sources and originals
+
+The existing Life root and complete-record readers already opened exact retained
+source/original destinations, but their native rows looked identical to ordinary
+Life records. App commit `b1f37eac4` adds the existing `LifeEpisodeRow` stamp
+affordance: source submissions show **SOURCE** and exact retained originals show
+**ORIGINAL** in both the root digest and paginated record. The destination,
+current-custody checks, lens return parameters and owner contracts are unchanged.
+
+The focused Life root/record/groups/primitives packet passes **34 tests**;
+TypeScript and targeted ESLint pass, and `git diff --check` is clean. This is a
+bounded native records/originals comprehension improvement, not a new corpus,
+media reader, source type, organization rule, or visual-parity claim.
 
 **September 21 afternoon execution rule:** the latest product behavior is the
 supplied-reading `Why this?` slice, mechanism-row adaptation, explicit
@@ -1508,13 +1522,14 @@ database mutations or simulator runs were performed for the rebaseline itself.
 Earlier runtime results below are carried evidence at their named scopes, not
 fresh certification of every path on the latest tuple. The tuple below was
 updated after the bounded Source recovery correction, receiving-surface
-implementation, standalone Places feed-state repair, and docs closeout.
+implementation, standalone Places feed-state repair, native Life
+source/original distinction, and docs closeout.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
 | Workspace | `d6d7e51` (current documentation receipt) | `b6e7014` |
 | Backend | `953e2bc69` | `a7c02cbe1` |
-| App | `4c507e1c4` | `e2e792913` |
+| App | `b1f37eac4` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent

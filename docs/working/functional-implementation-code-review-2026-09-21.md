@@ -33,7 +33,7 @@ and supplied-experience comparison is:
 |---|---|
 | Workspace | `d6d7e51` |
 | Backend | `953e2bc69` |
-| App | `4c507e1c4` |
+| App | `b1f37eac4` |
 
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes.
@@ -126,6 +126,17 @@ renderer/smoke tests pass **32 tests**, TypeScript passes, and targeted ESLint
 has no errors (the existing max-lines warning remains). No new social store,
 audience policy, notification, generator or route was added. Real relationship
 backing and native/device evidence are still required for a broader receipt.
+
+### September 21 Life source/original row distinction
+
+App `b1f37eac4` adds a bounded native comprehension treatment to the existing
+Life root and complete-record readers: `source_submission` rows carry a
+**SOURCE** stamp and `source_original` rows carry an **ORIGINAL** stamp. Exact
+owner destinations, custody checks and lens-aware return parameters are
+unchanged. The focused Life root/record/groups/primitives packet passes **34
+tests**, TypeScript and targeted ESLint pass. No API, backend, schema, storage,
+organization or media-reader behavior changed; this is not indexed-serving or
+visual-parity evidence.
 
 ### September 21 Home surface follow-up
 

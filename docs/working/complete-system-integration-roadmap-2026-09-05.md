@@ -59,7 +59,7 @@ browse shelf, native branch/continuity/returned-understanding treatments, the
 honest balanced-field fallback, the native owner-backed evidence register, the
 supplied-experience comparison, the plural social perspective, the
 standalone-only Places feed-state repair, and the addressed Place-contribution
-region in backend `953e2bc69` and app `4c507e1c4`; the latest workspace
+region in backend `953e2bc69` and app `b1f37eac4`; the latest workspace
 documentation receipt is `d6d7e51`. This
 documentation
 advance does not merge, publish, enable or
@@ -73,7 +73,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R04,
 R05 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after this receipt: workspace
-`d6d7e51`, backend `953e2bc69`, app `4c507e1c4`, all on
+`d6d7e51`, backend `953e2bc69`, app `b1f37eac4`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
@@ -159,6 +159,18 @@ The backend root-projection packet passes **438 tests** and the focused Home
 renderer/smoke packet passes **32 tests**; TypeScript and targeted ESLint have
 no errors. No new store, audience policy, notification, generator or route was
 introduced, and real relationship-backed device evidence remains open.
+
+### September 21 native Life source/original distinction receipt
+
+The existing Life root and paginated record already opened exact retained
+source/original destinations, but their rows were visually indistinguishable
+from ordinary records. App `b1f37eac4` uses the existing native row stamp to
+label source submissions **SOURCE** and exact retained originals **ORIGINAL**
+in both readers. Exact destinations, owner custody, lens restoration and return
+parameters remain unchanged. The focused Life packet passes **34 tests**,
+TypeScript and targeted ESLint pass, and no backend/API/storage/generator
+surface changed. This improves source/original comprehension; it does not claim
+binary playback, whole-history search, indexed serving or design parity.
 
 ### Coordination ownership decision — keep group waiting in Home
 

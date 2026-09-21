@@ -53,6 +53,15 @@ content tests, with environment-specific deselections recorded in the
 cross-lane ledger). The cross-lane program roadmap records the complete
 command/evidence boundary.
 
+**Native source/original comprehension receipt — September 21:** app commit
+`b1f37eac4` now marks retained source submissions as **SOURCE** and exact
+retained originals as **ORIGINAL** in both the Life digest and complete-record
+rows. The existing exact owner destinations, custody checks and lens-aware
+return context are unchanged. The focused Life root/record/groups/primitives
+packet passes **34 tests**, TypeScript and targeted ESLint pass. This is a
+bounded reader-comprehension improvement; it does not add a media reader,
+broaden source coverage, switch serving to the index, or retire Atlas.
+
 **Read this baseline, the current queue and decision register below first.**
 They are the sole present-tense execution summary. [§10](#10-design-independent-execution-plan--september-6)
 retains acceptance scope, [§11](#11-bounded-shadow-rehearsal-execution-packet--september-7)
