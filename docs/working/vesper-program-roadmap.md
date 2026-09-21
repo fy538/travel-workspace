@@ -1997,3 +1997,30 @@ source and prove Life Places → exact Intake source navigation in the combined
 runtime; only then should we choose the next receiving/action seam. Do not
 promote capture-time subject association to occurrence evidence or widen the
 supported place taxonomy without an owner contract.
+
+## September 21 functional implementation receipt — retained-source revision repair
+
+The first disposable-runtime replay of the new Places adoption exposed a
+cross-timezone CAS defect: Postgres returned an owner timestamp with the local
+session offset while the evidence adapter serialized the same owner revision in
+UTC. The retained source was therefore rejected as `source_revision_mismatch`
+before either its period or explicit-place organization could materialize.
+Backend commit `d46b5150c` centralizes retained-source owner revision
+serialization in UTC and uses that token consistently in the source record,
+Life adapter, shadow index, and evidence handoff.
+
+After the repair, a current-authority read of the disposable place-bound source
+compiled both `derived:period:2026-09:iana.utc` and `owner:venue:22942` groups
+with no rejected evidence, and the worker published the retained-source event.
+Focused Life coverage is **42 passed**, the Postgres projector packet is **4
+passed**, and the earlier corpus/index packet remains **25 passed**; Ruff,
+format and repository hooks pass. App commit `81e876156` covers the native
+Life-root handoff to `/you/intake-submissions/[submissionId]?lifeLens=places`.
+
+The full HTTP/native route proof remains open: this disposable API request
+entered the existing Atlas timeline reader and hit a pre-existing fallback-user
+projection failure, so no route or simulator parity is claimed. All temporary
+users, venue, submission, source and outbox rows were removed and the API was
+stopped. The next package should repair or explicitly bypass that unrelated
+Atlas fixture boundary for a clean Life Places → exact Intake → return proof;
+do not weaken Atlas authority or widen the new source policy.

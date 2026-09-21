@@ -5698,3 +5698,28 @@ optional `openai` install. Combined runtime seeding, native Places proof,
 physical return/refind, and rollout activation remain open. The next package
 should verify one accepted place-bound source through Life Places → exact
 submission and return, then reassess the next supported receiving/action seam.
+
+### September 21 continuation — retained-source revision repair
+
+The first disposable-runtime replay found a genuine shared-owner defect: the
+database session returned `updated_at` with a local offset, while Life evidence
+serialized the owner revision in UTC. The retained source was consequently
+rejected as a stale source before organization could produce either its capture
+period or explicit-place group. Backend commit `d46b5150c` centralizes the UTC
+CAS token and applies it across the canonical Life adapter, retained-source
+record, shadow projector and evidence handoff.
+
+The repaired current-authority replay compiled both the September capture-period
+group and `owner:venue:22942`, with no rejected evidence, and the worker
+published the source event. Evidence: focused Life tests **42 passed**, the
+Postgres projector packet **4 passed**, adjacent corpus/index regressions **25
+passed**, repository hooks passed, and app commit `81e876156` verifies the
+Places-root source handoff preserves `lifeLens=places` into the exact Intake
+reader.
+
+The full HTTP/native proof is still unverified because the disposable API route
+entered the existing Atlas timeline projection and hit a missing fallback-user
+fixture before returning Life. This is not a reason to weaken Atlas or infer
+place attendance. The temporary runtime rows and processes were cleaned up. The
+next integration package should isolate or repair that Atlas fixture boundary,
+then capture Life Places → exact Intake → return on the combined shell.
