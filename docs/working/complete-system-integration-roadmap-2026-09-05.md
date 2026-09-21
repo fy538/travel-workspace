@@ -53,6 +53,25 @@ another happy-path rehearsal. Native polish belongs in each surface package.
 Focused regressions accompany delivery; more happy-path rehearsals alone are
 not the next product milestone.
 
+### September 21 roadmap maintenance — post-review queue correction
+
+The latest review does not require a new integration architecture. It does
+require changing what counts as the next slice: the receiving rails are now
+connected at their named candidate boundaries, so the next package is judged by
+the value a person receives, not by another injected-unit or reachability
+receipt. Select one existing owner-backed Home/Places composition or one
+permissioned Life/social downstream result and carry it through native
+presentation, exact depth/action destination, return, expiry and sparse/
+pending/failure behavior. Do not add a generator, feed, store, route family or
+semantic kind solely to make a surface look fuller.
+
+R05 restart/transient queue recovery and R09 persisted/native timezone edges
+remain narrow evidence tasks. Run them only in explicitly disposable
+environments and record unavailable runs as unverified. They do not block
+independent value work. Native polish and accessibility are exit criteria for
+the selected surface package; the shared Integration/landing lane, main
+landing, activation and publication remain paused.
+
 The first substantive value-depth package in this tranche is now landed:
 multiple accepted public readings for the same Place can compose into one
 Home sequence while retaining every source/entity/context reference and the
@@ -73,9 +92,9 @@ browse shelf, native branch/continuity/returned-understanding treatments, the
 honest balanced-field fallback, the native owner-backed evidence register, the
 supplied-experience comparison, the plural social perspective, the
 standalone-only Places feed-state repair, the addressed Place-contribution
-region, and the same-place public-reading sequence in backend `17f20921b` and
-app `ac6e08235`; the latest workspace
-verification receipt is now `f127543`, which also records the native
+region, and the same-place public-reading sequence in backend `c18470b4a` and
+app `8cd899b6d`; the latest workspace verification receipt before this
+roadmap maintenance is `f8fa48a`, which also records the native
 sender-withdrawal evidence. This
 documentation
 advance does not merge, publish, enable or
@@ -88,8 +107,8 @@ choose another supported producer → owner read → destination → return seam
 leave the missing supply explicit. Evidence-only work remains bounded to R05
 and R09, and visual polish travels with the selected surface package.
 
-Current candidate tuple after this receipt: workspace
-`929f3b5`, backend `9d52e71b3`, app `242d309f0`, all on
+Current candidate tuple at the last code review: workspace
+`f8fa48a`, backend `9d52e71b3`, app `242d309f0`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable

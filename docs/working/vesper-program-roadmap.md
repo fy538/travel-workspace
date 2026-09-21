@@ -51,8 +51,8 @@ to repeat the same tour. Frontend polish is part of each surface's completion.
 Retention/refinding is further along than context materially improving a later
 answer, possibility or action.
 
-**Current candidate tuple after this receipt:** workspace `929f3b5`, backend
-`9d52e71b3`, and app `242d309f0`, all on the isolated
+**Current candidate tuple at the last code review:** workspace `f8fa48a`,
+backend `9d52e71b3`, and app `242d309f0`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; the child-code tuple now includes the Places typed
 notice bridge, native sender-withdrawal proof, shared Home/Places semantic
@@ -62,6 +62,34 @@ published, flag-activated, or resumed in shared Integration/landing. The next
 substantive implementation remains one selected sparse/pending/failure state
 or supplied Life/social downstream value, with R05/R09 edge work continuing
 only where its required environment is available.
+
+### September 21 roadmap maintenance — post-review execution order
+
+The code-review pass confirms that the roadmap is still directionally correct,
+but it narrows the active queue. Receiving-boundary work is no longer the
+default next milestone: the canonical Home/Places rail, full-scroll native
+composition, Life source/original readers, bounded social receiving and the
+People-bound anchor path have each reached their named candidate boundaries.
+Repeating injected-unit, workspace-reachability or single happy-path tours
+would add receipts without adding product value.
+
+The next implementation package must therefore satisfy all of the following:
+
+1. Use an existing owner-backed payload with enough substance to deliver a
+   useful result, rather than adding infrastructure to manufacture variety.
+2. Preserve the exact source/depth/action destination, return state, expiry,
+   and honest sparse/pending/failure treatment through the native surface.
+3. Prefer one consequential value-depth seam in Home/Places or one
+   permissioned Life/social downstream result whose authority already exists.
+4. Include frontend hierarchy, accessibility and polish in the package's exit
+   criteria; visual parity is not a separate excuse to reopen the shell.
+
+R05 process interruption/transient recovery and R09 persisted/native timezone
+edge evidence remain evidence-only work. They should be attempted only with a
+disposable queue/database/device that can produce the named evidence; an
+unavailable environment is unverified, not a reason to serialize independent
+product work. The dedicated Integration/landing lane remains paused. This
+maintenance note is a queue correction, not a new architecture program.
 
 ## September 21 post-execution rebaseline — after the 12-hour functional window
 
@@ -1736,7 +1764,7 @@ source/original distinction, and docs closeout.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `929f3b5` (current documentation receipt) | `b6e7014` |
+| Workspace | `f8fa48a` (docs head observed before this maintenance receipt) | `b6e7014` |
 | Backend | `9d52e71b3` | `a7c02cbe1` |
 | App | `242d309f0` | `e2e792913` |
 

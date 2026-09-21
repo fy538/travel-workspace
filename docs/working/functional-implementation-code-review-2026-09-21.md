@@ -33,14 +33,15 @@ state treatment is:
 
 | Repository | Current HEAD |
 |---|---|
-| Workspace | `929f3b5` (current documentation receipt) |
+| Workspace | `f8fa48a` (docs head observed before this maintenance receipt) |
 | Backend | `9d52e71b3` |
 | App | `242d309f0` |
 
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes. Earlier
 runtime-boundary receipts at workspace `0fd06b7` and `f127543` remain
-historical; the current workspace receipt is `929f3b5`, and the current child
+historical; the current workspace receipt observed before this maintenance is
+`f8fa48a`, and the current child
 heads are the Life People implementation/test commits shown above.
 
 ### September 21 latest-candidate regression packet
