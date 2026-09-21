@@ -2098,3 +2098,19 @@ delivery, native tap/back proof for this newly covered path, production flag
 activation, or Claude-design visual parity. The next useful slice is therefore
 another supported receiving/action connection or the bounded native proof, not
 a new content generator, store, or route family.
+
+## September 21 E2 follow-through — preserve Home Places scope
+
+The public Place-interpretation adapter also dropped the originating Places
+context from its typed destination, even though it retained that context in
+provenance. Backend commit `4eba46bcf` now emits the context, exact Place, and
+immutable source revision together. The existing native resolver can therefore
+open the exact reading while retaining the originating Places scope and Home
+return token. The focused Home/Places backend packet remains **73 tests**;
+Ruff, formatting, vulture, boundary, and repository hooks pass.
+
+This is a destination-context repair, not a new route or content model. It does
+not claim native tap/back execution for this newly seeded path, broad corpus or
+social parity, production activation, or visual parity with Claude designs.
+The next unblocked work remains another supported receiving/action seam or a
+bounded native return proof.
