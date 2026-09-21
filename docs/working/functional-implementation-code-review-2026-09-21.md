@@ -27,14 +27,14 @@ All three repositories use `codex/functional-implementation-2026-09-20`.
 
 The table below is the historical baseline for the 12-hour review. The current
 clean candidate after the Home timezone correction, source retry-budget proof,
-supplied-experience comparison, sequence scale hardening and practical catalog
-coverage is:
+supplied-experience comparison, sequence scale hardening, practical catalog
+coverage, typed notice admission and native sender-withdrawal proof is:
 
 | Repository | Current HEAD |
 |---|---|
-| Workspace | `e59e242` |
-| Backend | `17f20921b` |
-| App | `ac6e08235` |
+| Workspace | `21df4a7` |
+| Backend | `35765fdb5` |
+| App | `9452f09d9` |
 
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes.
@@ -842,8 +842,9 @@ full `make verify`, device run or publishing was performed.
 **Current:** R01 and R03 are now closed for their disposable-Postgres
 revocation/readback cases. R04 and R09 code-level corrections are complete, and
 the named Life/Home/Places happy paths now have disposable-database and native
-receipts. Close the remaining native sender-control and timezone matrices
-in the correct environment. Include Source recovery
+receipts. R04's native sender-control matrix is now closed at the stated
+one-recipient text-original scope; close the remaining timezone matrices in the
+correct environment. Include Source recovery
 in the next reliably supplied-value package; registration/serialization fixes
 do not establish recovery. Do not rerun the initial repair list as though the
 implemented changes were absent, or call the ledger closed based on happy-path
@@ -864,9 +865,10 @@ regressions and the coordinated delivery gates before any landing claim.
 After the fix pass, the locally runnable packets were rerun: backend focused
 content/relationship/Places tests passed **54 tests**, and the mobile projection
 and original-sender suites passed **38 tests**; TypeScript compilation and
-backend Ruff/compile checks also passed. These are execution evidence for the
-changed code, not a substitute for the unavailable disposable-Postgres,
-queue-environment and native-device regressions above.
+backend Ruff/compile checks also passed. The later native sender-control run is
+recorded above and in the current candidate tuple. These are execution
+evidence for their named scopes, not a substitute for the remaining
+disposable-Postgres, queue-environment and persisted/native timezone matrices.
 
 Keep the [program roadmap](vesper-program-roadmap.md) and
 [integration roadmap](complete-system-integration-roadmap-2026-09-05.md) as the

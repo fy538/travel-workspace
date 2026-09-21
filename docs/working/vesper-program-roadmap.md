@@ -51,7 +51,7 @@ to repeat the same tour. Frontend polish is part of each surface's completion.
 Retention/refinding is further along than context materially improving a later
 answer, possibility or action.
 
-**Current candidate tuple after this receipt:** workspace `ef61130`, backend
+**Current candidate tuple after this receipt:** workspace `21df4a7`, backend
 `35765fdb5`, and app `9452f09d9`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; the child-code tuple now includes the Places typed
@@ -1649,9 +1649,9 @@ source/original distinction, and docs closeout.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `e59e242` (current documentation receipt) | `b6e7014` |
-| Backend | `17f20921b` | `a7c02cbe1` |
-| App | `ac6e08235` | `e2e792913` |
+| Workspace | `21df4a7` (current documentation receipt) | `b6e7014` |
+| Backend | `35765fdb5` | `a7c02cbe1` |
+| App | `9452f09d9` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent
