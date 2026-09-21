@@ -50,6 +50,15 @@ same tour. Frontend polish is part of each surface's completion. Retention/
 refinding is further along than context materially improving a later answer,
 possibility or action.
 
+**Current candidate tuple after this receipt:** workspace `6d839e`, backend
+`052284b33`, and app `df490cb56`, all on the isolated
+`codex/functional-implementation-2026-09-20` lane. The workspace advance is a
+documentation receipt only; it does not change the child-code tuple, merge the
+lane, enable a flag, or resume shared Integration/landing. The next substantive
+implementation remains the selected Home/Places value-depth package described
+below, with edge-matrix work continuing only where its required environment is
+available.
+
 **September 21 afternoon execution rule:** the latest product behavior is the
 supplied-reading `Why this?` slice, mechanism-row adaptation, and explicit
 selected-trip fit in backend `052284b33` and app `df490cb56`. The next
@@ -1220,7 +1229,7 @@ updated after the bounded Source recovery correction and docs closeout.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `a6d17e0` (current tranche candidate before this receipt) | `b6e7014` |
+| Workspace | `6d839e` (current documentation receipt) | `b6e7014` |
 | Backend | `052284b33` | `a7c02cbe1` |
 | App | `df490cb56` | `e2e792913` |
 

@@ -26,12 +26,12 @@ All three repositories use `codex/functional-implementation-2026-09-20`.
 ### September 21 current tuple correction
 
 The table below is the historical baseline for the 12-hour review. The current
-clean candidate after the Home timezone correction and source retry-budget
-proof is:
+clean candidate after the Home timezone correction, source retry-budget proof,
+and latest workspace documentation receipt is:
 
 | Repository | Current HEAD |
 |---|---|
-| Workspace | `a6d17e0` |
+| Workspace | `6d839e` |
 | Backend | `052284b33` |
 | App | `df490cb56` |
 

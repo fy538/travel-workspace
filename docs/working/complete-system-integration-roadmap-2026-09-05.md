@@ -53,8 +53,9 @@ more happy-path rehearsals alone are not the next product milestone.
 
 The current lane now includes the bounded mechanism-row adaptation and
 explicit selected-trip fit in backend `052284b33` and app `df490cb56`; the
-workspace `a6d17e0` is the last committed roadmap baseline before this receipt.
-Apply this
+latest workspace documentation receipt is `6d839e` (the child-code tuple is
+unchanged). This documentation advance does not merge, publish, enable or
+resume shared Integration/landing. Apply this
 selection test to the next package: can an existing owner-backed payload
 truthfully support a richer received result (comparison, sequence, evidence or
 practical consequence), with exact destination, return, expiry and empty/error
