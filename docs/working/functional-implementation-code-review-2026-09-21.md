@@ -138,8 +138,8 @@ now executed evidence, not plans:
 
 These receipts close the earlier persisted/native boundary for the named happy
 paths. A real Arq/Redis `run_root_source_contribution` job also completed the
-`not_claimed` result path. They do **not** close R04's sender-withdrawal-control
-matrix, R09's persisted/native timezone matrix, or R05's transient
+`not_claimed` result path. They do **not** close R04's native sender-withdrawal
+presentation matrix, R09's persisted/native timezone matrix, or R05's transient
 failure/restart recovery behavior, or the full
 cohort/release and design-parity gates. The review ledger therefore remains
 open and should not be marked release-ready.
@@ -172,7 +172,7 @@ Focused correction receipts on the candidate tuple:
 | R01 | P1 | Rejected original can still commit a recipient handoff/message | Relationships transaction | Fixed; disposable-Postgres revocation regression passes |
 | R02 | P2 | Places reading bypasses active release/cohort eligibility | Content / Places | Fixed; governed outsider/cohort matrix still required |
 | R03 | P2 | Pull-consent revocation leaves attached original readable | Relationships read policy | Fixed; disposable-Postgres attached-read regression passes |
-| R04 | P2 | Sender loses withdrawal controls after relationship disconnect | Mobile original sharing | Code-fixed; named Life return path passes; sender-control matrix still required |
+| R04 | P2 | Sender loses withdrawal controls after relationship disconnect | Mobile original sharing | Code-fixed; real API sender-control rehearsal passes; native UI matrix remains unrun (no simulator) |
 | R05 | P2 | Source worker throws while serializing its actual result type | Worker adapter | Serializer fixed; real wrapper and expired due-work recovery pass; transient retry/restart recovery remain open |
 | R06 | P2 | Nine expanded place IDs silently remove Home public supply | Home / Places scope | Fixed with 8-ID batching; scale regression still required |
 | R07 | P2 | Site, accommodation and experience fit checks cannot succeed | Practical assessment | Fixed; focused backend tests pass |
@@ -301,9 +301,18 @@ eligibility, and existing-delivery/withdrawal rendering is independent of the
 recipient picker loading/error/empty branches. **Focused regression:** remove
 the final eligible recipient after Send and verify the persisted grant and
 Withdraw remain usable; unavailable/loading recipient selection remains covered
-by the rendering branches. New-send eligibility remains restricted. Persisted
-native-device reproduction is still required before calling the finding fully
-verified.
+by the rendering branches. New-send eligibility remains restricted.
+
+**September 21 API rehearsal:** the new sender-mode disposable fixture used an
+existing sender account, created a temporary recipient and active delivery,
+removed that recipient from the conversation after delivery creation, and
+verified through the real local API that sender history still contained the
+delivery while eligible-new-recipient results did not. Posting Withdraw returned
+`revoked`, revision `1`; cleanup removed the delivery and temporary recipient
+without deleting the existing sender. This proves the authority/readback
+boundary, not native presentation. The native sender flow is committed as
+`travel-app/.maestro/88-life-original-sender-withdrawal.yaml` and its runner,
+but remains **unrun** because the current host has no available iOS simulator.
 
 ## R05 — The Source worker calls an unsupported result serializer signature
 
@@ -577,7 +586,7 @@ full `make verify`, device run or publishing was performed.
 **Current:** R01 and R03 are now closed for their disposable-Postgres
 revocation/readback cases. R04 and R09 code-level corrections are complete, and
 the named Life/Home/Places happy paths now have disposable-database and native
-receipts. Close the remaining sender-control and timezone matrices
+receipts. Close the remaining native sender-control and timezone matrices
 in the correct environment. Include Source recovery
 in the next reliably supplied-value package; registration/serialization fixes
 do not establish recovery. Do not rerun the initial repair list as though the
