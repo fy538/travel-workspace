@@ -90,6 +90,24 @@ person ranking and Life adoption remain unadopted; this slice supports only
 the existing venue-bound recipient-consent contract. Backend commit:
 `8253038be`; review and workspace receipt are the next handoff boundaries.
 
+## September 21 persistence boundary — child-owned public Source
+
+The real disposable-Postgres check for the preceding Home supply connection
+now passes. The lane inserted a temporary accepted, grounded public primitive
+owned by a canonical venue beneath Place `1`, with an active source observation,
+lifecycle event and policy binding. The existing exact entity reader returned
+one record; `list_place_content_for_place(1)` returned the same child-owned
+record; and `list_current_public_place_content_sources_for_places([1])`
+returned one current public Source whose exact handoff resolved back to
+`venue:22`. Cleanup removed the temporary venue and all evidence rows.
+
+This is a persistence/owner-reader proof, not a claim of populated root
+composition or native acceptance. Home/Places API smoke also returned HTTP 200
+for the disposable lane user, but the seeded probe did not activate a flag or
+publish a dataset. The remaining boundary is a small populated composition and
+native receiving check; do not respond by widening the Source model or adding a
+new generator/store.
+
 **A/B dispatched September 9; Integration is PAUSED by the founder.** The current
 [program register](vesper-program-roadmap.md#4-current-package-register) owns
 assignment, exact isolated checkouts and the dispatch evidence boundary. This

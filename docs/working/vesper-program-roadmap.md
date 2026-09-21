@@ -65,6 +65,26 @@ broader casual media, group audiences, person ranking, and Life adoption remain
 separate decisions. Backend commit: `8253038be`; the workspace receipt is still
 candidate-only and must not be read as flag activation or publication.
 
+## September 21 runtime supply probe — child-owned public Source
+
+The promised persistence boundary was exercised against the isolated lane's
+disposable Postgres, not only mocks. A temporary accepted, grounded public
+Source owned by a canonical venue under Place `1` was inserted with its active
+observation and consequence-policy binding. The real owner readers returned it
+both by exact `venue` identity and through the bounded parent→child Place read;
+the Source adapter then revalidated it at the current represented clock and
+returned the exact immutable handoff. The temporary venue, primitive,
+observation and lifecycle rows were removed in the same probe.
+
+Evidence: `CHILD_SOURCE_RUNTIME_OK venue_id=22 exact=1 scoped=1 sources=1
+handoff_entity=venue:22`, using the lane database on port `61460`. This proves
+the persistence/owner-reader seam only. It does **not** prove populated Home
+composition, Places native rendering, feature-flag activation, merge or
+publication; the public consumer remains candidate-level until those boundaries
+are exercised with an approved dataset. The next useful package is therefore a
+small populated Home/Places composition check or the next supported receiving
+gap, not another rewrite of the Source contract.
+
 ## September 20 functional implementation receipt — Life continuity slice
 
 The first execution slice under the functional-implementation goal is complete
