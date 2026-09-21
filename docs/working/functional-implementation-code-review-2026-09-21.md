@@ -32,8 +32,8 @@ and latest workspace documentation receipt is:
 | Repository | Current HEAD |
 |---|---|
 | Workspace | `7d8fd11` |
-| Backend | `a516ce26d` |
-| App | `34c3651c1` |
+| Backend | `aa96caff7` |
+| App | `e601a9dfd` |
 
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes.
@@ -92,6 +92,20 @@ native treatment and regression; the focused Places root/expiry packet passes
 **31 tests**, TypeScript passes, and targeted ESLint has no errors. This closes
 an honest sparse-state seam; it does not add provider acquisition, media supply
 or a recommendation.
+
+### September 21 Places evidence-register follow-up
+
+The existing feature-flagged Places register producer now has a v2 receiving
+path when it supplies an approved verdict, viewer-owned history log, or fresh
+change register. The backend preserves the register lines and evidence
+revision as a presentation-neutral `path_evidence_apparatus` composition; the
+native client renders an evidence list with the existing exact Place source
+door and expiry behavior. Backend `aa96caff7` adds the adapter regression;
+focused backend Places packets pass **40 tests**. App `e601a9dfd` adds the
+native evidence treatment and regression; the focused Places root/expiry packet
+passes **32 tests**, TypeScript passes, and targeted ESLint has no errors. This
+does not enable `PLACES_REGISTERS_ENABLED`, add a new producer/store, or turn an
+unqualified register into a recommendation.
 
 ### September 21 post-receiving-surface recheck
 

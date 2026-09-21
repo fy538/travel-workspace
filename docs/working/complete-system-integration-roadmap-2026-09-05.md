@@ -55,9 +55,10 @@ The current lane now includes the bounded mechanism-row adaptation, explicit
 selected-trip fit, attributed friend-place preview, public-reading limits, and
 native social-evidence treatment, exact social venue doors, Home
 editorial/aperture anatomy, Places editorial-cover anatomy, the native starter
-browse shelf, native branch/continuity/returned-understanding treatments, and
-the honest balanced-field fallback in backend `a516ce26d` and app
-`34c3651c1`; the latest workspace documentation receipt is `7d8fd11`. This
+browse shelf, native branch/continuity/returned-understanding treatments, the
+honest balanced-field fallback, and the native owner-backed evidence register
+in backend `aa96caff7` and app `e601a9dfd`; the latest workspace documentation
+receipt is `7d8fd11`. This
 documentation
 advance does not merge, publish, enable or
 resume shared Integration/landing. Apply this
@@ -70,7 +71,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R04,
 R05 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after the latest lane-local corrections: workspace
-`7d8fd11`, backend `a516ce26d`, app `34c3651c1`, all on
+`7d8fd11`, backend `aa96caff7`, app `e601a9dfd`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable

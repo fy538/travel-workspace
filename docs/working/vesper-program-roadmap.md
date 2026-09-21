@@ -51,7 +51,7 @@ refinding is further along than context materially improving a later answer,
 possibility or action.
 
 **Current candidate tuple after this receipt:** workspace `7d8fd11`, backend
-`a516ce26d`, and app `34c3651c1`, all on the isolated
+`aa96caff7`, and app `e601a9dfd`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; it does not change the child-code tuple, merge the
 lane, enable a flag, or resume shared Integration/landing. The next substantive
@@ -64,8 +64,9 @@ supplied-reading `Why this?` slice, mechanism-row adaptation, explicit
 selected-trip fit, attributed friend-place preview, public-reading limits, and
 native social-evidence treatment, exact social venue doors, Home editorial/
 aperture anatomy, Places editorial-cover anatomy, the native starter browse
-shelf, native branch/continuity/returned-understanding treatments, and the
-honest balanced-field fallback in backend `a516ce26d` and app `34c3651c1`.
+shelf, native branch/continuity/returned-understanding treatments, the honest
+balanced-field fallback, and the native owner-backed evidence register in
+backend `aa96caff7` and app `e601a9dfd`.
 The next
 implementation should therefore be selected from an
 existing owner-backed Home/Places payload and add substantive received value
@@ -202,6 +203,20 @@ the native treatment and regression; the focused Places root/expiry packet
 passes **31 tests**, TypeScript passes, and targeted ESLint has no errors. This
 closes an honest sparse-state seam; it does not add provider acquisition, media
 supply or a recommendation.
+
+## September 21 functional receipt — Places evidence register
+
+The existing feature-flagged Places register producer now has a v2 receiving
+path when it supplies an approved verdict, viewer-owned history log, or fresh
+change register. The backend preserves the register lines and evidence
+revision as a presentation-neutral `path_evidence_apparatus` composition; the
+native client renders an evidence list with the existing exact Place source
+door and expiry behavior. Backend commit `aa96caff7` adds the adapter
+regression; focused backend Places packets pass **40 tests**. App commit
+`e601a9dfd` adds the native evidence treatment and regression; the focused
+Places root/expiry packet passes **32 tests**, TypeScript passes, and targeted
+ESLint has no errors. This does not enable `PLACES_REGISTERS_ENABLED`, add a
+new producer/store, or turn an unqualified register into a recommendation.
 
 ## September 21 functional receipt — preserve social Place destinations
 
@@ -1378,8 +1393,8 @@ implementation, and docs closeout.
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
 | Workspace | `7d8fd11` (current documentation receipt) | `b6e7014` |
-| Backend | `a516ce26d` | `a7c02cbe1` |
-| App | `34c3651c1` | `e2e792913` |
+| Backend | `aa96caff7` | `a7c02cbe1` |
+| App | `e601a9dfd` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent
