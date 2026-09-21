@@ -1112,7 +1112,7 @@ fresh certification of every path on the latest tuple.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `f82664e` (tranche baseline) | `b6e7014` |
+| Workspace | `6345a22` (current tranche candidate) | `b6e7014` |
 | Backend | `7f993a3cb` | `a7c02cbe1` |
 | App | `44872d0c2` | `e2e792913` |
 
