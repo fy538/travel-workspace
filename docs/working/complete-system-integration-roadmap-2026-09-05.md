@@ -75,7 +75,7 @@ supplied-experience comparison, the plural social perspective, the
 standalone-only Places feed-state repair, the addressed Place-contribution
 region, and the same-place public-reading sequence in backend `17f20921b` and
 app `ac6e08235`; the latest workspace
-documentation receipt is now `0fd06b7`, which also records the native
+verification receipt is now `f127543`, which also records the native
 sender-withdrawal evidence. This
 documentation
 advance does not merge, publish, enable or
@@ -89,7 +89,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R05
 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after this receipt: workspace
-`0fd06b7`, backend `35765fdb5`, app `9b463726d`, all on
+`f127543`, backend `35765fdb5`, app `9b463726d`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
@@ -105,6 +105,19 @@ workflow completed on the registered Arq/Redis worker with `producer_silence`.
 A real process-restart queue rehearsal is still required: the job completed
 before the worker could be interrupted, so this run does not prove restart
 safety.
+
+### September 21 latest-candidate verification receipt
+
+The candidate was rechecked after the runtime-boundary documentation receipt:
+backend root projection **442 passed**, focused Life route/projection/index
+projector **43 passed**, focused Home/Places/Life native suites **53 passed**,
+and the persisted schedule-zone unit packet **36 passed**. This is a bounded
+regression packet, not a latest-tuple full gate. It leaves R05 process
+interruption/transient failure and R09 persisted/native cross-device/DST cases
+open, and it does not establish provider-backed supply, recurring content,
+Claude-design parity, or release readiness. The shared Integration/landing lane
+remains paused; no merge, activation, publication, or full device campaign was
+performed for this receipt.
 
 ### September 21 value-depth receipt — supplied experience comparison
 

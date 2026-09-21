@@ -33,14 +33,27 @@ state treatment is:
 
 | Repository | Current HEAD |
 |---|---|
-| Workspace | `c8efaf0` (reviewed code/docs baseline) |
+| Workspace | `f127543` (latest verification receipt) |
 | Backend | `35765fdb5` |
 | App | `9b463726d` |
 
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes. The
 follow-up runtime-boundary receipt is documented below at workspace
-`0fd06b7`; backend and app heads are unchanged.
+`0fd06b7`; the later verification receipt is `f127543`; backend and app heads
+are unchanged.
+
+### September 21 latest-candidate regression packet
+
+After the runtime-boundary receipt, the candidate ran the backend root
+projection packet (**442 passed**), focused Life route/projection/index-projector
+packet (**43 passed**), focused Home/Places/Life native packet (**53 passed**),
+and persisted schedule-zone unit packet (**36 passed**). These are named
+focused regressions, not `make verify`, full device acceptance, or release
+evidence. They leave R05 process interruption/transient failure and R09
+persisted/native cross-device/DST evidence open; they also do not prove
+provider-backed supply, recurring generated content, full-scroll quality,
+design parity, merge, activation or publication.
 
 ### September 21 native semantic-state treatment review
 

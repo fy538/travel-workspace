@@ -51,7 +51,7 @@ to repeat the same tour. Frontend polish is part of each surface's completion.
 Retention/refinding is further along than context materially improving a later
 answer, possibility or action.
 
-**Current candidate tuple after this receipt:** workspace `0fd06b7`, backend
+**Current candidate tuple after this receipt:** workspace `f127543`, backend
 `35765fdb5`, and app `9b463726d`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; the child-code tuple now includes the Places typed
@@ -122,6 +122,27 @@ This checkpoint is a progress rebaseline, not a feature-completion claim. No
 overall percentage is meaningful until the Claude design inventory, supplied
 content breadth and native acceptance are measured against the same candidate
 and evidence boundary.
+
+### September 21 verification receipt — latest candidate
+
+After the rebaseline, the latest candidate was checked without changing
+production state or claiming a full gate. Backend root projection regressions
+passed **442 tests**; the focused Life route/projection/index-projector packet
+passed **43 tests**; the focused Home/Places/Life native packet passed **53
+tests**; and the persisted schedule-zone unit packet passed **36 tests**.
+These packets overlap the broader historical receipts and prove only their
+named contracts. They do not close R05's process-interruption/transient-failure
+matrix, R09's persisted/native cross-device/DST matrix, provider-backed supply,
+recurring generated content, full-scroll quality, design parity, or release
+readiness. No `make verify`, full device acceptance campaign, merge, flag
+activation, or publication was performed by this receipt.
+
+The verification result reinforces the current execution order: keep the
+candidate's receiving and continuity foundations, choose one existing
+owner-backed value-depth or Life/social downstream slice, and reserve edge
+evidence for an environment where its disposable queue/database/device is
+available. Do not reopen a new generator, feed, storage, route, or universal
+object architecture in response to these passing counts.
 
 ### September 21 native receipt — honest semantic unit states
 
@@ -1667,7 +1688,7 @@ source/original distinction, and docs closeout.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `0fd06b7` (current documentation receipt) | `b6e7014` |
+| Workspace | `f127543` (latest verification receipt) | `b6e7014` |
 | Backend | `35765fdb5` | `a7c02cbe1` |
 | App | `9b463726d` | `e2e792913` |
 
