@@ -1579,6 +1579,19 @@ document's creation.
 
 ## 9. Current execution ledger and next batch
 
+### Functional implementation checkpoint — September 20
+
+The isolated lane `codex/functional-implementation-2026-09-20` completed the
+Life continuity slice that the current queue had left as a user-visible gap:
+exact original refinding, one-recipient original delivery/readback/withdrawal,
+and bounded practical visit judgment now exist together in backend and mobile
+candidate commits. The workspace contract registration and generated snapshots
+cover the new routes. This remains a candidate handoff: the four-root rollout
+gate, integration landing, provider activation, native visual acceptance and
+publication are unchanged. The next checkpoint is a combined receiving/runtime
+read against this candidate, followed by the highest-value Home/Places consumer
+gap; do not restart the Life slice or treat focused tests as production parity.
+
 | Package | State with September 7 integration correction | Next concrete action |
 | --- | --- | --- |
 | I0 | Implemented/integrated at inventory level; live-engine path matrix and 2026-09-06 decision-alignment audit recorded | Keep D1 retained-intention ownership and family-specific D6 watch contracts gated; consume accepted general D2–D5 policy through I1–I3 adapters without treating D4's history/source-expiry proposal as adopted |

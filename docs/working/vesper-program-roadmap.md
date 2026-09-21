@@ -34,6 +34,36 @@ runtime, landing, publishing or pending product agreement is activated.
 Earlier dispatch and review entries below preserve the execution history.
 Section 7 preserves the older acceptance scope as history.
 
+## September 20 functional implementation receipt — Life continuity slice
+
+The first execution slice under the functional-implementation goal is complete
+in the isolated coordinated lane `codex/functional-implementation-2026-09-20`.
+It integrates the already-reviewed Life/original continuity branch across the
+three repositories without changing the four-root rollout gate:
+
+- **Backend:** exact retained-original refinding by metadata, one-recipient
+  original delivery with sender readback/withdrawal, custody/authority checks,
+  and bounded practical visit judgment. Migrations, owner repositories and
+  route contracts are included.
+- **Mobile:** Life Find and exact original readers, sender controls, Home
+  original/practical receiving, account/expiry handling and exact return
+  routing. The sender-screen test harness now supplies its required user
+  context; no runtime behavior was weakened.
+- **Workspace contract:** the Life refinding and original-delivery operations
+  are registered in the API policy and generated snapshots. Projection matches
+  under a temporary policy containing only the pre-existing expired-route
+  review-date repair; the expired-policy backlog itself remains unresolved and
+  is not hidden by this receipt.
+
+Evidence on the lane: backend focused Life/original/practical **170 passed**;
+backend root/Life regression **715 passed, 43 deselected**; mobile focused
+continuity/original/Home **78 passed**; broader Home/Places/Life/original
+coverage **332 passed**; TypeScript and Python compilation passed. This is a
+committed candidate, not a merge, publication, production activation or native
+visual acceptance. Next execution should consume this candidate through the
+combined receiving/runtime check, then take the next highest-value Home/Places
+receiving gap rather than reopening the completed Life slice.
+
 ## Current round — meaning-based discovery and exact-original receiving
 
 **Authorized September 9 following the lexical increment:** complete two
