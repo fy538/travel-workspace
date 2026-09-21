@@ -2495,3 +2495,27 @@ activation, notifications, alternative selection, broad Places parity,
 production rollout, or Claude visual parity. Continue with the next supported
 user-visible producer → owner read → destination → return seam and reassess
 after another complete loop.
+
+## September 21 functional implementation receipt — native Life original refinding
+
+Life's bounded original-refinding path now has a real native proof. The
+existing `provision_life_real_source_return_rehearsal.py` fixture admitted one
+retained text source through Capture and the Life owner; no new index, corpus,
+search owner or storage model was introduced. App commit `ac23512b9` adds
+`.maestro/85-life-original-refind.yaml`, its real-API runner, and three static
+contracts.
+
+The local API/iOS simulator flow passed: `/api/life/originals/refind` returned
+the exact source metadata, Life Search rendered the matching original, the
+user opened the canonical Intake original reader, Back returned to the same
+Life Search query, and cleanup withdrew the source. A post-cleanup refind read
+confirmed the deleted source was no longer exposed. The default-off
+`EXPO_PUBLIC_LIFE_REFIND_LANE` was enabled only in the local development build.
+
+Evidence: **15** combined static mobile contracts, TypeScript, shell/fixture
+checks, and the real native flow passed on simulator
+`D7C8FEF4-237B-4347-841C-6FE920BFABFA`. This closes native refinding for one
+owner-authorized retained source, not whole-history search, semantic body
+indexing, shared-original breadth, production flag activation, visual parity,
+or release readiness. Continue with another supported producer → owner read →
+destination → return seam and keep the refinding bounds explicit.
