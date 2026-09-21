@@ -6294,3 +6294,24 @@ production scheduling, or a claim that a generated result is available. The
 next checkpoint is a separately authorized local/dogfood execution with Redis,
 the named cohort, a real source/context fixture, and native result readback;
 do not enable those environment gates by default.
+
+## September 21 checkpoint — practical fit is implemented; provider-backed rehearsal deferred
+
+The next candidate was re-traced before opening another implementation slice.
+`place.fit_window` is already a bounded supported capability: the object-page
+gesture captures a current, opaque origin; Places resolves the request under the
+current account/session; the backend binds exact Place, route and (when present)
+commitment reads; the value composer returns supported, unsupported or unknown
+with independent Place value preserved; and the native semantic card renders the
+answer with expiry and the existing Places destination/return path. Focused
+backend and mobile request/renderer coverage is green.
+
+What remains unproved is a real provider-backed native run, not a missing product
+contract. The route owner deliberately uses request-only routing for a live
+origin, so such a rehearsal requires a separately authorized routing credential
+and device-location setup. We do not add a fake route cache, a second route
+owner, a default provider call, or a fixture that would turn an unknown into a
+fit claim. Until that authority is explicitly available, keep the honest
+unknown/fallback behavior and move the functional lane to the next supported
+owner/destination/return seam or the separately authorized Source-worker
+dogfood checkpoint.
