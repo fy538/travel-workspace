@@ -50,8 +50,8 @@ same tour. Frontend polish is part of each surface's completion. Retention/
 refinding is further along than context materially improving a later answer,
 possibility or action.
 
-**Current candidate tuple after this receipt:** workspace `4597d92`, backend
-`7d036bb7c`, and app `b7d025044`, all on the isolated
+**Current candidate tuple after this receipt:** workspace `a2a62e3`, backend
+`7d036bb7c`, and app `4c53af70d`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; it does not change the child-code tuple, merge the
 lane, enable a flag, or resume shared Integration/landing. The next substantive
@@ -66,7 +66,7 @@ native social-evidence treatment, exact social venue doors, Home editorial/
 aperture anatomy, Places editorial-cover anatomy, the native starter browse
 shelf, native branch/continuity/returned-understanding treatments, the honest
 balanced-field fallback, the native owner-backed evidence register, and the
-supplied-experience comparison in backend `7d036bb7c` and app `b7d025044`.
+supplied-experience comparison in backend `7d036bb7c` and app `4c53af70d`.
 The next
 implementation should therefore be selected from an
 existing owner-backed Home/Places payload and add substantive received value
@@ -91,10 +91,10 @@ case. One-experience sections retain the existing aperture behavior.
 
 Backend commit `7d036bb7c` adds the bounded comparison adapter, preserves the
 existing owner/read requirements and expiry, and covers the multi-option and
-single-option paths. App commit `b7d025044` registers a native comparison
-treatment and verifies the exact action destinations. The focused backend
+single-option paths. App commits `b7d025044` and `4c53af70d` register the native
+comparison treatment, its registry contract and exact action destinations. The focused backend
 Home/contract/composition packet passes **80 tests**; the Home native smoke
-packet passes **15 tests**; TypeScript, targeted ESLint and backend Ruff/
+packet passes **23 tests**; TypeScript, targeted ESLint and backend Ruff/
 format checks pass (the existing Home renderer max-lines warning remains).
 This is a value-depth improvement over already supplied data: it adds no
 provider acquisition, ranking policy, generator, store, route family, booking

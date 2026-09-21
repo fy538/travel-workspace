@@ -58,8 +58,8 @@ editorial/aperture anatomy, Places editorial-cover anatomy, the native starter
 browse shelf, native branch/continuity/returned-understanding treatments, the
 honest balanced-field fallback, the native owner-backed evidence register, and
 the supplied-experience comparison in backend `7d036bb7c` and app
-`b7d025044`; the latest workspace documentation
-receipt is `4597d92`. This
+`4c53af70d`; the latest workspace documentation
+receipt is `a2a62e3`. This
 documentation
 advance does not merge, publish, enable or
 resume shared Integration/landing. Apply this
@@ -72,7 +72,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R04,
 R05 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after the latest lane-local corrections: workspace
-`4597d92`, backend `7d036bb7c`, app `b7d025044`, all on
+`a2a62e3`, backend `7d036bb7c`, app `4c53af70d`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
@@ -94,7 +94,7 @@ the owner-provided timing, length and price fields, caps the cases at four,
 keeps the exact Places context/experience refs on each action, and expires with
 the source projection. A single experience remains the existing aperture row;
 no new generator, provider, ranking, persistence, booking or route abstraction
-was introduced. Backend `7d036bb7c` and app `b7d025044` carry the implementation
+was introduced. Backend `7d036bb7c` and app `b7d025044`/`4c53af70d` carry the implementation
 and focused regressions. The package is a richer received result, not proof of
 general supply breadth or Claude-design parity.
 

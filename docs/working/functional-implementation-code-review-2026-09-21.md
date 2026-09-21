@@ -31,9 +31,9 @@ and supplied-experience comparison is:
 
 | Repository | Current HEAD |
 |---|---|
-| Workspace | `4597d92` |
+| Workspace | `a2a62e3` |
 | Backend | `7d036bb7c` |
-| App | `b7d025044` |
+| App | `4c53af70d` |
 
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes.
@@ -44,8 +44,9 @@ The new Home value-depth slice is bounded to already supplied Places
 experience previews. Backend `7d036bb7c` groups two to four experiences from
 one section into a comparison composition over timing, length and price,
 while preserving exact context/experience refs, the existing read requirement,
-expiry and the single-experience aperture fallback. App `b7d025044` adds the
-native comparison treatment and exact action-door regression. Backend focused
+expiry and the single-experience aperture fallback. App `b7d025044` and
+`4c53af70d` add the native comparison treatment, registry contract and exact
+action-door regression. Backend focused
 Home/contract/composition tests pass **80**; Home native smoke tests pass
 **15**; TypeScript, targeted ESLint, Ruff and formatting pass (the existing
 Home renderer max-lines warning remains). Review found no new service, ranking,
