@@ -2047,3 +2047,10 @@ activation, or visual parity. Temporary users, venue, source, outbox rows and
 API process were removed; no advisory locks remain. The next package is the
 native return/refind proof or another supported receiving/action seam, not an
 Atlas workaround.
+
+App commit `60da1cbe0` now covers the corresponding native return contract:
+when the source is opened with the Life origin and `lifeLens=places`, its
+return action dismisses to the exact Places-lens Life record rather than a
+generic Life surface. The focused Intake/Life packet passes **29 tests** (with
+the existing non-fatal `act(...)` warnings from the original-preview async
+fixture).
