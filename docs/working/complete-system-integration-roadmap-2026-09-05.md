@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Integration task
 created: 2026-09-05
-last_verified: 2026-09-20
+last_verified: 2026-09-21
 expires: 2026-10-05
 why_new: Rebaselines the post-pivot system around the real-world live engine and four surfaces, with code-backed correction priorities, explicit Life ownership, bounded Luna delegation, and recurring architectural and product reassessment.
 supersedes:
@@ -46,6 +46,26 @@ gap; do not reopen the completed Life organization or cold-world projection
 work, and do not merge the broad native-receiving candidate wholesale. The
 standard API audit still has 55 pre-existing expired policy dates plus one
 unrelated intake-media missing-consumer finding.
+
+## September 21 continuation — Home child-entity public supply
+
+The functional lane connected Home's public-content consumer to the existing
+structured Place owner read. Previously, `home_portfolio.places_context` passed
+only exact `place` EntityRefs to the public Source adapter; accepted content
+owned by a canonical venue, site, accommodation or experience beneath that
+Place could therefore reach Places depth but miss Home. The new bounded helper
+enumerates those existing child owners through `list_place_content_for_place`,
+revalidates current public/root eligibility at the represented clock, and feeds
+the unchanged Home candidate/destination adapter. Exact-entity listing remains
+separate and unchanged.
+
+Evidence: backend Source/Home focused suite **64 passed**, Ruff/format/hooks and
+diff checks passed; backend commit `1de6fa954`. This is a read-only consumer
+connection, not a new generator, provider, index, schema or retention owner.
+Accepted database supply, combined runtime, native visual receiving,
+merge/publication and rollout remain unverified. The next checkpoint should use
+a real child-owned accepted Source through Home → exact Places reader → return,
+then reassess the remaining bounded social-receiving seam.
 
 **A/B dispatched September 9; Integration is PAUSED by the founder.** The current
 [program register](vesper-program-roadmap.md#4-current-package-register) owns

@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Strategy task
 created: 2026-09-07
-last_verified: 2026-09-20
+last_verified: 2026-09-21
 expires: 2026-10-07
 why_new: Extracts the present-tense cross-lane program map from a long Integration plan and its historical receipts so independent owners can coordinate without competing execution queues.
 supersedes:
@@ -20,7 +20,7 @@ depends_on:
 
 # Vesper program roadmap
 
-**September 10 current posture:** the received-material, practical-route,
+**September 21 current posture:** the received-material, practical-route,
 Content consumer/hydration and temporal-map packages have verified isolated
 results at the boundaries recorded below. The latest Content and Places turns
 are complete, not waiting for a design canvas. Meaning-based discovery and
@@ -1714,3 +1714,29 @@ activation. The next package should exercise this Source-backed reading with a
 real accepted record in the combined runtime, then choose the next uncovered
 Home/Places or bounded social-receiving seam. Do not widen the primitive feature
 flags or add a new generator/store as part of this package.
+
+## September 21 functional implementation receipt — Home child-entity public supply
+
+The next narrow supply gap is now closed in the same isolated functional lane.
+Home's sparse public-content reader previously asked the Source adapter for
+exact `place` rows only, even though the canonical place-content owner already
+supports bounded parent→venue/site/accommodation/experience membership. The new
+`list_current_public_place_content_sources_for_places` adapter uses that
+existing structured owner read, then re-applies represented-clock eligibility,
+public/root admission, version deduplication and the existing Home candidate
+adapter. Child-owned readings therefore retain their exact child EntityRef and
+Places continuation instead of being dropped or relabeled as a container.
+
+No provider, generator, semantic index, new store, schema, card family or
+personal-history inference was added. The exact-entity Source listing remains
+unchanged for callers that intentionally ask for one owner. Focused backend
+Source/Home coverage is **64 passed** (including the child-source regression);
+Ruff, format and backend hooks pass. The change is backend commit
+`1de6fa954`; app behavior and the existing generated contract are unchanged.
+
+This remains local candidate evidence: the accepted database rows, combined
+runtime, native visual receiving, merge/publication and rollout flags are not
+proven. The next useful check is a real admitted child-owned Source through
+Home → exact Places reader → return, followed by reassessment of the bounded
+social-receiving seam. Do not broaden the child enumeration beyond the existing
+eight-anchor/owner-read bounds or turn it into acquisition.
