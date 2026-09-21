@@ -3221,34 +3221,42 @@ behavior and the next implementation should be another existing
 owner → destination → return seam or the separately authorized Source-worker
 dogfood checkpoint.
 
-## September 21 functional receipt — composed Home reading reaches the exact entity door
+## September 21 functional receipt — composed Home reading value admission and native continuity
 
-The same-place sequence now has an explicit destination/return contract for
-the case that matters most to the user: a composed Home unit has more than one
-reading, so Places must not pretend that the first reading represents the
-whole composition. App commit `8cd899b6d` keeps the existing one-reading path
-exact (including its source revision), while routing a valid multi-reading
-unit to the one exact venue/site/accommodation/experience entity and carrying
-the Home return context and short root-return token. Incomplete or ambiguous
-reading refs still fail closed. No new route, store, provider, generator or
-source model was added.
+The composed same-place sequence is now proven through the canonical value
+admission path and native return, not merely candidate production. Backend
+commit `8109a6ad6` fixes a low-context admission seam: `NOT_APPLICABLE`
+personal novelty no longer collapses source-bound compositions to
+`below_value_floor`; only explicit `KNOWN_TO_PERSON` repetition suppresses
+them. Evidence and epistemic-yield checks remain in force, so this preserves
+the low-context promise without inventing novelty. The commit also records the
+two-reading fixture field (`reading_count`) for the existing run-scoped
+rehearsal.
 
-Backend commit `c18470b4a` extends the existing disposable Home child-source
-rehearsal with an opt-in `--reading-count 2` mode. It creates two accepted,
-source-linked readings for the same run-owned entity and anchor, while the
-default one-reading fixture and cleanup contract remain unchanged. App flow
-`78-home-public-reading-sequence` and its runner derive the canonical Home
-unit from the real projection, assert both readings, open the exact entity,
-return to Home, and verify cleanup. The runner is deliberately explicit about
-the local owner, database, API and QA account; it does not silently fall back
-to a fixture or a different account.
+App commit `9f6126671` arms fixture cleanup before dynamic projection lookup,
+so jq/API failures cannot orphan run-owned venues/source rows or the temporary
+Home anchor. The existing `8cd899b6d` navigation contract and `c18470b4a`
+two-reading fixture remain the underlying route/fixture commits.
 
-Focused evidence passes: **45** navigation tests, **3** static runner/flow
-contracts, TypeScript, shell syntax, Python compilation, Ruff and formatting.
-The real API/iOS rehearsal is **unrun/blocked**, not passed: the lane's
-isolated API startup stops before health because `travel-agent/.env.dev` has
-an empty `ANTHROPIC_API_KEY`. Therefore this receipt proves the route and
-rehearsal contract, not canonical runtime readback, native visual fidelity,
-recurring supply, or release readiness. Once a governed local key and QA
-account are available, run flow 78; otherwise select another independently
-supplied value seam rather than weakening the guard or claiming parity.
+With the local replay API (placeholder key `local-test`,
+`DISABLE_LLM_BACKGROUND_LOOPS=true`), explicit lane database/account, governed
+shell flags (`FOUR_ROOT_SHELL`, `ROOT_PROJECTION_V2`, Places/Life gates,
+internal build) and `OBJECT_PAGE_REBUILD_ENABLED`, iOS flow
+`78-home-public-reading-sequence` passed: canonical Home V2 emitted both
+accepted readings as one `composition` unit; the exact venue/Object Page
+opened; both reading texts rendered; Back restored the same Home unit; and
+cleanup removed fixture rows and restored the Home location. Simulator UUID:
+`D7C8FEF4-237B-4347-841C-6FE920BFABFA`.
+
+Evidence: backend Home/value packet **82 passed**;
+`rootProjectionNavigation` **45 passed**; static flow/runner contracts **3
+passed**; TypeScript, shell syntax, Ruff, formatting and Python compilation
+passed; and the real native flow passed. The first native attempt used the
+legacy Expo bundle and is not counted; the corrected governed-bundle run is
+the acceptance evidence above.
+
+This closes the low-context Home source sequence → exact entity → Home return
+boundary. It does not claim broad corpus parity, provider supply, production
+flag activation, social breadth, visual parity with Claude designs, or release
+readiness. Next work should select another supported producer/action seam, not
+create another sequence architecture.
