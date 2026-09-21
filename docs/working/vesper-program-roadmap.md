@@ -23,9 +23,10 @@ depends_on:
 **September 21 current posture:** the received-material, practical-route,
 Content consumer/hydration and temporal-map packages have verified isolated
 results at the boundaries recorded below. The latest Content and Places turns
-are complete, not waiting for a design canvas. Meaning-based discovery and
-bounded exact-original social receiving now have committed isolated implementations
-and focused verification below. This is not whole-roadmap or
+are complete, not waiting for a design canvas. Meaning-based discovery,
+bounded exact-original social receiving, and a feature-flagged recipient-consented
+Places social read now have committed isolated implementations and focused
+verification below. This is not whole-roadmap or
 native acceptance: broader semantic/time retrieval, supply activation,
 Social/Life adoption and combined delivery remain unfinished. The proposed
 cross-run editorial reuse policy has been presented to the founder and is
@@ -33,6 +34,36 @@ not yet approved. Integration remains **PAUSED by the founder**; no shared
 runtime, landing, publishing or pending product agreement is activated.
 Earlier dispatch and review entries below preserve the execution history.
 Section 7 preserves the older acceptance scope as history.
+
+## September 21 functional implementation receipt — consented Places social read
+
+The next bounded social seam is now implemented in the same isolated lane. The
+existing Places `From your people` section can consume recipient-consented
+`place_pull` handoffs without introducing a feed, social post store, or new
+audience model:
+
+- **Authority:** the relationship repository now exposes a strict readable
+  place-pull reader that rechecks the active pair room, message receipt,
+  recipient grant, expiry/status and linked Source custody before any Places
+  projection sees the handoff.
+- **Scope:** Places resolves the current editorial subtree first, maps accepted
+  graph identities to canonical venue owners, and keeps only venue-bound notes
+  inside that visible scope. `Anywhere`/`Saved` contexts without a proven
+  editorial subtree remain empty rather than leaking a global recipient queue.
+- **Presentation:** the existing friend row carries the sender, exact note,
+  canonical venue name and venue id, so the mobile renderer can open the
+  existing venue destination. It is dark behind the existing
+  `PLACE_HANDOFF_PULL_ENABLED` flag; no new UI or generated schema is required.
+
+Evidence: Places suite **710 passed, 3 skipped** (seven pre-existing leak
+warnings); the combined social/relationship/root packet **61 passed**; the
+relationship Postgres persistence packet **4 passed**; Ruff, format, compile
+and diff checks passed. The feature remains candidate-level: flag activation,
+populated accepted handoffs, native capture, merge/publication and rollout are
+unverified. This slice deliberately supports only venue-bound recipient pulls;
+broader casual media, group audiences, person ranking, and Life adoption remain
+separate decisions. Backend commit: `8253038be`; the workspace receipt is still
+candidate-only and must not be read as flag activation or publication.
 
 ## September 20 functional implementation receipt — Life continuity slice
 

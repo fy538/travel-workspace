@@ -68,6 +68,28 @@ merge/publication and rollout remain unverified. The next checkpoint should use
 a real child-owned accepted Source through Home → exact Places reader → return,
 then reassess the remaining bounded social-receiving seam.
 
+## September 21 continuation — consented Places social read
+
+The functional lane then closed one bounded social-receiving seam without
+starting a general social feed. Places can now project an explicitly granted
+`place_pull` handoff through the existing `From your people` section, but only
+after the relationship owner revalidates active pair membership, message
+receipt, expiry/status, recipient grant and linked Source custody. Places maps
+the accepted graph identity to a canonical venue, checks it belongs to the
+current editorial subtree, and preserves the sender's original note plus exact
+venue destination. Contexts with no proven place subtree stay empty. The path
+is feature-flagged and reuses the existing card/renderer contract; no new
+schema, store, ranking, provider, or Life writer was added.
+
+Evidence: Places **710 passed, 3 skipped**; combined social/relationship/root
+packet **61 passed**; relationship Postgres persistence **4 passed**; Ruff,
+format, compilation and diff checks passed. This is an isolated candidate,
+not flag activation or populated production supply. Native capture,
+merge/publication and rollout remain open. Broader casual media/group sharing,
+person ranking and Life adoption remain unadopted; this slice supports only
+the existing venue-bound recipient-consent contract. Backend commit:
+`8253038be`; review and workspace receipt are the next handoff boundaries.
+
 **A/B dispatched September 9; Integration is PAUSED by the founder.** The current
 [program register](vesper-program-roadmap.md#4-current-package-register) owns
 assignment, exact isolated checkouts and the dispatch evidence boundary. This
