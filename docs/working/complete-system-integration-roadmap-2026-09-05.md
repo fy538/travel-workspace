@@ -48,8 +48,8 @@ value in parallel where files are independent. Native polish belongs in each
 surface package. Focused regressions accompany delivery; more happy-path
 rehearsals alone are not the next product milestone.
 
-Candidate tuple used for this implementation tranche: workspace `046ba64`,
-backend `fcec68bfe`, app `44872d0c2`, all on
+Candidate tuple used for this implementation tranche: workspace `2450d72`,
+backend `79175eaed`, app `108f4e70b`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable

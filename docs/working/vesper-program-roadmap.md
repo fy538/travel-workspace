@@ -1143,13 +1143,14 @@ retirement require their existing approvals. Assignment does not dispatch a task
 Inspected before this documentation update; no product tests, provider calls,
 database mutations or simulator runs were performed for the rebaseline itself.
 Earlier runtime results below are carried evidence at their named scopes, not
-fresh certification of every path on the latest tuple.
+fresh certification of every path on the latest tuple. The tuple below was
+updated after the bounded Source recovery correction and docs closeout.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `046ba64` (current tranche candidate) | `b6e7014` |
-| Backend | `fcec68bfe` | `a7c02cbe1` |
-| App | `44872d0c2` | `e2e792913` |
+| Workspace | `2450d72` (current tranche candidate) | `b6e7014` |
+| Backend | `79175eaed` | `a7c02cbe1` |
+| App | `108f4e70b` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent
