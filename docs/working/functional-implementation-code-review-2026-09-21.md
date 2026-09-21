@@ -105,14 +105,16 @@ store, rollout or policy surface changed.
 ### September 21 next-slice decision
 
 The review does not recommend another receiving-boundary or injected-unit
-proof. Backend runtime forwarding and the canonical `PlacesWorkspace` rail are
-now covered. The next implementation should select one populated,
-owner-backed Home/Places payload and prove received value through the complete
-scroll: substantive content, exact depth/action destination, expiry,
-sparse/pending/failure behavior and return. If the selected owner payload is
-not sufficient, the gap should remain explicit and the next supported seam
-should be chosen; no new generator, feed, store or route family should be
-introduced just to fill visual space.
+proof. Backend runtime forwarding, the canonical `PlacesWorkspace` rail,
+Home multi-source full-scroll/destination continuity, native sender withdrawal
+and shared semantic-state treatment are now covered at their named candidate
+boundaries. The next implementation should select either one consequential
+sparse/pending/failure state in an already supplied root or one permissioned
+Life/social downstream value whose structured inputs and authority already
+exist. It must preserve substantive content, exact depth/action destination,
+expiry and return; if the selected owner payload is not sufficient, leave the
+gap explicit. Do not introduce a new generator, feed, store or route family
+just to fill visual space.
 
 ### September 21 standalone-only feed-state repair
 
