@@ -407,7 +407,7 @@ Focused correction receipts on the candidate tuple:
 | R04 | P2 | Sender loses withdrawal controls after relationship disconnect | Mobile original sharing | Code-fixed; real API sender-control rehearsal passes; native UI matrix remains unrun (no simulator) |
 | R05 | P2 | Source worker throws while serializing its actual result type | Worker adapter | Serializer and exhausted-lease recovery code fixed; 29 focused tests, 25 disposable-Postgres tests, and real wrapper/expired recovery pass; only process-restart queue evidence remains open |
 | R06 | P2 | Nine expanded place IDs silently remove Home public supply | Home / Places scope | Fixed with 8-ID batching; nine-ID scale regression passes; deployed scale/cost still unmeasured |
-| R07 | P2 | Site, accommodation and experience fit checks cannot succeed | Practical assessment | Fixed; focused backend tests pass |
+| R07 | P2 | Site, accommodation and experience fit checks cannot succeed | Practical assessment | Fixed; positive catalog-kind owner-adapter matrix passes |
 | R08 | P2 | Primary Plan details entrance hides arrangement information | Plan / object navigation | Fixed; typecheck passes |
 | R09 | P2 | Reservation time is shown in device timezone without a label | Object presentation | Code-fixed; focused schedule-zone/UTC conversion passes; named native packets pass; persisted/native timezone matrix still required |
 | R10 | P2 | Cleanup for one rehearsal can delete another run's venue | Local fixture tooling | Fixed with run-scoped fixture identity |
@@ -645,8 +645,11 @@ Mobile reachability was traced through site/experience pages and selected-readin
 accommodation pages, which pass `entity.ref.type` into `PracticalVisitCheck`.
 
 **Applied:** share the actual supported canonical-kind set. **Regression:**
-positive and negative fit results for every type exposed by the app, preserving
-exact identity and current-evidence checks.
+backend commit `248237edd` now covers positive supported results for `venue`,
+`site`, `accommodation`, and `experience` through the real owner adapters,
+preserving exact identity and current route evidence. Unsupported and stale
+owner-read cases remain covered by the existing matrix; no provider booking
+behavior is implied.
 
 ## R08 — Primary Plan inspection drops the arrangement purpose
 
