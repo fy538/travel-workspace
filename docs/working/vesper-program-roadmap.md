@@ -59,13 +59,13 @@ documentation drift that had called several already-renderable kinds "dark";
 it does not claim source admission, recurring content supply, runtime
 full-scroll quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
-**Current candidate tuple after the latest rebaseline:** workspace `494df01`,
-backend `f0826e223`, and app `242d309f0`, all on the isolated
+**Current candidate tuple after the latest rebaseline:** workspace `3435dfa`,
+backend `651628265`, and app `242d309f0`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The latest workspace
 advance records the disposable owner-loop verification and renderer-ledger
 correction; the backend advance adds the canonical Home same-Place composition
-proof, persisted public-Place HTTP readback, and persisted Life graph HTTP
-readback. The child-code tuple also includes the Places typed notice bridge,
+proof, persisted public-Place HTTP readback, and persisted Life graph/People
+HTTP readback. The child-code tuple also includes the Places typed notice bridge,
 native sender-withdrawal proof, shared Home/Places semantic-state treatment,
 and the explicit People-bound anchor index repair. Nothing is merged to main,
 published, flag-activated, or resumed in shared Integration/landing. The next
@@ -74,7 +74,7 @@ or supplied Life/social downstream value, with R05/R09 edge work continuing
 only where its required environment is available.
 
 The latest workspace documentation head before this documentation receipt is
-`494df01`; backend and app code are `f0826e223` and `242d309f0`. The backend
+`3435dfa`; backend and app code are `651628265` and `242d309f0`. The backend
 advance is integration-test coverage only; it does not alter production
 behavior or release state.
 
@@ -133,23 +133,26 @@ content storage or route abstraction.
 
 ### September 21 persisted Life graph HTTP readback
 
-Backend `f0826e223` adds a fresh disposable-PostgreSQL integration proof for
+Backend `651628265` adds two fresh disposable-PostgreSQL integration proofs for
 the existing Life graph owner. A Plan created through the real graph command
 reaches both `/api/root-projections/v1/life` and
 `/api/root-projections/v1/life/record`; the compact root preserves the Plan
 title and exact `/you/life-record` destination, while the depth entry preserves
-the viewer-owned Life ref and the same Plan identity. Intake and Atlas readers
-are isolated as empty owners for this bounded test; the graph projection, Life
-corpus assembly, route fan-in and HTTP serialization remain real. The new case
-passes on a freshly migrated database, and the offline Life route packet passes
-**30 tests**.
+the viewer-owned Life ref and the same Plan identity. A second case creates an
+explicitly accepted multi-person Occasion and shared Outcome, then verifies
+that the People lens preserves the guest owner ref, Occasion grant and exact
+Outcome destination in both root and depth reads. Intake and Atlas readers are
+isolated as empty owners for this bounded test; graph projection, Life corpus
+assembly, route fan-in and HTTP serialization remain real. Both cases pass on
+a freshly migrated database, and the offline Life route packet passes **30
+tests**.
 
-This closes the persisted graph-to-Life HTTP boundary for one existing Plan
-family. It does not establish full corpus breadth, People/Threads serving,
-organization coverage, native/device acceptance, visual parity, or later
-permitted context benefit. The next Life package should therefore be a useful
-existing-authority downstream result or a sparse/pending/failure treatment,
-not another route-only happy path.
+This closes the persisted graph-to-Life HTTP boundary for one private Plan
+family and one explicitly permissioned People Outcome. It does not establish
+full corpus breadth, Threads serving, organization coverage, native/device
+acceptance, visual parity, or later permitted context benefit. The next Life
+package should therefore be a useful existing-authority downstream result or a
+sparse/pending/failure treatment, not another route-only happy path.
 
 ### September 21 roadmap maintenance — post-review execution order
 

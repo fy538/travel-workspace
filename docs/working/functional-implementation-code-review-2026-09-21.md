@@ -41,11 +41,11 @@ state treatment is:
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes. Earlier
 runtime-boundary receipts at workspace `0fd06b7` and `f127543` remain
-historical. The subsequent candidate is workspace `494df01`, backend
-`f0826e223`, and app `242d309f0`; workspace `494df01` records the disposable
+historical. The subsequent candidate is workspace `3435dfa`, backend
+`651628265`, and app `242d309f0`; workspace `3435dfa` records the disposable
 owner-loop and renderer-ledger updates, while backend `96d264c41` adds the
 canonical Home same-Place composition proof plus the persisted public-Place
-HTTP readback, and backend `f0826e223` adds the persisted Life graph HTTP
+HTTP readback, and backend `651628265` adds the persisted Life graph/People HTTP
 readback. Those later receipts do not retroactively widen this review's
 historical evidence claims.
 
@@ -70,21 +70,24 @@ provider-backed generation.
 
 ### September 21 persisted Life graph HTTP readback
 
-Backend `f0826e223` adds one fresh disposable-PostgreSQL integration case for
+Backend `651628265` adds two fresh disposable-PostgreSQL integration cases for
 the existing Life graph owner. A Plan created through the real graph command
 reaches both Life HTTP routes; the compact root preserves its title and exact
 `/you/life-record` destination, and the depth entry preserves the viewer-owned
-Life ref and Plan identity. Intake and Atlas are empty test owners so the
-graph projection, Life corpus assembly, route fan-in and serialization remain
-real. The connected case passes on a freshly migrated database; the offline
-Life route packet passes **30 tests**.
+Life ref and Plan identity. A second case creates an explicitly accepted
+multi-person Occasion and shared Outcome, then verifies that the People lens
+preserves the guest owner ref, Occasion grant and exact Outcome destination in
+both root and depth reads. Intake and Atlas are empty test owners so graph
+projection, Life corpus assembly, route fan-in and serialization remain real.
+Both connected cases pass on a freshly migrated database; the offline Life
+route packet passes **30 tests**.
 
-This closes the persisted graph-to-Life HTTP boundary for one existing Plan
-family only. It does not prove complete corpus breadth, People/Threads serving,
-organization coverage, native/device acceptance, visual parity or later
-permitted context benefit. The next Life work should deliver an existing-
-authority downstream result or an honest sparse/pending/failure state rather
-than another route-only happy-path receipt.
+This closes the persisted graph-to-Life HTTP boundary for one private Plan
+family and one explicitly permissioned People Outcome. It does not prove
+complete corpus breadth, Threads serving, organization coverage, native/device
+acceptance, visual parity or later permitted context benefit. The next Life
+work should deliver an existing-authority downstream result or an honest
+sparse/pending/failure state rather than another route-only happy-path receipt.
 
 ### September 21 Source lease-renewal repair
 

@@ -152,25 +152,29 @@ provider-backed generation.
 
 ### September 21 persisted Life graph HTTP readback
 
-Backend `f0826e223` adds a fresh disposable-PostgreSQL proof for the existing
-Life graph owner. A Plan created through the real graph command reaches both
-`/api/root-projections/v1/life` and `/api/root-projections/v1/life/record`;
-the compact root preserves the Plan title and exact `/you/life-record`
-destination, and the depth entry preserves the viewer-owned Life ref and Plan
-identity. Intake and Atlas are isolated as empty owners for this bounded test;
-graph projection, Life corpus assembly, route fan-in and HTTP serialization
-remain real. The new case passes on a freshly migrated database, and the
-offline Life route packet passes **30 tests**.
+Backend `651628265` adds two fresh disposable-PostgreSQL proofs for the
+existing Life graph owner. A Plan created through the real graph command
+reaches both `/api/root-projections/v1/life` and
+`/api/root-projections/v1/life/record`; the compact root preserves the Plan
+title and exact `/you/life-record` destination, and the depth entry preserves
+the viewer-owned Life ref and Plan identity. A second case creates an
+explicitly accepted multi-person Occasion and shared Outcome, then verifies
+that the People lens preserves the guest owner ref, Occasion grant and exact
+Outcome destination in both root and depth reads. Intake and Atlas are
+isolated as empty owners for this bounded test; graph projection, Life corpus
+assembly, route fan-in and HTTP serialization remain real. Both cases pass on
+a freshly migrated database, and the offline Life route packet passes **30
+tests**.
 
-This closes the persisted graph-to-Life HTTP boundary for one existing Plan
-family. It does not establish full corpus breadth, People/Threads serving,
-organization coverage, native/device acceptance, visual parity or later
-permitted context benefit. The next Life package should be an existing-
-authority downstream result or a sparse/pending/failure treatment, not another
-route-only happy path.
+This closes the persisted graph-to-Life HTTP boundary for one private Plan
+family and one explicitly permissioned People Outcome. It does not establish
+full corpus breadth, Threads serving, organization coverage, native/device
+acceptance, visual parity or later permitted context benefit. The next Life
+package should be an existing-authority downstream result or a
+sparse/pending/failure treatment, not another route-only happy path.
 
 Current candidate tuple after the latest rebaseline: workspace
-`494df01`, backend `f0826e223`, app `242d309f0`, all on
+`3435dfa`, backend `651628265`, app `242d309f0`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
