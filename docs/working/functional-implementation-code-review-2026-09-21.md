@@ -33,7 +33,7 @@ and latest workspace documentation receipt is:
 |---|---|
 | Workspace | `8358a28` |
 | Backend | `f9fa3d82b` |
-| App | `17c2c4472` |
+| App | `f4a190b56` |
 
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes.
@@ -66,6 +66,18 @@ it does not fabricate the riso/photo media that the design manifest still
 requires from a future media-bearing payload. App `17c2c4472` adds the native
 treatment and root regression. The focused Places root/expiry packet passes
 **29 tests**, TypeScript passes, and targeted ESLint has no errors.
+
+### September 21 Places field-family follow-up
+
+The admitted `field_branch`, `field_returned_understanding`, and
+`field_continuity_doors` kinds now have native row, gold-rule reading, and
+carry-forward door treatments. Source inspection, exact destinations,
+capability actions and practical expiry remain shared through the existing
+follow-up seam. App `f4a190b56` adds these treatments, a small styles module to
+keep the renderer under its size budget, and root regressions. The focused
+Places root/expiry packet passes **30 tests**, TypeScript passes, and targeted
+ESLint has no errors. This is native coverage of admitted payloads; it does
+not claim returned-understanding supply or full Places design parity.
 
 ### September 21 post-receiving-surface recheck
 

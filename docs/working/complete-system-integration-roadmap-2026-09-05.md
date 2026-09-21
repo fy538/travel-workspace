@@ -54,8 +54,9 @@ more happy-path rehearsals alone are not the next product milestone.
 The current lane now includes the bounded mechanism-row adaptation, explicit
 selected-trip fit, attributed friend-place preview, public-reading limits, and
 native social-evidence treatment, exact social venue doors, Home
-editorial/aperture anatomy, Places editorial-cover anatomy, and the native
-starter browse shelf in backend `f9fa3d82b` and app `17c2c4472`; the latest
+editorial/aperture anatomy, Places editorial-cover anatomy, the native starter
+browse shelf, and native branch/continuity/returned-understanding treatments in
+backend `f9fa3d82b` and app `f4a190b56`; the latest
 workspace documentation receipt is
 `8358a28`. This documentation
 advance does not merge, publish, enable or
@@ -69,7 +70,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R04,
 R05 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after the latest lane-local corrections: workspace
-`8358a28`, backend `f9fa3d82b`, app `17c2c4472`, all on
+`8358a28`, backend `f9fa3d82b`, app `f4a190b56`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable

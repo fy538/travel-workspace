@@ -63,8 +63,9 @@ available.
 supplied-reading `Why this?` slice, mechanism-row adaptation, explicit
 selected-trip fit, attributed friend-place preview, public-reading limits, and
 native social-evidence treatment, exact social venue doors, Home editorial/
-aperture anatomy, Places editorial-cover anatomy, and the native starter browse
-shelf in backend `f9fa3d82b` and app `17c2c4472`.
+aperture anatomy, Places editorial-cover anatomy, the native starter browse
+shelf, and native branch/continuity/returned-understanding treatments in
+backend `f9fa3d82b` and app `f4a190b56`.
 The next
 implementation should therefore be selected from an
 existing owner-backed Home/Places payload and add substantive received value
@@ -175,6 +176,18 @@ it does not fabricate the riso/photo media that the design manifest still
 requires from a future media-bearing payload. App commit `17c2c4472` adds the
 native treatment and root regression. The focused Places root/expiry packet
 passes **29 tests**, TypeScript passes, and targeted ESLint has no errors.
+
+## September 21 native receipt — Places field-family treatments
+
+The admitted `field_branch`, `field_returned_understanding`, and
+`field_continuity_doors` kinds now have native row, gold-rule reading, and
+carry-forward door treatments. Source inspection, exact destinations,
+capability actions and practical expiry remain shared through the existing
+follow-up seam. App commit `f4a190b56` adds these treatments, a small styles
+module to keep the renderer under its size budget, and root regressions. The
+focused Places root/expiry packet passes **30 tests**, TypeScript passes, and
+targeted ESLint has no errors. This is native coverage of admitted payloads; it
+does not claim returned-understanding supply or full Places design parity.
 
 ## September 21 functional receipt — preserve social Place destinations
 
@@ -1352,7 +1365,7 @@ implementation, and docs closeout.
 | --- | --- | --- |
 | Workspace | `8358a28` (current documentation receipt) | `b6e7014` |
 | Backend | `f9fa3d82b` | `a7c02cbe1` |
-| App | `17c2c4472` | `e2e792913` |
+| App | `f4a190b56` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent
