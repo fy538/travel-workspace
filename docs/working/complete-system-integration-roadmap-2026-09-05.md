@@ -43,9 +43,10 @@ authority. Existing I0–I6/CV contracts still govern implementation. Do not
 rebuild foundations merely because an older table described them as missing.
 
 Current order: close only the remaining evidence defects that materially change
-the candidate; keep the supplied Home/Places full-scroll and native sender
-withdrawal receipts honest; then advance permissioned Life/social downstream
-value in parallel where files are independent. The next package must be a
+the candidate; keep the supplied Home/Places full-scroll, native sender
+withdrawal, and honest semantic-state receipts honest; then advance
+permissioned Life/social downstream value in parallel where files are
+independent. The next package must be a
 user-visible sparse/pending/failure state or consequence seam using existing
 owners and exact destinations—not a new generator, feed, storage family, or
 another happy-path rehearsal. Native polish belongs in each surface package.
@@ -88,7 +89,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R05
 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after this receipt: workspace
-`21df4a7`, backend `35765fdb5`, app `9452f09d9`, all on
+`21df4a7`, backend `35765fdb5`, app `9b463726d`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable

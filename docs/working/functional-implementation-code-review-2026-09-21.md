@@ -28,16 +28,29 @@ All three repositories use `codex/functional-implementation-2026-09-20`.
 The table below is the historical baseline for the 12-hour review. The current
 clean candidate after the Home timezone correction, source retry-budget proof,
 supplied-experience comparison, sequence scale hardening, practical catalog
-coverage, typed notice admission and native sender-withdrawal proof is:
+coverage, typed notice admission, native sender-withdrawal proof and semantic
+state treatment is:
 
 | Repository | Current HEAD |
 |---|---|
 | Workspace | `21df4a7` |
 | Backend | `35765fdb5` |
-| App | `9452f09d9` |
+| App | `9b463726d` |
 
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes.
+
+### September 21 native semantic-state treatment review
+
+App `9b463726d` adds the shared `RootUnitStatusMeta` component to the Home and
+Places semantic renderers. Pending, partial, stale and unconfirmed units retain
+their supplied copy and exact navigation doors but expose an honest status;
+revoked units render nothing at the native cache boundary. The backend/schema
+contract is unchanged. The focused Home/Places packet passes **35 tests** and
+TypeScript passes; targeted ESLint reports only the two pre-existing renderer
+max-lines warnings. This closes a native sparse/pending/revocation treatment
+gap for admitted semantic units, not all transport-level loading/failure,
+visual parity, media breadth or release evidence.
 
 ### September 21 supplied-experience comparison review
 

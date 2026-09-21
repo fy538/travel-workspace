@@ -52,10 +52,11 @@ Retention/refinding is further along than context materially improving a later
 answer, possibility or action.
 
 **Current candidate tuple after this receipt:** workspace `21df4a7`, backend
-`35765fdb5`, and app `9452f09d9`, all on the isolated
+`35765fdb5`, and app `9b463726d`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; the child-code tuple now includes the Places typed
-notice bridge and native sender-withdrawal proof. Nothing is merged to main,
+notice bridge, native sender-withdrawal proof, and shared Home/Places semantic
+state treatment. Nothing is merged to main,
 published, flag-activated, or resumed in shared Integration/landing. The next
 substantive implementation remains one selected sparse/pending/failure state
 or supplied Life/social downstream value, with R05/R09 edge work continuing
@@ -121,6 +122,23 @@ This checkpoint is a progress rebaseline, not a feature-completion claim. No
 overall percentage is meaningful until the Claude design inventory, supplied
 content breadth and native acceptance are measured against the same candidate
 and evidence boundary.
+
+### September 21 native receipt — honest semantic unit states
+
+App commit `9b463726d` adds one shared `RootUnitStatusMeta` treatment for
+non-current semantic units. Home and Places preserve substantive pending or
+partial material and its exact doors while clearly saying that the result is
+still taking shape or only partly available; stale and unconfirmed states have
+explicit copy as well. Both native renderers fail closed for `revoked` units so
+a cached envelope cannot keep withdrawn social or private material visible.
+The backend contract, selection gates, schema and owner reads are unchanged.
+
+The focused Home/Places packet passes **35 tests**; TypeScript and targeted
+ESLint pass with only the existing renderer max-lines warnings. Polish scenario
+IDs pass; the `vesper-home` design-reference check passes and the
+`places-workspace` check passes with the expected operator-owned external-canon
+warning. No device screenshot or full surface capture was run, so this is
+native semantic-state evidence, not visual parity or release evidence.
 
 ### September 21 contract-hardening follow-through — sequence scale and practical catalog kinds
 
@@ -1651,7 +1669,7 @@ source/original distinction, and docs closeout.
 | --- | --- | --- |
 | Workspace | `21df4a7` (current documentation receipt) | `b6e7014` |
 | Backend | `35765fdb5` | `a7c02cbe1` |
-| App | `9452f09d9` | `e2e792913` |
+| App | `9b463726d` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent
