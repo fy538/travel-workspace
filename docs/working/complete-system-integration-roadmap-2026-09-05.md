@@ -5677,3 +5677,23 @@ venue, source and organization rows remain disposable and must be removed after
 the capture; the API and Expo processes must be stopped. The next slice should
 close the native return/refind interaction or another supported receiving seam,
 not widen the content model or introduce a new generator/store.
+
+### September 21 continuation — explicit place-bound Life-source adoption
+
+The canonical Life fan-in now carries a retained source into the Places lens
+when, and only when, Capture supplies an explicit currently resolved place-like
+subject. The same predicate is used by the owner-level intake reader and the
+shadow index projector, avoiding a root/index eligibility split. A source
+without that subject remains Time-only. The Places record preserves its exact
+Intake destination and the explicit place ref in source lineage; it does not
+turn capture-time association into attendance or occurrence evidence.
+
+Evidence: backend commit `b3c832c40`; focused Life projection tests **41
+passed**, adjacent corpus/index regressions **25 passed**, and repository hooks
+(Ruff, format, vulture and boundary checks) passed. No contract or mobile
+surface changed. Full route/database collection is still unverified in this
+checkout because it requires the disposable Postgres test environment and an
+optional `openai` install. Combined runtime seeding, native Places proof,
+physical return/refind, and rollout activation remain open. The next package
+should verify one accepted place-bound source through Life Places → exact
+submission and return, then reassess the next supported receiving/action seam.

@@ -1967,3 +1967,32 @@ Claude-design parity, or release acceptance. The temporary data and API/Expo
 processes must be cleaned up after the capture. The next useful work is the
 native return/refind interaction or another supported receiving gap; do not
 widen the content model or add a second generator/store.
+
+## September 21 functional implementation receipt — explicit place-bound Life sources
+
+Life's Places lens now admits a retained source only when Capture supplies an
+explicit, currently resolved place-like subject (`place`, `venue`, `site`,
+`accommodation`, `experience`, or `transport_hub`). The canonical Life adapter,
+the compatibility intake page, and the retained-source shadow projector share
+one subject policy. The source remains a private `source_submission` door and
+opens the exact Intake submission; its place reference is carried as
+represented lineage, but the read does not claim attendance, occurrence, or a
+semantic interpretation. Sources without an explicit place subject remain
+Time-only. This makes the product's combination of time + place concrete
+without inventing a visit from a photo, note, or capture context.
+
+Backend commit `b3c832c40` adds the behavior and regression coverage. Focused
+Life projection tests pass (**41 passed**), and the adjacent corpus/index
+regressions pass (**25 passed**); Ruff, format, vulture and repository hooks
+pass at commit time. No schema, API wire contract, mobile code, generator,
+provider, or new store was added. The broader Life route suite remains bounded
+by the existing local environment: its Postgres/API collection requires
+`TEST_DATABASE_URL` and the optional `openai` dependency, so this receipt is
+unit/contract evidence rather than populated database or native Places proof.
+
+This is intentionally a narrow adoption seam, not generalized place
+inference. The next verification should seed one accepted place-bound retained
+source and prove Life Places → exact Intake source navigation in the combined
+runtime; only then should we choose the next receiving/action seam. Do not
+promote capture-time subject association to occurrence evidence or widen the
+supported place taxonomy without an owner contract.
