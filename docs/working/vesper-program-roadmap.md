@@ -50,8 +50,8 @@ same tour. Frontend polish is part of each surface's completion. Retention/
 refinding is further along than context materially improving a later answer,
 possibility or action.
 
-**Current candidate tuple after this receipt:** workspace `6d839e`, backend
-`a5914bd82`, and app `7b735a71e`, all on the isolated
+**Current candidate tuple after this receipt:** workspace `d28096549`, backend
+`a5914bd82`, and app `6aedd2c00`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; it does not change the child-code tuple, merge the
 lane, enable a flag, or resume shared Integration/landing. The next substantive
@@ -60,8 +60,10 @@ below, with edge-matrix work continuing only where its required environment is
 available.
 
 **September 21 afternoon execution rule:** the latest product behavior is the
-supplied-reading `Why this?` slice, mechanism-row adaptation, and explicit
-selected-trip fit in backend `052284b33` and app `7b735a71e`. The next
+supplied-reading `Why this?` slice, mechanism-row adaptation, explicit
+selected-trip fit, attributed friend-place preview, public-reading limits, and
+native social-evidence treatment in backend `a5914bd82` and app `6aedd2c00`.
+The next
 implementation should therefore be selected from an
 existing owner-backed Home/Places payload and add substantive received value
 (for example, a truthful comparison, sequence, evidence view or practical
@@ -118,6 +120,23 @@ schema, generator or storage path was added.
 Backend commit `a5914bd82` adds the bounded projection and regression coverage.
 The focused Home portfolio/composition packet passes **49 tests**; Ruff,
 formatting and Python compile checks pass.
+
+## September 21 functional receipt — render attributed social evidence
+
+The Places native semantic-unit card now gives the existing
+`social_attributed_evidence` kind a compact people-led treatment: a person mark,
+the attributed friend's authored label, the bounded relation text (including
+the shared Place names retained by the backend), and the same source,
+destination and capability doors used by other admitted units. The practical
+expiry fence still runs before the body, so an expired assessment cannot leave
+stale fit prose visible. This is a native adaptation of an existing
+relationship-owned payload; it does not add an audience policy, sharing model,
+generator, store, or route.
+
+App commit `6aedd2c00` adds the renderer and a regression in the Places root
+screen. Focused Places root/expiry tests pass (**27 tests**), TypeScript and
+targeted ESLint pass. The renderer is not full Claude-design parity and does
+not prove broad social supply or general multiplayer behavior.
 
 The dedicated shared Integration/landing lane remains **PAUSED by the founder**.
 That pause does not cancel the subsequently authorized isolated implementation
@@ -1271,13 +1290,14 @@ Inspected before this documentation update; no product tests, provider calls,
 database mutations or simulator runs were performed for the rebaseline itself.
 Earlier runtime results below are carried evidence at their named scopes, not
 fresh certification of every path on the latest tuple. The tuple below was
-updated after the bounded Source recovery correction and docs closeout.
+updated after the bounded Source recovery correction, receiving-surface
+implementation, and docs closeout.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `6d839e` (current documentation receipt) | `b6e7014` |
-| Backend | `052284b33` | `a7c02cbe1` |
-| App | `df490cb56` | `e2e792913` |
+| Workspace | `d28096549` (current documentation receipt) | `b6e7014` |
+| Backend | `a5914bd82` | `a7c02cbe1` |
+| App | `6aedd2c00` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent

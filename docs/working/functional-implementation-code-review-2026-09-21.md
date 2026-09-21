@@ -31,12 +31,23 @@ and latest workspace documentation receipt is:
 
 | Repository | Current HEAD |
 |---|---|
-| Workspace | `6d839e` |
+| Workspace | `d28096549` |
 | Backend | `a5914bd82` |
-| App | `7b735a71e` |
+| App | `6aedd2c00` |
 
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes.
+
+### September 21 post-receiving-surface recheck
+
+The Places receiving surface then gained a native treatment for the already
+admitted `social_attributed_evidence` unit. The renderer keeps the relationship
+owner's bounded place-name relation visible, preserves source inspection and
+exact destination doors, and runs the existing practical-expiry fence before
+rendering. App commit `6aedd2c00` adds the renderer and root-screen regression;
+27 focused Places root/expiry tests, TypeScript and targeted ESLint pass. This
+closes a presentation gap in the supported social payload only. It does not
+certify multiplayer supply, general social policy, or full visual parity.
 
 | Repository | Baseline | Reviewed HEAD | Changed files |
 |---|---|---|---:|
