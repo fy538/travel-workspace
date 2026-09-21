@@ -6773,3 +6773,35 @@ boundary. It does not claim broad corpus parity, provider supply, production
 flag activation, social breadth, visual parity with Claude designs, or release
 readiness. Next work should select another supported producer/action seam, not
 create another sequence architecture.
+
+## September 21 functional implementation receipt — native Home full-scroll across three owner families
+
+The next substantive Home/Places package is now proven as one composed native
+scroll rather than three isolated happy paths. App commit `1b3396ebc` adds
+flow `89-home-full-scroll`, its static contract test and a run-scoped runner.
+The runner reuses the existing disposable owner writers—two accepted public
+Place readings for one child venue, one addressed human Place contribution,
+and one recipient-authorized text original. It adds no generator, provider,
+feed, custody, audience or storage system.
+
+With the local replay API (placeholder key `local-test`,
+`DISABLE_LLM_BACKGROUND_LOOPS=true`,
+`RELATIONSHIP_UUID_HANDOFFS_ENABLED=true`), explicit lane database/account,
+and the governed four-root/Object Page bundle, the iOS simulator flow passed.
+The canonical Home projection contained all three substantive families; the
+flow scrolled to the addressed contribution, the public Place composition and
+the original preview, rendering their attributed copy and waiting for the
+authorized original material to arrive instead of accepting the loading
+placeholder. Screenshot: `home-full-scroll`. The runner then removed every
+fixture and restored the Home anchor. Simulator UUID:
+`D7C8FEF4-237B-4347-841C-6FE920BFABFA`.
+
+Evidence: the new static runner/flow packet **3 passed**; the flow passed
+Maestro syntax validation; TypeScript passed; and the real native flow passed
+end to end. The first exploratory pass correctly exposed that original
+material is asynchronous; the final flow waits for the caption after the
+loading state. This is a supplied local owner proof, not a production corpus,
+provider-backed generation, recurring supply, social breadth, visual parity or
+release-readiness claim. The next build should move to another substantive
+owner/action seam or bounded Life downstream value, not duplicate this
+full-scroll harness.
