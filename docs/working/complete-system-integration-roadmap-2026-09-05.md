@@ -6066,7 +6066,8 @@ fresh status cache row proves `open_now`, the existing root adapter can now
 attach the typed `place.open_now` assessment and exact Places destination to a
 Home horizon unit. Sparse or unanchored contexts still omit the section.
 
-Backend commit `596bc9429` adds the starter admission and a disposable local-Postgres
+Backend commits `596bc9429` and `ade6d0e0a` add the starter admission, its
+owner-doc update, and a disposable local-Postgres
 fixture with three verified nearby venues plus fresh normalized status-cache
 rows. App commits `cbef1acaa` and `13e981a20` add
 `.maestro/80-home-practical-open-now.yaml`, its runner, and static contracts.

@@ -2376,7 +2376,8 @@ existing nearby corpus/taste floor, operational cache, common admission
 contract, and Places destination; no provider call, booking flow, or new
 recommendation store was introduced.
 
-Backend commit `596bc9429` adds the serving correction, regression coverage, and a
+Backend commits `596bc9429` and `ade6d0e0a` add the serving correction, owner-doc
+update, regression coverage, and a
 disposable fixture that writes three verified NYC venues with ten-minute
 `open_now` evidence into the existing cache. App commits `cbef1acaa` and
 `13e981a20` add the real API/iOS Maestro flow and static runner contracts. The
