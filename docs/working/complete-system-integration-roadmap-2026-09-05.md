@@ -57,7 +57,10 @@ verification can continue; no shared runtime, publishing, flag activation,
 paid/provider run or pending product policy is enabled by this rebaseline.
 The [review ledger](functional-implementation-code-review-2026-09-21.md) remains
 open for the remaining authority, queue and edge-case evidence, while R04 and
-R09 are now code-fixed and the named native/database happy paths pass.
+R09 are now code-fixed and the named native/database happy paths pass. R05's
+exhausted-final-lease recovery is now code-fixed and covered by focused tests;
+the disposable-Postgres, transient-provider and process-restart rehearsals are
+still required before calling preparation reliable.
 
 ## September 21 evidence closeout — current boundary
 
