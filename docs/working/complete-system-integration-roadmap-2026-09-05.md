@@ -52,8 +52,8 @@ polish belongs in each surface package. Focused regressions accompany delivery;
 more happy-path rehearsals alone are not the next product milestone.
 
 The current lane now includes the bounded mechanism-row adaptation, explicit
-selected-trip fit, and attributed friend-place preview in backend `0dcc26db0`
-and app `7b735a71e`; the
+selected-trip fit, attributed friend-place preview, and public-reading limits
+in backend `a5914bd82` and app `7b735a71e`; the
 latest workspace documentation receipt is `6d839e` (the child-code tuple is
 unchanged). This documentation advance does not merge, publish, enable or
 resume shared Integration/landing. Apply this
@@ -66,7 +66,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R04,
 R05 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after the latest lane-local corrections: workspace
-`6d839e`, backend `0dcc26db0`, app `7b735a71e`, all on
+`6d839e`, backend `a5914bd82`, app `7b735a71e`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable

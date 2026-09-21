@@ -51,7 +51,7 @@ refinding is further along than context materially improving a later answer,
 possibility or action.
 
 **Current candidate tuple after this receipt:** workspace `6d839e`, backend
-`0dcc26db0`, and app `7b735a71e`, all on the isolated
+`a5914bd82`, and app `7b735a71e`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; it does not change the child-code tuple, merge the
 lane, enable a flag, or resume shared Integration/landing. The next substantive
@@ -104,6 +104,20 @@ The focused Places/Home contract packet passes **33 tests**; Ruff, formatting
 and Python compile checks pass. This is a consumer-value improvement over an
 existing social owner payload, not a new sharing model, audience policy or
 group-occasion implementation.
+
+## September 21 functional receipt — retain public-reading limits
+
+The existing Home public-Place adapter now carries the accepted Source's
+explicit `limits` into the bounded reading basis, alongside the observable
+target and applicable conditions. This keeps a supplied cue or interpretation
+from sounding like a route, hours or preference guarantee while preserving the
+same authored claim, exact Source revision, Places destination, expiry and
+return behavior. The field was already present in the owner contract; no new
+schema, generator or storage path was added.
+
+Backend commit `a5914bd82` adds the bounded projection and regression coverage.
+The focused Home portfolio/composition packet passes **49 tests**; Ruff,
+formatting and Python compile checks pass.
 
 The dedicated shared Integration/landing lane remains **PAUSED by the founder**.
 That pause does not cancel the subsequently authorized isolated implementation
