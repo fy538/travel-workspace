@@ -147,6 +147,26 @@ packet passes **3 tests**. This proves the owner-authorized Life metadata
 refind boundary and typed destination only. Life organization, original-body
 rendering/return, native capture, indexed serving and rollout remain open.
 
+## September 21 runtime continuation — Life organized record and group
+
+The Life organization consumer now has a real disposable-database/API receipt.
+A temporary canonical retained-source submission was admitted through the
+existing capture boundary, promoted to confirmed `source_and_derived` custody,
+and propagated by the Life projection outbox. The local API then returned
+`GET /api/root-projections/v1/life?lens=time` with the exact owner-backed
+`source_submission` entry and typed Intake destination, while
+`GET /api/root-projections/v1/life/organization/groups?lens=time&limit=10`
+returned its current September period group and revisions. All temporary
+submission, source, corpus, organization and user rows were deleted afterward;
+background/provider loops were disabled.
+
+Evidence: both routes returned **HTTP 200**; one Life entry was visible and the
+group page returned `derived:period:2026-09:iana.utc` with
+`content_revision=2`. This proves persistence → owner projector → organized
+Life API delivery for one retained record, not multi-lens breadth, indexed
+serving activation, native visual acceptance, original-byte rendering/return,
+merge/publication or rollout.
+
 ## September 21 persistence boundary — child-owned public Source
 
 The real disposable-Postgres check for the preceding Home supply connection

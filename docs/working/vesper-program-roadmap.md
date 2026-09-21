@@ -126,6 +126,28 @@ Postgres packet also passes **3 tests**. This proves owner-authorized metadata
 refinding and its typed Life destination, not full Life corpus organization,
 native original rendering/return, or indexed serving adoption.
 
+## September 21 runtime continuation — Life organized record and group
+
+The organized Life read now has a real API receipt in addition to its offline
+route and Postgres projector coverage. A temporary canonical retained-source
+submission was admitted through `create_submission`, promoted to confirmed
+`source_and_derived` custody, and propagated through the existing Life outbox
+projector. With the local API running against the disposable lane database,
+`GET /api/root-projections/v1/life?lens=time` returned the exact retained
+record, its owner/source refs and the typed Intake destination; the paired
+`GET /api/root-projections/v1/life/organization/groups?lens=time&limit=10`
+returned the current September period group with matching revisions. The
+submission, source, corpus, organization and temporary user rows were removed
+after the read.
+
+Evidence: both routes returned **HTTP 200**; the Life root carried one
+`source_submission` entry with `source.<submission_id>` identity and the group
+page carried `derived:period:2026-09:iana.utc`, `content_revision=2`; API
+background loops were disabled and no provider was used. This proves
+persistence → Life owner projector → organized API read for one retained
+record. It does not prove full multi-lens corpus coverage, indexed serving
+adoption, native visual capture, original-byte return or rollout activation.
+
 ## September 21 runtime supply probe — child-owned public Source
 
 The promised persistence boundary was exercised against the isolated lane's
