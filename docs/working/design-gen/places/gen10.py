@@ -104,6 +104,36 @@ def b6():
     inner += gut(I.access_compare([('BY FERRY', [(6, 'foot'), (20, 'wait'), (25, 'ride'), (9, 'foot')], 'PIER 11 · EVERY 40 · 40 MOVING, 20 DRAWN, 40 TO 80 IN ALL'), ('BY THE B61', [(4, 'foot'), (6, 'wait'), (28, 'ride'), (3, 'foot')], 'EVERY 12 · 35 MOVING, 6 DRAWN, 35 TO 47 IN ALL')], origin='FROM CANAL STREET', h=112), top=16)
     inner += gut(door_list(['Show the map on its own', 'Back to the field']), top=24)
     return phone(inner)
+def narrow_map():
+    """The same map at a narrow width. It scales with its column, so its place names would fall below the 10px floor; the readable alternative keeps
+    the numbered markers, which the rows already pair with, and drops only the names from the drawing. Geometry is unchanged."""
+    m = map_block().replace('height="200" viewBox="0 0 349 200"', 'height="auto" viewBox="0 0 349 200"', 1).replace('<div style="height: 200px; border-radius: 12px;', '<div style="border-radius: 12px;', 1)
+    return re.sub(r'<text([^>]*)>(?!\d+</text>)[^<]*</text>', '', m)
+def b8():
+    inner = anchor('RED HOOK', 'SATURDAY 12:22 PM', back=True, sub='Near Red Hook, Saturday')
+    inner += gut(narrow_map(), top=12)
+    inner += gut(fn('NARROW · THE MAP KEEPS ITS NUMBERS; THE NAMES ARE IN THE ROWS', 8), top=4)
+    inner += gut(redhook_rows(True), top=12)
+    inner += gut(door_list(['Back to the field']), top=24)
+    return phone(inner).replace('width: 393px', 'width: 320px', 1)
+def b9():
+    """Back from the map app, and the world moved while the person was away: the selection and the scroll survive, the selected row reads the current fact."""
+    inner = anchor('RED HOOK', 'SATURDAY 12:31 PM', back=True, sub='Near Red Hook, Saturday') + gut(select_pin(map_block()), top=12) + gut(burden_strip(), top=4)
+    changed = (f'<div style="margin-top: 12px; padding: 10px 12px; border-radius: 12px; background: {CARD}; border: 1px solid {HAIR}; display: flex; gap: 10px; align-items: flex-start;">'
+               f'<span style="{MONO} font-size: 10px; font-weight: 700; letter-spacing: 0.9px; color: {OX}; flex: none; margin-top: 2px;">CHANGED 12:16</span>'
+               f'<div style="font-size: 13px; line-height: 18px; color: {INK2};">The Print Room posted &ldquo;closed today, a private event&rdquo; on its own listing while you were away. Rooms Remade is open tomorrow, its last day.</div></div>')
+    inner += gut(changed, top=8)
+    rows = redhook_rows(True).replace('TUE–SUN 11–6 · ROOMS REMADE, TO SUNDAY', 'CLOSED TODAY · OPEN SUNDAY 11–6, THE LAST DAY', 1)
+    rows = rows.replace('<div style="display: flex; align-items: flex-start; gap: 12px; padding: 10px 0;', f'<div style="display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; background: {WASH}; border-radius: 10px; margin: 0 -8px; padding-left: 8px; padding-right: 8px;', 1)
+    inner += gut(rows, top=12) + gut(doors(('Sunday, the last day', GOLDD), ('Clear the selection', MUTE)), top=8)
+    return phone(inner)
+STATUS = [['A · scope chosen, changed, refined, missed, cleared', 'Drawn', 'Proposed for review', 'No', 'No'],
+          ['A3 · remote scope never implies presence', 'Drawn', 'Proposed for review', 'No', 'No'],
+          ['B · marker and row as one selection, two ways in', 'Drawn', 'Proposed for review', 'No', 'No'],
+          ['B4 · the selected entity', 'Drawn from 08', 'Accepted destination direction (decision of 2026-09-09)', 'Partly: the object page is on main behind flags', 'No'],
+          ['B5 · provider handoff and its return', 'Drawn', 'Proposed for review', 'No', 'No'],
+          ['B7, B8 · larger-text and narrow readings', 'Drawn', 'Proposed for review', 'No', 'No'],
+          ['B9 · return with the current state', 'Drawn', 'Proposed for review', 'No', 'No']]
 # ---------------------------------------------------------------- the board
 def board():
     ra = [viewport(col(a1(), caption('10.A1 · THE SCOPE AS IT STANDS', 'NEW YORK · THE CHEVRON IS THE ONLY SCOPE CONTROL', 'The field as drawn on 01. Scope lives in the anchor&rsquo;s chevron and the question line; there is no filter console and no second navigation'))),
@@ -119,6 +149,8 @@ def board():
           viewport(col(b4(), caption('10.B5 · A PRACTICAL QUESTION, OR THE PROVIDER', 'ASK VESPER · OR LEAVE FOR THE MAP APP', 'The private question asks Vesper and never the workshop. Directions hand off to the provider and say so; returning is not an arrival'))),
           viewport(col(b5(), caption('10.B6 · BACK, UNCHANGED', 'THE SAME FIELD, SCOPE, SELECTION AND SCROLL', 'The return lands on the pocket that was left: the ring is still on the marker, the row is still selected, and nothing was recorded by going')))]
     rc = [viewport(col(gen20.enlarge(b6()), caption('10.B7 · LARGER TEXT · THE READABLE ALTERNATIVE', 'THE POCKET WITHOUT THE MAP', 'Drawn at 1.3&times;. The map&rsquo;s labels cannot grow with the text, so at this size the pocket reads as its rows and its access comparison, with the map one door away. The information is the same; only its form changes'))),
+          viewport(col(b8(), caption('10.B8 · NARROW · THE READABLE ALTERNATIVE', 'THE SAME POCKET AT 320 PIXELS', 'The map scales with its column, so its names would fall below the 10px floor. It keeps its numbers, which the rows already carry, and drops only the names; nothing about the geometry changes'), w=320)),
+          viewport(col(b9(), caption('10.B9 · BACK, AND SOMETHING CHANGED', 'THE SELECTION SURVIVES; THE FACT IS CURRENT', 'While the person was in the map app the Print Room posted that it is closed today. The return keeps the pocket, the ring and the scroll, and the selected row reads what is true now, with Sunday named as the last chance'))),
           notecol('Two sequences, and what they rest on', [
               ('WHAT IS NEW HERE', N('Only the controls, the results and the returns. A1, B1 and B4 are the field, the pocket and the page as this project already draws them; A2&rsquo;s chooser, A5&rsquo;s no-match, B2 and B3&rsquo;s selection, B5&rsquo;s provider handoff, B6&rsquo;s return and B7&rsquo;s readable alternative are the missing frames the coverage assignment asks for.')),
               ('DONOR AND ADDITION', tbl(['STEP', 'DONOR', 'WHAT IS ADDED'], [
@@ -132,11 +164,12 @@ def board():
               ('REMOTE IS NOT PRESENT', N('A3 and A4 are the same field read from three thousand miles away. The town keeps its own clock, the places keep their hours, and nothing offers a distance, a walk or a route from the person, because the person is not there. Presence, permission and arrival are never implied by a scope.')),
               ('GEOMETRY VERSUS BEHAVIOUR', N('The map is an illustrative drawing: its shoreline, streets and markers are drawn geometry, not a live map. What these frames establish is the selection contract between a marker and its row, the destination it opens and the state that survives a return. Pan, zoom, focus transfer, keyboard order and the back stack are native work; static frames cannot show them.')),
               ('OWNERS', N('Entity owns the destination and its identity; Social owns eligible recipients and addressed sharing, which is why B5&rsquo;s question asks Vesper and stops there. The provider handoff states what Vesper does not do: it does not navigate and does not learn where the person goes.')),
+              ('DRAWN, SELECTED, IMPLEMENTED, VERIFIED', tbl(['PART', 'DRAWN', 'SELECTED', 'IMPLEMENTED', 'VERIFIED'], STATUS)),
               ('NOT CLAIMED', N('No turn-by-turn navigation, no standalone map or search product, no filter console, and no scope that outlives the visit. Query, selected-object and return continuity need native verification; drawn here, not exercised.'))], w=760)]
     return rows_page(2660, '10 · SCOPE AND SELECTION · 09-12 COVERAGE', '10 · Scope and selection',
                      'Two small sequences on the field this project already draws: a scope chosen, changed, refined, missed and cleared without ever claiming the person is there; and a marker and its row, the entity they open, the question or the provider, and the return to the same field.',
                      [('A · SCOPE', 'As it stands; the chooser; somewhere you are not; refined; no match; cleared', ra),
                       ('B · MARKER AND ROW', 'The pocket; a marker; the row; the entity; the question or the provider; back unchanged', rb),
-                      ('B · LARGER TEXT, AND THE NOTES', 'The readable alternative; donors, owners and what is not claimed', rc)], 9000)
+                      ('B · READABLE ALTERNATIVES, THE CURRENT STATE, AND THE NOTES', 'Larger text; narrow; back after something changed; donors, owners, status and what is not claimed', rc)], 9000)
 if __name__ == '__main__':
     import os; os.makedirs('out2', exist_ok=True); h = board(); open('out2/10 - Scope and Selection.dc.html', 'w').write(h); print('wrote 10', len(h))

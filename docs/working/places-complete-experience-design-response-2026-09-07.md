@@ -714,3 +714,17 @@ The current coverage assignment in `vesper-places-design-review-2026-09-08.md`, 
 **Not claimed.** No turn-by-turn navigation, no standalone map or search product, no filter console, no scope that outlives the visit. Pan, zoom, focus transfer, keyboard order, the back stack and the restored scroll are native work; these frames draw the contract, they do not exercise it.
 
 **Build note.** The new board is in `build.py`, so it rebuilds with the rest. That is the same guard that ended the stale 07 and 09 builds.
+
+## 42. Board 10 closed against its own bar (September 21)
+
+The review doc's current assignment is still the September 12 coverage assignment, delivered as board 10 in §41. Rechecked against that assignment and shared §23, the first pass left three things out. They are added here to the same board; nothing else changed.
+
+| Requirement | Where it is stated | Before | Now |
+|---|---|---|---|
+| Narrow and larger-text readable alternatives | The Places assignment, item 2 | Larger text only (10.B7) | **10.B8**, the pocket at 320px. The map scales with its column, so its names would fall below the 10px floor; it keeps its numbered markers, which the rows already carry, and drops only the names. Geometry is unchanged. |
+| Return to the same field with correct current state | Shared §23.3, countercheck 3 | An unchanged return only (10.B6) | **10.B9**, back from the map app after the Print Room posted "closed today" at 12:16. The pocket, the ring and the scroll survive; the selected row reads "closed today · open Sunday 11–6, the last day", with Sunday offered as the last chance. |
+| Report drawn, selected, implemented and verified separately | Shared §23.4 | Not tabulated | A status table on the board, one row per part. Every part is drawn and proposed for review; none is implemented or verified, except that the destination it opens (the object page) is on main behind flags. |
+
+**Published state checked.** Before this pass, the served board 10 was captured and inspected: all thirteen original frames, the chooser, the marker ring and the 1.3× frame render with the runtime resolving them. The earlier truncation of the local working copy never reached the project.
+
+**Not claimed.** Narrow and larger-text readings are drawn, not tested on devices. Selection, scope and scroll continuity across a real provider handoff remain native verification.
