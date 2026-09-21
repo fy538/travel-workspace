@@ -125,6 +125,29 @@ The implementation commits are backend `7471c597c` (with `c73732aa8` and
 the combined receiving/runtime check across all three slices, then return to the
 highest-value uncovered Home/Places supply or social receiving gap.
 
+## September 20 functional implementation receipt — cold-world Home opening
+
+The fourth execution slice closes a different Home gap: a genuinely cold user
+with only world-facing Places context can receive one substantive invitation,
+rather than a flat empty-state report or an input request. The projection now
+keeps owner-backed material distinct from contextual world supply, preserves the
+cold posture when no owned history exists, and promotes at most one admitted
+world-opening passage into the existing `NOW` invitation contract. It does not
+invent history, generate content on read, add a provider, or turn a context-only
+source into personal evidence; the existing source, provenance, destination and
+why-this payload remain intact.
+
+Evidence on the lane: backend Home portfolio/composition **40 passed**;
+mobile Home root **30 passed**; mobile typecheck passed. The implementation is
+backend `40e90210f` in `codex/functional-implementation-2026-09-20`. This is a
+candidate-level, render-independent result: native visual acceptance, combined
+runtime delivery, disposable-Postgres execution, merge/publication and rollout
+activation remain unproven. The next execution should exercise the combined
+receiving/runtime path across the Life, Home/Places and cold-world slices, then
+take the next uncovered Home/Places supply or social receiving gap. The standard
+API audit remains bounded by the pre-existing 55 expired policy dates and one
+unrelated intake-media missing-consumer finding.
+
 ## Current round — meaning-based discovery and exact-original receiving
 
 **Authorized September 9 following the lexical increment:** complete two

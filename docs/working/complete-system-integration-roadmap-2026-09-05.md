@@ -27,6 +27,26 @@ depends_on:
 
 ## Current engineering tranche — September 9
 
+## September 20 functional implementation receipts
+
+The current isolated implementation lane has now delivered four bounded,
+source-backed slices: Life exact-original continuity; Home/Places receiving with
+practical stop assistance; Life organized records; and a cold-world Home opening.
+The last slice gives a cold user one substantive, optional world invitation from
+an already admitted contextual Places passage while keeping owner history and
+world context separate. It is a projection-level value improvement, not a new
+generation/provider system or a claim that the user supplied the material.
+
+The lane evidence is recorded in the companion program roadmap. Combined
+receiving/runtime delivery, native visual acceptance, disposable-Postgres
+execution, merge/publication and rollout activation are still open. The next
+package is therefore an actual combined runtime check across the four slices,
+followed by the highest-value uncovered Home/Places supply or social-receiving
+gap; do not reopen the completed Life organization or cold-world projection
+work, and do not merge the broad native-receiving candidate wholesale. The
+standard API audit still has 55 pre-existing expired policy dates plus one
+unrelated intake-media missing-consumer finding.
+
 **A/B dispatched September 9; Integration is PAUSED by the founder.** The current
 [program register](vesper-program-roadmap.md#4-current-package-register) owns
 assignment, exact isolated checkouts and the dispatch evidence boundary. This
