@@ -2416,3 +2416,20 @@ acquisition, production activation, design parity or release readiness. Keep
 the next slice on a remaining supported user-visible capability, preferably
 Life organized-record native depth or another practical consequence, rather
 than adding integration infrastructure.
+
+## September 21 functional implementation receipt — native Life organized record
+
+Life organization now has a real simulator proof, not only projection tests.
+Backend commit `a397b94e5` makes the retained-source rehearsal call the
+existing owner-maintenance boundary so its period-group materialization and
+withdrawal callbacks are exercised. App commit `00e117c71` adds the real-API
+Maestro runner and flow `82-life-organized-record`.
+
+The run passed through Life Time → organized views → the current period group
+→ the group-scoped record containing the exact retained source → Life return.
+The runner withdrew the source and derived group afterward and verified both
+were absent. Evidence: **315** focused backend Life/API tests, **3** static
+mobile contracts, TypeScript, and a real iOS simulator pass. This is one
+conservative period-group path; people/thread grouping, semantic attendance,
+binary original playback, social adoption, production activation, design
+parity and release readiness remain outside the claim.

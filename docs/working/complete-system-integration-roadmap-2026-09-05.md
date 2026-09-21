@@ -6111,3 +6111,28 @@ Claude-design parity, or release readiness. The next implementation wave
 should therefore target a remaining supported user-visible capability (such as
 Life organized-record native depth or another practical consequence) and keep
 the same producer → owner read → destination → return discipline.
+
+## September 21 functional implementation receipt — native Life organized record
+
+Life's existing organization consumer now has a real native receiving proof.
+Backend commit `a397b94e5` corrects the disposable retained-source rehearsal
+to invoke the existing `maintain_life_owner_change` boundary, including its
+organization materialization/withdrawal callbacks. This does not add a second
+projector or change the Life model; it makes the fixture exercise the same
+owner path used by the supported organization read.
+
+App commit `00e117c71` adds `.maestro/82-life-organized-record.yaml`, its
+run-scoped runner, and three static contracts. With the real local API and
+iOS simulator, the flow proves: the retained source appears in Life's Time
+root; the user opens organized Life views; the current period group appears;
+the group opens the scoped Life record containing the exact source; and the
+back control returns to Life. Cleanup withdraws the source and the derived
+group, and HTTP checks confirm neither remains. The focused backend Life/API
+packet passed **315 tests**, the app static packet passed **3**, TypeScript
+passed, and the simulator run passed end to end.
+
+This closes native depth for one conservative period group. It does not claim
+multi-lens breadth, semantic place attendance, people/thread grouping, binary
+original playback, social adoption, production activation, design parity, or
+release readiness. Continue with another supported user-visible consequence
+only after preserving the same owner projector and cleanup boundary.
