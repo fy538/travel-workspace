@@ -5753,3 +5753,9 @@ return action dismisses to the exact Places-lens Life record rather than a
 generic Life surface. The focused Intake/Life packet passes **29 tests** (with
 the existing non-fatal `act(...)` warnings from the original-preview async
 fixture).
+
+Backend commit `f518d6e22` adds the route-level regression for the same
+contract: a retained source with an explicit venue subject is emitted in the
+Places lens as a private `source_submission`, includes the venue in
+`represented_refs`, and points to the exact Intake submission. The focused Life
+route suite passes **26 tests**.
