@@ -59,13 +59,14 @@ documentation drift that had called several already-renderable kinds "dark";
 it does not claim source admission, recurring content supply, runtime
 full-scroll quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
-**Current candidate tuple after the latest rebaseline:** workspace `3435dfa`,
+**Current candidate tuple after the latest rebaseline:** workspace `3a102f8`,
 backend `651628265`, and app `242d309f0`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The latest workspace
-advance records the disposable owner-loop verification and renderer-ledger
-correction; the backend advance adds the canonical Home same-Place composition
-proof, persisted public-Place HTTP readback, and persisted Life graph/People
-HTTP readback. The child-code tuple also includes the Places typed notice bridge,
+advance records the persisted Life graph/People HTTP readback after the
+disposable owner-loop and renderer-ledger corrections; the backend advance
+adds the canonical Home same-Place composition proof, persisted public-Place
+HTTP readback, and persisted Life graph/People HTTP readback. The child-code
+tuple also includes the Places typed notice bridge,
 native sender-withdrawal proof, shared Home/Places semantic-state treatment,
 and the explicit People-bound anchor index repair. Nothing is merged to main,
 published, flag-activated, or resumed in shared Integration/landing. The next
@@ -74,7 +75,7 @@ or supplied Life/social downstream value, with R05/R09 edge work continuing
 only where its required environment is available.
 
 The latest workspace documentation head before this documentation receipt is
-`3435dfa`; backend and app code are `651628265` and `242d309f0`. The backend
+`3a102f8`; backend and app code are `651628265` and `242d309f0`. The backend
 advance is integration-test coverage only; it does not alter production
 behavior or release state.
 
@@ -1871,8 +1872,8 @@ source/original distinction, and docs closeout.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `c586de3` | `b6e7014` |
-| Backend | `96d264c41` | `a7c02cbe1` |
+| Workspace | `3a102f8` | `b6e7014` |
+| Backend | `651628265` | `a7c02cbe1` |
 | App | `242d309f0` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
@@ -1885,7 +1886,7 @@ and ownership before execution; this tuple is a dated observation.
 | Capability | Implemented / recorded evidence | Remaining product or evidence boundary |
 | --- | --- | --- |
 | Home / Places | Owner-backed Save/readback, public Place and child-entity readings, consented place pulls, nearby open-now options, supplied experience comparisons, plural social perspectives, addressed Place-contribution region, saved-place closure/reopening dismissal; named local API/iOS flows | Varied worthwhile full-scroll supply, broader section/design breadth, selection quality across situations, complete failure/empty states and visual parity |
-| Life | Retained text originals, exact refinding/return, explicit place-bound sources and organized period groups; named local API/iOS flows | Broader media/corpus and People/Threads experience, later permitted reuse, indexed serving cutover and Atlas retirement |
+| Life | Retained text originals, exact refinding/return, explicit place-bound sources and organized period groups; a persisted private Plan and explicitly permissioned shared Outcome now reach the Life/People HTTP readers; named local API/iOS flows | Broader media/corpus and People/Threads experience, later permitted reuse, indexed serving cutover and Atlas retirement |
 | Social | Existing-owner venue-bound pulls and one-recipient original-text receiving through Life/Home; named local API/iOS flows; native sender withdrawal after recipient disconnect | Casual media/group/gathering breadth and useful juxtaposition; no new sharing or friend-source AI-use policy is adopted here; broader downstream use remains |
 | Practical/live engine | Current open-now facts and saved-place changes affect surfaces; explicit fit contract and private stop-assistance/reviewed Send implemented | Provider-backed fit rehearsal, wider fresh-world coverage, purpose-preserving adaptation and accepted watching mandates; R09 code correction is complete, persisted/native timezone evidence remains |
 | Preparation | Explicit Source work registered on the shared Arq rail behind production/worker/cohort gates; result serialization and bounded deterministic due-work recovery repaired | Real Arq/Redis wrapper and expired due-work recovery pass; a current disposable workflow also completed on the registered worker with `producer_silence`; exhausted final-attempt leases now close through the existing fence with 29 focused and 25 disposable-Postgres tests, including retry-budget recovery. Registration/recovery are not activation, and live output quality, cost and process-restart queue evidence remain unverified |

@@ -103,7 +103,8 @@ supplied-experience comparison, the plural social perspective, the
 standalone-only Places feed-state repair, the addressed Place-contribution
 region, and the same-place public-reading sequence in backend `c18470b4a` and
 app `8cd899b6d`; the latest workspace verification receipt before this
-roadmap maintenance is `c586de3`, which also records the native
+roadmap maintenance is `3a102f8`, which records the persisted Life
+graph/People HTTP readback after the native
 sender-withdrawal evidence. This
 documentation
 advance does not merge, publish, enable or
@@ -174,7 +175,7 @@ package should be an existing-authority downstream result or a
 sparse/pending/failure treatment, not another route-only happy path.
 
 Current candidate tuple after the latest rebaseline: workspace
-`3435dfa`, backend `651628265`, app `242d309f0`, all on
+`3a102f8`, backend `651628265`, app `242d309f0`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable

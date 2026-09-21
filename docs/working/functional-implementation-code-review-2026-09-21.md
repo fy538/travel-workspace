@@ -41,9 +41,10 @@ state treatment is:
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes. Earlier
 runtime-boundary receipts at workspace `0fd06b7` and `f127543` remain
-historical. The subsequent candidate is workspace `3435dfa`, backend
-`651628265`, and app `242d309f0`; workspace `3435dfa` records the disposable
-owner-loop and renderer-ledger updates, while backend `96d264c41` adds the
+historical. The subsequent candidate is workspace `3a102f8`, backend
+`651628265`, and app `242d309f0`; workspace `3a102f8` records the disposable
+owner-loop, renderer-ledger and persisted Life graph/People HTTP updates,
+while backend `96d264c41` adds the
 canonical Home same-Place composition proof plus the persisted public-Place
 HTTP readback, and backend `651628265` adds the persisted Life graph/People HTTP
 readback. Those later receipts do not retroactively widen this review's
