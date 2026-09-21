@@ -270,25 +270,28 @@ system. Work on the first three can progress together where dependencies permit.
    grouping expectations and evolving-update results over ordinary life,
    journeys, continuing attention, shared perspectives and kept-but-not-lived
    material; passing synthetic holdouts is not system completion.
-2. **M1/M2 — connect real evidence to maintained organization.** Agree Capture's
-   bounded current-authority evidence read and Integration's revision/durable
-   delivery semantics before source-owned changes. Map fields to real owner
-   data, retaining explicit unsupported coverage. The retained-source custody
-   path now has a connected source-literal capture-month organization adapter;
-   treat it as the first adapter, not portfolio completion. Life can prepare consumer,
-   replay and stale-result tests now. Connect publication through the existing
-   maintainer only with current owner/dependency checks, previous plus new
-   affected groups, durable controls and bounded completion/continuation.
-   Exit with owner change → evidence read → organization → corrected shadow
-   readback, including replay, reordering, withdrawal and explicit restore.
-3. **M3/M4 — make organized evidence useful to read.** Continue bounded root,
-   depth, exact-original, Everything kept, refind and anchor-seek contracts over
-   shared eligibility/identity semantics. Evaluate lens-specific previews and
-   recognition alongside group correctness; the visible result must reduce
-   work, not expose an organization-maintenance queue. Contract/fixture work
-   is unblocked; connected acceptance depends on the relevant owner inputs.
-   Mobile adoption follows reviewed public contracts and schema sync, with
-   final visual/device acceptance still separately scheduled.
+2. **M1/M2 — extend real evidence into maintained organization.** The
+   retained-source custody path now has a connected source-literal
+   capture-month adapter, and the candidate-owned Experience Anchor shadow
+   consumer has an owner-revision/readback path. Treat both as bounded first
+   adapters, not portfolio completion. Map additional fields to real owner data,
+   retain explicit unsupported coverage, and add replay/stale-result tests.
+   Connect publication through the existing maintainer only with current
+   owner/dependency checks, previous plus new affected groups, durable controls
+   and bounded completion/continuation. Exit with owner change → evidence read
+   → organization → corrected shadow readback, including replay, reordering,
+   withdrawal and explicit restore.
+3. **M3/M4 — extend useful Life reading beyond the proven exact-source seam.**
+   Retained-text originals, exact refinding, explicit place-bound sources,
+   organized period groups and native return/withdrawal now have named local
+   API/iOS evidence. Continue bounded root, depth, Everything kept, refind and
+   anchor-seek contracts over shared eligibility/identity semantics, and
+   evaluate lens-specific previews and recognition alongside group correctness.
+   The visible result must reduce work, not expose an organization-maintenance
+   queue. Broader media/corpus coverage, People/Threads experiences and later
+   permitted reuse remain open; mobile adoption follows reviewed public
+   contracts and schema sync, with final visual/device acceptance separately
+   scheduled.
 4. **M5 — compare model assistance on identified misses.** Prepare B2 over the
    same candidates/corpus and existing model gateway. Before inference, name
    eligible data, model/prompt versions, call/token/cost limits and stop rules.
