@@ -33,21 +33,21 @@ state treatment is:
 
 | Repository | Current HEAD |
 |---|---|
-| Workspace | `8eeb14c` (verification baseline; later docs are receipts) |
-| Backend | `e9ad26f7f` |
+| Workspace | `3b47cf9` (current documentation receipt) |
+| Backend | `014313121` |
 | App | `9a597abd4` |
 
 This correction updates tuple identity only; it does not imply merge,
-publication, shared-runtime activation, or production flag changes. The
-follow-up runtime-boundary receipt is documented below at workspace
-`0fd06b7`; the later verification receipt is `f127543`; backend and app heads
-are unchanged.
+publication, shared-runtime activation, or production flag changes. Earlier
+runtime-boundary receipts at workspace `0fd06b7` and `f127543` remain
+historical; the current workspace receipt is `3b47cf9`, and the current child
+heads are the Life People implementation/test commits shown above.
 
 ### September 21 latest-candidate regression packet
 
-After the runtime-boundary receipt, the candidate ran the backend root
+After the Life People depth receipt, the candidate ran the backend root
 projection packet (**442 passed**), focused Life route/projection/index-projector
-packet (**43 passed**), focused Home/Places/Life native packet (**53 passed**),
+packet (**47 passed**), focused Home/Places/Life native packet (**54 passed**),
 and persisted schedule-zone unit packet (**36 passed**). These are named
 focused regressions, not `make verify`, full device acceptance, or release
 evidence. They leave R05 process interruption/transient failure and R09

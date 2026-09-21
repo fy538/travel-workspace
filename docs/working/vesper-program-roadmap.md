@@ -51,7 +51,7 @@ to repeat the same tour. Frontend polish is part of each surface's completion.
 Retention/refinding is further along than context materially improving a later
 answer, possibility or action.
 
-**Current candidate tuple after this receipt:** workspace `8eeb14c`, backend
+**Current candidate tuple after this receipt:** workspace `3b47cf9`, backend
 `014313121`, and app `9a597abd4`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; the child-code tuple now includes the Places typed
@@ -128,7 +128,7 @@ and evidence boundary.
 After the rebaseline, the latest candidate was checked without changing
 production state or claiming a full gate. Backend root projection regressions
 passed **442 tests**; the focused Life route/projection/index-projector packet
-passed **43 tests**; the focused Home/Places/Life native packet passed **53
+passed **47 tests**; the focused Home/Places/Life native packet passed **54
 tests**; and the persisted schedule-zone unit packet passed **36 tests**.
 These packets overlap the broader historical receipts and prove only their
 named contracts. They do not close R05's process-interruption/transient-failure
@@ -1822,7 +1822,7 @@ tasks. The present update plans work; it does not start agents or services.
 | --- | --- | --- |
 | **First — review evidence closeout** | R01/R03 disposable-Postgres authority/revocation regressions now pass. R04 withdrawal controls and R09 schedule-zone propagation are code-fixed with focused regressions; the R04 sender-control API and native simulator rehearsals now pass. Named disposable-Postgres/native paths, one real Arq/Redis wrapper path, and one expired due-work recovery path pass. R05 transient/restart evidence and R09 timezone-edge evidence remain open. Not complete. | Run only the specific missing matrices, with an explicitly disposable database/queue/device where required; preserve truthful gate status and do not repeat the completed happy-path tour. Independent product work can proceed outside affected files. |
 | **Primary build — Home/Places useful breadth** | In progress. The current candidate has real Home/Places owner reads, social receiving, practical fit/open-now, exact Place destinations and return; the remaining gap is a supplied full-scroll experience with enough substantive, varied value. | Choose one bounded content-depth seam per package. Reuse current Source/content/relationship/Place owners. Include bounded preparation recovery when needed for reliable supply; no new generator/store. One owner for shared root composition, contracts and receiving adapters. |
-| **Complementary build — Life/social downstream value** | Extend retention/refinding into useful later permissioned context and supported human contributions, with recognizable organization and exact return. Not yet complete. | Existing source, Life and relationship owners; no inference of permission from custody. Hand exact projections to the receiving owner; defer only genuinely policy-dependent media/group/use expansion. |
+| **Complementary build — Life/social downstream value** | The bounded People-record seam is landed: shared Outcomes tied to a multi-person Occasion and non-private multi-participant Commitments now reach Life with exact grant/member refs and return. Broader later permitted context, media, contribution and Threads value is not complete. | Existing source, Life and relationship owners; no inference of permission from custody. Choose the next downstream result only where structured authority already exists; defer genuinely policy-dependent media/group/use expansion. |
 | **Across both builds — native polish** | Required within each completed surface: design hierarchy, card/media treatment, interaction, accessibility and sparse/pending/failure states. Not accepted yet. | Use current inspected Claude exports and handoffs; record actual canvas/version. Unresolved visual choices do not block unrelated owner/supply work. |
 | **Orchestration / this thread** | Own scope, current queue, cross-system decisions and package review; dispatch only when requested. | Review first working composition, consequential blocker and completed package. Judge delivered behavior and remaining user effort, not commit/test counts. |
 | **Dedicated Integration / landing** | PAUSED; combined shared runtime, main landing and publishing are not enabled by this update. | Lane-local implementation/verification remains distinct. On explicit resume, receive selected clean cuts and run required gates without pretending candidate receipts certify production. |
