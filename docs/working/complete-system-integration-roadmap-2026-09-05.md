@@ -69,7 +69,7 @@ browse shelf, native branch/continuity/returned-understanding treatments, the
 honest balanced-field fallback, the native owner-backed evidence register, the
 supplied-experience comparison, the plural social perspective, the
 standalone-only Places feed-state repair, the addressed Place-contribution
-region, and the same-place public-reading sequence in backend `7f7bc8e24` and
+region, and the same-place public-reading sequence in backend `27a6ea73d` and
 app `b1f37eac4`; the latest workspace
 documentation receipt is `9205cd0`. This
 documentation
@@ -84,7 +84,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R04,
 R05 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after this receipt: workspace
-`9205cd0`, backend `7f7bc8e24`, app `b1f37eac4`, all on
+`9205cd0`, backend `27a6ea73d`, app `b1f37eac4`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
@@ -174,7 +174,8 @@ introduced, and real relationship-backed device evidence remains open.
 ### September 21 Home value-depth receipt — same-place public reading sequence
 
 The public Place-content owner already supplied accepted, evidence-linked
-interpretations to Home one at a time. Backend `7f7bc8e24` adds a bounded
+interpretations to Home one at a time. Backend commits `7f7bc8e24` and
+`27a6ea73d` add a bounded
 Home-only composition mode: two or more current records for the same entity
 become one `horizon_editorial_passage` with the existing `sequence` medium.
 Each step retains its source id and exact claim/interpretation; the unit keeps

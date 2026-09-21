@@ -55,7 +55,7 @@ completion. Retention/refinding is further along than context materially
 improving a later answer, possibility or action.
 
 **Current candidate tuple after this receipt:** workspace `9205cd0`, backend
-`7f7bc8e24`, and app `b1f37eac4`, all on the isolated
+`27a6ea73d`, and app `b1f37eac4`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; it does not change the child-code tuple, merge the
 lane, enable a flag, or resume shared Integration/landing. The next substantive
@@ -127,7 +127,8 @@ and evidence boundary.
 ## September 21 functional receipt — same-place public readings compose into a sequence
 
 The public Place-content owner already supplied accepted, evidence-linked
-interpretations to Home one at a time. Backend commit `7f7bc8e24` adds an
+interpretations to Home one at a time. Backend commits `7f7bc8e24` and the
+defensive deduplication follow-up `27a6ea73d` add an
 opt-in Home adapter mode used by the real `places_context` reader: when at
 least two current records describe the same entity, Home emits one
 `horizon_editorial_passage` whose lead medium is the existing `sequence`
