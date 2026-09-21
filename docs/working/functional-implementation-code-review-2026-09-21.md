@@ -60,7 +60,7 @@ unchanged throughout.
 
 The requested correction pass landed in the independent child repositories:
 
-- Backend `ea403ec0a` — authority gates, release-scoped reading, bounded
+- Backend `ea403ec0a` plus `2935757fe` — authority gates, release-scoped reading, bounded
   geography batching, practical entity coverage, worker serialization, async
   DB boundaries and run-isolated rehearsal fixtures.
 - App `7a478fd2e` — sender withdrawal history, arrangement-purpose navigation,
