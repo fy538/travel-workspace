@@ -1594,8 +1594,9 @@ snapshots cover the Life/original routes.
 This remains a candidate handoff: the four-root rollout gate, integration
 landing, provider activation, native visual acceptance and publication are
 unchanged. Focused evidence is strong, but the full API gate still has 55
-pre-existing expired policy dates, and native/disposable-Postgres acceptance is
-not established. The next checkpoint is a combined receiving/runtime read
+pre-existing expired policy dates and one unrelated missing-consumer entry, and
+native/disposable-Postgres acceptance is not established. The next checkpoint is
+a combined receiving/runtime read
 against both slices, followed by the next highest-value Home/Places supply gap;
 do not restart Life or merge the broad native-receiving candidate wholesale.
 

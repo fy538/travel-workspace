@@ -92,7 +92,8 @@ regressions **23 passed**. A full offline backend sweep reached **21,526 passed*
 before the package repairs; after those repairs, the only remaining full-sweep
 compatibility failure is the pre-existing expired-deadline check for two legacy
 AI bridges. The standard API audit still reports the pre-existing 55 expired
-policy review dates. Native device acceptance, disposable-Postgres execution,
+policy review dates plus one unrelated missing-consumer entry for the intake
+media read. Native device acceptance, disposable-Postgres execution,
 merge/publication and rollout activation remain unproven.
 
 The implementation commits are backend `5dd8e6938` and mobile `9fee2d46c`, in
