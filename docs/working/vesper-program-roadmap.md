@@ -2077,3 +2077,24 @@ now receives both the exact immutable reading and its Place area, so it can
 open the Place reader with the reading source and preserve the originating
 return token. This is a bounded receiving repair; it does not add a content
 store, provider, generator, or new route family.
+
+## September 21 E2 follow-through — Home source-backed reading depth
+
+The same identity seam existed in Home's contextual Places adapter. A
+source-backed editorial card carried its immutable `place_content_primitive`
+source into Home, but the adapter dropped the canonical Place subject before
+constructing the Places destination. Backend commit `b2fcbdd90` now preserves
+the source and Place together in Home represented/owner refs, value-contract
+subjects, and the typed destination resource set. Legacy dossier cards remain
+unchanged, and the change reuses the existing Places subject resolver rather
+than adding another identity abstraction.
+
+Evidence: the focused Home portfolio and v2 contract packet passes **73
+tests**; the new regression proves a Home source-backed reading carries both
+the immutable source revision and exact Place continuation. Ruff, formatting,
+vulture, boundary, and repository hooks pass. This closes the analogous E2
+Home receiving gap but does not claim full Home/Places corpus parity, social
+delivery, native tap/back proof for this newly covered path, production flag
+activation, or Claude-design visual parity. The next useful slice is therefore
+another supported receiving/action connection or the bounded native proof, not
+a new content generator, store, or route family.
