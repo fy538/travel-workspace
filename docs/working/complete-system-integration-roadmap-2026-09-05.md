@@ -5951,3 +5951,33 @@ production flag activation, Claude-design visual parity, or child-owned Source
 support in the Places collection. The next useful slice should therefore move
 to another supported receiving/action connection rather than add a new content
 store, generator, or route family.
+
+## September 21 functional implementation receipt — native Home child-owned Source continuity
+
+The next Home receiving seam is now proven with a real local-Postgres fixture.
+Backend commit `9553d602f` adds a disposable New York City child venue and one
+accepted, policy-bound public `interpretive_lens` Source owned by that venue. It
+temporarily anchors the selected account to the NYC Home area and restores the
+previous Home location during cleanup. The fixture authorizes both the Home
+notice and the exact venue reader's bounded interpretation consequence; it does
+not create a booking, save, provider result, or generated artifact.
+
+The same backend commit fixes the production Home adapter identity seam: the
+immutable Source now appears in the active unit's `represented_refs` as well as
+the destination and owner/source refs. Without that identity, the native return
+registry correctly rejected the destination as containing a resource absent from
+the unit that opened it. The regression packet and the Home/Practical root
+packet pass **76 tests** with Ruff and formatting clean.
+
+App commit `de621f0c0` adds `.maestro/77-home-child-source.yaml`, its real-API
+runner, and three static runner/flow contract tests. On the iOS simulator, the
+flow proved: the child-owned Source appears as a substantive Home reading;
+opening it reaches the exact venue object reader with the fixture claim and
+interpretation; Back returns to the same Home unit; cleanup removes the fixture
+and the temporary Home anchor. App typecheck and the static packet pass.
+
+This closes the narrow Home child Source → exact venue reading → Home return
+boundary. It does not claim broad Home/Places corpus parity, social delivery,
+provider supply, production rollout, or Claude-design visual parity. The next
+useful slice remains another supported receiving/action connection or a bounded
+Life/native return seam, not a new content generator, store, or route family.
