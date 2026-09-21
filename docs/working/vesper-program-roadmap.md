@@ -2459,9 +2459,10 @@ event. The owner-level rehearsal also passed directly: `changed` emitted the
 closure card, `clear_places_notice` recorded a neutral dismissal, the card
 disappeared, and the Save remained.
 
-Evidence: backend return/section tests passed **52**; the new static mobile
-contract passed **3**; shell syntax, Python compilation, Ruff, and formatting
-passed; and the real native flow passed end to end on simulator
+Backend commit `5bbba47cc` and app commit `f06a309dc` carry the fixture and
+native flow. Evidence: backend return/section tests passed **52**; the new
+static mobile contract passed **3**; shell syntax, Python compilation, Ruff,
+and formatting passed; and the real native flow passed end to end on simulator
 `D7C8FEF4-237B-4347-841C-6FE920BFABFA`. This closes one practical consequence
 loop (current-world evidence → user-controlled dismissal) without claiming
 provider acquisition, alternative selection, notifications, or broad Places
