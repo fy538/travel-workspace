@@ -38,8 +38,8 @@ are historical and do not form additional queues. Update these summaries when
 a substantial package finishes instead of appending a competing next step.
 
 **Next emphasis:** close the remaining correctness matrices that materially
-gate the candidate (R01/R03 authority and revocation, R04 sender controls, R05
-actual queue execution, and R09 timezone edges) while building fuller supplied
+gate the candidate (R04 sender controls, R05 actual queue execution, and R09
+timezone edges) while building fuller supplied
 Home/Places experiences. Permissioned Life/social downstream value can proceed
 where its files and authority are independent. The named native/database happy
 paths are now evidence, not an invitation to repeat the same tour. Frontend
@@ -52,9 +52,9 @@ and lane-local disposable-runtime work recorded here. This rebaseline does not
 resume shared runtime, authorize landing/publishing, enable production flags or
 adopt pending product agreements. Cross-run editorial reuse remains pending.
 The [review ledger](functional-implementation-code-review-2026-09-21.md) is
-**not closed**: the named native/database happy paths now pass, while R01/R03
-authority matrices, R04 sender-control coverage, R05 queue execution and R09
-timezone edge coverage remain open.
+**not closed**: the named native/database happy paths now pass and the R01/R03
+authority matrices are verified, while R04 sender-control coverage, R05 queue
+execution and R09 timezone edge coverage remain open.
 
 ## September 21 evidence closeout — current boundary
 
@@ -69,8 +69,8 @@ social runner required `PLACE_HANDOFF_PULL_ENABLED=true` in the disposable API
 process; no production or shared runtime flag was changed.
 
 This closes those named owner/readback boundaries, not the whole product. The
-queue wrapper, rejected-command and post-revocation authority matrices,
-sender-control and timezone edge matrices, broader supplied Home/Places
+queue wrapper, sender-control and timezone edge matrices, broader supplied
+Home/Places
 coverage, later permitted Life/social value, Claude-design visual parity and
 release/landing gates remain unfinished.
 
@@ -1145,7 +1145,7 @@ fresh certification of every path on the latest tuple.
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
 | Workspace | `046ba64` (current tranche candidate) | `b6e7014` |
-| Backend | `7f993a3cb` | `a7c02cbe1` |
+| Backend | `fcec68bfe` | `a7c02cbe1` |
 | App | `44872d0c2` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
@@ -1252,7 +1252,7 @@ tasks. The present update plans work; it does not start agents or services.
 
 | Package / role | Status and complete outcome | Dependency / handback |
 | --- | --- | --- |
-| **First — review evidence closeout** | R04 withdrawal controls and R09 schedule-zone propagation are code-fixed with focused regressions. Named disposable-Postgres and native Home/Places/Life happy paths now pass; R01/R03 authority readback, R04 sender-control, R05 queue-environment and R09 timezone-edge evidence remain open. Not complete. | Run only the specific missing matrices, with an explicitly disposable database/queue/device where required; preserve truthful gate status and do not repeat the completed happy-path tour. Independent product work can proceed outside affected files. |
+| **First — review evidence closeout** | R01/R03 disposable-Postgres authority/revocation regressions now pass. R04 withdrawal controls and R09 schedule-zone propagation are code-fixed with focused regressions. Named disposable-Postgres and native Home/Places/Life happy paths now pass; R04 sender-control, R05 queue-environment and R09 timezone-edge evidence remain open. Not complete. | Run only the specific missing matrices, with an explicitly disposable database/queue/device where required; preserve truthful gate status and do not repeat the completed happy-path tour. Independent product work can proceed outside affected files. |
 | **Primary build — Home/Places useful breadth** | Complete selected design sections as a coherent full scroll with real supplied value, useful depth/actions, practical context and existing social contributions. Not yet complete. | Reuse current Source/content/relationship/Place owners. Include bounded preparation recovery when needed for reliable supply; no new generator/store. One owner for shared root composition, contracts and receiving adapters. |
 | **Complementary build — Life/social downstream value** | Extend retention/refinding into useful later permissioned context and supported human contributions, with recognizable organization and exact return. Not yet complete. | Existing source, Life and relationship owners; no inference of permission from custody. Hand exact projections to the receiving owner; defer only genuinely policy-dependent media/group/use expansion. |
 | **Across both builds — native polish** | Required within each completed surface: design hierarchy, card/media treatment, interaction, accessibility and sparse/pending/failure states. Not accepted yet. | Use current inspected Claude exports and handoffs; record actual canvas/version. Unresolved visual choices do not block unrelated owner/supply work. |

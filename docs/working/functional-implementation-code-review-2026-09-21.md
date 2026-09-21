@@ -65,7 +65,8 @@ unchanged throughout.
 
 The requested correction pass landed in the independent child repositories:
 
-- Backend `ea403ec0a`, `2935757fe`, `79c4b1d8a`, `70b607e34` plus `7f993a3cb` — authority gates,
+- Backend `ea403ec0a`, `2935757fe`, `79c4b1d8a`, `70b607e34`, `7f993a3cb`,
+  `c84d0ea31` and `fcec68bfe` — authority gates,
   release-scoped reading, bounded geography batching, practical entity coverage,
   worker serialization, async DB boundaries, run-isolated rehearsal fixtures
   and schedule-timezone propagation.
@@ -136,8 +137,7 @@ now executed evidence, not plans:
   runner verified both temporary fixtures were absent after cleanup.
 
 These receipts close the earlier persisted/native boundary for the named happy
-paths. They do **not** close R01's rejected-command zero-effect matrix, R03's
-post-revocation original matrix, R04's sender-withdrawal-control matrix, R09's
+paths. They do **not** close R04's sender-withdrawal-control matrix, R09's
 persisted/native timezone matrix, R05's actual Arq/Redis wrapper, or the full
 cohort/release and design-parity gates. The review ledger therefore remains
 open and should not be marked release-ready.
@@ -167,9 +167,9 @@ Focused correction receipts on the candidate tuple:
 
 | ID | Priority | Defect | Owning area | Status |
 |---|---|---|---|---|
-| R01 | P1 | Rejected original can still commit a recipient handoff/message | Relationships transaction | Fixed; DB regression still required |
+| R01 | P1 | Rejected original can still commit a recipient handoff/message | Relationships transaction | Fixed; disposable-Postgres revocation regression passes |
 | R02 | P2 | Places reading bypasses active release/cohort eligibility | Content / Places | Fixed; governed outsider/cohort matrix still required |
-| R03 | P2 | Pull-consent revocation leaves attached original readable | Relationships read policy | Fixed; persisted readback matrix still required |
+| R03 | P2 | Pull-consent revocation leaves attached original readable | Relationships read policy | Fixed; disposable-Postgres attached-read regression passes |
 | R04 | P2 | Sender loses withdrawal controls after relationship disconnect | Mobile original sharing | Code-fixed; named Life return path passes; sender-control matrix still required |
 | R05 | P2 | Source worker throws while serializing its actual result type | Worker adapter | Serializer fix applied; actual queue-environment acceptance unrun |
 | R06 | P2 | Nine expanded place IDs silently remove Home public supply | Home / Places scope | Fixed with 8-ID batching; scale regression still required |
@@ -215,10 +215,13 @@ original bytes. The recipient can receive a place message/handoff even though
 the sender is told the command was revoked.
 
 **Applied:** validate and lock all required original authority before any
-recipient effects. **Regression still required:** disposable-Postgres prepare → source
-expiry/revocation → execute; assert revoked command and zero new recipient
-messages, handoffs and creation events. The review reproduction was offline,
-not a real-Postgres execution.
+recipient effects. **Verified:** the dedicated disposable-Postgres regression
+at backend `c84d0ea31` passed (`1 passed`): prepare → source revocation →
+execute returns a revoked command and leaves zero recipient messages, handoffs
+or creation events. The test also covers the prepared original's revocation
+state. A separate source-retention-expiry variant is not claimed; the existing
+prepare contract prevents a delivery from outliving source retention, so that
+case remains a distinct boundary if the contract later permits it.
 
 ## R02 — Apply release eligibility to both Places reading discovery and exact reads
 
@@ -269,8 +272,13 @@ the original delivery automatically.
 
 **Applied:** share the applicable current parent-authority checks, including
 pull consent, while preserving the intentional rule that dismissal alone is
-not withdrawal. **Regression:** revoke consent after delivery and check list,
-metadata, content and Home projection; separately retain dismissal behavior.
+not withdrawal. **Verified:** backend `fcec68bfe` adds the attached-original
+fixture to the disposable-Postgres relationship packet. With consent enabled,
+`get_original_delivery_source_access` returns the exact text; after consent is
+disabled it raises `PermissionError` and the readable pull list is empty. The
+selected packet passed **7 tests, 1 deselected**. Native capture of this exact
+attached-original withdrawal and a Home serialized-content assertion remain
+outside this receipt; they are not claimed here.
 
 ## R04 — Preserve withdrawal controls independently of new-send eligibility
 
@@ -518,7 +526,7 @@ python3 scripts/measure_verification.py --label review-openapi-freshness -- zsh 
   TypeError above; canonical execution and deployment builders were patched,
   while the decorator, wrapper and result object were real. Its measured
   record includes the complete reproduction command.
-- Reviewer probes for R01–R03 and R06–R09 were executed offline without
+- Reviewer probes for R02–R03 and R06–R09 were executed offline without
   persisted measurement receipts; their specific evidence boundaries are
   documented above. They do not constitute PostgreSQL or native acceptance.
 
@@ -546,9 +554,10 @@ full `make verify`, device run or publishing was performed.
 
 ## Recommended correction order
 
-**Current:** R04 and R09 code-level corrections are complete, and the named
-Life/Home/Places happy paths now have disposable-database and native receipts.
-Close the remaining authority/revocation, sender-control and timezone matrices
+**Current:** R01 and R03 are now closed for their disposable-Postgres
+revocation/readback cases. R04 and R09 code-level corrections are complete, and
+the named Life/Home/Places happy paths now have disposable-database and native
+receipts. Close the remaining sender-control and timezone matrices
 in the correct environment. Include Source recovery
 in the next reliably supplied-value package; registration/serialization fixes
 do not establish recovery. Do not rerun the initial repair list as though the
@@ -558,8 +567,8 @@ affected ownership/file boundaries.
 
 The following preserves the initial repair ordering and its rationale:
 
-1. **Authority and transaction correctness:** R01, R03 and R04; review R02's
-   release-policy reuse in the same correction wave with a separate file owner.
+1. **Authority and transaction correctness:** R04; review R02's release-policy
+   reuse in the same correction wave with a separate file owner.
 2. **Generation execution:** R05. Decide the bounded retry/recovery posture
    before expanding controlled generation activation.
 3. **User-visible completeness:** R06–R09; Home supply, practical kinds and
