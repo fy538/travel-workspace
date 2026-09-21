@@ -43,13 +43,14 @@ authority. Existing I0–I6/CV contracts still govern implementation. Do not
 rebuild foundations merely because an older table described them as missing.
 
 Current order: close only the remaining evidence defects that materially change
-the candidate; make one supplied Home/Places experience substantially fuller;
-then advance permissioned Life/social downstream value in parallel where files
-are independent. The next Home/Places package must be a user-visible content
-depth or consequence seam using existing owners and exact destinations—not a
-new generator, feed, storage family, or another happy-path rehearsal. Native
-polish belongs in each surface package. Focused regressions accompany delivery;
-more happy-path rehearsals alone are not the next product milestone.
+the candidate; keep the supplied Home/Places full-scroll and native sender
+withdrawal receipts honest; then advance permissioned Life/social downstream
+value in parallel where files are independent. The next package must be a
+user-visible sparse/pending/failure state or consequence seam using existing
+owners and exact destinations—not a new generator, feed, storage family, or
+another happy-path rehearsal. Native polish belongs in each surface package.
+Focused regressions accompany delivery; more happy-path rehearsals alone are
+not the next product milestone.
 
 The first substantive value-depth package in this tranche is now landed:
 multiple accepted public readings for the same Place can compose into one
@@ -82,23 +83,23 @@ truthfully support a richer received result (comparison, sequence, evidence or
 practical consequence), with exact destination, return, expiry and empty/error
 states? If not, do not add a new content/generator/store/route abstraction;
 choose another supported producer → owner read → destination → return seam or
-leave the missing supply explicit. Evidence-only work remains bounded to R04,
-R05 and R09, and visual polish travels with the selected surface package.
+leave the missing supply explicit. Evidence-only work remains bounded to R05
+and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after this receipt: workspace
-`d4ead84`, backend `c18470b4a`, app `8cd899b6d`, all on
+`ef61130`, backend `35765fdb5`, app `9452f09d9`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
 verification can continue; no shared runtime, publishing, flag activation,
 paid/provider run or pending product policy is enabled by this rebaseline.
 The [review ledger](functional-implementation-code-review-2026-09-21.md) remains
-open for the remaining authority, queue and edge-case evidence, while R04 and
-R09 are now code-fixed and the named native/database happy paths pass. R05's
-exhausted-final-lease recovery is now code-fixed and covered by focused tests;
-the disposable-Postgres and transient-provider rehearsals now pass; a real
-process-restart queue rehearsal is still required before calling preparation
-reliable.
+open for the remaining authority, queue and edge-case evidence. R04 and R09
+are code-fixed; R04 now also has native sender-control evidence, while R09's
+persisted/native timezone edge matrix remains open. R05's exhausted-final-lease
+recovery is code-fixed and covered by focused tests; the disposable-Postgres
+and transient-provider rehearsals pass, but a real process-restart queue
+rehearsal is still required before calling preparation reliable.
 
 ### September 21 value-depth receipt — supplied experience comparison
 
@@ -2179,12 +2180,12 @@ than adopting an exemption or treating the historical count as current.
 The combined root rehearsal and named native/database packets are now executed
 evidence, not a documentation-only rebaseline. R04 keeps sender withdrawal
 history visible through recipient loading/error/empty states, and its real API
-rehearsal now proves that authority boundary after recipient disconnection; R09
-propagates the schedule timezone needed for UTC-stored arrangements. A real
-Arq/Redis recovery sweep also moved an expired Source work item through the
-registered wrapper into durable terminal stale-state readback. The remaining
-open evidence is narrower: R04 native sender-control presentation, R05
-transient/restart failure behavior, and R09 persisted/native timezone edge
+and native simulator rehearsals now prove that authority boundary after
+recipient disconnection; R09 propagates the schedule timezone needed for
+UTC-stored arrangements. A real Arq/Redis recovery sweep also moved an expired
+Source work item through the registered wrapper into durable terminal
+stale-state readback. The remaining open evidence is narrower: R05
+transient/restart failure behavior and R09 persisted/native timezone edge
 cases. Do not describe all native-device evidence as unrun; the named Home
 Save/readback, Life source return and Places social receiving paths already pass
 on the isolated device.
@@ -2198,7 +2199,7 @@ disabled-job handling and transient failure remain unverified.
 | I0 | Inventory and decision-alignment foundation recorded; current candidate and evidence scopes now rebaselined | Keep unresolved retention/watch/reuse agreements gated only where relevant; close review findings without restarting architecture |
 | I1 | Source/graph/Outcome delivery, repair, backfill and reconciliation foundation; additional retained-source revisions and Life adoption paths in this lane | Build population and later-use coverage over existing owners; do not infer indexed serving cutover or cross-context authority from retention |
 | I2 | Bounded serving, prepared results, cancellation and publication fences; explicit Source Arq registration, serializer repair and gated due-work recovery sweep; real `not_claimed` wrapper and expired due-work recovery executions | Run still-current restart recovery and transient failure/retry scenarios in isolated Arq/Redis; cost/cohort/provider activation remains separately gated |
-| I3 | Contribution authority and useful-first intake; exact retained/received text-original paths with scoped native receipts | R01/R03 authority and revocation are verified, R04 code correction plus the real API sender-control rehearsal and named Life/Home original-receiving paths are complete; native sender presentation, broader supported originals and permissioned downstream use remain; pending history/audience policy is not silently adopted |
+| I3 | Contribution authority and useful-first intake; exact retained/received text-original paths with scoped native receipts | R01/R03 authority and revocation are verified, R04 code correction plus API/native sender-control rehearsals and named Life/Home original-receiving paths are complete; broader supported originals and permissioned downstream use remain; pending history/audience policy is not silently adopted |
 | I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots; standalone Places semantic units now reach the canonical workspace rail | Primary Home/Places full-scroll value completion from a populated, already supplied payload; prove substantive depth, exact actions/destinations, and sparse/pending/failure states with real supply breadth |
 | I5 | Open-now and saved-world changes reach surfaces; explicit fit and reviewed assistance contracts implemented | R09 code correction and the named current-world native paths are complete; persisted/native timezone edge matrix, permitted-context adaptations, provider-backed fit rehearsal and broader mandates remain separate |
 | I6 | Retirement inventories/guards exist; candidate remains isolated and rollout internal | Keep obsolete execution paths out of new work; complete obligation review and authorized cutovers/landing only when their dependencies are ready |
@@ -2218,10 +2219,9 @@ not be another broad happy-path tour.
 
 - R04 code correction is complete: sender-owned deliveries and Withdraw remain
   usable when new-send recipients are empty, disconnected, loading or unavailable.
-  The isolated real-API sender rehearsal now passes, including cleanup and
-  current eligibility readback. Run the committed native-device matrix when a
-  simulator is available; new-send eligibility remains restricted to current
-  recipients.
+  The isolated real-API and native simulator sender rehearsals now pass,
+  including cleanup, revoked readback and current eligibility readback;
+  new-send eligibility remains restricted to current recipients.
 - R09 code correction is complete: the existing schedule timezone flows through
   the read contract and UTC-stored instants format in that zone with honest
   fallback. Run persisted data, cross-device zones, midnight/DST and native
@@ -6846,3 +6846,35 @@ generation, production corpus breadth, recurring social supply, notifications,
 alternative selection, broad visual parity, or release readiness. The next
 useful slice is another supported producer/action seam or bounded Life
 downstream value—not another parallel Places scroll harness.
+
+## September 21 functional implementation receipt — native sender withdrawal after recipient disconnect
+
+The remaining R04 native boundary is now proven. App commit 9452f09d9
+corrects the existing sender-control flow to scroll to the real history row
+before asserting its controls and to verify the post-withdrawal source state.
+The runner now checks the authoritative sender-history response after the
+gesture: the exact delivery is revoked at revision 1 before cleanup. It does
+not broaden recipient eligibility or introduce another sharing owner.
+
+With the local replay API (placeholder key local-test,
+DISABLE_LLM_BACKGROUND_LOOPS=true), the governed internal bundle used
+EXPO_PUBLIC_RELATIONSHIP_UUID_HANDOFFS_ENABLED=true and the existing
+Life/Object Page flags on simulator
+D7C8FEF4-237B-4347-841C-6FE920BFABFA. The disposable fixture used the
+existing QA sender, created a temporary recipient and exact retained text
+original, then disconnected that recipient after delivery creation. The native
+flow showed the sender-owned history and Withdraw control, withdrew the
+delivery, confirmed the control disappeared, and retained the original
+material. The runner verified status=revoked/revision>=1, then removed the
+temporary delivery and recipient while preserving the sender.
+
+Evidence: the static sender-flow packet 3 passed; Maestro syntax and shell
+syntax passed; and the real iOS native flow passed end to end. The initial
+attempt exposed two honest harness issues—no scroll to the below-fold control
+and an incorrect expectation that an empty post-withdrawal recipient state
+would retain the send section—both were corrected without changing product
+behavior. This closes native R04 sender control for the exact one-recipient
+text-original scope. It does not claim group/media sharing, broader audience
+policy, notifications, production activation, or visual parity. Remaining
+review evidence is R05 process-restart/transient queue behavior and R09
+persisted/native timezone edges.

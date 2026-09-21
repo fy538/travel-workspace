@@ -38,29 +38,28 @@ are historical and do not form additional queues. Update these summaries when
 a substantial package finishes instead of appending a competing next step.
 
 **Next emphasis:** stop repeating receiving-boundary proofs and deepen the
-composed scroll with supplied material. The same-place public-reading sequence
-now survives adapter selection, Home compilation, native sequence anatomy,
-expanded-place batching and the combined regression packet. It is still not
-proof of recurring supply or a complete full-scroll experience. The next
-package must either verify that sequence through the real canonical Home
-runtime with honest sparse/pending/failure states, or select another already
-supplied owner-backed value family (practical consequence, social perspective
-or retained consequence) whose structured inputs are present. Reuse current
-owners, destinations and return state rather than add a generator, feed, or
-storage family. Permissioned Life/social downstream value can proceed where
-its files and authority are independent. The named native/database happy paths
-are evidence, not an invitation to repeat the same tour. Frontend polish is
-part of each surface's completion. Retention/refinding is further along than
-context materially improving a later answer, possibility or action.
+composed surfaces with supplied material and honest state transitions. Home and
+Places now have real multi-source full-scroll evidence, and sender withdrawal
+has a native proof; these are not proof of recurring supply, broad design
+coverage, or complete sparse/pending/failure behavior. The next package should
+either close one consequential sparse/pending/failure state in an already
+supplied root or advance a bounded Life/social downstream value whose
+structured inputs and authority are present. Reuse current owners,
+destinations and return state rather than add a generator, feed, or storage
+family. The named native/database happy paths are evidence, not an invitation
+to repeat the same tour. Frontend polish is part of each surface's completion.
+Retention/refinding is further along than context materially improving a later
+answer, possibility or action.
 
-**Current candidate tuple after this receipt:** workspace `d4ead84`, backend
-`c18470b4a`, and app `8cd899b6d`, all on the isolated
+**Current candidate tuple after this receipt:** workspace `ef61130`, backend
+`35765fdb5`, and app `9452f09d9`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
-documentation receipt only; it does not change the child-code tuple, merge the
-lane, enable a flag, or resume shared Integration/landing. The next substantive
-implementation remains runtime verification of the selected Home value-depth
-package or the next supplied value family described below, with edge-matrix
-work continuing only where its required environment is available.
+documentation receipt only; the child-code tuple now includes the Places typed
+notice bridge and native sender-withdrawal proof. Nothing is merged to main,
+published, flag-activated, or resumed in shared Integration/landing. The next
+substantive implementation remains one selected sparse/pending/failure state
+or supplied Life/social downstream value, with R05/R09 edge work continuing
+only where its required environment is available.
 
 ## September 21 post-execution rebaseline — after the 12-hour functional window
 
@@ -97,8 +96,9 @@ This changes the product's implementation position in three specific ways:
 ### Forward order after this rebaseline
 
 1. **Close only consequential edge evidence** when its disposable database,
-   queue or device is available: R04 native sender control, R05 transient /
-   restart recovery, and R09 persisted/native timezone edges. Do not block
+   queue or device is available: R05 transient/restart recovery and R09
+   persisted/native timezone edges. R04 native sender control is now verified;
+   do not block
    independent product work on unavailable environments or rerun completed
    receiving tours.
 2. **Completed bounded Home full-scroll package:** the receipt below proves
@@ -1664,7 +1664,7 @@ and ownership before execution; this tuple is a dated observation.
 | --- | --- | --- |
 | Home / Places | Owner-backed Save/readback, public Place and child-entity readings, consented place pulls, nearby open-now options, supplied experience comparisons, plural social perspectives, addressed Place-contribution region, saved-place closure/reopening dismissal; named local API/iOS flows | Varied worthwhile full-scroll supply, broader section/design breadth, selection quality across situations, complete failure/empty states and visual parity |
 | Life | Retained text originals, exact refinding/return, explicit place-bound sources and organized period groups; named local API/iOS flows | Broader media/corpus and People/Threads experience, later permitted reuse, indexed serving cutover and Atlas retirement |
-| Social | Existing-owner venue-bound pulls and one-recipient original-text receiving through Life/Home; named local API/iOS flows; sender-control authority rehearsal | Casual media/group/gathering breadth and useful juxtaposition; no new sharing or friend-source AI-use policy is adopted here; R04 native UI evidence remains |
+| Social | Existing-owner venue-bound pulls and one-recipient original-text receiving through Life/Home; named local API/iOS flows; native sender withdrawal after recipient disconnect | Casual media/group/gathering breadth and useful juxtaposition; no new sharing or friend-source AI-use policy is adopted here; broader downstream use remains |
 | Practical/live engine | Current open-now facts and saved-place changes affect surfaces; explicit fit contract and private stop-assistance/reviewed Send implemented | Provider-backed fit rehearsal, wider fresh-world coverage, purpose-preserving adaptation and accepted watching mandates; R09 code correction is complete, persisted/native timezone evidence remains |
 | Preparation | Explicit Source work registered on the shared Arq rail behind production/worker/cohort gates; result serialization and bounded deterministic due-work recovery repaired | Real Arq/Redis wrapper and expired due-work recovery pass; exhausted final-attempt leases now close through the existing fence with 29 focused and 25 disposable-Postgres tests, including retry-budget recovery; registration/recovery are not activation, and live output quality, cost and process-restart queue evidence remain unverified |
 | Native / delivery | Specific real-owner happy paths now run through the internal four-root shell; Home v2 world-read timezone boundary is corrected and its focused screen suite passes | No comprehensive native/design acceptance, latest-tuple full gate, default-shell promotion, main landing or release |
@@ -1757,7 +1757,7 @@ tasks. The present update plans work; it does not start agents or services.
 
 | Package / role | Status and complete outcome | Dependency / handback |
 | --- | --- | --- |
-| **First — review evidence closeout** | R01/R03 disposable-Postgres authority/revocation regressions now pass. R04 withdrawal controls and R09 schedule-zone propagation are code-fixed with focused regressions. Named disposable-Postgres/native paths, one real Arq/Redis wrapper path, one expired due-work recovery path, and the R04 sender-control API rehearsal now pass. R04 native UI, R05 disposable-Postgres/transient-restart evidence and R09 timezone-edge evidence remain open. Not complete. | Run only the specific missing matrices, with an explicitly disposable database/queue/device where required; preserve truthful gate status and do not repeat the completed happy-path tour. Independent product work can proceed outside affected files. |
+| **First — review evidence closeout** | R01/R03 disposable-Postgres authority/revocation regressions now pass. R04 withdrawal controls and R09 schedule-zone propagation are code-fixed with focused regressions; the R04 sender-control API and native simulator rehearsals now pass. Named disposable-Postgres/native paths, one real Arq/Redis wrapper path, and one expired due-work recovery path pass. R05 transient/restart evidence and R09 timezone-edge evidence remain open. Not complete. | Run only the specific missing matrices, with an explicitly disposable database/queue/device where required; preserve truthful gate status and do not repeat the completed happy-path tour. Independent product work can proceed outside affected files. |
 | **Primary build — Home/Places useful breadth** | In progress. The current candidate has real Home/Places owner reads, social receiving, practical fit/open-now, exact Place destinations and return; the remaining gap is a supplied full-scroll experience with enough substantive, varied value. | Choose one bounded content-depth seam per package. Reuse current Source/content/relationship/Place owners. Include bounded preparation recovery when needed for reliable supply; no new generator/store. One owner for shared root composition, contracts and receiving adapters. |
 | **Complementary build — Life/social downstream value** | Extend retention/refinding into useful later permissioned context and supported human contributions, with recognizable organization and exact return. Not yet complete. | Existing source, Life and relationship owners; no inference of permission from custody. Hand exact projections to the receiving owner; defer only genuinely policy-dependent media/group/use expansion. |
 | **Across both builds — native polish** | Required within each completed surface: design hierarchy, card/media treatment, interaction, accessibility and sparse/pending/failure states. Not accepted yet. | Use current inspected Claude exports and handoffs; record actual canvas/version. Unresolved visual choices do not block unrelated owner/supply work. |
@@ -3332,3 +3332,35 @@ generation, production corpus breadth, recurring social supply, notifications,
 alternative selection, broad visual parity, or release readiness. The next
 useful slice is another supported producer/action seam or bounded Life
 downstream value—not another parallel Places scroll harness.
+
+## September 21 functional implementation receipt — native sender withdrawal after recipient disconnect
+
+The remaining R04 native boundary is now proven. App commit 9452f09d9
+corrects the existing sender-control flow to scroll to the real history row
+before asserting its controls and to verify the post-withdrawal source state.
+The runner now checks the authoritative sender-history response after the
+gesture: the exact delivery is revoked at revision 1 before cleanup. It does
+not broaden recipient eligibility or introduce another sharing owner.
+
+With the local replay API (placeholder key local-test,
+DISABLE_LLM_BACKGROUND_LOOPS=true), the governed internal bundle used
+EXPO_PUBLIC_RELATIONSHIP_UUID_HANDOFFS_ENABLED=true and the existing
+Life/Object Page flags on simulator
+D7C8FEF4-237B-4347-841C-6FE920BFABFA. The disposable fixture used the
+existing QA sender, created a temporary recipient and exact retained text
+original, then disconnected that recipient after delivery creation. The native
+flow showed the sender-owned history and Withdraw control, withdrew the
+delivery, confirmed the control disappeared, and retained the original
+material. The runner verified status=revoked/revision>=1, then removed the
+temporary delivery and recipient while preserving the sender.
+
+Evidence: the static sender-flow packet 3 passed; Maestro syntax and shell
+syntax passed; and the real iOS native flow passed end to end. The initial
+attempt exposed two honest harness issues—no scroll to the below-fold control
+and an incorrect expectation that an empty post-withdrawal recipient state
+would retain the send section—both were corrected without changing product
+behavior. This closes native R04 sender control for the exact one-recipient
+text-original scope. It does not claim group/media sharing, broader audience
+policy, notifications, production activation, or visual parity. Remaining
+review evidence is R05 process-restart/transient queue behavior and R09
+persisted/native timezone edges.

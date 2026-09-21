@@ -371,11 +371,11 @@ now executed evidence, not plans:
 
 These receipts close the earlier persisted/native boundary for the named happy
 paths. A real Arq/Redis `run_root_source_contribution` job also completed the
-`not_claimed` result path. They do **not** close R04's native sender-withdrawal
-presentation matrix, R09's persisted/native timezone matrix, or R05's transient
-failure/restart recovery behavior, or the full
-cohort/release and design-parity gates. The review ledger therefore remains
-open and should not be marked release-ready.
+`not_claimed` result path. They do **not** close R09's persisted/native timezone
+matrix or R05's transient failure/restart recovery behavior, or the full
+cohort/release and design-parity gates. R04's native sender-withdrawal matrix
+is now closed at its exact one-recipient text-original scope; the review ledger
+therefore remains open and should not be marked release-ready.
 
 Focused correction receipts on the candidate tuple:
 
@@ -405,7 +405,7 @@ Focused correction receipts on the candidate tuple:
 | R01 | P1 | Rejected original can still commit a recipient handoff/message | Relationships transaction | Fixed; disposable-Postgres revocation regression passes |
 | R02 | P2 | Places reading bypasses active release/cohort eligibility | Content / Places | Fixed; governed outsider/cohort matrix still required |
 | R03 | P2 | Pull-consent revocation leaves attached original readable | Relationships read policy | Fixed; disposable-Postgres attached-read regression passes |
-| R04 | P2 | Sender loses withdrawal controls after relationship disconnect | Mobile original sharing | Code-fixed; real API sender-control rehearsal passes; native UI matrix remains unrun (no simulator) |
+| R04 | P2 | Sender loses withdrawal controls after relationship disconnect | Mobile original sharing | Code-fixed; real API and native sender-control rehearsals pass, including revoked readback; broader audiences/media remain out of scope |
 | R05 | P2 | Source worker throws while serializing its actual result type | Worker adapter | Serializer and exhausted-lease recovery code fixed; 29 focused tests, 25 disposable-Postgres tests, and real wrapper/expired recovery pass; only process-restart queue evidence remains open |
 | R06 | P2 | Nine expanded place IDs silently remove Home public supply | Home / Places scope | Fixed with 8-ID batching; nine-ID scale regression passes; deployed scale/cost still unmeasured |
 | R07 | P2 | Site, accommodation and experience fit checks cannot succeed | Practical assessment | Fixed; positive catalog-kind owner-adapter matrix passes |
@@ -542,10 +542,13 @@ removed that recipient from the conversation after delivery creation, and
 verified through the real local API that sender history still contained the
 delivery while eligible-new-recipient results did not. Posting Withdraw returned
 `revoked`, revision `1`; cleanup removed the delivery and temporary recipient
-without deleting the existing sender. This proves the authority/readback
-boundary, not native presentation. The native sender flow is committed as
-`travel-app/.maestro/88-life-original-sender-withdrawal.yaml` and its runner,
-but remains **unrun** because the current host has no available iOS simulator.
+without deleting the existing sender. The native sender flow then ran on the
+iOS 18.2 simulator: it scrolled to the below-fold sender history, showed
+Withdraw after recipient disconnection, removed the control after the gesture,
+and kept the original material visible. The runner re-read sender history and
+confirmed the exact delivery was `revoked` at revision `1` before cleanup.
+This closes native presentation at the exact one-recipient text-original
+scope; it does not broaden audience or media policy.
 
 ## R05 — The Source worker calls an unsupported result serializer signature
 
@@ -664,8 +667,8 @@ reading-limit text rather than weakening the contract.
 This closes the local regression gap for R06 and R07 at the stated evidence
 boundary. It does not measure deployed expanded-place cost, prove a
 provider-backed fit run, establish recurring source generation, or close the
-remaining R04/R05/R09 environment-dependent evidence. The ledger therefore
-remains active.
+remaining R05/R09 environment-dependent evidence. The ledger therefore remains
+active.
 
 ## R08 — Primary Plan inspection drops the arrangement purpose
 
