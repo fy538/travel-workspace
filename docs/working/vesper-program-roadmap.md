@@ -1170,8 +1170,8 @@ updated after the bounded Source recovery correction and docs closeout.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `c2578a2` (current tranche candidate) | `b6e7014` |
-| Backend | `aa9b47849` | `a7c02cbe1` |
+| Workspace | `72114ce` (current tranche candidate) | `b6e7014` |
+| Backend | `c4b4ff031` | `a7c02cbe1` |
 | App | `4d51c1db0` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,

@@ -52,7 +52,7 @@ polish belongs in each surface package. Focused regressions accompany delivery;
 more happy-path rehearsals alone are not the next product milestone.
 
 Current candidate tuple after the latest lane-local corrections: workspace
-`c2578a2`, backend `aa9b47849`, app `4d51c1db0`, all on
+`72114ce`, backend `c4b4ff031`, app `4d51c1db0`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
