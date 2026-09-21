@@ -33,12 +33,14 @@ state treatment is:
 
 | Repository | Current HEAD |
 |---|---|
-| Workspace | `c8efaf0` |
+| Workspace | `c8efaf0` (reviewed code/docs baseline) |
 | Backend | `35765fdb5` |
 | App | `9b463726d` |
 
 This correction updates tuple identity only; it does not imply merge,
-publication, shared-runtime activation, or production flag changes.
+publication, shared-runtime activation, or production flag changes. The
+follow-up runtime-boundary receipt is documented below at workspace
+`0fd06b7`; backend and app heads are unchanged.
 
 ### September 21 native semantic-state treatment review
 

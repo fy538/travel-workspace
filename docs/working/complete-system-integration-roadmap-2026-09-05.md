@@ -75,7 +75,7 @@ supplied-experience comparison, the plural social perspective, the
 standalone-only Places feed-state repair, the addressed Place-contribution
 region, and the same-place public-reading sequence in backend `17f20921b` and
 app `ac6e08235`; the latest workspace
-documentation receipt is now `c8efaf0`, which also records the native
+documentation receipt is now `0fd06b7`, which also records the native
 sender-withdrawal evidence. This
 documentation
 advance does not merge, publish, enable or
@@ -89,7 +89,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R05
 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after this receipt: workspace
-`c8efaf0`, backend `35765fdb5`, app `9b463726d`, all on
+`0fd06b7`, backend `35765fdb5`, app `9b463726d`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
