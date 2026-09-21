@@ -85,11 +85,12 @@ multiple accepted public readings for the same Place can compose into one
 Home sequence while retaining every source/entity/context reference and the
 existing Places continuation. The follow-through also proves bounded
 expanded-place batching and positive practical owner-adapter coverage for all
-four catalog kinds exposed by the mobile surface. This improves received
-value, but it does not prove recurring supply or complete full-scroll runtime
-quality. The next package must verify the sequence through the canonical Home
-runtime with honest sparse/pending/failure behavior, or choose another already
-supplied owner-backed value family. Do not respond by adding a generator,
+four catalog kinds exposed by the mobile surface. The persisted HTTP proof
+below now closes the disposable database/API boundary for this supplied
+family. It still does not prove recurring supply, a full default-portfolio
+latency envelope, native/device acceptance or complete visual/full-scroll
+quality. The next package should choose another already supplied owner-backed
+sparse/pending/failure or Life/social downstream seam. Do not respond by adding a generator,
 store, route family or new semantic kind.
 
 The current lane now includes the bounded mechanism-row adaptation, explicit
@@ -2315,7 +2316,7 @@ recovery and live transient-provider failure/retry remain unverified.
 | I1 | Source/graph/Outcome delivery, repair, backfill and reconciliation foundation; additional retained-source revisions and Life adoption paths in this lane | Build population and later-use coverage over existing owners; do not infer indexed serving cutover or cross-context authority from retention |
 | I2 | Bounded serving, prepared results, cancellation and publication fences; explicit Source Arq registration, serializer repair and gated due-work recovery sweep; real `not_claimed` wrapper and expired due-work recovery executions | Run still-current restart recovery and transient failure/retry scenarios in isolated Arq/Redis; cost/cohort/provider activation remains separately gated |
 | I3 | Contribution authority and useful-first intake; exact retained/received text-original paths with scoped native receipts | R01/R03 authority and revocation are verified, R04 code correction plus API/native sender-control rehearsals and named Life/Home original-receiving paths are complete; broader supported originals and permissioned downstream use remain; pending history/audience policy is not silently adopted |
-| I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots; standalone Places semantic units now reach the canonical workspace rail | Primary Home/Places full-scroll value completion from a populated, already supplied payload; prove substantive depth, exact actions/destinations, and sparse/pending/failure states with real supply breadth |
+| I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots; standalone Places semantic units now reach the canonical workspace rail; one supplied same-Place sequence also passes persisted Home HTTP readback with source retraction | Complete enough substantive default-portfolio/full-scroll value from already supplied payloads; prove native/device presentation, exact actions/destinations, and one consequential sparse/pending/failure state with real supply breadth |
 | I5 | Open-now and saved-world changes reach surfaces; explicit fit and reviewed assistance contracts implemented | R09 code correction and the named current-world native paths are complete; persisted/native timezone edge matrix, permitted-context adaptations, provider-backed fit rehearsal and broader mandates remain separate |
 | I6 | Retirement inventories/guards exist; candidate remains isolated and rollout internal | Keep obsolete execution paths out of new work; complete obligation review and authorized cutovers/landing only when their dependencies are ready |
 
