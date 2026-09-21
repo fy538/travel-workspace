@@ -140,6 +140,17 @@ scenario/design-reference checks are structurally green; native screenshot or
 device acceptance was not run. No new backend, schema, route, producer,
 storage, policy or release surface was introduced.
 
+### September 21 Places partial-read treatment review
+
+App `1ddb3a0ba` reuses the shared root-projection notice for governed Places
+semantic owner degradations when the existing feed notice is absent. It keeps
+the supplied Places content visible, exposes no backend owner or diagnostic
+strings, and offers Retry only for explicitly retryable degradations. The
+focused Home/Places packet passes **50 tests**, TypeScript and targeted lint
+pass, and polish-scenario/design-reference checks are structurally green;
+native screenshot or device acceptance was not run. No backend, schema, route,
+producer, storage, policy or release surface was introduced.
+
 ### September 21 follow-up — same-Place sequence through Home composition
 
 Backend `bdc05c02f` adds a two-case regression around the already supplied

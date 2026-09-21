@@ -175,11 +175,11 @@ package should be an existing-authority downstream result or a
 sparse/pending/failure treatment, not another route-only happy path.
 
 Current candidate tuple after the latest rebaseline: workspace
-`49d438a`, backend `651628265`, app `c37e85f83`, all on
+`49d438a`, backend `651628265`, app `1ddb3a0ba`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The workspace head is a documentation-only alignment;
-the backend head is unchanged and the app head adds only the bounded Home
-partial-read treatment. The dedicated shared Integration/landing lane remains
+the backend head is unchanged and the app head adds only the bounded
+Home/Places partial-read treatment. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
 verification can continue; no shared runtime, publishing, flag activation,
 paid/provider run or pending product policy is enabled by this rebaseline.
@@ -233,6 +233,18 @@ pass, and the Home polish scenario/design-reference checks are structurally
 green; native screenshot/device acceptance remains unrun. This is a bounded
 consumer-state improvement, not a new producer, route, schema, storage or
 policy surface.
+
+### September 21 Places partial-read treatment
+
+App `1ddb3a0ba` reuses the shared root-projection notice for governed Places
+owner degradations when the mature feed notice is not already visible. It
+keeps the supplied feed and semantic units on screen, hides backend
+diagnostics, and delegates Retry to the existing runtime refresh path only for
+explicitly retryable degradations. The combined focused Home/Places packet
+passes **50 tests**; TypeScript, targeted lint and structural QA pass. This is
+a native consumer-state seam only: no backend, schema, route, producer,
+storage, policy or release surface changed, and device acceptance remains
+unrun.
 
 ### September 21 Life · People receipt — shared outcomes reach the record
 
