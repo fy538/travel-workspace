@@ -100,8 +100,11 @@ open for the remaining authority, queue and edge-case evidence. R04 and R09
 are code-fixed; R04 now also has native sender-control evidence, while R09's
 persisted/native timezone edge matrix remains open. R05's exhausted-final-lease
 recovery is code-fixed and covered by focused tests; the disposable-Postgres
-and transient-provider rehearsals pass, but a real process-restart queue
-rehearsal is still required before calling preparation reliable.
+and transient-provider rehearsals pass, and a current disposable Source
+workflow completed on the registered Arq/Redis worker with `producer_silence`.
+A real process-restart queue rehearsal is still required: the job completed
+before the worker could be interrupted, so this run does not prove restart
+safety.
 
 ### September 21 value-depth receipt — supplied experience comparison
 
@@ -2192,9 +2195,10 @@ cases. Do not describe all native-device evidence as unrun; the named Home
 Save/readback, Life source return and Places social receiving paths already pass
 on the isolated device.
 Source worker registration and its gated deterministic due-work recovery sweep
-are implemented behind the same named cohort; real Arq/Redis wrapper execution
-and expired due-work recovery now pass. Still-current restart recovery,
-disabled-job handling and transient failure remain unverified.
+are implemented behind the same named cohort; real Arq/Redis wrapper execution,
+current-work completion, and expired due-work recovery now pass. Still-current
+restart recovery, disabled-job handling and transient failure remain
+unverified.
 
 | Package | State at September 21 candidate | Next concrete action |
 | --- | --- | --- |

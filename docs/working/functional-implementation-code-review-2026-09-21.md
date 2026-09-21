@@ -392,6 +392,26 @@ cohort/release and design-parity gates. R04's native sender-withdrawal matrix
 is now closed at its exact one-recipient text-original scope; the review ledger
 therefore remains open and should not be marked release-ready.
 
+### September 21 R05 runtime closeout attempt
+
+Docker Desktop and the lane's disposable Postgres/Redis runtime were available
+for a bounded process-restart rehearsal. A real Source workflow was inserted,
+enqueued with the registered `run_root_source_contribution` job, and executed by
+the actual `audio_jobs.WorkerSettings` process. Postgres readback reached
+`status=completed`, `outcome=producer_silence`, `attempt_count=1`, with no
+result readback; the worker then shut down cleanly with **33 jobs complete, 0
+failed, 0 retries**. This is useful confirmation that the current workflow can
+complete on the live local rail, but it is **not** process-interruption evidence:
+the Source job finished before the worker could be terminated. The worker also
+reported unrelated pre-existing fixture-cron errors; those are outside this
+workflow and do not change its result.
+
+R05 therefore remains open. The remaining evidence is specifically a
+still-current workflow interrupted while executing and recovered after worker
+restart, plus a transient provider failure/retry case. Do not relabel the
+successful completion as restart safety, and do not broaden this edge rehearsal
+into production generation activation.
+
 Focused correction receipts on the candidate tuple:
 
 - Backend relationship/presentation packet: **35 passed** with Ruff check and
