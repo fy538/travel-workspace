@@ -1941,3 +1941,29 @@ and must be cleaned up after the checkpoint. The next useful native package is
 one admitted, bounded dataset that visibly exercises a populated Home item,
 its exact Places destination and a Life refind/return path; do not alter the
 production defaults or add another shell to obtain that evidence.
+
+## September 21 populated Home → Places → Life native checkpoint
+
+The bounded follow-up dataset was exercised through the real lane API and the
+opt-in native shell. It included one recipient-consented venue-bound
+`place_pull`, its canonical New York venue destination, and one retained Life
+source with a confirmed current owner revision. The first Life replay correctly
+failed closed on a stale revision; a fresh `source_verified` event and the
+existing outbox repair path then produced the September organization group.
+
+The API returned **200** for Home v2, the exact venue reader, Life v1, and Life
+organization groups. Home contained the exact `people_note_door` note from Maya,
+venue id `35` and the Places destination ref. Life contained the retained
+`source_submission` and `derived:period:2026-09:iana.utc` group with matching
+source revisions.
+
+With `EXPO_PUBLIC_IS_INTERNAL_BUILD=true` and the existing opt-in flags, the
+simulator rendered the populated Home note and **Open in Places →**, the exact
+`Runtime Garden Table` destination reader, and the populated Life Time lens with
+one retained record. This is the first connected native receiving receipt for a
+real accepted bounded dataset. It is not a tap/back return proof, full corpus or
+multi-lens proof, broader social/group-media support, production activation,
+Claude-design parity, or release acceptance. The temporary data and API/Expo
+processes must be cleaned up after the capture. The next useful work is the
+native return/refind interaction or another supported receiving gap; do not
+widen the content model or add a second generator/store.

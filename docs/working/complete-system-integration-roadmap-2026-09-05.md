@@ -5632,3 +5632,48 @@ Life as `life/index`, so the configured title/icon were ignored and a missing
 stack layout; the simulator now renders the tab as **Life**. Three focused
 route/convention suites (10 tests) and TypeScript pass. This is a shell repair,
 not evidence of populated Life data or end-to-end continuity.
+
+### September 21 continuation — populated Home → Places → Life native checkpoint
+
+The next bounded dataset was seeded in the same disposable lane and exercised
+through the real API and the opt-in native shell. It contained one recipient-
+consented, venue-bound `place_pull` from a temporary sender, the canonical
+venue destination beneath the recipient's New York context, and one retained
+Life source with a confirmed `source_and_derived` owner revision. The initial
+Life replay exposed an owner-revision mismatch; registering a fresh
+`source_verified` event with the current revision and running the existing
+outbox repair path materialized the September organization group. No source
+contract or production default was changed.
+
+Evidence at the API boundary:
+
+- `GET /api/root-projections/v2/home?timezone=America%2FNew_York` returned
+  **200** with an exact `people_note_door` unit: sender attribution, the
+  original note, venue id `35`, and a Places destination ref.
+- `GET /api/venues/35` returned **200** for the exact `Runtime Garden Table`
+  destination.
+- `GET /api/root-projections/v1/life?lens=time` returned **200** with the
+  retained `source_submission` entry and typed Intake destination.
+- `GET /api/root-projections/v1/life/organization/groups?lens=time&limit=10`
+  returned **200** with `derived:period:2026-09:iana.utc` and matching source
+  revisions.
+
+Native evidence used `EXPO_PUBLIC_IS_INTERNAL_BUILD=true` plus the existing
+opt-in four-root/root-projection/Places/Life flags. The simulator rendered:
+
+- populated Home with “A place from Maya (runtime)”, the exact note and
+  **Open in Places →**;
+- the exact `Runtime Garden Table` venue reader with its existing map, Ask
+  Vesper and related-place sections; and
+- populated Life with one retained source, the Time lens and one record.
+
+This is the first connected native receiving receipt for a real accepted
+bounded dataset. It proves persistence → owner reads → Home composition → exact
+Places destination → Life serving and organized read. It does **not** prove a
+physical tap/back return sequence, multi-lens corpus coverage, broader social
+media/group sharing, production flag activation, visual parity with the Claude
+references, or release readiness. The temporary users, relationship, graph,
+venue, source and organization rows remain disposable and must be removed after
+the capture; the API and Expo processes must be stopped. The next slice should
+close the native return/refind interaction or another supported receiving seam,
+not widen the content model or introduce a new generator/store.
