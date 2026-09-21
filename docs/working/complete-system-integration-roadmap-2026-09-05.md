@@ -60,7 +60,7 @@ honest balanced-field fallback, the native owner-backed evidence register, the
 supplied-experience comparison, the plural social perspective, the
 standalone-only Places feed-state repair, and the addressed Place-contribution
 region in backend `953e2bc69` and app `4c507e1c4`; the latest workspace
-documentation receipt is `b36a021`. This
+documentation receipt is `d6d7e51`. This
 documentation
 advance does not merge, publish, enable or
 resume shared Integration/landing. Apply this
@@ -73,7 +73,7 @@ leave the missing supply explicit. Evidence-only work remains bounded to R04,
 R05 and R09, and visual polish travels with the selected surface package.
 
 Current candidate tuple after this receipt: workspace
-`f5d34e3`, backend `953e2bc69`, app `4c507e1c4`, all on
+`d6d7e51`, backend `953e2bc69`, app `4c507e1c4`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
