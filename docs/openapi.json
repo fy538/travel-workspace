@@ -32811,7 +32811,7 @@
                 {
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 512
+                  "maxLength": 768
                 },
                 {
                   "type": "null"
