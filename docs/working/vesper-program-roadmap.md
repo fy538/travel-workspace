@@ -51,7 +51,7 @@ refinding is further along than context materially improving a later answer,
 possibility or action.
 
 **Current candidate tuple after this receipt:** workspace `6d839e`, backend
-`052284b33`, and app `df490cb56`, all on the isolated
+`052284b33`, and app `7b735a71e`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The workspace advance is a
 documentation receipt only; it does not change the child-code tuple, merge the
 lane, enable a flag, or resume shared Integration/landing. The next substantive
@@ -61,7 +61,7 @@ available.
 
 **September 21 afternoon execution rule:** the latest product behavior is the
 supplied-reading `Why this?` slice, mechanism-row adaptation, and explicit
-selected-trip fit in backend `052284b33` and app `df490cb56`. The next
+selected-trip fit in backend `052284b33` and app `7b735a71e`. The next
 implementation should therefore be selected from an
 existing owner-backed Home/Places payload and add substantive received value
 (for example, a truthful comparison, sequence, evidence view or practical
@@ -72,6 +72,22 @@ route family or broad visual-parity program to make this slice appear fuller.
 If the payload cannot support a truthful result, keep the gap explicit and
 move to the next supported owner/destination/return seam rather than inventing
 content.
+
+## September 21 native receipt — mechanism-row anatomy
+
+The accepted `horizon_mechanism_row` Home kind now has a distinct native
+renderer instead of falling through to the generic reading treatment. The row
+keeps the existing authored anchor, explanation, evidence basis, source
+inspection action, exact Places destination, expiry and return registration,
+while using the compact mechanism mark/copy anatomy appropriate to a cue or
+approach instruction. No backend contract, source owner, generator or route
+changed.
+
+App commit `7b735a71e` adds the renderer and a regression covering its visible
+anatomy and passive surface treatment. The focused Home renderer/smoke packet
+passes **21 tests** and `npx tsc --noEmit` passes. This is a native treatment
+improvement for an already supplied value family, not full Claude-design parity
+or evidence that additional semantic kinds are supported.
 
 The dedicated shared Integration/landing lane remains **PAUSED by the founder**.
 That pause does not cancel the subsequently authorized isolated implementation

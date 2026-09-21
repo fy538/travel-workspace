@@ -33,7 +33,7 @@ and latest workspace documentation receipt is:
 |---|---|
 | Workspace | `6d839e` |
 | Backend | `052284b33` |
-| App | `df490cb56` |
+| App | `7b735a71e` |
 
 This correction updates tuple identity only; it does not imply merge,
 publication, shared-runtime activation, or production flag changes.
