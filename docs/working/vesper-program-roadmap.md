@@ -97,6 +97,13 @@ The child-code tuple after this proof is backend `bdc05c02f` and app
 `242d309f0`. The earlier `306eb51a4` tuple remains the lease-repair baseline;
 the new backend commit changes tests only.
 
+A fresh, separately named disposable PostgreSQL was migrated to the current
+head and the existing Save → Places → Home owner loop passed
+`tests/integration/test_save_root_projection_loop_pg.py` (**1 passed**). This
+confirms the current checkout still migrates and serves a real persisted owner
+path; it does not turn the controlled same-Place sequence test into a
+public-content HTTP readback or prove recurring supply.
+
 ### September 21 roadmap maintenance — post-review execution order
 
 The code-review pass confirms that the roadmap is still directionally correct,
