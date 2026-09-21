@@ -66,6 +66,13 @@ additional **8 disposable-Postgres tests**. This proves branch selection,
 durable terminalization, retry scheduling and sweep wiring. A real
 process-kill/restart queue run remains the final R05 evidence case.
 
+The app then corrected a separate Home v2 presentation seam at commit
+`4d51c1db0` (`fix: honor Home timezone in world read`). The orientation anchor
+now formats in the canonical timezone carried by the server-authored week
+shape, with an explicit UTC fallback for an unsupported zone. The Home v2
+screen suite passes **14 tests**, plus TypeScript and ESLint; this is a focused
+presentation correction, not native visual certification.
+
 Three parallel reviewers were explicitly dispatched as **`gpt-6-astra`, high**:
 
 - Home/Places backend: supply, selection, public/exact reading lifecycle,

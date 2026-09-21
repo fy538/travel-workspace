@@ -1150,7 +1150,7 @@ updated after the bounded Source recovery correction and docs closeout.
 | --- | --- | --- |
 | Workspace | `2450d72` (current tranche candidate) | `b6e7014` |
 | Backend | `aa9b47849` | `a7c02cbe1` |
-| App | `108f4e70b` | `e2e792913` |
+| App | `4d51c1db0` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent
@@ -1166,7 +1166,7 @@ and ownership before execution; this tuple is a dated observation.
 | Social | Existing-owner venue-bound pulls and one-recipient original-text receiving through Life/Home; named local API/iOS flows; sender-control authority rehearsal | Casual media/group/gathering breadth and useful juxtaposition; no new sharing or friend-source AI-use policy is adopted here; R04 native UI evidence remains |
 | Practical/live engine | Current open-now facts and saved-place changes affect surfaces; explicit fit contract and private stop-assistance/reviewed Send implemented | Provider-backed fit rehearsal, wider fresh-world coverage, purpose-preserving adaptation and accepted watching mandates; R09 code correction is complete, persisted/native timezone evidence remains |
 | Preparation | Explicit Source work registered on the shared Arq rail behind production/worker/cohort gates; result serialization and bounded deterministic due-work recovery repaired | Real Arq/Redis wrapper and expired due-work recovery pass; exhausted final-attempt leases now close through the existing fence with 29 focused and 25 disposable-Postgres tests, including retry-budget recovery; registration/recovery are not activation, and live output quality, cost and process-restart queue evidence remain unverified |
-| Native / delivery | Specific real-owner happy paths now run through the internal four-root shell | No comprehensive native/design acceptance, latest-tuple full gate, default-shell promotion, main landing or release |
+| Native / delivery | Specific real-owner happy paths now run through the internal four-root shell; Home v2 world-read timezone boundary is corrected and its focused screen suite passes | No comprehensive native/design acceptance, latest-tuple full gate, default-shell promotion, main landing or release |
 
 No overall feature-completion percentage is asserted: these evidence scopes
 are neither equally sized nor equivalent to design inventory coverage. The
