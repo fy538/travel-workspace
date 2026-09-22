@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Orchestration
 created: 2026-09-21
-last_verified: 2026-09-21
+last_verified: 2026-09-22
 expires: 2026-10-05
 why_new: Provides a bounded cross-repository defect ledger for the September 20–21 implementation window without mixing open bugs into chronological roadmap receipts.
 supersedes: []
@@ -592,6 +592,22 @@ Focused correction receipts on the candidate tuple:
   `travel-app/utils/api/schema.gen.ts` with `schedule_timezone`. The normal
   `sync-types` audit remains blocked by the pre-existing expired API-operation
   policy findings and missing consumer; this is not claimed as a full gate pass.
+
+### September 22 selected-note non-substitution regression
+
+The Home → exact Place handoff component packet now includes the missing
+negative case: the selected handoff is absent from the current authorized
+Place-line response while a different person's line remains active. The object
+page shows the exact selected note's unavailable state, keeps the neighboring
+body out of the page, and does not open a substitute sheet. The focused
+`ObjectPageRebuild` suite passes **24 tests**; the recipient owner-read
+invalidation suite passes **4 tests**, and app TypeScript passes. This adds
+regression coverage for the existing exact-ID fail-closed behavior; it does not
+claim a new end-to-end sender-withdrawal device run. The visual QA doctor could
+not proceed because Metro was not reachable on `:8081`; no native screenshot
+was captured. `entity-object` has no registered design-reference manifest, so
+the design-reference check confirms doctrine-only review and is not a visual
+parity verdict.
 
 ## Defect index
 
