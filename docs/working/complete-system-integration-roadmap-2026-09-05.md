@@ -7716,3 +7716,35 @@ static button here would imply an unsupported mutation and violate the
 recipient's delivery scope. Keep original-only enjoyment complete on Home and
 do not add a second social store, conversation route, or synthetic action as a
 way to match the prototype copy.
+
+## September 22 latest execution checkpoint — roadmap update
+
+The active functional tuple is workspace `f354187`, backend `2e123173c`, and
+app `5bebc401c`. Several older current-tuple paragraphs in this long roadmap
+intentionally preserve historical evidence; use this checkpoint when deciding
+what is true now.
+
+The latest implementation wave completed bounded receiving and presentation
+corrections rather than a new architecture: all four typed receipt Place
+destinations preserve the existing Places return contract; Source results name
+their true originating root; Home labels its regions in user-benefit language;
+returned travel continuity precedes forward-looking horizons when explicit trip
+references exist; and editorial readings use the bare rule-led treatment while
+prepared actions stay contained. The social audit confirms that Home supports
+recipient-authorized original reading and return, but not Reply, private Ask or
+sender-chat mutation; those remain a future Relationships/Chat owner contract.
+
+The current local packet is **209 app tests across 12 suites** and **479
+backend root-projection tests**, with TypeScript and targeted lint passing (one
+pre-existing renderer max-lines warning only). This is local contract evidence,
+not native real-data/device acceptance, provider-backed recurring supply,
+external design-canon parity or release evidence.
+
+The next integration build is therefore still the product-value build: trace
+the registered Home design sections to existing producers, compose a longer
+benefit-led Home from supported supply, and carry a representative item through
+source, exact depth/action, return and sparse/pending/failure behavior. Keep
+the current four-root and owner boundaries; do not invent a generator, feed,
+store, semantic kind or social route to manufacture fullness. The recent-return
+trigger contract is decision-gated independently and must not serialize this
+ordinary Home composition work.

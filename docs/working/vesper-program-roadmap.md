@@ -5202,3 +5202,37 @@ Reply, private Ask, or sender-chat destination to this root. Do not add a
 static prototype button or a second social store to simulate it; those actions
 remain a future Social/Chat owner contract. Original-only enjoyment is already
 a complete supported Home value.
+
+## September 22 latest execution checkpoint — roadmap update
+
+The current implementation baseline is workspace `f354187`, backend
+`2e123173c`, and app `5bebc401c`. Earlier tuple values embedded in the package
+register and historical receipts remain useful evidence for the slices they
+describe, but they are not the active baseline.
+
+Since the prior checkpoint, the backend now preserves all four supported receipt
+Place destinations (`venue`, `site`, `accommodation`, and `experience`) through
+the existing typed Places door. The app now derives the Source result's back
+label from its originating root, uses benefit-led Home section labels, places
+explicit returned continuity before forward-looking horizons, and keeps
+editorial readings uncarded while retaining containment for prepared actions.
+The social receiving audit also confirms a supported original-only path with
+sender attribution, expiry/withdrawal revalidation and Home return; Reply,
+private Ask and sender-chat actions remain outside the current
+Relationships/Home owner contract.
+
+The latest local evidence is **209 app tests across 12 focused suites** and
+**479 backend root-projection tests**, with TypeScript and targeted lint passing
+(the existing renderer max-lines warning remains). This evidence is bounded to
+local component/contract behavior. It does not establish native real-data
+actions or media, provider-backed recurring supply, verified external design
+canon parity, or release readiness.
+
+The forward queue is unchanged but sharper: (1) compose a materially richer,
+longer Home from existing owner-backed material, including the four visible
+regions and two materially different postures; (2) carry one selected item
+through exact source, depth/action, return and honest sparse/pending/failure
+states; and (3) only then close any Places/Life gap whose trace proves a real
+owner-backed value is missing. Do not add a generator, store, semantic kind or
+social action merely to match an exploratory design. The recent-return trigger
+remains a separate decision gate; it must not block ordinary Home composition.
