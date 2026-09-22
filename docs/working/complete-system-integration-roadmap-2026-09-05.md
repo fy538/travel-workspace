@@ -7936,9 +7936,9 @@ shared-photo grouping, Reply/Ask action or social mutation is inferred.
 App `d14665ca5` adds that existing semantic kind to the native renderer
 registry and reuses the generic link treatment. The focused adapter tests pass
 **3**, the focused Home renderer/root-experience packet passes **30**, and
-TypeScript passes. A broader root-projection run recorded **483 passed** plus
-one timing-sensitive failure in the pre-existing 10ms bounded-read test; this
-is not a clean full-packet result. No persisted-DB, device, visual-canon or
-release acceptance follows. The next package remains the longer Home
+TypeScript passes. A serial rerun of the complete root-projection packet passes
+**484 tests**; an earlier parallel run hit a timing-sensitive failure in the
+pre-existing 10ms bounded-read test, which also passed in isolation. No
+persisted-DB, device, visual-canon or release acceptance follows. The next package remains the longer Home
 composition that combines this supported occasion value with continuity,
 practical, Place and Life-backed units.

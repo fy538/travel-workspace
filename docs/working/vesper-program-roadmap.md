@@ -5442,7 +5442,8 @@ App `d14665ca5` promotes the already-defined semantic kind through the native
 Home registry and existing generic link anatomy; no new route, schema, social
 store, identity resolver, or mutation was added. Focused backend adapter tests
 pass **3**; the focused Home renderer/root-experience packet passes **30** and
-TypeScript passes. The broader root-projection run reached **483 passed** but
-had one timing-sensitive failure in the existing 10ms bounded-read test, so it
-is not reported as a clean full packet. No persisted database, native-device,
-visual-canon or release acceptance is claimed for this slice.
+TypeScript passes. A serial rerun of the complete root-projection packet passes
+**484 tests**; an earlier parallel run hit a timing-sensitive failure in the
+existing 10ms bounded-read test, which also passed in isolation. No persisted
+database, native-device, visual-canon or release acceptance is claimed for
+this slice.
