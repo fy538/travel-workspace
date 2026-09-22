@@ -163,16 +163,43 @@ and performs no second provider call. The connected Source packet passes **3
 tests**, the focused backend root packet passes **43 tests**, and the focused
 mobile Places packet passes **37 tests** with TypeScript green.
 
-This is persisted-engine and receiving-contract evidence. The connected
-producer/materials are authored fixtures, the populated native field is a
+This was persisted-engine and receiving-contract evidence. The connected
+producer/materials were authored fixtures, the populated native field was a
 frontend rehearsal fixture, and no live provider, rollout flag, production
-cohort or real-backend device capture is claimed. The next package should run
-this same contract through a controlled local backend/native session and judge
-the result's usefulness; it should not add another schema, store, route family
-or fixture-only composition.
+cohort or real-backend device capture was claimed at that checkpoint. The
+controlled backend/native boundary is now closed below; usefulness and
+composition quality remain the next questions.
+
+### September 21 controlled Source → native Places closure
+
+Backend `de9a08716` and app `b9ab2522b` turn the existing contracts into one
+reproducible local acceptance path. The guarded backend utility creates
+canonical Source owners (a private Intake photo attachment and governed public
+Place readings), prints an explicit Source-workflow request, and invokes the
+existing canonical worker/executor with an authored provider-free producer. The
+app runner posts that request through HTTP, verifies the exact completed result
+and ordinary Places runtime, and then drives the assigned iOS 18.2 simulator to
+the spatial `field_lead_composition` in the mature Places workspace. Cleanup is
+part of the acceptance contract: afterward the runtime contains no fixture lead
+and returns only the honest sparse-field fallback.
+
+The first device attempt also caught an important configuration boundary. Metro
+had been started with an obsolete isolated Places flag, so the app used
+`/api/places/feed` and the native assertion failed even though the governed
+runtime was populated. Restarting under the full internal four-root rehearsal
+posture connected the intended runtime and passed. This validates the coherent
+rollout fence; it is not permission to activate it publicly.
+
+Focused verification: **5 backend tests passed**, **3 runner-contract tests
+passed**, **30 Places component tests passed**, TypeScript passed, and the real
+Maestro flow passed on simulator `EBEE500B-E4B4-4950-998A-F0A73959F11D`. The
+global Maestro governance command remains failed on **13 pre-existing findings**
+after the new flow's lane metadata was corrected. Content and producer remain
+authored fixtures, so provider quality/cost, recurring supply, complete-field
+selection, visual approval and release eligibility remain open.
 
 Current candidate tuple after the latest rebaseline: workspace
-`494df01`, backend `48b54610c`, app `bdef50f72`, all on
+`1f4d484`, backend `de9a08716`, app `b9ab2522b`, all on
 `codex/native-presentation-wave1-2026-09-21`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable

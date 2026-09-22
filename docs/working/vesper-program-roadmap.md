@@ -59,17 +59,19 @@ documentation drift that had called several already-renderable kinds "dark";
 it does not claim source admission, recurring content supply, runtime
 full-scroll quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
-**Current candidate tuple after the latest rebaseline:** workspace `494df01`,
-backend `48b54610c`, and app `bdef50f72`, all on the isolated
+**Current candidate tuple after the latest rebaseline:** workspace `1f4d484`,
+backend `de9a08716`, and app `b9ab2522b`, all on the isolated
 `codex/native-presentation-wave1-2026-09-21` lane. In addition to the prior
 owner-loop and supplied-value work, this tuple gives Places one populated
 semantic composition in its mature native workspace and proves that an
 explicit Source workflow's persisted production reaches the authenticated
-Places runtime as a standalone lead. Nothing is merged to main, published,
-flag-activated, or resumed in shared Integration/landing. Live-provider output
-quality, a real-backend native capture, recurring supply and broad full-scroll
-selection remain open; another fixture-only presentation expansion is not the
-next evidence need.
+Places runtime as a standalone lead. The same production has now been accepted
+in the assigned iOS simulator through the ordinary real-API Places route under
+the coherent four-root rehearsal gates, with exact cleanup verified. Nothing is
+merged to main, published, flag-activated, or resumed in shared
+Integration/landing. Live-provider output quality, recurring supply, broad
+full-scroll selection and product-quality judgment remain open; another
+fixture-only presentation expansion is not the next evidence need.
 
 The latest workspace documentation head before this documentation receipt is
 `494df01`; backend and app code are `48b54610c` and `bdef50f72`. The backend
@@ -101,6 +103,37 @@ contract evidence, not live-provider quality, production activation or a native
 real-backend visual receipt. The next proof should use this existing contract
 with a controlled real backend and device, then evaluate whether the generated
 lead is worth receiving; do not add another transport, store or mock-only field.
+
+### September 21 real-backend native Places receipt
+
+Backend `de9a08716` and app `b9ab2522b` close the next receiving boundary without
+adding a product route or storage family. A guarded local fixture creates one
+private photo attachment plus governed public Place readings, emits an explicit
+HTTP Source request, runs the existing canonical worker with a deterministic
+provider-free producer, requires post-write readback, and verifies the exact
+workflow result and ordinary `/api/root-projections/v2/places/runtime` response.
+The assigned iOS 18.2 simulator then opened the normal Places tab and found the
+production-backed spatial composition by semantic test id and title. The runner
+finally removed the workflow, attempt, production, Intake submission and public
+reading rows; the ordinary runtime returned only `field_balanced_fallback`
+afterward.
+
+The native rehearsal passed once the client was started with the complete
+coherent rollout posture (`FOUR_ROOT_SHELL`, root projection v2, governed Places,
+Life v1 and internal build). An initial run using an obsolete isolated Places
+flag correctly stayed on `/api/places/feed` and failed to find the composition.
+That is evidence that the rollout fence works, and it is now an explicit runtime
+precondition rather than an unexplained UI miss.
+
+Focused evidence is **5 backend tests**, **3 runner-contract tests**, **30 Places
+component tests**, TypeScript, and the passing Maestro device flow. The global
+Maestro governance check still reports its **13 pre-existing repository-wide
+findings**; the new flow itself no longer adds a finding. This receipt proves
+canonical delivery and native receiving with authored content. It does **not**
+prove live-provider quality or cost, recurring selection, visual-design approval,
+or release eligibility. The screenshot also makes the next product question
+concrete: whether the lead earns its space and composes well with the rest of the
+field, not whether the bytes can reach the screen.
 
 ### September 21 canonical Home sequence readback
 
