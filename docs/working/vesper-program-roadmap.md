@@ -2546,6 +2546,19 @@ composition work moving with currently owner-backed material; any slice that
 needs either missing identity/source must first establish that owner's contract
 and evidence rather than infer it in the renderer.
 
+**September 22 Places kind audit:** the transport union contains additional
+`live_*`, `path_next_rows`, `field_branch_lead`, and
+`social_participation_consequence` values, but the current Places adapter does
+not emit them on the ordinary World Field path. They remain reserved contract
+values for later state-specific producers; they are not missing native cards in
+the current product tuple. The adapter deliberately defers `expiry`,
+`group_waiting`, and related section reasons rather than presenting a
+truthful-looking unit with the wrong owner grammar. Do not widen
+`PLACES_V2_RENDERABLE_KINDS` or build placeholder renderers as a response to
+this enum-to-renderer comparison. The next Places work should begin only when a
+real owner-backed producer and destination exists; otherwise the active product
+queue remains Home composition breadth.
+
 At each substantial handback, update §2 and this register in place: what became
 useful, what supplied it, how it behaves after action/correction/return, what
 design coverage remains, and which evidence actually ran. Preserve underlying
