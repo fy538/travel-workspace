@@ -3650,3 +3650,47 @@ text-original scope. It does not claim group/media sharing, broader audience
 policy, notifications, production activation, or visual parity. Remaining
 review evidence is R05 process-restart/transient queue behavior and R09
 persisted/native timezone edges.
+
+
+## September 22 functional implementation receipt — one elected Places field on device
+
+The earlier Places full-scroll proof established coexistence, but not one
+server-owned composition decision across those sources. Backend commits
+`c6809b82f` and `d7d153810` now enforce and document the bounded World Field:
+shared hard gates run first, the server elects exactly one dominant unit, admits
+at most four additional branches and two doors, and records explicit gates for
+competing leads and overflow. The Places compiler publishes
+`dominant_unit_id`; mature feed sections follow the same semantic order instead
+of surviving as an unrelated second stack.
+
+App commit `4fe10a121` upgrades `90-places-full-scroll` into a combined
+Source/reading/social/change receipt. Its runner submits a real Source request,
+executes the canonical worker against retained production, verifies that the
+elected `field_lead_composition` is the declared dominant, checks that exact
+public reading, recipient-consented Place pull, and saved-place notice branches
+coexist without `field_balanced_fallback`, then traverses the whole field on
+native iOS. Cleanup proves the generated lead, reading, social contribution and
+notice withdraw. The same commit makes long Places scope identities reserve
+enough compact-header width; the device capture changed clipped `New Y…` into
+the intact `New York City` identity without widening short-name root capsules.
+
+The local rehearsal used the explicit `11111111-2222-4333-8444-555555555555`
+account and disposable `vesper` database, Source production enabled with its
+worker invoked directly, public Place-content and Place-control-plane reads,
+recipient Place pulls, the governed four-root/Places bundle, and simulator
+`EBEE500B-E4B4-4950-998A-F0A73959F11D`. The combined native flow passed twice;
+the final run rendered the Source lead, two reading branches, the saved-place
+change, one human contribution, and the retained saved place in one bounded
+scroll, then removed all fixtures.
+
+Evidence: backend focused field-selection packet **80 passed**, all root
+projection tests **447 passed**, and API/service integration regressions **77
+passed**; mobile runner contracts **7 passed**, header/Places contracts **18
+passed**, TypeScript passed, the scenario registry passed, lint completed with
+zero errors (171 existing warnings), and the real native flow passed end to
+end. The registered mock polish flow was attempted separately and remains
+unverified: its existing forced `places-search-loading` assertion failed after
+all ordinary search interactions passed, producing no screenshot receipt. This
+receipt therefore proves real server-to-device composition and the corrected
+header capture, not the full legacy mock state matrix, recurring production
+supply, provider acquisition, broad visual parity, or release readiness.
