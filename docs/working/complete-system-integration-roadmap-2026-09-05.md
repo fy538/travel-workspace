@@ -7609,3 +7609,13 @@ each canonical path preserves the Home return token. The navigation suite now
 passes **63 tests**; TypeScript and targeted ESLint pass. This is coverage for
 the existing typed destination contract, not a new route family or inferred
 receipt behavior.
+
+## September 22 current cross-root packet refresh
+
+After the Source-origin label correction and all four receipt Place-target
+regressions, the focused app packet passes **209 tests across 12 suites**
+covering Home, Places, Life, Source result readback, navigation and return.
+The backend root-projection packet remains **479 tests passed** on
+`2e123173c`. This refresh strengthens the current receiving and return
+contracts; it does not claim populated production supply, native real-data
+actions/media, external design-canon parity or release readiness.
