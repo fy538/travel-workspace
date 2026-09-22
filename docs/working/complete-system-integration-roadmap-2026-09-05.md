@@ -44,6 +44,18 @@ repairs. It does not prove a substantially richer Home composition, recurring
 provider-backed supply, native media/device acceptance, verified external
 design-canon parity, or release readiness.
 
+**Current local tuple after the occasion-participant slice:** workspace
+`8203453`, backend product commit `cd50755c8` plus rehearsal follow-up
+`1aadcfb8d`, and app `d14665ca5`, all on
+`codex/functional-implementation-2026-09-20`. The existing
+`people_participants_row` kind is now emitted for viewer-authorized shared
+Occasions with active participant-visible members and rendered through the
+native Home registry. The serial root-projection packet passes **484 tests**;
+focused adapter/Home packets pass **3** and **30**, and app TypeScript passes.
+The full offline backend gate was attempted but is not a clean current-tuple
+gate because unrelated timing/teardown/rehearsal cases remain; no broad gate
+claim is made here.
+
 The next product build is therefore still Home value breadth: trace the
 registered Home sections to existing owner-backed producers, compose a longer
 benefit-led full scroll across the supported regions, and carry a

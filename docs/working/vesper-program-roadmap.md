@@ -39,6 +39,18 @@ supply, general later-context benefit, production activation or release
 readiness. The fixed fictional Home example is only a cold-start fallback; its
 native presentation and live retirement have not been observed on a device.
 
+**Current local tuple after the occasion-participant slice:** workspace
+`8203453`, backend product commit `cd50755c8` plus rehearsal follow-up
+`1aadcfb8d`, and app `d14665ca5`, all on
+`codex/functional-implementation-2026-09-20`. Home now emits and renders the
+existing `people_participants_row` kind for a shared Occasion when active,
+participant-visible members besides the viewer are present. The serial root
+projection packet passes **484 tests**; the focused adapter packet passes **3**,
+the focused Home renderer/root-experience packet passes **30**, and app
+TypeScript passes. The full offline backend gate was attempted but remains
+non-clean because of unrelated timing/teardown/rehearsal cases; do not carry
+that run as a clean full-gate claim.
+
 The bounded Home → Places addressed-note continuity gap is now implemented in
 the isolated candidate. Home passes the selected handoff ID/revision into the
 canonical object route; the relationship owner reads that exact revision; and
