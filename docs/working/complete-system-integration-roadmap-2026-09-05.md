@@ -32,15 +32,17 @@ depends_on:
 Use this paragraph as the current baseline for execution decisions. The
 historical receipts below intentionally retain the tuples and evidence scopes
 that produced them, but they do not supersede this checkpoint. The clean
-isolated tuple is workspace `65a6c7f`, backend `756f9cc8a`, and app
+isolated tuple is workspace `65a6c7f`, backend `0962f95a6`, and app
 `2eefb9c1d`, all on `codex/functional-implementation-2026-09-20`. The current
-backend root-projection packet passes **481 tests**; the current app packet
-contains **209 tests across 12 focused suites**, with TypeScript and targeted
-lint passing (the existing renderer max-lines warning remains). This wave
-completed the bounded Home/Places receiving and destination corrections plus a
-Life lens-preserving return repair. It does not prove a substantially richer
-Home composition, recurring provider-backed supply, native media/device
-acceptance, verified external design-canon parity, or release readiness.
+backend root-projection packet passes **481 tests**; the full offline backend
+gate passes **21,661 tests** with 14 skipped and 53 expected passes, and the
+current app packet contains **566 tests across 55 focused suites**, with
+TypeScript passing (the existing renderer max-lines warning remains). This
+wave completed the bounded Home/Places receiving and destination corrections,
+a Life lens-preserving return repair, and the follow-on semantic/lens contract
+repairs. It does not prove a substantially richer Home composition, recurring
+provider-backed supply, native media/device acceptance, verified external
+design-canon parity, or release readiness.
 
 The next product build is therefore still Home value breadth: trace the
 registered Home sections to existing owner-backed producers, compose a longer
@@ -7813,9 +7815,30 @@ passes. This changes no runtime behavior or product contract; it restores
 verification alignment with the current visual rule. Native visual parity and
 the broader Home composition milestone remain open.
 
+## September 22 full offline gate repair
+
+Backend commit `0962f95a6` repairs the next offline gate without weakening
+architecture contracts. The semantic-owner registry and A01–A18 fixtures now
+include the intentionally registered `relationship.original_delivery`
+operation wherever a relationship owner is selected. Shared Outcome shadow
+projection now takes its persisted row from the canonical Time lens and keeps
+the other lens snapshots only as membership evidence; the strict all-lens
+merger continues to reject conflicting audience or payload projections. The
+two AI compatibility bridges whose deadlines had passed are explicitly held
+through **2026-09-30** with their canonical replacements and removal review
+visible in code, rather than being silently exempted.
+
+`make test-backend` now passes **21,661 tests**, with 14 skipped and 53 expected
+passes (four warnings). The broader mobile packet remains **566 tests across 55
+suites**, with TypeScript passing. This is a contract and verification repair;
+it does not advance Home visual parity, recurring supply, native/device
+acceptance or release readiness. The next substantive build remains a richer
+owner-backed Home composition with exact destination, return and sparse-state
+evidence.
+
 ## September 22 final execution rebaseline
 
-The current implementation tuple is workspace `65a6c7f`, backend `756f9cc8a`,
+The current implementation tuple is workspace `65a6c7f`, backend `0962f95a6`,
 and app `2eefb9c1d`, all on the isolated functional-implementation branch.
 This wave has closed the recent receiving, typed destination, source-result,
 region-language, returned-order, editorial-treatment, Life-lens and attention-
@@ -7848,5 +7871,5 @@ run in parallel as bounded closeouts. The recent-return trigger remains a
 separate policy decision and must not serialize ordinary Home composition; no
 automatic cross-time adapter is admitted until its source, purpose, audience,
 lineage, correction/withdrawal, expiry, duplicate/no-op and sparse behavior
-are accepted. The existing **480 backend** and **209-app** test packets support
-this queue but are not its completion criterion.
+are accepted. The existing **481-root / 21,661-full-backend** and **566-app**
+test packets support this queue but are not its completion criterion.
