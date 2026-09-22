@@ -59,24 +59,48 @@ documentation drift that had called several already-renderable kinds "dark";
 it does not claim source admission, recurring content supply, runtime
 full-scroll quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
-**Current candidate tuple after the latest rebaseline:** workspace `c586de3`,
-backend `96d264c41`, and app `242d309f0`, all on the isolated
-`codex/functional-implementation-2026-09-20` lane. The latest workspace
-advance records the disposable owner-loop verification and renderer-ledger
-correction; the backend advance adds the canonical Home same-Place composition
-proof plus the persisted public-Place HTTP readback. The child-code tuple also
-includes the Places typed notice bridge,
-native sender-withdrawal proof, shared Home/Places semantic-state treatment,
-and the explicit People-bound anchor index repair. Nothing is merged to main,
-published, flag-activated, or resumed in shared Integration/landing. The next
-substantive implementation remains one selected sparse/pending/failure state
-or supplied Life/social downstream value, with R05/R09 edge work continuing
-only where its required environment is available.
+**Current candidate tuple after the latest rebaseline:** workspace `494df01`,
+backend `48b54610c`, and app `bdef50f72`, all on the isolated
+`codex/native-presentation-wave1-2026-09-21` lane. In addition to the prior
+owner-loop and supplied-value work, this tuple gives Places one populated
+semantic composition in its mature native workspace and proves that an
+explicit Source workflow's persisted production reaches the authenticated
+Places runtime as a standalone lead. Nothing is merged to main, published,
+flag-activated, or resumed in shared Integration/landing. Live-provider output
+quality, a real-backend native capture, recurring supply and broad full-scroll
+selection remain open; another fixture-only presentation expansion is not the
+next evidence need.
 
 The latest workspace documentation head before this documentation receipt is
-`c586de3`; backend and app code are `96d264c41` and `242d309f0`. The backend
+`494df01`; backend and app code are `48b54610c` and `bdef50f72`. The backend
 advance is integration-test coverage only; it does not alter production
 behavior or release state.
+
+### September 21 Places production-to-presentation checkpoint
+
+App commits `659a9eb5a`, `2f80bc4e3` and `bdef50f72` establish the presentation
+bar inside the mature Places workspace: a generated lead can govern the mast,
+composition provenance names the human/public inputs actually used, and root
+actions retain a restrained hierarchy. The populated New York field remains an
+explicit frontend rehearsal fixture; it is not production supply.
+
+Backend commit `48b54610c` closes the next upstream evidence seam. On a fresh
+disposable PostgreSQL database, an explicit Source request runs through the
+real workflow fence and canonical executor, persists one admitted production,
+and is then read by `/api/root-projections/v2/places/runtime`. The response
+contains one generated `field_lead_composition` in `field_units` together with
+the honest sparse-field fallback, and the GET causes no second provider call.
+The three connected Source-delivery cases pass; the focused backend root packet
+passes **43 tests**; the focused mobile Places receiver/render packet passes
+**37 tests** and TypeScript passes.
+
+The producer and Source material in this connected test are authored fixtures,
+and the serving assessment isolates duplicate canonical owner storage after the
+worker has already completed governed reads. This is therefore persisted-engine
+contract evidence, not live-provider quality, production activation or a native
+real-backend visual receipt. The next proof should use this existing contract
+with a controlled real backend and device, then evaluate whether the generated
+lead is worth receiving; do not add another transport, store or mock-only field.
 
 ### September 21 canonical Home sequence readback
 

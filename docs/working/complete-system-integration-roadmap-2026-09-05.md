@@ -150,9 +150,30 @@ supplied public sequence. It does not establish broad recurring supply, a
 full default-portfolio latency run, native/device acceptance, visual parity or
 provider-backed generation.
 
+### September 21 Places production-to-presentation checkpoint
+
+App commits `659a9eb5a`, `2f80bc4e3` and `bdef50f72` place one populated
+semantic composition inside the mature Places workspace with human-readable
+provenance and restrained action hierarchy. Backend commit `48b54610c` then
+proves the upstream path on a fresh disposable PostgreSQL database: explicit
+Source request → canonical worker → persisted production → authenticated
+`/api/root-projections/v2/places/runtime` → standalone
+`field_lead_composition`. The route retains an honest sparse-field fallback
+and performs no second provider call. The connected Source packet passes **3
+tests**, the focused backend root packet passes **43 tests**, and the focused
+mobile Places packet passes **37 tests** with TypeScript green.
+
+This is persisted-engine and receiving-contract evidence. The connected
+producer/materials are authored fixtures, the populated native field is a
+frontend rehearsal fixture, and no live provider, rollout flag, production
+cohort or real-backend device capture is claimed. The next package should run
+this same contract through a controlled local backend/native session and judge
+the result's usefulness; it should not add another schema, store, route family
+or fixture-only composition.
+
 Current candidate tuple after the latest rebaseline: workspace
-`c586de3`, backend `96d264c41`, app `242d309f0`, all on
-`codex/functional-implementation-2026-09-20`. This is isolated committed work,
+`494df01`, backend `48b54610c`, app `bdef50f72`, all on
+`codex/native-presentation-wave1-2026-09-21`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
 verification can continue; no shared runtime, publishing, flag activation,
