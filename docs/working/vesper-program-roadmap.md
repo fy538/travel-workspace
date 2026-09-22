@@ -76,10 +76,11 @@ each intended design section to its existing owner, candidate, selected region,
 rendered value and exact return; only build a new producer or semantic kind if
 that trace demonstrates a real unsupported user outcome.
 
-**Current isolated implementation tuple:** workspace parent `36efae2`, backend
-`60da1dcb9`, and app `d021488be`, all on the isolated
-`codex/functional-implementation-2026-09-20` lane. Backend and app are committed
-and clean; the roadmap update is the only workspace change pending. Focused
+**Current isolated implementation tuple at inspection:** workspace `0138f2a`,
+backend `60da1dcb9`, and app `d021488be`, all on the isolated
+`codex/functional-implementation-2026-09-20` lane. All three checkouts were
+clean before this roadmap edit; canonical main and its unrelated working-tree
+changes were left untouched. Focused
 checks for the current Home → Places friends continuation pass: backend Home
 portfolio **59 tests**; app route/workspace/feed **117 tests**, source and test
 TypeScript, targeted ESLint, and Places docs checks. No live account read or
@@ -2115,17 +2116,18 @@ retirement require their existing approvals. Assignment does not dispatch a task
 ## 2. Inspected baseline — September 22
 
 At inspection before this roadmap edit, the isolated candidate was clean at
-workspace `8d9730c`, backend `fd80c437e`, and app `a4de82802`, all on
-`codex/functional-implementation-2026-09-20`. Workspace `8d9730c` records the
-latest implementation receipt and is documentation-only relative to
-product-source parent `1d9264d`; backend
-`fd80c437e` admits the existing saved-Place closure, reopening and weather
-window notices into Home as private, exact-venue Place continuations; app
-`a4de82802` is unchanged. Focused backend evidence is 57 Home portfolio tests
-and 493 root-projection/Places-return tests; existing Home renderer, screen
-smoke and navigation suites pass 76 tests, with TypeScript passing. No fresh
-native real-data capture, API/device rehearsal, standard gate, merge, rollout
-activation or publication was part of that last slice.
+workspace `0138f2a`, backend `60da1dcb9`, and app `d021488be`, all on
+`codex/functional-implementation-2026-09-20`. Backend `fd80c437e` admits the
+existing saved-Place closure, reopening and weather-window notices into Home
+as private, exact-venue Place continuations. The latest backend slice adds a
+conditional Home door into Places' existing Friends section: it appears only
+when the same current Places read contains at least two distinct trip-shared
+`friend-save` cards, retains the selected Places context and Home return token,
+and does not count addressed handoff notes already shown on Home. App
+`d021488be` focuses that existing section without changing server ordering.
+Focused evidence for this latest slice is 59 Home portfolio tests and 117 app
+route/workspace/feed tests, plus source/test TypeScript, targeted ESLint and
+Places docs checks. No live-account read or device acceptance was run for it.
 
 The candidate also contains the integrated Places World Field and its combined
 native full-scroll acceptance, exact Home Outcome → Life record return,
@@ -2144,14 +2146,15 @@ explicitly open.
 Canonical main was not modified; its workspace checkout contains unrelated
 user changes and remains untouched.
 
-| Repository | Candidate HEAD inspected before this documentation update | Canonical main last observed at the earlier September 22 checkpoint |
+| Repository | Candidate HEAD inspected before this documentation update | Canonical main observed for this update |
 | --- | --- | --- |
-| Workspace | `8d9730c` | `70c4b4b` |
-| Backend | `fd80c437e` | `a7c02cbe1` |
-| App | `a4de82802` | `e2e792913` |
+| Workspace | `0138f2a` | `70c4b4b` |
+| Backend | `60da1dcb9` | `a7c02cbe1` |
+| App | `d021488be` | `e2e792913` |
 
-The canonical-main column is a dated comparison only; it was not re-inspected
-for this update. Canonical main and other worktrees were not modified.
+The canonical-main column is a comparison only: the workspace contains
+unrelated uncommitted user changes, and the backend contains an unrelated
+untracked fixture. Neither checkout nor any other worktree was modified.
 
 ### September 22 follow-up — preserve Home saved-place closure context
 
@@ -2358,7 +2361,7 @@ Integration/landing, publish code, or activate production flags.
 
 | Package / role | Status and complete outcome | Dependency / handback |
 | --- | --- | --- |
-| **Primary build — Home design-aligned composition breadth** | The September 21 owner-backed Home scroll composes three families; Places has an integrated, locally owner-backed World Field full scroll; exact Home → Life Outcome return and Home-selected Place-note Keep paths have named receipts. The September 22 secondary-composition correction preserves coherent secondary objects while leaving plain readings/findings bare; 12 renderer tests, TypeScript and one registered mock native capture passed. Current code also has ten bounded Home owner readers, a prepared private Source-contribution read, posture/region selection and 18 promoted semantic renderers. Backend `fd80c437e` completes Home receiving for the current saved-Place change family: closure, reopening and weather-window notices become private exact-venue Place rows with source-owned copy, no dismissal action, and fail-closed notice validation. Backend Home tests: **57 focused / 493 root-projection and Places-return**; existing app renderer/screen/navigation tests: **76**, with TypeScript passing. This proves one connected capability, not broad design coverage, recurring supply, native real-data acceptance or sufficient Home value-depth. These private notices are not the city-scoped source-backed fact required by `horizon_world_fact_row`. | **Build sequence:** **(1) Trace** the current Home design's substantial sections against each real producer, candidate/read, selected region, renderer, destination/action and return. Classify each gap as already supplied but omitted, supplied but weak/repetitive in composition, or genuinely unsupplied; record the exact owner and evidence for the last category. **(2) Compose** a coherent longer Home from supported material first, making importance, variety and hierarchy legible without turning it into an infinite feed or adding user homework. Extend a producer only where the trace proves a valuable missing outcome and its owner, evidence, privacy, freshness, lifecycle and return are already defined. No new generator/store, semantic kind or isolated card/route to simulate fullness. **(3) Accept** two materially different Home postures against the actual current design reference and current code tuple: follow at least one exact source/depth/action destination and return; inspect whole-scroll hierarchy, sparse/pending/failure states, accessibility and polished native treatment. Do not count a fixture-only scroll, isolated card or transport seam as the outcome. **Closeout, not a competing milestone:** fixed Home-sample native presentation/retirement, selected-note withdrawal/expiry, ordinary empty states, binary-media runtime, comprehensive visual parity and standard landing gates remain separate. The registered Places mock `places-search-loading` assertion is a separate QA gap; its forced-state failure produced no screenshot. |
+| **Primary build — Home design-aligned composition breadth** | The September 21 owner-backed Home scroll composes three families; Places has an integrated, locally owner-backed World Field full scroll; exact Home → Life Outcome return and Home-selected Place-note Keep paths have named receipts. The September 22 secondary-composition correction preserves coherent secondary objects while leaving plain readings/findings bare; 12 renderer tests, TypeScript and one registered mock native capture passed. Current code also has ten bounded Home owner readers, a prepared private Source-contribution read, posture/region selection and 18 promoted semantic renderers. Backend `fd80c437e` completes Home receiving for the current saved-Place change family: closure, reopening and weather-window notices become private exact-venue Place rows with source-owned copy, no dismissal action, and fail-closed notice validation. The latest Home → Places friends continuation is also implemented: the existing Home addressed region links to Places' current Friends section only when at least two distinct trip-shared saves are present, preserving context and Home return without introducing a feed or duplicating addressed notes. Latest focused checks: **59** Home portfolio tests; **117** app route/workspace/feed tests, plus source/test TypeScript, targeted ESLint and Places docs checks. No new live-account/device acceptance was run. This proves useful connected capabilities, not broad design coverage, recurring supply, or sufficient Home value-depth. These private saved-Place notices are not the city-scoped source-backed fact required by `horizon_world_fact_row`. | **Build sequence:** **(1) Trace** the substantial sections in the registered Home design authority (`docs/governance/home-surfaces-design-authority.json`) against each real producer, candidate/read, selected region, renderer, destination/action and return. Verify the external canonical bundle and its hashes before visual acceptance; exploratory exports are not runtime contracts, and cross-sender photo grouping remains unsupported without an owner-backed shared-set identity. Classify each gap as already supplied but omitted, supplied but weak/repetitive in composition, or genuinely unsupplied; record the exact owner and evidence for the last category. **(2) Compose** a coherent longer Home from supported material first, making importance, variety and hierarchy legible without turning it into an infinite feed or adding user homework. Extend a producer only where the trace proves a valuable missing outcome and its owner, evidence, privacy, freshness, lifecycle and return are already defined. No new generator/store, semantic kind or isolated card/route to simulate fullness. **(3) Accept** two materially different Home postures against the verified design reference and current code tuple: follow at least one exact source/depth/action destination and return; inspect whole-scroll hierarchy, sparse/pending/failure states, accessibility and polished native treatment. Do not count a fixture-only scroll, isolated card or transport seam as the outcome. **Closeout, not a competing milestone:** fixed Home-sample native presentation/retirement, selected-note withdrawal/expiry, ordinary empty states, binary-media runtime, comprehensive visual parity and standard landing gates remain separate. The registered Places mock `places-search-loading` assertion is a separate QA gap; its forced-state failure produced no screenshot. |
 | **Complementary build — Life/social downstream value** | Persisted HTTP reads prove one private Plan and one explicitly permissioned shared Outcome through Life root and depth. The People-record seam also preserves grant/member refs, exact destinations and explicit People-bound private anchors. Life's canonical artifact reader shows the authorized photo set and opens a selected original without cropping. Metadata refinding now paginates beyond the former 100-result ceiling and passes its continuation case against a fresh lane-local disposable PostgreSQL database. Life's Places lens opens an explicitly linked Place from a retained source/original and returns to the anchored record. | Do not expand search into body semantics. Current recipient deliveries are owned by Relationships and revalidated there, but Life's root corpus does not read them and its audience contract has only private/group/public; do not encode a revocable one-to-one original as a durable Life record or mislabel it as group content. The Place door follows an existing owner-declared association; it does not prove attendance or later permitted reuse. Further Life/social work must demonstrate a concrete permissioned benefit from already-authorized structured records. Defer policy-dependent media/group/use expansion. |
 | **Non-blocking review closeout — R02/R05/R06/R09 evidence** | All 11 confirmed code findings in the September 21 review ledger have code-level fixes; this is not equivalent to closing every acceptance boundary. R01/R03 disposable-Postgres authority/revocation regressions pass. R04 sender withdrawal has API and native evidence at its named one-recipient text scope. R05 has lease/recovery code, a real Arq/Redis wrapper and expired due-work recovery evidence. R09's timezone propagation correction has focused regressions. | Still open are the governed outsider/cohort/release matrix for R02; a real process-kill/restart and live transient-provider failure/retry for R05; deployed expanded-place scale/cost evidence for R06; and persisted/native cross-device, date-boundary and DST evidence for R09. Run only in the correct disposable/runtime environments. These remain necessary for their named readiness/landing claims but do not gate independent Home implementation. See the [review ledger](functional-implementation-code-review-2026-09-21.md) for exact boundaries. |
 | **Across both builds — native polish** | Required within each completed surface: design hierarchy, card/media treatment, interaction, accessibility and sparse/pending/failure states. Not accepted yet. | Use current inspected Claude exports and handoffs; record actual canvas/version. Unresolved visual choices do not block unrelated owner/supply work. |
