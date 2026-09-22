@@ -54,25 +54,33 @@ each intended design section to its existing owner, candidate, selected region,
 rendered value and exact return; only build a new producer or semantic kind if
 that trace demonstrates a real unsupported user outcome.
 
-**Functional-code tuple at this rebaseline:** workspace `e7b872b`, backend
-`8866f41a2`, and app `9a4c029e3`, all clean on the isolated
-`codex/functional-implementation-2026-09-20` lane. The exact Home → Place →
-Keep → Home route has native acceptance on iPhone 16 Plus / iOS 18.2: it opened
-only the selected note, kept it, observed the relationship owner's revision
-advance from 0 to 1 and an exact reread at revision 1, returned to Home with the
-handled unit removed, and cleaned its disposable fixture. App `9a4c029e3` adds
-the negative sibling-note case: if the selected handoff is absent but another
-person's line remains, the page reports the selected note unavailable and does
-not substitute the other line. `ObjectPageRebuild` passes **24 tests**, the
-recipient owner-read invalidation suite passes **4**, and TypeScript passes.
-This latest addition is regression coverage, not a new device rehearsal. The
-registered Home-root native capture remains the earlier single mock-fixture
-posture at app `6ae89c427`; it is not broad Home acceptance or design parity.
-The current visual QA doctor could not run because Metro was unavailable at
-`:8081`, so no current-tuple screenshot was captured. Withdrawal/expiry for the
-selected note remain unproven. The [code review ledger](functional-implementation-code-review-2026-09-21.md)'s
-**11 confirmed findings are code-fixed**; remaining R05/R09 matrices and R02 cohort/release and R06
-deployed-scale evidence are acceptance gaps, not known uncorrected defects.
+**Functional-code tuple at this rebaseline:** workspace `2fe00cc`, backend
+`8866f41a2`, and app `a4de82802`, all clean on the isolated
+`codex/functional-implementation-2026-09-20` lane. On the prior app candidate
+`9a4c029e3`, the exact Home → Place → Keep → Home route had native acceptance
+on iPhone 16 Plus / iOS 18.2: it opened only the selected note, kept it,
+observed the relationship owner's revision advance from 0 to 1 and an exact
+reread at revision 1, returned to Home with the handled unit removed, and
+cleaned its disposable fixture. That device receipt was not rerun on this
+tuple. App `9a4c029e3` also added the negative sibling-note case: if the
+selected handoff is absent but another person's line remains, the page reports
+the selected note unavailable and does not substitute the other line. Its
+`ObjectPageRebuild` suite passed **24 tests**, recipient owner-read invalidation
+passed **4**, and TypeScript passed. Current app `a4de82802` only changes the
+Home sample caption to a readable Design Language token; its focused Home
+renderer suite passes **12 tests**, TypeScript and targeted ESLint pass. These
+are regression/focused checks, not a new device rehearsal. The registered
+Home-root native capture remains the earlier single mock-fixture posture at
+app `6ae89c427`; it is not broad Home acceptance or design parity. The current
+visual QA doctor could not run because Metro was unavailable at `:8081`, so no
+current-tuple screenshot was captured. Withdrawal/expiry for the selected
+note remain unproven. Workspace `2fe00cc` also corrects the Source workflow
+recovery description: the existing worker sweep is scheduled, but process
+restart and live transient-provider retry remain unproven. The [code review
+ledger](functional-implementation-code-review-2026-09-21.md)'s **11 confirmed
+findings are code-fixed**; remaining R05/R09 matrices and R02 cohort/release
+and R06 deployed-scale evidence are acceptance gaps, not known uncorrected
+defects.
 Standard pre-push findings were last recorded as 55 expired API-policy
 reviews, 59 expired schema-bridge exceptions, and 12 query-key ownership
 findings; `make verify` has not been run against this exact tuple. These are
@@ -171,15 +179,14 @@ drift that had called several already-renderable kinds "dark"; it does not
 claim source admission, recurring content supply, broad runtime full-scroll
 quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
-**Latest inspected checkout tuple before this roadmap refresh:** workspace
-`d076caa`, backend `8866f41a2`, and
-app `9a4c029e3` (the exact isolated-lane baseline is in §2). The native
-Home-selected Place-note Keep path and Home Outcome → Life record → Home return
-were proven on iPhone 16 Plus / iOS 18.2 on their named earlier candidate
-revisions; neither was re-run after the latest test-only non-substitution
-addition. The current focused object-page/owner-read tests and app TypeScript
-pass, but the visual doctor was blocked by Metro not being available at `:8081`.
-Do not inherit device evidence as a fresh full-tuple run. The fixed Home
+**Current inspected checkout tuple:** workspace `2fe00cc`, backend
+`8866f41a2`, and app `a4de82802` (the exact isolated-lane baseline is in §2).
+The native Home-selected Place-note Keep path and Home Outcome → Life record →
+Home return were proven on iPhone 16 Plus / iOS 18.2 on their named earlier
+candidate revisions; neither was re-run on this tuple. The current focused
+Home renderer and Source recovery tests, TypeScript and targeted ESLint passed;
+the visual doctor was blocked by Metro not being available at `:8081`. Do not
+inherit earlier device evidence as a fresh full-tuple run. The fixed Home
 sample's live presentation/retirement, selected-note withdrawal/expiry,
 comprehensive visual/device acceptance and exact-tuple `make verify` remain
 unverified. None of these commits is merged to main, published, or
@@ -2068,7 +2075,7 @@ retirement require their existing approvals. Assignment does not dispatch a task
 
 ## 2. Inspected baseline — September 22
 
-Inspected at workspace `d076caa`, backend `8866f41a2`, and app `9a4c029e3`.
+Inspected at workspace `2fe00cc`, backend `8866f41a2`, and app `a4de82802`.
 Since the previous rebaseline, the candidate contains the integrated Places
 World Field and its combined native full-scroll acceptance, exact Home Outcome
 → Life record return, exact Home-selected Place-note ownership and Keep path,
@@ -2081,18 +2088,24 @@ iOS 18.2; the non-substitution regression adds a 24-test object-page suite,
 is an available-state mock fixture, not a full owner-backed Home scroll or a
 Claude-design parity verdict. A separate three-family Home scroll already has
 owner-backed native evidence; neither result establishes the broader
-design-aligned Home composition. The fixed cold-start example still lacks
+design-aligned Home composition. Since that capture, app `a4de82802` corrected
+the Home sample caption token and passed 12 focused renderer tests, TypeScript
+and targeted ESLint. The fixed cold-start example still lacks current-tuple
 native presentation and live-retirement evidence. The current visual doctor
-could not run without Metro at `:8081`; no screenshot was produced. The
-candidate's three repositories are committed and clean in its isolated lane.
+could not run without Metro at `:8081`; no screenshot was produced. Workspace
+`2fe00cc` also reconciles the Source recovery review claim with the registered
+worker schedule: the focused worker/registration/recovery packet passed 38
+tests, while process restart/provider retry remain explicitly open.
+The candidate's three repositories are committed and clean in its isolated
+lane.
 Canonical main was not modified; its workspace checkout contains unrelated
 user changes and remains untouched.
 
 | Repository | Candidate HEAD at this rebaseline | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `d076caa` | `70c4b4b` |
+| Workspace | `2fe00cc` | `70c4b4b` |
 | Backend | `8866f41a2` | `a7c02cbe1` |
-| App | `9a4c029e3` | `e2e792913` |
+| App | `a4de82802` | `e2e792913` |
 
 The stronger Keep-after-reopen flow contract from app `e2c0bafb1` remains a
 separate acceptance path: its 4-test flow contract and 33-test focused
@@ -2100,16 +2113,19 @@ owner/action/object-page packet pass, but it has not been exercised by the
 `90-places-full-scroll` run and should not inherit that run's acceptance. The
 registered native Home capture `20260922T095658Z-home-root` records app
 `6ae89c427`; it covers only the available-state mock fixture, not current app
-`9a4c029e3` or the full Home scroll. The newly added exact-note
-non-substitution test passes on app `9a4c029e3`, but no current-tuple visual
+`a4de82802` or the full Home scroll. The exact-note non-substitution regression
+passed on app `9a4c029e3`; app `a4de82802` subsequently changed only the sample
+caption color and passed its focused renderer checks. No current-tuple visual
 capture was possible because Metro was unavailable at `:8081`. The previously
 observed `maestro:metadata:check` failure on untouched flow
 `.maestro/76-places-public-reading.yaml` (`lane:
 functional-implementation` is not an allowed metadata value) remains
 unrechecked against this tuple; flow 75 itself normalized successfully.
 
-Workspace `d076caa` is a documentation-only rebaseline on top of functional
-workspace commit `e7b872b`; backend and app code remain at the tuple above.
+At the previous inspected checkpoint, workspace `d076caa` was a
+documentation-only rebaseline on top of functional workspace commit
+`e7b872b`; backend and app code at that checkpoint were `8866f41a2` and
+`9a4c029e3`.
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent
 repositories. Earlier workspace receipt `b127a54` records the initial exact
@@ -2118,7 +2134,8 @@ implementation is in app `0924ff1e5`; app `e2c0bafb1` adds the stronger
 Keep-after-reopen flow contract and runner safeguards. The September 22 child
 merges integrated sibling commits `d7d153810` and `cd70c7111`; the app merge
 also contains the `dominant_unit_id` ordering fix and regression. The latest
-app commit `9a4c029e3` adds a selected-note fail-closed regression only. The
+app commit at that checkpoint, `9a4c029e3`, adds a selected-note fail-closed
+regression only. The
 workspace, backend and app candidate checkouts were clean at inspection; the
 canonical workspace checkout has unrelated user changes and was not touched.
 Canonical main and its concurrent work remain untouched. The candidate is
