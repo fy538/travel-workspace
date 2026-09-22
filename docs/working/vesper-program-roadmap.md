@@ -85,22 +85,27 @@ are historical and do not form additional queues. Update these summaries when
 a substantial package finishes instead of appending a competing next step.
 
 **Next emphasis:** stop closing the same transport seams and build more of the
-product people are meant to use. The primary package is a coherent,
-design-aligned Home/Places implementation pass: map the current design handoffs
-to the actual screens and supplied owners, then implement a useful set of
-missing sections/cards together as a substantial full-scroll experience. Keep
-the work grounded in material the existing owners can actually supply; carry
-each result through source, exact depth/action destination, return, honest
-sparse/error behavior, accessibility and polished native hierarchy. Do not
-reduce this to another isolated card or acceptance-only increment. The fixed
-Home example is only a low-context fallback, not recurring supply or a varied
+product people are meant to use. Home already has a native, owner-backed
+three-family full-scroll receipt (September 21); the Places World Field also
+has an integrated native full-scroll receipt (September 22). The primary
+package is therefore not “make the first Home full scroll.” It is to make Home
+broader and more design-aligned: map the current Home composition contract and
+design handoff to actual producers, projection kinds and renderers; identify
+which useful sections are already supplied, which are not presented, and which
+are genuinely unsupplied; then implement a coherent set of supported missing
+composition and presentation together. Carry the received material through
+source, exact depth/action destination, return, honest sparse/error behavior,
+accessibility and polished native hierarchy. Do not reduce this to another
+isolated card, repeated fixture scroll or acceptance-only increment. The fixed
+Home example remains a cold-start fallback, not recurring supply or a varied
 personal portfolio. A permissioned Life/social downstream result remains a
 complementary package where structured inputs and authority already exist;
-environment-dependent evidence does not serialize that product work. Do not add
-a generator, feed or storage family to manufacture fullness. The exact
+environment-dependent evidence does not serialize that product work. Do not
+add a generator, feed or storage family to manufacture fullness. The exact
 addressed-note withdrawal/expiry cases remain closeout for that route, not the
-next product milestone. Focused tests are part of each build package, not a
-separate phase in place of implementation.
+next product milestone. Focused tests and a real design-reference/polish check
+are part of each build package, not a separate phase in place of
+implementation.
 
 **September 22 refinement:** the bounded Places World Field is now integrated
 in the functional candidate, the server-elected ordering seam is fixed and
@@ -112,8 +117,10 @@ This closes the Places candidate-adoption and named runtime acceptance step,
 not comprehensive visual parity, recurring supply or release readiness. The
 registered mock `places-search-loading` assertion still fails before
 screenshot capture, and external design-canon comparison remains unverified.
-Home's missing design-aligned full-scroll breadth is now the next substantial
-build; do not rebuild Places or restart a two-surface redesign.
+Home's existing native three-family scroll does not yet establish the broader,
+design-aligned Home composition or its cold-start sample presentation. The
+next substantial build is that Home composition breadth; do not rebuild Places
+or restart a two-surface redesign.
 
 The renderer ledger was refreshed after this rebaseline: the Home transport
 union is 36 kinds, with 17 explicit Home semantic renderers plus the three
@@ -2034,20 +2041,23 @@ retirement require their existing approvals. Assignment does not dispatch a task
 
 ## 2. Inspected baseline — September 22
 
-Inspected before this roadmap update at workspace `9c4d822`, backend
+Inspected before this roadmap update at workspace `48dd198`, backend
 `8866f41a2`, and app `933f004f8`. Since the prior baseline, the candidate adds
 the fixed cold-start Home example, Life keyset refinding and its
 disposable-Postgres proof, the explicit Life → Places source-associated door
 with anchored return, exact Home Outcome → Life record routing/return, and the
 integrated Places World Field with combined native full-scroll acceptance.
-The Home example still has no native visual or live-retirement proof;
-comprehensive visual/device acceptance and broad binary-media coverage remain
-open. Current code heads are committed in the isolated candidate; this roadmap
-refresh is the only remaining workspace edit in this lane.
+The existing September 21 Home scroll is a separate accepted native
+owner-backed path, not proof of design breadth: the fixed cold-start Home
+example still has no native presentation or live-retirement proof, and a
+broader design-aligned Home composition remains the active build. Comprehensive
+visual/device acceptance and broad binary-media coverage remain open. Current
+code heads are committed in the isolated candidate; this roadmap refresh is
+the only remaining workspace edit in this lane.
 
 | Repository | Candidate HEAD at this rebaseline | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `9c4d822` (candidate before this roadmap refresh) | `70c4b4b` |
+| Workspace | `48dd198` (candidate before this roadmap refresh) | `70c4b4b` |
 | Backend | `8866f41a2` | `a7c02cbe1` |
 | App | `933f004f8` | `e2e792913` |
 
@@ -2204,7 +2214,7 @@ Integration/landing, publish code, or activate production flags.
 
 | Package / role | Status and complete outcome | Dependency / handback |
 | --- | --- | --- |
-| **Primary build — Home full-scroll breadth** | The Places World Field is integrated, its elected-order seam is covered, and its combined native full-scroll passes with real local API/Postgres-backed content. Existing Home/Places owner-backed readings, practical/social options, exact destinations/return, Home public-Place readback and named Home/Life native paths remain available. | **Next:** build a coherent Home full-scroll from existing owner-backed supply, using current designs as a coverage reference. Carry several related sections through source, exact depth/action destination, return, sparse/error states, accessibility and polished hierarchy. **Separate closeout:** selected-note withdrawal/expiry, fixed Home-sample native presentation/retirement, distinct empty states, binary-media runtime and comprehensive visual parity remain open; standard pre-push gates still block landing/publishing. Do not add a generator or store to manufacture supply. The registered Places mock `places-search-loading` assertion remains an explicit QA gap; its forced-state failure produced no screenshot. |
+| **Primary build — Home design-aligned composition breadth** | The September 21 Home native scroll already combines three owner-backed families; the September 22 Places World Field is integrated, its server-elected order is covered, and its multi-family native scroll passed against local API/Postgres-backed owners. Exact Home → Life Outcome return and Home-selected Place-note ownership paths also have named receipts. These establish useful connected paths, not broad Home design coverage. | **Next:** trace the Home contract/design handoff against current producers, projection kinds and renderers; distinguish supplied-but-not-presented content from true supply gaps; then implement a coherent, substantially richer Home composition from supported owners. Validate the full scroll and relevant differing Home postures, source/depth/action/return, sparse/pending/error behavior, accessibility and polish against the actual current design reference. **Separate closeout:** fixed Home-sample native presentation/retirement, selected-note withdrawal/expiry, ordinary empty states, binary-media runtime and comprehensive visual parity remain open; standard pre-push gates still block landing/publishing. Do not add a generator or store to manufacture supply. The registered Places mock `places-search-loading` assertion remains an explicit QA gap; its forced-state failure produced no screenshot. |
 | **Complementary build — Life/social downstream value** | Persisted HTTP reads prove one private Plan and one explicitly permissioned shared Outcome through Life root and depth. The People-record seam also preserves grant/member refs, exact destinations and explicit People-bound private anchors. Life's canonical artifact reader shows the authorized photo set and opens a selected original without cropping. Metadata refinding now paginates beyond the former 100-result ceiling and passes its continuation case against a fresh lane-local disposable PostgreSQL database. Life's Places lens opens an explicitly linked Place from a retained source/original and returns to the anchored record. | Do not expand search into body semantics. Current recipient deliveries are owned by Relationships and revalidated there, but Life's root corpus does not read them and its audience contract has only private/group/public; do not encode a revocable one-to-one original as a durable Life record or mislabel it as group content. The Place door follows an existing owner-declared association; it does not prove attendance or later permitted reuse. Further Life/social work must demonstrate a concrete permissioned benefit from already-authorized structured records. Defer policy-dependent media/group/use expansion. |
 | **Non-blocking reliability evidence — R05/R09 edges** | R01/R03 disposable-Postgres authority/revocation regressions pass. R04 withdrawal controls and R09 schedule-zone propagation are code-fixed with focused regressions; R04 sender-control API and native simulator rehearsals pass. R05 lease/recovery code, real Arq/Redis wrapper and expired due-work recovery have focused evidence. Still open: a real process-interruption/restart rehearsal and live transient-provider failure/retry. R09 persisted/native timezone-edge evidence also remains open. | Run only those missing matrices when the explicitly disposable database/queue/device is available. They remain required for their named evidence/landing claims, but do not gate independent product implementation. |
 | **Across both builds — native polish** | Required within each completed surface: design hierarchy, card/media treatment, interaction, accessibility and sparse/pending/failure states. Not accepted yet. | Use current inspected Claude exports and handoffs; record actual canvas/version. Unresolved visual choices do not block unrelated owner/supply work. |

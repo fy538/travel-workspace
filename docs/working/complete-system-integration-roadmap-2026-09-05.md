@@ -7286,10 +7286,13 @@ existing owner data or a permissioned Life/social later-use result; include this
 sheet in the next native acceptance pass rather than creating a parallel
 recipient-action harness.
 
-### 9.10 September 22 execution — Places World Field complete; Home breadth next
+### 9.10 September 22 execution — Places World Field complete; Home composition breadth next
 
 **Status: Places World Field integrated and accepted on the current functional
-candidate; Home full-scroll breadth is the active product build.** The
+candidate; broader, design-aligned Home composition is the active product
+build.** Home already has a September 21 native scroll combining three
+owner-backed families. The next Home package must extend its composition and
+design coverage, not recreate that first scroll. The
 implementation originated in sibling workspace `58e45dc`, backend `d7d153810`,
 app `cd70c7111`, then merged into this lane's independent child repositories.
 Current merged code heads are backend `8866f41a2` and app `933f004f8`; the
@@ -7332,13 +7335,19 @@ accepted for its named content/runtime path, not as comprehensive Places design
 acceptance. Place-note withdrawal/expiry and ordinary empty/error states remain
 separate closeout edges.
 
-**Next product build — Home full-scroll value breadth:** use the Home handoff as
-a coverage reference, then select several related sections/cards that current
-owners can actually supply. Deliver a coherent scroll with exact source and
-depth/action destinations, return behavior, sparse/pending/failure treatment,
-accessibility and polished hierarchy. The outcome must add user value beyond
-another same-Place reading sequence or transport-only route. Do not add a
-generator, store, feed or surface architecture to manufacture fullness. Keep
-fixed Home-sample native retirement/presentation, broader Home selection
-quality, binary-media runtime, visual acceptance and standard landing gates as
-distinct closeout work; none requires rebuilding Places first.
+**Next product build — Home design-aligned composition breadth, not first
+full-scroll:** trace the current Home surface contract and accepted design
+handoff against the actual producer inventory, projection kinds, renderer map
+and route/action owners. Separate three cases: useful material already supplied
+but not presented; material presented but compositionally weak or repetitive;
+and material the current owners genuinely cannot supply. Then implement a
+coherent, substantially richer Home composition from supported sources. Its
+native acceptance should inspect the whole scroll and the relevant differing
+Home postures, then follow exact source/depth/action destinations and return;
+cover sparse/pending/failure states, accessibility and polished visual
+hierarchy against the actual current design reference. Do not count another
+fixture-only scroll, isolated card, or transport seam as this outcome. Do not
+add a generator, store, feed or surface architecture to manufacture fullness.
+Keep fixed Home-sample native retirement/presentation, selected-note
+withdrawal/expiry, binary-media runtime, comprehensive visual acceptance and
+standard landing gates distinct; none requires rebuilding Places first.
