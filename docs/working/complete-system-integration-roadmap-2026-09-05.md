@@ -32,9 +32,9 @@ depends_on:
 Use this paragraph as the current baseline for execution decisions. The
 historical receipts below intentionally retain the tuples and evidence scopes
 that produced them, but they do not supersede this checkpoint. The clean
-isolated tuple is workspace `65a6c7f`, backend `7c0ef042e`, and app
+isolated tuple is workspace `65a6c7f`, backend `756f9cc8a`, and app
 `ae5c7c1aa`, all on `codex/functional-implementation-2026-09-20`. The current
-backend root-projection packet passes **480 tests**; the current app packet
+backend root-projection packet passes **481 tests**; the current app packet
 contains **209 tests across 12 focused suites**, with TypeScript and targeted
 lint passing (the existing renderer max-lines warning remains). This wave
 completed the bounded Home/Places receiving and destination corrections plus a
@@ -7787,21 +7787,24 @@ next integration build.
 
 ## September 22 Home attention-breadth repair
 
-Backend commit `7c0ef042e` adjusts Home's existing cumulative attention
-selection without adding a producer or changing posture budgets. After the
-dominant unit, the selector gives a materially different admitted region a
-chance to survive before spending the remaining finite budget on repeated rows
-from one region. Within each region it still uses the declared benefit and
-stable producer order; hard admission, one-unresolved-demand, urgent
-suppression, expiry, destinations and return contracts are unchanged. The
-focused Home composition suite passes **10 tests**, and the full
-`tests/root_projection` packet passes **480 tests**. This is a bounded
-composition-quality improvement, not proof of recurring supply, native visual
-parity or device acceptance.
+Backend commit `756f9cc8a` carries forward Home's bounded cumulative-attention
+selection and adds a compiler-level acceptance for its selected long scroll.
+After the dominant unit, the selector gives a materially different admitted
+region a chance to survive before spending the remaining finite budget on
+repeated rows from one region. The regression proves that the crown, four
+region seats, stable unit identities and exact source refs survive compilation
+together. Within each region it still uses the declared benefit and stable
+producer order; hard admission, one-unresolved-demand, urgent suppression,
+expiry, destinations and return contracts are unchanged. No producer, feed,
+generator, store, semantic kind or social route was added. The focused Home
+composition suite passes **11 tests**, and the full `tests/root_projection`
+packet passes **481 tests**. This is a bounded composition-contract evidence
+improvement, not proof of recurring supply, native visual parity or device
+acceptance.
 
 ## September 22 final execution rebaseline
 
-The current implementation tuple is workspace `65a6c7f`, backend `7c0ef042e`,
+The current implementation tuple is workspace `65a6c7f`, backend `756f9cc8a`,
 and app `ae5c7c1aa`, all on the isolated functional-implementation branch.
 This wave has closed the recent receiving, typed destination, source-result,
 region-language, returned-order, editorial-treatment, Life-lens and attention-
