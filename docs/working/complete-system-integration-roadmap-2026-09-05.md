@@ -32,7 +32,7 @@ depends_on:
 Use this paragraph as the current baseline for execution decisions. The
 historical receipts below intentionally retain the tuples and evidence scopes
 that produced them, but they do not supersede this checkpoint. The clean
-isolated tuple is workspace `65a6c7f`, backend `0962f95a6`, and app
+isolated tuple is workspace `2319671`, backend `0962f95a6`, and app
 `2eefb9c1d`, all on `codex/functional-implementation-2026-09-20`. The current
 backend root-projection packet passes **481 tests**; the full offline backend
 gate passes **21,661 tests** with 14 skipped and 53 expected passes, and the
