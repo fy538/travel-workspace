@@ -63,6 +63,14 @@ social model, store, feed, or inference. Backend Home portfolio tests pass
 and test TypeScript checks, targeted ESLint, and Places docs checks. No live
 account read or device acceptance was run for this change.
 
+The follow-on notification convergence gap is also closed in the app: a
+foreground notification receipt or provider-drop recovery invalidates Home's
+existing owner projection as well as Activity's notification cache. An active
+Home can refresh in place; Home reached later can refresh on focus. This does
+not record a read/seen action, navigate, or add a second banner. Focused
+PushRegistrar (**15**) and Home root-invalidation (**3**) tests plus app
+TypeScript pass. Native push delivery/device acceptance remains unverified.
+
 **Home implementation map:** `build_home_portfolio` already reads ten bounded
 sources (up to six concurrently, a 900 ms deadline per source, and up to 24
 items per source),
@@ -76,15 +84,24 @@ each intended design section to its existing owner, candidate, selected region,
 rendered value and exact return; only build a new producer or semantic kind if
 that trace demonstrates a real unsupported user outcome.
 
-**Current isolated implementation tuple at inspection:** workspace `0138f2a`,
-backend `60da1dcb9`, and app `d021488be`, all on the isolated
-`codex/functional-implementation-2026-09-20` lane. All three checkouts were
-clean before this roadmap edit; canonical main and its unrelated working-tree
-changes were left untouched. Focused
-checks for the current Home → Places friends continuation pass: backend Home
-portfolio **59 tests**; app route/workspace/feed **117 tests**, source and test
-TypeScript, targeted ESLint, and Places docs checks. No live account read or
-device acceptance was run for this slice.
+**Historical Home → Places friends-continuation tuple:** workspace `0138f2a`,
+backend `60da1dcb9`, and app `d021488be`. Its 59 backend Home-portfolio and
+117 app route/workspace/feed test results remain evidence for that earlier
+slice, not the current checkout.
+
+**Current isolated implementation tuple:** workspace `d673f33`, backend
+`7537ae042`, and app `0e1676a4c`, all on
+`codex/functional-implementation-2026-09-20`. The three repositories were clean
+after the app implementation commit and before this roadmap edit; canonical
+main and its unrelated working-tree changes remain untouched. Current focused
+evidence includes backend selector/portfolio **68 tests**; Home renderer **12**,
+Home screen **17**, PushRegistrar **15**, and root-invalidation **3** app tests;
+app TypeScript; and docs-link validation across **499** living Markdown files.
+Targeted ESLint reported no errors, with existing max-lines/import-order
+warnings. No live-account read, native push/device acceptance, or Home visual
+parity acceptance ran. The latest notification change only invalidates Home's
+existing owner projection after foreground receipt/provider-drop recovery; it
+does not add a banner, navigation, or a synthetic seen action.
 
 Earlier acceptance remains useful but is not current-tuple evidence. On app
 `9a4c029e3`, the exact Home → Place → Keep → Home route had native acceptance
