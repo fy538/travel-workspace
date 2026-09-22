@@ -26,12 +26,13 @@ but remains a partially complete internal product candidate. Existing owner
 material can now reach Home and Places as readings, comparisons, social
 perspectives and practical options; selected material can be opened, acted on,
 and returned to its exact owner-backed record. Life can refind retained
-records and supported photo/text originals, open an explicitly associated
-Place, and restore its anchor on return. Intake v2 admits supported audio, but
-Life's Intake original reader currently has no audio playback; a bounded,
-tap-to-play implementation is in progress and is not yet contract-synchronized
-or accepted on device. PDF is not a missing reader path: Intake intentionally
-rejects PDF uploads until its scanner/decoder lane exists. Named
+records and supported photo/text/audio originals, open an explicitly associated
+Place, and restore its anchor on return. Intake v2 admits supported audio, and
+Life's Intake original reader now plays verified retained MP3/M4A/WAV audio
+after an explicit tap, using the existing authenticated GET and custody checks
+(app commit `93a9090de`). Actual secured media bytes and native codec playback
+remain unverified on device. PDF is not a missing reader path: Intake
+intentionally rejects PDF uploads until its scanner/decoder lane exists. Named
 database/API/native paths support parts of this
 experience. They do not establish broad design coverage, worthwhile recurring
 supply, general later-context benefit, production activation or release
@@ -108,18 +109,17 @@ backend `60da1dcb9`, and app `d021488be`. Its 59 backend Home-portfolio and
 117 app route/workspace/feed test results remain evidence for that earlier
 slice, not the current checkout.
 
-**Current isolated product-code revisions:** backend `2d0721e67` and app
-`d142d9e17`, both on `codex/functional-implementation-2026-09-20`; the workspace
-baseline before this roadmap-only update is `44ea081`. The latest backend commit
-scopes Home child-source fixture cleanup to the run that owns the fixture,
-avoiding restoration of a profile snapshot by an absent or concurrent run. The
-lane is not clean: an audio-original
-preview attempt has uncommitted app/backend changes and a regenerated full
-OpenAPI snapshot. The app projection and generated TypeScript have not been
-updated because the governed sync stops on 55 expired API-policy reviews and
-one missing consumer declaration for the added `HEAD` operation. Canonical main
-and its unrelated working-tree changes remain untouched; see §2 for exact
-status and the completion choice.
+**Current isolated product-code revisions before this roadmap correction:**
+workspace `0f3caf4`, backend `2d0721e67`, and app `93a9090de`, all on
+`codex/functional-implementation-2026-09-20`; all three working trees are clean.
+The latest backend commit scopes Home child-source fixture cleanup to the run
+that owns the fixture, avoiding restoration of a profile snapshot by an absent
+or concurrent run. The audio reader is committed in the app and adds no backend
+operation. Offline OpenAPI export reflects the current backend source; app
+projection remains blocked by 55 existing expired API-policy reviews. There is
+no new `HEAD` operation or missing-consumer finding. Canonical main and its
+unrelated working-tree changes remain untouched; see §2 for exact status and
+evidence boundaries.
 Prior focused evidence includes backend selector/portfolio **68 tests** and
 backend seed context **44 tests**; Home renderer **12**, Home screen **17**,
 PushRegistrar **15**, root-invalidation **3**, and route/composer/seed **73**
@@ -2208,42 +2208,33 @@ expired compatibility entries `discover-url-bridge`, `atlas-tab-url-bridge`,
 and `discover-map-api-bridge`; its current-state renderer cannot run with the
 invalid inventory.
 
-**Latest candidate and active Life reader work.** Since that recorded tuple,
-backend `2d0721e67` adds a bounded cleanup guard for the Home child-source
-rehearsal: an absent run no longer restores its caller-supplied profile
-snapshot. App remains at `d142d9e17`. Intake v2's feature contract says
-server-decodable audio is accepted, while PDF/PKPass/HEIC/HEIF are rejected
-until a scanner/decoder exists. The earlier PDF reader gap in this register
-was therefore incorrect and is withdrawn: there is no admitted PDF original
-to preview yet. The actual supported-source gap is audio: retained Intake
-audio is available through the authenticated, private/no-store owner media
-route, but the app's canonical Intake reader currently renders only text and
-images.
+**Current isolated candidate after the Life audio slice.** Backend
+`2d0721e67` adds the bounded Home child-source cleanup guard; app `93a9090de`
+implements Life audio playback. All three isolated repositories were clean at
+the start of this documentation correction. Intake v2 accepts server-decodable
+audio; PDF/PKPass/HEIC/HEIF remain rejected pending scanner/decoder support, so
+PDF preview is not a missing reader feature.
 
-An uncommitted Life reader draft now offers explicit-tap playback for a bounded
-MP3/M4A/WAV MIME allowlist, reusing the existing authenticated Expo audio path;
-it does not autoplay, transcribe, export, or share. The app's focused source and
-screen suites pass **36 tests**, and app TypeScript passes. These are mocked
-behavioral checks, not proof against real bytes, supported device codecs, or
-native playback; source authorization also produces existing React `act`
-warnings in the screen suite. Backend route tests previously passed **25** in
-the configured environment, but the repeat attempted for this update could not
-load `tests/conftest.py` because the selected Python lacks `sqlalchemy`.
+The canonical Life Intake reader now offers explicit-tap playback for retained
+MP3/M4A/WAV through the existing authenticated, custody-checked GET media route.
+There is no autoplay, transcript, AI use, export, share action, upload-format
+expansion, new API operation, or policy expansion. Focused screen, original
+boundary and shared audio-hook coverage passes **41 tests**; app TypeScript
+passes. Targeted ESLint reports no errors and one existing max-lines warning in
+the Intake screen. The **31** registered polish scenario IDs validate, and the
+`life-root` design-reference check is structurally valid with its existing
+HTML-reference warning. The visual QA command found no capture matching its
+flow, so there is no screenshot or native/device verdict. Actual secured media
+bytes, iOS/Android codec playback, expiry-specific playback, end-to-end owner
+read, and accessibility/polish acceptance remain unproven.
 
-The shared audio hook performs an authenticated `HEAD` availability check, but
-the existing owner-media route was GET-only (the route test confirmed HEAD
-returned 405). The draft adds a cheap owner/custody-rechecking `HEAD` handler
-without reading private bytes. Backend `docs/openapi.json` was regenerated to
-include it; app projection and generated types were not. `sync-types.sh` stops
-with **55 expired-policy findings** and **one missing-consumer finding** for
-the new mobile `HEAD` operation. Do not silence this by extending review dates
-mechanically. Before calling audio complete, either adapt playback to use the
-existing authorized GET with truthful failure handling, or declare the exact
-mobile consumer and resolve the API-policy review through its evidence-based
-governance; then regenerate and review the full snapshot, app projection,
-generated types and consumers, run API coverage, and obtain device playback
-evidence. Until then this remains an in-progress, uncommitted adjunct—not a
-completed Life capability or a reason to displace the primary Home composition
+The offline OpenAPI exporter regenerated the full snapshot from current backend
+source. No API operation or generated mobile wire type changed. The governed
+app projection still stops at the pre-existing **55 expired-policy findings**;
+the earlier missing-consumer finding was caused by the abandoned `HEAD`
+proposal and is no longer present. This is not a completed policy backlog or a
+full type-sync gate. Native media/device proof remains a follow-up acceptance
+item, not a reason to add a speculative API route or hold the Home composition
 build.
 
 Canonical main was not modified; its workspace checkout contains unrelated
@@ -2251,9 +2242,9 @@ user changes and remains untouched.
 
 | Repository | Isolated candidate HEAD before this documentation update | Canonical `main` HEAD last inspected |
 | --- | --- | --- |
-| Workspace | `44ea081` | `70c4b4b` |
+| Workspace | `0f3caf4` | `70c4b4b` |
 | Backend | `2d0721e67` | `a7c02cbe1` |
-| App | `d142d9e17` | `e2e792913` |
+| App | `93a9090de` | `e2e792913` |
 
 The canonical-main column is a comparison only: the workspace contains
 unrelated uncommitted user changes, the backend contains an unrelated
@@ -2465,7 +2456,7 @@ Integration/landing, publish code, or activate production flags.
 | Package / role | Status and complete outcome | Dependency / handback |
 | --- | --- | --- |
 | **Primary build — Home design-aligned composition breadth** | The September 21 owner-backed Home scroll composes three families; Places has an integrated, locally owner-backed World Field full scroll; exact Home → Life Outcome return and Home-selected Place-note Keep paths have named receipts. The September 22 secondary-composition correction preserves coherent secondary objects while leaving plain readings/findings bare; 12 renderer tests, TypeScript and one registered mock native capture passed. Current code also has ten bounded Home owner readers, a prepared private Source-contribution read, posture/region selection and 18 promoted semantic renderers. Backend `fd80c437e` completes Home receiving for the current saved-Place change family: closure, reopening and weather-window notices become private exact-venue Place rows with source-owned copy, no dismissal action, and fail-closed notice validation. The latest Home → Places friends continuation is also implemented: the existing Home addressed region links to Places' current Friends section only when at least two distinct trip-shared saves are present, preserving context and Home return without introducing a feed or duplicating addressed notes. A new composition correction allows multiple individually useful settled/current In-motion records while preserving the one-unresolved-decision rule and posture-specific attention budget. The `people_authored_region` renderer now follows its accepted banded-card treatment: each directly addressed note has its own card, and each Place door binds by exact case source reference rather than server-array order. Its focused renderer and Home screen tests pass; no native capture ran because Metro was unavailable, and the design-ref registry still has no Home manifest. Backend `7537ae042` passed the selector/portfolio packet (**68 tests**); app `d9b3fd358` passed the Home screen component packet (**17 tests**), TypeScript, targeted ESLint and docs headers/links. No live-account read or device acceptance was run. This improves breadth without proving full design coverage, recurring supply, or sufficient Home value-depth. These private saved-Place notices are not the city-scoped source-backed fact required by `horizon_world_fact_row`. | **Build sequence:** **(1) Trace** the substantial sections in the registered Home design authority (`docs/governance/home-surfaces-design-authority.json`) against each real producer, candidate/read, selected region, renderer, destination/action and return. Verify the external canonical bundle and its hashes before visual acceptance; exploratory exports are not runtime contracts, and cross-sender photo grouping remains unsupported without an owner-backed shared-set identity. Classify each gap as already supplied but omitted, supplied but weak/repetitive in composition, or genuinely unsupplied; record the exact owner and evidence for the last category. **(2) Compose** a coherent longer Home from supported material first, making importance, variety and hierarchy legible without turning it into an infinite feed or adding user homework. The first composition correction now allows multiple settled/current In-motion records while the existing unresolved-demand and cumulative-attention budgets remain in force; this is one step toward breadth, not the full composition outcome. Extend a producer only where the trace proves a valuable missing outcome and its owner, evidence, privacy, freshness, lifecycle and return are already defined. No new generator/store, semantic kind or isolated card/route to simulate fullness. **(3) Accept** two materially different Home postures against the verified design reference and current code tuple: follow at least one exact source/depth/action destination and return; inspect whole-scroll hierarchy, sparse/pending/failure states, accessibility and polished native treatment. Do not count a fixture-only scroll, isolated card or transport seam as the outcome. **Closeout, not a competing milestone:** fixed Home-sample native presentation/retirement, selected-note withdrawal/expiry, ordinary empty states, binary-media runtime, comprehensive visual parity and standard landing gates remain separate. The registered Places mock `places-search-loading` assertion is a separate QA gap; its forced-state failure produced no screenshot. |
-| **Complementary build — Life/social downstream value** | Persisted HTTP reads prove one private Plan and one explicitly permissioned shared Outcome through Life root and depth. The People-record seam preserves grant/member refs, exact destinations and explicit People-bound private anchors. Life's canonical artifact reader shows the authorized photo set and opens a selected original without cropping. Metadata refinding paginates beyond the former 100-result ceiling; Life's Places lens opens an explicitly linked Place from a retained source/original and returns to the anchored record. The actual supported-media gap is audio, not PDF: Intake v2 accepts server-decodable audio, but the canonical Intake reader renders only text and images. The uncommitted draft adds explicit-tap MP3/M4A/WAV playback and releases the player on source revision, custody withdrawal or reader exit; its focused app suite passes **36 tests** and TypeScript passes. Real media bytes, native codec/device behavior, expiry-specific playback evidence, accessibility/polish and end-to-end owner read remain unproven. PDF/PKPass/HEIC/HEIF uploads are rejected pending scanner/decoder work, so PDF preview is not currently a valid feature gap. | Do not expand search into body semantics. Current recipient deliveries remain owned by Relationships and revalidated there; Life's root corpus does not read them, and its audience contract has only private/group/public. Do not encode a revocable one-to-one original as a durable Life record or mislabel it as group content. The Place door follows an owner-declared association; it does not prove attendance or later permitted reuse. Keep this audio work bounded to the authenticated original reader: no autoplay, transcription, AI interpretation, app-level export, share action, upload-format expansion, or later-use policy. The shared Expo audio path requires an authenticated `HEAD`; the draft route has not passed API consumer projection because the audit reports 55 expired policy reviews plus a missing consumer for the new operation. To finish, either adapt playback to the existing secured GET with truthful failure handling, or declare the mobile HEAD consumer and complete its required evidence-based policy review without mechanically extending dates; then sync/review the OpenAPI snapshot, app projection and generated types, run API coverage, and prove playback, expiry, withdrawal and return on supported devices. Keep Home's design-aligned composition breadth as the primary build; this Life seam can proceed only when it does not take shared schema, device or root-composition resources. Defer policy-dependent social/media reuse. |
+| **Complementary build — Life/social downstream value** | Persisted HTTP reads prove one private Plan and one explicitly permissioned shared Outcome through Life root and depth. The People-record seam preserves grant/member refs, exact destinations and explicit People-bound private anchors. Life's canonical artifact reader shows the authorized photo set and opens a selected original without cropping. Metadata refinding paginates beyond the former 100-result ceiling; Life's Places lens opens an explicitly linked Place from a retained source/original and returns to the anchored record. The canonical Intake reader now plays retained MP3/M4A/WAV after explicit tap through the existing authenticated GET; the slice is committed in app `93a9090de`, with 41 focused tests and TypeScript passing. Real media bytes, native codec/device playback, expiry-specific playback evidence, accessibility/polish and end-to-end owner read remain unproven. PDF/PKPass/HEIC/HEIF uploads are rejected pending scanner/decoder work, so PDF preview is not currently a valid feature gap. | Do not expand search into body semantics. Current recipient deliveries remain owned by Relationships and revalidated there; Life's root corpus does not read them, and its audience contract has only private/group/public. Do not encode a revocable one-to-one original as a durable Life record or mislabel it as group content. The Place door follows an owner-declared association; it does not prove attendance or later permitted reuse. Keep this audio work bounded to the authenticated original reader: no autoplay, transcription, AI interpretation, app-level export, share action, upload-format expansion, or later-use policy. Do not add a new operation or widen the image/text original-delivery MIME allowlist as part of this Life reader. Complete real-media, device, expiry, owner-read and accessibility/polish acceptance when the supported runtime is available. Keep Home's design-aligned composition breadth as the primary product build; Life acceptance follow-up must not turn into a new shared schema or policy lane. Defer policy-dependent social/media reuse. |
 | **Non-blocking review closeout — R02/R05/R06/R09 evidence** | All 11 confirmed code findings in the September 21 review ledger have code-level fixes; this is not equivalent to closing every acceptance boundary. R01/R03 disposable-Postgres authority/revocation regressions pass. R04 sender withdrawal has API and native evidence at its named one-recipient text scope. R05 has lease/recovery code, a real Arq/Redis wrapper and expired due-work recovery evidence. R09's timezone propagation correction has focused regressions. | Still open are the governed outsider/cohort/release matrix for R02; a real process-kill/restart and live transient-provider failure/retry for R05; deployed expanded-place scale/cost evidence for R06; and persisted/native cross-device, date-boundary and DST evidence for R09. Run only in the correct disposable/runtime environments. These remain necessary for their named readiness/landing claims but do not gate independent Home implementation. See the [review ledger](functional-implementation-code-review-2026-09-21.md) for exact boundaries. |
 | **Across both builds — native polish** | Required within each completed surface: design hierarchy, card/media treatment, interaction, accessibility and sparse/pending/failure states. Not accepted yet. | Use current inspected Claude exports and handoffs; record actual canvas/version. Unresolved visual choices do not block unrelated owner/supply work. |
 | **Orchestration / this thread** | Own scope, current queue, cross-system decisions and package review; dispatch only when requested. | Review first working composition, consequential blocker and completed package. Judge delivered behavior and remaining user effort, not commit/test counts. |
@@ -4395,8 +4386,9 @@ changing source revision, withdrawal or retention expiry releases the player.
 There is no autoplay, upload-policy change, transcript, AI use, export or send
 action.
 
-On the app candidate, the focused Intake screen, original-boundary and shared
-audio-hook packet passes **40 tests**. `npm run typecheck` passes; targeted
+On the app candidate `93a9090de`, the focused Intake screen,
+original-boundary and shared audio-hook packet passes **41 tests**, including
+the readiness-timeout regression. `npm run typecheck` passes; targeted
 ESLint reports no errors and one existing max-lines warning in the Intake
 screen. The registered polish scenario IDs validate (**31**); the `life-root`
 design-reference check is structurally valid with its existing HTML-reference
@@ -4410,9 +4402,9 @@ operation-governance queue (**55 expired-policy findings**). No new API
 operation or generated mobile wire type is part of this slice. This does not
 repair the broader API-governance backlog or constitute a full type-sync gate.
 
-Next action remains product-bearing: advance the source-backed Home returned
-value composition only after its Life-owned evidence/purpose contract is
-defined; do not substitute this bounded audio reader or further test
-scaffolding for the planned Home user-value slice. Native media/device proof
-is still a release-acceptance follow-up, not a reason to add a speculative API
-route.
+The primary next product build remains the Home design-aligned composition
+package in §4: broaden useful value from supported owner material, trace exact
+depth/action destinations and return, and assess whole-scroll hierarchy and
+polish against the verified design reference. This audio reader is a complete
+bounded implementation with native media/device acceptance still open; it does
+not replace or serialize that Home work.
