@@ -7447,6 +7447,23 @@ increment: no schema, semantic kind, generator, route, audience rule or
 frontend contract changed. It does not establish a general consequence feed,
 native visual parity or release readiness.
 
+#### 9.10.5 September 22 receipt Place destinations
+
+The receipt candidate now keeps an exact Places destination when the viewer's
+owned non-Trip receipt names an already-routable `venue`, `site`,
+`accommodation`, or `experience` target. The existing app navigator opens the
+canonical Place entity and preserves the Home return context. Other receipt
+target kinds remain evidence-only; no route is inferred from an arbitrary
+receipt target.
+
+Backend `2e123173c` implements this bounded projection. The focused backend
+Home/action-receipt packet passes **92 tests**; the existing app root-navigation,
+Home smoke, and connected Home experience packet passes **78 tests**. Ruff,
+TypeScript, targeted lint, formatting and diff checks pass. This is a typed
+destination completion for an existing owner, not a new receipt store,
+semantic kind, generator, audience rule, consequence feed, or visual-parity
+claim.
+
 **Source-inspection boundary confirmed on September 22:** public
 `place_content_primitive` readings are exact, evidence-linked owner coordinates
 used during root composition; their native `Why this?` action is a bounded
@@ -7455,8 +7472,8 @@ units enter the viewer-scoped owner read that offers Ask / Remove controls. Keep
 these paths separate; the absence of private attachment controls on public Place
 readings is not an implementation gap.
 
-**Current product-code tuple:** workspace product-code checkpoint `f8f90e8`,
-backend `3f677bc97`, and app `1cca51a04`, all on the isolated functional-
+**Current product-code tuple:** workspace product-code checkpoint `a27131c`,
+backend `2e123173c`, and app `1cca51a04`, all on the isolated functional-
 implementation branch. Workspace `57872d0` is the latest roadmap-only
 checkpoint. The program roadmap's Home package register remains the current
 cross-lane priority authority; this ledger retains implementation evidence.

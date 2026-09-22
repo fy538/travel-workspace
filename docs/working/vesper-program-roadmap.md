@@ -2507,6 +2507,13 @@ Integration/landing, publish code, or activate production flags.
 | **Dedicated Integration / landing** | PAUSED; combined shared runtime, main landing and publishing are not enabled by this update. | Lane-local implementation/verification remains distinct. On explicit resume, receive selected clean cuts and run required gates without pretending candidate receipts certify production. |
 | **Existing specialist lanes** | Reference suppliers, not automatically restarted or assumed merged. | Use immutable relevant cuts; independently assigned work needs file ownership and direct dependency exchange, not six standing lanes matching six design projects. |
 
+**Package-register amendment, September 22:** the Home primary-build tuple now
+includes backend `2e123173c`. In addition to the viewer-owned non-Trip receipt
+read, supported receipt targets (`venue`, `site`, `accommodation`, and
+`experience`) retain an exact `places.open_entity` door. This is a bounded
+completion of an existing owner path; it does not change the register's next
+priority of design-aligned composition breadth from owner-backed material.
+
 #### September 22 Home design-authority check
 
 The registered workspace authority remains
@@ -2535,7 +2542,7 @@ reference.
 **September 22 current-tuple clarification:** The Home selector/screen tests and
 single mock native capture named in the detailed Home row are earlier receipts,
 not fresh verification of the current code tuple. The latest isolated lane is
-workspace product-code checkpoint `f8f90e8`, backend `3f677bc97`, and app
+workspace product-code checkpoint `f8f90e8`, backend `2e123173c`, and app
 `1cca51a04` (which includes the earlier `d33dd65f2` Trip-scope repair, the
 exact proposal and scoped social-fallback repairs, and the Life refinding
 itinerary-block route). Backend
@@ -4861,6 +4868,25 @@ canonical receipt/compiler packet passes **69 tests**; Ruff, formatting, diff
 checks and backend pre-commit hooks pass. This closes a supplied non-Trip
 consequence path; it does not add a receipt route, broaden audience authority,
 or establish a richer generated Home feed or native visual parity.
+
+## September 22 functional implementation receipt — receipt Place destinations
+
+The Home receipt adapter now preserves an exact Places destination when a
+viewer-owned action receipt names one of the already-routable Place target
+kinds: `venue`, `site`, `accommodation`, or `experience`. The candidate carries
+the typed target together with the receipt reference and uses the existing
+`places.open_entity` navigator, so the consequence opens the canonical Place
+owner and can return to the originating Home unit. Receipt targets outside
+those four kinds remain evidence-only; Home does not guess a route or promote
+an arbitrary target into a Place.
+
+Backend commit `2e123173c` implements this bounded destination projection. The
+focused Home/action-receipt packet passes **92 tests**; the existing app root
+navigation, Home smoke, and connected Home experience packet passes **78
+tests**. Ruff, TypeScript, targeted lint, formatting and diff checks pass.
+This closes exact destination reachability for an existing receipt owner; it
+does not add a new receipt store, semantic kind, audience rule, generator,
+or broad consequence feed, and visual/device parity remains unverified.
 
 ## September 22 functional implementation receipt — governed Life answers
 
