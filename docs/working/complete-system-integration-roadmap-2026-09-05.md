@@ -27,6 +27,30 @@ depends_on:
 
 ## Current engineering tranche — September 22
 
+### End-of-wave authority (September 22, latest local tuple)
+
+Use this paragraph as the current baseline for execution decisions. The
+historical receipts below intentionally retain the tuples and evidence scopes
+that produced them, but they do not supersede this checkpoint. The clean
+isolated tuple is workspace `65a6c7f`, backend `2e123173c`, and app
+`ae5c7c1aa`, all on `codex/functional-implementation-2026-09-20`. The current
+backend root-projection packet passes **479 tests**; the current app packet
+contains **209 tests across 12 focused suites**, with TypeScript and targeted
+lint passing (the existing renderer max-lines warning remains). This wave
+completed the bounded Home/Places receiving and destination corrections plus a
+Life lens-preserving return repair. It does not prove a substantially richer
+Home composition, recurring provider-backed supply, native media/device
+acceptance, verified external design-canon parity, or release readiness.
+
+The next product build is therefore still Home value breadth: trace the
+registered Home sections to existing owner-backed producers, compose a longer
+benefit-led full scroll across the supported regions, and carry a
+representative item through exact source, depth/action, return, and honest
+sparse/pending/failure states. Do not add a generator, feed, store, semantic
+kind, or social action merely to make the screen look full. Treat the
+recent-return trigger as a separate policy decision; it must not serialize
+ordinary Home composition work.
+
 The functional lane now has a connected, partially complete internal product:
 Home/Places value and practical consequences, Life originals/refinding/groups,
 and bounded social receiving have implementations plus real disposable-
