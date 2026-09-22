@@ -118,10 +118,11 @@ backend `60da1dcb9`, and app `d021488be`. Its 59 backend Home-portfolio and
 117 app route/workspace/feed test results remain evidence for that earlier
 slice, not the current checkout.
 
-**Current isolated product-code revisions before this September 22 roadmap
-edit:** workspace `827e7e8`, backend `4357d1320`, and app `93a9090de`, all on
-`codex/functional-implementation-2026-09-20`. The backend and app trees are
-clean; this workspace checkout now contains the roadmap update. Backend
+**Current isolated candidate tuple:** workspace `eea903b` (latest
+roadmap-only checkpoint; product code is unchanged from `0fe8e88`), backend
+`4357d1320`, and app `93a9090de`, all on
+`codex/functional-implementation-2026-09-20`. The workspace, backend, and app
+trees are clean. Backend
 `4357d1320` adds real-Postgres Home HTTP acceptance for the saved-Place path;
 its predecessor `18e1fb377` implements the bounded source-backed reading.
 Backend `2d0721e67` scopes Home child-source fixture cleanup to the run that

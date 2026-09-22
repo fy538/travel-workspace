@@ -56,7 +56,8 @@ authority. Existing I0–I6/CV contracts still govern implementation. Do not
 rebuild foundations merely because an older table described them as missing.
 
 **Later September 22 Home update — current candidate tuple:** workspace
-`0fe8e88`, backend `4357d1320`, app `93a9090de` on
+`eea903b` (latest roadmap-only checkpoint; product code is unchanged from
+`0fe8e88`), backend `4357d1320`, app `93a9090de` on
 `codex/functional-implementation-2026-09-20`. The backend uses the existing
 explicit saved-Place continuity door to surface a bounded, accepted public
 reading where available. Real disposable-Postgres HTTP evidence proves that
@@ -7408,8 +7409,9 @@ or `make verify` was run. This closes an explicit saved-intent → accepted
 public Place reading path only. It does not supply a private cross-time return
 or substantially broader Home composition.
 
-**Current candidate tuple:** workspace `0fe8e88`, backend `4357d1320`, app
-`93a9090de`, all clean on the isolated functional-implementation branch. The
+**Current candidate tuple:** workspace `eea903b` (latest roadmap-only
+checkpoint; product code is unchanged from `0fe8e88`), backend `4357d1320`,
+app `93a9090de`, all clean on the isolated functional-implementation branch. The
 roadmap-only workspace update is not product code. The program roadmap's Home
 package register is the current cross-lane priority authority; this ledger
 retains implementation evidence. The next Home package remains design-aligned
