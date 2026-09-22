@@ -2026,7 +2026,7 @@ tasks. The present update plans work; it does not start agents or services.
 | Package / role | Status and complete outcome | Dependency / handback |
 | --- | --- | --- |
 | **First — review evidence closeout** | R01/R03 disposable-Postgres authority/revocation regressions pass. R04 withdrawal controls and R09 schedule-zone propagation are code-fixed with focused regressions; R04 sender-control API and native simulator rehearsals pass. R05 lease/recovery code, real Arq/Redis wrapper and expired due-work recovery have focused evidence. Still open: a real process-interruption/restart rehearsal and live transient-provider failure/retry. R09 persisted/native timezone-edge evidence also remains open. Not complete. | Run only those missing matrices, with explicitly disposable database/queue/device inputs; preserve truthful gate status and do not repeat completed happy paths. Independent product work can proceed outside affected files. |
-| **Primary build — Home/Places useful breadth** | In progress. The candidate has owner-backed reads, social receiving, practical fit/open-now, exact destinations/return, persisted Home public-Place HTTP readback with source-retraction behavior, and native multi-source scrolls. Exact-place friend lines now offer recipient-only Keep/Leave-aside in the rebuilt reader, guarded by a fresh relationship-owner read and expected revision; focused app and owner tests pass, while this new sheet still lacks native/API end-to-end acceptance. Home and governed Places show generic partial-read notices without backend diagnostics; latest focused Home/Places packet passes 50 tests, with TypeScript and targeted lint passing. Remaining: worthwhile varied default-portfolio value beyond the proved scrolls, broader design-section coverage, distinct empty states, and native visual acceptance/parity. | Select the largest concrete design/value gap supported by existing Source/content/relationship/Place owners. Keep exact destinations, return, accessibility and empty/error behavior in the same package; no new generator/store or route-only milestone. |
+| **Primary build — Home/Places useful breadth** | In progress. The candidate has owner-backed reads, social receiving, practical fit/open-now, exact destinations/return, persisted Home public-Place HTTP readback with source-retraction behavior, and native multi-source scrolls. Exact-place friend lines offer recipient-only Keep/Leave-aside in the rebuilt reader, guarded by a fresh relationship-owner read and expected revision; this recipient-action journey now passes against the real local API/Postgres on iOS 18.2. A cache handoff fix refreshes the Places feed after owner status/action changes. The earlier focused Home/Places packet passed 50 tests; this action follow-through adds 4/4 owner-action tests, 3/3 runner-contract tests and the native/API journey. Home and governed Places show generic partial-read notices without backend diagnostics. Remaining: worthwhile varied default-portfolio value beyond the proved scrolls, broader design-section coverage, distinct empty states, and native visual acceptance/parity. | Select the largest concrete design/value gap supported by existing Source/content/relationship/Place owners. Keep exact destinations, return, accessibility and empty/error behavior in the same package; no new generator/store or route-only milestone. |
 | **Complementary build — Life/social downstream value** | Persisted HTTP reads prove one private Plan and one explicitly permissioned shared Outcome through Life root and depth. The People-record seam also preserves grant/member refs, exact destinations and explicit People-bound private anchors. Broader media/corpus, Threads/gathering experience and later permitted context that changes a subsequent result are not complete. | Use existing Source, Life and relationship owners; custody is not permission. Select downstream value only where structured authority exists; defer policy-dependent media/group/use expansion. |
 | **Across both builds — native polish** | Required within each completed surface: design hierarchy, card/media treatment, interaction, accessibility and sparse/pending/failure states. Not accepted yet. | Use current inspected Claude exports and handoffs; record actual canvas/version. Unresolved visual choices do not block unrelated owner/supply work. |
 | **Orchestration / this thread** | Own scope, current queue, cross-system decisions and package review; dispatch only when requested. | Review first working composition, consequential blocker and completed package. Judge delivered behavior and remaining user effort, not commit/test counts. |
@@ -3633,3 +3633,42 @@ text-original scope. It does not claim group/media sharing, broader audience
 policy, notifications, production activation, or visual parity. Remaining
 review evidence is R05 process-restart/transient queue behavior and R09
 persisted/native timezone edges.
+
+## September 21 functional implementation receipt — recipient controls on the rebuilt Places reader
+
+The exact-place friend line now completes its recipient-side lifecycle in the
+rebuilt venue reader. App commit `072f56488` invalidates the Places feed after
+the fresh owner read reports a terminal handoff and after recipient actions;
+the existing owner action still refreshes Home projections and the exact
+handoff query. This closes a stale-return case where the detail page hid a
+Leave-aside line but the Places feed could briefly continue to show its card.
+
+The real native rehearsal uses a run-scoped disposable PostgreSQL fixture and
+proves the canonical Places feed and entity People-lines response before UI
+automation. On simulator `D7C8FEF4-237B-4347-841C-6FE920BFABFA` (iOS 18.2),
+the app showed the recipient-consented contribution, opened the exact venue
+through `venue-detail-screen-rebuild`, displayed the authorized People-line
+sheet, accepted Keep, then Leave aside, returned to the same Places context,
+and no longer represented the dismissed friend card. The runner completed
+owner cleanup and verified the post-cleanup Places projection. It now accepts
+`VESPER_MAESTRO_UDID` so the selected simulator is explicit.
+
+The lane used only local internal opt-ins
+(`EXPO_PUBLIC_IS_INTERNAL_BUILD=true`,
+`EXPO_PUBLIC_OBJECT_PAGE_REBUILD_ENABLED=true`,
+`EXPO_PUBLIC_RELATIONSHIP_UUID_HANDOFFS_ENABLED=true`) and local API flags
+(`SKIP_AUTH=true`, `RELATIONSHIP_UUID_HANDOFFS_ENABLED=true`,
+`PLACE_HANDOFF_PULL_ENABLED=true`); AI/provider-backed generation and
+background LLM loops were disabled. Evidence: the native
+`run-places-real-social-pull.sh` passed end to end; the focused owner-action
+Jest packet passed **4/4**, runner-contract tests **3/3**, targeted ESLint, app
+TypeScript, shell syntax, and `git diff --check` passed. An initial rehearsal
+exercised the compatibility renderer because the local rebuilt-page opt-in
+was absent; that was not counted as acceptance. The corrected explicit-flag
+run passed.
+
+This closes one recipient-only Keep/Leave-aside and return boundary for a
+venue-bound text contribution. It does not establish general multiplayer
+parity, broader Places visual parity, production activation, group/media
+sharing, or release readiness. Continue with the next substantive Home/Places
+owner/value gap; do not infer a new social subsystem from this slice.
