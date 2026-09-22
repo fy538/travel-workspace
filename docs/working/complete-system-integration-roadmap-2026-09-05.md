@@ -43,8 +43,10 @@ Backend `8ab3313b8` aligns that door with Life's exact record route in both Home
 projection paths; the Home-origin return token continues through the existing
 app navigator. App commit `a7f0083cc` also verifies the Life reader selects the
 exact keyed Outcome row rather than showing its missing-target state. The
-route-helper and Life-reader suites pass **61 tests combined**, but the path
-has not been rehearsed on a device.
+route-helper and Life-reader suites pass **61 tests combined**. The follow-on
+native rehearsal now proves Home → the exact Outcome record → Back to the same
+Home unit on iPhone 16 Plus / iOS 18.2. This closes the named route/return path,
+not broad Home visual acceptance or the full integration gate.
 
 **Read the [program baseline](vesper-program-roadmap.md#2-inspected-baseline--september-22)
 and [§9 current execution plan](#9-current-execution-ledger-and-next-batch)
@@ -59,9 +61,9 @@ and the relationship owner re-reads that exact contribution without relying
 on the incidental three-line list or substituting another note. Focused app
 and backend route suites pass (**91** and **7** tests), and the exact-owner
 PostgreSQL case passes (**1** test) on a fresh lane-local disposable database
-that was dropped afterward. Native tap/back/withdrawal/expiry acceptance and
-the standard landing gates remain open; those closeout items do not serialize
-independent product work.
+that was dropped afterward. Native Keep tap/back is proven for this named
+path; Place-note withdrawal/expiry acceptance and the standard landing gates
+remain open. Those closeout items do not serialize independent product work.
 
 Current order: build substantive Home/Places value from existing owner-backed
 material. Select a gap in the inspected design and current implementation that
@@ -2383,9 +2385,30 @@ The root-navigation and Life reader component suites pass **61 tests
 combined**, covering exact Outcome routing, return-token propagation, and
 selection of the keyed row rather than a missing-target state. Ruff, format,
 and backend commit hooks passed for the backend change. No full database/API/
-native tap-and-back rehearsal or `make verify` was run. This closes local route
-and reader selection evidence, not native return acceptance or the broader
-Home/Places content-depth goal.
+native tap-and-back rehearsal or `make verify` was run at the time of this
+implementation receipt. The later native receipt below closes the exact return
+path but not the broader Home/Places content-depth goal.
+
+### September 22 native receipt — Home Outcome → exact Life record → Home
+
+App `0924ff1e5` updates the Life-record Back action to honor an active,
+short-lived Home return token. With native navigation history, Back uses the
+existing stack so Home's root-return tracker restores the same originating
+unit; if the token exists without a stack, it replaces to the originating
+root. Missing or expired tokens retain the safe Life-root fallback. Backend
+`f099bdace` adds a run-scoped, private synthetic Outcome fixture and verifies
+its cleanup from both Home and Life projections.
+
+`scripts/maestro/run-home-outcome-life-return.sh` passed on iPhone 16 Plus / iOS
+18.2 (run ID `home-outcome-return-native-20260922-f`, simulator
+`400AC715-0AAF-423B-BD8C-2B758CD60A68`). It opened the exact
+`outcome.<id>` record from Home, confirmed the Life record view, pressed Back,
+and confirmed return to the same Home unit. The fixture was then withdrawn and
+verified absent from both projections. The runner contract passed **4/4**;
+the focused Life record component suite passed **19 tests**, and app typecheck,
+targeted ESLint, shell syntax and diff checks passed. This is native behavior
+evidence for one exact Outcome return, not a visual-polish verdict, all Life
+record types, or `make verify`.
 
 ### September 22 implementation receipt — exact Home-selected Place note
 
@@ -2477,7 +2500,7 @@ transient-provider failure/retry remain unverified.
 | I1 | Source/graph/Outcome delivery, repair, backfill and reconciliation foundation; additional retained-source revisions and Life adoption paths in this lane | Build population and later-use coverage over existing owners; do not infer indexed serving cutover or cross-context authority from retention |
 | I2 | Bounded serving, prepared results, cancellation and publication fences; explicit Source Arq registration, serializer repair and gated due-work recovery sweep; real `not_claimed` wrapper, expired due-work recovery and in-flight lease-renewal evidence | Run the process-interruption/restart and live transient-provider failure/retry rehearsals in isolated Arq/Redis; cost/cohort/provider activation remains separately gated |
 | I3 | Contribution authority and useful-first intake; exact retained/received text-original paths with scoped native receipts | R01/R03 authority and revocation are verified, R04 code correction plus API/native sender-control rehearsals and named Life/Home original-receiving paths are complete; broader supported originals and permissioned downstream use remain; pending history/audience policy is not silently adopted |
-| I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots; supplied Home and Places multi-source full-scrolls; same-Place sequence passes persisted Home HTTP readback with source retraction; generic Home/Places partial-read notices preserve supplied content; rebuilt Place reader supports recipient Keep/Leave-aside with a real local native/API rehearsal; Home's long Outcome preview is capped at 220 characters and its v1/v2 doors identify the exact revisioned Life record; focused backend Home/composition/compiler packet: 110 passed; combined app route-helper and Life-reader target-selection packet: 61 passed. **Implemented candidate:** exact Home-selected Place handoff ID/revision routes to the canonical object and is re-read through the relationship owner; focused app packet **91 passed**, backend route packet **7 passed**, exact-owner PostgreSQL case **1 passed**, typecheck and polish validation passed; workspace/backend/app commits `79fbb69` / `4e35b8df1` / `7a2dcd0d9` | The selected line opens only when that exact handoff remains eligible; malformed, absent, stale, withdrawn and mismatched selections fail closed without substitution. The disposable-Postgres case passed exact selection outside the three-line list, stale revision, membership withdrawal and sender-revoke checks in a dedicated lane-local database that was then dropped. Native tap/back/withdrawal/expiry acceptance remains unrun. OpenAPI/generated types match using the established temporary policy copy; canonical policy is unchanged. `api-coverage-check` still reports 55 expired reviews; `schema-bridge` reports 59 expired exceptions; query-key ownership reports 12 findings outside this slice. The local candidate is not merge-ready. Complete native and standard-gate closeout before landing; these checks do not serialize independent product implementation. **Next build:** create substantive Home/Places value from existing owner-backed material rather than another transport-only seam. Also prove the fixed Home sample's native presentation/retirement and the exact Outcome route's native return; broader section/design breadth, selection quality, distinct empty states, binary-media runtime and visual acceptance/parity remain open |
+| I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots; supplied Home and Places multi-source full-scrolls; same-Place sequence passes persisted Home HTTP readback with source retraction; generic Home/Places partial-read notices preserve supplied content; rebuilt Place reader supports recipient Keep/Leave-aside with a real local native/API rehearsal; Home's long Outcome preview is capped at 220 characters and its v1/v2 doors identify the exact revisioned Life record; focused backend Home/composition/compiler packet: 110 passed; combined app route-helper and Life-reader target-selection packet: 61 passed; exact Home Outcome → Life record → same Home unit native return passed on iPhone 16 Plus / iOS 18.2 (app `0924ff1e5`, backend fixture `f099bdace`, runner contract **4/4**, Life-record suite **19 passed**). **Implemented candidate:** exact Home-selected Place handoff ID/revision routes to the canonical object and is re-read through the relationship owner; focused app packet **91 passed**, backend route packet **7 passed**, exact-owner PostgreSQL case **1 passed**, typecheck and polish validation passed; workspace/backend/app commits `79fbb69` / `4e35b8df1` / `7a2dcd0d9` | The selected line opens only when that exact handoff remains eligible; malformed, absent, stale, withdrawn and mismatched selections fail closed without substitution. The disposable-Postgres case passed exact selection outside the three-line list, stale revision, membership withdrawal and sender-revoke checks in a dedicated lane-local database that was then dropped. Withdrawal/expiry for the selected Place note remain unrun; exact Home Outcome tap/back return is now proven. OpenAPI/generated types match using the established temporary policy copy; canonical policy is unchanged. `api-coverage-check` still reports 55 expired reviews; `schema-bridge` reports 59 expired exceptions; query-key ownership reports 12 findings outside this slice. The local candidate is not merge-ready. Complete native and standard-gate closeout before landing; these checks do not serialize independent product implementation. **Next build:** create substantive Home/Places value from existing owner-backed material rather than another transport-only seam. Still open: fixed Home sample native presentation/retirement; broader section/design breadth, selection quality, distinct empty states, binary-media runtime and visual acceptance/parity remain open |
 | I5 | Open-now and saved-world changes reach surfaces; explicit fit and reviewed assistance contracts implemented | R09 code correction and the named current-world native paths are complete; persisted/native timezone edge matrix, permitted-context adaptations, provider-backed fit rehearsal and broader mandates remain separate |
 | I6 | Retirement inventories/guards exist; candidate remains isolated and rollout internal | Keep obsolete execution paths out of new work; complete obligation review and authorized cutovers/landing only when their dependencies are ready |
 
