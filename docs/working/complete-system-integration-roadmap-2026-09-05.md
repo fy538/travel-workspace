@@ -44,21 +44,22 @@ rebuild foundations merely because an older table described them as missing.
 
 Current order: close only the remaining evidence defects that materially change
 the candidate; keep the supplied Home/Places full-scroll, native sender
-withdrawal, and honest semantic-state receipts honest; then advance
-permissioned Life/social downstream value in parallel where files are
-independent. The next package must be a
-user-visible sparse/pending/failure state or consequence seam using existing
-owners and exact destinations—not a new generator, feed, storage family, or
-another happy-path rehearsal. Native polish belongs in each surface package.
-Focused regressions accompany delivery; more happy-path rehearsals alone are
-not the next product milestone.
+withdrawal, and honest semantic/partial-read-state receipts honest; then
+advance permissioned Life/social downstream value in parallel where files are
+independent. The next product package should deliver value beyond the newly
+connected receiving states: use an existing owner-backed payload for a
+substantive Home/Places design gap or a permissioned Life/social consequence.
+Choose another sparse/pending/failure treatment only when it has a distinct
+user consequence—not as another notice or happy-path rehearsal. Do not add a
+generator, feed or storage family to manufacture supply. Native polish and
+focused regressions belong in each surface package.
 
 The Home/Places renderer ledger has now been refreshed against the current
 child heads: Home exposes 17 explicit semantic renderers plus its three chrome
-components, Places exposes 12 semantic renderers, and the focused native
-packets pass 43 and 27 tests respectively. This corrects documentation drift,
-not product supply: source admission, recurring content, canonical runtime
-full-scroll quality and design parity remain open. See [the coverage
+components, Places exposes 12 semantic renderers, and the latest combined
+focused Home/Places packet passes 50 tests. This corrects documentation drift,
+not product supply: source admission, recurring content, broad canonical
+runtime full-scroll quality and design parity remain open. See [the coverage
 audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
 ### September 21 roadmap maintenance — post-review queue correction
@@ -73,9 +74,10 @@ presentation, exact depth/action destination, return, expiry and sparse/
 pending/failure behavior. Do not add a generator, feed, store, route family or
 semantic kind solely to make a surface look fuller.
 
-R05 restart/transient queue recovery and R09 persisted/native timezone edges
-remain narrow evidence tasks. Run them only in explicitly disposable
-environments and record unavailable runs as unverified. They do not block
+R05 process-restart and live transient-provider failure/retry, plus R09
+persisted/native timezone edges, remain narrow evidence tasks. Run them only in
+explicitly disposable environments and record unavailable runs as unverified.
+They do not block
 independent value work. Native polish and accessibility are exit criteria for
 the selected surface package; the shared Integration/landing lane, main
 landing, activation and publication remain paused.
@@ -102,12 +104,10 @@ honest balanced-field fallback, the native owner-backed evidence register, the
 supplied-experience comparison, the plural social perspective, the
 standalone-only Places feed-state repair, the addressed Place-contribution
 region, and the same-place public-reading sequence in backend `c18470b4a` and
-app `8cd899b6d`; the latest code receipt before this documentation
-maintenance is backend `651628265` with app `242d309f0`, which records the
-persisted Life graph/People HTTP readback after the native sender-withdrawal
-evidence. Workspace `49d438a` is a documentation-only alignment. This
-documentation
-advance does not merge, publish, enable or
+app `8cd899b6d`; at the earlier persisted-Life readback checkpoint, backend
+`651628265` and app `242d309f0` recorded the Life graph/People HTTP readback
+after the native sender-withdrawal evidence. The later candidate tuple is
+recorded below. This documentation advance does not merge, publish, enable or
 resume shared Integration/landing. Apply this
 selection test to the next package: can an existing owner-backed payload
 truthfully support a richer received result (comparison, sequence, evidence or
@@ -175,11 +175,12 @@ package should be an existing-authority downstream result or a
 sparse/pending/failure treatment, not another route-only happy path.
 
 Current candidate tuple after the latest rebaseline: workspace
-`49d438a`, backend `651628265`, app `1ddb3a0ba`, all on
+`59e40cc`, backend `651628265`, app `1ddb3a0ba`, all on
 `codex/functional-implementation-2026-09-20`. This is isolated committed work,
 not main or production. The workspace head is a documentation-only alignment;
-the backend head is unchanged and the app head adds only the bounded
-Home/Places partial-read treatment. The dedicated shared Integration/landing lane remains
+the backend head is unchanged and the app head adds the bounded Places
+partial-read treatment on top of the preceding Home treatment. The dedicated
+shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
 verification can continue; no shared runtime, publishing, flag activation,
 paid/provider run or pending product policy is enabled by this rebaseline.
@@ -188,9 +189,9 @@ open for the remaining authority, queue and edge-case evidence. R04 and R09
 are code-fixed; R04 now also has native sender-control evidence, while R09's
 persisted/native timezone edge matrix remains open. R05's exhausted-final-lease
 recovery and in-flight lease renewal are code-fixed and covered by focused
-tests; the disposable-Postgres and transient-provider rehearsals pass, and a
-current disposable Source workflow completed on the registered Arq/Redis
-worker with `producer_silence`.
+tests; the disposable-Postgres rehearsal passes, while live transient-provider
+failure/retry remains unverified. A current disposable Source workflow completed
+on the registered Arq/Redis worker with `producer_silence`.
 A real process-restart queue rehearsal is still required: the job completed
 before the worker could be interrupted, so this run does not prove restart
 safety.
@@ -850,19 +851,19 @@ present because another task reported completion.
 
 ### Six-project design-to-capability map
 
-Use the leading September 9 assignments in the [six-project consolidation](vesper-five-project-design-consolidation-2026-09-08.md#current-handoff-map--september-9),
-not every historical critique or canvas as an implementation requirement. These
-are design-derived requirements and sequencing recommendations, not a new claim
-that the current code or all exported treatments have been verified. At intake,
-name the actual missing behavior and selected reference; reuse what is already
-implemented. A component index is neither a display quota nor a backlog to port
-one-for-one. Six projects inform two current packages and later capability work,
-not six engineering teams or a universal UI engine.
+Use the [current Claude design handoff index](claude-design-integration-2026-09-04/00-handoff-index.md)
+to route each design lane to its current assignment and export. The six-project
+map below preserves cross-cutting design-derived requirements and sequencing;
+it is not a new claim that current code or every exported treatment has been
+verified. At intake, name the actual missing behavior and selected reference;
+reuse what is already implemented. A component index is neither a display
+quota nor a backlog to port one-for-one. The projects inform the existing
+engineering packages, not a matching number of teams or a universal UI engine.
 
 | Design and received benefit | Work in the current packages | Narrow dependency or later capability |
 | --- | --- | --- |
-| **[Home](vesper-home-design-review-2026-09-08.md):** substantial receiving in ordinary life—understanding, worthwhile possibilities, human originals and practical help, not a task dashboard | A completes supported depth/original/return, preserves varied existing semantic treatments and bounded repeat-open supply. B contributes relevant judgment without suppressing independent content. Use the actual same-source Home 14/Places 03 comparison, not an assumed match. | Final headline/card/section hierarchy follows selected design deltas; do not freeze all consumer work. Greater supply breadth requires a named coverage/cost gap, not bespoke generation or a freshness quota. Rich scrolls and finite completion can both be valid. |
-| **[Places](vesper-places-design-review-2026-09-08.md):** a substantial world-facing field, including causal/cultural connections, human perspectives and useful arrival/access comparisons | A preserves exact explanations, sources and place destinations; B connects supported visit/window/access facts and changed-purpose judgment. Do not encode the export's blanket Home-only discovery exclusion. | The shared Entity/Places reading needs a selected purpose-responsive treatment. Preserve existing useful access depth; do not prematurely flatten it into two facts or add an explanation to every original. |
+| **[Home](claude-design-home-artifact-led-visual-value-handoff-2026-09-05.md):** substantial receiving in ordinary life—understanding, worthwhile possibilities, human originals and practical help, not a task dashboard | A completes supported depth/original/return, preserves varied existing semantic treatments and bounded repeat-open supply. B contributes relevant judgment without suppressing independent content. Use the actual same-source Home 14/Places 03 comparison, not an assumed match. | Final headline/card/section hierarchy follows selected design deltas; do not freeze all consumer work. Greater supply breadth requires a named coverage/cost gap, not bespoke generation or a freshness quota. Rich scrolls and finite completion can both be valid. |
+| **[Places](places-complete-experience-design-handoff-2026-09-07.md):** a substantial world-facing field, including causal/cultural connections, human perspectives and useful arrival/access comparisons | A preserves exact explanations, sources and place destinations; B connects supported visit/window/access facts and changed-purpose judgment. Do not encode the export's blanket Home-only discovery exclusion. | The shared Entity/Places reading needs a selected purpose-responsive treatment. Preserve existing useful access depth; do not prematurely flatten it into two facts or add an explanation to every original. |
 | **[Life](claude-design-life-canonical-project-handoff-2026-09-06.md):** exact entrusted material, factual reconstruction and useful continuity through Time/Places/Threads/People | A completes supported reader/query/origin restoration and source correction, distinguishing capture time from current arrangements. An exact-ticket request should not require browsing an inventory first. | Ordinary-interest continuation can use already authorized material; inferred progress and new history retention cannot. Broader lens coverage/indexed serving and retirement need their own bounded implementation/adoption scope, not a new archive or logging ritual. |
 | **[Social](claude-design-social-experience-project-handoff-2026-09-07.md):** original-first enjoyment, low-pressure connection and offline hospitality with asymmetric effort | A supports the existing permitted original route, attribution and exact return; preserve human Reply and private Ask where supported, with no required Keep or reciprocal contribution. B evaluates participant costs using the right person's evidence. | Wider Friends/guest eligibility, fuller Home placement and new retention uses await their specific decisions. Do not import Entity's automatic use visibility or turn a casual Saturday suggestion into the recipient's agenda. Later shared benefit is not an obligation attached to every share. |
 | **[Plans](claude-design-plans-in-real-life-handoff-2026-09-04.md):** readable arrangements and practical care, before and during change | B tests the 160-minute displaced wait, arrival/next-commitment tradeoffs and useful uncertainty. A/B keep the same captured/current/changed arrangement across supported readers, without pretending an offered alternative changed a reservation. | The prepared-assistance exception to seven sentences needs a narrow decision; generalized watching/external execution remains out of scope. The later full service must include its stop/failure/return behavior, not just a drawn watch card. |
@@ -2363,23 +2364,23 @@ recipient disconnection; R09 propagates the schedule timezone needed for
 UTC-stored arrangements. A real Arq/Redis recovery sweep also moved an expired
 Source work item through the registered wrapper into durable terminal
 stale-state readback. The remaining open evidence is narrower: R05
-transient/restart failure behavior and R09 persisted/native timezone edge
+process-interruption/restart behavior and R09 persisted/native timezone edge
 cases. Do not describe all native-device evidence as unrun; the named Home
 Save/readback, Life source return and Places social receiving paths already pass
 on the isolated device.
 Source worker registration and its gated deterministic due-work recovery sweep
 are implemented behind the same named cohort; real Arq/Redis wrapper execution,
-current-work completion, expired due-work recovery and the in-flight
-lease-renewal code path now pass focused evidence. Still-current restart
-recovery and live transient-provider failure/retry remain unverified.
+current-work completion, expired due-work recovery and in-flight lease renewal
+have focused evidence. Process-interruption/restart recovery and live
+transient-provider failure/retry remain unverified.
 
 | Package | State at September 21 candidate | Next concrete action |
 | --- | --- | --- |
 | I0 | Inventory and decision-alignment foundation recorded; current candidate and evidence scopes now rebaselined | Keep unresolved retention/watch/reuse agreements gated only where relevant; close review findings without restarting architecture |
 | I1 | Source/graph/Outcome delivery, repair, backfill and reconciliation foundation; additional retained-source revisions and Life adoption paths in this lane | Build population and later-use coverage over existing owners; do not infer indexed serving cutover or cross-context authority from retention |
-| I2 | Bounded serving, prepared results, cancellation and publication fences; explicit Source Arq registration, serializer repair and gated due-work recovery sweep; real `not_claimed` wrapper and expired due-work recovery executions | Run still-current restart recovery and transient failure/retry scenarios in isolated Arq/Redis; cost/cohort/provider activation remains separately gated |
+| I2 | Bounded serving, prepared results, cancellation and publication fences; explicit Source Arq registration, serializer repair and gated due-work recovery sweep; real `not_claimed` wrapper, expired due-work recovery and in-flight lease-renewal evidence | Run the process-interruption/restart and live transient-provider failure/retry rehearsals in isolated Arq/Redis; cost/cohort/provider activation remains separately gated |
 | I3 | Contribution authority and useful-first intake; exact retained/received text-original paths with scoped native receipts | R01/R03 authority and revocation are verified, R04 code correction plus API/native sender-control rehearsals and named Life/Home original-receiving paths are complete; broader supported originals and permissioned downstream use remain; pending history/audience policy is not silently adopted |
-| I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots; standalone Places semantic units now reach the canonical workspace rail; one supplied same-Place sequence also passes persisted Home HTTP readback with source retraction | Complete enough substantive default-portfolio/full-scroll value from already supplied payloads; prove native/device presentation, exact actions/destinations, and one consequential sparse/pending/failure state with real supply breadth |
+| I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots; supplied Home and Places multi-source full-scrolls; same-Place sequence passes persisted Home HTTP readback with source retraction; generic Home/Places partial-read notices preserve supplied content | Add worthwhile default-portfolio value beyond the proved scrolls from already supplied payloads; complete remaining distinct empty states and native visual acceptance, keeping exact actions/destinations and honest failure treatment in scope |
 | I5 | Open-now and saved-world changes reach surfaces; explicit fit and reviewed assistance contracts implemented | R09 code correction and the named current-world native paths are complete; persisted/native timezone edge matrix, permitted-context adaptations, provider-backed fit rehearsal and broader mandates remain separate |
 | I6 | Retirement inventories/guards exist; candidate remains isolated and rollout internal | Keep obsolete execution paths out of new work; complete obligation review and authorized cutovers/landing only when their dependencies are ready |
 
