@@ -4274,3 +4274,48 @@ passes normalization. This is strengthened acceptance scaffolding, not a new
 user-visible capability or visual verdict. Preserve the earlier narrower
 native Keep receipt, but require a valid local runtime before claiming the new
 reopen-persistence sequence.
+
+## September 22 Home producer/render coverage and returned-value gap
+
+A producer-to-native crosswalk was run against the current backend and app
+candidate. Every non-chrome Home kind emitted by the active projection sources
+has a native renderer in `HOME_V2_RENDERERS`; `world_read` and `week_shape` are
+handled by the Home screen chrome. `now_decision` and `people_waiting_row` are
+currently selector/contract kinds rather than active source outputs, and
+`horizon_world_fact_row` has no producer. There is therefore no current
+producer-backed Home unit waiting for a missing native renderer. Do not spend
+the next Home slice on another registry/treatment pass.
+
+The selected Home export in `Downloads/vesper-home` sharpens the actual gap:
+its returned posture asks for one useful travel-derived transfer alongside
+forward-looking New York value, not a generic trip link or an inventory of
+tickets/photos. The current `home_candidates_from_trips` adapter provides the
+honest exact Life door (`Returned <date> · refind in Life`) but does not compose
+the user's own retained trip evidence into a richer Home result. Other active
+Home supply already includes accepted public Place readings, practical Place
+facts, Social-owner contributions, Outcomes, and Places continuations; their
+presence does not fill this private returned-value gap.
+
+This is a source/use-contract gap, not permission to read the Atlas tables from
+Home or to derive a new narrative on every open. The
+[consumer-strategy reconciliation](../decisions/2026-09-06-reconcile-consumer-strategy.md#2-optional-conversational-continuity-belongs-in-the-intended-product)
+accepts optional continuity as a product direction but leaves retention and
+eligible later uses unresolved; the
+[Home/Places/returned design matrix](home-places-life-productization-program-2026-09-04.md#44-design-to-runtime-acceptance-matrix)
+also rejects a result that merely repeats tickets, routes, or photographs.
+Before implementing a private artifact-derived return, define the specific
+source set and purpose under the current Life owner, exact lineage and
+destination, correction/withdrawal behavior, and truthful sparse/failure
+fallback. Prefer a Life-owned bounded read; do not add a Home-side Atlas query,
+generator, or new store. If the allowed sources cannot support a genuinely
+useful transfer, keep the current exact Life door and the forward-looking
+public/Place value rather than fabricate one.
+
+The next Home product slice is thus a **returned-value contract and one
+source-backed composition**, not a broad semantic expansion: use a confirmed
+Journey/Outcome and permitted Sources to connect to a present Place, person, or
+commitment; keep it complete-on-view with one exact Life depth door; and prove
+that correction or withdrawal cannot leave dependent Home copy stale. Continue
+the remaining R05 process-interruption and R09 persisted/native timezone
+evidence as bounded review closeout, but do not let those verification cases
+replace the next user-visible value result.
