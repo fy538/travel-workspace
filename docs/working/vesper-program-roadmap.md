@@ -2584,6 +2584,47 @@ this enum-to-renderer comparison. The next Places work should begin only when a
 real owner-backed producer and destination exists; otherwise the active product
 queue remains Home composition breadth.
 
+### September 22 execution-wave rebaseline
+
+The latest implementation wave is complete at its intended bounded scope. The
+backend now preserves deterministic ordering for separately authorized
+received originals (`134417927`), and its current Home/Places root packet passes
+**517 tests**. The app now delivers governed Life refind answers and preserves
+the compact authored experience collection at large type (`3faaa2f18`,
+`1cca51a04`); the focused Life/Home packet passes **133 tests**, the focused
+Places packet passes **88 tests**, and app TypeScript plus targeted lint pass.
+The workspace receipts are current through `f9258c9`. These are completed
+connections and presentation corrections, not evidence of full design parity,
+native-device acceptance, or release readiness.
+
+The next implementation decision is now intentionally singular:
+
+1. **Resolve the recent-return trigger contract.** Decide whether completion of
+   a trip, subject to the existing homecoming delay and Life retention/audience
+   authority, is allowed to admit a private Source-contribution work item. The
+   decision must name the source set, purpose, lineage and destination,
+   correction/withdrawal, expiry, sparse fallback, and duplicate/no-op
+   behavior. This is the only remaining prerequisite for the richer private
+   returned-value path; it is not a request for a new Home query, generator,
+   store, semantic kind, or route.
+2. **If the contract is accepted, implement one event-owned adapter.** It must
+   be idempotent, feature-gated, use the existing durable workflow/worker, and
+   re-read owner material at execution time. Prove disabled-worker, duplicate
+   completion, sparse/producer-silence, correction/withdrawal and expiry cases
+   before composing it into Home. Home GET must remain read-only.
+3. **Compose and accept the result as one complete-on-view Home transfer.** It
+   should join exact recent occurrence evidence to a permitted current Place,
+   person, or commitment reading, preserve exact Life depth, and return without
+   stale dependent copy. Accept it across a returned and an ordinary posture
+   against a verified design reference; do not call the existing exact Life
+   door a substitute for this result.
+
+Independent work may continue while step 1 is being decided: native/device
+acceptance for already implemented Life media, the named R02/R05/R06/R09
+review closeout cases, and supported Home/Places polish. None of those should
+be used to claim the returned-value contract is solved or to reopen a broad
+renderer/infrastructure program.
+
 At each substantial handback, update §2 and this register in place: what became
 useful, what supplied it, how it behaves after action/correction/return, what
 design coverage remains, and which evidence actually ran. Preserve underlying
