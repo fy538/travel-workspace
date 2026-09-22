@@ -22,13 +22,13 @@ depends_on:
 
 ## September 22 execution split — Architecture and adjacent lanes
 
-**This thread is Architecture, not the functional Orchestration task.** Its
-next package is shared-engine execution safety and enforceable dependency
-boundaries, followed by one compatibility handoff. It does not own Home
-composition, native presentation, social-policy selection or a second product
-implementation queue. The [current register](#4-current-package-register)
+**This thread is Architecture, separate from the functional Orchestration
+task.** Its bounded execution-safety and dependency-boundary package is
+implemented; its compatibility review is handed to the receiving lane below.
+It does not own Home composition, native presentation, social-policy selection
+or a second product implementation queue. The [current register](#4-current-package-register)
 assigns those outcomes; [Integration §9](complete-system-integration-roadmap-2026-09-05.md#september-22-architecture-execution-package)
-defines this lane's technical scope and acceptance.
+records the completed package and receiver-owned follow-through.
 
 This split supersedes older scheduling language in this checkout, including
 instructions to select another isolated state seam. Preserve the receipts below
@@ -41,14 +41,15 @@ to wait for engine work. Reconcile the two docs section-by-section at handoff.
 
 | Task / checkout | Observed workspace / backend / app HEADs | Ownership and evidence boundary |
 | --- | --- | --- |
-| **Architecture**, `01a0a837-f0d0-7ef0-84e9-224420f89cbb`; `travel-workspace--engine-consolidation-2026-09-21` | `a48193c` / `75aaf0eb5` / `242d309f0` | Clean before this docs edit. Shared owner execution, memory currentness/lifecycle and application-layer consolidation are implemented locally; candidate-read admission and new-layer guards remain next. |
-| **Orchestration**, `01a072c6-2735-7152-94ea-bb6958ead53d`; `travel-workspace--functional-implementation-2026-09-20` | `1d91edb` / `7537ae042` / `d142d9e17` | Active; clean at inspection. Owns functional product composition and the local combined candidate. Current plan prioritizes fuller Home using real owner material, exact destinations and return, not new generic generation infrastructure. |
-| **Front End**, `01a0c53a-bf3d-7ba0-ae48-e9c93763623a`; `travel-workspace--functional-implementation-2026-09-20--native-presentation-wave1-2026-09-21` | `58e45dc` / `d7d153810` / `cd70c7111` | Active; app has in-flight Places geometry/renderer/tests and Maestro edits. Owns native presentation and design acceptance in its assigned files. Earlier Places World Field work is already consumed by the functional lane; do not rebuild it here. |
+| **Architecture**, `01a0a837-f0d0-7ef0-84e9-224420f89cbb`; `travel-workspace--engine-consolidation-2026-09-21` | `de1e590` / `45f9f519e` / `242d309f0` | AC1 candidate-read admission and AC2 import-boundary enforcement are committed in the backend. AC3 compatibility inspection is complete; its receiver handoff is recorded in Integration §9. |
+| **Orchestration**, `01a072c6-2735-7152-94ea-bb6958ead53d`; `travel-workspace--functional-implementation-2026-09-20` | `32642de` / `7537ae042` / `d142d9e17` | Active; clean at inspection. Owns functional product composition and its local candidate. Current plan prioritizes a fuller design-aligned Home from supported owner material, exact destinations and return; the latest Home source/design boundary is recorded in this checkout's current package register. |
+| **Front End**, `01a0c53a-bf3d-7ba0-ae48-e9c93763623a`; `travel-workspace--functional-implementation-2026-09-20--native-presentation-wave1-2026-09-21` | `58e45dc` / `d7d153810` / `df4ad8a6c` | Active; clean at inspection. Owns assigned native presentation and design acceptance. Its app branch and Orchestration's app branch diverge from `cd70c711`; Front End changed five files and Orchestration 73, with one overlapping Places feed test. Earlier Places World Field work is already consumed by the functional lane. |
 | **Multiplayer**, `01a0b673-b624-78f2-8345-afc2dcf9b242`; `travel-workspace--multiplayer-design-exploration-2026-09-20` | `b6e7014` / `a7c02cbe1` / `e2e792913` | Active; workspace design/handoff files are dirty, children clean. Inspected handback qualifies the proposed interactions and explicitly does not adopt them as engineering order or policy. Keep social design/loop decisions there; do not infer a runtime implementation assignment from active status. |
 
 All paths are sibling workspaces under `/Users/feihuyan`; branches match their
 lane names with the `codex/` prefix. These are observed refs, not frozen merge
-targets or current production. Canonical workspace main is `70c4b4b` with
+targets or current production. The Architecture workspace ref (`de1e590`) is
+the checkpoint before this receipt edit. Canonical workspace main was `70c4b4b` with
 unrelated dirty design/docs work and is not the edit target. Thread status was
 read, but recent turn bodies were unavailable from the thread reader; ownership
 is grounded in checked-out work and documents, not claimed transcript review.
@@ -2075,11 +2076,11 @@ tasks. The present update plans work; it does not start agents or services.
 
 | Package / role | Status and complete outcome | Dependency / handback |
 | --- | --- | --- |
-| **Here — AC1: candidate-read execution** | Ready for implementation. Bound aggregate admission to the initial root candidate-read executor, not only the already-hardened canonical owner-read stage. | Architecture owns execution mechanics and focused tests. Preserve producer payloads, selection, public contracts and ordinary read-only behavior. No dependency on UI/design completion. |
-| **Here — AC2: enforce application boundaries** | Ready after the bounded dependency policy is specified. Guard core → application and application → HTTP delivery inversions; align the existing backend architecture/package docs with the implemented modular system. | Architecture owns checker/tests and narrow owner-doc corrections. Ratchet explicit existing bridges; no repository-wide reorganization or blanket exemption. Can proceed independently of AC1 if file ownership permits. |
-| **Here — AC3: compatibility handoff** | After AC1/AC2. Review the coherent engine cut against the then-current functional candidate and hand back once. | Architecture supplies exact refs, migrations/shims, focused/transaction evidence and unresolved failures. Orchestration owns incorporation into its local candidate. This is not activation or main landing. |
+| **Here — AC1: candidate-read execution** | Complete. Backend `f43a879ff` bounds aggregate admission to the eight-worker candidate-read pool. Running timed-out calls retain capacity until physical completion; queued cancellation cannot run later. | Four focused admission/timeout/cancellation tests and the 206-test engine regression packet pass. No response, selection or source-generation contract changed. |
+| **Here — AC2: enforce application boundaries** | Complete. Backend `45f9f519e` enforces core → application/API and application → API restrictions across absolute/relative, nested and guarded imports; missing source trees and parse failures return a checker error. Architecture, application and root-projection owner docs now match the code. | The 95-test checker/contract selection, import gate, 60-entry lazy-import inventory and 1,887-module cycle gate pass. Existing broad mypy/database findings remain separate. |
+| **Here — AC3: compatibility handoff** | Inspection complete against the current branches. Backend candidate has four overlapping test/document files with Orchestration; no automatic landing occurred. The application-layer extraction should remain the receiving architecture, with explicit repair of the shared test seams below. | Architecture supplies commits, migration and evidence. Orchestration owns incorporation to its active branch and combined local validation; Integration/main remain paused. |
 | **Adjacent — Orchestration: Home composition and functional continuity** | Active. Broader design-aligned Home composition is the current product package; exact social continuation, saved-Place changes and fixed-sample Chat draft are already in its newer candidate. | Trace real owner → candidate → selected region → useful native result → exact destination/return. Own functional selectors/adapters/continuity and supply extensions where required. Do not wait for AC1/AC2 outside shared files. |
-| **Adjacent — Front End: native presentation** | Active. Own assigned card/field geometry, hierarchy, reusable native treatments, accessibility and visual QA. Earlier Places World Field is already integrated locally. | Coordinate Home/Places shared app files directly with Orchestration; ownership is by outcome and reserved files, not all frontend versus all backend. This lane does not build a parallel renderer or redesign Chat/Life. |
+| **Adjacent — Front End: native presentation** | Active. Own assigned card/field geometry, hierarchy, reusable native treatments, accessibility and visual QA. Earlier Places World Field is already integrated locally. | The app branch is not a descendant of Orchestration's current app candidate. At inspection it had one lane-only commit and Orchestration 26 commits from common `cd70c711`; five files changed across the two sides, one shared Places feed test. Reconcile the selected app cut and that test before treating either branch as the combined app. |
 | **Adjacent — Multiplayer: social product/design decisions** | Active; the inspected exploration is not adopted engineering policy. Own broader social loops, interaction/copy choices and the decision-ready handback. | Existing permissioned social implementation can continue in Orchestration. New private-input aggregation, mutual matching, Together/history or audience/reuse changes need explicit owner/policy decisions; do not encode exploratory designs into engine contracts here. |
 | **Adjacent — review evidence and standard gates** | Functional R02/R05/R06/R09 acceptance edges remain separately scoped. Architecture's broad PostgreSQL sweep and mypy are red; neither lane has a current full `make verify` pass. | Each owner repairs regressions attributable to its cut and reports unrelated failures with exact evidence. No blanket test cleanup, gate exemption or repeated happy-path tour. Required readiness gates still apply at landing. |
 | **Dedicated Integration / landing** | PAUSED; combined shared runtime, main landing and publishing are not enabled by this update. | Lane-local implementation/verification remains distinct. On explicit resume, receive selected clean cuts and run required gates without pretending candidate receipts certify production. |

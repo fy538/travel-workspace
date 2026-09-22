@@ -2286,10 +2286,12 @@ transactions and `backend.application` extraction are completed implementation,
 not work to repeat. AC1–AC3 are local package labels within I2/I4/I6, not new
 services or replacements for the completed ER packages.
 
-**Baseline:** engine workspace `a48193c`, backend `75aaf0eb5`, app `242d309f0`.
-The September 22 investigation reran a focused owner-read/root-composition/
-memory/portfolio/Source-executor selection: **121 passed**. Import, lazy-import
-and SCC checks passed at their existing scope. These do not supersede the prior
+**Engine candidate after AC1/AC2:** workspace `de1e590` before this roadmap
+update, backend `45f9f519e`, app `242d309f0`. AC1 is backend commit `f43a879ff`;
+AC2 is `45f9f519e`. The **206-test** focused engine regression packet and a
+separate **95-test** checker/contract packet pass. The boundary checker, 60-entry
+lazy-import inventory and 1,887-module SCC gate pass. The earlier September 22
+**121-test** focused selection also remains dated evidence. These do not supersede the prior
 **494-test** offline packet or **four PostgreSQL transaction tests**, nor make
 the broad **18-failure PostgreSQL sweep** or **320-error mypy run** green.
 No full `make verify`, merged-candidate, device or production evidence follows.
@@ -2384,19 +2386,44 @@ verdict. A new diagram or moved files alone is not completion.
 
 #### AC3 — one coherent compatibility handoff, not repeated integration
 
-After AC1/AC2, inspect the then-current functional candidate and hand over the
-completed architecture package. Until then, independent Home, Places and design
-work continues; neither device access nor visual design is a prerequisite here.
+AC1 and AC2 are implemented and reviewed. The current receiver at inspection is
+Orchestration workspace `32642de`, backend `7537ae042`, app `d142d9e17`; its
+workspace and children were clean. The current Front End branch is workspace
+`58e45dc`, backend `d7d153810`, app `df4ad8a6c`, also clean at inspection. The
+Multiplayer design branch is active with workspace design files dirty and child
+repos at canonical main; its current exploration says its interaction sequence
+is not engineering policy. These are dated refs, so recheck before consuming a
+cut. Independent Home, Places and design work does not depend on device access
+or visual acceptance for this backend package.
 
 - Supply exact workspace/backend/app refs, explicit file ownership, test
   commands and evidence scopes. Include migration `pmevidence02`, its expected
   predecessor and compatibility shims already introduced by this lane. Compare
   migration heads and imports against the receiving cut, not an old snapshot.
 - The previously inspected engine/functional backend overlap was limited to
-  three test files (`test_source_request_delivery_postgres.py`,
-  `test_home_portfolio.py`, `test_v2_contracts.py`). Recompute before handoff;
-  low textual overlap does not prove semantic compatibility. Preserve both
-  lanes' assertions and exercise changed production composition paths.
+  four paths from common backend base `96d264c41`: `backend/root_projection/FEATURE.md`,
+  `tests/api/test_source_request_delivery_postgres.py`,
+  `tests/root_projection/test_home_portfolio.py`, and
+  `tests/root_projection/test_v2_contracts.py`. Most overlap is tests/docs, but
+  it is not zero integration work. Preserve both lanes' test additions.
+- One concrete seam needs reconciliation: Orchestration's persisted Source →
+  Places test imports and monkeypatches `backend.api.services.root_composition`,
+  while the engine candidate makes the route call
+  `backend.application.root_composition` directly and keeps the former path as
+  a compatibility re-export. The integration must patch the actual application
+  owner (or deliberately preserve a tested injection seam), not assume a
+  monkeypatch of a re-export changes the implementation module. Retain the
+  native Source-to-Places assertions and run them only against a named
+  disposable database. Engine and functional backend histories are 13 and 18
+  commits beyond their common base at this snapshot; code source files differ
+  by lane while the test seams overlap.
+- App ownership also needs an explicit cut: Front End app `df4ad8a6c` and
+  Orchestration app `d142d9e17` diverge from `cd70c711`. Front End has one
+  lane-only commit and changed five files; Orchestration has 26 commits and
+  changed 73 files. Their change sets overlap on
+  `__tests__/components/places/PlacesSectionFeed.test.tsx`. The receiving owner
+  selects the native cut and preserves both tests; Architecture does not merge
+  UI work.
 - Architecture owns regressions caused by its cut. Orchestration owns local
   candidate incorporation, contract synchronization if actually needed and
   combined receiving validation. Do not switch, reset, stage or merge into its
@@ -2411,10 +2438,11 @@ work continues; neither device access nor visual design is a prerequisite here.
   A plan commit on this branch is not proof that an adjacent thread adopted it.
 
 **Architecture completion boundary:** AC1 and AC2 implemented/reviewed, their
-focused evidence recorded, and AC3 handed back with compatibility questions
-resolved or explicitly assigned. Actual incorporation, release gates and
-production activation retain separate statuses. Do not invent AC4 merely to
-keep this lane busy; return to targeted architecture review after this package.
+focused evidence recorded, and the AC3 compatibility handoff recorded for the
+receiving owner. Candidate incorporation, the disposable-database seam test,
+app branch selection, release gates and production activation retain separate
+statuses. Do not invent AC4 merely to keep this lane busy; return to targeted
+architecture review after this package.
 
 #### Cross-lane seams and consciously unassigned follow-ups
 
