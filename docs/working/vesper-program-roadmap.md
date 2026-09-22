@@ -42,7 +42,7 @@ the entity page's incidental three-line list and never substitutes another
 friend's note. The change completes the product path in code without adding a
 social model or sharing surface.
 
-Commits are workspace `79fbb69`, backend `4e35b8df1`, and app `7a2dcd0d9`.
+Commits are workspace `b127a54`, backend `4e35b8df1`, and app `7a2dcd0d9`.
 Focused mobile coverage passes **91 tests**; the backend route packet passes
 **7 tests**, and app typecheck and polish-scenario validation pass. The full
 and mobile OpenAPI snapshots and generated types match after projection with
@@ -113,21 +113,22 @@ claim source admission, recurring content supply, broad runtime full-scroll
 quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
 **Functional evidence tuple at this roadmap refresh:** workspace
-`c3202f6` (the prior roadmap-only update), backend `8ab3313b8`,
-and app `a7f0083cc`, all on the isolated
-`codex/functional-implementation-2026-09-20` lane. The latest workspace commit
-is the evidence baseline for this documentation-only refresh; backend adds the
-exact Outcome Life door, the excerpt bound, and prior Home sample owner-read/
-candidate and proof-backed lifecycle; app adds an exact Life Outcome
-target-selection regression and renders the explicitly fictional sample in
-the existing Home composition. Earlier commits in this candidate provide the
-Places recipient lifecycle, Home/Places full-scroll paths, multi-photo Life
-reader, Life keyset refind and explicit Life → Places return. The lane is clean
-at refresh start; this rebaseline changes only the two workspace roadmap files.
-None of these commits is merged to main, published, or production-flag
-activated. The Home sample's UI appearance and live retirement behavior remain
-unverified on-device; its SQL history query was checked offline, not against
-PostgreSQL. See the dated receipts for each exact evidence boundary.
+`b127a548`, backend `4e35b8df1`, and app `7a2dcd0d9`, all on the isolated
+`codex/functional-implementation-2026-09-20` lane. Backend and app contain the
+exact Home-selected Place-note continuation. Its focused app packet passed
+**91 tests**, the backend route packet passed **7 tests**, and the written
+exact-owner PostgreSQL case passed **1 test** against a newly created,
+lane-local disposable database that was dropped afterward. Workspace
+`b127a548` records that acceptance and this roadmap refresh; no product source
+changed in the latest workspace commit. Earlier commits in this candidate
+provide the exact Outcome Life door and excerpt bound, Home/Places scrolls,
+Life readers/refinding, and explicit Life → Places return. All three candidate
+trees were clean before this documentation update. None of these commits is
+merged to main, published, or production-flag activated. Native tap/back,
+withdrawal and expiry acceptance for the selected note, the fixed Home
+sample's native appearance/retirement, and the Home Outcome route's native
+return remain unverified. See the dated receipts for exact evidence
+boundaries.
 
 ### September 22 backend robustness receipt — bounded Home Outcome preview
 
@@ -2003,17 +2004,16 @@ delivery and broad visual/device acceptance remain open.
 
 | Repository | Candidate HEAD at this rebaseline | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `37d58b9` (roadmap-only descendant of the exact Place implementation receipt) | `70c4b4b` |
+| Workspace | `b127a54` (roadmap-only descendant recording exact Place owner-read acceptance) | `70c4b4b` |
 | Backend | `4e35b8df1` | `a7c02cbe1` |
 | App | `7a2dcd0d9` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent
-repositories. Workspace `37d58b9` records the exact Home-selected Place
-continuity implementation and the candidate's current roadmap state; backend
-`4e35b8df1` and app `7a2dcd0d9` contain the implementation. All three candidate
-trees were clean at the pre-edit capture; this update changes only the two
-workspace roadmaps.
+repositories. Workspace `b127a54` records the exact Home-selected Place
+continuity acceptance and current roadmap state; backend `4e35b8df1` and app
+`7a2dcd0d9` contain the implementation. All three candidate trees were clean
+before this documentation update.
 Canonical main and its concurrent work remain untouched. The candidate is
 committed in its lane, not landed on main or released. Recheck Git and ownership
 before execution; this is a dated observation, not a locked dispatch base.

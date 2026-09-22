@@ -53,19 +53,29 @@ historical receipts retain their evidence boundaries, not separate dispatch
 authority. Existing I0–I6/CV contracts still govern implementation. Do not
 rebuild foundations merely because an older table described them as missing.
 
-Current order: first close one bounded Home → Places continuation gap. Home's
-addressed-note destination carries the exact handoff and venue references, but
-the current app route opens only the venue; the canonical People-lines response
-is capped at three, so the selected contribution may not be available for its
-existing Keep/Leave-aside actions. Carry the selected handoff into the Place
-reader and re-read through the current recipient owner; fail closed without
-substituting another line or generating a read/like/reply signal. Then advance
-the substantive value package: use an existing owner-backed payload for a
-meaningful Home/Places design gap or a permissioned Life/social consequence.
-Choose another sparse/pending/failure treatment only when it has a distinct
-user consequence—not as another notice or happy-path rehearsal. Do not add a
-generator, feed or storage family to manufacture supply. Native polish and
-focused regressions belong in each surface package.
+The bounded Home → Places addressed-note continuation is now implemented:
+Home carries the selected handoff ID/revision into the canonical object route,
+and the relationship owner re-reads that exact contribution without relying
+on the incidental three-line list or substituting another note. Focused app
+and backend route suites pass (**91** and **7** tests), and the exact-owner
+PostgreSQL case passes (**1** test) on a fresh lane-local disposable database
+that was dropped afterward. Native tap/back/withdrawal/expiry acceptance and
+the standard landing gates remain open; those closeout items do not serialize
+independent product work.
+
+Current order: build substantive Home/Places value from existing owner-backed
+material. Select a gap in the inspected design and current implementation that
+changes what the person understands, can do, or connect—not another route,
+notice, renderer, or repetition of the already implemented same-Place reading
+sequence, supplied-experience comparison, social comparison, or addressed-note
+path. A permissioned Life/social downstream result is a valid complementary
+package only when its structured source and owner authority already exist.
+Carry the selected value through exact source, depth/action, return, revision/
+expiry, and honest sparse/pending/failure states; bring native hierarchy,
+accessibility and polish along with the package. Do not add a generator, feed
+or storage family to manufacture supply. If no existing owner-backed input can
+support a meaningful increment, record the supply/authority gap rather than
+inventing a new abstraction.
 
 The Home/Places renderer ledger has now been refreshed against the current
 child heads: Home exposes 17 explicit semantic renderers plus its three chrome
@@ -2485,28 +2495,32 @@ package's exit criteria, not a separate serial phase. R05/R09 environment-only
 matrices may proceed opportunistically and remain required for their specific
 evidence or landing claims, but they do not block independent product work.
 
-**Primary next build: fuller, reliably supplied Home/Places experiences.**
+**Primary next build: substantive Home/Places value from existing owners.**
 
 The standalone Places runtime rail is no longer the next seam: backend
-selection now forwards the admitted semantic-unit kinds, and the canonical
-`PlacesWorkspace` passes them into `PlacesSectionFeed`. Before the next value
-composition, close the identified directed-note continuation: the Home
-`people_note_door` carries the exact `place_handoff` and venue, but the route
-mapper selects only the venue; Places' existing viewer-scoped People-lines
-projection is capped at three. Preserve the exact selected handoff into the
-same Place, revalidate it with the relationship owner, expose only its current
-authorized text/actions, and show no substitute line when missing, expired,
-withdrawn, or stale. Back must return to the exact Home unit; opening must not
-create a sender-visible signal. Test a note outside the incidental three-line
-list, owner failure/withdrawal/expiry, action revision, and Home return.
+selection forwards the admitted semantic-unit kinds, and the canonical
+`PlacesWorkspace` passes them into `PlacesSectionFeed`. The previously
+identified directed-note continuation is also implemented: Home preserves the
+selected handoff ID/revision into its canonical Place, and the relationship
+owner revalidates that exact contribution. Focused app/backend packets pass
+**91/7 tests**, and the exact-owner PostgreSQL case passes **1 test** on a fresh
+lane-local disposable database that was then dropped. Native tap/back,
+withdrawal and expiry acceptance remain closeout work, not a prerequisite for
+independent value development.
 
-Then judge the primary package on received value, not another injected-unit or
-workspace-reachability test. Select one real owner-backed payload with enough
-structured substance to compose a complete scroll (for example, a comparison,
-evidence view, social perspective, or practical consequence), then verify the
-native presentation, exact depth/action destination, expiry, sparse/pending/
-failure state and return. Do not broaden the renderer registry, producer,
-generator, store or route family merely to make the scroll look populated.
+Judge the next package on received value, not another injected-unit or
+workspace-reachability test. Identify a meaningful gap in the current Home/
+Places design and choose an existing owner-backed input that adds new
+understanding, a useful possibility, practical help, or a human opening. The
+current app already has a same-Place reading sequence, supplied-experience
+comparison, plural social perspective, practical options and addressed-note
+continuity; do not repeat these as new cards or routes. Carry the selected
+increment through exact source, depth/action destination, return, expiry, and
+honest sparse/pending/failure behavior, with native hierarchy and accessibility
+polish. Do not broaden the renderer registry, producer, generator, store or
+route family merely to make the scroll look populated. If no current owner has
+structured material for a genuinely useful increment, record that supply or
+authority gap before proposing infrastructure.
 
 - Start from the existing [Home implementation map](home-connected-experience-implementation-map-2026-09-04.md)
   and [design handoff index](claude-design-integration-2026-09-04/00-handoff-index.md).
