@@ -5042,3 +5042,43 @@ native shell. It remains mock-data evidence: no persisted record read, source
 original, media playback, owner correction, or cross-root return was exercised,
 so the Life record/original/return package remains open at its real-runtime
 boundary.
+
+## September 22 source-result ingress audit — mobile consumer is implemented
+
+The earlier Source table's statement that runtime request ingress and the
+mobile result consumer were still missing is stale. On the current tuple, the
+authenticated `POST /api/agent-workflows/source-contribution` route accepts a
+bounded explicit request and returns the workflow/result references; Home and
+Places call that route through `useRootSourceInspection` and
+`useSubmitSourceContributionRequest`; and `SourceContributionResultScreen`
+reads the owner-scoped exact result, keeps pending/terminal/changed/expired
+states honest, opens the exact candidate or original, and preserves the
+originating root return token. The backend route also remains fail-closed and
+does not regenerate work on a read.
+
+Focused evidence on this tuple: backend Source workflow tests pass **22**
+offline tests (three Postgres/provider-marked cases were explicitly
+deselected); the app Source result, hook and connected Home suites pass **9**
+tests. This closes the previously described ingress/consumer gap at the local
+contract boundary, not at provider-backed execution or native real-data
+acceptance.
+
+The remaining Source work is narrower and policy-bearing: the current request
+is a bounded `contextual_warm` request for `ordinary_current_world` material.
+Before broadening it to arbitrary questions, selected subjects or activity
+windows, define the exact request-purpose/subject contract, allowed source set,
+lineage, expiry and correction behavior. Keep provider execution/recovery,
+native acceptance and any later-use/private-return policy separately gated.
+Do not create a second request owner, result store, generator or mobile result
+harness to address the stale wording.
+
+## September 22 current tuple correction
+
+The current isolated functional-implementation tuple is workspace `fed8115`,
+backend `2e123173c`, and app `44599a304`. Earlier tuple values in historical
+receipts remain useful evidence for the slices they describe, but they are not
+the active checkout. The current cross-root verification packet is **479**
+backend root-projection tests and **198** focused Home/Places/Life app tests;
+the Source-specific subset is the **22 + 9** packet recorded above. This
+correction changes documentation only and does not promote native mock
+captures, provider execution or visual-canon parity to release evidence.

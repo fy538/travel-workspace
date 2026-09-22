@@ -3474,7 +3474,7 @@ recheck subsequent commits before reopening a gap.
 | Operational lease | [Worker](../../travel-agent/backend/root_projection/v2/source_contribution_worker.py) now uses the effective deployment claim duration; the earlier DB-default mismatch is repaired | Verify connected execution deadlines, recovery and any required renewal behavior under the actual deployment envelope. Do not reopen the fixed duration-override defect or treat declared timing as complete recovery evidence. |
 | Publication and control | [Continuity](../../travel-agent/backend/root_projection/v2/source_contribution_continuity.py) and [store](../../travel-agent/backend/core/db/source_contributions.py) now fence inner publication with the outer workflow; the receipt above names the PostgreSQL cancellation-ordering proof | Complete broader recovery/lease-takeover evidence and connect actual consumer cancellation. A publication fence is not a functioning user-facing stop command or proof of every late-result/read-repair ordering. |
 | Reconnect and cancel | [Workflow routes](../../travel-agent/backend/api/routes/agent_workflows.py) provide authenticated read/reconnect and a control-intent transport | The command route records intentions behind a flag; its documented transport does not itself execute cancellation. Do not present recorded intent as a stopped Source job. |
-| Exact result retrieval | Successful worker receipts include a typed actor-scoped workflow/result locator; [prepared serving](../../travel-agent/backend/root_projection/v2/source_contribution_serving.py) selects current eligible private material, while exact serving now reopens the retained seed without current opportunity discovery/ranking and shares the custody/expiry validation | The exact route and no-discovery/fail-closed regressions are landed (`fd08f68f4`, `fb521f38d`). The remaining gap is the runtime request owner/ingress and mobile result consumer, not exact lookup semantics. |
+| Exact result retrieval | Successful worker receipts include a typed actor-scoped workflow/result locator; [prepared serving](../../travel-agent/backend/root_projection/v2/source_contribution_serving.py) selects current eligible private material, while exact serving now reopens the retained seed without current opportunity discovery/ranking and shares the custody/expiry validation. The authenticated request route and Home/Places submission path now hand the accepted workflow to the native result screen, which reads the exact result, distinguishes terminal states, opens candidate/original doors and preserves root return. | The exact route and no-discovery/fail-closed regressions are landed (`fd08f68f4`, `fb521f38d`). The remaining product gap is not request ingress or a missing mobile consumer: the current request still uses the bounded `contextual_warm`/`ordinary_current_world` compiler shape and needs an explicit exact-subject/request-purpose contract before broader use. Provider-backed execution, recovery and native real-data acceptance remain separately gated. |
 | Public supply | Existing observations, facts, place-content primitives, Foundry, research and derived indexes exist; Content C0–C6 maps their connections | The missing new capability is connected purpose-aware supply/retrieval/refresh, not the absence of every public corpus. Private prepared storage must not become the public knowledge owner. |
 
 Existing 426-test scope coverage and separate worker/serving tests are useful
@@ -7515,11 +7515,12 @@ units enter the viewer-scoped owner read that offers Ask / Remove controls. Keep
 these paths separate; the absence of private attachment controls on public Place
 readings is not an implementation gap.
 
-**Current product-code tuple:** workspace product-code checkpoint `a27131c`,
-backend `2e123173c`, and app `1cca51a04`, all on the isolated functional-
-implementation branch. Workspace `57872d0` is the latest roadmap-only
-checkpoint. The program roadmap's Home package register remains the current
-cross-lane priority authority; this ledger retains implementation evidence.
+**Current product-code tuple:** workspace `fed8115`, backend `2e123173c`, and
+app `44599a304`, all on the isolated functional-implementation branch.
+Workspace `fed8115` is the latest roadmap/evidence checkpoint. The program
+roadmap's Home package register remains the current cross-lane priority
+authority; this ledger retains implementation evidence. Earlier tuple mentions
+in historical receipts remain historical and must not be read as current state.
 The next Home package remains design-aligned composition breadth from supported
 owners. The Life-owned evidence, purpose, lineage and withdrawal contract for a
 genuinely useful private returned-value result is a separate bounded decision;
@@ -7555,3 +7556,32 @@ withdrawal/expiry, ordinary empty states, binary-media runtime, comprehensive
 visual acceptance and standard landing gates distinct. None requires
 rebuilding Places first. Design polish and acceptance are exit criteria for the
 package, not a substitute for implementing the experience.
+
+## September 22 source-result ingress audit — mobile consumer is implemented
+
+The earlier Source table's statement that runtime request ingress and the
+mobile result consumer were still missing is stale. On the current tuple, the
+authenticated `POST /api/agent-workflows/source-contribution` route accepts a
+bounded explicit request and returns the workflow/result references; Home and
+Places call that route through `useRootSourceInspection` and
+`useSubmitSourceContributionRequest`; and `SourceContributionResultScreen`
+reads the owner-scoped exact result, keeps pending/terminal/changed/expired
+states honest, opens the exact candidate or original, and preserves the
+originating root return token. The backend route also remains fail-closed and
+does not regenerate work on a read.
+
+Focused evidence on this tuple: backend Source workflow tests pass **22**
+offline tests (three Postgres/provider-marked cases were explicitly
+deselected); the app Source result, hook and connected Home suites pass **9**
+tests. This closes the previously described ingress/consumer gap at the local
+contract boundary, not at provider-backed execution or native real-data
+acceptance.
+
+The remaining Source work is narrower and policy-bearing: the current request
+is a bounded `contextual_warm` request for `ordinary_current_world` material.
+Before broadening it to arbitrary questions, selected subjects or activity
+windows, define the exact request-purpose/subject contract, allowed source set,
+lineage, expiry and correction behavior. Keep provider execution/recovery,
+native acceptance and any later-use/private-return policy separately gated.
+Do not create a second request owner, result store, generator or mobile result
+harness to address the stale wording.
