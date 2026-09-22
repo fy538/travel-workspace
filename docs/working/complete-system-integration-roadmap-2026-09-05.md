@@ -7061,13 +7061,15 @@ canonical owner reads and optional suppression/proof work, but does not
 preempt all upstream feed construction or synchronous projection stages.
 
 Backend `517b13e18` adds real-PostgreSQL proof for the worker boundary. With
-only the LLM refresh stubbed, one test verifies memory plus completion receipt
-commit; a failure injected after the receipt update verifies both records and
-the completion event roll back before the worker marks the workflow retryable.
-The database was created in this lane's isolated Compose project and migrated
-to `pmevidence02`. The focused offline packet passed **494 tests** (3
-database-marked cases deselected); the targeted real-Postgres packet passed
-**2 tests**. Ruff, format, import-boundary, lazy-import and cycle-ratchet gates
+only the LLM refresh stubbed, publication and its completion receipt commit
+together, while an injected failure after receipt writing rolls back both
+records and the completion event before the worker marks the workflow
+retryable. Two follow-up cases prove that zero-evidence withdrawal commits its
+receipt with the deletion, and that an injected receipt failure rolls the
+deletion back. All four targeted real-Postgres tests passed on the database
+created in this lane's isolated Compose project and migrated to `pmevidence02`.
+The focused offline packet passed **494 tests** (3 database-marked cases
+deselected). Ruff, format, import-boundary, lazy-import and cycle-ratchet gates
 passed, as did applicable local pre-commit hooks. Full backend mypy remains
 failed (**320 errors across 66 files**); this slice removed the bad treatment
 call finding but does not clear the broader typing debt.

@@ -138,11 +138,13 @@ but is not a hard HTTP SLA and does not preempt all upstream/feed or
 synchronous projection work.
 
 Backend `517b13e18` adds real-PostgreSQL transaction tests around the worker:
-the successful memory and receipt commit together, and an injected failure
-after receipt writing rolls both back before the workflow is marked retryable.
-With the LLM refresh stubbed, these two tests passed on the isolated database
-migrated to `pmevidence02`. The focused offline packet passed **494 tests**;
-three database-marked cases were deselected. Ruff/format and import-boundary,
+successful memory publication and receipt commit together, while an injected
+failure after receipt writing rolls both back before the workflow is marked
+retryable. Follow-up tests also prove that zero-evidence withdrawal commits its
+receipt with the deletion, and that an injected receipt failure rolls that
+deletion back. All four targeted tests passed on the isolated database migrated
+to `pmevidence02`. The focused offline packet passed **494 tests**; three
+database-marked cases were deselected. Ruff/format and import-boundary,
 lazy-import, and cycle-ratchet checks passed. Full backend mypy remains red
 (**320 errors across 66 files**); this pass removed the invalid treatment-call
 diagnostic but did not attempt the unrelated repository-wide typing backlog.
