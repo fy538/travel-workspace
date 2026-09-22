@@ -39,6 +39,10 @@ Backend commit `ee625b985` also bounds long-authored Outcome meaning before it
 enters Home's direct-state preview, preserving the exact revisioned Life door
 to the full record. This fixes a valid-record projection overflow; it does not
 add a new source reader or broaden the Home content portfolio.
+Backend `8ab3313b8` aligns that door with Life's exact record route in both Home
+projection paths; the Home-origin return token continues through the existing
+app navigator. The path is covered by backend and route-helper tests, but has
+not been rehearsed on a device.
 
 **Read the [program baseline](vesper-program-roadmap.md#2-inspected-baseline--september-22)
 and [§9 current execution plan](#9-current-execution-ledger-and-next-batch)
@@ -2349,6 +2353,23 @@ and formatting checks passed. No API server, database, native device or full
 it does not establish new content supply, native presentation, or design
 parity.
 
+### September 22 implementation receipt — exact Home Outcome → Life record
+
+The v2 Outcome candidate, returned-state orientation, and compatibility Home
+compiler now emit the exact Life route
+`/you/life-record?record=outcome.<id>` while preserving the Outcome's owner ID
+and revision. This matches the `outcome.<id>` key produced by Life's own graph
+reader and replaces the old generic owner path or retired memories destination.
+The app's existing resource route resolves it as an exact Life door and carries
+the normal Home return token.
+
+The focused backend Home/composition/compiler packet passed **110 tests**; the
+app root-navigation suite passed **45 tests** for exact Outcome routing and
+return-token propagation. Ruff, format, and commit hooks passed. No full
+database/API/native tap-and-back rehearsal or `make verify` was run. This closes
+exact destination construction, not native return acceptance or the broader
+Home/Places content-depth goal.
+
 ### Functional implementation checkpoint — September 22 rebaseline
 
 The candidate includes Life exact originals/refinding, one-recipient original
@@ -2404,7 +2425,7 @@ transient-provider failure/retry remain unverified.
 | I1 | Source/graph/Outcome delivery, repair, backfill and reconciliation foundation; additional retained-source revisions and Life adoption paths in this lane | Build population and later-use coverage over existing owners; do not infer indexed serving cutover or cross-context authority from retention |
 | I2 | Bounded serving, prepared results, cancellation and publication fences; explicit Source Arq registration, serializer repair and gated due-work recovery sweep; real `not_claimed` wrapper, expired due-work recovery and in-flight lease-renewal evidence | Run the process-interruption/restart and live transient-provider failure/retry rehearsals in isolated Arq/Redis; cost/cohort/provider activation remains separately gated |
 | I3 | Contribution authority and useful-first intake; exact retained/received text-original paths with scoped native receipts | R01/R03 authority and revocation are verified, R04 code correction plus API/native sender-control rehearsals and named Life/Home original-receiving paths are complete; broader supported originals and permissioned downstream use remain; pending history/audience policy is not silently adopted |
-| I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots; supplied Home and Places multi-source full-scrolls; same-Place sequence passes persisted Home HTTP readback with source retraction; generic Home/Places partial-read notices preserve supplied content; rebuilt Place reader now supports recipient Keep/Leave-aside with a real local native/API rehearsal; Home's long Outcome preview is capped at 220 characters while preserving the exact revisioned Life read requirement (focused backend packet: 97 passed) | Add worthwhile default-portfolio value beyond the proved scrolls from already supplied payloads; complete remaining distinct empty states and native visual acceptance, keeping exact actions/destinations and honest failure treatment in scope |
+| I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots; supplied Home and Places multi-source full-scrolls; same-Place sequence passes persisted Home HTTP readback with source retraction; generic Home/Places partial-read notices preserve supplied content; rebuilt Place reader now supports recipient Keep/Leave-aside with a real local native/API rehearsal; Home's long Outcome preview is capped at 220 characters and its v1/v2 doors identify the exact revisioned Life record (focused backend packet: 110 passed; app route packet: 45 passed) | Add worthwhile default-portfolio value beyond the proved scrolls from already supplied payloads; complete remaining distinct empty states and native visual acceptance, keeping exact actions/destinations and honest failure treatment in scope |
 | I5 | Open-now and saved-world changes reach surfaces; explicit fit and reviewed assistance contracts implemented | R09 code correction and the named current-world native paths are complete; persisted/native timezone edge matrix, permitted-context adaptations, provider-backed fit rehearsal and broader mandates remain separate |
 | I6 | Retirement inventories/guards exist; candidate remains isolated and rollout internal | Keep obsolete execution paths out of new work; complete obligation review and authorized cutovers/landing only when their dependencies are ready |
 

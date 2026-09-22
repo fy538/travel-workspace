@@ -41,6 +41,13 @@ continues to own the complete authored meaning. This prevents a valid record
 from overflowing Home's bounded candidate fields; it does not add a new source
 reader, widen authority, or establish broader Home value coverage.
 
+Backend `8ab3313b8` then corrected the Outcome door in both current and
+compatibility Home projections: it now targets Life's exact
+`/you/life-record?record=outcome.<id>` reader instead of Life's generic root or
+the retired memories route. The existing Home-origin return token is preserved
+by the app's route helper. This closes exact destination construction; a native
+tap/back rehearsal remains unrun.
+
 Use [§2](#2-inspected-baseline--september-22) for the current evidence boundary,
 [§4](#4-current-package-register) for the sole current execution queue, and
 [Integration §9](complete-system-integration-roadmap-2026-09-05.md#9-current-execution-ledger-and-next-batch)
@@ -76,11 +83,12 @@ claim source admission, recurring content supply, broad runtime full-scroll
 quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
 **Current functional code tuple before this roadmap receipt:** workspace
-`3b7ed87`, backend `ee625b985`,
+`fc88433`, backend `8ab3313b8`,
 and app `cb3bae7cb`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The latest workspace commit
-precedes this documentation-only refresh; the backend adds the Outcome excerpt
-bound and prior Home sample owner-read/candidate and proof-backed lifecycle;
+precedes this documentation-only refresh; the backend adds the exact Outcome
+Life door, the excerpt bound, and prior Home sample owner-read/candidate and
+proof-backed lifecycle;
 the app renders the explicitly fictional sample in the existing Home
 composition. Earlier commits in this candidate provide the
 Places recipient lifecycle, Home/Places full-scroll paths, multi-photo Life
@@ -104,6 +112,24 @@ passed **46 tests**; the Home portfolio packet passed **51 tests**. Targeted
 Ruff checks and formatting checks passed. No database, API server, native
 device, or full `make verify` run was part of this slice. This is projection
 robustness, not new Home content supply, visual acceptance, or design parity.
+
+### September 22 implementation receipt — exact Home Outcome → Life record
+
+Home's graph candidate, returned-state orientation, and compatibility Home
+compiler now emit `/you/life-record?record=outcome.<id>` for an Outcome's
+revisioned `ResourceRef`. This is the route Life already uses for the stable
+`outcome.<id>` record key. The app's existing resource resolver recognizes it
+as an exact Life destination, and Home's resource-open path adds its normal
+origin/return token. The generic `/owners/outcome/{id}` and retired
+`/you/memories` forms no longer strand this Home door at the Life root.
+
+Evidence: the focused backend Home/composition/compiler packet passed **110
+tests**; the app root-navigation suite passed **45 tests**, including exact
+Outcome routing and return-token propagation. Ruff, formatting, and backend
+commit hooks passed. No API/database/native tap-and-back rehearsal or full
+`make verify` was run. The reference now names the correct destination; the
+runtime return experience still relies on the existing root-navigation
+contract and remains unproven end to end on device.
 
 ### September 21 current-candidate integrity pass
 
@@ -1942,8 +1968,8 @@ proof. Binary-media delivery and broad visual/device acceptance remain open.
 
 | Repository | Candidate HEAD observed before this receipt | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `3b7ed87` | `70c4b4b` |
-| Backend | `ee625b985` | `a7c02cbe1` |
+| Workspace | `fc88433` | `70c4b4b` |
+| Backend | `8ab3313b8` | `a7c02cbe1` |
 | App | `cb3bae7cb` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
@@ -1956,7 +1982,7 @@ dated observation preceding the documentation commit.
 
 | Capability | Implemented / recorded evidence | Remaining product or evidence boundary |
 | --- | --- | --- |
-| Home / Places | Owner-backed Save/readback, public Place and child-entity readings, consented place pulls, nearby open-now options, supplied experience comparisons, plural social perspectives, addressed Place-contribution region, saved-place closure/reopening dismissal, recipient Keep/Leave-aside on exact-place friend lines, native multi-source scrolls, semantic-state treatment and generic partial-read notices; fixed fictional Home sample for cold/quiet accounts behind existing delivery gates; Home Outcome excerpts capped at 220 characters while retaining the exact revisioned Life read requirement; exact Home photo tap is gated by current delivery revision and material authorization (focused component/screen tests only); persisted public-Place Home HTTP readback; named local API/iOS flows | Varied worthwhile default-portfolio value beyond the proved scrolls; prove the sample's native presentation/retirement locally; broader section/design breadth, selection quality across situations, remaining distinct empty states, binary-media runtime proof, native visual acceptance/parity |
+| Home / Places | Owner-backed Save/readback, public Place and child-entity readings, consented place pulls, nearby open-now options, supplied experience comparisons, plural social perspectives, addressed Place-contribution region, saved-place closure/reopening dismissal, recipient Keep/Leave-aside on exact-place friend lines, native multi-source scrolls, semantic-state treatment and generic partial-read notices; fixed fictional Home sample for cold/quiet accounts behind existing delivery gates; Home Outcome excerpts capped at 220 characters while retaining the exact revisioned Life read requirement and exact Life record destination; exact Home photo tap is gated by current delivery revision and material authorization (focused component/screen tests only); persisted public-Place Home HTTP readback; named local API/iOS flows | Varied worthwhile default-portfolio value beyond the proved scrolls; prove the sample's native presentation/retirement locally; broader section/design breadth, selection quality across situations, remaining distinct empty states, binary-media runtime proof, native visual acceptance/parity |
 | Life | Retained text originals, exact refinding/return, explicit place- and people-bound sources, organized period groups, and a canonical artifact reader that presents every available authorized photo whole with same-record return; metadata refinding continues past the newest 100 results with a versioned keyset cursor and rechecks current owner, retention, status and custody on each page; the continuation case passes on a fresh lane-local disposable PostgreSQL database; Life opens an explicitly linked Place from a retained source/original with anchored return; persisted private Plan and explicitly permissioned shared Outcome reach Life/People root and depth HTTP readers | Broader binary-media/corpus coverage and People/Threads experience, live original-byte/device acceptance, later permitted reuse that changes a subsequent result, indexed serving cutover and Atlas retirement |
 | Social | Existing-owner venue-bound pulls and one-recipient original-text receiving through Life/Home; recipient Keep/Leave-aside; named local API/iOS flows; native sender withdrawal after recipient disconnect | Casual media/group/gathering breadth and useful juxtaposition; no new sharing or friend-source AI-use policy is adopted here; broader downstream use remains |
 | Practical/live engine | Current open-now facts and saved-place changes affect surfaces; explicit fit contract and private stop-assistance/reviewed Send implemented | Provider-backed fit rehearsal, wider fresh-world coverage, purpose-preserving adaptation and accepted watching mandates; R09 code correction is complete, persisted/native timezone evidence remains |
