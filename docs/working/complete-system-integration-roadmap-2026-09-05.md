@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Integration task
 created: 2026-09-05
-last_verified: 2026-09-21
+last_verified: 2026-09-22
 expires: 2026-10-05
 why_new: Rebaselines the post-pivot system around the real-world live engine and four surfaces, with code-backed correction priorities, explicit Life ownership, bounded Luna delegation, and recurring architectural and product reassessment.
 supersedes:
@@ -25,7 +25,24 @@ depends_on:
 
 # Complete-system integration roadmap
 
-## Current engineering tranche — September 21
+## Current engineering tranche — September 22 lane separation
+
+The [program register](vesper-program-roadmap.md#4-current-package-register)
+owns assignment. **Architecture** owns the bounded AC1/AC2 engine package and
+AC3 compatibility handoff in [§9](#september-22-architecture-execution-package).
+**Orchestration** continues broader Home composition and functional continuity;
+**Front End** continues assigned native presentation; **Multiplayer** develops
+social product/design decisions without implicitly adopting new runtime policy.
+These outcomes can advance independently outside explicitly shared files.
+
+This checkout's older “next state seam” instructions are historical scheduling,
+not a direction to undo the functional lane's September 22 Home-breadth plan.
+This update defines Architecture's executable scope; it does not reschedule an
+adjacent task, create a new integration lane or resume paused shared landing.
+Do not copy this older whole roadmap over the functional candidate's newer
+receipts. Incorporate only the scoped ownership/package changes at handoff.
+
+### Historical September 21 tranche and evidence
 
 The functional lane now has a connected, partially complete internal product:
 Home/Places value and practical consequences, Life originals/refinding/groups,
@@ -35,14 +52,12 @@ recipient-consented social cases. Rich recurring supply, later permitted
 context benefit, complete design coverage/polish and production readiness
 remain unfinished.
 
-**Read the [program baseline](vesper-program-roadmap.md#2-inspected-baseline--september-21)
-and [§9 current execution plan](#9-current-execution-ledger-and-next-batch)
-first.** They supersede earlier scheduling and "next slice" prose below;
-historical receipts retain their evidence boundaries, not separate dispatch
-authority. Existing I0–I6/CV contracts still govern implementation. Do not
-rebuild foundations merely because an older table described them as missing.
+The [September 21 baseline](vesper-program-roadmap.md#2-inspected-baseline--september-21)
+and receipts below retain their evidence boundaries, not current dispatch
+authority. Existing I0–I6/CV contracts still govern implementation; the
+September 22 package below does not restart those foundations.
 
-Current order: close only the remaining evidence defects that materially change
+Historical September 21 order: close only the remaining evidence defects that materially change
 the candidate; keep the supplied Home/Places full-scroll, native sender
 withdrawal, and honest semantic-state receipts honest; then advance
 permissioned Life/social downstream value in parallel where files are
@@ -2261,7 +2276,162 @@ document's creation.
 
 ## 9. Current execution ledger and next batch
 
-### Functional implementation checkpoint — September 21 rebaseline
+### September 22 Architecture execution package
+
+**Outcome:** keep the shared experience engine bounded under concurrent demand
+and make its implemented ownership boundaries enforceable, without slowing the
+adjacent product/design lanes or introducing a second engine. The existing
+owner-read limits, memory evidence binding, publication/withdrawal receipt
+transactions and `backend.application` extraction are completed implementation,
+not work to repeat. AC1–AC3 are local package labels within I2/I4/I6, not new
+services or replacements for the completed ER packages.
+
+**Baseline:** engine workspace `a48193c`, backend `75aaf0eb5`, app `242d309f0`.
+The September 22 investigation reran a focused owner-read/root-composition/
+memory/portfolio/Source-executor selection: **121 passed**. Import, lazy-import
+and SCC checks passed at their existing scope. These do not supersede the prior
+**494-test** offline packet or **four PostgreSQL transaction tests**, nor make
+the broad **18-failure PostgreSQL sweep** or **320-error mypy run** green.
+No full `make verify`, merged-candidate, device or production evidence follows.
+The [program snapshot](vesper-program-roadmap.md#observed-lane-snapshot--september-22)
+separately records adjacent refs and dirty work; recheck before execution.
+
+#### AC1 — bound initial root candidate-read admission
+
+**Finding:** `backend/root_projection/v2/portfolio.py` uses an eight-worker
+process executor but only per-portfolio semaphore limits. It is upstream of,
+and distinct from, canonical owner enrichment in `backend.application`.
+A read-only concurrency probe with eight portfolios × six blocking readers
+observed **40 queued work items** both before and after 48 caller timeouts.
+Threads were bounded; submission backlog and retained queue items were not
+process-admission-bounded. Cancelling the waiting caller is not proof that
+physical work or executor queue occupancy has finished.
+
+**Owning layer/files:** root candidate execution, with a small reusable
+execution primitive in `backend/core/owner_reads.py` only if it can preserve
+that module's established semantics. Main edits should stay in
+`backend/root_projection/v2/portfolio.py` and focused executor tests. Do not
+force candidate values into canonical owner envelopes or move producer logic
+from Home/Places into another shared service. Coordinate before changing a
+shared test or application composer used by Orchestration.
+
+**Implementation and acceptance:**
+
+1. Establish explicit process-wide admission and bounded pending work before
+   executor submission. Reuse the established physical-completion accounting
+   where suitable. Choose and document capacities from existing concurrency
+   constraints; do not claim an arbitrary cap is production sizing evidence.
+2. Distinguish not-admitted, queued, running, timed-out and physically completed
+   work internally. Cancelled queued work must not execute later; cancelled or
+   timed-out running work retains its physical capacity until completion.
+   Release capacity exactly once on success, error and cancellation.
+3. Bound total portfolio wait as well as individual reads if required by the
+   existing root budget; preserve stable ordering, useful partial results and
+   honest omission/degradation. Keep outer cancellation semantics explicit.
+   Existing soft enrichment deadlines are not a hard end-to-end HTTP SLA.
+4. Test multiple concurrent portfolios, saturation, queued/running cancellation,
+   reader exceptions, late results, empty portfolios and capacity recovery.
+   Use deterministic synchronization rather than fragile timing sleeps. Prove
+   outstanding admission/queue bounds and that a later healthy call succeeds.
+5. Run focused candidate, canonical-owner, Home/Places composition and import
+   regressions. Verify no new model/provider call, enqueue, source-retention
+   write, API change or selection-policy change from an ordinary root read.
+   No new database/device setup is necessary for execution-only behavior.
+
+**Exit:** the reproduced aggregate-admission gap is closed with physical-work
+accounting and preserved useful partial output, not merely lower timeout
+values. If a contract change or domain priority rule is needed, hand the exact
+decision to Orchestration before broadening the package.
+
+#### AC2 — enforce and describe the implemented ownership boundaries
+
+**Finding:** `scripts/check_imports.py` enforces older agent/core rules but
+does not detect the new layer inversions. Read-only synthetic probes accepted
+both core → application and application → API imports; the legacy
+core → Concierge negative control was rejected. The existing green checker
+therefore does not establish these new boundaries.
+
+**Owning layer/files:** backend architecture checker, its tests, existing
+`docs/architecture/Architecture.md` and the affected application/root-projection
+`FEATURE.md` owners. No mobile files, schema regeneration or new architecture
+manifest unless a concrete enforcement need cannot fit existing owners.
+
+1. Write the smallest dependency policy before implementation: core execution
+   primitives do not import application orchestration; application use cases
+   may orchestrate domain/projection owners but do not import HTTP delivery.
+   API delivery calls application. Map actual edges and compatibility re-exports
+   first; `lived_experience`/projection contracts are not automatically illegal
+   because their names look higher-level.
+2. Enforce the selected forbidden directions for absolute and relative imports,
+   including aliases and imports inside functions/guards. Test the deliberate
+   handling of type-only edges. Syntax/read/tool failures must not silently pass.
+   Keep lazy-import and SCC checks separate and explicit about their coverage.
+3. Repair scoped new inversions. If broader existing edges are discovered,
+   classify them and record an exact, owner-reviewed temporary bridge with
+   retirement criteria; do not waive whole directories or absorb a repo rewrite.
+4. Update the architecture narrative to the actual modular backend: domain-owned
+   truth, application composition, derived Home/Places/Life reads and durable
+   preparation. Mark API/Concierge old paths as compatibility shims, not owners.
+   Remove active “five travel agents including booking” framing without claiming
+   booking infrastructure has already been deleted or retired in production.
+5. Prove allowed imports, forbidden directions, existing bridges and scanner
+   failure cases, then run import/lazy/SCC and affected behavioral checks. Keep
+   repository-wide mypy and unrelated database failures separately visible.
+
+**Exit:** the intended boundary is both accurate in existing owner docs and
+executable in the checker; a synthetic forbidden edge cannot obtain a green
+verdict. A new diagram or moved files alone is not completion.
+
+#### AC3 — one coherent compatibility handoff, not repeated integration
+
+After AC1/AC2, inspect the then-current functional candidate and hand over the
+completed architecture package. Until then, independent Home, Places and design
+work continues; neither device access nor visual design is a prerequisite here.
+
+- Supply exact workspace/backend/app refs, explicit file ownership, test
+  commands and evidence scopes. Include migration `pmevidence02`, its expected
+  predecessor and compatibility shims already introduced by this lane. Compare
+  migration heads and imports against the receiving cut, not an old snapshot.
+- The previously inspected engine/functional backend overlap was limited to
+  three test files (`test_source_request_delivery_postgres.py`,
+  `test_home_portfolio.py`, `test_v2_contracts.py`). Recompute before handoff;
+  low textual overlap does not prove semantic compatibility. Preserve both
+  lanes' assertions and exercise changed production composition paths.
+- Architecture owns regressions caused by its cut. Orchestration owns local
+  candidate incorporation, contract synchronization if actually needed and
+  combined receiving validation. Do not switch, reset, stage or merge into its
+  live checkout. Shared runtime/main landing remains paused; no automatic push,
+  paid generation, flag change, privacy-policy change or legacy retirement.
+- Do not require whole-app/device rehearsals per commit. Use focused evidence
+  during development and a coherent compatibility checkpoint when the package
+  is consumed. `make verify` remains required before publication; unrelated red
+  gates remain named blockers to that claim, not silently waived requirements.
+- Update these existing roadmaps in place. Apply only this scope/ownership delta
+  to the receiving roadmap, preserving its newer Home and social decisions.
+  A plan commit on this branch is not proof that an adjacent thread adopted it.
+
+**Architecture completion boundary:** AC1 and AC2 implemented/reviewed, their
+focused evidence recorded, and AC3 handed back with compatibility questions
+resolved or explicitly assigned. Actual incorporation, release gates and
+production activation retain separate statuses. Do not invent AC4 merely to
+keep this lane busy; return to targeted architecture review after this package.
+
+#### Cross-lane seams and consciously unassigned follow-ups
+
+| Concern from the architecture audit | Owner / next decision | Not part of this Architecture package |
+| --- | --- | --- |
+| Home breadth and valuable output | Orchestration traces and composes multiple real owner-backed families; Front End owns assigned presentation. Calibrate selection on realistic mixed portfolios as part of that outcome. | New ranking framework, parallel Home producer/renderer, or claiming fixed producer signals prove personalized judgment. |
+| Recurring useful supply | Orchestration names each existing public Place, private Source, social or practical owner and its permitted trigger, budget, reuse, refresh and stop behavior when needed. Current Source canonical execution accepts explicit warm requests. | Generic scheduler/generation service, acquisition on root GET, unapproved trigger activation or automatic private reuse. This is not a new urgent parallel lane. |
+| Everyday practical assistance | Orchestration evaluates a bounded Plan/Commitment adapter to the trip-bound movement compiler when its product sequence reaches it; keep current trip safety intact. | General Occasion rewrite, background tracking, revived booking execution or silently claiming trip machinery already covers all everyday plans. |
+| Social breadth and later context | Multiplayer resolves interaction/authority choices; Orchestration implements already-authorized downstream value. | Treating friendship/receipt as AI-reuse permission or “Together” design as an adopted new store. `known_to_person` is bounded lexical matching, not proof of semantic novelty. |
+| Legacy retirement and quality debt | Respective owner closes a named obligation or regression; dedicated Integration handles authorized landing/activation. | Blanket deletion of booking/itinerary history, compatibility flag flips, all mypy/database failures, or expiry exemptions to make checks green. |
+
+Escalate only a shared contract/authority choice, an actual file collision or a
+consequential dependency. Owners exchange a bounded interface/patch directly;
+ordinary diagnosis, implementation, tests and repair belong to one outcome
+assignment. No agents or services are started by this documentation update.
+
+### Historical functional implementation checkpoint — September 21 rebaseline
 
 The candidate includes Life exact originals/refinding, one-recipient original
 receiving, owner-backed grouped records, Home/Places public Source and consented
@@ -2320,9 +2490,9 @@ recovery and live transient-provider failure/retry remain unverified.
 | I5 | Open-now and saved-world changes reach surfaces; explicit fit and reviewed assistance contracts implemented | R09 code correction and the named current-world native paths are complete; persisted/native timezone edge matrix, permitted-context adaptations, provider-backed fit rehearsal and broader mandates remain separate |
 | I6 | Retirement inventories/guards exist; candidate remains isolated and rollout internal | Keep obsolete execution paths out of new work; complete obligation review and authorized cutovers/landing only when their dependencies are ready |
 
-### Current build sequence and finish conditions
+### Historical September 21 build sequence and finish conditions
 
-This sequence is the forward plan within the existing I/CV packages. It replaces
+This sequence was the forward plan within the existing I/CV packages. It replaced
 older suggestions to select another isolated happy-path rehearsal. A package
 can contain several independent implementation tasks; it is not a one-loop
 definition of Vesper. The program register owns assignment. No agents are
@@ -2450,7 +2620,7 @@ program register in place after each substantial handback.
 ### 9.1 Connected-value execution sequence
 
 This foundational sequence within I1–I5 preserves implementation contracts and
-their rationale. The September 21 build sequence above owns current scheduling;
+their rationale. The September 22 package/register above owns current scheduling;
 read later receipts before treating any CV step here as unimplemented. All four
 moves remain represented by the acceptance portfolio. A package is reviewable
 scope, not the definition of Vesper or a one-loop proof prerequisite.

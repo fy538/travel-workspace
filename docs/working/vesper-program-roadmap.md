@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Strategy task
 created: 2026-09-07
-last_verified: 2026-09-21
+last_verified: 2026-09-22
 expires: 2026-10-07
 why_new: Extracts the present-tense cross-lane program map from a long Integration plan and its historical receipts so independent owners can coordinate without competing execution queues.
 supersedes:
@@ -20,6 +20,42 @@ depends_on:
 
 # Vesper program roadmap
 
+## September 22 execution split — Architecture and adjacent lanes
+
+**This thread is Architecture, not the functional Orchestration task.** Its
+next package is shared-engine execution safety and enforceable dependency
+boundaries, followed by one compatibility handoff. It does not own Home
+composition, native presentation, social-policy selection or a second product
+implementation queue. The [current register](#4-current-package-register)
+assigns those outcomes; [Integration §9](complete-system-integration-roadmap-2026-09-05.md#september-22-architecture-execution-package)
+defines this lane's technical scope and acceptance.
+
+This split supersedes older scheduling language in this checkout, including
+instructions to select another isolated state seam. Preserve the receipts below
+as dated evidence. The functional lane's September 22 plan has already advanced
+to **broader design-aligned Home composition**; this Architecture update does
+not roll it back, copy its whole newer roadmap into this branch, or instruct it
+to wait for engine work. Reconcile the two docs section-by-section at handoff.
+
+### Observed lane snapshot — September 22
+
+| Task / checkout | Observed workspace / backend / app HEADs | Ownership and evidence boundary |
+| --- | --- | --- |
+| **Architecture**, `01a0a837-f0d0-7ef0-84e9-224420f89cbb`; `travel-workspace--engine-consolidation-2026-09-21` | `a48193c` / `75aaf0eb5` / `242d309f0` | Clean before this docs edit. Shared owner execution, memory currentness/lifecycle and application-layer consolidation are implemented locally; candidate-read admission and new-layer guards remain next. |
+| **Orchestration**, `01a072c6-2735-7152-94ea-bb6958ead53d`; `travel-workspace--functional-implementation-2026-09-20` | `1d91edb` / `7537ae042` / `d142d9e17` | Active; clean at inspection. Owns functional product composition and the local combined candidate. Current plan prioritizes fuller Home using real owner material, exact destinations and return, not new generic generation infrastructure. |
+| **Front End**, `01a0c53a-bf3d-7ba0-ae48-e9c93763623a`; `travel-workspace--functional-implementation-2026-09-20--native-presentation-wave1-2026-09-21` | `58e45dc` / `d7d153810` / `cd70c7111` | Active; app has in-flight Places geometry/renderer/tests and Maestro edits. Owns native presentation and design acceptance in its assigned files. Earlier Places World Field work is already consumed by the functional lane; do not rebuild it here. |
+| **Multiplayer**, `01a0b673-b624-78f2-8345-afc2dcf9b242`; `travel-workspace--multiplayer-design-exploration-2026-09-20` | `b6e7014` / `a7c02cbe1` / `e2e792913` | Active; workspace design/handoff files are dirty, children clean. Inspected handback qualifies the proposed interactions and explicitly does not adopt them as engineering order or policy. Keep social design/loop decisions there; do not infer a runtime implementation assignment from active status. |
+
+All paths are sibling workspaces under `/Users/feihuyan`; branches match their
+lane names with the `codex/` prefix. These are observed refs, not frozen merge
+targets or current production. Canonical workspace main is `70c4b4b` with
+unrelated dirty design/docs work and is not the edit target. Thread status was
+read, but recent turn bodies were unavailable from the thread reader; ownership
+is grounded in checked-out work and documents, not claimed transcript review.
+Recheck heads, dirty files and any newly adopted social assignment before coding.
+
+### Historical September 21 rebaseline and receipts
+
 **September 21 rebaseline, after implementation and review:** Vesper is a
 connected, partially complete internal product candidate. Home/Places receiving,
 Life originals/refinding/organization, bounded social receiving and practical
@@ -29,7 +65,7 @@ recipient-consented social cases. These are meaningful continuity improvements;
 they do not establish complete design coverage, worthwhile recurring supply,
 general later-context benefit, production activation or release readiness.
 
-Use [§2](#2-inspected-baseline--september-21) for the current evidence boundary,
+Use [§2](#2-inspected-baseline--september-21) for the dated evidence boundary,
 [§4](#4-current-package-register) for the sole current execution queue, and
 [Integration §9](complete-system-integration-roadmap-2026-09-05.md#9-current-execution-ledger-and-next-batch)
 for implementation scope and finish conditions. Older dated receipts preserve
@@ -37,7 +73,7 @@ their results, limitations and rationale; their embedded "next" instructions
 are historical and do not form additional queues. Update these summaries when
 a substantial package finishes instead of appending a competing next step.
 
-**Next emphasis:** stop repeating receiving-boundary proofs and deepen the
+**September 21 emphasis (historical scheduling):** stop repeating receiving-boundary proofs and deepen the
 composed surfaces with supplied material and honest state transitions. Home and
 Places now have real multi-source full-scroll evidence, and sender withdrawal
 has a native proof; these are not proof of recurring supply, broad design
@@ -59,7 +95,7 @@ documentation drift that had called several already-renderable kinds "dark";
 it does not claim source admission, recurring content supply, runtime
 full-scroll quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
-**Current candidate tuple after the latest rebaseline:** workspace `c586de3`,
+**September 21 candidate tuple:** workspace `c586de3`,
 backend `96d264c41`, and app `242d309f0`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The latest workspace
 advance records the disposable owner-loop verification and renderer-ledger
@@ -73,7 +109,7 @@ substantive implementation remains one selected sparse/pending/failure state
 or supplied Life/social downstream value, with R05/R09 edge work continuing
 only where its required environment is available.
 
-The latest workspace documentation head before this documentation receipt is
+The workspace documentation head before that documentation receipt was
 `c586de3`; backend and app code are `96d264c41` and `242d309f0`. The backend
 advance is integration-test coverage only; it does not alter production
 behavior or release state.
@@ -1917,6 +1953,10 @@ retirement require their existing approvals. Assignment does not dispatch a task
 
 ## 2. Inspected baseline — September 21
 
+This is the historical functional baseline. The September 22 lane snapshot at
+the top and §4 own current assignments; this table is not the latest combined
+candidate or the Architecture lane's revision tuple.
+
 Inspected before this documentation update; no product tests, provider calls,
 database mutations or simulator runs were performed for the rebaseline itself.
 Earlier runtime results below are carried evidence at their named scopes, not
@@ -2035,20 +2075,33 @@ tasks. The present update plans work; it does not start agents or services.
 
 | Package / role | Status and complete outcome | Dependency / handback |
 | --- | --- | --- |
-| **First — review evidence closeout** | R01/R03 disposable-Postgres authority/revocation regressions now pass. R04 withdrawal controls and R09 schedule-zone propagation are code-fixed with focused regressions; the R04 sender-control API and native simulator rehearsals now pass. Named disposable-Postgres/native paths, one real Arq/Redis wrapper path, and one expired due-work recovery path pass. R05 transient/restart evidence and R09 timezone-edge evidence remain open. Not complete. | Run only the specific missing matrices, with an explicitly disposable database/queue/device where required; preserve truthful gate status and do not repeat the completed happy-path tour. Independent product work can proceed outside affected files. |
-| **Primary build — Home/Places useful breadth** | In progress. The current candidate has real Home/Places owner reads, social receiving, practical fit/open-now, exact Place destinations and return; the same-Place supplied sequence now survives service composition and the real Home HTTP readback with an honest source-retraction omission. The remaining gap is enough substantive, varied default-portfolio/full-scroll value, native/device acceptance, complete sparse/pending/failure treatment and visual parity. | Choose one bounded content-depth or state seam per package. Reuse current Source/content/relationship/Place owners. Include bounded preparation recovery when needed for reliable supply; no new generator/store. One owner for shared root composition, contracts and receiving adapters. |
-| **Complementary build — Life/social downstream value** | The bounded People-record seam is landed: shared Outcomes tied to a multi-person Occasion and non-private multi-participant Commitments now reach Life with exact grant/member refs and return. Broader later permitted context, media, contribution and Threads value is not complete. | Existing source, Life and relationship owners; no inference of permission from custody. Choose the next downstream result only where structured authority already exists; defer genuinely policy-dependent media/group/use expansion. |
-| **Across both builds — native polish** | Required within each completed surface: design hierarchy, card/media treatment, interaction, accessibility and sparse/pending/failure states. Not accepted yet. | Use current inspected Claude exports and handoffs; record actual canvas/version. Unresolved visual choices do not block unrelated owner/supply work. |
-| **Orchestration / this thread** | Own scope, current queue, cross-system decisions and package review; dispatch only when requested. | Review first working composition, consequential blocker and completed package. Judge delivered behavior and remaining user effort, not commit/test counts. |
+| **Here — AC1: candidate-read execution** | Ready for implementation. Bound aggregate admission to the initial root candidate-read executor, not only the already-hardened canonical owner-read stage. | Architecture owns execution mechanics and focused tests. Preserve producer payloads, selection, public contracts and ordinary read-only behavior. No dependency on UI/design completion. |
+| **Here — AC2: enforce application boundaries** | Ready after the bounded dependency policy is specified. Guard core → application and application → HTTP delivery inversions; align the existing backend architecture/package docs with the implemented modular system. | Architecture owns checker/tests and narrow owner-doc corrections. Ratchet explicit existing bridges; no repository-wide reorganization or blanket exemption. Can proceed independently of AC1 if file ownership permits. |
+| **Here — AC3: compatibility handoff** | After AC1/AC2. Review the coherent engine cut against the then-current functional candidate and hand back once. | Architecture supplies exact refs, migrations/shims, focused/transaction evidence and unresolved failures. Orchestration owns incorporation into its local candidate. This is not activation or main landing. |
+| **Adjacent — Orchestration: Home composition and functional continuity** | Active. Broader design-aligned Home composition is the current product package; exact social continuation, saved-Place changes and fixed-sample Chat draft are already in its newer candidate. | Trace real owner → candidate → selected region → useful native result → exact destination/return. Own functional selectors/adapters/continuity and supply extensions where required. Do not wait for AC1/AC2 outside shared files. |
+| **Adjacent — Front End: native presentation** | Active. Own assigned card/field geometry, hierarchy, reusable native treatments, accessibility and visual QA. Earlier Places World Field is already integrated locally. | Coordinate Home/Places shared app files directly with Orchestration; ownership is by outcome and reserved files, not all frontend versus all backend. This lane does not build a parallel renderer or redesign Chat/Life. |
+| **Adjacent — Multiplayer: social product/design decisions** | Active; the inspected exploration is not adopted engineering policy. Own broader social loops, interaction/copy choices and the decision-ready handback. | Existing permissioned social implementation can continue in Orchestration. New private-input aggregation, mutual matching, Together/history or audience/reuse changes need explicit owner/policy decisions; do not encode exploratory designs into engine contracts here. |
+| **Adjacent — review evidence and standard gates** | Functional R02/R05/R06/R09 acceptance edges remain separately scoped. Architecture's broad PostgreSQL sweep and mypy are red; neither lane has a current full `make verify` pass. | Each owner repairs regressions attributable to its cut and reports unrelated failures with exact evidence. No blanket test cleanup, gate exemption or repeated happy-path tour. Required readiness gates still apply at landing. |
 | **Dedicated Integration / landing** | PAUSED; combined shared runtime, main landing and publishing are not enabled by this update. | Lane-local implementation/verification remains distinct. On explicit resume, receive selected clean cuts and run required gates without pretending candidate receipts certify production. |
 | **Existing specialist lanes** | Reference suppliers, not automatically restarted or assumed merged. | Use immutable relevant cuts; independently assigned work needs file ownership and direct dependency exchange, not six standing lanes matching six design projects. |
 
-The primary and complementary builds can advance together after file boundaries
-are assigned. Share contract needs early; reserve one writer for schema sync,
-root composition and device/runtime resources. Use longer outcome assignments
-through implementation and focused review, escalating product/authority choices
-or real dependencies rather than every ordinary repair. No fixed integration
-ceremony is added. Required pre-push gates remain required.
+Architecture's order is **AC1 → AC2 → AC3**, with AC2 allowed alongside AC1
+only when independent ownership is established. It is one bounded consolidation
+package, not a permanent engine rewrite lane. Afterwards return to review unless
+the receiving candidate exposes a concrete new architectural defect. Broader
+recurring supply, judgment calibration and everyday Plan/Commitment movement
+adaptation belong in Orchestration's product sequence, not an automatic AC4.
+
+Reserve `backend/root_projection/v2/portfolio.py` for execution mechanics here;
+Orchestration retains Home/Places producer construction, selectors and domain
+adapters. Shared files/tests, `backend/application/root_composition.py`, generated
+contracts and the two roadmaps require one writer per batch. Coordinate exact
+seams before edits and preserve newer adjacent sections when applying this doc
+cut. No whole-file roadmap replacement, branch switching in another checkout,
+duplicate worker/scheduler or per-commit integration ceremony. Report a first
+working result, a consequential blocker or a completed package—not every test.
+Required pre-push gates remain required. This plan update itself neither
+dispatches nor interrupts adjacent tasks.
 
 At each substantial handback, update §2 and this register in place: what became
 useful, what supplied it, how it behaves after action/correction/return, what
