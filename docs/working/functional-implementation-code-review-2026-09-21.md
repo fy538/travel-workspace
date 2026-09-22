@@ -656,7 +656,7 @@ follow-up risk, not a confirmed defect or an R12.
 | ID | Priority | Defect | Owning area | Status |
 |---|---|---|---|---|
 | R01 | P1 | Rejected original can still commit a recipient handoff/message | Relationships transaction | Fixed; disposable-Postgres revocation regression passes |
-| R02 | P2 | Places reading bypasses active release/cohort eligibility | Content / Places | Fixed; governed outsider/cohort matrix still required |
+| R02 | P2 | Places reading bypasses active release/cohort eligibility | Content / Places | Fixed; four-case offline matrix passes discovery and exact-read paths; persisted release-ledger acceptance remains unverified |
 | R03 | P2 | Pull-consent revocation leaves attached original readable | Relationships read policy | Fixed; disposable-Postgres attached-read regression passes |
 | R04 | P2 | Sender loses withdrawal controls after relationship disconnect | Mobile original sharing | Code-fixed; real API and native sender-control rehearsals pass, including revoked readback; broader audiences/media remain out of scope |
 | R05 | P2 | Source worker throws while serializing its actual result type | Worker adapter | Serializer, exhausted-lease recovery and in-flight lease renewal code fixed; 79 focused Source tests, 25 disposable-Postgres tests, and real wrapper/expired recovery pass; process-restart and live transient-provider evidence remain open |
@@ -740,6 +740,16 @@ private-memory disclosure.
 cohort and current-source eligibility checks. **Regression:** outsider,
 unreleased entity, revoked release and eligible-cohort cases for both discovery
 and exact content. Treat these two paths as one defect, not duplicate findings.
+
+**2026-09-22 verification:** `tests/core/test_place_content_sources.py` and
+`tests/places/test_collections.py` now exercise those four viewer/release cases
+through public-source discovery and exact reading, and assert that the Places
+discovery adapter forwards the viewer and requires an exact release scope. The
+focused packet passed **28 tests**, with no skips, on backend `5e6f1d174`; the
+measurement log is `docs/reliability/runs/r02-place-release-scope-matrix-20260922T170625Z.log`.
+The fake connection exercises the current policy decisions and query boundary;
+it does not prove active/revoked rows against a disposable PostgreSQL release
+ledger. That persisted owner-read acceptance remains open.
 
 ## R03 — Attached originals must respect withdrawal of place-pull consent
 
