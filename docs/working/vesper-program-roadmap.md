@@ -4901,3 +4901,15 @@ consequences, exact record/depth return, accessibility, or external design
 canon parity. No product code changed in this receipt. The next native pass
 should use the same shell only after a real backend/runtime is available; do
 not add fixture-specific routes or treat these captures as production evidence.
+
+## September 22 native Life record route receipt — mock depth
+
+The current candidate also opened the exact mock Life record route
+`guide:///you/life-record?lens=time&record=plan.mock-southern-italy`. The real
+Life record screen rendered its time-lens title, Southern Italy entry and
+explicit Life return control. Capture: `/tmp/vesper-life-record-v2.png`.
+This confirms route resolution and the existing record-anchor path in the
+native shell. It remains mock-data evidence: no persisted record read, source
+original, media playback, owner correction, or cross-root return was exercised,
+so the Life record/original/return package remains open at its real-runtime
+boundary.
