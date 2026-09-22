@@ -65,19 +65,21 @@ that was dropped afterward. Native Keep tap/back is proven for this named
 path; Place-note withdrawal/expiry acceptance and the standard landing gates
 remain open. Those closeout items do not serialize independent product work.
 
-Current order: build substantive Home/Places value from existing owner-backed
-material. Select a gap in the inspected design and current implementation that
-changes what the person understands, can do, or connect—not another route,
-notice, renderer, or repetition of the already implemented same-Place reading
-sequence, supplied-experience comparison, social comparison, or addressed-note
-path. A permissioned Life/social downstream result is a valid complementary
-package only when its structured source and owner authority already exist.
-Carry the selected value through exact source, depth/action, return, revision/
-expiry, and honest sparse/pending/failure states; bring native hierarchy,
-accessibility and polish along with the package. Do not add a generator, feed
-or storage family to manufacture supply. If no existing owner-backed input can
-support a meaningful increment, record the supply/authority gap rather than
-inventing a new abstraction.
+Current order: deliver Home/Places design-aligned feature breadth from existing
+owner-backed material. Use the current design handoffs as a coverage reference;
+identify the missing sections/cards that can be supplied by existing owners and
+implement a coherent, substantial full-scroll set together. Carry each result
+through exact source, depth/action, return, revision/expiry and honest
+sparse/pending/failure states, with polished hierarchy and accessibility.
+This should change the value a person receives—not repeat the same-Place
+reading sequence, supplied-experience comparison, social comparison, or
+addressed-note path. Focused tests and native acceptance travel with the build;
+they are not a separate implementation phase. A permissioned Life/social
+downstream result remains a complementary package only when structured source
+and owner authority already exist. Do not add a generator, feed or storage
+family to manufacture supply. If no existing owner-backed input supports a
+meaningful increment, record the supply/authority gap rather than inventing a
+new abstraction.
 
 The Home/Places renderer ledger has now been refreshed against the current
 child heads: Home exposes 17 explicit semantic renderers plus its three chrome
@@ -2531,7 +2533,7 @@ package's exit criteria, not a separate serial phase. R05/R09 environment-only
 matrices may proceed opportunistically and remain required for their specific
 evidence or landing claims, but they do not block independent product work.
 
-**Primary next build: substantive Home/Places value from existing owners.**
+**Primary next build: coherent Home/Places feature coverage against the design handoffs.**
 
 The standalone Places runtime rail is no longer the next seam: backend
 selection forwards the admitted semantic-unit kinds, and the canonical
@@ -2540,12 +2542,14 @@ identified directed-note continuation is also implemented: Home preserves the
 selected handoff ID/revision into its canonical Place, and the relationship
 owner revalidates that exact contribution. Focused app/backend packets pass
 **91/7 tests**, and the exact-owner PostgreSQL case passes **1 test** on a fresh
-lane-local disposable database that was then dropped. Native tap/back,
-withdrawal and expiry acceptance remain closeout work, not a prerequisite for
-independent value development.
+lane-local disposable database that was then dropped. The stronger
+Keep-after-close/reopen contract passes **4/4** flow tests and **33** focused
+app tests, but its native runtime did not start because `ANTHROPIC_API_KEY` was
+unavailable. Withdrawal/expiry and that extended native sequence remain
+closeout; they do not gate the next product build.
 
-Judge the next package on received value, not another injected-unit or
-workspace-reachability test. Identify a meaningful gap in the current Home/
+Judge the next package on received value and design coverage, not another
+injected-unit or workspace-reachability test. Identify a meaningful gap in the current Home/
 Places design and choose an existing owner-backed input that adds new
 understanding, a useful possibility, practical help, or a human opening. The
 current app already has a same-Place reading sequence, supplied-experience
