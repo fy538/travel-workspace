@@ -7430,6 +7430,14 @@ media bytes/codec playback, action consequences, mutation return, or visual
 parity against the external design canon. No production flag or default-shell
 promotion changed.
 
+**Source-inspection boundary confirmed on September 22:** public
+`place_content_primitive` readings are exact, evidence-linked owner coordinates
+used during root composition; their native `Why this?` action is a bounded
+explanation, not a private custody workflow. Only private `source_attachment`
+units enter the viewer-scoped owner read that offers Ask / Remove controls. Keep
+these paths separate; the absence of private attachment controls on public Place
+readings is not an implementation gap.
+
 **Current product-code tuple:** workspace product-code checkpoint `f8f90e8`,
 backend `134417927`, and app `1cca51a04`, all on the isolated functional-
 implementation branch. Workspace `57872d0` is the latest roadmap-only

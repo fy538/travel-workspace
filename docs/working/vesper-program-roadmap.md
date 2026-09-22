@@ -2625,6 +2625,14 @@ review closeout cases, and supported Home/Places polish. None of those should
 be used to claim the returned-value contract is solved or to reopen a broad
 renderer/infrastructure program.
 
+**September 22 source-inspection audit:** public Place readings carry an exact
+`place_content_primitive` source coordinate and are revalidated as an owner read
+when the Home value is composed; the native `Why this?` action gives the bounded
+`why_this` explanation. Private `source_attachment` units use the same action
+for the viewer-scoped custody read and separate Ask / Remove controls. This is
+not a missing public-source route or a reason to add a renderer, generator, or
+generic source screen.
+
 At each substantial handback, update §2 and this register in place: what became
 useful, what supplied it, how it behaves after action/correction/return, what
 design coverage remains, and which evidence actually ran. Preserve underlying
