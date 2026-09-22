@@ -22,12 +22,13 @@ depends_on:
 
 **September 21 rebaseline, after implementation, review and repair:** Vesper is
 a connected, partially complete internal product candidate. Home/Places
-receiving, Life originals/refinding/organization, bounded social receiving and
-practical consequences have committed implementations and real
-disposable-Postgres, API and iOS paths for the named Save/readback, Life source
-return and recipient-consented social cases. The rebuilt Place page now also
-offers recipient Keep/Leave-aside actions on an addressed line, using the
-existing relationship owner and expected-revision action. The repaired native
+receiving, Life originals/refinding/organization (including explicit
+keyset continuation through eligible retained-source metadata), bounded
+social receiving and practical consequences have committed implementations
+and real disposable-Postgres, API and iOS paths for the named Save/readback,
+Life source return and recipient-consented social cases. The rebuilt Place
+page also offers recipient Keep/Leave-aside actions on an addressed line, using
+the existing relationship owner and expected-revision action. The repaired
 runner verifies the canonical Places feed and People-lines owner response,
 exercises both actions, returns to the same Places context and confirms the
 dismissed line is gone. This is local candidate evidence with local-only flags;
@@ -53,9 +54,11 @@ The next package should target one substantive gap visible in the current Home
 or Places designs using real supplied owner material, or one permissioned
 Life/social later-use result whose structured inputs and authority already
 exist. The September 21 Life photo-reader increment below closes one narrow
-presentation gap for multiple already-authorized originals; it does not prove
-binary media delivery or broaden the media corpus. Carry exact sources,
-destinations, return state and sparse/error behavior through the native surface.
+presentation gap for multiple already-authorized originals; the new refind
+continuation closes the 100-source scan ceiling without widening the corpus.
+Neither proves binary media delivery or semantic-body search. Carry exact
+sources, destinations, return state and sparse/error behavior through the
+native surface.
 Do not add a generator, feed, or storage family to manufacture fullness.
 Frontend polish remains part of each surface's exit criteria; do not spend
 another package on a route-only or repeated happy-path tour.
@@ -70,14 +73,16 @@ drift that had called several already-renderable kinds "dark"; it does not
 claim source admission, recurring content supply, broad runtime full-scroll
 quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
-**Functional code tuple:** workspace HEAD `54fc48c`, backend HEAD `651628265`,
-and app HEAD `ff74def0b` on the isolated
+**Functional code tuple:** workspace API-contract snapshot `7756522`, backend
+HEAD `031b821e`, and app HEAD `17e9b3f5` on the isolated
 `codex/functional-implementation-2026-09-20` lane. App `a8d64d4b7` adds recipient
 Keep/Leave-aside controls; `072f56488` invalidates the Places feed after owner
-reads/actions and strengthens the native runner; latest app commit `ff74def0b`
-adds the authorized multi-photo Life reader. Workspace commits `c59bb4b` and
-`54fc48c` record and clarify its acceptance boundary. Backend code is unchanged
-by these latest slices. The committed child-code tuple also includes the Places
+reads/actions and strengthens the native runner; `ff74def0b` adds the authorized
+multi-photo Life reader; `17e9b3f5` carries explicit Life-refind continuation.
+Workspace commits `c59bb4b` and `54fc48c` record and clarify prior acceptance
+boundaries; `7756522` syncs the Life-refind API contract. Backend `031b821e`
+adds keyset continuation to the metadata-only Life read. The committed
+child-code tuple also includes the Places
 typed notice bridge, native sender-withdrawal proof, shared Home/Places
 semantic-state treatment, and People-bound anchor index repair. Nothing is
 merged to main, published, flag-activated, or resumed in shared
@@ -3767,3 +3772,40 @@ the lane has no configured S3-compatible media service/credentials. This closes
 the bounded reader implementation only; native device acceptance remains
 unverified, as do wider Life media/corpus coverage, live media delivery,
 People/Threads breadth, later permitted reuse, and release readiness.
+
+## September 21 functional implementation receipt — Life refind continuation
+
+Life Find no longer silently stops at the newest 100 retained source
+descriptors. The existing owner-scoped metadata read now accepts a stable
+`created_at`/source-ID keyset position and exposes a versioned opaque cursor;
+the native screen offers an explicit **Search older originals** action and
+appends results without turning Life into an automatically growing feed.
+Every page repeats the existing owner, current-retention, source-status and
+custody-receipt checks. The cursor contains ordering data only and cannot grant
+access. Search remains literal metadata-only (note, filename, source label and
+capture date); it does not search original bodies, unretained sources or the
+whole of Life. Exact Source destinations and return context are unchanged.
+
+Backend commit `031b821e` adds the bounded keyset read, cursor validation,
+API continuation and regression coverage. App commit `17e9b3f5` wires the
+cursor through the typed client, keeps account/query isolation and expiry
+filtering across pages, and adds the user-directed continuation state. The Life
+root contract records the pagination and authority boundary. Offline backend
+tests pass **8 tests** with **3 database-backed cases deselected**; Ruff check
+and format checks pass. App TypeScript, targeted ESLint, Prettier and the two
+focused Jest suites pass (**13 tests**). The OpenAPI snapshot, app projection
+and generated types are synchronized; projection check passes using the
+roadmap's established temporary copy of the API policy with only expired review
+dates advanced for projection. Canonical policy dates are unchanged. The
+required API coverage audit still fails on **55 unrelated expired-policy
+reviews**; the newly found existing intake-media consumer is now registered,
+so no missing-consumer finding remains.
+
+The Postgres continuation test is present but was not executed because this
+lane has no `TEST_DATABASE_URL` with `TEST_DATABASE_DISPOSABLE=1`; the offline
+suite deselected it. No full `make verify`, simulator/device acceptance, or
+native screenshot was run. This closes the bounded implementation gap in Life
+refinding, not a broad Life archive, semantic search, media-delivery, provider
+generation, design-parity or release-readiness claim. Next work should return to
+the roadmap's value-depth queue rather than expanding this lookup into a new
+index or corpus.
