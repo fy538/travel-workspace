@@ -33,7 +33,7 @@ Use this paragraph as the current baseline for execution decisions. The
 historical receipts below intentionally retain the tuples and evidence scopes
 that produced them, but they do not supersede this checkpoint. The clean
 isolated tuple is workspace `65a6c7f`, backend `756f9cc8a`, and app
-`ae5c7c1aa`, all on `codex/functional-implementation-2026-09-20`. The current
+`2eefb9c1d`, all on `codex/functional-implementation-2026-09-20`. The current
 backend root-projection packet passes **481 tests**; the current app packet
 contains **209 tests across 12 focused suites**, with TypeScript and targeted
 lint passing (the existing renderer max-lines warning remains). This wave
@@ -7802,10 +7802,21 @@ packet passes **481 tests**. This is a bounded composition-contract evidence
 improvement, not proof of recurring supply, native visual parity or device
 acceptance.
 
+## September 22 verification repair — editorial containment
+
+App commit `2eefb9c1d` corrects a stale Home renderer assertion. The adopted
+containment rule keeps editorial readings (`horizon_editorial_passage`)
+uncarded while prepared possibilities and prepared alternatives remain
+contained objects; the prior test still expected every composition to be a
+card. The focused Home/Places app packet passes **57 tests**, and TypeScript
+passes. This changes no runtime behavior or product contract; it restores
+verification alignment with the current visual rule. Native visual parity and
+the broader Home composition milestone remain open.
+
 ## September 22 final execution rebaseline
 
 The current implementation tuple is workspace `65a6c7f`, backend `756f9cc8a`,
-and app `ae5c7c1aa`, all on the isolated functional-implementation branch.
+and app `2eefb9c1d`, all on the isolated functional-implementation branch.
 This wave has closed the recent receiving, typed destination, source-result,
 region-language, returned-order, editorial-treatment, Life-lens and attention-
 breadth gaps. It has not yet delivered the larger user-visible product
