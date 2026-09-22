@@ -5182,3 +5182,13 @@ material. Other postures retain canonical order. This changes no backend
 selection, attention budget, owner contract, destination, action, or return
 token. The Home smoke suite passes **19 tests**, with TypeScript and targeted
 lint passing. The active app tuple is now `a8cb8fc94`.
+
+## September 22 Home editorial treatment correction
+
+App commit `5bebc401c` aligns `horizon_editorial_passage` with the current
+design and renderer contract: reviewed readings use the bare, rule-led
+treatment, while prepared possibilities and alternatives retain containment.
+No semantic kind, source, ranking, destination, action, lifecycle or return
+behavior changed. The Home smoke suite remains **19 tests** passing;
+TypeScript and targeted lint pass, with only the existing renderer max-lines
+warning. The active app tuple is now `5bebc401c`.

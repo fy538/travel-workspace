@@ -7692,3 +7692,14 @@ presentation-only and does not infer attendance, join unrelated records, or
 change backend selection, attention budgets, destinations, actions, or return
 tokens. The Home smoke suite now passes **19 tests**, with TypeScript,
 targeted ESLint and diff checks passing. The active app tuple is `a8cb8fc94`.
+
+## September 22 Home editorial treatment correction
+
+App commit `5bebc401c` corrects a presentation mismatch in the Home native
+renderer. `horizon_editorial_passage` readings now use the existing bare,
+rule-led treatment described by the renderer contract and current design
+canon; prepared possibilities and prepared alternatives remain contained
+objects. No semantic kind, source, ranking, destination, action, lifecycle or
+return behavior changed. The Home smoke suite remains **19 tests** passing;
+TypeScript and targeted lint pass (with the pre-existing renderer max-lines
+warning only). The active app tuple is now `5bebc401c`.
