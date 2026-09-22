@@ -7430,6 +7430,23 @@ media bytes/codec playback, action consequences, mutation return, or visual
 parity against the external design canon. No production flag or default-shell
 promotion changed.
 
+#### 9.10.4 September 22 Home receives owned non-Trip action receipts
+
+Home's existing action-receipt source previously read only receipts attached
+to the viewer's first three active Trips. Backend commit `3f677bc97` adds a
+bounded viewer-owned read for receipts where `user_id` matches exactly and
+`trip_id` is null, then merges those rows with the existing Trip-membership
+read by receipt identity. This lets supported consequences from non-Trip
+actions reach Home without exposing another person's private receipt or
+turning Home into a social receipt feed.
+
+The focused action-receipt/Home packet passes **91 tests** and the canonical
+receipt/compiler packet passes **69 tests**; Ruff, formatting, diff checks and
+backend pre-commit hooks pass. This is an existing-owner composition
+increment: no schema, semantic kind, generator, route, audience rule or
+frontend contract changed. It does not establish a general consequence feed,
+native visual parity or release readiness.
+
 **Source-inspection boundary confirmed on September 22:** public
 `place_content_primitive` readings are exact, evidence-linked owner coordinates
 used during root composition; their native `Why this?` action is a bounded
@@ -7439,7 +7456,7 @@ these paths separate; the absence of private attachment controls on public Place
 readings is not an implementation gap.
 
 **Current product-code tuple:** workspace product-code checkpoint `f8f90e8`,
-backend `134417927`, and app `1cca51a04`, all on the isolated functional-
+backend `3f677bc97`, and app `1cca51a04`, all on the isolated functional-
 implementation branch. Workspace `57872d0` is the latest roadmap-only
 checkpoint. The program roadmap's Home package register remains the current
 cross-lane priority authority; this ledger retains implementation evidence.
