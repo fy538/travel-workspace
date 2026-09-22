@@ -13,6 +13,10 @@ source_of_truth_for:
 
 # Functional implementation — 12-hour code review
 
+For the later September 21–22 implementation window, see the separate
+[September 22, 24-hour review](functional-implementation-code-review-2026-09-22.md).
+Its CR24 findings do not replace or reopen this ledger's historical R01–R11.
+
 ## Review boundary and conclusion
 
 Review requested September 21, 2026, after the preceding progress summary.

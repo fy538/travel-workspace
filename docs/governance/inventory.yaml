@@ -13,6 +13,10 @@ dispositions:
 # Overrides win over rules. Rules deliberately cover stable folder conventions;
 # top-level and working documents are classified one by one below.
 rules:
+  - glob: "docs/working/functional-implementation-code-review-2026-09-22.md"
+    disposition: keep_reference
+    rationale: "Dated 24-hour cross-repository defect ledger with reproducible evidence and repair targets; specialized roadmaps retain execution authority."
+
   - glob: "docs/working/functional-implementation-code-review-2026-09-21.md"
     disposition: keep_reference
     rationale: "Dated cross-repository review findings and evidence boundaries for the September 20–21 functional implementation; existing roadmaps retain execution authority."
