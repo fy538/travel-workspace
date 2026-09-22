@@ -32,9 +32,9 @@ depends_on:
 Use this paragraph as the current baseline for execution decisions. The
 historical receipts below intentionally retain the tuples and evidence scopes
 that produced them, but they do not supersede this checkpoint. The clean
-isolated tuple is workspace `2319671`, backend `0962f95a6`, and app
-`2eefb9c1d`, all on `codex/functional-implementation-2026-09-20`. The current
-backend root-projection packet passes **481 tests**; the full offline backend
+isolated tuple is workspace `7eda5d2`, backend `cc357a7c7`, and app
+`aa7167722`, all on `codex/functional-implementation-2026-09-20`. The current
+backend root-projection packet passes **482 tests**; the full offline backend
 gate passes **21,661 tests** with 14 skipped and 53 expected passes, and the
 current app packet contains **566 tests across 55 focused suites**, with
 TypeScript passing (the existing renderer max-lines warning remains). This
@@ -7838,8 +7838,8 @@ evidence.
 
 ## September 22 final execution rebaseline
 
-The current implementation tuple is workspace `65a6c7f`, backend `0962f95a6`,
-and app `2eefb9c1d`, all on the isolated functional-implementation branch.
+The current implementation tuple is workspace `7eda5d2`, backend `cc357a7c7`,
+and app `aa7167722`, all on the isolated functional-implementation branch.
 This wave has closed the recent receiving, typed destination, source-result,
 region-language, returned-order, editorial-treatment, Life-lens and attention-
 breadth gaps. It has not yet delivered the larger user-visible product
@@ -7871,5 +7871,26 @@ run in parallel as bounded closeouts. The recent-return trigger remains a
 separate policy decision and must not serialize ordinary Home composition; no
 automatic cross-time adapter is admitted until its source, purpose, audience,
 lineage, correction/withdrawal, expiry, duplicate/no-op and sparse behavior
-are accepted. The existing **481-root / 21,661-full-backend** and **566-app**
+are accepted. The existing **482-root / 21,661-full-backend** and **566-app**
 test packets support this queue but are not its completion criterion.
+
+### September 22 Home continuity reconstruction receipt
+
+Backend `cc357a7c7` activates the existing `continuity_reconstruction` contract
+for one owner-backed case: two or more viewer-authorized Outcomes linked to the
+same explicit Occasion are composed into one bounded sequence in Home's
+Continuity region. The sequence retains every exact Outcome source and bounded
+meaning, and its typed Life destination opens the latest Outcome while the
+`life.read` requirements revalidate all included records. No new storage,
+generator, route family, social inference or Occasion identity is introduced;
+single/unlinked Outcomes retain their prior individual path.
+
+App `aa7167722` adds the semantic kind to the promoted Home renderer registry
+and routes it through the existing composition renderer. Focused Home/contract
+backend tests pass **108**, the full root-projection packet passes **482**, and
+the focused Home renderer/root-experience packet passes **30**; TypeScript,
+contract typecheck, Ruff/format and commit hooks pass. The earlier full offline
+backend and broad mobile packets remain evidence for their recorded tuples only.
+The new sequence still needs real persisted owner readback, native device
+acceptance, visual-canon comparison and exact return rehearsal before it counts
+as accepted design parity.
