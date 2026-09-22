@@ -7335,19 +7335,48 @@ accepted for its named content/runtime path, not as comprehensive Places design
 acceptance. Place-note withdrawal/expiry and ordinary empty/error states remain
 separate closeout edges.
 
+#### 9.10.1 September 22 follow-up — saved-Place changes reach Home
+
+Backend `fd80c437e` extends the existing Home contextual-Places adapter to
+receive the current saved-Place `CHANGED` family: permanent closure, confirmed
+reopening, and a weather window. Admission requires a recognized notice ID to
+resolve to the exact canonical venue. Home carries source-owned label and
+explanation in the existing private, read-only Place doorway, never copies the
+Places `CLEAR` action, and withholds malformed, unknown or mismatched notices.
+The producer remains one changed item at a time. These viewer-owned notices
+are not city-scoped World Facts and do not enter `horizon_world_fact_row`.
+
+Focused evidence: the Home portfolio packet passed **57 tests**; the combined
+root-projection and Places-return packet passed **493**; existing app Home
+renderer, screen-smoke and root-navigation suites passed **76**, with
+TypeScript passing. The app is unchanged at `a4de82802`. No OpenAPI, database,
+native real-data capture, standard gate, device/API rehearsal or flag changed.
+This closes one supplied receiving family, not broad Home composition,
+recurring supply, or value-depth. It does not change the next product build.
+
 **Next product build — Home design-aligned composition breadth, not first
-full-scroll:** trace the current Home surface contract and accepted design
-handoff against the actual producer inventory, projection kinds, renderer map
-and route/action owners. Separate three cases: useful material already supplied
-but not presented; material presented but compositionally weak or repetitive;
-and material the current owners genuinely cannot supply. Then implement a
-coherent, substantially richer Home composition from supported sources. Its
-native acceptance should inspect the whole scroll and the relevant differing
-Home postures, then follow exact source/depth/action destinations and return;
-cover sparse/pending/failure states, accessibility and polished visual
-hierarchy against the actual current design reference. Do not count another
-fixture-only scroll, isolated card, or transport seam as this outcome. Do not
-add a generator, store, feed or surface architecture to manufacture fullness.
+full-scroll:**
+
+1. **Trace the design to real owners.** Compare substantial sections in the
+   current Home handoff to producer, candidate/read, selected region, renderer,
+   destination/action and return. Classify gaps as already supplied but omitted,
+   supplied but compositionally weak/repetitive, or genuinely unsupplied. For
+   the last category, name the owner and the exact user outcome missing.
+2. **Compose from supported supply first.** Implement a coherent, substantially
+   richer Home that presents existing useful material with clear importance,
+   variety and hierarchy. Extend a producer only when the trace proves the
+   owner-backed outcome is valuable and evidence, privacy, freshness, lifecycle
+   and return contracts are already clear. Do not add a generator, store, feed,
+   semantic kind or isolated card to manufacture fullness.
+3. **Accept the whole product experience.** Against the actual current design
+   reference and candidate tuple, inspect two materially different Home
+   postures across the full scroll; follow an exact source/depth/action and
+   return; and check sparse, pending and failure states, accessibility, media
+   treatment and polished native hierarchy. Another fixture-only scroll,
+   route-only change or transport seam is not completion.
+
 Keep fixed Home-sample native retirement/presentation, selected-note
-withdrawal/expiry, binary-media runtime, comprehensive visual acceptance and
-standard landing gates distinct; none requires rebuilding Places first.
+withdrawal/expiry, ordinary empty states, binary-media runtime, comprehensive
+visual acceptance and standard landing gates distinct. None requires
+rebuilding Places first. Design polish and acceptance are exit criteria for the
+package, not a substitute for implementing the experience.

@@ -62,9 +62,11 @@ each intended design section to its existing owner, candidate, selected region,
 rendered value and exact return; only build a new producer or semantic kind if
 that trace demonstrates a real unsupported user outcome.
 
-**Functional-code tuple at this rebaseline:** workspace `1d9264d`, backend
-`fd80c437e`, and app `a4de82802`, all clean on the isolated
-`codex/functional-implementation-2026-09-20` lane. On the prior app candidate
+**Functional-code tuple inspected before this roadmap edit:** workspace
+`8d9730c`, backend `fd80c437e`, and app `a4de82802`, clean on the isolated
+`codex/functional-implementation-2026-09-20` lane. This roadmap edit is
+workspace-only; `8d9730c` is its inspected parent, and the immediately
+preceding product-source workspace revision is `1d9264d`. On the prior app candidate
 `9a4c029e3`, the exact Home → Place → Keep → Home route had native acceptance
 on iPhone 16 Plus / iOS 18.2: it opened only the selected note, kept it,
 observed the relationship owner's revision advance from 0 to 1 and an exact
@@ -189,9 +191,10 @@ drift that had called several already-renderable kinds "dark"; it does not
 claim source admission, recurring content supply, broad runtime full-scroll
 quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
-**Current inspected checkout tuple:** workspace `1d9264d`, backend
-`fd80c437e`, and app `a4de82802` (workspace hash is the parent before this
-roadmap edit; the earlier inspected snapshot is retained in §2).
+**Inspected product-code tuple before this documentation update:** workspace
+`1d9264d`, backend `fd80c437e`, and app `a4de82802`. The documentation-only
+workspace commit `8d9730c` records the preceding rebaseline; dated snapshots
+below remain historical receipts, not the current product-code tuple.
 The native Home-selected Place-note Keep path and Home Outcome → Life record →
 Home return were proven on iPhone 16 Plus / iOS 18.2 on their named earlier
 candidate revisions; neither was re-run on this tuple. The current focused
@@ -2086,37 +2089,44 @@ retirement require their existing approvals. Assignment does not dispatch a task
 
 ## 2. Inspected baseline — September 22
 
-Inspected at workspace `2fe00cc`, backend `8866f41a2`, and app `a4de82802`.
-Since the previous rebaseline, the candidate contains the integrated Places
-World Field and its combined native full-scroll acceptance, exact Home Outcome
-→ Life record return, exact Home-selected Place-note ownership and Keep path,
-the bounded Home renderer correction for coherent secondary compositions, and
-the new fail-closed regression preventing substitution of a different person's
-Place note. The renderer correction has a 12-test focused suite, TypeScript
-verification, and one registered native Home-root capture on iPhone 16 Plus /
-iOS 18.2; the non-substitution regression adds a 24-test object-page suite,
-4-test recipient owner-read invalidation suite and TypeScript pass. The capture
-is an available-state mock fixture, not a full owner-backed Home scroll or a
-Claude-design parity verdict. A separate three-family Home scroll already has
-owner-backed native evidence; neither result establishes the broader
-design-aligned Home composition. Since that capture, app `a4de82802` corrected
-the Home sample caption token and passed 12 focused renderer tests, TypeScript
-and targeted ESLint. The fixed cold-start example still lacks current-tuple
-native presentation and live-retirement evidence. The current visual doctor
-could not run without Metro at `:8081`; no screenshot was produced. Workspace
-`2fe00cc` also reconciles the Source recovery review claim with the registered
-worker schedule: the focused worker/registration/recovery packet passed 38
-tests, while process restart/provider retry remain explicitly open.
-The candidate's three repositories are committed and clean in its isolated
-lane.
+At inspection before this roadmap edit, the isolated candidate was clean at
+workspace `8d9730c`, backend `fd80c437e`, and app `a4de82802`, all on
+`codex/functional-implementation-2026-09-20`. Workspace `8d9730c` records the
+latest implementation receipt and is documentation-only relative to
+product-source parent `1d9264d`; backend
+`fd80c437e` admits the existing saved-Place closure, reopening and weather
+window notices into Home as private, exact-venue Place continuations; app
+`a4de82802` is unchanged. Focused backend evidence is 57 Home portfolio tests
+and 493 root-projection/Places-return tests; existing Home renderer, screen
+smoke and navigation suites pass 76 tests, with TypeScript passing. No fresh
+native real-data capture, API/device rehearsal, standard gate, merge, rollout
+activation or publication was part of that last slice.
+
+The candidate also contains the integrated Places World Field and its combined
+native full-scroll acceptance, exact Home Outcome → Life record return,
+Home-selected Place-note ownership and Keep path, bounded Home renderer
+correction for coherent secondary compositions, and a fail-closed regression
+preventing substitution of another person's Place note. Earlier receipts remain
+scoped: the registered Home-root capture is an available-state mock fixture,
+not a full owner-backed Home scroll or a Claude-design parity verdict. A
+separate three-family Home scroll has owner-backed native evidence, but neither
+result establishes the broader design-aligned Home composition. The fixed
+cold-start example still lacks current-tuple native presentation and
+live-retirement evidence. The current visual doctor could not run without Metro
+at `:8081`; no current-tuple screenshot was produced. Focused Source recovery
+tests have passed, while process restart and live provider retry remain
+explicitly open.
 Canonical main was not modified; its workspace checkout contains unrelated
 user changes and remains untouched.
 
-| Repository | Candidate HEAD at this rebaseline | Canonical main HEAD |
+| Repository | Candidate HEAD inspected before this documentation update | Canonical main last observed at the earlier September 22 checkpoint |
 | --- | --- | --- |
-| Workspace | `2fe00cc` | `70c4b4b` |
-| Backend | `8866f41a2` | `a7c02cbe1` |
+| Workspace | `8d9730c` | `70c4b4b` |
+| Backend | `fd80c437e` | `a7c02cbe1` |
 | App | `a4de82802` | `e2e792913` |
+
+The canonical-main column is a dated comparison only; it was not re-inspected
+for this update. Canonical main and other worktrees were not modified.
 
 ### September 22 follow-up — preserve Home saved-place closure context
 
@@ -2323,9 +2333,9 @@ Integration/landing, publish code, or activate production flags.
 
 | Package / role | Status and complete outcome | Dependency / handback |
 | --- | --- | --- |
-| **Primary build — Home design-aligned composition breadth** | The September 21 owner-backed Home scroll composes three families; Places has an integrated, locally owner-backed World Field full scroll; exact Home → Life Outcome return and Home-selected Place-note Keep paths have named receipts. The September 22 secondary-composition correction preserves coherent secondary objects while leaving plain readings/findings bare; 12 renderer tests, TypeScript and one registered mock native capture passed. Current code also has ten bounded Home owner readers, a prepared private Source-contribution read, posture/region selection and 18 promoted semantic renderers. Backend `fd80c437e` completes Home receiving for the current saved-Place change family: closure, reopening and weather-window notices become private exact-venue Place rows with their source copy, no dismissal action, and fail-closed notice validation. Backend Home tests: **57 focused / 493 root-projection and Places-return**; existing app renderer/screen/navigation tests: **76**, with TypeScript passing. This proves an available connected capability, not broad design coverage, recurring supply, native real-data acceptance or sufficient Home value-depth. These private notices are not the city-scoped source-backed fact required by `horizon_world_fact_row`. | **Next build:** use the current Home design handoff to trace substantial sections through source owner → candidate → selected region → renderer → action/depth → return. The saved-Place change path is implemented; do not copy the Places `CLEAR` action, infer city scope, or map it to `horizon_world_fact_row`. Resolve whether each other design gap is already-supplied material not composed/presented, or genuinely unsupplied. Build a coherent full-scroll Home from the former; add or extend a producer only for the latter and only when the owner, evidence, privacy, freshness, lifecycle and return contract are clear. Do not add a generator/store, new semantic kind or isolated card/route to simulate fullness. Validate two materially different Home postures against the actual reference, including dynamic importance, meaningful variety, exact destinations/return, sparse/pending/error and accessibility/polish. **Closeout, not a competing milestone:** fixed Home-sample native presentation/retirement, selected-note withdrawal/expiry, ordinary empty states, binary-media runtime, comprehensive visual parity, and the last-recorded standard-gate findings remain open. The registered Places mock `places-search-loading` assertion remains an explicit QA gap; its forced-state failure produced no screenshot. |
+| **Primary build — Home design-aligned composition breadth** | The September 21 owner-backed Home scroll composes three families; Places has an integrated, locally owner-backed World Field full scroll; exact Home → Life Outcome return and Home-selected Place-note Keep paths have named receipts. The September 22 secondary-composition correction preserves coherent secondary objects while leaving plain readings/findings bare; 12 renderer tests, TypeScript and one registered mock native capture passed. Current code also has ten bounded Home owner readers, a prepared private Source-contribution read, posture/region selection and 18 promoted semantic renderers. Backend `fd80c437e` completes Home receiving for the current saved-Place change family: closure, reopening and weather-window notices become private exact-venue Place rows with source-owned copy, no dismissal action, and fail-closed notice validation. Backend Home tests: **57 focused / 493 root-projection and Places-return**; existing app renderer/screen/navigation tests: **76**, with TypeScript passing. This proves one connected capability, not broad design coverage, recurring supply, native real-data acceptance or sufficient Home value-depth. These private notices are not the city-scoped source-backed fact required by `horizon_world_fact_row`. | **Build sequence:** **(1) Trace** the current Home design's substantial sections against each real producer, candidate/read, selected region, renderer, destination/action and return. Classify each gap as already supplied but omitted, supplied but weak/repetitive in composition, or genuinely unsupplied; record the exact owner and evidence for the last category. **(2) Compose** a coherent longer Home from supported material first, making importance, variety and hierarchy legible without turning it into an infinite feed or adding user homework. Extend a producer only where the trace proves a valuable missing outcome and its owner, evidence, privacy, freshness, lifecycle and return are already defined. No new generator/store, semantic kind or isolated card/route to simulate fullness. **(3) Accept** two materially different Home postures against the actual current design reference and current code tuple: follow at least one exact source/depth/action destination and return; inspect whole-scroll hierarchy, sparse/pending/failure states, accessibility and polished native treatment. Do not count a fixture-only scroll, isolated card or transport seam as the outcome. **Closeout, not a competing milestone:** fixed Home-sample native presentation/retirement, selected-note withdrawal/expiry, ordinary empty states, binary-media runtime, comprehensive visual parity and standard landing gates remain separate. The registered Places mock `places-search-loading` assertion is a separate QA gap; its forced-state failure produced no screenshot. |
 | **Complementary build — Life/social downstream value** | Persisted HTTP reads prove one private Plan and one explicitly permissioned shared Outcome through Life root and depth. The People-record seam also preserves grant/member refs, exact destinations and explicit People-bound private anchors. Life's canonical artifact reader shows the authorized photo set and opens a selected original without cropping. Metadata refinding now paginates beyond the former 100-result ceiling and passes its continuation case against a fresh lane-local disposable PostgreSQL database. Life's Places lens opens an explicitly linked Place from a retained source/original and returns to the anchored record. | Do not expand search into body semantics. Current recipient deliveries are owned by Relationships and revalidated there, but Life's root corpus does not read them and its audience contract has only private/group/public; do not encode a revocable one-to-one original as a durable Life record or mislabel it as group content. The Place door follows an existing owner-declared association; it does not prove attendance or later permitted reuse. Further Life/social work must demonstrate a concrete permissioned benefit from already-authorized structured records. Defer policy-dependent media/group/use expansion. |
-| **Non-blocking reliability evidence — R05/R09 edges** | R01/R03 disposable-Postgres authority/revocation regressions pass. R04 withdrawal controls and R09 schedule-zone propagation are code-fixed with focused regressions; R04 sender-control API and native simulator rehearsals pass. R05 lease/recovery code, real Arq/Redis wrapper and expired due-work recovery have focused evidence. Still open: a real process-interruption/restart rehearsal and live transient-provider failure/retry. R09 persisted/native timezone-edge evidence also remains open. | Run only those missing matrices when the explicitly disposable database/queue/device is available. They remain required for their named evidence/landing claims, but do not gate independent product implementation. |
+| **Non-blocking review closeout — R02/R05/R06/R09 evidence** | All 11 confirmed code findings in the September 21 review ledger have code-level fixes; this is not equivalent to closing every acceptance boundary. R01/R03 disposable-Postgres authority/revocation regressions pass. R04 sender withdrawal has API and native evidence at its named one-recipient text scope. R05 has lease/recovery code, a real Arq/Redis wrapper and expired due-work recovery evidence. R09's timezone propagation correction has focused regressions. | Still open are the governed outsider/cohort/release matrix for R02; a real process-kill/restart and live transient-provider failure/retry for R05; deployed expanded-place scale/cost evidence for R06; and persisted/native cross-device, date-boundary and DST evidence for R09. Run only in the correct disposable/runtime environments. These remain necessary for their named readiness/landing claims but do not gate independent Home implementation. See the [review ledger](functional-implementation-code-review-2026-09-21.md) for exact boundaries. |
 | **Across both builds — native polish** | Required within each completed surface: design hierarchy, card/media treatment, interaction, accessibility and sparse/pending/failure states. Not accepted yet. | Use current inspected Claude exports and handoffs; record actual canvas/version. Unresolved visual choices do not block unrelated owner/supply work. |
 | **Orchestration / this thread** | Own scope, current queue, cross-system decisions and package review; dispatch only when requested. | Review first working composition, consequential blocker and completed package. Judge delivered behavior and remaining user effort, not commit/test counts. |
 | **Dedicated Integration / landing** | PAUSED; combined shared runtime, main landing and publishing are not enabled by this update. | Lane-local implementation/verification remains distinct. On explicit resume, receive selected clean cuts and run required gates without pretending candidate receipts certify production. |
