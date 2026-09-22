@@ -2046,7 +2046,7 @@ tasks. The present update plans work; it does not start agents or services.
 | **First — review evidence closeout** | R01/R03 disposable-Postgres authority/revocation regressions now pass. R04 withdrawal controls and R09 schedule-zone propagation are code-fixed with focused regressions; the R04 sender-control API and native simulator rehearsals now pass. Named disposable-Postgres/native paths, one real Arq/Redis wrapper path, and one expired due-work recovery path pass. R05 transient/restart evidence and R09 timezone-edge evidence remain open. Not complete. | Run only the specific missing matrices, with an explicitly disposable database/queue/device where required; preserve truthful gate status and do not repeat the completed happy-path tour. Independent product work can proceed outside affected files. |
 | **Primary build — Home/Places useful breadth** | In progress. The current candidate has real Home/Places owner reads, social receiving, practical fit/open-now, exact Place destinations and return; the same-Place supplied sequence now survives service composition and the real Home HTTP readback with an honest source-retraction omission. The remaining gap is enough substantive, varied default-portfolio/full-scroll value, native/device acceptance, complete sparse/pending/failure treatment and visual parity. | Choose one bounded content-depth or state seam per package. Reuse current Source/content/relationship/Place owners. Include bounded preparation recovery when needed for reliable supply; no new generator/store. One owner for shared root composition, contracts and receiving adapters. |
 | **Complementary build — Life/social downstream value** | The bounded People-record seam is landed: shared Outcomes tied to a multi-person Occasion and non-private multi-participant Commitments now reach Life with exact grant/member refs and return. Broader later permitted context, media, contribution and Threads value is not complete. | Existing source, Life and relationship owners; no inference of permission from custody. Choose the next downstream result only where structured authority already exists; defer genuinely policy-dependent media/group/use expansion. |
-| **Across both builds — native polish** | Required within each completed surface: design hierarchy, card/media treatment, interaction, accessibility and sparse/pending/failure states. Not accepted yet. | Use current inspected Claude exports and handoffs; record actual canvas/version. Unresolved visual choices do not block unrelated owner/supply work. |
+| **Across both builds — native polish** | Required within each completed surface: design hierarchy, card/media treatment, interaction, accessibility and sparse/pending/failure states. Not accepted yet. The native-presentation lane has a bounded September 22 consolidation plan below; it preserves the recent polish rather than redesigning the roots. | Use current inspected Claude exports and handoffs; record actual canvas/version. Execute [the consolidation packages](#september-22-native-presentation-consolidation-plan) within this role, not as a competing program queue. Unresolved visual choices do not block unrelated owner/supply work. |
 | **Orchestration / this thread** | Own scope, current queue, cross-system decisions and package review; dispatch only when requested. | Review first working composition, consequential blocker and completed package. Judge delivered behavior and remaining user effort, not commit/test counts. |
 | **Dedicated Integration / landing** | PAUSED; combined shared runtime, main landing and publishing are not enabled by this update. | Lane-local implementation/verification remains distinct. On explicit resume, receive selected clean cuts and run required gates without pretending candidate receipts certify production. |
 | **Existing specialist lanes** | Reference suppliers, not automatically restarted or assumed merged. | Use immutable relevant cuts; independently assigned work needs file ownership and direct dependency exchange, not six standing lanes matching six design projects. |
@@ -2062,6 +2062,217 @@ At each substantial handback, update §2 and this register in place: what became
 useful, what supplied it, how it behaves after action/correction/return, what
 design coverage remains, and which evidence actually ran. Preserve underlying
 receipts, but do not append another current execution queue.
+
+### September 22 native-presentation consolidation plan
+
+**Decision:** consolidate demonstrated duplication before adding more presentation
+variants. The recent polish remains useful: shared anatomy, readable rows,
+large-type layout and clearer action hierarchy should survive future content
+changes. That does not justify merging Home and Places into one generic card or
+claim that visual alignment is complete. Share stable presentation rules; retain
+explicit surface composition and domain ownership.
+
+**Status: planned, not implemented.** Read-only caller and contract inspection
+supports the scope below. This is the implementation detail for the native-polish
+row above, not a new system roadmap or permission to restart Integration.
+
+#### Baseline and scope
+
+- Inspected coordinated lane: `travel-workspace--functional-implementation-2026-09-20--native-presentation-wave1-2026-09-21`,
+  branch `codex/native-presentation-wave1-2026-09-21`.
+- Workspace baseline `58e45dcccefa2d9171ae5030f44c6403c2f133da`;
+  app baseline `456e84d86628a146333eda756b958c63114121a5`. Both were clean
+  before this plan. These are lane-local observations, not main/adjacent-lane status.
+- Product source ownership is the app child. Workspace changes are this plan
+  and, at completion, its bounded evidence update. No backend, wire-model,
+  generated schema, Life or Chat changes are proposed.
+- Preserve the working Home compatibility renderer. `HomeRootScreen` and
+  `SemanticResultRenderer` still serve flag/invalid/expired/error fallback paths;
+  they are not deletion candidates merely because they predate V2.
+- Existing `RootCompositionRenderer`/anatomy, `RootUnitStatusMeta`, editorial
+  image-card primitives and shared scrolling/header components already provide
+  reuse. Extend those owners where appropriate; do not introduce a second kit.
+
+#### C0 — Refresh ownership and characterize the boundary
+
+Do this at implementation intake, not as a separate prolonged research round.
+Record current HEADs, dirty files and the adjacent lane's changed-file set.
+Reserve one writer for the renderers/contracts listed below; functional owners
+can continue elsewhere. If those files have advanced, reconcile the relevant
+diffs before applying this plan. Do not switch or merge someone else's checkout.
+
+Record existing action eligibility, callback payload, test IDs and navigation
+selection with focused tests before refactoring. In particular, Home chooses a
+prioritized openable resource; Places has its own represented-resource order,
+destination deduplication and label policy. These are intentionally outside the
+shared presentation extraction. Consult the app Task Intake/owner contracts and
+the contribution-and-consequence authority before touching action adapters.
+
+Exit: the app revision and owned files are explicit; no unreviewed owner or
+route-policy change is hidden inside a visual consolidation.
+
+#### C1 — Make experience presentation explicit and fix gallery parity
+
+**Why first:** there is already a concrete inconsistent state. Production derives
+`experienceCollection` from section rhythm, then derives `experienceRail` from
+collection membership and text scale. The gallery can set only `experienceRail`,
+leaving `experienceCollection` false. Thus the supposed same specimen can render
+different content rules than production.
+
+Implementation:
+
+1. Replace the overlapping card-context booleans with an explicit experience
+   presentation: `standard-row`, `collection-rail`, or `collection-stack`.
+   Derive it once from section rhythm and the existing accessibility decision.
+2. Carry that value through `utils/placesFeedRenderPlan.ts`,
+   `components/places/placesFeedContracts.ts`, `PlacesFeedSectionContent.tsx`
+   and `renderers/experienceCard.tsx`. Derive horizontal layout/exposure behavior
+   from the same decision; do not change rail viewability or engagement semantics.
+3. Make `app/dev/places-workspace-kit.tsx` render all three explicit variants.
+   Remove unused experience-mode propagation into editorial cards only after
+   verifying their consumers. Do not encode experience-specific flags in every
+   unrelated card family.
+4. Preserve standard-row content, rail geometry and the current large-type
+   collection stack: readable identity, timing/price, Save, category-only supporting
+   copy and no redundant long description. Preserve the existing text-scale
+   threshold and touch targets; no font-scale caps or smaller text to make it fit.
+
+Acceptance: tests cover the three valid presentations, noncollection behavior,
+the text-scale boundary and gallery/production content parity. A smoke test that
+only mocks the renderer's old boolean is insufficient. Use the existing render
+plan, Places section-feed and workspace-kit test suites plus a focused actual
+experience-card render test. Impossible boolean combinations disappear.
+
+Commit boundary: explicit variants, gallery repair and their regressions together.
+
+#### C2 — Share follow-up anatomy without merging action ownership
+
+`HomeRootV2UnitRenderer.tsx` and `PlacesSemanticUnitCard.tsx` both define
+`UnitActions` and `PracticalAssessmentNote`. The duplicated note and capability-
+first dispatch can share small typed internals under `components/root-projection/`.
+Keep root-specific spacing, IDs and navigation policy in thin surface adapters.
+Keep assessment reason/state and accessibility output unchanged.
+
+`PlacesFeedSectionContent.tsx` separately renders consequential binding actions
+as ghost buttons. Reuse the action-control rendering machinery there, but retain
+its explicit `propose`/`execute` filter and `onRootAction(action, binding)` owner
+handoff. Do not substitute the semantic-unit callback or convert passive
+engagement into an owner-confirmed `acted` receipt. Never infer grants in the UI.
+
+**Presentation decision for this refactor:** preserve the feed's current subdued
+action treatment using a named presentation variant over shared control internals.
+Do not silently promote every feed action to a solid button. The semantic-unit
+variant retains its present consequence-based emphasis. Both may share rendering
+and ID handling without pretending their surface emphasis is identical.
+
+The current `RootActionControls` primary-action budget is per control group,
+not per page despite its comment. Correct that description; a page-wide action
+budget would require a separate composition decision. Preserve classification
+precedence, including navigation, rather than introduce a policy change here.
+
+Acceptance matrix:
+
+- Navigation, preparation, confirmation, proposal and execution retain their
+  existing dispatch and visual classification; no callback fires during render.
+- Full action/unit or action/binding payload reaches its original owner once.
+- Existing action order, test IDs and repeated-capability handling remain stable;
+  any necessary duplicate-ID repair is separately identified and tested.
+- Destination doors are not duplicated where current policy removes them;
+  `source.inspect` is not reclassified as ordinary navigation.
+- Empty action groups and absent assessments render no empty wrapper chrome.
+- Practical-assessment text/color/state behavior is identical on both roots.
+
+Run `RootActionControls`, Home V2 smoke, Places semantic-unit/field, section-feed
+and semantic-navigation suites, with characterization tests for the extracted
+pieces. Keep business callbacks local even if that leaves a few short wrappers.
+
+Commit boundary: shared internals, consumer migrations and behavior tests together.
+Do not split the 1,000-line renderers merely to reduce their line counts; extract
+additional bodies only when an actual shared contract or independent test seam
+has been demonstrated.
+
+#### C3 — Retire the unused Places composition, preserve live helpers
+
+The inspected production/test caller search found `CoreSurface` only at its
+definition and in tests; `ExperienceStrip` is called by that composition and
+tests, and `ExperienceRow` has no observed production caller. They maintain a
+second experience-card/geometry family beside the active feed.
+
+1. Repeat whole-app symbol/import/re-export and route/dev-gallery checks at the
+   implementation revision. Check `GuidePreview` and `ReadingDoor` separately;
+   the current search also found no independent production consumers, but do not
+   infer their deletion solely from the parent composition being unused.
+2. Remove proven unreachable component exports, their private styles and
+   `placesExperienceRowGeometry` only when its last live consumer is gone.
+3. Preserve live `PlacesCore` exports and the active `experienceRailTitle`,
+   `experienceRailFact` and `experienceTimeMeta` helpers. If necessary move the
+   latter to a narrowly named utility module and migrate actual callers/tests.
+   Do not delete `PlacesCore.tsx` or `PlacesDepth.tsx` wholesale.
+4. Update `core/CORRESPONDENCE.md` to mark retired implementations honestly. It
+   is historical inventory, not justification for retaining a dead tree. Preserve
+   rationale and keep `placesShellContract.test.ts` checking the remaining real
+   exports. Remove obsolete composition-only tests, not reusable behavior coverage.
+5. Leave transport types, API operations and feature fallbacks alone. Finding an
+   unused UI is not evidence that its backend capability should be retired.
+
+Acceptance: typecheck and focused Core/helper/convention tests pass; repository
+search has no unresolved executable references to removed symbols. Active feed,
+search, timing labels, Save and exact destinations remain covered.
+
+Commit boundary: dead views, unused geometry, caller/helper moves, tests and
+historical inventory in one coherent app commit. C3 is independent of C2 but
+follows it here to keep the review small and avoid overlapping owners.
+
+#### C4 — One combined visual and interaction closeout
+
+After C1–C3, inspect complete Home and Places scrolls, not just component tiles.
+Capture the same content/device at default text and Accessibility Large, plus
+representative sparse/pending/error cases affected by the refactor. Compare
+against the pre-change rendering and the current founder-designated design
+export, recording its actual path/version. Do not call fixture parity backend
+acceptance or call unavailable design comparison a visual pass.
+
+Check heading rhythm, card boundaries, primary-action competition, readable
+identity, wrapping, bottom-tab clearance, horizontal collection scrolling and
+Save/open/return interaction. Reuse the registered native journeys rather than
+create another permanent proof screen. Use gallery captures for variant detail
+and production-route captures for actual composition; neither replaces the other.
+
+Run focused tests during each package, then app typecheck, changed-file lint,
+design-token and applicable design checks for the completed cut. The preceding
+polish round's typography-snapshot check was stale; explicitly inspect/reconcile
+the generated delta or report it still failing. Do not blindly regenerate a
+snapshot to claim visual approval. Record exact commands, revisions and evidence
+boundaries; full `make verify` remains required before a later landing/push, not
+claimed by these focused checks. Use the workspace measurement helper when
+recording verification runs. Backend tours need not be repeated for unchanged
+backend behavior.
+
+Before native checks, resolve the lane's actual runtime/device ownership with
+`scripts/dev.sh --print-runtime`; previous ad-hoc Expo ports and device choices
+are not a reservation. Restore accessibility settings and release the device
+after the review. Do not interfere with the functional lane's running session.
+
+#### Finish conditions and what follows
+
+This batch is done when the gallery and production share the same explicit
+experience modes, duplicated assessment/action internals have one owner, the
+proven unused Places view family is retired, and combined visual/interaction
+evidence shows no regression. Required checks that fail or remain unrun are
+reported as such, not waived by cleanup success.
+
+Stop there. Resume design-to-implementation review of the next meaningful
+full-scroll composition rather than continuously extracting more abstractions.
+Do not add a universal `RootCard`, new context/store, global typography rewrite,
+uniform accessibility threshold, or merged Home/Places routing policy. The
+deliverable is a smaller, safer presentation system underneath the current
+experience—not fewer distinct experiences and not a new product feature round.
+
+Execution uses three implementation commits plus a bounded evidence/plan update.
+Keep the functional lane running outside overlapping files. Escalate only an
+actual owner conflict, changed behavior/authority decision or meaningful visual
+regression; ordinary test repairs stay within the package. No new agents,
+services, integration ceremony or publication is initiated by this plan.
 
 ### September 9 dispatch record
 
