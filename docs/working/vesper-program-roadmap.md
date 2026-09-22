@@ -41,11 +41,13 @@ the entity page's incidental three-line list and never substitutes another
 friend's note. The change completes the product path in code without adding a
 social model or sharing surface.
 
-The latest backend slice also preserves source-owned permanent-closure copy
-in Home's already-admitted private Place doorway, only when the closure notice
-and canonical venue identities match. It does not carry the Places `CLEAR`
-action; reopened/weather `NOTICE` cards remain excluded. This corrects one
-existing receiving path, not Home's broader content composition or coverage.
+The latest backend slice now admits the existing saved-Place change family
+into Home: permanent closure, confirmed reopening, and a weather window.
+Their source-owned label and explanation appear only when the notice resolves
+to the exact canonical venue, as a private, read-only Place doorway. The Places
+`CLEAR` action is never carried over, and unknown or mismatched notices are
+withheld. This completes one existing receiving family, not Home's broader
+content composition or coverage.
 
 **Home implementation map:** `build_home_portfolio` already reads ten bounded
 sources (up to six concurrently, a 900 ms deadline per source, and up to 24
@@ -60,8 +62,8 @@ each intended design section to its existing owner, candidate, selected region,
 rendered value and exact return; only build a new producer or semantic kind if
 that trace demonstrates a real unsupported user outcome.
 
-**Functional-code tuple at this rebaseline:** workspace `82d4304`, backend
-`95b0361ab`, and app `a4de82802`, all clean on the isolated
+**Functional-code tuple at this rebaseline:** workspace `1d9264d`, backend
+`fd80c437e`, and app `a4de82802`, all clean on the isolated
 `codex/functional-implementation-2026-09-20` lane. On the prior app candidate
 `9a4c029e3`, the exact Home → Place → Keep → Home route had native acceptance
 on iPhone 16 Plus / iOS 18.2: it opened only the selected note, kept it,
@@ -119,10 +121,9 @@ are historical and do not form additional queues. Update these summaries when
 a substantial package finishes instead of appending a competing next step.
 
 **Next emphasis:** stop closing the same transport seams and build more of the
-product people are meant to use. The saved-place closure trace confirms that
-owner-backed material was already admitted to Home but needed its exact status
-copy preserved; reopened/weather notices remain a separate admission decision.
-Home already has a native, owner-backed
+product people are meant to use. Home now receives all three currently
+produced saved-Place change types through one exact, private Places continuation;
+they are not city-scoped World Facts. Home already has a native, owner-backed
 three-family full-scroll receipt (September 21); the Places World Field also
 has an integrated native full-scroll receipt (September 22). The primary
 package is therefore not “make the first Home full scroll.” It is to make Home
@@ -188,8 +189,8 @@ drift that had called several already-renderable kinds "dark"; it does not
 claim source admission, recurring content supply, broad runtime full-scroll
 quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
-**Current inspected checkout tuple:** workspace `82d4304`, backend
-`95b0361ab`, and app `a4de82802` (workspace hash is the parent before this
+**Current inspected checkout tuple:** workspace `1d9264d`, backend
+`fd80c437e`, and app `a4de82802` (workspace hash is the parent before this
 roadmap edit; the earlier inspected snapshot is retained in §2).
 The native Home-selected Place-note Keep path and Home Outcome → Life record →
 Home return were proven on iPhone 16 Plus / iOS 18.2 on their named earlier
@@ -2137,6 +2138,27 @@ flag changed. The workspace roadmap update is documentation-only. This is
 copy fidelity for one existing Home path, not broad design coverage or a
 decision to surface other notice kinds.
 
+### September 22 implementation receipt — Home receives saved-Place changes
+
+The follow-up used workspace parent `1d9264d`, backend `95b0361ab`, and
+unchanged app `a4de82802`; backend commit `fd80c437e` extends the existing
+contextual-Places adapter. Home now admits the current Places `CHANGED` feed's
+closure, reopening, or weather-window notice only when its recognized notice
+ID resolves to the exact venue ref. It carries the source's label and
+explanation in the existing private `HORIZON_APERTURE_ROW`, with a typed exact
+Places destination. It never copies the Places `CLEAR` action; malformed or
+unknown notices and mismatched Place identities fail closed. The producer
+still emits one changed item at a time. These viewer-owned notices are not
+city-scoped facts and are not `horizon_world_fact_row`.
+
+Evidence: the focused Home portfolio packet passed **57 tests**; root-projection
+plus Places-return tests passed **493**. Existing mobile Home renderer, Home
+screen smoke, and root-navigation suites passed **76 tests**; app TypeScript,
+Ruff, formatting, `git diff --check`, and backend commit hooks passed. No app
+code, OpenAPI, database, native-device/API rehearsal, or flag changed. The
+mobile tests prove the existing aperture body and typed destination paths, not
+a fresh native real-data capture. The V2 rollout remains unchanged.
+
 The stronger Keep-after-reopen flow contract from app `e2c0bafb1` remains a
 separate acceptance path: its 4-test flow contract and 33-test focused
 owner/action/object-page packet pass, but it has not been exercised by the
@@ -2301,7 +2323,7 @@ Integration/landing, publish code, or activate production flags.
 
 | Package / role | Status and complete outcome | Dependency / handback |
 | --- | --- | --- |
-| **Primary build — Home design-aligned composition breadth** | The September 21 owner-backed Home scroll composes three families; Places has an integrated, locally owner-backed World Field full scroll; exact Home → Life Outcome return and Home-selected Place-note Keep paths have named receipts. The September 22 secondary-composition correction preserves coherent compositions while leaving plain readings/findings bare; 12 renderer tests, TypeScript and one registered mock native capture passed. Current code also has ten bounded Home owner readers, a prepared private Source-contribution read, posture/region selection and 18 promoted semantic renderers. This proves connected paths and available composition machinery—not broad design coverage, recurring supply or sufficient Home value-depth. Backend `95b0361ab` now preserves a permanent-closure label and explanation only for an admitted canonical Place whose notice ID resolves to that same venue; it remains a private, non-mutating Places continuation. Reopened/weather `NOTICE` cards remain excluded. None of these private saved-place changes is the city-scoped, source-marked notice required by `horizon_world_fact_row`. | **Next build:** use the current Home design handoff to trace substantial sections through source owner → candidate → selected region → renderer → action/depth → return. The closure path is no longer an open admission question; its copy-fidelity repair is committed in backend `95b0361ab`. Do not copy the Places `CLEAR` action, infer city scope, or map this source to `horizon_world_fact_row`. Resolve whether each other design gap is already-supplied material not composed/presented, or genuinely unsupplied. Build a coherent full-scroll Home from the former; add or extend a producer only for the latter and only when the owner, evidence, privacy, freshness, lifecycle and return contract are clear. Do not add a generator/store, new semantic kind or isolated card/route to simulate fullness. Validate two materially different Home postures against the actual reference, including dynamic importance, meaningful variety, exact destinations/return, sparse/pending/error and accessibility/polish. **Closeout, not a competing milestone:** fixed Home-sample native presentation/retirement, selected-note withdrawal/expiry, ordinary empty states, binary-media runtime, comprehensive visual parity, and the last-recorded standard-gate findings remain open. The registered Places mock `places-search-loading` assertion remains an explicit QA gap; its forced-state failure produced no screenshot. |
+| **Primary build — Home design-aligned composition breadth** | The September 21 owner-backed Home scroll composes three families; Places has an integrated, locally owner-backed World Field full scroll; exact Home → Life Outcome return and Home-selected Place-note Keep paths have named receipts. The September 22 secondary-composition correction preserves coherent secondary objects while leaving plain readings/findings bare; 12 renderer tests, TypeScript and one registered mock native capture passed. Current code also has ten bounded Home owner readers, a prepared private Source-contribution read, posture/region selection and 18 promoted semantic renderers. Backend `fd80c437e` completes Home receiving for the current saved-Place change family: closure, reopening and weather-window notices become private exact-venue Place rows with their source copy, no dismissal action, and fail-closed notice validation. Backend Home tests: **57 focused / 493 root-projection and Places-return**; existing app renderer/screen/navigation tests: **76**, with TypeScript passing. This proves an available connected capability, not broad design coverage, recurring supply, native real-data acceptance or sufficient Home value-depth. These private notices are not the city-scoped source-backed fact required by `horizon_world_fact_row`. | **Next build:** use the current Home design handoff to trace substantial sections through source owner → candidate → selected region → renderer → action/depth → return. The saved-Place change path is implemented; do not copy the Places `CLEAR` action, infer city scope, or map it to `horizon_world_fact_row`. Resolve whether each other design gap is already-supplied material not composed/presented, or genuinely unsupplied. Build a coherent full-scroll Home from the former; add or extend a producer only for the latter and only when the owner, evidence, privacy, freshness, lifecycle and return contract are clear. Do not add a generator/store, new semantic kind or isolated card/route to simulate fullness. Validate two materially different Home postures against the actual reference, including dynamic importance, meaningful variety, exact destinations/return, sparse/pending/error and accessibility/polish. **Closeout, not a competing milestone:** fixed Home-sample native presentation/retirement, selected-note withdrawal/expiry, ordinary empty states, binary-media runtime, comprehensive visual parity, and the last-recorded standard-gate findings remain open. The registered Places mock `places-search-loading` assertion remains an explicit QA gap; its forced-state failure produced no screenshot. |
 | **Complementary build — Life/social downstream value** | Persisted HTTP reads prove one private Plan and one explicitly permissioned shared Outcome through Life root and depth. The People-record seam also preserves grant/member refs, exact destinations and explicit People-bound private anchors. Life's canonical artifact reader shows the authorized photo set and opens a selected original without cropping. Metadata refinding now paginates beyond the former 100-result ceiling and passes its continuation case against a fresh lane-local disposable PostgreSQL database. Life's Places lens opens an explicitly linked Place from a retained source/original and returns to the anchored record. | Do not expand search into body semantics. Current recipient deliveries are owned by Relationships and revalidated there, but Life's root corpus does not read them and its audience contract has only private/group/public; do not encode a revocable one-to-one original as a durable Life record or mislabel it as group content. The Place door follows an existing owner-declared association; it does not prove attendance or later permitted reuse. Further Life/social work must demonstrate a concrete permissioned benefit from already-authorized structured records. Defer policy-dependent media/group/use expansion. |
 | **Non-blocking reliability evidence — R05/R09 edges** | R01/R03 disposable-Postgres authority/revocation regressions pass. R04 withdrawal controls and R09 schedule-zone propagation are code-fixed with focused regressions; R04 sender-control API and native simulator rehearsals pass. R05 lease/recovery code, real Arq/Redis wrapper and expired due-work recovery have focused evidence. Still open: a real process-interruption/restart rehearsal and live transient-provider failure/retry. R09 persisted/native timezone-edge evidence also remains open. | Run only those missing matrices when the explicitly disposable database/queue/device is available. They remain required for their named evidence/landing claims, but do not gate independent product implementation. |
 | **Across both builds — native polish** | Required within each completed surface: design hierarchy, card/media treatment, interaction, accessibility and sparse/pending/failure states. Not accepted yet. | Use current inspected Claude exports and handoffs; record actual canvas/version. Unresolved visual choices do not block unrelated owner/supply work. |
