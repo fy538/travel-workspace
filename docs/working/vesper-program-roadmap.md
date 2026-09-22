@@ -4616,3 +4616,19 @@ store would be architectural regression. No code changed during this
 investigation; the existing focused source-contribution, Home-composition and
 trip-lifecycle tests remain the applicable evidence, and no live provider,
 worker activation or native returned-value receipt was run.
+
+**Continuation reachability correction:** the source-contribution contract also
+needs a small implementation boundary before it can claim complete follow-
+through. `CompositionBriefV1` retains an optional continuation, but the current
+candidate adapter only emits the existing `source.inspect` action when an
+attachment is present; it does not compile an arbitrary `INSPECT` or `ASK`
+continuation into a typed `RootAction`/`RootDestination`. At the same time,
+`ValueContract.actionable` is currently derived from the mere presence of any
+continuation, including `SAVE` or `ACT`. That can make a result look actionable
+when the native surface has no reachable action. The next bounded repair is to
+map only explicitly supported, non-consequential capabilities (with
+deduplication against `source.inspect`), and to make `actionable` reflect an
+emitted action or destination. `SAVE` and `ACT` must remain uncompiled until
+their owner, confirmation and consequence contracts are explicit; do not add a
+generic capability router to make the flag green. Add focused regressions for
+supported inspect/ask, unsupported save/act, and the no-action sparse case.
