@@ -3702,3 +3702,30 @@ run was performed. It does not prove binary-media reliability, the full
 multi-photo composition, Reply/Ask/share behavior, production activation,
 visual parity or release readiness. Keep broader media support as open work
 and do not treat this affordance as an album or sharing-system implementation.
+
+## September 21 functional implementation receipt — retryable Home image preview
+
+Home now keeps a failed recipient-photo preview inside its original 4:3 media
+frame and offers one accessible **Tap to retry** action there. Retry uses the
+existing original-material retry path; it does not add another retry control
+below the image. While the image is failed, the preview no longer offers the
+separate **Open original** action. The existing delivery lifecycle gates still
+remove revoked, expired, mismatched, or otherwise unavailable deliveries before
+the preview is rendered. Text-original retry and the canonical original reader
+are unchanged.
+
+App commit `7f4afa2d6` implements the retry affordance and focused coverage.
+Evidence: **53 tests** passed across the original-material surface, Home
+original-delivery screen, Home renderer registry, and adjacent Places expiry
+suites; TypeScript, accessibility governance, the 31 polish scenarios, the
+Home design-contract check, targeted ESLint, and `git diff --check` passed.
+ESLint retains one existing max-lines warning in the Home renderer. The
+registered surface-budget check still fails on the untouched Places files
+`PlacesWorkspace.tsx` (786/768 lines) and `editorialFeedCard.tsx` (114/87).
+The QA doctor could not connect to Metro at the lane's assigned port 61464, so
+no native screenshot/capture was produced; no S3-compatible service or
+configured media credentials are available in this lane, so real binary-byte
+delivery was not verified. This is focused retry interaction evidence, not
+proof of live image delivery, visual parity, the full multi-photo composition,
+Reply/Ask/share behavior, or release readiness. Keep those broader media and
+design gaps open.
