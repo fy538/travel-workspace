@@ -5172,3 +5172,13 @@ canon, not real-data, provider, visual-parity or release acceptance.
 
 The active app tuple after this slice is `a5d0e54d8`; all earlier tuple values
 remain historical receipts.
+
+## September 22 returned Home composition order
+
+App commit `a8cb8fc94` makes the returned design posture visible in section
+order when continuity carries explicit travel-backed `trip`, `journey`, or
+`outcome` references: “From the trip” precedes forward-looking Horizons
+material. Other postures retain canonical order. This changes no backend
+selection, attention budget, owner contract, destination, action, or return
+token. The Home smoke suite passes **19 tests**, with TypeScript and targeted
+lint passing. The active app tuple is now `a8cb8fc94`.

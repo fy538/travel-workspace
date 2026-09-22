@@ -7680,3 +7680,15 @@ TypeScript, targeted ESLint and diff checks pass. This is a native composition
 and copy improvement, not a claim of real-data, provider, visual-canon or
 release acceptance. The active app tuple is now `a5d0e54d8`; earlier app tuple
 values in historical receipts remain historical evidence.
+
+## September 22 returned Home composition order
+
+App commit `a8cb8fc94` makes the design's returned posture visible in the
+section order when—and only when—the continuity units carry explicit
+travel-backed `trip`, `journey`, or `outcome` references. Home then presents
+the returned continuity before forward-looking Horizons material; ordinary,
+non-travel and non-returned postures retain the canonical order. The rule is
+presentation-only and does not infer attendance, join unrelated records, or
+change backend selection, attention budgets, destinations, actions, or return
+tokens. The Home smoke suite now passes **19 tests**, with TypeScript,
+targeted ESLint and diff checks passing. The active app tuple is `a8cb8fc94`.
