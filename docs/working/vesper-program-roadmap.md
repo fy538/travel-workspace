@@ -103,8 +103,8 @@ backend `60da1dcb9`, and app `d021488be`. Its 59 backend Home-portfolio and
 117 app route/workspace/feed test results remain evidence for that earlier
 slice, not the current checkout.
 
-**Current isolated implementation tuple:** workspace `0ad22b1`, backend
-`7537ae042`, and app `16fb0fef5`, all on
+**Current isolated implementation tuple:** workspace `9c01783`, backend
+`7537ae042`, and app `d142d9e17`, all on
 `codex/functional-implementation-2026-09-20`. The three repositories were clean
 after the sample-to-Chat implementation commit and before this roadmap edit.
 Canonical main and its unrelated working-tree changes remain untouched.
