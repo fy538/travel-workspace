@@ -4783,3 +4783,24 @@ feed, core helpers, and workspace kit; TypeScript, targeted ESLint, and diff
 checks pass. This closes a responsive native presentation gap for an existing
 Places value family. It does not establish device screenshot parity, external
 design-canon acceptance, or release readiness.
+
+## September 22 composition trace recheck — no speculative Home producer added
+
+The current Home/Places trace was re-run against the committed owner adapters,
+selector, compiler, and native renderer registries. The bounded Home rehearsal
+still composes the supported families that have real owners: returned Life
+continuity, prepared current-world possibilities, live commitment/occasion
+motion, recovery, addressed human Place contributions, public Place readings,
+saved-place continuity, and prepared experience alternatives. Their exact
+destination and return contracts remain intact; the focused Home portfolio and
+Places packets pass on the current tuple.
+
+The remaining richer returned posture is not an omitted renderer. It requires a
+Life-owned, private source set that joins exact recent occurrence evidence to a
+permitted current Place or person reading, with explicit purpose, lineage,
+correction/withdrawal behavior, expiry, and sparse fallback. Until that
+contract is adopted, Home keeps the exact Life refind door and supported public
+Place/forward-looking value rather than manufacturing a narrative on open.
+This recheck therefore changes no producer, semantic kind, store, generator,
+or route; it narrows the next implementation decision to that source/use
+contract instead of another presentation pass.
