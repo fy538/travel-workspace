@@ -59,8 +59,8 @@ documentation drift that had called several already-renderable kinds "dark";
 it does not claim source admission, recurring content supply, runtime
 full-scroll quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
-**Code/evidence tuple recorded by this receipt:** workspace parent `1f4d484`,
-backend `de9a08716`, and app `b9ab2522b`, all on the isolated
+**Code/evidence tuple recorded by this receipt:** workspace parent `afb579f`,
+backend `796aa0223`, and app `33e7b706a`, all on the isolated
 `codex/native-presentation-wave1-2026-09-21` lane. In addition to the prior
 owner-loop and supplied-value work, this tuple gives Places one populated
 semantic composition in its mature native workspace and proves that an
@@ -118,6 +118,14 @@ finally removed the workflow, attempt, production, Intake submission and public
 reading rows; the ordinary runtime returned only `field_balanced_fallback`
 afterward.
 
+The first successful capture also exposed a contradictory composition: the
+Source lead was followed by the empty-field statement “Nothing leads this field
+yet.” Backend `796aa0223` now replaces that placeholder at the shared
+pre-judgment merge boundary whenever an admitted Source field lead exists,
+without suppressing real browse candidates. App `33e7b706a` makes absence of the
+fallback part of native acceptance. The corrected rerun passed and shows one
+coherent lead rather than a lead plus its obsolete empty state.
+
 The native rehearsal passed once the client was started with the complete
 coherent rollout posture (`FOUR_ROOT_SHELL`, root projection v2, governed Places,
 Life v1 and internal build). An initial run using an obsolete isolated Places
@@ -125,7 +133,7 @@ flag correctly stayed on `/api/places/feed` and failed to find the composition.
 That is evidence that the rollout fence works, and it is now an explicit runtime
 precondition rather than an unexplained UI miss.
 
-Focused evidence is **5 backend tests**, **3 runner-contract tests**, **30 Places
+Focused evidence is **37 backend tests**, **3 runner-contract tests**, **30 Places
 component tests**, TypeScript, and the passing Maestro device flow. The global
 Maestro governance check still reports its **13 pre-existing repository-wide
 findings**; the new flow itself no longer adds a finding. This receipt proves

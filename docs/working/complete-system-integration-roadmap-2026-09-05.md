@@ -183,6 +183,14 @@ the spatial `field_lead_composition` in the mature Places workspace. Cleanup is
 part of the acceptance contract: afterward the runtime contains no fixture lead
 and returns only the honest sparse-field fallback.
 
+The first passing delivery receipt exposed one whole-screen contradiction: the
+new lead and the pre-merge empty-field placeholder both rendered. Backend
+`796aa0223` now treats an admitted Source `field_lead_composition` as replacing
+only `field_balanced_fallback` at the shared portfolio merge; other real Places
+candidates remain. App `33e7b706a` asserts the fallback copy is absent on the
+assigned simulator. The corrected native rerun passed and canonical cleanup
+still restored the standalone sparse-field state afterward.
+
 The first device attempt also caught an important configuration boundary. Metro
 had been started with an obsolete isolated Places flag, so the app used
 `/api/places/feed` and the native assertion failed even though the governed
@@ -190,7 +198,7 @@ runtime was populated. Restarting under the full internal four-root rehearsal
 posture connected the intended runtime and passed. This validates the coherent
 rollout fence; it is not permission to activate it publicly.
 
-Focused verification: **5 backend tests passed**, **3 runner-contract tests
+Focused verification: **37 backend tests passed**, **3 runner-contract tests
 passed**, **30 Places component tests passed**, TypeScript passed, and the real
 Maestro flow passed on simulator `EBEE500B-E4B4-4950-998A-F0A73959F11D`. The
 global Maestro governance command remains failed on **13 pre-existing findings**
@@ -198,8 +206,8 @@ after the new flow's lane metadata was corrected. Content and producer remain
 authored fixtures, so provider quality/cost, recurring supply, complete-field
 selection, visual approval and release eligibility remain open.
 
-Code/evidence tuple recorded by this receipt: workspace parent `1f4d484`,
-backend `de9a08716`, app `b9ab2522b`, all on
+Code/evidence tuple recorded by this receipt: workspace parent `afb579f`,
+backend `796aa0223`, app `33e7b706a`, all on
 `codex/native-presentation-wave1-2026-09-21`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
