@@ -103,11 +103,12 @@ backend `60da1dcb9`, and app `d021488be`. Its 59 backend Home-portfolio and
 117 app route/workspace/feed test results remain evidence for that earlier
 slice, not the current checkout.
 
-**Current isolated implementation tuple:** workspace `9c01783`, backend
-`7537ae042`, and app `d142d9e17`, all on
-`codex/functional-implementation-2026-09-20`. The three repositories were clean
-after the sample-to-Chat implementation commit and before this roadmap edit.
-Canonical main and its unrelated working-tree changes remain untouched.
+**Current isolated product-code revisions:** backend `7537ae042` and app
+`d142d9e17`, both on `codex/functional-implementation-2026-09-20`. The workspace
+repository is the coordination/docs owner; its commits in this slice update
+this roadmap only, not product source. All three repositories are clean on the
+isolated lane; canonical main and its unrelated working-tree changes remain
+untouched.
 Current focused evidence includes backend selector/portfolio **68 tests** and
 backend seed context **44 tests**; Home renderer **12**, Home screen **17**,
 PushRegistrar **15**, root-invalidation **3**, and route/composer/seed **73**
