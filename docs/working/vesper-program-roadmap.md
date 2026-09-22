@@ -2536,7 +2536,8 @@ reference.
 single mock native capture named in the detailed Home row are earlier receipts,
 not fresh verification of the current code tuple. The latest isolated lane is
 workspace product-code checkpoint `f8f90e8`, backend `6e1e4aede`, and app
-`d33dd65f2`. Backend
+`350970728` (which includes the earlier `d33dd65f2` Trip-scope repair and the
+newer exact proposal and scoped social-fallback repairs). Backend
 `18e1fb377` / `4357d1320` add a bounded source-backed reading for an explicit
 saved Place and real-Postgres Home HTTP proof of source retraction and unsave;
 backend `b3d5cf1c5` adds the earlier exact accepted-Outcome → Places continuation;
