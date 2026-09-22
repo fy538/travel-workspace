@@ -106,8 +106,9 @@ items per source),
 and the ordinary Home composer can merge a current, private, prepared Source
 contribution into those owner candidates without generating or enqueueing work
 on the read. The candidate set then enters the existing posture/selection and
-four-region presentation path; the app has 18 explicitly promoted semantic
-Home renderers. This makes the next gap composition and worthwhile supply, not
+four-region presentation path; the app has 19 explicitly promoted semantic
+Home renderers (including the latest `continuity_reconstruction` kind). This
+makes the next gap composition and worthwhile supply, not
 a missing generic generation service or a renderer-per-section exercise. Trace
 each intended design section to its existing owner, candidate, selected region,
 rendered value and exact return; only build a new producer or semantic kind if
@@ -5393,3 +5394,35 @@ longer Home milestone. Native device acceptance, verified external design
 canon, real persisted Outcome readback/withdrawal, and exact Home → Life → Home
 rehearsal for this new sequence remain open and belong to the composition
 acceptance step.
+
+## September 22 roadmap amendment — after the continuity slice
+
+The continuity reconstruction package is now the latest completed Home
+composition increment, not the next item in the queue. It raises the promoted
+Home semantic-renderer count to **19** (18 existing kinds plus
+`continuity_reconstruction`) and gives Home one owner-backed sequence treatment
+when the graph already contains multiple linked Outcomes. It does not make the
+Home scroll broad, recurring, or socially complete.
+
+The next implementation package remains a single coherent Home composition,
+but the trace must now explicitly include occasion-backed material. The
+Experience Graph can provide viewer-authorized active occasion membership and
+opaque member IDs/status/role/visibility; it does not currently provide display
+identity, an authored shared-photo-set identity, or a typed human Reply/Ask
+destination. Therefore:
+
+1. Count an occasion/social section as **supplied** only when the existing owner
+   can provide a useful viewer-safe payload and exact destination. A member
+   count or occasion doorway may be enough; names, facepiles, shared-photo
+   stories, and social mutations are not implied by opaque IDs.
+2. Compose that supported occasion value with the existing continuity,
+   practical, Place and Life-backed units in one longer Home scroll. Do not
+   create a new social store, inferred Occasion, renderer kind, or generator to
+   fill the design.
+3. Accept the resulting scroll in returned and ordinary postures, including
+   exact owner read, action/return, sparse and authorization-reduced states.
+
+This amendment supersedes older prose that treats the continuity kind as
+unimplemented or treats a social-looking design card as an available owner
+payload. The recent-return trigger remains separately decision-gated and does
+not block this composition work.

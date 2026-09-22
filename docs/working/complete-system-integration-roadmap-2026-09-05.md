@@ -7894,3 +7894,31 @@ backend and broad mobile packets remain evidence for their recorded tuples only.
 The new sequence still needs real persisted owner readback, native device
 acceptance, visual-canon comparison and exact return rehearsal before it counts
 as accepted design parity.
+
+### September 22 integration amendment — occasion/social trace after continuity
+
+The continuity sequence is now a completed bounded composition increment; it is
+not another transport seam to repeat. The next Home package must integrate it
+with other already supplied regions into one longer, benefit-led scroll. As
+part of that trace, inspect occasion-backed material explicitly: the current
+viewer-relative Experience Graph exposes active membership and opaque member
+IDs/status/role/visibility, but not display identity, an authored shared-photo
+set, or a typed human Reply/Ask destination. A design concept that needs those
+things is therefore an owner/policy gap, not a missing renderer.
+
+Integration rule for the next package:
+
+1. Reuse a member count or occasion doorway only if its existing owner supplies
+   a viewer-safe payload and exact destination; do not infer names, facepiles,
+   shared-photo identity, or social mutation from IDs.
+2. Compose supported occasion value alongside continuity, practical, Place and
+   Life-backed units, with exact source/depth/action/return and honest
+   authorization-reduced states.
+3. Accept returned and ordinary Home postures as one full-scroll result. Keep
+   the recent-return trigger decision-gated independently; it does not block
+   this ordinary composition work.
+
+This supersedes any older “continuity kind is still missing” wording while
+preserving the existing evidence limits: no recurring supply, native/device
+acceptance, verified external design-canon parity or release readiness is
+claimed by the continuity slice.
