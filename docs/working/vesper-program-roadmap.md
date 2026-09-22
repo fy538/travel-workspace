@@ -4845,3 +4845,32 @@ Place/forward-looking value rather than manufacturing a narrative on open.
 This recheck therefore changes no producer, semantic kind, store, generator,
 or route; it narrows the next implementation decision to that source/use
 contract instead of another presentation pass.
+
+## September 22 native Home v2 build receipt — mock supply only
+
+The current app candidate was built and installed from this lane on the booted
+iPhone 16 Plus / iOS 18.2 simulator. The first build stopped at the local
+Sentry symbol-upload phase because no organization was configured; rerunning
+with `SENTRY_DISABLE_AUTO_UPLOAD=true` completed Xcode compilation, signing and
+installation. With `EXPO_PUBLIC_FOUR_ROOT_SHELL=true`,
+`EXPO_PUBLIC_LIFE_REFIND_LANE=true`, `EXPO_PUBLIC_USE_MOCK_API=true` and
+`EXPO_PUBLIC_SKIP_AUTH=true`, the real four-root shell opened the current
+`HomeRootExperience`/`HomeRootV2Screen` and produced a screenshot at
+`/tmp/vesper-home-v2.png`.
+
+The capture confirms native rendering of the current Home v2 chrome, world
+read, week shape, in-motion units, carried-forward units, typed doors and the
+four-root tab shell. It also exposes the honest boundary: the content is the
+mobile mock projection (including the explicit “MOCK DATA — NOT THE REAL
+BACKEND” banner), not a persisted owner read. It therefore counts as native
+build/install and layout evidence only; it does not close populated backend
+readback, native action/return, visual comparison to the registered external
+canon, accessibility, or release acceptance. The older legacy Plans screen was
+also observed when the four-root flag was off; no legacy behavior was changed.
+
+This receipt removes “can the current Home v2 candidate build and render at
+all?” from the immediate unknowns. It does not change the next product slice:
+the recent-return trigger contract and one owner-backed, complete-on-view
+composition remain the path to substantive Home value. Keep the simulator
+available for that later real-read/native return pass, and do not promote the
+mock screenshot to a production or design-parity claim.
