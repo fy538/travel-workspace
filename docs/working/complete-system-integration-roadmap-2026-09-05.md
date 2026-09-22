@@ -70,6 +70,18 @@ Home → Places value path, not the broader Home composition or the separate
 private cross-time returned-value gap. See the [program roadmap](vesper-program-roadmap.md)
 for the current package register and evidence boundaries.
 
+**Current-tuple correction — September 22:** the paragraph above is an
+earlier saved-Place receipt, not the active implementation baseline. The
+current isolated product-code tuple is workspace `e798bc6` (roadmap/evidence
+only), backend `2e123173c`, and app `1cca51a04`. The complete backend
+`tests/root_projection` packet passes **479 tests** and the focused app
+root-navigation/Home smoke/connected Home packet passes **78 tests**. These
+are offline/component checks for the current tuple; they do not prove
+populated production supply, native device action or media acceptance,
+external design-canon parity, or release readiness. Treat older tuples in
+historical receipts as evidence for those slices only, never as the current
+code baseline.
+
 The bounded Home → Places addressed-note continuation is now implemented:
 Home carries the selected handoff ID/revision into the canonical object route,
 and the relationship owner re-reads that exact contribution without relying
