@@ -2499,8 +2499,8 @@ Integration/landing, publish code, or activate production flags.
 
 **Current-tuple override (September 22, end of the latest implementation
 wave):** for all package decisions below, use workspace `65a6c7f`, backend
-`2e123173c`, and app `ae5c7c1aa`. The backend root-projection packet passes
-**479 tests** and the app packet passes **209 tests across 12 focused suites**;
+`7c0ef042e`, and app `ae5c7c1aa`. The backend root-projection packet passes
+**480 tests** and the app packet passes **209 tests across 12 focused suites**;
 TypeScript and targeted lint pass, with the existing renderer max-lines warning
 only. The latest changes are bounded receiving/destination and presentation
 repairs (including all four receipt Place destinations and Life lens-preserving
@@ -5266,3 +5266,17 @@ targeted ESLint pass. This is a mobile return-contract repair only: no backend,
 OpenAPI, storage, audience, media or policy behavior changed, and no native
 device or real-data acceptance is claimed. The Home full-scroll composition
 remains the next substantive product build.
+
+## September 22 Home attention-breadth repair
+
+Backend commit `7c0ef042e` makes the existing Home attention budget preserve
+composition breadth. After the dominant unit, admitted candidates from a new
+region are considered before additional repeats from a region already
+represented; the finite posture budget, declared benefit tie-breakers, stable
+output ordering, hard gates and all owner-backed destinations remain intact.
+This lets a horizon or continuity return survive a crowded in-motion portfolio
+without adding a feed, generator, store, semantic kind or social route. The
+focused Home composition suite passes **10 tests** and the full backend
+`tests/root_projection` packet passes **480 tests**. This closes a
+selection-quality gap only; recurring provider supply, native/device evidence
+and external design parity remain open.

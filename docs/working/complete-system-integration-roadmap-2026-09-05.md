@@ -32,9 +32,9 @@ depends_on:
 Use this paragraph as the current baseline for execution decisions. The
 historical receipts below intentionally retain the tuples and evidence scopes
 that produced them, but they do not supersede this checkpoint. The clean
-isolated tuple is workspace `65a6c7f`, backend `2e123173c`, and app
+isolated tuple is workspace `65a6c7f`, backend `7c0ef042e`, and app
 `ae5c7c1aa`, all on `codex/functional-implementation-2026-09-20`. The current
-backend root-projection packet passes **479 tests**; the current app packet
+backend root-projection packet passes **480 tests**; the current app packet
 contains **209 tests across 12 focused suites**, with TypeScript and targeted
 lint passing (the existing renderer max-lines warning remains). This wave
 completed the bounded Home/Places receiving and destination corrections plus a
@@ -7784,3 +7784,17 @@ owner, custody, audience or policy behavior changed, and this receipt does not
 claim native device or real-data acceptance. It is a bounded completion of the
 existing Life navigation contract, while Home composition breadth remains the
 next integration build.
+
+## September 22 Home attention-breadth repair
+
+Backend commit `7c0ef042e` adjusts Home's existing cumulative attention
+selection without adding a producer or changing posture budgets. After the
+dominant unit, the selector gives a materially different admitted region a
+chance to survive before spending the remaining finite budget on repeated rows
+from one region. Within each region it still uses the declared benefit and
+stable producer order; hard admission, one-unresolved-demand, urgent
+suppression, expiry, destinations and return contracts are unchanged. The
+focused Home composition suite passes **10 tests**, and the full
+`tests/root_projection` packet passes **480 tests**. This is a bounded
+composition-quality improvement, not proof of recurring supply, native visual
+parity or device acceptance.
