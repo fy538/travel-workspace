@@ -609,6 +609,48 @@ was captured. `entity-object` has no registered design-reference manifest, so
 the design-reference check confirms doctrine-only review and is not a visual
 parity verdict.
 
+### September 22 cross-review reconciliation and rehearsal ownership guard
+
+The cross-review messages repeated four code-level findings from the original
+reviewed tips: R05's unsupported serializer argument at backend `913f5a7ae`,
+R08's missing arrangement purpose and R09's device-local arrangement time at
+app `1142de74f`, and the shared Home child-Source venue slug. These are valid
+findings against those revisions, but they are not open defects on the current
+functional lane: backend `7537ae042` uses the worker result's no-argument
+serializer and a run-derived venue slug; app `d142d9e17` passes arrangement
+purpose on both Plan branches and carries the schedule timezone into both
+arrangement presentations. The existing focused worker and timezone suites
+cover R05/R09; the exact selected-note and arrangement-navigation code remains
+unchanged from the already recorded correction.
+
+The fixture review exposed an important regression-test gap even though venue
+identity was already scoped by backend `2935757fe`: `_fixture_slug(run_id)`
+derives a distinct venue for each rehearsal, and cleanup uses that same run
+identity. A further check found that cleanup still restored the supplied
+Home-location snapshot even when the run owned no fixture rows. Cleanup now
+restores the profile only after deleting a fixture owned by that run, and
+reports `home_restored: false` for an absent-run no-op. New
+`tests/scripts/test_provision_home_child_source_rehearsal.py` cases preserve
+deterministic identity, separate distinct runs (including IDs that normalize
+to the same readable slug), reject IDs without an identity character, and
+prove absent-run cleanup emits no user update. The focused rehearsal and
+Source-worker packet passes **8 tests** with Ruff and formatting clean. No
+fixture mutation or database cleanup was run for this check.
+
+This does not serialize two simultaneously active rehearsals that mutate the
+same QA user's Home location; those must remain sequential for that account.
+
+One cross-review concern needs accurate classification rather than a code
+change: the controlled Source worker does have a due-work caller. When the
+named-cohort flag is enabled, `audio_jobs.WorkerSettings` registers
+`resume_due_source_contribution_workflows` at startup and every minute; that
+function reaps exhausted leases and enqueues due durable workflows. This is
+not evidence of deployment or production activation. The still-current
+in-flight process-interruption recovery and live transient-provider
+failure/retry rehearsals remain open, as recorded under R05. The reported
+original-delivery fixture orphan path was not reproduced and remains a
+follow-up risk, not a confirmed defect or an R12.
+
 ## Defect index
 
 | ID | Priority | Defect | Owning area | Status |
@@ -622,7 +664,7 @@ parity verdict.
 | R07 | P2 | Site, accommodation and experience fit checks cannot succeed | Practical assessment | Fixed; positive catalog-kind owner-adapter matrix passes |
 | R08 | P2 | Primary Plan details entrance hides arrangement information | Plan / object navigation | Fixed; typecheck passes |
 | R09 | P2 | Reservation time is shown in device timezone without a label | Object presentation | Code-fixed; focused schedule-zone/UTC conversion passes; named native packets pass; persisted/native timezone matrix still required |
-| R10 | P2 | Cleanup for one rehearsal can delete another run's venue | Local fixture tooling | Fixed with run-scoped fixture identity |
+| R10 | P2 | Cleanup for one rehearsal can delete another run's venue | Local fixture tooling | Run-scoped venue plus absent-run profile no-op fixed; focused identity/cleanup regression passes |
 | R11 | P3 | Life organization cursor contract snapshot is stale | Cross-repo API contract | Fixed; generated snapshots agree |
 
 P1 requires urgent correction because an externally visible effect can commit
