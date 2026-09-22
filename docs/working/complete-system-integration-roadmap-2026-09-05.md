@@ -7409,15 +7409,38 @@ or `make verify` was run. This closes an explicit saved-intent → accepted
 public Place reading path only. It does not supply a private cross-time return
 or substantially broader Home composition.
 
-**Current product-code tuple:** workspace checkpoint `0fe8e88` (later
-workspace commits are roadmap-only), backend `4357d1320`, app `93a9090de`, all
-clean on the isolated functional-implementation branch. The program roadmap's Home
-package register is the current cross-lane priority authority; this ledger
-retains implementation evidence. The next Home package remains design-aligned
-composition breadth from supported owners. Within it, settle the exact
-Life-owned evidence, purpose, lineage and withdrawal contract for a genuinely
-useful private returned-value result before implementation; do not let Home
-query Atlas directly or add a new store/generator. If current permitted
+#### 9.10.3 September 22 continuation and presentation follow-through
+
+The follow-through wave closed three bounded gaps without widening the
+architecture. Backend `134417927` preserves the reviewed order of separately
+authorized received originals, so distinct grants remain distinct Home seats.
+App `3faaa2f18` puts a governed Life answer before its supporting refind rows;
+the exact itinerary-block route and anchored Life return remain intact. App
+`1cca51a04` preserves the authored Places experience collection's compact copy
+and left-aligned action geometry at large type. The focused app packet covering
+Home, Places, Life refinding and root navigation passed **146 tests**; the
+focused Life/Home packet passed **133**, the focused Places packet **88**, and
+TypeScript plus targeted lint passed.
+
+The current candidate was also built and installed on the iPhone 16 Plus
+simulator. Mock deep links reached Home, Places, Life and the exact Life-record
+route. The captures are explicitly labelled mock data; they prove native route
+reachability and layout only. They do not prove persisted owner reads, real
+media bytes/codec playback, action consequences, mutation return, or visual
+parity against the external design canon. No production flag or default-shell
+promotion changed.
+
+**Current product-code tuple:** workspace product-code checkpoint `f8f90e8`,
+backend `134417927`, and app `1cca51a04`, all on the isolated functional-
+implementation branch. Workspace `57872d0` is the latest roadmap-only
+checkpoint. The program roadmap's Home package register remains the current
+cross-lane priority authority; this ledger retains implementation evidence.
+The next Home package remains design-aligned composition breadth from supported
+owners. The Life-owned evidence, purpose, lineage and withdrawal contract for a
+genuinely useful private returned-value result is a separate bounded decision;
+it gates only that cross-time result, not ordinary Home composition, Places
+reading, Life refinding, native polish or named reliability evidence. Home must
+not query Atlas directly or add a new store/generator. If current permitted
 evidence cannot support a non-repetitive result, preserve the honest Life
 return door and compose from other supported owner material.
 
