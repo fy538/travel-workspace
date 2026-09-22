@@ -5075,10 +5075,24 @@ harness to address the stale wording.
 ## September 22 current tuple correction
 
 The current isolated functional-implementation tuple is workspace `fed8115`,
-backend `2e123173c`, and app `44599a304`. Earlier tuple values in historical
+backend `2e123173c`, and app `4a8f310ea`. Earlier tuple values in historical
 receipts remain useful evidence for the slices they describe, but they are not
 the active checkout. The current cross-root verification packet is **479**
 backend root-projection tests and **198** focused Home/Places/Life app tests;
 the Source-specific subset is the **22 + 9** packet recorded above. This
 correction changes documentation only and does not promote native mock
 captures, provider execution or visual-canon parity to release evidence.
+
+## September 22 Source return-label correction
+
+The exact Source result route can be opened from either Home or Places. The
+result screen previously used a fixed “Back to Home” accessibility label even
+when its bounded return token and fallback were Places-owned. App commit
+`4a8f310ea` derives the semantic back label from the originating root, so a
+Places-origin result now exposes “Back to Places” while Home retains “Back to
+Home.” The route, token, fallback and result semantics are unchanged.
+
+The Source result, hook and connected Home packet passes **10 tests**;
+TypeScript and targeted ESLint pass. This is a small cross-root accessibility
+and orientation correction, not a new Source capability or native-device
+acceptance claim.

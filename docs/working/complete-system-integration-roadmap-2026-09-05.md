@@ -7516,7 +7516,7 @@ these paths separate; the absence of private attachment controls on public Place
 readings is not an implementation gap.
 
 **Current product-code tuple:** workspace `fed8115`, backend `2e123173c`, and
-app `44599a304`, all on the isolated functional-implementation branch.
+app `4a8f310ea`, all on the isolated functional-implementation branch.
 Workspace `fed8115` is the latest roadmap/evidence checkpoint. The program
 roadmap's Home package register remains the current cross-lane priority
 authority; this ledger retains implementation evidence. Earlier tuple mentions
@@ -7585,3 +7585,17 @@ lineage, expiry and correction behavior. Keep provider execution/recovery,
 native acceptance and any later-use/private-return policy separately gated.
 Do not create a second request owner, result store, generator or mobile result
 harness to address the stale wording.
+
+## September 22 Source return-label correction
+
+The exact Source result route can be opened from either Home or Places. The
+result screen previously used a fixed “Back to Home” accessibility label even
+when its bounded return token and fallback were Places-owned. App commit
+`4a8f310ea` derives the semantic back label from the originating root, so a
+Places-origin result now exposes “Back to Places” while Home retains “Back to
+Home.” The route, token, fallback and result semantics are unchanged.
+
+The Source result, hook and connected Home packet passes **10 tests**;
+TypeScript and targeted ESLint pass. This is a small cross-root accessibility
+and orientation correction, not a new Source capability or native-device
+acceptance claim.
