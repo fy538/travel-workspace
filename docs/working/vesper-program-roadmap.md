@@ -119,18 +119,19 @@ backend `60da1dcb9`, and app `d021488be`. Its 59 backend Home-portfolio and
 slice, not the current checkout.
 
 **Current isolated product-code revisions before this September 22 roadmap
-edit:** workspace `94965cf`, backend `18e1fb377`, and app `93a9090de`, all on
+edit:** workspace `827e7e8`, backend `4357d1320`, and app `93a9090de`, all on
 `codex/functional-implementation-2026-09-20`. The backend and app trees are
 clean; this workspace checkout now contains the roadmap update. Backend
-`18e1fb377` adds the saved-Place reading described below. Its predecessor
-`2d0721e67` scopes Home child-source fixture cleanup to the run that owns the
-fixture, avoiding restoration of a profile snapshot by an absent or concurrent
-run. The audio reader is committed in the app and adds no backend operation.
-Offline OpenAPI export reflects the current backend source; app projection
-remains blocked by 55 existing expired API-policy reviews. There is no new
-`HEAD` operation or missing-consumer finding. Canonical main and its unrelated
-working-tree changes remain untouched; see §2 for exact status and evidence
-boundaries.
+`4357d1320` adds real-Postgres Home HTTP acceptance for the saved-Place path;
+its predecessor `18e1fb377` implements the bounded source-backed reading.
+Backend `2d0721e67` scopes Home child-source fixture cleanup to the run that
+owns the fixture, avoiding restoration of a profile snapshot by an absent or
+concurrent run. The audio reader is committed in the app and adds no backend
+operation. Offline OpenAPI export reflects the current backend source; app
+projection remains blocked by 55 existing expired API-policy reviews. There is
+no new `HEAD` operation or missing-consumer finding. Canonical main and its
+unrelated working-tree changes remain untouched; see §2 for exact status and
+evidence boundaries.
 Prior focused evidence includes backend selector/portfolio **68 tests** and
 backend seed context **44 tests**; Home renderer **12**, Home screen **17**,
 PushRegistrar **15**, root-invalidation **3**, and route/composer/seed **73**
@@ -4459,12 +4460,17 @@ Evidence on the isolated candidate: the focused source/portfolio packet passed
 **73 tests**; the offline root-projection suite passed **470 tests**; Ruff and
 format checks passed. `tests/db/test_place_content.py::test_bounded_entity_listing_returns_latest_reviewed_place_content`
 passed **1 test** against a freshly migrated, uniquely named disposable
-PostgreSQL database on the lane's isolated Postgres service. That database was
-dropped afterward and the lane Postgres container stopped. Backend commit hooks
-also passed. No app files changed. No live-account read, native Home render,
-screenshot, design-reference comparison, or full `make verify` was run. The
-source/query behavior is verified; Home visual acceptance and the complete
-end-to-end user experience are not.
+PostgreSQL database on the lane's isolated Postgres service. The HTTP follow-up
+commit `4357d1320` adds a real owner-backed regression: the accepted reading
+replaces the generic save in Home, source retraction restores the save doorway,
+and unsaving removes both. Together with the two existing public-Place HTTP
+readback cases, the integration file passes **3 tests** on a freshly migrated
+disposable PostgreSQL database. Both test databases were dropped afterward and
+the lane Postgres container stopped. Backend commit hooks also passed. No app
+files changed. No live-account read, native Home render, screenshot,
+design-reference comparison, or full `make verify` was run. The source/query
+and HTTP projection behavior are verified; Home visual acceptance and the
+complete end-to-end user experience are not.
 
 This closes one source-backed value seam from explicit saved intent to the
 existing Places owner. It does not change the program priority: the broader
