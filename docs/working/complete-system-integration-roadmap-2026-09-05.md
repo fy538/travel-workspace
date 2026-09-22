@@ -2377,6 +2377,38 @@ native tap-and-back rehearsal or `make verify` was run. This closes local route
 and reader selection evidence, not native return acceptance or the broader
 Home/Places content-depth goal.
 
+### September 22 implementation receipt — exact Home-selected Place note
+
+Home's addressed Place-note action now preserves the selected handoff ID and
+revision when it opens the canonical venue/site/accommodation/experience
+object. The app requests the selected note from the existing relationship
+owner; the owner filters by exact ID and revision before the existing
+recipient, entity, status, expiry, source-custody and relationship eligibility
+checks. The object page opens only that returned handoff. Missing, malformed,
+stale or withdrawn selections fail closed with an unavailable state; the page
+does not substitute another line from the entity's three-item People-lines
+list. The existing Home return token and Keep/Leave-aside semantics remain; no
+new social signal, sharing surface, policy or storage path was introduced.
+
+Workspace `79fbb69`, backend `4e35b8df1`, and app `7a2dcd0d9` contain the local
+candidate. The focused app packet passed **91 tests**; the backend route packet
+passed **7 tests**; app typecheck, polish-scenario validation, targeted backend
+Ruff/format checks, contract snapshot checks and `git diff --check` passed.
+The app projection/generated types were synchronized with the established
+temporary policy copy that advanced only expired review dates; the canonical
+policy remains unchanged. `make api-coverage-check` still fails on **55 expired
+reviews**, `schema-bridge` reports **59 expired exceptions**, and query-key
+ownership reports **12 findings outside this slice**. The written disposable-
+Postgres case was not run because `TEST_DATABASE_URL` and
+`TEST_DATABASE_DISPOSABLE=1` are absent; the deliberate test guard refused the
+attempt, and no database was touched. Native tap/back/withdrawal/expiry
+acceptance and `make verify` were not run. This is an implemented local
+candidate, not a merge-ready or released result. Run the missing exact-owner
+and native acceptance when the isolated DB/device are available and resolve or
+separately accept the applicable standard gate findings before landing. These
+closeout requirements do not block a separate substantive Home/Places
+value-depth implementation using existing owner material.
+
 ### Functional implementation checkpoint — September 22 rebaseline
 
 The candidate includes Life exact originals/refinding, one-recipient original
@@ -2432,7 +2464,7 @@ transient-provider failure/retry remain unverified.
 | I1 | Source/graph/Outcome delivery, repair, backfill and reconciliation foundation; additional retained-source revisions and Life adoption paths in this lane | Build population and later-use coverage over existing owners; do not infer indexed serving cutover or cross-context authority from retention |
 | I2 | Bounded serving, prepared results, cancellation and publication fences; explicit Source Arq registration, serializer repair and gated due-work recovery sweep; real `not_claimed` wrapper, expired due-work recovery and in-flight lease-renewal evidence | Run the process-interruption/restart and live transient-provider failure/retry rehearsals in isolated Arq/Redis; cost/cohort/provider activation remains separately gated |
 | I3 | Contribution authority and useful-first intake; exact retained/received text-original paths with scoped native receipts | R01/R03 authority and revocation are verified, R04 code correction plus API/native sender-control rehearsals and named Life/Home original-receiving paths are complete; broader supported originals and permissioned downstream use remain; pending history/audience policy is not silently adopted |
-| I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots; supplied Home and Places multi-source full-scrolls; same-Place sequence passes persisted Home HTTP readback with source retraction; generic Home/Places partial-read notices preserve supplied content; rebuilt Place reader supports recipient Keep/Leave-aside with a real local native/API rehearsal; Home's long Outcome preview is capped at 220 characters and its v1/v2 doors identify the exact revisioned Life record; focused backend Home/composition/compiler packet: 110 passed; combined app route-helper and Life-reader target-selection packet: 61 passed. **Implemented candidate:** exact Home-selected Place handoff route and owner read; focused app packet 91 passed, API route packet 7 passed, typecheck and polish validation passed; workspace/backend/app commits `79fbb69` / `4e35b8df1` / `7a2dcd0d9` | The selected ID/revision is now preserved through the canonical object route, requested from the relationship owner, and shown only if the exact line is still eligible; malformed, absent and mismatched selections fail closed without substitution. The written Postgres fixture for a note outside the default three-line list remains unrun: there is no disposable DB configured, and the test guard refused execution. The app projection and generated types match after using the established temporary policy copy that advances only the 55 expired API-policy dates; the canonical policy remains unchanged and `api-coverage-check` still fails. `schema-bridge` reports 59 expired exceptions and query-key ownership reports 12 findings outside this slice. Native tap/back/withdrawal/expiry acceptance is not yet proven. The three commits are local candidate only, not merged or published. Keep the database/native proof as required closeout before landing; it need not block a separate, unblocked value-depth slice, which should reuse existing content and owners rather than extend this continuity seam. Do not call this candidate merge-ready until acceptance and standard gate findings are resolved or separately accepted. Then add worthwhile default-portfolio value beyond the proved scrolls from already supplied payloads; native tap/back for the exact Outcome route remains unproven; finish distinct empty states and native visual acceptance, keeping exact actions/destinations and honest failure treatment in scope |
+| I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots; supplied Home and Places multi-source full-scrolls; same-Place sequence passes persisted Home HTTP readback with source retraction; generic Home/Places partial-read notices preserve supplied content; rebuilt Place reader supports recipient Keep/Leave-aside with a real local native/API rehearsal; Home's long Outcome preview is capped at 220 characters and its v1/v2 doors identify the exact revisioned Life record; focused backend Home/composition/compiler packet: 110 passed; combined app route-helper and Life-reader target-selection packet: 61 passed. **Implemented candidate:** exact Home-selected Place handoff ID/revision routes to the canonical object and is re-read through the relationship owner; focused app packet **91 passed**, backend route packet **7 passed**, typecheck and polish validation passed; workspace/backend/app commits `79fbb69` / `4e35b8df1` / `7a2dcd0d9` | The selected line opens only when that exact handoff remains eligible; malformed, absent, stale, withdrawn and mismatched selections fail closed without substitution. Required disposable-Postgres and native tap/back/withdrawal/expiry acceptance remain unrun because no disposable DB is configured and no native run was made. OpenAPI/generated types match using the established temporary policy copy; canonical policy is unchanged. `api-coverage-check` still reports 55 expired reviews; `schema-bridge` reports 59 expired exceptions; query-key ownership reports 12 findings outside this slice. The local candidate is not merge-ready. Complete its DB/native and standard-gate closeout before landing; these checks do not serialize independent product implementation. **Next build:** create substantive Home/Places value from existing owner-backed material rather than another transport-only seam. Also prove the fixed Home sample's native presentation/retirement and the exact Outcome route's native return; broader section/design breadth, selection quality, distinct empty states, binary-media runtime and visual acceptance/parity remain open |
 | I5 | Open-now and saved-world changes reach surfaces; explicit fit and reviewed assistance contracts implemented | R09 code correction and the named current-world native paths are complete; persisted/native timezone edge matrix, permitted-context adaptations, provider-backed fit rehearsal and broader mandates remain separate |
 | I6 | Retirement inventories/guards exist; candidate remains isolated and rollout internal | Keep obsolete execution paths out of new work; complete obligation review and authorized cutovers/landing only when their dependencies are ready |
 
