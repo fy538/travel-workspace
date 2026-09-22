@@ -34,6 +34,14 @@ later-context benefit, production activation or release readiness. The new Home
 example remains behind existing local delivery gates, and its native
 presentation/retirement has not been observed on a device.
 
+One additional bounded continuity gap is now explicit: Home's addressed Place
+note carries both its exact `place_handoff` and venue references, but the
+current Places navigator consumes the venue and drops the selected handoff.
+The canonical entity People-lines response is capped at three, so the exact
+note is not guaranteed to be present in the destination's incidental list.
+This is a missing continuation of an existing recipient-owned contribution,
+not a reason to add a social model or sharing surface.
+
 Backend commit `ee625b985` also closes a bounded Home projection defect:
 long-authored Outcome meaning is now a compact excerpt, while the exact
 revisioned Outcome and existing `life.read` requirement remain intact. Life
@@ -59,21 +67,23 @@ their results, limitations and rationale; their embedded "next" instructions
 are historical and do not form additional queues. Update these summaries when
 a substantial package finishes instead of appending a competing next step.
 
-**Next emphasis:** stop repeating receiving-boundary proofs and make the
-connected system more worthwhile to use. The latest work closes one bounded
-cold-start content path, extends metadata refinding beyond 100 results, and
-connects an explicit Life → Places association with anchored return. The fixed
-Home sample is only a low-context fallback; it does not establish recurring
-supply or a varied, context-sensitive Home portfolio. The principal gap is
-still value depth across sparse and richer situations, not transport. The next
-build should improve one substantive Home/Places experience using material
-from existing owners, with a clear user benefit and exact source/depth/return
-behavior. Prefer a meaningful difference in what the person receives over
-another one-off card, route, or acceptance-only increment. A permissioned
-Life/social later-use result remains a valid complementary package only where
-the structured inputs and authority already exist. Do not add a generator,
-feed, or storage family to manufacture fullness. Frontend hierarchy,
-accessibility and polish remain part of each package's exit criteria.
+**Next emphasis:** close the one found Home → Places addressed-note continuity
+gap inside the existing receiving system, then stop repeating receiving-boundary
+proofs and make the connected system more worthwhile to use. Recent work closes
+a bounded cold-start content path, extends metadata refinding beyond 100
+results, and connects an explicit Life → Places association with anchored
+return. The fixed Home sample is only a low-context fallback; it does not
+establish recurring supply or a varied, context-sensitive Home portfolio. The
+principal product gap remains value depth across sparse and richer situations,
+not transport. After the exact-note continuation, improve one substantive
+Home/Places experience using existing owner material, with clear user benefit
+and exact source/depth/return behavior. Prefer a meaningful difference in what
+the person receives over another one-off card, route, or acceptance-only
+increment. A permissioned Life/social later-use result remains a valid
+complementary package only where structured inputs and authority already exist.
+Do not add a generator, feed, or storage family to manufacture fullness.
+Frontend hierarchy, accessibility and polish remain part of each package's
+exit criteria.
 
 The renderer ledger was refreshed after this rebaseline: the Home transport
 union is 36 kinds, with 17 explicit Home semantic renderers plus the three
@@ -85,18 +95,19 @@ drift that had called several already-renderable kinds "dark"; it does not
 claim source admission, recurring content supply, broad runtime full-scroll
 quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
-**Current functional code tuple before this roadmap receipt:** workspace
-`28cde3a`, backend `8ab3313b8`,
+**Functional evidence tuple at this roadmap refresh:** workspace
+`c3202f6` (the prior roadmap-only update), backend `8ab3313b8`,
 and app `a7f0083cc`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The latest workspace commit
-precedes this documentation-only refresh; the backend adds the exact Outcome
-Life door, the excerpt bound, and prior Home sample owner-read/candidate and
-proof-backed lifecycle; the app adds an exact Life Outcome target-selection
-regression and renders the explicitly fictional sample in the existing Home
-composition. Earlier commits in this candidate provide the
+is the evidence baseline for this documentation-only refresh; backend adds the
+exact Outcome Life door, the excerpt bound, and prior Home sample owner-read/
+candidate and proof-backed lifecycle; app adds an exact Life Outcome
+target-selection regression and renders the explicitly fictional sample in
+the existing Home composition. Earlier commits in this candidate provide the
 Places recipient lifecycle, Home/Places full-scroll paths, multi-photo Life
 reader, Life keyset refind and explicit Life → Places return. The lane is clean
-and none of these commits is merged to main, published, or production-flag
+at refresh start; this rebaseline changes only the two workspace roadmap files.
+None of these commits is merged to main, published, or production-flag
 activated. The Home sample's UI appearance and live retirement behavior remain
 unverified on-device; its SQL history query was checked offline, not against
 PostgreSQL. See the dated receipts for each exact evidence boundary.
@@ -1973,23 +1984,25 @@ door with anchored return, and the exact Home Outcome → Life record door. The
 Home example still has no native visual or live-retirement proof. Binary-media
 delivery and broad visual/device acceptance remain open.
 
-| Repository | Candidate HEAD observed before this receipt | Canonical main HEAD |
+| Repository | Candidate HEAD at this rebaseline | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `28cde3a` | `70c4b4b` |
+| Workspace | `c3202f6` (roadmap-only descendant of evidence baseline `28cde3a`) | `70c4b4b` |
 | Backend | `8ab3313b8` | `a7c02cbe1` |
 | App | `a7f0083cc` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent
-repositories. All three candidate trees were clean at baseline capture; this
-receipt changes only the workspace roadmaps. Canonical main and its concurrent
-work remain untouched. The candidate is committed in its lane, not landed on
-main or released. Recheck Git and ownership before execution; this tuple is a
-dated observation preceding the documentation commit.
+repositories. The current workspace tip `c3202f6` contains roadmap updates only;
+backend `8ab3313b8` and app `a7f0083cc` remain the code-evidence heads recorded
+at the preceding baseline. All three candidate trees were clean at the
+pre-edit capture; this update changes only the two workspace roadmaps.
+Canonical main and its concurrent work remain untouched. The candidate is
+committed in its lane, not landed on main or released. Recheck Git and ownership
+before execution; this is a dated observation, not a locked dispatch base.
 
 | Capability | Implemented / recorded evidence | Remaining product or evidence boundary |
 | --- | --- | --- |
-| Home / Places | Owner-backed Save/readback, public Place and child-entity readings, consented place pulls, nearby open-now options, supplied experience comparisons, plural social perspectives, addressed Place-contribution region, saved-place closure/reopening dismissal, recipient Keep/Leave-aside on exact-place friend lines, native multi-source scrolls, semantic-state treatment and generic partial-read notices; fixed fictional Home sample for cold/quiet accounts behind existing delivery gates; Home Outcome excerpts capped at 220 characters with exact revisioned Life door `/you/life-record?record=outcome.<id>`; exact Outcome routing and Life-row selection covered by **61 app route/reader tests**; exact Home photo tap is gated by current delivery revision and material authorization (focused component/screen tests only); persisted public-Place Home HTTP readback; named local API/iOS flows | Varied worthwhile default-portfolio value beyond the proved scrolls; prove the sample's native presentation/retirement locally; native tap/back for the exact Outcome route; broader section/design breadth, selection quality across situations, remaining distinct empty states, binary-media runtime proof, native visual acceptance/parity |
+| Home / Places | Owner-backed Save/readback, public Place and child-entity readings, consented place pulls, nearby open-now options, supplied experience comparisons, plural social perspectives, addressed Place-contribution region, saved-place closure/reopening dismissal, recipient Keep/Leave-aside on exact-place friend lines, native multi-source scrolls, semantic-state treatment and generic partial-read notices; fixed fictional Home sample for cold/quiet accounts behind existing delivery gates; Home Outcome excerpts capped at 220 characters with exact revisioned Life door `/you/life-record?record=outcome.<id>`; exact Outcome routing and Life-row selection covered by **61 app route/reader tests**; exact Home photo tap is gated by current delivery revision and material authorization (focused component/screen tests only); persisted public-Place Home HTTP readback; named local API/iOS flows | Home's addressed-note destination drops its selected handoff and the Place reader is capped at three People lines, so exact note continuity is unproved; close that existing-owner seam without a replacement note or social signal. Then continue varied worthwhile default-portfolio value beyond the proved scrolls. Also prove the sample's native presentation/retirement; native tap/back for the exact Outcome route; broader section/design breadth, selection quality, distinct empty states, binary-media runtime proof, and native visual acceptance/parity |
 | Life | Retained text originals, exact refinding/return, explicit place- and people-bound sources, organized period groups, and a canonical artifact reader that presents every available authorized photo whole with same-record return; metadata refinding continues past the newest 100 results with a versioned keyset cursor and rechecks current owner, retention, status and custody on each page; the continuation case passes on a fresh lane-local disposable PostgreSQL database; Life opens an explicitly linked Place from a retained source/original with anchored return; persisted private Plan and explicitly permissioned shared Outcome reach Life/People root and depth HTTP readers | Broader binary-media/corpus coverage and People/Threads experience, live original-byte/device acceptance, later permitted reuse that changes a subsequent result, indexed serving cutover and Atlas retirement |
 | Social | Existing-owner venue-bound pulls and one-recipient original-text receiving through Life/Home; recipient Keep/Leave-aside; named local API/iOS flows; native sender withdrawal after recipient disconnect | Casual media/group/gathering breadth and useful juxtaposition; no new sharing or friend-source AI-use policy is adopted here; broader downstream use remains |
 | Practical/live engine | Current open-now facts and saved-place changes affect surfaces; explicit fit contract and private stop-assistance/reviewed Send implemented | Provider-backed fit rehearsal, wider fresh-world coverage, purpose-preserving adaptation and accepted watching mandates; R09 code correction is complete, persisted/native timezone evidence remains |
@@ -2085,7 +2098,7 @@ Integration/landing, publish code, or activate production flags.
 
 | Package / role | Status and complete outcome | Dependency / handback |
 | --- | --- | --- |
-| **Primary build — Home/Places useful breadth** | In progress. The candidate has owner-backed reads, social receiving, practical fit/open-now, exact destinations/return, persisted Home public-Place HTTP readback with source-retraction behavior, native multi-source scrolls, recipient Keep/Leave-aside on exact-place friend lines, and generic partial-read notices. A fixed fictional Home example now covers one cold/quiet case using existing delivery gates and an optional existing Chat continuation; it has focused tests but no native visual or live-retirement proof. Remaining: a varied worthwhile default portfolio, broader design-section coverage, distinct empty states, binary-media runtime proof, and native visual acceptance/parity. | **Current next build emphasis:** deliver one substantive Home/Places value improvement from existing owner-backed material that changes what a person understands, can do, or can connect—not another one-off card or transport proof. Carry exact source, destination, return, accessibility, sparse/error behavior and polished hierarchy through the package. Keep production gates unchanged; no new generator/store or route-only milestone. |
+| **Primary build — Home/Places useful breadth** | In progress. The candidate has owner-backed reads, social receiving, practical fit/open-now, exact destinations/return, persisted Home public-Place HTTP readback with source-retraction behavior, native multi-source scrolls, recipient Keep/Leave-aside on exact-place friend lines, and generic partial-read notices. A fixed fictional Home example now covers one cold/quiet case using existing delivery gates and an optional existing Chat continuation; it has focused tests but no native visual or live-retirement proof. A route trace also found that Home's addressed-note destination carries an exact handoff but Places opens only the venue; the exact line can be absent from the entity reader's three-line cap. | **First bounded correction within this build:** preserve the selected Home handoff into its exact Place, re-read the current recipient-owned record before showing/actioning it, and never substitute another line if it is stale or unavailable. Keep current Keep/Leave-aside semantics, use the owner's current revision, preserve Home return, and emit no read/like/reply signal. Verify the exact target when it would otherwise fall outside the three-line list, plus withdrawn/expired/error and Back cases. This closes existing receiving continuity; it is not a new social feature or a substitute for the substantive value goal. **Then continue:** deliver one substantive Home/Places value improvement from existing owner-backed material that changes what a person understands, can do, or can connect. Carry exact source, destination, return, accessibility, sparse/error behavior and polished hierarchy through the package. Keep production gates unchanged; no new generator/store. |
 | **Complementary build — Life/social downstream value** | Persisted HTTP reads prove one private Plan and one explicitly permissioned shared Outcome through Life root and depth. The People-record seam also preserves grant/member refs, exact destinations and explicit People-bound private anchors. Life's canonical artifact reader shows the authorized photo set and opens a selected original without cropping. Metadata refinding now paginates beyond the former 100-result ceiling and passes its continuation case against a fresh lane-local disposable PostgreSQL database. Life's Places lens opens an explicitly linked Place from a retained source/original and returns to the anchored record. | Do not expand search into body semantics. Current recipient deliveries are owned by Relationships and revalidated there, but Life's root corpus does not read them and its audience contract has only private/group/public; do not encode a revocable one-to-one original as a durable Life record or mislabel it as group content. The Place door follows an existing owner-declared association; it does not prove attendance or later permitted reuse. Further Life/social work must demonstrate a concrete permissioned benefit from already-authorized structured records. Defer policy-dependent media/group/use expansion. |
 | **Non-blocking reliability evidence — R05/R09 edges** | R01/R03 disposable-Postgres authority/revocation regressions pass. R04 withdrawal controls and R09 schedule-zone propagation are code-fixed with focused regressions; R04 sender-control API and native simulator rehearsals pass. R05 lease/recovery code, real Arq/Redis wrapper and expired due-work recovery have focused evidence. Still open: a real process-interruption/restart rehearsal and live transient-provider failure/retry. R09 persisted/native timezone-edge evidence also remains open. | Run only those missing matrices when the explicitly disposable database/queue/device is available. They remain required for their named evidence/landing claims, but do not gate independent product implementation. |
 | **Across both builds — native polish** | Required within each completed surface: design hierarchy, card/media treatment, interaction, accessibility and sparse/pending/failure states. Not accepted yet. | Use current inspected Claude exports and handoffs; record actual canvas/version. Unresolved visual choices do not block unrelated owner/supply work. |

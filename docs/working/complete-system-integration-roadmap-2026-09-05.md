@@ -53,13 +53,15 @@ historical receipts retain their evidence boundaries, not separate dispatch
 authority. Existing I0–I6/CV contracts still govern implementation. Do not
 rebuild foundations merely because an older table described them as missing.
 
-Current order: close only the remaining evidence defects that materially change
-the candidate; keep the supplied Home/Places full-scroll, native sender
-withdrawal, and honest semantic/partial-read-state receipts honest; then
-advance permissioned Life/social downstream value in parallel where files are
-independent. The next product package should deliver value beyond the newly
-connected receiving states: use an existing owner-backed payload for a
-substantive Home/Places design gap or a permissioned Life/social consequence.
+Current order: first close one bounded Home → Places continuation gap. Home's
+addressed-note destination carries the exact handoff and venue references, but
+the current app route opens only the venue; the canonical People-lines response
+is capped at three, so the selected contribution may not be available for its
+existing Keep/Leave-aside actions. Carry the selected handoff into the Place
+reader and re-read through the current recipient owner; fail closed without
+substituting another line or generating a read/like/reply signal. Then advance
+the substantive value package: use an existing owner-backed payload for a
+meaningful Home/Places design gap or a permissioned Life/social consequence.
 Choose another sparse/pending/failure treatment only when it has a distinct
 user consequence—not as another notice or happy-path rehearsal. Do not add a
 generator, feed or storage family to manufacture supply. Native polish and
@@ -2430,7 +2432,7 @@ transient-provider failure/retry remain unverified.
 | I1 | Source/graph/Outcome delivery, repair, backfill and reconciliation foundation; additional retained-source revisions and Life adoption paths in this lane | Build population and later-use coverage over existing owners; do not infer indexed serving cutover or cross-context authority from retention |
 | I2 | Bounded serving, prepared results, cancellation and publication fences; explicit Source Arq registration, serializer repair and gated due-work recovery sweep; real `not_claimed` wrapper, expired due-work recovery and in-flight lease-renewal evidence | Run the process-interruption/restart and live transient-provider failure/retry rehearsals in isolated Arq/Redis; cost/cohort/provider activation remains separately gated |
 | I3 | Contribution authority and useful-first intake; exact retained/received text-original paths with scoped native receipts | R01/R03 authority and revocation are verified, R04 code correction plus API/native sender-control rehearsals and named Life/Home original-receiving paths are complete; broader supported originals and permissioned downstream use remain; pending history/audience policy is not silently adopted |
-| I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots; supplied Home and Places multi-source full-scrolls; same-Place sequence passes persisted Home HTTP readback with source retraction; generic Home/Places partial-read notices preserve supplied content; rebuilt Place reader now supports recipient Keep/Leave-aside with a real local native/API rehearsal; Home's long Outcome preview is capped at 220 characters and its v1/v2 doors identify the exact revisioned Life record; focused backend Home/composition/compiler packet: 110 passed; combined app route-helper and Life-reader target-selection packet: 61 passed | Add worthwhile default-portfolio value beyond the proved scrolls from already supplied payloads; native tap/back for the exact Outcome route remains unproven; complete remaining distinct empty states and native visual acceptance, keeping exact actions/destinations and honest failure treatment in scope |
+| I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots; supplied Home and Places multi-source full-scrolls; same-Place sequence passes persisted Home HTTP readback with source retraction; generic Home/Places partial-read notices preserve supplied content; rebuilt Place reader supports recipient Keep/Leave-aside with a real local native/API rehearsal; Home's long Outcome preview is capped at 220 characters and its v1/v2 doors identify the exact revisioned Life record; focused backend Home/composition/compiler packet: 110 passed; combined app route-helper and Life-reader target-selection packet: 61 passed | First preserve Home's selected addressed `place_handoff` when opening its exact Place: the route currently retains the venue but drops the handoff, while the People-lines endpoint returns at most three lines. Read the exact current owner record, retain existing Keep/Leave-aside behavior and Home return, and fail closed without substitution or social signal; cover the target outside the three-line list plus stale/withdrawn/expired and Back cases. Then add worthwhile default-portfolio value beyond the proved scrolls from already supplied payloads; native tap/back for the exact Outcome route remains unproven; finish distinct empty states and native visual acceptance, keeping exact actions/destinations and honest failure treatment in scope |
 | I5 | Open-now and saved-world changes reach surfaces; explicit fit and reviewed assistance contracts implemented | R09 code correction and the named current-world native paths are complete; persisted/native timezone edge matrix, permitted-context adaptations, provider-backed fit rehearsal and broader mandates remain separate |
 | I6 | Retirement inventories/guards exist; candidate remains isolated and rollout internal | Keep obsolete execution paths out of new work; complete obligation review and authorized cutovers/landing only when their dependencies are ready |
 
@@ -2452,8 +2454,18 @@ evidence or landing claims, but they do not block independent product work.
 
 The standalone Places runtime rail is no longer the next seam: backend
 selection now forwards the admitted semantic-unit kinds, and the canonical
-`PlacesWorkspace` passes them into `PlacesSectionFeed`. The next package must
-therefore be judged on received value, not on another injected-unit or
+`PlacesWorkspace` passes them into `PlacesSectionFeed`. Before the next value
+composition, close the identified directed-note continuation: the Home
+`people_note_door` carries the exact `place_handoff` and venue, but the route
+mapper selects only the venue; Places' existing viewer-scoped People-lines
+projection is capped at three. Preserve the exact selected handoff into the
+same Place, revalidate it with the relationship owner, expose only its current
+authorized text/actions, and show no substitute line when missing, expired,
+withdrawn, or stale. Back must return to the exact Home unit; opening must not
+create a sender-visible signal. Test a note outside the incidental three-line
+list, owner failure/withdrawal/expiry, action revision, and Home return.
+
+Then judge the primary package on received value, not another injected-unit or
 workspace-reachability test. Select one real owner-backed payload with enough
 structured substance to compose a complete scroll (for example, a comparison,
 evidence view, social perspective, or practical consequence), then verify the
