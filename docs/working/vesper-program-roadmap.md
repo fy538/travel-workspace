@@ -43,21 +43,22 @@ friend's note. The change completes the product path in code without adding a
 social model or sharing surface.
 
 The exact-note implementation is in backend `4e35b8df1` and app
-`7a2dcd0d9`; workspace `b127a54` records the exact-owner PostgreSQL
-acceptance. The latest workspace changes are documentation-only.
-Focused mobile coverage passes **91 tests**; the backend route packet passes
-**7 tests**, and app typecheck and polish-scenario validation pass. The full
-and mobile OpenAPI snapshots and generated types match after projection with
-the established temporary policy copy that advances only expired dates; the
-canonical API policy is unchanged and its normal audit still reports **55
-expired reviews**. The schema-bridge audit reports **59 expired exceptions**,
-while query-key ownership reports 12 findings outside this slice. The exact
-owner read now passes its written PostgreSQL case (**1 passed**) against a
-fresh lane-local disposable database; that database was dropped after the
-test. Native tap/back, withdrawal and expiry acceptance have not run. These
-are local candidate commits only—not merged, published or rollout-enabled.
-The route is implemented, but native evidence and the applicable standard
-gates remain closeout requirements before landing.
+`2ca05131d`; workspace `8fcdc64` is the code/evidence baseline before this
+roadmap edit. The exact Home → Place → Keep → Home path now has native
+acceptance on iPhone 16 Plus / iOS 18.2: it opened the selected note, kept it,
+observed owner revision advance from 0 to 1 and an exact owner reread at
+revision 1, returned to Home with the handled unit removed, and cleaned its
+disposable fixture. The focused object-page suite passes **23 tests**, the
+runner contract passes **4 tests**, and the native runner passed. TypeScript,
+shell syntax and diff checks passed; targeted ESLint had **0 errors** and 14
+existing-pattern warnings. The previously recorded exact-owner PostgreSQL
+case passed **1 test** on a disposable database, then dropped it. Withdrawal
+and expiry on this Home-selected route remain unproven. The OpenAPI projection
+matches generated types using a temporary policy copy that advances only
+expired dates; canonical API policy is unchanged, with **55 expired reviews**,
+**59 expired schema-bridge exceptions**, and **12 query-key ownership findings**
+outside this slice. These are local candidate commits only—not merged,
+published, rollout-enabled, or cleared through standard gates.
 
 Backend commit `ee625b985` also closes a bounded Home projection defect:
 long-authored Outcome meaning is now a compact excerpt, while the exact
@@ -114,24 +115,24 @@ drift that had called several already-renderable kinds "dark"; it does not
 claim source admission, recurring content supply, broad runtime full-scroll
 quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
-**Functional evidence tuple at this roadmap refresh:** workspace
-`b127a548`, backend `4e35b8df1`, and app `7a2dcd0d9`, all on the isolated
+**Functional evidence tuple at this roadmap refresh:** workspace `8fcdc64`,
+backend `4e35b8df1`, and app `2ca05131d`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. Backend and app contain the
-exact Home-selected Place-note continuation. Its focused app packet passed
-**91 tests**, the backend route packet passed **7 tests**, and the written
-exact-owner PostgreSQL case passed **1 test** against a newly created,
-lane-local disposable database that was dropped afterward. Workspace
-`b127a548` records that acceptance and is the code/evidence baseline for this
-documentation-only refresh. No product source changed in the latest workspace
-commit. Earlier commits in this candidate
-provide the exact Outcome Life door and excerpt bound, Home/Places scrolls,
-Life readers/refinding, and explicit Life → Places return. All three candidate
-trees were clean before this documentation update. None of these commits is
-merged to main, published, or production-flag activated. Native tap/back,
-withdrawal and expiry acceptance for the selected note, the fixed Home
-sample's native appearance/retirement, and the Home Outcome route's native
-return remain unverified. See the dated receipts for exact evidence
-boundaries.
+exact Home-selected Place-note continuation. Its native Keep journey passed on
+iPhone 16 Plus / iOS 18.2, including exact revision 0 → 1 owner readback,
+Home return with the handled inbox unit removed, and fixture cleanup. The
+focused object-page suite passed **23 tests**, runner contract **4 tests**, and
+the native runner passed; the written disposable-Postgres case passed **1
+test**. TypeScript and shell syntax passed; targeted ESLint had 0 errors and
+14 existing-pattern warnings. No API schema changed. Withdrawal/expiry for
+this selected note, the fixed Home sample's native appearance/retirement, and
+the Home Outcome route's native return remain unverified. Standard audit
+findings remain open and `make verify` was not run. All three candidate trees
+were clean before this documentation update. None of these commits is merged
+to main, published, or production-flag activated. Earlier commits provide the
+exact Outcome Life door and excerpt bound, Home/Places scrolls, Life
+readers/refinding, and explicit Life → Places return. See the dated receipts
+for exact evidence boundaries.
 
 ### September 22 backend robustness receipt — bounded Home Outcome preview
 
@@ -168,6 +169,27 @@ API/database/native tap-and-back rehearsal or full `make verify` was run. The
 reference and local reader selection now agree; the runtime return experience
 still relies on the existing root-navigation contract and remains unproven end
 to end on device.
+
+### September 22 native receipt — Home addressed note → exact Place → Keep
+
+The exact addressed-note continuation is now exercised on a native iPhone 16
+Plus / iOS 18.2 simulator. The flow opened the Home-selected handoff in its
+canonical Place, showed only that exact note, performed Keep, observed the
+relationship owner's revision advance from **0 to 1**, reread that exact note
+at revision 1, then returned to Home where the handled inbox unit was gone.
+The disposable fixture was cleaned after the run. The runner passed; the
+focused `ObjectPageRebuild` suite passed **23 tests**, and the runner-contract
+suite passed **4 tests**. App TypeScript and shell syntax passed; targeted ESLint
+had **0 errors** and 14 warnings matching existing patterns. The earlier
+disposable-Postgres owner-read test passed **1 test** and dropped its database.
+
+This closes the named native Keep/owner-read/return path. It does not prove
+withdrawal or expiry behavior on a Home-selected note, native return for the
+Home Outcome → Life route, the fixed cold-start sample's presentation or
+retirement, visual parity, broader design coverage, standard gates, merge,
+publication or release readiness. The exact-note action is a continuity
+capability—not evidence that the overall Home experience now has sufficient
+value depth.
 
 ### September 21 current-candidate integrity pass
 
@@ -2023,7 +2045,7 @@ before execution; this is a dated observation, not a locked dispatch base.
 
 | Capability | Implemented / recorded evidence | Remaining product or evidence boundary |
 | --- | --- | --- |
-| Home / Places | Owner-backed Save/readback, public Place and child-entity readings, consented place pulls, nearby open-now options, supplied experience comparisons, plural social perspectives, addressed Place contributions and recipient Keep/Leave-aside; exact Home-selected handoff ID/revision now survives navigation into its canonical Place and is read from the relationship owner without fallback; native multi-source scrolls and partial-read treatment; fixed fictional Home sample behind existing delivery gates; Home Outcome excerpts capped at 220 characters with exact revisioned Life door; exact Outcome routing and Life-row selection covered by **61 app route/reader tests**; exact Home photo tap is gated by current delivery revision and material authorization; persisted Home public-Place HTTP readback and named local API/iOS flows | The exact-note path is implemented in this candidate: app packet **91 passed**, backend route packet **7 passed**, exact-owner PostgreSQL case **1 passed** on a fresh disposable DB (then dropped), typecheck and polish-scenario validation passed; OpenAPI projection/generated types match using a temporary copy advancing only expired policy dates. Native tap/back/withdrawal/expiry acceptance is still unrun; standard gates still report 55 expired API-policy reviews, 59 schema-bridge exceptions, and 12 query-key ownership findings outside this slice. Do not merge/publish yet. Next product implementation: add substantive Home/Places value from existing owner-backed material, not another transport-only route/card or a new generator/store. Also prove the sample's native presentation/retirement; native tap/back for the exact Outcome route; broader section/design breadth, selection quality, distinct empty states, binary-media runtime proof, and native visual acceptance/parity |
+| Home / Places | Owner-backed Save/readback, public Place and child-entity readings, consented place pulls, nearby open-now options, supplied experience comparisons, plural social perspectives, addressed Place contributions and recipient Keep/Leave-aside; exact Home-selected handoff ID/revision survives navigation into its canonical Place and is read from the relationship owner without fallback; native multi-source scrolls and partial-read treatment; fixed fictional Home sample behind existing delivery gates; Home Outcome excerpts capped at 220 characters with exact revisioned Life door; exact Outcome routing and Life-row selection covered by **61 app route/reader tests**; exact Home photo tap gated by current delivery revision and material authorization; persisted Home public-Place HTTP readback and named local API/iOS flows | Exact-note native Keep path now passed on iPhone 16 Plus / iOS 18.2: selected note opened, Keep advanced owner revision 0→1, exact owner reread confirmed revision 1, and Home return removed the handled inbox unit. Focused object-page suite **23 passed**, runner contract **4 passed**, native runner passed; written disposable-Postgres case **1 passed** and DB was dropped. TypeScript/shell syntax passed; targeted ESLint had 0 errors and 14 existing-pattern warnings. Withdrawal/expiry remain unproven. Standard gate findings remain 55 expired API-policy reviews, 59 expired schema-bridge exceptions, and 12 query-key ownership findings; do not merge/publish yet. **Next product build:** deliver substantive Home/Places value from existing owner-backed material, not another transport-only route/card or new generator/store. Also prove the fixed sample's native presentation/retirement; native tap/back for the exact Outcome route; broader section/design breadth, selection quality, distinct empty states, binary-media runtime proof, and native visual acceptance/parity |
 | Life | Retained text originals, exact refinding/return, explicit place- and people-bound sources, organized period groups, and a canonical artifact reader that presents every available authorized photo whole with same-record return; metadata refinding continues past the newest 100 results with a versioned keyset cursor and rechecks current owner, retention, status and custody on each page; the continuation case passes on a fresh lane-local disposable PostgreSQL database; Life opens an explicitly linked Place from a retained source/original with anchored return; persisted private Plan and explicitly permissioned shared Outcome reach Life/People root and depth HTTP readers | Broader binary-media/corpus coverage and People/Threads experience, live original-byte/device acceptance, later permitted reuse that changes a subsequent result, indexed serving cutover and Atlas retirement |
 | Social | Existing-owner venue-bound pulls and one-recipient original-text receiving through Life/Home; recipient Keep/Leave-aside; named local API/iOS flows; native sender withdrawal after recipient disconnect | Casual media/group/gathering breadth and useful juxtaposition; no new sharing or friend-source AI-use policy is adopted here; broader downstream use remains |
 | Practical/live engine | Current open-now facts and saved-place changes affect surfaces; explicit fit contract and private stop-assistance/reviewed Send implemented | Provider-backed fit rehearsal, wider fresh-world coverage, purpose-preserving adaptation and accepted watching mandates; R09 code correction is complete, persisted/native timezone evidence remains |
@@ -2119,7 +2141,7 @@ Integration/landing, publish code, or activate production flags.
 
 | Package / role | Status and complete outcome | Dependency / handback |
 | --- | --- | --- |
-| **Primary build — Home/Places useful breadth** | The candidate has owner-backed reads, social receiving, practical fit/open-now, exact destinations/return, persisted Home public-Place HTTP readback with source-retraction behavior, native multi-source scrolls, recipient Keep/Leave-aside, and partial-read treatment. Home's addressed note now routes to its exact Place with the selected handoff ID/revision; the relationship owner reads that exact current revision, and the page opens only the selected note or reports it unavailable. Focused evidence: app **91 tests**, backend route **7 tests**, exact-owner PostgreSQL case **1 passed** on a dedicated disposable database (then dropped), app typecheck and polish-scenario validation passed. This is implemented locally, not natively accepted or merge-ready. | **Next product build:** deliver substantive Home/Places value from existing owner-backed material that changes what a person understands, can do, or connect. Carry exact source, destination, return, accessibility, sparse/error behavior and polished hierarchy through the package; keep production gates unchanged and add no generator/store. **Separate closeout for this candidate:** native tap/back/withdrawal/expiry acceptance remains required when the device is available; resolve the reported standard gate findings before landing. These closeout checks do not serialize independent value-depth implementation. Also prove the fixed sample's native presentation/retirement, the exact Outcome route's native return, broader section/design breadth, selection quality, distinct empty states, binary-media runtime and native visual acceptance/parity. |
+| **Primary build — Home/Places useful breadth** | The candidate has owner-backed reads, social receiving, practical fit/open-now, exact destinations/return, persisted Home public-Place HTTP readback with source-retraction behavior, native multi-source scrolls, recipient Keep/Leave-aside, and partial-read treatment. Home's addressed note routes to its exact Place with selected handoff ID/revision; the relationship owner reads that exact current revision, and the page opens only the selected note or reports it unavailable. Native Keep acceptance now proves revision 0→1 owner readback and return to Home with the handled unit removed. Focused evidence: object-page suite **23 tests**, runner contract **4 tests**, native runner passed on iPhone 16 Plus / iOS 18.2, and written disposable-Postgres case **1 passed**. TypeScript/shell syntax passed; targeted ESLint had 0 errors and 14 existing-pattern warnings. This is implemented and natively accepted for Keep only; withdrawal/expiry remain unproven, and it is not merge-ready. | **Next product build:** deliver substantive Home/Places value from existing owner-backed material that changes what a person understands, can do, or connect. Carry exact source, destination, return, accessibility, sparse/error behavior and polished hierarchy through the package; keep production gates unchanged and add no generator/store. **Separate closeout for this candidate:** exact-note withdrawal/expiry evidence remains required before claiming those behaviors; resolve reported standard gate findings before landing. These closeout checks do not serialize independent value-depth implementation. Also prove the fixed sample's native presentation/retirement, exact Outcome route's native return, broader section/design breadth, selection quality, distinct empty states, binary-media runtime and native visual acceptance/parity. |
 | **Complementary build — Life/social downstream value** | Persisted HTTP reads prove one private Plan and one explicitly permissioned shared Outcome through Life root and depth. The People-record seam also preserves grant/member refs, exact destinations and explicit People-bound private anchors. Life's canonical artifact reader shows the authorized photo set and opens a selected original without cropping. Metadata refinding now paginates beyond the former 100-result ceiling and passes its continuation case against a fresh lane-local disposable PostgreSQL database. Life's Places lens opens an explicitly linked Place from a retained source/original and returns to the anchored record. | Do not expand search into body semantics. Current recipient deliveries are owned by Relationships and revalidated there, but Life's root corpus does not read them and its audience contract has only private/group/public; do not encode a revocable one-to-one original as a durable Life record or mislabel it as group content. The Place door follows an existing owner-declared association; it does not prove attendance or later permitted reuse. Further Life/social work must demonstrate a concrete permissioned benefit from already-authorized structured records. Defer policy-dependent media/group/use expansion. |
 | **Non-blocking reliability evidence — R05/R09 edges** | R01/R03 disposable-Postgres authority/revocation regressions pass. R04 withdrawal controls and R09 schedule-zone propagation are code-fixed with focused regressions; R04 sender-control API and native simulator rehearsals pass. R05 lease/recovery code, real Arq/Redis wrapper and expired due-work recovery have focused evidence. Still open: a real process-interruption/restart rehearsal and live transient-provider failure/retry. R09 persisted/native timezone-edge evidence also remains open. | Run only those missing matrices when the explicitly disposable database/queue/device is available. They remain required for their named evidence/landing claims, but do not gate independent product implementation. |
 | **Across both builds — native polish** | Required within each completed surface: design hierarchy, card/media treatment, interaction, accessibility and sparse/pending/failure states. Not accepted yet. | Use current inspected Claude exports and handoffs; record actual canvas/version. Unresolved visual choices do not block unrelated owner/supply work. |
