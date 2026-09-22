@@ -2504,6 +2504,19 @@ transient-provider failure/retry remain unverified.
 | I5 | Open-now and saved-world changes reach surfaces; explicit fit and reviewed assistance contracts implemented | R09 code correction and the named current-world native paths are complete; persisted/native timezone edge matrix, permitted-context adaptations, provider-backed fit rehearsal and broader mandates remain separate |
 | I6 | Retirement inventories/guards exist; candidate remains isolated and rollout internal | Keep obsolete execution paths out of new work; complete obligation review and authorized cutovers/landing only when their dependencies are ready |
 
+**I4 follow-through — September 22:** app `e2c0bafb1` strengthens flow 75 to
+verify that a Place contribution remains kept after closing the exact Place
+reader, returning to Places and reopening the venue, before explicitly
+selecting Leave aside. Its static flow contract passes **4/4** tests; three
+focused app suites pass **33 tests**. The runner now rejects non-loopback API
+origins and arms fixture cleanup before provisioning. This is a stronger
+acceptance definition, not a new product capability. The extended sequence is
+not natively accepted: API startup stopped on missing `ANTHROPIC_API_KEY` before
+Maestro ran. The metadata check also stops on the untouched flow 76's invalid
+`lane: functional-implementation`; flow 75 itself passes normalization. Keep
+the earlier, narrower native Keep/Leave-aside receipt intact, but do not widen
+its claim to this reopen-persistence sequence until the runtime flow passes.
+
 ### Current build sequence and finish conditions
 
 This sequence is the forward plan within the existing I/CV packages. It replaces

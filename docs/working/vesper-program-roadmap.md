@@ -2036,18 +2036,30 @@ acceptance remain open.
 
 | Repository | Candidate HEAD at this rebaseline | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `f0cba5f` (code/evidence baseline before this documentation update) | `70c4b4b` |
+| Workspace | `fd2349c` (last committed workspace revision inspected for this refresh) | `70c4b4b` |
 | Backend | `f099bdace` | `a7c02cbe1` |
-| App | `0924ff1e5` | `e2e792913` |
+| App | `e2c0bafb1` | `e2e792913` |
+
+Latest app-only follow-through: commit `e2c0bafb1` strengthens the Places
+recipient flow so Keep must survive closing the exact Place reader, returning to
+Places, and reopening the same venue before the flow explicitly Leaves the line
+aside. The 4-test flow contract and 33-test focused owner/action/object-page
+packet pass. This extended sequence is not natively accepted: local API startup
+stopped on missing `ANTHROPIC_API_KEY`, before Maestro ran. The earlier, narrower
+native Keep proof remains valid only at its recorded scope. The current
+`maestro:metadata:check` also fails on untouched flow
+`.maestro/76-places-public-reading.yaml` (`lane: functional-implementation` is
+not an allowed metadata value); flow 75 itself normalizes successfully.
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent
 repositories. Earlier workspace receipt `b127a54` records the initial exact
 Home-selected Place continuity acceptance. The exact Home Outcome return
 implementation is in app `0924ff1e5`, with its guarded rehearsal fixture in
-backend `f099bdace`; workspace `f0cba5f` is the code/evidence baseline before
-this documentation update. All three candidate trees were clean at that
-baseline.
+backend `f099bdace`; workspace `fd2349c` is the last committed workspace
+revision inspected for this refresh. App `e2c0bafb1` adds the stronger
+Keep-after-reopen flow contract and runner safeguards. All three candidate
+trees were clean at inspection.
 Canonical main and its concurrent work remain untouched. The candidate is
 committed in its lane, not landed on main or released. Recheck Git and ownership
 before execution; this is a dated observation, not a locked dispatch base.
@@ -3984,3 +3996,28 @@ destination/return seam, not broad design parity or later permitted context
 reuse. The next queue remains a substantive Home/Places value result or a
 distinct Life/social later-use result whose existing payload and authority can
 support it.
+
+## September 22 functional implementation receipt — Places Keep persistence flow contract
+
+App commit `e2c0bafb1` strengthens the existing
+`.maestro/75-places-real-social-pull.yaml` sequence. After Keep, the flow closes
+the exact Place reader, returns to Places, reopens that same venue, and confirms
+the same handoff remains kept before it explicitly selects Leave aside. The
+runner now rejects non-loopback API origins and arms fixture cleanup before
+provisioning, reducing the risk of leaving a rehearsal contribution behind if
+setup or the UI flow fails. This changes no recipient-action semantics, API,
+owner, policy or storage.
+
+Evidence on the current app revision: the flow contract passes **4/4** tests;
+the focused owner-action, handoff-adapter and rebuilt-object-page packet passes
+**33 tests**; shell syntax and YAML parsing pass. The extended Keep → close →
+Places → reopen → Leave-aside sequence was not natively accepted in this
+refresh. Its local API startup stopped because `ANTHROPIC_API_KEY` was
+unavailable; no substitute key or QA identity was supplied, and Maestro did
+not execute the flow. `npm run maestro:metadata:check` reaches the next,
+untouched flow and fails because `.maestro/76-places-public-reading.yaml`
+still declares invalid `lane: functional-implementation`; flow 75 itself
+passes normalization. This is strengthened acceptance scaffolding, not a new
+user-visible capability or visual verdict. Preserve the earlier narrower
+native Keep receipt, but require a valid local runtime before claiming the new
+reopen-persistence sequence.
