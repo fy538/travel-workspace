@@ -5192,3 +5192,13 @@ No semantic kind, source, ranking, destination, action, lifecycle or return
 behavior changed. The Home smoke suite remains **19 tests** passing;
 TypeScript and targeted lint pass, with only the existing renderer max-lines
 warning. The active app tuple is now `5bebc401c`.
+
+## September 22 social receiving boundary recheck
+
+The Home original-delivery path currently supports an exact
+recipient-authorized original read with sender attribution, expiry/withdrawal
+revalidation, and Home return. Relationships does not yet expose a typed human
+Reply, private Ask, or sender-chat destination to this root. Do not add a
+static prototype button or a second social store to simulate it; those actions
+remain a future Social/Chat owner contract. Original-only enjoyment is already
+a complete supported Home value.
