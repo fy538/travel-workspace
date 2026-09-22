@@ -73,9 +73,9 @@ for the current package register and evidence boundaries.
 **Current-tuple correction — September 22:** the paragraph above is an
 earlier saved-Place receipt, not the active implementation baseline. The
 current isolated product-code tuple is workspace `e798bc6` (roadmap/evidence
-only), backend `2e123173c`, and app `1cca51a04`. The complete backend
+only), backend `2e123173c`, and app `7a0af5f80`. The complete backend
 `tests/root_projection` packet passes **479 tests** and the focused app
-root-navigation/Home smoke/connected Home packet passes **78 tests**. These
+root-navigation/Home smoke/connected Home packet passes **79 tests**. These
 are offline/component checks for the current tuple; they do not prove
 populated production supply, native device action or media acceptance,
 external design-canon parity, or release readiness. Treat older tuples in
@@ -7485,6 +7485,17 @@ receipt/Place-destination implementation and its existing owner-read,
 renderer, expiry and return contracts. It remains offline/component evidence:
 it does not prove populated production supply, native device media/action
 acceptance, external design-canon parity, or release readiness.
+
+#### 9.10.7 September 22 receipt destination mobile coverage
+
+The receipt → Place destination now has an explicit mobile navigation
+regression. App commit `7a0af5f80` verifies that an owned
+`action_receipt` carrying a routable `venue` target opens the canonical
+`/venue/[id]` route and preserves the Home root-return token; the navigator
+does not fall back to Life or the generic Places root. The focused
+`rootProjectionNavigation` suite passes **60 tests**, and app TypeScript
+passes. This is coverage for the already implemented destination contract,
+not a new capability, native device acceptance, or visual-parity claim.
 
 **Source-inspection boundary confirmed on September 22:** public
 `place_content_primitive` readings are exact, evidence-linked owner coordinates

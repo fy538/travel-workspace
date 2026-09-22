@@ -119,7 +119,7 @@ backend `60da1dcb9`, and app `d021488be`. Its 59 backend Home-portfolio and
 slice, not the current checkout.
 
 **Current isolated product-code tuple:** workspace checkpoint `5d2047b`, backend
-`2e123173c`, and app `1cca51a04`, all on
+`2e123173c`, and app `7a0af5f80`, all on
 `codex/functional-implementation-2026-09-20`. The workspace, backend, and app
 trees are clean. Workspace commits after the product-code checkpoints are
 roadmap/evidence maintenance; the current backend and app heads retain the
@@ -4892,13 +4892,24 @@ or broad consequence feed, and visual/device parity remains unverified.
 
 After the receipt Place-destination slice, the complete backend
 `tests/root_projection` packet passes **479 tests**. The focused app
-root-navigation/Home smoke/connected Home packet passes **78 tests**. These
-runs cover the exact current backend/app heads (`2e123173c` / `1cca51a04`)
+root-navigation/Home smoke/connected Home packet passes **79 tests**. These
+runs cover the exact current backend/app heads (`2e123173c` / `7a0af5f80`)
 and preserve the bounded destination, owner-read, renderer, expiry and return
 contracts already described above. They do not prove populated production
 supply, native device media/action acceptance, external design-canon parity,
 or release readiness; those remain explicit package exit evidence rather than
 being inferred from the green offline suites.
+
+## September 22 mobile receipt-destination regression
+
+App commit `7a0af5f80` adds the missing direct navigation regression for the
+latest Home receipt destination. An owned `action_receipt` whose target is a
+routable `venue` now has an explicit test proving that the canonical
+`/venue/[id]` route opens and the Home root-return token survives. The focused
+`rootProjectionNavigation` suite passes **60 tests** and app TypeScript passes.
+This strengthens the already implemented receipt → Places owner path; it does
+not add a new route, receipt store, semantic kind, native/device acceptance,
+or visual-parity claim.
 
 ## September 22 functional implementation receipt — governed Life answers
 
