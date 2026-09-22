@@ -71,6 +71,20 @@ not record a read/seen action, navigate, or add a second banner. Focused
 PushRegistrar (**15**) and Home root-invalidation (**3**) tests plus app
 TypeScript pass. Native push delivery/device acceptance remains unverified.
 
+The fixed Home ticket sample no longer sends its “Try it with your own ticket”
+action to a blank Chat. That exact Home-owned sample source opens the existing
+private Chat with an editable, unsent request and a seed that labels the Home
+example fictional; another source or non-Home handoff cannot receive this
+special treatment. The seed is attached only when the person submits, and the
+one-shot draft/context is cleared only after transport acceptance, so a
+declined send can be retried. Focused route/composer/seed tests pass (**73**),
+as do the existing backend seed-context packet (**44**), app TypeScript and
+app docs checks. App lint has no errors and one existing Chat-file max-lines
+warning. Native screenshot acceptance remains unavailable: Metro is not
+running on `:8081`, and Home still lacks a registered design-ref manifest. This
+closes the sample's destination-and-context seam, not the user-provided ticket
+interpretation or end-to-end device behavior.
+
 **Home implementation map:** `build_home_portfolio` already reads ten bounded
 sources (up to six concurrently, a 900 ms deadline per source, and up to 24
 items per source),
@@ -89,19 +103,21 @@ backend `60da1dcb9`, and app `d021488be`. Its 59 backend Home-portfolio and
 117 app route/workspace/feed test results remain evidence for that earlier
 slice, not the current checkout.
 
-**Current isolated implementation tuple:** workspace `d673f33`, backend
-`7537ae042`, and app `0e1676a4c`, all on
+**Current isolated implementation tuple:** workspace `0ad22b1`, backend
+`7537ae042`, and app `16fb0fef5`, all on
 `codex/functional-implementation-2026-09-20`. The three repositories were clean
-after the app implementation commit and before this roadmap edit; canonical
-main and its unrelated working-tree changes remain untouched. Current focused
-evidence includes backend selector/portfolio **68 tests**; Home renderer **12**,
-Home screen **17**, PushRegistrar **15**, and root-invalidation **3** app tests;
-app TypeScript; and docs-link validation across **499** living Markdown files.
-Targeted ESLint reported no errors, with existing max-lines/import-order
-warnings. No live-account read, native push/device acceptance, or Home visual
-parity acceptance ran. The latest notification change only invalidates Home's
-existing owner projection after foreground receipt/provider-drop recovery; it
-does not add a banner, navigation, or a synthetic seen action.
+after the sample-to-Chat implementation commit and before this roadmap edit.
+Canonical main and its unrelated working-tree changes remain untouched.
+Current focused evidence includes backend selector/portfolio **68 tests** and
+backend seed context **44 tests**; Home renderer **12**, Home screen **17**,
+PushRegistrar **15**, root-invalidation **3**, and route/composer/seed **73**
+app tests; app TypeScript; app docs headers/links (**9 / 288**); and workspace
+docs-link validation (**499** living Markdown files). Targeted ESLint reported
+no errors and the existing Chat-file max-lines warning. No live-account read,
+native push/device acceptance, or Home visual-parity acceptance ran. The latest
+notification change only invalidates Home's existing owner projection after
+foreground receipt/provider-drop recovery; it does not add a banner,
+navigation, or a synthetic seen action.
 
 Earlier acceptance remains useful but is not current-tuple evidence. On app
 `9a4c029e3`, the exact Home → Place → Keep → Home route had native acceptance
