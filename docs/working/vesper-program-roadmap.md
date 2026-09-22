@@ -3819,6 +3819,34 @@ generation, design-parity or release-readiness claim. Next work should return to
 the roadmap's value-depth queue rather than expanding this lookup into a new
 index or corpus.
 
+### September 21 Home value-depth — fixed cold-start demonstration
+
+Home now has a product-authored, explicitly fictional ticket example for cold
+or quiet accounts when no substantive Home unit is available. The sample is
+static (no model call and no personal-data inference), distinguishes itself as
+a sample, and offers the existing Chat continuation as an optional next step.
+It retires after a proof-backed open/action or two distinct proof-backed
+presentations. Its exact receipt-history query is bounded and keeps a prior
+explicit try visible even if later render telemetry accumulates. No new event
+store or preference/knowledge inference was added.
+
+Backend commit `ebaea7c80` and app commit `cb3bae7cb` contain the owner-read,
+candidate, lifecycle, native treatment and focused regression coverage. The
+focused backend packet passes **77 tests**; Ruff check/format pass. The Home
+renderer suite passes **11 tests**; TypeScript and test-contract TypeScript
+pass; targeted ESLint has no errors. Its pre-existing renderer max-lines
+warning remains, with the changed renderer shortened from 1,173 to 1,145 lines.
+The SQL query shape was compiled and checked offline; it was not executed
+against PostgreSQL.
+
+This package remains dark unless the existing root-delivery projection and
+exposure flags plus a valid presentation secret are configured; no rollout
+flag was changed. Native visual acceptance was not run: Metro/API services are
+unavailable in this lane and its booted simulator is not assigned to the lane.
+The sample's user-visible appearance and live proof-backed retirement therefore
+remain unverified. This closes a bounded cold-start content path, not Home
+design parity, full-scroll variety, generated supply or release readiness.
+
 ### September 21 Life refind continuation — disposable PostgreSQL follow-up
 
 The previously unrun continuation case was executed against a new database
