@@ -81,6 +81,27 @@ family to manufacture supply. If no existing owner-backed input supports a
 meaningful increment, record the supply/authority gap rather than inventing a
 new abstraction.
 
+**September 22 Places integration receipt:** the sibling World Field is now
+merged into this isolated functional candidate (backend merge `8866f41a2`, app
+merge `933f004f8`). Review found and fixed a real ordering seam: the renderer
+now honors the server-elected `dominant_unit_id` across semantic-kind
+partitioning, with a regression proving a returned-understanding lead stays
+above mature browse content. The combined candidate passed the bounded backend
+root-projection packet (**454 passed**), app focused packet (**25 suites / 314
+tests**), TypeScript and contract typecheck, scenario registry (**31**), and
+targeted lint (zero errors; one existing max-lines warning). The combined
+`90-places-full-scroll` flow then passed on iPhone 16 Plus / iOS 18.2 against
+this lane's real API and disposable Postgres: server-elected Source lead, exact
+public reading, recipient-consented friend note, reopened saved-place notice,
+and retained Place all appeared in one scroll. Runner fixture cleanup passed;
+the exact temporary QA account was deleted and its residual scan was empty.
+The registered mock polish flow still fails its forced
+`places-search-loading` assertion before producing a screenshot, and its
+external design canon is unverified. This does not claim broad visual parity,
+recurring provider supply or release readiness. **Next substantial build: Home
+full-scroll value breadth**, using existing owner-backed material; do not
+restart a broad Home/Places redesign or add a content/generation subsystem.
+
 The Home/Places renderer ledger has now been refreshed against the current
 child heads: Home exposes 17 explicit semantic renderers plus its three chrome
 components and Places exposes 12 semantic renderers. The combined focused
@@ -2502,7 +2523,7 @@ transient-provider failure/retry remain unverified.
 | I1 | Source/graph/Outcome delivery, repair, backfill and reconciliation foundation; additional retained-source revisions and Life adoption paths in this lane | Build population and later-use coverage over existing owners; do not infer indexed serving cutover or cross-context authority from retention |
 | I2 | Bounded serving, prepared results, cancellation and publication fences; explicit Source Arq registration, serializer repair and gated due-work recovery sweep; real `not_claimed` wrapper, expired due-work recovery and in-flight lease-renewal evidence | Run the process-interruption/restart and live transient-provider failure/retry rehearsals in isolated Arq/Redis; cost/cohort/provider activation remains separately gated |
 | I3 | Contribution authority and useful-first intake; exact retained/received text-original paths with scoped native receipts | R01/R03 authority and revocation are verified, R04 code correction plus API/native sender-control rehearsals and named Life/Home original-receiving paths are complete; broader supported originals and permissioned downstream use remain; pending history/audience policy is not silently adopted |
-| I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots; supplied Home and Places multi-source full-scrolls; same-Place sequence passes persisted Home HTTP readback with source retraction; generic Home/Places partial-read notices preserve supplied content; rebuilt Place reader supports recipient Keep/Leave-aside with a real local native/API rehearsal; Home's long Outcome preview is capped at 220 characters and its v1/v2 doors identify the exact revisioned Life record; focused backend Home/composition/compiler packet: 110 passed; combined app route-helper and Life-reader target-selection packet: 61 passed; exact Home Outcome → Life record → same Home unit native return passed on iPhone 16 Plus / iOS 18.2 (app `0924ff1e5`, backend fixture `f099bdace`, runner contract **4/4**, Life-record suite **19 passed**). **Implemented candidate:** exact Home-selected Place handoff ID/revision routes to the canonical object and is re-read through the relationship owner; focused app packet **91 passed**, backend route packet **7 passed**, exact-owner PostgreSQL case **1 passed**, typecheck and polish validation passed; workspace/backend/app commits `79fbb69` / `4e35b8df1` / `7a2dcd0d9` | The selected line opens only when that exact handoff remains eligible; malformed, absent, stale, withdrawn and mismatched selections fail closed without substitution. The disposable-Postgres case passed exact selection outside the three-line list, stale revision, membership withdrawal and sender-revoke checks in a dedicated lane-local database that was then dropped. Withdrawal/expiry for the selected Place note remain unrun; exact Home Outcome tap/back return is now proven. OpenAPI/generated types match using the established temporary policy copy; canonical policy is unchanged. `api-coverage-check` still reports 55 expired reviews; `schema-bridge` reports 59 expired exceptions; query-key ownership reports 12 findings outside this slice. The local candidate is not merge-ready. Complete native and standard-gate closeout before landing; these checks do not serialize independent product implementation. **Next build:** create substantive Home/Places value from existing owner-backed material rather than another transport-only seam. Still open: fixed Home sample native presentation/retirement; broader section/design breadth, selection quality, distinct empty states, binary-media runtime and visual acceptance/parity remain open |
+| I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots; Home/Places multi-source full-scrolls; same-Place sequence passes persisted Home HTTP readback with source retraction; generic Home/Places partial-read notices preserve supplied content; rebuilt Place reader supports recipient Keep/Leave-aside with a real local native/API rehearsal; Home's long Outcome preview is capped at 220 characters and its v1/v2 doors identify the exact revisioned Life record; exact Home Outcome → Life record → same Home unit native return passed on iPhone 16 Plus / iOS 18.2; Home-selected Place handoff ID/revision is re-read through the relationship owner; integrated Places World Field now renders the server-elected lead ahead of mature browse and has a combined native full-scroll receipt. Backend root-projection packet **454 passed**; app focused packet **25 suites / 314 tests**; TypeScript/contract checks and scenario registration pass; combined native Places runner passed. Backend/app merge commits `8866f41a2` / `933f004f8` | The selected Place line still opens only when that exact handoff remains eligible; withdrawal/expiry for the selected Place note remain unrun. The registered mock `places-search-loading` polish assertion still fails before screenshot capture; broad design-canon and visual parity remain unverified. OpenAPI/generated types unchanged by this slice. The standard pre-push findings remain 55 expired API-policy reviews, 59 expired schema-bridge exceptions, and 12 query-key ownership findings; candidate is not ready for landing/publishing. **Next build:** Home's substantive full-scroll breadth from existing owner-backed material, not another transport-only seam or generator/store. Still open: fixed Home sample native presentation/retirement, broader section/design breadth and selection quality, distinct empty states, binary-media runtime proof, plus release evidence |
 | I5 | Open-now and saved-world changes reach surfaces; explicit fit and reviewed assistance contracts implemented | R09 code correction and the named current-world native paths are complete; persisted/native timezone edge matrix, permitted-context adaptations, provider-backed fit rehearsal and broader mandates remain separate |
 | I6 | Retirement inventories/guards exist; candidate remains isolated and rollout internal | Keep obsolete execution paths out of new work; complete obligation review and authorized cutovers/landing only when their dependencies are ready |
 
@@ -4682,14 +4703,15 @@ exposure or defaults, not silently alter canonical ownership or narrow the syste
 to one behavior loop. The research basis and disconfirmation conditions remain in
 [the four-area synthesis](vesper-audience-offer-and-market-strategy-research-2026-09-06.md#19-four-consequential-strategy-questions--september-7).
 
-### 9.9 Next executable tranche — connected everyday value
+### 9.9 Historical executable tranche — connected everyday value (September 7)
 
-**Status: proposed execution plan, September 7; not an implementation receipt.**
-This is the next substantial batch within §9.8, not a replacement program or a
-new product category. It changes the unit of execution from isolated adapter
-repairs to completed connections across supply, judgment, receiving and return.
-The prior Source callback, exact-result readback, cancellation and Home receiving
-repairs remain completed foundations; do not implement them again.
+**Status: historical proposed plan, superseded by the September 22 current
+execution refinement above and the program roadmap's current package register.**
+It is retained for rationale and scope history, not as a second active queue or
+an implementation receipt. The current functional candidate now has many of
+the connections described below; remaining capability gaps are restated in the
+current package register and execution refinement. Do not redispatch §9.9 as
+written.
 
 #### 9.9.1 Outcome and size of the slice
 
@@ -7263,3 +7285,60 @@ The next product-engineering priority remains substantive value depth from
 existing owner data or a permissioned Life/social later-use result; include this
 sheet in the next native acceptance pass rather than creating a parallel
 recipient-action harness.
+
+### 9.10 September 22 execution — Places World Field complete; Home breadth next
+
+**Status: Places World Field integrated and accepted on the current functional
+candidate; Home full-scroll breadth is the active product build.** The
+implementation originated in sibling workspace `58e45dc`, backend `d7d153810`,
+app `cd70c7111`, then merged into this lane's independent child repositories.
+Current merged code heads are backend `8866f41a2` and app `933f004f8`; the
+workspace roadmap changes are being recorded in this lane. Canonical main and
+other worktrees remain untouched.
+
+The World Field provides one server-elected lead, bounded branches/doors, and
+composition alongside the existing Places feed. Code review found the
+semantic-order defect before native acceptance: kind-based leading/trailing
+partitioning could have demoted a server-selected understanding unit. The app
+now receives `dominant_unit_id`, places that exact elected unit first in its
+semantic partition, and has a regression case for the alternate semantic kind.
+It does not choose or rerank a different unit.
+
+**Combined-candidate evidence:**
+
+- Backend offline `tests/root_projection` packet: **454 passed**; focused
+  Source/Places packet: **81 passed**; Ruff and formatting checks passed.
+- App focus packet: **25 suites / 314 tests**; `npm run typecheck`, contract
+  typecheck and all **31** registered polish scenarios passed. Targeted ESLint
+  reported zero errors and one existing max-lines warning. Structural design
+  check exited zero, but the external canon was not supplied to the checker.
+- Native `90-places-full-scroll` passed on iPhone 16 Plus / iOS 18.2 using this
+  candidate's real local API and isolated Postgres. It showed the server-elected
+  Source lead, the exact public Place reading, recipient-consented friend note,
+  reopened saved-place notice and retained Place in one scroll. The runner
+  cleaned all fixture families; the temporary QA account was erased by the
+  canonical account deletion path and its residual scan returned empty.
+- The candidate's server flags and the app's complete internal four-root
+  rehearsal gates were explicitly enabled only for this local run; background
+  tasks were disabled. A local non-secret sentinel satisfied the backend's
+  startup key-presence guard. The fixture producer was provider-free; no
+  external model call was used. This is product-path evidence, not LLM
+  generation, release or broad visual-parity evidence.
+
+**Still open:** the mock polish runner's forced `places-search-loading`
+assertion fails before producing a screenshot; broad external design-canon
+comparison and visual parity are unverified. The Places full-scroll is therefore
+accepted for its named content/runtime path, not as comprehensive Places design
+acceptance. Place-note withdrawal/expiry and ordinary empty/error states remain
+separate closeout edges.
+
+**Next product build — Home full-scroll value breadth:** use the Home handoff as
+a coverage reference, then select several related sections/cards that current
+owners can actually supply. Deliver a coherent scroll with exact source and
+depth/action destinations, return behavior, sparse/pending/failure treatment,
+accessibility and polished hierarchy. The outcome must add user value beyond
+another same-Place reading sequence or transport-only route. Do not add a
+generator, store, feed or surface architecture to manufacture fullness. Keep
+fixed Home-sample native retirement/presentation, broader Home selection
+quality, binary-media runtime, visual acceptance and standard landing gates as
+distinct closeout work; none requires rebuilding Places first.

@@ -102,6 +102,19 @@ addressed-note withdrawal/expiry cases remain closeout for that route, not the
 next product milestone. Focused tests are part of each build package, not a
 separate phase in place of implementation.
 
+**September 22 refinement:** the bounded Places World Field is now integrated
+in the functional candidate, the server-elected ordering seam is fixed and
+covered, and the combined native full-scroll passed on iPhone 16 Plus / iOS
+18.2. The flow showed one Source-produced lead with public reading,
+recipient-consented social input, a saved-place change, and a retained Place in
+the same scroll; fixture cleanup and temporary-account erasure both verified.
+This closes the Places candidate-adoption and named runtime acceptance step,
+not comprehensive visual parity, recurring supply or release readiness. The
+registered mock `places-search-loading` assertion still fails before
+screenshot capture, and external design-canon comparison remains unverified.
+Home's missing design-aligned full-scroll breadth is now the next substantial
+build; do not rebuild Places or restart a two-surface redesign.
+
 The renderer ledger was refreshed after this rebaseline: the Home transport
 union is 36 kinds, with 17 explicit Home semantic renderers plus the three
 chrome components; Places has 12 explicit semantic renderers. The combined
@@ -2021,50 +2034,77 @@ retirement require their existing approvals. Assignment does not dispatch a task
 
 ## 2. Inspected baseline — September 22
 
-Inspected before this documentation update at workspace `27456a6`, backend
-`f099bdace`, and app `e2c0bafb1`. No provider calls, database
-mutations or simulator runs were performed for this roadmap refresh. Focused
-code checks from the current candidate are recorded below; older runtime
-results remain carried evidence at their named scopes, not fresh certification
-of every path on the latest tuple. Since the previous baseline,
-the candidate adds the fixed cold-start Home example, Life keyset refinding and
-its disposable-Postgres proof, the explicit Life → Places source-associated
-door with anchored return, and the exact Home Outcome → Life record door. The
-exact Home-selected addressed note now has a native Keep → owner revision
-readback → Home-return receipt. The exact Home Outcome → Life record → Home
-return also has a native tap/back receipt. The Home example still has no native
-visual or live-retirement proof. Binary-media delivery and broad visual/device
-acceptance remain open.
+Inspected before this roadmap update at workspace `9c4d822`, backend
+`8866f41a2`, and app `933f004f8`. Since the prior baseline, the candidate adds
+the fixed cold-start Home example, Life keyset refinding and its
+disposable-Postgres proof, the explicit Life → Places source-associated door
+with anchored return, exact Home Outcome → Life record routing/return, and the
+integrated Places World Field with combined native full-scroll acceptance.
+The Home example still has no native visual or live-retirement proof;
+comprehensive visual/device acceptance and broad binary-media coverage remain
+open. Current code heads are committed in the isolated candidate; this roadmap
+refresh is the only remaining workspace edit in this lane.
 
 | Repository | Candidate HEAD at this rebaseline | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `27456a6` (workspace checkpoint before this documentation-only refresh) | `70c4b4b` |
-| Backend | `f099bdace` | `a7c02cbe1` |
-| App | `e2c0bafb1` | `e2e792913` |
+| Workspace | `9c4d822` (candidate before this roadmap refresh) | `70c4b4b` |
+| Backend | `8866f41a2` | `a7c02cbe1` |
+| App | `933f004f8` | `e2e792913` |
 
-Latest app-only follow-through: commit `e2c0bafb1` strengthens the Places
-recipient flow so Keep must survive closing the exact Place reader, returning to
-Places, and reopening the same venue before the flow explicitly Leaves the line
-aside. The 4-test flow contract and 33-test focused owner/action/object-page
-packet pass. This extended sequence is not natively accepted: local API startup
-stopped on missing `ANTHROPIC_API_KEY`, before Maestro ran. The earlier, narrower
-native Keep proof remains valid only at its recorded scope. The current
-`maestro:metadata:check` also fails on untouched flow
-`.maestro/76-places-public-reading.yaml` (`lane: functional-implementation` is
-not an allowed metadata value); flow 75 itself normalizes successfully.
+The stronger Keep-after-reopen flow contract from app `e2c0bafb1` remains a
+separate acceptance path: its 4-test flow contract and 33-test focused
+owner/action/object-page packet pass, but it has not been exercised by the
+`90-places-full-scroll` run and should not inherit that run's acceptance. The
+current `maestro:metadata:check` was previously observed failing on untouched
+flow `.maestro/76-places-public-reading.yaml` (`lane:
+functional-implementation` is not an allowed metadata value); flow 75 itself
+normalized successfully. That metadata finding was not rechecked in this
+integration pass.
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent
 repositories. Earlier workspace receipt `b127a54` records the initial exact
 Home-selected Place continuity acceptance. The exact Home Outcome return
-implementation is in app `0924ff1e5`, with its guarded rehearsal fixture in
-backend `f099bdace`; workspace `fd2349c` is the last committed workspace
-revision inspected for this refresh. App `e2c0bafb1` adds the stronger
-Keep-after-reopen flow contract and runner safeguards. All three candidate
-trees were clean at inspection.
+implementation is in app `0924ff1e5`; app `e2c0bafb1` adds the stronger
+Keep-after-reopen flow contract and runner safeguards. The September 22 child
+merges integrated sibling commits `d7d153810` and `cd70c7111`; the app merge
+also contains the `dominant_unit_id` ordering fix and regression. Backend and
+app checkouts are clean after merge; the workspace working tree contains only
+the two roadmap updates being recorded here.
 Canonical main and its concurrent work remain untouched. The candidate is
 committed in its lane, not landed on main or released. Recheck Git and ownership
 before execution; this is a dated observation, not a locked dispatch base.
+
+### September 22 Places World Field — integrated candidate receipt
+
+The World Field from the sibling lane has been merged into this candidate:
+workspace source lane `58e45dc`, backend source commit `d7d153810`, app source
+commit `cd70c7111`; resulting candidate merge commits are backend `8866f41a2`
+and app `933f004f8`. The server elects one lead with bounded branches/doors;
+the app respects that exact identity when kind-partitioning the semantic field.
+The regression covers a returned-understanding unit elected as dominant so
+mature browse cannot displace it.
+
+On the merged tuple, backend `tests/root_projection` passed **454 tests** and a
+focused Source/Places packet passed **81 tests** (overlapping scopes, not
+additive). The app focus packet passed **25 suites / 314 tests**; TypeScript,
+contract typecheck and the **31**-scenario registry passed; targeted ESLint
+reported zero errors and one existing max-lines warning. The combined native
+`90-places-full-scroll` passed on iPhone 16 Plus / iOS 18.2 with the isolated
+lane API/Postgres and complete internal four-root gates. It presented the
+server-elected Source lead, public Place reading, recipient-consented friend
+note, reopened saved-place notice and retained Place in one scroll. All runner
+fixtures were cleaned, and the exact temporary QA account was deleted with an
+empty residual scan. The provider-free fixture was run with background work
+disabled; a local sentinel satisfied the backend key-presence guard, and no
+external model call was made.
+
+The separate registered mock polish flow still fails its forced
+`places-search-loading` assertion before screenshot capture; structural design
+checks do not have the external canon attached. Therefore the integrated field
+has named content/runtime acceptance, not comprehensive design parity,
+recurring supply or release acceptance. Home's missing design-aligned full
+scroll is the next substantial build.
 
 | Capability | Implemented / recorded evidence | Remaining product or evidence boundary |
 | --- | --- | --- |
@@ -2164,7 +2204,7 @@ Integration/landing, publish code, or activate production flags.
 
 | Package / role | Status and complete outcome | Dependency / handback |
 | --- | --- | --- |
-| **Primary build — Home/Places design-aligned breadth** | The candidate has owner-backed readings, public Place content, consented social receiving, practical options, comparisons, exact destinations/return, persisted Home public-Place HTTP readback with source retraction, multi-source scrolls and partial-read treatment. Home's selected Place note is read from its relationship owner and the native Keep path confirms revision 0→1 then returns Home with the handled unit removed. The exact Home Outcome → Life record → Home return also passed natively. The newer Keep-after-close/reopen sequence has a **4/4** flow contract and **33** focused tests, but its native run stopped before Maestro because `ANTHROPIC_API_KEY` was unavailable. | **Next product build:** use the current design handoffs as a coverage reference and implement a coherent full-scroll set of missing Home/Places sections from material existing owners can supply. Several related cards/sections can form one outcome-sized package; deliver the content, exact source/depth/action/return, honest sparse/error behavior, accessibility and polished native hierarchy together. Focused tests and native acceptance accompany implementation; they are not a substitute phase. **Separate closeout:** selected-note withdrawal/expiry, fixed-sample native presentation/retirement, broader selection quality, distinct empty states, binary-media runtime and full visual parity remain open; resolve standard gates before landing. Do not add a generator or store to manufacture supply. |
+| **Primary build — Home full-scroll breadth** | The Places World Field is integrated, its elected-order seam is covered, and its combined native full-scroll passes with real local API/Postgres-backed content. Existing Home/Places owner-backed readings, practical/social options, exact destinations/return, Home public-Place readback and named Home/Life native paths remain available. | **Next:** build a coherent Home full-scroll from existing owner-backed supply, using current designs as a coverage reference. Carry several related sections through source, exact depth/action destination, return, sparse/error states, accessibility and polished hierarchy. **Separate closeout:** selected-note withdrawal/expiry, fixed Home-sample native presentation/retirement, distinct empty states, binary-media runtime and comprehensive visual parity remain open; standard pre-push gates still block landing/publishing. Do not add a generator or store to manufacture supply. The registered Places mock `places-search-loading` assertion remains an explicit QA gap; its forced-state failure produced no screenshot. |
 | **Complementary build — Life/social downstream value** | Persisted HTTP reads prove one private Plan and one explicitly permissioned shared Outcome through Life root and depth. The People-record seam also preserves grant/member refs, exact destinations and explicit People-bound private anchors. Life's canonical artifact reader shows the authorized photo set and opens a selected original without cropping. Metadata refinding now paginates beyond the former 100-result ceiling and passes its continuation case against a fresh lane-local disposable PostgreSQL database. Life's Places lens opens an explicitly linked Place from a retained source/original and returns to the anchored record. | Do not expand search into body semantics. Current recipient deliveries are owned by Relationships and revalidated there, but Life's root corpus does not read them and its audience contract has only private/group/public; do not encode a revocable one-to-one original as a durable Life record or mislabel it as group content. The Place door follows an existing owner-declared association; it does not prove attendance or later permitted reuse. Further Life/social work must demonstrate a concrete permissioned benefit from already-authorized structured records. Defer policy-dependent media/group/use expansion. |
 | **Non-blocking reliability evidence — R05/R09 edges** | R01/R03 disposable-Postgres authority/revocation regressions pass. R04 withdrawal controls and R09 schedule-zone propagation are code-fixed with focused regressions; R04 sender-control API and native simulator rehearsals pass. R05 lease/recovery code, real Arq/Redis wrapper and expired due-work recovery have focused evidence. Still open: a real process-interruption/restart rehearsal and live transient-provider failure/retry. R09 persisted/native timezone-edge evidence also remains open. | Run only those missing matrices when the explicitly disposable database/queue/device is available. They remain required for their named evidence/landing claims, but do not gate independent product implementation. |
 | **Across both builds — native polish** | Required within each completed surface: design hierarchy, card/media treatment, interaction, accessibility and sparse/pending/failure states. Not accepted yet. | Use current inspected Claude exports and handoffs; record actual canvas/version. Unresolved visual choices do not block unrelated owner/supply work. |
