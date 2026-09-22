@@ -1938,7 +1938,7 @@ tuple is a dated observation.
 
 | Capability | Implemented / recorded evidence | Remaining product or evidence boundary |
 | --- | --- | --- |
-| Home / Places | Owner-backed Save/readback, public Place and child-entity readings, consented place pulls, nearby open-now options, supplied experience comparisons, plural social perspectives, addressed Place-contribution region, saved-place closure/reopening dismissal, recipient Keep/Leave-aside on exact-place friend lines, native multi-source scrolls, semantic-state treatment and generic partial-read notices; persisted public-Place Home HTTP readback; named local API/iOS flows | Varied worthwhile default-portfolio value beyond the proved scrolls, broader section/design breadth, selection quality across situations, remaining distinct empty states, native visual acceptance/parity |
+| Home / Places | Owner-backed Save/readback, public Place and child-entity readings, consented place pulls, nearby open-now options, supplied experience comparisons, plural social perspectives, addressed Place-contribution region, saved-place closure/reopening dismissal, recipient Keep/Leave-aside on exact-place friend lines, native multi-source scrolls, semantic-state treatment and generic partial-read notices; exact Home photo tap is gated by current delivery revision and material authorization (focused component/screen tests only); persisted public-Place Home HTTP readback; named local API/iOS flows | Varied worthwhile default-portfolio value beyond the proved scrolls, broader section/design breadth, selection quality across situations, remaining distinct empty states, binary-media runtime proof, native visual acceptance/parity |
 | Life | Retained text originals, exact refinding/return, explicit place- and people-bound sources and organized period groups; persisted private Plan and explicitly permissioned shared Outcome reach Life/People root and depth HTTP readers; named local API/iOS flows | Broader media/corpus and People/Threads experience, later permitted reuse that changes a subsequent result, indexed serving cutover and Atlas retirement |
 | Social | Existing-owner venue-bound pulls and one-recipient original-text receiving through Life/Home; recipient Keep/Leave-aside; named local API/iOS flows; native sender withdrawal after recipient disconnect | Casual media/group/gathering breadth and useful juxtaposition; no new sharing or friend-source AI-use policy is adopted here; broader downstream use remains |
 | Practical/live engine | Current open-now facts and saved-place changes affect surfaces; explicit fit contract and private stop-assistance/reviewed Send implemented | Provider-backed fit rehearsal, wider fresh-world coverage, purpose-preserving adaptation and accepted watching mandates; R09 code correction is complete, persisted/native timezone evidence remains |
@@ -3680,3 +3680,25 @@ venue-bound text contribution. It does not establish general multiplayer
 parity, broader Places visual parity, production activation, group/media
 sharing, or release readiness. Continue with the next substantive Home/Places
 owner/value gap; do not infer a new social subsystem from this slice.
+
+## September 21 functional implementation receipt — direct Home photo opening
+
+Home's existing one-recipient original reader now lets the recipient open an
+image original by tapping the image itself. The affordance is available only
+when the exact projected delivery revision is confirmed active and the current
+material authorization is ready. Authorization failure, material failure or a
+stale delivery does not expose an interactive photo. Text originals retain the
+explicit **Open original** action; an image also retains that fallback while it
+is not currently eligible for direct opening. The tap reuses the existing
+destination callback and original-reader/root-return path.
+
+App commit `e7c3b0954` adds the accessible image action and Home gate. Evidence:
+**52** focused tests across the original-material surface, Home original
+delivery, Home renderer registry and adjacent Places expiry suites; app
+TypeScript and targeted ESLint passed with zero errors (one pre-existing
+max-lines warning in the Home renderer); `git diff --check` passed. This is
+component/screen evidence only: no live image-byte/API fixture or simulator
+run was performed. It does not prove binary-media reliability, the full
+multi-photo composition, Reply/Ask/share behavior, production activation,
+visual parity or release readiness. Keep broader media support as open work
+and do not treat this affordance as an album or sharing-system implementation.
