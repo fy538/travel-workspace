@@ -52,11 +52,13 @@ accumulated context materially improves a later answer, possibility, or action.
 The next package should target one substantive gap visible in the current Home
 or Places designs using real supplied owner material, or one permissioned
 Life/social later-use result whose structured inputs and authority already
-exist. Carry exact sources, destinations, return state and sparse/error
-behavior through the native surface. Do not add a generator, feed, or storage
-family to manufacture fullness. Frontend polish remains part of each surface's
-exit criteria; do not spend another package on a route-only or repeated
-happy-path tour.
+exist. The September 21 Life photo-reader increment below closes one narrow
+presentation gap for multiple already-authorized originals; it does not prove
+binary media delivery or broaden the media corpus. Carry exact sources,
+destinations, return state and sparse/error behavior through the native surface.
+Do not add a generator, feed, or storage family to manufacture fullness.
+Frontend polish remains part of each surface's exit criteria; do not spend
+another package on a route-only or repeated happy-path tour.
 
 The renderer ledger was refreshed after this rebaseline: the Home transport
 union is 36 kinds, with 17 explicit Home semantic renderers plus the three
@@ -1939,7 +1941,7 @@ tuple is a dated observation.
 | Capability | Implemented / recorded evidence | Remaining product or evidence boundary |
 | --- | --- | --- |
 | Home / Places | Owner-backed Save/readback, public Place and child-entity readings, consented place pulls, nearby open-now options, supplied experience comparisons, plural social perspectives, addressed Place-contribution region, saved-place closure/reopening dismissal, recipient Keep/Leave-aside on exact-place friend lines, native multi-source scrolls, semantic-state treatment and generic partial-read notices; exact Home photo tap is gated by current delivery revision and material authorization (focused component/screen tests only); persisted public-Place Home HTTP readback; named local API/iOS flows | Varied worthwhile default-portfolio value beyond the proved scrolls, broader section/design breadth, selection quality across situations, remaining distinct empty states, binary-media runtime proof, native visual acceptance/parity |
-| Life | Retained text originals, exact refinding/return, explicit place- and people-bound sources and organized period groups; persisted private Plan and explicitly permissioned shared Outcome reach Life/People root and depth HTTP readers; named local API/iOS flows | Broader media/corpus and People/Threads experience, later permitted reuse that changes a subsequent result, indexed serving cutover and Atlas retirement |
+| Life | Retained text originals, exact refinding/return, explicit place- and people-bound sources, organized period groups, and a canonical artifact reader that presents every available authorized photo whole with same-record return; persisted private Plan and explicitly permissioned shared Outcome reach Life/People root and depth HTTP readers; named local API/iOS flows | Broader binary-media/corpus coverage and People/Threads experience, live original-byte/device acceptance, later permitted reuse that changes a subsequent result, indexed serving cutover and Atlas retirement |
 | Social | Existing-owner venue-bound pulls and one-recipient original-text receiving through Life/Home; recipient Keep/Leave-aside; named local API/iOS flows; native sender withdrawal after recipient disconnect | Casual media/group/gathering breadth and useful juxtaposition; no new sharing or friend-source AI-use policy is adopted here; broader downstream use remains |
 | Practical/live engine | Current open-now facts and saved-place changes affect surfaces; explicit fit contract and private stop-assistance/reviewed Send implemented | Provider-backed fit rehearsal, wider fresh-world coverage, purpose-preserving adaptation and accepted watching mandates; R09 code correction is complete, persisted/native timezone evidence remains |
 | Preparation | Explicit Source work registered on the shared Arq rail behind production/worker/cohort gates; result serialization and bounded deterministic due-work recovery repaired | Real Arq/Redis wrapper and expired due-work recovery pass; a current disposable workflow also completed on the registered worker with `producer_silence`; exhausted final-attempt leases now close through the existing fence with 29 focused and 25 disposable-Postgres tests, including retry-budget recovery. Registration/recovery are not activation, and live output quality, cost and process-restart queue evidence remain unverified |
@@ -2034,7 +2036,7 @@ tasks. The present update plans work; it does not start agents or services.
 | Package / role | Status and complete outcome | Dependency / handback |
 | --- | --- | --- |
 | **Primary build — Home/Places useful breadth** | In progress. The candidate has owner-backed reads, social receiving, practical fit/open-now, exact destinations/return, persisted Home public-Place HTTP readback with source-retraction behavior, and native multi-source scrolls. Exact-place friend lines offer recipient-only Keep/Leave-aside in the rebuilt reader, guarded by a fresh relationship-owner read and expected revision; this recipient-action journey now passes against the real local API/Postgres on iOS 18.2. A cache handoff fix refreshes the Places feed after owner status/action changes. The earlier focused Home/Places packet passed 50 tests; this action follow-through adds 4/4 owner-action tests, 3/3 runner-contract tests and the native/API journey. Home and governed Places show generic partial-read notices without backend diagnostics. Remaining: worthwhile varied default-portfolio value beyond the proved scrolls, broader design-section coverage, distinct empty states, and native visual acceptance/parity. | Select the largest concrete design/value gap supported by existing Source/content/relationship/Place owners. Keep exact destinations, return, accessibility and empty/error behavior in the same package; no new generator/store or route-only milestone. |
-| **Complementary build — Life/social downstream value** | Persisted HTTP reads prove one private Plan and one explicitly permissioned shared Outcome through Life root and depth. The People-record seam also preserves grant/member refs, exact destinations and explicit People-bound private anchors. Broader media/corpus, Threads/gathering experience and later permitted context that changes a subsequent result are not complete. | Use existing Source, Life and relationship owners; custody is not permission. Select downstream value only where structured authority exists; defer policy-dependent media/group/use expansion. |
+| **Complementary build — Life/social downstream value** | Persisted HTTP reads prove one private Plan and one explicitly permissioned shared Outcome through Life root and depth. The People-record seam also preserves grant/member refs, exact destinations and explicit People-bound private anchors. Life's canonical artifact reader now shows the authorized photo set and opens a selected original without cropping; broader media/corpus, Threads/gathering experience and later permitted context that changes a subsequent result remain incomplete. | Use existing Source, Life and relationship owners; custody is not permission. Select downstream value only where structured authority exists; defer policy-dependent media/group/use expansion. |
 | **Non-blocking reliability evidence — R05/R09 edges** | R01/R03 disposable-Postgres authority/revocation regressions pass. R04 withdrawal controls and R09 schedule-zone propagation are code-fixed with focused regressions; R04 sender-control API and native simulator rehearsals pass. R05 lease/recovery code, real Arq/Redis wrapper and expired due-work recovery have focused evidence. Still open: a real process-interruption/restart rehearsal and live transient-provider failure/retry. R09 persisted/native timezone-edge evidence also remains open. | Run only those missing matrices when the explicitly disposable database/queue/device is available. They remain required for their named evidence/landing claims, but do not gate independent product implementation. |
 | **Across both builds — native polish** | Required within each completed surface: design hierarchy, card/media treatment, interaction, accessibility and sparse/pending/failure states. Not accepted yet. | Use current inspected Claude exports and handoffs; record actual canvas/version. Unresolved visual choices do not block unrelated owner/supply work. |
 | **Orchestration / this thread** | Own scope, current queue, cross-system decisions and package review; dispatch only when requested. | Review first working composition, consequential blocker and completed package. Judge delivered behavior and remaining user effort, not commit/test counts. |
@@ -3729,3 +3731,35 @@ delivery was not verified. This is focused retry interaction evidence, not
 proof of live image delivery, visual parity, the full multi-photo composition,
 Reply/Ask/share behavior, or release readiness. Keep those broader media and
 design gaps open.
+
+## September 21 functional implementation receipt — Life original photo set
+
+The canonical artifact reader previously selected only the first available
+owner-authorized image and displayed it in a fixed-height `cover` crop, even
+though the existing Life projection can supply several exact media refs. The
+reader now presents every available ref in supplied order as an aspect-shaped,
+non-cropped photo strip. Selecting a photo opens that exact source in a focused
+full-screen viewer; Previous, Next and Close stay inside the same source-bound
+record. A failed preview offers **Tap to retry**; a failed full-size view has a
+single retry control. The reader uses the existing authenticated media route
+with `cachePolicy="none"`, and the route continues to recheck owner/source
+authorization. No backend, projection, storage, sharing, export, deletion,
+gesture-zoom or audience policy changed.
+
+App commit `ff74def0b` implements the gallery/viewer and updates the
+[Canonical Artifact Reader contract](../../travel-app/docs/surfaces/canonical-artifact-reader/contract.md)
+with its whole-photo, order, return and authority boundaries. The six focused
+`canonicalArtifactCard` tests pass, including multiple items, selected-photo
+navigation/return and failed-preview retry. TypeScript, targeted ESLint,
+Prettier, accessibility governance, the 31 polish scenarios, the doctrine-only
+reader design check, and `git diff --check` pass. The `size-budgets` check still
+fails on existing unrelated files (`VenueDetailScreen`, `ImportCaptureScreen`,
+`TravelPlanScreen`, `PlaceHomeScreen`, `extendHttpMemoryEndpoints`, `http.ts`,
+and `interface.ts`); `home-surface-budgets` still reports the pre-existing
+Places workspace/card overages. The reader has no registered native capture;
+the gallery doctor could not reach Metro on `:8081`, so no device screenshot
+or visual verdict was produced. This also does not prove real original bytes:
+the lane has no configured S3-compatible media service/credentials. It closes
+the native presentation contract only, not wider Life media/corpus coverage,
+live media delivery, People/Threads breadth, later permitted reuse, or release
+readiness.
