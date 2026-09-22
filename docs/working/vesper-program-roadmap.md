@@ -118,7 +118,7 @@ backend `60da1dcb9`, and app `d021488be`. Its 59 backend Home-portfolio and
 117 app route/workspace/feed test results remain evidence for that earlier
 slice, not the current checkout.
 
-**Current isolated product-code tuple:** workspace checkpoint `6b62cb5`, backend
+**Current isolated product-code tuple:** workspace checkpoint `f8f90e8`, backend
 `8c85a1d83`, and app `93a9090de`, all on
 `codex/functional-implementation-2026-09-20`. The workspace, backend, and app
 trees are clean. Workspace commits after the product-code checkpoints are
@@ -2535,10 +2535,12 @@ reference.
 **September 22 current-tuple clarification:** The Home selector/screen tests and
 single mock native capture named in the detailed Home row are earlier receipts,
 not fresh verification of the current code tuple. The latest isolated lane is
-workspace `e61608f`, backend `b3d5cf1c5`, and app `93a9090de`. Backend
+workspace product-code checkpoint `f8f90e8`, backend `8c85a1d83`, and app
+`93a9090de`. Backend
 `18e1fb377` / `4357d1320` add a bounded source-backed reading for an explicit
 saved Place and real-Postgres Home HTTP proof of source retraction and unsave;
-backend `b3d5cf1c5` adds the later exact accepted-Outcome → Places continuation.
+backend `b3d5cf1c5` adds the earlier exact accepted-Outcome → Places continuation;
+the later continuation reachability repair is `8c85a1d83`.
 The app has no corresponding Home renderer change, and no current-tuple Home
 visual acceptance was run. These slices add useful owner-backed doors but do
 not change the next package: trace and build a substantially richer Home from
