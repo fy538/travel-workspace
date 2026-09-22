@@ -4884,3 +4884,20 @@ presentation, and root-projection navigation/return. No snapshots were
 updated. This strengthens regression evidence for the already implemented
 connections; it does not expand backend supply, prove an authenticated owner
 read, or close native action/return and visual-canon acceptance.
+
+## September 22 native root reachability receipt — Places and Life
+
+Using the same installed Home-v2 candidate and mock configuration, deep-link
+launches reached `guide://places` and `guide://life` on the iPhone 16 Plus
+simulator. Places rendered its current guide lead and saved-for-this-place
+collection with the four-root tab shell; Life rendered its Time lens with the
+Southern Italy record and the existing full-record doorway. Captures are
+available at `/tmp/vesper-places-v2.png` and `/tmp/vesper-life-v2.png`.
+
+This proves root reachability and native layout for the current candidates. The
+build displayed the explicit `MOCK DATA — NOT THE REAL BACKEND` banner, so the
+captures do not prove persisted owner reads, real media bytes, action
+consequences, exact record/depth return, accessibility, or external design
+canon parity. No product code changed in this receipt. The next native pass
+should use the same shell only after a real backend/runtime is available; do
+not add fixture-specific routes or treat these captures as production evidence.
