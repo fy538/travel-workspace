@@ -56,8 +56,11 @@ focused regressions belong in each surface package.
 
 The Home/Places renderer ledger has now been refreshed against the current
 child heads: Home exposes 17 explicit semantic renderers plus its three chrome
-components, Places exposes 12 semantic renderers, and the latest combined
-focused Home/Places packet passes 50 tests. This corrects documentation drift,
+components and Places exposes 12 semantic renderers. The combined focused
+Home/Places packet preceding the recipient-action follow-through passed 50
+tests; that follow-through adds 4/4 owner-action tests, 3/3 runner-contract
+tests and a native/API acceptance for Keep/Leave-aside on the rebuilt Place
+reader. This corrects documentation drift and closes a bounded action path,
 not product supply: source admission, recurring content, broad canonical
 runtime full-scroll quality and design parity remain open. See [the coverage
 audit](home-places-renderer-coverage-audit-2026-09-05.md).
@@ -2380,7 +2383,7 @@ transient-provider failure/retry remain unverified.
 | I1 | Source/graph/Outcome delivery, repair, backfill and reconciliation foundation; additional retained-source revisions and Life adoption paths in this lane | Build population and later-use coverage over existing owners; do not infer indexed serving cutover or cross-context authority from retention |
 | I2 | Bounded serving, prepared results, cancellation and publication fences; explicit Source Arq registration, serializer repair and gated due-work recovery sweep; real `not_claimed` wrapper, expired due-work recovery and in-flight lease-renewal evidence | Run the process-interruption/restart and live transient-provider failure/retry rehearsals in isolated Arq/Redis; cost/cohort/provider activation remains separately gated |
 | I3 | Contribution authority and useful-first intake; exact retained/received text-original paths with scoped native receipts | R01/R03 authority and revocation are verified, R04 code correction plus API/native sender-control rehearsals and named Life/Home original-receiving paths are complete; broader supported originals and permissioned downstream use remain; pending history/audience policy is not silently adopted |
-| I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots; supplied Home and Places multi-source full-scrolls; same-Place sequence passes persisted Home HTTP readback with source retraction; generic Home/Places partial-read notices preserve supplied content | Add worthwhile default-portfolio value beyond the proved scrolls from already supplied payloads; complete remaining distinct empty states and native visual acceptance, keeping exact actions/destinations and honest failure treatment in scope |
+| I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots; supplied Home and Places multi-source full-scrolls; same-Place sequence passes persisted Home HTTP readback with source retraction; generic Home/Places partial-read notices preserve supplied content; rebuilt Place reader now supports recipient Keep/Leave-aside with a real local native/API rehearsal | Add worthwhile default-portfolio value beyond the proved scrolls from already supplied payloads; complete remaining distinct empty states and native visual acceptance, keeping exact actions/destinations and honest failure treatment in scope |
 | I5 | Open-now and saved-world changes reach surfaces; explicit fit and reviewed assistance contracts implemented | R09 code correction and the named current-world native paths are complete; persisted/native timezone edge matrix, permitted-context adaptations, provider-backed fit rehearsal and broader mandates remain separate |
 | I6 | Retirement inventories/guards exist; candidate remains isolated and rollout internal | Keep obsolete execution paths out of new work; complete obligation review and authorized cutovers/landing only when their dependencies are ready |
 
@@ -2392,32 +2395,13 @@ can contain several independent implementation tasks; it is not a one-loop
 definition of Vesper. The program register owns assignment. No agents are
 dispatched by this document update.
 
-**First: bounded review evidence closeout (edge matrices only).** R01/R03
-authority and revocation regressions are complete, and the named Home/Places/Life receiving
-rehearsals are already complete; the next run should
-not be another broad happy-path tour.
+**Execution priority:** functional breadth and user value have the first claim
+on implementation effort. Focused tests and local acceptance are part of each
+package's exit criteria, not a separate serial phase. R05/R09 environment-only
+matrices may proceed opportunistically and remain required for their specific
+evidence or landing claims, but they do not block independent product work.
 
-- R04 code correction is complete: sender-owned deliveries and Withdraw remain
-  usable when new-send recipients are empty, disconnected, loading or unavailable.
-  The isolated real-API and native simulator sender rehearsals now pass,
-  including cleanup, revoked readback and current eligibility readback;
-  new-send eligibility remains restricted to current recipients.
-- R09 code correction is complete: the existing schedule timezone flows through
-  the read contract and UTC-stored instants format in that zone with honest
-  fallback. Run persisted data, cross-device zones, midnight/DST and native
-  rendering; do not infer destination time from the phone. The wire snapshots
-  have already been regenerated from the canonical projector.
-- Recheck the ledger's remaining post-revocation authority and queue-wrapper
-  boundaries in the correct environment. The `.venv` import probe succeeds;
-  do not perpetuate the failed system-interpreter dependency diagnosis. Run
-  required DB cases only against an explicitly disposable database. Record
-  unavailable runs as unverified, not fixed by reviewer agreement.
-- Finish with focused regressions, explicit code/contract commits and updated
-  ledger status. Independent feature work need not wait for unrelated runtime
-  availability; changed authority-sensitive paths cannot claim completion
-  without the relevant evidence.
-
-**Primary build: fuller, reliably supplied Home/Places experiences.**
+**Primary next build: fuller, reliably supplied Home/Places experiences.**
 
 The standalone Places runtime rail is no longer the next seam: backend
 selection now forwards the admitted semantic-unit kinds, and the canonical
@@ -2463,18 +2447,20 @@ generator, store or route family merely to make the scroll look populated.
   separately from transport success. Record missing provider/production supply
   honestly; prepared fixtures demonstrate presentation, not recurring supply.
 
-**Complementary build: Life/social value after retention.**
+**Parallel complementary build: Life/social value after retention.**
 
-- The bounded People-record increment is now complete for the current owner
-  contract: shared Outcomes tied to a multi-person Occasion and non-private
-  multi-participant Commitments reach the People lens with exact grant/member
-  refs and `lens=people` return. This is not a general social feed, person
-  dossier, contribution inference, or media/group policy decision.
+The bounded People-record increment is now complete for the current owner
+contract: shared Outcomes tied to a multi-person Occasion and non-private
+multi-participant Commitments reach the People lens with exact grant/member
+refs and `lens=people` return. This is not a general social feed, person
+dossier, contribution inference, or media/group policy decision.
+
 - Build on the [Life owner plan](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md),
   retained Source and relationship owners. Broaden supported organization and
   human-material consumption without replacing Life storage or implying an
-  Atlas/indexed-serving cutover. Text-original receiving is implemented; broader
-  media, People/Threads and group experiences are not complete by association.
+  Atlas/indexed-serving cutover. Text-original receiving is implemented;
+  broader media, People/Threads and group experiences are not complete by
+  association.
 - Connect already permitted context to a materially better later answer,
   possibility, preparation or practical judgment. Trace evidence and purpose
   from source through selection to useful output, not merely a "remembered"
@@ -2483,14 +2469,42 @@ generator, store or route family merely to make the scroll look populated.
   personalization. This is implementation acceptance, not a prerequisite
   experiment before building the rest of the system.
 - Human contributions should add a useful perspective or opening without
-  requiring equal recipient effort. Retention, reading, inference, audience and
-  action are separate: friendship, custody or receipt does not grant AI reuse.
-  Current permissions can support work now; unresolved media/group/audience
-  choices block only the dependent capability. Do not silently widen policy.
+  becoming obligation; preserve optional participation and the existing
+  separation between human Reply and private Ask Vesper, without requiring
+  equal recipient effort. Retention, reading, inference, audience and action
+  are separate: friendship, custody or receipt does not grant AI reuse. Current
+  permissions can support work now; unresolved media/group/audience choices
+  block only the dependent capability. Do not silently widen policy.
 - **Finish condition:** supported material is recognizable/refindable and can
   improve a subsequent permitted result with exact evidence and return. Show
-  correction/withdrawal removing its future influence while preserving unrelated
-  useful content. Keep unsupported inference and policy-dependent breadth open.
+  correction/withdrawal removing its future influence while preserving
+  unrelated useful content. Keep unsupported inference and policy-dependent
+  breadth open.
+
+**Opportunistic, non-blocking: bounded review evidence closeout (edge matrices only).** R01/R03
+authority and revocation regressions are complete, and the named Home/Places/Life receiving
+rehearsals are already complete; the next run should
+not be another broad happy-path tour.
+
+- R04 code correction is complete: sender-owned deliveries and Withdraw remain
+  usable when new-send recipients are empty, disconnected, loading or unavailable.
+  The isolated real-API and native simulator sender rehearsals now pass,
+  including cleanup, revoked readback and current eligibility readback;
+  new-send eligibility remains restricted to current recipients.
+- R09 code correction is complete: the existing schedule timezone flows through
+  the read contract and UTC-stored instants format in that zone with honest
+  fallback. Run persisted data, cross-device zones, midnight/DST and native
+  rendering; do not infer destination time from the phone. The wire snapshots
+  have already been regenerated from the canonical projector.
+- Recheck the ledger's remaining post-revocation authority and queue-wrapper
+  boundaries in the correct environment. The `.venv` import probe succeeds;
+  do not perpetuate the failed system-interpreter dependency diagnosis. Run
+  required DB cases only against an explicitly disposable database. Record
+  unavailable runs as unverified, not fixed by reviewer agreement.
+- Finish with focused regressions, explicit code/contract commits and updated
+  ledger status. Independent feature work need not wait for unrelated runtime
+  availability; changed authority-sensitive paths cannot claim completion
+  without the relevant evidence.
 
 **Polish and delivery throughout both builds.**
 

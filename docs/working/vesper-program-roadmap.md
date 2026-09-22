@@ -20,18 +20,19 @@ depends_on:
 
 # Vesper program roadmap
 
-**September 21 rebaseline, after implementation and review:** Vesper is a
-connected, partially complete internal product candidate. Home/Places receiving,
-Life originals/refinding/organization, bounded social receiving and practical
-consequences have committed implementations and real disposable-Postgres, API
-and iOS paths for the named Save/readback, Life source return and
-recipient-consented social cases. The rebuilt Place page now also offers
-recipient Keep/Leave-aside actions on an addressed line, using the existing
-relationship owner and expected-revision action. Its focused app and owner tests
-pass, but this new action sheet has not had native/backend end-to-end acceptance.
-These are meaningful continuity improvements; they do not establish complete
-design coverage, worthwhile recurring supply, general later-context benefit,
-production activation or release readiness.
+**September 21 rebaseline, after implementation, review and repair:** Vesper is
+a connected, partially complete internal product candidate. Home/Places
+receiving, Life originals/refinding/organization, bounded social receiving and
+practical consequences have committed implementations and real
+disposable-Postgres, API and iOS paths for the named Save/readback, Life source
+return and recipient-consented social cases. The rebuilt Place page now also
+offers recipient Keep/Leave-aside actions on an addressed line, using the
+existing relationship owner and expected-revision action. The repaired native
+runner verifies the canonical Places feed and People-lines owner response,
+exercises both actions, returns to the same Places context and confirms the
+dismissed line is gone. This is local candidate evidence with local-only flags;
+it does not establish complete design coverage, worthwhile recurring supply,
+general later-context benefit, production activation or release readiness.
 
 Use [§2](#2-inspected-baseline--september-21) for the current evidence boundary,
 [§4](#4-current-package-register) for the sole current execution queue, and
@@ -41,42 +42,45 @@ their results, limitations and rationale; their embedded "next" instructions
 are historical and do not form additional queues. Update these summaries when
 a substantial package finishes instead of appending a competing next step.
 
-**Next emphasis:** stop repeating receiving-boundary proofs and implement the
-highest-value remaining design coverage against the already-connected owners.
-The candidate now has multi-source Home/Places scrolls, honest semantic and
-partial-read states, persisted Place/Life HTTP readbacks, and native sender
-withdrawal. These prove bounded paths—not recurring supply, broad design
-coverage, visual acceptance, or that accumulated context materially improves a
-later answer, possibility, or action. The next product package should add
-substantive value beyond those proved compositions: prioritize a concrete
-Home/Places design gap with real supplied material, or a permissioned Life /
-social later-use result whose structured inputs and authority already exist.
-Carry exact sources, destinations, return state and sparse/error behavior
-through the native surface. Do not add a generator, feed, or storage family to
-manufacture fullness. Frontend polish remains part of each surface's exit
-criteria; do not spend another package on a route-only or repeated happy-path
-tour.
+**Next emphasis:** stop repeating receiving-boundary proofs and build value on
+top of the connected owners. The candidate now has multi-source Home/Places
+scrolls, honest semantic and partial-read states, persisted Place/Life HTTP
+readbacks, native sender withdrawal, and recipient Keep/Leave-aside on the
+rebuilt Place reader with real local-runtime acceptance. These prove bounded
+paths—not recurring supply, broad design coverage, visual acceptance, or that
+accumulated context materially improves a later answer, possibility, or action.
+The next package should target one substantive gap visible in the current Home
+or Places designs using real supplied owner material, or one permissioned
+Life/social later-use result whose structured inputs and authority already
+exist. Carry exact sources, destinations, return state and sparse/error
+behavior through the native surface. Do not add a generator, feed, or storage
+family to manufacture fullness. Frontend polish remains part of each surface's
+exit criteria; do not spend another package on a route-only or repeated
+happy-path tour.
 
 The renderer ledger was refreshed after this rebaseline: the Home transport
 union is 36 kinds, with 17 explicit Home semantic renderers plus the three
-chrome components; Places has 12 explicit semantic renderers. The latest
-combined focused Home/Places packet passes 50 tests. This closes documentation
+chrome components; Places has 12 explicit semantic renderers. The combined
+focused Home/Places packet preceding the latest recipient-action change passed
+50 tests; the action follow-through adds its own 4/4 owner-action tests, 3/3
+runner-contract tests and native/API acceptance. This closes documentation
 drift that had called several already-renderable kinds "dark"; it does not
 claim source admission, recurring content supply, broad runtime full-scroll
 quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
-**Current code candidate tuple for this update:** backend HEAD `651628265` and
-app HEAD `a8d64d4b7`, on the isolated
-`codex/functional-implementation-2026-09-20` lane. The app commit adds
-recipient Keep/Leave-aside controls for exact-place friend lines; workspace
-roadmap receipts are documentation-only, and backend code is unchanged. The
-committed child-code tuple also includes the Places typed notice bridge, native
-sender-withdrawal proof, shared Home/Places semantic-state treatment, and
-People-bound anchor index repair. Nothing is merged to main, published,
-flag-activated, or resumed in shared Integration/landing. The next substantive
-implementation should deliver value beyond the newly connected receiving and
-partial-read states: prioritize a concrete Home/Places design/value gap using
-supplied owner data, or a permissioned Life/social later-use result. A further
+**Functional code tuple:** backend HEAD `651628265` and app HEAD `072f56488`
+on the isolated `codex/functional-implementation-2026-09-20` lane; workspace
+receipt baseline `8ca27a3`. App `a8d64d4b7` adds recipient Keep/Leave-aside
+controls and `072f56488` invalidates the Places feed after owner reads/actions
+and strengthens the native runner. Workspace changes record the acceptance
+receipt; backend code is unchanged by this slice. The committed child-code
+tuple also includes the Places typed notice bridge, native sender-withdrawal
+proof, shared Home/Places semantic-state treatment, and People-bound anchor
+index repair. Nothing is merged to main, published, flag-activated, or resumed
+in shared Integration/landing. The next substantive implementation should
+deliver value beyond the newly connected receiving/action and partial-read
+states: prioritize a concrete Home/Places design/value gap using supplied
+owner data, or a permissioned Life/social later-use result. A further
 sparse/pending/failure slice should be selected only when it has a distinct
 user consequence. R05 restart and R09 timezone edge work remain bounded to
 environments that can produce the required evidence.
@@ -1902,7 +1906,7 @@ Life page opening. Chat layout redesign remains outside these assignments.
 Pending policies, paid/provider runs, deployment, activation and destructive
 retirement require their existing approvals. Assignment does not dispatch a task.
 
-<a id="2-inspected-baseline--september-9"></a>
+<a id="2-inspected-baseline--september-21"></a>
 
 ## 2. Inspected baseline — September 21
 
@@ -1913,26 +1917,30 @@ fresh certification of every path on the latest tuple. The tuple below was
 updated after the bounded Source recovery correction, receiving-surface
 implementation, standalone Places feed-state repair, native Life
 source/original distinction, persisted Place/Life HTTP readbacks, and the
-Home/Places partial-read notices.
+Home/Places partial-read notices. The latest app follow-through adds recipient
+Keep/Leave-aside actions on the rebuilt Place reader, refreshes its feed after
+owner actions, and has a real local native/API acceptance receipt.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `59e40cc` | `b6e7014` |
+| Workspace | `8ca27a3` | `70c4b4b` |
 | Backend | `651628265` | `a7c02cbe1` |
-| App | `1ddb3a0ba` | `e2e792913` |
+| App | `072f56488` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent
-repositories. All three candidate trees are clean at this inspection. Canonical
-main has concurrent documentation/design edits; those remain untouched. The
-candidate is committed in its lane, not landed on main or released. Recheck Git
-and ownership before execution; this tuple is a dated observation.
+repositories. All three candidate trees were clean at the source inspection
+before this roadmap refresh; the app and backend remain unchanged by this
+documentation update. Canonical main has concurrent documentation/design
+edits; those remain untouched. The candidate is committed in its lane, not
+landed on main or released. Recheck Git and ownership before execution; this
+tuple is a dated observation.
 
 | Capability | Implemented / recorded evidence | Remaining product or evidence boundary |
 | --- | --- | --- |
-| Home / Places | Owner-backed Save/readback, public Place and child-entity readings, consented place pulls, nearby open-now options, supplied experience comparisons, plural social perspectives, addressed Place-contribution region, saved-place closure/reopening dismissal, native multi-source scrolls, semantic-state treatment and generic partial-read notices; persisted public-Place Home HTTP readback; named local API/iOS flows | Varied worthwhile default-portfolio value beyond the proved scrolls, broader section/design breadth, selection quality across situations, remaining distinct empty states, native visual acceptance/parity |
+| Home / Places | Owner-backed Save/readback, public Place and child-entity readings, consented place pulls, nearby open-now options, supplied experience comparisons, plural social perspectives, addressed Place-contribution region, saved-place closure/reopening dismissal, recipient Keep/Leave-aside on exact-place friend lines, native multi-source scrolls, semantic-state treatment and generic partial-read notices; persisted public-Place Home HTTP readback; named local API/iOS flows | Varied worthwhile default-portfolio value beyond the proved scrolls, broader section/design breadth, selection quality across situations, remaining distinct empty states, native visual acceptance/parity |
 | Life | Retained text originals, exact refinding/return, explicit place- and people-bound sources and organized period groups; persisted private Plan and explicitly permissioned shared Outcome reach Life/People root and depth HTTP readers; named local API/iOS flows | Broader media/corpus and People/Threads experience, later permitted reuse that changes a subsequent result, indexed serving cutover and Atlas retirement |
-| Social | Existing-owner venue-bound pulls and one-recipient original-text receiving through Life/Home; named local API/iOS flows; native sender withdrawal after recipient disconnect | Casual media/group/gathering breadth and useful juxtaposition; no new sharing or friend-source AI-use policy is adopted here; broader downstream use remains |
+| Social | Existing-owner venue-bound pulls and one-recipient original-text receiving through Life/Home; recipient Keep/Leave-aside; named local API/iOS flows; native sender withdrawal after recipient disconnect | Casual media/group/gathering breadth and useful juxtaposition; no new sharing or friend-source AI-use policy is adopted here; broader downstream use remains |
 | Practical/live engine | Current open-now facts and saved-place changes affect surfaces; explicit fit contract and private stop-assistance/reviewed Send implemented | Provider-backed fit rehearsal, wider fresh-world coverage, purpose-preserving adaptation and accepted watching mandates; R09 code correction is complete, persisted/native timezone evidence remains |
 | Preparation | Explicit Source work registered on the shared Arq rail behind production/worker/cohort gates; result serialization and bounded deterministic due-work recovery repaired | Real Arq/Redis wrapper and expired due-work recovery pass; a current disposable workflow also completed on the registered worker with `producer_silence`; exhausted final-attempt leases now close through the existing fence with 29 focused and 25 disposable-Postgres tests, including retry-budget recovery. Registration/recovery are not activation, and live output quality, cost and process-restart queue evidence remain unverified |
 | Native / delivery | Specific real-owner happy paths now run through the internal four-root shell; Home v2 world-read timezone boundary is corrected and its focused screen suite passes | No comprehensive native/design acceptance, latest-tuple full gate, default-shell promotion, main landing or release |
@@ -2025,9 +2033,9 @@ tasks. The present update plans work; it does not start agents or services.
 
 | Package / role | Status and complete outcome | Dependency / handback |
 | --- | --- | --- |
-| **First — review evidence closeout** | R01/R03 disposable-Postgres authority/revocation regressions pass. R04 withdrawal controls and R09 schedule-zone propagation are code-fixed with focused regressions; R04 sender-control API and native simulator rehearsals pass. R05 lease/recovery code, real Arq/Redis wrapper and expired due-work recovery have focused evidence. Still open: a real process-interruption/restart rehearsal and live transient-provider failure/retry. R09 persisted/native timezone-edge evidence also remains open. Not complete. | Run only those missing matrices, with explicitly disposable database/queue/device inputs; preserve truthful gate status and do not repeat completed happy paths. Independent product work can proceed outside affected files. |
 | **Primary build — Home/Places useful breadth** | In progress. The candidate has owner-backed reads, social receiving, practical fit/open-now, exact destinations/return, persisted Home public-Place HTTP readback with source-retraction behavior, and native multi-source scrolls. Exact-place friend lines offer recipient-only Keep/Leave-aside in the rebuilt reader, guarded by a fresh relationship-owner read and expected revision; this recipient-action journey now passes against the real local API/Postgres on iOS 18.2. A cache handoff fix refreshes the Places feed after owner status/action changes. The earlier focused Home/Places packet passed 50 tests; this action follow-through adds 4/4 owner-action tests, 3/3 runner-contract tests and the native/API journey. Home and governed Places show generic partial-read notices without backend diagnostics. Remaining: worthwhile varied default-portfolio value beyond the proved scrolls, broader design-section coverage, distinct empty states, and native visual acceptance/parity. | Select the largest concrete design/value gap supported by existing Source/content/relationship/Place owners. Keep exact destinations, return, accessibility and empty/error behavior in the same package; no new generator/store or route-only milestone. |
 | **Complementary build — Life/social downstream value** | Persisted HTTP reads prove one private Plan and one explicitly permissioned shared Outcome through Life root and depth. The People-record seam also preserves grant/member refs, exact destinations and explicit People-bound private anchors. Broader media/corpus, Threads/gathering experience and later permitted context that changes a subsequent result are not complete. | Use existing Source, Life and relationship owners; custody is not permission. Select downstream value only where structured authority exists; defer policy-dependent media/group/use expansion. |
+| **Non-blocking reliability evidence — R05/R09 edges** | R01/R03 disposable-Postgres authority/revocation regressions pass. R04 withdrawal controls and R09 schedule-zone propagation are code-fixed with focused regressions; R04 sender-control API and native simulator rehearsals pass. R05 lease/recovery code, real Arq/Redis wrapper and expired due-work recovery have focused evidence. Still open: a real process-interruption/restart rehearsal and live transient-provider failure/retry. R09 persisted/native timezone-edge evidence also remains open. | Run only those missing matrices when the explicitly disposable database/queue/device is available. They remain required for their named evidence/landing claims, but do not gate independent product implementation. |
 | **Across both builds — native polish** | Required within each completed surface: design hierarchy, card/media treatment, interaction, accessibility and sparse/pending/failure states. Not accepted yet. | Use current inspected Claude exports and handoffs; record actual canvas/version. Unresolved visual choices do not block unrelated owner/supply work. |
 | **Orchestration / this thread** | Own scope, current queue, cross-system decisions and package review; dispatch only when requested. | Review first working composition, consequential blocker and completed package. Judge delivered behavior and remaining user effort, not commit/test counts. |
 | **Dedicated Integration / landing** | PAUSED; combined shared runtime, main landing and publishing are not enabled by this update. | Lane-local implementation/verification remains distinct. On explicit resume, receive selected clean cuts and run required gates without pretending candidate receipts certify production. |
