@@ -2432,6 +2432,20 @@ through implementation and focused review, escalating product/authority choices
 or real dependencies rather than every ordinary repair. No fixed integration
 ceremony is added. Required pre-push gates remain required.
 
+**September 22 Home design/source boundary:** the latest `vesper-home` Claude
+board is useful design input, but it is not among the seven files registered by
+the active hashed Home/Places design authority. `HOME_SURFACES_CANON_DIR` is
+unset in this lane, so no visual acceptance against that bundle was possible.
+The current data model also cannot honestly render two attractive ideas from
+the newer board as if they were already supplied: Relationship original
+deliveries are individual grants with no shared photo-set/Occasion identity,
+and the saved-Place closure/reopening/weather notices are exact saved-venue
+changes—not city-scoped dated service notices. Do not group deliveries by
+time/place, or promote those notices into `horizon_world_fact_row`. Keep Home
+composition work moving with currently owner-backed material; any slice that
+needs either missing identity/source must first establish that owner's contract
+and evidence rather than infer it in the renderer.
+
 At each substantial handback, update §2 and this register in place: what became
 useful, what supplied it, how it behaves after action/correction/return, what
 design coverage remains, and which evidence actually ran. Preserve underlying
