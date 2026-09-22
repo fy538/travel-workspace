@@ -21,10 +21,11 @@ promise that every kind is renderable. The client must continue to reject an
 unknown or unpromoted kind rather than route it through a generic card.
 
 The renderer registry and server-kind coverage were rechecked by code
-inspection on 2026-09-22 against workspace `d076caa`, backend `8866f41a2`, and
-app `9a4c029e3`. The workspace commit is documentation-only atop functional
-workspace commit `e7b872b`; the child code tuple is unchanged. This refresh did
-not rerun the suites listed below.
+inspection on 2026-09-22 against the current isolated candidate: workspace
+`0f182e6`, backend `5e6f1d174`, and app `93a9090de`. The backend child advance
+is verification-only for the R02 release matrix; the app child advance retains
+the supported private-audio reader. This refresh did not rerun the suites
+listed below and does not promote either child to main or production.
 
 ## Current promotion boundary
 
@@ -93,11 +94,13 @@ experience rather than create a second feed.
 
 - The current code registry contains 18 Home semantic kinds and the current
   Places registry contains twelve; this refresh verified those source lists,
-  not their live production frequency.
+  not their live production frequency. The transport union remains broader by
+  design, including reserved/deferred values that do not currently have an
+  owner-backed producer and should not be treated as missing renderers.
 - The 12-test Home renderer suite and app TypeScript check passed at app
-  `6ae89c427`; app `9a4c029e3` adds a test-only non-substitution regression, so
-  it does not change the renderer registry. The current refresh did not rerun
-  these checks or capture a screenshot.
+  `6ae89c427`; app `93a9090de` retains that renderer boundary while adding the
+  supported private-audio reader. The current refresh did not rerun these
+  checks or capture a screenshot.
 - The earlier audit recorded 43 focused Home and 27 focused Places tests on
   its then-current tuple. Those historical counts are not a full experience or
   native acceptance claim for the current candidate.
