@@ -7016,10 +7016,11 @@ the donor branch's unrelated Source-history migration was deliberately not
 carried over.
 
 The selective retirement pass is backend `22c8fbe39`: the private group-safety
-corpus no longer queries `personal_memories` directly and therefore cannot
-reintroduce an unbound or withdrawn aggregate into a privacy check. No second
-memory store, new generator, Source worker, route, app change or feature
-activation was added.
+corpus no longer queries `personal_memories` directly. The later follow-through
+below makes its purpose-specific read explicit: group privacy denial uses the
+latest retained snapshot without an evidence-currentness gate, applies explicit
+corrections, and is not positive personalization evidence. No second memory
+store or generator is introduced.
 
 Evidence on the cut: owner-read tests **23 passed**; memory/refresh/claims/
 reflection/traveler tests **162 passed**; privacy-corpus/currentness tests
@@ -7035,3 +7036,47 @@ landing, run the migration upgrade against an explicit disposable database,
 re-run the parity hooks with the backend environment installed, and inspect
 the affected consumer contracts. Integration remains paused; this receipt is
 not permission to activate the worker, flags or release paths.
+
+## September 21 shared-engine follow-through — lifecycle and application ownership
+
+This follow-through is backend-only and remains on the isolated engine lane.
+Commits `2918bf7d6`, `97dde2ec9`, `6ee52da4d`, and `bb46dd818` complete a
+purpose-separated Personal Memory lifecycle: affirmative personalization reads
+remain evidence-currentness-gated; the privacy-denial reader uses a retained,
+corrected snapshot while replacement synthesis is pending; ordinary reads do
+not trigger inline generation; publication and the workflow receipt commit in
+one transaction; and zero-evidence withdrawal repeats the evidence check under
+the publication lock before committing its receipt. Explicit corrections are
+immediately projected out of both runtime memory views.
+
+Backend `4fd150483` moves canonical owner-read adapters, their bounded portfolio
+planner, and shared Home/Places orchestration into `backend.application`. The
+API route is now a transport adapter; Home and Places still own their
+root-specific projection compilers. Former module paths remain as compatibility
+re-exports. A latent treatment-binding call passed an unsupported keyword; it
+now uses the treatment API's declared contract, while consequence resolution
+remains a separate stage. The root-composition budget is a **soft enrichment
+deadline**, not end-to-end HTTP cancellation or a latency SLO: it constrains
+canonical owner reads and optional suppression/proof work, but does not
+preempt all upstream feed construction or synchronous projection stages.
+
+Backend `517b13e18` adds real-PostgreSQL proof for the worker boundary. With
+only the LLM refresh stubbed, one test verifies memory plus completion receipt
+commit; a failure injected after the receipt update verifies both records and
+the completion event roll back before the worker marks the workflow retryable.
+The database was created in this lane's isolated Compose project and migrated
+to `pmevidence02`. The focused offline packet passed **494 tests** (3
+database-marked cases deselected); the targeted real-Postgres packet passed
+**2 tests**. Ruff, format, import-boundary, lazy-import and cycle-ratchet gates
+passed, as did applicable local pre-commit hooks. Full backend mypy remains
+failed (**320 errors across 66 files**); this slice removed the bad treatment
+call finding but does not clear the broader typing debt.
+
+The full PostgreSQL-marker suite was also run and is **not green**:
+**1,376 passed, 5 skipped, 18 failed, 21,787 deselected**. Failures concern
+current-date-sensitive legacy itinerary fixtures, planner placeholder/seed
+expectations, Life projection/backfill expectations, and replay fixture counts;
+none are in the new memory worker or root-composition tests. This receipt does
+not assert that the complete backend suite is healthy. It establishes the
+named memory transaction proof and isolated local gates only. No integration
+merge, publication, worker/flag activation, or release readiness is implied.
