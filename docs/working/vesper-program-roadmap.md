@@ -42,6 +42,18 @@ note is not guaranteed to be present in the destination's incidental list.
 This is a missing continuation of an existing recipient-owned contribution,
 not a reason to add a social model or sharing surface.
 
+The current isolated lane has started the narrow continuation: Home passes the
+selected handoff ID/revision into the canonical object route, the owner read
+filters for that exact current revision, and the object page opens only that
+line or reports it unavailable. Focused mobile coverage passes **91 tests**;
+the backend route packet passes **7 tests**, app typecheck and polish scenario
+validation pass. This remains uncommitted and incomplete: OpenAPI projection
+and generated-type sync stops at **55 expired API-policy reviews**, the
+Postgres integration case cannot run without the disposable test database,
+and native tap/back acceptance has not run. Do not count this as delivered or
+merge-ready until the contract chain and remaining owner/native evidence are
+closed.
+
 Backend commit `ee625b985` also closes a bounded Home projection defect:
 long-authored Outcome meaning is now a compact excerpt, while the exact
 revisioned Outcome and existing `life.read` requirement remain intact. Life
