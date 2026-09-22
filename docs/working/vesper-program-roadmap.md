@@ -4522,3 +4522,23 @@ This closes one source-backed value seam from explicit saved intent to the
 existing Places owner. It does not change the program priority: the broader
 Home composition package remains active, with the returned-value contract in
 the previous section still the next distinct private, cross-time value gap.
+
+## September 22 functional implementation receipt — accepted Outcome → Places door
+
+Backend commit `b3d5cf1c5` preserves an explicit, accepted Outcome's canonical
+Place association when projecting that Outcome into Home. The Home continuity
+unit still carries its exact revisioned Life record and `life.read` requirement;
+when the graph owner has an accepted routable `place`, `venue`, `site`,
+`accommodation`, or `experience` binding, it also carries a typed
+`places.open_entity` destination with the Place and Outcome refs. This gives a
+returned record a direct spatial continuation without inferring attendance,
+taste, or a new cross-time interpretation. Unresolved, custom, or otherwise
+unaccepted bindings remain Life-only and do not receive a guessed Places door.
+
+Focused Home portfolio, page-composition, and v2 contract tests pass **113**;
+Ruff, formatting, and backend commit hooks pass. No schema, route, policy,
+generator, or mobile change was needed. This closes one exact cross-root
+continuation seam, not the broader private returned-value contract: Home still
+does not synthesize a new artifact-derived transfer from a past journey. That
+larger result remains gated on a Life-owned source set, purpose, correction and
+withdrawal behavior, and a worthwhile complete-on-view composition.
