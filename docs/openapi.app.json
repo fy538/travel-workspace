@@ -35801,7 +35801,7 @@
     "/api/me/entities/{entity_type}/{entity_id}/people-lines": {
       "get": {
         "summary": "Get My Entity People Lines",
-        "description": "Return addressed, exact-place lines authorized for this viewer.\n\nThe object page never infers friends from co-presence or circle\nmembership. When the clean relationship handoff owner is disabled, the\ncapability is absent rather than represented by synthetic people.",
+        "description": "Return addressed, exact-place lines authorized for this viewer.\n\nThe object page never infers friends from co-presence or circle\nmembership. A selected_handoff_id returns only that current, eligible\nline at the requested revision; it never falls back to another\ncontribution. When the clean\nrelationship handoff owner is disabled, the capability is absent rather\nthan represented by synthetic people.",
         "operationId": "get_my_entity_people_lines_api_me_entities__entity_type___entity_id__people_lines_get",
         "parameters": [
           {
@@ -35826,6 +35826,39 @@
             "schema": {
               "type": "string",
               "title": "Entity Id"
+            }
+          },
+          {
+            "name": "selected_handoff_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Selected Handoff Id"
+            }
+          },
+          {
+            "name": "selected_handoff_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Selected Handoff Revision"
             }
           },
           {
