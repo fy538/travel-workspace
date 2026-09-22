@@ -5426,3 +5426,23 @@ This amendment supersedes older prose that treats the continuity kind as
 unimplemented or treats a social-looking design card as an available owner
 payload. The recent-return trigger remains separately decision-gated and does
 not block this composition work.
+
+## September 22 Home occasion-participant receipt
+
+Backend `cd50755c8` now uses the existing viewer-relative Experience Graph to
+emit a `people_participants_row` for a shared Occasion when it has active,
+participant-visible members besides the viewer. The row carries only the
+bounded count (for example, “With 1 other”), the exact Occasion revision, and
+the existing `occasion.read` requirement; opaque member IDs never enter Home
+copy, and private/unknown member visibility does not inflate the count. An
+occasion with no eligible visible participant retains the prior
+`motion_occasion_row` path.
+
+App `d14665ca5` promotes the already-defined semantic kind through the native
+Home registry and existing generic link anatomy; no new route, schema, social
+store, identity resolver, or mutation was added. Focused backend adapter tests
+pass **3**; the focused Home renderer/root-experience packet passes **30** and
+TypeScript passes. The broader root-projection run reached **483 passed** but
+had one timing-sensitive failure in the existing 10ms bounded-read test, so it
+is not reported as a clean full packet. No persisted database, native-device,
+visual-canon or release acceptance is claimed for this slice.
