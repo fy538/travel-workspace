@@ -41,22 +41,30 @@ the entity page's incidental three-line list and never substitutes another
 friend's note. The change completes the product path in code without adding a
 social model or sharing surface.
 
-**Functional-code tuple at this rebaseline (before this roadmap-only commit):**
-workspace `0206807`, backend `8866f41a2`, and app `6ae89c427`, all clean on the isolated
+**Functional-code tuple at this rebaseline:** workspace `e7b872b`, backend
+`8866f41a2`, and app `9a4c029e3`, all clean on the isolated
 `codex/functional-implementation-2026-09-20` lane. The exact Home → Place →
-Keep → Home route has a prior native acceptance on iPhone 16 Plus / iOS 18.2:
-it opened only the selected note, kept it, observed the relationship owner's
-revision advance from 0 to 1 and an exact reread at revision 1, returned to Home
-with the handled unit removed, and cleaned its disposable fixture. The current
-app adds one bounded Home secondary-composition presentation correction; its
-12-test renderer suite and TypeScript check pass, and a registered native
-Home-root capture was reviewed on that device. This capture is a mock fixture
-posture, not broad Home acceptance or design parity. Withdrawal/expiry for the
-selected note remain unproven. Standard pre-push findings were last recorded as
-55 expired API-policy reviews, 59 expired schema-bridge exceptions, and 12
-query-key ownership findings; `make verify` has not been run against this exact
-tuple. These are local candidate commits only—not merged, published,
-rollout-enabled, or cleared through standard gates.
+Keep → Home route has native acceptance on iPhone 16 Plus / iOS 18.2: it opened
+only the selected note, kept it, observed the relationship owner's revision
+advance from 0 to 1 and an exact reread at revision 1, returned to Home with the
+handled unit removed, and cleaned its disposable fixture. App `9a4c029e3` adds
+the negative sibling-note case: if the selected handoff is absent but another
+person's line remains, the page reports the selected note unavailable and does
+not substitute the other line. `ObjectPageRebuild` passes **24 tests**, the
+recipient owner-read invalidation suite passes **4**, and TypeScript passes.
+This latest addition is regression coverage, not a new device rehearsal. The
+registered Home-root native capture remains the earlier single mock-fixture
+posture at app `6ae89c427`; it is not broad Home acceptance or design parity.
+The current visual QA doctor could not run because Metro was unavailable at
+`:8081`, so no current-tuple screenshot was captured. Withdrawal/expiry for the
+selected note remain unproven. The [code review ledger](functional-implementation-code-review-2026-09-21.md)'s
+**11 confirmed findings are code-fixed**; remaining R05/R09 matrices and R02 cohort/release and R06
+deployed-scale evidence are acceptance gaps, not known uncorrected defects.
+Standard pre-push findings were last recorded as 55 expired API-policy
+reviews, 59 expired schema-bridge exceptions, and 12 query-key ownership
+findings; `make verify` has not been run against this exact tuple. These are
+local candidate commits only—not merged, published, rollout-enabled, or
+cleared through standard gates.
 
 Backend commit `ee625b985` also closes a bounded Home projection defect:
 long-authored Outcome meaning is now a compact excerpt, while the exact
@@ -148,33 +156,20 @@ drift that had called several already-renderable kinds "dark"; it does not
 claim source admission, recurring content supply, broad runtime full-scroll
 quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
-**Functional evidence tuple at the latest inspected rebaseline:** workspace
-`27456a6` (before this documentation-only refresh), backend `f099bdace`, and
-app `e2c0bafb1`, all on the isolated
-`codex/functional-implementation-2026-09-20` lane. Backend and app contain the
-exact Home-selected Place-note continuation. Its native Keep journey passed on
-iPhone 16 Plus / iOS 18.2, including exact revision 0 → 1 owner readback,
-Home return with the handled inbox unit removed, and fixture cleanup. The
-focused object-page suite passed **23 tests**, runner contract **4 tests**, and
-the native runner passed; the written disposable-Postgres case passed **1
-test**. TypeScript and shell syntax passed; targeted ESLint had 0 errors and
-14 existing-pattern warnings. Follow-on app `0924ff1e5` and backend
-`f099bdace` add the native exact Home Outcome → Life record → Home rehearsal
-and its guarded local fixture. On iPhone 16 Plus / iOS 18.2, the exact record
-opened and Back restored the same Home unit; the runner also confirmed fixture
-withdrawal from Home and Life. Its contract suite passed **4/4**. No API schema
-changed. The later app `e2c0bafb1` adds a stronger Keep-after-reopen flow
-contract; its contract passes **4/4** and the focused owner/action/object-page
-packet passes **33 tests**, but local API startup failed before Maestro because
-`ANTHROPIC_API_KEY` was unavailable. Withdrawal/expiry for the selected Place
-note, the fixed Home sample's native appearance/retirement, and broad
-visual/device acceptance remain unverified. Standard audit findings remain
-open and `make verify` was not run. The candidate trees were clean at
-inspection. None of these commits is
-merged to main, published, or production-flag activated. Earlier commits
-provide the exact Outcome Life door and excerpt bound, Home/Places scrolls, Life
-readers/refinding, and explicit Life → Places return. See the dated receipts
-for exact evidence boundaries.
+**Latest inspected code tuple:** workspace `e7b872b`, backend `8866f41a2`, and
+app `9a4c029e3` (the exact isolated-lane baseline is in §2). The native
+Home-selected Place-note Keep path and Home Outcome → Life record → Home return
+were proven on iPhone 16 Plus / iOS 18.2 on their named earlier candidate
+revisions; neither was re-run after the latest test-only non-substitution
+addition. The current focused object-page/owner-read tests and app TypeScript
+pass, but the visual doctor was blocked by Metro not being available at `:8081`.
+Do not inherit device evidence as a fresh full-tuple run. The fixed Home
+sample's live presentation/retirement, selected-note withdrawal/expiry,
+comprehensive visual/device acceptance and exact-tuple `make verify` remain
+unverified. None of these commits is merged to main, published, or
+production-flag activated. Earlier receipts document the exact Outcome Life
+door and excerpt bound, Home/Places scrolls, Life readers/refinding, and
+explicit Life → Places return; retain their individual evidence boundaries.
 
 ### September 22 backend robustness receipt — bounded Home Outcome preview
 
@@ -2057,35 +2052,41 @@ retirement require their existing approvals. Assignment does not dispatch a task
 
 ## 2. Inspected baseline — September 22
 
-Inspected before this roadmap update at workspace `0206807`, backend
-`8866f41a2`, and app `6ae89c427`. Since the preceding recorded tuple, the
-candidate adds the integrated Places World Field and its combined native
-full-scroll acceptance, exact Home Outcome → Life record return, exact
-Home-selected Place-note ownership and Keep path, and a bounded Home renderer
-correction for coherent secondary compositions. The renderer correction has a
-12-test focused suite, TypeScript verification, and one registered native
-Home-root capture on iPhone 16 Plus / iOS 18.2. The capture is an available-state
-mock fixture, not a full owner-backed Home scroll or a Claude-design parity
-verdict. A separate three-family Home scroll already has owner-backed native
-evidence; neither result establishes the broader design-aligned Home
-composition. The fixed cold-start example still lacks native presentation and
-live-retirement evidence. Withdrawal/expiry on the Home-selected note,
-comprehensive visual/device acceptance, and broad binary-media coverage remain
-open. All candidate code is committed and clean in its isolated lane; canonical
-main remains untouched.
+Inspected at workspace `e7b872b`, backend `8866f41a2`, and app `9a4c029e3`.
+Since the previous rebaseline, the candidate contains the integrated Places
+World Field and its combined native full-scroll acceptance, exact Home Outcome
+→ Life record return, exact Home-selected Place-note ownership and Keep path,
+the bounded Home renderer correction for coherent secondary compositions, and
+the new fail-closed regression preventing substitution of a different person's
+Place note. The renderer correction has a 12-test focused suite, TypeScript
+verification, and one registered native Home-root capture on iPhone 16 Plus /
+iOS 18.2; the non-substitution regression adds a 24-test object-page suite,
+4-test recipient owner-read invalidation suite and TypeScript pass. The capture
+is an available-state mock fixture, not a full owner-backed Home scroll or a
+Claude-design parity verdict. A separate three-family Home scroll already has
+owner-backed native evidence; neither result establishes the broader
+design-aligned Home composition. The fixed cold-start example still lacks
+native presentation and live-retirement evidence. The current visual doctor
+could not run without Metro at `:8081`; no screenshot was produced. The
+candidate's three repositories are committed and clean in its isolated lane.
+Canonical main was not modified; its workspace checkout contains unrelated
+user changes and remains untouched.
 
 | Repository | Candidate HEAD at this rebaseline | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `0206807` (candidate before this roadmap refresh) | `70c4b4b` |
+| Workspace | `e7b872b` | `70c4b4b` |
 | Backend | `8866f41a2` | `a7c02cbe1` |
-| App | `6ae89c427` | `e2e792913` |
+| App | `9a4c029e3` | `e2e792913` |
 
 The stronger Keep-after-reopen flow contract from app `e2c0bafb1` remains a
 separate acceptance path: its 4-test flow contract and 33-test focused
 owner/action/object-page packet pass, but it has not been exercised by the
 `90-places-full-scroll` run and should not inherit that run's acceptance. The
 registered native Home capture `20260922T095658Z-home-root` records app
-`6ae89c427`; it covers only the available-state mock fixture. The previously
+`6ae89c427`; it covers only the available-state mock fixture, not current app
+`9a4c029e3` or the full Home scroll. The newly added exact-note
+non-substitution test passes on app `9a4c029e3`, but no current-tuple visual
+capture was possible because Metro was unavailable at `:8081`. The previously
 observed `maestro:metadata:check` failure on untouched flow
 `.maestro/76-places-public-reading.yaml` (`lane:
 functional-implementation` is not an allowed metadata value) remains
@@ -2098,9 +2099,10 @@ Home-selected Place continuity acceptance. The exact Home Outcome return
 implementation is in app `0924ff1e5`; app `e2c0bafb1` adds the stronger
 Keep-after-reopen flow contract and runner safeguards. The September 22 child
 merges integrated sibling commits `d7d153810` and `cd70c7111`; the app merge
-also contains the `dominant_unit_id` ordering fix and regression. Backend and
-app checkouts are clean after merge; the workspace working tree contains only
-the two roadmap updates being recorded here.
+also contains the `dominant_unit_id` ordering fix and regression. The latest
+app commit `9a4c029e3` adds a selected-note fail-closed regression only. The
+workspace, backend and app candidate checkouts were clean at inspection; the
+canonical workspace checkout has unrelated user changes and was not touched.
 Canonical main and its concurrent work remain untouched. The candidate is
 committed in its lane, not landed on main or released. Recheck Git and ownership
 before execution; this is a dated observation, not a locked dispatch base.
