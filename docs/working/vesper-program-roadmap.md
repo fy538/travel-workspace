@@ -55,6 +55,15 @@ to the exact canonical venue, as a private, read-only Place doorway. The Places
 withheld. This completes one existing receiving family, not Home's broader
 content composition or coverage.
 
+A further September 22 backend increment lets a recent explicit Place save
+receive a current, accepted public reading in the same Home seat as its generic
+save doorway. Home preserves the reviewed source and exact Places destination;
+the ordinary save remains when no eligible reading is available, and an
+already-present current-context reading is not repeated. A save is used only
+as an explicit continuity signal, never as inferred taste. This adds one
+source-backed Home value path, not broad composition, personalized taste, or
+new generation infrastructure.
+
 The September 22 Home → Places social continuation is now connected as well.
 An existing `Addressed to you` Home region receives a final “From friends in
 Places” door only when the same current Places read contains at least two
@@ -110,16 +119,18 @@ backend `60da1dcb9`, and app `d021488be`. Its 59 backend Home-portfolio and
 slice, not the current checkout.
 
 **Current isolated product-code revisions before this September 22 roadmap
-maintenance:** workspace `67ae496`, backend `2d0721e67`, and app `93a9090de`, all on
-`codex/functional-implementation-2026-09-20`; all three working trees are clean.
-The latest backend commit scopes Home child-source fixture cleanup to the run
-that owns the fixture, avoiding restoration of a profile snapshot by an absent
-or concurrent run. The audio reader is committed in the app and adds no backend
-operation. Offline OpenAPI export reflects the current backend source; app
-projection remains blocked by 55 existing expired API-policy reviews. There is
-no new `HEAD` operation or missing-consumer finding. Canonical main and its
-unrelated working-tree changes remain untouched; see §2 for exact status and
-evidence boundaries.
+edit:** workspace `94965cf`, backend `18e1fb377`, and app `93a9090de`, all on
+`codex/functional-implementation-2026-09-20`. The backend and app trees are
+clean; this workspace checkout now contains the roadmap update. Backend
+`18e1fb377` adds the saved-Place reading described below. Its predecessor
+`2d0721e67` scopes Home child-source fixture cleanup to the run that owns the
+fixture, avoiding restoration of a profile snapshot by an absent or concurrent
+run. The audio reader is committed in the app and adds no backend operation.
+Offline OpenAPI export reflects the current backend source; app projection
+remains blocked by 55 existing expired API-policy reviews. There is no new
+`HEAD` operation or missing-consumer finding. Canonical main and its unrelated
+working-tree changes remain untouched; see §2 for exact status and evidence
+boundaries.
 Prior focused evidence includes backend selector/portfolio **68 tests** and
 backend seed context **44 tests**; Home renderer **12**, Home screen **17**,
 PushRegistrar **15**, root-invalidation **3**, and route/composer/seed **73**
@@ -4382,14 +4393,17 @@ generator, or new store. If the allowed sources cannot support a genuinely
 useful transfer, keep the current exact Life door and the forward-looking
 public/Place value rather than fabricate one.
 
-The next Home product slice is thus a **returned-value contract and one
-source-backed composition**, not a broad semantic expansion: use a confirmed
-Journey/Outcome and permitted Sources to connect to a present Place, person, or
-commitment; keep it complete-on-view with one exact Life depth door; and prove
-that correction or withdrawal cannot leave dependent Home copy stale. Continue
-the remaining R05 process-interruption and R09 persisted/native timezone
-evidence as bounded review closeout, but do not let those verification cases
-replace the next user-visible value result.
+Within the broader Home composition package, the next distinct user-value gap
+is still a **returned-value contract and one source-backed composition**, not
+a broad semantic expansion: use a confirmed Journey/Outcome and permitted
+Sources to connect to a present Place, person, or commitment; keep it
+complete-on-view with one exact Life depth door; and prove that correction or
+withdrawal cannot leave dependent Home copy stale. The saved-Place reading
+above is a completed complementary path from explicit saved intent to accepted
+public Place material; it does not satisfy this private, cross-time use case.
+Continue the remaining R05 process-interruption and R09 persisted/native
+timezone evidence as bounded review closeout, but do not let those verification
+cases replace the next user-visible value result.
 
 ## September 22 functional implementation receipt — private audio originals in Life
 
@@ -4425,3 +4439,34 @@ depth/action destinations and return, and assess whole-scroll hierarchy and
 polish against the verified design reference. This audio reader is a complete
 bounded implementation with native media/device acceptance still open; it does
 not replace or serialize that Home work.
+
+## September 22 functional implementation receipt — saved-Place reading in Home
+
+Backend commit `18e1fb377` lets the exact saved-Place continuity door carry a
+substantive accepted public reading when one is available. The bounded reader
+checks only the four most recent place-like saves, requires exact entity
+identity and the existing current/public/source-evidence gates, and reads a
+limited number of candidates per entity. The reading shares the generic save's
+Home seat, retains its immutable Source and exact Places destination, and
+includes the explicit save as a represented owner reference. If no eligible
+reading can be read, the ordinary save doorway is preserved. If the same Place
+already has current-context public content in the portfolio, the saved-place
+copy is suppressed to avoid a second presentation. A saved Place is not
+interpreted as a taste profile; no API, schema, migration, generator, or app
+screen was added.
+
+Evidence on the isolated candidate: the focused source/portfolio packet passed
+**73 tests**; the offline root-projection suite passed **470 tests**; Ruff and
+format checks passed. `tests/db/test_place_content.py::test_bounded_entity_listing_returns_latest_reviewed_place_content`
+passed **1 test** against a freshly migrated, uniquely named disposable
+PostgreSQL database on the lane's isolated Postgres service. That database was
+dropped afterward and the lane Postgres container stopped. Backend commit hooks
+also passed. No app files changed. No live-account read, native Home render,
+screenshot, design-reference comparison, or full `make verify` was run. The
+source/query behavior is verified; Home visual acceptance and the complete
+end-to-end user experience are not.
+
+This closes one source-backed value seam from explicit saved intent to the
+existing Places owner. It does not change the program priority: the broader
+Home composition package remains active, with the returned-value contract in
+the previous section still the next distinct private, cross-time value gap.
