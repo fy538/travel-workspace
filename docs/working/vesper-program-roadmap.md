@@ -235,6 +235,24 @@ next product milestone. Focused tests and a real design-reference/polish check
 are part of each build package, not a separate phase in place of
 implementation.
 
+The returned-value investigation adds one important distinction to that queue:
+the private cross-time composition rail is substantially present, but its
+event-driven supply is not. Recent-return discovery already joins exact,
+revisioned itinerary occurrences with approved Place dossiers; the bounded
+producer, source-contribution result, Home/Places candidate conversion and
+ordinary prepared-result read are all implemented. A normal Home GET remains
+read-only and will not generate or enqueue work. The existing
+`trip.completed` subscriber schedules the older `trip_story_prewarm` task; it
+does not create a `SourceContributionWorkItemV1`. The only current
+Source-contribution admission is the authenticated, rollout-gated explicit
+`POST /api/agent-workflows/source-contribution` path with an `EXPLICIT_WARM`
+trigger. Therefore the next returned-value slice must decide and implement a
+narrow event-to-preparation contract under Life's authority, rather than add a
+new renderer, Home-side Atlas read, generic generator, or store. If the
+event-trigger decision is not yet supportable, keep the exact Life door and
+forward-looking Place value as the honest fallback instead of manufacturing a
+retrospective.
+
 **September 22 refinement:** the bounded Places World Field is now integrated
 in the functional candidate, the server-elected ordering seam is fixed and
 covered, and the combined native full-scroll passed on iPhone 16 Plus / iOS
@@ -4543,3 +4561,56 @@ continuation seam, not the broader private returned-value contract: Home still
 does not synthesize a new artifact-derived transfer from a past journey. That
 larger result remains gated on a Life-owned source set, purpose, correction and
 withdrawal behavior, and a worthwhile complete-on-view composition.
+
+## September 22 returned-value supply recheck — contract present, trigger boundary open
+
+The next Home investigation traced the private recent-return path end to end.
+This is no longer accurately described as “missing the returned-value engine.”
+The existing rail already provides:
+
+- exact, revisioned itinerary-occurrence evidence from the Life-owned trip
+  source (`source_contribution_trip_evidence.py`), including happened/skipped
+  state, block type, schedule and correction-aware reread;
+- bounded recent-return discovery that joins those occurrences with approved
+  Place dossiers only when subjects overlap or an approved canonical ancestor
+  bridges them (`source_contribution_discovery.py`);
+- governed owner material, a hard-budget structured producer and a
+  source-contribution result that can become Home editorial or Places field
+  candidates; and
+- ordinary Home/Places reads that consume a prepared exact result without
+  producing or enqueueing work on the read (`root_composition.py` and
+  `source_contribution_serving.py`).
+
+The missing boundary is supply. `compose_home_root_v2` maps the returned
+posture to `ContributionSituation.RECENT_RETURN`, but the ordinary GET only
+reads a prepared result. `trip_lifecycle.py` correctly emits `trip.completed`,
+and `trip_story_subscriber.py` schedules the legacy `trip_story_prewarm` task;
+that subscriber does not create a `SourceContributionWorkItemV1`. The current
+Source-contribution workflow entry in `api/routes/agent_workflows.py` is an
+authenticated, rollout-gated explicit request with an `EXPLICIT_WARM` trigger.
+No automatic recent-return admission was found in the inspected event path.
+
+This changes the next package's shape:
+
+1. Decide whether `trip.completed` plus the existing homecoming delay is an
+   acceptable trigger for this private use, and record the decision under
+   Life's retention, audience, correction and withdrawal authority.
+2. If accepted, add one idempotent, feature-gated event adapter that builds the
+   canonical Source work item and uses the existing durable workflow/worker;
+   do not enqueue from Home GET, bypass the workflow fence, or reuse the
+   legacy Trip Story as if it were a governed Source result.
+3. Prove no-op/sparse behavior, duplicate completion, source correction or
+   withdrawal, expiry, worker-disabled and producer-silence cases before any
+   rollout. The exact Life door remains the fallback when no useful result is
+   produced.
+4. Only then compose the result into a longer Home returned posture and accept
+   it against the current design reference, with one exact Life depth door and
+   a truthful return path.
+
+Until step 1 is resolved, this is an open product/authority decision rather
+than permission to add infrastructure. The finding also confirms that another
+Home renderer, a Home-side Atlas query, a generic generation service, or a new
+store would be architectural regression. No code changed during this
+investigation; the existing focused source-contribution, Home-composition and
+trip-lifecycle tests remain the applicable evidence, and no live provider,
+worker activation or native returned-value receipt was run.
