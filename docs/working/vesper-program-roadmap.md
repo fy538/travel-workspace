@@ -40,13 +40,13 @@ readiness. The fixed fictional Home example is only a cold-start fallback; its
 native presentation and live retirement have not been observed on a device.
 
 **Current local tuple after the occasion-participant slice:** workspace
-`9c138e6`, backend product commit `cd50755c8` plus rehearsal follow-up
-`1aadcfb8d`, and app `d14665ca5`, all on
+`7a5fb34`, backend product commit `cd50755c8` plus rehearsal follow-up
+`1aadcfb8d`, and app `aefcc0343`, all on
 `codex/functional-implementation-2026-09-20`. Home now emits and renders the
 existing `people_participants_row` kind for a shared Occasion when active,
 participant-visible members besides the viewer are present. The serial root
 projection packet passes **484 tests**; the focused adapter packet passes **3**,
-the focused Home renderer/root-experience packet passes **30**, and app
+the focused Home renderer/root-experience packet passes **32**, and app
 TypeScript passes. The full offline backend gate was attempted but remains
 non-clean because of unrelated timing/teardown/rehearsal cases; do not carry
 that run as a clean full-gate claim.
@@ -2511,11 +2511,12 @@ tasks. Lane-local implementation and verification do not resume shared
 Integration/landing, publish code, or activate production flags.
 
 **Current-tuple override (September 22, after the occasion-participant
-slice):** for all package decisions below, use workspace `9c138e6`, backend
-`cd50755c8` plus rehearsal follow-up `1aadcfb8d`, and app `d14665ca5`. The
+slice native treatment):** for all package decisions below, use workspace
+`7a5fb34`, backend `cd50755c8` plus rehearsal follow-up `1aadcfb8d`, and app
+`aefcc0343`. The
 serial backend root-projection packet passes **484 tests**; the focused
 participant adapter packet passes **3**, the focused Home renderer/root-
-experience packet passes **30**, and app TypeScript passes. The full offline
+experience packet passes **32**, and app TypeScript passes. The full offline
 backend gate was attempted on this tuple but is **not clean** because of three
 unrelated timing/rehearsal failures and two analytics teardown/setup errors;
 the older 21,661-test result belongs to an earlier tuple and is not current
@@ -2527,14 +2528,14 @@ The active primary build remains a longer, benefit-led Home composition from
 existing owner-backed material; no new generator, store, semantic kind, or
 social route should be added solely to manufacture fullness.
 
-**Workspace correction (September 22):** `9c138e6` is the current workspace
+**Workspace correction (September 22):** `7a5fb34` is the current workspace
 checkpoint for the code receipts below. Backend `cd50755c8` plus rehearsal
-follow-up `1aadcfb8d` and app `d14665ca5` contain the current product code.
+follow-up `1aadcfb8d` and app `aefcc0343` contain the current product code.
 Earlier workspace hashes remain historical documentation receipts.
 
 | Package / role | Status and complete outcome | Dependency / handback |
 | --- | --- | --- |
-| **Primary build — Home design-aligned composition breadth** | The active product-code tuple is workspace checkpoint `9c138e6`, backend `cd50755c8` plus rehearsal follow-up `1aadcfb8d`, app `d14665ca5`. Home has ten bounded owner readers, posture/region selection, 19 promoted semantic renderers (18 existing kinds plus `continuity_reconstruction`), deterministic attention breadth across distinct regions, exact saved-Place and action-receipt continuations, Source-result ingress, Life-preserving return routes, and a bounded `people_participants_row` for authorized shared Occasions. The serial backend `tests/root_projection` packet is **484 tests**; focused participant/Home packets pass **3** and **30**, and TypeScript passes. These receipts establish connected receiving, destination, return and two bounded composition increments—not a substantial design-aligned Home composition, recurring supply, native real-data/device acceptance, external design-canon parity or release readiness. | **Build sequence:** **(1) Trace** substantial sections in the registered Home design authority (`docs/governance/home-surfaces-design-authority.json`) against real producers, candidate/read, selected region, renderer, destination/action and return. Verify the external canonical bundle and its hashes before visual acceptance; exploratory exports are not runtime contracts. The latest `vesper-home` proposal includes shared-photo-set and event concepts that current owners do not supply; do not infer shared-set identity from separate recipient grants or recast saved-venue notices as city events. Classify each remaining gap as already supplied but omitted, supplied but weak/repetitive in composition, or genuinely unsupplied; record owner and evidence for the last category. **(2) Compose** a coherent longer Home from supported material first, making importance, variety and hierarchy legible without turning it into an infinite feed or adding user homework. Extend a producer only where the trace proves a valuable missing outcome and its owner, evidence, privacy, freshness, lifecycle and return are already defined. No new generator/store, semantic kind or isolated card/route to simulate fullness. **(3) Accept** two materially different Home postures against a verified design reference and current code tuple: follow at least one exact source/depth/action destination and return; inspect whole-scroll hierarchy, sparse/pending/failure states, accessibility and polished native treatment. Do not count a fixture-only scroll, isolated card or transport seam as the outcome. **Closeout, not a competing milestone:** fixed Home-sample native presentation/retirement, selected-note withdrawal/expiry, ordinary empty states, binary-media runtime, comprehensive visual parity and standard landing gates remain separate. The registered Places mock `places-search-loading` assertion is a separate QA gap; its forced-state failure produced no screenshot. |
+| **Primary build — Home design-aligned composition breadth** | The active product-code tuple is workspace checkpoint `7a5fb34`, backend `cd50755c8` plus rehearsal follow-up `1aadcfb8d`, app `aefcc0343`. Home has ten bounded owner readers, posture/region selection, 19 promoted semantic renderers (18 existing kinds plus `continuity_reconstruction`), deterministic attention breadth across distinct regions, exact saved-Place and action-receipt continuations, Source-result ingress, Life-preserving return routes, and a bounded `people_participants_row` for authorized shared Occasions. The serial backend `tests/root_projection` packet is **484 tests**; focused participant/Home packets pass **3** and **32**, and TypeScript passes. These receipts establish connected receiving, destination, return and two bounded composition increments—not a substantial design-aligned Home composition, recurring supply, native real-data/device acceptance, external design-canon parity or release readiness. | **Build sequence:** **(1) Trace** substantial sections in the registered Home design authority (`docs/governance/home-surfaces-design-authority.json`) against real producers, candidate/read, selected region, renderer, destination/action and return. Verify the external canonical bundle and its hashes before visual acceptance; exploratory exports are not runtime contracts. The latest `vesper-home` proposal includes shared-photo-set and event concepts that current owners do not supply; do not infer shared-set identity from separate recipient grants or recast saved-venue notices as city events. Classify each remaining gap as already supplied but omitted, supplied but weak/repetitive in composition, or genuinely unsupplied; record owner and evidence for the last category. **(2) Compose** a coherent longer Home from supported material first, making importance, variety and hierarchy legible without turning it into an infinite feed or adding user homework. Extend a producer only where the trace proves a valuable missing outcome and its owner, evidence, privacy, freshness, lifecycle and return are already defined. No new generator/store, semantic kind or isolated card/route to simulate fullness. **(3) Accept** two materially different Home postures against a verified design reference and current code tuple: follow at least one exact source/depth/action destination and return; inspect whole-scroll hierarchy, sparse/pending/failure states, accessibility and polished native treatment. Do not count a fixture-only scroll, isolated card or transport seam as the outcome. **Closeout, not a competing milestone:** fixed Home-sample native presentation/retirement, selected-note withdrawal/expiry, ordinary empty states, binary-media runtime, comprehensive visual parity and standard landing gates remain separate. The registered Places mock `places-search-loading` assertion is a separate QA gap; its forced-state failure produced no screenshot. |
 | **Complementary build — Life/social downstream value** | Persisted HTTP reads prove one private Plan and one explicitly permissioned shared Outcome through Life root and depth. The People-record seam preserves grant/member refs, exact destinations and explicit People-bound private anchors. Life's canonical artifact reader shows the authorized photo set and opens a selected original without cropping. Metadata refinding paginates beyond the former 100-result ceiling; Life's Places lens opens an explicitly linked Place from a retained source/original and returns to the anchored record. The canonical Intake reader now plays retained MP3/M4A/WAV after explicit tap through the existing authenticated GET; the slice is committed in app `93a9090de`, with 41 focused tests and TypeScript passing. Real media bytes, native codec/device playback, expiry-specific playback evidence, accessibility/polish and end-to-end owner read remain unproven. PDF/PKPass/HEIC/HEIF uploads are rejected pending scanner/decoder work, so PDF preview is not currently a valid feature gap. | Do not expand search into body semantics. Current recipient deliveries remain owned by Relationships and revalidated there; Life's root corpus does not read them, and its audience contract has only private/group/public. Do not encode a revocable one-to-one original as a durable Life record or mislabel it as group content. The Place door follows an owner-declared association; it does not prove attendance or later permitted reuse. Keep this audio work bounded to the authenticated original reader: no autoplay, transcription, AI interpretation, app-level export, share action, upload-format expansion, or later-use policy. Do not add a new operation or widen the image/text original-delivery MIME allowlist as part of this Life reader. Complete real-media, device, expiry, owner-read and accessibility/polish acceptance when the supported runtime is available. Keep Home's design-aligned composition breadth as the primary product build; Life acceptance follow-up must not turn into a new shared schema or policy lane. Defer policy-dependent social/media reuse. |
 | **Non-blocking review closeout — R02/R05/R06/R09 evidence** | All 11 confirmed code findings in the September 21 review ledger have code-level fixes; this is not equivalent to closing every acceptance boundary. R01/R03 disposable-Postgres authority/revocation regressions pass. R02 now has a four-case offline viewer/release matrix through both Places discovery and exact-read paths (28 focused tests; fake connection). R04 sender withdrawal has API and native evidence at its named one-recipient text scope. R05 has lease/recovery code, a real Arq/Redis wrapper and expired due-work recovery evidence. R09's timezone propagation correction has focused regressions. | Still open are persisted-Postgres active/revoked release-ledger acceptance for R02; a real process-kill/restart and live transient-provider failure/retry for R05; deployed expanded-place scale/cost evidence for R06; and persisted/native cross-device, date-boundary and DST evidence for R09. Run only in the correct disposable/runtime environments. These remain necessary for their named readiness/landing claims but do not gate independent Home implementation. See the [review ledger](functional-implementation-code-review-2026-09-21.md) for exact boundaries. |
 | **Across both builds — native polish** | Required within each completed surface: design hierarchy, card/media treatment, interaction, accessibility and sparse/pending/failure states. Not accepted yet. | Use current inspected Claude exports and handoffs; record actual canvas/version. Unresolved visual choices do not block unrelated owner/supply work. |
@@ -5338,8 +5339,8 @@ destination, return and sparse-state evidence.
 ## September 22 final execution rebaseline
 
 This is the active queue after the latest implementation wave. The current
-tuple is workspace `9c138e6`, backend `cd50755c8` plus rehearsal follow-up
-`1aadcfb8d`, and app `d14665ca5` on the isolated functional-implementation
+tuple is workspace `7a5fb34`, backend `cd50755c8` plus rehearsal follow-up
+`1aadcfb8d`, and app `aefcc0343` on the isolated functional-implementation
 branch. The code is materially more
 connected, but the product is not yet at design parity: the next proof must be
 what a person receives from a longer Home, not another isolated transport or
@@ -5379,7 +5380,7 @@ duplicate/no-op and sparse behavior are accepted.
 **Exit for this queue:** a person can receive a coherent, substantially richer
 Home, understand why each major section is present, open an exact owner/action
 destination, and return without stale or invented context. The current 484-test
-root-projection packet, focused participant/Home packets (3 and 30), and the
+root-projection packet, focused participant/Home packets (3 and 32), and the
 prior 21,661-full-backend / 566-app packets are supporting evidence, not the
 exit itself.
 
@@ -5454,14 +5455,31 @@ copy, and private/unknown member visibility does not inflate the count. An
 occasion with no eligible visible participant retains the prior
 `motion_occasion_row` path.
 
-App `d14665ca5` promotes the already-defined semantic kind through the native
-Home registry and existing generic link anatomy; no new route, schema, social
-store, identity resolver, or mutation was added. Focused backend adapter tests
-pass **3**; the focused Home renderer/root-experience packet passes **30** and
-TypeScript passes. A serial rerun of the complete root-projection packet passes
+App `aefcc0343` promotes the already-defined semantic kind through the native
+Home registry and gives it a count-only together treatment; no new route,
+schema, social store, identity resolver, or mutation was added. Focused backend
+adapter tests pass **3**; the focused Home renderer/root-experience packet now
+passes **32** and TypeScript passes. A serial rerun of the complete
+root-projection packet passes
 **484 tests**; an earlier parallel run hit a timing-sensitive failure in the
 existing 10ms bounded-read test, which also passed in isolation. No persisted
 database, native-device, visual-canon or release acceptance is claimed for
 this slice. The canonical four-situation rehearsal expectation was updated in
 backend follow-up `1aadcfb8d` and its focused packet passes **3**; the shared
 Saturday case now truthfully records the participant row.
+
+## September 22 native Home participant treatment receipt
+
+App `aefcc0343` replaces the participant row's generic link anatomy with a
+small native together treatment: an unobtrusive people mark, the occasion
+label, and the authorized count-only relation. The exact Chat/Occasion door,
+assessment expiry behavior and typed action seam remain unchanged. The
+renderer deliberately does not add names, facepiles, shared-photo identity or
+social mutation controls because the backend contract supplies only a bounded
+count and exact Occasion revision.
+
+The focused Home renderer/root-experience packet passes **32** and app
+TypeScript passes. This is a native treatment and interaction improvement, not
+device visual-parity or persisted owner-read acceptance; the longer Home
+composition and its two-posture return rehearsal remain the next product-level
+exit.

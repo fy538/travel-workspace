@@ -41,13 +41,13 @@ design-canon parity, or release readiness.
 ### Current execution authority after the occasion-participant slice
 
 Use this paragraph as the current baseline for execution decisions. The
-current local tuple is workspace `9c138e6`, backend product commit
-`cd50755c8` plus rehearsal follow-up `1aadcfb8d`, and app `d14665ca5`, all on
+current local tuple is workspace `7a5fb34`, backend product commit
+`cd50755c8` plus rehearsal follow-up `1aadcfb8d`, and app `aefcc0343`, all on
 `codex/functional-implementation-2026-09-20`. The existing
 `people_participants_row` kind is now emitted for viewer-authorized shared
 Occasions with active participant-visible members and rendered through the
 native Home registry. The serial root-projection packet passes **484 tests**;
-focused adapter/Home packets pass **3** and **30**, and app TypeScript passes.
+focused adapter/Home packets pass **3** and **32**, and app TypeScript passes.
 The full offline backend gate was attempted but is not a clean current-tuple
 gate because unrelated timing/teardown/rehearsal cases remain; no broad gate
 claim is made here.
@@ -7846,8 +7846,8 @@ evidence.
 
 ## September 22 final execution rebaseline
 
-The current implementation tuple is workspace `9c138e6`, backend
-`cd50755c8` plus rehearsal follow-up `1aadcfb8d`, and app `d14665ca5`, all on
+The current implementation tuple is workspace `7a5fb34`, backend
+`cd50755c8` plus rehearsal follow-up `1aadcfb8d`, and app `aefcc0343`, all on
 the isolated functional-implementation branch.
 This wave has closed the recent receiving, typed destination, source-result,
 region-language, returned-order, editorial-treatment, Life-lens and attention-
@@ -7881,7 +7881,7 @@ separate policy decision and must not serialize ordinary Home composition; no
 automatic cross-time adapter is admitted until its source, purpose, audience,
 lineage, correction/withdrawal, expiry, duplicate/no-op and sparse behavior
 are accepted. The current 484-test root-projection packet, focused
-participant/Home packets (3 and 30), and the prior 21,661-full-backend /
+participant/Home packets (3 and 32), and the prior 21,661-full-backend /
 566-app packets support this queue but are not its completion criterion.
 
 ### September 22 Home continuity reconstruction receipt
@@ -7943,10 +7943,10 @@ opens the exact Occasion revision through the existing Chat owner door. Private
 or unknown member visibility is excluded; no names, facepile identity,
 shared-photo grouping, Reply/Ask action or social mutation is inferred.
 
-App `d14665ca5` adds that existing semantic kind to the native renderer
-registry and reuses the generic link treatment. The focused adapter tests pass
-**3**, the focused Home renderer/root-experience packet passes **30**, and
-TypeScript passes. A serial rerun of the complete root-projection packet passes
+App `aefcc0343` adds that existing semantic kind to the native renderer
+registry and gives it a count-only together treatment. The focused adapter
+tests pass **3**, the focused Home renderer/root-experience packet passes **32**,
+and TypeScript passes. A serial rerun of the complete root-projection packet passes
 **484 tests**; an earlier parallel run hit a timing-sensitive failure in the
 pre-existing 10ms bounded-read test, which also passed in isolation. No
 persisted-DB, device, visual-canon or release acceptance follows. The next
@@ -7958,3 +7958,19 @@ The canonical four-situation rehearsal expectation was updated in backend
 follow-up `1aadcfb8d` and its focused packet passes **3**; the shared Saturday
 case now records the participant row rather than the older generic occasion
 row.
+
+### September 22 native Home participant treatment receipt
+
+App `aefcc0343` replaces the participant row's generic link anatomy with a
+small native together treatment: an unobtrusive people mark, the occasion
+label, and the authorized count-only relation. The exact Chat/Occasion door,
+assessment expiry behavior and typed action seam remain unchanged. The
+renderer deliberately does not add names, facepiles, shared-photo identity or
+social mutation controls because the backend contract supplies only a bounded
+count and exact Occasion revision.
+
+The focused Home renderer/root-experience packet passes **32** and app
+TypeScript passes. This is a native treatment and interaction improvement, not
+device visual-parity or persisted owner-read acceptance; the longer Home
+composition and its two-posture return rehearsal remain the next product-level
+exit.
