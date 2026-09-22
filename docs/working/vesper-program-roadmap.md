@@ -118,8 +118,8 @@ backend `60da1dcb9`, and app `d021488be`. Its 59 backend Home-portfolio and
 117 app route/workspace/feed test results remain evidence for that earlier
 slice, not the current checkout.
 
-**Current isolated product-code tuple:** workspace checkpoint `f8f90e8`, backend
-`134417927`, and app `1cca51a04`, all on
+**Current isolated product-code tuple:** workspace checkpoint `5d2047b`, backend
+`2e123173c`, and app `1cca51a04`, all on
 `codex/functional-implementation-2026-09-20`. The workspace, backend, and app
 trees are clean. Workspace commits after the product-code checkpoints are
 roadmap/evidence maintenance; the current backend and app heads retain the
@@ -4887,6 +4887,18 @@ tests**. Ruff, TypeScript, targeted lint, formatting and diff checks pass.
 This closes exact destination reachability for an existing receipt owner; it
 does not add a new receipt store, semantic kind, audience rule, generator,
 or broad consequence feed, and visual/device parity remains unverified.
+
+## September 22 current-tuple verification receipt — Home/Places receiving
+
+After the receipt Place-destination slice, the complete backend
+`tests/root_projection` packet passes **479 tests**. The focused app
+root-navigation/Home smoke/connected Home packet passes **78 tests**. These
+runs cover the exact current backend/app heads (`2e123173c` / `1cca51a04`)
+and preserve the bounded destination, owner-read, renderer, expiry and return
+contracts already described above. They do not prove populated production
+supply, native device media/action acceptance, external design-canon parity,
+or release readiness; those remain explicit package exit evidence rather than
+being inferred from the green offline suites.
 
 ## September 22 functional implementation receipt — governed Life answers
 

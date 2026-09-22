@@ -7464,6 +7464,16 @@ destination completion for an existing owner, not a new receipt store,
 semantic kind, generator, audience rule, consequence feed, or visual-parity
 claim.
 
+#### 9.10.6 September 22 current-tuple verification
+
+The complete backend `tests/root_projection` packet passes **479 tests** on
+backend `2e123173c`. The focused app root-navigation, Home smoke and connected
+Home packet passes **78 tests** on app `1cca51a04`. This verifies the current
+receipt/Place-destination implementation and its existing owner-read,
+renderer, expiry and return contracts. It remains offline/component evidence:
+it does not prove populated production supply, native device media/action
+acceptance, external design-canon parity, or release readiness.
+
 **Source-inspection boundary confirmed on September 22:** public
 `place_content_primitive` readings are exact, evidence-linked owner coordinates
 used during root composition; their native `Why this?` action is a bounded
