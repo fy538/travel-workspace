@@ -7662,3 +7662,21 @@ one selected item reaches its exact depth/action and returns to the originating
 root, and sparse/pending/failure/accessibility states remain honest. Native
 mock captures may support layout work, but they cannot close real owner-read,
 provider, visual-canon or release claims.
+
+## September 22 Home section-language alignment
+
+App commit `a5d0e54d8` keeps the stable four-region Home grammar in the
+projection, but derives the visible section label from the admitted material.
+Prepared possibilities and invitations now read **This afternoon**; reviewed
+editorial/mechanism readings read **Worth knowing**; travel-backed continuity
+reads **From the trip**; and the remaining world opening/continuity fall back
+to honest generic labels. The internal region names, candidate order,
+attention budget, destinations, actions and return tokens are unchanged. This
+aligns the native surface with the current Home design language without
+inventing a producer or exposing compiler vocabulary as user copy.
+
+The Home screen, connected Home and root-navigation packet passes **83 tests**;
+TypeScript, targeted ESLint and diff checks pass. This is a native composition
+and copy improvement, not a claim of real-data, provider, visual-canon or
+release acceptance. The active app tuple is now `a5d0e54d8`; earlier app tuple
+values in historical receipts remain historical evidence.

@@ -5156,3 +5156,19 @@ source/depth/action/return path, honest sparse/pending/failure/accessibility
 states, and native polish against the verified design reference. Mock supply
 can prove layout only; it cannot close populated owner readback, provider
 execution, visual-canon parity or release readiness.
+
+## September 22 Home section-language alignment
+
+App commit `a5d0e54d8` keeps the stable four-region Home grammar in the
+projection, but derives visible section language from the admitted material:
+**This afternoon** for prepared possibilities/invitations, **Worth knowing**
+for reviewed editorial/mechanism readings, and **From the trip** for
+travel-backed continuity, with honest generic fallbacks elsewhere. No
+candidate is re-ranked, created, or suppressed; destinations, actions and
+return behavior are unchanged. The focused Home screen, connected Home and
+root-navigation packet passes **83 tests**, with TypeScript and targeted lint
+passing. This closes a composition-language mismatch with the current design
+canon, not real-data, provider, visual-parity or release acceptance.
+
+The active app tuple after this slice is `a5d0e54d8`; all earlier tuple values
+remain historical receipts.
