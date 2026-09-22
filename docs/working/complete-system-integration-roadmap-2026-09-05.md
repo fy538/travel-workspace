@@ -7063,3 +7063,41 @@ text-original scope. It does not claim group/media sharing, broader audience
 policy, notifications, production activation, or visual parity. Remaining
 review evidence is R05 process-restart/transient queue behavior and R09
 persisted/native timezone edges.
+
+## September 21 functional implementation receipt — Place-line recipient control
+
+The rebuilt Place page no longer leaves an addressed friend line as a
+read-only artifact. Opening its sheet first reads the exact handoff through the
+existing relationship owner under a viewer-scoped query. The sheet offers only
+**Keep for later** and **Leave aside**, and only after the current handoff,
+sender identity, active status and revision are confirmed. The mutation uses
+the owner's expected-revision action; success refreshes Home and Place
+projections. A stale or failed owner read withholds actions and refreshes the
+private source projection. Text remains within its existing short visibility
+lease during a transient read failure; a terminal owner read hides the text and
+removes it from the projection.
+
+These actions preserve the existing semantics. Keep records recipient attention
+only while the original share remains active; it does not extend expiry or
+create a saved Place, Plan, private-history copy, or sender-visible read/like
+signal. Leave aside is terminal for that recipient and removes the line from
+their projection. No Reply, Useful reaction, notification, audience, policy,
+route, schema, generator or storage path was added.
+
+Evidence: the focused app sheet/data suites pass **24 tests**; TypeScript and
+mutation-key ownership pass; targeted lint has **0 errors** with only existing
+warnings in the legacy ObjectPage test/root; and the existing relationship
+owner-model/action-route packet passes **4 tests**. The query-key ownership gate
+still reports **13 pre-existing raw-key findings** in other call sites. No
+native simulator, running-API or disposable-Postgres rehearsal was run for this
+new sheet path, so its real write/readback and visual acceptance remain open.
+An attempted OpenAPI sync was blocked by the pre-existing expired API-policy
+review set and missing-consumer finding; because the slice reuses existing
+contracts, no API or generated-type changes remain in the candidate.
+
+This closes the local implementation gap from **friend line received →
+recipient choice** for the exact-place reader, not the wider social experience.
+The next product-engineering priority remains substantive value depth from
+existing owner data or a permissioned Life/social later-use result; include this
+sheet in the next native acceptance pass rather than creating a parallel
+recipient-action harness.

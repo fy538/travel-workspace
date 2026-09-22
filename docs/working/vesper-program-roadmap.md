@@ -23,11 +23,15 @@ depends_on:
 **September 21 rebaseline, after implementation and review:** Vesper is a
 connected, partially complete internal product candidate. Home/Places receiving,
 Life originals/refinding/organization, bounded social receiving and practical
-consequences now have committed implementations and real disposable-Postgres,
-API and iOS paths for the named Save/readback, Life source return and
-recipient-consented social cases. These are meaningful continuity improvements;
-they do not establish complete design coverage, worthwhile recurring supply,
-general later-context benefit, production activation or release readiness.
+consequences have committed implementations and real disposable-Postgres, API
+and iOS paths for the named Save/readback, Life source return and
+recipient-consented social cases. The rebuilt Place page now also offers
+recipient Keep/Leave-aside actions on an addressed line, using the existing
+relationship owner and expected-revision action. Its focused app and owner tests
+pass, but this new action sheet has not had native/backend end-to-end acceptance.
+These are meaningful continuity improvements; they do not establish complete
+design coverage, worthwhile recurring supply, general later-context benefit,
+production activation or release readiness.
 
 Use [§2](#2-inspected-baseline--september-21) for the current evidence boundary,
 [§4](#4-current-package-register) for the sole current execution queue, and
@@ -61,31 +65,21 @@ drift that had called several already-renderable kinds "dark"; it does not
 claim source admission, recurring content supply, broad runtime full-scroll
 quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
-**Current candidate tuple after the latest rebaseline:** workspace `59e40cc`,
-backend `651628265`, and app `1ddb3a0ba`, all on the isolated
-`codex/functional-implementation-2026-09-20` lane. The preceding code
-advance records the persisted Life graph/People HTTP readback after the
-disposable owner-loop and renderer-ledger corrections. The current workspace
-advance is documentation-only; backend `651628265` remains the persisted Life
-graph/People HTTP readback, and app `1ddb3a0ba` adds the Places partial-read
-notice on top of the preceding Home notice. The child-code tuple also includes
-the Places typed notice bridge, native sender-withdrawal proof, shared
-Home/Places semantic-state treatment, and explicit People-bound anchor index
-repair. Nothing is merged to main,
-published, flag-activated, or resumed in shared Integration/landing. The next
-substantive implementation should deliver value beyond the newly connected
-receiving and partial-read states: prioritize a concrete Home/Places
-design/value gap using supplied owner data, or a permissioned Life/social
-later-use result. A further sparse/pending/failure slice should be selected
-only when it has a distinct user consequence. R05 restart and R09 timezone
-edge work remain bounded to environments that can produce the required
-evidence.
-
-The workspace baseline for this candidate is `59e40cc`, following the
-documentation-only receipts after workspace `49d438a`. Backend and app code
-remain `651628265` and `1ddb3a0ba`. The latest app advance adds the bounded
-Places partial-read treatment atop Home's; none changes production release
-state.
+**Current code candidate tuple for this update:** backend HEAD `651628265` and
+app HEAD `a8d64d4b7`, on the isolated
+`codex/functional-implementation-2026-09-20` lane. The app commit adds
+recipient Keep/Leave-aside controls for exact-place friend lines; workspace
+roadmap receipts are documentation-only, and backend code is unchanged. The
+committed child-code tuple also includes the Places typed notice bridge, native
+sender-withdrawal proof, shared Home/Places semantic-state treatment, and
+People-bound anchor index repair. Nothing is merged to main, published,
+flag-activated, or resumed in shared Integration/landing. The next substantive
+implementation should deliver value beyond the newly connected receiving and
+partial-read states: prioritize a concrete Home/Places design/value gap using
+supplied owner data, or a permissioned Life/social later-use result. A further
+sparse/pending/failure slice should be selected only when it has a distinct
+user consequence. R05 restart and R09 timezone edge work remain bounded to
+environments that can produce the required evidence.
 
 ### September 21 current-candidate integrity pass
 
