@@ -3759,7 +3759,7 @@ and `interface.ts`); `home-surface-budgets` still reports the pre-existing
 Places workspace/card overages. The reader has no registered native capture;
 the gallery doctor could not reach Metro on `:8081`, so no device screenshot
 or visual verdict was produced. This also does not prove real original bytes:
-the lane has no configured S3-compatible media service/credentials. It closes
-the native presentation contract only, not wider Life media/corpus coverage,
-live media delivery, People/Threads breadth, later permitted reuse, or release
-readiness.
+the lane has no configured S3-compatible media service/credentials. This closes
+the bounded reader implementation only; native device acceptance remains
+unverified, as do wider Life media/corpus coverage, live media delivery,
+People/Threads breadth, later permitted reuse, and release readiness.
