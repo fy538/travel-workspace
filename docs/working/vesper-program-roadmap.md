@@ -49,6 +49,20 @@ to the exact canonical venue, as a private, read-only Place doorway. The Places
 withheld. This completes one existing receiving family, not Home's broader
 content composition or coverage.
 
+The September 22 Home → Places social continuation is now connected as well.
+An existing `Addressed to you` Home region receives a final “From friends in
+Places” door only when the same current Places read contains at least two
+distinct trip-shared `friend-save` cards; addressed handoff notes already
+represented on Home do not inflate that threshold. The typed destination
+retains the resolved Places context and Home's semantic return token. Places
+scrolls its existing Friends section into view without changing server section
+order, and a fresh read with no such section simply remains an ordinary Places
+feed. This reuses the existing Places/relationship owner and does not add a
+social model, store, feed, or inference. Backend Home portfolio tests pass
+**59**; the focused app route/workspace/feed packet passes **117** tests, source
+and test TypeScript checks, targeted ESLint, and Places docs checks. No live
+account read or device acceptance was run for this change.
+
 **Home implementation map:** `build_home_portfolio` already reads ten bounded
 sources (up to six concurrently, a 900 ms deadline per source, and up to 24
 items per source),
@@ -62,11 +76,16 @@ each intended design section to its existing owner, candidate, selected region,
 rendered value and exact return; only build a new producer or semantic kind if
 that trace demonstrates a real unsupported user outcome.
 
-**Functional-code tuple inspected before this roadmap edit:** workspace
-`8d9730c`, backend `fd80c437e`, and app `a4de82802`, clean on the isolated
-`codex/functional-implementation-2026-09-20` lane. This roadmap edit is
-workspace-only; `8d9730c` is its inspected parent, and the immediately
-preceding product-source workspace revision is `1d9264d`. On the prior app candidate
+**Current isolated implementation tuple:** workspace parent `36efae2`, backend
+`60da1dcb9`, and app `d021488be`, all on the isolated
+`codex/functional-implementation-2026-09-20` lane. Backend and app are committed
+and clean; the roadmap update is the only workspace change pending. Focused
+checks for the current Home → Places friends continuation pass: backend Home
+portfolio **59 tests**; app route/workspace/feed **117 tests**, source and test
+TypeScript, targeted ESLint, and Places docs checks. No live account read or
+device acceptance was run for this slice.
+
+Earlier acceptance remains useful but is not current-tuple evidence. On app
 `9a4c029e3`, the exact Home → Place → Keep → Home route had native acceptance
 on iPhone 16 Plus / iOS 18.2: it opened only the selected note, kept it,
 observed the relationship owner's revision advance from 0 to 1 and an exact
@@ -76,22 +95,28 @@ tuple. App `9a4c029e3` also added the negative sibling-note case: if the
 selected handoff is absent but another person's line remains, the page reports
 the selected note unavailable and does not substitute the other line. Its
 `ObjectPageRebuild` suite passed **24 tests**, recipient owner-read invalidation
-passed **4**, and TypeScript passed. Current app `a4de82802` only changes the
-Home sample caption to a readable Design Language token; its focused Home
-renderer suite passes **12 tests**, TypeScript and targeted ESLint pass. These
-are regression/focused checks, not a new device rehearsal. The registered
-Home-root native capture remains the earlier single mock-fixture posture at
-app `6ae89c427`; it is not broad Home acceptance or design parity. The current
-visual QA doctor could not run because Metro was unavailable at `:8081`, so no
-current-tuple screenshot was captured. Withdrawal/expiry for the selected
-note remain unproven. Workspace `2fe00cc` also corrects the Source workflow
+passed **4**, and TypeScript passed. The earlier app baseline `a4de82802` only
+changed the Home sample caption to a readable Design Language token; its
+focused Home renderer suite passed **12 tests**, TypeScript and targeted ESLint
+passed. These remain regression/focused checks, not a new device rehearsal.
+The registered Home-root native capture remains the earlier single mock-fixture
+posture at app `6ae89c427`; it is not broad Home acceptance or design parity.
+The current visual QA doctor could not run because Metro was unavailable at
+`:8081`, so no current-tuple screenshot was captured. Withdrawal/expiry for the
+selected note remain unproven. Workspace `2fe00cc` also corrects the Source workflow
 recovery description: the existing worker sweep is scheduled, but process
 restart and live transient-provider retry remain unproven. The [code review
 ledger](functional-implementation-code-review-2026-09-21.md)'s **11 confirmed
 findings are code-fixed**; remaining R05/R09 matrices and R02 cohort/release
 and R06 deployed-scale evidence are acceptance gaps, not known uncorrected
 defects.
-Standard pre-push findings were last recorded as 55 expired API-policy
+On 2026-09-22, workspace `make docs-check` still fails on one unclassified
+existing document (`docs/working/practical-judgment-producer-acceptance-brief-2026-09-09.md`)
+and three expired compatibility entries (`discover-url-bridge`,
+`atlas-tab-url-bridge`, `discover-map-api-bridge`); the status renderer also
+cannot run while that inventory is invalid. Other listed docs checks passed.
+This slice does not touch those owners. Standard pre-push findings were last
+recorded as 55 expired API-policy
 reviews, 59 expired schema-bridge exceptions, and 12 query-key ownership
 findings; `make verify` has not been run against this exact tuple. These are
 local candidate commits only—not merged, published, rollout-enabled, or
