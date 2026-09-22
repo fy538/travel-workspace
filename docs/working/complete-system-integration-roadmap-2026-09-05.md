@@ -55,6 +55,20 @@ historical receipts retain their evidence boundaries, not separate dispatch
 authority. Existing I0–I6/CV contracts still govern implementation. Do not
 rebuild foundations merely because an older table described them as missing.
 
+**Later September 22 Home update — current candidate tuple:** workspace
+`0fe8e88`, backend `4357d1320`, app `93a9090de` on
+`codex/functional-implementation-2026-09-20`. The backend uses the existing
+explicit saved-Place continuity door to surface a bounded, accepted public
+reading where available. Real disposable-Postgres HTTP evidence proves that
+source retraction restores the generic save door and unsaving removes both the
+reading and save. The focused source/portfolio packet passed **73**, the
+offline root-projection packet **470**, the bounded DB query case **1**, and
+the saved-Place HTTP integration file **3**. No app renderer changed; this is
+not current-tuple native or visual acceptance. It closes one explicit-intent
+Home → Places value path, not the broader Home composition or the separate
+private cross-time returned-value gap. See the [program roadmap](vesper-program-roadmap.md)
+for the current package register and evidence boundaries.
+
 The bounded Home → Places addressed-note continuation is now implemented:
 Home carries the selected handoff ID/revision into the canonical object route,
 and the relationship owner re-reads that exact contribution without relying
@@ -2526,6 +2540,21 @@ transient-provider failure/retry remain unverified.
 | I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots; Home/Places multi-source full-scrolls; same-Place sequence passes persisted Home HTTP readback with source retraction; generic Home/Places partial-read notices preserve supplied content; rebuilt Place reader supports recipient Keep/Leave-aside with a real local native/API rehearsal; Home's long Outcome preview is capped at 220 characters and its v1/v2 doors identify the exact revisioned Life record; exact Home Outcome → Life record → same Home unit native return passed on iPhone 16 Plus / iOS 18.2; Home-selected Place handoff ID/revision is re-read through the relationship owner; integrated Places World Field now renders the server-elected lead ahead of mature browse and has a combined native full-scroll receipt. Backend root-projection packet **454 passed**; app focused packet **25 suites / 314 tests**; TypeScript/contract checks and scenario registration pass; combined native Places runner passed. Backend/app merge commits `8866f41a2` / `933f004f8` | The selected Place line still opens only when that exact handoff remains eligible; withdrawal/expiry for the selected Place note remain unrun. The registered mock `places-search-loading` polish assertion still fails before screenshot capture; broad design-canon and visual parity remain unverified. OpenAPI/generated types unchanged by this slice. The standard pre-push findings remain 55 expired API-policy reviews, 59 expired schema-bridge exceptions, and 12 query-key ownership findings; candidate is not ready for landing/publishing. **Next build:** Home's substantive full-scroll breadth from existing owner-backed material, not another transport-only seam or generator/store. Still open: fixed Home sample native presentation/retirement, broader section/design breadth and selection quality, distinct empty states, binary-media runtime proof, plus release evidence |
 | I5 | Open-now and saved-world changes reach surfaces; explicit fit and reviewed assistance contracts implemented | R09 code correction and the named current-world native paths are complete; persisted/native timezone edge matrix, permitted-context adaptations, provider-backed fit rehearsal and broader mandates remain separate |
 | I6 | Retirement inventories/guards exist; candidate remains isolated and rollout internal | Keep obsolete execution paths out of new work; complete obligation review and authorized cutovers/landing only when their dependencies are ready |
+
+**I4 current-tuple amendment — later September 22:** the table's
+`8866f41a2`/`933f004f8` merge hashes and **454**/**314** packet describe the
+earlier World Field integration checkpoint; they are not the current code
+tuple or additive test totals. Current isolated product-code revisions are
+workspace `0fe8e88`, backend `4357d1320`, app `93a9090de`. Backend now also
+surfaces an accepted public reading in the exact saved-Place Home seat and
+proves source-retraction fallback plus unsave removal through real Home HTTP on
+disposable Postgres (focused evidence: **73** source/portfolio, **470** offline
+root projection, **1** bounded DB query, **3** HTTP integration tests). The app
+is unchanged by this reading; no current-tuple Home device or visual acceptance
+was run. The Home composition package remains active, with the private
+cross-time returned-value contract and design-aligned full-scroll breadth still
+open. See the current [program package register](vesper-program-roadmap.md#4-current-package-register)
+and [§9.10.2 receipt](#9102-september-22-follow-up--saved-place-reading-reaches-home).
 
 **I4 follow-through — September 22:** app `e2c0bafb1` strengthens flow 75 to
 verify that a Place contribution remains kept after closing the exact Place
@@ -7353,6 +7382,43 @@ TypeScript passing. The app is unchanged at `a4de82802`. No OpenAPI, database,
 native real-data capture, standard gate, device/API rehearsal or flag changed.
 This closes one supplied receiving family, not broad Home composition,
 recurring supply, or value-depth. It does not change the next product build.
+
+#### 9.10.2 September 22 follow-up — saved-Place reading reaches Home
+
+Backend `18e1fb377` uses the existing generic saved-Place doorway to surface a
+current accepted public reading for an explicitly saved venue when exact
+entity identity, current/public/source-evidence gates, and bounded candidate
+limits permit it. The reading retains its immutable Source, exact Places
+destination and saved-Place owner reference; it occupies the same Home seat as
+the generic save. If no eligible reading is available, the save remains. A
+current-context reading already present in Home suppresses the duplicate. No
+new endpoint, schema, migration, generator, app screen or taste inference was
+added.
+
+Backend `4357d1320` adds real owner-backed `/api/root-projections/v2/home`
+acceptance. A retracted source restores the generic save doorway; removing the
+save removes both reading and doorway. Alongside the existing two public-Place
+readback cases, the integration file passes **3 tests** on a fresh migrated,
+disposable PostgreSQL database, dropped afterward. The focused
+source/portfolio packet passes **73**, offline root-projection suite **470**,
+and the bounded DB query test **1** on another fresh disposable database.
+Ruff/format and backend hooks pass. The app did not change; no current-tuple
+native Home render, screenshot, design-reference comparison, live-account read
+or `make verify` was run. This closes an explicit saved-intent → accepted
+public Place reading path only. It does not supply a private cross-time return
+or substantially broader Home composition.
+
+**Current candidate tuple:** workspace `0fe8e88`, backend `4357d1320`, app
+`93a9090de`, all clean on the isolated functional-implementation branch. The
+roadmap-only workspace update is not product code. The program roadmap's Home
+package register is the current cross-lane priority authority; this ledger
+retains implementation evidence. The next Home package remains design-aligned
+composition breadth from supported owners. Within it, settle the exact
+Life-owned evidence, purpose, lineage and withdrawal contract for a genuinely
+useful private returned-value result before implementation; do not let Home
+query Atlas directly or add a new store/generator. If current permitted
+evidence cannot support a non-repetitive result, preserve the honest Life
+return door and compose from other supported owner material.
 
 **Next product build — Home design-aligned composition breadth, not first
 full-scroll:**
