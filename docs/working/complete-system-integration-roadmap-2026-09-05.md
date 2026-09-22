@@ -7619,3 +7619,46 @@ The backend root-projection packet remains **479 tests passed** on
 `2e123173c`. This refresh strengthens the current receiving and return
 contracts; it does not claim populated production supply, native real-data
 actions/media, external design-canon parity or release readiness.
+
+## September 22 Home design trace — composition is the next implementation gate
+
+The current `vesper-home` design project was re-read against the committed
+Home owner adapters, selector, compiler and native renderer registry. Its
+substantial post-return compositions are organized around a small number of
+experience sections rather than a new object model: a useful current opening
+(`This afternoon`), things still in motion, material from the trip, and a
+forward-looking city/world opening. The project also specifies a returned
+posture, sparse/ordinary states, a Life seam, and a long scroll with varied
+hierarchy. The board copy includes examples such as an upcoming dinner,
+cancelled-flight recovery, a transport-and-place sequence, and a source-backed
+city possibility; the design README explicitly marks these as prototypes, not
+live supply.
+
+The implementation trace maps those sections to existing owners as follows:
+
+| Design section | Existing owner-backed path | Current boundary |
+| --- | --- | --- |
+| Current opening / “This afternoon” | prepared possibilities, current-world aperture, selected public Place readings | supplied; composition still needs richer hierarchy and non-repetition |
+| In motion | commitments, occasions, recovery instruments and owned action receipts | supplied; exact consequence depth/return remains the acceptance path |
+| From the trip | canonical outcomes/Life door, public Place reading sequences, saved-Place continuity | supplied in separate units; no unowned narrative join may be invented |
+| City/world opening | current-world and accepted public Place content | supplied only when the source is explicit, reviewed and fresh |
+| Importing/shared-photo examples | no current admitted owner in this lane | genuine supply/policy gap; do not fake it from unrelated grants or fixtures |
+
+No currently emitted supported Home kind is missing a native renderer. The
+remaining design gap is therefore not “add another card” or “build a generic
+feed.” It is to compose the existing owner-backed units into a longer,
+benefit-led Home that makes importance, variety, and forward motion legible
+while preserving exact source/depth/action/return behavior. A design example
+that has no owner, evidence, lifecycle, privacy, or correction contract is a
+product decision—not an implementation shortcut.
+
+**Rebaselined next slice:** implement one complete design-aligned Home
+composition from current supply. Before coding, record a section-by-section
+trace and choose the exact current tuple. During implementation, prefer
+composition/ordering/copy/hierarchy changes and existing destinations over new
+semantic kinds, generators, stores, or speculative producers. Close the slice
+only when two materially different Home postures work across the full scroll,
+one selected item reaches its exact depth/action and returns to the originating
+root, and sparse/pending/failure/accessibility states remain honest. Native
+mock captures may support layout work, but they cannot close real owner-read,
+provider, visual-canon or release claims.

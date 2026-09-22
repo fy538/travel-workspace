@@ -5116,3 +5116,43 @@ The backend root-projection packet remains **479 tests passed** on
 `2e123173c`. This refresh strengthens the current receiving and return
 contracts; it does not claim populated production supply, native real-data
 actions/media, external design-canon parity or release readiness.
+
+## September 22 Home design trace — rebaseline before the next build
+
+The `vesper-home` design project has now been compared with the current
+owner-backed Home composition and native renderer registry. The design's
+long-scroll sections are a composition language—current opening, in-motion
+consequences, material from the trip, and a forward-looking city/world
+opening—not evidence that each illustrated card needs a new backend object.
+Its prototype examples include an upcoming dinner, a cancelled-flight
+recovery, a transport/place sequence and a city possibility; the README marks
+the boards as fixture design. The project also requires an ordinary/sparse
+posture, a returned posture, a Life continuation, and varied hierarchy.
+
+The trace has three outcomes:
+
+1. Existing owners already supply the major supported families: prepared
+   possibilities/current-world apertures, commitments/occasions/recovery,
+   owned action receipts, canonical outcomes/Life doors, public Place reading
+   sequences, addressed social readings and saved-Place continuity.
+2. The current renderer registry covers the supported kinds the backend emits.
+   There is no evidence for adding a generic renderer or a new semantic kind
+   simply to make the scroll look fuller.
+3. Prototype examples involving importing/shared photo sets or an implied
+   city event are not currently supplied by an admitted owner. They require an
+   explicit source, authority, lifecycle, privacy and correction decision;
+   do not infer them from separate grants, fixtures or unrelated Place
+   notices.
+
+Accordingly, the primary build remains **Home design-aligned composition
+breadth from existing supply**, but its first implementation gate is now
+explicit: write the section-by-section producer → candidate/read → selector →
+renderer → destination/action → return trace, then make one complete,
+longer, benefit-led composition. The slice should improve hierarchy, dynamic
+importance, variety and useful forward motion through existing units before
+introducing any new store, generator, semantic kind or speculative producer.
+Acceptance requires two materially different Home postures, one exact
+source/depth/action/return path, honest sparse/pending/failure/accessibility
+states, and native polish against the verified design reference. Mock supply
+can prove layout only; it cannot close populated owner readback, provider
+execution, visual-canon parity or release readiness.
