@@ -5206,7 +5206,7 @@ a complete supported Home value.
 ## September 22 latest execution checkpoint — roadmap update
 
 The current implementation baseline is workspace `f354187`, backend
-`2e123173c`, and app `5bebc401c`. Earlier tuple values embedded in the package
+`2e123173c`, and app `ae5c7c1aa`. Earlier tuple values embedded in the package
 register and historical receipts remain useful evidence for the slices they
 describe, but they are not the active baseline.
 

@@ -7720,7 +7720,7 @@ way to match the prototype copy.
 ## September 22 latest execution checkpoint — roadmap update
 
 The active functional tuple is workspace `f354187`, backend `2e123173c`, and
-app `5bebc401c`. Several older current-tuple paragraphs in this long roadmap
+app `ae5c7c1aa`. Several older current-tuple paragraphs in this long roadmap
 intentionally preserve historical evidence; use this checkpoint when deciding
 what is true now.
 
