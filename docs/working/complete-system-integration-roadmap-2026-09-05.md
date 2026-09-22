@@ -7798,3 +7798,41 @@ focused Home composition suite passes **10 tests**, and the full
 `tests/root_projection` packet passes **480 tests**. This is a bounded
 composition-quality improvement, not proof of recurring supply, native visual
 parity or device acceptance.
+
+## September 22 final execution rebaseline
+
+The current implementation tuple is workspace `65a6c7f`, backend `7c0ef042e`,
+and app `ae5c7c1aa`, all on the isolated functional-implementation branch.
+This wave has closed the recent receiving, typed destination, source-result,
+region-language, returned-order, editorial-treatment, Life-lens and attention-
+breadth gaps. It has not yet delivered the larger user-visible product
+milestone: a substantially richer Home composition accepted against the
+registered design authority.
+
+The execution order is now intentionally narrow:
+
+1. **Trace:** map every substantial registered Home section to its actual
+   producer, candidate/read adapter, selected region, renderer, destination or
+   action, and return behavior. Separate supplied-but-omitted material from
+   repetitive composition and genuine owner/supply gaps. The exploratory
+   `Downloads/vesper-home` project remains design input, not a runtime contract,
+   until the registered authority and hashes are deliberately changed.
+2. **Compose:** make one longer, benefit-led Home from supported owner material
+   by improving breadth, ordering, hierarchy and copy. Do not add a generator,
+   feed, store, semantic kind, or social route solely to manufacture fullness;
+   any producer extension must already have authority, privacy, freshness,
+   lifecycle and return semantics.
+3. **Accept:** exercise two materially different Home postures on the current
+   tuple, follow one item through exact source/depth/action and back to the
+   originating root, and verify sparse, pending, failure, accessibility and
+   native hierarchy behavior. Mock data can establish layout only; it cannot
+   close owner-read, device, visual-canon or release boundaries.
+
+Selected addressed-note withdrawal/expiry, fixed-sample retirement, ordinary
+empty states, binary-media runtime, and the named R02/R05/R06/R09 evidence may
+run in parallel as bounded closeouts. The recent-return trigger remains a
+separate policy decision and must not serialize ordinary Home composition; no
+automatic cross-time adapter is admitted until its source, purpose, audience,
+lineage, correction/withdrawal, expiry, duplicate/no-op and sparse behavior
+are accepted. The existing **480 backend** and **209-app** test packets support
+this queue but are not its completion criterion.
