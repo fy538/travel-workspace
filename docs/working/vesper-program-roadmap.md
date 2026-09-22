@@ -4382,3 +4382,37 @@ that correction or withdrawal cannot leave dependent Home copy stale. Continue
 the remaining R05 process-interruption and R09 persisted/native timezone
 evidence as bounded review closeout, but do not let those verification cases
 replace the next user-visible value result.
+
+## September 22 functional implementation receipt — private audio originals in Life
+
+The canonical Intake original reader now offers explicit, owner-authenticated
+foreground playback for verified retained MP3, MPEG-4 audio/M4A and WAV
+sources. The existing GET media route remains the custody and owner authority;
+the shared player verifies native readiness for this GET-only source rather
+than introducing a `HEAD` endpoint or expanding API policy. Unsupported audio
+containers stay unsupported. Failure produces a retry; leaving the reader,
+changing source revision, withdrawal or retention expiry releases the player.
+There is no autoplay, upload-policy change, transcript, AI use, export or send
+action.
+
+On the app candidate, the focused Intake screen, original-boundary and shared
+audio-hook packet passes **40 tests**. `npm run typecheck` passes; targeted
+ESLint reports no errors and one existing max-lines warning in the Intake
+screen. The registered polish scenario IDs validate (**31**); the `life-root`
+design-reference check is structurally valid with its existing HTML-reference
+warning. Native polish QA found no capture for a flow and therefore did not
+produce a visual/device verdict. Actual secured media bytes and codec playback
+on iOS/Android remain unverified.
+
+The offline OpenAPI exporter regenerated the stale full snapshot from the
+current backend source, but projection stopped at the pre-existing expired
+operation-governance queue (**55 expired-policy findings**). No new API
+operation or generated mobile wire type is part of this slice. This does not
+repair the broader API-governance backlog or constitute a full type-sync gate.
+
+Next action remains product-bearing: advance the source-backed Home returned
+value composition only after its Life-owned evidence/purpose contract is
+defined; do not substitute this bounded audio reader or further test
+scaffolding for the planned Home user-value slice. Native media/device proof
+is still a release-acceptance follow-up, not a reason to add a speculative API
+route.
