@@ -119,7 +119,7 @@ backend `60da1dcb9`, and app `d021488be`. Its 59 backend Home-portfolio and
 slice, not the current checkout.
 
 **Current isolated product-code tuple:** workspace checkpoint `5d2047b`, backend
-`2e123173c`, and app `7a0af5f80`, all on
+`2e123173c`, and app `44599a304`, all on
 `codex/functional-implementation-2026-09-20`. The workspace, backend, and app
 trees are clean. Workspace commits after the product-code checkpoints are
 roadmap/evidence maintenance; the current backend and app heads retain the
@@ -4910,6 +4910,17 @@ routable `venue` now has an explicit test proving that the canonical
 This strengthens the already implemented receipt → Places owner path; it does
 not add a new route, receipt store, semantic kind, native/device acceptance,
 or visual-parity claim.
+
+## September 22 current Home/Places/Life packet refresh
+
+App commit `44599a304` removes the remaining React `act()` warning from the
+Life record deep-link restoration test by awaiting its asynchronous persisted-
+position read before asserting the return control. The refreshed packet passes
+**198 tests** across Home, Places and Life suites with no warning; the complete
+backend `tests/root_projection` packet remains **479 passed** on
+`2e123173c`. This is verification hygiene and regression coverage for the
+existing owner/read/destination/return paths, not a new capability, native
+device acceptance, design-canon parity, or release-readiness claim.
 
 ## September 22 functional implementation receipt — governed Life answers
 

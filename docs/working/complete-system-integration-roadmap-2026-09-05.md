@@ -73,7 +73,7 @@ for the current package register and evidence boundaries.
 **Current-tuple correction — September 22:** the paragraph above is an
 earlier saved-Place receipt, not the active implementation baseline. The
 current isolated product-code tuple is workspace `e798bc6` (roadmap/evidence
-only), backend `2e123173c`, and app `7a0af5f80`. The complete backend
+only), backend `2e123173c`, and app `44599a304`. The complete backend
 `tests/root_projection` packet passes **479 tests** and the focused app
 root-navigation/Home smoke/connected Home packet passes **79 tests**. These
 are offline/component checks for the current tuple; they do not prove
@@ -7496,6 +7496,16 @@ does not fall back to Life or the generic Places root. The focused
 `rootProjectionNavigation` suite passes **60 tests**, and app TypeScript
 passes. This is coverage for the already implemented destination contract,
 not a new capability, native device acceptance, or visual-parity claim.
+
+#### 9.10.8 September 22 current root packet refresh
+
+App commit `44599a304` removes the remaining React `act()` warning from the
+Life record deep-link restoration test by awaiting its asynchronous persisted-
+position read before asserting the return control. The refreshed cross-root
+packet passes **198 tests** across Home, Places and Life suites with no warning;
+the backend root-projection packet remains **479 passed** on `2e123173c`.
+This is verification hygiene and regression coverage, not a new user-facing
+capability or a claim of native/device, design-canon or release acceptance.
 
 **Source-inspection boundary confirmed on September 22:** public
 `place_content_primitive` readings are exact, evidence-linked owner coordinates
