@@ -48,11 +48,14 @@ filters for that exact current revision, and the object page opens only that
 line or reports it unavailable. Focused mobile coverage passes **91 tests**;
 the backend route packet passes **7 tests**, app typecheck and polish scenario
 validation pass. This remains uncommitted and incomplete: OpenAPI projection
-and generated-type sync stops at **55 expired API-policy reviews**, the
-Postgres integration case cannot run without the disposable test database,
-and native tap/back acceptance has not run. Do not count this as delivered or
-merge-ready until the contract chain and remaining owner/native evidence are
-closed.
+and generated types now match after projection with the established temporary
+policy copy that advances only the expired dates; the canonical API policy is
+unchanged and its normal audit still reports **55 expired reviews**. The
+schema-bridge audit also reports **59 expired exceptions**, while query-key
+ownership reports 12 existing findings outside this slice. The Postgres
+integration case cannot run without the disposable test database, and native
+tap/back acceptance has not run. Do not count this as delivered or merge-ready
+until the remaining gates and owner/native evidence are closed.
 
 Backend commit `ee625b985` also closes a bounded Home projection defect:
 long-authored Outcome meaning is now a compact excerpt, while the exact
