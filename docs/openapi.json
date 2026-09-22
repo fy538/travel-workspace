@@ -82112,6 +82112,18 @@
             "minimum": 1.0,
             "title": "Limit",
             "default": 20
+          },
+          "cursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cursor"
           }
         },
         "additionalProperties": false,
@@ -82144,6 +82156,17 @@
           "has_more_matches": {
             "type": "boolean",
             "title": "Has More Matches"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
           }
         },
         "additionalProperties": false,

@@ -3732,6 +3732,22 @@
       "removal_trigger": "Remove only when an equivalent owner-visible lifecycle receipt is served by another transport.",
       "review_by": "2026-10-30"
     },
+    "GET /api/intake/submissions/{submission_id}/objects/{object_id}/media": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "intakeSourceObjectMediaUrl",
+          "source": "travel-app/utils/intakeSourceMedia.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "intake",
+      "reason": "The owner-scoped original reader streams verified source bytes without exposing private storage keys.",
+      "removal_trigger": "Remove only when an equivalent owner-scoped media reader preserves current custody checks.",
+      "review_by": "2026-10-30"
+    },
     "DELETE /api/intake/submissions/{submission_id}": {
       "audience": "app",
       "consumers": [
