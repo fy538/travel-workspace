@@ -2630,6 +2630,50 @@ useful, what supplied it, how it behaves after action/correction/return, what
 design coverage remains, and which evidence actually ran. Preserve underlying
 receipts, but do not append another current execution queue.
 
+### September 22 post-wave review — sharpened execution emphasis
+
+The last twelve-hour implementation wave is a positive functional step, not a
+change in product direction. The backend now keeps separately authorized
+received originals in deterministic owner order (`134417927`). The app now
+surfaces governed answers before supporting Life rows (`3faaa2f18`) and keeps
+the authored Places experience collection coherent at large type
+(`1cca51a04`). The current focused app packet is **146 tests** across Home,
+Places, Life refinding and root navigation; the focused Life/Home packet is
+**133 tests** and the focused Places packet is **88 tests**, with TypeScript and
+targeted lint passing. The simulator also reached the four-root Home, Places,
+Life and exact Life-record routes. Those captures were explicitly mock-data
+evidence, so they prove reachability and layout only—not persisted owner reads,
+real media, action consequences, return after mutation, or visual-canon parity.
+
+This review does not justify a new architecture program. It confirms that the
+existing owners, candidate pipeline, renderers and destination routes are
+usable enough to keep building. The roadmap therefore has two concurrent
+tracks, with different authority:
+
+1. **Primary functional track — build the product users can receive.** Compose
+   the substantially richer Home scroll from already supported owner material,
+   then close the highest-value Places/Life gaps that the trace identifies.
+   Prioritize dynamic importance, useful variety, source/action/return and
+   sparse states. A slice is complete when a person can receive it, understand
+   why it is there, take its supported action and return to the correct owner.
+   Do not wait for every visual export or for the recent-return policy to be
+   settled. Do not add a generic generator, store, semantic kind, or route just
+   to make the scroll look full.
+2. **Bounded decision track — recent returned value.** Resolve the trigger
+   contract described above. Until its source, purpose, audience, lineage,
+   correction/withdrawal, expiry, duplicate/no-op and sparse behavior are
+   explicitly accepted, do not implement an automatic event adapter. This
+   decision gates only the richer cross-time returned-value slice; it does not
+   gate ordinary Home composition, Places reading, Life refinding, native
+   polish, or the named reliability evidence.
+
+The order of work is now **functional value first, evidence attached to each
+slice, policy-dependent expansion only after its contract**. Verification is a
+proportional acceptance gate for delivered behavior—not an independent queue
+that can displace the next user-visible capability. Mock or fixture evidence
+must remain labelled as such, and native/device, persisted-runtime and design
+canon boundaries must be stated at every handback.
+
 ### September 9 dispatch record
 
 Historical dispatch only. The current package register above replaces its
