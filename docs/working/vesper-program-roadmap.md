@@ -70,16 +70,18 @@ drift that had called several already-renderable kinds "dark"; it does not
 claim source admission, recurring content supply, broad runtime full-scroll
 quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
-**Functional code tuple:** backend HEAD `651628265` and app HEAD `072f56488`
-on the isolated `codex/functional-implementation-2026-09-20` lane; workspace
-receipt baseline `8ca27a3`. App `a8d64d4b7` adds recipient Keep/Leave-aside
-controls and `072f56488` invalidates the Places feed after owner reads/actions
-and strengthens the native runner. Workspace changes record the acceptance
-receipt; backend code is unchanged by this slice. The committed child-code
-tuple also includes the Places typed notice bridge, native sender-withdrawal
-proof, shared Home/Places semantic-state treatment, and People-bound anchor
-index repair. Nothing is merged to main, published, flag-activated, or resumed
-in shared Integration/landing. The next substantive implementation should
+**Functional code tuple:** workspace HEAD `54fc48c`, backend HEAD `651628265`,
+and app HEAD `ff74def0b` on the isolated
+`codex/functional-implementation-2026-09-20` lane. App `a8d64d4b7` adds recipient
+Keep/Leave-aside controls; `072f56488` invalidates the Places feed after owner
+reads/actions and strengthens the native runner; latest app commit `ff74def0b`
+adds the authorized multi-photo Life reader. Workspace commits `c59bb4b` and
+`54fc48c` record and clarify its acceptance boundary. Backend code is unchanged
+by these latest slices. The committed child-code tuple also includes the Places
+typed notice bridge, native sender-withdrawal proof, shared Home/Places
+semantic-state treatment, and People-bound anchor index repair. Nothing is
+merged to main, published, flag-activated, or resumed in shared
+Integration/landing. The next substantive implementation should
 deliver value beyond the newly connected receiving/action and partial-read
 states: prioritize a concrete Home/Places design/value gap using supplied
 owner data, or a permissioned Life/social later-use result. A further
@@ -1919,15 +1921,17 @@ fresh certification of every path on the latest tuple. The tuple below was
 updated after the bounded Source recovery correction, receiving-surface
 implementation, standalone Places feed-state repair, native Life
 source/original distinction, persisted Place/Life HTTP readbacks, and the
-Home/Places partial-read notices. The latest app follow-through adds recipient
-Keep/Leave-aside actions on the rebuilt Place reader, refreshes its feed after
-owner actions, and has a real local native/API acceptance receipt.
+Home/Places partial-read notices. App follow-through added recipient
+Keep/Leave-aside actions on the rebuilt Place reader and a real local native/API
+acceptance receipt, then added a multi-photo, exact-original Life reader. That
+reader is focused-test verified; live-byte and native visual/device acceptance
+remain open.
 
 | Repository | Functional candidate HEAD | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `8ca27a3` | `70c4b4b` |
+| Workspace | `54fc48c` | `70c4b4b` |
 | Backend | `651628265` | `a7c02cbe1` |
-| App | `072f56488` | `e2e792913` |
+| App | `ff74def0b` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent
