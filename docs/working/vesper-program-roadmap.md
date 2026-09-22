@@ -4874,3 +4874,13 @@ the recent-return trigger contract and one owner-backed, complete-on-view
 composition remain the path to substantive Home value. Keep the simulator
 available for that later real-read/native return pass, and do not promote the
 mock screenshot to a production or design-parity claim.
+
+## September 22 current-tuple app verification
+
+After the native build, the checked-out app tuple passed a fresh focused packet:
+six suites and **146 tests** covering the Home v2 screen, connected Home
+experience routing, Places section feed, Life refind lane and governed answer
+presentation, and root-projection navigation/return. No snapshots were
+updated. This strengthens regression evidence for the already implemented
+connections; it does not expand backend supply, prove an authenticated owner
+read, or close native action/return and visual-canon acceptance.
