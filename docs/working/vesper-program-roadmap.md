@@ -59,7 +59,7 @@ documentation drift that had called several already-renderable kinds "dark";
 it does not claim source admission, recurring content supply, runtime
 full-scroll quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
-**Current candidate tuple after the latest rebaseline:** workspace `1f4d484`,
+**Code/evidence tuple recorded by this receipt:** workspace parent `1f4d484`,
 backend `de9a08716`, and app `b9ab2522b`, all on the isolated
 `codex/native-presentation-wave1-2026-09-21` lane. In addition to the prior
 owner-loop and supplied-value work, this tuple gives Places one populated

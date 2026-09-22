@@ -198,8 +198,8 @@ after the new flow's lane metadata was corrected. Content and producer remain
 authored fixtures, so provider quality/cost, recurring supply, complete-field
 selection, visual approval and release eligibility remain open.
 
-Current candidate tuple after the latest rebaseline: workspace
-`1f4d484`, backend `de9a08716`, app `b9ab2522b`, all on
+Code/evidence tuple recorded by this receipt: workspace parent `1f4d484`,
+backend `de9a08716`, app `b9ab2522b`, all on
 `codex/native-presentation-wave1-2026-09-21`. This is isolated committed work,
 not main or production. The dedicated shared Integration/landing lane remains
 **PAUSED**. Subsequently authorized lane-local implementation and disposable
