@@ -2024,21 +2024,25 @@ of every path on the latest tuple. Since the previous baseline,
 the candidate adds the fixed cold-start Home example, Life keyset refinding and
 its disposable-Postgres proof, the explicit Life → Places source-associated
 door with anchored return, and the exact Home Outcome → Life record door. The
-Home example still has no native visual or live-retirement proof. Binary-media
-delivery and broad visual/device acceptance remain open.
+exact Home-selected addressed note now has a native Keep → owner revision
+readback → Home-return receipt. The Home example still has no native visual or
+live-retirement proof; the Home Outcome → Life door has route/reader tests but
+no native tap/back receipt. Binary-media delivery and broad visual/device
+acceptance remain open.
 
 | Repository | Candidate HEAD at this rebaseline | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `b127a54` (code/evidence baseline before this documentation-only refresh) | `70c4b4b` |
+| Workspace | `8fcdc64` (code/evidence baseline before this documentation-only refresh) | `70c4b4b` |
 | Backend | `4e35b8df1` | `a7c02cbe1` |
-| App | `7a2dcd0d9` | `e2e792913` |
+| App | `2ca05131d` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent
-repositories. Workspace `b127a54` records the exact Home-selected Place
-continuity acceptance and is the code/evidence baseline; backend `4e35b8df1`
-and app `7a2dcd0d9` contain the implementation. All three candidate trees
-were clean before this documentation-only refresh.
+repositories. Earlier workspace receipt `b127a54` records the initial exact
+Home-selected Place continuity acceptance. Backend `4e35b8df1` and app
+`2ca05131d` contain the implementation; workspace `8fcdc64` is the current
+code/evidence baseline before this documentation-only update. All three
+candidate trees were clean before this documentation-only refresh.
 Canonical main and its concurrent work remain untouched. The candidate is
 committed in its lane, not landed on main or released. Recheck Git and ownership
 before execution; this is a dated observation, not a locked dispatch base.
