@@ -7516,7 +7516,7 @@ these paths separate; the absence of private attachment controls on public Place
 readings is not an implementation gap.
 
 **Current product-code tuple:** workspace `fed8115`, backend `2e123173c`, and
-app `4a8f310ea`, all on the isolated functional-implementation branch.
+app `91b66bc11`, all on the isolated functional-implementation branch.
 Workspace `fed8115` is the latest roadmap/evidence checkpoint. The program
 roadmap's Home package register remains the current cross-lane priority
 authority; this ledger retains implementation evidence. Earlier tuple mentions
@@ -7599,3 +7599,13 @@ The Source result, hook and connected Home packet passes **10 tests**;
 TypeScript and targeted ESLint pass. This is a small cross-root accessibility
 and orientation correction, not a new Source capability or native-device
 acceptance claim.
+
+## September 22 receipt destination coverage completion
+
+The receipt → Places navigator already admitted four exact target kinds, but
+the mobile regression only exercised `venue`. App commit `91b66bc11` expands
+that regression to `venue`, `site`, `accommodation`, and `experience`, proving
+each canonical path preserves the Home return token. The navigation suite now
+passes **63 tests**; TypeScript and targeted ESLint pass. This is coverage for
+the existing typed destination contract, not a new route family or inferred
+receipt behavior.

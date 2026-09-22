@@ -5075,7 +5075,7 @@ harness to address the stale wording.
 ## September 22 current tuple correction
 
 The current isolated functional-implementation tuple is workspace `fed8115`,
-backend `2e123173c`, and app `4a8f310ea`. Earlier tuple values in historical
+backend `2e123173c`, and app `91b66bc11`. Earlier tuple values in historical
 receipts remain useful evidence for the slices they describe, but they are not
 the active checkout. The current cross-root verification packet is **479**
 backend root-projection tests and **198** focused Home/Places/Life app tests;
@@ -5096,3 +5096,13 @@ The Source result, hook and connected Home packet passes **10 tests**;
 TypeScript and targeted ESLint pass. This is a small cross-root accessibility
 and orientation correction, not a new Source capability or native-device
 acceptance claim.
+
+## September 22 receipt destination coverage completion
+
+The receipt → Places navigator already admitted four exact target kinds, but
+the mobile regression only exercised `venue`. App commit `91b66bc11` expands
+that regression to `venue`, `site`, `accommodation`, and `experience`, proving
+each canonical path preserves the Home return token. The navigation suite now
+passes **63 tests**; TypeScript and targeted ESLint pass. This is coverage for
+the existing typed destination contract, not a new route family or inferred
+receipt behavior.
