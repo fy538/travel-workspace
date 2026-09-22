@@ -15,8 +15,10 @@ source_of_truth_for:
 
 ## Conclusion
 
-**Seven actionable findings: one P1, five P2, one P3. All seven now have
-repairs and focused regressions in the current working tree.** Six change
+**The first review's seven findings have committed repairs. A repeat review
+found three additional P2 defects; all three now have fixes and focused
+regressions.** See [Repeat review after repairs](#repeat-review-after-repairs).
+The first seven comprised one P1, five P2 and one P3. Six change
 product source; the seventh hardens the local rehearsal runner. The repair pass
 kept the existing owner and renderer boundaries and introduced no new service
 or product primitive. The backend and app repairs are committed locally on the
@@ -28,9 +30,11 @@ selects or supplies something, but the renderer drops, reorders or mislabels
 it; or presentation geometry produces an incorrect delivery signal. These
 need correction before treating the new full-scroll compositions as accepted.
 
-Existing tests remain green: **469 mobile tests across all 36 changed Jest
-suites**, plus **156 focused backend tests**. Those results do not negate the
-new failing cases below and do not constitute release or visual acceptance.
+The initial review's regression packet passed **469 mobile tests across 36
+changed Jest suites**, plus **156 focused backend tests**. The repeat review
+passed **479 mobile tests across 37 suites and 489 backend tests**. Those
+results do not negate the reproduced defects below and do not constitute
+release or visual acceptance.
 
 ## Scope and pinned revisions
 
@@ -350,7 +354,7 @@ reports cleanup failure; a cleanup failure after a successful run still makes
 the run fail. Structural Node tests and `bash -n` pass. Partial fixture
 provisioning against a disposable database remains unverified.
 
-## Coverage and remaining uncertainty
+## Initial review coverage and remaining uncertainty
 
 | Area | Review performed | Boundary |
 |---|---|---|
@@ -473,8 +477,8 @@ unclassified. The compatibility check also reports three bridge entries
 expired September 15: `discover-url-bridge`, `atlas-tab-url-bridge` and
 `discover-map-api-bridge`. These pre-existing governance items were not changed
 as part of the seven code repairs. The review-only negative probes were removed
-before repair work. The working tree now intentionally contains the backend/app
-repairs and regressions; `git diff --check` is recorded after this repair pass.
+before repair work. The backend/app repairs and regressions were subsequently
+committed at the revisions listed above.
 
 ## Repair disposition and next acceptance step
 
@@ -488,3 +492,219 @@ repairs and regressions; `git diff --check` is recorded after this repair pass.
    action, exact destination and return; run the Source-field fixture against a
    disposable database and prove partial-apply cleanup plus absent-run no-op.
    Those checks remain open and are not implied by the local tests.
+
+## Repeat review after repairs
+
+This pass reviews the same baseline-to-HEAD implementation window **plus the
+seven repairs**, not the entire historical codebase. All three lane repositories
+were clean when pinned. The canonical checkout's unrelated edits were untouched.
+
+| Repository | Repeat-review HEAD |
+|---|---|
+| Workspace | `9d525d0791f95acdb3484df14e2d440f9fbbcbf3` |
+| Backend | `2e2d92753cb46aba3ca8ef2a08e091cafedd10d1` |
+| App | `36ad8acd0280bb54047a8be4b3e327880f9a1cc0` |
+
+The pass followed actual producers, bounded reader failures, selectors,
+renderers, exact social destinations, Life refinding, media lifecycle and
+worker fencing. It also reran every changed offline backend test file and
+every changed mobile Jest suite. No product implementation was changed in this
+repeat review. Temporary negative probes were removed, and both child
+repositories returned to a clean state.
+
+### Repeat-review findings and disposition
+
+| ID | Priority | Defect | Evidence | Disposition |
+|---|---|---|---|---|
+| CR24-R2-01 | P2 | A valid longer Occasion purpose drops Home's complete experience-graph read | Actual adapter and bounded portfolio reproduction; one-Outcome control passes, two-Outcome case fails | Fixed; adapter and reader regression |
+| CR24-R2-02 | P2 | Same-venue social cards bind to the first person's exact handoff | Failing renderer regression with real producer ref shapes; distinct-venue control passes | Fixed; exact-handoff renderer regression |
+| CR24-R2-03 | P2 | Private audio can start after its reader loses route focus | Actual reader and audio hook with controlled focus/readiness events; focused control passes | Fixed; focus, foreground and cancellation regressions |
+
+### CR24-R2-01 — Bound the reconstruction title before crossing the wire model
+
+**Location:** [adapters.py](../../travel-agent/backend/root_projection/v2/adapters.py),
+lines 627–630, with the unbounded label chosen at lines 588–592.
+
+An Occasion may have no title and a purpose of up to 1,000 characters. The new
+multi-Outcome reconstruction uses that purpose in `What stayed from ...`, but
+`RootComposition.title` permits only 180 characters. The title is not excerpted.
+This is a new threshold failure: the same valid Occasion works with one Outcome
+and breaks as soon as there are two.
+
+**Executed reproduction:** use an untitled `ProjectedOccasion` with purpose
+`"Dinner and a walk with friends. " * 7` (224 characters), plus one and then two
+valid recorded Outcomes. Call the production `home_candidates_from_experience`
+adapter. The single-Outcome case returns two candidates; two Outcomes raise a
+`ValidationError` for the 241-character composition title.
+
+The reproduction also used the real `_default_readers(...)["experience_graph"]`
+and `run_bounded_reads`, replacing only `get_experience_projection` with that
+in-memory owner read. Results:
+
+```text
+1 Outcome: status=ok, items=4, degradation=None
+2 Outcomes: status=unavailable, items=0, degradation=source_unavailable
+```
+
+**Consequence:** this is not just a missing reconstruction card. Candidate
+construction occurs inside the shared experience-graph reader, so its exception
+drops that source's graph context and all graph-derived candidates, including
+otherwise valid material. Other independent Home sources can still render.
+
+**Fix direction:** bound the presentation label while preserving full owner
+content. Add both adapter and portfolio regressions for untitled long-purpose
+Occasions. Keep malformed individual presentation material from erasing healthy
+sibling items where the owner boundary permits isolation. Do not "fix" this by
+narrowing valid Occasion input or silently enlarging unrelated wire limits.
+
+**Repair:** Home now compacts the Occasion title/purpose to 160 characters
+before adding its fixed title prefix. The adapter regression covers a long,
+untitled Occasion with multiple Outcomes; a default-reader regression confirms
+the graph context and reconstruction candidate both survive.
+
+### CR24-R2-02 — Match authored social actions by handoff, not a shared venue
+
+**Location:** [HomeRootV2UnitRenderer.tsx](../../travel-app/components/home-root/HomeRootV2UnitRenderer.tsx),
+lines 712–717. Producer:
+[home_source_adapters.py](../../travel-agent/backend/root_projection/v2/home_source_adapters.py),
+lines 945–987.
+
+The backend gives each comparison case both its exact `place_handoff` ID and
+its venue ID; its action contains the venue and exact handoff revision. The
+renderer finds the first action sharing **any** source ref. When two friends
+leave notes for the same venue, both cases match the first friend's venue ref
+before the second case reaches its own handoff action.
+
+**Executed reproduction:** parameterize the existing two-person authored-region
+test with distinct versus identical venue IDs, retaining different handoff IDs
+and revisions in the production-shaped action refs. The distinct-venue control
+passes. With the same venue, the renderer emits three Place doors instead of
+two: both cards get the first person's action and the unmatched second action
+is appended below the cards by the CR24-02 repair.
+
+**Consequence:** the second person's note can be paired with the first person's
+label and exact-note destination. A subsequent reply/keep/pass operates in
+that wrong, though still recipient-authorized, handoff context. This is not a
+claim of unauthorized access.
+
+**Fix direction:** bind cases to the exact handoff first. A shared place is
+context, not the identity of a personal contribution. Preserve the independent
+Friends-in-Places continuation. Add same-place/different-sender regression
+coverage that taps each card and asserts exact handoff ID/revision. The first
+review's description of the match as "exact source matching" was too broad;
+the existing test covered distinct venues, not this collision.
+
+**Repair:** the Home renderer now finds each Place action by that case's
+place_handoff ID, and keys the card with that handoff. Its regression runs with
+both different venues and the same venue, asserting that each card still opens
+its own sender's action.
+
+### CR24-R2-03 — Cancel private-original playback when the reader loses focus
+
+**Location:** [IntakeOriginalAudioPreview.tsx](../../travel-app/components/inbound/IntakeOriginalAudioPreview.tsx),
+lines 32–37 and 47–53. Related owner screen:
+[intake-submissions/[submissionId].tsx](../../travel-app/app/you/intake-submissions/[submissionId].tsx),
+lines 646–661.
+
+The preview's `activeRef` records mounting, not navigation focus. The screen's
+focus cleanup only removes its custody-refresh AppState listener. If a stack
+push leaves the reader mounted while native audio is loading, readiness still
+resolves into `audio.play()` after the reader is off-screen. The shared hook's
+AppState pause does not cover this case: the app remains in the foreground.
+
+**Executed reproduction:** extend the existing full reader/audio-hook test so
+its `useFocusEffect` mock runs cleanup when a controlled route-focus flag
+changes. Start the authenticated audio load, blur without unmounting, then
+deliver native readiness. The assertion of zero playback calls fails with one
+call. The same sequence without blur passes, and existing custody/unmount
+cleanup controls still pass. Navigation focus and the native player were
+controlled, and owner/auth reads used the existing test fixtures. The reader,
+preview and audio hook were the production implementations.
+
+**Consequence:** an explicit playback tap can start private audio after the
+person has moved to another screen. Already-playing audio likewise has no
+route-blur pause/release boundary in this component.
+
+**Fix direction:** make route focus part of playback lifetime; invalidate
+pending load/play continuations and release or pause the player on blur.
+Require another explicit tap on return. Add focused, blurred, unmounted and
+custody-revoked cases. Also cover background-during-load, but do not infer its
+native behavior from this route-focus test.
+
+**Evidence boundary:** this proves an off-screen playback command, not audible
+playback captured on a device. Unlike app backgrounding, route blur does not
+itself activate the shared AppState pause or the native background policy.
+
+**Repair:** the private-original preview now unloads when its route blurs or
+the app backgrounds. The shared hook invalidates outstanding token, HEAD and
+native-readiness work when unloaded, clears owned singleton references and
+disposes listeners/player idempotently. Focused reader regressions cover a
+normal ready path, route blur, background while loading and unload during an
+in-flight auth-token read.
+
+### Repeat-review verification and boundaries
+
+Commands below ran from the coordinated workspace, on the pinned tuple above:
+
+```sh
+python3 scripts/measure_verification.py --label review-repeat-backend -- bash -c 'cd travel-agent && git diff --name-only ef416716 HEAD -- tests | rg "\.py$" | xargs env -u TEST_DATABASE_URL -u TEST_DATABASE_DISPOSABLE .venv/bin/python -m pytest -q --no-cov -m "not requires_postgres and not requires_api_keys and not requires_dogfood_wedge"'
+python3 scripts/measure_verification.py --label review-repeat-mobile -- bash -c 'cd travel-app && git diff --name-only 76af974a HEAD -- __tests__ | xargs npm test -- --runInBand'
+python3 scripts/measure_verification.py --label review-repeat-restored-mobile -- bash -c 'cd travel-app && npm test -- --runInBand __tests__/utils/homeRootV2Renderer.test.ts __tests__/screens/intake-submission.test.tsx'
+```
+
+- **Passed:** 489 backend tests; 21 deliberately deselected by the external
+  service/DB marker filter. Measurement wall time: 8.492 seconds.
+- **Passed:** 479 mobile tests across 37 suites; no skips. Measurement wall
+  time: 17.461 seconds.
+- **Passed after diagnostic probes were removed:** 35 tests across the two
+  touched mobile suites; no skips. Measurement wall time: 3.676 seconds.
+- Measurement logs: `docs/reliability/runs/review-repeat-backend-20260922T224624Z.log`,
+  `docs/reliability/runs/review-repeat-mobile-20260922T224624Z.log`, and
+  `docs/reliability/runs/review-repeat-restored-mobile-20260922T225349Z.log`.
+
+### Repair verification
+
+After the fixes, the focused backend command passed 2 tests (73 other tests in
+that file were excluded by the name selector); Ruff lint and formatting checks
+passed. The three affected mobile Jest suites passed 44 tests with no skips,
+and npm run typecheck passed. ESLint reported no errors; it retained one
+existing max-lines warning in HomeRootV2UnitRenderer.tsx. The Intake screen
+suite still emits its existing asynchronous React act(...) warnings.
+
+Commands, from their respective child roots:
+
+~~~sh
+.venv/bin/python -m pytest -q --no-cov tests/root_projection/test_home_portfolio.py -k 'multiple_outcomes_from_one_explicit_occasion or long_untitled_occasion'
+.venv/bin/ruff check backend/root_projection/v2/adapters.py tests/root_projection/test_home_portfolio.py
+.venv/bin/ruff format --check backend/root_projection/v2/adapters.py tests/root_projection/test_home_portfolio.py
+npm test -- --runInBand __tests__/utils/homeRootV2Renderer.test.ts __tests__/hooks/useNarrationAudio.test.tsx __tests__/screens/intake-submission.test.tsx
+npm run typecheck
+node_modules/.bin/eslint components/home-root/HomeRootV2UnitRenderer.tsx components/inbound/IntakeOriginalAudioPreview.tsx hooks/useNarrationAudio.ts __tests__/utils/homeRootV2Renderer.test.ts __tests__/hooks/useNarrationAudio.test.tsx __tests__/screens/intake-submission.test.tsx
+~~~
+
+Temporary mobile negative probes used:
+
+```sh
+npm test -- --runInBand __tests__/utils/homeRootV2Renderer.test.ts --testNamePattern=review-repeat
+npm test -- --runInBand __tests__/screens/intake-submission.test.tsx --testNamePattern=review-repeat
+```
+
+Each produced one expected failure and one passing control. Respectively 12
+and 21 nonmatching tests were excluded by the name filter; none was quarantined.
+The Python negative/control probes were inline, offline calls to the production
+adapter and bounded reader with in-memory owner data. No database, provider or
+production service was touched.
+
+**Still unverified:** full pre-push `make verify`, live/disposable-database
+acceptance, native layout/scroll and audio behavior, real-provider generation,
+interrupted-worker recovery and visual parity. The regression totals are
+evidence of those tests only. The original seven repairs and these three
+repeat-review repairs are present; device and service acceptance remain open.
+
+`git diff --check` passed. A fresh measured `make docs-check` failed (exit 2)
+on the same pre-existing unclassified practical-judgment brief and three
+expired compatibility bridges described in the first review; the inventory
+error also prevents generated-status validation. Governance, child governance,
+spine, canon, release, living links and Home-surface governance passed. Log:
+`docs/reliability/runs/review-repeat-docs-20260922T225516Z.log` (4.860 seconds).
+This review did not renew bridge policy or classify unrelated documents.
