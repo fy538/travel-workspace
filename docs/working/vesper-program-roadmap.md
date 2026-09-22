@@ -31,7 +31,10 @@ page also offers recipient Keep/Leave-aside actions on an addressed line, using
 the existing relationship owner and expected-revision action. The repaired
 runner verifies the canonical Places feed and People-lines owner response,
 exercises both actions, returns to the same Places context and confirms the
-dismissed line is gone. This is local candidate evidence with local-only flags;
+dismissed line is gone. Life's Places record also opens an explicitly linked
+Place from a retained source/original and restores the exact Life anchor on a
+cold return; it does not imply a visit. This is local candidate evidence with
+local-only flags;
 it does not establish complete design coverage, worthwhile recurring supply,
 general later-context benefit, production activation or release readiness.
 
@@ -58,7 +61,9 @@ presentation gap for multiple already-authorized originals; the new refind
 continuation closes the 100-source scan ceiling without widening the corpus.
 Neither proves binary media delivery or semantic-body search. Carry exact
 sources, destinations, return state and sparse/error behavior through the
-native surface.
+native surface. The explicit Life → Places source-associated door below adds a
+useful cross-root destination/return seam; it is not a later-context reuse
+result or an attendance claim.
 Do not add a generator, feed, or storage family to manufacture fullness.
 Frontend polish remains part of each surface's exit criteria; do not spend
 another package on a route-only or repeated happy-path tour.
@@ -74,11 +79,13 @@ claim source admission, recurring content supply, broad runtime full-scroll
 quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
 **Functional code tuple:** workspace API-contract snapshot `7756522`, backend
-HEAD `031b821e`, and app HEAD `17e9b3f5` on the isolated
+HEAD `031b821e`, and app HEAD `35a8d81f4` on the isolated
 `codex/functional-implementation-2026-09-20` lane. App `a8d64d4b7` adds recipient
 Keep/Leave-aside controls; `072f56488` invalidates the Places feed after owner
 reads/actions and strengthens the native runner; `ff74def0b` adds the authorized
-multi-photo Life reader; `17e9b3f5` carries explicit Life-refind continuation.
+multi-photo Life reader; `17e9b3f5` carries explicit Life-refind continuation;
+`35a8d81f4` opens an explicit retained-source Place association from Life and
+preserves the anchored return.
 Workspace commits `c59bb4b` and `54fc48c` record and clarify prior acceptance
 boundaries; `7756522` syncs the Life-refind API contract. Backend `031b821e`
 adds keyset continuation to the metadata-only Life read. The committed
@@ -2041,12 +2048,13 @@ technical work and exits live in
 [Integration §9](complete-system-integration-roadmap-2026-09-05.md#9-current-execution-ledger-and-next-batch).
 The earlier A/B handbacks remain supporting evidence, not active assignments.
 These are work packages within I1–I5, not new subsystems or a redispatch of old
-tasks. The present update plans work; it does not start agents or services.
+tasks. Lane-local implementation and verification do not resume shared
+Integration/landing, publish code, or activate production flags.
 
 | Package / role | Status and complete outcome | Dependency / handback |
 | --- | --- | --- |
 | **Primary build — Home/Places useful breadth** | In progress. The candidate has owner-backed reads, social receiving, practical fit/open-now, exact destinations/return, persisted Home public-Place HTTP readback with source-retraction behavior, and native multi-source scrolls. Exact-place friend lines offer recipient-only Keep/Leave-aside in the rebuilt reader, guarded by a fresh relationship-owner read and expected revision; this recipient-action journey now passes against the real local API/Postgres on iOS 18.2. A cache handoff fix refreshes the Places feed after owner status/action changes. The earlier focused Home/Places packet passed 50 tests; this action follow-through adds 4/4 owner-action tests, 3/3 runner-contract tests and the native/API journey. Home and governed Places show generic partial-read notices without backend diagnostics. Remaining: worthwhile varied default-portfolio value beyond the proved scrolls, broader design-section coverage, distinct empty states, and native visual acceptance/parity. | **Current next build emphasis:** choose one substantive Home/Places design/value gap that can be filled by existing owner-backed material and measurably reduce the user's work or reveal a useful connection. Carry exact sources, destination, return, accessibility and honest sparse/error behavior through the same package; no new generator/store or route-only milestone. |
-| **Complementary build — Life/social downstream value** | Persisted HTTP reads prove one private Plan and one explicitly permissioned shared Outcome through Life root and depth. The People-record seam also preserves grant/member refs, exact destinations and explicit People-bound private anchors. Life's canonical artifact reader now shows the authorized photo set and opens a selected original without cropping. Metadata refinding now paginates beyond the former 100-result ceiling; its focused keyset continuation also passes against a freshly migrated lane-local disposable PostgreSQL database. | Do not expand search into body semantics. Current recipient deliveries are owned by Relationships and revalidated there, but Life's root corpus does not read them and its audience contract has only private/group/public; do not encode a revocable one-to-one original as a durable Life record or mislabel it as group content. Revisit only after an explicit product/contract decision for ephemeral recipient material in Life. Later Life/social work must otherwise demonstrate a concrete permissioned benefit from already-authorized structured records. Defer policy-dependent media/group/use expansion. |
+| **Complementary build — Life/social downstream value** | Persisted HTTP reads prove one private Plan and one explicitly permissioned shared Outcome through Life root and depth. The People-record seam also preserves grant/member refs, exact destinations and explicit People-bound private anchors. Life's canonical artifact reader now shows the authorized photo set and opens a selected original without cropping. Metadata refinding now paginates beyond the former 100-result ceiling; its focused keyset continuation also passes against a freshly migrated lane-local disposable PostgreSQL database. Life's Places lens now opens an explicitly linked Place from a retained source/original and returns to the anchored record. | Do not expand search into body semantics. Current recipient deliveries are owned by Relationships and revalidated there, but Life's root corpus does not read them and its audience contract has only private/group/public; do not encode a revocable one-to-one original as a durable Life record or mislabel it as group content. Revisit only after an explicit product/contract decision for ephemeral recipient material in Life. The new Place door follows an existing owner-declared association; it does not prove attendance or later permitted reuse. Further Life/social work must demonstrate a concrete permissioned benefit from already-authorized structured records. Defer policy-dependent media/group/use expansion. |
 | **Non-blocking reliability evidence — R05/R09 edges** | R01/R03 disposable-Postgres authority/revocation regressions pass. R04 withdrawal controls and R09 schedule-zone propagation are code-fixed with focused regressions; R04 sender-control API and native simulator rehearsals pass. R05 lease/recovery code, real Arq/Redis wrapper and expired due-work recovery have focused evidence. Still open: a real process-interruption/restart rehearsal and live transient-provider failure/retry. R09 persisted/native timezone-edge evidence also remains open. | Run only those missing matrices when the explicitly disposable database/queue/device is available. They remain required for their named evidence/landing claims, but do not gate independent product implementation. |
 | **Across both builds — native polish** | Required within each completed surface: design hierarchy, card/media treatment, interaction, accessibility and sparse/pending/failure states. Not accepted yet. | Use current inspected Claude exports and handoffs; record actual canvas/version. Unresolved visual choices do not block unrelated owner/supply work. |
 | **Orchestration / this thread** | Own scope, current queue, cross-system decisions and package review; dispatch only when requested. | Review first working composition, consequential blocker and completed package. Judge delivered behavior and remaining user effort, not commit/test counts. |
@@ -3826,3 +3834,28 @@ The existing offline continuation packet remains **8 passed, 3 deselected**;
 this targeted run covers the formerly deselected Postgres case. It does not
 certify the full Postgres suite, `make verify`, live original bytes, simulator
 acceptance, or broader Life search and release readiness.
+
+### September 21 Life → Places — explicit source association and anchored return
+
+Life's complete Places record now offers **Open related place** beneath a
+retained source/original only when its existing represented refs resolve to an
+exact Places-owned destination. The source row remains the primary exact
+source door. The secondary action carries the current Life lens, group and
+entry anchor; Places uses that context for its cold/deep-link Back fallback,
+while ordinary stack Back remains unchanged. This is an explicit owner-linked
+association—not evidence of attendance, a new visit episode, or an inferred
+relationship. No backend, schema, read owner, corpus, or authority changed.
+
+App implementation and contract changes are in the current
+`codex/functional-implementation-2026-09-20` candidate. The Life record and
+Place-home focused suites pass **32 tests** together; TypeScript and targeted
+ESLint pass with no errors (the Place screen retains its existing max-lines
+warning), `git diff --check` passes, and all **31** polish scenario IDs
+validate. The `life-root` design-reference check is structurally valid with
+the existing HTML-reference warning. Native visual acceptance remains
+unavailable: the registered `life-root` surface has no capture flows, and no
+simulator/device capture was produced. This closes one explicit cross-root
+destination/return seam, not broad design parity or later permitted context
+reuse. The next queue remains a substantive Home/Places value result or a
+distinct Life/social later-use result whose existing payload and authority can
+support it.
