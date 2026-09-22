@@ -7748,3 +7748,15 @@ the current four-root and owner boundaries; do not invent a generator, feed,
 store, semantic kind or social route to manufacture fullness. The recent-return
 trigger contract is decision-gated independently and must not serialize this
 ordinary Home composition work.
+
+## September 22 Life return-contract repair
+
+App `ae5c7c1aa` hardens the Life root's exact return context. Its lens helper
+now handles object-shaped Expo `Href`s as well as string paths, preserving
+`lifeLens` on owner destinations such as itinerary-block routes (and using
+`lens` for an exact Life-record route). The focused Life root suite passes
+**14 tests**; TypeScript and targeted ESLint pass. No backend, schema, route
+owner, custody, audience or policy behavior changed, and this receipt does not
+claim native device or real-data acceptance. It is a bounded completion of the
+existing Life navigation contract, while Home composition breadth remains the
+next integration build.

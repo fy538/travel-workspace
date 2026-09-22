@@ -5236,3 +5236,19 @@ states; and (3) only then close any Places/Life gap whose trace proves a real
 owner-backed value is missing. Do not add a generator, store, semantic kind or
 social action merely to match an exploratory design. The recent-return trigger
 remains a separate decision gate; it must not block ordinary Home composition.
+
+## September 22 Life return-contract repair
+
+App commit `ae5c7c1aa` closes a small but real Life navigation seam. The Life
+root's lens-preserving helper now accepts the full Expo `Href` union, not only
+string paths, and carries `lifeLens` (or the exact Life-record `lens`) into
+object-shaped owner destinations as well. An exact itinerary-block destination
+therefore returns to the same Life lens instead of silently losing the user's
+Places/People/Threads context. Existing string routes, owner identity and
+custody behavior are unchanged.
+
+The focused `LifeRootV1Screen` suite passes **14 tests**; TypeScript and
+targeted ESLint pass. This is a mobile return-contract repair only: no backend,
+OpenAPI, storage, audience, media or policy behavior changed, and no native
+device or real-data acceptance is claimed. The Home full-scroll composition
+remains the next substantive product build.
