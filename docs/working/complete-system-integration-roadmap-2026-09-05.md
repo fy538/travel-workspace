@@ -203,8 +203,29 @@ passed**, **30 Places component tests passed**, TypeScript passed, and the real
 Maestro flow passed on simulator `EBEE500B-E4B4-4950-998A-F0A73959F11D`. The
 global Maestro governance command remains failed on **13 pre-existing findings**
 after the new flow's lane metadata was corrected. Content and producer remain
-authored fixtures, so provider quality/cost, recurring supply, complete-field
-selection, visual approval and release eligibility remain open.
+authored fixtures, so provider quality/cost, recurring supply, selection
+quality, visual approval and release eligibility remain open.
+
+### September 21 World Field composer — finite selection and order
+
+Backend `c6809b82f` adds the missing whole-field judgment between individual
+candidate admission and Places compilation. For the World Field, the server now
+elects one dominant, keeps at most four distinct branches, places at most two
+compact continuation doors after them, and records explicit composition-stage
+suppression for competing leads or overflow. Existing authority, freshness,
+value, cluster and seat gates still run first; Home policy is not reused. The
+compiler emits the dominant identity and the runtime carries the same semantic
+order into mature sections/cards, so the client remains an executor rather
+than a second ranker. Backend `d7d153810` updates the owning subsystem contract.
+
+Verification is **80 focused Places/selector/Source tests** and **447 complete
+root-projection tests**, with backend commit hooks passing. This is a bounded
+World-Field implementation, not evidence that the lead is worthwhile, that
+provider-backed supply recurs, that Place Focus/Path/Live Reduction have their
+own composers, or that the native full scroll satisfies design intent. The
+next Places package should judge a supplied multi-candidate field on device and
+close a real sparse/pending/failure or depth/return defect found there; it
+should not add another content store, feed, or generator.
 
 Code/evidence tuple recorded by this receipt: workspace parent `afb579f`,
 backend `796aa0223`, app `33e7b706a`, all on

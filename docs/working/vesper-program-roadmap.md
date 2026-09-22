@@ -39,9 +39,10 @@ a substantial package finishes instead of appending a competing next step.
 
 **Next emphasis:** stop repeating receiving-boundary proofs and deepen the
 composed surfaces with supplied material and honest state transitions. Home and
-Places now have real multi-source full-scroll evidence, and sender withdrawal
-has a native proof; these are not proof of recurring supply, broad design
-coverage, or complete sparse/pending/failure behavior. The next package should
+Places now have real multi-source full-scroll evidence, sender withdrawal has
+a native proof, and Places has a bounded server-owned World Field selector.
+These are not proof of recurring supply, broad design coverage, or complete
+sparse/pending/failure behavior. The next package should
 either close one consequential sparse/pending/failure state in an already
 supplied root or advance a bounded Life/social downstream value whose
 structured inputs and authority are present. Reuse current owners,
@@ -142,6 +143,27 @@ prove live-provider quality or cost, recurring selection, visual-design approval
 or release eligibility. The screenshot also makes the next product question
 concrete: whether the lead earns its space and composes well with the rest of the
 field, not whether the bytes can reach the screen.
+
+### September 21 bounded World Field composition
+
+Backend `c6809b82f` replaces Places' generic twelve-item result with one
+World-Field composition pass after the existing hard, exposure, cluster and
+seat gates. The pass elects one dominant, admits at most four additional
+branches and two compact continuation doors, suppresses competing authored
+leads explicitly, and preserves a stricter caller limit. `compile_places_v2`
+now carries the elected dominant identity, and the runtime orders mature feed
+sections/cards by admitted semantic order rather than reconstructing legacy
+feed order. Backend `d7d153810` records that ownership in the subsystem doc.
+
+The focused selector/runtime/Source packet passes **80 tests** and the complete
+root-projection packet passes **447 tests**. Backend commit hooks passed,
+including formatting, import/cycle, async-DB, secret, architecture-registry and
+size-budget checks. This closes finite-field policy for the World Field; it
+does not establish that the selected lead is interesting, that recurring
+supply is broad enough, that Focus/Path/Live states have equivalent composers,
+or that the resulting full scroll has passed native visual approval. The
+recorded tuple before this documentation receipt is workspace `103c6af`,
+backend `d7d153810`, and app `33e7b706a`.
 
 ### September 21 canonical Home sequence readback
 
