@@ -5446,4 +5446,6 @@ TypeScript passes. A serial rerun of the complete root-projection packet passes
 **484 tests**; an earlier parallel run hit a timing-sensitive failure in the
 existing 10ms bounded-read test, which also passed in isolation. No persisted
 database, native-device, visual-canon or release acceptance is claimed for
-this slice.
+this slice. The canonical four-situation rehearsal expectation was updated in
+backend follow-up `1aadcfb8d` and its focused packet passes **3**; the shared
+Saturday case now truthfully records the participant row.

@@ -7939,6 +7939,12 @@ registry and reuses the generic link treatment. The focused adapter tests pass
 TypeScript passes. A serial rerun of the complete root-projection packet passes
 **484 tests**; an earlier parallel run hit a timing-sensitive failure in the
 pre-existing 10ms bounded-read test, which also passed in isolation. No
-persisted-DB, device, visual-canon or release acceptance follows. The next package remains the longer Home
-composition that combines this supported occasion value with continuity,
+persisted-DB, device, visual-canon or release acceptance follows. The next
+package remains the longer Home composition that combines this supported
+occasion value with continuity,
 practical, Place and Life-backed units.
+
+The canonical four-situation rehearsal expectation was updated in backend
+follow-up `1aadcfb8d` and its focused packet passes **3**; the shared Saturday
+case now records the participant row rather than the older generic occasion
+row.
