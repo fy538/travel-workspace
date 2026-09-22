@@ -27,26 +27,22 @@ depends_on:
 
 ## Current engineering tranche — September 22
 
-### End-of-wave authority (September 22, latest local tuple)
+### Historical baseline before the latest participant slice
 
-Use this paragraph as the current baseline for execution decisions. The
-historical receipts below intentionally retain the tuples and evidence scopes
-that produced them, but they do not supersede this checkpoint. The clean
-isolated tuple is workspace `b18ca47`, backend `cc357a7c7`, and app
-`aa7167722`, all on `codex/functional-implementation-2026-09-20`. The current
-backend root-projection packet passes **482 tests**; the full offline backend
-gate passes **21,661 tests** with 14 skipped and 53 expected passes, and the
-current app packet contains **566 tests across 55 focused suites**, with
-TypeScript passing (the existing renderer max-lines warning remains). This
-wave completed the bounded Home/Places receiving and destination corrections,
-a Life lens-preserving return repair, and the follow-on semantic/lens contract
-repairs. It does not prove a substantially richer Home composition, recurring
+This paragraph records the preceding baseline only. The historical receipts
+below intentionally retain the tuples and evidence scopes that produced them;
+the current tuple and execution authority are recorded immediately below. That
+earlier wave completed bounded Home/Places receiving and destination
+corrections, a Life lens-preserving return repair, and semantic/lens contract
+repairs. It did not prove a substantially richer Home composition, recurring
 provider-backed supply, native media/device acceptance, verified external
 design-canon parity, or release readiness.
 
-**Current local tuple after the occasion-participant slice:** workspace
-`8203453`, backend product commit `cd50755c8` plus rehearsal follow-up
-`1aadcfb8d`, and app `d14665ca5`, all on
+### Current execution authority after the occasion-participant slice
+
+Use this paragraph as the current baseline for execution decisions. The
+current local tuple is workspace `9c138e6`, backend product commit
+`cd50755c8` plus rehearsal follow-up `1aadcfb8d`, and app `d14665ca5`, all on
 `codex/functional-implementation-2026-09-20`. The existing
 `people_participants_row` kind is now emitted for viewer-authorized shared
 Occasions with active participant-visible members and rendered through the
@@ -7850,8 +7846,9 @@ evidence.
 
 ## September 22 final execution rebaseline
 
-The current implementation tuple is workspace `b18ca47`, backend `cc357a7c7`,
-and app `aa7167722`, all on the isolated functional-implementation branch.
+The current implementation tuple is workspace `9c138e6`, backend
+`cd50755c8` plus rehearsal follow-up `1aadcfb8d`, and app `d14665ca5`, all on
+the isolated functional-implementation branch.
 This wave has closed the recent receiving, typed destination, source-result,
 region-language, returned-order, editorial-treatment, Life-lens and attention-
 breadth gaps. It has not yet delivered the larger user-visible product
@@ -7883,8 +7880,9 @@ run in parallel as bounded closeouts. The recent-return trigger remains a
 separate policy decision and must not serialize ordinary Home composition; no
 automatic cross-time adapter is admitted until its source, purpose, audience,
 lineage, correction/withdrawal, expiry, duplicate/no-op and sparse behavior
-are accepted. The existing **482-root / 21,661-full-backend** and **566-app**
-test packets support this queue but are not its completion criterion.
+are accepted. The current 484-test root-projection packet, focused
+participant/Home packets (3 and 30), and the prior 21,661-full-backend /
+566-app packets support this queue but are not its completion criterion.
 
 ### September 22 Home continuity reconstruction receipt
 
