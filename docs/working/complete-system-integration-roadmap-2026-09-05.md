@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Integration task
 created: 2026-09-05
-last_verified: 2026-09-21
+last_verified: 2026-09-22
 expires: 2026-10-05
 why_new: Rebaselines the post-pivot system around the real-world live engine and four surfaces, with code-backed correction priorities, explicit Life ownership, bounded Luna delegation, and recurring architectural and product reassessment.
 supersedes:
@@ -25,7 +25,7 @@ depends_on:
 
 # Complete-system integration roadmap
 
-## Current engineering tranche — September 21
+## Current engineering tranche — September 22
 
 The functional lane now has a connected, partially complete internal product:
 Home/Places value and practical consequences, Life originals/refinding/groups,
@@ -35,7 +35,12 @@ recipient-consented social cases. Rich recurring supply, later permitted
 context benefit, complete design coverage/polish and production readiness
 remain unfinished.
 
-**Read the [program baseline](vesper-program-roadmap.md#2-inspected-baseline--september-21)
+Backend commit `ee625b985` also bounds long-authored Outcome meaning before it
+enters Home's direct-state preview, preserving the exact revisioned Life door
+to the full record. This fixes a valid-record projection overflow; it does not
+add a new source reader or broaden the Home content portfolio.
+
+**Read the [program baseline](vesper-program-roadmap.md#2-inspected-baseline--september-22)
 and [§9 current execution plan](#9-current-execution-ledger-and-next-batch)
 first.** They supersede earlier scheduling and "next slice" prose below;
 historical receipts retain their evidence boundaries, not separate dispatch
@@ -2328,7 +2333,23 @@ document's creation.
 
 ## 9. Current execution ledger and next batch
 
-### Functional implementation checkpoint — September 21 rebaseline
+### September 22 implementation receipt — bounded Home Outcome preview
+
+Backend `ee625b985` normalizes whitespace and caps authored Outcome meaning at
+220 characters before it enters Home's `RootDirectState`. Its internal
+`material_trigger` is static rather than a copy of unbounded authored prose.
+The exact revisioned Outcome reference and existing `life.read` requirement
+remain the path to the full meaning in Life. No route, schema, native UI,
+source-inspection handle, or authority policy changed.
+
+Focused evidence: the v2 contract plus semantic-composition packet passed
+**46 tests**, the Home portfolio packet passed **51 tests**, and targeted Ruff
+and formatting checks passed. No API server, database, native device or full
+`make verify` run was part of this slice. It improves projection robustness;
+it does not establish new content supply, native presentation, or design
+parity.
+
+### Functional implementation checkpoint — September 22 rebaseline
 
 The candidate includes Life exact originals/refinding, one-recipient original
 receiving, owner-backed grouped records, Home/Places public Source and consented
@@ -2377,13 +2398,13 @@ current-work completion, expired due-work recovery and in-flight lease renewal
 have focused evidence. Process-interruption/restart recovery and live
 transient-provider failure/retry remain unverified.
 
-| Package | State at September 21 candidate | Next concrete action |
+| Package | State at September 22 candidate | Next concrete action |
 | --- | --- | --- |
 | I0 | Inventory and decision-alignment foundation recorded; current candidate and evidence scopes now rebaselined | Keep unresolved retention/watch/reuse agreements gated only where relevant; close review findings without restarting architecture |
 | I1 | Source/graph/Outcome delivery, repair, backfill and reconciliation foundation; additional retained-source revisions and Life adoption paths in this lane | Build population and later-use coverage over existing owners; do not infer indexed serving cutover or cross-context authority from retention |
 | I2 | Bounded serving, prepared results, cancellation and publication fences; explicit Source Arq registration, serializer repair and gated due-work recovery sweep; real `not_claimed` wrapper, expired due-work recovery and in-flight lease-renewal evidence | Run the process-interruption/restart and live transient-provider failure/retry rehearsals in isolated Arq/Redis; cost/cohort/provider activation remains separately gated |
 | I3 | Contribution authority and useful-first intake; exact retained/received text-original paths with scoped native receipts | R01/R03 authority and revocation are verified, R04 code correction plus API/native sender-control rehearsals and named Life/Home original-receiving paths are complete; broader supported originals and permissioned downstream use remain; pending history/audience policy is not silently adopted |
-| I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots; supplied Home and Places multi-source full-scrolls; same-Place sequence passes persisted Home HTTP readback with source retraction; generic Home/Places partial-read notices preserve supplied content; rebuilt Place reader now supports recipient Keep/Leave-aside with a real local native/API rehearsal | Add worthwhile default-portfolio value beyond the proved scrolls from already supplied payloads; complete remaining distinct empty states and native visual acceptance, keeping exact actions/destinations and honest failure treatment in scope |
+| I4 | Public/child Source, social and practical receiving plus exact native return paths in internal roots; supplied Home and Places multi-source full-scrolls; same-Place sequence passes persisted Home HTTP readback with source retraction; generic Home/Places partial-read notices preserve supplied content; rebuilt Place reader now supports recipient Keep/Leave-aside with a real local native/API rehearsal; Home's long Outcome preview is capped at 220 characters while preserving the exact revisioned Life read requirement (focused backend packet: 97 passed) | Add worthwhile default-portfolio value beyond the proved scrolls from already supplied payloads; complete remaining distinct empty states and native visual acceptance, keeping exact actions/destinations and honest failure treatment in scope |
 | I5 | Open-now and saved-world changes reach surfaces; explicit fit and reviewed assistance contracts implemented | R09 code correction and the named current-world native paths are complete; persisted/native timezone edge matrix, permitted-context adaptations, provider-backed fit rehearsal and broader mandates remain separate |
 | I6 | Retirement inventories/guards exist; candidate remains isolated and rollout internal | Keep obsolete execution paths out of new work; complete obligation review and authorized cutovers/landing only when their dependencies are ready |
 

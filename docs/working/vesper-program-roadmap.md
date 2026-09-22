@@ -34,6 +34,13 @@ later-context benefit, production activation or release readiness. The new Home
 example remains behind existing local delivery gates, and its native
 presentation/retirement has not been observed on a device.
 
+Backend commit `ee625b985` also closes a bounded Home projection defect:
+long-authored Outcome meaning is now a compact excerpt, while the exact
+revisioned Outcome and existing `life.read` requirement remain intact. Life
+continues to own the complete authored meaning. This prevents a valid record
+from overflowing Home's bounded candidate fields; it does not add a new source
+reader, widen authority, or establish broader Home value coverage.
+
 Use [§2](#2-inspected-baseline--september-22) for the current evidence boundary,
 [§4](#4-current-package-register) for the sole current execution queue, and
 [Integration §9](complete-system-integration-roadmap-2026-09-05.md#9-current-execution-ledger-and-next-batch)
@@ -68,18 +75,35 @@ drift that had called several already-renderable kinds "dark"; it does not
 claim source admission, recurring content supply, broad runtime full-scroll
 quality or design parity. See the [renderer coverage audit](home-places-renderer-coverage-audit-2026-09-05.md).
 
-**Current functional code tuple:** workspace `7632426`, backend `ebaea7c80`,
+**Current functional code tuple before this roadmap receipt:** workspace
+`3b7ed87`, backend `ee625b985`,
 and app `cb3bae7cb`, all on the isolated
 `codex/functional-implementation-2026-09-20` lane. The latest workspace commit
-records the Home sample receipt; the backend adds its owner-read/candidate and
-proof-backed lifecycle; the app renders the explicitly fictional sample in the
-existing Home composition. Earlier commits in this candidate provide the
+precedes this documentation-only refresh; the backend adds the Outcome excerpt
+bound and prior Home sample owner-read/candidate and proof-backed lifecycle;
+the app renders the explicitly fictional sample in the existing Home
+composition. Earlier commits in this candidate provide the
 Places recipient lifecycle, Home/Places full-scroll paths, multi-photo Life
 reader, Life keyset refind and explicit Life → Places return. The lane is clean
 and none of these commits is merged to main, published, or production-flag
 activated. The Home sample's UI appearance and live retirement behavior remain
 unverified on-device; its SQL history query was checked offline, not against
 PostgreSQL. See the dated receipts for each exact evidence boundary.
+
+### September 22 backend robustness receipt — bounded Home Outcome preview
+
+Backend `ee625b985` bounds authored Outcome meaning before it enters Home's
+`RootDirectState`: whitespace is normalized and the excerpt is capped at 220
+characters. The candidate's internal `material_trigger` is now static rather
+than duplicating unbounded authored prose. The exact revisioned Outcome ref
+and existing `life.read` requirement remain the door to the complete record;
+no route, schema, UI, source-inspection handle, or authority policy changed.
+
+Focused backend evidence: the v2 contract plus semantic-composition packet
+passed **46 tests**; the Home portfolio packet passed **51 tests**. Targeted
+Ruff checks and formatting checks passed. No database, API server, native
+device, or full `make verify` run was part of this slice. This is projection
+robustness, not new Home content supply, visual acceptance, or design parity.
 
 ### September 21 current-candidate integrity pass
 
@@ -1918,21 +1942,21 @@ proof. Binary-media delivery and broad visual/device acceptance remain open.
 
 | Repository | Candidate HEAD observed before this receipt | Canonical main HEAD |
 | --- | --- | --- |
-| Workspace | `7632426` | `70c4b4b` |
-| Backend | `ebaea7c80` | `a7c02cbe1` |
+| Workspace | `3b7ed87` | `70c4b4b` |
+| Backend | `ee625b985` | `a7c02cbe1` |
 | App | `cb3bae7cb` | `e2e792913` |
 
 Candidate checkout: `travel-workspace--functional-implementation-2026-09-20`,
 branch `codex/functional-implementation-2026-09-20` in all three independent
-repositories. All three candidate trees were clean at inspection; this refresh
-changes only the workspace roadmap. Canonical main and its concurrent work
-remain untouched. The candidate is committed in its lane, not landed on main
-or released. Recheck Git and ownership before execution; this tuple is a dated
-observation.
+repositories. All three candidate trees were clean at baseline capture; this
+receipt changes only the workspace roadmaps. Canonical main and its concurrent
+work remain untouched. The candidate is committed in its lane, not landed on
+main or released. Recheck Git and ownership before execution; this tuple is a
+dated observation preceding the documentation commit.
 
 | Capability | Implemented / recorded evidence | Remaining product or evidence boundary |
 | --- | --- | --- |
-| Home / Places | Owner-backed Save/readback, public Place and child-entity readings, consented place pulls, nearby open-now options, supplied experience comparisons, plural social perspectives, addressed Place-contribution region, saved-place closure/reopening dismissal, recipient Keep/Leave-aside on exact-place friend lines, native multi-source scrolls, semantic-state treatment and generic partial-read notices; fixed fictional Home sample for cold/quiet accounts behind existing delivery gates; exact Home photo tap is gated by current delivery revision and material authorization (focused component/screen tests only); persisted public-Place Home HTTP readback; named local API/iOS flows | Varied worthwhile default-portfolio value beyond the proved scrolls; prove the sample's native presentation/retirement locally; broader section/design breadth, selection quality across situations, remaining distinct empty states, binary-media runtime proof, native visual acceptance/parity |
+| Home / Places | Owner-backed Save/readback, public Place and child-entity readings, consented place pulls, nearby open-now options, supplied experience comparisons, plural social perspectives, addressed Place-contribution region, saved-place closure/reopening dismissal, recipient Keep/Leave-aside on exact-place friend lines, native multi-source scrolls, semantic-state treatment and generic partial-read notices; fixed fictional Home sample for cold/quiet accounts behind existing delivery gates; Home Outcome excerpts capped at 220 characters while retaining the exact revisioned Life read requirement; exact Home photo tap is gated by current delivery revision and material authorization (focused component/screen tests only); persisted public-Place Home HTTP readback; named local API/iOS flows | Varied worthwhile default-portfolio value beyond the proved scrolls; prove the sample's native presentation/retirement locally; broader section/design breadth, selection quality across situations, remaining distinct empty states, binary-media runtime proof, native visual acceptance/parity |
 | Life | Retained text originals, exact refinding/return, explicit place- and people-bound sources, organized period groups, and a canonical artifact reader that presents every available authorized photo whole with same-record return; metadata refinding continues past the newest 100 results with a versioned keyset cursor and rechecks current owner, retention, status and custody on each page; the continuation case passes on a fresh lane-local disposable PostgreSQL database; Life opens an explicitly linked Place from a retained source/original with anchored return; persisted private Plan and explicitly permissioned shared Outcome reach Life/People root and depth HTTP readers | Broader binary-media/corpus coverage and People/Threads experience, live original-byte/device acceptance, later permitted reuse that changes a subsequent result, indexed serving cutover and Atlas retirement |
 | Social | Existing-owner venue-bound pulls and one-recipient original-text receiving through Life/Home; recipient Keep/Leave-aside; named local API/iOS flows; native sender withdrawal after recipient disconnect | Casual media/group/gathering breadth and useful juxtaposition; no new sharing or friend-source AI-use policy is adopted here; broader downstream use remains |
 | Practical/live engine | Current open-now facts and saved-place changes affect surfaces; explicit fit contract and private stop-assistance/reviewed Send implemented | Provider-backed fit rehearsal, wider fresh-world coverage, purpose-preserving adaptation and accepted watching mandates; R09 code correction is complete, persisted/native timezone evidence remains |
