@@ -969,15 +969,21 @@ maximum was not established.
 
 ## Important limitations and investigated non-findings
 
-- **Generation recovery remains incomplete.** Dispatch occurs on explicit POST;
-  enqueue can return `None`, shared Arq defaults to `max_tries=1`, and there is no
-  production caller draining `list_due_source_contribution_workflows`. Pending
-  or retryable work therefore has no automatic recovery on this rail after an
-  enqueue failure, a consumed disabled job or a transient execution failure.
-  GET polling cannot re-enqueue it. The existing controlled-worker receipt
-  explicitly excludes production scheduling, so this is recorded as an
-  implementation/readiness limitation rather than another confirmed regression.
-  Resolve it before claiming reliably completed background preparation.
+- **Generation recovery is wired but operational recovery remains unproven.**
+  When the existing named-cohort worker gate is enabled,
+  `audio_jobs.WorkerSettings` registers `resume_due_source_contribution_workflows`
+  at startup and every minute. That sweep reaps only expired final-attempt
+  leases and re-enqueues due durable workflows with deterministic Arq job IDs;
+  it can retry after a missed/consumed enqueue without changing producer
+  admission. Focused tests cover registration, due-work selection and enqueue
+  identity. However, no rehearsal has yet killed a worker while this Source
+  executor was in flight and then observed the same workflow recover after
+  restart, nor has a live transient-provider failure/retry been exercised.
+  `max_tries=1` therefore remains bounded by the durable workflow/sweep path,
+  not an Arq retry claim. GET polling alone still cannot re-enqueue work. Keep
+  the operational readiness claim open until those two runtime cases pass; do
+  not describe the current evidence as production activation or reliable
+  background preparation.
 - **Original-delivery fixture failure cleanup needs follow-up.** Sender/source
   rows are committed before delivery creation; later failure may orphan them,
   while cleanup locates them through a completed delivery. The failure path
