@@ -2482,6 +2482,31 @@ Integration/landing, publish code, or activate production flags.
 | **Dedicated Integration / landing** | PAUSED; combined shared runtime, main landing and publishing are not enabled by this update. | Lane-local implementation/verification remains distinct. On explicit resume, receive selected clean cuts and run required gates without pretending candidate receipts certify production. |
 | **Existing specialist lanes** | Reference suppliers, not automatically restarted or assumed merged. | Use immutable relevant cuts; independently assigned work needs file ownership and direct dependency exchange, not six standing lanes matching six design projects. |
 
+#### September 22 Home design-authority check
+
+The registered workspace authority remains
+`docs/governance/home-surfaces-design-authority.json`. It names seven files in
+an external canonical bundle and requires their hashes to verify before visual
+acceptance. `HOME_SURFACES_CANON_DIR` is unset in this lane, so those external
+files were not verified here. `make docs-home-surfaces-check` confirms
+the committed authority/inventory structure (36 compositions); it does not
+prove the external bundle or current visual parity.
+
+`Downloads/vesper-home` is a separate, newer exploratory export, not those
+seven registered files. Its Board 18 (“Ordinary Photographs”) is useful design
+input, but it is not an adopted implementation authority. The trace found one
+existing supported path—displaying an exact, still-authorized original to its
+named recipient. Grouping separate grants as one authored photo set, sending a
+reply to a friend from that card, using a friend's original for AI-derived
+content, and introducing a city/world fact are not supported by the current
+owner contracts and producers. Later private use of a person's own retained
+Source remains explicitly unresolved under Contribution and Consequence §3.10.
+Do not claim these Board 18 behaviors are implemented or accepted, and do not
+turn them into a new semantic kind or generator. Continue Home implementation
+against the accepted Home-root contract and already-authorized owner material;
+visual comparison to the newer export awaits its adoption and verified design
+reference.
+
 **September 22 current-tuple clarification:** The Home selector/screen tests and
 single mock native capture named in the detailed Home row are earlier receipts,
 not fresh verification of the current code tuple. The current isolated tuple is
