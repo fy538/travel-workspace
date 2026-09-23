@@ -502,6 +502,92 @@ fixture counts; none are in the new memory worker or root-composition tests.
 This is a real failed full marker sweep, not an inherited pass. No production
 activation, merge, publication, or release-readiness claim follows.
 
+### September 21 Places production-to-presentation checkpoint
+
+App commits `659a9eb5a`, `2f80bc4e3` and `bdef50f72` establish the presentation
+bar inside the mature Places workspace: a generated lead can govern the mast,
+composition provenance names the human/public inputs actually used, and root
+actions retain a restrained hierarchy. The populated New York field remains an
+explicit frontend rehearsal fixture; it is not production supply.
+
+Backend commit `48b54610c` closes the next upstream evidence seam. On a fresh
+disposable PostgreSQL database, an explicit Source request runs through the
+real workflow fence and canonical executor, persists one admitted production,
+and is then read by `/api/root-projections/v2/places/runtime`. The response
+contains one generated `field_lead_composition` in `field_units` together with
+the honest sparse-field fallback, and the GET causes no second provider call.
+The three connected Source-delivery cases pass; the focused backend root packet
+passes **43 tests**; the focused mobile Places receiver/render packet passes
+**37 tests** and TypeScript passes.
+
+The producer and Source material in this connected test are authored fixtures,
+and the serving assessment isolates duplicate canonical owner storage after the
+worker has already completed governed reads. This is therefore persisted-engine
+contract evidence, not live-provider quality, production activation or a native
+real-backend visual receipt. The next proof should use this existing contract
+with a controlled real backend and device, then evaluate whether the generated
+lead is worth receiving; do not add another transport, store or mock-only field.
+
+### September 21 real-backend native Places receipt
+
+Backend `de9a08716` and app `b9ab2522b` close the next receiving boundary without
+adding a product route or storage family. A guarded local fixture creates one
+private photo attachment plus governed public Place readings, emits an explicit
+HTTP Source request, runs the existing canonical worker with a deterministic
+provider-free producer, requires post-write readback, and verifies the exact
+workflow result and ordinary `/api/root-projections/v2/places/runtime` response.
+The assigned iOS 18.2 simulator then opened the normal Places tab and found the
+production-backed spatial composition by semantic test id and title. The runner
+finally removed the workflow, attempt, production, Intake submission and public
+reading rows; the ordinary runtime returned only `field_balanced_fallback`
+afterward.
+
+The first successful capture also exposed a contradictory composition: the
+Source lead was followed by the empty-field statement “Nothing leads this field
+yet.” Backend `796aa0223` now replaces that placeholder at the shared
+pre-judgment merge boundary whenever an admitted Source field lead exists,
+without suppressing real browse candidates. App `33e7b706a` makes absence of the
+fallback part of native acceptance. The corrected rerun passed and shows one
+coherent lead rather than a lead plus its obsolete empty state.
+
+The native rehearsal passed once the client was started with the complete
+coherent rollout posture (`FOUR_ROOT_SHELL`, root projection v2, governed Places,
+Life v1 and internal build). An initial run using an obsolete isolated Places
+flag correctly stayed on `/api/places/feed` and failed to find the composition.
+That is evidence that the rollout fence works, and it is now an explicit runtime
+precondition rather than an unexplained UI miss.
+
+Focused evidence is **37 backend tests**, **3 runner-contract tests**, **30 Places
+component tests**, TypeScript, and the passing Maestro device flow. The global
+Maestro governance check still reports its **13 pre-existing repository-wide
+findings**; the new flow itself no longer adds a finding. This receipt proves
+canonical delivery and native receiving with authored content. It does **not**
+prove live-provider quality or cost, recurring selection, visual-design approval,
+or release eligibility. The screenshot also makes the next product question
+concrete: whether the lead earns its space and composes well with the rest of the
+field, not whether the bytes can reach the screen.
+
+### September 21 bounded World Field composition
+
+Backend `c6809b82f` replaces Places' generic twelve-item result with one
+World-Field composition pass after the existing hard, exposure, cluster and
+seat gates. The pass elects one dominant, admits at most four additional
+branches and two compact continuation doors, suppresses competing authored
+leads explicitly, and preserves a stricter caller limit. `compile_places_v2`
+now carries the elected dominant identity, and the runtime orders mature feed
+sections/cards by admitted semantic order rather than reconstructing legacy
+feed order. Backend `d7d153810` records that ownership in the subsystem doc.
+
+The focused selector/runtime/Source packet passes **80 tests** and the complete
+root-projection packet passes **447 tests**. Backend commit hooks passed,
+including formatting, import/cycle, async-DB, secret, architecture-registry and
+size-budget checks. This closes finite-field policy for the World Field; it
+does not establish that the selected lead is interesting, that recurring
+supply is broad enough, that Focus/Path/Live states have equivalent composers,
+or that the resulting full scroll has passed native visual approval. The
+recorded tuple before this documentation receipt is workspace `103c6af`,
+backend `d7d153810`, and app `33e7b706a`.
+
 ### September 21 canonical Home sequence readback
 
 Backend `bdc05c02f` adds a production-composition test for the already supplied
