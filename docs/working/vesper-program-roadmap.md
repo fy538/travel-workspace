@@ -423,6 +423,85 @@ validation and structural design checks pass. No backend, schema, route,
 producer, storage or policy surface changed, and native screenshot/device
 acceptance remains unrun.
 
+### September 21 shared-engine consolidation receipt
+
+The independent engine lane completed the bounded consolidation packages that
+support both the functional and native-presentation lanes. Backend
+`fd133c493` carries forward the existing physical owner-read admission and
+whole-portfolio deadline protections: slow synchronous work remains bounded
+after caller timeout, queued cancellation cannot start later, independent
+owner results preserve order, and exact authority-bearing request identities
+remain the coalescing boundary. Backend `ed4c2779d` adds evidence manifests to
+Personal Memory synthesis. Publication checks the exact eligible observations,
+constraints, facts, membership and prior-trip inputs used by the prompt; later
+single-user, batch, context-compiler, affinity and preference reads withhold an
+unbound or changed aggregate. Migration `pmevidence02` follows this candidate's
+actual `originaldelivery02` head; it does not import the donor branch's
+unrelated Source-history migration.
+
+The cleanup follow-through in backend `22c8fbe39` removed the direct private
+group-safety query of `personal_memories`. Its later purpose-specific
+correction is recorded below: privacy denial intentionally reads the latest
+retained snapshot without requiring current synthesis evidence, projects
+explicit corrections, and is never positive personalization evidence. Do not
+describe this as routing through the currentness-gated personalization reader.
+
+Focused evidence: owner-read tests **23 passed**; memory, refresh, claims,
+reflection and traveler tests **162 passed**; privacy-corpus and affected
+currentness tests **121 passed**. Ruff, formatting, vulture, secret checks,
+import boundaries, lazy-import checks, cycle ratchet, async-DB and size checks
+passed. The pre-commit event-type and enum-parity hooks were **unverified** in
+this environment because their checker process could not import `sqlalchemy`;
+they were skipped only for the local commit and remain required before landing.
+No app code, source-worker activation, feature flag, merge, publication or
+shared Integration resumption occurred. The two execution lanes can continue
+against their existing contracts; this lane's next review is compatibility and
+landing readiness, not another engine framework.
+
+### September 21 engine follow-through — lifecycle and application ownership
+
+The engine lane made targeted follow-through changes beyond the earlier
+compatibility cut. Backend `2918bf7d6` separates current Personal Memory for positive
+personalization from retained corrected memory used only for group disclosure
+denial; an ordinary missing/stale personalization read no longer synthesizes
+inline. Backend `97dde2ec9` places memory publication and the worker's
+completion receipt in one transaction. `6ee52da4d` gives the zero-evidence
+withdrawal path the same lease/evidence/receipt transaction boundary, including
+a final evidence recheck. `bb46dd818` adds the privacy-purpose regression test
+and records the dedicated retained-memory semantics.
+
+Backend `4fd150483` moves shared canonical owner adapters, bounded root-read
+portfolios, and Home/Places composition from Concierge/API service modules into
+`backend.application`. The API route now calls that application use case;
+Home and Places still own their respective projection compilers. Compatibility
+re-exports remain at the former import paths. The move also corrected the
+treatment-binding call to its actual contract: surface-treatment projection
+has its own gate; consequence resolution remains a later independent stage.
+The root-composition deadline is deliberately a **soft enrichment budget**:
+it clips canonical owner reads and optional delivery suppression/proof work,
+but is not a hard HTTP SLA and does not preempt all upstream/feed or
+synchronous projection work.
+
+Backend `517b13e18` adds real-PostgreSQL transaction tests around the worker:
+successful memory publication and receipt commit together, while an injected
+failure after receipt writing rolls both back before the workflow is marked
+retryable. Follow-up tests also prove that zero-evidence withdrawal commits its
+receipt with the deletion, and that an injected receipt failure rolls that
+deletion back. All four targeted tests passed on the isolated database migrated
+to `pmevidence02`. The focused offline packet passed **494 tests**; three
+database-marked cases were deselected. Ruff/format and import-boundary,
+lazy-import, and cycle-ratchet checks passed. Full backend mypy remains red
+(**320 errors across 66 files**); this pass removed the invalid treatment-call
+diagnostic but did not attempt the unrelated repository-wide typing backlog.
+
+The broader isolated PostgreSQL sweep is **not green**: **1,376 passed, 5
+skipped, 18 failed, 21,787 deselected**. Failures cluster around dated legacy
+itinerary fixtures (`lifecycle_ineligible`/past proposal dates), planner
+placeholder expectations, Life projection/backfill expectations, and replay
+fixture counts; none are in the new memory worker or root-composition tests.
+This is a real failed full marker sweep, not an inherited pass. No production
+activation, merge, publication, or release-readiness claim follows.
+
 ### September 21 canonical Home sequence readback
 
 Backend `bdc05c02f` adds a production-composition test for the already supplied

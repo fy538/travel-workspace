@@ -2618,7 +2618,7 @@ its claim to this reopen-persistence sequence until the runtime flow passes.
 
 ### Current build sequence and finish conditions
 
-This sequence is the forward plan within the existing I/CV packages. It replaces
+This sequence was the forward plan within the existing I/CV packages. It replaced
 older suggestions to select another isolated happy-path rehearsal. A package
 can contain several independent implementation tasks; it is not a one-loop
 definition of Vesper. The program register owns assignment. No agents are
@@ -2773,7 +2773,7 @@ program register in place after each substantial handback.
 ### 9.1 Connected-value execution sequence
 
 This foundational sequence within I1–I5 preserves implementation contracts and
-their rationale. The September 21 build sequence above owns current scheduling;
+their rationale. The September 22 package/register above owns current scheduling;
 read later receipts before treating any CV step here as unimplemented. All four
 moves remain represented by the acceptance portfolio. A package is reviewable
 scope, not the definition of Vesper or a one-loop proof prerequisite.
