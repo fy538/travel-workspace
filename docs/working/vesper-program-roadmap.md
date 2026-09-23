@@ -20,6 +20,33 @@ depends_on:
 
 # Vesper program roadmap
 
+**September 22 repository consolidation candidate (not main):** coordinated
+branch `codex/consolidation-2026-09-22` now contains the latest functional lane
+in all three repositories, the complementary shared-engine backend lane, the
+native-presentation app lane, and their workspace receipts. The workspace also
+retains the September 15 strategy-literature refinement. Candidate heads at
+this checkpoint are workspace `f4527e2`, backend `4fb3d76b9`, app
+`db05b0e7f`. The functional/engine merge keeps the shared root composer in
+`backend.application`; the functional/native merge keeps one typed Places
+experience-presentation variant and the exact Home case actions. Focused
+backend root/owner tests passed **511** (3 database cases deselected); the
+four affected app suites passed **93**, and app TypeScript passed. These are
+merge-compatibility checks, not a full product or visual acceptance result.
+
+The coordinated `make verify` attempt is **red** at the backend world-catalog
+runway: eight Season/Here rows have expired as of September 22. Separate
+contract/API checks report **55 expired operation-policy reviews**; the app
+`verify:pr` attempt reaches the schema bridge and reports stale exceptions;
+workspace status rendering also finds one unclassified working document.
+These are real landing gates, not reasons to silently extend review dates.
+The candidate is clean and local only. Protected remote mains require CI and
+an independent approving review; canonical main worktrees retain concurrent
+uncommitted changes. No main ref was moved, branch was published, or legacy
+worktree deleted. Older timing, engine-ER123 and native-receiving tips remain
+separate because whole-branch merges predict dozens of backend/app conflicts
+against this newer candidate; any still-wanted behavior needs an owner-level
+selective port and acceptance review, not an automatic merge.
+
 **September 22 rebaseline, after implementation and review:** Vesper has moved
 from mostly subsystem and route work into connected feature implementation,
 but remains a partially complete internal product candidate. Existing owner
