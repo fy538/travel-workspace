@@ -46,7 +46,7 @@ doctor: ## Validate workspace layout and key local tooling
 new-worktree: ## Create an isolated worktree lane in both repos: make new-worktree NAME=my-feature
 	@./scripts/new-worktree.sh $(NAME)
 
-land-worktree: ## Rebase, push to main, and tear down a worktree lane: make land-worktree NAME=my-feature
+land-worktree: ## Verify a clean, current coordinated lane; does not merge main or remove worktrees: make land-worktree NAME=my-feature
 	@./scripts/land-worktree.sh $(NAME)
 
 worktrees: ## List active worktree lanes for both child repos

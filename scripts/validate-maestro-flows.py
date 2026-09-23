@@ -26,7 +26,8 @@ PRIMARY_LANES = {
 }
 SELECTOR_TAGS = {"pr-smoke", "android-smoke", "quarantine"}
 REQUIRED_PROPERTIES = {"owner", "lane", "isolation", "fixture"}
-EXPECTED_SELECTOR_COUNTS = {"pr-smoke": 10, "android-smoke": 5}
+# Includes the five post-pivot Home/Places return/readback contracts (47–51).
+EXPECTED_SELECTOR_COUNTS = {"pr-smoke": 15, "android-smoke": 5}
 
 
 def walk(value: Any):
