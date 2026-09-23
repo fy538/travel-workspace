@@ -1,0 +1,3 @@
+# Preserve exact bytes of captured design exports and generated design boards.
+docs/design-archive/design-language-2026-09-11/** -whitespace
+docs/working/design-gen/** -whitespace

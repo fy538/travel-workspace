@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / social experience orchestrator / Claude Design / Claude Code
 created: 2026-09-07
-last_verified: 2026-09-07
+last_verified: 2026-09-12
 expires: 2026-10-07
 why_new: Specifies the founder-requested standalone Claude Design project, with shared fixtures, participant-specific journeys, canvas deliverables and reintegration rules; the earlier social experience brief retains the six-topic research rationale rather than owning this project execution packet.
 supersedes: []
@@ -18,7 +18,567 @@ depends_on:
 
 # Claude Design + Claude Code handoff — Vesper · Social Experience
 
+## Export review — September 21: complete the existing photo exchange
+
+**Current queue after the September 21 evening revision** (export timestamp:
+September 22, 01:32 UTC). Preserve **10 · Photos, sent and received** and **10P ·
+Photo exchange, simulated**, which now includes scripted frame navigation.
+Nora's selected originals lead to recipient preview, Maya's Home, viewing and
+later Life retrieval. Optional words and Reply stay optional; receiving and
+leaving is complete value. The earlier sender/control, guest, practical-
+coordination and copy queues are not replaced or closed by this scoped review.
+
+### Credit the addressed requests
+
+10.1 now shows both general selection and Share-specific selection; 10.2 names
+the excluded original in the exact outgoing preview. The fixture ledger's
+selection wording has also been corrected. 10.6 now says “From Pasta night” with
+the surviving count/material after partial delivery or withdrawal, rather than
+promising a before-and-after pair with one side gone. Authored words remain
+distinct. The collection-delivery and duration annotations now explicitly identify
+their proposed scope. Do not reassign these wording corrections as missing work
+or mistake their completion for policy adoption or working delivery.
+
+### Bounded next revision
+
+1. **Make Social's recovery behavior the common donor.** Social 10P shows one
+   selected photo after partial delivery and “Send the late table”; Life 04c
+   retains three selected with “Share 2” and a route to the two-photo preview.
+   Reconcile that difference with Life, not the now-settled selection entry modes.
+   For this design revision: cancel restores the originating mixed selection;
+   confirmed-delivered items leave the pending-send selection; retry targets only
+   confirmed-undelivered items; unknown outcomes offer status checking, not an
+   ordinary resend. Keep the original collection intact and distinguish general
+   selection from pending-send selection. Apply the same behavior to Life's
+   copied outcome frames and explanatory text; do not create a third flow.
+2. **Resolve the remaining walkthrough claims within 10P.** The source now
+   wires frame transitions and simulated outcomes, but contains no editable input
+   fields. Typing optional words, changing a selection and preserving them through
+   cancel/retry are not demonstrated by switching to another prewritten frame.
+   Exercise those bounded states in the existing prototype or explicitly leave
+   them unverified. Preserve the same originating surface/position. A real send,
+   backend integration and native media work are not prerequisites for this design
+   refinement, and a simulated success is not evidence that delivery works.
+3. **Use the same actual ordinary pictures as Life and Home.** Board 10 still
+   uses stand-ins, so the ease and appeal of receiving a casual, imperfect
+   photograph are not visually established. Follow
+   [Life's shared asset revision](claude-design-life-canonical-project-handoff-2026-09-06.md#export-review--september-21-finish-the-photo-experience-already-drawn),
+   keeping the same IDs, authors and allowed uses. Do not replace missing assets
+   with invented personal evidence or make a new photo-sharing aesthetic project.
+4. **Preserve the low-pressure ending across roots.** A completed share may have
+   a local confirmation and remain refindable in Life. It does not become an
+   ongoing sender task on Home merely because Maya has not replied. Receive-and-
+   leave is still complete; do not add read receipts or reciprocity prompts to
+   justify an In motion item. Keep the corrected withdrawal labels and source
+   distinctions when reconciling partial outcomes; retain proposed scope labels.
+
+Reconcile the same original identity, eligible set, viewer and return with the
+[Home export review](vesper-home-design-review-2026-09-08.md#export-review--september-21-integrate-photos-without-shrinking-home).
+Home remains the receiving context, Life the relevant refinding/record context,
+and Social the exchange—not three copies or three custody agreements. Keep the
+matched comparison and Dana's remote contribution without inferring attendance.
+
+**Handback and evidence boundary:** one reconciled outcome/return behavior across
+Social 10P and Life 04c, actual asset status and the state-preservation checks
+performed, with exact changed frames. Source review and inline script syntax
+checking establish that scripted navigation has been added, not that runtime
+playback or preservation works. Rendered composition, native media, actual sends
+and withdrawal propagation remain unverified. Preserve older unfinished
+requirements; no production implementation is requested here.
+
+## Additive assignment — September 21: casual photo sharing and receiving
+
+**Use this existing Social project, not a photo-sharing app or new social root.**
+Preserve the open sender/control, guest, original-reader, practical-coordination
+and copy queues below. This addition closes none by assertion and does not narrow
+ordinary exchange to photos: maps, notes, recipes and other existing media remain.
+Follow [Life's coordinated photo assignment](claude-design-life-canonical-project-handoff-2026-09-06.md#additive-assignment--september-21-ordinary-photographs-across-life-home-and-social)
+for one imperfect-photo fixture and shared viewing/collection behavior; reconcile
+the [Home treatment](vesper-home-design-review-2026-09-08.md#additive-assignment--september-21-ordinary-photographs-in-the-existing-home)
+where eligible material is received. No separate project or coordinating brief.
+
+### Extend the existing ordinary-friendship and later-photo paths
+
+Reuse **02's direct share and original-first receiving**, **04's later photo and
+retrieval**, and **05 D5's enrichment comparison**. The existing photo-asset gap
+becomes concrete work with approved ordinary photographs, not a new aesthetic
+exploration or claim that source-reader design has not already begun.
+
+1. **Send selected material:** select one photo or a small set from an eligible
+   existing object/collection, choose the intended recipient through the existing
+   chooser, optionally add words, preview the exact outgoing selection, and send
+   or leave. No required title, polished caption, AI prelude, new Occasion or
+   photo-library permission. Reuse known recipient information without hiding
+   a genuine ambiguity. Private intake and deliberate sharing remain different.
+2. **Receive something complete:** show the ordinary image/set first, with human
+   authorship and enough context. Opening and leaving is a successful ending.
+   Reply is optional; no viewer list, read receipt, reciprocity requirement,
+   weekly quota, streak or obligation to create a plan. Another person's photo
+   can be worthwhile because of who sent it, without a novel AI insight.
+3. **Keep a set coherent:** one selected share can contain several eligible
+   pictures. Preserve ordering and per-image attribution without a public album
+   management workflow. Open directly and return to the same receiving context;
+   the Life lead on viewer anatomy is not a mandatory navigation detour.
+4. **Add only justified help:** compare original-only, compact context and earned
+   enrichment using identical facts and grants. An optional connection, question
+   or offline possibility may follow when grounded; it is not required after
+   every image. Preserve the sender's actual words, and do not turn Vesper's
+   inference into their recommendation, feelings or invitation.
+5. **Find it later without earning it:** where the source grant still permits
+   access, show retrieval through the existing relationship/occasion context in
+   Life without requiring a reply or upload first. Do not convert display into
+   an independent retained copy. Preserve useful independent material after a
+   withdrawal; no placeholder generation may recreate a withdrawn photograph.
+
+### Carry permissions through the design without making a questionnaire
+
+Keep original display, human Reply, private AI use, onward sharing and independent
+copying distinct under the [contribution contract](../systems/contribution-and-consequence.md).
+The design exploration may depict a small selected set, but the adopted exact-
+original recipient-display agreement is narrow: collection delivery, broader
+Friends audiences and guest/copy capabilities must be mapped to effective grants,
+not silently adopted through a new thumbnail stack. Reuse existing authority
+boundaries and scoped controls; do not add an AI-permission form per photograph.
+
+Reuse sender edit/withdraw, failed or uncertain send, and recipient unavailable
+states already assigned below. Test a mixed-author set without assuming the
+sender owns every image. Do not infer attendance, liking, precise location or
+permission from the photograph alone. Ordinary photos should remain naturally
+colored and recognizably human, not filtered into editorial illustrations.
+
+**Handback:** the same fixture carried through selection → recipient preview →
+send/leave → original receiving → optional reply/exit → eligible later retrieval;
+the matched D5 comparison; Home/Life entry-and-return references; and separate
+design, asset, policy and native-verification gaps. Use existing canvases, controls
+and response records. Do not repeat completed source-reader/package migrations.
+
+Precedent, not a wholesale product prescription: [Locket describes unedited,
+close-friend photo exchange without like counts](https://help.locket.com/en/articles/14225418-my-teen-asked-me-to-get-locket-what-is-it).
+Borrow the welcome for ordinary human material, not its posting cadence, audience
+limits or an assumption that removing counts eliminates all social pressure.
+
+## Current coverage assignment — September 12
+
+**Original-first receiving and bounded 0.4.1 adoption are settled at design
+reference level.** The [September 11 snapshot](../design-archive/design-language-2026-09-11/README.md)
+includes media/order and practical-metadata corrections in 02.4, 02.5 and
+05 D7-A. Do not repeat that migration. Keep asymmetric participation, optional
+Reply and distinct private Ask. Ordinary photos remain a separate asset queue.
+
+**Finish a compact sender/access/control canvas:**
+
+- Workbench 02B already proposes a recipient sheet with no-match. Connect it
+  to actually eligible people: necessary identity disambiguation, changed
+  recipient, preserved words, preview and Send. No contacts import or general
+  Friends grant follows from drawing a chooser.
+- Sender edit/withdraw → result or failure → same original. Recipient
+  withdrawal aftermath alone does not cover the sender operation. Respect
+  independently held material under its existing owner.
+- Show entry and actual effects of supported mute/block/leave or unwanted-
+  contact controls. An unavailable output is not the control itself; do not
+  invent relationship or blocking policy through copy.
+- For a **selected guest service only**, connect permitted preview → access/
+  identity step → payoff, including wrong/expired code, retry, reopened or
+  changed invitation and unavailable ending. Otherwise label this conditional.
+- Agree the division with You & Trust: deliberate public/friend status here,
+  private account controls there, relationship record in Life. No competing
+  biographies, occasion-specific profile or engagement scoreboard.
+
+**Handback:** valuable receiving without reciprocal effort; sender result,
+failure and return; access dependencies named. Keep the accepted prepared-
+message decision. Guest identity, Friends scope and independent recipient
+copies remain separate agreements. Follow [shared §23](vesper-shared-design-language-consolidation-2026-09-10.md#23-september-12-coverage-follow-through).
+No new Social root or broad composition pass; older residuals need exact review.
+
+## Additive review — September 10: preserve the open queue
+
+**Keep the existing assignment and coverage list intact.** This supplement
+adds a bounded first-host continuation and comparison clarification; it removes
+no requirement and declares no existing item complete. Reconcile delivered
+frames with their acceptance conditions before closing only the verified part.
+
+### Additional clarification: show the necessary first-host step
+
+**03.1** moves from Nora's sentence to an invitation already carrying address
+and buzzer details. The notes acknowledge that the fixture supplies preparation
+and that a real first evening may need the address. Make §6 B1's “host once”
+requirement concrete with one compact variant:
+
+1. Distinguish details already available from the necessary missing address or
+   recipient information; reuse known information without asking again.
+2. Let the host supply only the missing fact, once, through the existing chat
+   or bounded control. Do not request a full profile, contacts import or a
+   separate setup flow.
+3. Return to the same recipient previews and **Send**, preserving the host's
+   words and choices. Count this setup in the work comparison.
+
+This extends the existing host/recipient path, not a new onboarding project.
+Keep guest verification, recovery and unavailable access as the dependencies
+already named below; drawing an invitation does not resolve them.
+
+### Reconcile delivered work and fair comparisons
+
+The [response §21](social-experience-design-response-2026-09-07.md#21-selected-direction-and-residual-corrections--applied-september-10)
+records corrected D7 inputs, the Maya-only prepared proposal and exact-original
+receiving. Verify those against the current residuals and downstream screens;
+do not treat the response alone as evidence that every item is finished.
+Preserve the distinct seven-o'clock Social situation versus Plans' already-eight
+situation—shared effects do not require the same cast or message.
+
+Carry **05 D7's fair baseline into 03's broader work comparison**: ordinary
+messages have search, existing links and reused addresses too. Credit Vesper
+with useful assembly or coordination it actually removes, not retyping the
+baseline need not do. Include the first-host setup above and allow asymmetric
+effort; a recipient still owes no contribution, Reply or adoption.
+
+The ordinary photo assets remain a named gap. Recipient selection, editing,
+withdrawal, exact-reader behavior and larger-text coverage remain in scope;
+this addition neither supplies those assets nor closes those tasks. Use the
+[updated shared Stage 1 sequence](vesper-shared-design-language-consolidation-2026-09-10.md#154-revised-stage-1-order),
+with no new social root, compulsory gathering or change to guest/copy policy.
+
+## Shared design-language workstream — September 10
+
+**Completed correction round — September 11:** bounded shared adoption and
+the applicable 0.4.1 correction are preserved in the
+[saved export](../design-archive/design-language-2026-09-11/README.md).
+The [September 12 assignment](#current-coverage-assignment--september-12) now
+owns remaining interaction work. Section 22 of the shared brief is historical
+patch evidence, not an outstanding migration request. Preserve selected local
+variants without shared equivalents; static adoption is not native acceptance.
+
+Use the [shared extraction and consolidation brief](vesper-shared-design-language-consolidation-2026-09-10.md)
+for the bounded library/translation pass. Use original-first receiving and guest hospitality as shared donors; align RSVP, Reply and sheet families without adding social obligations.
+This supplements the selected product direction below; it does not adopt proposed
+token values, replace this project's experience, or restart Integration. Earlier
+residual lists are dated review evidence: verify the current export before
+reassigning a correction that may already be delivered.
+
+### Coverage follow-through — September 10
+
+Use [audit S1–S6](vesper-shared-design-language-consolidation-2026-09-10.md#social--sending-receiving-and-staying-lightweight)
+for the donor/gap evidence.
+
+| Preserve / reuse | Coverage work to carry into the shared library |
+| --- | --- |
+| 02.2 direct share, 03.1 invitation and 08.4 later photo | Show how one eligible recipient is found, disambiguated, selected or changed. Prepared names are not the chooser. No contacts import or general Friends permission follows. |
+| 02.2 optional words, audience/time summary and Change | Define the relevant bounded change control, editable text and leave/send result. Reuse shared fields and recovery instead of a posting wizard. |
+| 02.5 Reply and 02.6 private Ask | Keep the human recipient versus Vesper explicit and return to the same original. Display alone does not grant AI use or independent retention. |
+| 02.7 sender view and 04.9 withdrawal aftermath | Supply the narrow edit/withdraw continuation and failure/return using shared controls. Retain independent material; no viewer list, private-use report or forced reply. |
+| 03 guest invitation/arrival and 04.3 later media | Preserve hospitality. Verification, recovery and unavailable access remain a named dependency for the proposed guest branch, not completed coverage through RSVP. |
+
+**Bounded handback:** one account-recipient selection/correction → exact outgoing
+material → send/leave → result, plus the human-original comparison's read/reply
+or private Ask/return. Reference Plans' shared pending/failed/unknown states.
+Do not repeat all combinations of audiences, guests and roots. The selected
+hospitality direction does not adopt general guest/Friends terms, independent
+copies or mutual-connection policy. Keep the non-attending contribution and
+receive-without-reciprocating examples; no new social feed project is needed.
+
+**Sequence and responsibility:** the shared-library owner maintains the package
+in the shared workbench; Social has begun adoption following review. Apply the
+bounded correction above through that owner, rather than creating a local control
+library. For each item, record existing donor / targeted addition / owner
+dependency / proposal / later native check, with an owner and next trigger.
+Design coverage is not implementation or verified behavior.
+
 ## 0. Start here
+
+<a id="current-assignment--september-9-low-pressure-receiving"></a>
+<a id="current-assignment--september-9-fresh-six-project-review"></a>
+
+### Current assignment — September 9 selected direction and residual corrections
+
+**Decided:** select original-first casual receiving and the existing guest
+hospitality / asymmetric-photo sequence as the social exemplars. Receiving and
+leaving is complete value; an offline continuation is optional. Accept the
+[bounded prepared-message choice](../decisions/2026-09-09-select-design-convergence-and-prepared-continuations.md#2-amend-sentence-6-one-optional-prepared-message-door)
+and receive Plans' exact effects. Earlier assignments are rationale, not a new
+social-system brief.
+
+**Retire delivered requests:** D7 now attempts a human payoff beyond custody;
+03 accounts for distributed work and admitted fixture setup; arrival/sauce
+corrections are delivered. 03.7 → 03.8 → 04.1–04.3 already shows the guest knowing
+how to arrive, an accepted early departure, and the photograph the host missed.
+Do not invent another payoff sequence or mandatory gathering.
+
+### Residual work
+
+1. **05 D7, matched evidence:** Thursday A1's weekday note is not Friday B2b's
+   after-four suggestion. The current ledger makes B2b plus Nora's separately
+   supplied constraint the later case's inputs, not A1/A2. Preserve that
+   distinction and account for the extra contribution/eligible use. Give a
+   capable message workflow the same starting material, including normal search,
+   existing links and reused address. Do not credit Vesper with information or
+   avoidable retyping denied to the baseline. Keep the optional afternoon.
+2. **03.5, select the useful proposal, not just its button semantics:** dinner
+   still starts at seven; Maya has asked about eight and Sam's existing plan is
+   unchanged. Prefer one natural door such as "Ask Maya about joining at eight…"
+   to the prepared question, rather than making "Move to eight…" the privileged
+   option. The editable draft can say "We'll start at seven. Would joining at
+   eight work for you?"; name Maya as recipient and end in **Send proposal**.
+   Do not expose Sam's private departure constraint, ask him again or announce
+   an unchanged dinner to everyone. Sending asks Maya; it does not record her
+   acceptance or move dinner. Leaving sends nothing and seven still stands.
+   This is not Plans I1's already-eight branch, where asking both about returning
+   to seven has a different purpose. Reuse effects, not its message or cast.
+   If Nora explicitly commands a change, receive D3 **Update & send** directly;
+   no prior proposal or group poll is required. Do not put both paths beside
+   each other as equal recommendation choices. Prepared assistance is accepted.
+3. **Original material:** use a small ordinary authorized photo set in the
+   existing pasta/table/Print Room/ragù frames. An illustration is not a friend's
+   photograph. No private-library import, invented personal evidence or outreach
+   is authorized here. If the assets are unavailable, label that bounded gap;
+   other corrections proceed.
+4. **Reader agreement and copy:** receive Life/Entity's exact original, human
+   Reply and optional eligible Ask. Display is not retention or AI permission;
+   no automatic private-use report to the sender. Remove redundant process
+   narration such as explaining every non-use of Maya's words once attribution
+   makes it clear. Keep material boundaries accessible.
+
+**Handback:** corrected D7 inputs/work comparison, exact proposal/update sequence,
+actual asset status and fresh full-scroll/larger-text evidence. Fuller Home
+placement, general Friends/guest and retained-copy agreements are not adopted.
+No new root, compulsory reply, posting or memory loop, code change or Integration
+restart. Do not claim participant enjoyment from placeholders.
+
+<a id="current-assignment--september-9-second-pass-strategy-alignment"></a>
+
+### Historical assignment — September 9 second-pass strategy alignment
+
+**Make the ordinary offering worth receiving, and reduce unwanted work across
+the people involved.** Continue `Downloads/vesper-social-experience` using the
+[shared second-pass scope](vesper-five-project-design-consolidation-2026-09-08.md#second-pass-strategy-alignment--september-9).
+This queue replaces earlier assignments below. No new social root, posting
+system or requirement to turn a share into a Plan, AI result or memory loop.
+
+#### Preserve and retire delivered requests
+
+02's original-first receiving and quiet sender return, 03's thin participation,
+arrival hospitality and offline ending, and 04's plural accounts are the strong
+foundation. 08 now draws nonspatial receiving, exact original, optional Keep,
+accessible/kept distinction and connected guest return. It no longer adds Nora's
+tentative Saturday to Maya's agenda. Home-origin readers retain Home navigation.
+04.8 now names reused address, buzzer, photo, dish and start. These are delivered
+design refinements; Friends/guest/retention/placement terms remain proposals.
+
+#### Current work and comparisons
+
+1. **Show the value, not only the container.** Replace a small representative
+   set of grey stand-ins in existing pasta/table/Print Room/ragù frames with
+   ordinary authorized assets and authored material. Do not polish them into
+   promotional imagery or imply invented photographs are a user's originals.
+   Compare original-only receiving with a capable ordinary message/photo sharing
+   experience, not just an intrusive AI-summary negative control. A friend may
+   enjoy and leave: no Keep, Reply, private Ask, invitation or adoption is owed.
+   Assets require appropriate rights; this handoff does not authorize importing
+   private libraries or contacting participants. If unavailable, label the gap.
+2. **03, account for each person's unwanted work — Social leads.** “Host once”
+   describes an invitation gesture, not the whole preparation burden. Compare the
+   same gathering with a message/link workflow, distinguishing what Nora, Maya,
+   Sam and Dana supplied, assembled, repeated, checked or still need to do. Do not
+   claim Vesper absorbed work that the fixture simply gives it preassembled.
+   Preserve choosing, cooking and expression people enjoy. Target duplicate
+   explanation, context recovery and coordination, not equal effort or maximizing
+   automation. Plans supplies one compatible prepared-assistance treatment.
+3. **03.5 ↔ Plans 07/11, reconcile useful social assistance.** Social's direct
+   “Keep seven / Move to eight” choices and Plans' no-recommendation-button rule
+   cannot become independent defaults for the same act. Plans leads the narrow
+   amendment comparison. Distinguish an editable logistical proposal from invented
+   intimate meaning: reducing addressing/retyping can help while the human retains
+   authorship and Send. A sent proposal is not an adopted arrangement or response.
+4. **08 ↔ Life 07.7/07.8 ↔ Entity 04/12.4, reconcile actual receiving.** The
+   optional original Keep is now drawn; do not reassign its invention. Agree the
+   exact subject, origin return and accessible/kept wording. Social's “yours after
+   her share ends” requires an explicit source agreement; share expiry and source
+   revocation are different conditions. Neither keeping a place nor opening an
+   original establishes retention. Preserve Reply/private Ask and exclude automatic
+   “SHE CAN SEE THIS USE” from the selected shared route pending decision. The
+   fuller Home-original placement remains a proposed extension, not a new root.
+
+#### Correct existing evidence and keep optional work bounded
+
+- **03.8:** Maya opening the door at 7:32 conflicts with 03.5's inability to
+  arrive until eight if these depict the same branch. Reconcile timing or label
+  alternatives before citing the offline ending as the chosen outcome.
+- **01/02.1:** the shared fixture ledger §8.1 now treats heat as one possible
+  sauce cause, not a diagnosis established by the photograph. Remove unsupported
+  certainty and the guarantee about Saturday's batch; retain useful bounded help.
+- **04.8:** recovered setup is already useful. If selecting a stronger later
+  benefit, show authorized outcome evidence improving the next gathering or old
+  context becoming irrelevant. Do not require new reflection or make this the
+  condition of success for every casual share. Reuse Life's selective-use work.
+- Copied R canvases are donors with dated revisions, not independent current
+  requirements. Keep the recorded storyboard-budget discrepancy visible; do not
+  add scale/persona/acknowledgment experiments merely to close an inventory.
+
+**Handback:** update the existing response/index with actual assets and their
+status, changed frames, actor-specific work, shared behavior decisions and exact
+receiving revisions. Designer comparisons can expose work and ambiguity; they do
+not establish enjoyment, voluntary return or relationship improvement. Inspect
+full scrolls/larger text and distinguish static from exercised routes. No new
+guest/audience/retention policy, production change, recruitment or Chat redesign.
+Integration remains paused.
+
+### Historical assignment — first September 9 fresh six-project review
+
+**Preserve the receiving experience; reconcile it rather than expand social
+machinery.** This replaces the earlier September 9 queue below. Use the
+[six-project handoff map](vesper-five-project-design-consolidation-2026-09-08.md#current-handoff-map--september-9).
+
+**Preserve / no longer missing:** 02's original-first receiving and sender return
+without consumption metrics; Dana's nonattending contribution; Sam benefiting
+without posting; 03.7's buzzer, sticky door, nothing-to-bring and accepted
+departure; 03.8's offline human ending; 08's nonspatial original/refind and
+connected guest return. Current 08.1 removes the unchosen Saturday timeline
+elevation. Do not reassign its removal, invent reciprocal duties, or require an
+AI interpretation before someone can enjoy a friend's material. Guest and Friends
+semantics remain proposals even though the continuation is drawn.
+
+### Current changes and comparisons
+
+1. **08.2/08.3 ↔ Life ↔ Entity 12.4, complete one exact-original route.** Keep
+   Reply and private Ask distinct. Where source retention is permitted and useful,
+   show an optional plain-language way to retain the actual original; distinguish
+   it from keeping the place or merely having continuing shared access. Opening,
+   refinding and enjoyment require no Keep. Coordinate with Life's accessible/
+   deliberately-kept distinction; do not implement a new grant agreement here.
+2. **Settle the precise placement extension.** September 5 already permits a
+   featured Status door on Home and Life People later. Social 08's fuller original
+   arriving on Home with Friends eligibility is an extension of that treatment,
+   not proof that nonspatial social material had no home. Keep the proposed delta
+   explicit and return actual Home/Life frames. Do not reopen four roots or force
+   a nonspatial original onto a map. A Life-owned source opened from Home preserves
+   its Home-origin stack unless the person deliberately crosses roots.
+3. **Entity 04.08/12.4, reconcile conflicting social consequences.** Entity's
+   automatic “USED IN TONIGHT / SHE CAN SEE THIS USE” conflicts with Social's
+   explicit exclusion. Keep it out of the selected shared route pending a
+   consequential decision; private exploration must not acquire a visibility
+   consequence through copying a reference. Preserve human Reply in any selected
+   original-reader action set; Entity's useful/keep/send alternatives do not
+   replace it. No mandatory reaction or sender consumption score is requested.
+4. **04.8, make one later benefit more concrete.** Recovering an address, photo
+   and draft saves real setup work. If refining this recurrence, show how an
+   authorized previous outcome improves the next occasion, or why today's facts
+   make old context irrelevant. Never treat old availability as current. This
+   is one comparison, not a memory loop required of every share or an invitation
+   to ask for reflection, equal effort or more contributions.
+
+**Receiving quality:** a human original can be the entire benefit. Where existing
+photo stand-ins obscure that, recommend a few representative ordinary assets in
+existing frames before another persona/scale study. Designer walkthroughs cannot
+establish enjoyment, voluntary return or relationship quality. Participant work
+and access to real personal assets require their own appropriate scope; this
+documentation update does not contact anyone or import private material.
+
+**Handback:** update the same response/index with changed frames, actual sibling
+readers, selected/proposed/reference status and total work left to each person.
+Retain the recorded frame-budget discrepancy rather than claim it resolved by
+this review. No new social root, equal-effort mechanic, guest implementation,
+Chat redesign or production work. Integration remains paused.
+
+### Historical assignment — earlier September 9 low-pressure receiving
+
+**Preserve and correct `Downloads/vesper-social-experience`.** This is the current
+queue at that review; the leading fresh-review assignment now owns work. Read the
+[current shared handoff map](vesper-five-project-design-consolidation-2026-09-08.md#current-handoff-map--september-9),
+[response §16](social-experience-design-response-2026-09-07.md#16-september-8-consolidation--applied-september-9),
+[Multiplayer Product Strategy](../../travel-agent/docs/product/Multiplayer%20Product%20Strategy.md)
+and [contribution contract](../systems/contribution-and-consequence.md).
+
+**Progress to preserve:** the revised eight-o'clock branch distinguishes Sam's
+participation; his later record no longer includes Nora's private account; 08
+draws non-spatial receiving/refinding and a post-connection guest return. These
+continuations are no longer missing. Original-only enjoyment, optional Reply,
+private Ask and a complete occasion-bound ending remain central. Home arrival
+and Life/People retrieval are a promising proposed placement, not an adopted rule.
+
+**This pass:**
+
+1. **08.1, openness is not the recipient's agenda:** Nora's “Thinking of Saturday,
+   if anyone's around” is explicitly not an invitation, yet Maya's week gains
+   “Saturday — pasta” and “pasta at Nora's, if it happens.” Keep the authored
+   opening available; remove this personal-timeline elevation unless a separate
+   recipient gesture/event warrants it. Do not add an RSVP step merely to justify
+   the timeline. Receiving can end with enjoyment and no response.
+2. **08.2/08.3, reader copy:** remove “No place. Nothing here asks for one” and
+   “Retrieval writes nothing” from consumer UI. Let the original, author, relevant
+   audience/lifetime and useful return communicate the experience. Preserve
+   distinct human Reply and private Ask; moving doctrine out is not hiding scope.
+3. **Reconcile Home/Life/Plans, not just references:** inspect current Home 10 and
+   selected social receiving, Life's reader/People treatment and Plans' changed
+   participation. Return exact deltas for the same recipient and branch. A share
+   available for refinding is not necessarily permanently kept. Keep guest
+   identity, ongoing connection, source use and placement proposals explicitly
+   pending; no new Friends audience or service is adopted through this pass.
+
+Board 08 adds five slots beyond the former twenty-four. Preserve the useful
+continuations for this review, but record the budget overrun as an unresolved
+scope discrepancy rather than claiming compliance. Modify/reuse existing frames;
+do not add more to repair these issues or restart the six comparisons.
+
+**Handback:** update the same response/index with corrected frames, source
+references, owner deltas and pending decisions; inspect actor-specific returns
+with annotations hidden. Distinguish drawn, wired, native and participant evidence.
+No extra social root, busy-social study, reciprocity mechanic, guest implementation
+or production work. Integration remains paused; no execution lane is dispatched.
+
+### Historical assignment — September 8 consolidation
+
+**September 8 handoff, retained as history: preserve and finish.** This was the
+design-only queue for that round. The original §0 and §§1–15 retain earlier briefs, constraints
+and closure history; do not restart their broad exploration or engineering
+follow-ups. Continue `Downloads/vesper-social-experience`; no new project/root.
+
+Read the [shared handoff map](vesper-five-project-design-consolidation-2026-09-08.md#current-handoff-map--september-8),
+its second-pass social findings, [Multiplayer Product Strategy](../../travel-agent/docs/product/Multiplayer%20Product%20Strategy.md),
+the [contribution contract](../systems/contribution-and-consequence.md) and the
+[response](social-experience-design-response-2026-09-07.md). Preserve original-first
+receiving, private Ask versus human Reply, thin participation, hospitality,
+independent endings and the existing A/B/C composition.
+
+**Must correct in existing canvases:**
+
+- **03.5–03.7 / 06–07:** an eight-o'clock arrangement must not imply Sam accepted
+  eight. Keep branches and actor-specific route/readbacks consistent. Reuse Plans'
+  participation treatment, not another RSVP ceremony. Carry Home 10's block/count
+  issue as a Home-owner delta; hiding someone does not remove their attendance.
+- **04.4/04.6 / 05 D6:** name the actual shared original/account Sam may receive
+  later; Nora's private account stays private. Nora seeing Sam's departure line
+  in her own authorized record is not itself a leak. Fix the recipient view,
+  not by removing legitimate private help.
+
+**Must resolve to complete the selected experience:**
+
+1. **Non-spatial receiving.** Reuse 05 D1's leading pasta-share alternative and
+   Life's original/refind design. Connect receive → open if useful → optional
+   Reply/refind without inventing an Occasion or map pin. Recommend the exact
+   destination/pull route. A change to accepted social placement remains a named
+   proposal, not a silent new Home feed or root.
+2. **After connection.** Extend 04.6–04.7 to show where Sam returns and finds
+   another eligible shared thing after both choose connection. Preserve a complete
+   occasion-bound ending and no compulsory account/app adoption. Reuse the guest
+   assumptions under Review; unresolved identity/audience policy remains proposed,
+   not newly authorized for implementation.
+
+Modify selected frames and links first; add only the missing continuation within
+the existing project and inherited review budget. Do not rerun all six comparisons,
+add social-mode machinery or redesign root full scrolls. Root excerpts name their
+current source board and exact delta.
+
+**Later, not closure requirements:** busy-social scale, extra one-friend variants,
+richer remote-contributor return experiments, acknowledgment experiments and
+expanded relationship models. Dana's contribution already exists. No reciprocal
+photo, thank-you or participation is owed; these research questions do not each
+require another canvas now.
+
+**Handback:** update the same response/index with exact corrected frames, the
+non-spatial and post-connection continuations, owner deltas and pending decisions.
+Review each actor's route with annotations hidden; distinguish drawn/wired behavior
+from native/participant evidence. Stop at closure. Integration remains paused;
+no execution agents, implementation, policy activation or publication are dispatched.
+
+### Historical assignment and September 7 baseline
 
 **Continue the existing `Vesper — Social Experience` project**, exported at `Downloads/vesper-social-experience` (short project ID reported in its ledger: `3ef10868`). Do not create another lab. This workspace makes the complete experience inspectable together; it is **not a new social destination inside Vesper**.
 
@@ -30,7 +590,7 @@ The project should answer:
 
 Do not produce only a strategy deck, component inventory, invitation demo, or a sequence of polished cards disconnected from their entry and return. Produce an opinionated experience prototype with a small number of purposeful comparisons and an explicit handback to the root-design projects.
 
-**Current task status — engineering roadmap, September 7:** the later export and design response §15 complete most of the correction assignment below. Keep this as the working design baseline and use the [social implementation roadmap](social-experience-implementation-roadmap-2026-09-07.md) for the next owner-mapping and execution sequence. One substantive correction remains an implementation acceptance requirement: an owner-adopted eight-o'clock dinner must not claim Sam is expected at eight while his changed participation is unanswered. Preserve §15 below as the correction assignment's provenance; do not restart the exploration or add frames to settle minor editorial inconsistencies. The four policy proposals remain unadopted. The roadmap changes neither the export nor application code.
+**Historical task status — engineering roadmap, September 7:** the later export and design response §15 complete most of the correction assignment below. Keep this as the working design baseline and use the [social implementation roadmap](social-experience-implementation-roadmap-2026-09-07.md) for the next owner-mapping and execution sequence. One substantive correction remains an implementation acceptance requirement: an owner-adopted eight-o'clock dinner must not claim Sam is expected at eight while his changed participation is unanswered. Preserve §15 below as the correction assignment's provenance; do not restart the exploration or add frames to settle minor editorial inconsistencies. The four policy proposals remain unadopted. The roadmap changes neither the export nor application code.
 
 ### Immediate handoff: one experience, two kinds of work
 

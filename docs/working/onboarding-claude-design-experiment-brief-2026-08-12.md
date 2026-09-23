@@ -1,9 +1,9 @@
 ---
-doc_type: working
-status: active
+doc_type: archive
+status: archived
 owner: founder / product / design / engineering
 created: 2026-08-12
-expires: 2026-09-11
+archived: 2026-09-12
 why_new: Converts the August onboarding investigation into bounded Claude Design experiments with fixed fixtures, required states, current Vesper design-language constraints, and explicit evaluation criteria.
 promotes_to: null
 supersedes: []
@@ -16,6 +16,13 @@ related:
 ---
 
 # Claude Design brief: onboarding and first-value experiments
+
+**Historical experiments — archived in place September 12.** Use the
+[current onboarding reconciliation handoff](claude-design-onboarding-reconciliation-handoff-2026-09-12.md)
+for new work in the same existing Claude project. The three-root structure,
+travel-shaped hypothesis and pre-auth judgment below preserve the August
+experiment; they are not current product or authentication authority. Keeping
+these experiments does not require repeating them or creating a new project.
 
 > **Experiment brief, not implementation authority.** This document constrains
 > Claude Design exploration around the August product pivot. Source code,

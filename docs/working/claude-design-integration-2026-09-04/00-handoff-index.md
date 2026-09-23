@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / design
 created: 2026-09-04
-last_verified: 2026-09-06
+last_verified: 2026-09-12
 expires: 2026-10-04
 why_new: User-requested routing index for five separately transferable Claude project briefs arising from the September 4 design integration review.
 supersedes: []
@@ -11,7 +11,23 @@ supersedes: []
 
 # Claude design integration — project handoffs
 
-## Current handoff routing — September 6
+## Current handoff routing — September 12
+
+Use the [current project-by-project routing table](../vesper-five-project-design-consolidation-2026-09-08.md#current-handoff-routing--september-12).
+It links all six selected product handoffs, the accepted shared workbench, and
+new visual-first Chat/You & Trust briefs and existing onboarding reconciliation.
+The founder now requests two new Claude projects; no old-export recovery is a
+prerequisite. The table below is
+September 6 history, not the current export/project list. In particular, Life
+now uses `life`, Home and Places have separate projects, and Entity's active
+design brief is the Object Page Rebuild handoff.
+
+The [saved seven-project snapshot](../../design-archive/design-language-2026-09-11/README.md)
+is the reviewed portable reference. Older onboarding/You & Trust projects are
+outside it. The two new projects are design exploration, not production changes
+or an Integration restart; these documents do not create the projects themselves.
+
+## Historical handoff routing — September 6
 
 This table supersedes the September 4 project/version table below for new
 handoffs. Older bundles remain provenance, not instructions to restart them.

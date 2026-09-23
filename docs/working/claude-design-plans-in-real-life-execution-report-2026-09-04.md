@@ -595,6 +595,305 @@ Four existing treatments refined; two frames added to trace one continuation; no
 11 I1/I1b/I1c/F1, 07, 00. *Wired:* none — the prototype (92) was not extended; its §0.5 regression results are not
 evidence for the message or proposal paths. *Native-unverified, participant-unverified:* everything.
 
+## 3r. September 8 consolidation assignment (applied 2026-09-09)
+
+Source: handoff §0 "Current assignment — September 8 consolidation" + shared handoff map §4.5/§9.4/§9.5/§9.8 +
+consumer strategy decision §3. Mirror: the Downloads export of Sep 8 22:52 (matched the live §0.8 state), copied to a
+fresh scratchpad; generators now live in the repo at `docs/working/design-gen/plans/` (`gen_12.py`, `apply_0908.py`).
+
+**Must-correct, applied.**
+- 05 D4: label "Settled at eight" → "Moved to eight · Sam hasn't answered"; thesis no longer says "with Maya and
+  Sam"; receipt "Updated to 8:00 · sent to Maya and Sam" (not "they have it"). D3 (owner update) and 11 I1b (sent
+  proposal) are contrasted on both frames; neither implies provider truth or another person's answer.
+- 08 P10: the decisive conflict leads — the reserved 19:00 kaiseki in Gion and the paid ryokan night — with the
+  relevant choice; the two hotel options follow conditionally. Annotation records the map §4.5 finding.
+- J2f/F1: already addressed in §0.8; checked, not reassigned.
+
+**Must-resolve, drawn on new board 12 "Brought In and Followed".**
+- *An arrangement made elsewhere* (X1–X4b): a wedding schedule PDF read back as attributed rows in Chat ("from
+  their schedule"), the one competing commitment (Nora's Georgian room reservation, hers to move), the train as a
+  possibility not booked; "help me choose" answered with one judgment (sentence 6, when asked) vs "I've chosen;
+  help with the checks" answered with three checks (move / train / unsaid); kept beside her day with one oxblood
+  overlap line; X4b at 135% text. Plans 06 overlap not rediscovered. Q24 opened (source identity for brought-in
+  evidence).
+- *Bounded continuing help* (W1–W5, PROPOSED): W1 current check that says "true a minute ago, not watched"; W2
+  following accepted in words → one scope card (subject · source · window · hear once · how it ends) + Stop, row
+  supporting-line door on return; W3 useful result (gold sourced fact, following ends, nothing booked); W4
+  coverage lost (ink, once, what remains true, one external door); W5 ended in silence + return (one muted clause on
+  the row). No implicit watch via Keep, no scheduler/dashboard/billing, no provider execution; appendix 91 W2's
+  conditional instruction not revived. Q23 opened; needs a decision (consumer strategy §3 "follow this for me").
+
+**Sibling deltas** (on board 12's handback panel): Home 08c — card reads the current arrangement after Update &
+send; the boat timestamp is a current read, say so in W1's terms. Life 03b — "Today, as it stands" labeled as a
+capture with its time and one door to the current Plan; contextual Ask targets the Plan. Social 03.6/03.7 — D8 and
+I1c borrow actor-specific wording; guest identity/audience unchanged. Chat — handoff/return remains Q12/Q15.
+
+**Pending decisions:** continuing-help semantics (Q23); I1b door (sentence 6 exception); sentence 7 acknowledgment;
+sentence 5 urgent-not-bundled; PR-1 deferred.
+
+**Evidence.** Board 12 static/illustrated, rendered from the served project; X4b larger-text inspected; nothing
+wired (92 untouched); native- and participant-unverified. Fixtures: train times, prices, hotel block, availability.
+
+## 3s. September 9 practical completeness (applied 2026-09-09)
+
+Three items from the rewritten §0; board 12 refined in place (generator `docs/working/design-gen/plans/gen_12.py`),
+05 D8 patched (`apply_0909.py`). No new product, no operations inventory.
+
+1. **W2→W3, fulfil the actual request.** The request is an 8:00 table for three. W2's readback now states, in her
+   words, that a table within half an hour is mentioned without stopping and only an 8:00 (or her saying a near
+   one is fine) ends the following. W3 shows the 8:15 as an alternative — gold sourced fact, "not the 8:00 you asked
+   for — still looking until Saturday 5:00" — with the following continuing. W5's ending records the near match.
+   Request-to-result readback is consistent across W2/W3/W5. Policy decision unchanged (Q23, PROPOSED).
+2. **X2/X3/X4, the travel fits.** The reception runs to eleven; the 10:40 home now carries "leave the Bourse by
+   10:15 (cab, ten minutes)" and the supported alternative "the 11:45, in at 1:15", identically in X2's judgment,
+   X3's train check and X4's kept day (a 10:40 row after the dinner). Neither train is booked; times are fixtures.
+3. **Current-day and service return.** Inspected Home 08c ("tomorrow's boat checked once · 6:12"; "Wednesday, as it
+   stands" strip into the Life day page) and Life P3.4/P3.5 (capture "as Home showed it · 8:40 · a reading, not the
+   plan"; "since then · the plan is the authority"; P3.5 last-known "as of 3:10 · can't be checked now"). Added
+   C1–C2 on board 12: C1 = the Plan after the ferry's 3:10 change (Life fixture, Sorrento Aug 18; boat 11:20→12:40,
+   attributed in the people phrase, ticket as source); C2 = the sentences Plans supplies — Home's card reads the
+   current fact with its time and one door; Life's capture is labeled by its time ("8:40") with the change since as
+   its own row and a door to Thursday; Ask targets the Plan. Deltas: Home 08c's "checked once" line reads as W1
+   ("true at 6:12, not watched"); Life keeps times and drops authority captions from customer copy (P3.5's
+   "can't be checked now" kept). 05 D8 takes Social 03.6/03.7's actor-specific form: "Nora moved dinner to eight,
+   same place. You said yes to seven; that stays yours until you say otherwise."
+
+**Evidence.** Board 12 (12 frames) static/illustrated, rendered from the served project; X4b larger-text state
+unchanged in form; nothing wired; native- and participant-unverified. **Pending:** Q23 continuing help; I1b door;
+sentence 7 / sentence 5 clarifications; PR-1 deferred.
+
+## 3t. September 9 fresh six-project review (applied 2026-09-09)
+
+Four items from the rewritten §0. Generators: `docs/working/design-gen/plans/gen_12.py`, `apply_0909b.py`.
+Preserved as instructed: D1's dry café / optional walk / unchanged dinner; 08 P10's Kyoto conflict; A2/A9/A10's
+small structures; C3/C5/C8's low-clerical contribution. No semantics adopted.
+
+1. **05 D8 — protect Sam's evening.** He reaches the area about 5:20 for a dinner now at eight. The old line
+   ("so there's time", then a café or a walk) treated 160 minutes as a solved logistics problem. Now: "you'd be
+   there about 5:20 — **two hours and forty minutes before dinner**, an hour more than the seven you set out for.
+   If you'd rather not spend it there, the F back runs every few minutes; coming at eight is yours to choose."
+   The two quantities stay apart: the 2h40 he would have, and the one hour this change added — the rest was his own
+   early start, neither asked about nor guessed. The way forward is inside his own participation, not a request to
+   Nora. No preferences modelled; Social's leave-by-nine fixture not imported; declining still first-class.
+2. **07 — the narrow amendment request, labelled.** A "Sept 9" entry now states it as a request, not an adoption:
+   allow *one* obvious contextual continuation as a door when it saves retyping a decision already expressed and
+   re-coordinating people already involved (11 I1 → I1b → I1c). Bounds retained: human Send, editable words, nothing
+   changed by preparing, one door never a set, no command catalog or dashboard, recommendations still only when asked
+   or once after a problem. Trade stated in work: without it Nora retypes a decision Vesper just stated and
+   re-addresses two known people; with it she reads and sends or edits. The accepted 09-05 decision is quoted, not
+   rewritten; owner is the founder.
+3. **12 W2/W3 — one reading for three times.** W2's card now opens "You hold 7:00 (GR-2291, three) and you're after
+   8:00", so intent and the held reservation are paired at acceptance. W3 reads "You hold 7:00 and you asked for
+   8:00; this is 8:15 — close, not it… Nothing was booked or cancelled: the 7:00 is exactly as it was." Exact-match
+   versus near-match behaviour preserved; no transaction or participation claimed.
+4. **Home 08c ↔ Life P3.4/P3.5 — branch check.** Life P3.4 ("moved to 12:40 · changed 3:10 pm") and P3.5
+   ("last known · as of 3:10 · 12:40") agree with C1. ~~**Home 08c stops before the change**~~ — **corrected 2026-09-09:** Home 08c now carries the post-3:10 ferry
+   change, so all three show the same branch; this finding was read from a Downloads export that predated it. What
+   remains is wording, not state: 08c's "checked once · 6:12" is the piece a reader could take for a watch. C2 supplies both the
+   4:30 pm card and the 6:12 wording ("true at 6:12, not watched"). Recorded on board 12's handback.
+
+**Work, before and after.** Waiting: 160 minutes named rather than smoothed over, one voluntary exit (D8).
+Prompting: unchanged; contextual examples only where they reveal something (08 P2b, P9a). Checking: no row-comparison
+to reconcile held/wanted/offered (W2, W3), and the early departure stated in all three places it matters (X2–X4).
+Coordination: unchanged and still open — the I1 door would remove one retyping; without it that retyping stands.
+
+**Evidence.** Static and illustrated. **Board 92 exercises none of this** — finite regex routes, no free-text routes
+for Sam, Chat handoff marked unbuilt — so it is not evidence for the I1 or W sequences, natural-language flexibility,
+guest delivery or continuing service. Native- and participant-unverified. **Pending:** Q23 continuing help; the
+Sept 9 sentence-6 amendment request; sentence 7 and sentence 5 clarifications; PR-1 deferred.
+
+## 3u. September 9 second-pass strategy alignment (applied 2026-09-09)
+
+Four items; `apply_0909c.py` and `gen_12.py` in `docs/working/design-gen/plans/`. Preserved as instructed:
+A2/A9/A10's small structures, the Kyoto family's trip structure, D1's purpose under a weather change, D8's named
+displacement, 12 X2–X4's early departure, W2/W3's 7 held / 8 wanted / 8:15 offered, I1–I1c's optional proposal.
+
+1. **02 A3/A4 — spare time is not a better evening.** "Less rushed" had been answered by arriving *earlier*:
+   leaving dinner at nine puts her at Corner Note at 9:18 against 9:45 doors and a 10:30 set — 72 minutes of
+   waiting, 27 of them outside — and A3's own fact line said the same thing without noticing. Both frames now state
+   the waiting, and A4 compares the shape that removes the rush: staying with Theo until about ten, there at 10:18,
+   twelve minutes before the set. Only fixture facts used (18 minutes on foot, doors 9:45, set 10:30). No gap
+   filled, no waiting venue invented, no second stop proposed; the jazz stays loose and decided on the night. No
+   question is asked because the two shapes are self-sufficient.
+2. **05 D8 — finish the judgment.** "Take the F back, come at eight" is now conditional and costed: it first allows
+   that he may have been going over early anyway, in which case the change costs him nothing; only otherwise does it
+   name a destination (home), the round trip from an established fixture (twelve minutes each way on the F) and when
+   he would leave again (about 7:30) to still arrive first. Social's different Sam branch is not imported. Declining
+   and leaving the plan alone remain first-class; he is still asked only "8 works" / "Can't do 8".
+3. **07 — the two routes compared.** The amendment entry now sets 09 J2f's accepted sparse route (Vesper states the
+   implication and stops; the person reconstructs, composes and sends) against the prepared continuation (one read,
+   one human Send). Same authority, same Send, nothing changed by preparing, one reconstruction fewer. Kept distinct
+   from 05 D3's owner-instructed Update & send. Plans leads the request; siblings take I1b's reading.
+4. **12 W1–W5 — purpose alongside the condition.** She is following a table for three at eight while Sam has just
+   said he cannot do eight, so "three" may no longer describe the gathering. W2's card leads with one compact
+   question — "Sam can't do eight — is it still three?" — and then does exactly what she asked, keeping to three
+   unless she says otherwise. No inferred third attendee, no shrunk party, no changed participation, and finding a
+   table is explicitly not the evening working. Current check / accepted following / capability loss / ending stay
+   distinct; a drawn receipt activates no service terms.
+
+**Also:** stale "board 10" prototype references fixed in appendices 90 (six) and 91 (one) to board 92.
+
+**Handback.** To Social: 03.5's "Keep seven / Move to eight" are two different effects and should not sit side by
+side as equals — moving is owner-instructed (D3), keeping-and-telling is a prepared proposal that changes nothing
+(I1b); one assistance comparison returned on board 12's panel, with Social leading the actor-by-actor work
+comparison. To Home 08c / Life P3.4/P3.5: the branch now agrees; the remaining delta is 08c's "checked once · 6:12"
+wording. **Work:** waiting reduced at A4 and D8 by naming it and offering a supported alternative rather than
+filling it; checking unchanged this pass; re-explanation reduced at W2 (the purpose question is asked once, not
+rediscovered); messages unchanged, since preparation is still only proposed.
+
+**Evidence.** Static and illustrated; full scrolls and the 135% state reviewed. Board 92's finite regex prototype
+exercises no free-text, I1 or W behaviour. Native- and participant-unverified. **Pending:** the sentence-6
+amendment request; Q23 continuing help; sentence 7 and sentence 5 clarifications; PR-1 deferred, PR-2 withdrawn.
+
+## 3v. September 9 selection and correction — the decision package (2026-09-09)
+
+The assignment asked for one decision-ready comparison, the work saved and the exact Social receiving state; it
+explicitly did not ask for new drawings. No Plan canvas was reopened beyond 07's entry and board 12's Social row.
+Delivered items from the prior passes (A3/A4's 72-minute wait, D8's conditional return, W2's party question, 07's
+sparse-versus-prepared comparison) are retired as requests and stand as drawn.
+
+**Package:** `docs/working/prepared-continuation-decision-proposal-2026-09-09.md`, decision_status: proposed.
+
+- **The exact amendment.** Sentence 6 gains one clause and nothing else changes: "A recommendation carries no
+  button — except that when acting on it means sending words to people already involved, one door may open that
+  message, already addressed and editable. The person sends."
+- **The tradeoff, in steps.** Kyoto J2f sparse: read · open the entry · restate the request · read what is composed ·
+  send. Prepared: read · open the prepared message · send or edit. Saturday I1 sparse: read · open · retype the
+  decision · name two recipients · read · send. Prepared: read · open · send or edit. Saved: one reconstruction and
+  one addressing step. Not saved and not intended to be: the reading, the editing, the send.
+- **Bounds in either outcome:** human Send; editable words; preparation changes nothing; one door never a set;
+  recommendations still only when asked or once after a problem, and still switchable off; D3's owner-instructed
+  Update & send stays distinct from I1b's Send proposal. PR-1 deferred, PR-2 withdrawn, W's following terms
+  separately proposed and not activated.
+- **Three answers:** adopt as written; adopt narrower (only where the person's own request produced the result,
+  keeping I1 and dropping J2f); or decline.
+- **Social's receiving state, exactly.** Pending: 03.5 keeps the owner-instructed change as its one direct action,
+  keeping-and-telling stays words in the entry, and the two never stand as equal defaults — no independent default
+  meanwhile. Adopted: one door on I1b's reading, labelled Send proposal, never a peer of the update. Declined: the
+  direct owner action only. Social leads the actor-by-actor work comparison.
+
+**Evidence.** The step counts are design arithmetic over two static fixtures, not measured task times. Board 92
+exercises neither sequence. Nothing is adopted by this handback, and 11 I1–I1c and 09 J2f keep their PROPOSED labels.
+
+## 3w. September 9 selection and residual corrections (applied 2026-09-10)
+
+The founder adopted the full bounded exception
+(`docs/decisions/2026-09-09-select-design-convergence-and-prepared-continuations.md` §2). The proposal packet is
+resolved and is not returned again.
+
+1. **Selected, not proposed.** Board 07's sentence 6 now carries the amended wording verbatim, and its entry records
+   the decision, its bounds and what stays separately proposed (guest identity and delivery, retention, board 12's
+   following terms). 11 I1, I1b and I1c are labelled SELECTED. **09 J2f gains the one door the exception covers:**
+   "Ask Ben about 10:15" opens the message already addressed and editable, with the private reason absent; Send is
+   human, Ben's authorized edit is untouched, and asking establishes no answer.
+   **Direction corrected:** I1's arrangement is *eight*, so its proposal is to go *back* to seven — the possibility
+   line and the drafted words now say so.
+2. **Exact effects, returned.** *Success* — the words reach the named recipients; I1c is the readback: what was
+   sent, that the arrangement did not change, who has not answered. *Pending* — nothing shows as sent, the words are
+   kept, the plan is untouched. *Failure* — said once, words kept, nothing sent, arrangement unchanged. Replies alone
+   adopt nothing; an owner applies an authorized change separately; D3's Update & send stays the distinct instructed
+   route. Proposal → everyone answers → owner change is **not** imposed as a universal workflow.
+   **Social 03.5:** take the proposal route, but do not inherit this message — 03.5 starts at *seven* with Maya
+   asking for eight, so its proposal is the smaller one, a reply to **Maya only**, about eight. No second recipient,
+   no group poll. **Places P3/P4:** the current-check story must not imply a watch (W1's wording); reconcile
+   evidence → proposal → human response → authorized change in forward time, with exactly one arrangement owner.
+3. **12 W scope, corrected.** "Before Saturday" ends when Saturday begins — **Friday midnight, venue-local** — not
+   Saturday afternoon; W2's acceptance moved to Wednesday Sep 16, inside its own window. The target stays the exact
+   8:00 and **no tolerance is invented**, so no near table can be treated as fulfilment. W3 became a check *she*
+   invoked on Thursday at 2:10, where mentioning the visible 8:15 is ordinary current help — not a notification, not
+   fulfilment, and no permission to stop following or change dinner. W4 and W5 are **alternative endings**; after W4
+   a return says when checking stopped rather than claiming nothing opened through expiry. The "only until Friday"
+   field example is gone: the person is not asked to repair a scope that should have been right.
+4. **12 W2 reading burden.** The card leads with the target, the actual end, the one question that matters and the
+   single thing that stays unchanged. Source, hear-once, failure and stop are one tap away under "Where I'm looking"
+   rather than a terms paragraph; the accepted responsibility is stated, not hidden.
+5. **A4/D8 preserved.** The care-aware alternatives stand; A4's arithmetic was tightened by one clause with 9:18,
+   9:45, 10:30 and 10:18 all still legible. D8 unchanged.
+
+**Evidence.** Static and illustrated; full scrolls and the 135% state reviewed. Board 92 exercises none of the I1 or
+W sequences. Native- and participant-unverified. **Still proposed:** board 12's following terms — fixing the specimen
+does not activate a service. PR-1 deferred; PR-2 withdrawn.
+
+## 3x. Shared design language vdl-stage1 0.3 — adoption and September 10 follow-ups (applied 2026-09-11)
+
+A consolidation pass, not a redesign. Consumed from workbench `c13ae951` (board 06, `vdl-package.json`), copied
+server-side byte-for-byte: the kernel `styles.css` and `vdl.css` (both hashes match the manifest) and `Notice`.
+`support.js` is identical to the workbench's. Brief §21.5 records a 0.4 changing only OriginalReader, which Plans does
+not consume; the live manifest still reads 0.3 — reported, not a blocker.
+
+1. **Adopted.** Tokens: 30 of the kit's 33 tokens re-point to the kernel's with the old values as fallbacks (local:
+   `--gold-wash`, `--gold-edge`, `--r-rail`). Buttons: every product button on 01–12, 90, 91 and 92's phone is
+   `.vdl-btn r16`, primary / secondary / bare text; quiet, keep, external and held tones are local `.pl-*` modifiers.
+   Doors: standalone doors (every Details, sheet doors, both prepared-message doors) use the shared drawn arrow
+   (`.vdl-door`) in Plans' colours. Notice: 90 J2c/J2d/J2e, the states Notice was derived from, now consume it.
+2. **Kept project-specific, reported as missing variants** (07 card): InviteCard guest has no itinerary-row body or
+   31/33 title (C2, C7, D8, G1); InviteCard answered lacks a guest-labelled primary (D8); InviteCard host is
+   per-recipient while C1 is one combined preview; Ticket row truncates the stub route at 349/300/227 px and has no
+   provenance line (B2, J1a); Door has no inline variant for wrapping attributed text; vdl-btn lacks quiet, keep,
+   external and held tones; FactPair has no stacked form (P2); the drawn arrow is a fixed 13 px (B7 at 135%).
+   The itinerary page, date rail, gold-dot receipt sentence, contextual sheet and field, and outgoing cards stay
+   Plans' selected design. Named gaps for the textVariants/colors owners: 12 pt mono times, 31/33 title, rail radius,
+   gold wash/edge.
+3. **Before references.** Thirteen "Before shared package" boards (01–06, 08, 09, 11, 12, 90–92) render against the
+   frozen `kit/plans.before-vdl.css`. Generator: `docs/working/design-gen/plans/adopt_vdl_0911.py` + `vdl_adopt.py`.
+4. **X1 gesture and receipt agree.** A PDF with "can you look at it?" is Ask (C&C §3.2, Home clarification): the full
+   answer needs no retention. "Keep it in my Saturday" is a separate Keep that admits that schedule only; X4/X4b now
+   show its compact receipt with Undo. Q24 on 07 reworded; no Plans-specific retention policy.
+5. **W recheck.** W2's annotation reads "until Friday midnight" (was "until Sat 5"). W3's phone clock is 2:10. W5's
+   ending stamps MIDNIGHT; W4 says when checking stopped. 12's handback calls I1b selected (2026-09-09), leaving
+   only sentence 7 and sentence-5 urgent-not-bundled as proposed; following terms stay proposed.
+6. **Coverage follow-through.** 07 carries A1–A6 each with disposition (selected donor / targeted addition / owner
+   dependency / proposed capability / later native check), owner and next trigger. Stale "Board 10" on 08 → 92.
+
+**Evidence.** Matched element captures, before copy vs adopted board, same frame and width, 24 frames (02 A1/A4,
+03 B1/B2/B7, 04 C1/C2, 05 D3/D8, 08 P2/P3/P10, 09 J2f, 11 I1/I1b, 12 X1/X4/X4b/W2/W3/W5, 90 J2c/J2d/J2e): no
+horizontal spill, no clipped text, button-row wrapping unchanged except 90 where the Notice replaces the row;
+r16 computes 16 px radius / 44 px min-height. 92 R1–R5 re-run by real clicks plus state calls: all pass; 38 shared
+buttons, 0 old chips in the phone. Console clean apart from one transient 404 that did not reproduce. Not verified:
+native, participants, the brief's §21 review of Plans itself.
+
+## 3y. September 12 coverage assignment — scoped actions, drafts, requested work (applied 2026-09-15)
+
+The assignment keeps the readable arrangement and the September 11 adoption (the snapshot confirms no 0.4.1
+migration is needed for Plans) and asks for the rest of the interaction family, not an operations dashboard.
+Delivered as **one new board, 13 — Scoped Actions, Drafts, Requested Work** (generator
+`docs/working/design-gen/plans/gen_13.py`), plus records on 00, 07 and 12 (`records_0912.py`).
+
+1. **Scoped row actions (S1–S3).** The row's "···" opens what that stop actually supports. A booked stop of
+   hers: two destinations (the confirmation, the place), the family's two doors (private Ask, say something to
+   the person on the stop) and the one change that is hers; cancelling is named as the restaurant's, not
+   offered. An option: no source and nobody to tell, both stated in one line rather than greyed out; its two
+   changes are give-it-a-time and take-it-off. A stop from someone else's schedule: source and private Ask
+   only, with no disabled controls and no policy paragraph. No field, form or edit machinery on any stop.
+2. **Interrupted drafts (D1–D3).** D1 returns the words, the stop and the selected day together (90 J2g
+   recovers only the words). D2 defines where a closed draft waits: on the row it concerns, as one muted
+   clause that is also the way back — no drafts inbox, no badge, and discard stays explicit inside the sheet.
+   D3 states the retry rule: a retry that could double a change is held until the outcome is known; one that
+   cannot is offered immediately. Navigation is never blocked, and an unknown outcome is not reported as
+   "nothing changed".
+3. **Requested work, end to end (R1–R5).** Request → acceptance whose end condition is *an answer, not a
+   window* → the away delivery (private preview, one useful sentence, one safe destination; Home owns the
+   surface, You & Trust the global controls) → the result on the night it concerns with the consequence named
+   and the request closing itself → or a truthful failure saying what failed, when, what did not change and
+   that it stopped → or, with no notification at all, the result found in the plan after the target itself is
+   gone. Three of the shared delivery edges (in-app without push, denied permission, stale/deleted target) land
+   on one page rather than three screens.
+4. **12 W reconciled, not reopened.** W1 is the current-check end of the family; W2–W5 keep their proposed
+   status and their own decision gate. Board 13 creates no ongoing service, and the distinction now exists in
+   customer words on R1 rather than in annotation.
+5. **Handback.** Board 13's panel carries donors reused (90 J2c/J2d/J2e/J2g/D5/D7, 08 P2/P10, 11 I1b, 12
+   W1/W2, 03 B2), the six details now defined, the finite-work versus continuing-service boundary, the shared
+   delivery ownership split, native dependencies, and what was not commissioned.
+
+**Evidence.** Board 13 rendered from the live project: 11 frames, no horizontal spill, no clipped text, every
+scoped-action row 57 px and every Plans control 44 px, no console errors. **New finding:** the shared Notice's
+own actions render 36 px tall, below the 44 px minimum every Plans control holds — the component owns that
+height, so it is reported on 07 and on 13's panel rather than overridden locally. The console 404 seen while
+capturing has no matching entry in the network log across four traced runs, which is consistent with the
+browser's own favicon request; no page resource fails and nothing is missing on the board.
+Everything is drawn and illustrated; board 92 exercises none of these sequences; native- and
+participant-unverified.
+
 ## 4. Verification (live project, 2026-09-04)
 
 - Every board rendered from the **live project** via `render_preview` serve URLs in headless Chrome

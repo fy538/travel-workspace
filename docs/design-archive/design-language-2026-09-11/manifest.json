@@ -1,0 +1,2018 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-09-11T20:10:39.705Z",
+  "purpose": "Immutable local Claude Design reference snapshot, not production acceptance",
+  "readme_note": "Vendor README.md preserved byte-for-byte as EXPORT-README.txt; its instructions are source material, not task authority.",
+  "projects": [
+    {
+      "name": "vesper-social-experience",
+      "source": "/Users/feihuyan/Downloads/vesper-social-experience",
+      "files": [
+        {
+          "path": "EXPORT-README.txt",
+          "source_path": "README.md",
+          "bytes": 1686,
+          "sha256": "2b8bf3dc384428d72b16ee2527d08c30515e28f68f12383f4ac0d9e26989ebfc"
+        },
+        {
+          "path": "project/.thumbnail",
+          "source_path": "project/.thumbnail",
+          "bytes": 34382,
+          "sha256": "a6325f0c7f99d14997de743c567a3e64f9f0461b9b2a5288cf6a2e2dd648b4f9"
+        },
+        {
+          "path": "project/00 - Start Here.dc.html",
+          "source_path": "project/00 - Start Here.dc.html",
+          "bytes": 48181,
+          "sha256": "4f638bfa5c04c4cc8beafc73a2d800ead3ebb1cce39d4f4ac9ad5cbcbee233db"
+        },
+        {
+          "path": "project/01 - Checkpoint 1 - Cast, Ledger, Sequence.dc.html",
+          "source_path": "project/01 - Checkpoint 1 - Cast, Ledger, Sequence.dc.html",
+          "bytes": 144809,
+          "sha256": "1135eea694a73b8980bebc3085309239a8a23ecbe8e59d073984ae09190ad1d1"
+        },
+        {
+          "path": "project/02 - A little of your world.dc.html",
+          "source_path": "project/02 - A little of your world.dc.html",
+          "bytes": 92807,
+          "sha256": "d045c9fe968d1b0a55b1c9759430c27ede6347cf8b6da7ec9ffb0a6740a10d36"
+        },
+        {
+          "path": "project/03 - An easier way to get together.dc.html",
+          "source_path": "project/03 - An easier way to get together.dc.html",
+          "bytes": 96983,
+          "sha256": "1554d206569359394109c491f9e4a384678f9a132f56e1b4f3e2a3b858861623"
+        },
+        {
+          "path": "project/04 - Something stays with us.dc.html",
+          "source_path": "project/04 - Something stays with us.dc.html",
+          "bytes": 104754,
+          "sha256": "058e7558160ca45c795b13177795bfc8f5b5b14e03a90644fd118ffedcdcfeff"
+        },
+        {
+          "path": "project/05 - The important alternatives.dc.html",
+          "source_path": "project/05 - The important alternatives.dc.html",
+          "bytes": 82810,
+          "sha256": "c9b4d9b7e656e06af491ceb17463041e6453b07c9eaca1b5c72a576e5dc3bdc2"
+        },
+        {
+          "path": "project/06 - Connected route.dc.html",
+          "source_path": "project/06 - Connected route.dc.html",
+          "bytes": 52220,
+          "sha256": "c53510cf2ba2c6afd4bd3e03b1c2a3e6befe7b8cb7ecafa970f8519f09500c6c"
+        },
+        {
+          "path": "project/07 - Decisions and return to the app.dc.html",
+          "source_path": "project/07 - Decisions and return to the app.dc.html",
+          "bytes": 124635,
+          "sha256": "c1b965288730b169e10e60de9cd32368a2fbb2d148d7333b67f1bd1fff419356"
+        },
+        {
+          "path": "project/08 - Continuations.dc.html",
+          "source_path": "project/08 - Continuations.dc.html",
+          "bytes": 68799,
+          "sha256": "e23fa00393ed30cdf575233279fe19ae2297d495dde5d4a30c9aea75be5c1544"
+        },
+        {
+          "path": "project/Before shared package - 02 - A little of your world.dc.html",
+          "source_path": "project/Before shared package - 02 - A little of your world.dc.html",
+          "bytes": 96912,
+          "sha256": "ce16711d0b6dfcfce75ee78beacc24a784a340e5fa708eb8a78b073b220b2da9"
+        },
+        {
+          "path": "project/Before shared package - 03 - An easier way to get together.dc.html",
+          "source_path": "project/Before shared package - 03 - An easier way to get together.dc.html",
+          "bytes": 98907,
+          "sha256": "4eafccf17f140750aed11679162cb5c01aad9149d9352125e5919c48ca3990de"
+        },
+        {
+          "path": "project/Before shared package - 05 - The important alternatives.dc.html",
+          "source_path": "project/Before shared package - 05 - The important alternatives.dc.html",
+          "bytes": 87282,
+          "sha256": "8ab8ed0fb9a62e082362a663df79f6b7e674e4a4918bb4a95825c069dec22769"
+        },
+        {
+          "path": "project/InviteCard.dc.html",
+          "source_path": "project/InviteCard.dc.html",
+          "bytes": 9231,
+          "sha256": "cbb3f8774364fe0e186065305f1b9f5b2f9eb7f2e5c041fa54ca560a64a30efa"
+        },
+        {
+          "path": "project/Notice.dc.html",
+          "source_path": "project/Notice.dc.html",
+          "bytes": 2531,
+          "sha256": "4fe7351b0782544354cca2d9daa26cf84ad73530778ec684723c1986203cf699"
+        },
+        {
+          "path": "project/OriginalReader.dc.html",
+          "source_path": "project/OriginalReader.dc.html",
+          "bytes": 13559,
+          "sha256": "37d700cc3a85bcd96476c469388b9fe07db134dbb6458544176b8e145e8e22fb"
+        },
+        {
+          "path": "project/R1 - Places - Through My People.dc.html",
+          "source_path": "project/R1 - Places - Through My People.dc.html",
+          "bytes": 211104,
+          "sha256": "251fb6ef9ea6cff1e26b0b86902fa924ede14654a8ed91709430cf6ef9e68803"
+        },
+        {
+          "path": "project/R10 - Home - Return and Continuity.dc.html",
+          "source_path": "project/R10 - Home - Return and Continuity.dc.html",
+          "bytes": 58891,
+          "sha256": "1454a78faaf1f5ea95a9aa51109e5e2bec04d09f4dc0466d83c212621036d6d8"
+        },
+        {
+          "path": "project/R11 - Home - Persona A (full-scroll baseline).dc.html",
+          "source_path": "project/R11 - Home - Persona A (full-scroll baseline).dc.html",
+          "bytes": 154561,
+          "sha256": "41a4d9e8ed5fb16bffafccb96463e6353b4a3d10c2ca04747ed5cb7d3a0d45fa"
+        },
+        {
+          "path": "project/R12 - Places - The Ordinary Opening (full-scroll baseline).dc.html",
+          "source_path": "project/R12 - Places - The Ordinary Opening (full-scroll baseline).dc.html",
+          "bytes": 181009,
+          "sha256": "658883e111269c572b38dc8a684b31a08f8968a728d1c336b7090d089f6f498b"
+        },
+        {
+          "path": "project/R2 - Places - Taking It Forward.dc.html",
+          "source_path": "project/R2 - Places - Taking It Forward.dc.html",
+          "bytes": 83400,
+          "sha256": "68f666778e1ad9c2428a47097de9c9950e317a1fafcf105df3bc1c7bf6505080"
+        },
+        {
+          "path": "project/R3 - Life - The People in My Life.dc.html",
+          "source_path": "project/R3 - Life - The People in My Life.dc.html",
+          "bytes": 73413,
+          "sha256": "5c3475421a43a4175812b8309b14d3dc8e95b0bdf78d338790747b499583ef20"
+        },
+        {
+          "path": "project/R4 - Life - Inside a Record.dc.html",
+          "source_path": "project/R4 - Life - Inside a Record.dc.html",
+          "bytes": 126581,
+          "sha256": "c6b7ac187d326677f6a37a3652f2bda379912c3f59d1947cc48b91b0330dbd8d"
+        },
+        {
+          "path": "project/R5 - Entity - The People Slot.dc.html",
+          "source_path": "project/R5 - Entity - The People Slot.dc.html",
+          "bytes": 27275,
+          "sha256": "56fbf45c532f90a6f7624f4c01ff508ff19ddfd93d1897e5b588d0d0bc2cbb57"
+        },
+        {
+          "path": "project/R6 - Entity - Useful Edges.dc.html",
+          "source_path": "project/R6 - Entity - Useful Edges.dc.html",
+          "bytes": 42361,
+          "sha256": "7ed7c5bd4709f5c36ae16e1d9814b58a8dd9c176bab59aec0a91a924183613c3"
+        },
+        {
+          "path": "project/R7 - Plans - A Shared Afternoon and Dinner.dc.html",
+          "source_path": "project/R7 - Plans - A Shared Afternoon and Dinner.dc.html",
+          "bytes": 24953,
+          "sha256": "5d5523510bf909e900aee94c005488cbefcecd13991e7daa8a24831737ee0404"
+        },
+        {
+          "path": "project/R8 - Plans - Continuations.dc.html",
+          "source_path": "project/R8 - Plans - Continuations.dc.html",
+          "bytes": 25909,
+          "sha256": "37eecfad9643f4688ddd235c9caea2efe59aeb992592508d5a555e72c10d9425"
+        },
+        {
+          "path": "project/R9 - Aperture - The Map as the Invite.dc.html",
+          "source_path": "project/R9 - Aperture - The Map as the Invite.dc.html",
+          "bytes": 24680,
+          "sha256": "7f8da5e66344153a55d2eaa9baf0246a8225049155fb6a71ad5a1c48c254b1f2"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_adherence.oxlintrc.json",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_adherence.oxlintrc.json",
+          "bytes": 549,
+          "sha256": "0200757596e677c8285210778a3ba068daa1d85862e466e7937b4d782227906c"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_bundle.js",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_bundle.js",
+          "bytes": 342,
+          "sha256": "86435e1efe0a3acc86facbb4ae473b690d5eda48f451ab8b5a0dc89967be06b7"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_manifest.json",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_manifest.json",
+          "bytes": 628,
+          "sha256": "56d8d0383d4a0d60b8d9c0f59375827730b66e2bb0e69aeb982bd5b98f2367c4"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css",
+          "bytes": 29657,
+          "sha256": "a843ca5ba6fe7595ff05c629ed88be8f3051e073a51cda4500e18ee5910d7f6c"
+        },
+        {
+          "path": "project/_kit/board-kit.css",
+          "source_path": "project/_kit/board-kit.css",
+          "bytes": 8323,
+          "sha256": "cb2bbc5ef0f9c6c36a1da23f1fdba55968650d992f29fb3fbe290b1cd2fdc577"
+        },
+        {
+          "path": "project/media/print-room-illustration.svg",
+          "source_path": "project/media/print-room-illustration.svg",
+          "bytes": 8778,
+          "sha256": "c61162970b125cd2cff0dfdce78ab5ceae3d3994f30ed74c49ab7d3e097615d8"
+        },
+        {
+          "path": "project/media/print-room-thumb.svg",
+          "source_path": "project/media/print-room-thumb.svg",
+          "bytes": 8747,
+          "sha256": "1da06b8d0fd29da2125371e0c8533223085689b3345ea23051a3b915c94e311a"
+        },
+        {
+          "path": "project/support.js",
+          "source_path": "project/support.js",
+          "bytes": 66404,
+          "sha256": "c60c49083997f51a592df118c0068475337afd20b8cfd8e1cd9d5eb0c7e254f6"
+        },
+        {
+          "path": "project/vdl-consumed.json",
+          "source_path": "project/vdl-consumed.json",
+          "bytes": 2818,
+          "sha256": "c11cfd4f66cc39a4848bd7e664ef525c2b72208d1b110f4d65fd1332a8c79ea5"
+        },
+        {
+          "path": "project/vdl.css",
+          "source_path": "project/vdl.css",
+          "bytes": 16055,
+          "sha256": "7b6fa1d3dfccc92c59be1193cd68cdb032845a54c0316540e3ab58fe0b968515"
+        }
+      ]
+    },
+    {
+      "name": "vesper-home",
+      "source": "/Users/feihuyan/Downloads/vesper-home",
+      "files": [
+        {
+          "path": "EXPORT-README.txt",
+          "source_path": "README.md",
+          "bytes": 1631,
+          "sha256": "3b04b5a6f0a6280f8ce3e2ee5069c88799d9c43f795fabf320dab8d869f575d7"
+        },
+        {
+          "path": "project/.thumbnail",
+          "source_path": "project/.thumbnail",
+          "bytes": 18250,
+          "sha256": "5fdace5d9ff15610b39def5e013769d4b4a414b498713b4bcce3bec940b4b78c"
+        },
+        {
+          "path": "project/00 - Index.dc.html",
+          "source_path": "project/00 - Index.dc.html",
+          "bytes": 62085,
+          "sha256": "063d44255954edbc138500b5cb72356cc77ebd21a59b5c8ab83ebce40ba9298e"
+        },
+        {
+          "path": "project/01 - Parts.dc.html",
+          "source_path": "project/01 - Parts.dc.html",
+          "bytes": 123010,
+          "sha256": "d3d11e935cfe4b5c9fc32c00fa4a1c2bb59ee7e8266fb2b5f5ed8e0c8ff3fb04"
+        },
+        {
+          "path": "project/02 - Persona A - The New Yorker.dc.html",
+          "source_path": "project/02 - Persona A - The New Yorker.dc.html",
+          "bytes": 329529,
+          "sha256": "925e9e23bd1b0b10107cd287841b237d894364e589341f8e71cee57f4b638143"
+        },
+        {
+          "path": "project/03 - Persona B - Back from Europe.dc.html",
+          "source_path": "project/03 - Persona B - Back from Europe.dc.html",
+          "bytes": 185267,
+          "sha256": "af5d3c2ccf3dbcd470ec2ecab1ad552b0e8cb6503f9338fb70abb672d194a95e"
+        },
+        {
+          "path": "project/04 - Persona C - New User.dc.html",
+          "source_path": "project/04 - Persona C - New User.dc.html",
+          "bytes": 109256,
+          "sha256": "52c4bbe124aebc352c61f9ccef7acc2ac1bbedb12971c0d0a3edb14a996feebb"
+        },
+        {
+          "path": "project/05 - Wedge - Trip Forming.dc.html",
+          "source_path": "project/05 - Wedge - Trip Forming.dc.html",
+          "bytes": 71782,
+          "sha256": "467e5cd11396654009462da1ad15e1959cf88cc4c4211c1bc333f5575978caa1"
+        },
+        {
+          "path": "project/06 - Places - From Friends.dc.html",
+          "source_path": "project/06 - Places - From Friends.dc.html",
+          "bytes": 66386,
+          "sha256": "2bcaa0dab90ef7b89353fd32033f69832341a5974025bf15d0955359cfd59b19"
+        },
+        {
+          "path": "project/07 - Ledger and Decisions.dc.html",
+          "source_path": "project/07 - Ledger and Decisions.dc.html",
+          "bytes": 251338,
+          "sha256": "46a0d84a66d23a746ae430b0da47bd51e3b837cb15d940e5340718f753f872f6"
+        },
+        {
+          "path": "project/08 - Seam with Life.dc.html",
+          "source_path": "project/08 - Seam with Life.dc.html",
+          "bytes": 323925,
+          "sha256": "90928981e04f3c8668564743b42193962ebaa936a63ec4a8c07b449610c4e863"
+        },
+        {
+          "path": "project/08b - Seam with Life - Home to Life.dc.html",
+          "source_path": "project/08b - Seam with Life - Home to Life.dc.html",
+          "bytes": 774852,
+          "sha256": "1c0371d016463489d6c9ee7d3654ec66437ecbb413616593193ea73e3d70919e"
+        },
+        {
+          "path": "project/08c - Seam with Life - The Trip Day.dc.html",
+          "source_path": "project/08c - Seam with Life - The Trip Day.dc.html",
+          "bytes": 79015,
+          "sha256": "3649cdf2a4cae2853b825db4ffa63b2c191f92ae5d1536ea3ce819b4a3f20613"
+        },
+        {
+          "path": "project/09 - Forms.dc.html",
+          "source_path": "project/09 - Forms.dc.html",
+          "bytes": 353733,
+          "sha256": "23c39283bcce8dfbdea0e0b1e912e7dfe1c224c1c7a4b39cb48fa20736959d6c"
+        },
+        {
+          "path": "project/09b - Forms - Large Text.dc.html",
+          "source_path": "project/09b - Forms - Large Text.dc.html",
+          "bytes": 204551,
+          "sha256": "f8b05b764483116e8fa40b19da50b425320a7b835de8a11c0bc3ef74c5f92095"
+        },
+        {
+          "path": "project/10 - States.dc.html",
+          "source_path": "project/10 - States.dc.html",
+          "bytes": 170021,
+          "sha256": "f7279ba2ebdbd95ada8cb229397b2184010381e54c101996c7e1364a2c141008"
+        },
+        {
+          "path": "project/11 - Return and Continuity.dc.html",
+          "source_path": "project/11 - Return and Continuity.dc.html",
+          "bytes": 81124,
+          "sha256": "af2c7b28b0a837fc2e70155ad51adcede0cefe9e20bb7b0d691c5dd3e119fbd1"
+        },
+        {
+          "path": "project/12 - Why This, Chat, and Degraded States.dc.html",
+          "source_path": "project/12 - Why This, Chat, and Degraded States.dc.html",
+          "bytes": 121627,
+          "sha256": "f51a986a88010fd751965fb3df0d172046b7fa5dfbcf7c88e292ce719218c2f5"
+        },
+        {
+          "path": "project/13 - Photograph Treatments.dc.html",
+          "source_path": "project/13 - Photograph Treatments.dc.html",
+          "bytes": 1406557,
+          "sha256": "e3b85d1dbc82c170c34a18191638ad86dc0d3df710194d395161879c0796f396"
+        },
+        {
+          "path": "project/14 - Three Ordinary Opens.dc.html",
+          "source_path": "project/14 - Three Ordinary Opens.dc.html",
+          "bytes": 100851,
+          "sha256": "babb4c26a069a46e2a0719367920841abc1a40f39008325f5b257312ab83b5fa"
+        },
+        {
+          "path": "project/15 - Learning and Steering.dc.html",
+          "source_path": "project/15 - Learning and Steering.dc.html",
+          "bytes": 424737,
+          "sha256": "63e001ceaa5297d9067a9bb8f42eb678407a1c0502a158f1d8382f13e28e45ca"
+        },
+        {
+          "path": "project/16 - Shared Language Adoption.dc.html",
+          "source_path": "project/16 - Shared Language Adoption.dc.html",
+          "bytes": 25284,
+          "sha256": "2e2b61e0a0e3f87473dc62c6a66d8b158e81a47ee852d8ff5c8a7906e0ec2207"
+        },
+        {
+          "path": "project/Before VDL 0.3 - 02 - Persona A - The New Yorker.dc.html",
+          "source_path": "project/Before VDL 0.3 - 02 - Persona A - The New Yorker.dc.html",
+          "bytes": 337652,
+          "sha256": "6935555a8bba15f30bbb6fafd2472f6917e53a874c0ae96b9f3b81befbeefcd1"
+        },
+        {
+          "path": "project/Before VDL 0.3 - 04 - Persona C - New User.dc.html",
+          "source_path": "project/Before VDL 0.3 - 04 - Persona C - New User.dc.html",
+          "bytes": 91375,
+          "sha256": "a0662190b09c589e71b2b0748d55066807f2ed3b8c606c8d998ccf39c06f8881"
+        },
+        {
+          "path": "project/Before VDL 0.3 - 08 - Seam with Life.dc.html",
+          "source_path": "project/Before VDL 0.3 - 08 - Seam with Life.dc.html",
+          "bytes": 326402,
+          "sha256": "a2afa9e81cba48531aaa807c5ccd9fc600f8d17ac99f527a90263a9c21f74ebb"
+        },
+        {
+          "path": "project/Before VDL 0.3 - 08b - Seam with Life - Home to Life.dc.html",
+          "source_path": "project/Before VDL 0.3 - 08b - Seam with Life - Home to Life.dc.html",
+          "bytes": 783380,
+          "sha256": "e36fd12c2db77db7105e8ec9c6765180793b71bd77c131244ef7083d03190dff"
+        },
+        {
+          "path": "project/Before VDL 0.3 - 09 - Forms.dc.html",
+          "source_path": "project/Before VDL 0.3 - 09 - Forms.dc.html",
+          "bytes": 356112,
+          "sha256": "9939af230dd95cacb2382782742bef9de5798c338bb238af270d66d6d3a34438"
+        },
+        {
+          "path": "project/Before VDL 0.3 - 12 - Why This, Chat, and Degraded States.dc.html",
+          "source_path": "project/Before VDL 0.3 - 12 - Why This, Chat, and Degraded States.dc.html",
+          "bytes": 112698,
+          "sha256": "0dff20e91db3e2d155c525f7c2d216cb59f588142fff7e749a2caa96da32c847"
+        },
+        {
+          "path": "project/Notice.dc.html",
+          "source_path": "project/Notice.dc.html",
+          "bytes": 2531,
+          "sha256": "4fe7351b0782544354cca2d9daa26cf84ad73530778ec684723c1986203cf699"
+        },
+        {
+          "path": "project/OriginalReader.dc.html",
+          "source_path": "project/OriginalReader.dc.html",
+          "bytes": 13559,
+          "sha256": "37d700cc3a85bcd96476c469388b9fe07db134dbb6458544176b8e145e8e22fb"
+        },
+        {
+          "path": "project/R1 - Reference - Home Posture Matrix.dc.html",
+          "source_path": "project/R1 - Reference - Home Posture Matrix.dc.html",
+          "bytes": 12087,
+          "sha256": "f4b2e6e0d0c86a46f45a1e2967980ad7b33c3e692fa7aad124c99f01774909be"
+        },
+        {
+          "path": "project/R2 - Reference - Home Admission Compiler.dc.html",
+          "source_path": "project/R2 - Reference - Home Admission Compiler.dc.html",
+          "bytes": 9015,
+          "sha256": "435fdd02543c990c7624b79ab1999dd66e7b487893735059c4d8f3a37f0eb167"
+        },
+        {
+          "path": "project/R3 - Reference - Instruments.dc.html",
+          "source_path": "project/R3 - Reference - Instruments.dc.html",
+          "bytes": 34828,
+          "sha256": "d196bacb169f70caf2b10cd23307942bba19fa38991f880469420c78bf7c70fd"
+        },
+        {
+          "path": "project/R4 - Reference - The Grant Moment.dc.html",
+          "source_path": "project/R4 - Reference - The Grant Moment.dc.html",
+          "bytes": 9853,
+          "sha256": "7563605fa52e6b3c0f976c32ebc86e0af926e5dc9a267238b54d537514ded3ab"
+        },
+        {
+          "path": "project/Z1 - Baseline 09-04 - Inventory.dc.html",
+          "source_path": "project/Z1 - Baseline 09-04 - Inventory.dc.html",
+          "bytes": 35116,
+          "sha256": "a484ebff9ed31abe87bbd661bc99c0192773c0ce25a91785e95f85643c5c6e8d"
+        },
+        {
+          "path": "project/Z2 - Baseline 09-04 - Persona A - New Yorker.dc.html",
+          "source_path": "project/Z2 - Baseline 09-04 - Persona A - New Yorker.dc.html",
+          "bytes": 55232,
+          "sha256": "ea2b79134de4b02ba3efedbcf00c51f6f0e353f0be7dadbede0d91f9b71ec7a9"
+        },
+        {
+          "path": "project/Z3 - Baseline 09-04 - Persona B - Back from Europe.dc.html",
+          "source_path": "project/Z3 - Baseline 09-04 - Persona B - Back from Europe.dc.html",
+          "bytes": 55280,
+          "sha256": "ae4c090f0f9a11ee9926863e6acbf82d7e56627c53c39e567e6b7c01dd33f01e"
+        },
+        {
+          "path": "project/Z4 - Baseline 09-04 - Persona C - New User.dc.html",
+          "source_path": "project/Z4 - Baseline 09-04 - Persona C - New User.dc.html",
+          "bytes": 32570,
+          "sha256": "8093da314dc0ec60d7354f12a7660b0448173a7988b3b1fa568502f6e8a6ea4f"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_adherence.oxlintrc.json",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_adherence.oxlintrc.json",
+          "bytes": 549,
+          "sha256": "0200757596e677c8285210778a3ba068daa1d85862e466e7937b4d782227906c"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_bundle.js",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_bundle.js",
+          "bytes": 342,
+          "sha256": "86435e1efe0a3acc86facbb4ae473b690d5eda48f451ab8b5a0dc89967be06b7"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_manifest.json",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_manifest.json",
+          "bytes": 628,
+          "sha256": "56d8d0383d4a0d60b8d9c0f59375827730b66e2bb0e69aeb982bd5b98f2367c4"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css",
+          "bytes": 29657,
+          "sha256": "a843ca5ba6fe7595ff05c629ed88be8f3051e073a51cda4500e18ee5910d7f6c"
+        },
+        {
+          "path": "project/_kit/board-kit.css",
+          "source_path": "project/_kit/board-kit.css",
+          "bytes": 8323,
+          "sha256": "cb2bbc5ef0f9c6c36a1da23f1fdba55968650d992f29fb3fbe290b1cd2fdc577"
+        },
+        {
+          "path": "project/support.js",
+          "source_path": "project/support.js",
+          "bytes": 66404,
+          "sha256": "c60c49083997f51a592df118c0068475337afd20b8cfd8e1cd9d5eb0c7e254f6"
+        },
+        {
+          "path": "project/vdl-consumed.json",
+          "source_path": "project/vdl-consumed.json",
+          "bytes": 2908,
+          "sha256": "6dd38a8dee88ae8d4688246c40ebed6042a323848f36b7b0cee48df242ab57f1"
+        },
+        {
+          "path": "project/vdl-refs.js",
+          "source_path": "project/vdl-refs.js",
+          "bytes": 2585,
+          "sha256": "eff2394b383baf346f4a02035859d251f5b9bd6b90f59a363cdbdd6b40a14929"
+        },
+        {
+          "path": "project/vdl.css",
+          "source_path": "project/vdl.css",
+          "bytes": 16055,
+          "sha256": "7b6fa1d3dfccc92c59be1193cd68cdb032845a54c0316540e3ab58fe0b968515"
+        }
+      ]
+    },
+    {
+      "name": "vesper-places",
+      "source": "/Users/feihuyan/Downloads/vesper-places",
+      "files": [
+        {
+          "path": "EXPORT-README.txt",
+          "source_path": "README.md",
+          "bytes": 1627,
+          "sha256": "b183063139b207ab1d4b53ac8903451b600bf439f3e98503fc3bd9e3971856b3"
+        },
+        {
+          "path": "project/.thumbnail",
+          "source_path": "project/.thumbnail",
+          "bytes": 42308,
+          "sha256": "da444d348078417f90f7d37d6d95a5bf82985566b49914faf595432bd6728fab"
+        },
+        {
+          "path": "project/00 - Index.dc.html",
+          "source_path": "project/00 - Index.dc.html",
+          "bytes": 174976,
+          "sha256": "a34f77b9c83d44bf7301ed0fd8bc39478b9538e326e4396ed326aa588eef5a71"
+        },
+        {
+          "path": "project/01 - The Field.dc.html",
+          "source_path": "project/01 - The Field.dc.html",
+          "bytes": 113503,
+          "sha256": "7f4509e59864e0bc6fd5ede1255ab82a07e4ab7d09f1b08b9ff35be84f241c75"
+        },
+        {
+          "path": "project/02 - The Journeys.dc.html",
+          "source_path": "project/02 - The Journeys.dc.html",
+          "bytes": 437444,
+          "sha256": "ed8f185603051bf8ec8de17e8b5c6f54d779a0b587c353dbb5f5419974411749"
+        },
+        {
+          "path": "project/03 - The Situations.dc.html",
+          "source_path": "project/03 - The Situations.dc.html",
+          "bytes": 197014,
+          "sha256": "535da7adad9ec64dc86bfd8557a9855a52bfeab9099673b30a73860b1b8aae22"
+        },
+        {
+          "path": "project/04 - The Checks and the Opening.dc.html",
+          "source_path": "project/04 - The Checks and the Opening.dc.html",
+          "bytes": 325719,
+          "sha256": "9747b448b20c0739bc7a0231f9f475188ccf3cc95aa3b542dc5dd86529c58b1d"
+        },
+        {
+          "path": "project/05 - Decisions.dc.html",
+          "source_path": "project/05 - Decisions.dc.html",
+          "bytes": 32965,
+          "sha256": "e47bff2d03d4814f3fba3ecf29b7afec59bfbab790ae989a3bfeca668dfe2f21"
+        },
+        {
+          "path": "project/06 - Log.dc.html",
+          "source_path": "project/06 - Log.dc.html",
+          "bytes": 46911,
+          "sha256": "ca39e3ef09daa1e20fe70fb99dd5e5c31ea3baf75f38bde2ba06012cd931853c"
+        },
+        {
+          "path": "project/07 - Components.dc.html",
+          "source_path": "project/07 - Components.dc.html",
+          "bytes": 169195,
+          "sha256": "3c0badb086fadad39565a98bcbeb051a4596fd3629fd68f146a927ab8e12d6ef"
+        },
+        {
+          "path": "project/08 - The Page.dc.html",
+          "source_path": "project/08 - The Page.dc.html",
+          "bytes": 200671,
+          "sha256": "69864acd343f340ebce651cd02ae0325a7247540278ab07d1e67c2feffc905b3"
+        },
+        {
+          "path": "project/09 - Purposes.dc.html",
+          "source_path": "project/09 - Purposes.dc.html",
+          "bytes": 167597,
+          "sha256": "938f01c9ac5e52edf5dc225149f25647bda825f9f09e07350c9febc5b93ed13f"
+        },
+        {
+          "path": "project/ActionGroup.dc.html",
+          "source_path": "project/ActionGroup.dc.html",
+          "bytes": 1501,
+          "sha256": "b21b4c85851637ceb4f1d49b60eabd87879016d890824068bb3afac77ad7544c"
+        },
+        {
+          "path": "project/FactPair.dc.html",
+          "source_path": "project/FactPair.dc.html",
+          "bytes": 3025,
+          "sha256": "e5b46042897217ff0d863f72f5a47a47bf4af31e3ff7ec3484420dec4629e5bf"
+        },
+        {
+          "path": "project/InviteCard.dc.html",
+          "source_path": "project/InviteCard.dc.html",
+          "bytes": 9231,
+          "sha256": "cbb3f8774364fe0e186065305f1b9f5b2f9eb7f2e5c041fa54ca560a64a30efa"
+        },
+        {
+          "path": "project/LocationFooter.dc.html",
+          "source_path": "project/LocationFooter.dc.html",
+          "bytes": 3873,
+          "sha256": "a0074ced5ee99da6a27450e749e76cfcd22e7f20caa6f2b33ac05f7f3081b8df"
+        },
+        {
+          "path": "project/Notice.dc.html",
+          "source_path": "project/Notice.dc.html",
+          "bytes": 2531,
+          "sha256": "4fe7351b0782544354cca2d9daa26cf84ad73530778ec684723c1986203cf699"
+        },
+        {
+          "path": "project/OriginalReader.dc.html",
+          "source_path": "project/OriginalReader.dc.html",
+          "bytes": 13559,
+          "sha256": "37d700cc3a85bcd96476c469388b9fe07db134dbb6458544176b8e145e8e22fb"
+        },
+        {
+          "path": "project/PlaceHead.dc.html",
+          "source_path": "project/PlaceHead.dc.html",
+          "bytes": 4556,
+          "sha256": "3904a354dfc9d7487624bb9486c180e085ec45e63ec04c5c8da3f4a224e56e8d"
+        },
+        {
+          "path": "project/PlaceIdentity.dc.html",
+          "source_path": "project/PlaceIdentity.dc.html",
+          "bytes": 6313,
+          "sha256": "d165e19808eb953dfe2fae0a2a52ab74a9a6092a4f422ded6eb64f612be69583"
+        },
+        {
+          "path": "project/SourceList.dc.html",
+          "source_path": "project/SourceList.dc.html",
+          "bytes": 1775,
+          "sha256": "32c480d4c3f90e416913357b642097af67afe1790a3f28af920d0031fab7e745"
+        },
+        {
+          "path": "project/Ticket.dc.html",
+          "source_path": "project/Ticket.dc.html",
+          "bytes": 17327,
+          "sha256": "7d9e2135c05fd122730f40eb02ca8623f38b7f774de40e298acc9b417926d452"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_adherence.oxlintrc.json",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_adherence.oxlintrc.json",
+          "bytes": 549,
+          "sha256": "0200757596e677c8285210778a3ba068daa1d85862e466e7937b4d782227906c"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_bundle.js",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_bundle.js",
+          "bytes": 342,
+          "sha256": "86435e1efe0a3acc86facbb4ae473b690d5eda48f451ab8b5a0dc89967be06b7"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_manifest.json",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_manifest.json",
+          "bytes": 628,
+          "sha256": "56d8d0383d4a0d60b8d9c0f59375827730b66e2bb0e69aeb982bd5b98f2367c4"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css",
+          "bytes": 29657,
+          "sha256": "a843ca5ba6fe7595ff05c629ed88be8f3051e073a51cda4500e18ee5910d7f6c"
+        },
+        {
+          "path": "project/_kit/board-kit.css",
+          "source_path": "project/_kit/board-kit.css",
+          "bytes": 8323,
+          "sha256": "cb2bbc5ef0f9c6c36a1da23f1fdba55968650d992f29fb3fbe290b1cd2fdc577"
+        },
+        {
+          "path": "project/before/00 - Index.dc.html",
+          "source_path": "project/before/00 - Index.dc.html",
+          "bytes": 182704,
+          "sha256": "de9bfe5c7bb744c7a8bb7d6e02b1f5e093507bbcf964bdbad36604af77ce9311"
+        },
+        {
+          "path": "project/before/01 - The Field.dc.html",
+          "source_path": "project/before/01 - The Field.dc.html",
+          "bytes": 118314,
+          "sha256": "11168a4ce12473645c890abed38792574f6098eed62499651782e12c8ea5bee1"
+        },
+        {
+          "path": "project/before/02 - The Journeys.dc.html",
+          "source_path": "project/before/02 - The Journeys.dc.html",
+          "bytes": 463521,
+          "sha256": "ce432e0df7fd6d3bcba8fbcd774a3b89c1d2b22fad8a19f250a14e05c79c6f47"
+        },
+        {
+          "path": "project/before/03 - The Situations.dc.html",
+          "source_path": "project/before/03 - The Situations.dc.html",
+          "bytes": 199362,
+          "sha256": "aa6d253058af377a942c57f7503988c0ec9f6d19497194c844d881c47afd8e47"
+        },
+        {
+          "path": "project/before/04 - The Checks and the Opening.dc.html",
+          "source_path": "project/before/04 - The Checks and the Opening.dc.html",
+          "bytes": 343916,
+          "sha256": "d41297cce5f1eb52aecf6e7b08e01054abebff6683d2034066521228cc932f82"
+        },
+        {
+          "path": "project/before/05 - Decisions.dc.html",
+          "source_path": "project/before/05 - Decisions.dc.html",
+          "bytes": 32513,
+          "sha256": "4aff045083766979477a42aa14d91a22ee9473216c428a939d007eb63600e52e"
+        },
+        {
+          "path": "project/before/06 - Log.dc.html",
+          "source_path": "project/before/06 - Log.dc.html",
+          "bytes": 43723,
+          "sha256": "cc5218c0e041810d56d083e4a87a9e0c8a953c1cfd838c8d2c3ea70d8abf5ed1"
+        },
+        {
+          "path": "project/before/07 - Components.dc.html",
+          "source_path": "project/before/07 - Components.dc.html",
+          "bytes": 151118,
+          "sha256": "f54835c42c8c07e34ce72b2050f87c9f898c6469425a3c9ad727b9bf5856e03f"
+        },
+        {
+          "path": "project/before/08 - The Page.dc.html",
+          "source_path": "project/before/08 - The Page.dc.html",
+          "bytes": 203185,
+          "sha256": "c8470b5567736f90c215e4520519ac4ddba2b19835f1e4b81311f44d78a222ba"
+        },
+        {
+          "path": "project/before/09 - Purposes.dc.html",
+          "source_path": "project/before/09 - Purposes.dc.html",
+          "bytes": 175236,
+          "sha256": "466c22d143d785e25867b6f63a82533b530a4157e57041971a64476b85dc4707"
+        },
+        {
+          "path": "project/before/support.js",
+          "source_path": "project/before/support.js",
+          "bytes": 69150,
+          "sha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe"
+        },
+        {
+          "path": "project/support.js",
+          "source_path": "project/support.js",
+          "bytes": 69150,
+          "sha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe"
+        },
+        {
+          "path": "project/vdl-package.json",
+          "source_path": "project/vdl-package.json",
+          "bytes": 6699,
+          "sha256": "6c9aecc1cc8dcfff9779264750a6af7cb27c94f84896dfab77b3ca942d28266e"
+        },
+        {
+          "path": "project/vdl.css",
+          "source_path": "project/vdl.css",
+          "bytes": 16055,
+          "sha256": "7b6fa1d3dfccc92c59be1193cd68cdb032845a54c0316540e3ab58fe0b968515"
+        }
+      ]
+    },
+    {
+      "name": "vesper-design-language-workbench-stage-1",
+      "source": "/Users/feihuyan/Downloads/vesper-design-language-workbench-stage-1",
+      "files": [
+        {
+          "path": "EXPORT-README.txt",
+          "source_path": "README.md",
+          "bytes": 1739,
+          "sha256": "1a196b56f3bf6d3ff7c7d54c2f6c6e6c34372dc54e3a179e38138efe086f321f"
+        },
+        {
+          "path": "project/.thumbnail",
+          "source_path": "project/.thumbnail",
+          "bytes": 6496,
+          "sha256": "01405f9af07e7de34ba5375354b06af1bcc40f747e2f125915b4c76466bd1546"
+        },
+        {
+          "path": "project/00 Reuse and Provenance.dc.html",
+          "source_path": "project/00 Reuse and Provenance.dc.html",
+          "bytes": 7652,
+          "sha256": "4f1bcadc6bd4da81234622d9636a808c7b06b7a6b2f0b4978d2d2cd066a33048"
+        },
+        {
+          "path": "project/01 Selection Manifest.dc.html",
+          "source_path": "project/01 Selection Manifest.dc.html",
+          "bytes": 15153,
+          "sha256": "6ae3d06335d43fc952f141e924c033d471b32760ef8d7ef14a5ba54fe95fbe0f"
+        },
+        {
+          "path": "project/02A Comparison - The Same Human Original.dc.html",
+          "source_path": "project/02A Comparison - The Same Human Original.dc.html",
+          "bytes": 18912,
+          "sha256": "812aa10e52164b0e789c73ab612c78c146d34fa6d94ac5e8a1a6f9544306016c"
+        },
+        {
+          "path": "project/02B Comparison - The Same Invitation.dc.html",
+          "source_path": "project/02B Comparison - The Same Invitation.dc.html",
+          "bytes": 16515,
+          "sha256": "3d699d662b0cbecf0c0d702e3f8f1be43aac9142e3128a55b76c3ae3b7b01c35"
+        },
+        {
+          "path": "project/02C Comparison - The Same Place.dc.html",
+          "source_path": "project/02C Comparison - The Same Place.dc.html",
+          "bytes": 15531,
+          "sha256": "164e7d4a45eac96c53490adfa9405cf42163d3371cba02ec687f0d9d43e87d93"
+        },
+        {
+          "path": "project/02D Comparison - The Same Ticket.dc.html",
+          "source_path": "project/02D Comparison - The Same Ticket.dc.html",
+          "bytes": 17689,
+          "sha256": "2e58b0f1a36303fc6c4e5cc6b653f629e0567426b07c33f0141d9ab47af33d9d"
+        },
+        {
+          "path": "project/03A Full Scroll - Home Selected Ordinary.dc.html",
+          "source_path": "project/03A Full Scroll - Home Selected Ordinary.dc.html",
+          "bytes": 5627,
+          "sha256": "384b9fbd024fa3401e1b17c9cd9f0da93b7c3bdf61399f36bc001e26c9b9915d"
+        },
+        {
+          "path": "project/03B Full Scroll - Places The Field.dc.html",
+          "source_path": "project/03B Full Scroll - Places The Field.dc.html",
+          "bytes": 6327,
+          "sha256": "2b83bebb2304b235f319eb25575791f21b1bfcfba0a56a5a461e8d09d6192f54"
+        },
+        {
+          "path": "project/03C Density Counterchecks - Life and Plans.dc.html",
+          "source_path": "project/03C Density Counterchecks - Life and Plans.dc.html",
+          "bytes": 6276,
+          "sha256": "9ccdf9a690aca22b0b13d3f843835ccf7adcf661c2f8535f33167ccd1a7a63ee"
+        },
+        {
+          "path": "project/04 Coverage Map.dc.html",
+          "source_path": "project/04 Coverage Map.dc.html",
+          "bytes": 18881,
+          "sha256": "1b2e83063d44ea0eab1aff7ab37377eb2b9bd9f76626a6a5e936024ee232f850"
+        },
+        {
+          "path": "project/05 Checkpoint.dc.html",
+          "source_path": "project/05 Checkpoint.dc.html",
+          "bytes": 9742,
+          "sha256": "0439cd41cdc041923cdbbbf32d1b53b43eda51537922ad3d91026a26d46b0f62"
+        },
+        {
+          "path": "project/06 Shared Package.dc.html",
+          "source_path": "project/06 Shared Package.dc.html",
+          "bytes": 17929,
+          "sha256": "585b1c0a40476f87a3660026f109d01124780fb23e486aca4b733a07bf448fdd"
+        },
+        {
+          "path": "project/ActionGroup.dc.html",
+          "source_path": "project/ActionGroup.dc.html",
+          "bytes": 1501,
+          "sha256": "b21b4c85851637ceb4f1d49b60eabd87879016d890824068bb3afac77ad7544c"
+        },
+        {
+          "path": "project/FactPair.dc.html",
+          "source_path": "project/FactPair.dc.html",
+          "bytes": 3025,
+          "sha256": "e5b46042897217ff0d863f72f5a47a47bf4af31e3ff7ec3484420dec4629e5bf"
+        },
+        {
+          "path": "project/InviteCard.dc.html",
+          "source_path": "project/InviteCard.dc.html",
+          "bytes": 9231,
+          "sha256": "cbb3f8774364fe0e186065305f1b9f5b2f9eb7f2e5c041fa54ca560a64a30efa"
+        },
+        {
+          "path": "project/LocationFooter.dc.html",
+          "source_path": "project/LocationFooter.dc.html",
+          "bytes": 3873,
+          "sha256": "a0074ced5ee99da6a27450e749e76cfcd22e7f20caa6f2b33ac05f7f3081b8df"
+        },
+        {
+          "path": "project/Notice.dc.html",
+          "source_path": "project/Notice.dc.html",
+          "bytes": 2531,
+          "sha256": "4fe7351b0782544354cca2d9daa26cf84ad73530778ec684723c1986203cf699"
+        },
+        {
+          "path": "project/OriginalReader.dc.html",
+          "source_path": "project/OriginalReader.dc.html",
+          "bytes": 13559,
+          "sha256": "37d700cc3a85bcd96476c469388b9fe07db134dbb6458544176b8e145e8e22fb"
+        },
+        {
+          "path": "project/PlaceHead.dc.html",
+          "source_path": "project/PlaceHead.dc.html",
+          "bytes": 4556,
+          "sha256": "3904a354dfc9d7487624bb9486c180e085ec45e63ec04c5c8da3f4a224e56e8d"
+        },
+        {
+          "path": "project/PlaceIdentity.dc.html",
+          "source_path": "project/PlaceIdentity.dc.html",
+          "bytes": 6313,
+          "sha256": "d165e19808eb953dfe2fae0a2a52ab74a9a6092a4f422ded6eb64f612be69583"
+        },
+        {
+          "path": "project/SourceList.dc.html",
+          "source_path": "project/SourceList.dc.html",
+          "bytes": 1775,
+          "sha256": "32c480d4c3f90e416913357b642097af67afe1790a3f28af920d0031fab7e745"
+        },
+        {
+          "path": "project/Ticket.dc.html",
+          "source_path": "project/Ticket.dc.html",
+          "bytes": 17327,
+          "sha256": "7d9e2135c05fd122730f40eb02ca8623f38b7f774de40e298acc9b417926d452"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_adherence.oxlintrc.json",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_adherence.oxlintrc.json",
+          "bytes": 549,
+          "sha256": "0200757596e677c8285210778a3ba068daa1d85862e466e7937b4d782227906c"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_bundle.js",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_bundle.js",
+          "bytes": 342,
+          "sha256": "86435e1efe0a3acc86facbb4ae473b690d5eda48f451ab8b5a0dc89967be06b7"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_manifest.json",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_manifest.json",
+          "bytes": 628,
+          "sha256": "56d8d0383d4a0d60b8d9c0f59375827730b66e2bb0e69aeb982bd5b98f2367c4"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css",
+          "bytes": 29657,
+          "sha256": "a843ca5ba6fe7595ff05c629ed88be8f3051e073a51cda4500e18ee5910d7f6c"
+        },
+        {
+          "path": "project/media/print-room-gallery-thumb.svg",
+          "source_path": "project/media/print-room-gallery-thumb.svg",
+          "bytes": 8746,
+          "sha256": "23ce82d43a20911e6052037662eab512ff61a4f4b0283ac64acacad82f3b46c6"
+        },
+        {
+          "path": "project/media/print-room-illustration.svg",
+          "source_path": "project/media/print-room-illustration.svg",
+          "bytes": 8778,
+          "sha256": "d89db1b8bf90de14459595afd1b26e1c123068da51f0ba6acd240122aa066467"
+        },
+        {
+          "path": "project/media/print-room-thumb.svg",
+          "source_path": "project/media/print-room-thumb.svg",
+          "bytes": 8747,
+          "sha256": "843e52f4724b3adbb325cb6e863a0d8db849ebf3b59705af60e57946151a5055"
+        },
+        {
+          "path": "project/refs/entity/05 - The Five Paths.dc.html",
+          "source_path": "project/refs/entity/05 - The Five Paths.dc.html",
+          "bytes": 35022,
+          "sha256": "d0d97ac3012eacbbd68b32fea93c64f5ab10d61088b39f6e88de9cb03fe9a30b"
+        },
+        {
+          "path": "project/refs/entity/14 - Received from Places.dc.html",
+          "source_path": "project/refs/entity/14 - Received from Places.dc.html",
+          "bytes": 72670,
+          "sha256": "8e1955d486d28a29fb7668d14dd68db9b3b62ca80b7ae3c6b08c9375009099e5"
+        },
+        {
+          "path": "project/refs/entity/support.js",
+          "source_path": "project/refs/entity/support.js",
+          "bytes": 66404,
+          "sha256": "c60c49083997f51a592df118c0068475337afd20b8cfd8e1cd9d5eb0c7e254f6"
+        },
+        {
+          "path": "project/refs/home/02 - Persona A - The New Yorker.dc.html",
+          "source_path": "project/refs/home/02 - Persona A - The New Yorker.dc.html",
+          "bytes": 337652,
+          "sha256": "6935555a8bba15f30bbb6fafd2472f6917e53a874c0ae96b9f3b81befbeefcd1"
+        },
+        {
+          "path": "project/refs/home/09 - Forms.dc.html",
+          "source_path": "project/refs/home/09 - Forms.dc.html",
+          "bytes": 356112,
+          "sha256": "9939af230dd95cacb2382782742bef9de5798c338bb238af270d66d6d3a34438"
+        },
+        {
+          "path": "project/refs/home/support.js",
+          "source_path": "project/refs/home/support.js",
+          "bytes": 66404,
+          "sha256": "c60c49083997f51a592df118c0068475337afd20b8cfd8e1cd9d5eb0c7e254f6"
+        },
+        {
+          "path": "project/refs/life/01 - My life, four ways.dc.html",
+          "source_path": "project/refs/life/01 - My life, four ways.dc.html",
+          "bytes": 78474,
+          "sha256": "6c2468b3a3afb30be73e79b45f17ce383b69b7e3c1c841387b9e82ac5248ac94"
+        },
+        {
+          "path": "project/refs/life/03 - Open something in my life.dc.html",
+          "source_path": "project/refs/life/03 - Open something in my life.dc.html",
+          "bytes": 76220,
+          "sha256": "ca61ca02b2f3b7aba7210f586f1b0d4e784621209179adfff898a970bfed6c3f"
+        },
+        {
+          "path": "project/refs/life/04 - My original things.dc.html",
+          "source_path": "project/refs/life/04 - My original things.dc.html",
+          "bytes": 98472,
+          "sha256": "a294b7c6234a9c9fcd8a0c2edad5982599d7fdc87be5400ac11c47fd05d1f993"
+        },
+        {
+          "path": "project/refs/life/05 - Find it again.dc.html",
+          "source_path": "project/refs/life/05 - Find it again.dc.html",
+          "bytes": 108411,
+          "sha256": "3876a21605605338f3da5b410c800ba5fe3be644a2a3e87a0cb18a8935fd14e3"
+        },
+        {
+          "path": "project/refs/life/fixtures/life-composition-fixtures-v0.1.json",
+          "source_path": "project/refs/life/fixtures/life-composition-fixtures-v0.1.json",
+          "bytes": 39206,
+          "sha256": "fa23bef38de07c9a7838e4ab594a5fe7c1c9885476d1a90e1e94f8879d226218"
+        },
+        {
+          "path": "project/refs/life/fixtures/life-composition-fixtures-v0.2.json",
+          "source_path": "project/refs/life/fixtures/life-composition-fixtures-v0.2.json",
+          "bytes": 20194,
+          "sha256": "93b6eae2f143f7b3c67762e7595d8de102498f8aa7d6b8549d01ef7d5ba41ed9"
+        },
+        {
+          "path": "project/refs/life/support.js",
+          "source_path": "project/refs/life/support.js",
+          "bytes": 69150,
+          "sha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe"
+        },
+        {
+          "path": "project/refs/places/01 - The Field.dc.html",
+          "source_path": "project/refs/places/01 - The Field.dc.html",
+          "bytes": 118314,
+          "sha256": "11168a4ce12473645c890abed38792574f6098eed62499651782e12c8ea5bee1"
+        },
+        {
+          "path": "project/refs/places/08 - The Page.dc.html",
+          "source_path": "project/refs/places/08 - The Page.dc.html",
+          "bytes": 203185,
+          "sha256": "c8470b5567736f90c215e4520519ac4ddba2b19835f1e4b81311f44d78a222ba"
+        },
+        {
+          "path": "project/refs/places/support.js",
+          "source_path": "project/refs/places/support.js",
+          "bytes": 69150,
+          "sha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe"
+        },
+        {
+          "path": "project/refs/plans/03 B - A Planned Trip, Kyoto.dc.html",
+          "source_path": "project/refs/plans/03 B - A Planned Trip, Kyoto.dc.html",
+          "bytes": 34355,
+          "sha256": "4ae7533a3a6ae86c434100c2c2643184f241d6c61c4b26c4ad7a0419e09011df"
+        },
+        {
+          "path": "project/refs/plans/04 C - A Shared Afternoon and Dinner.dc.html",
+          "source_path": "project/refs/plans/04 C - A Shared Afternoon and Dinner.dc.html",
+          "bytes": 24953,
+          "sha256": "5d5523510bf909e900aee94c005488cbefcecd13991e7daa8a24831737ee0404"
+        },
+        {
+          "path": "project/refs/plans/90 Appendix - Change States and Recovery.dc.html",
+          "source_path": "project/refs/plans/90 Appendix - Change States and Recovery.dc.html",
+          "bytes": 56623,
+          "sha256": "4d44400a82bf0954bb406825ab0b560c19e8f7bb89352dddf8ae6fbef2fff0ce"
+        },
+        {
+          "path": "project/refs/plans/kit/plans.css",
+          "source_path": "project/refs/plans/kit/plans.css",
+          "bytes": 37516,
+          "sha256": "0358c0aff5e8840bfa3e2d1939ea70a7c54acefaf24026f03ea6c9758346cbcb"
+        },
+        {
+          "path": "project/refs/plans/kit/proto.js",
+          "source_path": "project/refs/plans/kit/proto.js",
+          "bytes": 23228,
+          "sha256": "b2dd4553b87fec9123b0399b5346ff7d35bc91937c9daaace0244729f8ed091e"
+        },
+        {
+          "path": "project/refs/plans/support.js",
+          "source_path": "project/refs/plans/support.js",
+          "bytes": 66404,
+          "sha256": "c60c49083997f51a592df118c0068475337afd20b8cfd8e1cd9d5eb0c7e254f6"
+        },
+        {
+          "path": "project/refs/social/02 - A little of your world.dc.html",
+          "source_path": "project/refs/social/02 - A little of your world.dc.html",
+          "bytes": 96912,
+          "sha256": "ce16711d0b6dfcfce75ee78beacc24a784a340e5fa708eb8a78b073b220b2da9"
+        },
+        {
+          "path": "project/refs/social/03 - An easier way to get together.dc.html",
+          "source_path": "project/refs/social/03 - An easier way to get together.dc.html",
+          "bytes": 98907,
+          "sha256": "4eafccf17f140750aed11679162cb5c01aad9149d9352125e5919c48ca3990de"
+        },
+        {
+          "path": "project/refs/social/08 - Continuations.dc.html",
+          "source_path": "project/refs/social/08 - Continuations.dc.html",
+          "bytes": 68799,
+          "sha256": "e23fa00393ed30cdf575233279fe19ae2297d495dde5d4a30c9aea75be5c1544"
+        },
+        {
+          "path": "project/refs/social/support.js",
+          "source_path": "project/refs/social/support.js",
+          "bytes": 66404,
+          "sha256": "c60c49083997f51a592df118c0068475337afd20b8cfd8e1cd9d5eb0c7e254f6"
+        },
+        {
+          "path": "project/support.js",
+          "source_path": "project/support.js",
+          "bytes": 66404,
+          "sha256": "c60c49083997f51a592df118c0068475337afd20b8cfd8e1cd9d5eb0c7e254f6"
+        },
+        {
+          "path": "project/vdl-package.json",
+          "source_path": "project/vdl-package.json",
+          "bytes": 6699,
+          "sha256": "6c9aecc1cc8dcfff9779264750a6af7cb27c94f84896dfab77b3ca942d28266e"
+        },
+        {
+          "path": "project/vdl-pkgcheck.js",
+          "source_path": "project/vdl-pkgcheck.js",
+          "bytes": 2037,
+          "sha256": "93027b193bd7595d3fa6ea49a8a9d43b97a7dd2c8f6da5b1a0f4d926f4da8206"
+        },
+        {
+          "path": "project/vdl-port.js",
+          "source_path": "project/vdl-port.js",
+          "bytes": 20207,
+          "sha256": "ff1a54e605b9b5120befa15fd9f68c6004f6b9228b2e4922f7f2f363fa8adfac"
+        },
+        {
+          "path": "project/vdl-refs.js",
+          "source_path": "project/vdl-refs.js",
+          "bytes": 2585,
+          "sha256": "eff2394b383baf346f4a02035859d251f5b9bd6b90f59a363cdbdd6b40a14929"
+        },
+        {
+          "path": "project/vdl.css",
+          "source_path": "project/vdl.css",
+          "bytes": 16055,
+          "sha256": "7b6fa1d3dfccc92c59be1193cd68cdb032845a54c0316540e3ab58fe0b968515"
+        }
+      ]
+    },
+    {
+      "name": "life",
+      "source": "/Users/feihuyan/Downloads/life",
+      "files": [
+        {
+          "path": "EXPORT-README.txt",
+          "source_path": "README.md",
+          "bytes": 1610,
+          "sha256": "b5f5d14971dcd5664981fb546b728256ae47b2ecdbda55f4e88b9528bd59e4e3"
+        },
+        {
+          "path": "project/.thumbnail",
+          "source_path": "project/.thumbnail",
+          "bytes": 19570,
+          "sha256": "f49e39e867457ade32748b490accffea7f52efaee1df49853516675dd191e446"
+        },
+        {
+          "path": "project/00 - Start here.dc.html",
+          "source_path": "project/00 - Start here.dc.html",
+          "bytes": 13742,
+          "sha256": "972e9495b2f473ee89fe51920f8ccca667512aba6889d1d939a35460bb129452"
+        },
+        {
+          "path": "project/01 - My life, four ways.dc.html",
+          "source_path": "project/01 - My life, four ways.dc.html",
+          "bytes": 78379,
+          "sha256": "c07647787e26811acfb1ccdca47468bbed9264e43f749e69467359325b2f224d"
+        },
+        {
+          "path": "project/02 - An ordinary beginning.dc.html",
+          "source_path": "project/02 - An ordinary beginning.dc.html",
+          "bytes": 100100,
+          "sha256": "12f1c9c12151bac7dc7f37024516d85e0d7dd8e55cb617a4121a95370b344dc3"
+        },
+        {
+          "path": "project/03 - Open something in my life.dc.html",
+          "source_path": "project/03 - Open something in my life.dc.html",
+          "bytes": 74619,
+          "sha256": "e28dea52e16f2b7590b8d89b200e8a8f81dc5b3946f91c85d82ae12b532df4f8"
+        },
+        {
+          "path": "project/03b - Inside a record.dc.html",
+          "source_path": "project/03b - Inside a record.dc.html",
+          "bytes": 119641,
+          "sha256": "0c79d5bc65955d9adc51776e052357c584c95fcdca1b4ec72dfb7e121eb4685b"
+        },
+        {
+          "path": "project/04 - My original things.dc.html",
+          "source_path": "project/04 - My original things.dc.html",
+          "bytes": 88626,
+          "sha256": "7298b4bc82842abc6c1aa86594ccc21c38d6711d3fc757d98cee2d5a6d39e514"
+        },
+        {
+          "path": "project/05 - Find it again.dc.html",
+          "source_path": "project/05 - Find it again.dc.html",
+          "bytes": 102051,
+          "sha256": "54389e789b6bec756dd7c341220a627ae0bc659f19be88f0a8c34c595fa13109"
+        },
+        {
+          "path": "project/06 - Give once, get value back.dc.html",
+          "source_path": "project/06 - Give once, get value back.dc.html",
+          "bytes": 42007,
+          "sha256": "007cefef4c26fa63c41fa12512736a670078895b1886bff97dd8c9510d7b479e"
+        },
+        {
+          "path": "project/07 - The people in my life.dc.html",
+          "source_path": "project/07 - The people in my life.dc.html",
+          "bytes": 81644,
+          "sha256": "c859888eaa08935770c27b78145823e1c161497405efc68a62155348768ebfa2"
+        },
+        {
+          "path": "project/Notice.dc.html",
+          "source_path": "project/Notice.dc.html",
+          "bytes": 2531,
+          "sha256": "4fe7351b0782544354cca2d9daa26cf84ad73530778ec684723c1986203cf699"
+        },
+        {
+          "path": "project/OriginalReader.dc.html",
+          "source_path": "project/OriginalReader.dc.html",
+          "bytes": 11643,
+          "sha256": "2c6c47967b5044d6a91717ef51f44721fcd5d0289e081bb647b44030a04262a0"
+        },
+        {
+          "path": "project/P1 - What I keep ahead of me.dc.html",
+          "source_path": "project/P1 - What I keep ahead of me.dc.html",
+          "bytes": 44156,
+          "sha256": "572a47545ae1db53d1d012da0a4f6fa9bed91d1c88dc8c6dfd167c32cc873a08"
+        },
+        {
+          "path": "project/P2 - Life changes without management.dc.html",
+          "source_path": "project/P2 - Life changes without management.dc.html",
+          "bytes": 66902,
+          "sha256": "8baa8890cf7d4b7304f4d3aa70f071e1f167ca0c711462f3a721a7e231824812"
+        },
+        {
+          "path": "project/P3 - Something I deliberately saved.dc.html",
+          "source_path": "project/P3 - Something I deliberately saved.dc.html",
+          "bytes": 39283,
+          "sha256": "7a116a29db4be3104dd9f8650bf98dff1b00f90771039e41996d2ec1538e0276"
+        },
+        {
+          "path": "project/P4 - A map inside a record.dc.html",
+          "source_path": "project/P4 - A map inside a record.dc.html",
+          "bytes": 55321,
+          "sha256": "948ef8721088b7d1aecdf108e195956cc515ac74b58da00bff566c0c287be9ab"
+        },
+        {
+          "path": "project/R0 - Reference.dc.html",
+          "source_path": "project/R0 - Reference.dc.html",
+          "bytes": 46810,
+          "sha256": "9292b08acd36c53eb52b146c40891b37e53fe48b010724e90023d5c0bd0f04ab"
+        },
+        {
+          "path": "project/Ticket.dc.html",
+          "source_path": "project/Ticket.dc.html",
+          "bytes": 17327,
+          "sha256": "7d9e2135c05fd122730f40eb02ca8623f38b7f774de40e298acc9b417926d452"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_adherence.oxlintrc.json",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_adherence.oxlintrc.json",
+          "bytes": 549,
+          "sha256": "0200757596e677c8285210778a3ba068daa1d85862e466e7937b4d782227906c"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_bundle.js",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_bundle.js",
+          "bytes": 342,
+          "sha256": "86435e1efe0a3acc86facbb4ae473b690d5eda48f451ab8b5a0dc89967be06b7"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_manifest.json",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_manifest.json",
+          "bytes": 628,
+          "sha256": "56d8d0383d4a0d60b8d9c0f59375827730b66e2bb0e69aeb982bd5b98f2367c4"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css",
+          "bytes": 29657,
+          "sha256": "a843ca5ba6fe7595ff05c629ed88be8f3051e073a51cda4500e18ee5910d7f6c"
+        },
+        {
+          "path": "project/before-shared-package/00 - Start here.dc.html",
+          "source_path": "project/before-shared-package/00 - Start here.dc.html",
+          "bytes": 13258,
+          "sha256": "e36e69971f7346263633aa97519a7c1aa0846e5b7b336a5ff04ab8dd74b08840"
+        },
+        {
+          "path": "project/before-shared-package/01 - My life, four ways.dc.html",
+          "source_path": "project/before-shared-package/01 - My life, four ways.dc.html",
+          "bytes": 78474,
+          "sha256": "6c2468b3a3afb30be73e79b45f17ce383b69b7e3c1c841387b9e82ac5248ac94"
+        },
+        {
+          "path": "project/before-shared-package/02 - An ordinary beginning.dc.html",
+          "source_path": "project/before-shared-package/02 - An ordinary beginning.dc.html",
+          "bytes": 99586,
+          "sha256": "ff317c028eedf154ec1c79372b90484398a33e707ec5e763d50f72b38ab072af"
+        },
+        {
+          "path": "project/before-shared-package/03 - Open something in my life.dc.html",
+          "source_path": "project/before-shared-package/03 - Open something in my life.dc.html",
+          "bytes": 76220,
+          "sha256": "ca61ca02b2f3b7aba7210f586f1b0d4e784621209179adfff898a970bfed6c3f"
+        },
+        {
+          "path": "project/before-shared-package/03b - Inside a record.dc.html",
+          "source_path": "project/before-shared-package/03b - Inside a record.dc.html",
+          "bytes": 126581,
+          "sha256": "c6b7ac187d326677f6a37a3652f2bda379912c3f59d1947cc48b91b0330dbd8d"
+        },
+        {
+          "path": "project/before-shared-package/04 - My original things.dc.html",
+          "source_path": "project/before-shared-package/04 - My original things.dc.html",
+          "bytes": 98472,
+          "sha256": "a294b7c6234a9c9fcd8a0c2edad5982599d7fdc87be5400ac11c47fd05d1f993"
+        },
+        {
+          "path": "project/before-shared-package/05 - Find it again.dc.html",
+          "source_path": "project/before-shared-package/05 - Find it again.dc.html",
+          "bytes": 108411,
+          "sha256": "3876a21605605338f3da5b410c800ba5fe3be644a2a3e87a0cb18a8935fd14e3"
+        },
+        {
+          "path": "project/before-shared-package/06 - Give once, get value back.dc.html",
+          "source_path": "project/before-shared-package/06 - Give once, get value back.dc.html",
+          "bytes": 42033,
+          "sha256": "4d75297a270f08893aa9714541da8f7ff103a858eec4518c83d6d2f3d5868f49"
+        },
+        {
+          "path": "project/before-shared-package/07 - The people in my life.dc.html",
+          "source_path": "project/before-shared-package/07 - The people in my life.dc.html",
+          "bytes": 82243,
+          "sha256": "f5afd8419c11b12dbb92e67f011815f88e191b4a685eae7befb97496c67a5a96"
+        },
+        {
+          "path": "project/before-shared-package/P1 - What I keep ahead of me.dc.html",
+          "source_path": "project/before-shared-package/P1 - What I keep ahead of me.dc.html",
+          "bytes": 44058,
+          "sha256": "487ae5c936a8a058dba3ad7d127d78dd4bf7d32d053d704701de254765be9a69"
+        },
+        {
+          "path": "project/before-shared-package/P2 - Life changes without management.dc.html",
+          "source_path": "project/before-shared-package/P2 - Life changes without management.dc.html",
+          "bytes": 66581,
+          "sha256": "b6b390bcfd2d366f57afdce20bae0b906671cac1abadbda51d8ca30173c81ffe"
+        },
+        {
+          "path": "project/before-shared-package/P3 - Something I deliberately saved.dc.html",
+          "source_path": "project/before-shared-package/P3 - Something I deliberately saved.dc.html",
+          "bytes": 38831,
+          "sha256": "ea675aa67ab1784c53c4aab2815331cea66c3443736c717665010900190194fc"
+        },
+        {
+          "path": "project/before-shared-package/P4 - A map inside a record.dc.html",
+          "source_path": "project/before-shared-package/P4 - A map inside a record.dc.html",
+          "bytes": 54777,
+          "sha256": "8f17a4b86ab26dae9884d671367f3d67a4b0e2149e8994471f0e7855c77a943c"
+        },
+        {
+          "path": "project/before-shared-package/R0 - Reference.dc.html",
+          "source_path": "project/before-shared-package/R0 - Reference.dc.html",
+          "bytes": 50447,
+          "sha256": "fb2abda5ffadb8d22169231a309478d2c148014cecac4536c82c6760f5604c23"
+        },
+        {
+          "path": "project/before-shared-package/support.js",
+          "source_path": "project/before-shared-package/support.js",
+          "bytes": 69150,
+          "sha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe"
+        },
+        {
+          "path": "project/fixtures/life-composition-fixtures-v0.1.json",
+          "source_path": "project/fixtures/life-composition-fixtures-v0.1.json",
+          "bytes": 39206,
+          "sha256": "fa23bef38de07c9a7838e4ab594a5fe7c1c9885476d1a90e1e94f8879d226218"
+        },
+        {
+          "path": "project/fixtures/life-composition-fixtures-v0.2.json",
+          "source_path": "project/fixtures/life-composition-fixtures-v0.2.json",
+          "bytes": 20194,
+          "sha256": "93b6eae2f143f7b3c67762e7595d8de102498f8aa7d6b8549d01ef7d5ba41ed9"
+        },
+        {
+          "path": "project/support.js",
+          "source_path": "project/support.js",
+          "bytes": 69150,
+          "sha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe"
+        },
+        {
+          "path": "project/vdl-consumed.json",
+          "source_path": "project/vdl-consumed.json",
+          "bytes": 2888,
+          "sha256": "1833e5c7a14e2bc65dc13124c032870c2387f117f780971f39c7fb2b1a0e1927"
+        },
+        {
+          "path": "project/vdl.css",
+          "source_path": "project/vdl.css",
+          "bytes": 16055,
+          "sha256": "7b6fa1d3dfccc92c59be1193cd68cdb032845a54c0316540e3ab58fe0b968515"
+        }
+      ]
+    },
+    {
+      "name": "vesper-plans-in-real-life",
+      "source": "/Users/feihuyan/Downloads/vesper-plans-in-real-life",
+      "files": [
+        {
+          "path": "EXPORT-README.txt",
+          "source_path": "README.md",
+          "bytes": 1700,
+          "sha256": "953f3199deabf794432c87aa9f8bdd0e585cdbbb100c384545104f62f72023e7"
+        },
+        {
+          "path": "project/.thumbnail",
+          "source_path": "project/.thumbnail",
+          "bytes": 18598,
+          "sha256": "3c37a287d6861afa715709aec8cb9a62bcb5884a6637f5b916f910a9fc4bfac1"
+        },
+        {
+          "path": "project/00 Start Here.dc.html",
+          "source_path": "project/00 Start Here.dc.html",
+          "bytes": 23234,
+          "sha256": "94d1a2f6caa511a0c39603425c35f2c4f4bcdd0c2e3c364fc45ee77f84b26da3"
+        },
+        {
+          "path": "project/01 Baseline - The Itinerary Today.dc.html",
+          "source_path": "project/01 Baseline - The Itinerary Today.dc.html",
+          "bytes": 17940,
+          "sha256": "c1e76b89dcb4614442ca2f500f7f5786d6bdbef69bd8cf25620e5b321bee5d90"
+        },
+        {
+          "path": "project/02 A - A Loose Saturday.dc.html",
+          "source_path": "project/02 A - A Loose Saturday.dc.html",
+          "bytes": 34539,
+          "sha256": "feb43abf796ac814a0532c3a761bf0b58a4854feb03862b487a86a9cda3753d8"
+        },
+        {
+          "path": "project/03 B - A Planned Trip, Kyoto.dc.html",
+          "source_path": "project/03 B - A Planned Trip, Kyoto.dc.html",
+          "bytes": 34621,
+          "sha256": "10571f367824e06073c6b628bfa8cd48567f30d2c57dfcf4dcc72b420201635b"
+        },
+        {
+          "path": "project/04 C - A Shared Afternoon and Dinner.dc.html",
+          "source_path": "project/04 C - A Shared Afternoon and Dinner.dc.html",
+          "bytes": 25426,
+          "sha256": "930221e2dce4eb867188594b46c911927a65f60349ca6ef8606bc2caff545014"
+        },
+        {
+          "path": "project/05 D - The Day Changes While People Move.dc.html",
+          "source_path": "project/05 D - The Day Changes While People Move.dc.html",
+          "bytes": 17714,
+          "sha256": "018e791874945d93e3b22dfd63496ff3edec0a555e3416ea11a09559ff1cbc6b"
+        },
+        {
+          "path": "project/06 E - Overlap and the Four Doors.dc.html",
+          "source_path": "project/06 E - Overlap and the Four Doors.dc.html",
+          "bytes": 20118,
+          "sha256": "2458d115331a65e3178020c76429fbdf8d8fec1c68da47d6b1263a0e7dc2e745"
+        },
+        {
+          "path": "project/07 Decisions, Mapping, Reuse.dc.html",
+          "source_path": "project/07 Decisions, Mapping, Reuse.dc.html",
+          "bytes": 44245,
+          "sha256": "0c3bb198a60774608671a5d35b2003b595995b791a01f1c4711aef45997434b3"
+        },
+        {
+          "path": "project/08 Contextual Request - Resting, Active, Resolved.dc.html",
+          "source_path": "project/08 Contextual Request - Resting, Active, Resolved.dc.html",
+          "bytes": 55612,
+          "sha256": "6a45045d7e7bd40107558145af10849ab75687950dda7f1af871139741311daf"
+        },
+        {
+          "path": "project/09 Journeys - Value, Adapt, Coordinate.dc.html",
+          "source_path": "project/09 Journeys - Value, Adapt, Coordinate.dc.html",
+          "bytes": 24172,
+          "sha256": "2219825aa8891bcb148eab38dbca93fd0a41d41cbd712a4ff3b8dda20ab5e90f"
+        },
+        {
+          "path": "project/11 Continuations - Keep, Guest, Incompatible, Conditional, After.dc.html",
+          "source_path": "project/11 Continuations - Keep, Guest, Incompatible, Conditional, After.dc.html",
+          "bytes": 27211,
+          "sha256": "96a740367c9e81bfd56d7520af64105aee86d0305ee586fe67a4cc42a9e11558"
+        },
+        {
+          "path": "project/12 Brought In and Followed - Two Bounded Additions.dc.html",
+          "source_path": "project/12 Brought In and Followed - Two Bounded Additions.dc.html",
+          "bytes": 56944,
+          "sha256": "b0f52577286afd150fa14ed8ca3cd6956b66f5325b9308611bf17c85d0b23ecc"
+        },
+        {
+          "path": "project/90 Appendix - Change States and Recovery.dc.html",
+          "source_path": "project/90 Appendix - Change States and Recovery.dc.html",
+          "bytes": 57526,
+          "sha256": "c270659d3ed2fcdfa0ed65487eff83a75ccfe943c795caa5d32423925419d5fa"
+        },
+        {
+          "path": "project/91 Appendix - Coverage, Arrival, Peers.dc.html",
+          "source_path": "project/91 Appendix - Coverage, Arrival, Peers.dc.html",
+          "bytes": 65666,
+          "sha256": "621c1d77989c08f887a04d5034183ebb7006e6b4acd5cf068530706d05fdd004"
+        },
+        {
+          "path": "project/92 Appendix - Interactive Prototype.dc.html",
+          "source_path": "project/92 Appendix - Interactive Prototype.dc.html",
+          "bytes": 32436,
+          "sha256": "eae66e69cda964b39445eec149ea5b7d7f166bf0d4f80d4803e6b234fcdec01c"
+        },
+        {
+          "path": "project/Before shared package - 01 Baseline - The Itinerary Today.dc.html",
+          "source_path": "project/Before shared package - 01 Baseline - The Itinerary Today.dc.html",
+          "bytes": 17906,
+          "sha256": "edbf46477398c7d6fcf1ef8b5d4b1b1fd86ed81216bcfbc6e825fb0d69a506fb"
+        },
+        {
+          "path": "project/Before shared package - 02 A - A Loose Saturday.dc.html",
+          "source_path": "project/Before shared package - 02 A - A Loose Saturday.dc.html",
+          "bytes": 34105,
+          "sha256": "8b2cbd60fb4a6995cdcb209c275787e20fe20cf47381eb966ed508c8c285d901"
+        },
+        {
+          "path": "project/Before shared package - 03 B - A Planned Trip, Kyoto.dc.html",
+          "source_path": "project/Before shared package - 03 B - A Planned Trip, Kyoto.dc.html",
+          "bytes": 34486,
+          "sha256": "c356f641fe4586ae97a9f746bbddf7be45b4f44a8bfe190d886e415db362a996"
+        },
+        {
+          "path": "project/Before shared package - 04 C - A Shared Afternoon and Dinner.dc.html",
+          "source_path": "project/Before shared package - 04 C - A Shared Afternoon and Dinner.dc.html",
+          "bytes": 25084,
+          "sha256": "add3aa2195ce69796722a0a97d536979aa7e6a8120031ed501bd3ed5802b1ec7"
+        },
+        {
+          "path": "project/Before shared package - 05 D - The Day Changes While People Move.dc.html",
+          "source_path": "project/Before shared package - 05 D - The Day Changes While People Move.dc.html",
+          "bytes": 17381,
+          "sha256": "6746b50ab952ecb196d55bea4369e52e828fb481c76f5a9b9a588c04c0408267"
+        },
+        {
+          "path": "project/Before shared package - 06 E - Overlap and the Four Doors.dc.html",
+          "source_path": "project/Before shared package - 06 E - Overlap and the Four Doors.dc.html",
+          "bytes": 19907,
+          "sha256": "4f00f3d29ccc3bff591d716fd677866ab08880ac01dfe3522bc8c840920d3a7e"
+        },
+        {
+          "path": "project/Before shared package - 08 Contextual Request - Resting, Active, Resolved.dc.html",
+          "source_path": "project/Before shared package - 08 Contextual Request - Resting, Active, Resolved.dc.html",
+          "bytes": 54897,
+          "sha256": "00975d7cb2a1cff51d7d4e468cc971a4dc2c4b4b9a94a55a404f6133c7227a05"
+        },
+        {
+          "path": "project/Before shared package - 09 Journeys - Value, Adapt, Coordinate.dc.html",
+          "source_path": "project/Before shared package - 09 Journeys - Value, Adapt, Coordinate.dc.html",
+          "bytes": 23961,
+          "sha256": "8fde8887c3af8faac1d30a0adad5f19b3d98269705b394887aa4b1c11ddc3348"
+        },
+        {
+          "path": "project/Before shared package - 11 Continuations - Keep, Guest, Incompatible, Conditional, After.dc.html",
+          "source_path": "project/Before shared package - 11 Continuations - Keep, Guest, Incompatible, Conditional, After.dc.html",
+          "bytes": 27031,
+          "sha256": "05dd0a7cb8d336d972aca11034babdba58038a42e6aa6524e6b38d6dd8147f66"
+        },
+        {
+          "path": "project/Before shared package - 12 Brought In and Followed - Two Bounded Additions.dc.html",
+          "source_path": "project/Before shared package - 12 Brought In and Followed - Two Bounded Additions.dc.html",
+          "bytes": 55360,
+          "sha256": "15a96f5b84cfe6c9f4f0f20bcfa3d222152030e3b5c10c6dd5cc04152df3c114"
+        },
+        {
+          "path": "project/Before shared package - 90 Appendix - Change States and Recovery.dc.html",
+          "source_path": "project/Before shared package - 90 Appendix - Change States and Recovery.dc.html",
+          "bytes": 56761,
+          "sha256": "0238e8d02f49d43c81471567f67e2271bd751050194a4bfb1be3eadbbb48ff9b"
+        },
+        {
+          "path": "project/Before shared package - 91 Appendix - Coverage, Arrival, Peers.dc.html",
+          "source_path": "project/Before shared package - 91 Appendix - Coverage, Arrival, Peers.dc.html",
+          "bytes": 65189,
+          "sha256": "2e003e024e347a07fb3cb916dadbb322ba9682b10f06324e7e5a5d2bfd11cfa5"
+        },
+        {
+          "path": "project/Before shared package - 92 Appendix - Interactive Prototype.dc.html",
+          "source_path": "project/Before shared package - 92 Appendix - Interactive Prototype.dc.html",
+          "bytes": 31083,
+          "sha256": "1af45f277003169f87fd1455a4881338b54ee2924ba704124125de935b8c488b"
+        },
+        {
+          "path": "project/Notice.dc.html",
+          "source_path": "project/Notice.dc.html",
+          "bytes": 2531,
+          "sha256": "4fe7351b0782544354cca2d9daa26cf84ad73530778ec684723c1986203cf699"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_adherence.oxlintrc.json",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_adherence.oxlintrc.json",
+          "bytes": 549,
+          "sha256": "0200757596e677c8285210778a3ba068daa1d85862e466e7937b4d782227906c"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_bundle.js",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_bundle.js",
+          "bytes": 342,
+          "sha256": "86435e1efe0a3acc86facbb4ae473b690d5eda48f451ab8b5a0dc89967be06b7"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_manifest.json",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_manifest.json",
+          "bytes": 628,
+          "sha256": "56d8d0383d4a0d60b8d9c0f59375827730b66e2bb0e69aeb982bd5b98f2367c4"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css",
+          "bytes": 29657,
+          "sha256": "a843ca5ba6fe7595ff05c629ed88be8f3051e073a51cda4500e18ee5910d7f6c"
+        },
+        {
+          "path": "project/evidence/plan-day-scrolled.jpg",
+          "source_path": "project/evidence/plan-day-scrolled.jpg",
+          "bytes": 60204,
+          "sha256": "dacf068c66f13b80815d10999d6b2597f7365f941883866d1356af0077271e53"
+        },
+        {
+          "path": "project/evidence/plan-day-top.jpg",
+          "source_path": "project/evidence/plan-day-top.jpg",
+          "bytes": 98488,
+          "sha256": "18c61e6d6bf57fca1d18dd8a58d426406db77941c2164693efa4d917bd17e7a3"
+        },
+        {
+          "path": "project/kit/plans.before-vdl.css",
+          "source_path": "project/kit/plans.before-vdl.css",
+          "bytes": 37516,
+          "sha256": "0358c0aff5e8840bfa3e2d1939ea70a7c54acefaf24026f03ea6c9758346cbcb"
+        },
+        {
+          "path": "project/kit/plans.css",
+          "source_path": "project/kit/plans.css",
+          "bytes": 39545,
+          "sha256": "92177c515479d4f6f5d521812f9c04ecb915a384a60a94b10bf59e9d224d9df7"
+        },
+        {
+          "path": "project/kit/proto.js",
+          "source_path": "project/kit/proto.js",
+          "bytes": 23228,
+          "sha256": "b2dd4553b87fec9123b0399b5346ff7d35bc91937c9daaace0244729f8ed091e"
+        },
+        {
+          "path": "project/support.js",
+          "source_path": "project/support.js",
+          "bytes": 66404,
+          "sha256": "c60c49083997f51a592df118c0068475337afd20b8cfd8e1cd9d5eb0c7e254f6"
+        },
+        {
+          "path": "project/vdl.css",
+          "source_path": "project/vdl.css",
+          "bytes": 16055,
+          "sha256": "7b6fa1d3dfccc92c59be1193cd68cdb032845a54c0316540e3ab58fe0b968515"
+        }
+      ]
+    },
+    {
+      "name": "vesper-entity-object-handoff-lab",
+      "source": "/Users/feihuyan/Downloads/vesper-entity-object-handoff-lab",
+      "files": [
+        {
+          "path": "EXPORT-README.txt",
+          "source_path": "README.md",
+          "bytes": 1715,
+          "sha256": "25398b21acca71fa119d187245447a32926005793d202517acec425508f6b5bb"
+        },
+        {
+          "path": "project/.thumbnail",
+          "source_path": "project/.thumbnail",
+          "bytes": 36760,
+          "sha256": "6acc17f1de3e54cd74da30dddd71547afa7d25147338674debbd5abee6d575ea"
+        },
+        {
+          "path": "project/00 - Read Me.dc.html",
+          "source_path": "project/00 - Read Me.dc.html",
+          "bytes": 11815,
+          "sha256": "5a8eac1dc9cbae08c52b529efc588f8677c319edc0089d837e7ae3784c7c39c2"
+        },
+        {
+          "path": "project/01 - Audit - The Current Page.dc.html",
+          "source_path": "project/01 - Audit - The Current Page.dc.html",
+          "bytes": 30250,
+          "sha256": "a576106473cb92434747a8af2e824c7b1dc38d206666ced844845c9952bf5999"
+        },
+        {
+          "path": "project/02 - The Law.dc.html",
+          "source_path": "project/02 - The Law.dc.html",
+          "bytes": 19147,
+          "sha256": "00c5c0e731458d2afe0830c24c07eeca7368b607d7535c13ce94613254cb65db"
+        },
+        {
+          "path": "project/03 - Three Kinds One Family.dc.html",
+          "source_path": "project/03 - Three Kinds One Family.dc.html",
+          "bytes": 19526,
+          "sha256": "de6cdeb6298710e901bb695d24dfd3ad34c3f746707e15f10abe20e37918486b"
+        },
+        {
+          "path": "project/04 - The People Slot.dc.html",
+          "source_path": "project/04 - The People Slot.dc.html",
+          "bytes": 27275,
+          "sha256": "56fbf45c532f90a6f7624f4c01ff508ff19ddfd93d1897e5b588d0d0bc2cbb57"
+        },
+        {
+          "path": "project/05 - The Five Paths.dc.html",
+          "source_path": "project/05 - The Five Paths.dc.html",
+          "bytes": 24861,
+          "sha256": "3178b921dec4e87bfb50b012ef7520a891874c3cf794276d671d5c51c6464158"
+        },
+        {
+          "path": "project/06 - The Page.dc.html",
+          "source_path": "project/06 - The Page.dc.html",
+          "bytes": 25334,
+          "sha256": "4a0cd698b9bbd3e55de7bf70b078a8e424fa002948a3712cf846eeb1be876e77"
+        },
+        {
+          "path": "project/06B - Arrival and Large Text.dc.html",
+          "source_path": "project/06B - Arrival and Large Text.dc.html",
+          "bytes": 30850,
+          "sha256": "fa2e343b709b048551e896ecec7cc19e057a1a97ba3d776573bd8aa44a3e0b4f"
+        },
+        {
+          "path": "project/07 - Implementation Handoff.dc.html",
+          "source_path": "project/07 - Implementation Handoff.dc.html",
+          "bytes": 27071,
+          "sha256": "36694c2e94b34b33bdbbd72cd08bfaba1910f9efe31da5835274ae4ad8f208f4"
+        },
+        {
+          "path": "project/08 - Build Brief.dc.html",
+          "source_path": "project/08 - Build Brief.dc.html",
+          "bytes": 50447,
+          "sha256": "4b71ece16167f3e1b2fb948fdc6d4d06852c20f648ba8a1b84e1bdeffabbf45d"
+        },
+        {
+          "path": "project/09 - One Place Five Doors.dc.html",
+          "source_path": "project/09 - One Place Five Doors.dc.html",
+          "bytes": 24705,
+          "sha256": "4e9d9e0b2520b95b5e4bf35208fdb711a424b6069935c3359d3c5aa0018dfa93"
+        },
+        {
+          "path": "project/10 - Intent Beyond Tonight.dc.html",
+          "source_path": "project/10 - Intent Beyond Tonight.dc.html",
+          "bytes": 23600,
+          "sha256": "2fc7c3f6f5beec115749b134ef24afeffa2f9fa703df5f523ce689fc58825b62"
+        },
+        {
+          "path": "project/11 - Places and Life.dc.html",
+          "source_path": "project/11 - Places and Life.dc.html",
+          "bytes": 17614,
+          "sha256": "b165f5e1ce9d5007d9367987d8dab3551f70e4156f7d7b74bc91cae19cdb74c3"
+        },
+        {
+          "path": "project/12 - Useful Edges.dc.html",
+          "source_path": "project/12 - Useful Edges.dc.html",
+          "bytes": 22317,
+          "sha256": "c719e7bed61acee830e610810e6835615fe610d5efe74c7440ecfc21bb218748"
+        },
+        {
+          "path": "project/13 - Status and Deltas.dc.html",
+          "source_path": "project/13 - Status and Deltas.dc.html",
+          "bytes": 25938,
+          "sha256": "7621219f6c120e5f0e6c6f274383cfde6846a77e384e10353ec853e4cc0b81c0"
+        },
+        {
+          "path": "project/14 - Received from Places.dc.html",
+          "source_path": "project/14 - Received from Places.dc.html",
+          "bytes": 33994,
+          "sha256": "eaa60641ed9124e3d575d87f488ee820faf7e52f4c51aa0ee5e3f59f189dffc4"
+        },
+        {
+          "path": "project/15 - Shared Adoption.dc.html",
+          "source_path": "project/15 - Shared Adoption.dc.html",
+          "bytes": 25195,
+          "sha256": "217b28192d40cc1493ebae49ec5e5a9b117561b4d9a90010f430573c6b39b7ef"
+        },
+        {
+          "path": "project/ActionGroup.dc.html",
+          "source_path": "project/ActionGroup.dc.html",
+          "bytes": 1501,
+          "sha256": "b21b4c85851637ceb4f1d49b60eabd87879016d890824068bb3afac77ad7544c"
+        },
+        {
+          "path": "project/FactPair.dc.html",
+          "source_path": "project/FactPair.dc.html",
+          "bytes": 3025,
+          "sha256": "e5b46042897217ff0d863f72f5a47a47bf4af31e3ff7ec3484420dec4629e5bf"
+        },
+        {
+          "path": "project/InviteCard.dc.html",
+          "source_path": "project/InviteCard.dc.html",
+          "bytes": 9231,
+          "sha256": "cbb3f8774364fe0e186065305f1b9f5b2f9eb7f2e5c041fa54ca560a64a30efa"
+        },
+        {
+          "path": "project/LocationFooter.dc.html",
+          "source_path": "project/LocationFooter.dc.html",
+          "bytes": 3873,
+          "sha256": "a0074ced5ee99da6a27450e749e76cfcd22e7f20caa6f2b33ac05f7f3081b8df"
+        },
+        {
+          "path": "project/Notice.dc.html",
+          "source_path": "project/Notice.dc.html",
+          "bytes": 2531,
+          "sha256": "4fe7351b0782544354cca2d9daa26cf84ad73530778ec684723c1986203cf699"
+        },
+        {
+          "path": "project/OriginalReader.dc.html",
+          "source_path": "project/OriginalReader.dc.html",
+          "bytes": 11643,
+          "sha256": "2c6c47967b5044d6a91717ef51f44721fcd5d0289e081bb647b44030a04262a0"
+        },
+        {
+          "path": "project/PlaceHead.dc.html",
+          "source_path": "project/PlaceHead.dc.html",
+          "bytes": 4556,
+          "sha256": "3904a354dfc9d7487624bb9486c180e085ec45e63ec04c5c8da3f4a224e56e8d"
+        },
+        {
+          "path": "project/PlaceIdentity.dc.html",
+          "source_path": "project/PlaceIdentity.dc.html",
+          "bytes": 6313,
+          "sha256": "d165e19808eb953dfe2fae0a2a52ab74a9a6092a4f422ded6eb64f612be69583"
+        },
+        {
+          "path": "project/SourceList.dc.html",
+          "source_path": "project/SourceList.dc.html",
+          "bytes": 1775,
+          "sha256": "32c480d4c3f90e416913357b642097af67afe1790a3f28af920d0031fab7e745"
+        },
+        {
+          "path": "project/Ticket.dc.html",
+          "source_path": "project/Ticket.dc.html",
+          "bytes": 17327,
+          "sha256": "7d9e2135c05fd122730f40eb02ca8623f38b7f774de40e298acc9b417926d452"
+        },
+        {
+          "path": "project/Z1 - Archive - Four Languages.dc.html",
+          "source_path": "project/Z1 - Archive - Four Languages.dc.html",
+          "bytes": 36142,
+          "sha256": "9b1624ff74f1adac6736013372c52878d9904959b35120d2f49a5fce8b5ec4c3"
+        },
+        {
+          "path": "project/Z2 - Archive - The Blob.dc.html",
+          "source_path": "project/Z2 - Archive - The Blob.dc.html",
+          "bytes": 34621,
+          "sha256": "087f029f714abc78df9ef332bc041ed9f196cd33f47bdb66df7805c51f8bed7d"
+        },
+        {
+          "path": "project/Z3 - Archive - The Blob Typeset.dc.html",
+          "source_path": "project/Z3 - Archive - The Blob Typeset.dc.html",
+          "bytes": 23665,
+          "sha256": "89160cd9235e051403c0dffb53024f04828f08b1cf16e81b25b318e8371d4f43"
+        },
+        {
+          "path": "project/Z4 - Archive - Element Order.dc.html",
+          "source_path": "project/Z4 - Archive - Element Order.dc.html",
+          "bytes": 40352,
+          "sha256": "51c8f1df9ae6864977c90f94384496b1084eca36c615cf4f171af5ab70affed1"
+        },
+        {
+          "path": "project/Z5 - Archive - The Pair.dc.html",
+          "source_path": "project/Z5 - Archive - The Pair.dc.html",
+          "bytes": 30612,
+          "sha256": "915d019b7ffcb8ae62d488a0e55277bb304eb34794c6a78896ada46703ed035a"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_adherence.oxlintrc.json",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_adherence.oxlintrc.json",
+          "bytes": 549,
+          "sha256": "0200757596e677c8285210778a3ba068daa1d85862e466e7937b4d782227906c"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_bundle.js",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_bundle.js",
+          "bytes": 342,
+          "sha256": "86435e1efe0a3acc86facbb4ae473b690d5eda48f451ab8b5a0dc89967be06b7"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_manifest.json",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_manifest.json",
+          "bytes": 628,
+          "sha256": "56d8d0383d4a0d60b8d9c0f59375827730b66e2bb0e69aeb982bd5b98f2367c4"
+        },
+        {
+          "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css",
+          "source_path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css",
+          "bytes": 29657,
+          "sha256": "a843ca5ba6fe7595ff05c629ed88be8f3051e073a51cda4500e18ee5910d7f6c"
+        },
+        {
+          "path": "project/before/03 - Three Kinds One Family.dc.html",
+          "source_path": "project/before/03 - Three Kinds One Family.dc.html",
+          "bytes": 32974,
+          "sha256": "d2d306dc88932b8b79e50bfd9288831e0f2e2dcd046c3167f565bd7645b82442"
+        },
+        {
+          "path": "project/before/05 - The Five Paths.dc.html",
+          "source_path": "project/before/05 - The Five Paths.dc.html",
+          "bytes": 35022,
+          "sha256": "d0d97ac3012eacbbd68b32fea93c64f5ab10d61088b39f6e88de9cb03fe9a30b"
+        },
+        {
+          "path": "project/before/06 - The Page.dc.html",
+          "source_path": "project/before/06 - The Page.dc.html",
+          "bytes": 44862,
+          "sha256": "718468d92f0f457afca26f64b8929a71a110af09682974dad17589461d56bd24"
+        },
+        {
+          "path": "project/before/06B - Arrival and Large Text.dc.html",
+          "source_path": "project/before/06B - Arrival and Large Text.dc.html",
+          "bytes": 41096,
+          "sha256": "50329e556c63d89990d2afb79f58fab7dc3df4eeef779b419bafc46aefb2088c"
+        },
+        {
+          "path": "project/before/09 - One Place Five Doors.dc.html",
+          "source_path": "project/before/09 - One Place Five Doors.dc.html",
+          "bytes": 43556,
+          "sha256": "f405f14c9aa53a4a6a9a4033e218264c9f2d9c0f618c566e2074742fecd80479"
+        },
+        {
+          "path": "project/before/10 - Intent Beyond Tonight.dc.html",
+          "source_path": "project/before/10 - Intent Beyond Tonight.dc.html",
+          "bytes": 35218,
+          "sha256": "03dbcd265d2514e2ce41707586c332363230cf41311121b490f4a22c48215913"
+        },
+        {
+          "path": "project/before/11 - Places and Life.dc.html",
+          "source_path": "project/before/11 - Places and Life.dc.html",
+          "bytes": 30616,
+          "sha256": "49f8676437bd941b97ce44161f04f3163662040f8c81a923d7f97dbac6aac02c"
+        },
+        {
+          "path": "project/before/12 - Useful Edges.dc.html",
+          "source_path": "project/before/12 - Useful Edges.dc.html",
+          "bytes": 42361,
+          "sha256": "7ed7c5bd4709f5c36ae16e1d9814b58a8dd9c176bab59aec0a91a924183613c3"
+        },
+        {
+          "path": "project/before/14 - Received from Places.dc.html",
+          "source_path": "project/before/14 - Received from Places.dc.html",
+          "bytes": 72670,
+          "sha256": "8e1955d486d28a29fb7668d14dd68db9b3b62ca80b7ae3c6b08c9375009099e5"
+        },
+        {
+          "path": "project/before/support.js",
+          "source_path": "project/before/support.js",
+          "bytes": 66404,
+          "sha256": "c60c49083997f51a592df118c0068475337afd20b8cfd8e1cd9d5eb0c7e254f6"
+        },
+        {
+          "path": "project/entity-lab.css",
+          "source_path": "project/entity-lab.css",
+          "bytes": 11877,
+          "sha256": "ddf3a789ab2d703161aed91bcf274afe9cf7b8471c59a9a145887c627a92c6d7"
+        },
+        {
+          "path": "project/support.js",
+          "source_path": "project/support.js",
+          "bytes": 66404,
+          "sha256": "c60c49083997f51a592df118c0068475337afd20b8cfd8e1cd9d5eb0c7e254f6"
+        },
+        {
+          "path": "project/vdl-package.json",
+          "source_path": "project/vdl-package.json",
+          "bytes": 4244,
+          "sha256": "84923b219ab6fa1828ef5de0440ebd5f951755f8ea1043ed37ce4149692419c5"
+        },
+        {
+          "path": "project/vdl-refs.js",
+          "source_path": "project/vdl-refs.js",
+          "bytes": 2585,
+          "sha256": "eff2394b383baf346f4a02035859d251f5b9bd6b90f59a363cdbdd6b40a14929"
+        },
+        {
+          "path": "project/vdl.css",
+          "source_path": "project/vdl.css",
+          "bytes": 16055,
+          "sha256": "7b6fa1d3dfccc92c59be1193cd68cdb032845a54c0316540e3ab58fe0b968515"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <link rel="stylesheet" href="_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css" />
+        <link rel="stylesheet" href="vdl.css" />
+        <style>
+          .cv td{font-size:12.5px}
+          .cv td:first-child{white-space:nowrap}
+          .d{display:inline-block;padding:1px 7px;border-radius:var(--vk-radius-md);white-space:nowrap}
+          .d.donor{background:var(--vk-state-color-sageSurface);color:var(--vk-state-color-sage)}
+          .d.add{background:var(--vk-color-tint-gold);color:var(--vk-gold80)}
+          .d.dep{background:var(--vk-color-tint-action);color:var(--vk-ink40)}
+          .d.prop{background:var(--vk-state-color-amberSurface);color:var(--vk-state-color-amber)}
+          .d.native{background:var(--vk-state-color-surfaceSoft);color:var(--vk-state-color-mute);border:0.5px solid var(--vk-state-color-hairline)}
+          .grp td{background:var(--vk-paper20);padding-top:14px}
+        </style>
+      </helmet>
+      <div class="vdl-board" data-screen-label="04 Coverage Map">
+        <div class="vk-t-capsEyebrow">Stage 1 · §13.3 families and §14.3 ledger · basis updated under §17</div>
+        <div class="vk-t-h1Large" style="margin-top:6px">Coverage map</div>
+        <p class="vk-t-body" style="max-width:820px;margin:8px 0 0;color:var(--vk-ink40)">Every family F01–F21 and every ledger row has a disposition, an owner and a trigger. The dispositions are unchanged by the fidelity pass; what each rests on now points at faithful reproductions instead of the withdrawn recompositions. §17.5 does not require all 54 rows to be implemented.</p>
+        <div class="vk-t-monoStamp" style="margin-top:10px">21 FAMILIES + 33 LEDGER ROWS = 54 DISPOSITIONS · BOARDS REFERENCED BY NUMBER · “KERNEL STEWARD” = THE SHARED-LIBRARY OWNER NAMED IN §12</div>
+        <div class="vdl-facts" style="margin-top:16px">
+          <span class="d donor vk-t-bodySmMedium">selected donor</span><span class="d add vk-t-bodySmMedium">targeted addition</span><span class="d dep vk-t-bodySmMedium">owner dependency</span><span class="d prop vk-t-bodySmMedium">proposed capability</span><span class="d native vk-t-bodySmMedium">later native check</span>
+        </div>
+
+        <div class="vdl-rule"></div>
+        <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80)">FAMILIES · §13.3</div>
+        <div class="vdl-scroll" style="margin-top:8px">
+          <table class="vdl-table cv" style="min-width:1200px">
+            <tr><th class="vk-t-capsMicro">ID</th><th class="vk-t-capsMicro">Family</th><th class="vk-t-capsMicro">Disposition</th><th class="vk-t-capsMicro">What Stage 1 established</th><th class="vk-t-capsMicro">Owner</th><th class="vk-t-capsMicro">Trigger for remaining work</th></tr>
+            <tr><td class="vk-t-monoStamp">F01</td><td>Root and destination shell</td><td><span class="d donor">selected donor</span></td><td>Home 02 and Places 01.1 roots reproduced on the kernel (03A, 03B); Entity 14 R2 destination rebuilt from shared parts (02C); guest shell (02B)</td><td>Kernel steward + root owners</td><td>Review → owners adopt by copy</td></tr>
+            <tr><td class="vk-t-monoStamp">F02</td><td>Section and scroll composition</td><td><span class="d add">targeted addition</span></td><td>Accepted 13/600 root heading kept as proposed role sectionHeading; archive stamp for record groups; 44 and 24 rhythms named as variants (03A–C)</td><td>Kernel steward + textVariants owner</td><td>sectionHeading adopted into textVariants</td></tr>
+            <tr><td class="vk-t-monoStamp">F03</td><td>World read and foreground instrument</td><td><span class="d donor">selected donor</span></td><td>Orientation and the crown with its sequence line reproduced (03A)</td><td>Home</td><td>Home adoption</td></tr>
+            <tr><td class="vk-t-monoStamp">F04</td><td>Plain rows and bounded choices</td><td><span class="d add">targeted addition</span></td><td>Rows with icons and chevrons reproduced; lenses, facets, audience choice and date navigation kept as different jobs</td><td>Kernel steward</td><td>Engineering picks shared construction without redesign</td></tr>
+            <tr><td class="vk-t-monoStamp">F05</td><td>Editorial, method and evidence</td><td><span class="d donor">selected donor</span></td><td>Figures, numbered method and reading card reproduced (03A); R2 reading with source marks (02C)</td><td>Kernel steward</td><td>unitTitle and placeReading roles adopted</td></tr>
+            <tr><td class="vk-t-monoStamp">F06</td><td>Comparison and quantitative instruments</td><td><span class="d dep">owner dependency</span></td><td>Timeline, movement/wait strips and cross-section reproduced exactly on kernel tokens (03B)</td><td>Places, then kernel steward</td><td>A second consumer needs the same instrument</td></tr>
+            <tr><td class="vk-t-monoStamp">F07</td><td>Spatial field and map-linked content</td><td><span class="d native">later native check</span></td><td>Red Hook map geometry, labels and ferry glyph reproduced; three proposed map tokens (03B, 02C)</td><td>Places + engineering</td><td>Native map adoption</td></tr>
+            <tr><td class="vk-t-monoStamp">F08</td><td>Temporal orientation and sequence</td><td><span class="d dep">owner dependency</span></td><td>Week strip, crown sequence, date rail and epochs kept distinct (03A, 03C)</td><td>Home, Plans, Life</td><td>Each root’s adoption review</td></tr>
+            <tr><td class="vk-t-monoStamp">F09</td><td>Browse shelves and branches</td><td><span class="d donor">selected donor</span></td><td>Any-day shelf reproduced (03B)</td><td>Places</td><td>Places adoption</td></tr>
+            <tr><td class="vk-t-monoStamp">F10</td><td>Entity identity and factual registers</td><td><span class="d donor">selected donor</span></td><td>PlaceHead, FactPair, SourceList, ActionGroup, LocationFooter reproduce R2 (02C); PlaceIdentity preview for lists</td><td>Entity</td><td>Entity adoption</td></tr>
+            <tr><td class="vk-t-monoStamp">F11</td><td>Human original and perspective</td><td><span class="d donor">selected donor</span></td><td>OriginalReader open, card, full at 22/30, retrieval and withdrawn (02A)</td><td>Social (component) + roots</td><td>readerOriginal and excerpt roles adopted</td></tr>
+            <tr><td class="vk-t-monoStamp">F12</td><td>Sharing and recipient preparation</td><td><span class="d add">targeted addition</span></td><td>Host previews and pill send kept; recipient sheet proposed (02B)</td><td>Social + Contribution</td><td>Review</td></tr>
+            <tr><td class="vk-t-monoStamp">F13</td><td>Participation and guest hospitality</td><td><span class="d donor">selected donor</span></td><td>InviteCard guest and answered, pill or rounded (02B)</td><td>Social</td><td>Guest-verification branch selected (S5)</td></tr>
+            <tr><td class="vk-t-monoStamp">F14</td><td>Plan and Occasion arrangement</td><td><span class="d dep">owner dependency</span></td><td>Countercheck only (03C)</td><td>Plans</td><td>Plans adoption</td></tr>
+            <tr><td class="vk-t-monoStamp">F15</td><td>Contextual assistance and transition</td><td><span class="d donor">selected donor</span></td><td>Notice pending / failed / unknown / applied from Plans 90 and the Lab (02B, 02C)</td><td>Plans + Chat</td><td>Native mapping; keyboard and focus</td></tr>
+            <tr><td class="vk-t-monoStamp">F16</td><td>Life index, dossier and containment</td><td><span class="d dep">owner dependency</span></td><td>Life 03 header and Life 01 lenses kept as selected; archive stamp shared (03C)</td><td>Life</td><td>Life adoption</td></tr>
+            <tr><td class="vk-t-monoStamp">F17</td><td>Typed original, work, saved composition</td><td><span class="d donor">selected donor</span></td><td>Ticket flight, ferry and admission at full, row and chip, with type-specific anatomy (02D)</td><td>Life + Home</td><td>Adoption; Life 05.9 defect closes</td></tr>
+            <tr><td class="vk-t-monoStamp">F18</td><td>Image collection and source inspection</td><td><span class="d add">targeted addition</span></td><td>Selection specimen; source view (02D)</td><td>Life</td><td>L2 confirm step; L3 reader</td></tr>
+            <tr><td class="vk-t-monoStamp">F19</td><td>Search and bounded view selection</td><td><span class="d donor">selected donor</span></td><td>Retrieval with matched words and return to query; Life’s selectors kept (02A, 02D)</td><td>Life</td><td>Life adoption</td></tr>
+            <tr><td class="vk-t-monoStamp">F20</td><td>Attribution, evidence, changed availability</td><td><span class="d donor">selected donor</span></td><td>Attribution, source and person marks, SourceList, withdrawn original (02A, 02C)</td><td>Kernel steward</td><td>Review</td></tr>
+            <tr><td class="vk-t-monoStamp">F21</td><td>Learnability, steering, continuity</td><td><span class="d dep">owner dependency</span></td><td>Not exercised</td><td>Home</td><td>Home steering scope decision</td></tr>
+          </table>
+        </div>
+
+        <div class="vdl-rule"></div>
+        <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80)">LEDGER · §14.3</div>
+        <div class="vdl-scroll" style="margin-top:8px">
+          <table class="vdl-table cv" style="min-width:1200px">
+            <tr><th class="vk-t-capsMicro">Ref</th><th class="vk-t-capsMicro">Subject</th><th class="vk-t-capsMicro">Disposition</th><th class="vk-t-capsMicro">Basis</th><th class="vk-t-capsMicro">Owner</th><th class="vk-t-capsMicro">Trigger</th></tr>
+            <tr class="grp"><td colspan="6" class="vk-t-monoStampStrong">HOME</td></tr>
+            <tr><td class="vk-t-monoStamp">H1</td><td>Inspect door and sources sheet</td><td><span class="d donor">selected donor</span></td><td>Home 12.1–12.2 on the sheet recipe</td><td>Home</td><td>Home adoption</td></tr>
+            <tr><td class="vk-t-monoStamp">H2</td><td>Chat aperture from a dominant object</td><td><span class="d native">later native check</span></td><td>Chat’s own controls; focus and restore unproven</td><td>Chat + engineering</td><td>Native mapping</td></tr>
+            <tr><td class="vk-t-monoStamp">H3</td><td>Stale, provider-unknown, partial import</td><td><span class="d donor">selected donor</span></td><td>Notice stale / unknown, region-local</td><td>Home</td><td>Home adoption</td></tr>
+            <tr><td class="vk-t-monoStamp">H4</td><td>First return and next open</td><td><span class="d native">later native check</span></td><td>Density variant kept; behavior unverified</td><td>Home + engineering</td><td>Native mapping</td></tr>
+            <tr><td class="vk-t-monoStamp">H5</td><td>Local steering</td><td><span class="d dep">owner dependency</span></td><td>Temporary vs remembered stays distinct</td><td>Home product</td><td>Scope decision</td></tr>
+            <tr class="grp"><td colspan="6" class="vk-t-monoStampStrong">PLACES</td></tr>
+            <tr><td class="vk-t-monoStamp">P1</td><td>City / scope selector</td><td><span class="d add">targeted addition</span></td><td>City chevron and ask row reproduced (03B); chooser behavior still to specify</td><td>Places</td><td>Places adoption</td></tr>
+            <tr><td class="vk-t-monoStamp">P2</td><td>Map fragment and numbered rows</td><td><span class="d native">later native check</span></td><td>Map geometry reproduced (03B, 02C)</td><td>Places + engineering</td><td>Native map adoption</td></tr>
+            <tr><td class="vk-t-monoStamp">P3</td><td>Two ways in, burden, evening, cross-section</td><td><span class="d dep">owner dependency</span></td><td>Instruments reproduced on kernel tokens (03B)</td><td>Places</td><td>Second consumer</td></tr>
+            <tr><td class="vk-t-monoStamp">P4</td><td>Absences and region-local loading</td><td><span class="d donor">selected donor</span></td><td>Places 03/07 + Notice unavailable</td><td>Places</td><td>Places adoption</td></tr>
+            <tr><td class="vk-t-monoStamp">P5</td><td>Prepared message, readback, return</td><td><span class="d dep">owner dependency</span></td><td>Kept-possibility owner unresolved</td><td>Places + Contribution</td><td>Owner named</td></tr>
+            <tr class="grp"><td colspan="6" class="vk-t-monoStampStrong">LIFE</td></tr>
+            <tr><td class="vk-t-monoStamp">L1</td><td>Search result anatomy</td><td><span class="d donor">selected donor</span></td><td>OriginalReader retrieval; return to query (02A, 02D)</td><td>Life</td><td>Life adoption</td></tr>
+            <tr><td class="vk-t-monoStamp">L2</td><td>Multi-selection</td><td><span class="d add">targeted addition</span></td><td>Selection specimen (02D); confirm step missing design</td><td>Life</td><td>Before any delete ships</td></tr>
+            <tr><td class="vk-t-monoStamp">L3</td><td>Photo, menu, document reader</td><td><span class="d native">later native check</span></td><td>Source view (02D); zoom and multi-page missing design</td><td>Life + engineering</td><td>Reader scope named</td></tr>
+            <tr><td class="vk-t-monoStamp">L4</td><td>Everything kept and source controls</td><td><span class="d dep">owner dependency</span></td><td>Local vs global settings owner</td><td>Life + Settings</td><td>Settings owner decision</td></tr>
+            <tr><td class="vk-t-monoStamp">L5</td><td>Split correction and old links</td><td><span class="d prop">proposed capability</span></td><td>Life P2, Review</td><td>Life product</td><td>P2 accepted</td></tr>
+            <tr><td class="vk-t-monoStamp">L6</td><td>Saved version and changed material</td><td><span class="d prop">proposed capability</span></td><td>Life P3</td><td>Life product</td><td>P3 accepted</td></tr>
+            <tr><td class="vk-t-monoStamp">L7</td><td>Ahead-of-me and in-record map</td><td><span class="d prop">proposed capability</span></td><td>Life P1/P4</td><td>Life product</td><td>Ownership settled</td></tr>
+            <tr class="grp"><td colspan="6" class="vk-t-monoStampStrong">SOCIAL</td></tr>
+            <tr><td class="vk-t-monoStamp">S1</td><td>Choose or correct a recipient</td><td><span class="d add">targeted addition</span></td><td>Recipient sheet proposed (02B)</td><td>Social</td><td>Review</td></tr>
+            <tr><td class="vk-t-monoStamp">S2</td><td>Composer anatomy and send</td><td><span class="d add">targeted addition</span></td><td>Pill send with named recipients; Notice outcomes (02A, 02B)</td><td>Social</td><td>Review</td></tr>
+            <tr><td class="vk-t-monoStamp">S3</td><td>Reply and private Ask</td><td><span class="d donor">selected donor</span></td><td>Social 02.5 / 02.6 (02A)</td><td>Social + Chat</td><td>Social adoption</td></tr>
+            <tr><td class="vk-t-monoStamp">S4</td><td>Edit / take back</td><td><span class="d dep">owner dependency</span></td><td>Withdrawn state drawn; request path missing design</td><td>Social</td><td>Retention policy</td></tr>
+            <tr><td class="vk-t-monoStamp">S5</td><td>Guest verification</td><td><span class="d dep">owner dependency</span></td><td>Labeled dependency (02B)</td><td>Social product</td><td>Guest branch selected</td></tr>
+            <tr><td class="vk-t-monoStamp">S6</td><td>Non-attending contribution, connection</td><td><span class="d prop">proposed capability</span></td><td>A connection request is not an invitation</td><td>Social product</td><td>Policy adopted</td></tr>
+            <tr class="grp"><td colspan="6" class="vk-t-monoStampStrong">PLANS</td></tr>
+            <tr><td class="vk-t-monoStamp">A1</td><td>Date rail, timed and loose rows</td><td><span class="d donor">selected donor</span></td><td>Plans 03 B1/B2 (03C); row actions missing design</td><td>Plans</td><td>Plans adoption</td></tr>
+            <tr><td class="vk-t-monoStamp">A2</td><td>Contextual request field</td><td><span class="d native">later native check</span></td><td>Plans 08 on the sheet recipe</td><td>Plans + engineering</td><td>Native mapping</td></tr>
+            <tr><td class="vk-t-monoStamp">A3</td><td>Slow, failed, unknown outcomes</td><td><span class="d donor">selected donor</span></td><td>Plans 90 J2c–e → Notice (02B)</td><td>Plans</td><td>Consumers reference Notice</td></tr>
+            <tr><td class="vk-t-monoStamp">A4</td><td>Recovered draft and scoped Undo</td><td><span class="d add">targeted addition</span></td><td>Plans 90 J2g/J3d + Lab F journeys</td><td>Plans + kernel steward</td><td>Controls canvas after review</td></tr>
+            <tr><td class="vk-t-monoStamp">A5</td><td>Provider return and revalidation</td><td><span class="d donor">selected donor</span></td><td>Plans 90 D5–D7 + Lab F1</td><td>Plans</td><td>Plans adoption</td></tr>
+            <tr><td class="vk-t-monoStamp">A6</td><td>External schedule and continuations</td><td><span class="d prop">proposed capability</span></td><td>Plans 11/12 terms proposed</td><td>Plans product</td><td>Continuing help adopted</td></tr>
+            <tr class="grp"><td colspan="6" class="vk-t-monoStampStrong">ENTITY</td></tr>
+            <tr><td class="vk-t-monoStamp">E1</td><td>Resolution at the originating row</td><td><span class="d donor">selected donor</span></td><td>Entity 05 (02C extensions)</td><td>Entity</td><td>Entity adoption</td></tr>
+            <tr><td class="vk-t-monoStamp">E2</td><td>Requested Read up / fact check</td><td><span class="d add">targeted addition</span></td><td>Checking and checked drawn (02C); failed state missing</td><td>Entity</td><td>Review</td></tr>
+            <tr><td class="vk-t-monoStamp">E3</td><td>People rows (historical Entity 04)</td><td><span class="d dep">owner dependency</span></td><td>Old strip semantics not adopted; R2 byline and Places people lines reproduced</td><td>Entity + Social</td><td>People-row definition agreed</td></tr>
+            <tr><td class="vk-t-monoStamp">E4</td><td>Target disambiguation, external link</td><td><span class="d prop">proposed capability</span></td><td>Finite chooser only when the effect changes</td><td>Entity</td><td>A real ambiguous target</td></tr>
+          </table>
+        </div>
+
+        <div class="vdl-rule"></div>
+        <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80)">TOTALS</div>
+        <p class="vk-t-bodySm" style="margin:6px 0 0;max-width:820px">54 dispositions, none blank. Families (21): 11 selected donor, 4 targeted addition, 5 owner dependency, 1 later native check. Ledger (33): 9 selected donor, 6 targeted addition, 7 owner dependency, 5 later native check, 6 proposed capability.</p>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{}'>
+      class Component extends DCLogic { renderVals() { return {}; } }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <link rel="stylesheet" href="_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css" />
+        <link rel="stylesheet" href="vdl.css" />
+      </helmet>
+      <div class="{{ cls }}" data-screen-label="Notice">
+        <span class="vdl-dot"></span>
+        <div style="flex:1;min-width:0">
+          <div class="vk-t-bodySmMedium" style="color:inherit">{{ title }}</div>
+          <sc-if value="{{ hasBody }}"><div class="vk-t-bodySm" style="color:var(--vk-ink40);margin-top:2px">{{ body }}</div></sc-if>
+          <sc-if value="{{ hasActions }}">
+            <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+              <sc-if value="{{ hasPrimary }}"><span class="vdl-btn primary vk-t-labelSemibold" style="color:var(--vk-color-white);min-height:36px;padding:0 14px">{{ primary }}</span></sc-if>
+              <sc-if value="{{ hasSecondary }}"><span class="vdl-btn secondary vk-t-labelSemibold" style="min-height:36px;padding:0 14px">{{ secondary }}</span></sc-if>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </x-dc>
+    <script
+      type="text/x-dc"
+      data-dc-script
+      data-props='{
+  "tone": { "editor": "enum", "options": ["pending", "unknown", "failed", "applied", "stale", "unavailable"], "default": "pending" },
+  "title": { "editor": "text", "default": "Sending…" },
+  "body": { "editor": "text", "default": "" },
+  "primary": { "editor": "text", "default": "" },
+  "secondary": { "editor": "text", "default": "" }
+}'
+    >
+      class Component extends DCLogic {
+        renderVals() {
+          const p = this.props || {};
+          const tone = p.tone || 'pending';
+          const cls = { pending: 'vdl-notice amber', unknown: 'vdl-notice amber', failed: 'vdl-notice oxblood', applied: 'vdl-notice sage', stale: 'vdl-notice', unavailable: 'vdl-notice' }[tone] || 'vdl-notice';
+          return {
+            cls,
+            title: p.title || 'Sending…',
+            hasBody: !!p.body,
+            body: p.body || '',
+            hasActions: !!(p.primary || p.secondary),
+            hasPrimary: !!p.primary,
+            primary: p.primary || '',
+            hasSecondary: !!p.secondary,
+            secondary: p.secondary || '',
+          };
+        }
+      }
+    </script>
+  </body>
+</html>

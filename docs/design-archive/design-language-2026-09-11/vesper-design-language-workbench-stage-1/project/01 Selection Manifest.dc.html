@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <link rel="stylesheet" href="_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css" />
+        <link rel="stylesheet" href="vdl.css" />
+        <style>
+          .mf td{font-size:12.5px}
+          .mf td:first-child{white-space:nowrap}
+          .st{display:inline-block;padding:1px 7px;border-radius:var(--vk-radius-md);white-space:nowrap}
+          .st.reused{background:var(--vk-state-color-sageSurface);color:var(--vk-state-color-sage)}
+          .st.adapt{background:var(--vk-color-tint-gold);color:var(--vk-gold80)}
+          .st.missing{background:var(--vk-state-color-oxbloodSurface);color:var(--vk-state-color-oxblood)}
+          .st.proposed{background:var(--vk-state-color-amberSurface);color:var(--vk-state-color-amber)}
+          .st.excluded{background:var(--vk-color-tint-action);color:var(--vk-ink40)}
+          .grp td{background:var(--vk-paper20);padding-top:14px}
+          .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:24px;max-width:1280px}
+          .two > div{min-width:0;overflow-x:auto}
+        </style>
+      </helmet>
+      <div class="vdl-board" data-screen-label="01 Selection Manifest">
+        <div class="vk-t-capsEyebrow">Stage 1 · §13.7 selected-reference manifest · corrected under §17</div>
+        <div class="vk-t-h1Large" style="margin-top:6px">Selection manifest</div>
+        <p class="vk-t-body" style="max-width:820px;margin:8px 0 0;color:var(--vk-ink40)">One row per selected specimen used by Stage 1. Under §17 the selected compositions are the visual targets: “reused” now means the specimen is reproduced on shared construction without changing its design; “adaptation” is reserved for a named cleanup. Nothing here says the app already supports a component.</p>
+        <div class="vk-t-monoStamp" style="margin-top:10px">KERNEL travel-app@e2e792913 tokens:80d0648dd300 · VDL STAGE1 0.2-DRAFT · COMPONENTS: OriginalReader, InviteCard, PlaceIdentity, PlaceHead, FactPair, SourceList, ActionGroup, LocationFooter, Ticket, Notice</div>
+
+        <div class="vdl-rule"></div>
+        <div class="vdl-facts">
+          <span class="st reused vk-t-bodySmMedium">reused</span><span class="vk-t-bodySm">reproduced as selected</span>
+          <span class="st adapt vk-t-bodySmMedium">cleanup</span><span class="vk-t-bodySm">reproduced, with a named obvious cleanup</span>
+          <span class="st missing vk-t-bodySmMedium">missing</span><span class="vk-t-bodySm">design / reusable implementation / adoption / behavior</span>
+          <span class="st proposed vk-t-bodySmMedium">proposed</span><span class="vk-t-bodySm">an extension drawn for review</span>
+          <span class="st excluded vk-t-bodySmMedium">reference</span><span class="vk-t-bodySm">kept visible, not compared here</span>
+        </div>
+
+        <div class="vdl-scroll" style="margin-top:18px">
+          <table class="vdl-table mf" style="min-width:1300px">
+            <tr><th class="vk-t-capsMicro">#</th><th class="vk-t-capsMicro">Project · frame</th><th class="vk-t-capsMicro">For</th><th class="vk-t-capsMicro">Family · variant</th><th class="vk-t-capsMicro">Shared definition (vdl 0.2-draft)</th><th class="vk-t-capsMicro">Status</th><th class="vk-t-capsMicro">Screen · cleanup</th><th class="vk-t-capsMicro">Owner · next</th><th class="vk-t-capsMicro">Board</th></tr>
+            <tr class="grp"><td colspan="9" class="vk-t-monoStampStrong">THE HUMAN ORIGINAL</td></tr>
+            <tr><td class="vk-t-monoStamp">M01</td><td>Home 02 · In motion · Maya’s note</td><td>Visual</td><td>F11 · open</td><td>OriginalReader density=open</td><td><span class="st reused">reused</span></td><td>Uncarded, door inside the unit (R05)</td><td>Home</td><td>02A, 03A</td></tr>
+            <tr><td class="vk-t-monoStamp">M02</td><td>Social 02.4 · The Print Room, opened</td><td>Visual + behavior</td><td>F11 · full with media</td><td>OriginalReader density=full; readerOriginal 22/30</td><td><span class="st reused">reused</span></td><td>22/30 kept as a named gap (R06)</td><td>Social</td><td>02A</td></tr>
+            <tr><td class="vk-t-monoStamp">M03</td><td>Places 01.1 · From friends</td><td>Visual</td><td>F11 · contained card</td><td>OriginalReader density=card</td><td><span class="st reused">reused</span></td><td>—</td><td>Places</td><td>02A, 03B</td></tr>
+            <tr><td class="vk-t-monoStamp">M04</td><td>Social 02.5 / 02.6 · Reply, Ask</td><td>Behavior</td><td>F11/F15</td><td>OriginalReader compose; Chat unchanged</td><td><span class="st reused">reused</span></td><td>Chat typography left to its owner (§17.4 item 3)</td><td>Social + Chat</td><td>02A</td></tr>
+            <tr><td class="vk-t-monoStamp">M05</td><td>Social 04.9 · after withdrawal</td><td>Behavior</td><td>F20 · withdrawn</td><td>OriginalReader state=withdrawn</td><td><span class="st proposed">proposed</span></td><td>—</td><td>Social · S4 path missing design</td><td>02A</td></tr>
+            <tr><td class="vk-t-monoStamp">M06</td><td>Life 05.6 · a cue in a note</td><td>Visual + behavior</td><td>F19 · retrieval</td><td>OriginalReader density=retrieval</td><td><span class="st reused">reused</span></td><td>Vesper’s italic gloss kept (R11)</td><td>Life</td><td>02A</td></tr>
+            <tr class="grp"><td colspan="9" class="vk-t-monoStampStrong">THE INVITATION</td></tr>
+            <tr><td class="vk-t-monoStamp">M07</td><td>Social 03.1 · host once</td><td>Visual</td><td>F12/F13 · host</td><td>InviteCard view=host; .vdl-btn.pill</td><td><span class="st reused">reused</span></td><td>Pills kept, 44 hit area (R08)</td><td>Social</td><td>02B</td></tr>
+            <tr><td class="vk-t-monoStamp">M08</td><td>Social 03.2 · guest link</td><td>Visual</td><td>F13 · guest</td><td>InviteCard view=guest shape=pill</td><td><span class="st reused">reused</span></td><td>26/32 title kept</td><td>Social · S5 dependency</td><td>02B</td></tr>
+            <tr><td class="vk-t-monoStamp">M09</td><td>Plans 04 C1 / C2</td><td>Visual</td><td>F12/F13</td><td>InviteCard shape=rounded</td><td><span class="st reused">reused</span></td><td>31/33 title a named gap</td><td>Plans</td><td>02B</td></tr>
+            <tr><td class="vk-t-monoStamp">M10</td><td>Plans 90 J2c–J2e</td><td>Behavior</td><td>F15</td><td>Notice pending / failed / unknown</td><td><span class="st reused">reused</span></td><td>Appendix styling not adopted</td><td>Plans</td><td>02B</td></tr>
+            <tr><td class="vk-t-monoStamp">M11</td><td>Interaction Kernel Lab 6dd8b450 · F1–F4, D2</td><td>Behavior only</td><td>F15</td><td>Informs Notice and readback</td><td><span class="st reused">reused</span></td><td>Not canon; label kept</td><td>Plans · A4/A5</td><td>02B</td></tr>
+            <tr class="grp"><td colspan="9" class="vk-t-monoStampStrong">THE PLACE</td></tr>
+            <tr><td class="vk-t-monoStamp">M12</td><td>Entity 14 R2 · opened for Saturday</td><td>Visual · founder-protected</td><td>F10 · destination</td><td>PlaceHead, FactPair, .vdl-srcmark, SourceList, ActionGroup, LocationFooter</td><td><span class="st adapt">cleanup</span></td><td>Labels to 10px; typed → drawn; umber actions and italic quote kept (R01, R11)</td><td>Entity</td><td>02C</td></tr>
+            <tr><td class="vk-t-monoStamp">M13</td><td>Places 01.1 · The Field, populated</td><td>Visual</td><td>F01/F02/F07/F09</td><td>Kernel tokens; PlaceIdentity preview; proposed map tokens</td><td><span class="st adapt">cleanup</span></td><td>Map geometry kept (R02); street labels 8→10</td><td>Places</td><td>02C, 03B</td></tr>
+            <tr><td class="vk-t-monoStamp">M14</td><td>Places 08.8 · opened to assess</td><td>Visual</td><td>F10 · Places’ own page</td><td>—</td><td><span class="st excluded">reference</span></td><td>Not compared; R2 is the destination reference</td><td>Places + Entity</td><td>—</td></tr>
+            <tr><td class="vk-t-monoStamp">M15</td><td>Entity 05 · 1, 2, 6, 7</td><td>Behavior</td><td>F10/F15</td><td>Row opening; Notice failed / unavailable</td><td><span class="st reused">reused</span></td><td>—</td><td>Entity</td><td>02C</td></tr>
+            <tr><td class="vk-t-monoStamp">M16</td><td>Entity 06B · Read up</td><td>Behavior</td><td>F10/F20</td><td>Checking and checked states</td><td><span class="st proposed">proposed</span></td><td>Failed state missing design</td><td>Entity</td><td>02C</td></tr>
+            <tr class="grp"><td colspan="9" class="vk-t-monoStampStrong">THE TICKET</td></tr>
+            <tr><td class="vk-t-monoStamp">M17</td><td>Life 04 · object page and pass list</td><td>Visual</td><td>F17 · flight, ferry, rows</td><td>Ticket mode × density</td><td><span class="st adapt">cleanup</span></td><td>Anatomy kept (R07); labels 8→10</td><td>Life</td><td>02D</td></tr>
+            <tr><td class="vk-t-monoStamp">M18</td><td>Life 05.9 · the ferry, retrieved</td><td>Behavior</td><td>F17/F19</td><td>Ticket mode=ferry</td><td><span class="st adapt">cleanup</span></td><td>Missing styles repaired</td><td>Life</td><td>02D</td></tr>
+            <tr><td class="vk-t-monoStamp">M19</td><td>Home 09 · admission pass</td><td>Visual</td><td>F17 · admission</td><td>Ticket mode=admission</td><td><span class="st adapt">cleanup</span></td><td>Reserved violet → ink; band and chamfer kept</td><td>Home</td><td>02D</td></tr>
+            <tr><td class="vk-t-monoStamp">M20</td><td>Life 04 · Photographs, Select</td><td>Behavior specimen</td><td>F18</td><td>Selection state</td><td><span class="st proposed">proposed</span></td><td>Confirm step missing design (L2)</td><td>Life</td><td>02D</td></tr>
+            <tr class="grp"><td colspan="9" class="vk-t-monoStampStrong">FULL SCROLLS AND COUNTERCHECKS</td></tr>
+            <tr><td class="vk-t-monoStamp">M21</td><td>Home 02 · whole scroll</td><td>Visual</td><td>F01/F02/F03/F05</td><td>Kernel tokens and roles; proposed roles for gaps</td><td><span class="st adapt">cleanup</span></td><td>Mast 600→700 (ruling) only (R04, R10)</td><td>Home</td><td>03A</td></tr>
+            <tr><td class="vk-t-monoStamp">M22</td><td>Life 01 · Time, lenses</td><td>Countercheck</td><td>F16/F08</td><td>Archive stamp; rows; Ticket chips</td><td><span class="st reused">reused</span></td><td>Lenses kept as Life selected (R09)</td><td>Life</td><td>03C</td></tr>
+            <tr><td class="vk-t-monoStamp">M23</td><td>Life 03 · a journey, opened</td><td>Countercheck</td><td>F16</td><td>Archive stamp; rows; Ticket chips</td><td><span class="st reused">reused</span></td><td>Header kept; not excluded for resemblance (R09)</td><td>Life</td><td>03C</td></tr>
+            <tr><td class="vk-t-monoStamp">M24</td><td>Plans 03B · B1 and B2</td><td>Countercheck</td><td>F14/F08</td><td>Rows with time gutter; date rail</td><td><span class="st adapt">cleanup</span></td><td>“Details →” drawn arrow</td><td>Plans</td><td>03C</td></tr>
+          </table>
+        </div>
+
+        <div class="vdl-rule"></div>
+        <div class="two">
+          <div>
+            <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80)">RETIRED-SHAPE SCREEN · REVISED UNDER R09</div>
+            <p class="vk-t-bodySm" style="margin:8px 0 0">Screened for the 13 retired implementations. No donor frame uses one by name (0 hits in 108 boards). Retirement applies to old implementations, not to visual resemblance: Life 03’s header and Life’s lens and facet selectors are selected compositions and stay, built later from supported native components. Only specific conflicting behavior or geometry, shown with evidence, would be removed.</p>
+            <table class="vdl-table" style="margin-top:8px">
+              <tr><th class="vk-t-capsMicro">Candidate</th><th class="vk-t-capsMicro">Where</th><th class="vk-t-capsMicro">Disposition</th></tr>
+              <tr><td class="vk-t-bodySmMedium">Resembles EditorialMasthead</td><td class="vk-t-bodySm">Life 03</td><td class="vk-t-bodySm">Kept; no conflicting behavior found</td></tr>
+              <tr><td class="vk-t-bodySmMedium">Resembles NavPills</td><td class="vk-t-bodySm">Life 01 lenses, Life 05 facets</td><td class="vk-t-bodySm">Kept; shared construction later, different jobs (§17.4 item 5)</td></tr>
+              <tr><td class="vk-t-bodySmMedium">StatusPill / SheetField</td><td class="vk-t-bodySm">Historical “Vesper” project only</td><td class="vk-t-bodySm">Not selected</td></tr>
+            </table>
+          </div>
+          <div>
+            <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80)">OBVIOUS-CLEANUP SCREEN</div>
+            <table class="vdl-table" style="margin-top:8px">
+              <tr><th class="vk-t-capsMicro">Rule</th><th class="vk-t-capsMicro">Found</th><th class="vk-t-capsMicro">Applied</th></tr>
+              <tr><td class="vk-t-bodySmMedium">10px floor</td><td class="vk-t-bodySm">Home 09, Life 04/05, Entity 14, Places map</td><td class="vk-t-bodySm">Raised in place, one-line labels kept on one line</td></tr>
+              <tr><td class="vk-t-bodySmMedium">Arrow drawn once, consistently</td><td class="vk-t-bodySm">Typed “→” in Entity 14, Plans B1, Life 03</td><td class="vk-t-bodySm">Drawn arrow, same size and color</td></tr>
+              <tr><td class="vk-t-bodySmMedium">Reserved hue</td><td class="vk-t-bodySm">Home 09 violet</td><td class="vk-t-bodySm">Re-pointed to ink</td></tr>
+              <tr><td class="vk-t-bodySmMedium">Complete dependencies</td><td class="vk-t-bodySm">Life 05.9 ticket styles</td><td class="vk-t-bodySm">Inside Ticket</td></tr>
+              <tr><td class="vk-t-bodySmMedium">Accepted ruling</td><td class="vk-t-bodySm">Masts at 600</td><td class="vk-t-bodySm">serifMast 700 (2026-08-30)</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="vdl-rule"></div>
+        <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80)">TWO PROJECTS CLASSIFIED · §15.2</div>
+        <div class="vdl-scroll" style="margin-top:8px">
+          <table class="vdl-table" style="max-width:1280px">
+            <tr><th class="vk-t-capsMicro">Project</th><th class="vk-t-capsMicro">Classification</th><th class="vk-t-capsMicro">Use</th></tr>
+            <tr><td class="vk-t-bodySmMedium">Vesper — Interaction Kernel Lab (6dd8b450)</td><td class="vk-t-bodySm">Behavior donor · not canon</td><td class="vk-t-bodySm">F1–F4 and D2 inform A3–A5 and S5 alongside Plans 90. No visual selection.</td></tr>
+            <tr><td class="vk-t-bodySmMedium">Vesper (551f400f, July living canon)</td><td class="vk-t-bodySm">Historical · seed only</td><td class="vk-t-bodySm">Prototype components may seed the kernel bundle; its Home rules are not authority.</td></tr>
+          </table>
+        </div>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{}'>
+      class Component extends DCLogic { renderVals() { return {}; } }
+    </script>
+  </body>
+</html>

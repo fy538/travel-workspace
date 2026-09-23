@@ -11,6 +11,12 @@ supersedes: []
 
 # Home — recognizable things that return useful value
 
+> **Current routing — September 9 six-project review:** use the [Home review's leading current assignment](vesper-home-design-review-2026-09-08.md).
+> This document preserves the artifact-led exploration, selected-form rationale
+> and earlier closure history; it is not a second active queue. The new assignment
+> preserves resolved work and specifies only the current bounded deltas. Do not
+> restart the old portfolio or resume Integration from a historical follow-up.
+
 ## 1. Assignment and status
 
 Work in the existing Claude Design project **Vesper — Home**, `42876b8c`.
@@ -19,7 +25,7 @@ the live project; `03538beb` is retired. Improve the design artifact only. Do
 not implement the mobile app, change backend contracts, or redesign adjacent
 roots.
 
-**Current queue — September 7, 19:56 export reviewed in Home:** preserve the
+**Historical queue — September 7, 19:56 export reviewed in Home:** preserve the
 selected compositions. That task's later rendered review closed §17's return
 screen, fixture consistency and thin-context labeling requests: Maya's original
 leads, practical housekeeping is subordinate, and the coast comparison delivers

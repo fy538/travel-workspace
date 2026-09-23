@@ -1192,6 +1192,16 @@ proved restating was necessary):
 
 ### 11.15 The Plan in seven sentences — RULED 2026-09-05 (founder, subtraction pass)
 
+**Current amendment, September 9:** the
+[accepted prepared-continuation decision](../decisions/2026-09-09-select-design-convergence-and-prepared-continuations.md#2-amend-sentence-6-one-optional-prepared-message-door)
+adds one exception to sentence 6: an eligible recommendation may open one
+addressed, editable logistical message to people already involved; the person
+sends. Preparation is not a Plan change, and Send proposal is not Update & send.
+This covers requested help and the existing once-after-a-purpose-defeating-change
+condition, not arbitrary proactivity. The September 5 wording below remains the
+historical record; read sentence 6 with this narrow amendment. Other pending
+amendments mentioned below are not adopted by implication.
+
 **Why.** The Plans-in-Real-Life project (`cd2e1f82`) grew to ~90 frames, twenty design
 rules and twenty-two open questions, almost all about what happens when something
 changes. The founder judged the project more complicated than the product it describes

@@ -1,0 +1,48 @@
+{
+  "package": "vdl-stage1 0.3",
+  "status": "prepared for review; not published to the Production Kernel",
+  "recorded": "2026-09-10",
+  "workbench": "c13ae951-0977-4bac-90a6-c964146a9ca6",
+  "kernel": {
+    "stamp": "travel-app@e2e792913 tokens:80d0648dd300 gen:1",
+    "styles_css_copy": "_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css",
+    "styles_css_sha256": "a843ca5ba6fe7595ff05c629ed88be8f3051e073a51cda4500e18ee5910d7f6c",
+    "matches_published_kernel_styles_css": true
+  },
+  "versioning": "CSS is recorded by sha256 of its exact bytes. Components (.dc.html) are recorded by their Claude Design etag and stored size: the served render drops component styles, so a hash of it would not detect a style change.",
+  "files": [
+    { "path": "vdl.css", "kind": "styles", "etag": "1789098141934217", "bytes": 16055, "sha256": "7b6fa1d3dfccc92c59be1193cd68cdb032845a54c0316540e3ab58fe0b968515" },
+    { "path": "OriginalReader.dc.html", "kind": "component", "etag": "1789098056754095", "bytes": 11643, "variants": "density open|card|full|retrieval; state shown|withdrawn; compose; placeDetail may mark one *italic* title" },
+    { "path": "InviteCard.dc.html", "kind": "component", "etag": "1789098056754095", "bytes": 9231, "variants": "view host|guest|answered; shape pill|rounded; host lines LABEL=fact|condition with via (requested hierarchy, 2026-09-10); guest lines fact|condition stacked" },
+    { "path": "Ticket.dc.html", "kind": "component", "etag": "1789089040856299", "bytes": 17327, "variants": "mode flight|ferry|rail|admission; density full|row|chip" },
+    { "path": "PlaceHead.dc.html", "kind": "component", "etag": "1789088488771813", "bytes": 4556, "variants": "destination identity head" },
+    { "path": "FactPair.dc.html", "kind": "component", "etag": "1789088659111982", "bytes": 3025, "variants": "tone lead|plain; optional link" },
+    { "path": "SourceList.dc.html", "kind": "component", "etag": "1789088488771813", "bytes": 1775, "variants": "keyed source and person references" },
+    { "path": "ActionGroup.dc.html", "kind": "component", "etag": "1789088488771813", "bytes": 1501, "variants": "purpose action + muted actions" },
+    { "path": "LocationFooter.dc.html", "kind": "component", "etag": "1789088488771813", "bytes": 3873, "variants": "small map, address, directions, end mark" },
+    { "path": "Notice.dc.html", "kind": "component", "etag": "1789081717510486", "bytes": 2531, "variants": "tone pending|unknown|failed|applied|stale|unavailable" },
+    { "path": "PlaceIdentity.dc.html", "kind": "component", "etag": "1789083018811662", "bytes": 6313, "variants": "density preview (list rows) used; destination|sparse are extensions, not the R2 body" }
+  ],
+  "requested_changes": [
+    "InviteCard host preview: equal lines replaced by labelled facts with conditions and a footer delivery line (reviewer request, 2026-09-10; Social 03.1 original kept as the before on 02B)"
+  ],
+  "polish_fixes": [
+    "OriginalReader: the Send pill no longer wraps its label (it split into 'Send to' / 'Maya' at 98px)",
+    "OriginalReader: the media label shows in full (a descendant selector also positioned its inner text span, collapsing the label to a 12px sliver)",
+    "OriginalReader: the exhibition title in the place detail is italic again, as Social 02.4 draws it",
+    "InviteCard: host fact labels ink80 -> ink60 (measured 2.0:1 on the card; now above 4.5:1)"
+  ],
+  "judgement_pass": [
+    "InviteCard guest rows: each condition sits under its fact, as on the host card",
+    "OriginalReader full header: name 13/600 over a 12.5 audience line (the drawn 11px mono name read smaller than its date)",
+    "Ticket admission on 02D (props only): each fact in one place per Home 09's own rule; FRIDAY in the date slot as on the standard pass",
+    "Stamps that promise or ask something are ink60; timestamps and provenance stay ink80",
+    "vdl.css: .vdl-t-metaLine wraps balanced (web rendering only)"
+  ],
+  "fidelity_references": [
+    "03A Home 02 full-scroll port",
+    "03B Places 01.1 full-scroll port with three named fit corrections",
+    "ports on 02A, 02B, 02C, 02D"
+  ],
+  "not_in_package": ["vdl-port.js", "vdl-refs.js", "support.js", "refs/", "boards 00-06"]
+}

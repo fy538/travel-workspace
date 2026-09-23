@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <link rel="stylesheet" href="_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css" />
+        <link rel="stylesheet" href="vdl.css" />
+        <style>
+          /* LocationFooter — the small map, address and directions that end a destination (R2).
+             The map geometry is R2's own seeded map, re-pointed to kernel tokens. */
+          .lf{border-top:1px solid color-mix(in srgb,var(--vk-ink00) 10%,transparent);padding-top:8px}
+          .lf-g{display:grid;grid-template-columns:98px 1fr;column-gap:10px;margin-top:7px}
+          .lf-map{display:block;border-top:1px solid color-mix(in srgb,var(--vk-ink00) 12%,transparent);border-bottom:1px solid color-mix(in srgb,var(--vk-ink00) 12%,transparent);width:98px;height:98px}
+          .lf-l{color:var(--vk-ink60);letter-spacing:1px}
+          .lf-a{margin-top:3px;color:var(--vk-ink00)}
+          .lf-d{margin-top:3px;color:var(--vk-ink00)}
+          .lf-n{margin-top:3px;color:var(--vk-ink80);line-height:15px}
+          .lf-end{text-align:center;color:var(--vk-ink60);letter-spacing:1px;margin-top:8px}
+        </style>
+      </helmet>
+      <div class="lf" data-screen-label="LocationFooter">
+        <div class="lf-g">
+          <svg class="lf-map" viewBox="189.2 89.5 140 140" aria-hidden="true">
+            <rect width="353" height="261" rx="12" style="fill:color-mix(in srgb,var(--vk-color-surface-planningInk) 10%,transparent)"></rect>
+            <path d="M-88.2 79.7 L-33.1 58.0 L0.0 68.1 L22.1 76.8 L44.1 94.2 L66.2 105.9 L99.3 97.1 L132.4 108.8 L154.4 105.9 L176.5 94.2 L198.6 91.3 L220.6 101.5 L264.8 94.2 L308.9 76.8 L330.9 68.1 L364.0 62.4 L441.3 50.7 L353 261 L0 261 Z" style="fill:var(--vk-paper30);stroke:color-mix(in srgb,var(--vk-color-surface-planningInk) 18%,transparent)" stroke-width="1"></path>
+            <line x1="0" y1="149.4" x2="353" y2="149.4" style="stroke:color-mix(in srgb,var(--vk-ink00) 10%,transparent)" stroke-width="3" stroke-linecap="round"></line>
+            <circle cx="259.2" cy="159.5" r="6" style="fill:var(--vk-color-action-primary)"></circle>
+            <circle cx="259.2" cy="159.5" r="12" style="fill:none;stroke:var(--vk-color-action-primary)" stroke-width="1.2" opacity="0.5"></circle>
+          </svg>
+          <div>
+            <div class="lf-l vk-t-monoStampStrong">{{ label }}</div>
+            <div class="lf-a vdl-t-supportLine">{{ address }}</div>
+            <div class="lf-d vdl-t-supportLine">{{ directions }} →</div>
+            <div class="lf-n vdl-t-metaLine">{{ note }}</div>
+          </div>
+        </div>
+        <sc-if value="{{ hasEnd }}"><div class="lf-end vk-t-monoStampStrong">{{ end }}</div></sc-if>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{
+  "label": { "editor": "text", "default": "WHERE" },
+  "address": { "editor": "text", "default": "Via Rota 20 · Sorrento [fixture address]" },
+  "directions": { "editor": "text", "default": "Directions" },
+  "note": { "editor": "text", "default": "VESPER’S MAP · SEEDED IDENTITY · DIRECTIONS OPEN THE PROVIDER" },
+  "end": { "editor": "text", "default": "· STOP ·" }
+}'>
+      class Component extends DCLogic {
+        renderVals() {
+          const p = this.props || {};
+          return {
+            label: p.label || 'WHERE', address: p.address || 'Via Rota 20 · Sorrento [fixture address]', directions: p.directions || 'Directions',
+            note: p.note || 'VESPER’S MAP · SEEDED IDENTITY · DIRECTIONS OPEN THE PROVIDER', hasEnd: p.end !== '-', end: p.end && p.end !== '-' ? p.end : '· STOP ·'
+          };
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <meta name="design_doc_mode" content="canvas" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" />
+        <link rel="stylesheet" href="./kit/plans.before-vdl.css" />
+        <style>
+
+        
+          .mismatch { grid-column: 2 / span 2; margin-top: 10px; border-top: 1px solid var(--hair-thin); padding-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+          .mismatch .mk { font-family: var(--mono); font-size: calc(10px * var(--ts)); font-weight: 700; letter-spacing: 1px; color: var(--oxblood); text-transform: uppercase; }
+          .mismatch .mb { font-size: calc(13px * var(--ts)); line-height: calc(18px * var(--ts)); color: var(--ink-2); }
+          .jrule { position: absolute; left: 40px; height: 1px; background: rgba(27,23,20,0.16); }
+          .jlab { position: absolute; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 1.2px; color: var(--planning-deep); }
+          .else { display: grid; grid-template-columns: calc(44px * var(--ts)) minmax(0,1fr); column-gap: 9px; padding: 10px 0 12px 0; border-top: 1px solid var(--hair-thin); align-items: start; }
+          .else .t { font-family: var(--mono); font-size: calc(10.5px * var(--ts)); font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; color: var(--mute); text-align: right; padding-top: 3px; }
+          .else .c { font-size: calc(13px * var(--ts)); line-height: calc(18px * var(--ts)); color: var(--mute); }
+          .x { min-height: 6040px; }
+
+        </style>
+      </helmet>
+
+      <div class="board-h" style="width: 1400px;">
+        <div class="warn">BEFORE SHARED PACKAGE · FROZEN ORIGINAL KEPT AS THE BEFORE REFERENCE, 2026-09-11 · THE CURRENT BOARD IS “90 Appendix” · ENGINEERING APPENDIX · NOT THE CUSTOMER-FACING DESIGN · THESE FRAMES SHOW HOW THE SYSTEM KEEPS THE SEVEN SENTENCES · ALL FIXTURES SYNTHETIC · NOTHING NATIVE OR PRODUCTION</div>
+        <div class="id">90 · APPENDIX · CHANGE STATES AND RECOVERY · PENDING · FAILED · UNKNOWN · DRAFTS · PROVIDER RETURN · EVIDENCE · STALE ALTERNATIVE · A GRANTED EDIT · FRICTION LOG · MOVED 2026-09-05</div>
+        <h1>What the system must get right so that the page can stay simple.</h1>
+        <div class="lede">Moved here in the 2026-09-05 subtraction (kernel §11.15). Sentence 7 says a failure is stated once and the words are kept; sentence 3 says a grant is “yours, for the afternoon”; sentence 4 says evidence lands on its row. These frames are the engineering behind those sentences: the exact states (pending, failed, unknown, cancelled, draft), the return from a provider page, forwarded evidence changing a fact and not consent, a stale alternative explained, an authorized editor’s words applying with attribution, and the journey-friction log. Board 92 exercises the states in a scripted prototype. None of this is customer-facing copy; the copy on these frames predates the subtraction and is kept as evidence.</div>
+      </div>
+
+<div class="frame" style="left: 40px; top: 340px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">C6</span><span class="tag pp">APPENDIX</span> MAYA MAKES AN ORDINARY ALLOWED EDIT <span class="s">Maya’s view · no second owner approval</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="C6 Maya edits">
+            <div class="sb"><span>9:41</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av a">NO</div><div class="av b">SA</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Saturday · Sep 19 · Nora’s plan</div>
+              <div class="titleRow"><div class="dayTitle">An afternoon out, then dinner</div></div>
+              <div class="thesis">You can shape the afternoon. Dinner is Nora’s to change.</div>
+              <div class="gap-l"></div>
+              <div class="chap" style="padding-top:0;"><div class="cl">Afternoon · you can edit</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time">3:00</div><div><div class="ttl">Willow &amp; Page</div><div class="sup">Court St · open till 7 · <span class="who">added by you</span></div></div><div class="more">···</div></div>
+                <div class="conn"><div class="t">10 min</div><div class="c">walk down to the water</div></div>
+                <div class="row"><div class="time loose">~4:30</div><div><div class="ttl">A walk to the river</div><div class="sup">Brooklyn Bridge Park · <span class="who">you and Nora</span></div></div><div class="more">···</div></div>
+              </div>
+              <div class="chap"><div class="cl">Evening</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact">7:00</div><div><div class="ttl">Dinner at the Georgian room</div><div class="sup">Court St · <span class="who">Nora, you, Sam</span> · fixed — ask Nora to change it</div></div><div class="more q">···</div></div>
+              </div>
+              <div class="gap-l"></div>
+              <div class="receipt">Added — Nora will see it. No approval needed.</div>
+              <div class="gap"></div>
+              <div class="chips"><div class="chip quiet">Undo</div></div>
+              <div class="pillwrap"><div class="pill">Ask Vesper<span class="mic">MIC</span></div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">A SCOPED COLLABORATOR’S PAGE</div>
+          <p>Same document, Maya’s viewpoint. The kicker says whose plan it is; the chapter label says what she can touch; the dinner row says, in words, that it’s fixed and whose it is (its “···” is muted, not hidden). Her addition lands as an ordinary row with “added by you” — <b>quiet attribution, no approval loop</b>.</p>
+          <p>Her private context (none here) would never enter Nora’s view; Nora’s private sources never enter hers.</p>
+          <div class="fx">S2 · “Maya adds bookstore to afternoon → permitted material edit, quiet attribution”</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 500px; top: 340px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">D2</span><span class="tag pp">APPENDIX</span> MAYA ASKS FOR EIGHT <span class="s">owner · a change to a relied-upon time</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="D2 Maya asks">
+            <div class="sb"><span>4:12</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av c">MA</div><div class="av b">SA</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Saturday · today</div>
+              <div class="titleRow"><div class="dayTitle">An afternoon out, then dinner</div></div>
+              <div class="thesis">Bookstore at three, the river after, dinner at seven with Maya and Sam.</div>
+              <div class="gap-l"></div>
+              <div class="chap" style="padding-top:0;"><div class="cl">Evening</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact">7:00</div><div><div class="ttl">Dinner at the Georgian room</div><div class="sup">Court St · <span class="who">you, Maya, Sam</span> · <span class="src">reserved 7:00 · 3</span></div>
+                  <div class="attach" style="grid-column:auto;">
+                    <div class="ct"><span class="by">Maya · asks</span>“Could we do 8? The bookstore reading runs late.”</div>
+                  </div>
+                  <div class="qp" style="margin-top:10px;">
+                    <div class="k">Changing seven o’clock</div>
+                    <div class="b">This is a time everyone agreed to. <b>Sam is already on his way for 7.</b> The table is booked for 7:00. Maya can’t change dinner herself — it comes to you.</div>
+                    <div class="chips" style="margin-top:4px;"><div class="chip">See what 8:00 would mean</div><div class="chip quiet">Keep 7:00</div></div>
+                  </div>
+                </div><div class="more">···</div></div>
+              </div>
+              <div class="pillwrap"><div class="pill">Ask Vesper<span class="mic">MIC</span></div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">SCOPE HELD · CONSEQUENCE NAMED</div>
+          <p>Maya’s ask arrives as her words under the dinner row — she opened the sheet’s shared door on purpose (“Say something to Nora”), so it is a comment, attributed, and it changed nothing until the owner acts. Had she asked Vesper privately, the entry would have been the same and she could have chosen to send it afterwards (08 · P9a). The Quiet Paper card below states why this one is different: an agreed time, a traveler already relying on it, a provider fact. No red yet; nothing has gone wrong.</p>
+          <p>Her afternoon grant does not extend to dinner; the card says so in a sentence rather than an error.</p>
+          <div class="fx">S4 · “Maya asks to move dinner → prepare outside her editing scope”</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 960px; top: 340px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">D5</span><span class="tag pp">APPENDIX</span> BACK FROM THE RESTAURANT’S PAGE <span class="s">return sets nothing</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="D5 Return from link">
+            <div class="sb"><span>4:21</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av c">MA</div><div class="av b">SA</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Saturday · today</div>
+              <div class="titleRow"><div class="dayTitle">An afternoon out, then dinner</div></div>
+              <div class="thesis">Bookstore at three, the café if it rains, dinner at eight with Maya and Sam.</div>
+              <div class="gap-l"></div>
+              <div class="receipt ink">Back from the Georgian room’s page</div>
+              <div class="rbody">Nothing here changed. If they confirm 8:00, forward the email and this will update.</div>
+              <div class="gap"></div>
+              <div class="chips"><div class="chip">Forward a confirmation</div><div class="chip quiet">Later</div></div>
+              <div class="gap-l"></div>
+              <div class="chap" style="padding-top:0;"><div class="cl">Evening</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact">8:00</div><div><div class="ttl">Dinner at the Georgian room</div><div class="sup">Court St · <span class="who">you, Maya · Sam hasn’t answered yet</span></div>
+                  <div class="mismatch">
+                    <div class="mk">The table is still booked for 7:00</div>
+                    <div class="mb">Reservation GR-2291, three, 7:00 — from your confirmation.</div>
+                  </div>
+                </div><div class="more">···</div></div>
+              </div>
+              <div class="pillwrap"><div class="pill">Ask Vesper<span class="mic">MIC</span></div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">EXTERNAL HANDOFF · HONEST RETURN</div>
+          <p>Returning from the provider link produces an ink receipt that states the non-event and nothing about Vesper (Editorial Canon §13.3). The mismatch stays. The one forward path — forwarding evidence — is offered once, as a secondary chip, not a wizard.</p>
+          <div class="fx">F3 lineage · opening a link ≠ booking · return ≠ confirmation · “isn’t watching”</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 1420px; top: 340px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">D6</span><span class="tag pp">APPENDIX</span> FORWARDED CONFIRMATION · SAM ANSWERS <span class="s">evidence changes the fact, not consent</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="D6 Forwarded confirmation">
+            <div class="sb"><span>4:48</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av c">MA</div><div class="av b">SA</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Saturday · today</div>
+              <div class="titleRow"><div class="dayTitle">An afternoon out, then dinner</div></div>
+              <div class="thesis">Bookstore at three, the café if it rains, dinner at eight with Maya and Sam.</div>
+              <div class="gap-l"></div>
+              <div class="receipt">Reservation now 8:00 · from your forwarded email · GR-2291 · 3</div>
+              <div class="rbody">The table and the plan agree again. Only the reservation fact changed; nobody’s answer did.</div>
+              <div class="gap"></div>
+              <div class="chips"><div class="chip quiet">Undo the record</div><div class="chip quiet">See the email</div></div>
+              <div class="gap-l"></div>
+              <div class="chap" style="padding-top:0;"><div class="cl">Evening</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact">8:00</div><div><div class="ttl">Dinner at the Georgian room</div><div class="sup">Court St · <span class="who">you, Maya, Sam</span> · <span class="src">reserved 8:00 · 3 · from your confirmation</span></div>
+                  <div class="attach" style="grid-column:auto;">
+                    <div class="ct"><span class="by">Sam · 4:40</span>“Fine — I’ll walk around for a bit.”</div>
+                  </div>
+                </div><div class="more">···</div></div>
+              </div>
+              <div class="pillwrap"><div class="pill">Ask Vesper<span class="mic">MIC</span></div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">TWO INDEPENDENT RESOLUTIONS</div>
+          <p>The forwarded email updates <b>the reservation fact</b> (gold receipt, undoable record, evidence inspectable). Sam’s reply updates <b>his participation</b> — his words, attached under the row, his time-stamp. The people line returns to three names. Neither event pretended to be the other.</p>
+          <p>The recognizer that “reads” the email is scripted in this exploration; production would attest supplied evidence, never provider status.</p>
+          <div class="fx">PCA-2 attestation without a Trip (proposed) · C&amp;C §3.9 forwarding = Bring/T1</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 1880px; top: 340px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">D7</span><span class="tag pp">APPENDIX</span> RETURNING TO A STALE ALTERNATIVE <span class="s">intent preserved · the localized conflict explained</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="D7 Stale alternative">
+            <div class="sb"><span>4:52</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av c">MA</div><div class="av b">SA</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Saturday · today</div>
+              <div class="titleRow"><div class="dayTitle">An afternoon out, then dinner</div></div>
+              <div class="gap-l"></div>
+              <div class="chap" style="padding-top:0;"><div class="cl">Afternoon · with Maya</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time">3:00</div><div><div class="ttl done">Willow &amp; Page</div><div class="sup">Court St · you were here</div></div><div class="more">···</div></div>
+                <div class="row now"><div class="time loose">~4:30</div><div><div class="ttl">A walk to the river</div><div class="sup">Brooklyn Bridge Park · <span class="who">you and Maya</span> · raining now</div>
+                  <div class="qp pv" style="margin-top:10px;">
+                    <div class="k">Made when dinner was at 7 · dinner is now 8</div>
+                    <div class="t">The café at Willow &amp; Page instead of the walk</div>
+                    <div class="b">Still works: the café is open till 7. With dinner at 8 there’s now a gap from 7 to 8 — the shop next door is open late, or it’s a slow walk to Court St. Nothing about dinner changes if you take this.</div>
+                    <div class="chips" style="margin-top:4px;"><div class="chip">Use this</div><div class="chip quiet">Keep the walk</div></div>
+                  </div>
+                </div><div class="more">···</div></div>
+              </div>
+              <div class="chap"><div class="cl">Evening</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact">8:00</div><div><div class="ttl">Dinner at the Georgian room</div><div class="sup">Court St · <span class="who">you, Maya, Sam</span> · <span class="src">reserved 8:00 · 3</span></div></div><div class="more">···</div></div>
+              </div>
+              <div class="pillwrap"><div class="pill">Ask Vesper<span class="mic">MIC</span></div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">STALE PREVIEW · REVALIDATED, NOT DISCARDED</div>
+          <p>The rain alternative from D1 was never used. Coming back to it after dinner moved, the preview keeps the person’s intent (the café) and explains only what the newer agreement changed (a 7–8 gap). It does not overwrite the 8:00 agreement, and it does not silently recompute into something they didn’t ask for.</p>
+          <p>The bookstore row is now muted “you were here” — completion as observed fact in mute, never a prompt to log.</p>
+          <div class="fx">S4 · “old preview later adopted → revalidate target/dependency; no overwrite of the newer agreement”</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 40px; top: 1640px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">J1b</span><span class="tag pp">APPENDIX</span> SUNDAY 21:10 · THE SAME PLAN, A BROWSING VISIT <span class="s">no elevated line, nothing to do</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="J1b Sunday evening">
+            <div class="sb"><span>21:10</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av a">BE</div><div class="av b">YO</div></div></div><div class="capsule"><div class="slot">MAP</div><div class="slot">···</div></div></div>
+              <div class="kick">Kyoto · Day 6 of 8 · tomorrow</div>
+              <div class="titleRow"><div class="dayTitle">Monday, June 22</div><div class="door">Details →</div></div>
+              <div class="thesis">Nara in the morning, then a slow afternoon before the one dinner that is booked.</div>
+              <div class="rail">
+                <div class="dc"><div class="dw">FRI</div><div class="dn">19</div><div class="dot"></div></div>
+                <div class="dc"><div class="dw">SAT</div><div class="dn">20</div><div class="dot e"></div></div>
+                <div class="dc"><div class="dw">SUN</div><div class="dn">21</div><div class="dot"></div></div>
+                <div class="dc on"><div class="dw">MON</div><div class="dn">22</div><div class="dot"></div></div>
+                <div class="dc"><div class="dw">TUE</div><div class="dn">23</div><div class="dot"></div></div>
+                <div class="dc"><div class="dw">WED</div><div class="dn">24</div><div class="dot"></div></div>
+              </div>
+              <div class="dayrule"><div class="dl">Day 6 · Mon, Jun 22</div><div class="ln"></div></div>
+              <div class="chap"><div class="cl">Morning</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact">09:02</div><div><div class="ttl">Limited Express to Nara</div><div class="sup">Kintetsu from Kyoto · platform 8 · <span class="src">seats reserved</span> · 35 min</div></div><div class="more">···</div></div>
+                <div class="row"><div class="time">10:15</div><div><div class="ttl">Tōdai-ji</div><div class="sup">The Great Buddha hall · the deer park on the way</div></div><div class="more">···</div></div>
+              </div>
+              <div class="chap"><div class="cl">Afternoon</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time loose word">after</div><div><div class="ttl opt">Back to Kyoto whenever Nara is done</div><div class="sup">Trains every 20–30 min · no need to pick one</div></div><div class="more">···</div></div>
+                <div class="row"><div class="time loose word">option</div><div><div class="ttl opt">Hōnen-in, if there’s time before dinner</div><div class="sup">Option · moss gate, usually quiet</div></div><div class="more">···</div></div>
+              </div>
+              <div class="chap"><div class="cl">Evening</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact">19:00</div><div><div class="ttl">Kaiseki counter — Gion</div><div class="sup"><span class="src">Reserved · 2 seats · from your confirmation</span> · they ask for 10 minutes early</div></div><div class="more">···</div></div>
+              </div>
+              <div class="pillwrap"><div class="pill">Ask Vesper<span class="mic">MIC</span></div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">TWO VISITS, ONE STABLE DOCUMENT</div>
+          <p>The evening browse is the resting itinerary exactly as on 03 — rail, chapters, rows. The only difference from J1a is the absence of the elevated line, because nothing is imminent. Anticipation is allowed to be the whole point of the visit.</p>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 500px; top: 1640px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">J1c</span><span class="tag pp">APPENDIX</span> OPEN TŌDAI-JI · INFORMATION AS EXPERIENCE <span class="s">a short visit · effort · what to leave out</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="J1c Inspect for experience">
+            <div class="sb"><span>21:11</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av a">BE</div><div class="av b">YO</div></div></div><div class="capsule"><div class="slot">MAP</div><div class="slot">···</div></div></div>
+              <div class="kick">Kyoto · Day 6 of 8 · tomorrow</div>
+              <div class="titleRow"><div class="dayTitle">Monday, June 22</div><div class="door">Details →</div></div>
+              <div class="dayrule"><div class="dl">Day 6 · Mon, Jun 22</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact">09:02</div><div><div class="ttl">Limited Express to Nara</div></div><div class="more">···</div></div>
+                <div class="row rowsel"><div class="time">10:15</div><div><div class="ttl">Tōdai-ji</div></div><div class="more">···</div></div>
+              </div>
+            </div>
+            <div class="scrim"></div>
+            <div class="sheet">
+              <div class="hd"></div>
+              <div class="close" aria-label="Close">✕</div>
+              <div class="priv"><span class="p">Private · only you and Vesper</span><span>Monday · 10:15</span></div>
+              <div class="tgt">Tōdai-ji</div>
+              <div class="recog">Go for the hall and the Buddha — ten minutes inside is enough to feel the scale. Arrive before eleven and it is quiet; after, it is a school-trip crush. <span class="fixlabel">FIXTURE FACTS</span></div>
+              <div class="fact"><div class="fk">effort</div><div>20 min flat walk from Kintetsu-Nara through the deer park · no stairs inside · shade is scarce, bring water</div></div>
+              <div class="fact"><div class="fk">skip</div><div>The museum annex and the far sub-temples — an hour you won’t miss if the afternoon is meant to be slow</div></div>
+              <div class="fact"><div class="fk">with</div><div>Ben · you both have this</div></div>
+              <div class="field"><span class="txt">Ask about this, or change it…</span><span class="mic">MIC</span><span class="go">↑</span></div>
+              <div class="doors"><span class="door2 sh" style="color:var(--planning-deep);">Say something to Ben →</span><span class="door2 q">More room in Chat →</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="ann">
+          <div class="k">UNDERSTANDING, NOT HOMEWORK</div>
+          <p>The sheet selects what a short visit needs: what is worthwhile, what it costs in effort, what can be left out. Not every field every time — these three because the fixture supports them and the afternoon is meant to be slow. There is no Keep, no review, no planning action asked. The visible ✕ and the platform Back both close it; swipe-down as well.</p>
+          <div class="fx">§0.3 · 2 · the Rome-in-the-heat stress: “skip” is a first-class line</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 960px; top: 1640px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">J1d</span><span class="tag pp">APPENDIX</span> CLOSE · NOTHING CHANGED, NOTHING ASKED <span class="s">the plan as it was</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="J1d Closed">
+            <div class="sb"><span>21:12</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av a">BE</div><div class="av b">YO</div></div></div><div class="capsule"><div class="slot">MAP</div><div class="slot">···</div></div></div>
+              <div class="kick">Kyoto · Day 6 of 8 · tomorrow</div>
+              <div class="titleRow"><div class="dayTitle">Monday, June 22</div><div class="door">Details →</div></div>
+              <div class="thesis">Nara in the morning, then a slow afternoon before the one dinner that is booked.</div>
+              <div class="dayrule"><div class="dl">Day 6 · Mon, Jun 22</div><div class="ln"></div></div>
+              <div class="chap"><div class="cl">Morning</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact">09:02</div><div><div class="ttl">Limited Express to Nara</div><div class="sup">Kintetsu from Kyoto · platform 8 · <span class="src">seats reserved</span> · 35 min</div></div><div class="more">···</div></div>
+                <div class="row"><div class="time">10:15</div><div><div class="ttl">Tōdai-ji</div><div class="sup">The Great Buddha hall · the deer park on the way</div></div><div class="more">···</div></div>
+              </div>
+              <div class="chap"><div class="cl">Afternoon</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time loose word">after</div><div><div class="ttl opt">Back to Kyoto whenever Nara is done</div><div class="sup">Trains every 20–30 min · no need to pick one</div></div><div class="more">···</div></div>
+                <div class="row"><div class="time loose word">option</div><div><div class="ttl opt">Hōnen-in, if there’s time before dinner</div><div class="sup">Option · moss gate, usually quiet</div></div><div class="more">···</div></div>
+              </div>
+              <div class="chap"><div class="cl">Evening</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact">19:00</div><div><div class="ttl">Kaiseki counter — Gion</div><div class="sup"><span class="src">Reserved · 2 seats</span></div></div><div class="more">···</div></div>
+              </div>
+              <div class="pillwrap"><div class="pill">Ask Vesper<span class="mic">MIC</span></div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">A GLANCE IS A COMPLETE JOURNEY</div>
+          <p>Closing a read-only sheet leaves no trace: no receipt, no “viewed”, no draft, no elevated line. The row is unselected; the page is J1b again. The person learned something and did nothing — that is success, not abandonment.</p>
+          <div class="fx">RESUME RULE · closing a read-only answer keeps nothing (J2g table)</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 1420px; top: 1640px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">J2c</span><span class="tag pp">APPENDIX</span> CHANGE · SLOW SAVE <span class="s">request and target stay visible · duplicate submit prevented · plan unchanged</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="J2c Pending">
+            <div class="sb"><span>21:14</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av a">BE</div><div class="av b">YO</div></div></div><div class="capsule"><div class="slot">MAP</div><div class="slot">···</div></div></div>
+              <div class="kick">Kyoto · Day 6 of 8 · tomorrow</div>
+              <div class="titleRow"><div class="dayTitle">Monday, June 22</div><div class="door">Details →</div></div>
+              <div class="dayrule"><div class="dl">Day 6 · Mon, Jun 22</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact">09:02</div><div><div class="ttl">Limited Express to Nara</div></div><div class="more">···</div></div>
+                <div class="row rowsel"><div class="time">10:15</div><div><div class="ttl">Tōdai-ji</div></div><div class="more">···</div></div>
+              </div>
+            </div>
+            <div class="scrim"></div>
+            <div class="sheet">
+              <div class="hd"></div>
+              <div class="close" aria-label="Close">✕</div>
+              <div class="priv"><span class="p">Private · only you and Vesper</span><span>Tōdai-ji</span></div>
+              <div class="kept">“Then add Isuien after, around noon”</div>
+              <div class="pending"><span class="dot3">···</span> Adding Isuien to Monday, around noon</div>
+              <div class="quiet" style="padding:0;">Not on the plan yet. You can close this and come back; it finishes on its own.</div>
+              <div class="chips"><div class="chip dis">Send</div><div class="chip quiet">Cancel</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="ann">
+          <div class="k">LATENCY IS A STATE, NOT A GUESS</div>
+          <p>The request is read back in the person’s own words while it runs; the target row stays selected; the plan shows no optimistic row. Send is disabled so a second tap cannot double-add; Cancel withdraws only while the request has not yet been committed (the stage this simulation supports). Closing the sheet does not cancel — the person can leave, do anything else, and come back to the same in-flight request (J2e); the outcome is reconciled on return. Duplicate prevention applies to this mutation only, never to navigation.</p>
+          <div class="fx">§0.3 · 5 · “do not present a proposed edit as accepted owner state”</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 1880px; top: 1640px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">J2d</span><span class="tag pp">APPENDIX</span> FAILED SAVE · OUTCOME KNOWN <span class="s">nothing changed · words kept · retry is honest</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="J2d Failed">
+            <div class="sb"><span>21:15</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av a">BE</div><div class="av b">YO</div></div></div><div class="capsule"><div class="slot">MAP</div><div class="slot">···</div></div></div>
+              <div class="kick">Kyoto · Day 6 of 8 · tomorrow</div>
+              <div class="titleRow"><div class="dayTitle">Monday, June 22</div><div class="door">Details →</div></div>
+              <div class="dayrule"><div class="dl">Day 6 · Mon, Jun 22</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact">09:02</div><div><div class="ttl">Limited Express to Nara</div></div><div class="more">···</div></div>
+                <div class="row rowsel"><div class="time">10:15</div><div><div class="ttl">Tōdai-ji</div></div><div class="more">···</div></div>
+              </div>
+            </div>
+            <div class="scrim"></div>
+            <div class="sheet">
+              <div class="hd"></div>
+              <div class="close" aria-label="Close">✕</div>
+              <div class="priv"><span class="p">Private · only you and Vesper</span><span>Tōdai-ji</span></div>
+              <div class="kept">“Then add Isuien after, around noon”</div>
+              <div class="ans" style="color:var(--oxblood);">That didn’t save — the connection dropped. <span style="color:var(--ink);">Nothing on Monday changed.</span></div>
+              <div class="chips"><div class="chip pri">Try again</div><div class="chip quiet">Not now</div></div>
+              <div class="quiet" style="padding:0;">Your words are kept here if you come back later.</div>
+            </div>
+          </div>
+        </div>
+        <div class="ann">
+          <div class="k">A KNOWN FAILURE OFFERS A CLEAN RETRY</div>
+          <p>The outcome is certain (rejected before commit), so “Try again” is safe and says so. The request text is preserved; the plan is untouched; the one oxblood sentence is the failure, and the ink sentence is the reassurance. “Not now” leaves the draft under the resume rules (J2g).</p>
+          <div class="fx">§0.3 · 5 · failed execution</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 40px; top: 2940px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">J2e</span><span class="tag pp">APPENDIX</span> UNKNOWN OUTCOME · RECONCILE BEFORE RETRY <span class="s">interrupted mid-save · reopened after backgrounding</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="J2e Unknown outcome">
+            <div class="sb"><span>21:19</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av a">BE</div><div class="av b">YO</div></div></div><div class="capsule"><div class="slot">MAP</div><div class="slot">···</div></div></div>
+              <div class="kick">Kyoto · Day 6 of 8 · tomorrow</div>
+              <div class="titleRow"><div class="dayTitle">Monday, June 22</div><div class="door">Details →</div></div>
+              <div class="dayrule"><div class="dl">Day 6 · Mon, Jun 22</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact">09:02</div><div><div class="ttl">Limited Express to Nara</div></div><div class="more">···</div></div>
+                <div class="row rowsel"><div class="time">10:15</div><div><div class="ttl">Tōdai-ji</div></div><div class="more">···</div></div>
+              </div>
+            </div>
+            <div class="scrim"></div>
+            <div class="sheet">
+              <div class="hd"></div>
+              <div class="close" aria-label="Close">✕</div>
+              <div class="priv"><span class="p">Private · only you and Vesper</span><span>Tōdai-ji · 4 min ago</span></div>
+              <div class="kept">“Then add Isuien after, around noon”</div>
+              <div class="pending"><span class="dot3">···</span> Checking whether Isuien was added</div>
+              <div class="quiet" style="padding:0;">Your request is still here.</div>
+              <div class="chips"><div class="chip dis">Try again</div><div class="chip quiet">Not now</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="ann">
+          <div class="k">UNKNOWN IS NOT “NOTHING HAPPENED”</div>
+          <p>The app was backgrounded mid-save. On reopening, the sheet recovers the target and the authored request and states the uncertainty in one plain line — and it does <b>not</b> promise that nothing changed, because that is not known yet (§0.5 C). “Nothing changed” is reserved for a confirmed non-application (J2d). <b>Specification, not copy:</b> retry stays held until the original request is reconciled — if it committed, the person sees J2f; if not, J2d — so Isuien can never be added twice, and a second thing the person typed meanwhile is kept, not cleared.</p>
+          <div class="fx">§0.3 · 5 · interrupted execution · repeated submit · §0.5 C: pending / failed / awaiting reconciliation are three states, not three reassurances</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 500px; top: 2940px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">J2g</span><span class="tag pp">APPENDIX</span> RESUME · A CLEAN PLAN THAT ISN’T AMNESIAC <span class="s">back from Maps · an unsent draft recovered</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="J2g Resume with draft">
+            <div class="sb"><span>21:31</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av a">BE</div><div class="av b">YO</div></div></div><div class="capsule"><div class="slot">MAP</div><div class="slot">···</div></div></div>
+              <div class="kick">Kyoto · Day 6 of 8 · tomorrow</div>
+              <div class="titleRow"><div class="dayTitle">Monday, June 22</div><div class="door">Details →</div></div>
+              <div class="dayrule"><div class="dl">Day 6 · Mon, Jun 22</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact">09:02</div><div><div class="ttl">Limited Express to Nara</div></div><div class="more">···</div></div>
+                <div class="row rowsel"><div class="time">11:00</div><div><div class="ttl">Tōdai-ji</div></div><div class="more">···</div></div>
+              </div>
+            </div>
+            <div class="scrim"></div>
+            <div class="sheet">
+              <div class="hd"></div>
+              <div class="close" aria-label="Close">✕</div>
+              <div class="priv"><span class="p">Private · only you and Vesper</span><span>Tōdai-ji</span></div>
+              <div class="ctx">Draft from 12 minutes ago</div>
+              <div class="field filled"><span class="txt">ask Ben if he minds starting at 10 instead of|</span><span class="mic">MIC</span><span class="go">↑</span></div>
+              <div class="doors"><span class="door2 q">Discard draft</span><span class="door2 q">More room in Chat →</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="ann">
+          <div class="k">WHAT SURVIVES CLOSING, AND WHAT SHOULD NOT</div>
+          <p>The customer sees three things: “Draft from 12 minutes ago”, the actual unfinished words in the field, and Discard. <b>Specification, not copy:</b> a read-only answer closed → nothing kept (J1d); an unsent draft → recovered with its target on reopening, discardable; an unadopted alternative dismissed → gone, asking again regenerates it; an accepted change, then leaving → stays accepted, closing a sheet never undoes (J2f). The same rules apply on return from Maps, a provider page (05 D5), and backgrounding (J2e).</p>
+          <p><b>Proposal, not policy:</b> where a draft lives and how long it lasts (on-device, per plan, about a day) is a design proposal to reconcile with the lifecycle contract and Chat ownership (07 · Q14). It is not an unlimited-retention promise, and no durable artifact or personal claim is created to make resume work.</p>
+          <div class="fx">§0.3 · 6 · §0.4 · B · platform Back closes the sheet, never undoes</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 960px; top: 2940px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">J3c</span><span class="tag pp">APPENDIX</span> DANA · THE OUTCOME, WITHOUT A STATUS DASHBOARD <span class="s">adopted · or left, quietly</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="J3c Sender outcome">
+            <div class="sb"><span>5:05</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av a">NO</div><div class="av c">MA</div><div class="av b">SA</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Saturday · Sep 19 · Nora’s plan</div>
+              <div class="titleRow"><div class="dayTitle">An afternoon out, then dinner</div></div>
+              <div class="thesis">Bookstore at four, the river after, dinner at seven.</div>
+              <div class="chap"><div class="cl">Afternoon · Nora and Maya</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time">4:00</div><div><div class="ttl">Willow &amp; Page</div><div class="sup">Court St · open till 7 · <span class="who">Nora moved it to 4 — after your suggestion</span></div></div><div class="more q">···</div></div>
+                <div class="row"><div class="time loose">~5</div><div><div class="ttl">A walk to the river</div><div class="sup">Brooklyn Bridge Park · <span class="who">Nora and Maya</span></div></div><div class="more q">···</div></div>
+              </div>
+              <div class="chap"><div class="cl">Evening</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact">7:00</div><div><div class="ttl">Dinner at the Georgian room</div><div class="sup">Court St · <span class="who">Nora, Maya, Sam</span> · you’re not coming — you just know the place</div></div><div class="more q">···</div></div>
+              </div>
+              <div class="pillwrap"><div class="pill">Ask Vesper<span class="mic">MIC</span></div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">THE OUTCOME IS THE PLAN ITSELF</div>
+          <p>Dana understands what happened by reading the row: 4:00, moved by Nora, after her suggestion. No “accepted” badge, no notifications list, no status screen. <b>Specification:</b> had Nora left it, the row would still say 3:00 and Dana’s suggestion would sit under it exactly as on Nora’s page — socially unremarkable, with no follow-up asked of anyone.</p>
+          <div class="fx">§0.3 · 7 · no new status dashboard</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 1420px; top: 2940px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">J3d</span><span class="tag pp">APPENDIX</span> MAYA · THE SAME WORDS FROM AN AUTHORIZED EDITOR <span class="s">applies · attributed · no approval, no wizard</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="J3d Editor contrast">
+            <div class="sb"><span>4:12</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av a">NO</div><div class="av b">SA</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Saturday · Sep 19 · Nora’s plan</div>
+              <div class="titleRow"><div class="dayTitle">An afternoon out, then dinner</div></div>
+              <div class="thesis">You can shape the afternoon. Dinner is Nora’s to change.</div>
+              <div class="gap"></div>
+              <div class="recent"><div class="receipt">Moved Willow &amp; Page to 4:00 — Nora will see it as yours</div><div class="ago">JUST NOW</div></div>
+              <div class="chips" style="margin-top:6px;"><div class="chip quiet">Undo</div></div>
+              <div class="chap"><div class="cl">Afternoon · you can edit</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time">4:00</div><div><div class="ttl">Willow &amp; Page</div><div class="sup">Court St · open till 7 · <span class="who">you moved it from 3</span></div></div><div class="more">···</div></div>
+                <div class="row"><div class="time loose">~5</div><div><div class="ttl">A walk to the river</div><div class="sup">Brooklyn Bridge Park · <span class="who">you and Nora</span></div></div><div class="more">···</div></div>
+              </div>
+              <div class="chap"><div class="cl">Evening</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact">7:00</div><div><div class="ttl">Dinner at the Georgian room</div><div class="sup">Court St · <span class="who">Nora, you, Sam</span> · fixed — ask Nora to change it</div></div><div class="more q">···</div></div>
+              </div>
+              <div class="pillwrap"><div class="pill">Ask Vesper<span class="mic">MIC</span></div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">RIGHTS CONSTRAIN MUTATIONS, NOT THE ENTRY</div>
+          <p>Maya typed the same sentence into the same private sheet. Because the afternoon is within her grant, it applied — with attribution and an Undo — and Nora’s view says “Maya moved it from 3”. No outgoing-message card was needed because nothing was <i>sent</i>; a change was made. Dinner would have taken the J3a path (a message to Nora), because it is outside her grant.</p>
+          <div class="fx">§0.3 · 7 · Multiplayer §5.1 · no redundant owner approval</div>
+        </div>
+      </div>
+
+      <div class="panel" style="left: 40px; top: 4240px; width: 1220px;">
+        <div class="k">JOURNEY-FRICTION LOG · PREDICTED, NOT OBSERVED · WHAT THIS BOARD CHANGED FOR EACH</div>
+        <div class="row2"><span class="rk">Briefing burden</span><span>Predicted: people restate the stop and their constraints. Changed: target carried; the one remembered fact shown as a labeled line (J2a); conditional answer when no note exists; optional example question.</span></div>
+        <div class="row2"><span class="rk">Escape branch on follow-up</span><span>Observed in P2b: chips replaced the field. Changed: the field stays (“Follow up, or change something…”); chips are additive (J2a, J2b).</span></div>
+        <div class="row2"><span class="rk">Silent memory drift</span><span>Predicted: a situational correction becomes a durable preference. Changed (§0.4): the correction is used within the current exchange only and nothing is offered or written to memory; an explicit “remember that” goes through the same field as a deliberate request (J2b).</span></div>
+        <div class="row2"><span class="rk">Experiential compatibility</span><span>Observed in the first J2f: Ben’s move to 11 was read back as a clean composition although it put the temple at the busy hour the person had just chosen to avoid, and the receipt said “around noon” while the detail said 12:30. Changed (§0.4): accurate readback (“about 12:30”), the defeated purpose named without disclosing the private reason, Ben’s edit untouched, scoped Undo. <b>Fixed (§0.5 A):</b> “Go early myself” was permissible but not shown to be helpful — the mother’s attendance was never established; the recommendation is now the one the exchange supports (raise 10:15 with Ben, private reason absent), with the solo option available through Ask Vesper when it fits.</span></div>
+        <div class="row2"><span class="rk">Result that reads as tasks</span><span>Observed in the §0.4 J2f render: receipt, Ben’s change, an alternative, two actions, Undo and “See Isuien” stacked above the day. <b>Fixed (§0.5 B):</b> brief result → observation → one optional continuation; seeing Isuien is a door in the receipt sentence; Undo subordinate; further conversation through the pill (J2f). Prototype receipts shortened to match (board 92).</span></div>
+        <div class="row2"><span class="rk">Unknown read as unchanged</span><span>Observed: J2e and board 92 said “Checking whether that saved” and then “nothing has changed yet”. <b>Fixed (§0.5 C):</b> “Checking whether Isuien was added. Your request is still here.” — “nothing changed” only for a confirmed non-application (J2d, failed card); retry held while the outcome is unresolved; wording consistent across 09 and 10.</span></div>
+        <div class="row2"><span class="rk">Mechanics in customer copy</span><span>Observed: device/custody/expiry sentences, duplicate-prevention explanations and a hypothetical branch were on the customer surface. Changed (§0.4): J2e, J2g, J3c carry the immediate meaning only; the rules live in annotations and 07.</span></div>
+        <div class="row2"><span class="rk">Optimistic edits</span><span>Predicted: a proposed edit shown as accepted while saving. Changed: pending state in the sheet; plan unchanged; duplicate submit disabled; Cancel before commit (J2c).</span></div>
+        <div class="row2"><span class="rk">Unknown outcome</span><span>Predicted: retry after an interrupted save adds twice. Changed: reconcile-before-retry with the request recovered (J2e).</span></div>
+        <div class="row2"><span class="rk">Disorienting result</span><span>Predicted: page jumps to the moved stop; another person’s change reads as an error. Changed: smallest readback first, the other change named with its consequence, “See Isuien →” instead of a jump, scoped Undo (J2f).</span></div>
+        <div class="row2"><span class="rk">Amnesiac resume</span><span>Predicted: a draft lost to Maps or backgrounding; or a resume that silently creates artifacts. Changed: four explicit rules; draft recovered with its target, discardable (J2g); custody terms are a proposal (07 Q14), not customer copy.</span></div>
+        <div class="row2"><span class="rk">Paraphrased coordination</span><span>Observed: P9a said 4:00, P9b showed 4:30. Changed: the exact outgoing message with recipients beside Send; the same words on the recipient’s page; the outcome legible in the row (J3a–c); P9b corrected.</span></div>
+        <div class="row2"><span class="rk">Prototype inconsistency</span><span>Observed: `maya_ask8` set an owner-facing request directly from Maya’s private route. Changed in kit/proto.js: prepared privately, sent only by explicit tap; failure/slow/unknown injection added to research chrome (board 92). <b>§0.4:</b> the pending guard blocked all actions — now only the relevant mutation is held while navigation, close and return work; the authored words, target and request identity are kept through pending/failed/unknown, a second input typed meanwhile is never cleared, “Not now” keeps the words as a recoverable draft, Cancel is offered only before commit.</span></div>
+        <div class="row2"><span class="rk">Prototype defects (§0.5 D)</span><span><b>Fixed in kit/proto.js, each with a regression check on board 92:</b> (1) Discard removed the draft from state but left the restored words in the field — Discard now clears the field only when it still holds that draft, leaves an edited or different input alone, and reopening does not resurrect the text; (2) Undo restored a whole-state snapshot and reverted Sam’s independent answer — undo entries are now scoped to the keys the action changed, so Nora’s Undo repairs only Nora’s change; (3) Nora’s in-flight request, words and recovery controls were global and appeared on Maya’s view — request, draft, receipt, note, sheet, preview and screen are now a private record per viewpoint; the shared plan is one object; a deferred outcome lands on its owner’s record even if the viewer has moved on. Still a single in-memory object with projections, as the brief allows; not persistence architecture.</span></div>
+        <div class="row2"><span class="rk">Fixed · outstanding · illustrated · exercised</span><span><b>Fixed (this pass):</b> §0.5 A–D above; pending-navigation and failed-input from §0.4 re-checked. <b>Outstanding:</b> retry after a confirmed failure re-runs the same request identity — idempotency beyond one reconciliation is asserted, not modelled; the illustrated modal sheet is not the in-flow region on 10; the J3a outgoing card that “Ask Ben about 10:15” opens is drawn on J3a, not wired on 10 (Kyoto is not the interactive fixture). <b>Illustrated only:</b> value-first content, read-only answers, retrieval, the drawn keyboard and expanded sheet, purpose-aware adaptation and its recommendation (J2f), Chat continuation, resume across Maps/provider/background. <b>Simulated (board 92):</b> slow / failed / interrupted saves. <b>Mechanically exercised (board 92, in-app browser):</b> entry; private kicker per role; explicit send (bookstore and dinner); pending state during which the person can leave and return; failed request with the original words recoverable and discardable; unknown outcome reconciled once with a second unaccepted input preserved; scoped undo beside another person’s response; per-viewpoint privacy of an in-flight request; re-entry. No native keyboard, navigation, or participant behavior verified.</span></div>
+      </div>
+
+      <div class="x"></div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{}'>
+      class Component extends DCLogic {
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>

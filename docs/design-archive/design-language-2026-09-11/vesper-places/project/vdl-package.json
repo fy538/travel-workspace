@@ -1,0 +1,74 @@
+{
+  "package": "vdl-stage1 0.4.1",
+  "status": "prepared for review; not published to the Production Kernel",
+  "recorded": "2026-09-11",
+  "workbench": "c13ae951-0977-4bac-90a6-c964146a9ca6",
+  "identity_note": "Use this manifest for identity. vdl.css is unchanged since the 0.3 polish state; its --vdl-version string still reads 0.3.",
+  "kernel": {
+    "stamp": "travel-app@e2e792913 tokens:80d0648dd300 gen:1",
+    "styles_css_copy": "_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css",
+    "styles_css_sha256": "a843ca5ba6fe7595ff05c629ed88be8f3051e073a51cda4500e18ee5910d7f6c",
+    "matches_published_kernel_styles_css": true
+  },
+  "versioning": "CSS and media are recorded by sha256 of their exact bytes. Components (.dc.html) are recorded by their Claude Design etag and stored size: the served render drops component styles, so a hash of it would not detect a style change.",
+  "changes_0_4_1": {
+    "brief": "§22.2 practical metadata must remain readable",
+    "changed_files": ["OriginalReader.dc.html"],
+    "OriginalReader": "placeMeta (arrangement time, opening hours, whether hours were checked) moves from ink80 to ink60 (.or-pmeta) in open, card and full. Provenance (date and audience beside the author, retrieval date) stays ink80 (.or-meta, .or-rdate). No palette change, no consumer override.",
+    "measured_on_02A": [
+      { "specimen": "Home 02 open: TONIGHT AT EIGHT · WITH MAYA · ARRANGED", "ground": "paper20 #EFEAE0", "before": "1.82:1 (#B5AFA5)", "after": "4.59:1 (#6E6862)" },
+      { "specimen": "Places card: RED HOOK · TUE–SUN 11–6", "ground": "paper00 #FBF7EC", "before": "2.03:1", "after": "5.14:1, Places' drawn value" },
+      { "specimen": "Social full: Listed hours, not checked today", "ground": "paper20", "before": "1.82:1", "after": "4.59:1" },
+      { "specimen": "provenance kept quiet: AUG 30 · TO YOU, THURSDAY · TO FRIENDS, retrieval AUG 30", "after": "unchanged, 1.82–2.03:1" }
+    ],
+    "preserved": "supplied media and attribution, density variants, show=reader|ask composition",
+    "consumer_update": {
+      "Social": "02.4, 02.5, 05 D7-A: adopt 0.4.1 directly with the Print Room assets and the selected order (no intermediate 0.4 migration)",
+      "Home": "reader instances with a place line (02, 08b, 16 as reviewed)",
+      "Places": "reader card instances; cards render as before apart from the place line",
+      "Life": "no update needed: retrieval rows carry provenance only",
+      "Plans": "no update needed"
+    }
+  },
+  "changes_0_4": {
+    "brief": "§21.2 bounded reader correction",
+    "changed_files": ["OriginalReader.dc.html"],
+    "OriginalReader": [
+      "mediaSrc / thumbSrc take supplied media and a place thumbnail; the media label stays as attribution; the patterned ground is only the fallback when nothing is supplied",
+      "show=all|reader|ask: all is the default and unchanged; a host that owns sections between Reply and the private Ask renders show=reader, its sections, then show=ask",
+      "media crop 349x224 at radius 14 and place thumbnail 48/12, as Social 02.4 draws them (was 44/8)"
+    ]
+  },
+  "files": [
+    { "path": "vdl.css", "kind": "styles", "etag": "1789098141934217", "bytes": 16055, "sha256": "7b6fa1d3dfccc92c59be1193cd68cdb032845a54c0316540e3ab58fe0b968515" },
+    { "path": "OriginalReader.dc.html", "kind": "component", "etag": "1789153753071940", "bytes": 13559, "variants": "density open|card|full|retrieval; state shown|withdrawn; compose; show all|reader|ask; mediaSrc; thumbSrc; placeDetail may mark one *italic* title; placeMeta readable (ink60), provenance quiet (ink80)" },
+    { "path": "InviteCard.dc.html", "kind": "component", "etag": "1789098056754095", "bytes": 9231, "variants": "view host|guest|answered; shape pill|rounded; host lines LABEL=fact|condition with via; guest lines fact|condition stacked" },
+    { "path": "Ticket.dc.html", "kind": "component", "etag": "1789089040856299", "bytes": 17327, "variants": "mode flight|ferry|rail|admission; density full|row|chip" },
+    { "path": "PlaceHead.dc.html", "kind": "component", "etag": "1789088488771813", "bytes": 4556, "variants": "destination identity head" },
+    { "path": "FactPair.dc.html", "kind": "component", "etag": "1789088659111982", "bytes": 3025, "variants": "tone lead|plain; optional link" },
+    { "path": "SourceList.dc.html", "kind": "component", "etag": "1789088488771813", "bytes": 1775, "variants": "keyed source and person references" },
+    { "path": "ActionGroup.dc.html", "kind": "component", "etag": "1789088488771813", "bytes": 1501, "variants": "purpose action + muted actions" },
+    { "path": "LocationFooter.dc.html", "kind": "component", "etag": "1789088488771813", "bytes": 3873, "variants": "small map, address, directions, end mark" },
+    { "path": "Notice.dc.html", "kind": "component", "etag": "1789081717510486", "bytes": 2531, "variants": "tone pending|unknown|failed|applied|stale|unavailable" },
+    { "path": "PlaceIdentity.dc.html", "kind": "component", "etag": "1789083018811662", "bytes": 6313, "variants": "density preview (list rows) used; destination|sparse are extensions, not the R2 body" }
+  ],
+  "media_fixtures": [
+    { "path": "media/print-room-illustration.svg", "bytes": 934, "sha256": "ecfe1b1519f0f0392526a73193e6336f3d57c7125646914527fe98d3922c020b", "source": "Social 02.4 illustration, extracted unchanged from the donor frame" },
+    { "path": "media/print-room-thumb.svg", "bytes": 903, "sha256": "d4eb4d93a799d02613dea8824d350918302c4c7b60cce1d3781d8d29afa2f628", "source": "Social 02.4 place thumbnail" },
+    { "path": "media/print-room-gallery-thumb.svg", "bytes": 902, "sha256": "6f1c8759892c2c4b73bd242a4ef95682eb6f59ce72ee43eabde4c8cceac257fc", "source": "Social 02.4 gallery-note thumbnail (host content)" }
+  ],
+  "extension_queue": [
+    "OriginalReader: optional thumbnail and neutral/supplied place glyph (Home 16 Lilia gains an unneeded patterned thumbnail; the utensil glyph does not suit every place)",
+    "OriginalReader: direct original, nonspatial receiving, sender-owned states",
+    "PlaceHead: absent/map/photo openings, provider credit, standalone byline",
+    "LocationFooter: supplied place-specific map content",
+    "FactPair: link placement in either cell or after the value",
+    "Guest changed-arrangement/arrival and attributed contribution presentations"
+  ],
+  "fidelity_references": [
+    "03A Home 02 full-scroll port",
+    "03B Places 01.1 full-scroll port with three named fit corrections",
+    "ports on 02A, 02B, 02C, 02D"
+  ],
+  "not_in_package": ["vdl-port.js", "vdl-refs.js", "support.js", "refs/", "media/ (fixtures for the demonstration only)", "boards 00-06"]
+}

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <link rel="stylesheet" href="_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css" />
+        <link rel="stylesheet" href="vdl.css" />
+        <script src="vdl-refs.js"></script>
+        <script src="vdl-port.js"></script>
+        <style>
+          .cmp-ref{background:var(--vk-paper30);width:393px;min-height:240px}
+          .cmp-cap{max-width:393px;color:var(--vk-ink40)}
+          .spec{width:393px;background:var(--vk-paper20);padding:22px;box-sizing:border-box;border-radius:var(--vk-radius-chromeDock);box-shadow:var(--vk-shadow-lg)}
+          .spec > * + *{margin-top:14px}
+          .cmp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:10px}
+          .cmp-tile{aspect-ratio:1/1;border-radius:4px;min-height:0;padding:0;position:relative}
+          .cmp-sel{box-shadow:inset 0 0 0 2px var(--vk-ink00)}
+          .cmp-check{position:absolute;top:6px;right:6px;width:22px;height:22px;border-radius:9999px;background:var(--vk-ink00);color:var(--vk-paper00);display:flex;align-items:center;justify-content:center}
+          .cmp-destructive{background:var(--vk-color-danger);color:var(--vk-color-white)}
+          .cmp-kv{display:flex;gap:12px;padding-block:8px;border-bottom:0.5px solid var(--vk-borderHairlineSoft)}
+          .cmp-kv > :first-child{flex:0 0 84px}
+          .side{max-width:520px}
+        </style>
+      </helmet>
+      <div class="vdl-board" data-screen-label="02D The same ticket">
+        <div class="vk-t-capsEyebrow">Stage 1 · Comparison 4 of 4 · accepted visual reference (§19.1)</div>
+        <div class="vk-t-h1Large" style="margin-top:6px">The same ticket, keeping its type</div>
+        <p class="vk-t-body" style="max-width:820px;margin:8px 0 0;color:var(--vk-ink40)">The Ticket carries the donors’ anatomy as explicit variants — a flight, a ferry with its wavy perforation, an admission with its band — and the same ferry is shown at every density. The Life 05.9 ferry lost its styles; the component repairs that. Home 09’s reserved violet is replaced by ink without flattening the pass. This accepts the visual family, not the authenticity of fixture ticket data or the decorative barcode artwork.</p>
+        <div class="vk-t-monoStamp" style="margin-top:10px">KERNEL travel-app@e2e792913 · VDL STAGE1 0.3 · ORIGINALS ARE LIVE CROPS · PORTS ARE FIDELITY REFERENCES, NOT COMPONENT-BUILT · FIXTURE CONTENT</div>
+
+        <div class="vdl-rule"></div>
+        <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80)">AS DRAWN · FOUR DONOR FRAMES</div>
+        <div class="vdl-lane">
+          <div class="vdl-cell">
+            <span class="vdl-tag orig vk-t-capsMicro">ORIGINAL · LIFE 04 · THE OBJECT PAGE (FLIGHT)</span>
+            <div class="cmp-ref" data-ref="refs/life/04 - My original things.dc.html" data-sig="THE OBJECT PAGE" data-y="0" data-h="910"></div>
+          </div>
+          <div class="vdl-cell">
+            <span class="vdl-tag orig vk-t-capsMicro">ORIGINAL · LIFE 05.9 · THE FERRY, RETRIEVED</span>
+            <div class="cmp-ref" data-ref="refs/life/05 - Find it again.dc.html" data-sig="SORRENTO–CAPRI FERRY TICKET" data-y="0" data-h="870"></div>
+            <p class="vk-t-caption cmp-cap">The defect: the ticket’s classes live on board 04, so every line falls back to sans 16/400.</p>
+          </div>
+          <div class="vdl-cell">
+            <span class="vdl-tag orig vk-t-capsMicro">ORIGINAL · LIFE 04 · PASSES &amp; TICKETS (ROWS)</span>
+            <div class="cmp-ref" data-ref="refs/life/04 - My original things.dc.html" data-sig="PASSES &amp; TICKETS SELECT" data-y="0" data-h="1000"></div>
+          </div>
+          <div class="vdl-cell">
+            <span class="vdl-tag orig vk-t-capsMicro">ORIGINAL · HOME 09 · THE ADMISSION PASS</span>
+            <div class="cmp-ref" data-ref="refs/home/09 - Forms.dc.html" data-sig="HELD-OBJECT INSTRUMENT" data-y="60" data-h="560" style="width:440px"></div>
+            <p class="vk-t-caption cmp-cap">Labels at 8px and the admission violet #7C5BA8, a hue reserved for Discover, the privacy hand-off and agent contexts.</p>
+          </div>
+        </div>
+
+        <div class="vdl-rule"></div>
+        <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80)">FIDELITY REFERENCES · PORTS OF THE SAME FRAMES, NOT COMPONENT-BUILT</div>
+        <div class="vdl-lane">
+          <div class="vdl-cell">
+            <span class="vdl-tag vk-t-capsMicro">LIFE 04 · OBJECT PAGE</span>
+            <div id="port-obj" data-port="refs/life/04 - My original things.dc.html" data-sig="THE OBJECT PAGE" data-report="report-obj" style="width:393px;min-height:300px"></div>
+          </div>
+          <div class="vdl-cell">
+            <span class="vdl-tag vk-t-capsMicro">LIFE 04 · PASS LIST, FIRST 820PX</span>
+            <div id="port-list" data-port="refs/life/04 - My original things.dc.html" data-sig="PASSES &amp; TICKETS SELECT" data-y="0" data-h="820" data-report="report-list" style="width:393px;min-height:300px"></div>
+          </div>
+          <div class="vdl-cell side">
+            <span class="vdl-tag vk-t-capsMicro">WHAT THE PORTS FOUND</span>
+            <div id="report-obj" class="vk-t-bodySm">Porting…</div>
+            <div id="report-list" class="vk-t-bodySm" style="margin-top:14px"></div>
+          </div>
+        </div>
+
+        <div class="vdl-rule"></div>
+        <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80)">SHARED CONSTRUCTION · ONE TICKET, TYPE-SPECIFIC ANATOMY</div>
+        <div class="vdl-lane">
+          <div class="vdl-cell">
+            <span class="vdl-tag vk-t-capsMicro">THE SAME FERRY · FULL, ROW, CHIP</span>
+            <div class="spec" id="ferry-set">
+              <dc-import name="Ticket" mode="ferry" density="full" kicker="FERRY · ALILAURO" date="AUG 19 2026" fromCode="SOR" fromName="Sorrento" toCode="CAPRI" toName="Marina Grande" fields="SAIL=11:20;CROSSING=25 MIN;DECK=OPEN · AFT" status="SAILED · AUG 19" barcode="yes" hint-size="349px,220px"></dc-import>
+              <dc-import name="Ticket" mode="ferry" density="row" rowTitle="SOR→CAPRI · ALILAURO" rowDetail="In The coast · sailed" stub="AUG 19" hint-size="349px,58px"></dc-import>
+              <div><dc-import name="Ticket" mode="ferry" density="chip" chip="SOR→CAPRI" hint-size="120px,26px"></dc-import></div>
+            </div>
+            <p class="vk-t-caption cmp-cap">Life 05.9’s content with Life 04’s ferry anatomy restored: wavy perforation, notches, wave glyph, barcode. The row is the pass list’s stub row; the chip is the kept-object token.</p>
+          </div>
+          <div class="vdl-cell">
+            <span class="vdl-tag vk-t-capsMicro">THE FLIGHT · AS ON LIFE 04’S OBJECT PAGE</span>
+            <div class="spec">
+              <dc-import name="Ticket" mode="flight" density="full" kicker="FLIGHT · DELTA 264" date="AUG 14 2026" fromCode="JFK" fromName="New York" toCode="NCE" toName="Nice" fields="DEPART=19:40;ARRIVE=09:25 +1;SEAT=23A;CONF=DL8X2K" status="FLOWN · AUG 15 · 09:41" barcode="yes" hint-size="349px,220px"></dc-import>
+              <dc-import name="Ticket" mode="flight" density="row" rowTitle="JFK→NCE · DELTA 264" rowDetail="In Getting there · the overnight flight" stub="AUG 14" hint-size="349px,58px"></dc-import>
+            </div>
+          </div>
+          <div class="vdl-cell">
+            <span class="vdl-tag vk-t-capsMicro">THE ADMISSION · HOME 09’S PASS, VIOLET CLEANED</span>
+            <div class="spec">
+              <dc-import name="Ticket" mode="admission" density="full" kicker="ADMISSION · THE HALL" date="FRIDAY" status="Tonight · leave by 7:05" title="The Hall" sub="Set times posted at 6" fields="DOORS=8:00;WAY HOME=+25 MIN" band="ADMIT ONE|TONIGHT" hint-size="349px,230px"></dc-import>
+              <dc-import name="Ticket" mode="admission" density="row" rowTitle="MUSEO · NAPOLI" rowDetail="In The coast · admit one" stub="AUG 21" hint-size="349px,58px"></dc-import>
+            </div>
+            <p class="vk-t-caption cmp-cap">The chamfered corner, oxblood status and admit-one band are kept; only the reserved violet becomes ink. Each fact has one place, as Home 09’s own note asks: doors in the fields, leave-by in the status line, the day in the date slot as on its standard pass. The live drawing had repeated doors three times and “tonight” three times. Home’s way-there instrument between the fields and the band is Home’s content, not part of the Ticket.</p>
+          </div>
+        </div>
+
+        <div class="vdl-rule"></div>
+        <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80)">CONTINUATION · RESULT → ORIGINAL SOURCE → BACK TO THE SAME QUERY · PLUS A SELECTION STATE</div>
+        <div class="vk-t-monoStamp" style="margin-top:4px">SIMULATED STATES FOR REVIEW · A DESTRUCTIVE CONTROL HERE IS A SPECIMEN, NEVER AN INSTRUCTION</div>
+        <div class="vdl-lane">
+          <div class="vdl-cell">
+            <span class="vdl-tag vk-t-capsMicro">1 · THE QUERY FINDS THE OBJECT</span>
+            <div class="vdl-phone">
+              <div class="vdl-status"><span class="vk-t-navLabel">9:40</span><span class="vk-t-monoStamp">LIFE</span></div>
+              <div class="vdl-page" style="--tk-ground:var(--vk-paper20)">
+                <div class="vdl-field" style="margin-top:8px"><span class="vk-t-serifBody">ferry capri</span></div>
+                <div class="vdl-section-head" style="margin-top:18px"><span class="vk-t-monoStampStrong" style="color:var(--vk-ink60)">PASSES &amp; TICKETS</span><span class="vk-t-monoStamp">1</span></div>
+                <dc-import name="Ticket" mode="ferry" density="row" rowTitle="SOR→CAPRI · ALILAURO" rowDetail="In The coast · sailed" stub="AUG 19" hint-size="349px,58px"></dc-import>
+                <div class="vdl-section-head" style="border-top:0.5px solid var(--vk-borderHairline);padding-top:10px;margin-top:18px"><span class="vk-t-monoStampStrong" style="color:var(--vk-ink60)">EPISODES</span><span class="vk-t-monoStamp">1</span></div>
+                <div class="vdl-row"><div class="vdl-row-body"><span class="vdl-t-recordTitle">The coast · Sorrento, Capri, Amalfi</span><span class="vk-t-caption">In Nice → Rome</span></div><span class="vk-t-monoStamp">AUG 19</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="vdl-cell">
+            <span class="vdl-tag vk-t-capsMicro">2 · THE TICKET, THEN ITS ORIGINAL EMAIL</span>
+            <div class="vdl-phone">
+              <div class="vdl-status"><span class="vk-t-navLabel">9:42</span><span class="vk-t-monoStamp">SOURCE</span></div>
+              <div class="vdl-back"><span class="vk-t-bodyMd">‹ ferry capri</span></div>
+              <div class="vdl-page">
+                <dc-import name="Ticket" mode="ferry" density="full" hint-size="349px,220px"></dc-import>
+                <div class="vk-t-monoStampStrong" style="color:var(--vk-ink60);margin-top:20px">THE ORIGINAL · EMAIL</div>
+                <div style="margin-top:6px">
+                  <div class="cmp-kv"><span class="vk-t-monoStamp">FROM</span><span class="vk-t-monoValue">Alilauro bookings</span></div>
+                  <div class="cmp-kv"><span class="vk-t-monoStamp">RECEIVED</span><span class="vk-t-monoValue">Aug 12, 2026</span></div>
+                </div>
+                <div class="vdl-media" style="margin-top:12px;min-height:120px"><span class="vk-t-monoStamp">EMAIL BODY · VERBATIM · NOT RENDERED IN THIS STUDY</span></div>
+                <div class="vdl-doors" style="margin-top:14px"><span class="vdl-door vk-t-bodySmMedium">Back to ferry capri</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="vdl-cell">
+            <span class="vdl-tag vk-t-capsMicro">3 · BACK TO THE SAME QUERY</span>
+            <div class="vdl-phone">
+              <div class="vdl-status"><span class="vk-t-navLabel">9:43</span><span class="vk-t-monoStamp">LIFE</span></div>
+              <div class="vdl-page">
+                <div class="vdl-field" style="margin-top:8px"><span class="vk-t-serifBody">ferry capri</span></div>
+                <div class="vk-t-monoStamp" style="margin-top:8px">RETURNED · QUERY, FILTER AND SCROLL KEPT</div>
+                <div class="vdl-section-head" style="border-top:0.5px solid var(--vk-borderHairline);padding-top:10px;margin-top:12px"><span class="vk-t-monoStampStrong" style="color:var(--vk-ink60)">PASSES &amp; TICKETS</span><span class="vk-t-monoStamp">1</span></div>
+                <dc-import name="Ticket" mode="ferry" density="row" rowTitle="SOR→CAPRI · ALILAURO" rowDetail="In The coast · sailed" stub="AUG 19" hint-size="349px,58px"></dc-import>
+              </div>
+            </div>
+          </div>
+          <div class="vdl-cell">
+            <span class="vdl-tag vk-t-capsMicro">4 · SELECTING PHOTOGRAPHS</span>
+            <div class="vdl-phone">
+              <div class="vdl-status"><span class="vk-t-navLabel">9:50</span><span class="vk-t-monoStamp">LIFE</span></div>
+              <div class="vdl-page">
+                <div class="vk-t-monoStampStrong" style="color:var(--vk-ink60);margin-top:8px">EVERYTHING KEPT · PHOTOGRAPHS</div>
+                <div class="vk-t-serifDisplay" style="margin-top:2px">Photographs</div>
+                <div class="vdl-orient-row" style="margin-top:10px;padding:10px 0;border-top:0.5px solid var(--vk-borderHairline);border-bottom:0.5px solid var(--vk-borderHairline)"><span class="vk-t-labelSemibold">3 selected</span><span class="vk-t-bodySmMedium">Done</span></div>
+                <div class="cmp-grid">
+                  <div class="vdl-media cmp-tile cmp-sel"><span class="cmp-check vk-t-monoStampStrong">✓</span></div>
+                  <div class="vdl-media cmp-tile"></div>
+                  <div class="vdl-media cmp-tile cmp-sel"><span class="cmp-check vk-t-monoStampStrong">✓</span></div>
+                  <div class="vdl-media cmp-tile"></div>
+                  <div class="vdl-media cmp-tile cmp-sel"><span class="cmp-check vk-t-monoStampStrong">✓</span></div>
+                  <div class="vdl-media cmp-tile"></div>
+                </div>
+                <div class="vdl-attr" style="margin-top:16px"><span class="vdl-btn secondary vk-t-labelSemibold">Export 3</span><span class="vdl-btn cmp-destructive vk-t-labelSemibold" style="color:var(--vk-color-white)">Delete 3</span></div>
+                <p class="vk-t-caption" style="margin:10px 0 0">Export and delete act on the same three, named before either runs. The confirmation step is still missing design (L2).</p>
+                <div class="vk-t-monoStamp" style="margin-top:6px">DESIGN SPECIMEN · NOTHING REAL IS DELETED</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vdl-rule"></div>
+        <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80)">THE DIFF · §17.5 ITEM 3</div>
+        <div class="vdl-scroll" style="margin-top:10px">
+          <table class="vdl-table vdl-diff" style="max-width:1180px">
+            <tr><td class="vk-t-bodySmMedium">Retained anatomy</td><td class="vk-t-bodySm">Kicker and date; route codes at 32/34 with the mode glyph; city names; labelled fields; notches and the perforation (straight for flight, rail and road, wavy for ferry); status and barcode where the source draws one; the admission’s chamfered corner, oxblood status and admit-one band; the pass list’s stub rows with glyph and perforated date stub.</td></tr>
+            <tr><td class="vk-t-bodySmMedium">Shared construction</td><td class="vk-t-bodySm">One Ticket with <span class="vk-t-monoValue">mode</span> (flight, ferry, rail, admission) and <span class="vk-t-monoValue">density</span> (full, row, chip); styles inside the component; kernel tokens and roles throughout, <span class="vk-t-monoValue">routeCode</span> and <span class="vk-t-monoValue">placeStamp</span> as named gaps.</td></tr>
+            <tr><td class="vk-t-bodySmMedium">Obvious cleanup</td><td class="vk-t-bodySm">Life 05.9’s missing styles repaired. Labels, chips and stub dates at 8–9px raised to 10. Home 09’s reserved violet re-pointed to ink in the kicker and band. Polish (2026-09-10): the live admission pass follows Home 09’s own one-place rule — doors only in the fields, leave-by in the status line, FRIDAY in the date slot as on the standard pass — instead of doors and “tonight” three times each.</td></tr>
+            <tr><td class="vk-t-bodySmMedium">Unavoidable fit correction</td><td class="vk-t-bodySm">Raised field labels widen the field row slightly; a fourth field wraps below 330px.</td></tr>
+            <tr><td class="vk-t-bodySmMedium">Still-proposed redesign</td><td class="vk-t-bodySm">None. The barcode appears only where the donor draws one and is decorative artwork, not data. The selection specimen’s confirmation step remains missing design (L2).</td></tr>
+          </table>
+        </div>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{}'>
+      class Component extends DCLogic {
+        componentDidMount() {
+          const go = (n) => { if (window.vdlMountRefs && window.vdlMountPorts) { window.vdlMountRefs(); window.vdlMountPorts(); } else if (n < 60) { setTimeout(() => go(n + 1), 200); } };
+          go(0);
+        }
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>

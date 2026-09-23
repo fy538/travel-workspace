@@ -99,6 +99,9 @@ this spine may be useful, but it must not silently become a competing source of 
 
 ## Supporting layers
 
+- [Content-to-native quality consolidation plan](working/content-to-native-quality-consolidation-plan-2026-09-15.md):
+  proposed shared-pattern/content implementation packages with current-app polish
+  as a required outcome; scheduling stays with the program roadmap.
 - `systems/`, `journeys/`, and `operations/` hold living contracts and runbooks.
 - `working/` holds expiring investigations and execution plans.
 - `launch/`, `reliability/`, and `flags/` support specific operational concerns.

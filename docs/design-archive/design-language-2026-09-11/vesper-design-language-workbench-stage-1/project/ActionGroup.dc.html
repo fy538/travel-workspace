@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <link rel="stylesheet" href="_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css" />
+        <link rel="stylesheet" href="vdl.css" />
+        <style>
+          /* ActionGroup — contextual actions grouped after the reading (R2): the purpose action in
+             umber, the rest muted, all on the Door construction with R2's 13/600 kept. */
+          .ag{display:flex;flex-wrap:wrap;column-gap:18px;row-gap:18px}
+        </style>
+      </helmet>
+      <div class="ag" data-screen-label="ActionGroup">
+        <span class="vdl-door act">{{ primary }}</span>
+        <sc-for list="{{ rest }}" as="a" hint-placeholder-count="2"><span class="vdl-door act muted">{{ a.label }}</span></sc-for>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{
+  "primary": { "editor": "text", "default": "Saturday" },
+  "secondary": { "editor": "text", "default": "Ask Vesper;Leave for someone" }
+}'>
+      class Component extends DCLogic {
+        renderVals() {
+          const p = this.props || {};
+          return { primary: p.primary || 'Saturday', rest: (p.secondary || 'Ask Vesper;Leave for someone').split(';').filter(Boolean).map((label) => ({ label })) };
+        }
+      }
+    </script>
+  </body>
+</html>

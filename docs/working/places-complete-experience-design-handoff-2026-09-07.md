@@ -12,6 +12,12 @@ source_of_truth_for: []
 
 # Places — complete experience design handoff
 
+> **Current routing — September 9 six-project review:** use the [Places review's leading current assignment](vesper-places-design-review-2026-09-08.md).
+> `Downloads/vesper-places` is the existing project; the project-creation checkpoint
+> and earlier “latest” instructions below are history. Preserve their rationale
+> without rerunning creation, old board-number assignments or integration work.
+> No new project is requested; Integration remains paused.
+
 **Destination:** [Places](codex://threads/01a07c7f-871a-70b0-840e-95a0db1e9351).
 **Status:** proposed design brief, not a canon amendment or implementation authorization.
 
@@ -21,7 +27,7 @@ dispatching that work. Suggested project title: **Vesper — Places**; no extern
 project has been created by this document. The baseline below is a recommendation
 for design comparison, not blanket adoption of every behavior or a runtime change.
 
-**Latest assignment — polished export reviewed:** read **§13** of the
+**Historical assignment — polished export reviewed:** read **§13** of the
 [composition revision handoff](places-composition-breadth-design-revision-2026-09-07.md)
 first. Boards 19–20 were reviewed at the 18:49 checkpoint; the 19:02 follow-up adds
 live visual inspection of board 19 and source review of board 20's specimens.

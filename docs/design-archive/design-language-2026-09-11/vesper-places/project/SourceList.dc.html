@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <link rel="stylesheet" href="_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css" />
+        <link rel="stylesheet" href="vdl.css" />
+        <style>
+          /* SourceList — the compact references a reading's .vdl-srcmark and .vdl-personmark point
+             to (R2). Keys match the marks; a person's key is their initial. */
+          .sl{display:flex;flex-direction:column;gap:3px}
+          .sl-r{display:grid;grid-template-columns:22px 1fr;color:var(--vk-color-surface-ghostAnchor);letter-spacing:0.6px;line-height:13.5px}
+        </style>
+      </helmet>
+      <div class="sl" data-screen-label="SourceList">
+        <sc-for list="{{ items }}" as="s" hint-placeholder-count="3">
+          <div class="sl-r vdl-t-metaLine"><span>{{ s.k }}</span><span>{{ s.v }}</span></div>
+        </sc-for>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{
+  "items": { "editor": "text", "default": "2=A FOOD WRITER’S COLUMN, 2026 [FIXTURE SOURCE];3=LISTING · CHECKED 4:02 PM;D=DANA · LEFT HERE FOR YOU · AUG 6" }
+}'>
+      class Component extends DCLogic {
+        renderVals() {
+          const p = this.props || {};
+          const raw = p.items || '2=A FOOD WRITER’S COLUMN, 2026 [FIXTURE SOURCE];3=LISTING · CHECKED 4:02 PM;D=DANA · LEFT HERE FOR YOU · AUG 6';
+          return { items: raw.split(';').filter(Boolean).map((s) => { const i = s.indexOf('='); return { k: s.slice(0, i), v: s.slice(i + 1) }; }) };
+        }
+      }
+    </script>
+  </body>
+</html>
