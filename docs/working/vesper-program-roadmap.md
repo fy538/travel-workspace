@@ -70,14 +70,19 @@ offline and Maestro syntax checks before finding missing/overdue flag metadata;
 source-reviewed registry repairs now pass separately. A clean final-tuple
 complete gate remains required; the earlier run overlapped app edits.
 
-**Publication blocker from the separate backend pre-push packet:** 94 active
-documents have expired (33 fundraising, one product working document, three
-research and 57 working notes). The code CI pass does not cover that hook.
+**Publication blocker from the separate backend pre-push packet:** 61 active
+documents remain expired (one product working document, three research and 57
+working notes), down from 94. The code CI pass does not cover that hook.
 The final clean publication attempt was stopped before any push; it is not a
 complete-gate pass. Reconcile each document's actual owner/status, rather than
-extend all dates or archive current plans by age. Founder confirmation of which
-fundraising applications remain active is required; their submission state
-cannot be established from repository history. The audit owns the details.
+extend all dates or archive current plans by age. **The founder has resolved the
+fundraising question:** the August packet is historical reference, not an active
+application queue. All 50 packet documents (including previously archived
+research and old indexes) now live under backend
+`docs/archive/2026-08/fundraising/`; original text is preserved apart from
+historical notices and repaired relative links. The live fundraising index routes
+new work to current product/evidence authorities. No submission status or market
+claim was reverified. The audit owns preservation and check details.
 
 **Next is delivery, not another recovery sweep:** resolve those lifecycle
 dispositions, verify the committed tuple,

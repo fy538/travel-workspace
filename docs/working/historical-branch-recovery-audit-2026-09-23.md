@@ -189,14 +189,45 @@ stopped before any publication once this independent blocker was established.
 Its backend, contract and mobile stages passed, but its remaining Maestro/
 governance/publication stages are **incomplete**, not a final-tuple pass.
 
-Do not blanket-renew or blanket-archive those 94 documents. For example, the
+At that checkpoint, do not blanket-renew or blanket-archive those 94 documents. For example, the
 fundraising index still calls its fact ledger and application drafts current;
 PearX W27's draft records a future October 4 deadline, while founder submission
 status cannot be inferred from Git. Some working receipts already name promoted
 owners and can become historical; others still claim live social/architecture
 authority and need individual reconciliation. The required founder input is
-which August fundraising applications remain active. Preserve all content while
-resolving it; no external factual re-verification is claimed in this cleanup.
+which August fundraising applications remain active. That question is now
+resolved by the founder's historical-reference direction below; no external
+factual re-verification is claimed in this cleanup.
+
+### September 23 founder-directed fundraising archive
+
+The founder explicitly classified the August accelerator/application work as
+historical references. The whole 50-document fundraising packet now lives in
+backend `docs/archive/2026-08/fundraising/`, including 33 expired active documents,
+13 already-archived research/evidence documents, and four original indexes.
+Archival metadata and visible notices distinguish captured August claims from
+current instructions. Earlier archive dates are preserved where present, along
+with original paths and historical authority declarations. Current
+`source_of_truth_for` declarations are empty in archived files.
+
+All 50 original bodies were verified against the archive transformation; the
+only body changes are explicit historical notices and relative-link relocation.
+Draft/submission fields, founder-supplied facts, old dates, citations and language
+are retained, not freshly verified. This does not claim any application was
+submitted, withdrawn, accepted or rejected. No content is discarded. The live
+`docs/fundraising/README.md` is now navigation to the archive and current product,
+investor-narrative and evidence authorities, not an active application queue.
+Backend documentation and archive indexes reflect that boundary.
+
+Verification: backend link checking passes across 6,722 Markdown files; product
+authority checking passes; workspace child-document governance passes with 404
+post-baseline documents; workspace living links pass across 531 files. Checks
+were rerun after explicitly staging the moves so the child checker sees the
+current index rather than removed old paths. `git diff --cached --check` passes.
+The measured documentation-freshness command still **fails with 61 expired
+active documents**, none in fundraising; the remaining product/research/working
+documents require individual current-owner reconciliation. No gate was changed,
+no broad date extension was applied, and no runtime source changed in this step.
 
 Remaining delivery sequence: resolve that lifecycle disposition; clean final-tuple verification; publish for the
 protected-main process and align dependency pins in dependency order; resolve
