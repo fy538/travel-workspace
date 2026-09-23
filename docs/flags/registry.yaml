@@ -1379,15 +1379,18 @@ flags:
     status: active
     target_journey: P02
     cohort: development or explicit internal builds only; public release builds cannot activate it
-    kill_switch: Unset EXPO_PUBLIC_LIFE_REFIND_LANE or set it false; Universal Search renders without the LifeRefind lane and never calls /api/life/refind.
+    kill_switch: Unset EXPO_PUBLIC_LIFE_REFIND_LANE or set it false; Universal Search omits the LifeRefind lane and Life Search does not open the bounded original-refinding consumer.
     promotion_removal_question: >
       By 2026-11-30, has the dark LifeRefind lane proven target-first refinding
       over the viewer's own history at 1:1 (founder checkpoint per the
       2026-09-01 landing handoff), or should the lane and its route be removed?
     notes: >
       Dark Life refinding slice. Backend serves POST /api/life/refind
-      unconditionally; this mobile flag is the only activation gate and is
-      default-off everywhere.
+      and POST /api/life/originals/refind under authenticated owner reads;
+      this mobile flag is the internal consumer gate and remains default-off.
+      September 10 original metadata refinding adds no body indexing, new
+      custody or indexed organization serving. Recipient pointers additionally
+      require the existing Relationships original-delivery flag.
 
   - name: EXPO_PUBLIC_LIFE_ROOT_V1
     repo: travel-app

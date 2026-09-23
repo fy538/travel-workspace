@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Life engineering / cross-repository architecture
 created: 2026-09-05
-last_verified: 2026-09-08
+last_verified: 2026-09-21
 expires: 2026-10-05
 why_new: Rebaselines the executed Life foundation into a complete engineering program with an explicit Atlas replacement, data migration, and deletion outcome requested by the founder.
 depends_on:
@@ -20,7 +20,7 @@ supersedes:
 
 # Life complete system and Atlas replacement roadmap
 
-## Current execution baseline — September 8
+## Current execution baseline — September 21
 
 **Post-reliability rebaseline — September 8:** the first organizer
 `333f447be`, measurement correction `4a19414be` and independent holdouts
@@ -37,6 +37,42 @@ This replaces the old combined-test/migration blocker, not the unfulfilled
 Life quality and serving requirements. App routes and restoration do not
 establish adoption of the new organizer. No indexed serving, model run, Atlas
 deletion or remote publication follows.
+
+**Native exact-source return receipt — September 21:** the functional lane
+now provisions one disposable retained text source through the existing
+Capture writer, projects it with the retained-source Life owner, opens it from
+the real Life v1 root into the exact Intake reader, and returns to the same
+Life lens. Owner deletion then withdraws the Life row and the final API read
+confirms the source is absent. Backend provisioner `e752cdbd4` and app/native
+runner `5313f3b36` provide the repeatable local proof. This is a bounded
+owner-authorized return/readback receipt—not full indexed-serving cutover,
+binary-original playback, multi-lens corpus parity, Atlas retirement or
+release acceptance. Disposable-Postgres persistence selections also passed in
+the same lane (8 original/persistence/Life-refind tests and 2 relationship/
+content tests, with environment-specific deselections recorded in the
+cross-lane ledger). The cross-lane program roadmap records the complete
+command/evidence boundary.
+
+**Native source/original comprehension receipt — September 21:** app commit
+`b1f37eac4` now marks retained source submissions as **SOURCE** and exact
+retained originals as **ORIGINAL** in both the Life digest and complete-record
+rows. The existing exact owner destinations, custody checks and lens-aware
+return context are unchanged. The focused Life root/record/groups/primitives
+packet passes **34 tests**, TypeScript and targeted ESLint pass. This is a
+bounded reader-comprehension improvement; it does not add a media reader,
+broaden source coverage, switch serving to the index, or retire Atlas.
+
+**Persisted graph/People HTTP receipt — September 21:** backend `651628265`
+adds two fresh disposable-Postgres cases on the current functional lane. A
+private Plan reaches both the compact Life root and exact complete-record
+reader. An explicitly accepted multi-person Occasion with a shared Outcome
+reaches the People lens with its guest owner reference, Occasion grant and
+exact Outcome destination. The offline Life route packet passes **30 tests**;
+the focused anchor/projection/index packet passes **60 tests**, and the native
+Life root has the matching People-bound private-anchor return regression. This
+is a bounded persisted graph-to-Life/People boundary, not full corpus parity,
+Threads serving, binary-original playback, later permitted reuse, Atlas
+retirement or release acceptance.
 
 **Read this baseline, the current queue and decision register below first.**
 They are the sole present-tense execution summary. [§10](#10-design-independent-execution-plan--september-6)
@@ -61,13 +97,13 @@ limits; it does not authorize serving merely because organization code exists.
 
 | Layer | Local implementation and evidence | Remaining scope, not work to restart |
 | --- | --- | --- |
-| R0 / R4 root and reading | Canonical Life route, Atlas redirects, four depth lenses, exact-owner and identity-restoration improvements | Rich lens organization and complete owner/destination coverage are not certified |
+| R0 / R4 root and reading | Canonical Life route, four depth lenses, exact-owner and identity-restoration improvements; bounded native digest/record/group views and persisted Plan/People readback now pass | Rich lens organization, complete owner/destination coverage and replacement/Atlas cutover are not certified |
 | R1 common reads | Shared snapshot assembly, chronology, owner revisions and conflict-aware cursors | Routes still assemble owner snapshots; indexed serving has not cut over |
 | R1 / R2 index helpers | Typed bounded reads/writes, all-lens planner, owner capability matrix, owner-specific projectors, resumable backfill, reconciliation and complete typed comparison; bounded four-viewer corpus rehearsal now passes with canonical owner-time ordering | Establish broader corpus/viewer parity and future-version delivery boundaries; future-version targets do not yet receive live owner fanout |
 | R2 change safety | Existing outbox/projectors plus shared typed maintenance; shared-transaction withdrawal and explicit Outcome audience restoration now received and tested; unresolved repair keeps delivery pending | Durable progress beyond a bounded transaction, complete affected-neighborhood repair and broader owner coverage remain; Intake keeps its independent acknowledgement |
-| R2 organization | Stable groups, typed links, controls, identity resolution and bounded internal reads; conservative source-evidence adapter; B1 compiler with five executable, oracle-interpreted product worlds | Real source interpretation/delivery, general episode/continuity discovery, complete repair wiring and public eligible readers are not established by the experiment |
-| R3 / R5 retrieval | Retained sources and canonical destinations have landed | Broader custody/refinding, dependent repairs and retained booking-reader mapping remain |
-| R6 prospective/shared | Consumer requirements established | [Pre-Plan intention proposal](retained-intention-before-plan-decision-proposal-2026-09-06.md) is unadopted; missing owner adapters cannot be replaced by Life writes |
+| R2 organization | Stable groups, typed links, controls, identity resolution and bounded owner-backed reads; conservative source-evidence adapter; B1 compiler with five executable, oracle-interpreted product worlds; native organized views and persisted Plan/People readback now pass for supported owners | Real source interpretation/delivery, general episode/continuity discovery, complete repair wiring and broad public eligible readers are not established by the experiment |
+| R3 / R5 retrieval | Retained sources, exact original/refind metadata and canonical destinations have landed; native text source return and withdrawal pass | Binary/media breadth, broader custody/refinding, dependent repairs and retained booking-reader mapping remain |
+| R6 prospective/shared | Consumer requirements established; explicitly permissioned shared Outcome/Commitment records now reach the People lens with grant/member refs and exact return | [Pre-Plan intention proposal](retained-intention-before-plan-decision-proposal-2026-09-06.md) is unadopted; broader media/gathering/Threads use and missing owner adapters cannot be replaced by Life writes |
 | R7 / R8 richness and replacement | Separate record/typed-relationship metrics, first product-world persistence tests and a historical-schema upgrade test; design/scenario and replacement obligations remain | Independent and raw-artifact evaluation, useful previews/Returns, cross-version rebuild/controls, portfolio-wide acceptance, cutover and Atlas retirement remain incomplete |
 
 ### Evidence-stage ledger
@@ -79,8 +115,8 @@ isolated branch before integration; no stage silently implies the next.
 | --- | --- | --- |
 | Implemented locally | Maintainer/cursor/migration packages, `4a19414be`, `333f447be` and holdouts `cba46cf22`; §13.16 reports 300 Life tests and four focused holdout tests | This documentation pass does not rerun or add these overlapping test totals, or certify every owner/algorithm |
 | Integrated | Organizer/holdout and reliability cuts are on local main; Integration's selected combined suites and fresh disposable migration pass | Does not certify raw interpretation, populated Life usability, serving cutover, native behavior or remote publication |
-| Connected to authoritative owners | Supported retained-source/Plan/Occasion/Outcome shadow paths have lifecycle/readback evidence; primary graph-owner groups are maintained | Richer B1 source interpretations are supplied by fixtures; automatic extraction, continuity classification and production B1 publication are not connected |
-| User-visible | Earlier Life shell, four-lens access and exact-restoration work exist in the app | No user-visible adoption of the new organizer, complete public group/original reader or measured preview usefulness follows from its internal group tests |
+| Connected to authoritative owners | Supported retained-source/Plan/Occasion/Outcome shadow paths have lifecycle/readback evidence; primary graph-owner groups are maintained; bounded Plan and permissioned People HTTP readers are real | Richer B1 source interpretations are supplied by fixtures; automatic extraction, continuity classification and production B1 publication are not connected |
+| User-visible | Life shell, four-lens access, organized views, source/original distinction, exact restoration and bounded People/record rows exist in the app | Complete public group/original reader breadth, media previews and measured preview usefulness remain open |
 | Accepted for release | No new release acceptance from these packages | Populated portfolio parity, budgets, native acceptance, rollout/rollback, indexed serving and Atlas retirement remain gated |
 
 The B1 result is **nine required source-evidence links recovered, zero explicitly
@@ -258,25 +294,28 @@ system. Work on the first three can progress together where dependencies permit.
    grouping expectations and evolving-update results over ordinary life,
    journeys, continuing attention, shared perspectives and kept-but-not-lived
    material; passing synthetic holdouts is not system completion.
-2. **M1/M2 — connect real evidence to maintained organization.** Agree Capture's
-   bounded current-authority evidence read and Integration's revision/durable
-   delivery semantics before source-owned changes. Map fields to real owner
-   data, retaining explicit unsupported coverage. The retained-source custody
-   path now has a connected source-literal capture-month organization adapter;
-   treat it as the first adapter, not portfolio completion. Life can prepare consumer,
-   replay and stale-result tests now. Connect publication through the existing
-   maintainer only with current owner/dependency checks, previous plus new
-   affected groups, durable controls and bounded completion/continuation.
-   Exit with owner change → evidence read → organization → corrected shadow
-   readback, including replay, reordering, withdrawal and explicit restore.
-3. **M3/M4 — make organized evidence useful to read.** Continue bounded root,
-   depth, exact-original, Everything kept, refind and anchor-seek contracts over
-   shared eligibility/identity semantics. Evaluate lens-specific previews and
-   recognition alongside group correctness; the visible result must reduce
-   work, not expose an organization-maintenance queue. Contract/fixture work
-   is unblocked; connected acceptance depends on the relevant owner inputs.
-   Mobile adoption follows reviewed public contracts and schema sync, with
-   final visual/device acceptance still separately scheduled.
+2. **M1/M2 — extend real evidence into maintained organization.** The
+   retained-source custody path now has a connected source-literal
+   capture-month adapter, and the candidate-owned Experience Anchor shadow
+   consumer has an owner-revision/readback path. Treat both as bounded first
+   adapters, not portfolio completion. Map additional fields to real owner data,
+   retain explicit unsupported coverage, and add replay/stale-result tests.
+   Connect publication through the existing maintainer only with current
+   owner/dependency checks, previous plus new affected groups, durable controls
+   and bounded completion/continuation. Exit with owner change → evidence read
+   → organization → corrected shadow readback, including replay, reordering,
+   withdrawal and explicit restore.
+3. **M3/M4 — extend useful Life reading beyond the proven exact-source seam.**
+   Retained-text originals, exact refinding, explicit place-bound sources,
+   organized period groups and native return/withdrawal now have named local
+   API/iOS evidence. Continue bounded root, depth, Everything kept, refind and
+   anchor-seek contracts over shared eligibility/identity semantics, and
+   evaluate lens-specific previews and recognition alongside group correctness.
+   The visible result must reduce work, not expose an organization-maintenance
+   queue. Broader media/corpus coverage, People/Threads experiences and later
+   permitted reuse remain open; mobile adoption follows reviewed public
+   contracts and schema sync, with final visual/device acceptance separately
+   scheduled.
 4. **M5 — compare model assistance on identified misses.** Prepare B2 over the
    same candidates/corpus and existing model gateway. Before inference, name
    eligible data, model/prompt versions, call/token/cost limits and stop rules.
