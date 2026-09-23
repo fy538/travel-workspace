@@ -48,11 +48,25 @@ unfinished cleanup prerequisites. Old search-error handling targets a replaced
 implementation; old run-trace machinery has no demonstrated current gap.
 The [recovery receipt](historical-branch-recovery-audit-2026-09-23.md#september-23-useful-work-integration-receipt)
 owns commands and evidence boundaries. **Next is landing-baseline repair and
-verified landing, not another historical-feature sweep.** Full schema export
-has no diff, but projection regeneration remains blocked by the 55 expired
-operation-policy reviews. Existing complete-gate failures and native visual
-acceptance remain unresolved; no historical branch was removed or remote main
-changed by this recovery.
+verified landing, not another historical-feature sweep.** The September 23
+baseline repair now clears the catalog runway, API-operation review and
+compatibility-ledger checks. Full export, app projection and generated types
+regenerate without a diff. Backend `898632684` replaces stale seasonal supply
+with source-reviewed autumn entries and checks review expiry across the runway.
+App `13f81ba04` removes 19 schema exceptions using generated enum/feed types;
+TypeScript and focused contract tests pass. **Landing is still blocked:** the
+fresh complete gate stops at 329 backend mypy errors in 69 files, and the
+separately executed schema check still has 40 expired facade exceptions. Native
+Places visual acceptance and the previously recorded surface-budget issues are
+also unresolved. No historical branch was removed or remote main changed.
+
+Next repair order: resolve shared backend typing boundaries (DB row mappings,
+owner-read collection types and validated literals) with affected behavioral
+tests; resolve the remaining facade contracts against their actual endpoints
+rather than blanket-renewing exceptions; then rerun complete gates and finish
+the remaining presentation acceptance. Do not add new historical feature scope
+or reinterpret passing focused tests as a verified landing. Exact commands and
+the dated evidence boundary live in the recovery audit's landing-baseline receipt.
 
 Fresh canonical heads are workspace `827aace`, backend `fdf789d06`, app
 `23cff76f4`, all clean at inventory. The workspace main is five commits ahead

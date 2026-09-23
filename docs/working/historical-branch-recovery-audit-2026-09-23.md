@@ -100,6 +100,79 @@ branch-name mappings
 are also in each `*-inventory.json`. These bundles precede the subsequent
 metadata repair commits; refresh the preservation receipt before final cleanup.
 
+### September 23 landing-baseline repair receipt
+
+This is the latest gate state; earlier failures below are dated observations.
+All changes remain on `codex/home-human-opening-recovery-2026-09-23`, not main.
+
+- Backend `898632684`: replaced expired August catalog supply with three
+  source-reviewed autumn Season entries and three NYC Here exhibitions.
+  Official NPS, NYBG and Grolier sources, dates and limits are recorded in the
+  YAML. Typical seasonal timing is not a live forecast; an exhibition window
+  is not opening-hours, ticket or current-access evidence. The new entries'
+  review expiry is October 9, so another editorial review is required before
+  then. Existing Hawaii winter supply remains intact; old entries remain in
+  Git history. The runway checker now rejects review expiry inside its claimed
+  runway, even when an event itself continues longer. Tests cover valid supply,
+  expiry now, expiry during the runway and unreadable catalog inputs.
+- API registry: re-reviewed all 55 expired retiring operations against the
+  current full export and method-specific mobile source. 34 have no discovered
+  caller or transport, 20 have only transport declarations, and one has an
+  exported unused hook. Retain them through October 7 with evidence, prior
+  rationale and removal triggers preserved. This is an explicit bounded
+  compatibility decision, **not deployed zero-traffic evidence**. Three legacy
+  route/API bridges received the same source-backed retention decision. No
+  route was deleted, activated, or promoted into the app contract.
+- App `13f81ba04`: 17 hand-copied enums now project generated model fields;
+  two dossier feed envelopes now derive from their actual response models
+  instead of being compared to the unrelated `FollowListResponse`. Compile-time
+  assertions pin the original 19 facade shapes. The venue-item refinement
+  remains independently governed. No SDK, UI, endpoint or runtime behavior was
+  changed. This removes 19 exceptions rather than renewing their expiry.
+
+Verification on arm64 macOS, Node `v24.13.0`, backend Python `3.13.0`
+(measurement launcher Python `3.14.6`):
+
+| Command | Result and boundary |
+|---|---|
+| `PYTHONPATH=. .venv/bin/python -m pytest tests/home/test_vesper_workbench.py tests/concierge/test_workbench_entry.py tests/scripts/test_check_vesper_world_catalogs.py -q --run-quarantined -m 'not requires_postgres and not requires_api_keys and not requires_dogfood_wedge'` in backend | **62 passed, 1 deselected**; no database test or service access. An earlier invocation without the offline marker stopped at missing disposable-DB configuration; it did not run tests. |
+| `PYTHONPATH=. .venv/bin/python scripts/check_vesper_world_catalogs.py --runway-days 14` | **Passed**, four Season rows and three Here rows; at least three current reviewed rows per band for every checked day. |
+| `make api-coverage-check` | **Passed**, 579 active, 15 dark (zero unflagged), 62 retiring. |
+| `./scripts/sync-types.sh` | **Passed** offline export, projection, generation and app typecheck; no generated-file diff. |
+| `python3 scripts/check_compatibility_ledger.py` | **Passed**, four entries. Retention review is not proof of runtime non-use. |
+| `python3 -m unittest scripts/test_api_contract_audit.py scripts/test_project_app_openapi.py -q` | **15 passed**. |
+| `npx tsc --noEmit` and `npm run test:typecheck:contracts` in app | **Passed**; compile-time checks include the enum/feed contract assertions. |
+| `npx jest --runInBand __tests__/conventions/schemaEnumContract.test.ts` | **2 passed**, no skips. |
+| Targeted Ruff and app ESLint; `git diff --check` | **Passed**; ESLint retains one existing array-style warning at `utils/api/types.ts:154`. Commit hooks passed in both children. |
+| `npm run schema-bridge` | **Failed**, 40 remaining expired facade exceptions (down from 59). They were not blanket-renewed. |
+| `.venv/bin/python -m mypy --config-file mypy.ini backend/` | **Failed**, 329 errors across 69 files, 1,888 checked. No suppressions or ratchet exemptions added. |
+| `make verify` | **Failed** at the same backend mypy errors after passing the repaired catalog runway. Later contract/frontend/offline/governance stages in this invocation were **unrun**, regardless of separate focused results. |
+
+Measured logs are local, not portable checked-in evidence:
+`/tmp/vesper-landing-verification/landing-catalogs-20260923T191652Z.log`
+(7.346 s), `landing-mobile-contracts-20260923T191651Z.log` (17.320 s),
+`landing-api-governance-20260923T191852Z.log` (7.863 s),
+`landing-schema-bridge-20260923T191706Z.log` (0.496 s),
+`landing-backend-types-20260923T190454Z.log` (45.767 s), and
+`landing-full-verify-20260923T191854Z.log` (52.679 s), all in that directory.
+Measurements recorded base heads workspace `85db3ac`, backend `078d915cb`,
+app `7e94c42a8` plus dirty working changes; they are not clean-final-tuple
+receipts. Subsequent changes preserved policy rationale, formatted the new
+test and replaced the shortened Grolier URL with its verified full URL.
+Contract tests and the catalog check were rerun before child commits.
+
+**Remaining execution order:** repair backend DB-row/owner-read/literal typing
+without weakening authority or validation; resolve the remaining 40 facade
+exceptions against actual endpoint contracts; address existing surface-budget
+and Places native/design-evidence gaps; then rerun full gates at the final
+tuple and land through protected-main review. Largest current type-error
+clusters are `source_contribution_worker.py` (23),
+`retained_source_projector.py` (22), root `compiler.py` (21), Life organization
+DB code (18) and relationship-handoff routes (18). These are repair targets,
+not evidence that every diagnostic is a runtime defect. No historical ref,
+worktree or ignored local asset was deleted, and neither local nor remote main
+was advanced during this repair.
+
 ### First consolidation repair receipt
 
 - Workspace tooling commit `dc5eec7`; app metadata commit `b0115dd05`;

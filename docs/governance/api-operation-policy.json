@@ -1231,9 +1231,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "location-consent",
-      "reason": "Reviewed 2026-09-04: members.py and API tests retain this authenticated endpoint; mobile transport/caller search still finds none. The named concierge tool and home-feed receipt remain the consent path. Retain retirement status pending traffic review; no new consumer is authorized.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Reviewed 2026-09-04: members.py and API tests retain this authenticated endpoint; mobile transport/caller search still finds none. The named concierge tool and home-feed receipt remain the consent path. Retain retirement status pending traffic review; no new consumer is authorized.",
       "removal_trigger": "Adopt it from an explicit mobile location-settings journey or remove the unused direct endpoint after traffic review.",
-      "review_by": "2026-09-18"
+      "review_by": "2026-10-07"
     },
     "PUT /api/trips/{trip_id}/location-sharing": {
       "audience": "app",
@@ -1241,9 +1241,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "location-consent",
-      "reason": "Reviewed 2026-09-04: members.py and API tests retain this authenticated endpoint; mobile transport/caller search still finds none. Consent still uses the named concierge tool. Retain retirement status pending traffic review rather than deleting a potentially externally used write.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Reviewed 2026-09-04: members.py and API tests retain this authenticated endpoint; mobile transport/caller search still finds none. Consent still uses the named concierge tool. Retain retirement status pending traffic review rather than deleting a potentially externally used write.",
       "removal_trigger": "Adopt it from an explicit mobile location-settings journey or remove the unused direct endpoint after traffic review.",
-      "review_by": "2026-09-18"
+      "review_by": "2026-10-07"
     },
     "PUT /api/me/location": {
       "audience": "app",
@@ -1267,9 +1267,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "itinerary",
-      "reason": "Reviewed 2026-09-04: trips.py retains the computation endpoint, but the mobile transport/interface still have no caller. Keep it retiring pending a scoped consumer decision and deployed-traffic review; consolidation does not activate suggestions.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Reviewed 2026-09-04: trips.py retains the computation endpoint, but the mobile transport/interface still have no caller. Keep it retiring pending a scoped consumer decision and deployed-traffic review; consolidation does not activate suggestions.",
       "removal_trigger": "Activate only with a named mobile consumer and a user-visible suggestion review flow; otherwise remove it.",
-      "review_by": "2026-09-18"
+      "review_by": "2026-10-07"
     },
     "GET /api/angles/{angle_id}": {
       "audience": "app",
@@ -1277,9 +1277,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "editorial",
-      "reason": "The mobile angle reader and its transport call were removed during editorial-reader consolidation; the backend research queue remains, but this public detail route has no product consumer.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: The mobile angle reader and its transport call were removed during editorial-reader consolidation; the backend research queue remains, but this public detail route has no product consumer.",
       "removal_trigger": "Confirm zero deployed traffic, then remove the public detail route while preserving the internal place_angles research pipeline.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "DELETE /api/pending-chat-turns/{pending_turn_id}": {
       "audience": "app",
@@ -1462,9 +1462,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "expenses",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Only transport declarations remain: travel-app/utils/api/http.ts::deleteExpenseComment; no product caller was discovered. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /admin/digests/{digest_id}": {
       "audience": "operator",
@@ -1775,9 +1775,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "atlas",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/atlas/places": {
       "audience": "app",
@@ -1785,9 +1785,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "atlas",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/atlas/scan-history": {
       "audience": "app",
@@ -1795,9 +1795,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "atlas",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/atlas/search": {
       "audience": "app",
@@ -1805,9 +1805,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "atlas",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/concierge/home/workbench": {
       "audience": "app",
@@ -1846,9 +1846,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "conversations",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/conversations/{conversation_id}/messages/{message_id}/card-actions/{action_ref}": {
       "audience": "app",
@@ -1872,9 +1872,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "places",
-      "reason": "The retired Discover feed has no canonical mobile home; its remaining transport and test substrate are retained only until deployed traffic is confirmed absent.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: The only discovered facade caller is data/discover.ts::useDiscoverSectionedFeed; source search finds no current screen consumer (only its export/re-export and tests). Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: The retired Discover feed has no canonical mobile home; its remaining transport and test substrate are retained only until deployed traffic is confirmed absent.",
       "removal_trigger": "Confirm zero supported-client and deployed traffic, then delete the feed route, client facade, mock, and implementation module together.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/discover/trending": {
       "audience": "app",
@@ -1882,9 +1882,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "product-engineering",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Only transport declarations remain: travel-app/utils/api/http.ts::getTrending; no product caller was discovered. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/dossiers/accommodation/{accommodation_id}": {
       "audience": "app",
@@ -1892,9 +1892,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "product-engineering",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/dossiers/site/{site_id}": {
       "audience": "app",
@@ -1902,9 +1902,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "product-engineering",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/dossiers/venue/{venue_id}": {
       "audience": "app",
@@ -1912,9 +1912,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "product-engineering",
-      "reason": "Superseded by the single primary-dossier endpoint used by venue detail.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Superseded by the single primary-dossier endpoint used by venue detail.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the unused venue dossier-list route.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/events/users/{user_id}": {
       "audience": "server",
@@ -2141,9 +2141,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "product-engineering",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/trips/blank": {
       "audience": "app",
@@ -2151,9 +2151,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "product-engineering",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Only transport declarations remain: travel-app/utils/api/http.ts::getBlankTrip; no product caller was discovered. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/trips/{trip_id}/action-receipts/recent": {
       "audience": "app",
@@ -2161,9 +2161,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "expenses",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/trips/{trip_id}/booking/affiliate-links/travel-insurance": {
       "audience": "app",
@@ -2171,9 +2171,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "booking",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/trips/{trip_id}/booking/blocks/{block_id}/confirmation-share": {
       "audience": "app",
@@ -2190,13 +2190,13 @@
       "consumers": [
         {
           "kind": "declared",
-          "name": "Backend substrate for U3 (venue-less Tier-C attribution) \u2014 read-only preview of a domain-matched suggestion. FE review-queue consumer is a named next increment, not yet built."
+          "name": "Backend substrate for U3 (venue-less Tier-C attribution) — read-only preview of a domain-matched suggestion. FE review-queue consumer is a named next increment, not yet built."
         }
       ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "booking",
-      "reason": "See docs/working/Booking Capture \u2014 Un-anchored Handoffs.md \u00a7U3 \u2014 backend + tests shipped, no FE consumer yet by design.",
+      "reason": "See docs/working/Booking Capture — Un-anchored Handoffs.md §U3 — backend + tests shipped, no FE consumer yet by design.",
       "removal_trigger": null,
       "review_by": null
     },
@@ -2206,9 +2206,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "booking",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/trips/{trip_id}/booking/sessions": {
       "audience": "app",
@@ -2216,9 +2216,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "booking",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Only transport declarations remain: travel-app/utils/api/http.ts::listBookingSessions; no product caller was discovered. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/trips/{trip_id}/cross-trip-threads": {
       "audience": "app",
@@ -2226,9 +2226,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "product-engineering",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Only transport declarations remain: travel-app/utils/api/http.ts::getCrossTripThreads; no product caller was discovered. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/trips/{trip_id}/destinations": {
       "audience": "app",
@@ -2282,9 +2282,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "invites",
-      "reason": "The transport facade exists, but no product screen currently calls this read-only preflight. Keep the backend mint-time substance gate authoritative; adopt this endpoint with a named invite journey or remove the unused facade and operation.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Only transport declarations remain: travel-app/utils/api/http.ts::getInviteEligibility; no product caller was discovered. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: The transport facade exists, but no product screen currently calls this read-only preflight. Keep the backend mint-time substance gate authoritative; adopt this endpoint with a named invite journey or remove the unused facade and operation.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless an active invite journey adopts this preflight with a named app consumer.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/trips/{trip_id}/expenses/suggest-category": {
       "audience": "app",
@@ -2292,9 +2292,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "expenses",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/trips/{trip_id}/expenses/{expense_id}": {
       "audience": "app",
@@ -2302,9 +2302,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "expenses",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Only transport declarations remain: travel-app/utils/api/http.ts::getExpense; no product caller was discovered. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/trips/{trip_id}/expenses/{expense_id}/comments": {
       "audience": "app",
@@ -2312,9 +2312,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "expenses",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/trips/{trip_id}/geofence-events": {
       "audience": "app",
@@ -2322,9 +2322,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "live-companion",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/trips/{trip_id}/itinerary/operations/history": {
       "audience": "app",
@@ -2332,9 +2332,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "itinerary",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/trips/{trip_id}/itinerary/operations/writebacks": {
       "audience": "app",
@@ -2342,9 +2342,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "itinerary",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Only transport declarations remain: travel-app/utils/api/http.ts::listItineraryWritebacks; no product caller was discovered. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/trips/{trip_id}/memory-evidence": {
       "audience": "app",
@@ -2352,9 +2352,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "memory",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/trips/{trip_id}/messages/history": {
       "audience": "app",
@@ -2362,9 +2362,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "conversations",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/trips/{trip_id}/messages/info": {
       "audience": "app",
@@ -2372,9 +2372,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "conversations",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/trips/{trip_id}/narration/audio/{entity_type}/{entity_id}": {
       "audience": "app",
@@ -2398,9 +2398,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "live-companion",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Only transport declarations remain: travel-app/utils/api/http.ts::getNarrationManifest; no product caller was discovered. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/trips/{trip_id}/receipts/{receipt_id}/image": {
       "audience": "app",
@@ -2440,9 +2440,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "live-companion",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Only transport declarations remain: travel-app/utils/api/http.ts::getActiveVoiceGuideSession; no product caller was discovered. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/users/me/memory-evidence": {
       "audience": "app",
@@ -2450,9 +2450,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "memory",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/users/me/relationship-visibility": {
       "audience": "app",
@@ -2508,9 +2508,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "product-engineering",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/users/{user_id}/facts/{fact_id}/history": {
       "audience": "app",
@@ -2518,9 +2518,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "product-engineering",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Only transport declarations remain: travel-app/utils/api/http.ts::getUserFactHistory; no product caller was discovered. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/users/{user_id}/followers": {
       "audience": "app",
@@ -2528,9 +2528,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "product-engineering",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Only transport declarations remain: travel-app/utils/api/http.ts::getFollowers; no product caller was discovered. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /debug/cost": {
       "audience": "infrastructure",
@@ -2947,9 +2947,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "conversations",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Only transport declarations remain: travel-app/utils/api/http.ts::pushLocation; no product caller was discovered. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "GET /api/conversations/{conversation_id}/events": {
       "audience": "app",
@@ -3013,9 +3013,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "conversations",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "POST /api/curator/photos": {
       "audience": "server",
@@ -3064,9 +3064,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "product-engineering",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "POST /api/places/{slug}/angles/request": {
       "audience": "app",
@@ -3074,9 +3074,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "product-engineering",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Only transport declarations remain: travel-app/utils/api/httpMemoryEndpoints.ts::requestAngle; no product caller was discovered. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "POST /api/takes/stream": {
       "audience": "app",
@@ -3099,13 +3099,13 @@
       "consumers": [
         {
           "kind": "declared",
-          "name": "Backend substrate for U3 (venue-less Tier-C attribution) \u2014 the ONLY write path, gated on an explicit human confirm. FE review-queue consumer is a named next increment, not yet built."
+          "name": "Backend substrate for U3 (venue-less Tier-C attribution) — the ONLY write path, gated on an explicit human confirm. FE review-queue consumer is a named next increment, not yet built."
         }
       ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "booking",
-      "reason": "See docs/working/Booking Capture \u2014 Un-anchored Handoffs.md \u00a7U3 \u2014 backend + tests shipped, no FE consumer yet by design.",
+      "reason": "See docs/working/Booking Capture — Un-anchored Handoffs.md §U3 — backend + tests shipped, no FE consumer yet by design.",
       "removal_trigger": null,
       "review_by": null
     },
@@ -3114,13 +3114,13 @@
       "consumers": [
         {
           "kind": "declared",
-          "name": "MessageBubble.handleLinkPress (travel-app/components/chat/MessageBubble.tsx) \u2014 called via api.postLinkSurfaced on every assistant-message link tap."
+          "name": "MessageBubble.handleLinkPress (travel-app/components/chat/MessageBubble.tsx) — called via api.postLinkSurfaced on every assistant-message link tap."
         }
       ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "booking",
-      "reason": "U2 outbound-link instrumentation; see docs/working/Booking Capture \u2014 Un-anchored Handoffs.md \u00a7U2.",
+      "reason": "U2 outbound-link instrumentation; see docs/working/Booking Capture — Un-anchored Handoffs.md §U2.",
       "removal_trigger": null,
       "review_by": null
     },
@@ -3130,9 +3130,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "product-engineering",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Only transport declarations remain: travel-app/utils/api/httpExtendedEndpoints.ts::decommitTrip; no product caller was discovered. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "POST /api/trips/{trip_id}/digest/email": {
       "audience": "app",
@@ -3140,9 +3140,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "product-engineering",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "POST /api/trips/{trip_id}/itinerary/blocks/{block_id}/release-handoff": {
       "audience": "app",
@@ -3160,9 +3160,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "itinerary",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "POST /api/trips/{trip_id}/itinerary/operations/writebacks": {
       "audience": "app",
@@ -3170,9 +3170,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "itinerary",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Only transport declarations remain: travel-app/utils/api/http.ts::createItineraryWriteback; no product caller was discovered. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "POST /api/trips/{trip_id}/members": {
       "audience": "app",
@@ -3180,9 +3180,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "product-engineering",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Only transport declarations remain: travel-app/utils/api/http.ts::addTripMember; no product caller was discovered. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "POST /api/trips/{trip_id}/messages": {
       "audience": "app",
@@ -3190,9 +3190,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "conversations",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "POST /api/trips/{trip_id}/messages/close": {
       "audience": "app",
@@ -3200,9 +3200,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "conversations",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "POST /api/trips/{trip_id}/messages/stream": {
       "audience": "app",
@@ -3210,9 +3210,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "conversations",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "POST /api/trips/{trip_id}/narration/prerender-hint/{entity_type}/{entity_id}": {
       "audience": "app",
@@ -3220,9 +3220,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "live-companion",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Only transport declarations remain: travel-app/utils/api/http.ts::prerenderHint; no product caller was discovered. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "POST /api/trips/{trip_id}/notifications/leave-by/mute-today": {
       "audience": "app",
@@ -3262,9 +3262,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "product-engineering",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "POST /api/trips/{trip_id}/recover": {
       "audience": "app",
@@ -3282,9 +3282,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "product-engineering",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Only transport declarations remain: travel-app/utils/api/http.ts::postUserHeartbeat; no product caller was discovered. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "POST /api/users/{user_id}/memory-learning-candidates/{candidate_id}/resolve": {
       "audience": "app",
@@ -3308,9 +3308,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "product-engineering",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Only transport declarations remain: travel-app/utils/api/http.ts::routeModality; no product caller was discovered. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-09-15"
+      "review_by": "2026-10-07"
     },
     "POST /webhooks/bland-ai/call-complete": {
       "audience": "webhook",
@@ -3368,7 +3368,7 @@
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "integrations",
-      "reason": "Provider callback surface \u2014 SendGrid Inbound Parse (unified ingestion Phase 3, docs/working/unified-ingestion-research-2026-07-27.md \u00a712.7). Not under /webhooks/ because it needs the per-request path-secret pattern, not this repo's shared /webhooks/ auth middleware.",
+      "reason": "Provider callback surface — SendGrid Inbound Parse (unified ingestion Phase 3, docs/working/unified-ingestion-research-2026-07-27.md §12.7). Not under /webhooks/ because it needs the per-request path-secret pattern, not this repo's shared /webhooks/ auth middleware.",
       "removal_trigger": null,
       "review_by": null
     },
@@ -3816,10 +3816,10 @@
       "audience": "app",
       "lifecycle": "retiring",
       "owner": "places",
-      "reason": "app/site/[siteId].tsx sources from GET /api/entities/site/{id} since the 2026-08-11 entity-envelope migration (data/sites.ts). The FE client method (api.getSiteDetail) was itself retired in the same effort (Slice 4) once a full-repo grep confirmed zero remaining callers \u2014 so unlike the usual transport-only case, there is no longer even an http.ts implementation to call. The standalone backend route is unchanged and still reachable \u2014 kept live for any other consumer and for its own route tests (tests/api/test_sites_route.py in travel-agent).",
+      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Method-specific mobile discovery finds neither a transport nor a product caller. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: app/site/[siteId].tsx sources from GET /api/entities/site/{id} since the 2026-08-11 entity-envelope migration (data/sites.ts). The FE client method (api.getSiteDetail) was itself retired in the same effort (Slice 4) once a full-repo grep confirmed zero remaining callers — so unlike the usual transport-only case, there is no longer even an http.ts implementation to call. The standalone backend route is unchanged and still reachable — kept live for any other consumer and for its own route tests (tests/api/test_sites_route.py in travel-agent).",
       "feature_flag": null,
-      "removal_trigger": "Delete this route once nothing calls it \u2014 check for any other caller before removing (see docs/decisions/2026-08-11-entity-envelope.md, Slice 4).",
-      "review_by": "2026-09-15",
+      "removal_trigger": "Delete this route once nothing calls it — check for any other caller before removing (see docs/decisions/2026-08-11-entity-envelope.md, Slice 4).",
+      "review_by": "2026-10-07",
       "consumers": []
     },
     "GET /api/root-projections/v1/life/record": {
