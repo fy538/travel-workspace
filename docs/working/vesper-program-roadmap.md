@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Strategy task
 created: 2026-09-07
-last_verified: 2026-09-22
+last_verified: 2026-09-23
 expires: 2026-10-07
 why_new: Extracts the present-tense cross-lane program map from a long Integration plan and its historical receipts so independent owners can coordinate without competing execution queues.
 supersedes:
@@ -19,6 +19,30 @@ depends_on:
 ---
 
 # Vesper program roadmap
+
+**September 23 consolidation mandate — current coordination priority:** the
+founder assigned this task to finish useful integration across the three
+repositories and retire the dangling historical branches. Use the existing
+`codex/home-human-opening-recovery-2026-09-23` coordinated lane as the
+integration host, not a new lane for every historical tip. The
+[branch recovery audit](historical-branch-recovery-audit-2026-09-23.md#september-23-consolidation-mandate-and-current-execution-order)
+owns the exact inventory, disposition queue, recovery bundles and execution
+receipts. Order: preserve history → adapt justified remaining work and repair
+baseline gates → verify and land → preserve local non-code assets and retire
+historical refs/worktrees. A deferred product experiment may be explicitly
+archived without being implemented. Do not bulk-merge it merely to empty the
+branch list.
+
+Fresh canonical heads are workspace `827aace`, backend `fdf789d06`, app
+`23cff76f4`, all clean at inventory. The workspace main is five commits ahead
+of its remote; both child mains match their remotes. The clean recovery
+candidate before the consolidation repairs is workspace `eebe061`, backend
+`a277ba617`, app `9372e154c`. The Home join has bounded native/API evidence;
+the full landing gates remain non-green. All 176 worktree HEADs and existing
+refs now have independently restored, verified local Git-bundle coverage.
+Ignored settings, designs and captures are inventoried but not backed up by
+Git; no historical worktree has been removed in this step. The September 22
+paragraphs below are earlier progress receipts, not the current Git inventory.
 
 **September 22 local-main landing update:** the coordinated candidate below
 has since been fast-forwarded into the three *local* `main` branches: workspace

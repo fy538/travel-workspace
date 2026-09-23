@@ -10,12 +10,119 @@ supersedes: []
 
 # Historical branch recovery audit — September 23, 2026
 
-This began as a read-only audit and is now a **proposed recovery queue plus
-dated preservation and selective-lane receipts**, not product canon or a
-whole-branch merge authorization. The [program
-roadmap](vesper-program-roadmap.md), current owner contracts, and live code
+This began as a read-only audit. On September 23 the founder explicitly asked
+this task to finish useful integration and clean the dangling branches. It is
+now the **execution/disposition ledger for that consolidation**, not product
+canon or a direction to merge every historical implementation wholesale. The
+[program roadmap](vesper-program-roadmap.md), current owner contracts, and live code
 continue to decide what to build. “Retire” below means *no whole-branch merge
 or current feature port*; it does **not** mean a Git ref or worktree was deleted.
+
+## September 23 consolidation mandate and current execution order
+
+The existing `codex/home-human-opening-recovery-2026-09-23` coordinated lane
+is the integration host for all three repositories. Its old name does not
+limit the task to Home. The founder's authorization covers necessary recovery,
+ordinary integration repairs and the eventual cleanup; do not repeatedly
+stop to request the same scope approval. It does not adopt held product
+policies, discard ignored files, bypass verification or override protected-main
+review requirements.
+
+1. **Preserve — committed-history recovery now verified.** A fresh inventory
+   found 58 workspace, 59 backend and 59 app worktrees, all clean in tracked
+   and ordinary untracked files. Exact worktree HEADs are pinned under
+   `refs/archive/consolidation-2026-09-23/worktrees/<full-sha>`. Three complete
+   Git bundles and inventories are at
+   `/Users/feihuyan/vesper-repository-archive-2026-09-23.c4wYxq/`.
+   Each bundle passed `git bundle verify`; a fresh bare repository fetched
+   it without borrowing objects, and all recorded refs and worktree HEADs
+   matched (108 workspace, 108 backend, 105 app checks, including repeated
+   worktree HEADs). The temporary bare verification copies were then removed
+   to avoid retaining another approximately 1.8 GiB of duplicate objects;
+   bundles and manifests remain. This is a local committed-history backup,
+   not an offsite backup or a copy of ignored/uncommitted files.
+2. **Close selective recovery under current owners.** Finish the existing Home
+   join's landing work. Resolve mixed Places ordering against current
+   contract/producer/consumer evidence. Review the remaining named candidates
+   below for a current gap; either adapt and test them, identify their current
+   replacement, or explicitly archive them as deferred/rejected. Automatic
+   Source activation, custom visit windows and other unaccepted product
+   experiments do not become prerequisites to pruning their preserved Git
+   branches. They remain decisions/backlog items, not silently shipped features.
+3. **Repair the integration baseline.** Own the world-catalog runway,
+   API-operation review, schema-bridge, Maestro metadata, compatibility-ledger
+   and typecheck failures as explicit integration work. Review actual current
+   consumers/owners before retiring a path or renewing an exception. Do not
+   convert old expiry dates or test exemptions into apparent completion.
+   The first repair aligns Maestro metadata with existing flow tags, gives
+   four reusable gallery subflows unique names, and reconciles the Python
+   smoke inventory with the app's already-declared 15-flow selection (including
+   Home/Places flows 47–51). It changes no flow commands or suite selection.
+4. **Land the coordinated result.** Run focused checks as changes accumulate,
+   regenerate contracts when necessary, and run the required complete gates
+   for the final revision tuple. Publish/land through the repository's current
+   protected-main process. Local candidate commits are not remote-main delivery.
+5. **Retire exact historical refs and worktrees.** Recheck ownership, refs,
+   status and ignored material immediately before each retirement. Preserve
+   non-regenerable local evidence and settings separately; remove children
+   before a containing workspace. Revalidate remaining worktrees, branch and
+   remote inventories afterward. Record every removal and recovery location.
+   Do not equate archived history with ancestrally merged history.
+
+**Done means:** every historical candidate has a final disposition; accepted
+ports are on main with current checks; preserved retired branches/worktrees
+are removed; canonical checkouts are clean; remaining branches are explicitly
+active or deliberately retained dependency work. No branch/worktree has been
+deleted in this mandate's preservation/first-repair step.
+
+The ignored-file inventory is significant: 58 workspace, 48 backend and 30
+app checkouts contain ignored entries. Beyond generated caches it includes
+native builds, environment files, runtime metadata, captures and local design
+assets. The JSON inventories record paths only; bundles do not preserve those
+files. A clean `git status` is therefore not sufficient deletion evidence.
+
+Bundle SHA-256 values:
+
+| Repository | Bundle | SHA-256 |
+|---|---|---|
+| Workspace | `workspace.bundle` | `3de13fc2505f237315b90c532e678bac76c912a51c9510a2af996179d5a1f977` |
+| Backend | `backend.bundle` | `0a365c1af46e984d63108a7556347d274a6b9da61197ef2ef77a7226ae5a48ac` |
+| App | `app.bundle` | `be101f4bc15fa0a0d0c33ace28f8e7e70f91195e2a6bcda038323c95fc848b8b` |
+
+Restore example (use a new destination):
+
+```sh
+git clone --mirror /absolute/path/to/workspace.bundle /new/recovery.git
+```
+
+Archived worktree commits can be recovered from the full-SHA refs above;
+branch-name mappings
+are also in each `*-inventory.json`. These bundles precede the subsequent
+metadata repair commits; refresh the preservation receipt before final cleanup.
+
+### First consolidation repair receipt
+
+- Workspace tooling commit `dc5eec7`; app metadata commit `b0115dd05`;
+  backend unchanged at `a277ba617`. No product flow body or generated API
+  contract changed. `make land-worktree` help now describes its actual
+  verify-only behavior rather than promising a main push and teardown.
+- `make maestro-flow-check` **passed**: structural validation of 384 flows,
+  8 configs and 10 package references; metadata normalization check; and
+  Maestro CLI syntax validation for all 384 flows. This is syntax/governance
+  evidence, not execution of 384 device journeys.
+- `python3 -m pytest scripts/tests/test_maestro_flow_inventory.py -q`:
+  **6 passed**, covering the admitted 15-flow inventory, missing selection,
+  missing name, wrong lane, malformed YAML and missing app inputs. Measured
+  receipt: `docs/reliability/runs/consolidation-maestro-inventory-20260923T172603Z.log`
+  (local ignored evidence; Python 3.14.6 on arm64 macOS).
+- `node --test scripts/maestro/normalize-metadata.test.mjs` in the app:
+  **3 passed**. Ruff checks on the changed Python scripts and format on the
+  new test passed; `git diff --check` passed in both affected repositories.
+- Documentation governance, inventory, spine, canon, release, status, links
+  and Home-surface checks passed. The unrelated compatibility-ledger failure
+  has not been repaired by this change. Full `make verify` was not rerun;
+  the other recorded baseline failures remain open. No push or main landing
+  is claimed by these commits.
 
 ## Scope and evidence boundary
 
@@ -186,6 +293,16 @@ flag remain a separate product choice below.
 
 ### Remote-only dependency branches — separate maintenance queue
 
+**Fresh fetch after preservation:** four backend remote tracking refs and one
+app tracking ref were pruned because their branches were already deleted on
+the remote. No remote branch was deleted by this task. Backend now has two
+remote dependency tips (`python-minor-patch-6245ec17e7` and
+`sentence-transformers-gte-6.0.1`); app has five (the refreshed
+`npm-minor-patch-aa826fd39b`, React Native 0.87.1, Purchases and Purchases UI
+10.9.0, and Worklets 0.12.1). The old refs and prior npm group tip remain in
+the verified bundles. Use this current inventory for maintenance; the initial
+audit paragraph below records the earlier state, not a live upgrade queue.
+
 Backend has five remote Dependabot tips. `pytest-randomly-gte-5.0.0` is already
 covered by main's dev lock; two older Python patch groups are superseded by
 `python-minor-patch-1978744215`, which itself needs a fresh dependency/lock
@@ -228,7 +345,7 @@ identified selective candidates and product gates above remain the recovery
 queue. These two refs and worktrees are retained; no ancestry was bulk-merged
 or pruned on the strength of a tip comparison.
 
-## Plan of attack
+## Original selective-recovery plan (superseded in scope by the mandate above)
 
 1. **Preserve before pruning — local refs created, lineage audit still open.**
    Recheck all three statuses and worktree inventories before cleanup. The 15
@@ -267,6 +384,7 @@ or pruned on the strength of a tip comparison.
    Review Dependabot updates through the normal dependency lane, not this
    historical product recovery.
 
-The plan favors the current roadmap's owner-backed Home composition. Branch
-recovery should create a better experience for a person, not become a
-repository-wide integration project.
+The original plan favored one owner-backed Home recovery. The later founder
+mandate above expands this task to repository consolidation while retaining
+its selective-port rule: historical code is evidence, not automatic product
+scope.
