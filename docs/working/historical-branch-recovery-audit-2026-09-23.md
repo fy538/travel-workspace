@@ -43,7 +43,7 @@ branch wholesale.
 ## Recovery lane progress (not landed on main)
 
 The isolated `codex/home-human-opening-recovery-2026-09-23` lane now contains
-backend tip `5bc7c5994` and app tip `163cc4da9`. It selectively adapts the
+backend tip `4327c09fa` and app tip `163cc4da9`. It selectively adapts the
 human-note/current-Place join and gives the attributed note a human-first
 native hierarchy. The join is limited to pending notes so Keep cannot make
 an already-handled contribution look newly received. Three existing native
@@ -51,24 +51,41 @@ rehearsals now resolve the presented unit by its exact handoff and venue owner
 refs rather than assuming the standalone unit ID; absent or ambiguous matches
 fail.
 
-At these tips, the backend root-projection suite passed (`494` tests) and the
+At the earlier code tuple, the backend root-projection suite passed (`494` tests) and the
 full offline backend selection passed (`21,758` passed, `14` skipped, `1,458`
 deselected, `53` xpassed). App TypeScript, its Home screen suite (`20` tests),
 offline suite (`126` tests), and the changed QA-runner tests (`12` tests)
-passed. The Home design-reference check is doctrine-only; native capture,
-visual comparison and real API destination/return remain **unverified**. On
-September 23 this recovery lane reserved a separate iPhone 16 Pro Max simulator
-(`074FD906-F69B-447E-93AD-83DA52D30E2A`) and ran Home Root's polish-QA
-doctor successfully with its own Metro port `53936`, Maestro `2.6.1`, and
-OpenJDK 17. The installed Vesper binary, built in July, could not render the
-current JavaScript: Worklets native `0.11.3` versus JS `0.12.1`. We also
-installed and tried Expo Go for the lane, as the Expo guidance recommends
-before a new native build; it produced the same mismatch. This is not a
-Home-screen visual verdict. A matching custom development build is still
-needed; it was not attempted because the local Mapbox download token required
-by this app's iOS build is unset. The other lane's booted simulator was not
-used. The successful doctor only establishes toolchain and Metro preflight,
-not binary compatibility or screen acceptance.
+passed. The Home design-reference check is doctrine-only, so native rendering
+does not establish design-intent parity.
+
+On September 23 this recovery lane reserved a separate iPhone 16 Pro Max
+simulator (`074FD906-F69B-447E-93AD-83DA52D30E2A`) and ran Home Root's
+polish-QA doctor successfully with its own Metro port `53936`, Maestro
+`2.6.1`, and OpenJDK 17. The initially installed July Vesper binary and Expo
+Go both had Worklets native `0.11.3` versus JS `0.12.1`. A cached September
+22 custom development bundle with native Worklets `0.12.1` was installed on
+the reserved device without changing source or building against the absent
+Mapbox download token. All seven registered mock Home postures captured on
+that matching native binary. They establish native rendering across the
+postures, not true-world supply, visual parity to a verified Claude reference,
+or social owner behavior. The other lane's booted simulator was not used.
+
+The first real-API Home addressed-note rehearsal reached the exact note and
+performed Keep but failed its final return assertion. A fresh Home API read
+proved the cause: the relationship owner correctly changed the note to
+`kept` at revision 1, while Home still emitted the handled note as a `current`
+receiving unit. Backend `4327c09fa` now admits an addressed note to Home only
+while `available`; it leaves the kept note in its Place owner and eligible for
+authorized later Source use. The corrected root-projection suite passed
+(`495` tests). The same iPhone 16 Pro Max, real local PostgreSQL/API, selected
+fixture account, and live Home/Place owner routes then passed the full native
+Home → exact Place note → Keep → exact revision read → Home return flow; the
+disposable sender/venue fixture was cleaned. This proves the standalone
+receiving path and its handled-state transition. The new joined human/current-
+world Home unit still has pure composition tests, but no native real-owner
+fixture that forces that exact joined presentation; acceptance of that
+specific treatment and strict visual parity remain open. A fresh iOS build
+would still need the missing Mapbox download token.
 
 The required full gates are **not green**. `make verify` stopped at eight
 expired world-catalog rows; current backend main fails the same check. Separate
@@ -83,11 +100,17 @@ bump dates or bypass gates in this recovery lane. The lane remains clean,
 unmerged and unpushed; it is not product acceptance. The Places mixed-order
 and Source activation decisions below remain gated.
 
+The updated audit document passed governance, inventory, spine, canon,
+release, status, links and Home-surface documentation checks. `make docs-check`
+still exits nonzero at the unchanged compatibility ledger: the
+`discover-url-bridge`, `atlas-tab-url-bridge` and `discover-map-api-bridge`
+rows expired September 15. No expiry was silently renewed for this recovery.
+
 ## Cross-repository decision
 
 | Priority | Candidate | Disposition and acceptance boundary |
 |---|---|---|
-| 1 — built in isolated lane; acceptance pending | One attributed human Place note joined to one current-world Place opening | Backend `engine-er123-integration` / `native-receiving-next` supplied a selective reference; current main supplies `people_note_door` and `horizon_aperture_row` separately. The lane above adapts the exact-entity, single-author join and native treatment while preserving both owner reads and fallbacks. Device comparison, exact destination/return and landing remain. This is a current-Home value slice, not a branch merge. |
+| 1 — built in isolated lane; joined-treatment acceptance pending | One attributed human Place note joined to one current-world Place opening | Backend `engine-er123-integration` / `native-receiving-next` supplied a selective reference; current main supplies `people_note_door` and `horizon_aperture_row` separately. The lane above adapts the exact-entity, single-author join and native treatment while preserving both owner reads and fallbacks. The standalone addressed-note exact destination/Keep/return now passes on a real local backend and device; a real joined-unit fixture, design-reference comparison and landing remain. This is a current-Home value slice, not a branch merge. |
 | 2 — contract decision | One server-authored mixed Places page order | Backend `engine-er123-integration` and app `quality-comparison` / `native-receiving-next` / `timing-proactive-delivery` contain a `page_sequence` approach. Current Places contract says the section list is the sole client-visible order, while current app still locally promotes the dominant browse section. Decide one canonical order for both semantic units and mature sections; do **not** add a competing order array. Then adapt producer, OpenAPI/types, app renderer and order/exposure tests together. |
 | 3 — policy decision | Automatic returned-Source activation | `strategy-useful-supply` and `native-receiving-next` contain trigger/work-item code, but the current roadmap explicitly holds `trip.completed` activation pending source, purpose, audience, lineage, correction/withdrawal, expiry, duplicate and sparse behavior. Do not port this under a generic “resume old work” instruction. It does not block ordinary Home composition. |
 | 4 — separate receiving option | Timed delivery of an *already explicitly requested* Source result | `timing-proactive-delivery` adds durable reconsideration, exact workflow reread and in-app Activity destination. This is separable from automatic activation, but still needs an explicit background/notification treatment decision, current delivery-contract adaptation, migration/restart evidence and app destination authority checks. |
