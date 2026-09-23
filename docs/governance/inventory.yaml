@@ -13,6 +13,9 @@ dispositions:
 # Overrides win over rules. Rules deliberately cover stable folder conventions;
 # top-level and working documents are classified one by one below.
 rules:
+  - glob: "docs/working/historical-branch-recovery-audit-2026-09-23.md"
+    disposition: keep_reference
+    rationale: "Dated, expiring cross-repository Git recovery inventory and proposed selective-port plan; current product, system and program authorities retain all implementation decisions."
   - glob: "docs/working/functional-implementation-code-review-2026-09-22.md"
     disposition: keep_reference
     rationale: "Dated 24-hour cross-repository defect ledger with reproducible evidence and repair targets; specialized roadmaps retain execution authority."
