@@ -152,7 +152,7 @@ def build():
         ('WITHDRAWN', 'Taking a share back removes it everywhere it went. Nothing survives except what other people wrote themselves.'),
     ]) + N('Formerly board 12, merged here on 2026-09-22. An earlier eight-frame permission flow for passing things on was cut on 2026-09-21 as over-complicated.'), w=560)
     body = r1 + r2 + r3 + r4 + r5 + '<div style="display: flex; gap: 46px; align-items: flex-start; margin-top: 34px; border-top: 1px solid rgba(27,23,20,0.12); flex-wrap: wrap;">' + n2 + n3 + n4 + '</div>'
-    html = (HEAD_VDL + f'<div style="width: {bw(3, (520, 620))}px; min-height: {hh("11", 5200)}px; background: #F4F0E7; box-sizing: border-box; padding: 30px 32px 36px 32px; {SANS} color: {INK}; display: flex; flex-direction: column;">'
+    html = (HEAD_VDL + f'<div style="width: {bw(3, (520, 620))}px; min-height: {hh("11", 5200)}px; background: #D8D1C5; box-sizing: border-box; padding: 30px 32px 36px 32px; {SANS} color: {INK}; display: flex; flex-direction: column;">'
             + head('11 &middot; SHARING &middot; THE REST OF IT', 'Audience, Keep, an ask, a link, taking it back, and the edges',
                    'Who a share goes to, and how the receiver knows. Keeping a friend&rsquo;s share for yourself. A status whose point is the answers. Something from outside with your words on top. And what goes with a share when you take it back. Same shapes as board 10. Drawn, not tested with anyone.')
             + body + f'<div class="fn" style="margin-top: 30px; line-height: 16px;">{FOOTX}</div></div>' + TAIL)

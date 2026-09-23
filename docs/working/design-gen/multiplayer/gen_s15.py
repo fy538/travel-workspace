@@ -112,7 +112,7 @@ def build():
         ('HOME&rsquo;S OWN CONTENT', 'The day line and the Life return are Home&rsquo;s existing work (the Home project). Drawn minimally here, only to show friends sitting beside it rather than taking over.'),
     ]), w=620)
     bodyhtml = r1 + r2 + '<div style="display: flex; gap: 46px; align-items: flex-start; margin-top: 34px; border-top: 1px solid rgba(27,23,20,0.12);">' + n1 + n2 + '</div>'
-    html = (HEAD21 + f'<div style="width: 1860px; min-height: {hh("21", 3000)}px; background: #F4F0E7; box-sizing: border-box; padding: 30px 32px 36px 32px; {SANS} color: {INK}; display: flex; flex-direction: column;">'
+    html = (HEAD21 + f'<div style="width: 1860px; min-height: {hh("21", 3000)}px; background: #D8D1C5; box-sizing: border-box; padding: 30px 32px 36px 32px; {SANS} color: {INK}; display: flex; flex-direction: column;">'
             + head('21 &middot; RECEIVING', 'Home over an ordinary week',
                    'What a dozen friends sharing looks like from Nora&rsquo;s Home, Monday to Sunday. What was sent to you first; what has a time next, gone when it passes; everything else compact, grouped by person, capped. '
                    'Nothing is counted, nothing piles up, and a quiet day stays quiet. Drawn, not tested with anyone.')

@@ -80,3 +80,81 @@ def review(costs, compare, kind, line, question, extras=(), widths=(600, 520, 44
 def eboard(key, fname, kick, title_, sub, cols, note_cols, nphones):
     return write(fname, board(bw(nphones, (600, 520, 440)), hh(key, 1800),
                               f'{key} &middot; {kick} &middot; PASS A&prime; &middot; EXPLORATORY', title_, sub, cols, note_cols))
+
+# ───────────────────────── Life skin, 2026-09-22 ─────────────────────────
+# Every board in the project wears Life's board grammar: the taupe board, rounded phone frames, Life's header, a gold
+# mono caption above each frame and a short note below it, and riso placeholders instead of the old figure
+# illustrations. Patched here, once, so every generator that imports this kit gets it.
+import re as _re, os as _os, hashlib as _hl
+import gen_generous as _gg, gen_merge as _gm, gen_p2_common as _pc
+_LIFE07 = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'life', '07.html')
+try:
+    _LIFE_STYLE = _re.search(r'<style>(.*?)</style>', open(_LIFE07).read(), _re.S).group(1)
+except Exception:
+    _LIFE_STYLE = ''
+HEAD_VDL = HEAD_VDL.replace('</helmet>', f'<style>{_LIFE_STYLE}</style>\n</helmet>', 1)
+BOARD_BG = '#D8D1C5'
+
+def head(kick, title, sub, pill='Review'):
+    return (f'<div style="padding: 0 0 10px 0; margin-bottom: 18px; max-width: 1100px;">'
+            f'<div style="display: flex; align-items: center; gap: 12px;"><span class="ceye">{kick}</span><span class="cpill rev">{pill}</span></div>'
+            f'<div class="ctitle" style="padding-top: 8px;">{title}</div>'
+            f'<div class="cn" style="padding-top: 10px; max-width: 1000px; font-size: 13px; line-height: 19px;">{sub}</div></div>')
+
+_NOTE = '<!--NOTE-->'
+def daycap(day, k, t, s2=''):
+    top = f'{k} &middot; {day}' if day else f'{k}'
+    above = (f'<div class="ccap" style="margin-bottom: 5px;">{top}</div>'
+             f'<div style="{SERIF} font-weight: 600; font-size: 18px; line-height: 23px; color: {INK}; margin-bottom: 12px;">{t}</div>')
+    note = f'<div class="cnote" style="margin-top: 10px; font-size: 12px; line-height: 17px;">{s2}</div>' if s2 else ''
+    return above + _NOTE + note
+def col(ph, cap, w=393):
+    ph = _re.sub(r'(<div style="width: 393px;[^"]*?)min-height: \d+px;', r'\1min-height: 0;', ph, count=1)
+    above, note = (cap.split(_NOTE, 1) + [''])[:2] if _NOTE in cap else (cap, '')
+    return f'<div style="width: {w}px; flex: none; display: flex; flex-direction: column;">{above}{ph}{note}</div>'
+
+def tag(t, c=GOLDD, bg='rgba(176,133,58,0.14)'):
+    return (f'<span style="display: inline-flex; align-items: center; height: 18px; padding: 0 8px; border-radius: 9px; {MONO} font-size: 8px; '
+            f'font-weight: 700; letter-spacing: 1px; color: {c}; background: {bg}; white-space: nowrap;">{t}</span>')
+
+_orig_phone2 = _pc.phone2
+def phone2(inner, active='Places'):
+    return f'<div class="cphone" style="width: 393px; flex: none;">{_orig_phone2(inner, active)}</div>'
+def webframe(inner):
+    return (f'<div class="cphone" style="width: 393px; flex: none; border-radius: 16px;"><div style="background: {PAPER}; {SANS} color: {INK};">'
+            f'<div style="padding: 10px 16px; border-bottom: 1px solid rgba(27,23,20,0.08); {MONO} font-size: 9px; letter-spacing: 1px; color: {MUTE};">A PAGE &middot; NO APP NEEDED</div>'
+            f'{inner}<div style="height: 22px;"></div></div></div>')
+
+# riso placeholders, as Life keeps photographs: paper ground, two inks, one motif per kind
+_RISO = ['<circle cx="44" cy="16" r="9" fill="#C4604F" opacity="0.65"/><rect y="34" width="62" height="28" fill="#4E7A6F" opacity="0.5"/>',
+         '<circle cx="31" cy="31" r="16" stroke="#C4604F" stroke-width="2.5" fill="none" opacity="0.7"/><path d="M22 34 Q31 24 42 32" stroke="#4E7A6F" stroke-width="2.5" fill="none" opacity="0.65"/>',
+         '<path d="M10 52 L30 16 L50 52 Z" fill="#4E7A6F" opacity="0.45"/><circle cx="48" cy="14" r="6" fill="#C4604F" opacity="0.7"/>',
+         '<rect x="12" y="12" width="20" height="38" rx="2" fill="#C4604F" opacity="0.55"/><rect x="36" y="22" width="16" height="28" rx="2" fill="#4E7A6F" opacity="0.5"/>',
+         '<path d="M6 40 Q20 24 31 36 T56 34" stroke="#4E7A6F" stroke-width="3" fill="none" opacity="0.6"/><circle cx="18" cy="18" r="7" fill="#C4604F" opacity="0.6"/>',
+         '<rect x="10" y="30" width="42" height="18" rx="2" fill="#4E7A6F" opacity="0.45"/><circle cx="20" cy="18" r="6" fill="#C4604F" opacity="0.65"/><circle cx="40" cy="18" r="6" fill="#C4604F" opacity="0.65"/>']
+_KIND = {'room': 0, 'loaf': 1, 'pier': 4, 'hall': 3, 'market': 5, 'quay': 4, 'film': 3, 'noodles': 1, 'library': 3, 'organ': 3, 'table': 5, 'loop': 4, 'terrace': 2}
+def illo(kind, h=150, w=349):
+    i = _KIND.get(kind, int(_hl.md5(str(kind).encode()).hexdigest(), 16) % len(_RISO))
+    return (f'<svg width="100%" height="{h}" viewBox="0 0 62 62" preserveAspectRatio="xMidYMid slice" style="display: block; width: {w}px; max-width: 100%;">'
+            f'<rect width="62" height="62" fill="#F6F1E4"/>{_RISO[i]}</svg>')
+def thumb(kind, size=56):
+    return f'<div style="width: {size}px; height: {size}px; border-radius: 6px; overflow: hidden; flex: none; border: 1px solid rgba(27,23,20,0.10); box-sizing: border-box;">{illo(kind, size, size)}</div>'
+
+for _m in (_gg, _gm, _pc):
+    for _n, _f in (('head', head), ('col', col), ('daycap', daycap), ('phone2', phone2), ('illo', illo), ('thumb', thumb)):
+        if hasattr(_m, _n): setattr(_m, _n, _f)
+
+# Tags above a frame only when they say something the caption does not: no app, or a proposed piece.
+_TAGROW = _re.compile(r'<div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 7px;">(.*?)</div>', _re.S)
+_KEEP = ('NO APP', 'PROPOSED')
+def _prune_tags(cap):
+    def keep(m):
+        spans = _re.findall(r'<span[^>]*>.*?</span>', m.group(1), _re.S)
+        kept = [s for s in spans if any(k in _re.sub(r'<[^>]+>', '', s) for k in _KEEP)]
+        return f'<div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px;">{"".join(kept)}</div>' if kept else ''
+    return _TAGROW.sub(keep, cap, count=1)
+_col_skin = col
+def col(ph, cap, w=393):
+    return _col_skin(ph, _prune_tags(cap), w)
+for _m in (_gg, _gm, _pc):
+    if hasattr(_m, 'col'): setattr(_m, 'col', col)

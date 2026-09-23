@@ -67,7 +67,7 @@ def build():
         ('OPEN', 'What each person has let Vesper use for the other, still. Whether a group chat of three or four gets the same door.'),
     ]) + N('The earlier version of this board put a plan, a list and a method at the top of the thread, formed on a Vesper prompt. Cut 2026-09-21: the list deserved its own page, and Vesper was too present.'), w=620)
     body = r1
-    html = (HEAD_VDL + f'<div style="width: 2010px; min-height: {hh("13", 1500)}px; background: #F4F0E7; box-sizing: border-box; padding: 30px 32px 36px 32px; {SANS} color: {INK}; display: flex; flex-direction: column;">'
+    html = (HEAD_VDL + f'<div style="width: 2010px; min-height: {hh("13", 1500)}px; background: #D8D1C5; box-sizing: border-box; padding: 30px 32px 36px 32px; {SANS} color: {INK}; display: flex; flex-direction: column;">'
             + head('13 &middot; THE CHAT', 'A private chat, and Vesper only when asked',
                    'Nora and Maya. A chat like any other. Vesper is a door in the composer, not a presence. When something the two of them own changes, the chat says so in one line and points at it.')
             + '<div style="display: flex; gap: 46px; align-items: flex-start;">' + body + n + '</div>'

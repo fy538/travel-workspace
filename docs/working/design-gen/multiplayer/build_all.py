@@ -1,9 +1,8 @@
-"""Generate every board and lay the output out the way the project is organized: five boards at the top, the eighteen
-directions in directions/, and the copy board plus the method page in archive/."""
+"""Generate the current boards and place earlier explorations under archive/."""
 import subprocess, os, shutil, glob, json
 HERE = os.path.dirname(os.path.abspath(__file__)); OUT = os.path.join(HERE, 'out')
 GENS = ['gen_00', 'gen_01', 'gen_b1', 'gen_w1', 'gen_w2', 'gen_g5', 'gen_g6', 'gen_s1', 'gen_s2', 'gen_s4', 'gen_s6', 'gen_s8', 'gen_s9', 'gen_s12', 'gen_s13', 'gen_s14', 'gen_s15', 'gen_a0'] + [f'gen_d{i}' for i in range(1, 11)] + [f'gen_e{i}' for i in range(1, 9)]
-for sub in ('archive/directions', 'archive'):
+for sub in ('archive', 'archive/directions'):
     shutil.rmtree(os.path.join(OUT, sub), ignore_errors=True); os.makedirs(os.path.join(OUT, sub))
 for f in glob.glob(os.path.join(OUT, '*.dc.html')): os.remove(f)
 for g in GENS:

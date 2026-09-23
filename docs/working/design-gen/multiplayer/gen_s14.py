@@ -129,7 +129,7 @@ def build():
         ('GROUPS', 'Inviting several people with one link, and what they see of each other, is not drawn.'),
     ]), w=520)
     bodyhtml = r1 + r2 + '<div style="display: flex; gap: 46px; align-items: flex-start; margin-top: 34px; border-top: 1px solid rgba(27,23,20,0.12);">' + n + n2 + '</div>'
-    html = (HEAD20 + f'<div style="width: 1860px; min-height: {hh("20", 3000)}px; background: #F4F0E7; box-sizing: border-box; padding: 30px 32px 36px 32px; {SANS} color: {INK}; display: flex; flex-direction: column;">'
+    html = (HEAD20 + f'<div style="width: 1860px; min-height: {hh("20", 3000)}px; background: #D8D1C5; box-sizing: border-box; padding: 30px 32px 36px 32px; {SANS} color: {INK}; display: flex; flex-direction: column;">'
             + head('20 &middot; CONNECTING', 'How people come to be in each other&rsquo;s Vesper',
                    'You invite by sending something real; the link is enough to read and reply; joining connects you to the person and the thing; contacts are asked once; the only other suggestion is someone you were with. '
                    'Every earlier board assumes this has already happened. Drawn, not tested with anyone.')
