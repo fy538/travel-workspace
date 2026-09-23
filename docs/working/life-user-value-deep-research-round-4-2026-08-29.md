@@ -16,7 +16,7 @@ depends_on:
   - travel-agent/docs/product/Product Thesis.md
   - travel-agent/docs/product/My World, Encounters, and Private Place Memory.md
   - travel-agent/docs/archive/2026-08/pivot-research/platform-memory-and-human-remembering-2026-08-21.md
-  - travel-agent/docs/working/differentiated-social-multiplayer-strategy-2026-08-21.md
+  - travel-agent/docs/archive/2026-08/social-research/differentiated-social-multiplayer-strategy-2026-08-21.md
 ---
 
 # Life User Value Deep Research — Round 4

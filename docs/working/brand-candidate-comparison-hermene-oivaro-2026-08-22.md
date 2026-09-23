@@ -167,7 +167,7 @@ etymology:
 - The wider product framing and its four recurring product moves:
   [`Product Thesis`](../../travel-agent/docs/product/Product%20Thesis.md)
 - The multiplayer thesis that Place is a third thing between people:
-  [`Differentiated Social Multiplayer Strategy`](../../travel-agent/docs/working/differentiated-social-multiplayer-strategy-2026-08-21.md)
+  [`Differentiated Social Multiplayer Strategy`](../../travel-agent/docs/archive/2026-08/social-research/differentiated-social-multiplayer-strategy-2026-08-21.md)
 
 ## Screened derivative: Legari
 

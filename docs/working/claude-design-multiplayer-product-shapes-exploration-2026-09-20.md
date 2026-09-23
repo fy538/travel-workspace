@@ -853,9 +853,9 @@ Many of these opportunities are already named in the product corpus. Consult
 [Multiplayer Product Strategy](../../travel-agent/docs/product/Multiplayer%20Product%20Strategy.md)
 §1.3 (contribution beyond artifacts), §3 (social units), §4 (modes), and §5.2
 (different participation); the August 18
-[attention-traces research](../../travel-agent/docs/working/attention-traces-consequential-memory-and-multiplayer-perception-2026-08-18.md)
+[attention-traces research](../../travel-agent/docs/archive/2026-08/pivot-research/attention-traces-consequential-memory-and-multiplayer-perception-2026-08-18.md)
 §8.1–8.9; and the August 21
-[social-strategy research](../../travel-agent/docs/working/differentiated-social-multiplayer-strategy-2026-08-21.md)
+[social-strategy research](../../travel-agent/docs/archive/2026-08/social-research/differentiated-social-multiplayer-strategy-2026-08-21.md)
 §6.5–6.8. Historical research is provenance, not authority over newer canon.
 Do not reintroduce old relationship portraits or exclusive launch assumptions.
 
@@ -1026,7 +1026,7 @@ below are not six new features. The three compositions in §13.4 reuse A–D and
 existing canvases; redraw only where a missing interaction needs demonstrating.
 This remains the one Claude Design handoff, not an engineering commitment.
 
-The existing [gathering psychology research](../../travel-agent/docs/working/gathering-psychology-social-accessibility-and-occasion-continuity-2026-08-23.md)
+The existing [gathering psychology research](../../travel-agent/docs/archive/2026-08/social-research/gathering-psychology-social-accessibility-and-occasion-continuity-2026-08-23.md)
 already distinguishes invitation from incorporation (§5), responsiveness from
 disclosure volume (§6.2), situational needs from personality types (§8), and
 optional continuity from obligatory follow-up (§10). Translate that thinking;

@@ -1311,7 +1311,7 @@ crown; the one ask belongs to the crown until spent.
    (b) **Document-like captures canonize into typed anchors** — a ticket,
    reservation, or receipt (however ingested: email, photo, share sheet)
    becomes an Experience Anchor (Movement/Base/Attendance/Dining/Attention
-   — `docs/working/artifact-and-experience-anchor-grammar-v1-2026-08-21.md`)
+   — `docs/archive/2026-08/pivot-research/artifact-and-experience-anchor-grammar-v1-2026-08-21.md`)
    whose canonical rendering carries the product behavior, with the raw
    source kept inspectable underneath — "the original is evidence, not the
    hero," displayed per the Expression canon's layered-source rule

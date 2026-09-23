@@ -18,8 +18,8 @@ depends_on:
   - travel-agent/docs/product/Vesper Editorial and Content Canon.md
   - travel-agent/docs/product/Vesper Expression, Medium, and Projection Canon.md
   - travel-agent/docs/product/My World, Encounters, and Private Place Memory.md
-  - travel-agent/docs/working/place-familiarity-world-openings-and-capability-loop-2026-08-20.md
-  - travel-agent/docs/working/attention-traces-consequential-memory-and-multiplayer-perception-2026-08-18.md
+  - travel-agent/docs/archive/2026-08/pivot-research/place-familiarity-world-openings-and-capability-loop-2026-08-20.md
+  - travel-agent/docs/archive/2026-08/pivot-research/attention-traces-consequential-memory-and-multiplayer-perception-2026-08-18.md
   - travel-agent/docs/working/nice-southern-italy-rome-founder-fieldwork-story-ledger-2026-08-27.md
 ---
 

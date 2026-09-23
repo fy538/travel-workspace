@@ -22,6 +22,26 @@ depends_on:
 
 ## August execution-plan handoff — September 23
 
+The related [pivot research](../../travel-agent/docs/archive/2026-08/pivot-research/)
+and [social research](../../travel-agent/docs/archive/2026-08/social-research/)
+are preserved historical provenance, not competing active research queues.
+Earlier three-root proposals, one-opening Home limits, universal Opening
+grammar, exclusive travel-launch assumptions and identity-facet experiments
+must not override the accepted four roots, four moves, everyday-first strategy
+and human-authored Status/contribution-first social policy.
+
+Unanswered research remains available to the existing Product/Design owners:
+value before history; legible Keep/forget/correction and later authorized use;
+non-repetitive Place horizons and capability gains; private protected anchors
+improving shared action; asymmetric social effort, invitation comprehension,
+plural aftermath and voluntary reconnection; and reciprocal public contribution
+without extractive labor. The archived scenarios, falsifiers and blank study
+worksheet are starting material, **not completed studies or current study
+authorization**. Reconcile rejected treatments, privacy/consent, current surfaces
+and current code before reusing them. Do not reopen settled canon by treating
+every August question as still undecided, or implement those experiments merely
+to finish repository cleanup.
+
 The August Content activation, Intake V2 completion and Occasion grammar
 execution documents are now historical plans/receipts, not parallel active
 backlogs. Their full text and unfinished gates remain in the backend
@@ -107,9 +127,9 @@ offline and Maestro syntax checks before finding missing/overdue flag metadata;
 source-reviewed registry repairs now pass separately. A clean final-tuple
 complete gate remains required; the earlier run overlapped app edits.
 
-**Publication blocker from the separate backend pre-push packet:** 21 active
-working documents remain expired, down from 94. One stale header also requires
-review on the committed child tuple. The code CI
+**Publication blocker from the separate backend pre-push packet:** 11 active
+working documents remain expired, down from 94. No stale headers remain on the
+committed child tuple after backend `2475e6161`. The code CI
 pass does not cover that hook.
 The final clean publication attempt was stopped before any push; it is not a
 complete-gate pass. Reconcile each document's actual owner/status, rather than
@@ -142,7 +162,7 @@ The [audit's disposition table](historical-branch-recovery-audit-2026-09-23.md#i
 maps each to its current owner and preserves unfinished acceptance. In particular,
 addressed-handoff surface release remains machine-readable **pending**, and
 archival does not authorize itinerary replacement, legacy content cutover,
-automatic retention or feature activation. The remaining queue is 21 documents;
+automatic retention or feature activation. The remaining queue is 11 documents;
 research and unresolved plans still require individual disposition.
 
 The subsequent Place-calibration/social-research pass archives three frozen

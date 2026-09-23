@@ -83,13 +83,55 @@ with Python 3.14.6 on Darwin arm64. Receipt:
 The checked recovery tuple was workspace `75a4398`, backend `0aaa2ccc4`, app
 `717355b17`; this documentation receipt follows that check.
 
-**Still incomplete:** reconcile the 21 remaining expired backend documents and one
-stale header, verify and
+**Still incomplete:** reconcile the 11 remaining expired backend documents, verify and
 publish the recovery candidate through protected-main review, resolve the
 remaining acceptance/pin requirements, land useful work, and finally retire
 the recovery lane plus the old native-testing lane once no process uses it.
 Historical retirement does not prove recovery landing, native visual parity,
 or complete-goal acceptance.
+
+### Research and prototype portfolio disposition — September 23
+
+Backend `2475e6161` preserves fifteen August documents under the existing pivot
+and social research archives. Ten are from the expired queue: philosophical
+foundations, the dated product-shape audit, artifact grammar, longitudinal and
+situated simulations, differentiated social strategy, gathering synthesis,
+prototype matrix, study plan and blank study worksheet. Five adjacent attention,
+agency/reciprocity, grammar, anchor and Place-capability derivations also carry
+expired working dates, but beyond the freshness checker's scanned header lines;
+they are classified by their actual lifecycle rather than left active because
+the check misses them. The checker itself is unchanged.
+
+This was an authority/lifecycle review of document purpose, scope, proposed
+sequences, gates and open-decision sections against current canon—not a new
+cover-to-cover empirical research validation or implementation audit. The full
+bodies, founder stories, studies, counterexamples and unresolved questions stay
+available. Current Product Model, four-root contract and Multiplayer Product
+Strategy supersede old three-root, universal-Opening, one-card, exclusive
+travel-launch and identity-facet proposals. The program roadmap carries the
+remaining research areas without declaring studies complete or scheduling old
+experiments as cleanup work. No runtime code, fixture, consent or release gate
+changed; source/test/tool searches found no executable old-path consumer.
+
+Thirty-nine unique relocation/backlink transformations were checked before
+manual index/owner notices: 36 matched expected hashes exactly; two digest
+files gained a final newline and the blank worksheet lost one redundant final
+newline. Reversing only those newline differences reproduced all three expected
+hashes. Original source-at-relocation hashes remain in the archive headers.
+Live index labels now say historical, and canonical backlinks no longer call
+the archived Place-capability proposal a current contract. Mobile is unchanged.
+
+Workspace child governance, living links and canon budgets; backend links and
+product governance; and 36 focused artifact/Occasion/Intake fixture tests pass:
+`/tmp/vesper-landing-verification/research-portfolio-lifecycle-20260923T234514Z.log`
+(7.647s, staged tuple). After the backend commit, freshness reports **11 expired
+documents and no stale headers** (exit 1):
+`/tmp/vesper-landing-verification/research-portfolio-committed-freshness-20260923T234546Z.log`
+(4.808s). Remaining items are eight demo/Riviera documents and three
+Place/routing/spatial documents. These need individual ownership review, not a
+blanket archive: the demo program still has executable owner-lock consumers.
+Final delivery verification, protected-main landing and retained-lane retirement
+remain incomplete.
 
 ### Dated execution-plan handoff — September 23
 

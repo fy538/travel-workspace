@@ -642,4 +642,4 @@ Occasion; Experience Anchor; Receptivity State; Encounter Mode (including Social
 - `/Users/feihuyan/travel-workspace/docs/working/source-claim-scoped-learning-and-multiplayer-purpose-research-2026-08-29.md`
 - `/Users/feihuyan/travel-workspace/docs/systems/four-root-loop-object-surface.md`
 - `/Users/feihuyan/travel-workspace/docs/systems/contribution-and-consequence.md`
-- `/Users/feihuyan/travel-workspace/travel-agent/docs/working/the-world-is-lived-not-searched-philosophical-foundations-2026-08-18.md`
+- `/Users/feihuyan/travel-workspace/travel-agent/docs/archive/2026-08/pivot-research/the-world-is-lived-not-searched-philosophical-foundations-2026-08-18.md`
