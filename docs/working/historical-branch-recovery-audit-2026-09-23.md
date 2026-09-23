@@ -151,6 +151,15 @@ default-off/internal/exact-Trip boundaries and independent latency/cost limits.
 No rollout or paid execution is authorized. The flag registry passes all 106
 entries. The complete clean-commit gate must still run before publication.
 
+The flag-control regression packet passes 31 backend tests (`test_ai_decision_shadow`,
+`test_entity_research_requests`, `test_source_contribution_jobs`) and 30 app
+tests (`featureFlags`, `groupTripBuildProfiles`). A clean landing attempt at
+workspace `b74abab` was deliberately stopped before publication when an early
+governance check identified the generated current-state table's old flag count.
+`make docs-status-sync` updates only 102/100 to 106/104 registered/active flags;
+all remaining governance commands then pass. The interrupted attempt is **not**
+a passing landing receipt; the clean tuple must be rerun after this correction.
+
 **Ignored assets are now preserved separately from Git.** The private manifest
 `/Users/feihuyan/vesper-repository-archive-2026-09-23.c4wYxq/local-assets-dl9syyft/manifest.json`
 covers 170 historical worktrees (canonical and active recovery checkouts are
