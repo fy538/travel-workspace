@@ -62,7 +62,14 @@ review requirements.
    regenerate contracts when necessary, and run the required complete gates
    for the final revision tuple. Publish/land through the repository's current
    protected-main process. Local candidate commits are not remote-main delivery.
-5. **Retire exact historical refs and worktrees.** Recheck ownership, refs,
+5. **Retire exact historical refs and worktrees independently of publication.**
+   The accepted recoveries are preserved in the active integration lane and
+   historical Git/local-asset archives are verified. Adjudicated obsolete or
+   deferred branches can therefore be retired before step 4 completes; keeping
+   every old checkout does not resolve publication gates. Retain canonical and
+   recovery checkouts, and skip any live, changed, locked or depended-on lane.
+   Only final retirement of the recovery lane depends on its accepted work
+   landing on main. Recheck ownership, refs,
    status and ignored material immediately before each retirement. Preserve
    non-regenerable local evidence and settings separately; remove children
    before a containing workspace. Revalidate remaining worktrees, branch and

@@ -27,9 +27,11 @@ repositories and retire the dangling historical branches. Use the existing
 integration host, not a new lane for every historical tip. The
 [branch recovery audit](historical-branch-recovery-audit-2026-09-23.md#september-23-consolidation-mandate-and-current-execution-order)
 owns the exact inventory, disposition queue, recovery bundles and execution
-receipts. Order: preserve history → adapt justified remaining work and repair
-baseline gates → verify and land → preserve local non-code assets and retire
-historical refs/worktrees. A deferred product experiment may be explicitly
+receipts. Preserve history and local non-code assets, then adapt justified
+remaining work and repair baseline gates. Retire adjudicated historical
+refs/worktrees independently of publication once exact preservation and current
+ownership checks pass; keep the recovery lane until verification and landing.
+A deferred product experiment may be explicitly
 archived without being implemented. Do not bulk-merge it merely to empty the
 branch list.
 
@@ -88,7 +90,8 @@ claim was reverified. The audit owns preservation and check details.
 dispositions, verify the committed tuple,
 publish for protected-main review, align CI dependency pins in dependency order,
 resolve mixed-Places native appearance acceptance, obtain required independent
-review, then land and retire preserved historical branches/worktrees. Do not
+review, then land and retire the recovery lane. Historical retirement can proceed
+separately under the audit's preservation and ownership checks. Do not
 reinterpret local checks as remote-main delivery or visual acceptance. Exact
 commands, commits and boundaries are in the audit's latest baseline receipt.
 No historical branch was removed or remote main changed in these repairs.
