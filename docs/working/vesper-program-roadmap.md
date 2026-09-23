@@ -87,9 +87,10 @@ offline and Maestro syntax checks before finding missing/overdue flag metadata;
 source-reviewed registry repairs now pass separately. A clean final-tuple
 complete gate remains required; the earlier run overlapped app edits.
 
-**Publication blocker from the separate backend pre-push packet:** 36 active
-documents remain expired (one product working document, three research and 32
-working notes), down from 94. The code CI pass does not cover that hook.
+**Publication blocker from the separate backend pre-push packet:** 30 active
+documents remain expired (one product working document, two research and 27
+working notes), down from 94. Two stale headers also require review. The code CI
+pass does not cover that hook.
 The final clean publication attempt was stopped before any push; it is not a
 complete-gate pass. Reconcile each document's actual owner/status, rather than
 extend all dates or archive current plans by age. **The founder has resolved the
@@ -121,8 +122,19 @@ The [audit's disposition table](historical-branch-recovery-audit-2026-09-23.md#i
 maps each to its current owner and preserves unfinished acceptance. In particular,
 addressed-handoff surface release remains machine-readable **pending**, and
 archival does not authorize itinerary replacement, legacy content cutover,
-automatic retention or feature activation. The remaining queue is 36 documents;
+automatic retention or feature activation. The remaining queue is 30 documents;
 research and unresolved plans still require individual disposition.
+
+The subsequent Place-calibration/social-research pass archives three frozen
+August Place notes and two superseded multiplayer research documents, preserving
+their constraints and proposed studies. The maintained backend
+`docs/operations/content-runtime-acceptance.md` now distinguishes the historical
+validators from current runtime authority. Nineteen focused tests pass, but the
+offline acceptance report still correctly refuses promotion: its review input
+hash is stale and all 23 trace cases remain unresolved. No review, flag or
+release gate was bypassed. This bounded historical program needs owner
+reconciliation, not blanket expansion into a new whole-product build gate.
+See the [audit's lifecycle evidence](historical-branch-recovery-audit-2026-09-23.md#place-calibration-and-social-research-lifecycle-pass--september-23).
 
 **Next is delivery, not another recovery sweep:** resolve those lifecycle
 dispositions, verify the committed tuple,

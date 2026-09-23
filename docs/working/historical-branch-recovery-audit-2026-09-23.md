@@ -83,12 +83,61 @@ with Python 3.14.6 on Darwin arm64. Receipt:
 The checked recovery tuple was workspace `75a4398`, backend `0aaa2ccc4`, app
 `717355b17`; this documentation receipt follows that check.
 
-**Still incomplete:** reconcile the 36 remaining expired backend documents, verify and
+**Still incomplete:** reconcile the 30 remaining expired backend documents and two
+stale headers, verify and
 publish the recovery candidate through protected-main review, resolve the
 remaining acceptance/pin requirements, land useful work, and finally retire
 the recovery lane plus the old native-testing lane once no process uses it.
 Historical retirement does not prove recovery landing, native visual parity,
 or complete-goal acceptance.
+
+### Place calibration and social-research lifecycle pass — September 23
+
+Backend `61574d8b3` archives the three August 16 Place interpretation notes under
+`docs/archive/2026-08/place-calibration/` and promotes the August 22 runtime
+acceptance procedure to `docs/operations/content-runtime-acceptance.md`.
+Original archive bodies and the relocated backlink match their expected hashes;
+only metadata, historical notices and link relocation change the snapshots.
+The maintained procedure now separates artifact shape, independent review,
+runtime receipt authority and actual release evidence.
+
+The offline calibration replay at `2ae8682fe` passed 19 focused tests, but this
+does **not** establish current runtime acceptance. The expansion report remains
+ineligible, and the vertical-slice validator explicitly requires the historical
+blocked state. It is not a live implementation-progress check. The separate
+runtime-acceptance report exits **1**: zero accepted canonical lanes, zero bound
+cases, two candidates and 21 blocked cases (23 unresolved total). The old
+independent review's `place_content.py` input hash is stale. Preserve that review;
+do not regenerate hashes to manufacture acceptance. Current program ownership
+must reconcile this bounded historical campaign before using it for expansion;
+it does not become a new prerequisite for all product engineering.
+
+The superseded August 9 multiplayer activation companion and its evidence memo
+now live under backend `docs/archive/2026-08/social-research/`. The current
+Multiplayer Product Strategy already explicitly superseded the companion.
+Sources, transfer limits, proposed studies and falsifiers remain preserved;
+no study completion, external-source revalidation or new social policy is
+claimed. Eleven backlink edits across the three repos preserve discoverability,
+including the canonical strategy's YAML supersession reference. All 13 moved
+or backlink-edited files match the generated transformation hashes.
+
+Verification on the staged edits: backend/workspace documentation links,
+product governance and child governance pass; mobile `npm run docs:links` passes.
+The Place focused packet passes 19 tests. Measured receipts are
+`/tmp/vesper-landing-verification/place-calibration-doc-cleanup-recheck-20260923T231527Z.log`
+(6.646s), `social-research-archive-checks-20260923T231734Z.log` (3.213s), and
+`social-research-app-links-20260923T231748Z.log` (0.429s), all in that directory.
+An initial command used a nonexistent workspace link-check filename and exited
+2; the corrected run used the documented Make targets and passed.
+
+Freshness remains **failed**, not waived: 30 expired active documents plus two
+stale headers, down from 36 expired documents before this pass. The headers are
+in the August 21 Place-content strategy and human-remembering research; their
+claims still need lifecycle review. Receipt:
+`/tmp/vesper-landing-verification/social-research-archive-freshness-20260923T231738Z.log`
+(4.416s, exit 1). Full committed-tuple `make verify` and protected-main landing
+remain pending. Xcode PID 25951 was rechecked and still holds the old native
+worktree's screenshot directory; no worktree or process was removed this pass.
 
 ### Runtime-evidence lifecycle pass — September 23
 

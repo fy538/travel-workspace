@@ -110,7 +110,7 @@ This agenda also extends rather than replaces:
 - the [Vesper AI system improvement plan](vesper-ai-system-improvement-plan-2026-08-01.md), especially trajectory evaluation, golden journeys, routing, and the decision to defer fine-tuning;
 - [AI harness and the long loop](../../travel-agent/docs/working/ai-harness-and-the-long-loop-2026-08-04.md), especially its ask-versus-act and long-horizon evaluation work;
 - the [notification intelligence research agenda](../../travel-agent/docs/research/notification-intelligence-research-agenda.md), whose timing and aggregation questions become causal intervention questions here;
-- [multiplayer activation psychology](../../travel-agent/docs/research/multiplayer-activation-psychology-2026-08-09.md), whose group-product hypotheses need decision-process and inferential-privacy evaluation;
+- [multiplayer activation psychology](../../travel-agent/docs/archive/2026-08/social-research/multiplayer-activation-psychology-2026-08-09.md), whose group-product hypotheses need decision-process and inferential-privacy evaluation;
 - [outcome inference and reconciliation](../../travel-agent/docs/working/outcome-inference-and-reconciliation-2026-08-06.md), whose conservative separation of occurrence inference from preference learning is retained.
 
 ## 4. Research principles

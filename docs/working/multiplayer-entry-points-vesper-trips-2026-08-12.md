@@ -880,7 +880,7 @@ A first release is coherent only when all of the following are true:
 ## 17. Related documents
 
 - [`multiplayer-strategy-2026-08-07.md`](../../travel-agent/docs/working/multiplayer-strategy-2026-08-07.md)
-- [`multiplayer-activation-and-social-psychology-2026-08-09.md`](../../travel-agent/docs/working/multiplayer-activation-and-social-psychology-2026-08-09.md)
+- [`multiplayer-activation-and-social-psychology-2026-08-09.md`](../../travel-agent/docs/archive/2026-08/social-research/multiplayer-activation-and-social-psychology-2026-08-09.md)
 - [`multiplayer-implementation-sequence.md`](multiplayer-implementation-sequence.md)
 - [`multiplayer-guest-participation-audit-2026-08-08.md`](multiplayer-guest-participation-audit-2026-08-08.md)
 - [`vesper-home/contract.md`](../../travel-app/docs/surfaces/vesper-home/contract.md)
