@@ -13,8 +13,8 @@ source_of_truth_for: []
 # Vesper — Multiplayer Shapes (brainstorm, Pass A and Pass A′)
 
 Generators for Claude Design project `caf916f9-c0ce-466b-92ee-49ebefe1ca38`.
-Brief: `docs/working/claude-design-multiplayer-product-shapes-exploration-2026-09-20.md`
-(in the isolated lane workspace `travel-workspace--multiplayer-design-exploration-2026-09-20`).
+Brief: [Multiplayer product-shapes exploration](../../claude-design-multiplayer-product-shapes-exploration-2026-09-20.md),
+originally written in an isolated lane.
 
 - `mp_common.py` — board grammar. `HP` points at a local copy of the shared board kit;
   copy `docs/working/design-gen/social/hp/` next to these files before running.
@@ -31,8 +31,10 @@ LocationFooter, PlaceIdentity + vdl.css + the kernel styles.css copy). Adoption 
 not live sync. The workbench's newer **S2** library is deliberately NOT consumed: it is
 undeclared in `vdl-package.json` and belongs to another lane.
 
-Pass B (compare and simplify) and Pass C (one coherent composition + a remote experience that
-never becomes a gathering) are not done.
+At the time of this generator snapshot, Pass B (compare and simplify) and Pass C
+(one coherent composition + a remote experience that never becomes a gathering)
+were not done. The later [exploration response](../../multiplayer-shapes-exploration-response-2026-09-21.md)
+records the delivered boards; this README is only reproduction guidance.
 
 ## Layout of the project (2026-09-21 cleanup)
 

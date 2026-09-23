@@ -12,7 +12,7 @@ source_of_truth_for: []
 
 # Multiplayer product shapes — exploration handback
 
-Brief: `docs/working/claude-design-multiplayer-product-shapes-exploration-2026-09-20.md` (in the isolated lane workspace `travel-workspace--multiplayer-design-exploration-2026-09-20`).
+Brief: [Multiplayer product-shapes exploration](claude-design-multiplayer-product-shapes-exploration-2026-09-20.md), originally written in an isolated lane.
 Project: Claude Design `caf916f9-c0ce-466b-92ee-49ebefe1ca38`, "Vesper — Multiplayer Shapes". A separate project by the founder's choice; the brief named the Social project as home. Social `3ef10868` and its delivery queue were not touched.
 
 Nothing here is selected, adopted or scheduled. Every disposition is this exploration's reading.

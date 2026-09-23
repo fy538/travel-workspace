@@ -18,7 +18,7 @@ This is a reading aid and an argument, not canon. It adopts nothing and authoriz
 
 - **Read in full by the session author:** `travel-agent/docs/product/Multiplayer Product Strategy.md` (canon, 871 lines).
 - **Read in full by five parallel reader subagents, ~14,000 lines:** the founder-thread strategy docs (08-07 → 08-23), seven research memos, the design lineage (05-20 → 09-07), the contracts and system charter, and the philosophical foundations. Their digests are files `01`–`05` in this folder. They are extractions with section citations; **verify any claim against its source before relying on it.** Where a digest and a source disagree, the source wins.
-- **Compared against:** the ten directions D1–D10 of `claude-design-multiplayer-product-shapes-exploration-2026-09-20.md` (that brief lives only in the isolated lane workspace `travel-workspace--multiplayer-design-exploration-2026-09-20`), drawn as Pass A in Claude Design project `caf916f9-c0ce-466b-92ee-49ebefe1ca38`.
+- **Compared against:** the ten directions D1–D10 of the [Multiplayer product-shapes brief](../claude-design-multiplayer-product-shapes-exploration-2026-09-20.md), drawn as Pass A in Claude Design project `caf916f9-c0ce-466b-92ee-49ebefe1ca38`.
 
 ## 2. Finding: the exploration is smaller than the canon
 

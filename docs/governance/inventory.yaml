@@ -23,12 +23,24 @@ rules:
   - glob: "docs/working/content-to-native-quality-consolidation-plan-2026-09-15.md"
     disposition: keep_reference
     rationale: "Bounded cross-repository implementation plan for content agreements, native pattern consolidation and measurable current-app polish; existing program, producer and surface owners retain authority."
+  - glob: "docs/working/generation-infrastructure-and-consolidation-review-2026-09-14.md"
+    disposition: keep_reference
+    rationale: "Dated cross-system code inspection of model and content-generation lifecycle; current service owners and roadmap retain authority."
+  - glob: "docs/working/service-consumer-and-retirement-consolidation-investigation-2026-09-15.md"
+    disposition: keep_reference
+    rationale: "Dated consumer and retirement dependency map; no route removal or production-traffic conclusion follows from its static inspection."
+  - glob: "docs/working/legacy-route-disposition-2026-09-15.md"
+    disposition: keep_reference
+    rationale: "Dated three-route retirement audit preserving hidden consumers and evidence requirements; API operation policy retains lifecycle authority."
   - glob: "docs/working/claude-design-chat-rulings-and-handoffs-2026-09-14.md"
     disposition: keep_reference
     rationale: "Dated Chat design rulings and handoffs; selected visual direction does not replace Chat implementation or authority contracts."
   - glob: "docs/working/claude-design-multiplayer-threads-life-continuity-handoff-2026-09-22.md"
     disposition: keep_reference
     rationale: "Bounded founder direction for the Multiplayer Shapes exploration and Life continuity; proposals are not runtime or storage decisions."
+  - glob: "docs/working/claude-design-multiplayer-product-shapes-exploration-2026-09-20.md"
+    disposition: keep_reference
+    rationale: "Dated original Multiplayer Shapes exploration brief and subsequent September 21 design directions; later handoffs and product owners retain current authority."
   - glob: "docs/working/design-gen/multiplayer/README.md"
     disposition: keep_reference
     rationale: "Reproduction notes for exploratory Multiplayer Shapes design generators, not product or native authority."
