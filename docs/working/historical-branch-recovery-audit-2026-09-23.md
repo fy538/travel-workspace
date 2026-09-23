@@ -83,13 +83,47 @@ with Python 3.14.6 on Darwin arm64. Receipt:
 The checked recovery tuple was workspace `75a4398`, backend `0aaa2ccc4`, app
 `717355b17`; this documentation receipt follows that check.
 
-**Still incomplete:** reconcile the 24 remaining expired backend documents and one
+**Still incomplete:** reconcile the 21 remaining expired backend documents and one
 stale header, verify and
 publish the recovery candidate through protected-main review, resolve the
 remaining acceptance/pin requirements, land useful work, and finally retire
 the recovery lane plus the old native-testing lane once no process uses it.
 Historical retirement does not prove recovery landing, native visual parity,
 or complete-goal acceptance.
+
+### Dated execution-plan handoff — September 23
+
+Backend `6f0a4c164` archives the August Content activation roadmap, Intake V2
+completion roadmap and Occasion grammar execution receipt under
+`docs/archive/2026-08/implementation-slices/`. All three were read in full;
+their bodies are preserved with only relocation-aware links and archive/owner
+notices. All three expected transformation hashes matched. Original hashes
+remain in their headers. No source/test/tool consumer of the old paths was
+found, and no mobile files changed.
+
+The [program handoff](vesper-program-roadmap.md#august-execution-plan-handoff--september-23)
+carries unfinished work to current owners rather than deleting it: exact-input
+content review and serving/rollback evidence, deployed Intake custody and
+provider/deletion proof before legacy cutover, and current-owner reconciliation
+of Occasion authority questions. It explicitly avoids treating August local
+test counts or old unknown fields as today's implementation inventory. The
+Content roadmap's 13-binding completion wording must not override its two
+held stale-evidence rows. The source-reviewed Intake audit reports only static
+review readiness and always retains production blockers. No gate, model,
+schema, flag, service, source data or immutable review was changed.
+
+Measured checks pass: workspace child governance, living links and canon
+budgets; backend links/product governance; and 29 focused offline tests for
+Intake cutover reporting, Occasion grammar/projections and runtime acceptance.
+Exact command and dirty staged revisions are in
+`/tmp/vesper-landing-verification/execution-plan-lifecycle-20260923T233729Z.log`
+(6.763s). These are local contract checks, not production or device evidence.
+The committed backend freshness check still exits 1 with **21 expired documents
+and one stale header**:
+`/tmp/vesper-landing-verification/execution-plan-committed-freshness-20260923T233751Z.log`
+(4.667s). Full final-tuple verification and protected-main landing remain unrun.
+PID 25951 was again confirmed live with its cwd in the retained native lane's
+screenshots directory; no native worktree or process was removed.
 
 ### Content, memory and profile research disposition — September 23
 

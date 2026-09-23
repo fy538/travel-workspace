@@ -20,6 +20,26 @@ depends_on:
 
 # Vesper program roadmap
 
+## August execution-plan handoff — September 23
+
+The August Content activation, Intake V2 completion and Occasion grammar
+execution documents are now historical plans/receipts, not parallel active
+backlogs. Their full text and unfinished gates remain in the backend
+[implementation archive](../../travel-agent/docs/archive/2026-08/implementation-slices/).
+This disposition closes the obsolete sequencing documents, **not** the following
+work. Schedule it through the existing owners rather than revive August phases:
+
+| Area | Current owner and next decision/evidence | Not authorized or established by cleanup |
+|---|---|---|
+| Content activation | [Runtime authority](../../travel-agent/docs/architecture/content-convergence-runtime-authority-2026-08-22.md), [runtime acceptance](../../travel-agent/docs/operations/content-runtime-acceptance.md) and World Foundry. Reconcile the frozen calibration program and obtain a fresh independent exact-input review before relying on it; recheck target/evidence freshness before any separately authorized policy apply. Track exact case bindings or explicit holds, surface receipts, scoped serving, derived-index parity/fallback and legacy-writeback rollback. | The old `-05` review or August counts do not certify the current target. The 11-eligible/13-total distinction cannot become a requirement to bind two stale Sorrento rows. No DB/vector write, automatic refresh of review hashes, serving flag or legacy cutover follows. |
+| Intake completion | [Production canary](../../travel-agent/docs/operations/intake-production-canary.md) and Contribution and Consequence. Require deployed custody, worker cadence, object-store permissions, controlled URL/audio delivery/replay, owner correction, graph projection and deletion evidence before an explicit legacy-writer cutover. Preserve existing readback and rollback until that decision. | `intake_cutover_audit` is a static review-readiness report, not production acceptance; even `ready_for_operator_review` retains blocking items. August local-complete claims are not current native or deployed evidence. No old-data deletion or retention expansion. |
+| Occasion grammar | Product Model, Multiplayer Product Strategy, [Plan/Occasion lifecycle](../../travel-agent/docs/architecture/plan-occasion-lifecycle-contract-2026-08-22.md), current arrangement/social lane plans. Reassess the old time, invitation intent, exact Outcome audience and continuity questions against current owners before proposing gaps or migrations; preserve invitee-safe readback, plural Outcomes, refusal and deliberate silence. | Old unknown fields do not prove today's schema lacks them. Pure compilers and August fixture counts do not prove signed-in two-account, restart, stale-membership or device behavior. No required Occasion profile, inferred relationship, synthetic host intent, new audience permission or blanket ban on current object-page work. |
+
+These are carried requirements and explicit evidence limits, not new cleanup
+features or a request to activate production. Current program priorities still
+own scheduling. The [consolidation audit](historical-branch-recovery-audit-2026-09-23.md)
+records the archival and verification evidence.
+
 **Latest cleanup result — September 23, 22:35 UTC:** historical retirement is
 executed: **83 branches and 167 worktrees removed** with verified local Git and
 non-regenerable asset preservation. Across the three repositories there are
@@ -87,7 +107,7 @@ offline and Maestro syntax checks before finding missing/overdue flag metadata;
 source-reviewed registry repairs now pass separately. A clean final-tuple
 complete gate remains required; the earlier run overlapped app edits.
 
-**Publication blocker from the separate backend pre-push packet:** 24 active
+**Publication blocker from the separate backend pre-push packet:** 21 active
 working documents remain expired, down from 94. One stale header also requires
 review on the committed child tuple. The code CI
 pass does not cover that hook.
@@ -122,7 +142,7 @@ The [audit's disposition table](historical-branch-recovery-audit-2026-09-23.md#i
 maps each to its current owner and preserves unfinished acceptance. In particular,
 addressed-handoff surface release remains machine-readable **pending**, and
 archival does not authorize itinerary replacement, legacy content cutover,
-automatic retention or feature activation. The remaining queue is 24 documents;
+automatic retention or feature activation. The remaining queue is 21 documents;
 research and unresolved plans still require individual disposition.
 
 The subsequent Place-calibration/social-research pass archives three frozen
