@@ -242,16 +242,88 @@ rows expired September 15. No expiry was silently renewed for this recovery.
 | Priority | Candidate | Disposition and acceptance boundary |
 |---|---|---|
 | 1 — built and native path rehearsed in isolated lane; quality and landing pending | One attributed human Place note joined to one current-world Place opening | Backend `engine-er123-integration` / `native-receiving-next` supplied a selective reference; current main supplies `people_note_door` and `horizon_aperture_row` separately. The lane above adapts the exact-entity, single-author join and native treatment while preserving both owner reads and fallbacks. Standalone and joined addressed-note exact destination/Keep/return now pass on a real local backend and reserved device with disposable fixtures. Value/copy review, design-reference comparison and landing remain. This is a current-Home value slice, not a branch merge. |
-| 2 — contract decision | One server-authored mixed Places page order | Backend `engine-er123-integration` and app `quality-comparison` / `native-receiving-next` / `timing-proactive-delivery` contain a `page_sequence` approach. Current Places contract says the section list is the sole client-visible order, while current app still locally promotes the dominant browse section. Decide one canonical order for both semantic units and mature sections; do **not** add a competing order array. Then adapt producer, OpenAPI/types, app renderer and order/exposure tests together. |
+| 2 — selectively recovered; native appearance and landing unverified | One server-authored mixed Places page order | Adapted the useful behavior from `engine-er123-integration`, `quality-comparison`, `native-receiving-next` and `timing-proactive-delivery`, not their `page_sequence` wire field. Existing semantic projection order already drives backend section/card sorting. Mobile now interleaves standalone units at that order's whole-section boundaries, preserves relative browse order, and removes local dominant-section promotion. Stable card identities work without optional treatments. Incomplete/contradictory joins preserve existing content and browse order. See the verification receipt below. |
 | 3 — policy decision | Automatic returned-Source activation | `strategy-useful-supply` and `native-receiving-next` contain trigger/work-item code, but the current roadmap explicitly holds `trip.completed` activation pending source, purpose, audience, lineage, correction/withdrawal, expiry, duplicate and sparse behavior. Do not port this under a generic “resume old work” instruction. It does not block ordinary Home composition. |
 | 4 — separate receiving option | Timed delivery of an *already explicitly requested* Source result | `timing-proactive-delivery` adds durable reconsideration, exact workflow reread and in-app Activity destination. This is separable from automatic activation, but still needs an explicit background/notification treatment decision, current delivery-contract adaptation, migration/restart evidence and app destination authority checks. |
 | Later, if a measured gap | Per-run engine trace / scarce owner-read ordering | ER1/ER2/ER3 contain content-free trace and read-order ideas. Main has newer shared composition, bounded owner reads and aggregate telemetry. Recover only against a demonstrated missed-candidate or diagnostic problem, with privacy and latency checks. |
 
-The old `cw2-object-continuity` workspace tip also preserves a detailed
-human-Reply safety gate. Review it against the current Social/Relationships
-owner before exposing Reply; do not revive the reverted old original-reply
-implementation. `package-b-answers-help` and `requested-visit-window` are
-separate product/owner choices, not cleanup work.
+The old `cw2-object-continuity` human-Reply safety gate is recovered into the
+current Social implementation roadmap as a specific original/pair acceptance
+boundary. Its reverted implementation is not revived. `package-b-answers-help`
+and `requested-visit-window` are preserved, deferred product/owner choices,
+not requirements to implement before retiring their Git branches.
+
+### September 23 useful-work integration receipt
+
+Committed child revisions: backend `078d915cb`, app `7e94c42a8`, both on
+`codex/home-human-opening-recovery-2026-09-23`. These include the preceding
+Home recovery and metadata-repair commits; they are not main or remote refs.
+
+The accepted code recoveries are the Home human-note/current-Place join above
+and the mixed Places renderer. Neither imports a second content owner or
+reinstates the pre-pivot operational product. The Places recovery also closes
+two contract/exposure defects: an untreated browse unit cannot be rendered
+again as a standalone field, and a withdrawn unit's cached geometry cannot
+re-register its delivery exposure when a surviving segment moves. Treatment
+bindings must name the exact rendered card's semantic identity.
+
+Remaining named candidate dispositions:
+
+- **Superseded:** `content-quality-correction`'s old `httpx.HTTPError` catch
+  (`a49068dad`) targets a removed semantic-reader implementation in
+  `backend/places/search.py`. Current retained-reading search uses the bounded
+  optional producer path. Do not transplant a dead exception tuple/import.
+- **Deferred, preserved, not shipping:** automatic Source activation, timed
+  delivery of explicitly requested results, custom visit-window controls and
+  dark PrivateGraph/assistance expansion. Their respective policy/control
+  decisions remain in the current roadmap; archived code is reference only.
+- **Not recovered without a demonstrated current gap:** ER run-trace and
+  scarce-owner-read machinery. Current shared composition, bounded owner reads
+  and aggregate telemetry supersede whole-branch adoption; no parallel engine
+  ledger is introduced merely to retain historical code.
+- **Selective documentation recovery only:** the original-Reply gate in
+  `cw2-object-continuity`. Current group-room human delivery is not proof of
+  durable exact-pair provenance or atomic audience-safe original Reply.
+- **Reference evidence, not product ports:** historical source-anatomy,
+  cold-city/lens and native-original QA variants. Keep their bundled history;
+  current owner tests and current runtime receipts, rather than old fixtures,
+  decide present acceptance. Dependency updates stay outside product recovery.
+
+Executed from this coordinated lane with the working-tree changes applied:
+
+- `PYTHONPATH=. .venv/bin/python -m pytest tests/root_projection -q --run-quarantined`
+  in `travel-agent`: **505 passed**, no skipped cases. This is the root packet,
+  not the entire backend or database/native acceptance.
+- App Jest packet: `placesPageRenderItems`, `PlacesSectionExposure`,
+  `PlacesSemanticField`, `PlacesSectionFeed`: **76 passed**. App
+  `npx tsc --noEmit` and changed-file ESLint passed; backend changed-file Ruff
+  passed. Tests cover actual rendered interleaving, stable `.open-now`
+  identity without treatment, field withdrawal, no treatment-only action
+  authority, complete sections, adjacent fields and malformed/legacy fallback.
+- Measurement logs are in `/tmp/vesper-recovery-verification/`; they fingerprint
+  the pre-commit HEADs and dirty working trees, not a falsely clean revision.
+- `./scripts/sync-types.sh`: full offline OpenAPI export succeeded and produced
+  **no snapshot diff**. App projection/type regeneration is **blocked** by the
+  existing 55 expired operation-policy reviews. No wire field changed; generated
+  files were not edited or bypassed.
+- Scenario registry: 31 scenarios passed. Places design manifest check:
+  six pairs passed structurally, **zero external canon references verified**.
+  No fresh native/visual parity is claimed for mixed order.
+- Surface budgets still fail at existing `PlacesWorkspace` and
+  `editorialFeedCard` limits: baseline 819/112 lines versus 768/87 allowed;
+  the changed workspace is 814 lines. The recovered `PlacesSectionFeed`
+  shrank from 369 to 323, within its 332-line limit. No limits were raised.
+- Fresh measured `make verify` passed workspace doctor, backend Ruff/format,
+  import/cycle/route checks and structural gates, then **failed** at the eight
+  expired world-catalog rows. Later steps in that invocation, including mypy,
+  contract drift, app tests and final documentation gates, were **not reached**.
+  The separate checks above do not turn that command into a pass.
+
+Useful historical behavior is now represented in the integration candidate,
+with explicit dispositions for the other named candidates. **This is not main
+landing or cleanup completion.** The complete-gate failures recorded above,
+native appearance boundary, protected-main landing and ignored-file preservation
+still apply. Historical branches remain recoverable and have not been deleted.
 
 ## Complete local-tip disposition
 
@@ -361,12 +433,11 @@ or pruned on the strength of a tip comparison.
    practical/open-now distinction, one seat, fallback and useful native
    hierarchy. Compare ordinary and returned Home, and follow the exact
    destination and return. No new social store or generic Home generator.
-3. **Resolve the Places ordering decision in parallel.** Establish whether
-   the current section list can represent standalone semantic units or needs
-   one replacement ordered sequence. The same server-authored order must
-   govern backend, OpenAPI, app, delivery exposure and direct-section handoff.
-   Then implement/test the chosen contract in a separate lane; do not
-   cherry-pick `page_sequence` while the existing sole-order rule stands.
+3. **Mixed Places order recovered in the consolidation lane.** Use the
+   existing semantic projection to interleave whole browse sections and field
+   units while retaining authoritative relative section order. Do not revive
+   historical `page_sequence` or start a second recovery lane. Focused behavior
+   is verified above; native appearance and final landing remain separate.
 4. **Keep Source activation and delivery separate.** Decide the automatic
    trigger's source/purpose/authority/lifecycle before porting intake jobs.
    Independently decide whether a result explicitly requested by the person

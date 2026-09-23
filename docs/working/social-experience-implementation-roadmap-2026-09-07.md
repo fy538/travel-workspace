@@ -50,6 +50,24 @@ receipts. The pair-note implementation is not the complete designed experience.
 This is the broader sequence. §10 retains file-level scope and decision boundaries;
 §9/§10.8 retain scoped execution evidence, not current branch or rollout status.
 
+### Historical original-Reply recovery boundary — September 23
+
+The `cw2-object-continuity` safety review (`4c9c1e4`) remains a requirement
+for any exact-original human Reply door; its reverted implementation is not
+recovered. References below to Reply describe the intended human continuation,
+not permission to infer a human audience from a two-person personal-room
+roster. Before exposing this door, prove server-owned durable pair provenance,
+an exact-recipient send transaction serialized against audience mutation,
+and rejection of generic private-Vesper writes into that human pair room.
+Room establishment must follow a sender-authorized relationship/delivery
+action, never recipient opening of an original. Also prove recipient
+convergence, account/session/navigation/unmount fencing, and truthful pair
+history labels and controls. Existing group-room human-message transport alone
+does not prove these pair/original-specific requirements. Original receiving,
+exact return and private Ask remain separate capabilities; opening an original
+creates neither a room nor a message. This is a recovered acceptance boundary,
+not an assertion that the broader roadmap's Reply work is complete.
+
 ## 1. Recommendation and scope
 
 **Build social as a connected capability of the existing product: deliberately

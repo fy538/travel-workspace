@@ -33,6 +33,27 @@ historical refs/worktrees. A deferred product experiment may be explicitly
 archived without being implemented. Do not bulk-merge it merely to empty the
 branch list.
 
+**Useful-work recovery update:** the integration candidate now also implements
+mixed Places rendering in app `7e94c42a8`. It uses existing semantic order and
+whole browse-section boundaries, not the historical `page_sequence` wire
+array or local dominant promotion. Backend validation rejects wrong-card
+treatments and untreated browse/field duplicates (`078d915cb`); mobile prevents withdrawn
+field geometry from restoring exposure. The full root-projection packet passes
+505 tests; the four affected mobile suites pass 76 tests and TypeScript passes.
+The Social roadmap now carries the historical exact-original human-Reply
+safety requirements without restoring the reverted Reply code. Automatic
+Source activation, timed-result delivery, custom visit-window controls and
+dark assistance expansion are explicitly deferred, preserved references—not
+unfinished cleanup prerequisites. Old search-error handling targets a replaced
+implementation; old run-trace machinery has no demonstrated current gap.
+The [recovery receipt](historical-branch-recovery-audit-2026-09-23.md#september-23-useful-work-integration-receipt)
+owns commands and evidence boundaries. **Next is landing-baseline repair and
+verified landing, not another historical-feature sweep.** Full schema export
+has no diff, but projection regeneration remains blocked by the 55 expired
+operation-policy reviews. Existing complete-gate failures and native visual
+acceptance remain unresolved; no historical branch was removed or remote main
+changed by this recovery.
+
 Fresh canonical heads are workspace `827aace`, backend `fdf789d06`, app
 `23cff76f4`, all clean at inventory. The workspace main is five commits ahead
 of its remote; both child mains match their remotes. The clean recovery
