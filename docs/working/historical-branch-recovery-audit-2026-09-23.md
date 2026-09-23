@@ -43,7 +43,7 @@ branch wholesale.
 ## Recovery lane progress (not landed on main)
 
 The isolated `codex/home-human-opening-recovery-2026-09-23` lane now contains
-backend tip `e2838dbea` and app tip `29cc92a97`. It selectively adapts the
+backend tip `a277ba617` and app tip `9372e154c`. It selectively adapts the
 human-note/current-Place join and gives the attributed note a human-first
 native hierarchy. The join is limited to pending notes so Keep cannot make
 an already-handled contribution look newly received. Three existing native
@@ -91,10 +91,18 @@ withdrawal/return flow on the reserved device. The script cleaned both
 fixtures; a fresh API read showed no pending note unit and direct DB checks
 found no temporary Home or companion venues. The root-projection suite passed
 `499` tests and six focused app runner checks passed at backend `e2838dbea`
-and app `29cc92a97`. This is structural joined-path evidence, not strict visual parity
-or proof that the opening is worth receiving. The capture still shows generic
-“In Places” basis copy and a partial-read banner above the opening; the real
-human note is visible, but its contextual value and presentation need a
+and app `29cc92a97`. A further September 23 quality pass removed the mechanical
+“In Places” prefix from the joined unit, kept normal empty optional owner
+scopes out of the user-facing retry notice, and moved genuine partial-state
+notice below admitted Home value without suppressing it. Focused tests and
+the full root-projection suite passed (`503` tests); the app Home screen suite
+passed (`21` tests), TypeScript and targeted ESLint passed, and the real-API native
+joined flow passed again and exact fixture cleanup was verified. The Home-root
+scenario registry and doctor passed on the lane's Metro/device, while the
+design check reports a doctrine-only surface with no design-ref manifest.
+This is still structural and limited presentation evidence, not strict visual
+parity or proof that the opening is worth receiving. The fixture's generic
+nearby venues make the surrounding feed thin; contextual value needs a
 separate design/content review against a verified reference. A fresh iOS build
 would still need the missing Mapbox download token.
 
