@@ -59,21 +59,24 @@ typed SQL-row boundaries, intake-page fan-in, Home result unions and Source
 worker argument/context handling without changing wire contracts. The affected
 Life/root/API offline selection passes 823 tests (48 deselected), with 34
 focused checks rerun after the final quality-helper adjustment.
-**Landing is still blocked:** the fresh complete gate now stops at 208 backend
-mypy errors in 59 files (down from 329 in 69), and the separately executed
-schema check still has 40 expired facade exceptions; mobile was unchanged in
-this latest batch. Native
-Places visual acceptance and the previously recorded surface-budget issues are
-also unresolved. No historical branch was removed or remote main changed.
+**Latest baseline repair:** backend `486e8abaf` now passes full offline CI with
+zero mypy errors across 1,888 source files and 21,808 passing tests (14 skipped,
+1,458 deselected, 53 xpassed). App through `717355b17` resolves facade derivation,
+Places size budgets, typed fixture drift and query-key ownership. `verify:pr`
+passes, including 181 seam tests. The existing all-test type allowance remains
+406; its pass is not elimination of legacy test-type debt. No gate threshold or
+feature flag was relaxed. The full workspace run passed code, journey, seam,
+offline and Maestro syntax checks before finding missing/overdue flag metadata;
+source-reviewed registry repairs now pass separately. A clean final-tuple
+complete gate remains required; the earlier run overlapped app edits.
 
-Next repair order: finish the remaining backend typing boundaries (notably
-Relationships row adapters/routes, root v2 adapters and Life index consumers)
-with affected behavioral
-tests; resolve the remaining facade contracts against their actual endpoints
-rather than blanket-renewing exceptions; then rerun complete gates and finish
-the remaining presentation acceptance. Do not add new historical feature scope
-or reinterpret passing focused tests as a verified landing. Exact commands and
-the dated evidence boundary live in the recovery audit's landing-baseline receipt.
+**Next is delivery, not another recovery sweep:** verify the committed tuple,
+publish for protected-main review, align CI dependency pins in dependency order,
+resolve mixed-Places native appearance acceptance, obtain required independent
+review, then land and retire preserved historical branches/worktrees. Do not
+reinterpret local checks as remote-main delivery or visual acceptance. Exact
+commands, commits and boundaries are in the audit's latest baseline receipt.
+No historical branch was removed or remote main changed in these repairs.
 
 Fresh canonical heads are workspace `827aace`, backend `fdf789d06`, app
 `23cff76f4`, all clean at inventory. The workspace main is five commits ahead
@@ -82,8 +85,11 @@ candidate before the consolidation repairs is workspace `eebe061`, backend
 `a277ba617`, app `9372e154c`. The Home join has bounded native/API evidence;
 the full landing gates remain non-green. All 176 worktree HEADs and existing
 refs now have independently restored, verified local Git-bundle coverage.
-Ignored settings, designs and captures are inventoried but not backed up by
-Git; no historical worktree has been removed in this step. The September 22
+Ignored settings, designs, native builds and captures now have separate private
+archives: 170 historical worktrees, 77 archives and 143,185 readback-verified
+members; regenerable dependency/cache directories are excluded. The audit owns
+the manifest path and runtime-ownership caveat. No historical worktree has been
+removed in this step. The September 22
 paragraphs below are earlier progress receipts, not the current Git inventory.
 
 **September 22 local-main landing update:** the coordinated candidate below

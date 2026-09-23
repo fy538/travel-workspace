@@ -100,7 +100,79 @@ branch-name mappings
 are also in each `*-inventory.json`. These bundles precede the subsequent
 metadata repair commits; refresh the preservation receipt before final cleanup.
 
-### September 23 typed-owner integration repair — latest receipt
+### September 23 complete baseline repair and local-asset preservation — latest receipt
+
+The remaining backend type boundaries are repaired in `486e8abaf`. Full backend
+CI passes: mypy reports **zero errors across 1,888 source files**; offline pytest
+reports **21,808 passed, 14 skipped, 1,458 deselected and 53 xpassed**; the additional
+checker packet passes 1,004 tests. Eval replay verifies 422 deterministic checks
+and skips 14 provider-backed checks. No mypy suppression, feature activation,
+schema change or database cleanup was used to obtain this result.
+
+App commits `95df3b3f6`, `4376b2ed9`, `a63d2c590` and `717355b17` close the
+remaining baseline defects:
+
+- 38 legacy facades derive from their actual generated owner models, with
+  compile-time shape assertions. `EditDayDiff` is classified as UI-only; the
+  genuinely extensible workflow receipt retains one bounded exception through
+  October 7. Exceptions were not blanket-renewed.
+- Places pure routing/scope helpers and unchanged styles move out of oversized
+  surfaces. Existing budgets remain unchanged; rendering, ordering and state
+  ownership are preserved.
+- Test observations and fixtures match current owner contracts. The all-test
+  typecheck count falls from 602 to the existing **406** allowance; this is a
+  passing unchanged ratchet, **not a fully type-clean test tree**. Journey 19
+  asserts authored public profile lines and rejects inferred private interests.
+- Twelve literal query/invalidation sites use shared factories. Exact legacy
+  tuple shapes, account scopes and graph invalidation prefixes are preserved;
+  eight focused suites pass 56 tests. Production TypeScript and both query and
+  mutation ownership gates pass.
+
+`npm run verify:pr` passes in 60.618 seconds, including production typechecking,
+schema bridges, surface budgets, lint (169 existing warnings), the unchanged
+test-type ratchet and 181 mock/HTTP seam tests. Measured log:
+`/tmp/vesper-landing-verification/integration-query-owner-mobile-gate-20260923T204102Z.log`.
+The final reported app revision is `717355b17398861222bcd9d208a7825d897e08d6`;
+the command began before that commit was recorded, so this is verified content,
+not an immutable-start landing receipt.
+
+The earlier coordinated `make verify` ran 934.88 seconds: backend CI, contracts,
+API coverage, 173 journey tests, 181 seam tests, 126 offline mobile tests and all
+384 Maestro flow syntax checks passed. It then **failed** on six overdue flag
+reviews and four missing registry entries. Other remaining governance commands
+were subsequently run separately and passed. Log:
+`/tmp/vesper-landing-verification/integration-complete-repaired-gate-20260923T202434Z.log`.
+The app tree changed during that run; it is explicitly not final-tuple evidence.
+
+The registry now records the actual provider-resolution, explicit-research,
+object-renderer and Source-worker gates. The six older controls receive a
+source-reviewed, bounded October 7 disposition review, preserving their prior
+default-off/internal/exact-Trip boundaries and independent latency/cost limits.
+No rollout or paid execution is authorized. The flag registry passes all 106
+entries. The complete clean-commit gate must still run before publication.
+
+**Ignored assets are now preserved separately from Git.** The private manifest
+`/Users/feihuyan/vesper-repository-archive-2026-09-23.c4wYxq/local-assets-dl9syyft/manifest.json`
+covers 170 historical worktrees (canonical and active recovery checkouts are
+excluded), 77 archives, 143,185 verified members and 3,432,638,948 compressed
+bytes. Readback verified regular-file SHA-256/length and symlink targets; source
+metadata stayed stable during capture. Environment/settings files, local designs,
+captures, logs and ignored native builds are included. Regenerable `node_modules`,
+`.venv` and named Python/checker caches are excluded. This is local recovery,
+not an offsite backup. No historical worktree or branch has been removed.
+
+An Xcode DTServiceHub process (PID 25951 at inspection) still holds a working
+directory inside the old native-presentation-wave1 app screenshots. Recheck it
+before retirement; a clean Git status alone does not establish runtime ownership.
+
+Remaining delivery sequence: clean final-tuple verification; publish for the
+protected-main process and align dependency pins in dependency order; resolve
+native mixed-Places appearance acceptance; obtain required independent review;
+land; refresh preservation and retire exact historical refs/worktrees. Neither
+local test success nor archive completeness overrides main protection. The
+canonical checkouts and all historical refs are unchanged by this repair batch.
+
+### September 23 typed-owner integration repair — earlier receipt
 
 Backend `c58db9afb` removes **121** of the previously measured 329 type errors;
 the complete checker now reports **208 errors in 59 files**. Workspace base was
