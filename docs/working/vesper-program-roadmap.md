@@ -46,6 +46,10 @@ worktree deleted. Older timing, engine-ER123 and native-receiving tips remain
 separate because whole-branch merges predict dozens of backend/app conflicts
 against this newer candidate; any still-wanted behavior needs an owner-level
 selective port and acceptance review, not an automatic merge.
+The local branch inventory still shows 51 workspace, 46 backend and 46 app
+refs not ancestrally merged into this candidate. Many are historical lane
+checkpoints or duplicate tips, but they have not been deleted or certified
+semantically superseded as a set.
 
 **September 22 rebaseline, after implementation and review:** Vesper has moved
 from mostly subsystem and route work into connected feature implementation,
