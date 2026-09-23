@@ -1,0 +1,406 @@
+{
+  "schema_version": "vesper.life-composition-fixtures.v0.2",
+  "fixture_version": "2026-08-29.2",
+  "status": "content_complete_for_hybrid_composition",
+  "classification": "controlled_product_design_fixture_delta",
+  "base_fixture": "docs/working/fixtures/life-composition/life-composition-fixtures-v0.1.json",
+  "brief_source": "docs/working/life-editorial-contribution-briefs-and-treatment-evaluation-2026-08-29.md",
+  "not_production_data": true,
+  "not_api_contract": true,
+  "purpose": "Test the revised Life cluster, overlapping-lane, earned-thread, local-spatial, and editorial-admission model without selecting visual geometry or server-authored components.",
+  "prohibited_uses": [
+    "Do not replace or mutate the frozen v0.1 visual-round fixture.",
+    "Do not infer occurrence from a ticket, reservation, save, photograph, or Plan alone.",
+    "Do not promote a recurring subject into a trait, identity, affinity, or stable thread without its explicit gate.",
+    "Do not publish the Rome-Paris social mosaic while its evidence grant remains a placeholder.",
+    "Do not generalize the cacio e pepe mechanism to all pasta or to an Italy-versus-United-States claim.",
+    "Do not render a global life map; spatial projection is contextual and bounded.",
+    "Do not interpret lane definitions as permanent tabs or database entities.",
+    "Do not require a reply, reflection, correction, or action to complete the value of an editorial contribution."
+  ],
+  "semantic_model": {
+    "stable_spine": "period_clusters",
+    "detail_unit": "cluster_projection",
+    "nested_structure": "optional_overlapping_lanes",
+    "longitudinal_structure": "earned_threads",
+    "spatial_rule": "bounded_context_only",
+    "editorial_rule": "admit_new_epistemic_work_or_remain_silent",
+    "artifact_types": "retrieval_facets_not_primary_navigation",
+    "content_hierarchy": [
+      "record",
+      "reconstruction",
+      "bounded_editorial_return",
+      "optional_present_consequence",
+      "silence"
+    ]
+  },
+  "lane_vocabulary": [
+    {
+      "lane_id": "LANE-INTENDED",
+      "label": "Intended",
+      "job": "Show provider or human-authored plan state without implying occurrence.",
+      "global_tab": false
+    },
+    {
+      "lane_id": "LANE-ACTUAL",
+      "label": "Supported actual",
+      "job": "Show occurrence supported by evidence and preserve unknown intervals.",
+      "global_tab": false
+    },
+    {
+      "lane_id": "LANE-PEOPLE",
+      "label": "People",
+      "job": "Preserve attributed contributions and viewer-relative authority.",
+      "global_tab": false
+    },
+    {
+      "lane_id": "LANE-ATTENTION",
+      "label": "Attention",
+      "job": "Place authored observations and questions without converting them into traits.",
+      "global_tab": false
+    },
+    {
+      "lane_id": "LANE-SOURCES",
+      "label": "Sources",
+      "job": "Bind tickets, photos, notes, receipts, and citations where they establish or limit a claim.",
+      "global_tab": false
+    },
+    {
+      "lane_id": "LANE-TRUTH",
+      "label": "Truth state",
+      "job": "Expose planned-only, supported, corrected, changed, cancelled, unknown, and live states.",
+      "global_tab": false
+    }
+  ],
+  "period_clusters": [
+    {
+      "cluster_id": "CLU-2026-08-EUROPE",
+      "source_worlds": ["L01", "L03", "L04", "L05"],
+      "title": "Nice to Rome, then home",
+      "kind": "journey",
+      "period": {"start": "2026-08-14", "end": "2026-08-27", "precision": "controlled_fixture"},
+      "index_reason": "A supported bounded Journey is a stable period door.",
+      "lanes": ["LANE-INTENDED", "LANE-ACTUAL", "LANE-ATTENTION", "LANE-SOURCES", "LANE-TRUTH"],
+      "nested_contributions": ["C01", "C02", "C05"],
+      "withheld_contributions": ["C03"],
+      "thread_refs": [],
+      "map_context_refs": ["MAP-ROME-LOCAL-OPTIONAL"],
+      "editorial_budget": {"dominant_operation_limit": 1, "secondary_operation_requires_distinct_job": true}
+    },
+    {
+      "cluster_id": "CLU-2026-BROOKLYN-DINNER",
+      "source_worlds": ["L02"],
+      "title": "Dinner in Brooklyn",
+      "kind": "occasion",
+      "period": {"precision": "bounded_occasion"},
+      "index_reason": "A supported shared Occasion is a stable period door.",
+      "lanes": ["LANE-INTENDED", "LANE-ACTUAL", "LANE-PEOPLE", "LANE-SOURCES", "LANE-TRUTH"],
+      "nested_contributions": [],
+      "thread_refs": [],
+      "map_context_refs": [],
+      "editorial_budget": {"dominant_operation_limit": 1, "prefer_attributed_reconstruction_over_group_summary": true}
+    },
+    {
+      "cluster_id": "CLU-RED-HOOK-EPISODES",
+      "source_worlds": ["L06"],
+      "title": "Red Hook across time",
+      "kind": "place_relationship",
+      "period": {"precision": "multiple_supported_episodes"},
+      "index_reason": "Supported recurrence plus explicit evaluation earns a longitudinal Place entrance.",
+      "lanes": ["LANE-INTENDED", "LANE-ACTUAL", "LANE-PEOPLE", "LANE-SOURCES", "LANE-TRUTH"],
+      "nested_contributions": ["C04"],
+      "thread_refs": ["THR-RED-HOOK-ACCESS"],
+      "map_context_refs": ["MAP-RED-HOOK-ACCESS"],
+      "editorial_budget": {"dominant_operation_limit": 1, "live_consequence_owner": "Places"}
+    }
+  ],
+  "thread_candidates": [
+    {
+      "thread_id": "THR-RED-HOOK-ACCESS",
+      "label": "Red Hook access across episodes",
+      "status": "eligible_after_gate",
+      "relation": "access_conditions_across_supported_episodes",
+      "gate": {
+        "minimum_supported_episodes": 2,
+        "requires_material_difference": true,
+        "requires_explicit_evaluation_for_preference_language": true,
+        "prohibits_identity_inference": true
+      },
+      "promotes_from": ["saved_route", "supported_visit", "occasion_reference", "explicit_evaluation"],
+      "owner_handoff": "Places refreshes live service and origin-dependent reachability."
+    },
+    {
+      "thread_id": "THR-PASTA-MECHANISM",
+      "label": "Pasta texture and cooking capability",
+      "status": "ineligible_single_observation",
+      "relation": "observation_to_later_capability",
+      "gate": {
+        "minimum_supported_clusters": 2,
+        "requires_second_authored_observation_or_attempt": true,
+        "prohibits_culinary_identity_inference": true
+      },
+      "promotes_from": ["authored_attention", "source_grounded_explanation", "later_cooking_evidence"],
+      "owner_handoff": "Until the gate passes, C05 remains nested in the Europe cluster."
+    },
+    {
+      "thread_id": "THR-ROME-PARIS",
+      "label": "Rome and Paris social comparison",
+      "status": "ineligible_as_thread",
+      "relation": "one_addressed_comparison",
+      "gate": {
+        "requires_durable_relation_across_clusters": true,
+        "requires_current_use_grant": true,
+        "prohibits_coincidence_only_promotion": true
+      },
+      "promotes_from": [],
+      "owner_handoff": "Remain a contextual social composition if evidence and grant later make C03 admissible."
+    }
+  ],
+  "spatial_contexts": [
+    {
+      "map_context_id": "MAP-RED-HOOK-ACCESS",
+      "status": "eligible_after_live_refresh",
+      "bounds": "Red Hook and relevant origin-to-neighborhood routes",
+      "job": "Differentiate saved, used, and currently available access paths.",
+      "required_inputs": ["actual_origin", "current_service", "weather_or_effort_if_relevant", "supported_past_modes"],
+      "prohibited": ["world_heatmap", "unscoped_city_dots", "visit_count_as_affinity", "cached_live_recommendation"]
+    },
+    {
+      "map_context_id": "MAP-ROME-LOCAL-OPTIONAL",
+      "status": "withhold_without_spatial_operation",
+      "bounds": "A bounded Rome walk, monument relation, or route episode",
+      "job": "Appear only if proximity, movement, sequence, reuse, or reachability is the actual contribution.",
+      "required_inputs": ["bounded_place_set", "spatially_relevant_claim"],
+      "prohibited": ["trip_city_map_as_decoration", "all_places_visited"]
+    }
+  ],
+  "external_source_contracts": [
+    {
+      "source_contract_id": "EXT-ROME-AENEAS",
+      "claim_scope": "Virgil links Iulus to the Julian line and places Augustus among Iulus's descendants; Augustan public imagery included dynastic and legendary material.",
+      "urls": [
+        "https://classics.mit.edu/Virgil/aeneid.1.i.html",
+        "https://classics.mit.edu/Virgil/aeneid.6.vi.html",
+        "https://www.cambridge.org/core/books/virgils-ascanius/A314256384723271C84FD9AA167C6195",
+        "https://www.uffizi.it/en/artworks/ara-pacis-augustae",
+        "https://www.cambridge.org/core/journals/journal-of-roman-studies/article/abs/ara-pacis-augustae/94A9E9C923961A019628840142324DF1"
+      ],
+      "uncertainty": "The Ara Pacis west-panel figure is traditionally identified as Aeneas but disputed; Augustan literary politics must not be reduced to simple propaganda."
+    },
+    {
+      "source_contract_id": "EXT-CACIO-E-PEPE",
+      "claim_scope": "In the cited cacio e pepe experiments, starch concentration and temperature affected cheese aggregation and sauce stability.",
+      "urls": ["https://research-explorer.ista.ac.at/download/19670/19681/2025_PhysicsFluids_Bartolucci.pdf"],
+      "uncertainty": "Does not explain every pasta dish, restaurant practice, or country-level sensory difference."
+    },
+    {
+      "source_contract_id": "EXT-RED-HOOK-LIVE",
+      "claim_scope": "Current provider pages expose Red Hook ferry and bus infrastructure; exact service and route choice are live truth.",
+      "urls": [
+        "https://static.ferry.nyc/routes-and-schedules/south-brooklyn/",
+        "https://www.ferry.nyc/blog/updated-south-brooklyn-schedules-effective-may-4-2026/",
+        "https://bustime.mta.info/?search=B61"
+      ],
+      "uncertainty": "Service, detours, starting point, weather, and effort change; Places must refresh before consequence."
+    }
+  ],
+  "contribution_briefs": [
+    {
+      "contribution_id": "C01",
+      "title": "Europe reconstruction",
+      "status": "conditionally_admitted_as_reconstruction",
+      "cluster_id": "CLU-2026-08-EUROPE",
+      "operation": "restructure",
+      "known_to_person": ["cities", "broad_sequence", "supplied_tickets", "supplied_photos", "authored_notes", "explicit_corrections"],
+      "new_value": "Reconcile intended, supported actual, changed, cancelled, corrected, and unknown movement states.",
+      "bounded_headline": "Your return became a second journey.",
+      "headline_gate": "Use only if cancellation and rerouting records establish a materially different return sequence.",
+      "proof": ["provider_records", "independent_occurrence_evidence", "owner_corrections"],
+      "uncertainty": "Unproved segments remain unknown; controlled fixture movements require owner confirmation.",
+      "why_now": "Post-return evidence is available for repair, but the Journey does not inherit Home.",
+      "optional_consequence": "Inspect uncertain occurrence states or export the verified sequence.",
+      "silence_condition": "Only counts, chronology, or itinerary recap are available.",
+      "treatment_verdict": "evidence_led_structure_beats_flat_poetic_and_required_action"
+    },
+    {
+      "contribution_id": "C02",
+      "title": "Rome, Aeneas, and Augustan political lineage",
+      "status": "admitted_nested_return",
+      "cluster_id": "CLU-2026-08-EUROPE",
+      "operation": "explain_and_relational_map",
+      "known_to_person": ["film", "Trojan_War", "Aeneas", "Rome", "Colosseum_connection"],
+      "new_value": "Aeneas could serve as an ancestor of Rome and, through Iulus, an ancestor of the Julian line used in Augustan literary and public culture.",
+      "bounded_headline": "Aeneas gave Augustus a family tree inside Rome's origin story.",
+      "proof": ["EXT-ROME-AENEAS"],
+      "uncertainty": "The tradition predates Augustus; the Ara Pacis identification is disputed; do not call Virgil simple propaganda.",
+      "why_now": "It answers supplied attention with a mechanism the person did not state.",
+      "optional_consequence": "Inspect an annotated Iulus lineage chain.",
+      "silence_condition": "The output can only repeat that Aeneas escaped Troy and helped found Rome.",
+      "exposure_key": "EXP-C02-MECHANISM-01",
+      "treatment_verdict": "evidence_led_admitted"
+    },
+    {
+      "contribution_id": "C03",
+      "title": "Rome and Paris social mosaic",
+      "status": "withheld_missing_authorized_comparable_evidence",
+      "cluster_id": "CLU-2026-08-EUROPE",
+      "operation": "authorized_social_mosaic_and_differentiate",
+      "known_to_person": ["own_Rome_evening", "existence_of_proposed_Paris_comparison"],
+      "new_value": "Compare one practical axis neither person could observe alone while preserving two authors.",
+      "bounded_headline": null,
+      "proof": ["current_use_grant", "two_attributed_lanes", "dated_public_context_for_selected_axis"],
+      "uncertainty": "Coincident time and weather do not establish comparable experience.",
+      "why_now": "Only while an addressed grant is valid and the comparison adds perception.",
+      "optional_consequence": null,
+      "silence_condition": "Current fixture condition: social evidence is a placeholder, not a valid content grant.",
+      "treatment_verdict": "silence_wins_currently"
+    },
+    {
+      "contribution_id": "C04",
+      "title": "Red Hook consequential translation",
+      "status": "conditionally_admitted_after_recurrence_and_live_refresh",
+      "cluster_id": "CLU-RED-HOOK-EPISODES",
+      "operation": "differentiate_and_transfer",
+      "known_to_person": ["saved_routes", "supported_visits", "dinner_occasion", "explicit_evaluations"],
+      "new_value": "Distinguish saved, used, and currently available access conditions, then prepare a live comparison.",
+      "bounded_headline": "Red Hook has not been one trip from your life.",
+      "headline_gate": "Use only when two supported episodes show materially different access patterns; otherwise label literally.",
+      "proof": ["supported_past_modes", "explicit_evaluation_for_preference_words", "EXT-RED-HOOK-LIVE"],
+      "uncertainty": "Infrastructure and route choice are volatile and origin-dependent; recurrence is not affinity.",
+      "why_now": "An open weekend can make a learned Place relation consequential.",
+      "optional_consequence": "Places refreshes live reachability from the actual origin.",
+      "silence_condition": "Fewer than two supported episodes, no access difference, no live refresh, or only a visit count.",
+      "treatment_verdict": "conditional_evidence_led_plus_live_consequence"
+    },
+    {
+      "contribution_id": "C05",
+      "title": "Pasta creaminess as a bounded mechanism",
+      "status": "admitted_nested_not_thread",
+      "cluster_id": "CLU-2026-08-EUROPE",
+      "operation": "explain_and_transfer",
+      "known_to_person": ["pasta_seemed_creamier", "suspected_pasta_water_emulsion_finishing_and_service"],
+      "new_value": "For cacio e pepe, starch concentration and temperature affect protein aggregation and sauce stability.",
+      "bounded_headline": "For cacio e pepe, 'creamy' is partly a stability problem.",
+      "proof": ["EXT-CACIO-E-PEPE"],
+      "uncertainty": "Does not establish why all Italian pasta tasted different or what a specific restaurant did.",
+      "why_now": "It turns supplied curiosity into a bounded, transferable cooking mechanism.",
+      "optional_consequence": "Run a one-variable at-home comparison when requested or timely.",
+      "silence_condition": "The output generalizes to all Italian pasta, supplies a generic recipe, or repeats the owner's hypothesis.",
+      "exposure_key": "EXP-C05-MECHANISM-01",
+      "treatment_verdict": "evidence_led_admitted_nested_only"
+    }
+  ],
+  "exposure_receipts": [
+    {
+      "exposure_key": "EXP-C02-MECHANISM-01",
+      "contribution_id": "C02",
+      "viewer_id": "USR-FEIHU",
+      "claim_fingerprint": "aeneas_iulus_julian_augustan_lineage",
+      "fixture_state": "not_yet_exposed",
+      "regeneration_rule": "Do not restate under a new headline; require new evidence, a new operation, or a new consequence."
+    },
+    {
+      "exposure_key": "EXP-C05-MECHANISM-01",
+      "contribution_id": "C05",
+      "viewer_id": "USR-FEIHU",
+      "claim_fingerprint": "cacio_e_pepe_starch_temperature_stability",
+      "fixture_state": "not_yet_exposed",
+      "regeneration_rule": "A later cooking attempt may support differentiation or transfer; do not replay the explanation as novelty."
+    }
+  ],
+  "page_admission": {
+    "life_index": {
+      "mostly": ["period_cluster_doors", "refinding", "earned_thread_entrances"],
+      "admit": ["C04_as_thread_entrance_only_after_gate"],
+      "suppress": ["generated_headline_stream", "C03", "global_map", "artifact_type_as_primary_spine"]
+    },
+    "cluster_europe": {
+      "primary": "C01_reconstruction",
+      "dominant_editorial_return": "C02",
+      "secondary_contextual_return": "C05_only_if_it_performs_a_distinct_job_and_budget_allows",
+      "suppress": ["C03", "counts_as_insight", "psychological_interpretation", "global_trip_map"]
+    },
+    "cluster_dinner": {
+      "primary": "attributed_occurrence_reconstruction",
+      "dominant_editorial_return": null,
+      "suppress": ["one_group_feeling", "commitment_as_fulfillment", "social_reply_pressure"]
+    },
+    "cluster_red_hook": {
+      "primary": "supported_episode_sequence",
+      "dominant_editorial_return": "C04_after_gate",
+      "spatial_context": "MAP-RED-HOOK-ACCESS_after_live_refresh",
+      "suppress": ["affinity_score", "visit_count_as_insight", "stale_route_recommendation"]
+    }
+  },
+  "textual_projections": [
+    {
+      "projection_id": "TXT-I-01",
+      "title": "Life index",
+      "sequence": [
+        "Find and scope",
+        "Period: August 2026 -> Nice to Rome, then home",
+        "Period: Brooklyn dinner",
+        "Across time: Red Hook access, only after recurrence gate",
+        "No global map and no generated-content feed"
+      ]
+    },
+    {
+      "projection_id": "TXT-E-01",
+      "title": "Europe cluster",
+      "sequence": [
+        "Journey identity and supported date bounds",
+        "C01 aligned intended and supported-actual reconstruction",
+        "Attention and Sources attached at the moments they explain",
+        "C02 one dominant editorial Return with evidence and uncertainty",
+        "C05 optional secondary explanation only if page budget admits",
+        "C03 absent because silence currently wins",
+        "Inspect and repair without completion pressure"
+      ]
+    },
+    {
+      "projection_id": "TXT-E-05",
+      "title": "Dinner cluster",
+      "sequence": [
+        "Occasion identity and lifecycle",
+        "Commitments distinct from occurrence",
+        "Attributed Maya and Alex contribution lanes",
+        "Sources nested at the claim they support",
+        "No synthesized group sentiment"
+      ]
+    },
+    {
+      "projection_id": "TXT-E-07",
+      "title": "Red Hook thread",
+      "sequence": [
+        "Supported episodes across time",
+        "Saved versus used access distinctions",
+        "C04 admitted only after recurrence gate",
+        "Local map only when live spatial comparison contributes",
+        "Places owns current reachability and returns to this same Life thread"
+      ]
+    }
+  ],
+  "decision_receipts": [
+    {
+      "receipt_id": "REC-V02-C03-SILENCE",
+      "decision": "withhold",
+      "subject": "C03",
+      "reason": "No current authorized comparable social evidence.",
+      "repair": "Supply a valid addressed grant and one dated comparable axis; do not widen audience."
+    },
+    {
+      "receipt_id": "REC-V02-MAP-BOUNDARY",
+      "decision": "contextual_only",
+      "subject": "map",
+      "reason": "Global geography does not make continuity intelligible; Red Hook access can.",
+      "repair": "Define a bounded spatial operation and live inputs."
+    },
+    {
+      "receipt_id": "REC-V02-PASTA-NESTED",
+      "decision": "nested_not_thread",
+      "subject": "C05",
+      "reason": "One observation supports explanation but not longitudinal continuity.",
+      "repair": "Require a second authored observation or supported cooking attempt in another cluster."
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <link rel="stylesheet" href="_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css" />
+        <link rel="stylesheet" href="vdl.css" />
+        <style>
+          /* InviteCard — one invitation seen by its host and by its guest (Social 03.1 / 03.2,
+             Plans 04 C1 / C2). The selected silhouettes are kept (§17.4 item 4): shape=pill for
+             Social’s 40px pills and 22px field, shape=rounded for Plans’ 16-radius buttons. Hit areas
+             stay 44 either way. Lines are separated by ";" with no following space, so a line may
+             itself contain "; ".
+             Host preview (requested change, 2026-09-10): each line may be "LABEL=fact|condition", so
+             the preview reads as labelled facts with their conditions instead of equal lines, and
+             two recipients’ versions can be compared row by row. "via" names the delivery channel.
+             Guest rows (polish, 2026-09-10): the condition sits under its fact, as on the host card,
+             instead of running on in grey after it.
+             Legibility: labels and the stamps that make a promise or ask something of the reader are
+             ink60 (ink80 measured 2.0:1 on the card); attribution stays ink80. */
+          .ic-host{background:var(--vk-paper00);border-radius:16px;padding:16px;box-shadow:0 1px 2px color-mix(in srgb,var(--vk-ink00) 6%,transparent),0 8px 22px color-mix(in srgb,var(--vk-ink00) 7%,transparent)}
+          .ic-k{color:var(--vk-gold80);letter-spacing:1px}
+          .ic-ht{margin-top:4px;line-height:24px;color:var(--vk-ink00)}
+          .ic-hrows{margin-top:12px;border-top:0.5px solid var(--vk-borderHairline)}
+          .ic-hr{display:grid;grid-template-columns:48px 1fr;column-gap:10px;align-items:baseline;padding:8px 0;border-bottom:0.5px solid var(--vk-borderHairlineSoft)}
+          .ic-hr.plain{grid-template-columns:1fr}
+          .ic-hlab{color:var(--vk-ink60)}
+          .ic-hv{color:var(--vk-ink00)}
+          .ic-hd{color:var(--vk-ink60);margin-top:2px}
+          .ic-foot{margin-top:10px;display:flex;flex-direction:column;gap:4px}
+          .ic-via{color:var(--vk-ink40)}
+          .ic-st{margin-top:12px;color:var(--vk-ink60)}
+          .ic-foot .ic-st{margin-top:0}
+          .ic-gt{margin-top:10px;line-height:32px;color:var(--vk-ink00)}
+          .ic-note{margin:14px 0 0;color:var(--vk-ink00)}
+          .ic-nb{margin-top:4px;color:var(--vk-ink80)}
+          .ic-rows{margin-top:18px;border-top:0.5px solid var(--vk-borderHairline)}
+          .ic-row{display:grid;grid-template-columns:14px 1fr 10px;column-gap:10px;align-items:center;padding:12px 0;border-bottom:0.5px solid var(--vk-borderHairline)}
+          .ic-dot{width:6px;height:6px;border-radius:50%;border:1px solid var(--vk-ink40);align-self:start;margin-top:8px}
+          .ic-dot.on{background:var(--vk-ink00);border-color:var(--vk-ink00)}
+          .ic-gv{color:var(--vk-ink00)}
+          .ic-gd{color:var(--vk-ink60);margin-top:2px}
+          .ic-chev{color:var(--vk-ink80)}
+          .ic-acts{display:flex;gap:12px;margin-top:22px}
+          .ic-gn{margin:10px 0 0;color:var(--vk-ink60)}
+          .ic-field{margin-top:18px}
+          .ic-ans{margin-top:18px;color:var(--vk-ink00)}
+        </style>
+      </helmet>
+      <div data-screen-label="InviteCard">
+        <sc-if value="{{ isHost }}">
+          <div class="ic-host">
+            <div class="ic-k vk-t-monoStampStrong">{{ kicker }}</div>
+            <div class="ic-ht vk-t-serifProseHeading">{{ title }}</div>
+            <div class="ic-hrows">
+              <sc-for list="{{ hostRows }}" as="r" hint-placeholder-count="4">
+                <div class="{{ r.cls }}">
+                  <sc-if value="{{ r.hasLabel }}"><span class="ic-hlab vdl-t-metaLine">{{ r.label }}</span></sc-if>
+                  <div><div class="ic-hv vk-t-bodyMd">{{ r.main }}</div><sc-if value="{{ r.hasDetail }}"><div class="ic-hd vk-t-bodySm">{{ r.detail }}</div></sc-if></div>
+                </div>
+              </sc-for>
+            </div>
+            <div class="ic-foot">
+              <sc-if value="{{ hasVia }}"><div class="ic-via vk-t-monoStampStrong">{{ via }}</div></sc-if>
+              <sc-if value="{{ hasStamp }}"><div class="ic-st vdl-t-metaLine">{{ stamp }}</div></sc-if>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ isGuestish }}">
+          <div>
+            <div class="ic-k vk-t-monoStampStrong">{{ kicker }}</div>
+            <div class="ic-gt vk-t-serifDisplay">{{ title }}</div>
+            <sc-if value="{{ hasNote }}"><p class="ic-note vdl-t-placeReading">{{ note }}</p><div class="ic-nb vdl-t-metaLine">{{ noteBy }}</div></sc-if>
+            <div class="ic-rows">
+              <sc-for list="{{ lines }}" as="l" hint-placeholder-count="3">
+                <div class="ic-row"><span class="{{ l.dot }}"></span><div><div class="ic-gv vk-t-bodyMd">{{ l.main }}</div><sc-if value="{{ l.hasDetail }}"><div class="ic-gd vk-t-bodySm">{{ l.detail }}</div></sc-if></div><span class="ic-chev">›</span></div>
+              </sc-for>
+            </div>
+            <sc-if value="{{ isGuest }}">
+              <div class="ic-acts"><span class="{{ primaryCls }}" style="color:var(--vk-color-white)">I’m in</span><span class="{{ secondaryCls }}">Can’t make it</span></div>
+              <p class="ic-gn vk-t-caption" style="font-size:12.5px">{{ guestNote }}</p>
+              <div class="ic-field"><div class="{{ fieldCls }}"><span class="vk-t-bodyMd" style="{{ fieldTextStyle }}">{{ fieldText }}</span></div></div>
+            </sc-if>
+            <sc-if value="{{ isAnswered }}">
+              <div class="ic-ans vk-t-serifTitle">{{ answerText }}</div>
+              <div class="ic-acts"><span class="{{ secondaryCls }}">{{ alt1 }}</span><span class="{{ secondaryCls }}">{{ alt2 }}</span></div>
+            </sc-if>
+            <sc-if value="{{ hasStamp }}"><div class="ic-st vdl-t-metaLine">{{ stamp }}</div></sc-if>
+          </div>
+        </sc-if>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{
+  "view": { "editor": "enum", "options": ["host", "guest", "answered"], "default": "host" },
+  "shape": { "editor": "enum", "options": ["pill", "rounded"], "default": "pill" },
+  "kicker": { "editor": "text", "default": "TO MAYA · EVERYTHING" },
+  "title": { "editor": "text", "default": "Pasta trial night at Nora’s" },
+  "lines": { "editor": "text", "default": "WHEN=Saturday from seven;WHERE=Court Street, 3F|the buzzer says N;WITH=Sam;BRING=Nothing" },
+  "via": { "editor": "text", "default": "" },
+  "note": { "editor": "text", "default": "" },
+  "noteBy": { "editor": "text", "default": "" },
+  "from": { "editor": "text", "default": "Nora" },
+  "guestNote": { "editor": "text", "default": "" },
+  "answer": { "editor": "text", "default": "" },
+  "answerText": { "editor": "text", "default": "" },
+  "alt1": { "editor": "text", "default": "" },
+  "alt2": { "editor": "text", "default": "" },
+  "stamp": { "editor": "text", "default": "" }
+}'>
+      class Component extends DCLogic {
+        renderVals() {
+          const p = this.props || {};
+          const view = p.view || 'host';
+          const pill = (p.shape || 'pill') === 'pill';
+          const raw = (p.lines || 'WHEN=Saturday from seven;WHERE=Court Street, 3F|the buzzer says N;WITH=Sam;BRING=Nothing').split(/;(?! )/).filter(Boolean);
+          const lines = raw.map((s, i) => { const t = s.includes('=') ? s.slice(s.indexOf('=') + 1) : s; const parts = t.split('|'); return { main: parts[0] || '', detail: parts[1] || '', hasDetail: !!parts[1], dot: 'ic-dot' + (i === 0 ? ' on' : '') }; });
+          const hostRows = raw.map((s) => {
+            const has = s.includes('=');
+            const label = has ? s.slice(0, s.indexOf('=')) : '';
+            const parts = (has ? s.slice(s.indexOf('=') + 1) : s).split('|');
+            return { cls: 'ic-hr' + (has ? '' : ' plain'), hasLabel: has, label, main: parts[0] || '', detail: parts[1] || '', hasDetail: !!parts[1] };
+          });
+          const btn = 'vdl-btn vk-t-labelSemibold ' + (pill ? 'pill' : 'r16');
+          return {
+            isHost: view === 'host', isGuestish: view !== 'host', isGuest: view === 'guest', isAnswered: view === 'answered',
+            kicker: p.kicker || '', title: p.title || 'Pasta trial night at Nora’s', lines, hostRows,
+            hasVia: !!p.via, via: p.via || '',
+            hasNote: !!p.note, note: p.note || '', noteBy: p.noteBy || '', guestNote: p.guestNote || '',
+            primaryCls: btn + ' primary', secondaryCls: btn + ' secondary',
+            fieldCls: 'vdl-field ' + (pill ? 'pill' : ''), fieldTextStyle: p.answer ? '' : 'color:var(--vk-ink80)',
+            fieldText: p.answer || 'Anything ' + (p.from || 'Nora') + ' should know',
+            answerText: p.answerText || '', alt1: p.alt1 || '', alt2: p.alt2 || '', hasStamp: !!p.stamp, stamp: p.stamp || ''
+          };
+        }
+      }
+    </script>
+  </body>
+</html>

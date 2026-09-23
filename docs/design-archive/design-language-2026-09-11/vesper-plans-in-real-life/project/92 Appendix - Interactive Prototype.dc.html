@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" />
+        <link rel="stylesheet" href="_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css" />
+        <link rel="stylesheet" href="vdl.css" />
+        <link rel="stylesheet" href="./kit/plans.css" />
+        <script src="./kit/proto.js"></script>
+        <style>
+          body { background: #E4DED1; }
+          .lab { display: grid; grid-template-columns: 393px 460px; gap: 40px; padding: 32px 40px 60px 40px; align-items: start; width: 933px; }
+          .research { display: flex; flex-direction: column; gap: 14px; }
+          .research .card { background: var(--card-warm); border: 1px solid var(--hairline); border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+          .research .k { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 1px; color: var(--mute); }
+          .research p { margin: 0; font-size: 12.5px; line-height: 18px; color: var(--ink-2); }
+          .research p b { color: var(--ink); font-weight: 600; }
+          .vsw { display: flex; gap: 6px; }
+          .vsw .chip { min-height: 40px; }
+          .vsw .chip.on { background: var(--ink); color: var(--card-warm); border-color: var(--ink); }
+          .phr { display: grid; grid-template-columns: 1fr; gap: 4px; }
+          .phr div { font-size: 12px; line-height: 17px; color: var(--ink-2); }
+          .phr code { font-family: var(--mono); font-size: 10.5px; color: var(--ink); background: rgba(27,23,20,0.05); padding: 1px 5px; border-radius: 4px; }
+          pre.st { margin: 0; font-family: var(--mono); font-size: 10px; line-height: 14px; color: var(--ink-2); white-space: pre-wrap; }
+          .ph input { font: inherit; }
+          .composer input.in { color: var(--ink); }
+          .composer input.in::placeholder { color: var(--mute); }
+          .ph button { font: inherit; text-align: left; }
+          .ph .chip, .ph .ctl, .ph .more, .ph .send, .ph .capsule .slot { cursor: pointer; border-style: solid; }
+          .ph .more { background: transparent; border: none; }
+          .ph .send { border: none; }
+          .ph .ctl { border-width: 0.5px; }
+          .ph .capsule .slot { background: transparent; border: none; }
+        </style>
+      </helmet>
+
+      <div class="lab" data-proto="1">
+        <!-- ======================= THE PHONE ======================= -->
+        <div class="phw">
+          <div class="ph" data-screen-label="10 Interactive prototype">
+            <div class="sb"><span>4:12</span><span class="r">●●● ᯤ ▮</span></div>
+
+            <!-- ===== OWNER · PAGE ===== -->
+            <div class="page" data-show="viewer:you;screen:page">
+              <div class="chrome"><div class="lft"><button class="ctl" data-act="go:home" aria-label="Back to Home">‹</button><div class="people"><div class="av c">MA</div><div class="av b">SA</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Saturday · Sep 19 · today</div>
+              <div class="titleRow"><div class="dayTitle">An afternoon out, then dinner</div></div>
+              <div class="thesis" data-bind="thesis"></div>
+              <div class="gap"></div>
+
+              <div class="receipt" data-show="receipt_kind:gold" data-bind="receipt"></div>
+              <div class="receipt ink" data-show="receipt_kind:ink" data-bind="receipt"></div>
+              <div class="quiet" data-show="!note:" data-bind="note"></div>
+              <div class="chips" style="margin-top:6px;" data-show="undo"><button class="vdl-btn r16 pl-quiet vk-t-labelSemibold" data-act="undo">Undo</button></div>
+              <div class="qp pv" data-show="save:pending" style="border-color: rgba(61,80,102,0.45);"><div class="k" style="color:var(--planning-deep);">Saving · not on the plan yet</div><div class="b">“<span data-bind="req_text"></span>”</div><div class="chips" style="margin-top:4px;"><button class="vdl-btn r16 pl-quiet vk-t-labelSemibold" data-act="save:cancel">Cancel</button></div></div>
+              <div class="qp pv" data-show="save:unknown" style="border-color: rgba(61,80,102,0.45);"><div class="k" style="color:var(--planning-deep);">Checking whether that went through</div><div class="b">“<span data-bind="req_text"></span>” — your request is still here.</div></div>
+              <div class="qp" data-show="save:failed"><div class="k" style="color:var(--oxblood);">That didn’t save</div><div class="b">“<span data-bind="req_text"></span>” — the connection dropped. <b>Nothing changed.</b></div><div class="chips" style="margin-top:4px;"><button class="vdl-btn r16 primary vk-t-labelSemibold" data-act="save:retry">Try again</button><button class="vdl-btn r16 pl-quiet vk-t-labelSemibold" data-act="save:dismiss">Not now</button></div></div>
+              
+
+              <div class="chap"><div class="cl" data-bind="chapter_aft"></div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first" data-show="bookstore:added"><div class="time">3:00</div><div><div class="ttl">Willow &amp; Page</div><div class="sup">Court St · open till 7 · <span class="who" data-bind="bookstore_by"></span></div></div><div class="more">···</div></div>
+                <div class="row" data-show="bookstore:added"><div class="time loose" data-bind="walk_time"></div><div><div class="ttl" data-bind="walk_title"></div><div class="sup" data-bind="walk_sup"></div>
+                  <div class="qp pv" style="margin-top:10px;" data-show="preview:cafe">
+                    <div class="k" data-bind="cafe_k"></div>
+                    <div class="t">The café at Willow &amp; Page instead of the walk</div>
+                    <div class="b">Same block, dry, open till 7. Dinner and Sam’s plans don’t change. If it clears, the walk is ten minutes away.</div>
+                    <div class="chips" style="margin-top:4px;"><button class="vdl-btn r16 secondary vk-t-labelSemibold" data-act="use_cafe">Use this</button><button class="vdl-btn r16 pl-quiet vk-t-labelSemibold" data-act="keep_walk">Keep the walk</button></div>
+                  </div>
+                  <div class="inline-act" style="grid-column:auto;" data-show="walk:walk;preview:;rain:yes"><button class="vdl-btn r16 pl-quiet vk-t-labelSemibold" data-act="preview:cafe">Rain at 4 — see an alternative</button></div>
+                </div><div class="more">···</div></div>
+                <div class="row first" data-show="bookstore:suggested"><div class="time loose" data-bind="walk_time"></div><div><div class="ttl" data-bind="walk_title"></div><div class="sup" data-bind="walk_sup"></div>
+                  <div class="attach" style="grid-column:auto; margin-top:10px;"><div class="ct"><span class="by">Maya · suggestion</span>“Willow &amp; Page on Court St is open till 7 — could be on the way to the water.”<span data-show="maya_sent:yes"> · and, later: “add it to the afternoon” — sent as a suggestion after asking Vesper.</span></div></div>
+                  <div class="inline-act" style="grid-column:auto;"><button class="vdl-btn r16 secondary vk-t-labelSemibold" data-act="add_bookstore">Add to the afternoon</button><button class="vdl-btn r16 pl-quiet vk-t-labelSemibold" data-act="leave_bookstore">Leave it</button></div>
+                  <div class="qp pv" style="margin-top:10px;" data-show="preview:cafe">
+                    <div class="k" data-bind="cafe_k"></div>
+                    <div class="t">The café at Willow &amp; Page instead of the walk</div>
+                    <div class="b">Same block, dry, open till 7. Dinner and Sam’s plans don’t change.</div>
+                    <div class="chips" style="margin-top:4px;"><button class="vdl-btn r16 secondary vk-t-labelSemibold" data-act="use_cafe">Use this</button><button class="vdl-btn r16 pl-quiet vk-t-labelSemibold" data-act="keep_walk">Keep the walk</button></div>
+                  </div>
+                  <div class="inline-act" style="grid-column:auto;" data-show="walk:walk;preview:;rain:yes"><button class="vdl-btn r16 pl-quiet vk-t-labelSemibold" data-act="preview:cafe">Rain at 4 — see an alternative</button></div>
+                </div><div class="more">···</div></div>
+              </div>
+
+              <div class="chap"><div class="cl">Evening</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact" data-bind="dinner"></div><div><div class="ttl">Dinner at the Georgian room</div><div class="sup">Court St · <span class="who" data-bind="people"></span> · <span data-bind="sam_line"></span></div>
+                  <div class="attach" style="grid-column:auto;" data-show="maya_asked:yes"><div class="ct"><span class="by">Maya · asks</span>“Could we do 8? The bookstore reading runs late.”</div></div>
+                  <div class="qp" style="margin-top:10px;" data-show="maya_asked:yes;preview:">
+                    <div class="k">Changing seven o’clock</div>
+                    <div class="b">This is a time everyone agreed to. <b>Sam is on his way for 7.</b> The table is booked for 7:00. Maya can’t change dinner herself — it comes to you.</div>
+                    <div class="chips" style="margin-top:4px;"><button class="vdl-btn r16 secondary vk-t-labelSemibold" data-act="preview:dinner8">See what 8:00 would mean</button><button class="vdl-btn r16 pl-quiet vk-t-labelSemibold" data-act="keep7">Keep 7:00</button></div>
+                  </div>
+                  <div class="qp pv" style="margin-top:10px;" data-show="preview:dinner8">
+                    <div class="k">Preview · Maya and Sam would see this · nothing sent</div>
+                    <div class="t">Dinner at 8:00 instead of 7:00</div>
+                    <div class="b"><b>Maya</b> asked for it. <b>Sam</b> is on his way for 7 — he’d get this now and would need to say whether 8 works; until he does, he hasn’t agreed. <b>The table</b> is booked for 7:00; moving it is between you and the restaurant. The afternoon doesn’t change.</div>
+                    <div class="chips" style="margin-top:4px;"><button class="vdl-btn r16 primary vk-t-labelSemibold" data-act="send8">Send 8:00 to Maya and Sam</button><button class="vdl-btn r16 pl-quiet vk-t-labelSemibold" data-act="not_yet">Not yet</button></div>
+                    <div class="b" style="color:var(--mute);">A sent change can be corrected later, not unsent.</div>
+                  </div>
+                  <div class="attach" style="grid-column:auto; border-top:1px solid var(--hair-thin); padding-top:10px; flex-direction:column; gap:6px;" data-show="sent8:yes;reservation:7:00">
+                    <div class="ct"><span class="by" style="color:var(--oxblood);">The table is still booked for 7:00</span>You’re meeting at <span data-bind="dinner"></span>; the reservation (GR-2291, three) says <span data-bind="reservation"></span>. Moving it is between you and the restaurant. If they confirm, forward the email.</div>
+                    <div class="chips"><button class="vdl-btn r16 secondary pl-out vk-t-labelSemibold" data-act="open_link">Open the reservation</button><button class="vdl-btn r16 secondary vk-t-labelSemibold" data-act="forward">Forward a confirmation</button></div>
+                  </div>
+                  <div class="attach" style="grid-column:auto;" data-show="sent8:yes;reservation:8:00"><div class="ct"><span class="by">Reservation</span><span class="src" style="color:var(--gold-deep);">Reserved 8:00 · 3 · from your confirmation</span></div></div>
+                </div><div class="more">···</div></div>
+              </div>
+
+              <div class="gap-l"></div>
+              <div class="quiet" data-show="grant:no">Maya can comment and suggest. Say “let Maya help with the afternoon” to let her edit it — dinner would stay yours.</div>
+              <div class="quiet" data-show="grant:yes">Maya can change the afternoon; dinner stays fixed. Say “I’ll take it from here” to end that — her edits stay.</div>
+              <div class="quiet" data-show="grant:ended">Maya’s editing has ended. Her edits and her place at dinner stay.</div>
+              <div class="pillwrap" data-show="ask:closed"><button class="pill" data-act="ask:open">Ask Vesper<span class="mic">MIC</span></button></div>
+              <div class="sheet" style="position:static; margin: 18px -20px -28px -20px; box-shadow: 0 -2px 24px rgba(27,23,20,0.10);" data-show="ask:open">
+                <div class="hd"></div>
+                <div class="priv"><span class="p">Private · only you and Vesper</span><span>Saturday</span></div>
+                <div class="ctx" data-show="!draft:" style="display:flex; justify-content:space-between; align-items:center;"><span>Draft from earlier</span><button class="vdl-btn r16 pl-quiet vk-t-labelSemibold" data-act="draft:discard" style="min-height:32px;">Discard</button></div>
+                <div class="composer" style="margin:0; padding:0;"><input class="in" data-composer="1" id="c-you" type="text" placeholder="Ask, or “add the bookstore”" aria-label="Ask about Saturday, or say a change" /><button class="send" data-send="#c-you" aria-label="Send">↑</button></div>
+                <div class="doors"><button class="vdl-btn r16 pl-quiet vk-t-labelSemibold" data-act="chat:handoff">More room in Chat →</button><button class="vdl-btn r16 pl-quiet vk-t-labelSemibold" data-act="ask:close">Not now</button></div>
+              </div>
+            </div>
+
+            <!-- ===== OWNER · HOME (re-entry) ===== -->
+            <div class="page" data-show="viewer:you;screen:home">
+              <div class="roottitle" style="margin-top:8px;">Saturday</div>
+              <div class="homecard">
+                <div class="k">Tonight · <span data-bind="dinner"></span></div>
+                <div class="t">Dinner with Maya<span data-show="!sam:no"> and Sam</span> at the Georgian room</div>
+                <div class="b" data-bind="home_line"></div>
+                <div class="chips" style="margin-top:4px;"><button class="vdl-btn r16 secondary pl-gold vk-t-labelSemibold" data-act="go:page">Open Saturday</button><button class="vdl-btn r16 pl-quiet vk-t-labelSemibold" data-act="preview:dinner8" data-show="dinner:7:00">Change time</button></div>
+              </div>
+              <div class="quiet" style="margin-top:14px;">The rest of Home is out of scope here. Opening Saturday shows the current state — nothing is re-asked, and Back never undoes an edit.</div>
+            </div>
+
+            <!-- ===== MAYA ===== -->
+            <div class="page" data-show="viewer:maya">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av a">NO</div><div class="av b">SA</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Saturday · Sep 19 · Nora’s plan</div>
+              <div class="titleRow"><div class="dayTitle">An afternoon out, then dinner</div></div>
+              <div class="thesis" data-bind="thesis_maya"></div>
+              <div class="gap"></div>
+              <div class="receipt" data-show="receipt_kind:gold" data-bind="receipt"></div>
+              <div class="receipt ink" data-show="receipt_kind:ink" data-bind="receipt"></div>
+              <div class="quiet" data-show="!note:" data-bind="note"></div>
+              <div class="qp pv" data-show="save:pending" style="border-color: rgba(61,80,102,0.45);"><div class="k" style="color:var(--planning-deep);">Saving · not on the plan yet</div><div class="b">“<span data-bind="req_text"></span>”</div><div class="chips" style="margin-top:4px;"><button class="vdl-btn r16 pl-quiet vk-t-labelSemibold" data-act="save:cancel">Cancel</button></div></div>
+              <div class="qp pv" data-show="save:unknown" style="border-color: rgba(61,80,102,0.45);"><div class="k" style="color:var(--planning-deep);">Checking whether that went through</div><div class="b">“<span data-bind="req_text"></span>” — your request is still here.</div></div>
+              <div class="qp" data-show="save:failed"><div class="k" style="color:var(--oxblood);">That didn’t save</div><div class="b">“<span data-bind="req_text"></span>” — the connection dropped. <b>Nothing changed.</b></div><div class="chips" style="margin-top:4px;"><button class="vdl-btn r16 primary vk-t-labelSemibold" data-act="save:retry">Try again</button><button class="vdl-btn r16 pl-quiet vk-t-labelSemibold" data-act="save:dismiss">Not now</button></div></div>
+              <div class="chap"><div class="cl" data-bind="chapter_aft_maya"></div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first" data-show="bookstore:added"><div class="time">3:00</div><div><div class="ttl">Willow &amp; Page</div><div class="sup">Court St · open till 7 · <span class="who" data-bind="bookstore_by_maya"></span></div></div><div class="more">···</div></div>
+                <div class="row" data-show="bookstore:added"><div class="time loose" data-bind="walk_time"></div><div><div class="ttl" data-bind="walk_title"></div><div class="sup">with Nora</div></div><div class="more">···</div></div>
+                <div class="row first" data-show="bookstore:suggested"><div class="time loose" data-bind="walk_time"></div><div><div class="ttl" data-bind="walk_title"></div><div class="sup">with Nora</div>
+                  <div class="attach" style="grid-column:auto; margin-top:10px;"><div class="ct"><span class="by">You · suggestion</span>“Willow &amp; Page on Court St is open till 7 — could be on the way to the water.”</div></div>
+                  <div class="inline-act" style="grid-column:auto;"><button class="vdl-btn r16 secondary vk-t-labelSemibold" data-act="maya_add">Add to the afternoon</button></div>
+                </div><div class="more">···</div></div>
+              </div>
+              <div class="chap"><div class="cl">Evening</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact" data-bind="dinner"></div><div><div class="ttl">Dinner at the Georgian room</div><div class="sup">Court St · <span class="who">Nora, you<span data-show="!sam:no">, Sam</span></span> · fixed — ask Nora to change it</div>
+                  <div class="attach" style="grid-column:auto;" data-show="maya_asked:yes;dinner:7:00"><div class="ct"><span class="by">You · asked</span>“Could we do 8?” <i>Nora hasn’t answered yet.</i></div></div>
+                </div><div class="more q">···</div></div>
+              </div>
+              <div class="gap-l"></div>
+              <div class="quiet" data-show="grant:no|ended">You can suggest and comment here. Nora decides the afternoon and dinner.</div>
+              <div class="quiet" data-show="grant:yes">You can add, move or drop afternoon stops; Nora sees them as yours. Dinner, who’s coming and money stay with Nora.</div>
+              <div class="pillwrap" data-show="ask:closed"><button class="pill" data-act="ask:open">Ask Vesper<span class="mic">MIC</span></button></div>
+              <div class="sheet" style="position:static; margin: 18px -20px -28px -20px; box-shadow: 0 -2px 24px rgba(27,23,20,0.10);" data-show="ask:open">
+                <div class="hd"></div>
+                <div class="priv"><span class="p">Private · only you and Vesper</span><span data-show="grant:yes">you can change the afternoon</span><span data-show="grant:no|ended">Nora’s afternoon</span></div>
+                <div class="chips" data-show="offer:suggest"><button class="vdl-btn r16 secondary vk-t-labelSemibold" data-act="maya:suggest">Send to Nora as a suggestion</button><button class="vdl-btn r16 pl-quiet vk-t-labelSemibold" data-act="offer:clear">Keep it to myself</button></div>
+                <div class="chips" data-show="offer:ask8"><button class="vdl-btn r16 secondary vk-t-labelSemibold" data-act="maya:send_ask8">Send to Nora as a question</button><button class="vdl-btn r16 pl-quiet vk-t-labelSemibold" data-act="offer:clear">Keep it to myself</button></div>
+                <div class="ctx" data-show="!draft:" style="display:flex; justify-content:space-between; align-items:center;"><span>Draft from earlier</span><button class="vdl-btn r16 pl-quiet vk-t-labelSemibold" data-act="draft:discard" style="min-height:32px;">Discard</button></div>
+                <div class="composer" style="margin:0; padding:0;"><input class="in" data-composer="1" id="c-maya" type="text" placeholder="Ask, or “add the bookstore at 4”" aria-label="Ask about Saturday, or say a change" /><button class="send" data-send="#c-maya" aria-label="Send">↑</button></div>
+                <div class="doors"><button class="vdl-btn r16 pl-quiet vk-t-labelSemibold" data-act="chat:handoff">More room in Chat →</button><button class="vdl-btn r16 pl-quiet vk-t-labelSemibold" data-act="ask:close">Not now</button></div>
+              </div>
+            </div>
+
+            <!-- ===== SAM ===== -->
+            <div class="page" data-show="viewer:sam">
+              <div class="guestbar"><span>FROM NORA</span><span data-show="sent8:no">A LINK · NOTHING TO INSTALL</span><span data-show="sent8:yes">SATURDAY · CHANGED</span></div>
+              <div class="kick">Saturday · Sep 19</div>
+              <div class="titleRow"><div class="dayTitle" data-show="sent8:no">Dinner at the Georgian room</div><div class="dayTitle" data-show="sent8:yes">Dinner moved to eight</div></div>
+              <div class="thesis" data-bind="thesis_sam"></div>
+              <div class="gap-l"></div>
+              <div class="receipt" data-show="receipt_kind:gold" data-bind="receipt"></div>
+              <div class="receipt ink" data-show="receipt_kind:ink" data-bind="receipt"></div>
+              <div class="quiet" data-show="!note:" data-bind="note"></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact" data-bind="dinner"></div><div><div class="ttl">Dinner</div><div class="sup">the Georgian room, Court St · <span class="who">Nora, Maya, you</span><span data-show="sent8:yes;reservation:7:00"> · <span class="conf">the table is still booked for 7 — Nora’s on it</span></span></div></div><div></div></div>
+                <div class="conn"><div class="t">from you</div><div class="c"><b>12 min on the F</b> to Bergen St · step-free entrance · they take cards</div></div>
+                <div class="row" data-show="sent8:no"><div class="time loose word">cost</div><div><div class="ttl opt">About $38 a head</div><div class="sup">Georgian · the khinkali are the thing</div></div><div></div></div>
+              </div>
+              <div class="gap-l"></div>
+              <div class="chips" data-show="sam:unknown"><button class="vdl-btn r16 primary vk-t-labelSemibold" data-act="sam_in">I’m in</button><button class="vdl-btn r16 secondary vk-t-labelSemibold" data-act="sam_cant">Can’t make it</button></div>
+              <div class="chips" data-show="sam:dinner;sent8:yes;sam8:"><button class="vdl-btn r16 primary vk-t-labelSemibold" data-act="sam_ok8">8 works</button><button class="vdl-btn r16 secondary vk-t-labelSemibold" data-act="sam_cant8">Can’t do 8</button></div>
+              <div class="gap"></div>
+              <div class="quiet" data-show="sam:unknown">Nora sees your answer and nothing else about you. Nora and Maya are out in the afternoon; you’re not expected before dinner.</div>
+              <div class="quiet" data-show="sam:dinner;sent8:no">You’re in for dinner. Nora and Maya are out from about 3 — you’re not expected before dinner.</div>
+              <div class="quiet" data-show="sam:dinner;sent8:yes;sam8:">Nora sees your answer. If you don’t answer, she won’t assume yes.</div>
+              <div class="quiet" data-show="sam:no">Nora sees you can’t make it. Nothing else.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ======================= RESEARCH CHROME ======================= -->
+        <div class="research">
+          <div class="card">
+            <div class="k">ENGINEERING APPENDIX · EXPLORATION · NOT PRODUCTION · SCRIPTED PROTOTYPE · ALL FACTS SYNTHETIC · EXERCISES THE STATES ON APPENDIX 90</div>
+            <p><b>10 · Saturday, shared.</b> One fixture (Situation C→D), one state, three viewpoints. Every chip and phrase either changes the state or says honestly that nothing changed. Re-entry via Home shows current state; Undo appears only when a private reversible change exists, undoes only that change — never another person’s independent response — and disappears after a send. Each viewpoint has its own private record (sheet, draft, in-flight request, receipt); switching viewer never shows someone else’s exchange.</p>
+            <p><b>§0.1–0.2:</b> the entry is the “Ask Vesper” pill-and-field of board 08 — no composer at rest; the field opens with a <b>private kicker for every role</b>; Maya’s edit-like ask without rights is answered honestly and <b>offered as an explicit send</b> to Nora; “Not now” closes without mutation. “More room in Chat” is <b>not implemented</b> here and says so. Read-only questions, retrieval (P10) and value-first inspection are illustrated on 08, not mechanically demonstrated here.</p>
+            <p><b>Illustrated vs tested.</b> <b>Mechanically exercised here:</b> the single entry; a private kicker for every role; explicit send for both of Maya’s ungranted asks (bookstore, dinner); apply-with-receipt and the Undo boundary; pending / failed / interrupted saves (simulated) with duplicate prevention limited to the relevant mutation, navigation allowed meanwhile, authored words kept through failure and “Not now”, a second input preserved; re-entry via Home. <b>Illustrated only (boards 08/09):</b> value-first inspection content, read-only answers, retrieval, the keyboard-open/expanded sheet, resume across Maps/provider/background, Chat continuation. <b>Fidelity:</b> the assistance region here is in document flow, not an overlay. <b>Limit:</b> language routes are scripted recognizers (regex + state guard) with selected outcomes; this does not demonstrate arbitrary date/time understanding, and adding phrases would not validate a general interpreter.</p>
+          </div>
+          <div class="card">
+            <div class="k">VIEWPOINT (research control — not customer UI)</div>
+            <div class="vsw"><button class="chip" data-act="viewer:you" data-viewer="you">You (Nora)</button><button class="chip" data-act="viewer:maya" data-viewer="maya">Maya</button><button class="chip" data-act="viewer:sam" data-viewer="sam">Sam</button><button class="chip quiet" data-act="reset">Reset</button></div>
+          </div>
+          <div class="card">
+            <div class="k">FAILURE INJECTION (research control — applies to the NEXT private change)</div>
+            <div class="vsw"><button class="chip" data-act="sim:slow">Slow save</button><button class="chip" data-act="sim:fail">Failed save</button><button class="chip" data-act="sim:unknown">Interrupted</button><button class="chip quiet" data-act="sim:none">Off</button></div>
+            <p>Slow → pending with your own words shown, plan unchanged; you can switch viewer, go Home and come back to the same in-flight request; Cancel only before it commits. Failed → nothing changed, your words in the card; “Try again” re-runs the same request; “Not now” keeps the words as a draft that reappears in the field. Interrupted → “checking whether that went through — your request is still here” (no promise that nothing changed), the same request reconciled once; a second thing you type meanwhile is held in the field, never cleared. Drives J2c–J2e on board 09.</p>
+            <p><b>Regression checks (§0.5, exercised in the in-app browser — see the friction log on 09):</b> <b>R1</b> Failed save → “add the bookstore” → Not now → open Ask → Discard: field empty, draft empty, reopening stays empty; an edited field is left alone. <b>R2</b> Nora: Use this (café) → Sam: I’m in → Nora: Undo: the walk is back, Sam is still in. <b>R3</b> Nora: Slow save → “add the bookstore” → switch to Maya: no saving card, no request text, no Cancel on Maya’s view; switch back: Nora’s pending card still there; when it lands, Nora’s receipt, and Maya sees “Nora added”. <b>R4</b> pending → Home → back: the same in-flight request. <b>R5</b> interrupted → “checking whether that went through”; a second <i>change</i> typed meanwhile (“let Maya help”) is held with its words kept in the field and nothing applied; a look-only phrase (“the café if it rains”) still works; retry is a no-op until reconciled; the first request lands once. All five passed in the in-app browser on 2026-09-05; no console errors.</p>
+          </div>
+          <div class="card">
+            <div class="k">SUPPORTED PHRASES (recognizers, not parsing)</div>
+            <div class="phr">
+              <div><b>You:</b> <code>let Maya help with the afternoon</code> · <code>I’ll take it from here</code> · <code>add the bookstore</code> · <code>the café if it rains</code> · <code>back to the walk</code> · <code>move dinner to 8</code> · <code>forward the confirmation</code> · <code>undo</code></div>
+              <div><b>Maya:</b> <code>add Willow &amp; Page</code> (applies if granted; otherwise answered privately with an offer to send it to Nora as a suggestion) · <code>could we do 8?</code> (answered privately, then an explicit “Send to Nora as a question” — never auto-sent)</div>
+              <div><b>Sam:</b> chips only — I’m in / Can’t · 8 works / Can’t do 8</div>
+              <div>Anything else → “Nothing changed …” with state preserved.</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="k">WALKTHROUGH THAT EXERCISES EVERY ESSENTIAL PATH</div>
+            <div class="phr">
+              <div>1 · <b>Inspect</b>: open as You; Home ‹ · Open Saturday — nothing re-asked.</div>
+              <div>2 · <b>Contribute without editing</b>: switch to Maya; “add Willow &amp; Page” → private answer, nothing changed; “Send to Nora as a suggestion” → explicit share; owner sees it as her words.</div>
+              <div>3 · <b>Authorized edit</b>: You: “let Maya help with the afternoon” → receipt + Undo. Maya: “add Willow &amp; Page” → added, attributed, no approval.</div>
+              <div>4 · <b>Participation</b>: Sam: I’m in → owner’s people line updates; afternoon untouched.</div>
+              <div>5 · <b>Scoped alternative → adoption</b>: You: “Rain at 4 — see an alternative” → Use this → receipt + Undo; “undo” restores the walk.</div>
+              <div>6 · <b>Consequential change</b>: Maya: “could we do 8?” → “Send to Nora as a question” → You: See what 8:00 would mean → Send → ink receipt, <b>no Undo</b>, mismatch appears; Sam: 8 works; You: “forward the confirmation” → reservation 8:00.</div>
+              <div>7 · <b>Return</b>: You: ‹ Home → the card carries the current facts → Open Saturday.</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="k">STATE (read-only readout)</div>
+            <pre class="st" data-bind="state_json"></pre>
+            <p style="font-family:var(--mono); font-size:10px; color:var(--mute);">undo depth: <span data-bind="undo_count"></span></p>
+          </div>
+          <div id="proto-live" aria-live="polite" style="position:absolute; left:-9999px;"></div>
+        </div>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{}'>
+      class Component extends DCLogic {
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>

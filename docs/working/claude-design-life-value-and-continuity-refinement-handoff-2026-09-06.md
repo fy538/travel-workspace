@@ -16,6 +16,12 @@ supersedes: []
 
 # Claude Design handoff — Life: value and continuity refinement
 
+> **Current routing — September 9 six-project review:** use [Life handoff §0](claude-design-life-canonical-project-handoff-2026-09-06.md#0-current-assignment--september-9-fresh-six-project-review)
+> for the current bounded refinement. This document retains previous findings,
+> corrections and donor sequences, not an additional action list. Continue the
+> existing `Downloads/life` project; no new transfer, project or implementation.
+> The manifest remains the inventory record. Integration remains paused.
+
 ## 1. Assignment and overall judgment
 
 Revise the existing **Life** project in place. It should become the primary
@@ -299,7 +305,8 @@ more of the product's value themselves, so fewer explanatory boards are necessar
 
 ## 7. Follow-up review — September 6, 16:13 export
 
-**This section is the current action list.** Sections 1–6 preserve the original
+**This section was the September 6 action list.** Use Life handoff §0, linked
+above, for the current September 8 assignment. Sections 1–6 preserve the original
 assignment and its rationale. Do not repeat completed work simply because it
 remains described above.
 

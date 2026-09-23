@@ -42,9 +42,11 @@ Nora landed in New York on **Sunday, Sep 6** after Nice → Sorrento → Amalfi 
 | **Dana** | A friend, currently in Sorrento | Account | A3 a city-level Status authored Tuesday Sep 15, expiring when she chooses (through the week); B2 an optional dish photo and one tip for the pasta night, sent Friday; not attending |
 | **Sam** | Nora's coworker; new to this circle | **No account.** Receives a link by text, to a number Nora typed (917 555 0143, fixture; typed, not found, no contacts scanned) | B2 his answer (I'm in); "must leave by nine", said in his own words on Friday; his voluntary arrival update Saturday |
 | **Priya** | A friend (from the Places project's cast); appears only as existing shares in the friends scope | Account | Two existing shares: her own separate visit to the Print Room ("Rainy Tuesday, the back room to myself for an hour.") and the pigeons at the greenmarket. Never addressed to Nora; no part in B or C |
+| **Priya** | A friend (from the Places project's cast); appears only as existing shares in the friends scope | Account | Two existing shares: her own separate visit to the Print Room ("Rainy Tuesday, the back room to myself for an hour.") and the pigeons at the greenmarket. Never addressed to Nora; no part in B or C |
+| **Priya** | A friend (from the Places project's cast); appears only as existing shares in the friends scope | Account | Two existing shares: her own separate visit to the Print Room ("Rainy Tuesday, the back room to myself for an hour.") and the pigeons at the greenmarket. Never addressed to Nora; no part in B or C |
 | **The couple from the boat** | Met once on the Sorrento → Amalfi ferry in August | None | Nothing held by them. Nora holds one photo she promised them and, in branch C3a, an email address they wrote on a ferry receipt; in branch C3b, no contact path at all |
 
-Not in this world: Nadia (Home Persona A), Alex, Theo, Sam-as-a-sharer (he has no account), the Sunset Park bakery, Alex's birthday, a separate greenmarket outing (Priya's existing pigeon photograph remains), Hortus (the Entity lab's real dinner), the Georgian room. See §5.
+Not in this world: Nadia (Home Persona A), Alex, Theo, Sam-as-a-sharer (he has no account), Sam-as-a-sharer (he has no account), Sam-as-a-sharer (he has no account), the Sunset Park bakery, Alex's birthday, a separate greenmarket outing (Priya's existing pigeon photograph remains), Hortus (the Entity lab's real dinner), the Georgian room. See §5.
 
 ## 3. Fixture objects, with audience and expiry
 
@@ -66,6 +68,8 @@ Not in this world: Nadia (Home Persona A), Alex, Theo, Sam-as-a-sharer (he has n
 | **C3′** | Another pasta evening: "dinner with maya and sam again? saturday the 3rd" | Nora | Maya and Sam, by fresh invitations | The new occasion, on Send | Vesper drafts privately (under Ask; no Plan persists until Send): the place, a proposed seven ("keep that time?"), the people to invite, and last time's photo one tap away. Historical facts (Sam's 7:30 and nine) stay history, never prefilled defaults; fresh answers establish participation; Nora may leave the draft (§15.3) |
 | **C4** | Withdrawal | Maya | — | Sunday | Removes A2 and anything derived from it; leaves A1, C1 and every independently held thing as they were; no paraphrase remains |
 | **C5** | Optional ongoing connection, sought by Sam under Nora's name on his link's record (never appended after the photo) | Nora and Sam, each choosing | Only the named future contact/sharing capability; exact default is a design recommendation | Terms to recommend; revocable | Request/accept is separate from invitation, RSVP, account creation and private remembrance. No access to all past material, live location or future plans; remaining occasion-bound is complete |
+| **C6** | Nora's pasta, second try, and a line to friends: "Second try. Thinking of Saturday, if anyone's around." (board 05 D1-A; Thursday Sep 17, 7:40 pm) | Nora | Friends (Maya, Dana; Priya) | Through Sunday | Non-spatial: no place, no pin, no occasion. Arrives once on a friend's Home addressed region (08.1, PROPOSED placement), opens to Life's exact-source reader (08.2), is found again under People → Nora (08.3). A line, not an invitation; "looks fun" produces nothing; nothing appears on the recipient's own week (September 9) |
+| **C7** | "Third try. It held. Dana's twenty minutes.": Nora's sauce photograph and a line, Sunday Sep 27, 6:40 pm | Nora | Maya; Sam by text to the number he confirmed (C5 accepted by both, Tuesday Sep 22) | Through Sunday Oct 4 | The first eligible thing after connection (08.4). Sam receives it on the same link, now "From Nora" (08.5), beside what he already held (C1 through Maya's grant; the dinner's shared facts). His controls: fewer, stop; neither tells Nora why, neither changes what he was part of. No account, no app |
 
 ## 4. World facts (all fixture; none from a reviewed source)
 
@@ -207,6 +211,21 @@ relationship payoff fits within the current budget.
 
 ### 9.3 Comparison and treatment rules
 
+Added September 9 (consolidation assignment, handoff §0 of September 8):
+
+- **Arrangement versus participation.** A dinner's canonical start (seven; eight if Nora adopts Maya's proposal) and a participant's expressed, accepted arrival (Sam: seven-thirty, leaving by nine) are different facts. Adopting eight changes the dinner's start for Nora, Maya and Sam, each in their own view; it does not change what Sam said until he answers. His row keeps seven-thirty and nine until then; the adopted-branch arrival view (03.7 variant) shows the arrival for each answer state. Nobody's silence becomes acceptance. This is Plans 05 D3's treatment (who is affected, who has answered), not another RSVP ceremony.
+- **Hiding is not absence.** Muting, hiding or blocking a person is the viewer's own choice and never changes who attended or is attending; a viewer-relative count must not read as the gathering's size (Home 10's block frame is a Home-owner delta, recorded on board 07).
+- **What a guest holds.** Sam's link record of the dinner holds Maya's photograph (for as long as she leaves it) and the dinner's shared facts (Saturday Sep 19, from seven, at Nora's, who came). Nothing Nora wrote for herself. Nora seeing Sam's own "leave by nine" in her record is his supplied participation, not a leak.
+- **Two Noras, for choosing a recipient (September 11).** Social 02.2's recipient sheet needs two connections with the same first name to show how one is told apart. In that sheet only, the host is shown as "Nora Lin · friend · the pasta nights" and a second connection of Maya's as "Nora Kaye · friend · from work". Nora Kaye is fixture for disambiguation and appears nowhere else; the surname Lin is not used elsewhere and adds nothing to the cast. The sheet offers eligible connections only; no contacts are scanned.
+- **The afternoon's inputs (September 10).** The Saturday afternoon on 03.5 runs on B2b, Maya's separate Friday suggestion to Nora as the evening's owner, plus a fact Nora supplied herself ("home by six to start the pasta"), plus listed hours and the walk time. It does not run on A1, Maya's Thursday photograph and weekday line. A1 is received and enjoyed on its own (02.3, 02.4); B2b is a second contribution with its own eligible use. Any comparison must give the alternative the same three inputs, ordinary search, the link Maya sent and the address already held.
+- **Asking is not moving (September 10).** Maya asking about eight leaves dinner at seven. The prepared message asks Maya alone, carries no one else's constraint, records no answer and announces nothing; leaving it sends nothing. Moving the dinner is a different act that only the owner's explicit instruction begins, and it is the only way into the adopted-eight branch.
+- **Receiving wording, agreed with Life 07.7/07.8 (September 9, second pass).** Opening keeps nothing. A shared original stays findable while its author shares it. A deliberate copy is yours to reread until she takes it back. Share expiry and the author taking it back are different conditions, and a copy survives only the first. A kept place is yours; keeping the place does not keep her words. Social's earlier "yours after her share ends" is withdrawn as an overstatement.
+- **The table photograph is 8:25 pm, Saturday.** In the unchanged-seven branch Maya arrives at eight, as she said on 03.5, so she cannot have photographed the table at 7:50. Nora opens the door for Sam at 7:32; Maya arrives at 8:05; the photograph is 8:25.
+- **Three effects, kept apart (Entity 12.4).** Continuing shared access is the default and needs no Keep; a deliberate Keep is a permitted private copy of the original under its author's grant, and the author is not told; keeping a place is a third act, and C6 has no place. Nothing is inferred from opening, and refinding requires no Keep. C6 kept by Maya on Thursday appears on 08.3 as its own row. The retention agreement itself is unresolved.
+- **No automatic use receipt.** Entity 04.08's "used in tonight · she can see this use" is excluded from this world: a private look, a private Ask and a private copy tell the author nothing. Only a deliberate act the person chooses (a Reply, a request to connect) ever reaches anyone.
+- **Placement is an extension, not a new claim.** The September 5 amendment already gives a casual share with no Place a Status doorway on Home while featured and Life · People after. C6 arriving in Home's addressed region with Friends eligibility is one step from that permission; the four roots and the spatial-social split are unchanged.
+- **Non-spatial placement is a proposal.** C6's arrival on Home's addressed region and its pull route through Life · People are named proposals for the Home and Life owners; the accepted spatial-social split stands for place-bound shares; Places · From friends without a pin is the fair alternative.
+
 - D4 alternatives share equally complete required arrival facts; compare
   presentation/timing, not a missing-address straw alternative.
 - D5 alternatives share factual inputs and permissions. Unsupported calmness,
@@ -224,3 +243,44 @@ relationship payoff fits within the current budget.
   authorized send boundary and accurate readback without repeated confirmation.
 - A source's share expiry, a venue's closing date and the invitation's expiry
   remain separate facts even when dates coincide.
+
+## 10. Ordinary photographs — one set for Life, Home and Social (September 21)
+
+Added for the coordinated photo assignment (Life handoff, "Additive assignment — September 21").
+Life records the set first; Home and Social reuse these IDs rather than keeping their own.
+**No approved ordinary photographs exist yet.** Every PH asset is a drawn stand-in, labelled
+outside the phone. Natural color, real texture and genuine low-light noise cannot be judged
+from stand-ins; that stays a named gap until approved pictures are supplied. No private library
+was inspected and no picture was generated to stand in for a friend's.
+
+| ID | The picture | Author | Framing | Supplied context | Unknown | Nora may |
+| --- | --- | --- | --- | --- | --- | --- |
+| **PH-01** = C1 | The table, from above | Maya | Landscape | Sat Sep 19, 8:25 pm, at Nora's; shared to the dinner (Nora, Maya, Sam) under Maya's grant | — | Look, Reply to Maya. Not export, share on, keep an independent copy or delete; no model use unless Maya's grant allows it |
+| **PH-02** | The pan on the stove, before anyone came | Nora | Portrait | Sat Sep 19, 6:48 pm (camera), at home | — | Everything her own photographs allow |
+| **PH-03** | The same pan, a second later | Nora | Portrait | Sat Sep 19, 6:48 pm (camera) | — | As PH-02. A near-duplicate is kept like any other picture |
+| **PH-04** | The table after everyone left, in low light | Nora | Landscape | Sat Sep 19, 10:40 pm (camera) | — | As PH-02. Shown dark, as taken |
+| **PH-05** = B2a | Dana's dish, in Sorrento | Dana | Portrait | Sent Fri Sep 18 from Sorrento (city level) to the dinner's named audience | Where exactly; not taken at the dinner, not evidence of attending | Look, Reply to Dana. Not export, share on or keep a copy |
+| **PH-06** | A bowl of lemons | Nora | Landscape | Brought with Saturday's set | When and where: no camera data came with the file. Vesper does not guess | As PH-02. Stays unplaced unless Nora places it |
+| **PH-07** | A screenshot of a recipe page (the Nerano) | Nora | Portrait | Screenshot, Thu Sep 17, 3:12 pm | — | As PH-02. A screenshot is a document image, not a picture of an evening |
+| A4 (existing) | Thursday's broken sauce | Nora | Portrait | Attached to a question in Chat, Thu 7:50 pm (Ask) | — | Used for that answer only; not in Life |
+
+Events:
+
+- **Sun Sep 20, 9:30 am.** Nora brings PH-02, PH-03, PH-04 and PH-06 through the share sheet (Bring,
+  contribution contract §3.2). Camera times place three in Saturday's pasta night; PH-06 has none and
+  stays in Photographs, unplaced. One compact receipt with Undo; no naming, album or caption asked.
+- **Sun Sep 20, 9:40 am.** Nora shares PH-02 and PH-04 with Maya through Social's existing recipient
+  flow. PH-01 cannot join that share: it is Maya's.
+
+In Life the evening's record is **Pasta night · Sat Sep 19 · at Nora's**, holding PH-01 to PH-05.
+The pasta night's own facts (from seven; Sam and Maya) come from §1 and §9.3; nothing here adds to them.
+
+Social's use of this set (board 10, September 21). The Sunday 9:40 share above is drawn end to end:
+Nora selects PH-02 and PH-04 in the record, leaves the optional line empty and sends to Maya; Maya
+receives the pair on Home at 10:05 am, opens it and returns, and finds it on Wednesday in Life · People
+without replying. The share shows "until you take them back", this board's proposed default, not an
+adopted rule. The partial failure ("1 of 2 went") and the withdrawal of PH-04 on Thursday are
+design states, not events in this world. PH-01 and PH-05 stay in the record. In Life's general
+selection (04b.11) Nora can select them with her own; Share then counts and sends only her own two,
+and the preview names the one left out. Only a selection started from Share makes them untickable.
+Selecting or seeing a picture grants nothing. No ID is added here.

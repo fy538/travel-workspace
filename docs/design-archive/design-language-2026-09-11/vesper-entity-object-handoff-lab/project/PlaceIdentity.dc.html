@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <link rel="stylesheet" href="_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css" />
+        <link rel="stylesheet" href="vdl.css" />
+        <style>
+          .pi-hero{position:relative;border-radius:0;min-height:200px;margin:0 calc(-1 * var(--vk-page-rootContentInset))}
+          .pi-capsule{position:absolute;top:12px;right:12px;display:flex;gap:2px;padding:0 4px;min-height:36px;align-items:center;border-radius:var(--vk-header-capsuleRadius);background:var(--vk-color-tint-parchmentGlass);box-shadow:var(--vk-shadow-subtleWarm)}
+          .pi-capsule span{padding:0 8px}
+          .pi-fact{display:flex;gap:12px;align-items:baseline}
+          .pi-fact-k{flex:0 0 92px}
+        </style>
+      </helmet>
+      <div data-screen-label="PlaceIdentity">
+        <sc-if value="{{ isPreview }}">
+          <div class="vdl-row">
+            <sc-if value="{{ hasNum }}"><div class="vdl-num"><span class="vk-t-monoStampStrong" style="color:var(--vk-paper00)">{{ num }}</span></div></sc-if>
+            <div class="vdl-row-body">
+              <span class="vk-t-serifTitle">{{ placeName }}</span>
+              <span class="vk-t-monoStamp">{{ meta }}</span>
+              <sc-if value="{{ hasLine }}"><span class="vk-t-bodySm" style="color:var(--vk-ink60)">{{ line }}</span></sc-if>
+              <sc-if value="{{ hasPeople }}"><span class="vk-t-monoStamp">{{ people }}</span></sc-if>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ isPage }}">
+          <div class="{{ heroCls }}"><span class="vk-t-monoStamp">{{ media }}</span><div class="pi-capsule"><span class="vk-t-monoStampStrong">SAVE</span><span class="vk-t-monoStampStrong">SHARE</span></div></div>
+          <div style="margin-top:18px">
+            <div class="vk-t-monoStampStrong" style="color:var(--vk-ink60)">{{ kindArea }}</div>
+            <div class="vk-t-h1Large" style="margin-top:4px">{{ placeName }}</div>
+            <sc-if value="{{ hasPeople }}"><div class="vk-t-caption" style="margin-top:6px">{{ people }}</div></sc-if>
+            <sc-if value="{{ hasLine }}"><p class="vk-t-body" style="margin:10px 0 0;color:var(--vk-ink40)">{{ line }}</p></sc-if>
+            <sc-if value="{{ hasPurpose }}">
+              <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80);margin-top:20px">{{ purpose }}</div>
+              <p class="vk-t-serifProseCompact" style="margin:6px 0 0">{{ purposeLine }}</p>
+            </sc-if>
+            <sc-if value="{{ checking }}"><div class="vdl-notice amber" style="margin-top:14px"><span class="vdl-dot"></span><span class="vk-t-bodySmMedium" style="color:inherit">{{ checkText }}</span></div></sc-if>
+            <sc-if value="{{ checked }}"><div class="vdl-notice sage" style="margin-top:14px"><span class="vdl-dot"></span><span class="vk-t-bodySmMedium" style="color:inherit">{{ checkText }}</span></div></sc-if>
+            <div class="vdl-rows" style="margin-top:16px">
+              <sc-for list="{{ facts }}" as="f" hint-placeholder-count="3">
+                <div class="vdl-row pi-fact"><span class="vk-t-monoStamp pi-fact-k">{{ f.k }}</span><span class="vk-t-body">{{ f.v }}</span></div>
+              </sc-for>
+            </div>
+            <div class="vk-t-monoStamp" style="margin-top:8px">{{ source }}</div>
+            <div class="vdl-doors" style="margin-top:20px">
+              <sc-for list="{{ doors }}" as="d" hint-placeholder-count="2">
+                <span class="vdl-door vk-t-bodySmMedium">{{ d.label }}</span>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </x-dc>
+    <script
+      type="text/x-dc"
+      data-dc-script
+      data-props='{
+  "density": { "editor": "enum", "options": ["preview", "destination", "sparse"], "default": "preview" },
+  "num": { "editor": "text", "default": "" },
+  "placeName": { "editor": "text", "default": "The Harbor Print Room" },
+  "kindArea": { "editor": "text", "default": "PRINT WORKSHOP · RED HOOK" },
+  "meta": { "editor": "text", "default": "" },
+  "line": { "editor": "text", "default": "" },
+  "people": { "editor": "text", "default": "" },
+  "purpose": { "editor": "text", "default": "" },
+  "purposeLine": { "editor": "text", "default": "" },
+  "facts": { "editor": "text", "default": "" },
+  "source": { "editor": "text", "default": "" },
+  "media": { "editor": "text", "default": "PHOTO · TO BE SOURCED" },
+  "doors": { "editor": "text", "default": "" },
+  "check": { "editor": "enum", "options": ["", "checking", "checked"], "default": "" },
+  "checkText": { "editor": "text", "default": "" }
+}'
+    >
+      class Component extends DCLogic {
+        renderVals() {
+          const p = this.props || {};
+          const density = p.density || 'preview';
+          const facts = (p.facts || '').split(';').filter(Boolean).map((s) => { const i = s.indexOf('='); return { k: s.slice(0, i), v: s.slice(i + 1) }; });
+          const doors = (p.doors || '').split(';').filter(Boolean).map((label) => ({ label }));
+          return {
+            isPreview: density === 'preview',
+            isPage: density !== 'preview',
+            heroCls: density === 'sparse' ? 'vdl-media pi-hero' : 'vdl-media tall pi-hero',
+            hasNum: !!p.num,
+            num: p.num || '',
+            // "placeName", not "name": dc-import's own name attribute selects the component.
+            placeName: p.placeName || 'The Harbor Print Room',
+            kindArea: p.kindArea || '',
+            meta: p.meta || '',
+            hasLine: !!p.line,
+            line: p.line || '',
+            hasPeople: !!p.people,
+            people: p.people || '',
+            hasPurpose: !!p.purpose,
+            purpose: p.purpose || '',
+            purposeLine: p.purposeLine || '',
+            checking: p.check === 'checking',
+            checked: p.check === 'checked',
+            checkText: p.checkText || '',
+            facts,
+            source: p.source || '',
+            media: p.media || 'PHOTO · TO BE SOURCED',
+            doors,
+          };
+        }
+      }
+    </script>
+  </body>
+</html>

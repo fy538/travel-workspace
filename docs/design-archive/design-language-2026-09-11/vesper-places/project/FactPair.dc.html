@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <link rel="stylesheet" href="_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css" />
+        <link rel="stylesheet" href="vdl.css" />
+        <style>
+          /* FactPair — two purpose-relevant facts side by side (R2). tone=lead: the prominent pair
+             under the identity; tone=plain: the secondary practical pair. Stacks below 300px. */
+          .fp{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));column-gap:14px}
+          .fp-c{border-top:1px solid color-mix(in srgb,var(--vk-ink00) 12%,transparent);padding-top:8px}
+          .fp.plain .fp-c{border-top-color:color-mix(in srgb,var(--vk-ink00) 10%,transparent);padding-bottom:8px}
+          .fp-l{color:var(--vk-ink60);letter-spacing:1px}
+          .fp-v{margin-top:2px;color:var(--vk-ink00)}
+          .fp-n{margin-top:2px;color:var(--vk-ink80)}
+        </style>
+      </helmet>
+      <div class="{{ cls }}" data-screen-label="FactPair">
+        <sc-for list="{{ cells }}" as="c" hint-placeholder-count="2">
+          <div class="fp-c">
+            <div class="fp-l vk-t-monoStampStrong">{{ c.label }}</div>
+            <div class="{{ c.vcls }}"><sc-if value="{{ c.hasLink }}"><span class="vdl-door act sm">{{ c.link }}</span> </sc-if>{{ c.value }}</div>
+            <sc-if value="{{ c.hasNote }}"><div class="fp-n vdl-t-metaLine">{{ c.note }}</div></sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{
+  "tone": { "editor": "enum", "options": ["lead", "plain"], "default": "lead" },
+  "a": { "editor": "text", "default": "SATURDAY" },
+  "av": { "editor": "text", "default": "Reserve; weekends fill" },
+  "an": { "editor": "text", "default": "LISTING · 4:02 PM" },
+  "b": { "editor": "text", "default": "FOR FOUR" },
+  "bv": { "editor": "text", "default": "The edge table seats four" },
+  "bn": { "editor": "text", "default": "DANA · AUG 6" },
+  "bLink": { "editor": "text", "default": "" }
+}'>
+      class Component extends DCLogic {
+        renderVals() {
+          const p = this.props || {};
+          const tone = p.tone || 'lead';
+          const vcls = 'fp-v ' + (tone === 'lead' ? 'vdl-t-factValue' : 'vdl-t-supportLine');
+          const note = (v, d) => (v === '-' ? '' : v || d); // "-" means no note
+          const cells = [
+            { label: p.a || 'SATURDAY', value: p.av || 'Reserve; weekends fill', note: note(p.an, 'LISTING · 4:02 PM'), link: '' },
+            { label: p.b || 'FOR FOUR', value: p.bv || 'The edge table seats four', note: note(p.bn, 'DANA · AUG 6'), link: p.bLink || '' }
+          ].map((c) => ({ ...c, vcls, hasNote: !!c.note, hasLink: !!c.link }));
+          return { cls: 'fp ' + tone, cells };
+        }
+      }
+    </script>
+  </body>
+</html>

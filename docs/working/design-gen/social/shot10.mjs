@@ -1,0 +1,11 @@
+import { chromium } from '/Users/feihuyan/.npm/_npx/e41f203b7505f1fb/node_modules/playwright-core/index.mjs';
+const b = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true });
+const p = await b.newPage({ viewport: { width: 2260, height: 1400 } });
+const errs = []; p.on('console', m => { if (m.type() === 'error') errs.push(m.text()); }); p.on('pageerror', e => errs.push(e.message));
+await p.goto('http://127.0.0.1:8766/' + encodeURIComponent('10 - Photos, sent and received') + '.dc.html', { waitUntil: 'networkidle' });
+await p.waitForTimeout(3500);
+const H = await p.evaluate(() => document.documentElement.scrollHeight);
+const cuts = process.argv.slice(2).map(Number);
+for (let i = 0; i < cuts.length; i += 3) await p.screenshot({ path: `out/shots/10-${i / 3}.png`, fullPage: true, clip: { x: cuts[i], y: cuts[i + 1], width: 1130, height: cuts[i + 2] } });
+console.log('H', H, 'errors', JSON.stringify(errs));
+await b.close();

@@ -555,7 +555,17 @@ arm or a mandatory bridge to everyday use.
 
 ### Proposed message and honest first payoff
 
-Message draft for review, not approved public copy:
+**September 10 clarification:** this is situation-specific entrance copy for
+someone who already has a question or fragment, not the complete company
+explanation. The recruitment hypothesis does not make contributing an item the
+universal entrance. Independent Home receiving and a friend's original offering
+remain legitimate first benefits. Use the
+[consumer-promise comparison](vesper-consumer-promise-and-adaptive-value-research-2026-09-05.md#5-consumer-promise-hypotheses)
+for the broader explanation and the
+[supported-offer candidate](vesper-v1-supported-offer-2026-09-07.md#1-recommendation)
+for the proposed service boundary.
+
+Entrance draft for review, not approved public copy:
 
 > Something caught your attention? Bring it to Vesper. Understand it better,
 > discover what else it opens up, and get help taking it further if you want.
@@ -593,6 +603,34 @@ Dates and access conditions in old specimens need rechecking for a live claim.
 Use labeled prototypes when necessary, but do not count their reactions as app
 activation. No promise of automatic memory, accepted monitoring, private guest
 access or provider execution follows from a compelling demonstration.
+
+### Four communication roles — September 10 alignment
+
+Keep four questions distinct when explaining the same product:
+
+| Role | What the explanation needs to establish |
+| --- | --- |
+| **Want** | A positive reward: something interesting to understand, a possibility worth considering, a friend's perspective, or practical relief. Show an actual example, not only the absence of homework. |
+| **Choose** | Why this result and the effort to obtain it could be better than the person's capable existing tools. Useful combinations and selective continuity are hypotheses to demonstrate, not exclusive capabilities or an established moat. |
+| **Trust** | Why the person can rely on the service within clear evidence, audience, retention and action boundaries. These qualities can matter to choice; reassurance alone does not explain the positive reward. |
+| **Return** | Another naturally useful moment: a question, available time, a human offering, an unfolding concern or something entrusted to Vesper. Better later help is an additional benefit, not repayment for maintaining an archive. |
+
+These are communication roles, not replacement product grammar, permanent
+personas, tab assignments or a required acquisition funnel. Different entrances
+can emphasize different benefits without hiding the rest of the supported
+service. Receiving something enjoyable can finish without further action.
+
+[Section 8](#8-differentiation-compete-against-a-capable-stack) already owns the
+competitive argument and fair comparison: assess received substance and total
+human work, with natural-use effort separate from equal-evidence quality. Do not
+turn integration, memory or fewer screens into differentiation by assertion.
+
+This clarification draws on the positioning discussion and existing research,
+not new participant evidence. April Dunford's practitioner essays on
+[value versus objection handling](https://aprildunford.substack.com/p/value-vs-objection-handling)
+and [differentiation through combinations](https://aprildunford.substack.com/p/the-no-differentiation-illusion)
+help separate these arguments; they are not consumer validation of Vesper or a
+finding that trust is unimportant. The three opening hypotheses remain open.
 
 ### Proposed first recruitment batch
 

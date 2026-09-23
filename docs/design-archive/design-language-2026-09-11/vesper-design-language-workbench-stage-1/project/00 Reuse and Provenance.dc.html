@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <link rel="stylesheet" href="_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css" />
+        <style>
+          body{margin:0;background:var(--vk-paper20)}
+          a{color:var(--vk-gold80)}
+          a:hover{color:var(--vk-color-action-primary)}
+          .wb{background:var(--vk-paper20);min-height:100vh;color:var(--vk-ink00);font-family:var(--vk-font-sans)}
+          .wbwrap{max-width:880px;margin:0 auto;padding:48px 32px 80px}
+          .sec{margin-top:40px}
+          .sech{font-size:12px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:var(--vk-ink60);padding-bottom:6px;border-bottom:0.5px solid var(--vk-borderHairline);margin-bottom:14px}
+          .p{font-size:14px;line-height:22px;color:var(--vk-ink40);max-width:680px;margin:8px 0 0}
+          .li{font-size:14px;line-height:22px;color:var(--vk-ink40);max-width:680px;margin:6px 0 0;padding-left:14px;border-left:0.5px solid var(--vk-borderHairline)}
+          .stamp{font-family:var(--vk-font-mono);font-size:12px;line-height:20px;color:var(--vk-ink40);word-break:break-all}
+          .ok{font-family:var(--vk-font-mono);font-size:12px;line-height:20px;color:var(--vk-color-success)}
+          .bad{font-family:var(--vk-font-mono);font-size:12px;line-height:20px;color:var(--vk-color-danger)}
+          .spec{font-family:var(--vk-font-mono);font-size:11px;line-height:16px;color:var(--vk-ink60);margin-top:2px}
+          .gap{margin-top:16px}
+          .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:20px}
+          .pad{padding:16px;min-height:72px}
+          .btnp{display:inline-flex;align-items:center;height:44px;padding:0 20px;border-radius:var(--vk-radius-action);background:var(--vk-color-action-primary);color:var(--vk-color-white);font-weight:600;font-size:15px}
+          .row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:20px}
+        </style>
+      </helmet>
+      <div class="wb" data-screen-label="Reuse and provenance">
+        <div class="wbwrap">
+          <div class="vk-t-capsEyebrow">Vesper — Design Language Workbench · Stage 1</div>
+          <div class="vk-t-h1Large" style="margin-top:6px">Reuse and provenance</div>
+          <p class="p">This workbench consumes the Vesper · Production Kernel design system. Everything on this board is styled only by the kernel's generated <code>styles.css</code>, copied into this project's bound <code>_ds</code> folder. The six product projects are untouched.</p>
+
+          <div class="sec">
+            <div class="sech">Kernel stamp in this project</div>
+            <div class="stamp">Loaded now: {{ loaded }}</div>
+            <div class="stamp">Copied on 2026-09-10: travel-app@e2e792913 tokens:80d0648dd300 gen:1</div>
+            <div class="{{ statusCls }}">{{ status }}</div>
+            <p class="p">To check any consumer for drift, read the first lines of its <code>_ds/&lt;folder&gt;/styles.css</code> and compare <code>--vk-version</code> with the kernel's. To check whether the kernel itself has fallen behind the app, run <code>node scripts/design_kernel_export.mjs --check styles.css</code> in travel-workspace against a copy of the kernel's file.</p>
+          </div>
+
+          <div class="sec">
+            <div class="sech">What the propagation test showed</div>
+            <div class="li">This project was created bound to the kernel. At creation it held no files and no <code>_ds</code> folder.</div>
+            <div class="li">The kernel then received <code>styles.css</code>. About twelve minutes later, neither this project nor the bound <code>_ds</code> folder in Vesper — Home had changed, and the kernel's <code>_ds_manifest.json</code> still listed no global CSS.</div>
+            <div class="li">So a bound folder is a copy, not a live link, and writing files to the kernel does not rebuild its manifest. Reuse here is a versioned copy: <code>styles.css</code> was copied with its stamp, and the stamp is the drift signal.</div>
+          </div>
+
+          <div class="sec">
+            <div class="sech">Rendered from the copied styles.css</div>
+            <div class="vk-t-serifMast">Tuesday in Lisbon</div>
+            <div class="spec">.vk-t-serifMast · 30/34 · 700 · −0.6</div>
+            <div class="vk-t-serifReadLine gap">Warm until six; the ferry is running on time.</div>
+            <div class="spec">.vk-t-serifReadLine · 22/27 · 600</div>
+            <div class="vk-t-serifProse gap">We walked down from the castle as the light went amber, stopping twice for the view and once for bread that was still warm.</div>
+            <div class="spec">.vk-t-serifProse · 17/26 · 400</div>
+            <div class="vk-t-vesperVoiceItalic gap">Worth leaving before seven if you want the quiet crossing.</div>
+            <div class="spec">.vk-t-vesperVoiceItalic · 17/24 · 500 italic · source: Vesper-authored emphasis and quoted voice</div>
+            <div class="vk-t-monoStamp gap">07:40 · LIS · FERRY</div>
+            <div class="spec">.vk-t-monoStamp · 10 · +1.3</div>
+            <div class="tiles">
+              <div class="vk-r-quietObject"><div class="vk-t-serifTitle">quietObject</div><div class="vk-t-caption">paperQuiet · card · standard</div></div>
+              <div class="vk-r-crown pad"><div class="vk-t-serifTitle">crown</div><div class="vk-t-caption">paperCrown · tonal · the one dominant, finishable thing</div></div>
+              <div class="vk-r-groupBanded pad"><div class="vk-t-serifTitle">groupBanded</div><div class="vk-t-caption">a seam, not a box</div></div>
+            </div>
+            <div class="row"><span class="btnp">Primary action</span><span class="spec">colors.action.primary · #4A3428</span></div>
+          </div>
+
+          <div class="sec">
+            <div class="sech">Not yet done in this workbench</div>
+            <p class="p">Stage 1 steps 3–7: the selection manifest with a retired-shape screen, the four object comparisons, the two full scrolls, and the coverage map. None of the six product projects has been edited.</p>
+          </div>
+        </div>
+      </div>
+    </x-dc>
+    <script
+      type="text/x-dc"
+      data-dc-script
+      data-props='{}'
+    >
+      class Component extends DCLogic {
+        constructor(props) {
+          super(props);
+          this.state = { loaded: '' };
+        }
+        componentDidMount() {
+          this.readStamp();
+          this.retry = setTimeout(() => this.readStamp(), 800);
+        }
+        componentWillUnmount() {
+          clearTimeout(this.retry);
+        }
+        readStamp() {
+          const raw = getComputedStyle(document.documentElement).getPropertyValue('--vk-version');
+          const value = raw.trim().replace(/^"|"$/g, '');
+          if (value !== this.state.loaded) this.setState({ loaded: value });
+        }
+        renderVals() {
+          const copied = 'travel-app@e2e792913 tokens:80d0648dd300 gen:1';
+          const loaded = this.state.loaded;
+          const matches = loaded === copied;
+          return {
+            loaded: loaded || 'nothing — styles.css is missing from _ds/',
+            status: !loaded ? 'No kernel stylesheet loaded' : matches ? 'Matches the copied stamp' : 'Differs from the copied stamp: this copy was replaced',
+            statusCls: matches ? 'ok' : 'bad',
+          };
+        }
+      }
+    </script>
+  </body>
+</html>

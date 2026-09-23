@@ -1,0 +1,70 @@
+"""08 · revised (§8.10): a proposal record, not an implementation inventory. Decisions with their evidence; changes
+reclassified by category; verified implementation status; supply and refresh; the seat rule as two expressions; dependencies."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+from kit import *
+from gen_generous import N, facepile
+from gen_generous3 import title, sup, gut, card
+from gen_merge import tbl, blk
+from gen_p2_common import *
+from gen_artifact import ways_seq_card
+
+def board():
+    decisions = blk('THE FIVE DECISIONS &middot; RECOMMENDATIONS, PROPOSED', tbl(['', 'QUESTION', 'RECOMMENDATION', 'EVIDENCE'], [
+        ['1', 'Default composition', 'For this packet the possibility leads (the film), with the spatial understanding folded in where it improves it (&sect;9.2); an explanation earns the lead only by its usefulness. A coherent first collection grouped by headings a person would use; no quota, no ceremonial ending; further exploration within the same intent. Maturity improves judgment, not the length of the day (&sect;9.5). The comparison on 10, on the same evidence, observes that content-led delivers a possibility above the fold and map-led delivers twelve labels first; recommendation: content-led for the ordinary opening in a known city, map-led when orientation is the job (an unfamiliar city, a spatial question), with the map one tap away and the toggle preserving question, entry and position. An observation from rendered frames, not a validation', '02 (three leads), 07, 10'],
+        ['2', 'Spatial interaction', 'Map in the header only; the map form shows the same things where they are and keeps background geography without treating it as a rejected result; panning is inspection; a change of city, time or social source is deliberate. Supported today for scope and query; not yet for time or social source', '03 phone 2; 05'],
+        ['3', 'Content forms', 'A lead card (picture, kick, title, substance, date or price, one uncertainty, a door); event and place units with a thumbnail or date tile and readable facts; a friend&rsquo;s share with the picture and words first; a contribution line; a sequence; a change; a prepared message. Containment for recognition, not by category', '01, 02&ndash;07'],
+        ['4', 'Social receiving', 'From friends is a row with faces under the lead and a chip in the line, never only a sheet row (&sect;9.8); inside it, people&rsquo;s words and pictures lead, grouped by where, and not only advice: ordinary moments, first attempts, returns, two experiences of one place (&sect;9.7); another friend&rsquo;s separate visit is labelled as such, never as a reply; reply on the share; Ask says who it asks; a friend&rsquo;s venue note may inform an occurrence and is labelled as about the venue (&sect;9.4); &ldquo;With Maya&rdquo; keeps the question and the hours (&sect;9.3); withdrawal is quiet and dependents are repaired', '03, 04'],
+        ['5', 'Continuation', 'Open the existing destination; external continuations say so in two words; return restores the question and position; a proposal is one prepared message to named people, sent on tap, read back in one line. After a change, every visible option is re-read at the current time; practical infeasibility, friends&rsquo; agreement and the arrangement&rsquo;s adoption stay distinct; replacement claims are supported or say they are not (&sect;9.6)', '02, 03, 05, 06']]))
+    reclass = blk('THE PROPOSED CHANGES, RECLASSIFIED (&sect;8.10) &middot; NOT INTERCHANGEABLE', tbl(['ITEM', 'CATEGORY', 'WHAT IT IS', 'WHO DECIDES'], [
+        ['No internal copy inside phones', 'Consumer copy / composition', 'A writing rule for every Places phone', 'Design; no canon change'],
+        ['Composition guidance replaces quota-like laws', 'Consumer copy / composition', 'One lead, a coherent collection, a natural end, exclusions selective', 'Design; supersedes the first export&rsquo;s C1'],
+        ['The question line, context chip, sheet', 'Interaction decision', 'The control model on 03; proposed, not supported', 'Design + Places engineering'],
+        ['Time and social source in the result-set identity', 'Data / contract gap', 'The identity carries scope and a query digest today; time and social source are not in it; map return goes to the scope', 'Places backend; a contract amendment to `PlacesResultSetRef`'],
+        ['The share view with a picture and an in-place reply', 'Engineering task', 'The social renderer is a sentence strip; the receiving view is not implemented', 'Places + Chat/People'],
+        ['A dated event unit', 'Visual treatment; representation to verify', 'Candidate cards carry dates; whether series and occurrence are distinct in the catalog must be checked before any noun is added', 'Content + Places backend; canon only if a new object is needed'],
+        ['A composed possibility said so', 'Visual treatment + engineering task', 'The experience renderer exists; the composition producer does not', 'Integration'],
+        ['Excluded things shown only when asked, selected or relied on', 'Interaction decision', 'Corrects the first export&rsquo;s C5 (persistent ghost candidates); a personally meaningful place outside the window appears under &ldquo;Another time&rdquo; with the tradeoff said', 'Design'],
+        ['A kept share as context for &ldquo;with someone&rdquo;', 'Data / contract gap', 'The one authorized reason on 03 phone 7 is a share the person kept to do together; Life&rsquo;s kept-intention lifecycle (board 31) is the owner; not implemented for Places', 'Life + Places'],
+        ['Venue-level versus occurrence-level social labels', 'Data / contract gap', 'A contribution must say whether it is about the venue or this occurrence; the social renderer carries a place name, not that distinction', 'Places backend + Content'],
+        ['A prepared message to named people from Places', 'Data / contract gap', 'A pre-Plan message to people; the arrangement owner has no such command', 'Arrangements owner'],
+        ['Supporting text 14/19 and meta 11 inside Places phones', 'Token proposal', 'Applied by a finisher on the revised phones; not in the shared kit', 'Design system; all roots or explicitly scoped'],
+        ['Reusable enrichment (the two piers, the cliff, the room comparison)', 'Content supply', 'Made once, kept current by Content; no producer is assumed', 'Content']]))
+    verified = blk('IMPLEMENTATION STATUS &middot; VERIFIED AGAINST CODE ON 09-07', tbl(['CLAIM', 'WHAT THE REPOSITORY SHOWS', 'STATUS'], [
+        ['Result-set identity', '`backend/places/result_set.py` builds a set id from the resolved context handle plus a query digest, with a parent set id and a revision hook from the catalog; consumed by map projection, search, sections and collections; carried in the mobile schema', 'EXISTS for scope + query &middot; time and social source MISSING &middot; revision explicit-unknown when the catalog cannot supply one'],
+        ['Map / field share a set', 'Map projection and sections both emit the reference', 'EXISTS for scope; map return path goes to the scope, not to a query'],
+        ['Social renderer', '`renderers/socialCard.tsx` renders a person, a sentence and a place-name strip', 'EXISTS as a strip &middot; the share view with a picture and a reply is NOT implemented'],
+        ['Card families', 'candidate, editorial, experience, memory, notice, social; one renderer per kind, enforced at compile time', 'EXISTS'],
+        ['Semantic units', '`PlacesSemanticUnitCard` renders server-admitted units before the section feed', 'EXISTS &middot; placement rule (not a layer above the feed by default) is a design change'],
+        ['Map, pin peek, area map', '`PlacesMapCanvas`, `PlacesPinPeekCard`, `PlaceAreaMap`', 'EXISTS'],
+        ['Dated events', 'Candidate cards carry dates', 'REPRESENTATION TO VERIFY: series vs occurrence identity in the catalog'],
+        ['The mast', '`placesHomeMast`', 'EXISTS &middot; demote to cold start (design change)'],
+        ['The entity page', '`EntityObjectPage` / `ObjectPageRebuild` (flagged)', 'EXISTS &middot; Places opens it, does not redraw it']]))
+    seat = blk('HOME AND PLACES ON THE SAME SATURDAY &middot; TWO EXPRESSIONS, NO DUPLICATE PROMOTION', '<div style="display: flex; gap: 40px; align-items: flex-start;">'
+        + f'<div style="width: 393px; flex: none;"><div class="kickm" style="margin-bottom: 8px;">HOME &middot; SATURDAY 9:10 AM &middot; PROACTIVE, ONCE</div><div style="width: 393px; background: {PAPER}; padding: 20px 22px 22px 22px; box-sizing: border-box;">' + consumer(ways_seq_card('Saturday, if the afternoon is open', [('2:40', 'Low water on the pier', 'The shaded side after two.', 'SUNSET PARK'), ('4:10', 'The bakery, on the way back', 'You saved it Friday. Open till five.', '9 MIN ON FOOT')], meta_t='From the tide table and your saved places')) + '</div></div>'
+        + f'<div style="width: 393px; flex: none;"><div class="kickm" style="margin-bottom: 8px;">PLACES &middot; THE SAME SATURDAY &middot; DELIBERATE, FOUND AT ITS PLACE</div><div style="width: 393px; background: {PAPER}; padding: 20px 22px 22px 22px; box-sizing: border-box;">' + consumer(place_unit('pier', 'The pier at low water', 'Saturday 2:40&ndash;5 &middot; free', 'Walk the flood line east; shade on the water side after two. The bakery is nine minutes on, if you want the loaf on the way back.', door_text='The pier')) + '</div></div>'
+        + f'<div style="flex: 1;">{N("Home offers the sequence once, as a possibility, on the morning it applies. A person who comes to Places on purpose that afternoon finds the pier and the bakery where they are, with the same facts, as places rather than as a plan. One proactive seat does not hide relevant content from deliberate exploration. If the seat law is ever read as requiring Places to go thin while Home is active, that is a genuine contract conflict and is raised here as one; it is not assumed.")}</div></div>')
+    supply = blk('SUPPLY CLASSES AND REFRESH RESPONSIBILITIES &middot; NO COST ESTIMATE IS CLAIMED', tbl(['CLASS', 'EXAMPLES', 'WHO KEEPS IT TRUE', 'LIFETIME'], [
+        ['Provider facts', 'Hours, dates, prices, timetables', 'Content, per listing; availability stays unclaimed', 'Per occurrence or listing change'],
+        ['Reusable enrichment', 'The two piers, the cliff, the room comparison, the three ways home', 'Content; made once, reviewed when the world changes', 'Stable; sunset refreshes daily; the comparison expires with the show'],
+        ['Composed from structured state', 'The Saturday sequence', 'Integration; recomposed when the tide table, a saved place or a friend&rsquo;s note changes', 'Until an input changes'],
+        ['Attributed human material', 'Shares, lines, replies', 'The contributor, under their grant; dependents recompiled on withdrawal', 'Until withdrawn or the grant expires'],
+        ['Viewer-specific selection', 'Saved, been, a changed place the person saved', 'Places, from the person&rsquo;s own record', 'Live'],
+        ['On demand', 'The Chat answer on 06', 'Chat, bounded to the supplied facts', 'The turn']]))
+    deps = blk('UNRESOLVED DEPENDENCIES', tbl(['DEPENDENCY', 'OWNER', 'WHERE IT IS ASSUMED'], [
+        ['A pre-Plan message to named people, sent from Places or Chat', 'Arrangements', '06'],
+        ['Time and social source in the result-set identity; map return to a query', 'Places backend', '03'],
+        ['The share view with a picture and a reply; reply to a person from a share', 'Places + Chat/People', '04'],
+        ['Dated-occurrence supply with series identity, freshness and licensing', 'Content', '02, 03, 07'],
+        ['Reusable enrichment production and review', 'Content', '02, 05, 07'],
+        ['Practical assessment: fresh, stale, unknown', 'Integration', '03, 06'],
+        ['A chosen origin for real walking and transit times', 'Places', '06 lens, 05'],
+        ['Provider media rights; real pictures in place of illustrations', 'Content', '02, 04']]))
+    open_items = blk('OPEN &middot; FOR THE FOUNDER', N('<b>The map default.</b> Compared on 10; content-led recommended for the ordinary opening, map-led when orientation is the job; still a candidate until the rendered visual review. <b>The token change.</b> 14/19 supporting and 11 meta inside Places phones, applied by a finisher; adopt for all roots, scope to Places, or reject. <b>The dated event.</b> A visual treatment until the catalog&rsquo;s representation of series and occurrence is verified. <b>The arrangements dependency.</b> The largest gap between what is drawn and what can be built; 06 marks it and does not draw it as working. <b>Not drawn:</b> night and dark; live conditions; a real-data evaluation, which needs a reviewed source packet.'))
+    inner = (head(f'{STAMP} &middot; 08 &middot; DECISIONS, RECLASSIFIED &middot; REVISED 09-07 (&sect;8.10)', '08 &middot; A proposal record, corrected against the code',
+                  'Revised after the first-export critique: recommendations on the five decisions with their evidence; every proposed change reclassified as consumer copy, interaction decision, data or contract gap, engineering task, token proposal or content supply; implementation status verified against the repository; supply classes with refresh responsibilities; the seat rule drawn as two expressions; dependencies; what remains open.')
+             + '<div style="display: flex; flex-direction: column; gap: 34px;">' + decisions + reclass + verified + seat + supply + deps + open_items + '</div>')
+    return HEAD.replace('</helmet>', FN11 + '</helmet>') + f'<div style="width: 1720px; min-height: {hh("08", 4400)}px; background: #F4F0E7; box-sizing: border-box; padding: 30px 32px 36px 32px; {SANS} color: {INK}; display: flex; flex-direction: column;">' + inner + f'<div class="fn" style="margin-top: 30px; line-height: 16px;">{FOOT}</div></div>' + TAIL
+
+if __name__ == '__main__':
+    html = board(); open(os.path.join(OUT, '08 - Decisions and Reuse.dc.html'), 'w').write(html); print('wrote 08 v2', len(html))

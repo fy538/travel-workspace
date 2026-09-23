@@ -11,6 +11,12 @@ supersedes: []
 
 # Vesper Home — a short visit worthwhile, a longer visit rewarding
 
+> **Current routing — September 9 six-project review:** the [Home review's leading current assignment](vesper-home-design-review-2026-09-08.md)
+> is the sole Home design queue for this consolidation. This brief retains the
+> September 4–7 rationale and prior assignments; its “latest” labels are historical.
+> Continue the existing export, not a new project. Do not accumulate its older
+> deliverables or engineering follow-ups. Integration remains paused.
+
 ## 1. Assignment and authority
 
 Work in the existing Claude Design project exported to:
@@ -31,7 +37,7 @@ Vesper can do. The founder explicitly requested this handoff after the review.
 > Home should make a short visit worthwhile and a longer visit rewarding.
 > One priority organizes the page; it does not exhaust what the page offers.
 
-**Latest assignment — September 5: artifact-led Home, with a bounded Places
+**Historical assignment — September 5: artifact-led Home, with a bounded Places
 extension.** The current export uses boards `00`–`08`, with September 4
 specimens preserved as `Z1`–`Z4`. Board `08 - Seam with Life` is the starting
 point for the next exploration, alongside the complete Home compositions.

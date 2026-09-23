@@ -12,6 +12,12 @@ source_of_truth_for: []
 
 # Places — composition breadth revision for Claude Design / Claude Code
 
+> **Current routing — September 9 six-project review:** the [Places review's leading current assignment](vesper-places-design-review-2026-09-08.md)
+> owns this bounded design round. The following composition revisions and
+> Integration-support wording are dated provenance, not another active queue.
+> Preserve selected visual work; do not restart layout exploration, create a
+> project or resume Integration from these historical instructions.
+
 ## 1. Read this first
 
 **Program coordination:** the [program roadmap](vesper-program-roadmap.md)
@@ -21,7 +27,7 @@ sharing effects; Integration owns practical judgment and runtime contracts.
 Cross-review should produce one owner handoff, not competing edits or another
 Places generator. This assignment still does not authorize app implementation.
 
-**Latest assignment — September 7, 19:46 export reviewed:** read **§14 first**.
+**Historical assignment — September 7, 19:46 export reviewed:** read **§14 first**.
 Keep board 19 as the selected visual direction. Representative photography and
 mixed avatars now render, the compact rows retain their gains, and board 21
 adds three connected journeys. Close the broad aesthetic exploration. Correct

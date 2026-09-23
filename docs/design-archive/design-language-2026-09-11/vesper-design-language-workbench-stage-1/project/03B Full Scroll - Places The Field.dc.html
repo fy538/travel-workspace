@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <link rel="stylesheet" href="_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css" />
+        <link rel="stylesheet" href="vdl.css" />
+        <script src="vdl-refs.js"></script>
+        <script src="vdl-port.js"></script>
+        <style>
+          .fs-ref{background:var(--vk-paper30);width:393px;min-height:400px}
+          .fs-side{max-width:560px}
+        </style>
+      </helmet>
+      <div class="vdl-board" data-screen-label="03B Full scroll Places The Field">
+        <div class="vk-t-capsEyebrow">Stage 1 · Full scroll 2 of 2 · accepted visual reference (§19.1), fit corrected (§19.4)</div>
+        <div class="vk-t-h1Large" style="margin-top:6px">Places 01.1, The Field populated: the accepted reference</div>
+        <p class="vk-t-body" style="max-width:820px;margin:8px 0 0;color:var(--vk-ink40)">The original and a fidelity port of the same frame, with the map, shoreline, streets, ferry glyph, place labels and instruments intact. The port carries the donor’s styling inline: matched colors become token references and text runs are annotated with roles, their values copied. It is not a screen assembled from shared components. Three labels are moved by named fit corrections; the unchanged original is the before.</p>
+        <div class="vk-t-monoStamp" style="margin-top:10px">KERNEL travel-app@e2e792913 · VDL STAGE1 0.3 · ORIGINAL IS A LIVE CROP · THE PORT IS A FIDELITY REFERENCE, NOT COMPONENT-BUILT · FRIDAY FIXTURE</div>
+
+        <div class="vdl-rule"></div>
+        <div class="vdl-lane">
+          <div class="vdl-cell">
+            <span class="vdl-tag orig vk-t-capsMicro">ORIGINAL · PLACES 01.1 · WHOLE FRAME · THE BEFORE</span>
+            <div class="fs-ref" data-ref="refs/places/01 - The Field.dc.html" data-sig="01.1 · THE FIELD · POPULATED" data-y="118" data-h="4015"></div>
+          </div>
+          <div class="vdl-cell">
+            <span class="vdl-tag vk-t-capsMicro">FIDELITY REFERENCE · PORT OF THE SAME FRAME · THREE FIT CORRECTIONS</span>
+            <div id="port-places" data-port="refs/places/01 - The Field.dc.html" data-sig="01.1 · THE FIELD · POPULATED" data-report="report-places" data-fit='[{"text":"COLUMBIA ST","n":0,"dx":-32.5,"dy":9.9,"why":"moved 34px west along Columbia so it clears VAN BRUNT ST at the crossing"},{"text":"40 MOVING","n":0,"dx":-32,"dy":-18,"why":"map ferry strip: raised one line and right-aligned inside the map instead of clipped"},{"text":"40 MOVING","n":1,"dx":-22,"dy":-14,"why":"two-ways-in strip: raised above the bar end and right-aligned instead of clipped"}]' style="width:393px;min-height:400px"></div>
+          </div>
+          <div class="vdl-cell fs-side">
+            <span class="vdl-tag vk-t-capsMicro">WHAT THE PORT FOUND · COMPUTED LIVE</span>
+            <div id="report-places" class="vk-t-bodySm">Porting…</div>
+
+            <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80);margin-top:18px">CONSTRUCTION STATUS · §19.4</div>
+            <table class="vdl-table vdl-diff">
+              <tr><th class="vk-t-capsMicro">Region</th><th class="vk-t-capsMicro">Status</th></tr>
+              <tr><td class="vk-t-bodySmMedium">From friends · Maya’s share</td><td class="vk-t-bodySm">Shared component exists: OriginalReader density=card (02A). Ported here.</td></tr>
+              <tr><td class="vk-t-bodySmMedium">Numbered place rows</td><td class="vk-t-bodySm">Shared component exists: PlaceIdentity density=preview. Ported here.</td></tr>
+              <tr><td class="vk-t-bodySmMedium">Doors</td><td class="vk-t-bodySm">Shared construction exists: .vdl-door. Ported here.</td></tr>
+              <tr><td class="vk-t-bodySmMedium">Map, timeline, legs, cross-section, shelf, people lines, orientation, tab bar</td><td class="vk-t-bodySm">Fidelity reference only. The map and instruments stay Places-owned drawings; do not replace them with placeholders during implementation.</td></tr>
+            </table>
+
+            <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80);margin-top:18px">THE DIFF · §17.5 ITEM 3</div>
+            <table class="vdl-table vdl-diff">
+              <tr><td class="vk-t-bodySmMedium">Retained anatomy</td><td class="vk-t-bodySm">Everything drawn: the city chevron and map toggle; the ask row; the Saturday timeline; Maya’s share card; the any-day shelf; the Red Hook map with shoreline, water, streets, ferry glyph, pins and labels; the ferry progress strip; numbered rows; the hour instrument; people’s lines; the movement and wait strips; the cross-section; the remaining sections, doors and tab bar.</td></tr>
+              <tr><td class="vk-t-bodySmMedium">Obvious cleanup</td><td class="vk-t-bodySm">Mast 600 → serifMast 700 (ruling). VAN BRUNT ST and COLUMBIA ST raised from sans 8 to 10.</td></tr>
+              <tr><td class="vk-t-bodySmMedium">Fit corrections</td><td class="vk-t-bodySm">COLUMBIA ST moves 34px west along its street, clearing VAN BRUNT ST. The two “40 MOVING” labels, clipped at the instrument edge in the original, move up one line and right-align inside it. No information, geometry or size changes.</td></tr>
+              <tr><td class="vk-t-bodySmMedium">Named mapping gaps</td><td class="vk-t-bodySm">The Home set plus map tokens <span class="vk-t-monoValue">--vdl-map-water</span>, <span class="vk-t-monoValue">-waterDeep</span>, <span class="vk-t-monoValue">-road</span> — reviewed on 06 Shared Package.</td></tr>
+              <tr><td class="vk-t-bodySmMedium">Still-proposed redesign</td><td class="vk-t-bodySm">None.</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{}'>
+      class Component extends DCLogic {
+        componentDidMount() {
+          const go = (n) => { if (window.vdlMountRefs && window.vdlMountPorts) { window.vdlMountRefs(); window.vdlMountPorts(); } else if (n < 60) { setTimeout(() => go(n + 1), 200); } };
+          go(0);
+        }
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>

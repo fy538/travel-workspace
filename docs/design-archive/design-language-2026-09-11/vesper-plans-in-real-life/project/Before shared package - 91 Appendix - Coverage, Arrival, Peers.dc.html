@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <meta name="design_doc_mode" content="canvas" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" />
+        <link rel="stylesheet" href="./kit/plans.before-vdl.css" />
+        <style>
+
+          /* the outgoing card in document flow (a guest page has no sheet) — same rules as .sheet .outgoing */
+          .page .outgoing { border: 1px solid var(--hairline); border-radius: var(--r-action); background: var(--paper); padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; }
+          .page .outgoing .to { font-family: var(--mono); font-size: calc(10px * var(--ts)); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--planning-deep); }
+          .page .outgoing .msg { font-size: calc(15px * var(--ts)); line-height: calc(21px * var(--ts)); color: var(--ink); }
+          .page .outgoing .sig { font-size: calc(12px * var(--ts)); color: var(--mute); }
+          /* the one legible mismatch — same rules as board 05 */
+          .mismatch { grid-column: 2 / span 2; margin-top: 10px; border-top: 1px solid var(--hair-thin); padding-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+          .mismatch .mk { font-family: var(--mono); font-size: calc(10px * var(--ts)); font-weight: 700; letter-spacing: 1px; color: var(--oxblood); text-transform: uppercase; }
+          .mismatch .mb { font-size: calc(13px * var(--ts)); line-height: calc(18px * var(--ts)); color: var(--ink-2); }
+          .jlab { position: absolute; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 1.2px; color: var(--planning-deep); }
+          .entry { display: flex; justify-content: space-between; align-items: baseline; font-family: var(--mono); font-size: calc(10px * var(--ts)); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--mute); padding: 14px 0 6px 0; }
+          .entry .g { color: var(--gold-deep); }
+          .cov { display: grid; grid-template-columns: 150px 1fr 1fr 150px 1fr; gap: 0 14px; font-size: 12.5px; line-height: 17px; }
+          .cov > div { padding: 8px 0; border-top: 1px solid var(--hair-thin); }
+          .cov .h { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--mute); border-top: none; }
+          .cov b { font-weight: 600; }
+          .st { font-family: var(--mono); font-size: 10px; letter-spacing: 0.6px; text-transform: uppercase; }
+        
+          /* lock screen: the OS surface, drawn only to show what a cue says */
+          .lock { padding: 56px 16px 0 16px; text-align: center; }
+          .lock .d { font-size: calc(17px * var(--ts)); font-weight: 600; color: var(--ink-2); }
+          .lock .t { font-family: var(--serif); font-size: 84px; line-height: 88px; font-weight: 500; letter-spacing: -2px; color: var(--ink); margin-bottom: 40px; }
+          .notif { text-align: left; background: rgba(255,255,255,0.72); backdrop-filter: blur(20px); border-radius: 20px; padding: 12px 14px; margin: 8px 0; display: grid; grid-template-columns: 36px 1fr auto; column-gap: 10px; align-items: start; }
+          .notif .ic { width: 36px; height: 36px; border-radius: 9px; background: var(--ink); color: #FBF7EC; font-family: var(--serif); font-weight: 600; font-size: 20px; display: flex; align-items: center; justify-content: center; }
+          .notif .h { font-size: 13px; font-weight: 600; color: var(--ink); }
+          .notif .b { font-size: 14px; line-height: 19px; color: var(--ink-2); text-wrap: pretty; }
+          .notif .ago { font-size: 12px; color: var(--mute); }
+          /* the recent region: one line per event, composed by consequence */
+          .since { display: flex; flex-direction: column; gap: 10px; }
+          .since .receipt.chg::before { background: var(--planning-deep); }
+          .attach .ct .src { color: var(--gold-deep); }
+          .attach .ct .src::after { content: ' →'; }
+          .since .fold2 { font-size: calc(13px * var(--ts)); color: var(--gold-deep); padding-left: 15px; }
+          .since .fold2::after { content: ' →'; }
+          .rule { display: grid; grid-template-columns: 170px 1fr; gap: 12px; padding: 7px 0; border-top: 1px solid var(--hair-thin); font-size: 12.5px; line-height: 18px; }
+          .rule .rk { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--gold-deep); padding-top: 3px; }
+          .tag.pr { background: var(--planning-ink); color: #fff; }
+          .x { min-height: 9040px; }
+
+        </style>
+      </helmet>
+
+      <div class="board-h" style="width: 1400px;">
+        <div class="warn">BEFORE SHARED PACKAGE · FROZEN ORIGINAL KEPT AS THE BEFORE REFERENCE, 2026-09-11 · THE CURRENT BOARD IS “91 Appendix” · ENGINEERING APPENDIX · NOT THE CUSTOMER-FACING DESIGN · THESE FRAMES SHOW HOW THE SYSTEM KEEPS THE SEVEN SENTENCES · ALL FIXTURES SYNTHETIC · NOTHING NATIVE OR PRODUCTION</div>
+        <div class="id">91 · APPENDIX · COVERAGE EVIDENCE · REFIND FROM HOME · HOST INBOX · PROVIDER CAN’T · CONDITIONAL DAY · REACTIVATION · ARRIVAL · STACKING · TWO PEOPLE · PEERS (WITHDRAWN) · OUTCOME · MOVED 2026-09-05</div>
+        <h1>Coverage evidence and the two proposals — kept as reference, not as design.</h1>
+        <div class="lede">Moved here in the 2026-09-05 subtraction. From board 11: refinding from Home (K1), the host receiving a guest’s reply, question, photo and contribution (G2), a guest’s private question (G3), the provider that can’t move the table (I2), the ambiguous conditional day and its instructed variant (W1–W2), reactivation three weeks later (F2), and the coverage table with Q15–Q19. All of board 12: arrival cues (N1–N3), the stacking rule (S1–S2), two people with no owner (P1, PR-1 DEFERRED by founder ruling 2026-09-05), the peer occasion (P2, PR-2 WITHDRAWN as the democratic-input pattern the coordination literature names as a paralysis trap) and Outcome (O1, now sentence 4’s “one attributed sentence with a door”). Under the seven sentences, arrival is sentence 5, stacking is forbidden by sentence 4, and recommendations carry no buttons (sentence 6); the frames here show what was considered and why the simpler form won.</div>
+      </div>
+
+<div class="frame" style="left: 40px; top: 340px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">K1</span><span class="tag pp">APPENDIX</span> FRIDAY MORNING · THE SAME IDENTITY, FOUND FROM HOME <span class="s">no memory of Thursday’s conversation required</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="K1 Home refind">
+            <div class="sb"><span>7:52</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"></div><div class="capsule"><div class="slot">CHAT</div><div class="slot on">HOME</div></div></div>
+              <div class="kick">Friday · Sep 11</div>
+              <div class="roottitle">Nothing today. Saturday is kept.</div>
+              <div class="homecard">
+                <div class="k">Saturday · Sep 12 · kept</div>
+                <div class="t">Dinner with Theo 7:30 · jazz after, if you like</div>
+                <div class="b">The Georgian room, then the 10:30 set at Corner Note — kept as an option, nothing scheduled around it.</div>
+                <div class="chips" style="margin-top:4px;"><div class="chip gold">Open Saturday</div></div>
+              </div>
+              <div class="section-k">Places you’ve kept<div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time loose word">kept</div><div><div class="ttl opt">Corner Note</div><div class="sup">Jazz · West Village · <span class="src">for Saturday</span></div></div><div class="more">···</div></div>
+              </div>
+              <div class="gap-l"></div>
+              <div class="quiet">Home’s other content is out of scope here.</div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">DID I SAVE A PLACE, MAKE A PLAN, OR SAVE A CONVERSATION?</div>
+          <p>All three are answered by the shapes themselves: the Saturday card (kicker · serif line · one sentence · one door) is the arrangement; the row under “Places you’ve kept” is the place, with a door to the Saturday it is kept for. Thursday’s chat is neither — it is not re-read as truth (02 A6). The card and the row are the same identity block Home, Chat and Life all mount, so refinding needs no memory of where it came from.</p>
+          <p><b>Owner:</b> the arrangement is a lightweight Plan (handoff D1, proposed); the kept place is a Places relationship. <b>Status:</b> illustrated. Home admission and layout stay with the Home lane (07 Q4); the card shape is the only thing this board asks of it.</p>
+          <div class="fx">§0.6 J-A · no naming form · no mandatory Trip · no storage explanation · reuses 02 A6 homecard + 02 A9 word gutter</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 500px; top: 340px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">G2</span><span class="tag pp">APPENDIX</span> NORA · WHAT ARRIVED FROM SAM, AND THE ONE ANSWER <span class="s">a reply, a practical question, a contribution, a photo · none is an edit</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="G2 Host receives">
+            <div class="sb"><span>6:40</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av c">MA</div><div class="av b">SA</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Saturday · Sep 19</div>
+              <div class="titleRow"><div class="dayTitle">An afternoon out, then dinner</div></div>
+              <div class="thesis">The afternoon is loose. Dinner is set, with Maya and Sam.</div>
+              <div class="gap"></div>
+              <div class="receipt ink">Sam asked something · <span class="src">answer</span></div>
+              <div class="gap-l"></div>
+              <div class="chap" style="padding-top:0;"><div class="cl">Evening</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact">7:00</div><div><div class="ttl">Dinner at the Georgian room</div><div class="sup">Court St · <span class="who">you, Maya, Sam from 7:30</span></div>
+                  <div class="attach" style="grid-column:auto;"><div class="ct"><span class="by">Sam · 6:14</span>“I can get there at 7:30 — can I bring Alex?”</div></div>
+                  <div class="chips" style="grid-column:auto; margin-top:8px;"><div class="chip">Yes — tell Sam →</div><div class="chip quiet">Reply →</div></div>
+                  <div class="attach" style="grid-column:auto;">
+                    <div class="ph48">SAM’S<br />PHOTO</div>
+                    <div class="ct"><span class="by">Sam · sent with the reply</span>“This is the place, right?” — the sign on Court St.</div>
+                  </div>
+                </div><div class="more">···</div></div>
+              </div>
+              <div class="gap-l"></div>
+              <div class="quiet">Sam: “I’ll bring dessert.”</div>
+              <div class="pillwrap"><div class="pill">Ask Vesper<span class="mic">MIC</span></div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">CONTRIBUTIONS LAND WHERE THEY BELONG; THE PLAN WAITS FOR NORA</div>
+          <p>Four kinds of thing arrived and each shows as what it is: Sam’s later arrival is in the people phrase (“Sam from 7:30”) because it is about his participation; his question sits under the row as his words with one answer door; his photo is a 48pt frame beside his line; “I’ll bring dessert” is one quiet attributed sentence (04 C4). None of them edited the plan. “Yes — tell Sam →” sends a message; adding Alex to who is coming is Nora’s separate change, offered in the same exchange if she wants it.</p>
+          <p><b>Owner:</b> replies and contributions are the multiplayer lane’s; the photo’s custody is Life’s (07 Q2), shown here as a pointer. <b>Status:</b> illustrated. <b>Gap, named:</b> authorship and media custody for a non-app guest.</p>
+          <div class="fx">§0.6 J-C · contributions need not become arrangement edits · no task, assignee or checklist</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 960px; top: 340px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">G3</span><span class="tag pp">APPENDIX</span> SAM · A PRIVATE QUESTION, ANSWERED IN PLACE <span class="s">nothing sent · the host is not involved</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="G3 Guest private question">
+            <div class="sb"><span>6:20</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="guestbar"><span>FROM NORA</span><span>A LINK · NOTHING TO INSTALL</span></div>
+              <div class="kick">Saturday · Sep 19</div>
+              <div class="titleRow"><div class="dayTitle">Dinner at the Georgian room</div></div>
+              <div class="thesis">With Nora and Maya. Seven o’clock, Court Street. You’re in.</div>
+            </div>
+            <div class="scrim"></div>
+            <div class="sheet">
+              <div class="hd"></div>
+              <div class="close" aria-label="Close">✕</div>
+              <div class="priv"><span class="p">Private · only you and Vesper</span><span>Nora doesn’t see this</span></div>
+              <div class="kept">“Is there parking near there?”</div>
+              <div class="ans"><b>Metered spots on Court St until 7, free after.</b> The garage on Atlantic is a four-minute walk, about $20 for the evening. The F from you is 12 minutes if you’d rather not drive.</div>
+              <div class="field"><span class="txt">Follow up, or reply to Nora…</span><span class="mic">MIC</span><span class="go">↑</span></div>
+              <div class="doors"><span class="door2 q">Send this to Nora instead →</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="ann">
+          <div class="k">THE SAME PILL, THE SAME SHEET, FOR A GUEST</div>
+          <p>A guest’s private question uses the same value-first sheet as an owner’s (08 P2): the answer first, the field kept, one door if it turns out to be for Nora after all. The kicker says who sees it. Nothing here reaches Nora, creates a plan, or is retained beyond the exchange.</p>
+          <p><b>Owner:</b> the contextual exchange is Chat’s (07 Q12); the facts are the Place’s (07 Q13). <b>Status:</b> illustrated. <b>Gap, named:</b> a grounded contextual exchange for an unauthenticated guest — session ownership without an account.</p>
+          <div class="fx">§0.6 J-C · reuses 08 P2 sheet · the private entry is identical across roles (R-11)</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 1420px; top: 340px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">I2</span><span class="tag pp">APPENDIX</span> THE RESTAURANT CAN’T MOVE THE TABLE <span class="s">everyone said eight · the provider can’t · another feasible arrangement, not booked</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="I2 Provider cannot">
+            <div class="sb"><span>5:31</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av c">MA</div><div class="av b">SA</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Saturday · today</div>
+              <div class="titleRow"><div class="dayTitle">An afternoon out, then dinner</div></div>
+              <div class="thesis">Bookstore at three, the café if it rains, dinner at eight with Maya and Sam.</div>
+              <div class="gap"></div>
+              <div class="receipt ink">The Georgian room can’t move the table · <span class="src">their reply</span></div>
+              <div class="rbody">Their 8:00 is full; your table is still 7:00. Maya and Sam have both said eight works. Ostro, two blocks away, has a table for three at 8:15 tonight — nothing is booked.</div>
+              <div class="chips" style="margin-top:8px;"><div class="chip">Ask Maya and Sam about Ostro at 8:15 →</div></div>
+              <div class="undoq">Or keep the 7:00 table</div>
+              <div class="gap-l"></div>
+              <div class="chap" style="padding-top:0;"><div class="cl">Evening</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact">8:00</div><div><div class="ttl">Dinner at the Georgian room</div><div class="sup">Court St · <span class="who">you, Maya, Sam</span> · 8 works for everyone</div>
+                  <div class="mismatch"><div class="mk">The table is booked for 7:00 and can’t be moved</div><div class="mb">GR-2291, three · “We’re full at 8, sorry — your 7:00 is held.” · from their email</div></div>
+                </div><div class="more">···</div></div>
+              </div>
+              <div class="pillwrap"><div class="pill">Ask Vesper<span class="mic">MIC</span></div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">INFEASIBLE PROVIDER OUTCOME · PREPARE, DON’T BOOK</div>
+          <p>The reply is supplied evidence (forwarded email), so the mismatch block states it with its source. Moving everyone back to seven would re-break Maya, so the continuation is a feasible alternative Vesper checked and did not book: a named table, a time, a distance. It goes to the others as a question in the exact words; the quiet second line keeps the fallback honest. Booking stays an external handoff (§9).</p>
+          <p><b>Owner:</b> Commitment/evidence attestation (PCA-2, proposed) + the live engine’s feasibility check. <b>Status:</b> illustrated; the availability fact is a fixture. <b>Gap, named:</b> grounded alternative search with real availability; provider infeasibility as a state, handoff A3.</p>
+          <div class="fx">§0.6 J-D · reuses 05 D5/D6 evidence pattern · no provider status is inferred, only supplied</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 1880px; top: 340px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">W1</span><span class="tag pp">APPENDIX</span> SHOWERS ON AND OFF · A RECOMMENDATION, NOT A SELECTION <span class="s">a held backup is not an instruction</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="W1 Ambiguous forecast">
+            <div class="sb"><span>8:10</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av c">MA</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Saturday · Sep 26 · today</div>
+              <div class="titleRow"><div class="dayTitle">Beach with Maya, or the Whitney if it rains</div></div>
+              <div class="thesis">Decide on the morning. Both fit before dinner at seven.</div>
+              <div class="gap-l"></div>
+              <div class="rows">
+                <div class="row first rowsel"><div class="time loose word">midday</div><div><div class="ttl">Rockaway, or the Whitney if it rains</div><div class="sup">Showers on and off till about 2, then clearing · <span class="who">you and Maya</span></div>
+                  <div class="qp pv" style="margin-top:10px;">
+                    <div class="k">Not a rain-out, not a clear day · Maya would see whichever you choose</div>
+                    <div class="t">If it’s the beach, go after 2</div>
+                    <div class="b">The A from Nostrand gets you to Rockaway by 3 with four dry hours before dinner. The Whitney is open till 10 and quietest before noon — so if it’s the museum, go now.</div>
+                    <div class="chips" style="margin-top:4px;"><div class="chip">Beach, after 2</div><div class="chip quiet">The Whitney instead</div></div>
+                  </div>
+                </div><div class="more">···</div></div>
+                <div class="row"><div class="time exact">7:00</div><div><div class="ttl">Dinner at the Georgian room</div><div class="sup">Court St · <span class="who">you, Maya, Sam</span> · <span class="src">reserved · from your confirmation</span></div></div><div class="more">···</div></div>
+              </div>
+              <div class="pillwrap"><div class="pill">Ask Vesper<span class="mic">MIC</span></div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">“IF IT RAINS” WAS A BACKUP, NOT AN ORDER</div>
+          <p>A9/A10 hold the pair in one row. When the day arrives ambiguous, Vesper does not pick: the forecast changing does not authorize choosing a shared plan. It puts the useful recommendation in the row’s own preview card — what each choice would mean in times — with both choices explicit and Maya’s visibility stated. The condition is not treated as a binary that “settled”; the copy says what the sky is actually doing.</p>
+          <p><b>Owner:</b> the arrangement is the owner’s; the forecast is evidence with a freshness. <b>Status:</b> illustrated. <b>Gap, named:</b> condition meaning, evidence freshness and dependency (dinner at 7) as modelled inputs to a recommendation — handoff D4/A3.</p>
+          <div class="fx">§0.6 J-E · reuses 05 D1 scoped alternative card · no branching editor</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 40px; top: 1640px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">W2</span><span class="tag pp">APPENDIX</span> THE SAME MORNING, WITH AN EXPLICIT INSTRUCTION <span class="s">“if it’s raining Saturday morning, make it the Whitney” · resolved, attributed, undoable</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="W2 Instructed resolution">
+            <div class="sb"><span>8:10</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av c">MA</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Saturday · Sep 26 · today</div>
+              <div class="titleRow"><div class="dayTitle">The Whitney with Maya, then dinner</div></div>
+              <div class="thesis">Raining since six. The museum, as you asked; dinner at seven unchanged.</div>
+              <div class="gap"></div>
+              <div class="recent"><div class="receipt">Switched to the Whitney · raining since 6 · as you asked Thursday · Maya sees it <span class="src">See it</span></div><div class="ago">8:00</div></div>
+              <div class="undoq">Undo — back to the pair</div>
+              <div class="gap-l"></div>
+              <div class="rows">
+                <div class="row first"><div class="time">11:00</div><div><div class="ttl">The Whitney</div><div class="sup">Gansevoort St · quietest before noon · <span class="who">you and Maya</span> · was: Rockaway if dry</div></div><div class="more">···</div></div>
+                <div class="row"><div class="time exact">7:00</div><div><div class="ttl">Dinner at the Georgian room</div><div class="sup">Court St · <span class="who">you, Maya, Sam</span> · <span class="src">reserved · from your confirmation</span></div></div><div class="more">···</div></div>
+              </div>
+              <div class="pillwrap"><div class="pill">Ask Vesper<span class="mic">MIC</span></div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">AN INSTRUCTION WITH A CLEAR CONDITION MAY RESOLVE</div>
+          <p>The difference from W1 is authority, not weather. On Thursday the person said what to do if it rained; this morning it is unambiguously raining. So the row resolves, and the receipt says on whose authority (“as you asked Thursday”), what the evidence was, and who sees it — with Undo. Had the morning been ambiguous (W1’s showers), even an instruction would have produced the recommendation, not the switch.</p>
+          <p><b>Owner:</b> the owner’s standing instruction, scoped to this arrangement; not a preference. <b>Status:</b> illustrated. <b>Gap, named:</b> a conditional instruction as a stored, scoped, revocable thing with an evidence threshold — new semantics, separately approval-bearing (handoff A0).</p>
+          <div class="fx">§0.6 J-E · reuses 09 J2f receipt hierarchy · uncertainty preserved: resolve only on a clear condition</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 500px; top: 1640px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">F2</span><span class="tag pp">APPENDIX</span> THREE WEEKS LATER · THE MATERIAL RETURNS, THE ARRANGEMENT DOESN’T <span class="s">chat · reactivation without recreation</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="F2 Later reactivation">
+            <div class="sb"><span>9:41</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div></div><div class="capsule"><div class="slot on">CHAT</div><div class="slot">HOME</div></div></div>
+              <div class="chat">
+                <div class="you">dinner with maya and sam again? maybe the 17th</div>
+                <div class="ves">
+                  <div class="lead">Last time was the Georgian room on Sep 19 — eight o’clock, the three of you. Sam sent a photo of the khinkali.</div>
+                </div>
+                <div class="rows">
+                  <div class="row first"><div class="time loose word">Oct 17</div><div><div class="ttl opt">Dinner with Maya and Sam</div><div class="sup">Saturday · nothing set · <span class="who">not sent to anyone</span></div></div><div></div></div>
+                  <div class="row"><div class="time loose word">last</div><div><div class="ttl opt">The Georgian room</div><div class="sup">Court St · Sep 19 · <span class="src">Sam’s photo</span></div></div><div></div></div>
+                </div>
+                <div class="ves">Same place, or somewhere new? Either way Sep 19 stays as it was.</div>
+                <div class="chips"><div class="chip gold">Keep the 17th</div><div class="chip quiet">Somewhere new</div></div>
+              </div>
+              <div class="composer"><div class="in">Message</div><div class="send">↑</div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">REUSE THE MATERIAL, NOT THE RECORD</div>
+          <p>Reactivation is the A1 shape again: the useful part first (where, when, who, the one contributed thing), the same rows, one keep. The Sep 19 occasion is referenced, never copied or edited; “Keep the 17th” makes a new lightweight arrangement with owner references to the place and the people, not a duplicate of the old page. Nothing is sent by keeping.</p>
+          <p><b>Owner:</b> Chat mounts it; the new arrangement is a lightweight Plan; the reference is to Life’s record and the Place. <b>Status:</b> illustrated. <b>Gap, named:</b> owner references from a new arrangement to a passed one and to contributed media (handoff D1/D2); refinding in Life is the Life lane’s (07 Q2), not a Plan archive.</p>
+          <div class="fx">§0.6 J-F · reuses 02 A1 chat-with-rows + A2 keep · no recurrence engine · no Plan archive redesign</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 960px; top: 1640px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">N1</span><span class="tag pp">APPENDIX</span> LOCK SCREEN · TWO CHANGES ARRIVE <span class="s">the readback sentence, attributed · one cue per event · grouped when several</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="N1 Lock screen cues">
+            <div class="sb"><span></span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="lock">
+              <div class="d">Saturday, September 19</div>
+              <div class="t">8:47</div>
+              <div class="notif"><div class="ic">V</div><div><div class="h">Saturday · dinner</div><div class="b">Sam can’t do 8 — “I have to be home by 9:30.” Seven still works for both if Maya joins late.</div></div><div class="ago">4:50 pm</div></div>
+              <div class="notif"><div class="ic">V</div><div><div class="h">Saturday · dinner</div><div class="b">The Georgian room can’t move the table — your 7:00 is held.</div></div><div class="ago">5:31 pm</div></div>
+              <div class="notif" style="opacity:0.55;"><div class="ic">V</div><div><div class="h">Kyoto · Monday</div><div class="b">Ben moved Tōdai-ji to 11 — the busier hour. Isuien still fits after.</div></div><div class="ago">Yesterday</div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">THE CUE IS THE RECEIPT, DELIVERED EARLY</div>
+          <p>A cue carries exactly what the receipt sentence and its observation would say on the page (11 I1, I2; 09 J2f): who did what, in their words when they have words, and the one consequence that matters. It does not say “open Vesper”, does not count unread things, does not promise anything is fixed. The title is the arrangement, so a person with two live arrangements can tell them apart. Tapping opens the plan at the recent region (N3), never a settings screen.</p>
+          <p><b>Rule:</b> one cue per event that changes a fact the person relies on or asks something of them; facts that merely resolved (a forwarded confirmation) never cue. Several within an hour group under the arrangement. Notification decisioning (holdout, channel, quiet hours) is the existing engine’s (07 Q20). <b>Status:</b> illustrated; the OS surface is drawn generically.</p>
+          <div class="fx">critique · arrival unspecified · Editorial Canon §13.3 (no narration) · reuses the receipt sentence verbatim</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 1420px; top: 1640px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">N2</span><span class="tag pp">APPENDIX</span> HOME · THE ARRANGEMENT’S STATE, PLUS ONE LINE ABOUT WHAT CHANGED <span class="s">not a feed of events</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="N2 Home with a change">
+            <div class="sb"><span>8:48</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"></div><div class="capsule"><div class="slot">CHAT</div><div class="slot on">HOME</div></div></div>
+              <div class="kick">Saturday · Sep 19</div>
+              <div class="roottitle">An afternoon out, then dinner.</div>
+              <div class="homecard">
+                <div class="k">Today · dinner needs one answer</div>
+                <div class="t">Bookstore at three, dinner at the Georgian room</div>
+                <div class="b">Sam can’t do 8 and the table can’t move — seven works for everyone if Maya joins late.</div>
+                <div class="chips" style="margin-top:4px;"><div class="chip gold">Open Saturday</div></div>
+              </div>
+              <div class="gap-l"></div>
+              <div class="quiet">Home’s other content is out of scope here. Two changes became one sentence because they resolve together.</div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">HOME COMPOSES, IT DOES NOT ENUMERATE</div>
+          <p>Home shows the arrangement as it stands (same card shape as 11 K1) and at most one sentence about what changed since the person last opened it. Two events that resolve together are one sentence; the kicker says what kind of attention is needed (“needs one answer”), never a count. The card is a door to the plan, where the recent region carries the detail (N3).</p>
+          <p><b>Owner:</b> Home lane admits and lays out; this board asks only for the card and the one-sentence rule. <b>Status:</b> illustrated.</p>
+          <div class="fx">critique · arrival · reuses K1 card · no badge, no unread count</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 1880px; top: 1640px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">N3</span><span class="tag pp">APPENDIX</span> OPENED FROM THE CUE · LANDS AT THE RECENT REGION <span class="s">the day reads first · the change is where the change is</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="N3 Landed from cue">
+            <div class="sb"><span>8:48</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av c">MA</div><div class="av b">SA</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Saturday · today</div>
+              <div class="titleRow"><div class="dayTitle">An afternoon out, then dinner</div></div>
+              <div class="thesis">Bookstore at three, the café if it rains, dinner at eight with Maya and Sam.</div>
+              <div class="gap"></div>
+              <div class="since">
+                <div class="recent"><div class="receipt">Sam can’t do 8 · <span class="src">his words</span></div><div class="ago">4:50 PM</div></div>
+                <div class="rbody">Maya asked for eight because the reading runs late; Sam has to be home by 9:30; the table can’t move from 7:00. Seven works for everyone if Maya joins when the reading ends, around 7:40.</div>
+                <div class="chips" style="margin-top:2px;"><div class="chip">Keep 7 — tell Maya and Sam →</div></div>
+                <div class="recent"><div class="receipt chg">The Georgian room can’t move the table · <span class="src">their reply</span></div><div class="ago">5:31 PM</div></div>
+              </div>
+              <div class="gap-l"></div>
+              <div class="chap" style="padding-top:0;"><div class="cl">Evening</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact">8:00</div><div><div class="ttl">Dinner at the Georgian room</div><div class="sup">Court St · <span class="who">you, Maya · Sam can’t do 8</span></div></div><div class="more">···</div></div>
+              </div>
+              <div class="pillwrap"><div class="pill">Ask Vesper<span class="mic">MIC</span></div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">NO INTERSTITIAL, NO “WHAT’S NEW” SCREEN</div>
+          <p>Tapping the cue opens the same plan page a cold open would, with the recent region composed as S1 describes: the item that needs the person first, with its one continuation; the fact that changed beneath it as a door to its row. The page is not scrolled to the moved row and nothing is highlighted in colour; the row itself says what changed (05 D8 idiom).</p>
+          <p><b>Status:</b> illustrated. <b>Gap, named:</b> deep-link to a plan with the recent region computed since the last open — needs a per-person “last seen” marker (private record, as on board 92).</p>
+          <div class="fx">critique · arrival · reuses J2f hierarchy + D8 row idiom</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 40px; top: 2940px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">S1</span><span class="tag pp">APPENDIX</span> A THREE-EVENT MORNING · COMPOSED BY CONSEQUENCE, NOT CHRONOLOGY <span class="s">needs you · changed · resolved · at most three lines, one continuation</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="S1 Three events">
+            <div class="sb"><span>9:10</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av c">MA</div><div class="av b">SA</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Saturday · today</div>
+              <div class="titleRow"><div class="dayTitle">An afternoon out, then dinner</div></div>
+              <div class="thesis">Bookstore at three, the café if it rains, dinner at eight with Maya and Sam.</div>
+              <div class="gap"></div>
+              <div class="since">
+                <div class="recent"><div class="receipt">Sam can’t do 8 · <span class="src">his words</span></div><div class="ago">4:50 PM</div></div>
+                <div class="rbody">Seven works for everyone if Maya joins when the reading ends, around 7:40 — the table can’t move from 7:00 anyway.</div>
+                <div class="chips" style="margin-top:2px;"><div class="chip">Keep 7 — tell Maya and Sam →</div></div>
+                <div class="recent"><div class="receipt chg">Rain now from about 4 · the café is there if you want it · <span class="src">see</span></div><div class="ago">6:00 AM</div></div>
+                <div class="recent"><div class="receipt ink">Maya added Willow &amp; Page at 3 · <span class="src">see</span></div><div class="ago">YESTERDAY</div></div>
+                <div class="fold2">and 1 more</div>
+              </div>
+              <div class="gap-l"></div>
+              <div class="chap" style="padding-top:0;"><div class="cl">Afternoon · with Maya</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time">3:00</div><div><div class="ttl">Willow &amp; Page</div><div class="sup">Court St · open till 7 · <span class="who">Maya added</span></div></div><div class="more">···</div></div>
+              </div>
+              <div class="pillwrap"><div class="pill">Ask Vesper<span class="mic">MIC</span></div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">THE RULE</div>
+          <p><b>Order by consequence:</b> first what needs the person (gold dot), then facts that changed and still matter (planning-ink dot), then what resolved or was done by others within their scope (ink dot). Within a class, newest first. <b>Only the top item</b> carries an observation and one continuation; the others are one sentence each, and each is a door to the row it concerns. <b>Three lines at most;</b> the rest fold into “and N more →”, which opens the same list, not a new screen. Events that resolve together are one line (N2). A line disappears when its row has been opened or the thing it asked for has been done — never on a timer.</p>
+          <p>The §0.5 hierarchy (result → observation → continuation) is the one-event case of this rule. Without it, a real Saturday would have rebuilt the task panel §0.5 removed. <b>Status:</b> illustrated; the rule is written on 07 as R-19.</p>
+          <div class="fx">critique · stacking rule · reuses the receipt sentence and its dot as the only status colour</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 500px; top: 2940px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">S2</span><span class="tag pp">APPENDIX</span> AFTER ACTING · THE REGION CONTRACTS <span class="s">what was answered leaves · what still matters stays</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="S2 After acting">
+            <div class="sb"><span>9:14</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av c">MA</div><div class="av b">SA</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Saturday · today</div>
+              <div class="titleRow"><div class="dayTitle">An afternoon out, then dinner</div></div>
+              <div class="thesis">Bookstore at three, the café if it rains, dinner at seven with Maya and Sam.</div>
+              <div class="gap"></div>
+              <div class="since">
+                <div class="recent"><div class="receipt ink">Sent — Maya and Sam have 7:00, Maya after the reading</div><div class="ago">JUST NOW</div></div>
+                <div class="recent"><div class="receipt chg">Rain now from about 4 · the café is there if you want it · <span class="src">see</span></div><div class="ago">6:00 AM</div></div>
+              </div>
+              <div class="gap-l"></div>
+              <div class="chap" style="padding-top:0;"><div class="cl">Evening</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact">7:00</div><div><div class="ttl">Dinner at the Georgian room</div><div class="sup">Court St · <span class="who">you, Sam · Maya from about 7:40</span> · sent · no answer yet · <span class="src">reserved 7:00 · 3</span></div></div><div class="more">···</div></div>
+              </div>
+              <div class="pillwrap"><div class="pill">Ask Vesper<span class="mic">MIC</span></div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">CONTRACTION IS PART OF THE RULE</div>
+          <p>Nora kept seven and told both. The send receipt takes the top line briefly (ink: done by her), the rain line stays because it still matters this afternoon, Maya’s addition left because Nora opened its row. The row now says “sent · no answer yet”: sending is not delivery and delivery is not acceptance (05 D3). The thesis re-derived to “seven”. Nothing else on the page moved.</p>
+          <div class="fx">critique · stacking rule · lines leave on the person’s action, never on a timer</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 960px; top: 2940px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">P1</span><span class="tag pp">APPENDIX</span> <span class="tag pr">PROPOSAL</span> TWO PEOPLE, NO OWNER · MAYA RESOLVES THE HELD PAIR <span class="s">the same W1 card on her page · a commitment still needs whoever made it</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="P1 Maya resolves">
+            <div class="sb"><span>8:12</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av a">NO</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Saturday · Sep 26 · today · with Nora</div>
+              <div class="titleRow"><div class="dayTitle">Beach with Nora, or the Whitney if it rains</div></div>
+              <div class="thesis">Either of you can decide on the morning. Dinner at seven is Nora’s table.</div>
+              <div class="gap"></div>
+              <div class="recent"><div class="receipt">You chose the Whitney · Nora sees it <span class="src">See it</span></div><div class="ago">JUST NOW</div></div>
+              <div class="undoq">Undo — back to the pair</div>
+              <div class="gap-l"></div>
+              <div class="rows">
+                <div class="row first"><div class="time">11:00</div><div><div class="ttl">The Whitney</div><div class="sup">Gansevoort St · quietest before noon · <span class="who">you and Nora</span> · was: Rockaway if dry</div></div><div class="more">···</div></div>
+                <div class="row"><div class="time exact">7:00</div><div><div class="ttl">Dinner at the Georgian room</div><div class="sup">Court St · <span class="who">Nora, you, Sam</span> · <span class="src">reserved · Nora’s confirmation</span> · hers to change</div></div><div class="more">···</div></div>
+              </div>
+              <div class="pillwrap"><div class="pill">Ask Vesper<span class="mic">MIC</span></div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">PROPOSED RULING PR-1 · A TWO-PERSON ARRANGEMENT HAS NO OWNER FOR ITS LOOSE PARTS</div>
+          <p>The critique found J-E asymmetric: only Nora could resolve a pair the two of them held. <b>Proposal:</b> when an arrangement has two participants and no one has been named to decide, either may resolve a held pair, set a loose time, or add an optional stop; the change applies with attribution and is undoable by either. <b>Commitments keep their maker:</b> the dinner reservation stays Nora’s to change, and the row says so. The thesis states the register in one clause (“either of you can decide”), so nothing new is learned.</p>
+          <p>This is Multiplayer Strategy §5.2 (lightweight arrangements) applied to authority, not a change to §5.1 owner-controlled collaboration for hosted or larger occasions. <b>Status:</b> proposal for founder ruling; illustrated only; recorded on 07 as PR-1 and Q21.</p>
+          <div class="fx">critique · J-E asymmetry · same W1/W2 primitives · no roles UI</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 1420px; top: 2940px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">P2</span><span class="tag pp">APPENDIX</span> <span class="tag pr">PROPOSAL · STRESS CASE</span> FOUR PEERS, NO HOST · DANA CHANGES AN AGREED TIME <span class="s">a proposal to the people it affects · adopted by their answers, never by silence</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="P2 Peer occasion">
+            <div class="sb"><span>7:05</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av a">DA</div><div class="av c">MA</div><div class="av b">SA</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Cabin weekend · Oct 9–11 · the four of you</div>
+              <div class="titleRow"><div class="dayTitle">Saturday, October 10</div></div>
+              <div class="thesis">Everyone shapes this. Times you all agreed to change when the people they affect say so.</div>
+              <div class="gap"></div>
+              <div class="dayrule"><div class="dl">Day 2 · Sat, Oct 10</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time loose">~10</div><div><div class="ttl">The lake trail</div><div class="sup">6 km loop · <span class="who">Dana moved it from ~9 · applied</span></div></div><div class="more">···</div></div>
+                <div class="row"><div class="time exact">7:00</div><div><div class="ttl">Dinner at the cabin</div><div class="sup"><span class="who">all four</span> · agreed Tuesday</div>
+                  <div class="attach" style="grid-column:auto;"><div class="ct"><span class="by">Dana · asks everyone</span>“Could we eat at 8? The trail will run long.”</div></div>
+                  <div class="qp" style="margin-top:10px;">
+                    <div class="k">Changing seven o’clock · you all agreed to it</div>
+                    <div class="b"><b>Maya:</b> 8 works. <b>Sam:</b> hasn’t answered. <b>You:</b> — . It moves when the people it affects have said yes; nobody decides for the others.</div>
+                    <div class="chips" style="margin-top:4px;"><div class="chip pri">8 works for me</div><div class="chip quiet">Keep 7</div></div>
+                  </div>
+                </div><div class="more">···</div></div>
+              </div>
+              <div class="pillwrap"><div class="pill">Ask Vesper<span class="mic">MIC</span></div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">PROPOSED RULING PR-2 · IN A PEER OCCASION, AGREED THINGS MOVE BY THE ANSWERS OF THOSE AFFECTED</div>
+          <p>The vision’s Occasion has participants and purpose, not necessarily a host. The boards so far always had an owner. <b>Proposal:</b> in an arrangement everyone shapes, loose material changes freely with attribution (the trail, Dana’s move applied); a thing everyone agreed to (the seven o’clock) changes as a proposal to the people it affects, in the proposer’s words, and is adopted when each affected person has answered yes — silence is coordination state, never acceptance (What We Believe 0.8; 05 D3). No one restores agreement for others; no vote count, no deadline, no approval dashboard: the answers are the same “who has answered” register D3 already uses.</p>
+          <p><b>Ceremony risk, stated:</b> four people answering a dinner time is more friction than one host deciding; the proposal is scoped to times everyone explicitly agreed to, which are rare. <b>Status:</b> stress case and proposal, illustrated only; recorded on 07 as PR-2 and Q21. Not a redesign: the page is the same itinerary.</p>
+          <div class="fx">critique · equal-peer occasion · reuses 05 D2/D3 changing-an-agreed-time card · Occasion ≠ host</div>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 1880px; top: 2940px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">O1</span><span class="tag pp">APPENDIX</span> OCTOBER 17 · WHAT CARRIED FROM SEPTEMBER 19, AS AN ATTRIBUTED REGISTER <span class="s">facts with doors to where they came from · never a sentence about the person</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="O1 Second occasion">
+            <div class="sb"><span>9:41</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av c">MA</div><div class="av b">SA</div><div class="av a">AL</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Saturday · Oct 17 · in two weeks</div>
+              <div class="titleRow"><div class="dayTitle">Dinner with Maya, Sam and Alex</div></div>
+              <div class="thesis">The Georgian room again, booked for eight this time. Sam from 7:30; Alex is coming.</div>
+              <div class="gap-l"></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact">8:00</div><div><div class="ttl">Dinner at the Georgian room</div><div class="sup">Court St · <span class="who">you, Maya, Sam from 7:30, Alex</span> · <span class="src">reserved 8:00 · 4 · from your confirmation</span></div>
+                  <div class="attach" style="grid-column:auto; flex-direction:column; gap:6px;">
+                    <div class="ct"><span class="by">From Sep 19</span>Booked for eight directly this time — last time the table couldn’t move from seven. <span class="src">that evening</span></div>
+                    <div class="ct"><span class="by">Dana · Sep 19</span>“Get the khinkali and the eggplant rolls.” Sam agreed. <span class="src">Sam’s photo</span></div>
+                    <div class="ct"><span class="by">Sam · Sep 19</span>Got there at 7:30 last time, from work. <span class="src">his reply</span></div>
+                  </div>
+                </div><div class="more">···</div></div>
+                <div class="conn"><div class="t">for Alex</div><div class="c"><b>12 min on the F</b> to Bergen St · step-free · they take cards</div></div>
+              </div>
+              <div class="gap-l"></div>
+              <div class="quiet">Anything above that isn’t right — say so and it goes.</div>
+              <div class="pillwrap"><div class="pill">Ask Vesper<span class="mic">MIC</span></div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">OUTCOME IS A REGISTER, NOT A PROFILE</div>
+          <p>The Product Model proves compounding by “a materially better second occasion.” Here is what better looks like without a single sentence about who the person is: the reservation was made at the hour that actually works, because last time the table couldn’t move; Dana’s dish note and Sam’s late arrival ride along as attributed facts with doors to the evening they came from; the guest page Alex will get already carries the practical line. Each carried fact is a Sep 19 fact re-used, scoped to this arrangement, removable in a sentence — never “you prefer eight” or “Sam is usually late”.</p>
+          <p><b>Owner:</b> Outcome is person- or relationship-scoped (Product Model 1.1); the Plan shows it as a supporting register with doors, the way it shows a ticket stub. <b>Status:</b> illustrated. <b>Gap, named:</b> an Outcome record with scope and provenance, and the rule for which outcomes a later arrangement may surface (07 Q22). Personal outcomes need not converge into one shared story.</p>
+          <div class="fx">critique · carry forward · reuses 04 C4 attach + the Door · Thesis §84 platform memory ≠ human remembering</div>
+        </div>
+      </div>
+
+      <div class="panel" style="left: 40px; top: 4240px; width: 1400px;">
+        <div class="k">COVERAGE · SIX JOURNEYS THROUGH ONE INTERACTION FAMILY · EVIDENCE STATUS · OWNER · NAMED GAP</div>
+        <div class="cov">
+          <div class="h">Journey</div><div class="h">Frames that carry it</div><div class="h">Evidence status</div><div class="h">Canonical owner</div><div class="h">Named engineering gap (not a screen)</div>
+          <div><b>J-A</b> Keep → refind → release timing</div><div>02 A1–A2, A6–A7, A9 · 11 K1–K2</div><div><span class="st">illustrated</span> — keep and return; <span class="st">wired</span> in 10: none (the Saturday fixture starts kept)</div><div>Lightweight Plan (D1, proposed); Places relationship; Home/Chat/Life mount the card</div><div>Trip-independent retained intention with optional timing, owner references, scoped release. LocalPlanScreen / planShape are Trip-scoped.</div>
+          <div><b>J-B</b> Inspect → follow up → adapt → discuss</div><div>08 P1–P9 · 09 J2a–J2g · 02 A4 (corrected)</div><div><span class="st">illustrated</span> — value-first sheet, correction, recommendation; <span class="st">simulated + exercised</span> in 10 — pending/failed/unknown, scoped undo, private records</div><div>Plan owner for the change; Chat for the exchange; entity lane for facts</div><div>Target-carrying contextual exchange with Chat continuity (Q12/Q15); the assistant surface integration with PlanStopInspectSheet — one, not two.</div>
+          <div><b>J-C</b> Invite → guest replies / asks / contributes → editor edits</div><div>04 C1–C8 · 09 J3a–J3d · 11 G1–G3</div><div><span class="st">illustrated</span> — guest reply, private question, contributions; <span class="st">exercised</span> in 10 — Maya’s suggestion vs authorized edit, Sam in/out</div><div>Multiplayer lane (§5.1 roles, delivery); Life for media custody</div><div>Guest delivery, bounded identity, reply channel and media custody without an account (Q9/Q16). An RSVP endpoint is not this.</div>
+          <div><b>J-D</b> A change cannot work for everyone</div><div>05 D2–D8 · 11 I1–I2</div><div><span class="st">illustrated</span> — incompatible participant, infeasible provider; <span class="st">exercised</span> in 10 — send 8:00, Sam can’t do 8 recorded, forwarded evidence</div><div>Live engine coordination + Commitment evidence (PCA-2)</div><div>Consequence-aware resolution from expressed reasons and facts; provider infeasibility as a state; grounded alternative with real availability (A3, Q17).</div>
+          <div><b>J-E</b> Conditional plan, ambiguous day</div><div>02 A10 · 11 W1–W2</div><div><span class="st">illustrated</span> only</div><div>Owner’s arrangement; forecast as evidence; the instruction as a scoped standing order</div><div>Condition meaning, evidence freshness, dependencies, action scope; instruction vs held backup as stored semantics (A0/D4, Q18).</div>
+          <div><b>J-F</b> Ended occasion → later continuity</div><div>11 F1–F2 (new) · 06 E for return doors</div><div><span class="st">illustrated</span> only</div><div>Plan for the correction; Life/Place for record and media; Chat mounts reactivation</div><div>Passed-occasion lifecycle state; planned vs contributed record; owner references from a new arrangement to a passed one (D5, Q19).</div>
+        </div>
+      </div>
+
+      <div class="panel" style="left: 40px; top: 5840px; width: 690px;">
+        <div class="k">QUESTIONS FOR ADJACENT LANES · NAMED, NOT DECIDED IN A MOCK · ADDED TO 07</div>
+        <div class="row2"><span class="rk">Q15 · Chat</span><span>Continuity: “More room in Chat” and G3’s “send to Nora instead” carry target + unresolved intent + the exchange so far. Session and history ownership; whether a guest’s exchange has a session at all.</span></div>
+        <div class="row2"><span class="rk">Q16 · Multiplayer</span><span>Guest channels: a reply to the host vs a private question are different doors on 11 G1; delivery of the reply, bounded guest identity, media custody for a guest photo, and what continued access means after the occasion.</span></div>
+        <div class="row2"><span class="rk">Q17 · Live engine</span><span>Consequence-aware coordination: which service composes “keep 7, Maya joins late” from expressed reasons and facts (I1) and checks a feasible alternative without booking (I2); model judgment vs deterministic time/route/feasibility checks.</span></div>
+        <div class="row2"><span class="rk">Q18 · Plan/Occasion</span><span>Conditional authority: a held backup (W1) vs an explicit scoped instruction (W2); evidence threshold and freshness; revocation; whether an instruction is a Plan fact or a new record (A0).</span></div>
+        <div class="row2"><span class="rk">Q19 · Life / Places</span><span>After the day: passed-occasion state, planned vs happened without inference, where a contributed photo lives (F1), and how a later arrangement references a passed one (F2) without a Plan archive.</span></div>
+      </div>
+
+      <div class="panel" style="left: 40px; top: 6840px; width: 690px;">
+        <div class="k">WHAT THIS BOARD DOES NOT CLAIM</div>
+        <div class="row2"><span class="rk">Coverage</span><span>Plan does not contain the whole app. Expense accounting, booking execution, recurrence, rich media and broader Home/Places value are adjacent responsibilities with compatible references here — not sections of this page.</span></div>
+        <div class="row2"><span class="rk">Evidence</span><span>Every frame on this board is illustrated. Nothing here is wired into the board-10 prototype (its fixture is Saturday C→D; Kyoto, Rockaway and Oct 17 are not in it). No native, backend or participant evidence.</span></div>
+        <div class="row2"><span class="rk">Engineering</span><span>Presentation is moderate: header, rows, gutter, chapters, sheet, receipt, outgoing card and preview card are reused unchanged. Integration is substantial and named per frame; the implementation handoff’s A0–A4 sequence is referenced, not approved or superseded here. New schema/auth choices remain separately approval-bearing.</span></div>
+        <div class="row2"><span class="rk">Rulings</span><span>None made. Where a lane’s contract is unresolved the frame says so and Q15–Q19 name the owner.</span></div>
+      </div>
+
+      <div class="panel" style="left: 40px; top: 7840px; width: 900px;">
+        <div class="k">WHAT THIS BOARD ADDS TO 07 · TWO RULES, TWO PROPOSALS, THREE QUESTIONS</div>
+        <div class="rule"><span class="rk">R-18 · Arrival</span><span>A cue carries the receipt sentence and its one observation, titled by the arrangement, one per event that changes a relied-upon fact or asks something; resolved facts never cue; several within an hour group. Home shows the arrangement’s state plus at most one sentence about what changed. Opening lands on the plan at the recent region; no interstitial.</span></div>
+        <div class="rule"><span class="rk">R-19 · Stacking</span><span>The recent region orders by consequence: needs-you, changed-and-matters, resolved/done-by-others; newest first within a class. Only the top item carries an observation and one continuation. Three lines, then “and N more →” to the same list. Events that resolve together are one line. Lines leave on the person’s action (row opened, thing done), never on a timer. §0.5’s hierarchy is the one-event case.</span></div>
+        <div class="rule"><span class="rk">PR-1 · Two people</span><span><b>Proposed.</b> With two participants and no named decider, either may resolve loose material (held pair, loose time, optional stop) with attribution and mutual Undo; commitments keep their maker. Multiplayer §5.2 applied to authority.</span></div>
+        <div class="rule"><span class="rk">PR-2 · Peers</span><span><b>Proposed stress case.</b> In an arrangement everyone shapes, loose material changes freely with attribution; a thing everyone agreed to changes as a proposal to those affected, adopted by their answers, never by silence. No vote count, deadline or approval surface; the D3 register carries it. Scoped to explicitly agreed times.</span></div>
+        <div class="rule"><span class="rk">R-20 · Outcome</span><span>An Outcome surfaces on a later arrangement as an attributed supporting fact with a door to its origin, scoped to that arrangement and removable in a sentence — never as a statement about the person or a preference. The Plan shows it the way it shows a ticket stub; the record itself is Person/Relationship-scoped.</span></div>
+        <div class="rule"><span class="rk">Q20 · Notifications</span><span>Which engine decides channel, grouping and quiet hours for R-18 cues; the existing decisioning holdout applies. What “last seen” means per person for the recent region.</span></div>
+        <div class="rule"><span class="rk">Q21 · Authority</span><span>Founder ruling on PR-1 and PR-2; how “no named decider” and “everyone shapes this” are set without a roles screen (a sentence at creation, as C5 did for Maya’s grant).</span></div>
+        <div class="rule"><span class="rk">Q22 · Outcome record</span><span>Scope and provenance of an Outcome; which outcomes a later arrangement may surface and to whom (audience axis of the contribution contract); how a wrong carried fact is retracted at the source, not just hidden here.</span></div>
+      </div>
+
+      <div class="x"></div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{}'>
+      class Component extends DCLogic {
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>

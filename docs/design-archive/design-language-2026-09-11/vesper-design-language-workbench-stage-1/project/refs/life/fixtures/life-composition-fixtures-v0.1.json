@@ -1,0 +1,789 @@
+{
+  "schema_version": "vesper.life-composition-fixtures.v0.1",
+  "fixture_version": "2026-08-29.1",
+  "status": "frozen_for_visual_round_1",
+  "frozen_at": "2026-08-29",
+  "classification": "controlled_product_design_fixture",
+  "purpose": "Provide one renderer-neutral truth, identity, authority, lifecycle, and composition dataset for the first Life visual-composition round and later native lab.",
+  "not_production_data": true,
+  "not_api_contract": true,
+  "authority_refs": [
+    "docs/decisions/2026-08-29-adopt-life-continuity-and-return-contract.md",
+    "docs/working/life-object-and-lens-fixture-pack-2026-08-29.md",
+    "docs/working/life-refinding-query-benchmark-2026-08-29.md",
+    "docs/working/life-social-lifecycle-fixture-matrix-2026-08-29.md",
+    "docs/working/life-six-world-fixture-execution-report-2026-08-29.md",
+    "docs/working/life-index-and-episode-anatomy-contract-2026-08-29.md"
+  ],
+  "prohibited_uses": [
+    "Do not treat this file as autobiographical truth beyond the explicitly controlled founder-story fixture.",
+    "Do not infer personality, emotional state, relationship quality, cultural sophistication, or identity.",
+    "Do not treat a ticket, reservation, photograph, save, or Plan as occurrence evidence by itself.",
+    "Do not widen audience or precision from historic membership, co-occurrence, or visual prominence.",
+    "Do not translate the semantic sections into a server-authored component tree.",
+    "Do not promote a nested or contextual object into a stable Life door because its visual treatment is engaging."
+  ],
+  "identity_contract": {
+    "stable_key": "resource_id",
+    "revision_key": "revision",
+    "viewer_partition": "viewer_id",
+    "authority_partition": "audience_epoch",
+    "schema_partition": "schema_version",
+    "restoration_rule": "Restore the surviving semantic resource, section, and item anchor under current authority before applying an optional local reading offset.",
+    "revocation_rule": "A projection whose audience epoch is no longer valid is synchronously removed; a less-scoped payload is never used as fallback."
+  },
+  "viewers": [
+    {
+      "viewer_id": "USR-FEIHU",
+      "label": "fixture owner",
+      "private_epoch": "PRIVATE-FEIHU-01"
+    },
+    {
+      "viewer_id": "USR-MAYA",
+      "label": "authorized friend fixture",
+      "private_epoch": "PRIVATE-MAYA-01"
+    },
+    {
+      "viewer_id": "USR-ALEX",
+      "label": "authorized dinner participant fixture",
+      "private_epoch": "PRIVATE-ALEX-01"
+    }
+  ],
+  "source_catalog": [
+    {
+      "source_id": "SRC-L01-FLIGHT",
+      "kind": "ticket",
+      "owner_id": "USR-FEIHU",
+      "audience": "private_owner",
+      "role": "planned_movement_and_provider_record",
+      "proves": "A flight record exists for the represented route and date.",
+      "does_not_prove": "Boarding, arrival, or the complete Journey."
+    },
+    {
+      "source_id": "SRC-L01-TRAIN",
+      "kind": "ticket",
+      "owner_id": "USR-FEIHU",
+      "audience": "private_owner",
+      "role": "planned_movement_with_independent_occurrence_support",
+      "proves": "A rail booking exists; separate occurrence evidence supports the represented segment.",
+      "does_not_prove": "Every planned stop or later transfer."
+    },
+    {
+      "source_id": "SRC-L01-FERRY-UNUSED",
+      "kind": "ticket",
+      "owner_id": "USR-FEIHU",
+      "audience": "private_owner",
+      "role": "planned_only_movement",
+      "proves": "A ferry was booked or considered.",
+      "does_not_prove": "That the ferry was taken."
+    },
+    {
+      "source_id": "SRC-L01-STAYS",
+      "kind": "reservation_bundle",
+      "owner_id": "USR-FEIHU",
+      "audience": "private_owner",
+      "role": "planned_bases_with_supported_stays",
+      "proves": "Stay records exist; represented stays have separate occurrence support.",
+      "does_not_prove": "Satisfaction, meaning, or every night of presence."
+    },
+    {
+      "source_id": "SRC-L01-PHOTOS",
+      "kind": "photo_bundle",
+      "owner_id": "USR-FEIHU",
+      "audience": "private_owner",
+      "role": "captured_places_and_moments",
+      "proves": "The fixture owner captured the represented media at supported times or Places.",
+      "does_not_prove": "Consent of depicted people, emotional meaning, or all surrounding events."
+    },
+    {
+      "source_id": "SRC-L01-NOTES",
+      "kind": "authored_notes",
+      "owner_id": "USR-FEIHU",
+      "audience": "private_owner",
+      "role": "authored_attention",
+      "proves": "The fixture owner explicitly noticed heat, walking, cliffs, pasta, crowds, transit, or cultural encounters where represented.",
+      "does_not_prove": "A durable trait or general preference."
+    },
+    {
+      "source_id": "SRC-L03-MUSEUM-TICKET",
+      "kind": "ticket",
+      "owner_id": "USR-FEIHU",
+      "audience": "private_owner",
+      "role": "planned_visit",
+      "proves": "A museum ticket or reservation existed.",
+      "does_not_prove": "Attendance or a museum visit."
+    },
+    {
+      "source_id": "SRC-L03-CORRECTION",
+      "kind": "authored_correction",
+      "owner_id": "USR-FEIHU",
+      "audience": "private_owner",
+      "role": "negative_occurrence_evidence",
+      "proves": "The fixture owner explicitly said the museum visit did not occur.",
+      "does_not_prove": "Why it did not occur or any regret."
+    },
+    {
+      "source_id": "SRC-L04-FILM",
+      "kind": "film_or_ticket",
+      "owner_id": "USR-FEIHU",
+      "audience": "private_owner",
+      "role": "pre_trip_cultural_source",
+      "proves": "The fixture owner supplied evidence of the represented film encounter before Rome.",
+      "does_not_prove": "A mythology identity, expertise, or the later historical relation."
+    },
+    {
+      "source_id": "SRC-L04-COLOSSEUM-NOTE",
+      "kind": "authored_note",
+      "owner_id": "USR-FEIHU",
+      "audience": "private_owner",
+      "role": "authored_connection",
+      "proves": "At the Colosseum, the fixture owner explicitly connected the Trojan War, Aeneas, Rome, and the earlier film.",
+      "does_not_prove": "The broader mechanism or historical interpretation supplied by Vesper."
+    },
+    {
+      "source_id": "SRC-L04-EXTERNAL",
+      "kind": "citation_bundle_placeholder",
+      "owner_id": "SYSTEM-RESEARCH",
+      "audience": "projection_scoped",
+      "role": "external_support_for_new_substance",
+      "proves": "Only claims individually linked to reviewed sources in the eventual composition.",
+      "does_not_prove": "Any personal meaning, occurrence, or unsupported generalization."
+    },
+    {
+      "source_id": "SRC-L02-INVITE",
+      "kind": "invitation",
+      "owner_id": "USR-FEIHU",
+      "audience": "occasion_members",
+      "role": "occasion_purpose_time_place_and_invitation_state",
+      "proves": "The invitation and its governed revisions exist.",
+      "does_not_prove": "Attendance, contribution fulfillment, or shared sentiment."
+    },
+    {
+      "source_id": "SRC-L02-MAYA-DESSERT",
+      "kind": "human_contribution",
+      "owner_id": "USR-MAYA",
+      "audience": "occasion_epoch_OCC-L02-01",
+      "role": "attributed_commitment",
+      "proves": "Maya committed to bring dessert.",
+      "does_not_prove": "That dessert was brought unless occurrence evidence supports it."
+    },
+    {
+      "source_id": "SRC-L02-MAYA-PHOTO",
+      "kind": "photo",
+      "owner_id": "USR-MAYA",
+      "audience": "occasion_epoch_OCC-L02-01",
+      "role": "attributed_occurrence_evidence",
+      "proves": "Maya contributed the represented photograph under the stated audience epoch.",
+      "does_not_prove": "Group sentiment or permission outside the Occasion."
+    },
+    {
+      "source_id": "SRC-L02-ALEX-RECEIPT",
+      "kind": "receipt",
+      "owner_id": "USR-ALEX",
+      "audience": "occasion_epoch_OCC-L02-01",
+      "role": "attributed_expense_evidence",
+      "proves": "Alex contributed the represented receipt.",
+      "does_not_prove": "Who owes what without a governed expense decision."
+    },
+    {
+      "source_id": "SRC-L05-MAYA-PARIS",
+      "kind": "addressed_social_bundle",
+      "owner_id": "USR-MAYA",
+      "audience": "direct_epoch_MAYA-FEIHU-01",
+      "role": "authorized_paris_lane",
+      "proves": "Only the city-level, time-bounded, attributed Paris details explicitly included in the grant.",
+      "does_not_prove": "Maya's full trip, live location, relationship state, or public availability."
+    },
+    {
+      "source_id": "SRC-L06-SAVES",
+      "kind": "place_and_route_saves",
+      "owner_id": "USR-FEIHU",
+      "audience": "private_owner",
+      "role": "planned_or_source_only_place_relation",
+      "proves": "The represented Red Hook Places or routes were saved.",
+      "does_not_prove": "A visit, recurrence, importance, or affinity."
+    },
+    {
+      "source_id": "SRC-L06-VISITS",
+      "kind": "supported_occurrence_bundle",
+      "owner_id": "USR-FEIHU",
+      "audience": "private_owner",
+      "role": "supported_red_hook_visits",
+      "proves": "The represented visits have independent occurrence support.",
+      "does_not_prove": "Identity, preference strength, or future intent."
+    },
+    {
+      "source_id": "SRC-L06-DINNER",
+      "kind": "occasion_reference",
+      "owner_id": "OCC-L06-DINNER",
+      "audience": "occasion_epoch_OCC-L06-01",
+      "role": "shared_red_hook_episode",
+      "proves": "A bounded shared dinner episode occurred under the represented authority.",
+      "does_not_prove": "Private participant Outcomes or continuing relationship state."
+    },
+    {
+      "source_id": "SRC-L06-EVALUATION",
+      "kind": "explicit_evaluation",
+      "owner_id": "USR-FEIHU",
+      "audience": "private_owner",
+      "role": "authored_place_outcome",
+      "proves": "The fixture owner explicitly authored the represented evaluation, such as would repeat or not for me.",
+      "does_not_prove": "A neighborhood-wide preference or identity."
+    }
+  ],
+  "worlds": [
+    {
+      "world_id": "L01",
+      "title": "Nice to Rome, then home",
+      "kind": "journey",
+      "primary_resource_id": "JRN-L01-EUROPE",
+      "revision": "R-L01-01",
+      "default_posture": "stable",
+      "stable_door_eligibility": "eligible_in_rich_state",
+      "represented_period": "2026-08-14/2026-08-27",
+      "audience_epoch": "PRIVATE-FEIHU-01",
+      "source_ids": [
+        "SRC-L01-FLIGHT",
+        "SRC-L01-TRAIN",
+        "SRC-L01-FERRY-UNUSED",
+        "SRC-L01-STAYS",
+        "SRC-L01-PHOTOS",
+        "SRC-L01-NOTES",
+        "SRC-L03-MUSEUM-TICKET",
+        "SRC-L03-CORRECTION",
+        "SRC-L04-FILM",
+        "SRC-L04-COLOSSEUM-NOTE"
+      ],
+      "truth_summary": "Supported stays, movements, encounters, and return coexist with planned-only, corrected, and unresolved segments.",
+      "must_show": [
+        "Supported city and movement chapters lead.",
+        "The unused ferry and museum remain planned-only or explicitly not-lived.",
+        "Sources nest under the claims, movements, and encounters they support.",
+        "The Journey can hand supported context into present New York without inferring a travel identity."
+      ],
+      "must_not": [
+        "Artifact counts as the primary value.",
+        "A continuous route fabricated across evidence gaps.",
+        "A prose recap of everything captured.",
+        "A travel-style or personality interpretation."
+      ]
+    },
+    {
+      "world_id": "L02",
+      "title": "Dinner in Brooklyn",
+      "kind": "occasion",
+      "primary_resource_id": "OCC-L02-DINNER",
+      "revision": "R-L02-01",
+      "default_posture": "stable",
+      "stable_door_eligibility": "eligible",
+      "represented_period": "2026-08-29",
+      "audience_epoch": "OCC-L02-01",
+      "source_ids": [
+        "SRC-L02-INVITE",
+        "SRC-L02-MAYA-DESSERT",
+        "SRC-L02-MAYA-PHOTO",
+        "SRC-L02-ALEX-RECEIPT"
+      ],
+      "truth_summary": "One Occasion changes emphasis across prospective, live, recent, and historical states while shared core, personal overlay, contributions, and Outcomes remain distinct.",
+      "must_show": [
+        "One stable Occasion identity across lifecycle.",
+        "Attributed human contributions and plural Outcomes.",
+        "Shared core plus viewer-private overlay.",
+        "Afterglow is optional and complete without participant homework."
+      ],
+      "must_not": [
+        "A required Occasion profile.",
+        "A participation score or contribution ranking.",
+        "Everyone loved it unless explicitly authored and authorized.",
+        "A communal camera-roll dump."
+      ]
+    },
+    {
+      "world_id": "L03",
+      "title": "Museum ticket not used",
+      "kind": "plan_and_source",
+      "primary_resource_id": "PLN-L03-MUSEUM",
+      "revision": "R-L03-01",
+      "default_posture": "nested",
+      "stable_door_eligibility": "ineligible",
+      "represented_period": "within_L01_Rome_chapter",
+      "audience_epoch": "PRIVATE-FEIHU-01",
+      "source_ids": [
+        "SRC-L03-MUSEUM-TICKET",
+        "SRC-L03-CORRECTION"
+      ],
+      "truth_summary": "Ticket possessed and visit intended; explicit correction says attendance did not occur.",
+      "must_show": [
+        "The ticket remains retrievable.",
+        "The Plan remains part of decision history.",
+        "The museum is absent from occurred and visited projections."
+      ],
+      "must_not": [
+        "An independent museum memory door.",
+        "Regret, failure, or completion pressure.",
+        "A visited pin or completed experience."
+      ]
+    },
+    {
+      "world_id": "L04",
+      "title": "Film, Troy, and Rome",
+      "kind": "source_encounter_bridge",
+      "primary_resource_id": "REL-L04-FILM-ROME",
+      "revision": "R-L04-01",
+      "default_posture": "nested",
+      "stable_door_eligibility": "conditional_if_saved_and_substantive",
+      "represented_period": "before_and_during_L01",
+      "audience_epoch": "PRIVATE-FEIHU-01",
+      "source_ids": [
+        "SRC-L04-FILM",
+        "SRC-L04-COLOSSEUM-NOTE",
+        "SRC-L04-EXTERNAL"
+      ],
+      "truth_summary": "The owner made the initial film-to-Colosseum connection; Vesper may add a sourced explanation only if it advances beyond that observation.",
+      "must_show": [
+        "Human observation and Vesper contribution remain distinct.",
+        "Material generated claims have inspectable citations.",
+        "A saved composition remains derived from its Sources."
+      ],
+      "must_not": [
+        "Restating that the film and Colosseum both involve the Trojan story.",
+        "Trivia or congratulating the person for noticing.",
+        "A mythology-person identity label."
+      ]
+    },
+    {
+      "world_id": "L05",
+      "title": "Rome and Paris in the same heat",
+      "kind": "addressed_social_comparison",
+      "primary_resource_id": "CMP-L05-ROME-PARIS",
+      "revision": "R-L05-01",
+      "default_posture": "contextual",
+      "stable_door_eligibility": "ineligible_as_generic_friend_door",
+      "represented_period": "overlap_with_L01_Rome",
+      "audience_epoch": "MAYA-FEIHU-01",
+      "source_ids": [
+        "SRC-L01-NOTES",
+        "SRC-L05-MAYA-PARIS"
+      ],
+      "truth_summary": "Two separately owned, attributed lanes may be compared only on one authorized, substantive axis.",
+      "must_show": [
+        "Two attributed lanes.",
+        "One coherent comparison axis.",
+        "Current audience and Place precision.",
+        "Graceful degradation to one-person value or silence after revocation."
+      ],
+      "must_not": [
+        "A generic friend activity tile.",
+        "A synthetic joint trip or pooled media ownership.",
+        "Retrospective live-location surveillance.",
+        "Competitive city ranking."
+      ]
+    },
+    {
+      "world_id": "L06",
+      "title": "Red Hook across time",
+      "kind": "place_relationship",
+      "primary_resource_id": "PLREL-L06-RED-HOOK",
+      "revision": "R-L06-01",
+      "default_posture": "stable_when_supported",
+      "stable_door_eligibility": "eligible_after_supported_recurrence",
+      "represented_period": "2026_spring_through_current",
+      "audience_epoch": "PRIVATE-FEIHU-01",
+      "source_ids": [
+        "SRC-L06-SAVES",
+        "SRC-L06-VISITS",
+        "SRC-L06-DINNER",
+        "SRC-L06-EVALUATION"
+      ],
+      "truth_summary": "Several supported visits, routes, Occasions, and explicit evaluations can earn a longitudinal Place doorway; saves and plans remain distinct.",
+      "must_show": [
+        "Constituent episodes and explicit states.",
+        "The difference between one save and supported recurrence.",
+        "Life history handing off to refreshed current Places truth.",
+        "A complete ordered alternative to any map-led treatment."
+      ],
+      "must_not": [
+        "You love Red Hook.",
+        "A waterfront-transition personality claim.",
+        "A visit-frequency leaderboard, badge, or heatmap-as-importance.",
+        "Duplicated current provider truth inside Life."
+      ]
+    }
+  ],
+  "index_projections": [
+    {
+      "projection_id": "IDX-RICH-COMBINED",
+      "frame_id": "I-01",
+      "projection_identity": {
+        "resource_id": "LIFE-INDEX-FEIHU",
+        "revision": "IDX-R01",
+        "viewer_id": "USR-FEIHU",
+        "audience_epoch": "COMBINED-FEIHU-01",
+        "schema_version": "v0.1"
+      },
+      "scope": "combined",
+      "account_posture": "active_rich",
+      "sections": [
+        {
+          "section_id": "find_and_scope",
+          "role": "retrieval_and_authority",
+          "items": ["SEARCH-LIFE", "SCOPE-COMBINED"]
+        },
+        {
+          "section_id": "in_motion",
+          "role": "conditional_current_episode",
+          "items": ["OCC-L02-DINNER"],
+          "condition": "Render only while L02 is genuinely prospective or live."
+        },
+        {
+          "section_id": "period_2026_summer",
+          "role": "stable_period_spine",
+          "items": ["JRN-L01-EUROPE", "OCC-L02-DINNER"]
+        },
+        {
+          "section_id": "across_time",
+          "role": "earned_longitudinal_relationships",
+          "items": ["PLREL-L06-RED-HOOK"]
+        },
+        {
+          "section_id": "returns",
+          "role": "bounded_derived_value",
+          "items": ["CMP-L04-ROME-TROY", "CMP-L05-ROME-PARIS"]
+        },
+        {
+          "section_id": "lenses",
+          "role": "contextual_utilities",
+          "items": ["LENS-TIMELINE", "LENS-MAP", "LENS-SOURCES"]
+        }
+      ],
+      "nested_memberships": [
+        {"resource_id": "PLN-L03-MUSEUM", "parent_id": "JRN-L01-EUROPE", "state": "planned_not_lived"},
+        {"resource_id": "REL-L04-FILM-ROME", "parent_id": "JRN-L01-EUROPE", "state": "source_encounter_bridge"},
+        {"resource_id": "CMP-L05-ROME-PARIS", "parent_id": "JRN-L01-EUROPE", "state": "addressed_return"}
+      ]
+    },
+    {
+      "projection_id": "IDX-RICH-MINE",
+      "frame_id": "I-02",
+      "projection_identity": {
+        "resource_id": "LIFE-INDEX-FEIHU",
+        "revision": "IDX-R01",
+        "viewer_id": "USR-FEIHU",
+        "audience_epoch": "PRIVATE-FEIHU-01",
+        "schema_version": "v0.1"
+      },
+      "scope": "mine",
+      "account_posture": "active_rich",
+      "semantic_diff_from": "IDX-RICH-COMBINED",
+      "retains": ["JRN-L01-EUROPE", "OCC-L02-DINNER.shared_core_needed_for_truth", "PLREL-L06-RED-HOOK", "CMP-L04-ROME-TROY"],
+      "suppresses": ["CMP-L05-ROME-PARIS.friend_lane", "OCC-L02-DINNER.other_private_overlays"]
+    },
+    {
+      "projection_id": "IDX-RICH-TOGETHER",
+      "frame_id": "I-03",
+      "projection_identity": {
+        "resource_id": "LIFE-INDEX-FEIHU",
+        "revision": "IDX-R01",
+        "viewer_id": "USR-FEIHU",
+        "audience_epoch": "TOGETHER-FEIHU-01",
+        "schema_version": "v0.1"
+      },
+      "scope": "together",
+      "account_posture": "active_rich",
+      "semantic_diff_from": "IDX-RICH-COMBINED",
+      "retains": ["OCC-L02-DINNER.authorized_shared_core", "CMP-L05-ROME-PARIS.current_granted_lanes", "JRN-L01-EUROPE.authorized_shared_chapters", "OCC-L06-DINNER"],
+      "suppresses": ["JRN-L01-EUROPE.private_sources", "PLREL-L06-RED-HOOK.private_evaluations", "all_private_outcomes"]
+    },
+    {
+      "projection_id": "IDX-QUIET-MATURE",
+      "frame_id": "I-04",
+      "projection_identity": {
+        "resource_id": "LIFE-INDEX-FEIHU",
+        "revision": "IDX-R02-QUIET",
+        "viewer_id": "USR-FEIHU",
+        "audience_epoch": "COMBINED-FEIHU-01",
+        "schema_version": "v0.1"
+      },
+      "scope": "combined",
+      "account_posture": "quiet_mature",
+      "required_behavior": [
+        "Stable period and Across time entrances remain immediately explorable.",
+        "Returns render only when complete-value eligibility passes.",
+        "No placeholder prompt, unfinished-thread count, or contribution request appears."
+      ]
+    },
+    {
+      "projection_id": "IDX-SPARSE-NEW",
+      "frame_id": "I-05",
+      "projection_identity": {
+        "resource_id": "LIFE-INDEX-SPARSE-FEIHU",
+        "revision": "IDX-S01",
+        "viewer_id": "USR-FEIHU",
+        "audience_epoch": "PRIVATE-FEIHU-01",
+        "schema_version": "v0.1"
+      },
+      "scope": "mine",
+      "account_posture": "sparse_new",
+      "required_behavior": [
+        "A flight, one stay, one note, and one save remain findable and inspectable.",
+        "No fabricated Journey recap or Red Hook relationship door appears.",
+        "The interface does not ask the person to fill gaps or organize Sources."
+      ]
+    },
+    {
+      "projection_id": "IDX-SEARCH-L03",
+      "frame_id": "I-06",
+      "projection_identity": {
+        "resource_id": "SEARCH-LIFE-FEIHU",
+        "revision": "SEARCH-R01",
+        "viewer_id": "USR-FEIHU",
+        "audience_epoch": "PRIVATE-FEIHU-01",
+        "schema_version": "v0.1"
+      },
+      "scope": "mine",
+      "query_cue": "the museum ticket I never used",
+      "target_resource_id": "PLN-L03-MUSEUM",
+      "around_this": ["JRN-L01-EUROPE", "SRC-L03-MUSEUM-TICKET", "SRC-L03-CORRECTION"],
+      "default_landmark_limit": 3,
+      "retention": "raw_query_session_local_under_24h"
+    }
+  ],
+  "episode_projections": [
+    {
+      "episode_id": "EP-L01-RICH",
+      "world_id": "L01",
+      "frame_ids": ["E-01", "E-02", "E-03"],
+      "projection_identity": {
+        "resource_id": "JRN-L01-EUROPE",
+        "revision": "R-L01-01",
+        "viewer_id": "USR-FEIHU",
+        "audience_epoch": "COMBINED-FEIHU-01",
+        "schema_version": "v0.1"
+      },
+      "episode_kind": "journey",
+      "lifecycle": "returned",
+      "anatomy": [
+        {
+          "section_id": "identity_truth",
+          "presence": "required",
+          "content": ["Nice to Rome", "Aug 14–27", "Journey", "Returned", "Some route gaps"]
+        },
+        {
+          "section_id": "episode_skeleton",
+          "presence": "required",
+          "content": ["Nice", "movement south", "Sorrento and Amalfi", "Rome", "return to New York"]
+        },
+        {
+          "section_id": "occurred_story_spine",
+          "presence": "required",
+          "lead_medium": "sequence",
+          "content": ["supported stay and encounters", "supported rail", "supported coastal episodes", "supported Colosseum encounter", "supported return"]
+        },
+        {
+          "section_id": "plans_changes_unresolved",
+          "presence": "required",
+          "content": ["unused ferry planned-only", "museum explicitly not attended", "unresolved route gaps"]
+        },
+        {
+          "section_id": "people_contributions",
+          "presence": "conditional",
+          "content": ["authorized shared chapters only", "private Outcomes remain separate"]
+        },
+        {
+          "section_id": "sources_in_place",
+          "presence": "required",
+          "lead_medium": "evidence",
+          "content": ["tickets under movements", "photos under supported moments", "film beside Rome encounter", "All sources lens"]
+        },
+        {
+          "section_id": "see_anew",
+          "presence": "eligible",
+          "lead_medium": "comparison_or_spatial",
+          "resource_id": "CMP-L04-ROME-TROY",
+          "content": ["One sourced operation that advances beyond the owner's film-to-Rome observation", "Claim-local citations", "Human observation and Vesper contribution separated"]
+        },
+        {
+          "section_id": "continue_repair",
+          "presence": "required",
+          "content": ["Use this in New York", "Continue the cliffs question", "Open this Place now", "Correct", "Detach", "Change scope"]
+        }
+      ],
+      "lens_targets": [
+        {"lens": "timeline", "target": "OCC-L01-COLOSSEUM", "return_anchor": "JRN-L01-EUROPE.occurred_story_spine.Rome"},
+        {"lens": "map", "target": "PLACE-SORRENTO-CLIFFS", "return_anchor": "JRN-L01-EUROPE.occurred_story_spine.Sorrento"},
+        {"lens": "sources", "target": "SRC-L04-FILM", "return_anchor": "JRN-L01-EUROPE.sources_in_place.film"}
+      ],
+      "continue_options": [
+        {"continue_id": "CONT-L01-NYC", "destination": "home", "authority": "preview_only", "creates_state": false, "label": "Use this in New York"},
+        {"continue_id": "CONT-L01-CLIFFS", "destination": "chat", "authority": "context_handoff", "creates_state": false, "label": "Continue the cliffs question"},
+        {"continue_id": "CONT-L01-PLACE", "destination": "places", "authority": "current_truth_refresh", "creates_state": false, "label": "Open this Place now"}
+      ]
+    },
+    {
+      "episode_id": "EP-L02-LIFECYCLE",
+      "world_id": "L02",
+      "frame_ids": ["E-04", "E-05", "E-06"],
+      "projection_identity": {
+        "resource_id": "OCC-L02-DINNER",
+        "revision": "R-L02-01",
+        "viewer_id": "USR-FEIHU",
+        "audience_epoch": "OCC-L02-01",
+        "schema_version": "v0.1"
+      },
+      "episode_kind": "occasion",
+      "lifecycle_variants": ["prospective", "live", "recent", "historical"],
+      "anatomy": [
+        {"section_id": "identity_truth", "presence": "required", "content": ["Dinner in Brooklyn", "Occasion", "current lifecycle", "shared with Maya and Alex"]},
+        {"section_id": "episode_skeleton", "presence": "required", "content": ["purpose", "Place", "governed time", "accepted membership", "material revision"]},
+        {"section_id": "occurred_story_spine", "presence": "lifecycle_dependent", "lead_medium": "sequence", "content": ["before", "live", "what happened", "after"]},
+        {"section_id": "plans_changes_unresolved", "presence": "required", "content": ["invitation revision", "dish commitment", "arrival change", "unresolved expense if any"]},
+        {"section_id": "people_contributions", "presence": "required", "lead_medium": "social_modifier", "content": ["shared core", "viewer-private overlay", "Maya attributed lane", "Alex attributed lane", "plural Outcomes"]},
+        {"section_id": "sources_in_place", "presence": "required", "lead_medium": "evidence", "content": ["invitation under decision", "photo under moment", "receipt under Alex contribution"]},
+        {"section_id": "see_anew", "presence": "eligible_after_occurrence", "lead_medium": "evidence_or_spatial", "resource_id": "CMP-L02-TABLE", "content": ["What everyone brought to the table", "attribution", "optional sourced regional food relation"]},
+        {"section_id": "continue_repair", "presence": "required", "content": ["Ask Maya about the recipe", "Carry the dish into Places", "Start a new Occasion with selected context", "Withdraw contribution", "Leave", "Change audience"]}
+      ],
+      "lifecycle_emphasis": {
+        "prospective": ["purpose", "Place", "time", "participants", "decisions", "commitments", "next coordination truth"],
+        "live": ["current state", "changes", "arrival", "active commitments", "low-friction contribution"],
+        "recent": ["supported occurrence", "attributed contributions", "shared core", "plural Outcomes", "optional afterglow"],
+        "historical": ["findability", "episode truth", "bounded shared core", "repair", "deliberate return"]
+      },
+      "continue_options": [
+        {"continue_id": "CONT-L02-MAYA", "destination": "chat", "authority": "addressed_message_preview", "creates_state": false, "label": "Ask Maya about the recipe"},
+        {"continue_id": "CONT-L02-PLACE", "destination": "places", "authority": "current_truth_refresh", "creates_state": false, "label": "Open the restaurant or dish context"},
+        {"continue_id": "CONT-L02-NEW", "destination": "chat", "authority": "occasion_draft_preview", "creates_state": false, "label": "Start another dinner with selected context"}
+      ]
+    },
+    {
+      "episode_id": "EP-L06-LONGITUDINAL",
+      "world_id": "L06",
+      "frame_ids": ["E-07", "E-08"],
+      "projection_identity": {
+        "resource_id": "PLREL-L06-RED-HOOK",
+        "revision": "R-L06-01",
+        "viewer_id": "USR-FEIHU",
+        "audience_epoch": "COMBINED-FEIHU-01",
+        "schema_version": "v0.1"
+      },
+      "episode_kind": "place_relationship",
+      "lifecycle": "supported_recurrence",
+      "anatomy": [
+        {"section_id": "identity_truth", "presence": "required", "content": ["Red Hook", "Across supported visits", "planned-only relations remain distinct"]},
+        {"section_id": "episode_skeleton", "presence": "required", "content": ["constituent visits", "dinner Occasion", "saved routes", "explicit evaluations", "current open weekend"]},
+        {"section_id": "occurred_story_spine", "presence": "required", "lead_medium": "sequence_or_spatial", "content": ["supported visits by period", "people and Occasion context", "routes actually used"]},
+        {"section_id": "plans_changes_unresolved", "presence": "required", "content": ["saved ferry route not used", "future Plan", "changed current provider truth remains Places-owned"]},
+        {"section_id": "people_contributions", "presence": "conditional", "content": ["authorized dinner episode", "attributed notes", "private evaluation remains Mine"]},
+        {"section_id": "sources_in_place", "presence": "required", "lead_medium": "evidence", "content": ["saves", "visit evidence", "Occasion reference", "explicit evaluations"]},
+        {"section_id": "see_anew", "presence": "eligible", "lead_medium": "spatial_or_comparison", "resource_id": "CMP-L06-REACHABILITY", "content": ["Three ways Red Hook becomes reachable", "evidenced ferry, bus, walking, weather, companions, and time-of-day differences", "current possibility only after Places refresh"]},
+        {"section_id": "continue_repair", "presence": "required", "content": ["Return here", "Open current Red Hook in Places", "Correct Place binding", "Exclude one episode", "Hide reading"]}
+      ],
+      "entrance_threshold_variants": [
+        {"variant": "one_save", "posture": "search_only", "relationship_door": false},
+        {"variant": "one_supported_visit", "posture": "nested_in_period_or_occasion", "relationship_door": false},
+        {"variant": "supported_recurrence", "posture": "stable_across_time", "relationship_door": true}
+      ],
+      "continue_options": [
+        {"continue_id": "CONT-L06-PLACES", "destination": "places", "authority": "current_truth_refresh", "creates_state": false, "label": "Return here"}
+      ]
+    }
+  ],
+  "derived_compositions": [
+    {
+      "composition_id": "CMP-L04-ROME-TROY",
+      "world_id": "L04",
+      "status": "eligible_unselected",
+      "working_title": "Why Rome needed Troy to lose",
+      "operation": "source_grounded_explanation",
+      "source_ids": ["SRC-L04-FILM", "SRC-L04-COLOSSEUM-NOTE", "SRC-L04-EXTERNAL"],
+      "substance_requirement": "Explain a reviewed mechanism or consequence of Roman adaptation that the owner's existing observation did not already state.",
+      "suppression_reason_if_unmet": "Restatement is not value."
+    },
+    {
+      "composition_id": "CMP-L05-ROME-PARIS",
+      "world_id": "L05",
+      "status": "eligible_while_grants_valid",
+      "working_title": "Same heat, different escape valves",
+      "operation": "two_lane_comparison",
+      "source_ids": ["SRC-L01-NOTES", "SRC-L05-MAYA-PARIS"],
+      "substance_requirement": "Compare one authorized practical axis such as water, transit, shade, opening hours, or evening public space, preserving two attributed lanes.",
+      "suppression_reason_if_unmet": "Coincidence in time is not substantive social value."
+    },
+    {
+      "composition_id": "CMP-L02-TABLE",
+      "world_id": "L02",
+      "status": "eligible_after_occurrence",
+      "working_title": "What everyone brought to the table",
+      "operation": "attributed_episode_reconstruction",
+      "source_ids": ["SRC-L02-MAYA-DESSERT", "SRC-L02-MAYA-PHOTO", "SRC-L02-ALEX-RECEIPT"],
+      "substance_requirement": "Distinguish commitments from fulfilled contributions and preserve authorship; an optional food tradition relation requires external sources.",
+      "suppression_reason_if_unmet": "A photo montage or universal positive sentiment is not enough."
+    },
+    {
+      "composition_id": "CMP-L06-REACHABILITY",
+      "world_id": "L06",
+      "status": "eligible_after_supported_recurrence",
+      "working_title": "Three ways Red Hook becomes reachable",
+      "operation": "longitudinal_spatial_comparison",
+      "source_ids": ["SRC-L06-SAVES", "SRC-L06-VISITS", "SRC-L06-DINNER", "SRC-L06-EVALUATION"],
+      "substance_requirement": "Show supported differences among saved, used, and currently available access conditions without turning frequency into affinity.",
+      "suppression_reason_if_unmet": "One save or one visit cannot support a longitudinal reading."
+    }
+  ],
+  "social_transitions": [
+    {"transition_id": "S01", "name": "active_valid_grants", "expected": "Shared core and attributed granted lanes render; private Outcomes do not."},
+    {"transition_id": "S02", "name": "invitation_declined", "expected": "Invitation truth remains; no participant or attendee return is created."},
+    {"transition_id": "S03", "name": "invitation_deferred", "expected": "Uncertainty remains explicit; no attendance or relationship interpretation is inferred."},
+    {"transition_id": "S04", "name": "participant_leaves", "expected": "Ordinary occurred Occasion preserves a frozen historical shared core; no new shared return or updates."},
+    {"transition_id": "S05", "name": "contribution_withdrawn", "expected": "The contribution and solely dependent claims disappear without leakage paraphrase."},
+    {"transition_id": "S06", "name": "source_deleted", "expected": "Unsupported claims, caches, snippets, and pending handoffs invalidate causally."},
+    {"transition_id": "S07", "name": "audience_or_precision_narrowed", "expected": "All reads and generated text recompile at current permission and precision."},
+    {"transition_id": "S08", "name": "block", "expected": "Unsafe relationship and social-periphery rendering is synchronously suppressed; independent history remains."},
+    {"transition_id": "S09", "name": "estrangement_without_block", "expected": "No inferred safety or relationship state; only explicit shields change resurfacing."},
+    {"transition_id": "S10", "name": "unblock", "expected": "Only the block overlay ends; grants, membership, rank, and Continue do not restore."},
+    {"transition_id": "S11", "name": "reconciliation", "expected": "New grants use a new epoch; old compositions do not silently reactivate."},
+    {"transition_id": "S12", "name": "account_deletion", "expected": "Deleted-user product access and grants end; other independently owned state remains."},
+    {"transition_id": "S13", "name": "verified_death", "expected": "No audience expansion, synthetic speech, inferred wishes, or proactive revival without explicit directive."},
+    {"transition_id": "S14", "name": "managed_export_or_screenshot", "expected": "Managed exports preserve dependency identity; the product does not promise revocation of external screenshots."}
+  ],
+  "state_axes": {
+    "entrance_posture": ["stable", "nested", "contextual", "search_only", "pinned"],
+    "scope": ["combined", "mine", "together"],
+    "lifecycle": ["prospective", "live", "recent", "historical", "dormant"],
+    "evidence_density": ["sparse", "standard", "rich"],
+    "account_posture": ["new", "quiet_mature", "active_rich"],
+    "lens": ["periods", "timeline", "map", "sources"],
+    "truth": ["planned", "occurred", "unresolved", "corrected", "deleted", "generated"],
+    "connectivity": ["online", "offline_authorized", "stale", "partial", "failed"],
+    "location": ["available", "denied", "unavailable"],
+    "compatibility": ["current", "unknown_section", "unknown_treatment", "old_schema"],
+    "accessibility": ["default", "width_320_text_150", "screen_reader", "reduce_motion"]
+  },
+  "visual_frames": [
+    {"frame_id": "I-01", "kind": "full_scroll_index", "fixture_ref": "IDX-RICH-COMBINED", "required_variants": 3},
+    {"frame_id": "I-02", "kind": "full_scroll_index", "fixture_ref": "IDX-RICH-MINE", "required_variants": 1},
+    {"frame_id": "I-03", "kind": "full_scroll_index", "fixture_ref": "IDX-RICH-TOGETHER", "required_variants": 1},
+    {"frame_id": "I-04", "kind": "full_scroll_index", "fixture_ref": "IDX-QUIET-MATURE", "required_variants": 1},
+    {"frame_id": "I-05", "kind": "full_scroll_index", "fixture_ref": "IDX-SPARSE-NEW", "required_variants": 1},
+    {"frame_id": "I-06", "kind": "search_and_context", "fixture_ref": "IDX-SEARCH-L03", "required_variants": 1},
+    {"frame_id": "E-01", "kind": "full_episode", "fixture_ref": "EP-L01-RICH", "required_variants": 3},
+    {"frame_id": "E-02", "kind": "map_lens", "fixture_ref": "EP-L01-RICH", "required_variants": 1},
+    {"frame_id": "E-03", "kind": "sources_lens", "fixture_ref": "EP-L01-RICH", "required_variants": 1},
+    {"frame_id": "E-04", "kind": "full_episode_prospective", "fixture_ref": "EP-L02-LIFECYCLE", "required_variants": 1},
+    {"frame_id": "E-05", "kind": "full_episode_recent", "fixture_ref": "EP-L02-LIFECYCLE", "required_variants": 3},
+    {"frame_id": "E-06", "kind": "social_mutation", "fixture_ref": "EP-L02-LIFECYCLE", "required_variants": 1},
+    {"frame_id": "E-07", "kind": "full_episode_longitudinal", "fixture_ref": "EP-L06-LONGITUDINAL", "required_variants": 3},
+    {"frame_id": "E-08", "kind": "places_handoff_and_return", "fixture_ref": "EP-L06-LONGITUDINAL", "required_variants": 1}
+  ],
+  "global_invariants": [
+    "All six worlds coexist in the complete product world.",
+    "Only L01 rich, L02, and L06 supported recurrence are stable full episode doors in round one.",
+    "L03 remains not-lived, L04 remains derived, and L05 remains addressed and revocable.",
+    "Combined, Mine, and Together recompile one identity graph; they do not copy owners.",
+    "Every material generated claim retains claim-local source roles.",
+    "Every rich visual treatment has a complete ordered accessible alternative.",
+    "Continue carries context and previews consequence; it does not create state without authorization.",
+    "Quiet and sparse states deliver retrieval and truth without asking for maintenance.",
+    "The index and episode renderers preserve semantic identity across Timeline, Map, Sources, Home, Chat, and Places.",
+    "A fallback may reduce richness but never authority."
+  ]
+}

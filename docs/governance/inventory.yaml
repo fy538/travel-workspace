@@ -20,6 +20,76 @@ rules:
   - glob: "docs/working/functional-implementation-code-review-2026-09-21.md"
     disposition: keep_reference
     rationale: "Dated cross-repository review findings and evidence boundaries for the September 20–21 functional implementation; existing roadmaps retain execution authority."
+  - glob: "docs/working/content-to-native-quality-consolidation-plan-2026-09-15.md"
+    disposition: keep_reference
+    rationale: "Bounded cross-repository implementation plan for content agreements, native pattern consolidation and measurable current-app polish; existing program, producer and surface owners retain authority."
+  - glob: "docs/working/claude-design-chat-rulings-and-handoffs-2026-09-14.md"
+    disposition: keep_reference
+    rationale: "Dated Chat design rulings and handoffs; selected visual direction does not replace Chat implementation or authority contracts."
+  - glob: "docs/working/claude-design-multiplayer-threads-life-continuity-handoff-2026-09-22.md"
+    disposition: keep_reference
+    rationale: "Bounded founder direction for the Multiplayer Shapes exploration and Life continuity; proposals are not runtime or storage decisions."
+  - glob: "docs/working/design-gen/multiplayer/README.md"
+    disposition: keep_reference
+    rationale: "Reproduction notes for exploratory Multiplayer Shapes design generators, not product or native authority."
+  - glob: "docs/working/design-gen/social/README.md"
+    disposition: keep_reference
+    rationale: "Reproduction notes for recovered Social Experience board generators, not product or native authority."
+  - glob: "docs/working/multiplayer-corpus-digest-2026-09-20/*.md"
+    disposition: keep_reference
+    rationale: "Dated multiplayer source digests and synthesis supporting design exploration; cited originals retain authority."
+  - glob: "docs/working/multiplayer-shapes-exploration-response-2026-09-21.md"
+    disposition: keep_reference
+    rationale: "Dated handback for exploratory Multiplayer Shapes boards; no design choice or implementation is adopted by this response."
+  - glob: "docs/working/multiplayer-threads-life-continuity-response-2026-09-22.md"
+    disposition: keep_reference
+    rationale: "Dated design handback for personal and shared thread continuity; native and policy decisions remain with their owners."
+  - glob: "docs/working/practical-judgment-producer-acceptance-brief-2026-09-09.md"
+    disposition: keep_reference
+    rationale: "Bounded practical-judgment producer and acceptance proposal; current Places and Chat owner contracts retain authority."
+  - glob: "docs/working/vesper-social-copy-companion-2026-09-21.md"
+    disposition: keep_reference
+    rationale: "Dated proposed social copy companion; Voice and Editorial canons remain authoritative."
+
+  - glob: "docs/working/claude-design-instrument-language-stage-2-handoff-2026-09-13.md"
+    disposition: keep_reference
+    rationale: "Bounded shared-workbench instrument-language research and design/prototype handoff; preserves selected product compositions and separates proposed visual rules from runtime and native authority."
+
+  - glob: "docs/working/claude-design-chat-new-project-exploration-handoff-2026-09-12.md"
+    disposition: keep_reference
+    rationale: "Founder-requested new visual-first Chat project; four-week strategy synthesis informs open root/conversation exploration without changing runtime authority."
+
+  - glob: "docs/working/claude-design-you-trust-new-project-exploration-handoff-2026-09-12.md"
+    disposition: keep_reference
+    rationale: "Founder-requested new personal identity and trust exploration; compares visual and information-architecture directions while preserving Life, Social and policy ownership."
+
+  - glob: "docs/working/claude-design-onboarding-reconciliation-handoff-2026-09-12.md"
+    disposition: keep_reference
+    rationale: "Current bounded reconciliation of the existing onboarding experiments with four-root entry, Chat and effective authentication; the dated August experiment remains archived evidence, not service authority."
+
+  - glob: "docs/working/claude-design-you-trust-reconciliation-handoff-2026-09-12.md"
+    disposition: keep_reference
+    rationale: "Archived-in-place earlier September 12 reconciliation proposal, superseded by the founder-requested new visual-first project; useful bounded control coverage remains historical evidence."
+
+  - glob: "docs/working/vesper-shared-design-language-consolidation-2026-09-10.md"
+    disposition: keep_reference
+    rationale: "Bounded six-project visual-language extraction and Claude Design library/native mapping plan; observed evidence and proposed standards remain separate from existing design authorities."
+
+  - glob: "docs/working/prepared-continuation-decision-proposal-2026-09-09.md"
+    disposition: keep_reference
+    rationale: "Resolved design proposal retained as evidence for the accepted September 9 bounded prepared-message exception; not an independent current decision or runtime authority."
+
+  - glob: "docs/working/vesper-five-project-design-consolidation-2026-09-08.md"
+    disposition: keep_reference
+    rationale: "Cross-project design investigation and proposed consolidation of Home, Places, Social, Life and Plans; preserves current versus proposed status and existing owner authorities without restarting integration."
+
+  - glob: "docs/working/vesper-home-design-review-2026-09-08.md"
+    disposition: keep_reference
+    rationale: "Founder-requested independent Home design critique and proposed revision handoff; existing product and surface authorities remain unchanged."
+
+  - glob: "docs/working/vesper-places-design-review-2026-09-08.md"
+    disposition: keep_reference
+    rationale: "Founder-requested independent Places design critique and proposed revision handoff; existing product and surface authorities remain unchanged."
 
   - glob: "docs/working/claude-design-home-artifact-led-visual-value-handoff-2026-09-05.md"
     disposition: keep_reference
@@ -389,7 +459,7 @@ overrides:
 
   docs/working/claude-design-integration-2026-09-04/04-chat.md:
     disposition: keep_reference
-    rationale: Bounded Claude Chat integration brief preserving the root while exploring effortless expression and current-state access.
+    rationale: Archived-in-place bounded Chat integration brief; the September 12 new-project visual exploration supersedes its preserve-the-root assignment while behavior donors remain historical evidence.
 
   docs/working/claude-design-integration-2026-09-04/05-entity-objects.md:
     disposition: keep_reference
@@ -1009,7 +1079,7 @@ overrides:
 
   docs/working/onboarding-claude-design-experiment-brief-2026-08-12.md:
     disposition: keep_reference
-    rationale: Expiring Claude Design experiment brief for post-pivot onboarding; design canon, surface contracts, implementation source, and accepted decision records retain authority.
+    rationale: Archived-in-place August onboarding experiments; the September 12 reconciliation handoff owns new assignments while surface contracts and accepted decisions retain authority.
 
   docs/working/in-chat-artifact-system-inventory-and-sota-research-2026-08-12.md:
     disposition: keep_reference

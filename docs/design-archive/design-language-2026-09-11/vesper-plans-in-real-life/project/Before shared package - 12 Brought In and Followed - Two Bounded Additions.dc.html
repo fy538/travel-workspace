@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <meta name="design_doc_mode" content="canvas" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" />
+        <link rel="stylesheet" href="./kit/plans.before-vdl.css" />
+        <style>
+          .x { min-height: 4700px; }
+          .jlab { position: absolute; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 1.2px; color: var(--planning-deep); }
+          .mismatch { grid-column: 2 / span 2; margin-top: 10px; border-top: 1px solid var(--hair-thin); padding-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+          .mismatch .mk { font-family: var(--mono); font-size: calc(10px * var(--ts)); font-weight: 700; letter-spacing: 1px; color: var(--oxblood); text-transform: uppercase; }
+          .mismatch .mb { font-size: calc(13px * var(--ts)); line-height: calc(18px * var(--ts)); color: var(--ink-2); }
+          .chat .rows .row { min-height: 0; }
+          .ves .fixlabel, .sup .fixlabel { display: inline-block; vertical-align: middle; }
+        </style>
+      </helmet>
+
+      <div class="board-h" style="width: 1400px;">
+        <div class="warn">BEFORE SHARED PACKAGE · FROZEN ORIGINAL KEPT AS THE BEFORE REFERENCE, 2026-09-11 · THE CURRENT BOARD IS “12 Brought In and Followed” · EXPLORATION · NOT CANON · NOT PRODUCTION · SEPTEMBER 8 ASSIGNMENT · TWO BOUNDED ADDITIONS · ALL PEOPLE, PLACES, TIMES, PRICES, SCHEDULES AND AVAILABILITY ARE SYNTHETIC FIXTURES · CONTINUING-HELP SEMANTICS ARE PROPOSED · NOTHING IS WIRED</div>
+        <div class="id">12 · BROUGHT IN AND FOLLOWED · AN ARRANGEMENT MADE ELSEWHERE (X1–X4b) · BOUNDED CONTINUING HELP (W1–W5) · CURRENT, CAPTURED, CHANGED (C1–C2) · 2026-09-08 · SEPT 9 PRACTICAL COMPLETENESS</div>
+        <h1>Help with an arrangement someone else made, and help that continues only as far as it was asked to.</h1>
+        <div class="lede">Two encounters the reduced family had not drawn. <b>Brought in:</b> a wedding schedule arrives as a PDF; Vesper reads it back in the itinerary’s own rows with the couple as its source, names the one commitment of Nora’s it collides with, and answers two different requests differently — “help me choose” with a judgment, “I’ve chosen; help with the checks” with three checks — without rebuilding the schedule or touching its transactions. <b>Followed:</b> a current check that says it is not watching, then following asked for in words: one card states subject, source, window, what she will hear and how it ends; the result, a loss of coverage, silence and the return are each one sentence on the row it concerns. Everything continuing-help is <b>proposed</b> against consumer strategy §3, not adopted by drawing. The seven sentences and the reduced family are unchanged.</div>
+      </div>
+
+      <div class="jlab" style="left: 40px; top: 310px;">AN ARRANGEMENT MADE ELSEWHERE · READ, NOT REBUILT · CHOOSE vs CHECK · ONE COMPETING COMMITMENT</div>
+      <div class="jlab" style="left: 40px; top: 3170px;">CURRENT · CAPTURED · CHANGED · WHAT THE PLAN SUPPLIES TO HOME 08c AND LIFE P3.4/P3.5</div>
+      <div class="jlab" style="left: 40px; top: 1620px;">BOUNDED CONTINUING HELP · A CURRENT CHECK vs FOLLOWING ASKED FOR IN WORDS · <span class="tag pp" style="margin-left:8px;">PROPOSED SEMANTICS</span></div>
+
+      <div class="frame" style="left: 40px; top: 340px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">X1</span>BROUGHT IN · THE COUPLE’S SCHEDULE, READ, NOT REBUILT <span class="s">what Vesper understands · what stays theirs · the one thing of yours it touches</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="X1 Brought in">
+            <div class="sb"><span>9:41</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div></div><div class="capsule"><div class="slot on">CHAT</div><div class="slot">HOME</div></div></div>
+              <div class="chat">
+                <div class="you">Jess and Omar’s wedding schedule — can you look at it? <span style="opacity:.75;">📎 Wedding weekend.pdf</span></div>
+                <div class="ves"><div class="lead">Saturday October 10 in Philadelphia: ceremony at 3:30, reception six to eleven. Welcome drinks Friday at seven.</div></div>
+                <div class="rows">
+                  <div class="row first"><div class="time loose word">Fri</div><div><div class="ttl opt">Welcome drinks · Fishtown, 7:00</div><div class="sup">Optional · <span class="src">from their schedule</span></div></div><div></div></div>
+                  <div class="row"><div class="time exact">3:30</div><div><div class="ttl">Ceremony · Old Pine Street</div><div class="sup">Saturday · <span class="src">from their schedule</span></div></div><div></div></div>
+                  <div class="row"><div class="time exact">6:00</div><div><div class="ttl">Reception · The Bourse</div><div class="sup">Until eleven · <span class="src">from their schedule</span></div></div><div></div></div>
+                </div>
+                <div class="ves">Two things of yours touch it: <b>dinner with Maya and Sam at eight that Saturday</b>, which the reception overlaps, and nothing on Friday. From Penn, the 12:05 gets you to 30th Street at 1:25 with time to change <span class="fixlabel">TIMES · FIXTURE</span>. The registry and hotel block are theirs — links are in the PDF.</div>
+                <div class="chips"><div class="chip gold">Keep it in my Saturday</div><div class="chip quiet">Just the answer</div></div>
+              </div>
+              <div class="composer"><div class="in">Should I go Friday too?</div><div class="send">↑</div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">HELP WITH AN ARRANGEMENT SOMEONE ELSE MADE</div>
+          <p>Nora attaches the couple’s PDF and asks. The answer is the schedule read back in the itinerary’s rows, every row attributed <i>from their schedule</i> — evidence, not Vesper’s arrangement — then the immediate benefit: which of <b>her</b> things it touches (the dinner at eight, nothing Friday) and the practical fact she would look up next (the train). The registry and hotel block are named as theirs and left in the PDF; nothing is reconstructed, booked or claimed. “Keep it in my Saturday” keeps the schedule <i>beside</i> her day (X4); “Just the answer” keeps nothing.</p>
+          <p><b>Owner:</b> the schedule is external evidence (C&amp;C §3.9 Bring/T1) with Jess and Omar as its source; the dinner is Nora’s Plan; the train is a possibility, not a commitment. <b>Status:</b> illustrated. <b>Engineering:</b> directed import as evidence with a stable external source identity (07 Q24); no parsing claim is made — the rows are what a person could read from the PDF.</p>
+          <div class="fx">Sept 8 §0 must-resolve 1 · handoff map §9.5 · reuses 02 A1 chat-with-rows · Plans 06 overlap not rediscovered</div>
+        </div>
+      </div>
+      <div class="frame" style="left: 500px; top: 340px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">X2</span>“SHOULD I GO FRIDAY TOO?” · HELP ME CHOOSE <span class="s">a recommendation because she asked · the same facts, her stated week</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="X2 Help me choose">
+            <div class="sb"><span>9:41</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div></div><div class="capsule"><div class="slot on">CHAT</div><div class="slot">HOME</div></div></div>
+              <div class="chat">
+                <div class="you">Should I go Friday too?</div>
+                <div class="ves">
+                  <div class="lead">Friday is the evening you’d actually talk to them; Saturday is the ceremony.</div>
+                  Friday means the 4:35 out of Penn and a night in Philadelphia — the hotel block in their PDF is $189 and holds until the 25th. Saturday only means the 12:05 out and either the 10:40 home — leaving the reception around 10:15 for a ten-minute cab — or the 11:45, in at 1:15, if you want to stay to the end. You said work is heavy that week; Friday costs the afternoon, not the day. <span class="fixlabel">FIXTURE</span>
+                </div>
+                <div class="chips"><div class="chip">Saturday only</div><div class="chip quiet">Both days</div></div>
+              </div>
+              <div class="composer"><div class="in">Saturday only — what do I need to sort out?</div><div class="send">↑</div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">JUDGMENT WHEN ASKED, IN ONE SENTENCE</div>
+          <p>She asked, so Vesper answers with a judgment first (sentence 6: recommends when asked): Friday is the evening for the couple; Saturday is the ceremony. Then the facts each choice costs — the 4:35 and a night away against the 12:05 and home by midnight — and one thing she said this week (work is heavy) used within this exchange, not stored. Two direct chips because the choice is finite (sentence 2). No third option is invented, and nothing about the hotel block is booked or held.</p>
+          <p><b>Contrast with X3:</b> the same facts under a different request produce a different kind of help — a recommendation here, a checklist there. That is the assignment’s “adapt the kind of assistance”, not a denser page. <b>Status:</b> illustrated; times and prices are fixtures.</p>
+          <div class="fx">handoff map §9.5 “help me choose” · sentence 6 (when asked) · sentence 2 (finite choice)</div>
+        </div>
+      </div>
+      <div class="frame" style="left: 960px; top: 340px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">X3</span>“SATURDAY ONLY — WHAT DO I NEED TO SORT OUT?” · THE PRACTICAL CHECKS <span class="s">one thing hers to move · one not booked · one the schedule doesn’t say</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="X3 Chosen, the checks">
+            <div class="sb"><span>9:41</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div></div><div class="capsule"><div class="slot on">CHAT</div><div class="slot">HOME</div></div></div>
+              <div class="chat">
+                <div class="you">Saturday only — what do I need to sort out?</div>
+                <div class="ves"><div class="lead">Three things, one of them yours to move.</div></div>
+                <div class="rows">
+                  <div class="row first"><div class="time loose word">move</div><div><div class="ttl">Dinner with Maya and Sam, 8:00</div><div class="sup">The Georgian room · <span class="src">reserved · GR-3104 · 3</span> · overlaps the reception — yours to move or cancel</div></div><div></div></div>
+                  <div class="row"><div class="time loose word">train</div><div><div class="ttl opt">12:05 out · back on the 10:40 or the 11:45</div><div class="sup">The 10:40 means leaving the Bourse by 10:15 (cab, ten minutes); the 11:45 gets you in at 1:15 · nothing booked · about $98 return · <span class="src">Amtrak</span> <span class="fixlabel">FIXTURE</span></div></div><div></div></div>
+                  <div class="row"><div class="time loose word">unsaid</div><div><div class="ttl opt">Dress code isn’t in the schedule</div><div class="sup">Ask Jess, or assume cocktail — Old Pine is a church</div></div><div></div></div>
+                </div>
+                <div class="ves">The reply card is due the 25th; it’s in the PDF, not here.</div>
+              </div>
+              <div class="composer"><div class="in">Message</div><div class="send">↑</div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">I HAVE CHOSEN; HELP WITH THE CHECKS</div>
+          <p>Three rows, each a check with its status in the gutter word: <b>move</b> — the competing commitment she owns (the reservation, with its number and a door to the confirmation), named as hers to move or cancel; <b>train</b> — a possibility with a price and its external source, explicitly not booked; <b>unsaid</b> — what the schedule does not settle, with the sensible reading and the person to ask. The reply card is pointed at, not absorbed. A useful external link is offered once, inside the fact it belongs to — the assessment is the rows.</p>
+          <p>If she says “move dinner to the 17th” the ordinary change applies (sentence 3, D3); if she says “tell Maya and Sam I can’t do the 10th” the outgoing card appears with her words (J3a). Neither is pre-empted with a button. <b>Status:</b> illustrated.</p>
+          <div class="fx">handoff map §9.5 “I have chosen” · sentences 2, 3, 4 · no booking, no rebuild</div>
+        </div>
+      </div>
+      <div class="frame" style="left: 1420px; top: 340px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">X4</span>KEPT BESIDE HER DAY · THEIR SCHEDULE, HER COMMITMENT, ONE OVERLAP <span class="s">the external rows attributed · the competing commitment flagged once, in oxblood</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="X4 In her Saturday">
+            <div class="sb"><span>9:41</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av c">MA</div><div class="av b">SA</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Saturday · Oct 10 · Philadelphia</div>
+              <div class="titleRow"><div class="dayTitle">Jess and Omar’s wedding</div></div>
+              <div class="thesis">Their schedule, kept beside your day. The dinner at eight is yours to move; home on the 10:40 means leaving by 10:15.</div>
+              <div class="gap-l"></div>
+              <div class="rows">
+                <div class="row first"><div class="time">12:05</div><div><div class="ttl opt">Penn Station to 30th Street</div><div class="sup">Not booked · <span class="src">Amtrak</span></div></div><div class="more">···</div></div>
+                <div class="row"><div class="time exact">3:30</div><div><div class="ttl">Ceremony · Old Pine Street</div><div class="sup">412 Pine St · <span class="src">from their schedule</span></div></div><div class="more">···</div></div>
+                <div class="row"><div class="time exact">6:00</div><div><div class="ttl">Reception · The Bourse</div><div class="sup">Until eleven · <span class="src">from their schedule</span></div></div><div class="more">···</div></div>
+                <div class="row"><div class="time exact">8:00</div><div><div class="ttl">Dinner at the Georgian room</div><div class="sup">Court St · <span class="who">you, Maya, Sam</span> · <span class="src">reserved · GR-3104 · 3</span></div>
+                  <div class="mismatch"><div class="mk">Overlaps the reception</div><div class="mb">Yours to move or cancel; Jess and Omar’s schedule isn’t yours to change.</div></div>
+                </div><div class="more">···</div></div>
+                <div class="row"><div class="time">10:40</div><div><div class="ttl opt">30th Street to Penn</div><div class="sup">Leave the reception by 10:15 · or the 11:45, in at 1:15 · not booked · <span class="src">Amtrak</span></div></div><div class="more">···</div></div>
+              </div>
+              <div class="pillwrap"><div class="pill">Ask Vesper<span class="mic">MIC</span></div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">ONE DAY, TWO OWNERS, NO SWIMLANES · THE WHOLE DAY FITS</div>
+          <p><b>Sept 9 correction:</b> the reception runs to eleven and the 10:40 home leaves before it ends, so the return is now a row of its own with what it requires (leave by 10:15, a ten-minute cab) and the supported alternative (the 11:45, in at 1:15) — carried identically through X2’s judgment, X3’s checks and this kept day, so the person never rediscovers it. Neither train is booked. The wedding’s rows carry <i>from their schedule</i> as their source and are not hers to change — the thesis says so once. Her dinner sits in the same sequence as her own row, and the one genuine conflict is the one oxblood line, on the row she can act on. The train row is a planned possibility (regular mono, “not booked”), never a stub. Plans 06 E1/E2 already handle two people’s overlapping horizons; this is the narrower case the map names — one person’s incompatible obligations — and it needs no new structure.</p>
+          <p><b>Status:</b> illustrated; X4b is the same page at 135% text (long titles wrap, the mismatch line stays one block).</p>
+          <div class="fx">handoff map §9.5 competing commitment · 05 D4 mismatch idiom · sentence 4</div>
+        </div>
+      </div>
+      <div class="frame" style="left: 1880px; top: 340px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">X4b</span>THE SAME PAGE AT 135% TEXT <span class="s">affected larger-text state, inspected</span></div>
+        <div class="phw">
+          <div class="ph ts135" data-screen-label="X4b In her Saturday · 135%">
+            <div class="sb"><span>9:41</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av c">MA</div><div class="av b">SA</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Saturday · Oct 10 · Philadelphia</div>
+              <div class="titleRow"><div class="dayTitle">Jess and Omar’s wedding</div></div>
+              <div class="thesis">Their schedule, kept beside your day. The dinner at eight is yours to move; home on the 10:40 means leaving by 10:15.</div>
+              <div class="gap-l"></div>
+              <div class="rows">
+                <div class="row first"><div class="time">12:05</div><div><div class="ttl opt">Penn Station to 30th Street</div><div class="sup">Not booked · <span class="src">Amtrak</span></div></div><div class="more">···</div></div>
+                <div class="row"><div class="time exact">3:30</div><div><div class="ttl">Ceremony · Old Pine Street</div><div class="sup">412 Pine St · <span class="src">from their schedule</span></div></div><div class="more">···</div></div>
+                <div class="row"><div class="time exact">6:00</div><div><div class="ttl">Reception · The Bourse</div><div class="sup">Until eleven · <span class="src">from their schedule</span></div></div><div class="more">···</div></div>
+                <div class="row"><div class="time exact">8:00</div><div><div class="ttl">Dinner at the Georgian room</div><div class="sup">Court St · <span class="who">you, Maya, Sam</span> · <span class="src">reserved · GR-3104 · 3</span></div>
+                  <div class="mismatch"><div class="mk">Overlaps the reception</div><div class="mb">Yours to move or cancel; Jess and Omar’s schedule isn’t yours to change.</div></div>
+                </div><div class="more">···</div></div>
+                <div class="row"><div class="time">10:40</div><div><div class="ttl opt">30th Street to Penn</div><div class="sup">Leave the reception by 10:15 · or the 11:45, in at 1:15 · not booked · <span class="src">Amtrak</span></div></div><div class="more">···</div></div>
+              </div>
+              <div class="pillwrap"><div class="pill">Ask Vesper<span class="mic">MIC</span></div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">LARGE TEXT</div>
+          <p>Row titles wrap to two lines within the 60pt row floor; the gutter scales with the text; the oxblood mismatch block keeps its single-block form. No truncation.</p>
+          <div class="fx">assignment handback · larger-text state inspected · 03 B7 idiom</div>
+        </div>
+      </div>
+      <div class="frame" style="left: 40px; top: 1650px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">W1</span>A CURRENT CHECK · TRUE A MINUTE AGO, NOT WATCHED <span class="s">the immediate help-only alternative · the field shows what following would sound like</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="W1 A current check">
+            <div class="sb"><span>9:41</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av c">MA</div><div class="av b">SA</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Saturday · Sep 19</div>
+              <div class="titleRow"><div class="dayTitle">An afternoon out, then dinner</div></div>
+              <div class="thesis">Bookstore at three, the café if it rains, dinner at eight with Maya. Sam can’t do eight.</div>
+            </div>
+            <div class="scrim"></div>
+            <div class="sheet">
+              <div class="hd"></div>
+              <div class="close" aria-label="Close">✕</div>
+              <div class="priv"><span class="p">Private · only you and Vesper</span><span>Dinner</span></div>
+              <div class="kept">“Is there a table at 8 on Saturday?”</div>
+              <div class="ans"><b>Not for three, right now.</b> Their site shows 7:00 — yours, GR-2291 — and an 8:15 for two. That was true a minute ago; it isn’t being watched.</div>
+              <div class="chips"><div class="chip out">Their site</div></div>
+              <div class="field"><span class="txt">Ask, or <q>tell me if one opens up</q></span><span class="mic">MIC</span><span class="go">↑</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="ann">
+          <div class="k">HELP ME NOW — AND SAY WHAT THAT IS</div>
+          <p>The ordinary question gets the grounded answer: what their site shows right now, in facts, with the one external door. The last clause makes the boundary plain in the person’s terms — true a minute ago, not being watched — so a timestamp never implies a promise (map §9.4). The field’s example reveals the capability that would otherwise be invisible: following is something you ask for in words, never something Keep or browsing switches on (consumer strategy §3).</p>
+          <p><b>Status:</b> illustrated. Nothing here is a mandate.</p>
+          <div class="fx">must-resolve 2 · consumer strategy §3 “help me now” · sentence 2 discoverability (selective)</div>
+        </div>
+      </div>
+      <div class="frame" style="left: 500px; top: 1650px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">W2</span><span class="tag pp">PROPOSED</span> FOLLOWING ACCEPTED · TARGET, END, THE ONE QUESTION, WHAT STAYS <span class="s">the exact 8:00 · ends when Saturday begins · details behind a door</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="W2 Following accepted">
+            <div class="sb"><span>9:41</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av c">MA</div><div class="av b">SA</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Wednesday · Sep 16 · Saturday’s page</div>
+              <div class="titleRow"><div class="dayTitle">An afternoon out, then dinner</div></div>
+              <div class="thesis">Bookstore at three, the café if it rains, dinner at eight with Maya. Sam can’t do eight.</div>
+            </div>
+            <div class="scrim"></div>
+            <div class="sheet">
+              <div class="hd"></div>
+              <div class="close" aria-label="Close">✕</div>
+              <div class="priv"><span class="p">Private · only you and Vesper</span><span>Dinner</span></div>
+              <div class="kept">“Tell me if an 8:00 table for three opens up before Saturday”</div>
+              <div class="qp pv" style="margin-top:2px;">
+                <div class="k">Following · until Saturday begins — Friday midnight, their time</div>
+                <div class="t">A table for three at 8:00, the Georgian room</div>
+                <div class="b"><b>Sam can’t do eight — is it still three?</b> I’ll keep to three unless you say. You’ll hear once if an 8:00 opens. Your 7:00 stays exactly as it is.</div>
+                <div class="chips" style="margin-top:6px;"><div class="chip quiet">Where I’m looking →</div><div class="chip quiet">Stop</div></div>
+              </div>
+              <div class="field"><span class="txt">Follow up, or change something…</span><span class="mic">MIC</span><span class="go">↑</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="ann">
+          <div class="k">THE TARGET, THE END, THE QUESTION — DETAILS ONE TAP AWAY</div>
+          <p><b>Sept 10 corrections.</b> <i>Scope:</i> “before Saturday” ends when Saturday begins — Friday midnight in the venue’s own timezone — not Saturday afternoon, and the acceptance now happens on the Wednesday, inside its own window. <i>Target:</i> the exact 8:00 she asked for; no tolerance is invented, so no near table can be treated as fulfilling it. <i>Reading burden:</i> the card leads with the target, the actual end, the one question that matters and the single thing that stays unchanged; the source, the hear-once rule, what happens on failure and how to stop are one tap away under “Where I’m looking”, not a paragraph of terms — the responsibility is stated, not hidden. The field no longer suggests “only until Friday”: the person is not asked to repair a scope that should have been right. Nothing else on the plan changes, and the resting page gets no live-looking row — on return, the dinner row’s supporting line says “following a table at 8 · until Sat 5:00” as a door to this card, so she can tell help is active without reconstructing the conversation.</p>
+          <p><b>Sept 9, second pass — a found table is not a working evening.</b> She is following a table for three at eight while Sam has just said he cannot do eight, so “three” may no longer describe the gathering. The card asks that in one line and then does exactly what she asked: it keeps looking for three unless she says otherwise. It does not shrink the party, infer a replacement guest, change anyone’s participation or quietly redefine the request — and it does not treat finding any table as the evening working. The four states stay distinct: a current check (W1), an accepted following (W2), a loss of capability (W4) and an ending (W5); a drawn receipt activates no service terms.</p>
+          <p><b>PROPOSED semantics (need a decision; consumer strategy §3 “follow this for me”):</b> a following has a subject, a supported source, a window, a treatment (hear once), and ends by result, by coverage loss, by expiry or by Stop. It is never implied by Keep, browsing, payment or interest; it executes nothing with a provider; it is not a scheduler, a dashboard or a billing surface. Appendix 91 W2’s conditional instruction is a different, unadopted thing and is not revived here.</p>
+          <div class="fx">Sept 10 · venue-local cutoff · exact target · details inspectable · the service terms themselves remain PROPOSED</div>
+        </div>
+      </div>
+      <div class="frame" style="left: 960px; top: 1650px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">W3</span><span class="tag pp">PROPOSED</span> SHE ASKS ON THURSDAY · A NEAR TABLE IS VISIBLE NOW <span class="s">a current check, not a notification · the 8:00 following is untouched</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="W3 She asks; a near table is visible now">
+            <div class="sb"><span>9:41</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av c">MA</div><div class="av b">SA</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Thursday · Sep 17 · Saturday’s page</div>
+              <div class="titleRow"><div class="dayTitle">An afternoon out, then dinner</div></div>
+              <div class="thesis">Bookstore at three, the café if it rains, dinner at eight with Maya. Sam can’t do eight.</div>
+            </div>
+            <div class="scrim"></div>
+            <div class="sheet">
+              <div class="hd"></div>
+              <div class="close" aria-label="Close">✕</div>
+              <div class="priv"><span class="p">Private · only you and Vesper</span><span>Dinner</span></div>
+              <div class="kept">“Anything at eight yet?”</div>
+              <div class="ans"><b>No eight.</b> Their site shows an 8:15 for three right now, and your 7:00. That is what I can see this minute; I’m still watching for an 8:00 until Friday midnight.</div>
+              <div class="chips"><div class="chip out">Their site</div></div>
+              <div class="field"><span class="txt">Follow up, or change something…</span><span class="mic">MIC</span><span class="go">↑</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="ann">
+          <div class="k">A CURRENT CHECK MAY MENTION WHAT IT CAN SEE</div>
+          <p><b>Sept 10 correction.</b> A near table is no longer pushed to her as a result of the following. She asked at 2:10 on the Thursday, and a current check answers with what the site shows this minute: no eight, an 8:15, and her 7:00 — three times in one reading. Because she invoked it, mentioning the 8:15 is ordinary current help; it is not exact fulfilment, not a notification, and it neither ends the following nor changes dinner. Notifying her of a near table would have required a tolerance she never gave, so none is invented. The following continues, unchanged, to Friday midnight.</p>
+          <p><b>Sept 9 (first pass).</b> Thursday 2:10 pm: an 8:15 for three opened. She asked for 8:00, so this is a useful alternative, not fulfillment: the gold receipt states the sourced fact with its time and a door, the sentence says it is not what she asked for, and the following continues to its window. W2’s readback set the terms in her words — a near table is mentioned without stopping; only an 8:00, or her saying a near one is fine, ends it. If she says “8:15 is fine”, the following ends and the ordinary change and message follow (D3’s family). Booking stays hers, on their site; no provider execution.</p>
+          <p><b>Status:</b> illustrated; PROPOSED with W2.</p>
+          <div class="fx">Sept 10 · a current check, not a notification · no invented tolerance · W1’s form reused</div>
+        </div>
+      </div>
+      <div class="frame" style="left: 1420px; top: 1650px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">W4</span><span class="tag pp">PROPOSED</span> ENDING A · COVERAGE LOST BEFORE THE WINDOW CLOSED <span class="s">the source stopped showing tables · one external door</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="W4 Coverage lost">
+            <div class="sb"><span>9:41</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av c">MA</div><div class="av b">SA</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Friday · Sep 18</div>
+              <div class="titleRow"><div class="dayTitle">An afternoon out, then dinner</div></div>
+              <div class="thesis">Saturday. Bookstore at three, the café if it rains, dinner at eight with Maya. Sam can’t do eight.</div>
+              <div class="gap"></div>
+              <div class="recent"><div class="receipt ink">I can’t see the Georgian room’s tables any more — their site stopped showing them at 9:40</div><div class="ago">9:40 AM</div></div>
+              <div class="rbody">Following stopped there, before Friday midnight. The 7:00 stands; calling them is the way to know.</div>
+              <div class="chips" style="margin-top:6px;"><div class="chip out">Call the Georgian room</div></div>
+              <div class="gap-l"></div>
+              <div class="chap" style="padding-top:0;"><div class="cl">Evening</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact">8:00</div><div><div class="ttl">Dinner at the Georgian room</div><div class="sup">Court St · <span class="who">you, Maya</span> · <span class="src">reserved 7:00 · 3 · from your confirmation</span></div></div><div class="more">···</div></div>
+              </div>
+              <div class="pillwrap"><div class="pill">Ask Vesper<span class="mic">MIC</span></div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">WHEN VESPER CAN NO LONGER SEE</div>
+          <p>Friday 9:40: their site stopped showing availability. Because she relied on the following, the loss is conveyed once, plainly, with the time — and with what remains true (the 7:00) and the one way to know now (call them). Following does not silently continue on a blind source, and it is not silently restarted; if their site comes back she can ask again in words.</p>
+          <p><b>Status:</b> illustrated; PROPOSED with W2. The engine’s capability loss is the live engine’s to detect (07 Q23).</p>
+          <div class="fx">must-resolve 2 · consumer strategy §3 “convey the limitation where reliance would be misleading” · ink receipt = non-event</div>
+        </div>
+      </div>
+      <div class="frame" style="left: 1880px; top: 1650px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">W5</span><span class="tag pp">PROPOSED</span> ENDING B · THE FULL WINDOW EXPIRED IN SILENCE <span class="s">nothing opened · checked through Friday midnight · the row records it</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="W5 Ended in silence · return">
+            <div class="sb"><span>9:41</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av c">MA</div><div class="av b">SA</div></div></div><div class="capsule"><div class="slot">MAP</div></div></div>
+              <div class="kick">Saturday · today</div>
+              <div class="titleRow"><div class="dayTitle">An afternoon out, then dinner</div></div>
+              <div class="thesis">Bookstore at three, the café if it rains, dinner at eight with Maya. Sam can’t do eight.</div>
+              <div class="gap"></div>
+              <div class="recent"><div class="receipt ink">Nothing opened at 8:00 — checked through Friday midnight, and that’s the end of it</div><div class="ago">5:00 PM</div></div>
+              <div class="gap-l"></div>
+              <div class="chap" style="padding-top:0;"><div class="cl">Evening</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact">8:00</div><div><div class="ttl">Dinner at the Georgian room</div><div class="sup">Court St · <span class="who">you, Maya</span> · <span class="src">reserved 7:00 · 3 · from your confirmation</span> · <span style="color:var(--mute);">was following a table at 8:00 · ended Friday midnight</span></div></div><div class="more">···</div></div>
+              </div>
+              <div class="pillwrap"><div class="pill">Ask Vesper<span class="mic">MIC</span></div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">MEANINGFUL SILENCE, THEN A CLEAR ENDING</div>
+          <p><b>W4 and W5 are alternative endings of the same following, not a sequence.</b> Here the window ran out: nothing opened at 8:00 through Friday midnight. Silence during the window meant nothing to say; the ending is said once, with the window it covered. On return the dinner row carries one muted clause — was following a table at 8:00, ended Friday midnight — and nothing else; no history panel, no “resume”. Asking again is a new following. <b>Had W4 happened instead</b>, this return would say when checking stopped (“I stopped being able to see their tables at 9:40 on Friday”) and would <i>not</i> claim that nothing opened through expiry, because after coverage is lost that is not known.</p>
+          <p><b>Status:</b> illustrated; PROPOSED with W2.</p>
+          <div class="fx">must-resolve 2 · meaningful silence · stop/expiry · return without reconstruction</div>
+        </div>
+      </div>
+      <div class="frame" style="left: 40px; top: 3200px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">C1</span>CURRENT · THE PLAN AFTER TODAY’S CHANGE <span class="s">the Life fixture (Sorrento, Aug 18) · the boat moved at 3:10 · the ticket as issued</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="C1 The current arrangement after a change">
+            <div class="sb"><span>9:41</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div></div><div class="capsule"><div class="slot">MAP</div><div class="slot">···</div></div></div>
+              <div class="kick">Sorrento · day three of thirteen · Wednesday Aug 18</div>
+              <div class="titleRow"><div class="dayTitle">Wednesday, August 18</div><div class="door">Details →</div></div>
+              <div class="thesis">A market morning, lunch by the harbour, and an open evening. Tomorrow’s boat moved to 12:40 this afternoon.</div>
+              <div class="gap"></div>
+              <div class="recent"><div class="receipt">The boat moved to 12:40 · <span class="src">the ferry’s notice</span></div><div class="ago">3:10 PM</div></div>
+              <div class="gap-l"></div>
+              <div class="chap" style="padding-top:0;"><div class="cl">Today</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time">10:15</div><div><div class="ttl">The market, the stairs</div><div class="sup">Until about 11:40 · <span class="src">four photographs</span></div></div><div class="more">···</div></div>
+                <div class="row"><div class="time">1:05</div><div><div class="ttl">Lunch · the counter by the harbour</div><div class="sup">Via Marina Grande</div></div><div class="more">···</div></div>
+                <div class="row"><div class="time loose word">eve</div><div><div class="ttl opt">Nothing after six</div><div class="sup">The evening is open · 31° by two, shade after</div></div><div class="more">···</div></div>
+              </div>
+              <div class="chap"><div class="cl">Tomorrow · Thursday</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time exact">12:40</div><div><div class="ttl">Boat to Capri</div><div class="sup">Alilauro · Marina Piccola · <span class="who">moved from 11:20 at 3:10 pm</span> · <span class="src">your ticket, as issued</span></div></div><div class="more">···</div></div>
+              </div>
+              <div class="pillwrap"><div class="pill">Ask Vesper<span class="mic">MIC</span></div></div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">THE PLAN IS CURRENT BY BEING CURRENT, NOT BY SAYING SO</div>
+          <p>Sept 9 item 3. The same day Home 08c and Life P3.4/P3.5 draw, seen from the arrangement that owns it. After the ferry’s 3:10 notice the Thursday row reads 12:40 with the change attributed in the people phrase (“moved from 11:20 at 3:10 pm”) and the ticket as its source; the thesis re-derives; one gold receipt states the changed fact with its time. No sentence says the plan is the authority — the dates, the changed fact and the source carry that. This is the destination every capture and card points to.</p>
+          <p><b>Owner:</b> the Plan (Plans leads readable arrangements). <b>Status:</b> illustrated; the ferry’s notice is a fixture (Life v0.2).</p>
+          <div class="fx">Sept 9 item 3 · Home 08c / Life P3.4 · sentences 1, 4 · no consumer-facing doctrine</div>
+        </div>
+      </div>
+      <div class="frame" style="left: 500px; top: 3200px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">C2</span>CAPTURED AND CHANGED · THE SENTENCES PLANS SUPPLIES TO HOME AND LIFE <span class="s">a card that reads the current fact with its time · a capture labeled by when it was read · one door each</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="C2 What Plans supplies to Home and Life">
+            <div class="sb"><span>9:41</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"></div><div class="capsule"><div class="slot">CHAT</div><div class="slot on">HOME</div></div></div>
+              <div class="kick">Home · Wednesday Aug 18 · 4:30 pm</div>
+              <div class="roottitle">Sorrento, day three.</div>
+              <div class="homecard">
+                <div class="k">Tomorrow · changed at 3:10</div>
+                <div class="t">The boat to Capri is now 12:40</div>
+                <div class="b">Moved from 11:20 by the ferry, this afternoon. Your ticket still reads as issued; the evening today is open.</div>
+                <div class="chips" style="margin-top:4px;"><div class="chip gold">Open Thursday</div></div>
+              </div>
+              <div class="section-k">Life · the day so far<div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time loose word">8:40</div><div><div class="ttl opt">Wednesday, as it stood this morning</div><div class="sup">Nothing after six · the boat tomorrow at 11:20 · <span class="who">a reading from 8:40</span></div></div><div class="more">···</div></div>
+                <div class="row"><div class="time loose word">since</div><div><div class="ttl opt">The boat moved to 12:40</div><div class="sup">3:10 pm · <span class="src">see Thursday</span></div></div><div class="more">···</div></div>
+              </div>
+              <div class="gap-l"></div>
+              <div class="quiet">Home and Life compose their own pages; these are the sentences the Plan gives them.</div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">CURRENT, CAPTURED, CHANGED — IN DATES AND FACTS, NOT DOCTRINE</div>
+          <p><b>Home’s card</b> reads the current fact (“now 12:40”), when it changed (3:10), who changed it (the ferry), what is still true (the ticket as issued, the open evening) and one door to the day — never the 8:40 reading, and never a “checked” timestamp that implies a watch. <b>Life’s capture</b> keeps this morning’s reading as a reading, labeled by its time in the gutter (“8:40”), with the change since as its own row and a door to Thursday. Ask from either place targets the Plan. What the siblings currently write as doctrine — “the plan is the authority”, “a reading, not the plan” — is here replaced by a time, a changed fact and a destination.</p>
+          <p><b>Delta for Home 08c:</b> the trip-day card and strip take these two sentences; the boat “checked once · 6:12” line should read as W1 does (“true at 6:12, not watched”). <b>Delta for Life P3.4/P3.5:</b> keep the capture and the last-known plan state with their times (P3.5’s “as of 3:10 · can’t be checked now” is right); drop the authority captions from customer copy and keep them in annotations. <b>Delta for Social 03.6/03.7:</b> Plans 05 D8 now uses the same actor-specific form for Sam — the dinner’s new start and his own answer stay distinct until he speaks. <b>Status:</b> illustrated; the compositions belong to Home and Life.</p>
+          <div class="fx">Sept 9 item 3 · Home 08c · Life P3.4/P3.5 · Social 03.6/03.7 · sentence 5 (people tell people; the card says what changed)</div>
+        </div>
+      </div>
+
+      <div class="panel" style="left: 2340px; top: 1650px; width: 900px;">
+        <div class="k">HANDBACK · SIBLING DELTAS · BRANCH CHECK · WORK BEFORE/AFTER · PENDING DECISIONS · 2026-09-08 → 09</div>
+        <div class="row2"><span class="rk">Sept 10 pass</span><span><b>Selected:</b> sentence 6’s prepared-message door (decision 2026-09-09) — 11 I1–I1c and 09 J2f are no longer proposed; I1’s proposal now correctly goes <i>back</i> to seven, since its arrangement is eight. <b>W corrected:</b> “before Saturday” ends when Saturday begins — Friday midnight, venue-local — not Saturday afternoon; acceptance moved to Wednesday, inside its own window; the target stays the exact 8:00 with no invented tolerance; W3 became a check she invoked on Thursday at 2:10, where mentioning the visible 8:15 is ordinary current help rather than a notification; W4 and W5 are alternative endings, and after W4 a return says when checking stopped rather than claiming nothing opened through expiry. W2 now leads with target, end, the one question and what stays, with the rest behind “Where I’m looking”. <b>Still proposed:</b> the following terms themselves.</span></div>
+        <div class="row2"><span class="rk">Sept 9 pass</span><span>W2/W3: the request is 8:00; a near table (8:15) is mentioned as an alternative and the following continues; W2’s readback states that rule in her words; W5 records the near match. X2/X3/X4: the 10:40 home means leaving the reception by 10:15 (ten-minute cab), or the 11:45 in at 1:15 — carried through the judgment, the checks and the kept day; neither booked. C1/C2: the current arrangement after a change and the sentences Plans supplies to Home 08c and Life P3.4/P3.5; 05 D8 takes Social 03.6/03.7’s actor-specific form.</span></div>
+        <div class="row2"><span class="rk">Home 08c</span><span>After 05 D3’s Update &amp; send, Home’s Saturday card must read the <b>current</b> arrangement — “dinner at eight with Maya · Sam hasn’t answered” — never the reading captured earlier. Plans supplies the card’s sentence from the same state as the page (sentence 1); the boat-checked timestamp on 08c is a current read, not a following, and should say so in the same terms as W1 (“true at 6:12, not watched”).</span></div>
+        <div class="row2"><span class="rk">Life 03b</span><span>“Today, as it stands” is a capture: label it with its time (“as Home showed it at 8:40”) and give it one door to the current arrangement (“current →”). Contextual Ask from that page targets the Plan, not the capture; after a change, the strip’s door leads to the actual eight o’clock, and the capture is not rewritten (F1’s rule: an account beside the intention).</span></div>
+        <div class="row2"><span class="rk">Social 03.5 · receiving state</span><span><b>Selected 2026-09-09.</b> Take the proposal route, not an ambiguous “Move to eight…”; the owner-instructed D3 route stays available when actually requested, never an equal button beside it. <b>Do not inherit this message.</b> Social 03.5 starts at <i>seven</i> with Maya asking for eight, so its proposal is the smaller one — a reply to <b>Maya only</b>, about eight. Plans I1 starts at <i>eight</i>, so its proposal goes back to seven and addresses both. Same door, different words, different audience; no second recipient is added and no group poll is created. <b>Readbacks, exactly:</b> <i>success</i> — what was sent, that the arrangement did not change, who has not answered; <i>pending</i> — nothing shows as sent, the words are kept, the plan is untouched; <i>failure</i> — said once, words kept, nothing sent, arrangement unchanged. “Send proposal” is never an alias for an update.</span></div>
+        <div class="row2"><span class="rk">Places P3 / P4 · receiving state</span><span>The practical-receiver story must not imply a watch: a current check states what is true now and when, in W1’s terms (“true at 6:12, not watched”). Continuing help only ever begins because someone asked for it in words. Reconcile the sequence in forward time — evidence, then a prepared proposal, then a human response, then an authorized change — keeping exactly one arrangement owner throughout; a place page never becomes a second owner of the arrangement. Same three readbacks as above.</span></div>
+        <div class="row2"><span class="rk">Not a universal workflow</span><span>Proposal → everyone answers → owner change is one supported path, not the shape of every change. An owner may issue an authorized change directly (05 D3), and other people’s acceptance stays a separate matter. Reading, asking and stopping remain available with no compulsory proposal.</span></div>
+        <div class="row2"><span class="rk">Social 03.6 / 03.7</span><span>05 D8 and 11 I1c borrow Social’s actor-specific wording: each recipient’s page states what changed <i>for them</i> in one sentence, in the sender’s words where words were sent. Guest identity, audiences and the provisional-RSVP branch stay Social’s (Plans Q9/Q16 unchanged); Plans changes no guest policy by copy.</span></div>
+        <div class="row2"><span class="rk">Chat</span><span>X1–X3 run in Chat with the plan as target; handoff and return (Q12/Q15) remain the Chat root’s dependency, not redesigned here. “Keep it in my Saturday” is the A2 keep, not a new noun.</span></div>
+        <div class="row2"><span class="rk">Corrected this pass</span><span>05 D4: label and thesis no longer say “settled”/“with Maya and Sam” while Sam has not answered; the receipt says what was updated and to whom, not that they “have” it. 08 P10: the decisive conflict (the 19:00 Gion counter, reserved; the ryokan night, paid) leads, and the hotel options follow as the supported part. D3 (owner update) and I1b (sent proposal) are stated against each other on both frames; neither implies provider truth or another person’s answer.</span></div>
+        <div class="row2"><span class="rk">PROPOSED · needs a decision</span><span><b>Continuing help</b> (W2–W5): subject · source · window · hear-once · ends by result / coverage loss / expiry / Stop; never implied; no execution; no dashboard, scheduler or billing surface. Owner: consumer strategy §3 row “follow this for me”; the live engine for capability loss (Q23). <b>Still proposed from earlier:</b> I1b’s door (sentence 6 exception); sentence 7 acknowledgment; sentence 5 urgent-not-bundled. <b>Deferred:</b> PR-1.</span></div>
+        <div class="row2"><span class="rk">Branch check · Home 08c ↔ Life P3.4/P3.5</span><span>Inspected, same day, same fixture: Life P3.4 carries “the boat moved to 12:40 · changed 3:10 pm” and P3.5’s disconnected state carries “last known · as of 3:10 · 12:40”; C1 agrees. <b>Corrected 2026-09-09:</b> Home 08c now carries the post-3:10 ferry change, so all three show the same branch; the earlier finding here and in report §3t was read from a Downloads export that predated it. What remains is wording, not state: 08c’s “checked once · 6:12” should read as W1 does (“true at 6:12, not watched”), since a lone timestamp is the piece a reader can take for a watch. C2 stands as the supplied card sentence.</span></div>
+        <div class="row2"><span class="rk">Work, before and after</span><span><b>Waiting:</b> Sam is no longer told “there’s time” for a 160-minute gap — the cost is named and one voluntary way out of it is his to take (05 D8). <b>Prompting:</b> unchanged this pass; the field carries a contextual example only where it reveals something (08 P2b, P9a). <b>Checking:</b> the person no longer compares rows to reconcile 7:00 held / 8:00 wanted / 8:15 offered — one sentence does it (12 W2, W3); the return train’s early departure is stated in all three places it matters (12 X2–X4). <b>Coordination:</b> unchanged, and still the open question — I1’s door would remove one retyping of a decision already made; without it that retyping stands (07, Sept 9 amendment request).</span></div>
+        <div class="row2"><span class="rk">Evidence</span><span>Everything on this board is static and illustrated; X4b is the larger-text state; nothing is wired. <b>Board 92 exercises none of this:</b> its language routes are a finite regex set, Sam has no free-text routes at all, and the longer Chat handoff is marked unbuilt in it — so it is not evidence for the I1 or W sequences, natural-language flexibility, guest delivery or continuing service. Native-unverified; participant-unverified. Train times, prices, the hotel block and table availability are labeled fixtures.</span></div>
+        <div class="row2"><span class="rk">Later, not closure</span><span>General scheduling, broad peer authority, every appendix recovery permutation, full external integrations, billing, booking, themes, production.</span></div>
+      </div>
+
+      <div class="x"></div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{}'>
+      class Component extends DCLogic {
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>

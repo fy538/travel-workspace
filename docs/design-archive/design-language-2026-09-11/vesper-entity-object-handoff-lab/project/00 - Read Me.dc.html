@@ -1,0 +1,75 @@
+<!-- @dsCard group="Overview" -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;700&display=swap">
+  <style>
+    body { margin: 0; }
+    .kick { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #8A6628; }
+    .m { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+    .row { display: grid; grid-template-columns: 190px 1fr; gap: 16px; padding: 12px 0; border-top: 1px solid rgba(27,23,20,0.08); font-size: 13.5px; line-height: 19px; }
+    .rk { font-weight: 600; }
+    .sec { border-top: 1px solid rgba(27,23,20,0.12); padding-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+  </style>
+</helmet>
+<div style="width: 880px; min-height: 700px; background: #EFEAE0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; color: #1B1714; box-sizing: border-box; padding: 40px 44px 44px 44px; display: flex; flex-direction: column; gap: 26px;">
+
+  <div style="display: flex; flex-direction: column; gap: 8px;">
+    <div class="kick">VESPER &middot; ENTITY OBJECT HANDOFF LAB &middot; READ ME FIRST &middot; REORGANISED 2026-09-03 &middot; STATUS: THE PAGE IS CHOSEN (06) AND LARGELY ON MAIN BEHIND FLAGS &middot; INTEGRATION PASS 09&ndash;13 (BRIEF 05-ENTITY-OBJECTS, 09-04) &middot; SHARED PACKAGE VDL-STAGE1 0.3 ADOPTED 2026-09-11 (15) &middot; NOTHING HERE IS CANON</div>
+    <div style="font-family: 'EB Garamond', Georgia, serif; font-weight: 600; font-size: 34px; line-height: 38px;">The object page, rebuilt from the visual side</div>
+    <div style="font-size: 15px; line-height: 21px; color: #6E6862; max-width: 720px;">One page for everything you can go to. The founder rebuilt it as a visual question before any React Native work; fourteen boards later there is a page (06) and a spec (07). This project holds the working set in reading order, an archive of the trail, and nothing else. Governing brief: <span class="m" style="font-size: 11px;">docs/working/claude-code-design-entity-resolution-object-page-handoff-2026-09-02.md</span>; the spec: <span class="m" style="font-size: 11px;">docs/working/object-page-rebuild-implementation-handoff-2026-09-03.md</span> (rev 3).</div>
+  </div>
+
+  <div style="display: flex; flex-direction: column;">
+    <div class="row" style="border-top: none; padding-top: 0;"><span class="kick" style="color: #6E6862;">WORKING SET &middot; READ IN ORDER</span><span class="kick" style="color: #6E6862;">WHAT IT IS &middot; STATUS</span></div>
+    <div class="row"><span class="rk">00 &middot; Read Me</span><span>This page.</span></div>
+    <div class="row"><span class="rk">01 &middot; Audit</span><span>The venue page as it ships, drawn twice (mock vs real path), the ledger, what the entity-shell branch changed, keep / kill / missing. <strong>Evidence.</strong></span></div>
+    <div class="row"><span class="rk">02 &middot; The law</span><span>Seven inputs in one order; twelve rules; the tests. Amended by the page: the slots became inputs to one body of text rather than sections. <strong>Acceptance criteria.</strong></span></div>
+    <div class="row"><span class="rk">03 &middot; Three kinds, one family</span><span>Entity, container, spot on one shell, redrawn on 06: the container&rsquo;s plate is Vesper&rsquo;s map, the spot&rsquo;s too; the kind test; the spot as a new admission path. <strong>Current.</strong></span></div>
+    <div class="row"><span class="rk">04 &middot; The people slot</span><span>Redrawn on 06: a friend is a face in the byline and a cited sentence in the body; a sheet drops in under the byline when a face is tapped. Ten states as specimens: none, one, several, many, a face opened, withdrawn, blocked or outside the grant, used, answered, yours. <strong>Current.</strong></span></div>
+    <div class="row"><span class="rk">05 &middot; The five paths</span><span>The resolution brief&rsquo;s seam redrawn on 06: origin, resolving, known / matched / made, two stops. <strong>Current.</strong></span></div>
+    <div class="row"><span class="rk">06 &middot; The page</span><span>Chosen 2026-09-03. Plate = a photograph or nothing (your photo &rarr; a permitted provider photo with its credit &rarr; no plate; never an illustration), square; kicker with cuisine, name, byline of faces, the pair, short cited paragraphs, sources, text verbs, the closing row, where with a map thumb, end. Facts are dynamic: the two most relevant up, nulls demoted. <strong>The page.</strong></span></div>
+    <div class="row"><span class="rk">06B &middot; Arrival and large text</span><span>Two states the page must survive: Caf&eacute; Aurora from shell to research landed to the next open, with nothing above the body moving; and Hortus at the accessibility text size, where labels stay small and the pair and closing row stack. <strong>Current.</strong></span></div>
+    <div class="row"><span class="rk">07 &middot; Implementation handoff</span><span>Mirror of the rev 3 spec: rulings, the page, inputs &rarr; wire, keep / new / delete, sequence, open questions. <strong>The workspace file wins if they differ.</strong></span></div>
+    <div class="row"><span class="rk">08 &middot; Build brief</span><span>Mirror of <span class="m" style="font-size: 11px;">docs/working/object-page-rebuild/build-brief-2026-09-03.md</span> with <span class="m" style="font-size: 11px;">fixtures.json</span> beside it: scope and branch, acceptance tests against fixtures, the token map, components with props, data contracts (existing and new), the composition template, the fact ranker, state machines, safe deletes, PR-sized steps, the questions an agent must not resolve alone. <strong>Execution-ready; the workspace file wins.</strong></span></div>
+    <div class="row"><span class="rk">09 &middot; One place, five doors</span><span>Integration pass (brief 05-entity-objects, 09-04), work package A: Hortus opened from Home, the map sheet, Dana&rsquo;s addressed note, kept material in Life, and Saturday&rsquo;s arrangement. Same page each time; the context adds one line, re-ranks the pair, may change the first verb, never touches a fact. Context matrix: what changes, what never changes, where Back returns, what opening implies (nothing). <strong>Non-canonical.</strong></span></div>
+    <div class="row"><span class="rk">10 &middot; Intent beyond Tonight</span><span>Work package B: Keep (top bar, T1 receipt with optional when-chips); keep loosely for Saturday (one chip more; proposal owned by Components &amp; Plan); &ldquo;would this work for Maya&rsquo;s dinner?&rdquo; as Ask, with one bounded preview and the two-arrangements clarification asked once, in the answer. Readback on the page. No permanent buttons, no ladder. <strong>Non-canonical.</strong></span></div>
+    <div class="row"><span class="rk">11 &middot; Places and Life</span><span>Work package C: the older Places Focus lanes become inputs to the page (labels, faces, italics, not sections); one named exception (the container&rsquo;s map plate). The place itself on the page with a one-line relationship read and a door; my history with it in Life with a door back. Labels to coordinate with the Life lane. <strong>Non-canonical.</strong></span></div>
+    <div class="row"><span class="rk">12 &middot; Useful edges</span><span>Work package D: Directions and Reserve as honest handoffs (Vesper does not book, hold, or pay); returning is not a booking; a forwarded confirmation belongs to its arrangement and the page only projects it; the face-opened sheet with three distinct effects: keep the place, keep her words, send onward. <strong>Non-canonical.</strong></span></div>
+    <div class="row"><span class="rk">13 &middot; Status and deltas</span><span>Capability ledger refreshed against local main on 09-04 (implemented / design-only / unresolved with commits and flags), and the decision log: research trigger corrected to explicit Read up, address not on the wire, Tonight? unwired, proposed verbs and navigation, data needs. <strong>Evidence, not design.</strong></span></div>
+    <div class="row"><span class="rk">14 &middot; Received from Places</span><span>Four readings of Hortus in this lab&rsquo;s shell, supplied by the Places lane on 09-09, plus Places 08.13 as drawn. The purpose-responsive direction is accepted; R2, opened for Saturday, is the protected destination reference. Its where row now shows locality, not a street address. <strong>Selected.</strong></span></div>
+    <div class="row"><span class="rk">15 &middot; Shared adoption</span><span>The shared package vdl-stage1 0.3, adopted 2026-09-11: which page-shell regions are built from shared components, which stay drawn and why, the variants the package is missing, and live before/after crops against the originals kept under <span class="m" style="font-size: 11px;">before/</span>. <strong>Evidence, not design.</strong></span></div>
+  </div>
+
+  <div class="sec">
+    <div class="kick">ARCHIVE &middot; THE TRAIL TO 06 &middot; KEPT FOR THE RECORD, NOT FOR READING</div>
+    <div style="font-size: 13.5px; line-height: 19px;">Z1 four languages (ledger, plate, letter, instrument &rarr; the plate was chosen) &middot; Z2 the blob (sections removed) &middot; Z3 the blob typeset (16.5/24, short paragraphs, inline citations) &middot; Z4 element order (the byline moved up) &middot; Z5 the pair (the two deciding facts). The nine boards changed by the shared adoption keep their originals under before/, unmodified. Deleted outright: the restyled-sections board and the refinements board, both rejected on sight and recorded in the spec&rsquo;s &ldquo;rejected on the way&rdquo; line.</div>
+  </div>
+
+  <div class="sec">
+    <div class="kick">LOCKED &mdash; THE HANDOFF&rsquo;S PART I SURVIVES ANY REDESIGN</div>
+    <div style="font-size: 13.5px; line-height: 19px;">Canonical identity over provider ids; materialization only after an explicit gesture; a new shell is owner-private and never looks verified; no raw provider payloads persisted; provider attribution and freshness recoverable wherever a current fact shows; missing data stays missing; opening a page never generates a Take. From canon: the title register, the five-axis grant contract, the trust order (your keep &rarr; a friend&rsquo;s line &rarr; a dossier &rarr; the listing).</div>
+  </div>
+
+  <div class="sec">
+    <div class="kick">RULINGS OF 2026-09-03 &middot; IN THE SPEC&rsquo;S &sect;0</div>
+    <div style="font-size: 13.5px; line-height: 19px;">Seed identity, not opinion. Web search on demand, never on the read path. The interpretation is a composition (web brief + dossier + today), cited never absorbed. The plate, square, and one body of text. Imagery: a photograph or nothing &mdash; no riso, no illustration. No &ldquo;Add to trip&rdquo;: Keep in the top bar, Ask and Leave for someone as text, Tonight? only while an Occasion is live. Citations inline, numbers for the web and faces for people. Facts dynamic.</div>
+  </div>
+
+  <div class="sec">
+    <div class="kick">NEXT</div>
+    <div style="font-size: 13.5px; line-height: 19px;">Canon diffs the rebuild implies (the shell decision&rsquo;s hours line is stale) &middot; the two API shapes engineering needs first: the shared research brief and the viewer-resolved people lines.</div>
+  </div>
+
+  <div class="m" style="font-size: 10px; letter-spacing: 0.9px; color: #B5AFA5;">FIXTURE ONLY &middot; HORTUS IS THE FOUNDER&rsquo;S REAL DINNER; EVERY OTHER PLACE, PERSON, TIME, PRICE AND ADDRESS IS SYNTHETIC &middot; THE HANDOFF AND CANONICAL WORKSPACE DOCS WIN OVER ANY BOARD HERE</div>
+
+</div>
+</x-dc>
+</body>
+</html>

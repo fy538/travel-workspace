@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <link rel="stylesheet" href="_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css" />
+        <link rel="stylesheet" href="vdl.css" />
+        <style>
+          /* OriginalReader — a person’s own words, attributed, at the density each root selected
+             (§17.3 R05, R06, R11). open: Home 02’s uncarded note with the place row and door inside
+             the unit. card: Places 01.1’s contained share. full: Social 02.4’s reader — media first,
+             her words at 22/30, the place row, a pill reply field, a private Ask. retrieval: Life
+             05.6’s result row with the matched words marked. Every variant can show the withdrawn
+             state. Inline quotations inside a place reading (Entity R2) do not use this component.
+             placeDetail may mark one title in *asterisks*; it is set in italic, as Social 02.4 draws
+             the exhibition name.
+             Polish (2026-09-10): the full reader’s header sets the author as the open and card
+             variants do (13/600) above a 12.5 audience line; Social 02.4 had the name at 11px mono
+             under a 14px audience, so the name read smaller than its date. “Asks Vesper, not …”
+             is a privacy statement and is ink60, not ink80. */
+          .or-h{display:flex;align-items:center;gap:10px}
+          .or-av{width:28px;height:28px;border-radius:9999px;background:var(--vk-ink00);color:var(--vk-paper00);display:flex;align-items:center;justify-content:center;font-family:var(--vk-font-sans);font-size:12px;font-weight:700;flex:0 0 auto}
+          .or-name{color:var(--vk-ink00)}
+          .or-meta{color:var(--vk-ink80)}
+          .or-words{margin:14px 0 0;color:var(--vk-ink00)}
+          .or-place{display:grid;grid-template-columns:18px 1fr;column-gap:8px;border-top:0.5px solid var(--vk-borderHairline);margin-top:14px;padding-top:12px}
+          .or-glyph{color:var(--vk-ink60);padding-top:3px}
+          .or-door{margin-top:12px}
+          .or-card{background:var(--vk-paper00);border-radius:18px;padding:16px;box-shadow:0 1px 2px color-mix(in srgb,var(--vk-ink00) 6%,transparent),0 8px 22px color-mix(in srgb,var(--vk-ink00) 7%,transparent)}
+          .or-fh{display:grid;grid-template-columns:22px 1fr;align-items:center;column-gap:10px}
+          .or-aud{color:var(--vk-ink60);margin-top:1px}
+          .or-media{position:relative;height:224px;border-radius:12px;margin-top:16px;background:var(--vk-paper30);background-image:radial-gradient(color-mix(in srgb,var(--vk-ink00) 7%,transparent) 1px,transparent 1px);background-size:6px 6px;overflow:hidden}
+          .or-media > span{position:absolute;left:0;bottom:8px;padding:2px 6px;border-radius:4px;background:color-mix(in srgb,var(--vk-ink00) 70%,transparent);color:var(--vk-paper00);letter-spacing:1px;white-space:nowrap;max-width:100%;box-sizing:border-box;overflow:hidden;text-overflow:ellipsis}
+          .or-fwords{margin:20px 0 0;color:var(--vk-ink00)}
+          .or-frow{display:grid;grid-template-columns:44px 1fr 10px;column-gap:12px;align-items:center;border-top:0.5px solid var(--vk-borderHairline);border-bottom:0.5px solid var(--vk-borderHairline);padding:14px 0;margin-top:20px}
+          .or-thumb{width:44px;height:44px;border-radius:8px;background:var(--vk-paper30);background-image:radial-gradient(color-mix(in srgb,var(--vk-ink00) 9%,transparent) 1px,transparent 1px);background-size:5px 5px}
+          .or-fdet{color:var(--vk-ink40);font-family:var(--vk-font-sans);font-size:14px;line-height:19px}
+          .or-chev{color:var(--vk-ink80)}
+          .or-reply{margin-top:18px}
+          .or-ask{margin-top:20px}
+          .or-askn{color:var(--vk-ink60);margin-top:6px}
+          .or-send{display:flex;align-items:center;gap:12px;margin-top:12px}
+          .or-send .vdl-btn{flex:0 0 auto;white-space:nowrap}
+          .or-send .vk-t-caption{min-width:0}
+          .or-ret{display:grid;grid-template-columns:18px 1fr auto 10px;column-gap:10px;align-items:start;padding:12px 0;border-bottom:0.5px solid var(--vk-borderHairline)}
+          .or-ret .or-glyph{padding-top:4px}
+          .or-rdet{color:var(--vk-ink60)}
+          .or-rdet mark{background:var(--vk-color-tint-goldHintDeep);color:inherit}
+          .or-rdate{color:var(--vk-ink80);padding-top:5px}
+          .or-gone{margin:12px 0 0;color:var(--vk-ink60)}
+        </style>
+      </helmet>
+      <div data-screen-label="OriginalReader">
+        <sc-if value="{{ isOpenish }}">
+          <div class="{{ openCls }}">
+            <div class="or-h"><span class="or-av">{{ initial }}</span><span class="or-name vdl-t-sectionHeading">{{ author }}</span><span class="or-meta vdl-t-metaLine">{{ meta }}</span></div>
+            <sc-if value="{{ shown }}">
+              <p class="or-words vdl-t-excerpt">“{{ words }}”</p>
+              <sc-if value="{{ hasPlace }}">
+                <div class="or-place">
+                  <span class="or-glyph"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M7 3v6a2 2 0 0 0 4 0V3M9 11v6M14 3c-1.5 1.5-1.5 5 0 6.5V17"></path></svg></span>
+                  <div><div class="vdl-t-placeName">{{ place }}</div><div class="or-meta vdl-t-metaLine" style="margin-top:3px">{{ placeMeta }}</div></div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ hasDoor }}"><div class="or-door"><span class="vdl-door vk-t-bodySmMedium">{{ door }}</span></div></sc-if>
+            </sc-if>
+            <sc-if value="{{ withdrawn }}"><p class="or-gone vk-t-bodySm">{{ withdrawnText }}</p></sc-if>
+          </div>
+        </sc-if>
+        <sc-if value="{{ isFull }}">
+          <div class="or-fh">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M12.5 4L7 10L12.5 16" style="stroke:var(--vk-ink00)" stroke-width="1.6" stroke-linecap="round"></path></svg>
+            <div><div class="or-name vdl-t-sectionHeading">{{ author }}</div><div class="or-aud vdl-t-supportLine">{{ audience }}</div></div>
+          </div>
+          <sc-if value="{{ shownMedia }}"><div class="or-media"><span class="vk-t-monoStampStrong">{{ media }}</span></div></sc-if>
+          <sc-if value="{{ shown }}">
+            <p class="or-fwords vdl-t-readerOriginal">{{ words }}</p>
+            <sc-if value="{{ hasPlace }}">
+              <div class="or-frow">
+                <span class="or-thumb"></span>
+                <div><div class="vdl-t-placeName">{{ place }}</div><div class="or-fdet">{{ fdPre }}<em>{{ fdEm }}</em>{{ fdPost }}</div><div class="or-meta vdl-t-metaLine" style="margin-top:3px">{{ placeMeta }}</div></div>
+                <span class="or-chev">›</span>
+              </div>
+            </sc-if>
+            <div class="or-reply"><div class="{{ fieldCls }}"><span class="vk-t-bodyMd" style="{{ fieldTextStyle }}">{{ fieldText }}</span></div></div>
+            <sc-if value="{{ composing }}"><div class="or-send"><span class="vdl-btn primary pill vk-t-labelSemibold" style="color:var(--vk-color-white)"><span>{{ sendLabel }}</span></span><span class="vk-t-caption">{{ sendNote }}</span></div></sc-if>
+            <div class="or-ask"><span class="vdl-door vk-t-bodySmMedium">{{ ask }}</span><div class="or-askn vdl-t-metaLine">Asks Vesper, not {{ author }}</div></div>
+          </sc-if>
+          <sc-if value="{{ withdrawn }}"><p class="or-gone vk-t-bodySm">{{ withdrawnText }}</p></sc-if>
+        </sc-if>
+        <sc-if value="{{ isRetrieval }}">
+          <div class="or-ret">
+            <span class="or-glyph"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="3" width="12" height="14" rx="1.5"></rect><path d="M7 7h6M7 10h6M7 13h4"></path></svg></span>
+            <div><div class="vdl-t-recordTitle">{{ noteTitle }}</div><div class="or-rdet vk-t-caption" style="font-size:12.5px">{{ pre }}<mark>{{ match }}</mark>{{ post }}</div></div>
+            <span class="or-rdate vdl-t-metaLine">{{ date }}</span>
+            <span class="or-chev" style="padding-top:4px">›</span>
+          </div>
+        </sc-if>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{
+  "density": { "editor": "enum", "options": ["open", "card", "full", "retrieval"], "default": "open" },
+  "author": { "editor": "text", "default": "Maya" },
+  "initial": { "editor": "text", "default": "M" },
+  "meta": { "editor": "text", "default": "AUG 30 · TO YOU" },
+  "words": { "editor": "text", "default": "…and if you two ever want a proper pasta night — Lilia. Ask for the corner table." },
+  "place": { "editor": "text", "default": "" },
+  "placeMeta": { "editor": "text", "default": "" },
+  "placeDetail": { "editor": "text", "default": "" },
+  "door": { "editor": "text", "default": "" },
+  "audience": { "editor": "text", "default": "" },
+  "media": { "editor": "text", "default": "" },
+  "ask": { "editor": "text", "default": "Ask about this" },
+  "compose": { "editor": "text", "default": "" },
+  "noteTitle": { "editor": "text", "default": "Her note · the pasta night" },
+  "detail": { "editor": "text", "default": "" },
+  "match": { "editor": "text", "default": "" },
+  "date": { "editor": "text", "default": "" },
+  "state": { "editor": "enum", "options": ["shown", "withdrawn"], "default": "shown" }
+}'>
+      class Component extends DCLogic {
+        renderVals() {
+          const p = this.props || {};
+          const density = p.density || 'open';
+          const author = p.author || 'Maya';
+          const withdrawn = p.state === 'withdrawn';
+          const detail = p.detail || '';
+          const match = p.match || '';
+          const at = match ? detail.indexOf(match) : -1;
+          const compose = p.compose || '';
+          const pd = p.placeDetail || '';
+          const em = pd.match(/^(.*?)\*(.+?)\*(.*)$/);
+          return {
+            isOpenish: density === 'open' || density === 'card', openCls: density === 'card' ? 'or-card' : 'or-open',
+            isFull: density === 'full', isRetrieval: density === 'retrieval',
+            author, initial: p.initial || author.slice(0, 1), meta: p.meta || '', audience: p.audience || '',
+            words: p.words || '…and if you two ever want a proper pasta night — Lilia. Ask for the corner table.',
+            shown: !withdrawn, withdrawn, shownMedia: !!p.media && !withdrawn, media: p.media || '',
+            withdrawnText: author + ' took this back. Nothing of hers is shown here any more; what you wrote to her stays with you.',
+            hasPlace: !!p.place, place: p.place || '', placeMeta: p.placeMeta || '',
+            fdPre: em ? em[1] : pd, fdEm: em ? em[2] : '', fdPost: em ? em[3] : '',
+            hasDoor: !!p.door, door: p.door || '', ask: p.ask || 'Ask about this',
+            composing: !!compose, fieldCls: compose ? 'vdl-field pill focused' : 'vdl-field pill',
+            fieldTextStyle: compose ? '' : 'color:var(--vk-ink80)', fieldText: compose || 'Reply to ' + author,
+            sendLabel: 'Send to ' + author, sendNote: 'She’ll see this. Nothing else changes.',
+            noteTitle: p.noteTitle || 'Her note · the pasta night', date: p.date || '',
+            pre: at >= 0 ? detail.slice(0, at) : detail, match: at >= 0 ? match : '', post: at >= 0 ? detail.slice(at + match.length) : ''
+          };
+        }
+      }
+    </script>
+  </body>
+</html>

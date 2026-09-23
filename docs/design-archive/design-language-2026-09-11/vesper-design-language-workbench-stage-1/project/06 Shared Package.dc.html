@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <link rel="stylesheet" href="_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css" />
+        <link rel="stylesheet" href="vdl.css" />
+        <script src="vdl-pkgcheck.js"></script>
+        <style>
+          .pk td{font-size:12.5px}
+          .pk td:first-child{white-space:nowrap}
+          .r{display:inline-block;padding:1px 7px;border-radius:var(--vk-radius-md);white-space:nowrap}
+          .r.perm{background:var(--vk-state-color-sageSurface);color:var(--vk-state-color-sage)}
+          .r.call{background:var(--vk-state-color-amberSurface);color:var(--vk-state-color-amber)}
+          .r.local{background:var(--vk-color-tint-action);color:var(--vk-ink40)}
+          .chk[data-check="ok"]{color:var(--vk-state-color-sage)}
+          .chk[data-check="changed"]{color:var(--vk-state-color-oxblood)}
+          .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:28px;max-width:1280px}
+          .cols > div{min-width:0}
+          .cols ul{margin:8px 0 0;padding-left:18px}
+          .cols li{margin-bottom:5px}
+        </style>
+      </helmet>
+      <div class="vdl-board" data-screen-label="06 Shared Package">
+        <div class="vk-t-capsEyebrow">Stage 1 · consolidation handback · §19.3 · reader corrections §21.2, §22.2</div>
+        <div class="vk-t-h1Large" style="margin-top:6px">Shared package · vdl-stage1 0.4.1</div>
+        <p class="vk-t-body" style="max-width:840px;margin:8px 0 0;color:var(--vk-ink40)">The reusable result of Stage 1, taken from demonstrated construction only: the components built and shown against their selected specimens, and the styles they need. Full-scroll ports are fidelity references and are not part of the package. This is prepared for review; nothing has been published to the Production Kernel, and publishing or cross-project propagation is not claimed to work. 0.4 and 0.4.1 change only OriginalReader; identity is the manifest, not a CSS version string.</p>
+        <div class="vk-t-monoStamp" style="margin-top:10px">KERNEL travel-app@e2e792913 tokens:80d0648dd300 · MANIFEST vdl-package.json · KERNEL COPY MATCHES THE PUBLISHED styles.css (SHA-256 a843ca5b…)</div>
+
+        <div class="vdl-rule"></div>
+        <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80)">COMPONENTS AND VARIANTS · WHAT IS ACTUALLY SHARED</div>
+        <div class="vdl-scroll" style="margin-top:8px">
+          <table class="vdl-table pk" style="min-width:1100px">
+            <tr><th class="vk-t-capsMicro">Component</th><th class="vk-t-capsMicro">Variants</th><th class="vk-t-capsMicro">Demonstrated against</th><th class="vk-t-capsMicro">Board</th></tr>
+            <tr><td class="vk-t-monoValue">OriginalReader</td><td class="vk-t-bodySm">density open, card, full, retrieval · state shown, withdrawn · compose · supplied media and thumbnail (mediaSrc, thumbSrc; placeholder only as fallback) · show all, reader, ask · practical place line readable (ink60), provenance quiet (ink80)</td><td class="vk-t-bodySm">Home 02 note, Places 01.1 share, Social 02.4 reader with its own illustration and sections, Life 05.6 result</td><td class="vk-t-bodySm">02A</td></tr>
+            <tr><td class="vk-t-monoValue">InviteCard</td><td class="vk-t-bodySm">view host, guest, answered · shape pill, rounded · host lines as labelled facts with conditions, plus a delivery line (requested change) · guest lines as fact over condition</td><td class="vk-t-bodySm">Social 03.1 host (original kept as the before), 03.2 guest; Plans 04 C2 as rounded</td><td class="vk-t-bodySm">02B</td></tr>
+            <tr><td class="vk-t-monoValue">Ticket</td><td class="vk-t-bodySm">mode flight, ferry, rail, admission · density full, row, chip</td><td class="vk-t-bodySm">Life 04 object page and pass list, Life 05.9, Home 09 pass</td><td class="vk-t-bodySm">02D</td></tr>
+            <tr><td class="vk-t-monoValue">PlaceHead</td><td class="vk-t-bodySm">destination identity head only (no body template)</td><td class="vk-t-bodySm">Entity 14 R2</td><td class="vk-t-bodySm">02C</td></tr>
+            <tr><td class="vk-t-monoValue">FactPair</td><td class="vk-t-bodySm">tone lead, plain · optional inline link</td><td class="vk-t-bodySm">Entity 14 R2</td><td class="vk-t-bodySm">02C</td></tr>
+            <tr><td class="vk-t-monoValue">SourceList + .vdl-srcmark, .vdl-personmark</td><td class="vk-t-bodySm">keyed sources and people inside a reading</td><td class="vk-t-bodySm">Entity 14 R2</td><td class="vk-t-bodySm">02C</td></tr>
+            <tr><td class="vk-t-monoValue">ActionGroup</td><td class="vk-t-bodySm">purpose action in umber, the rest muted, on the Door construction</td><td class="vk-t-bodySm">Entity 14 R2</td><td class="vk-t-bodySm">02C</td></tr>
+            <tr><td class="vk-t-monoValue">LocationFooter</td><td class="vk-t-bodySm">small map, address, directions, end mark</td><td class="vk-t-bodySm">Entity 14 R2</td><td class="vk-t-bodySm">02C</td></tr>
+            <tr><td class="vk-t-monoValue">Notice</td><td class="vk-t-bodySm">tone pending, unknown, failed, applied, stale, unavailable</td><td class="vk-t-bodySm">Plans 90 J2c–J2e semantics; Entity 05 endings</td><td class="vk-t-bodySm">02B, 02C</td></tr>
+            <tr><td class="vk-t-monoValue">PlaceIdentity</td><td class="vk-t-bodySm">density preview for list rows. Its destination and sparse variants are extensions, not the R2 body</td><td class="vk-t-bodySm">Places 01.1 numbered rows</td><td class="vk-t-bodySm">02C</td></tr>
+            <tr><td class="vk-t-monoValue">vdl.css</td><td class="vk-t-bodySm">composition geometry; .vdl-btn (primary, secondary, pill, r16), .vdl-field (pill), .vdl-door (act, muted), rows, sheet, notice tones; proposed roles and tokens below</td><td class="vk-t-bodySm">all shared builds</td><td class="vk-t-bodySm">—</td></tr>
+          </table>
+        </div>
+
+        <div class="vdl-rule"></div>
+        <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80)">ROLE AND TOKEN GAPS, REVIEWED AGAINST EXISTING ROLES · §19.3 ITEM 2</div>
+        <p class="vk-t-bodySm" style="margin:6px 0 0;max-width:840px;color:var(--vk-ink40)">Only values that recur across roots, or that an accepted ruling already names, are proposed as permanent additions. Values used by one component stay with that component. Near-duplicates go to the typography owner as a naming call. No selected anatomy or density is normalized to shorten this list.</p>
+        <div class="vdl-scroll" style="margin-top:8px">
+          <table class="vdl-table pk" style="min-width:1100px">
+            <tr><th class="vk-t-capsMicro">Proposed</th><th class="vk-t-capsMicro">Drawn value</th><th class="vk-t-capsMicro">Nearest existing role</th><th class="vk-t-capsMicro">Where it recurs</th><th class="vk-t-capsMicro">Recommendation</th></tr>
+            <tr><td class="vk-t-monoValue">sectionHeading</td><td class="vk-t-bodySm">sans 13/600</td><td class="vk-t-bodySm">bodySmMedium 13/500 (weight)</td><td class="vk-t-bodySm">Home, Places roots; the September 5 ruling</td><td><span class="r perm vk-t-bodySmMedium">propose permanent</span></td></tr>
+            <tr><td class="vk-t-monoValue">metaLine</td><td class="vk-t-bodySm">mono 10/400, 0.8 tracking</td><td class="vk-t-bodySm">monoStamp 10/500, uppercase (weight, case)</td><td class="vk-t-bodySm">Home, Places, Social, Entity, Home 09; the September 5 metadata line</td><td><span class="r perm vk-t-bodySmMedium">propose permanent</span></td></tr>
+            <tr><td class="vk-t-monoValue">supportLine</td><td class="vk-t-bodySm">sans 12.5</td><td class="vk-t-bodySm">caption 12 (0.5px)</td><td class="vk-t-bodySm">condition lines, bylines, practical facts across Home, Places, Entity, Social</td><td><span class="r perm vk-t-bodySmMedium">propose permanent</span></td></tr>
+            <tr><td class="vk-t-monoValue">unitTitle</td><td class="vk-t-bodySm">serif 17/22 500</td><td class="vk-t-bodySm">serifTitle 16/20 500; serifProseTitle 17/24 600</td><td class="vk-t-bodySm">Home and Places unit titles; the September 5 content title</td><td><span class="r perm vk-t-bodySmMedium">propose permanent</span></td></tr>
+            <tr><td class="vk-t-monoValue">excerpt</td><td class="vk-t-bodySm">serif 18/25</td><td class="vk-t-bodySm">serifEditorialPreview 16/22</td><td class="vk-t-bodySm">attributed excerpts on Home and Places</td><td><span class="r perm vk-t-bodySmMedium">propose permanent</span></td></tr>
+            <tr><td class="vk-t-monoValue">placeName</td><td class="vk-t-bodySm">serif 16/20 600</td><td class="vk-t-bodySm">serifTitle 16/20 500 (weight only)</td><td class="vk-t-bodySm">place rows on Home, Places, Social</td><td><span class="r call vk-t-bodySmMedium">owner call · weight variant</span></td></tr>
+            <tr><td class="vk-t-monoValue">placeStamp</td><td class="vk-t-bodySm">mono 11/700, 1.15 tracking</td><td class="vk-t-bodySm">monoStampStrong 10/700 (1px)</td><td class="vk-t-bodySm">root orientation on Home and Places; pass-list rows</td><td><span class="r call vk-t-bodySmMedium">owner call</span></td></tr>
+            <tr><td class="vk-t-monoValue">placeReading</td><td class="vk-t-bodySm">serif 16.5/24</td><td class="vk-t-bodySm">serifProseCompact 17/24 (0.5px)</td><td class="vk-t-bodySm">R2 reading; the host’s quoted note on the guest link</td><td><span class="r call vk-t-bodySmMedium">owner call</span></td></tr>
+            <tr><td class="vk-t-monoValue">readerOriginal</td><td class="vk-t-bodySm">serif 22/30</td><td class="vk-t-bodySm">serifReadLine 22/27 600</td><td class="vk-t-bodySm">OriginalReader full only</td><td><span class="r local vk-t-bodySmMedium">component-local</span></td></tr>
+            <tr><td class="vk-t-monoValue">factValue</td><td class="vk-t-bodySm">sans 17/22 600</td><td class="vk-t-bodySm">headerCompactOperational 16/20 600</td><td class="vk-t-bodySm">FactPair only</td><td><span class="r local vk-t-bodySmMedium">component-local</span></td></tr>
+            <tr><td class="vk-t-monoValue">routeCode</td><td class="vk-t-bodySm">serif 32/34 600</td><td class="vk-t-bodySm">serifDisplay 26/30</td><td class="vk-t-bodySm">Ticket only</td><td><span class="r local vk-t-bodySmMedium">component-local</span></td></tr>
+            <tr><td class="vk-t-monoValue">recordTitle</td><td class="vk-t-bodySm">serif 15.5/600</td><td class="vk-t-bodySm">serifTitleSm 15/19 500</td><td class="vk-t-bodySm">Life rows and OriginalReader retrieval</td><td><span class="r local vk-t-bodySmMedium">component-local</span></td></tr>
+            <tr><td class="vk-t-monoValue">stepNumeral</td><td class="vk-t-bodySm">serif 18/600</td><td class="vk-t-bodySm">serifTitleLg 20/25 500</td><td class="vk-t-bodySm">Home’s numbered method only</td><td><span class="r local vk-t-bodySmMedium">component-local</span></td></tr>
+            <tr><td class="vk-t-monoValue">drawn leading</td><td class="vk-t-bodySm">identity 24/27, guest title 26/32, host title 20/24</td><td class="vk-t-bodySm">h1Large 24/29, serifDisplay 26/30, serifProseHeading 20/28</td><td class="vk-t-bodySm">one component each</td><td><span class="r local vk-t-bodySmMedium">component-local override</span></td></tr>
+            <tr><td class="vk-t-monoValue">--vdl-map-*, --vdl-media-hatch</td><td class="vk-t-bodySm">#BFD6DA, #9DBFC6, #D9D0BC, #B9AD98</td><td class="vk-t-bodySm">none</td><td class="vk-t-bodySm">the Places map; the Entity photo placeholder</td><td><span class="r local vk-t-bodySmMedium">component-local</span></td></tr>
+          </table>
+        </div>
+        <p class="vk-t-bodySm" style="margin:10px 0 0;max-width:840px">Result: 5 permanent additions proposed, 3 owner naming calls, the rest kept with their components. Promotion goes through <span class="vk-t-monoValue">constants/textVariants.ts</span> and <span class="vk-t-monoValue">constants/colors.ts</span>, then the exporter regenerates the kernel; nothing here edits generated CSS.</p>
+
+        <div class="vdl-rule"></div>
+        <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80)">VERSIONS · RECORDED IN vdl-package.json</div>
+        <div class="vdl-scroll" style="margin-top:8px">
+          <table class="vdl-table pk" style="min-width:1000px">
+            <tr><th class="vk-t-capsMicro">File</th><th class="vk-t-capsMicro">Recorded version</th><th class="vk-t-capsMicro">Live check</th></tr>
+            <tr><td class="vk-t-monoValue">vdl.css</td><td class="vk-t-bodySm">16,055 bytes · sha256 7b6fa1d3… · etag 1789098141934217 · unchanged in 0.4 and 0.4.1</td><td class="vk-t-bodySm chk" id="chk-vdl" data-path="vdl.css" data-sha="7b6fa1d3dfccc92c59be1193cd68cdb032845a54c0316540e3ab58fe0b968515">checking…</td></tr>
+            <tr><td class="vk-t-monoValue">kernel styles.css copy</td><td class="vk-t-bodySm">29,657 bytes · sha256 a843ca5b… · identical to the published kernel file</td><td class="vk-t-bodySm chk" id="chk-kernel" data-path="_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css" data-sha="a843ca5ba6fe7595ff05c629ed88be8f3051e073a51cda4500e18ee5910d7f6c">checking…</td></tr>
+            <tr><td class="vk-t-monoValue">OriginalReader</td><td class="vk-t-bodySm">etag 1789153753071940 · 13,559 bytes · 0.4.1 (supplied media, show, readable place line)</td><td class="vk-t-bodySm" rowspan="7">Components are versioned by etag and stored size; compare with list_files. The served render drops component styles, so hashing it would not detect a style change.</td></tr>
+            <tr><td class="vk-t-monoValue">InviteCard</td><td class="vk-t-bodySm">etag 1789098056754095 · 9,231 bytes (requested host hierarchy; guest rows)</td></tr>
+            <tr><td class="vk-t-monoValue">Ticket</td><td class="vk-t-bodySm">etag 1789089040856299 · 17,327 bytes</td></tr>
+            <tr><td class="vk-t-monoValue">PlaceHead · SourceList · ActionGroup · LocationFooter</td><td class="vk-t-bodySm">etag 1789088488771813 · 4,556 · 1,775 · 1,501 · 3,873 bytes</td></tr>
+            <tr><td class="vk-t-monoValue">FactPair</td><td class="vk-t-bodySm">etag 1789088659111982 · 3,025 bytes</td></tr>
+            <tr><td class="vk-t-monoValue">Notice</td><td class="vk-t-bodySm">etag 1789081717510486 · 2,531 bytes</td></tr>
+            <tr><td class="vk-t-monoValue">PlaceIdentity</td><td class="vk-t-bodySm">etag 1789083018811662 · 6,313 bytes</td></tr>
+          </table>
+        </div>
+
+        <div class="vdl-rule"></div>
+        <div class="cols">
+          <div>
+            <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80)">FIDELITY-ONLY REFERENCES · NOT IN THE PACKAGE</div>
+            <ul class="vk-t-bodySm">
+              <li>03A Home 02 and 03B Places 01.1 full-scroll ports: the comparison targets for adoption. The construction-status tables on each say which regions already have a shared component.</li>
+              <li>The ports on 02A–02D, beside each shared build.</li>
+              <li>vdl-port.js, vdl-refs.js and vdl-pkgcheck.js are workbench instruments. A port annotates roles; it does not apply them.</li>
+              <li>media/: the Social 02.4 Print Room SVGs, extracted unchanged, used to demonstrate supplied media. Consumers pass their own files.</li>
+            </ul>
+          </div>
+          <div>
+            <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80)">CHANGES</div>
+            <ul class="vk-t-bodySm">
+              <li>0.4.1 (§22.2): OriginalReader’s practical place line — an arrangement time, opening hours, whether the hours were checked — reads at ink60, the value Places drew (4.59–5.14:1, was 1.82–2.03:1). Provenance beside the author and the retrieval date stay quiet. Consumers update once, to 0.4.1.</li>
+              <li>0.4 (§21.2): OriginalReader takes supplied media and a place thumbnail, keeping the label as attribution; the pattern is only the fallback. show=reader and show=ask let a host keep its own sections between Reply and the private Ask with one Ask.</li>
+              <li>Places map: COLUMBIA ST moved 34px west along its street; it no longer touches VAN BRUNT ST.</li>
+              <li>Places ferry and two-ways-in strips: “40 MOVING” moved up one line and right-aligned inside its instrument instead of clipped.</li>
+              <li>Requested on review: InviteCard’s host preview reads as labelled facts (WHEN, WHERE, WITH, BRING) with conditions beneath, instead of equal lines.</li>
+              <li>Polish audit and judgement pass (2026-09-10): reader Send pill, media label and italic title; guest rows; reader header; admission pass; promise stamps at ink60; metaLine wraps balanced.</li>
+            </ul>
+          </div>
+          <div>
+            <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80)">NOT CLAIMED</div>
+            <ul class="vk-t-bodySm">
+              <li>Publishing to the Production Kernel or propagation to bound projects.</li>
+              <li>Complete state coverage, adoption across the six projects, or native equivalence.</li>
+              <li>Full screens assembled from shared components.</li>
+              <li>Accessibility certification: contrast figures are measured specimens.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{}'>
+      class Component extends DCLogic {
+        componentDidMount() {
+          const go = (n) => { if (window.vdlPkgCheck && document.querySelector('[data-sha]')) { window.vdlPkgCheck(); } else if (n < 60) { setTimeout(() => go(n + 1), 200); } };
+          go(0);
+        }
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>

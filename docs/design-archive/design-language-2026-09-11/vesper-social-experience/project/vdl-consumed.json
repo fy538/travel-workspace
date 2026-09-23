@@ -1,0 +1,74 @@
+{
+  "consumer": "Vesper — Social Experience (3ef10868)",
+  "package": "vdl-stage1 0.4.1",
+  "workbench": "c13ae951-0977-4bac-90a6-c964146a9ca6",
+  "recorded": "2026-09-11",
+  "method": "copied at the recorded versions; not live synchronization",
+  "kernel": {
+    "stamp": "travel-app@e2e792913 tokens:80d0648dd300 gen:1",
+    "styles_css_sha256": "a843ca5ba6fe7595ff05c629ed88be8f3051e073a51cda4500e18ee5910d7f6c"
+  },
+  "files": [
+    {
+      "path": "vdl.css",
+      "sha256": "7b6fa1d3dfccc92c59be1193cd68cdb032845a54c0316540e3ab58fe0b968515",
+      "note": "unchanged since 0.3; its --vdl-version string still reads 0.3"
+    },
+    {
+      "path": "OriginalReader.dc.html",
+      "workbench_etag": "1789153753071940",
+      "bytes": 13559
+    },
+    {
+      "path": "InviteCard.dc.html",
+      "workbench_etag": "1789098056754095",
+      "bytes": 9231,
+      "note": "byte-identical to 0.3"
+    },
+    {
+      "path": "Notice.dc.html",
+      "workbench_etag": "1789081717510486",
+      "bytes": 2531,
+      "note": "byte-identical to 0.3"
+    },
+    {
+      "path": "media/print-room-illustration.svg",
+      "source": "Social 02.4's own illustration",
+      "recorded_sha256_in_workbench_manifest": "ecfe1b1519f0f0392526a73193e6336f3d57c7125646914527fe98d3922c020b",
+      "sha256": "601ad03fd2255be0e0794de17b0560d67cdb4a87da70adac77837fd3e7f63619",
+      "bytes": 1004,
+      "note": "the stored file is 70 bytes larger than the workbench manifest records and does not match its hash; consumed as stored, unaltered"
+    },
+    {
+      "path": "media/print-room-thumb.svg",
+      "source": "Social 02.4's own place thumbnail",
+      "recorded_sha256_in_workbench_manifest": "d4eb4d93a799d02613dea8824d350918302c4c7b60cce1d3781d8d29afa2f628",
+      "sha256": "8cf31f043db822df9a62b60d3b2b6d6b50b86b81832a273d3c98ad5cd8148aee",
+      "bytes": 973,
+      "note": "the stored file is 70 bytes larger than the workbench manifest records and does not match its hash; consumed as stored, unaltered"
+    }
+  ],
+  "instances": {
+    "02 - A little of your world": [
+      "02.4 OriginalReader full show=reader+ask, mediaSrc, thumbSrc",
+      "02.5 OriginalReader full compose show=reader+ask, mediaSrc, thumbSrc",
+      "02.2 inset Notice applied+failed",
+      "02.5 result Notice applied+failed"
+    ],
+    "03 - An easier way to get together": [
+      "03.1 InviteCard host x2",
+      "03.2 InviteCard guest shape=pill"
+    ],
+    "05 - The important alternatives": [
+      "05 D7-A OriginalReader full show=reader+ask, mediaSrc, thumbSrc"
+    ]
+  },
+  "kept_local": [
+    "08.2 nonspatial reader with Keep",
+    "02.7 sender-owned share",
+    "04.2 and 08.1 photo on Home",
+    "03.6 changed arrangement for a guest",
+    "03.7 arrival and the guest link frame",
+    "03.3 and 03.4 attributed contributions"
+  ]
+}

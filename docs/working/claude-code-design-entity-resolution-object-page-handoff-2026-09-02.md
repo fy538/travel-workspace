@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / design / frontend
 created: 2026-09-02
-last_verified: 2026-09-02
+last_verified: 2026-09-12
 expires: 2026-10-02
 why_new: Gives Claude Code and Claude Design one bounded execution brief for designing the provider-candidate-to-entity-page transition, including the owner-private sparse shell, without reopening Places-root composition or authorizing a catalog backfill.
 promotes_to: null
@@ -22,6 +22,13 @@ depends_on:
 ---
 
 # Claude Code + Claude Design Handoff — Candidate Resolution and Entity Object Page
+
+**Current design routing — September 12:** the [Object Page Rebuild handoff](object-page-rebuild-implementation-handoff-2026-09-03.md#current-coverage-assignment--september-12)
+now owns the bounded Entity design assignment in the six-project review. This
+September 2 brief preserves candidate-resolution constraints and historical
+execution detail; it is not a second active screen-design queue. Later founder
+rulings are recorded in that handoff, and new comparison proposals do not amend
+identity, source-use, retention or action contracts. Integration remains paused.
 
 ## What this handoff is
 

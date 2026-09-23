@@ -16,12 +16,19 @@ depends_on:
 
 # Social experience — design response
 
+> **Assignment routing — September 8:** [the Social handoff's leading current assignment](claude-design-social-experience-project-handoff-2026-09-07.md)
+> owns the preserve-and-finish pass. This response records prior deliveries;
+> its September 7 completion claims are not evidence that the newly assigned
+> continuations have been drawn. Preserve that history and append the next actual
+> handback only after delivery. Integration remains paused.
+
 > **Repository-alignment review, September 7:** §§1–10 below preserve the
 > designer's first handback and what the export actually showed. Their “Works,”
 > “Accepted,” “Keep” and “Build” labels are historical designer judgments, not
 > founder adoption, current implementation instructions or runtime evidence.
 > Several dependency claims there were incorrect; the revised capability map
-> replaces them. Use §12 and handoff §14 for the current revision assignment.
+> replaces them. Section 12 and handoff §14 describe that historical revision;
+> use the September 8 routing above for the current assignment.
 
 **Project:** `Vesper — Social Experience`, Claude Design `3ef10868-d101-4c3e-b58d-c66745b1848c` (regular project, private), https://claude.ai/design/p/3ef10868-d101-4c3e-b58d-c66745b1848c. Created 2026-09-07; Checkpoint 1 reviewed by the founder the same day; corrections incorporated; Checkpoint 2 drawn. Everything on every frame is fixture. Nothing here amends canon; every recommendation is PROPOSED.
 
@@ -294,3 +301,556 @@ Corrected: A, B, C in full. Deferred: none. Unresolved (unchanged dependencies, 
 - Nora on Friday: 03.4 inset then 03.4; the difference is one row.
 - 04.3, 04.6, 04.8 under branch V and the before/after strip.
 - 07 top to bottom: composition, the §15 block, the history block, the six decisions, the walkthrough.
+
+## 16. September 8 consolidation — applied September 9
+
+The handoff's current §0 ("preserve and finish") asked for two corrections in existing canvases and two continuations, inside the existing project and review budget. Export, ledger and this response were updated together. Statuses: corrected, drawn (proposed), deferred to a named owner, unresolved decision.
+
+### 16.1 Corrected frames
+
+| Finding (handoff §0, consolidation §4.3 / §5D / §9.7) | Frames | What changed | Status |
+| --- | --- | --- | --- |
+| An eight-o'clock arrangement implied Sam accepted eight | 03.6; 03.7 variant; 06 branch table; 07 | 03.6's rows now separate the dinner's start ("Dinner now from eight · same place") from his participation ("Nora still has your seven-thirty and nine · until you say otherwise"); the pills are "Eight works / Can't do eight" and the line under them says she keeps his seven-thirty and nine if he does not answer. The 03.7 variant reads "Dinner from eight." and shows the arrival for each answer state (answered: expected around eight; not answered: Nora has you at seven-thirty, leaving by nine; come when you said). It also states what Nora's dinner page shows in the adopted branch: Sam · in · seven-thirty, leaves by nine · no answer on eight (Plans 05 D3's who-is-affected, who-has-answered treatment). Board 06 gained a "Participation versus arrangement" branch row | Corrected |
+| Board 06 overstated completeness and pointed Maya at Nora-only views | 06 routes and actions | The action table no longer says the adopted change reaches only Sam. Maya's route now runs 02.2 → 02.7 → her own view of the dinner page (named as not drawn) → 04.1 → her Take it back on 02.7 (04.9 is Nora's result) → 08.1–08.3. Sam's route ends at 08.5. The board's subtitle states that routes point only at each person's own views | Corrected |
+| Home 10's block frame changes a count without an attendance event | 07 root deltas; ledger rule; D6 | Recorded as a Home-owner delta: hiding, muting or blocking a person never changes who attended or is attending; a viewer-relative count must not read as the gathering's size. D6's recommendation carries the same sentence | Deferred to the Home owner |
+| Sam's record promised "what Nora wrote" while 04.4 keeps her account private | 04.6; 05 D6-A; 04.4 caption; board 04 note | 04.6 and D6-A now name what he holds: Maya's photograph of the table, for as long as she leaves it, and the dinner's shared facts (Saturday Sep 19, from seven, at Nora's); nothing Nora wrote for herself. 04.4's caption says his "leave by nine" appearing in her record is his supplied participation, not a leak. Nora's private help was not removed | Corrected |
+
+### 16.2 The two continuations (board 08, five slots beyond the twenty-four)
+
+**Non-spatial receiving (08.1 → 08.2 → 08.3).** Sender state reused from 05 D1-A (Nora's pasta and "Second try. Thinking of Saturday, if anyone's around.", to friends, Thursday; ledger C6). 08.1: it arrives once on Maya's Home in the addressed region under the same two-item rule 04.2 uses, with Open and Reply and no place. 08.2: the exact source in Life's reader (R4 grammar): the photograph, her line, who, until when, "where it lives" (People → Nora; Time), "No place. Nothing here asks for one.", Reply to Nora, Ask about this (private). 08.3: Life · People · Nora, the pull route: from Nora (hers), from you (yours), held in common; retrieval writes nothing.
+
+Recommended destination and pull route: Home's addressed region is the arrival; Life · People and Life search are the durable route. The alternative (Places · From friends without a pin) is fair and unadopted. This is a named proposal for the Home and Life owners (07 root deltas), not a silent broadening of Home; the spatial-social split stands for place-bound shares; the Friends audience remains the friends-audience proposal.
+
+**After connection (08.4 → 08.5; ledger C7).** Both said yes on 04.6/04.7. 08.4: Nora shares her third-try sauce photograph and one line from her own photograph to Maya and Sam; Sam is addressed by text to the number he confirmed; no link is made. 08.5: the same link, now "From Nora": the new thing, what he already had (the table, Sep 19; the dinner), Write back, and his end of it (Fewer of these; Stop; neither tells her why, neither changes what he was part of). No account, no app; the verified number is the principal (branch V). The guest's private Ask is the same pill everyone has (Plans 11 G1), noted rather than drawn as a slot.
+
+### 16.3 Owner deltas and pending decisions
+
+- Home: 10's block state must not change attendance or count (delta). Casual non-spatial placement in the addressed region (proposal).
+- Life: Life · People as the pull route for things without a place; refind over a photograph remains seam 7 (dependency).
+- Plans: the pending-participation treatment (05 D3) is reused, not redrawn; nothing changes in Plans.
+- Unresolved decisions, unchanged: guest identity and delivery (branch V is drawn, not authorized); friends audience; source-use grant; ongoing-connection default (C5).
+- Later, by assignment: busy-social scale, extra one-friend variants, Dana receiving something worthwhile through these people, acknowledgment experiments.
+
+### 16.4 Review routes (annotations hidden) and evidence limits
+
+- Sam, adopted branch: 03.5 (Move to eight) → 03.6 → 03.7 variant; then 04.3 → 04.6 → 08.5.
+- Maya: 02.2 → 02.7 → 04.1 → 02.7 (Take it back); and 08.1 → 08.2 → 08.3.
+- Nora: 03.5 → 03.4 (adopted branch, in words on the 03.7 variant) ; 08.4.
+- 06 top to bottom, then 07's September 8 block above the §15 close.
+
+Everything is drawn and wired for review only. Nothing here is user validation, a real send, an enabled feature, a verified guest principal or an adopted placement policy. Generators for boards 00–08 are now kept in the repository under docs/working/design-gen/social/ (recovered from session transcripts on September 9 after the scratchpads were cleared).
+
+## 17. September 9 low-pressure receiving — applied September 9
+
+Handoff §0 (September 9) asked for three things inside board 08 and the sibling deltas, no new frames. Export, ledger and this response updated together.
+
+### 17.1 Corrected frames
+
+| Item | Frame | Before | After | Status |
+| --- | --- | --- | --- | --- |
+| Openness is not the recipient's agenda | 08.1 | Maya's week strip carried "SAT · pasta" and the ending read "Saturday, pasta at Nora's, if it happens." | The strip shows her own week (Tuesday, dentist) and ends "A quiet week. Tuesday, the dentist." Nora's line stays on the card as her opening; Open and Reply remain optional; no RSVP step was added. The board note says enjoying it with no response is a complete ending | Corrected |
+| Reader copy | 08.2 | "No place. Nothing here asks for one." under Where it lives | "Hers · to friends · through Sunday": the author, audience and lifetime carry it. Reply to Nora and Ask about this (private) unchanged | Corrected |
+| Reader copy | 08.3 | "Retrieval writes nothing." under the door; sections "From Nora · hers" / "From you · yours" | Doctrine line removed. Sections use Life's vocabulary: "Shared with you · Nora's, while she leaves it" versus "Yours"; the caption says a path back does not mean kept | Corrected |
+
+### 17.2 Reconciliation deltas, same recipient and branch
+
+- **Home 10, block state (as now drawn):** Home's frame keeps the count at four ("quieter, not emptier; the count stands"), does not show and does not remove the blocked person, and names the viewer-safe treatment as Social's to lead, provisional. Social's rule, returned on 07: the count is the arrangement's; the hidden person's row is absent only for the viewer who hid them; nothing announces it; the host's page and everyone else's are unchanged; Fewer and Stop on 08.5 belong to the same family and never touch attendance. Provisional until the arrangement owner rules.
+- **Home, placement:** the Home review keeps the addressed region for contributions addressed to the person and relocates casual status to Places by default. Whether a friends-audience original (C6) is addressed material or casual status is the open point and Home's to decide; 08.1 stays drawn as the proposal, Places · From friends without a pin stays the fair alternative.
+- **Plans 05 D4:** now "Moved to eight · Sam hasn't answered", receipt "Updated to 8:00 · sent to Maya and Sam". 03.6 and the 03.7 variant say the same from Sam's side; Nora's dinner page carries the same pending state. No further change needed on either side.
+- **Life 04 / 07 / manifest:** "Yours, and what others shared with you", a path back does not imply ownership of revocable originals, and the guest record composed as Life 07's dinner (originals shared to that recipient plus their own account, never the host's private account). 08.3 now uses that vocabulary; 04.6 and 08.5 already compose Sam's record that way. A shared original available for refinding is not kept; nothing on 08 implies permanent archival. Life's request to explain a missing shared original where it would have been (07.6's pattern) is noted, not drawn.
+
+### 17.3 Scope discrepancy and pending decisions
+
+Board 08's five slots put the route at 29 against the 24-slot ceiling. Recorded on 00 and in 07's status table as an unresolved scope discrepancy, not compliance: the ceiling was not amended, and the founder decides whether it moves or two frames fold (08.3 into 04.5's grammar, 08.4 into 02.2's). Guest identity and delivery, ongoing connection, source use and placement remain proposals; no Friends audience or service is adopted. No busy-social study, reciprocity mechanic, guest implementation or production work.
+
+### 17.4 Review and evidence
+
+Actor routes reviewed with annotations hidden: Maya 08.1 → 08.2 → 08.3; Sam 08.4 → 08.5; 07 top to bottom. Everything is drawn; navigation between frames is wired only as the linked set on 06; nothing is native and no participant evidence exists.
+
+## 18. September 9 fresh six-project review — applied September 9
+
+Handoff §0 (September 9, 02:07) asked for four changes inside existing frames plus an asset recommendation. Export, ledger and this response updated together. No frames added; the recorded frame-budget discrepancy stands unresolved.
+
+### 18.1 Changed frames
+
+| # | Frame | Change | Status |
+| --- | --- | --- | --- |
+| 1 | 08.2 | One optional, plainly worded Keep beside the existing actions: "Keep this photograph · A private copy, yours after her share ends." Human Reply and the private Ask remain separate choices. The tab bar now renders Home, not Places, and Back restores Home's scroll | Corrected; the retention agreement stays proposed |
+| 1 | 08.3 | "Kept from Nora · yours after her share ends" is now its own row group, above "Yours". Still-accessible-through-her-share and deliberately-kept are two rows, not one | Corrected |
+| 2 | 08 notes | "The extension, exactly" and "The origin stack" replace the older placement note | Corrected; placement proposed |
+| 3 | 08 notes | "What is not inherited": Entity 04.08's automatic receipt stays out; Entity 12.4's three effects are the vocabulary; Reply is not replaced | Corrected |
+| 4 | 04.8 | The draft card now names what the previous outcome supplies (address, buzzer, nothing to bring, the photograph, Dana's dish, last time's seven as a proposal) and what it does not (anyone's availability). The before/after strip says the same in one line | Corrected |
+| — | 07 | New block "September 9 · fresh six-project review"; four new root-delta rows; two new status rows; a new table, "Total work left to each person" | Recorded |
+
+### 18.2 Actual sibling readers inspected
+
+- **Entity 12.4 (Useful Edges, "A face opened · three distinct effects"), as drawn:** keep the place is the top-bar bookmark; keep her words is a permitted private copy under her grant, and she is not told; send onward is the addressed handoff. That vocabulary is inherited directly; 08.2 has no place, so only two of the three effects exist in this material.
+- **Entity 04.08 (The People Slot, "Used · the receipt"), as drawn:** "used in tonight · she can see this use · she can withdraw it". Excluded from the selected route. Entity 04.09's "useful · sent" and 04.10's "you learn useful if she taps it, and nothing else" are the reference for a chosen, deliberate signal; none of them replaces human Reply.
+- **September 5 amendment (Home composition canon), as ruled:** "Casual shares with no Place keep their two existing homes: a Status doorway on Home while featured, and Life People after." Board 08 is one step from that, not a new placement claim.
+- **Life handoff §0 item 3 and the current manifest:** distinguish an original still accessible through sharing from one deliberately retained under its grant; recommend a plain-language Keep continuation on the existing reader; do not require saving to enjoy or refind, infer it from opening, or promote a kept place into retained friends' words. All four are now visible on 08.2 and 08.3.
+- **Home review "with people" kinds:** the addressed region is for contributions addressed to the person; casual status relocates to Places by default. Written so either answer is a small change from the delta.
+
+### 18.3 Status of everything on the two boards touched
+
+| Item | Status |
+| --- | --- |
+| The exact-original route (08.1 → 08.2 → 08.3), Reply and private Ask distinct | Selected, drawn |
+| Home-origin stack preserved for a Life-owned source opened from Home | Selected, drawn; returned to the Home and Life owners |
+| The optional Keep and its retention agreement | Proposed; no grant implemented |
+| Home arrival of the fuller original, with Friends eligibility | Proposed, as an extension of the September 5 Status-doorway permission |
+| Entity 12.4's three effects as vocabulary | Reference, inherited |
+| Entity 04.08's automatic use receipt | Excluded pending a consequential decision |
+| Guest identity and delivery (branch V); Friends audience; source use; ongoing connection | Proposed, unchanged |
+| Frame budget: 29 slots against a ceiling of 24 | Unresolved scope discrepancy, not resolved by this review |
+
+### 18.4 Total work left to each person
+
+Now a table on board 07. In summary: Nora must say one sentence and press Send once; everything else in fourteen slots is optional. Maya must do nothing at all; her three slots are all volunteered. Dana must do nothing; her one slot is a gesture she chose. Sam must open a link, answer once, and confirm his number when the address is needed; nothing else, and no account ever. The couple from the boat are never contacted by the product. If any of them does nothing, the experience still completes for everyone else, and no one is told they were quiet.
+
+### 18.5 Receiving quality: the photo stand-ins
+
+Every photograph on these boards is a labelled grey stand-in, which works against the claim that a human original can be the entire benefit: the frames argue it while showing nothing worth looking at. Before any further persona or scale study, four existing frames would carry a representative ordinary asset:
+
+1. **The pasta (02.1, 05 D1, 08.1, 08.2)** — an ordinary phone photograph of a home-cooked dish, slightly imperfect. It is the specimen the whole non-spatial route rests on.
+2. **The table (04.1, 04.2, 04.3, 04.4)** — a warm, unstaged interior at night, people implied rather than posed. This is the gesture Maya makes.
+3. **The Print Room (02.2 to 02.7, 05 D3)** — a gallery side room; an amateur photograph of a real space, not an editorial one.
+4. **Dana's ragù (03.3, 03.4, 03.7)** — a pot on a stove, from a phone, elsewhere.
+
+These should be ordinary, non-editorial images that a friend would actually send. This documentation update contacts no one and imports no private material; sourcing them is its own scope, and until then the stand-ins stay labelled.
+
+### 18.6 Evidence limits
+
+Boards are drawn; only board 06's linked set is wired. A designer walkthrough cannot establish enjoyment, voluntary return or relationship quality, and none is claimed here. No social root, equal-effort mechanic, guest implementation, Chat redesign or production work. Integration remains paused.
+
+## 19. September 9 second-pass strategy alignment — applied September 9
+
+Handoff §0 (September 9, 19:59) asked for four pieces of work plus three evidence corrections. Export, ledger and this response updated together.
+
+### 19.1 Assets: what exists, what is missing
+
+| Frame group | Plate today | Status |
+| --- | --- | --- |
+| The Print Room (02.2 to 02.7, 05 D3) | The Places project's authored illustration | The one real asset in the packet |
+| The pasta (02.1, 05 D1, 05 D7, 08.1, 08.2) | Labelled stand-in reading "her phone, Thursday 7:40 pm · asset not sourced" | Gap, labelled |
+| The table (04.1, 04.2, 04.3) | Labelled stand-in reading "Saturday 8:25 pm · asset not sourced" | Gap, labelled |
+| Dana's ragù (03.3, 03.4, 03.7) | Labelled stand-in | Gap, labelled |
+
+No asset was invented. Swapping in the kit's schematic illustrations would have shown a diagram of a bowl, which argues against the very claim the frames make, so the stand-ins now name the photograph that is missing instead of hiding behind grey. Ordinary, unpolished, rights-cleared photographs of a home-cooked dish, a table at night and a pot on a stove are needed; sourcing them is its own scope with its own rights. This pass contacted nobody and imported no private library. The authored words beside each plate are real fixture material and carry what they can meanwhile.
+
+### 19.2 The comparison that matters: 05 D7
+
+D7 sets the exact-original reader (A, reusing 08.2) against a capable ordinary message thread (B, one new frame): the same photograph and line, delivered, with a heart and Save image, in a normal messaging app.
+
+The honest reading, written on the board: for one photograph to one friend, the thread is sufficient, instant and already installed, and this comparison is not won on receiving alone. The difference is confined to three places. The author's control still means something afterwards, because a copy exists only where she permitted one and taking it back actually removes what she shared, whereas Save image is unilateral and permanent. The material is found later by the person or the phrase rather than by scrolling a thread. And what she still shares stays legibly different from what you copied. A thread that already works is the thing to beat, and that should be observed with a real pair of friends before anything stronger is claimed.
+
+This adds one comparison frame against a ceiling of twelve. Recorded as an unresolved scope discrepancy, not resolved.
+
+### 19.3 Each person's work, accounted (board 03)
+
+A new table on board 03 sets the same evening by message and link beside the same evening as drawn, per person, with what actually moved and what never moves.
+
+- **Nora** stops writing the invitation twice, retyping the address and buzzer, answering "where is it again?", holding three answers from two threads in her head, forwarding Dana's contribution, and remembering Sam's nine when Maya asks for eight. Choosing the food, cooking it and writing the invitation in her own words did not move.
+- **Maya** stops sending the same thing twice and stops having a private suggestion read as a demand in front of the group.
+- **Sam** stops the back-and-forth about when and where and stops repeating his own constraint.
+- **Dana** stops being forwarded and re-explained; her name stays on her contribution.
+- **The honest total:** a capable message thread does most of this. What it does not do is keep one page where three people's contributions arrive attributed, carry a constraint into a proposed change, give a person with no account an arrival view, and make "two weeks later" cheap.
+
+A note under the table states plainly that the fixture hands Vesper the address, the buzzer, Sam's number and last month's photograph already assembled. That is not work Vesper absorbed. A real first evening would have to ask Nora for the address once, and a real guest link still needs a delivery path that does not exist.
+
+### 19.4 Shared behaviour decisions
+
+- **03.5 is deferred to Plans.** Social's two direct actions and Plans' recommend-once-without-buttons rule cannot both be defaults for one act. Plans leads the narrow amendment comparison (07 and 11). The frame stays drawn with its actions and is marked deferred on the board and in the root deltas. The distinction to preserve either way: an editable logistical proposal that reduces addressing and retyping, with the human keeping authorship and Send, is not invented intimate meaning, and a sent proposal is not an adopted arrangement or a response.
+- **Receiving wording is now Life's, verbatim.** Opening keeps nothing; it stays findable while she shares it; a copy is yours to reread until she takes it back; a kept place is yours, and keeping the place does not keep her words. Social's earlier "yours after her share ends" overstated the agreement and is gone: share expiry and the author taking it back are different conditions, and a copy survives only the first. The source agreement itself stays proposed.
+- **Entity 04.08's automatic "she can see this use" remains excluded** from the selected route pending a consequential decision; Reply and the private Ask remain independent choices in every original reader.
+- **The fuller Home-original placement remains a proposed extension** of the September 5 Status-doorway permission, not a new root.
+
+### 19.5 Evidence corrected
+
+| Item | Correction |
+| --- | --- |
+| 03.8 | Maya opened the door at 7:32 in the branch where she cannot arrive before eight. Nora now opens the door; Maya arrives at eight as 03.5 says; the table photograph moves to 8:25, and 04.1 to 04.3 follow |
+| 02.1 and ledger §8.1 | The answer no longer diagnoses the split sauce from the photograph or guarantee Saturday's batch. It now reads: too much heat is one possibility, the photograph alone cannot confirm it, and here is one concrete thing to change |
+| 04.8 | Left as delivered. The recovered setup is already the concrete benefit; no reflection requirement was added, and no share is made to depend on a memory loop |
+| R canvases | Treated as dated donors, not current requirements. No scale, persona or acknowledgment experiment was added |
+
+### 19.6 Budget and evidence limits
+
+Two discrepancies stand, both visible on 00 and 07: 29 storyboard slots against a ceiling of 24, and 13 comparison frames against a ceiling of 12. Neither ceiling was amended and neither is claimed resolved. Designer comparisons expose work and ambiguity; they do not establish enjoyment, voluntary return or relationship improvement, and none is claimed. No guest, audience or retention policy is adopted, no production change, no recruitment, no Chat redesign. Integration remains paused.
+
+## 20. September 9 selection and correction — applied September 9
+
+Handoff §0 (September 9, 22:10). Three items; export, ledger and this response updated together.
+
+### 20.1 Asset provenance and status, stated exactly
+
+No photograph is sourced, and one earlier claim of mine was wrong: the Print Room's authored illustration is not Maya's visit photograph either. Its plates now carry a corner tag saying they stand in for her photograph, so no drawing on these boards can be read as a person's own material.
+
+| Original | Author in the fixture | Moment | Where it appears | Status |
+| --- | --- | --- | --- | --- |
+| The Print Room, the side room | Maya | Thursday, her own visit | 02.2 to 02.7, 05 D2, D3, D7 | Illustration standing in; labelled |
+| The pasta, second try | Nora | Thursday 7:40 pm | 02.1, 05 D1, 08.1, 08.2 | Not sourced; labelled |
+| The table | Maya | Saturday 8:25 pm | 04.1 to 04.4, 05 D6 | Not sourced; labelled |
+| The ragù | Dana | Wednesday, Sorrento | 03.3, 03.4, 03.7 | Not sourced; labelled |
+
+What "authorized" would mean here: ordinary, unpolished photographs that a friend would actually send, cleared for this use, attributed to the fixture author who is said to have taken them. No stock or generated image may stand as a person's own evidence, no private library is imported, and nobody is contacted under this assignment. The gap is bounded to these four and blocks nothing else in the packet.
+
+### 20.2 One human payoff, end to end (board 07, drawn across 02 and 03)
+
+Recorded on board 07 as its own block, using frames that already exist:
+
+1. **Casual sharing.** Maya writes one line on the Print Room's own page and chooses who sees it (02.2). No prelude, no occasion, no connection to accept.
+2. **Enjoyable receiving.** It reaches Nora among the other things her friends have left (02.3). Opening it keeps Maya's words, the listing and the gallery's own notes apart, so what Nora enjoys is Maya's perspective rather than a summary of it (02.4). She may reply (02.5), ask privately without Maya knowing (02.6), or close it.
+3. **An offline possibility, optional.** On Saturday the afternoon is Nora's only free stretch, and Maya's reason for going is what makes four o'clock worth using: the side room empties after four, the shop shuts at five, twenty minutes home by 5:10, the pasta from six. It appears once, with the cost said plainly, and can be left (03.5). If she goes, Maya is not told; if she does not, Maya is not told either.
+4. **The equally valid ending.** She enjoys the photograph on Thursday and does nothing else, ever. No reply, no Keep, no reciprocal photograph, no next gathering; Maya sees one reply if one comes and nothing otherwise (02.7).
+
+**D7 rebuilt.** The pair now uses the same material and the same two people on both sides: Maya's Print Room photograph and line, to Nora. A is 02.4 reused, continuing to 03.5. B is the capable message thread. The recommendation says plainly that receiving is not the difference and neither is custody; the difference is that an ordinary share can become an actual afternoon without becoming a task, while in the thread Nora would have to remember the name, look up the hours and decide alone. It also says Vesper does not need to win every share, and that most end at "enjoyed it", which is complete on both sides.
+
+### 20.3 Plans' assistance decision, received
+
+03.5 is now marked **unselected** on the board and in the status table. The two equivalent buttons are gone: one action prepares a message ("Move to eight…"), Nora reads and sends it, and the arrangement moves only then; leaving it is not a button. The three events Social asks Plans to keep distinct in whichever shape wins are preparation, the human's Send, and adoption of the arrangement. Social selects nothing here.
+
+**Entity's revised original route, received.** An object opened from a friend's share must not discard the intent that brought the person there, and nothing may be generated on opening. Social's 02.4 is the receiving shape to preserve: her words, the listing and the gallery's notes kept apart, a reading never made from her sentence, Reply and the private Ask separate, and return to the same scroll position. Automatic sender visibility of private use stays excluded pending a decision.
+
+### 20.4 Remaining work for each person
+
+Unchanged from board 03's account and 07's table: Nora says one sentence and sends once; Maya must do nothing; Dana must do nothing; Sam opens a link, answers once and confirms his number when the address is needed; the couple from the boat are never contacted. In the payoff above, Nora's remaining work is to decide whether to spend her own afternoon, and Maya's is nothing at all.
+
+### 20.5 Status and limits
+
+Fuller Home placement, the source agreement behind the optional copy, and guest identity and delivery remain proposals. Both budget discrepancies stand: 29 storyboard slots against 24, and 13 comparison frames against 12. Rendering was inspected; that establishes neither participant enjoyment nor implemented withdrawal. No new project, audience policy, production work or Integration restart.
+
+## 21. Selected direction and residual corrections — applied September 10
+
+Handoff §0 (September 10, 00:07) records the selection and four residual items. The September 9 decision on convergence and prepared continuations is received in full.
+
+### 21.1 D7, evidence matched
+
+The comparison no longer implies that Thursday's note pays for Saturday's afternoon. Its inputs are now named on the board and given to both sides:
+
+| Input | Author | When | Audience |
+| --- | --- | --- | --- |
+| A1, the photograph and "go on a weekday, it was empty" | Maya | Thursday | Friends |
+| B2b, "the side room empties after four and the shop shuts at five" | Maya | Friday | Nora, as the evening's owner |
+| "Home by six to start the pasta" | Nora | Her own | Herself |
+
+The message thread now carries both of Maya's messages, Thursday and Friday, and its note states that it also has ordinary search, the link Maya sent and the address already in the thread. Vesper is credited with no information the thread was denied and with no retyping the thread would not have to do. The remaining difference, written as the recommendation: on Saturday the two contributions and Nora's own constraint compose once, at the moment the afternoon is usable, with the cost said plainly and the option to leave it; in the thread she reads back two days, checks the hours and fits it against six herself. That is a real difference and a small one, and it costs Maya a second contribution. The afternoon stays optional.
+
+### 21.2 03.5, the selected proposal
+
+One door, "Ask Maya about joining at eight…", opens a prepared message to Maya reading: "We'll start at seven. Would joining at eight work for you?" It is editable and ends in **Send proposal**.
+
+Exact effects, as drawn and as recorded on 07: sending asks Maya and sends words only. Dinner does not move. Her answer is not recorded. Sam is not asked again and his departure time is not in the message. Nobody is told about an unchanged dinner. Leaving it sends nothing and seven still stands. The owner-instructed route, Plans' preview and **Update & send**, applies only when Nora actually instructs a change; it is not a button beside this one, and board 03.6's adopted branch is now marked as reachable only through that route.
+
+### 21.3 Original material
+
+Still unavailable, and the gap is unchanged from §20.1: the Print Room, the pasta, the table and the ragù. Every illustration now carries "illustration, not her photograph", so no drawing reads as a friend's own. No private library was imported, nothing was generated as personal evidence, and nobody was contacted. Placeholders establish no pleasure and none is claimed.
+
+### 21.4 Reader agreement and copy
+
+Life's and Entity's exact original, human Reply and optional eligible Ask are received as drawn on 02.4 to 02.6. Display is neither retention nor permission to use the material, and no private use is reported to the sender. The redundant process narration is gone: the gallery's reading is simply attributed to the gallery, and no sentence explains what it was not made from. Material boundaries stay accessible on the frame.
+
+### 21.5 Status
+
+Selected: original-first casual receiving, the guest-hospitality and asymmetric-photograph sequence, and 03.5's prepared proposal. Not adopted: fuller Home placement, general Friends and guest agreements, the retained-copy agreement. Both budget discrepancies stand at 29 slots against 24 and 13 comparison frames against 12. Boards were re-measured and inspected at full scroll after the changes. No new root, compulsory reply, posting or memory loop, no code change, no Integration restart.
+
+## 22. Shared package vdl-stage1 0.3 adopted, and the September 10 additive review — applied September 11
+
+A consolidation pass, not a redesign. The project now consumes the shared package prepared in the Stage 1 workbench (`c13ae951`, board 06 and `vdl-package.json`), per the consolidation brief §19–20, and applies the handoff's September 10 additive review.
+
+### 22.1 Access and what was consumed
+
+The actual shared files were fetched and checked, not reconstructed: `vdl.css` (sha256 7b6fa1d3…, 16,055 bytes) and the kernel copy of `styles.css` (sha256 a843ca5b…, identical to the published kernel file, stamp travel-app@e2e792913) both match the manifest; `support.js` is byte-identical to the one already in this project. The Social project's own kernel binding was the empty namespace stub, so the kernel stylesheet copy was added beside it. Consumed and now present in the project: `OriginalReader`, `InviteCard`, `Notice` (workbench etags as recorded in the manifest), `vdl.css` and the kernel copy. Boards 02, 03 and 05 load both stylesheets; neither stylesheet carries element selectors, so no existing inline construction was restyled.
+
+### 22.2 What changed, frame by frame
+
+| Frame | Shared component and variant | Visible change |
+| --- | --- | --- |
+| 02.4 | OriginalReader, full | The header drops the search and map icons and sets the name at 13/600 (the workbench's accepted judgement pass). The drawn room becomes the labelled media slot, so no drawing stands in for Maya's photograph. The private Ask now sits directly under the reply field, as the shared reader places it; the gallery's notes and Priya's visit follow as Places content around the reader |
+| 02.5 | OriginalReader, full, compose | As 02.4, and the Send pill no longer wraps "Send to / Maya" onto two lines |
+| 05 D7-A | OriginalReader, full | As 02.4 |
+| 03.1 | InviteCard, host ×2 | Each preview reads as labelled facts (WHEN, WHERE, WITH, BRING) with the condition under its fact, and Sam's delivery channel sits in the footer beside the privacy stamp: the change reviewed and accepted on workbench 02B. Everything around the cards is unchanged |
+| 03.2 | InviteCard, guest, pill | Each condition sits under its fact instead of running on in grey; nothing else moved |
+| 02.2, continued | Notice; `.vdl-sheet`, `.vdl-field` | New inset: choosing or correcting one recipient, in the workbench's own proposed S1 sheet anatomy ("Who gets it"), then the exact outgoing material, send or leave, and the result |
+| 02.5, after send | Notice | New inset: sent, or did not reach Maya with Try again; the return is her original, not a summary |
+| 03.1, first evening | local, over shared type | New inset: the one missing fact, the address, asked once in the same chat; everything known is reused; then the same previews and Send |
+
+The originals are kept in the project as **Before shared package** copies of boards 02, 03 and 05. Boards 04, 06 and 08 are unchanged.
+
+### 22.3 What remains project-specific, and the missing variants
+
+Kept local because no shared variant preserves the selected design, reported rather than redrawn:
+
+- **08.2**: `OriginalReader` full has no optional Keep and no non-spatial "where it lives" in place of the place row. Life 07.7/07.8 is the donor.
+- **02.7**: no sender's-own-share variant (one reply, Edit, Take it back, and a withdrawal that can fail).
+- **04.2, 08.1**: `open` and `card` densities have no photograph, so a friend's photo arriving on Home stays local.
+- **03.6**: `InviteCard` answered offers two secondary actions only; a changed arrangement seen by a guest needs a primary and a secondary under his own labels.
+- **03.7** and the guest link page's bar and footer, and **03.3/03.4**'s attributed contributions on an occasion page: not in the package.
+
+Also local by design: the place-owned sections below the reader, the Chat frame around the invitation previews, every root full scroll, and the phone shell and tab bar.
+
+### 22.4 The September 10 additive review
+
+- **First-host step (03.1).** Drawn as an inset: known details reused and not asked again; the address, the one missing fact, asked once in the existing chat; then the same two previews and Send with Nora's words and choices intact. It is counted in 03's work table.
+- **Fair baseline carried into 03's work comparison.** The message-and-link column now has the same competence as 05 D7's: search, existing links and a reused address. Vesper is credited only with assembly and coordination it removes: recipient-specific versions from one sentence, one attributed page instead of three threads, a constraint carried into a change, an arrival view for a person with no account, and the one-time address question. Effort is allowed to be uneven, and no recipient owes a contribution, reply or adoption.
+- **Coverage follow-through.** Board 07 carries a table with a disposition, owner and next trigger for each item: recipient choice and correction (targeted addition, drawn); optional words and Change (existing donor); Reply versus private Ask and return (existing donor, now on the shared reader); the sender's own share and a failed withdrawal (owner dependency, the missing variant); the first-host step (targeted addition, drawn); guest invitation, arrival and later media (existing donor; verification, recovery and unavailable access remain a named dependency). The recipient step uses a second, fixture-only Nora to show two same-named friends told apart; recorded in the ledger.
+
+### 22.5 Verification
+
+- **Rendering.** Components are fetched at runtime, so every check ran over a local HTTP server with headless Chrome through playwright-core; file:// cannot load them.
+- **Matched crops.** Six before/after pairs at the same content and width: 02.2, 02.4, 02.5, 03.1, 03.2 and 05 D7-A. Every after crop contains mounted shared nodes; every before crop contains none.
+- **Narrow and larger text.** Each adopted instance at 393 and 320px, at 1.0× and 1.3× text: no text spills its container and none is clipped. One limit the automated check did not flag and inspection did: at 320px with 1.3× text the reader's media label truncates with an ellipsis, which is the component's designed behavior for that label.
+- **Errors.** One console 404 for the browser's own favicon request; no page errors.
+- **Hosted render.** After the push, boards 02, 03 and 05 were opened from the project's own preview links in headless Chrome. Every component mounted from the project's files and no import was left unresolved: board 02 shows two readers, four notices and the recipient sheet; board 03 both host previews and the guest rows; board 05 the D7-A reader. The only error was the browser's own favicon request. The hosted 02.4 and 03.1 frames match the local captures.
+- **Not verified.** The Claude Design editor view, native rendering and behavior, real-user legibility, and publication to the kernel or propagation from the workbench. The package is consumed by copy at recorded versions; a later shared change will not reach this project on its own.
+
+### 22.6 Standing items
+
+Both budget discrepancies stand: 29 storyboard slots against 24, and 13 comparison frames against 12; the three new insets are states of existing slots, not slots. The ordinary photo assets remain a named gap. Fuller Home placement and the guest, Friends and retained-copy agreements remain proposals. No new social root, compulsory gathering, code change or Integration restart.
+
+## 23. Shared package vdl-stage1 0.4.1 consumed — September 11
+
+Handoff "Current assignment — adoption reviewed September 11". One consumer update, directly to the corrected revision, with the selected compositions preserved and only the named correction made.
+
+### 23.1 Consumed version
+
+**vdl-stage1 0.4.1** from the workbench (`c13ae951`). Only `OriginalReader` changed upstream since 0.3: etag 1789153753071940, 13,559 bytes. It adds supplied media and thumbnail, the `show=reader` / `show=ask` split, and practical place metadata at ink60. `InviteCard`, `Notice`, `vdl.css` (sha256 7b6fa1d3…, whose internal version string still reads 0.3) and the kernel copy are byte-identical to what the project already held. There was no intermediate 0.4 migration. The project now carries `vdl-consumed.json` listing every consumed file, its version and the frames that use it. Adoption is by copy at these versions, not live synchronization.
+
+### 23.2 Changed instances
+
+| Frame | Before this pass (0.3) | After (0.4.1) |
+| --- | --- | --- |
+| 02.4 | Patterned media slot; the private Ask directly under Reply | Social 02.4's own Print Room drawing and place thumbnail, supplied by file; the selected order restored: original and listing, Reply, the gallery's notes, Priya, then the private Ask |
+| 02.5 | As 02.4, with the editor and Send | As 02.4, with the editor and Send kept and the reply result unchanged below |
+| 05 D7-A | As 02.4 | As 02.4. Both sides of D7 carry the drawing again, so the comparison is visually fair |
+
+Each is one `OriginalReader` with `show=reader`, Social's own sections, then the same component with `show=ask`: one Ask, no Social-only reader. Stamps on boards 02, 03 and 05 and the records on 00 and 07 now name 0.4.1; boards 03, 00, 01 and 07 changed only in that text. Boards 04, 06 and 08 are untouched. The InviteCard previews and guest layout, the Notice results and the first-host inset are unchanged.
+
+### 23.3 Checks
+
+- **Matched references.** The "Before shared package" copies of boards 02 and 05 remain in the project as the original selected design. Original and 0.4.1 frames were captured at the same content and width for 02.4, 02.5 and 05 D7-A.
+- **Order**, measured by element position in the rendered frames: in all three, her words, then Reply, then the gallery's notes, then Priya, then the private Ask, matching the originals.
+- **Media**: the illustration and thumbnail load in all three frames; each frame has exactly one private Ask.
+- **Hosted render**: after the push, boards 02 and 05 were opened from the project's own preview links. All three frames keep the restored order, load the drawing and the thumbnail, and have one private Ask; no import was left unresolved. The only error was the browser's own favicon request.
+- **Narrow and larger text**: the reader, the compose reader and the Ask at 393 and 320px, at 1.0× and 1.3× text: no text spills or clips. As before, at 320px with 1.3× text the media label truncates with an ellipsis, which is the component's designed behavior.
+- **Remaining visible differences from the originals**, both from the reviewed shared reader, not this pass: the header sets the name at 13/600 without the search and map icons, and the place line reads darker at ink60.
+
+### 23.4 A discrepancy for the package owner
+
+The workbench manifest records the three Print Room media files as 934, 903 and 902 bytes with specific sha256 values. The files the workbench actually stores are 1,004, 973 and 972 bytes and do not match those hashes; all three share one later etag. Reading them through the Design API also injects a provenance metadata block, which was removed; nothing else was changed. The project consumes the two files it needs exactly as stored and records their real hashes in `vdl-consumed.json`. The manifest's media hashes should be retaken by the workbench owner. The drawings themselves are Social 02.4's own and are unchanged.
+
+### 23.5 Unchanged
+
+Sender-owned, nonspatial, Keep, arrival and contribution variants stay local, and their coverage work stays open. No source-use, retention, guest or sending authority changes. The ordinary photographs remain a named gap. Both budget discrepancies stand.
+
+## 24. Board 09, sending, access and control — September 15
+
+The September 12 coverage assignment asked for one compact sender, access and control canvas. It is drawn as board 09, seven slots, using shared components where they exist. No existing composition changed, and the 0.4.1 adoption was not repeated.
+
+### 24.1 What the canvas holds
+
+| Slot | What it shows |
+| --- | --- |
+| 09.1 | The "Who gets it" sheet over eligible connections only. Two friends called Nora are told apart by how Maya knows them. A mistyped name finds nobody, and the inset states that nothing searches her phone and that choosing someone grants nothing beyond this share |
+| 09.2 | The preview before Send: her words exactly as written, the named recipient as a token, what that person will see, and until when. Leaving sends nothing |
+| 09.3 | Three truthful results on the shared Notice: sent, not sent, and not yet known, then the same place as before with her words unchanged |
+| 09.4 | Her own share later: one reply, Edit and Take it back, and a confirmation that says what taking it back does before she does it |
+| 09.5 | The result: taken back, or not yet, and what stays with its owner. Nora's reply, Priya's note and Maya's own photograph are untouched |
+| 09.6 | Fewer, mute, leave and block, each with its actual effect, plus report, which goes to Vesper. A list of what none of them does: change who came, delete what anyone wrote, or tell anyone why |
+| 09.7 | The guest access step, drawn only as the proposed branch: the code, a wrong code, an expired code, a new one, and an inset for the confirmed, changed, reopened and unavailable endings |
+
+The recipient's aftermath on 04.9 stays where it was; 09.4 and 09.5 are the sender's own operation, which it did not cover. A failed code never removes the evening Sam already has.
+
+### 24.2 The division, offered to the You and Trust owner
+
+You and Trust became its own visual-first project on September 12, so board 09 carries the boundary as a table rather than assuming it. Social draws the deliberate, per-share face and the controls where a person meets them. You and Trust owns the account-wide settings, connections, notifications, retained material and the service relationship. Life keeps the record of what each person shared, contributed and withdrew. The same four control choices use one vocabulary in both places. No competing biography, no occasion profile, no popularity, view or compatibility score anywhere.
+
+### 24.3 Status and dependencies
+
+- **Drawn:** all seven slots, with entry, applicable control, truthful result and return.
+- **Selected:** nothing new. The controls policy stays proposed and the founder's ruling on block, mute, disconnect and report is still open.
+- **Conditional:** 09.7 exists only as the proposed guest branch. No verification mechanism is adopted, and guest identity and delivery remain a separate agreement.
+- **Separate agreements, unchanged:** Friends scope, independent recipient copies, source use and retention.
+- **Shared package:** Notice carries every result. The sheet, field, button and recipient token are shared styles. The sender's own share view has no shared variant, so it is local construction and is offered to the shared owner as the next one.
+
+### 24.4 Checks
+
+- Board 09 renders with no spills or clips across all fourteen phone-width frames, at normal and at 1.3× text.
+- On the hosted project the board resolves every shared component: seven notices, both sheets, the fields, the recipient token and the buttons, with no unresolved imports. The only error was the browser's own favicon request.
+- Boards 01 to 06 and 08 rebuild byte-identical to what is live, so nothing drifted while this was added. Board 00 gained the new row and the budget line; board 07 gained the coverage and adoption records.
+
+### 24.5 Budget
+
+Board 09 adds seven slots at the assignment's request. The project now holds 36 storyboard slots against a ceiling of 24, and 13 comparison frames against 12. Both are recorded on 00 and 07 as unresolved scope discrepancies, not claimed as compliance.
+
+## 25. Board 10, photos sent and received — September 21
+
+The September 21 addition is drawn as board 10 in this project: five slots, one matched comparison, on
+**Life's fixture set** (ledger §10, PH-01 to PH-07). Life recorded that set while this board was being
+built. My first draft kept its own IDs and a different recipient; it was rebuilt on Life's IDs and Life's
+Sunday 9:40 share event, so there is one fixture across the three projects. The earlier boards were not
+changed, and the finished source-reader and package migrations were not redone.
+
+### 25.1 The connected path, one fixture
+
+| Slot | What it shows |
+| --- | --- |
+| 10.1 | Nora's Life, in the evening's record: five photos. She selects PH-02 (the pan, 6:48) and PH-04 (the table after everyone left, 10:40, low light). Maya's PH-01 and Dana's PH-05 carry their author and can't be selected. The near-duplicate PH-03 is simply left, not flagged for cleanup |
+| 10.2 | The exact outgoing selection in order, an optional line left empty, Maya from 09.1's chooser, and "until you take them back", then Send or Not now. An inset shows sent, a partial failure ("1 of 2 went") and not-yet-known on the shared Notice |
+| 10.3 | Maya's Home, Sunday 10:05: both pictures whole, side by side at one height, then who sent them and which evening. Her Sunday continues below. Opening and leaving is the ending. An inset shows the same arrival at 1.3× text |
+| 10.4 | The viewer opens directly, not through Life: one of two, each picture with its own author and camera time, an optional reply to Nora, and close back to the same place on Home. An inset shows PH-04 dark, as it was taken |
+| 10.5 | The D5 comparison on matched inputs: A shows the original only; B adds light context, the evening, from Nora's record; C adds earned enrichment, Maya's own 8:25 photo placed between Nora's two in time |
+| 10.6 | Maya's Life · People · Nora on Wednesday, without having replied: the shared pair beside her own photos and the evening they both hold. Later states: after PH-04 is taken back one photo shows with no gap; after both are taken back, Maya's own photo and the evening remain |
+
+**Selected:** B on Home, and C only inside the viewer's "Where it lives". C is earned from times and
+authorship alone, without reading the pictures. On Home it would put a second object beside Nora's
+pair. A stays a complete ending; it is what a picture with no evening, such as PH-06, gets.
+
+### 25.2 Where things open and return
+
+| Origin | Opens | Returns to |
+| --- | --- | --- |
+| Maya's Home, "From Nora" | The viewer at the tapped photo | Home, same scroll position |
+| Life · People · Nora | The same viewer, same order | The same People row |
+| Nora's record | Selection, then Social's share | The record, selection cleared, with the result |
+| Reply, from the viewer | The reply field in place | The same photo |
+
+### 25.3 Gaps, kept separate
+
+- **Asset:** no approved ordinary photographs exist. Every frame is a stand-in at the picture's real
+  proportions with its ledger ID, and PH-04 is dark because the real picture is. Natural color, texture
+  and noise can't be judged until approved pictures replace the stand-ins by ID.
+- **Design:** Life leads the viewer and collection anatomy, so 10.4 is only the minimum a receiver needs
+  and must be reconciled with Life's proposal. The shared reader has no variant for a small set without
+  words; it is drawn locally and offered to the shared owner after reconciliation.
+- **Policy:** set delivery, Friends audiences, guests and independent copies are not adopted. The 08.2
+  Keep stays a proposal. "Until you take them back" is this board's proposed default.
+- **Native verification:** pinch, swipe, caching, partial upload and retry, and correction and
+  withdrawal propagation belong to engineering. The mockups establish none of them.
+
+### 25.4 Checks
+
+- All five phones fit at normal and 1.3× text, with no spills or clips.
+- Boards 01–06, 08 and 09 rebuild byte-identical to the live project.
+- Pushed boards 00 (index row and budget), 07 (coverage and status rows, plus the missing reader
+  variant) and 10. The live sizes match the local ones.
+
+### 25.5 Budget and a small defect
+
+- The project now holds **41 storyboard slots against a ceiling of 24**, and 16 comparison frames against
+  12. Both are recorded on 00 and 07 as unresolved scope discrepancies, not as compliance.
+- The kit's Home header hardcodes Nora's avatar. On 10.3 it is corrected to Maya's. The existing 08.1
+  (Maya's Home) still shows "N"; that board was left untouched.
+
+## 26. Board 10 export review — September 21
+
+Following "Export review — September 21: complete the existing photo exchange" in the handoff. The
+sequence on board 10 is kept. Five bounded changes follow, plus one connected simulated path.
+
+### 26.1 What changed
+
+| Item | Change |
+| --- | --- |
+| 1. Selection modes | **10.1** is now Life 04b.11's general selection, copied: three selected (PH-02, PH-01, PH-04), with the doors Share 2, Export 2 and Delete 2. Social begins at Share 2. The Share-only selector is kept as an inset ("started from Share"): only share-eligible pictures can be ticked there, and PH-01 and PH-05 stay visible with their author. **10.2** now reads "2 of your 3" and names the picture left out beside a thumbnail: "Maya's table isn't in this share. It stays with the dinner." Nothing is dropped silently, and selecting a picture grants nothing. Ledger §10's blanket "not selectable by Nora" sentence is narrowed to the Share-started mode |
+| 2. Cancellation and return by outcome | The 10.2 inset now lists where each ending returns. Not now goes back to the same scroll with the three still selected. A confirmed send goes back to Photographs and clears the selection; it is the only ending that does. If nothing went, Nora stays on the share with everything kept. If part went, she goes back with only the late table still selected, and "Send the late table" sends only that picture. If the result isn't known yet, she goes back with nothing re-sent until "Check again" resolves it. Each picture keeps its own result, so a retry never resends one that arrived |
+| 3. Derived labels | 10.6's system title is now "From Pasta night · 2 photos". After a withdrawal or a partial send it reads "1 photo, the pan", never "before and after". The viewer row becomes "8:25, after this one". Authored words would stay as written. Maya's own table and the evening stay |
+| 4. Actual pictures | **Still missing.** Neither the ledger nor Life's refreshed export has approved ordinary photographs; Life's 04b uses drawn illustrations. Board 10 keeps stand-ins at real proportions under the same IDs, authors and allowed uses. This remains a named gap and blocks none of the interaction work |
+| 5. Scope labels | The two-photo share is labelled as a bounded design proposal under the unresolved collection-delivery agreement, on the board subtitle, 10.2's stamp and the gaps table. The adopted agreement covers only one exact original to a named recipient. "Until you take them back" is marked as proposed where it appears |
+
+### 26.2 The connected path
+
+**10P · Photo exchange, simulated** is a new file of linked frames built from board 10's own frames:
+
+- **Life path:** Photographs, the original (back returns to the same grid), three selected, Share 2, and
+  the preview.
+- **From the preview:** Not now returns to the same selection. Send follows an outcome chosen outside
+  the phone: sent, nothing went, part went (then "Send the late table") or not known (then "Check
+  again"). Each returns to its origin.
+- **Home path:** Maya's Home, then the viewer (1 of 2, then 2 of 2), then back to Home.
+- **Verified:** all 32 steps pass in local headless Chrome and on the hosted project, with the Notices
+  mounted and no errors. The first hosted run failed because Notice buttons mount after the frame is
+  wired; wiring is now per element and repeats after each switch.
+
+### 26.3 Evidence boundary
+
+This is a simulation: no message is sent and nothing is stored. Static states and linked frames are not
+evidence of working navigation, native media, real delivery or withdrawal propagation. Board 10 fits at
+normal and 1.3× text (one spill found at 1.3× was fixed by letting the action bar wrap). Boards 01–09
+are unchanged. Boards 00 and 07 were updated for the index row, the 10P row and coverage. Budget: 10P
+adds linked frames outside 06, which the budget rules reserve for linked frames; it is recorded on 00
+as the review's request, with no storyboard slots added.
+
+## 27. Second export review of board 10 — September 21 evening
+
+Following the rewritten "Export review — September 21: complete the existing photo exchange". The
+credited fixes are kept as they are, and none of them is presented as policy adoption or working delivery.
+
+### 27.1 One outcome rule, offered to Life 04c as the common donor
+
+Two different things are kept apart:
+
+- **General selection (Life's):** the mixed set Nora ticked, possibly including Maya's picture.
+- **Pending send (Social's):** the share-eligible part of that selection, minus whatever is confirmed
+  delivered.
+
+| Outcome | General selection | Pending send | Offered | Lands on |
+| --- | --- | --- | --- | --- |
+| Not now | Restored exactly | Discarded; the line kept as a draft | Share again | Photographs, selecting, same place |
+| Nothing went | Kept underneath | Unchanged, with the line | Try again; Not now | The preview |
+| Part went | Released: the share used it | Only what didn't arrive | Send only that; Leave it | Photographs, a notice, NOT SENT on the tile |
+| Not known yet | Released | The unknown picture, marked CHECKING | Check again (a status check, not a resend); Leave it | Photographs |
+| Sent | Cleared | Empty | Nothing; findable in Life | Photographs, a local confirmation |
+
+**What this replaces:**
+- **Life 04c:** it keeps all three selected with Share 2 after every outcome, so a Share 2 after a
+  partial send would send the pan again. Its copied outcome frames and their text are Life's to
+  update. This project did not edit Life.
+- **The first 10P:** it showed the pending picture as a one-item general selection.
+
+**Changed frames on board 10:**
+- The 10.2 outcome inset: "Only the late table is waiting to send", plus a line explaining when the
+  selection is released or kept.
+- The inset stamp.
+- A new table on the board, "ONE OUTCOME RULE".
+
+### 27.2 10P is now stateful
+
+Rebuilt as a working prototype rather than a switch between prewritten frames:
+
+- **Interaction:** tiles toggle a real selection. Share counts only Nora's own pictures and names
+  Maya's as left out. The optional line is a real text field that keeps what you type. The preview
+  is built from the current selection.
+- **Outcomes:** each simulated outcome applies the rule above, and a log outside the phone counts
+  simulated deliveries per picture.
+- **Implementation:** state lives in script and is re-rendered after any re-mount, and clicks use one
+  delegated listener. Notices use the shared Notice's own `vdl-notice` markup, because the
+  component's props are fixed when it mounts.
+- **Verified:** 15 checks, with real clicks and real typing, passed locally and on the hosted project:
+  - opening an original and returning to the grid;
+  - the mixed selection, including changing your mind on one tile;
+  - Share 2 holding only Nora's two;
+  - Not now restoring the three and the typed line;
+  - nothing went keeping the line;
+  - part went leaving only the late table pending and marked;
+  - an uncertain retry offering only Check again;
+  - resolution delivering each picture once;
+  - a clean send clearing the selection with a local confirmation;
+  - Home opening the viewer directly, browsing, and returning to Home.
+- **Not demonstrated:** scroll position, and any real send, storage or synchronization.
+
+### 27.3 Low-pressure ending
+
+A sent share gives a local confirmation ("In Life under Maya. Nothing waits on her reply.") and stays
+findable in Life. There is no In motion item on Nora's Home, no read receipt and no prompt to reply.
+Maya's receive-and-leave is unchanged.
+
+### 27.4 Actual pictures
+
+Still none. The ledger and Life's export (04b/04c use drawn illustrations) have no approved ordinary
+photographs. The IDs, authors and allowed uses are unchanged. Supplying them needs the founder or Life
+to provide approved pictures or clearly labelled representative ones.
+
+### 27.5 Evidence boundary
+
+Board 10 fits at normal and 1.3× text. Boards 01–09 are unchanged. Boards 00, 07, 10 and 10P were
+pushed. The hosted playback of 10P is verified, but only as a browser simulation. Native media, real
+sends, withdrawal propagation and scroll-position restoration remain unverified.

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <link rel="stylesheet" href="_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css" />
+        <link rel="stylesheet" href="vdl.css" />
+        <script src="vdl-refs.js"></script>
+        <script src="vdl-port.js"></script>
+        <style>
+          .cmp-ref{background:var(--vk-paper30);width:393px;min-height:240px}
+          .cmp-cap{max-width:393px;color:var(--vk-ink40)}
+          .spec{width:393px;box-sizing:border-box;background:var(--vk-paper20);padding:22px;border-radius:var(--vk-radius-chromeDock);box-shadow:var(--vk-shadow-lg)}
+          .cmp-bubble{max-width:280px;background:var(--vk-color-action-primary);border-radius:18px;padding:10px 14px}
+          .cmp-right{display:flex;justify-content:flex-end}
+          .ret-facets{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+          .ret-facets span{padding:3px 9px;border-radius:10px;border:1px solid color-mix(in srgb,var(--vk-ink00) 14%,transparent);color:var(--vk-ink40);letter-spacing:1px}
+          .ret-facets span.on{border-color:var(--vk-ink00);color:var(--vk-ink00)}
+          .ret-field{display:flex;align-items:center;gap:10px;min-height:40px;border-radius:12px;background:var(--vk-paper00);padding:0 12px;border:1px solid color-mix(in srgb,var(--vk-ink00) 10%,transparent)}
+          .side{max-width:520px}
+          /* Social 02.4’s own sections, copied from the donor frame as the host’s content (not package) */
+          .host-social{margin:0 -22px}
+          .host-social .fn{font-family:var(--vk-font-mono);font-size:10px;letter-spacing:0.9px;color:#B5AFA5}
+          .host-social .chev{flex:none}
+        </style>
+      </helmet>
+      <div class="vdl-board" data-screen-label="02A The same human original">
+        <div class="vk-t-capsEyebrow">Stage 1 · Comparison 1 of 4 · accepted visual reference (§19.1)</div>
+        <div class="vk-t-h1Large" style="margin-top:6px">A person’s own words, at each root’s selected density</div>
+        <p class="vk-t-body" style="max-width:820px;margin:8px 0 0;color:var(--vk-ink40)">Each root keeps its selected treatment — Home’s open note, Places’ contained card, Social’s media-first 22/30 reader, Life’s result row — compared with the same content. The ports are fidelity references (appearance kept, gaps exposed, not component-built); OriginalReader is the shared construction and carries all four as density variants.</p>
+        <div class="vk-t-monoStamp" style="margin-top:10px">KERNEL travel-app@e2e792913 · VDL STAGE1 0.4 · ORIGINALS ARE LIVE CROPS · PORTS ARE FIDELITY REFERENCES, NOT COMPONENT-BUILT · FIXTURE CONTENT</div>
+
+        <div class="vdl-rule"></div>
+        <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80)">HOME 02 · MAYA’S NOTE, IN MOTION · AS DRAWN, AS A FIDELITY PORT, AS A COMPONENT</div>
+        <div class="vdl-lane">
+          <div class="vdl-cell">
+            <span class="vdl-tag orig vk-t-capsMicro">ORIGINAL · HOME 02</span>
+            <div class="cmp-ref" data-ref="refs/home/02 - Persona A - The New Yorker.dc.html" data-sig="The current ordinary scroll" data-y="680" data-h="240"></div>
+          </div>
+          <div class="vdl-cell">
+            <span class="vdl-tag vk-t-capsMicro">FIDELITY REFERENCE · PORT OF THE SAME REGION</span>
+            <div data-port="refs/home/02 - Persona A - The New Yorker.dc.html" data-sig="The current ordinary scroll" data-y="572" data-h="240" style="width:393px;min-height:200px"></div>
+          </div>
+          <div class="vdl-cell">
+            <span class="vdl-tag vk-t-capsMicro">SHARED CONSTRUCTION · OriginalReader density=open</span>
+            <div class="spec" id="or-open">
+              <div class="vdl-t-sectionHeading" style="margin-bottom:12px">In motion</div>
+              <dc-import name="OriginalReader" density="open" author="Maya" meta="AUG 30 · TO YOU" words="…and if you two ever want a proper pasta night — Lilia. Ask for the corner table." place="Lilia" placeMeta="TONIGHT AT EIGHT · WITH MAYA · ARRANGED" door="Tonight, at Lilia" hint-size="349px,200px"></dc-import>
+            </div>
+            <p class="vk-t-caption cmp-cap">Uncarded, as Home selected; the arrangement’s door stays inside the unit.</p>
+          </div>
+        </div>
+
+        <div class="vdl-rule"></div>
+        <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80)">SOCIAL 02.4 · THE FULL READER · THE SAME ORIGINAL AND MEDIA</div>
+        <div class="vdl-lane">
+          <div class="vdl-cell">
+            <span class="vdl-tag orig vk-t-capsMicro">ORIGINAL · SOCIAL 02.4 · THE PRINT ROOM, OPENED</span>
+            <div class="cmp-ref" data-ref="refs/social/02 - A little of your world.dc.html" data-sig="THE PRINT ROOM, OPENED" data-y="150" data-h="990"></div>
+          </div>
+          <div class="vdl-cell">
+            <span class="vdl-tag vk-t-capsMicro">FIDELITY REFERENCE · PORT OF THE SAME FRAME</span>
+            <div id="port-soc" data-port="refs/social/02 - A little of your world.dc.html" data-sig="THE PRINT ROOM, OPENED" data-report="report-soc" style="width:393px;min-height:300px"></div>
+          </div>
+          <div class="vdl-cell">
+            <span class="vdl-tag vk-t-capsMicro">SHARED CONSTRUCTION · OriginalReader 0.4 · show=reader → host sections → show=ask</span>
+            <div class="spec" id="or-full">
+              <dc-import name="OriginalReader" density="full" show="reader" author="Maya" audience="Thursday · to friends" media="ILLUSTRATION · NOT HER PHOTOGRAPH" mediaSrc="media/print-room-illustration.svg" words="The side room was my favorite. Go on a weekday, it was empty." place="The Harbor Print Room" placeDetail="Red Hook · Tue–Sun 11–6 · *Rooms Remade* through Sunday" thumbSrc="media/print-room-thumb.svg" placeMeta="Listed hours, not checked today" hint-size="349px,560px"></dc-import>
+              <div class="host-social"><div style="padding: 40px 22px 0 22px;"><div style="display: flex; align-items: center; gap: 12px; padding-bottom: 10px;"><span style="font-size: 13px; font-weight: 600; letter-spacing: 0.1px; color: #1B1714;">From the gallery</span><span style="flex: 1; height: 1px; background: rgba(27,23,20,0.12);"></span></div></div><div style="padding: 0px 22px 0 22px;"><div style="display: flex; gap: 12px; align-items: flex-start;"><div style="width: 44px; height: 44px; border-radius: 12px; overflow: hidden; flex: none;"><img src="media/print-room-gallery-thumb.svg" width="44" height="44" alt="" style="display:block" /></div><div style="flex: 1;"><div style="font-family: 'EB Garamond', Georgia, serif; font-size: 15px; line-height: 20px; font-weight: 600; color: #1B1714;">The side room, then and now</div><div style="font-size: 14px; line-height: 19px; color: #2C2622; margin-top: 3px;">The print shop that was here left the drying racks; the show hangs the new work on them.</div><div class="fn fn11" style="margin-top: 5px; color: #8F877C;">The gallery’s own notes</div></div></div></div><div style="padding: 40px 22px 0 22px;"><div style="display: flex; align-items: center; gap: 12px; padding-bottom: 10px;"><span style="font-size: 13px; font-weight: 600; letter-spacing: 0.1px; color: #1B1714;">Also about the Print Room</span><span style="flex: 1; height: 1px; background: rgba(27,23,20,0.12);"></span></div></div><div style="padding: 0px 22px 0 22px;"><div><div style="display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-top: 1px solid rgba(27,23,20,0.06); border-bottom: 1px solid rgba(27,23,20,0.06);"><span style="width: 28px; height: 28px; border-radius: 14px; background: #1B1714; color: #FBF7EC; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex: none; margin-top: 2px;">P</span><div style="flex: 1; min-width: 0;"><div style="font-size: 15px; line-height: 20px; color: #1B1714;"><span style="font-weight: 600;">Priya</span> · her own visit, a rainy Tuesday</div><div style="font-family: 'EB Garamond', Georgia, serif; font-size: 15px; line-height: 21px; color: #2C2622; margin-top: 2px;">Rainy Tuesday, the back room to myself for an hour.</div></div><svg class="chev" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M4.5 2.5L9 6.5L4.5 10.5" stroke="#B5AFA5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div></div></div>
+              <div style="padding-top:16px"><dc-import name="OriginalReader" density="full" show="ask" author="Maya" ask="Ask about the Print Room" hint-size="349px,40px"></dc-import></div>
+            </div>
+            <p class="vk-t-caption cmp-cap">The supplied Print Room illustration and place thumbnail, not placeholders; the label stays as their attribution. Social’s own sections keep the selected order — Reply, the gallery’s notes, Priya’s visit, then the private Ask — because the reader renders show=reader, the host places its sections, and the same component renders show=ask.</p>
+          </div>
+          <div class="vdl-cell side">
+            <span class="vdl-tag vk-t-capsMicro">WHAT THE PORT FOUND</span>
+            <div id="report-soc" class="vk-t-bodySm">Porting…</div>
+          </div>
+        </div>
+
+        <div class="vdl-rule"></div>
+        <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80)">LIFE 05.6 · FOUND THROUGH HER WORDS</div>
+        <div class="vdl-lane">
+          <div class="vdl-cell">
+            <span class="vdl-tag orig vk-t-capsMicro">ORIGINAL · LIFE 05.6</span>
+            <div class="cmp-ref" data-ref="refs/life/05 - Find it again.dc.html" data-sig="the place with the corner table" data-y="0" data-h="610"></div>
+          </div>
+          <div class="vdl-cell">
+            <span class="vdl-tag vk-t-capsMicro">FIDELITY REFERENCE · PORT OF THE SAME FRAME</span>
+            <div data-port="refs/life/05 - Find it again.dc.html" data-sig="the place with the corner table" style="width:393px;min-height:300px"></div>
+          </div>
+          <div class="vdl-cell">
+            <span class="vdl-tag vk-t-capsMicro">SHARED CONSTRUCTION · OriginalReader density=retrieval</span>
+            <div class="spec" id="or-ret">
+              <div class="ret-field"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="9" r="5.5"></circle><path d="M13 13l4 4"></path></svg><span class="vk-t-serifBody">the place with the corner table</span></div>
+              <div class="ret-facets"><span class="on vk-t-monoStampStrong">EVERYTHING</span><span class="vk-t-monoStampStrong">EPISODES</span><span class="vk-t-monoStampStrong">PLACES</span><span class="vk-t-monoStampStrong">PEOPLE</span></div>
+              <div class="vdl-section-head" style="margin-top:18px;border-top:0.5px solid var(--vk-borderHairline);padding-top:12px"><span class="vk-t-monoStampStrong" style="color:var(--vk-ink60)">NOTES</span><span class="vk-t-monoStamp">1</span></div>
+              <dc-import name="OriginalReader" density="retrieval" noteTitle="Her note · the pasta night" detail="From Maya · “ask for the corner table”" match="corner table" date="AUG 30" hint-size="349px,64px"></dc-import>
+              <p class="vk-t-vesperVoiceItalic" style="margin:18px 0 0;color:var(--vk-ink40)">The cue was hers, not the place’s — the match came through her words.</p>
+            </div>
+            <p class="vk-t-caption cmp-cap">The result row keeps Life’s record title and marks the matched words; Vesper’s gloss stays in its italic voice. The lens chips are Life’s selector, kept.</p>
+          </div>
+        </div>
+
+        <div class="vdl-rule"></div>
+        <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80)">CONTINUATION · OPEN → REPLY OR ASK → RETURN · PLUS THE UNAVAILABLE ORIGINAL</div>
+        <div class="vk-t-monoStamp" style="margin-top:4px">SIMULATED STATES FOR REVIEW · THE SAME PRINT ROOM NOTE THROUGHOUT</div>
+        <div class="vdl-lane">
+          <div class="vdl-cell">
+            <span class="vdl-tag vk-t-capsMicro">1 · REPLY, IN CONTEXT</span>
+            <div class="spec">
+              <dc-import name="OriginalReader" density="full" author="Maya" audience="Thursday · to friends" words="The side room was my favorite. Go on a weekday, it was empty." compose="Going Wednesday — side room first." ask="Ask about the Print Room" hint-size="349px,420px"></dc-import>
+            </div>
+            <p class="vk-t-caption cmp-cap">Her words stay above the field; the recipient is named on the Send pill.</p>
+          </div>
+          <div class="vdl-cell">
+            <span class="vdl-tag vk-t-capsMicro">2 · OR ASK VESPER PRIVATELY</span>
+            <div class="vdl-phone">
+              <div class="vdl-status"><span class="vk-t-navLabel">4:02</span><span class="vk-t-monoStamp">CHAT</span></div>
+              <div class="vdl-page">
+                <div class="vk-r-flatObject" style="padding:8px 12px;margin-top:6px"><span class="vk-t-monoStampStrong">MAYA’S NOTE · PRIVATE · MAYA SEES NOTHING</span></div>
+                <div class="cmp-right" style="margin-top:14px"><div class="cmp-bubble"><span class="vk-t-chatTranscript" style="color:var(--vk-color-white)">is Wednesday quiet enough for the side room?</span></div></div>
+                <p class="vk-t-chatTranscript" style="margin:14px 0 0">Her note says a weekday was empty. The gallery lists Tue–Sun 11–6; nothing about crowds has been checked.</p>
+                <div class="vdl-t-metaLine" style="margin-top:6px;color:var(--vk-ink80)">FROM MAYA’S NOTE + THE LISTING · FIXTURE ANSWER</div>
+                <div class="vdl-doors" style="margin-top:16px"><span class="vdl-door vk-t-bodySmMedium">Back to Maya’s note</span></div>
+              </div>
+            </div>
+            <p class="vk-t-caption cmp-cap">Chat stays as its owner built it (§17.4 item 3); only the context chip and the return are shown.</p>
+          </div>
+          <div class="vdl-cell">
+            <span class="vdl-tag vk-t-capsMicro">3 · RETURN — THE SAME PLACE IN THE SCROLL</span>
+            <div class="spec">
+              <div class="vdl-t-sectionHeading" style="margin-bottom:12px">From friends</div>
+              <dc-import name="OriginalReader" density="card" author="Maya" meta="THURSDAY · TO FRIENDS" words="The side room was my favorite. Go on a weekday, it was empty." place="The Harbor Print Room" placeMeta="RED HOOK · TUE–SUN 11–6" door="Reply to Maya" hint-size="349px,230px"></dc-import>
+              <div style="margin-top:10px"><dc-import name="Notice" tone="applied" title="Sent to Maya · 4:05" body="Nothing else here changed." hint-size="349px,64px"></dc-import></div>
+            </div>
+            <p class="vk-t-caption cmp-cap">Places’ contained card, as that root selected; the result sits next to it.</p>
+          </div>
+          <div class="vdl-cell">
+            <span class="vdl-tag vk-t-capsMicro">4 · THE ORIGINAL IS NO LONGER SHARED</span>
+            <div class="spec">
+              <dc-import name="OriginalReader" density="full" author="Maya" audience="Thursday · to friends" state="withdrawn" hint-size="349px,120px"></dc-import>
+              <div class="vdl-t-metaLine" style="margin-top:14px;color:var(--vk-ink80)">RECIPIENT AFTERMATH · DONOR SOCIAL 04.9 · KEPT-COPY RETENTION IS AN OWNER DECISION</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vdl-rule"></div>
+        <div class="vk-t-monoStampStrong" style="color:var(--vk-gold80)">THE DIFF · §17.5 ITEM 3</div>
+        <div class="vdl-scroll" style="margin-top:10px">
+          <table class="vdl-table vdl-diff" style="max-width:1180px">
+            <tr><td class="vk-t-bodySmMedium">Retained anatomy</td><td class="vk-t-bodySm">Home: the uncarded note with avatar, name and date, her quoted words at 18/25, the place row with glyph and the door inside the unit. Social: back, author and audience, the media first, her words at 22/30, the place row with thumbnail, the pill reply field and the private Ask. Life: the search, lens chips, record title, matched words and Vesper’s italic gloss. Places: the contained card.</td></tr>
+            <tr><td class="vk-t-bodySmMedium">Shared construction</td><td class="vk-t-bodySm">OriginalReader with <span class="vk-t-monoValue">density</span> open, card, full and retrieval, plus compose and withdrawn states. Inline quotations inside a place reading (Entity R2) are prose with a person mark, not this component.</td></tr>
+            <tr><td class="vk-t-bodySmMedium">Shared correction (§21.2)</td><td class="vk-t-bodySm">OriginalReader 0.4. <span class="vk-t-monoValue">mediaSrc</span> and <span class="vk-t-monoValue">thumbSrc</span> take the supplied media and thumbnail; the patterned ground is only the fallback when nothing is supplied. <span class="vk-t-monoValue">show=reader</span> and <span class="vk-t-monoValue">show=ask</span> let a host keep its own sections between Reply and the private Ask with one Ask and no host-specific reader. Changed instance here: the Social 02.4 construction. Every other instance renders as before; the place thumbnail is now drawn at Social’s 48/12.</td></tr>
+            <tr><td class="vk-t-bodySmMedium">Obvious cleanup</td><td class="vk-t-bodySm">Labels below 10px raised; the reply field and Send share the pill silhouette the reader already used. Polish audit (2026-09-10): the Send pill no longer wraps its label, the media label shows in full instead of collapsing, and the exhibition title in the place detail is italic again, as Social 02.4 draws it. The full reader’s header sets the name at 13/600 over a 12.5 audience line, as the open and card variants do — the drawn 11px mono name read smaller than its own date line — and “Asks Vesper, not Maya” is legible at ink60.</td></tr>
+            <tr><td class="vk-t-bodySmMedium">Named mapping gaps</td><td class="vk-t-bodySm">readerOriginal, excerpt, recordTitle, placeName, metaLine, sectionHeading — reviewed on 06 Shared Package.</td></tr>
+            <tr><td class="vk-t-bodySmMedium">Still-proposed redesign</td><td class="vk-t-bodySm">None.</td></tr>
+          </table>
+        </div>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{}'>
+      class Component extends DCLogic {
+        componentDidMount() {
+          const go = (n) => { if (window.vdlMountRefs && window.vdlMountPorts) { window.vdlMountRefs(); window.vdlMountPorts(); } else if (n < 60) { setTimeout(() => go(n + 1), 200); } };
+          go(0);
+        }
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>

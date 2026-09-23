@@ -166,11 +166,22 @@ products, releases, personalities, or permanent user segments.
 | B — discovery-led | **Discover what you wouldn't have known to look for.** | Gives a reason to receive value beyond asking questions. | Reads as a content/recommendations feed; hides practical help. |
 | C — practical-help-led | **Make the day work, without all the work.** | Makes immediate assistance recognizable. | Reads as a planner, productivity app, or autonomous concierge. |
 
-Use identical supporting copy in the initial comparison:
+Use identical supporting copy in the initial comparison. **September 10
+alignment:** this draft leads with received value rather than supplied context;
+it does not select a headline winner or change approved public wording.
 
-> Vesper helps you find places worth going, understand the things that catch
-> your eye, and make plans work—at home or away, on your own or with friends.
-> It builds on the places, questions, and experiences you choose to share.
+> Vesper helps you discover things worth exploring, understand what interests
+> you, and enjoy moments and ideas shared by friends. Open it for something
+> interesting, ask a question, or get practical help making an idea work—at home
+> or out in the world.
+
+These are independent reasons to use the product, not steps to complete.
+Existing history and participating friends are not prerequisites for solo value.
+Understanding, browsing or enjoying a friend's original contribution can be a
+complete benefit; an outing, AI addition or practical continuation is optional.
+Authorized context may improve later help, but documenting life is not the
+price of admission. The [supported-offer candidate](vesper-v1-supported-offer-2026-09-07.md#1-recommendation)
+uses the same explanation; its delivery boundaries still apply.
 
 Hold examples, visual polish, presentation length, and capability claims
 constant. A later comparison of rewritten full narratives is a different test.
@@ -221,9 +232,21 @@ or verified runtime outputs:
 
 | Example | Material needed | Fail condition |
 | --- | --- | --- |
+| Home offers value before personal history | Reuse C4 below: a selected city is enough for a substantive possibility and an interesting comparison, with location, cost and relevant timing supported by the source pack. | Setup requests instead of value; assumed presence or personal knowledge; a fictional sample counted as a real offering. |
 | Sorrento attention becomes understanding | A sourced, substantive cliff comparison, including a material difference; enough of the answer appears to be useful. | Placeholder insight, paraphrase, unsupported geology, or mandatory reflection. |
-| Another person opens a possibility | An explicitly shared Place or note shapes a plausible upcoming afternoon; author, Vesper addition, and relevance remain distinct. | Inferred location, private context leakage, fabricated friend, or avatar-only social value. |
+| A friend's offering is already worth receiving | An explicitly shared Place, photograph or note conveys the friend's original experience or perspective. It may also shape a plausible upcoming afternoon; any Vesper addition remains distinct and optional. | Inferred location, private context leakage, fabricated friend, avatar-only value, or a required reply, AI interpretation or plan. |
+| At-home help without a lifestyle project | Reuse the recipe-for-six example in market research §13.3: the supplied method and one-pot constraint produce usable quantities and technique, without a pantry profile or shopping workflow. | Generic advice, invented household facts, required setup or a simple adaptation presented as unique intelligence. |
 | Practical relief under changed conditions | An existing plan and a grounded problem produce an appropriate recommendation, with the choice left to its authorized owner. | Magical rebooking, silent shared edits, unsupported live monitoring, or an operations dashboard substituted for help. |
+
+**September 10 alignment:** the earlier three-case set remains represented;
+Home and at-home help bring existing scenarios into the primary comparison so
+travel, outings and changed plans do not define the apparent product. Reuse
+[C4](#c4--home-with-a-city-but-no-current-intention) and the
+[recipe example](vesper-audience-offer-and-market-strategy-research-2026-09-06.md#133-practical-help--adapt-the-thing-not-the-person-to-a-workflow)
+with their fiction/source and delivery labels intact. These are independently
+complete encounters, not a five-step demonstration. Pilot their length and
+keep the resulting example set consistent across headline variants; this is
+not an instruction to add five cards to Home. No study results are implied.
 
 For each material, record source facts, hypothetical facts, authored mock content,
 actual versus proposed capability, inputs, and dependencies. Use neutral fictional

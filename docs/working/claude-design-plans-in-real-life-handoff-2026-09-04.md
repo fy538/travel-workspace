@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / design / Components and Plan
 created: 2026-09-04
-last_verified: 2026-09-06
+last_verified: 2026-09-12
 expires: 2026-10-04
 why_new: Gives Claude Code and Claude Design a composition-led visual exploration brief that reconciles the September 4 arrangements discussion, consumer research, and the existing editorial itinerary instead of replacing it with an operational status dashboard.
 supersedes: []
@@ -12,9 +12,423 @@ source_of_truth_for: []
 
 # Claude Code → Claude Design handover: Vesper — Plans in Real Life
 
+## Current coverage assignment — September 12
+
+**Keep the readable arrangement and accepted adoption.** The
+[September 11 snapshot](../design-archive/design-language-2026-09-11/README.md)
+preserves date rail, hanging time gutter, exact/loose distinction, sparse next
+day, local invitations, Controls/Doors and Notices. No 0.4.1 migration is needed.
+
+**Finish the existing interaction family, not an operations dashboard:**
+
+- Define scoped row-overflow destinations, without edit machinery on every
+  stop. Reuse recognition-first private/shared doors.
+- Preserve words, subject and selected day through interrupted drafts,
+  dismissal and return. Reuse 90's pending/failed/unknown, safe versus unsafe
+  retry and Undo. Keyboard/focus and independent participant changes need
+  native evidence; Close is not cancellation.
+- Connect finite requested preparation/check: request → acceptance → leave →
+  result or truthful failure → current arrangement. Separate it from a
+  current fact, a watch and an unrequested ongoing service.
+- Plans 12 W1–W5 already draws scope, expiry and coverage loss. Reconcile with
+  the effective service rather than inventing following again. Proposed watch
+  scope is not adopted here; ending/stop remain findable where supported.
+- Home owns useful delivery while away, Chat expression, You & Trust global
+  inspect/stop controls. Share one delivery sequence, not three dashboards.
+
+**Handback:** donor references and missing action/result/return details, with
+finite-work versus continuing-service boundaries explicit. Keep September 9's
+prepared-message exception and human Send; messages are not Plan mutations.
+No booking execution, expense suite or policy expansion. Follow [shared §23](vesper-shared-design-language-consolidation-2026-09-10.md#23-september-12-coverage-follow-through).
+
+## Additive review — September 10: preserve the open queue
+
+**Read this in addition to the current assignment and coverage follow-through.**
+No existing request is removed or marked complete. Changed drawings below are
+verification leads: close only the demonstrated portion after checking its
+annotations and named Home/Life/Social/Places receivers; keep the remainder open.
+
+### Additional clarification: X1's gesture and receipt must agree
+
+**12 X1** attaches a PDF with “can you look at it?” and offers “Just the answer,”
+while its annotation calls the path Bring/T1. A supporting PDF does not alone
+make the gesture an import. Under
+[Contribution and Consequence §3.2](../systems/contribution-and-consequence.md#32-gesture-and-affordance-resolve-ask-versus-bring),
+this is Ask unless an explicit import/Bring doorway or applicable existing grant
+establishes the different scope.
+
+Keep the useful complete answer available without retention. “Keep it in my
+Saturday” is a separate retention instruction. If the specimen intentionally
+starts from import, show that invoked doorway and its compact custody receipt
+instead of inferring Bring from the medium. Resolve this through the existing
+input path, not a classification question before help. Receive the same
+[Home entry clarification](vesper-home-design-review-2026-09-08.md#additive-review--september-10-preserve-the-open-queue);
+do not invent a Plans-specific retention policy.
+
+### Recheck W and selection labels without losing remaining work
+
+- **W2** now shows Wednesday acceptance, the Friday-midnight end, exact eight,
+  the party-size question and shorter copy. Check those against residuals 2–3;
+  the annotation still saying “until Sat 5” must be reconciled before scope is
+  considered consistent.
+- **W3** is now a user-invoked current check. Its 9:41 phone clock versus 2:10
+  annotation remains to reconcile. **W4/W5** are alternate coverage-loss/expiry
+  endings; verify the downstream readbacks, not only the local panels.
+- **12's handback notes** still call I1b proposed/unresolved. Reconcile them
+  under the existing accepted prepared-message decision; do not reopen the
+  decision or promote the separate following proposal into a supported service.
+
+Keep the existing waiting/conditional alternatives, selection reconciliation,
+pending/failure/unknown states, draft recovery and cross-project effects in
+scope. W's watch and 90's pending mutation are not evidence of background
+preparation as a complete service. A later selected preparation offer can reuse
+this assistance family; this supplement does not commission another one.
+Follow the [updated shared Stage 1 sequence](vesper-shared-design-language-consolidation-2026-09-10.md#154-revised-stage-1-order).
+
+## Shared design-language workstream — September 10
+
+**Historical adoption review — September 11:** evidence is in the
+[shared adoption ledger and single-patch sequence](vesper-shared-design-language-consolidation-2026-09-10.md#22-five-project-adoption-review--one-shared-patch-and-consumer-update).
+Accept the bounded design adoption: shared controls/Doors and three Notice
+states preserve the selected arrangement and contextual-assistance layouts.
+Keep the date rail, hanging time gutter, exact/loose distinction, serif stops
+and sparse following day. P2 retains recognition-first private/shared doors;
+90 retains distinct pending, failed and unknown outcomes, including safe retry
+in J2d and no unsafe retry in J2e.
+
+**No repeat adoption round:** retain local invitations/arrival layouts because
+the shared InviteCard does not express their itinerary rows, arrival line,
+facepile and title. Inline-wrapping Doors, button tones and stacked fact labels
+are bounded variant requests, not blockers. Draft/Undo/focus/keyboard behavior
+and independent participant changes still require their existing verification.
+
+
+Use the [shared extraction and consolidation brief](vesper-shared-design-language-consolidation-2026-09-10.md)
+for the bounded library/translation pass. Use readable arrangements and contextual assistance as shared donors; preserve quiet panels and purposeful timing density while aligning controls.
+This supplements the selected product direction below; it does not adopt proposed
+token values, replace this project's experience, or restart Integration. Earlier
+residual lists are dated review evidence: verify the current export before
+reassigning a correction that may already be delivered.
+
+### Coverage follow-through — September 10
+
+Use [audit A1–A6](vesper-shared-design-language-consolidation-2026-09-10.md#plans--a-readable-arrangement-with-recoverable-assistance)
+for the donor/gap evidence. Plans supplies existing interaction-state work;
+the shared owner should extract it, not commission another assistance system.
+
+| Preserve / reuse | Coverage work to carry into the shared library |
+| --- | --- |
+| 03 date rail, timed/loose rows and list/map posture | Preserve selected day and readable density. Overflow dots need a scoped destination/action definition, not permanent edit controls on every row. |
+| 08 contextual request and answer | Retain target, continued input and private/shared destination. Specify dismiss, focus, keyboard and return; a drawn keyboard is not native verification. |
+| 90 J2c/J2d/J2e | Reuse distinct pending, known failure and unknown-outcome states. Preserve words/target; hold unsafe retry without blocking navigation. Appendix styling and system copy are behavior donors, not selected customer presentation. |
+| 90 J2g/J3d | Reuse recoverable draft/discard and scoped Undo. Close is not cancel; Undo must preserve independent participant changes. Proposed draft custody/duration is not adopted here. |
+| 90 D5/D6/D7 and 11 continuations | Preserve provider-return non-event, evidence versus participation, stale-preview revalidation and exact proposal/update effects. No booking execution or universal poll-before-change. |
+
+**Bounded handback:** shared invitation/assistance anatomy and one reusable state
+set for pending/failed/unknown/draft recovery, with clear donor labels. Consumers
+reference this set instead of six copies. 12's external-schedule and following
+studies remain useful references; following/coverage-loss/stop terms retain
+their separate adoption status. No full appendix rebuild or rerun of every
+historical prototype permutation is required for the first design comparison.
+
+**Sequence and responsibility:** the shared-library owner maintains the reviewed
+package; this project's bounded adoption has been inspected. Follow the current
+assignment above, not a new Stage 1 waiting period. Keep selected local variants
+where no shared equivalent exists; route needed shared changes through that
+owner, not a separate control library. Record consumed versions and actual
+instances, not just copied files. For remaining coverage, retain donor / targeted
+addition / owner dependency / proposal / later native check, with an owner and
+next trigger. Design coverage is not implementation or verified behavior.
+
 ## 0. Start here
 
-**Current assignment — September 6, content and continuation cleanup.** Continue the existing **Vesper — Plans in Real Life** project. Read §0.8 first; it reviews the September 6, 11:50 export against §0.7. Preserve the reduced family and the improvements already made. Refine D3's message-first hierarchy, J2f's social assumption, F1's prominence of reported experience, and the precise consequence of I1's prepared message. Keep detailed recovery/coverage/prototype material in appendices 90–92. Earlier sections remain provenance and engineering evidence, not a cumulative screen checklist. No new project, operation-screen expansion, adjacent-root redesign, or production implementation is requested.
+<a id="current-assignment--september-9-practical-completeness"></a>
+<a id="current-assignment--september-9-fresh-six-project-review"></a>
+
+### Current assignment — September 9 selected direction and residual corrections
+
+**Decided:** adopt the full bounded prepared-message exception, including the
+existing once-after-a-purpose-defeating-change case, under the
+[September 9 amendment](../decisions/2026-09-09-select-design-convergence-and-prepared-continuations.md#2-amend-sentence-6-one-optional-prepared-message-door).
+Preserve the readable arrangement and all other seven-sentence rules. The
+proposal packet is resolved; do not return it for the same decision again.
+
+**Retire delivered requests:** A3/A4's waiting comparison, D8's conditional
+alternative, W2's party question and I1/J2f's prepared-message comparison exist.
+The handoff now requests selection reconciliation and residual corrections,
+not another Plan anatomy or new assistance system.
+
+### Residual work
+
+1. **07 / 09 J2f / 11 I1–I1c:** label the bounded prepared-door choice selected,
+   while retaining separate proposal labels on guest/retention/following terms.
+   One door opens eligible, addressed, editable words; human **Send proposal**
+   sends only that message. Preparation and replies do not silently adopt a
+   Plan or another person's commitment. D3 **Update & send** remains a distinct
+   explicitly instructed owner change. Return those exact effects to Social
+   03.5 and Places P3/P4, including actual success, pending and failure readbacks.
+   Do not impose proposal → everyone answers → owner change as a universal
+   workflow. An owner may issue an authorized change directly; others' acceptance
+   remains separate. I1's current arrangement is eight, so its proposal is to
+   return to seven. Social 03.5 still starts at seven: its smaller reply to Maya
+   must not inherit this message, both recipients or an unnecessary group poll.
+2. **12 W2, faithful scope:** "before Saturday" ends when Saturday starts in
+   the stated venue-local timezone, not Saturday 5 pm. Keep the requested 8:00
+   exact-match target. Near-match notifications require an explicit tolerance;
+   give W3 that explicit branch or show it as an alternative found during a
+   current user-invoked check. Useful current help need not wait for a second
+   request to mention 8:15; that is neither exact fulfillment nor new permission
+   to notify, stop following or change dinner.
+   Synchronize W2–W5 and all Home/Life readbacks. Do not make the user repair an
+   expanded mandate via the "only until Friday" prompt.
+   Move W2's Saturday acceptance to before its cutoff and align W3's 9:41 clock
+   with the 2:10 result. W4 coverage loss and W5 full-window expiry are alternative
+   endings. After W4, a return says when checking stopped, not that nothing opened
+   through expiry. This specimen's venue-local cutoff is not a universal language
+   parsing rule; resolve materially ambiguous dates once without a setup wizard.
+3. **12 W2, reduce reading burden:** lead with target, actual end, relevant
+   party-size question and one statement of what stays unchanged. Remove repeated
+   reservation reassurance; make material source/failure/stop details inspectable
+   without a terms paragraph. Do not hide accepted responsibility.
+4. **Places practical receiver:** its current-check story must not imply a watch.
+   Reconcile evidence → proposal → human response → authorized change in forward
+   time, retaining exactly one existing arrangement owner.
+5. **A4/D8:** preserve care-aware alternatives. Shorten redundant arithmetic or
+   explanations only if the decisive waiting/travel tradeoff remains legible.
+
+**Handback:** the selected I1/J2f treatment, exact Social/Places receiving
+readbacks, corrected W scope and fresh full-scroll/larger-text evidence. W is
+still a proposed service, not activated by fixing its specimen; PR-1 stays
+deferred, PR-2 withdrawn. No booking execution, Chat redesign, native-readiness
+claim or restart of Integration.
+
+<a id="current-assignment--september-9-second-pass-strategy-alignment"></a>
+
+### Historical assignment — September 9 second-pass strategy alignment
+
+**Keep the readable arrangement; judge whether the evening works for the people,
+not only whether its times fit.** Continue `Downloads/vesper-plans-in-real-life`
+under the [shared second-pass scope](vesper-five-project-design-consolidation-2026-09-08.md#second-pass-strategy-alignment--september-9).
+This replaces the prior queue, while preserving the [accepted subtraction ruling](../decisions/2026-09-05-adopt-the-plan-in-seven-sentences.md)
+and its rationale. Recommendations below do not silently amend it.
+
+#### Preserve and retire delivered requests
+
+A2/A9/A10 preserve small, unordered and conditional arrangements without a Trip;
+the Kyoto family retains necessary trip structure. D1 preserves the evening's
+purpose under a weather change. D8 now names 2h40 of displacement and the extra
+hour caused by the change. 12 X2–X4 names early departure for the wedding train;
+W2/W3 explicitly distinguishes **7 held / 8 wanted / 8:15 offered**. I1–I1c draws
+the optional prepared proposal. These are no longer missing drawings; the
+quality of help and the proposed decision boundaries remain open. Home 08c now
+shows the post-3:10 ferry change; report text saying otherwise is stale.
+
+#### Current work: lived quality and useful preparation
+
+1. **02 A3/A4, do not equate spare time with a better evening.** A3 gives late-
+   set doors at 9:45; A4 recommends arrival at 9:18 for the 10:30 performance as
+   “less rushed.” That is 27 minutes before admission and 72 before the show.
+   Preserve the loose jazz option, but explain the consequential waiting and
+   compare leaving later or staying with Theo longer when supported. If one
+   missing fact determines what is useful, ask it. Do not automatically fill
+   the gap, invent an open waiting venue or turn the evening into an itinerary.
+2. **05 D8, finish the judgment rather than repeat the time arithmetic.** The
+   cost is now visible. “Take the F back, come at eight” still lacks a supported
+   destination and round-trip cost. Make the alternative conditional or gather
+   the one necessary constraint. Do not import Social's different Sam branch.
+   A useful option can be declining, arriving later or leaving the plan alone.
+3. **07/09 J2f/11 I1–I1c, compare one prepared continuation.** J2f understands
+   the quieter-window purpose but leaves the next useful job behind the pill.
+   Compare that accepted sparse route with an optional editable, addressed
+   proposal that saves reconstruction. Preparation changes nothing; a human
+   sends; sending a question does not itself change the arrangement or answers.
+   Keep this distinct from owner-instructed D3 Update & send. Plans leads the
+   narrow amendment request; Social 03.5 must use a compatible interpretation
+   rather than independently selecting “Keep seven / Move to eight.” No
+   recommendation on every page, command inventory or second Chat product.
+4. **12 W1–W5, preserve the purpose while following the requested condition.**
+   The example names Sam's inability to do eight while following an eight-o'clock
+   table for three. Clarify whether three still represents the intended gathering
+   or show a compact relevant question. Do not override Nora's request, infer a
+   new third attendee or change anyone's participation. Fulfilled restaurant
+   search and a workable shared evening are different outcomes. Keep current
+   assessment, accepted following, capability loss and stop distinct; ongoing
+   service terms remain proposed, not activated by a drawn receipt.
+
+#### Shared handback and scope
+
+Return one assistance comparison to Social, and current-day facts to Home 08c /
+Life P3.4/P3.5 using the exact fixture branch. Social leads the actor-by-actor
+work comparison, not a second Plan system. Record waiting, re-explanation,
+checking, messages and wanted human participation before/after; do not measure
+quality by fewer controls alone. External provider continuation remains external.
+
+Update the existing index/report with changed frames and the exact requested
+decision amendment. Keep PR-1 deferred, PR-2 withdrawn and engineering appendices
+90–92 historical/supporting where marked; fix stale “board 10” prototype links.
+92's finite regex prototype does not exercise new free-text, I1 or W behavior.
+Review full scrolls and enlarged text, distinguishing static, wired and native
+evidence. No booking execution, general scheduler, billing, new authority or Chat
+redesign. Integration remains paused; independent engineering need not wait.
+
+### Historical assignment — first September 9 fresh six-project review
+
+**Keep the readable Plan; reduce the person's total work, not just the visible
+controls.** This replaces the earlier September 9 queue below. Use the
+[six-project handoff map](vesper-five-project-design-consolidation-2026-09-08.md#current-handoff-map--september-9),
+the [accepted seven sentences](../decisions/2026-09-05-adopt-the-plan-in-seven-sentences.md)
+and [consumer strategy §3](../decisions/2026-09-06-reconcile-consumer-strategy.md#3-own-bounded-assistance-not-universal-execution).
+
+**Preserve / retire earlier findings:** 12 now names the early departure needed
+for the 10:40 train and offers a later alternative. Its watch distinguishes an
+8:15 near-match from fulfillment of the requested 8:00 table. External arrangement
+assessment and bounded continuing help are drawn, not missing. Preserve D1's dry
+café/optional walk/unchanged dinner, 08 P10's Kyoto conflict, A2/A9/A10's small
+structures and C3/C5/C8's low-clerical contribution. Continuing-help and direct
+proposal semantics remain proposed; this review adopts none of them.
+
+### Current changes and decisions
+
+1. **05 D8, protect Sam's evening, not only the revised schedule.** He reaches
+   the area about 5:20 for dinner moved to eight: 160 minutes displaced. “So
+   there's time” plus café/walk does not yet judge whether that remains worthwhile
+   for him. Name the cost and offer one grounded voluntary way forward, or ask
+   the one missing fact needed for useful judgment. Do not invent his preferences,
+   import Social's separate leave-by-nine fixture, or treat organizer welfare as
+   more important. Refine this frame; no new operations panel is needed.
+2. **07 ↔ 11 I1/I1b/I1c, resolve the prompt-burden tradeoff narrowly.** The
+   accepted September 5 ruling explicitly says “Vesper says less; people must
+   ask more.” Later strategy expects practical help and preparation before a watch
+   is accepted. The staggered-dinner possibility, prepared message and readback
+   already illustrate a possible exception. Recommend an obvious contextual
+   continuation when it saves retyping and coordination, preserving human Send
+   and existing action authority. Label the requested decision amendment; do
+   not silently adopt it or grow a command catalog, recommendation dashboard or
+   unsolicited management regime. Compare remaining prompts/checks, not buttons
+   removed. Do not rewrite the historical accepted decision in this handoff.
+3. **12 W2/W3, finish the connected reading.** Preserve the corrected exact-match
+   versus near-match behavior. Reconcile the timeline's intended 8:00 with the
+   supplied 7:00 reservation, so the person need not discover the difference by
+   comparing separated rows. Distinguish intent, existing reservation and offered
+   alternative without claiming any provider transaction or participation changed.
+4. **Home 08c ↔ Life P3.4/P3.5, carry the same changed day.** Life's captured/
+   current/disconnected sequence now exists. Supply the actual arrangement and
+   changed facts; confirm their receiving Home and Life frames match the same
+   branch. Keep exact actor-specific participation with Social; similar casts
+   across unrelated scenarios are not permission to merge their constraints.
+
+**Handback and evidence:** update the same index/report with changed frames,
+the narrow pending decision and before/after waiting, prompting, checking and
+coordination work. Board 92's prototype uses a finite regex phrase set; Sam has
+no free-text routes and the longer Chat handoff is marked unbuilt. Do not claim
+it exercises the new I1/W sequences, natural-language flexibility, guest delivery
+or complete continuing service. Separate static, scripted and native/participant-
+unverified evidence. No booking, scheduler, Chat redesign or production work.
+Integration remains paused.
+
+### Historical assignment — earlier September 9 practical completeness
+
+**Refine the existing Plans project, especially board 12; no new product or
+operations inventory.** This was that review's queue; the leading fresh-review
+assignment now owns work. Read the [current shared handoff map](vesper-five-project-design-consolidation-2026-09-08.md#current-handoff-map--september-9),
+[execution report §3r](claude-design-plans-in-real-life-execution-report-2026-09-04.md#3r-september-8-consolidation-assignment-applied-2026-09-09),
+[accepted seven sentences](../decisions/2026-09-05-adopt-the-plan-in-seven-sentences.md),
+[consumer strategy §3](../decisions/2026-09-06-reconcile-consumer-strategy.md#3-own-bounded-assistance-not-universal-execution)
+and the [contribution contract](../systems/contribution-and-consequence.md).
+
+**Progress to preserve:** 05 D4 no longer claims Sam accepted the changed time;
+08 P10 leads with the Kyoto dinner/stay conflict; 12 X1–X4 distinguishes external
+evidence, personal commitments and choose-versus-check help; W1–W5 makes bounded
+continuing help visible without a dashboard. The two encounters now exist; do not
+recreate them. Continuing-help semantics remain proposed.
+
+**This pass:**
+
+1. **12 W2→W3, fulfill the actual request:** an 8:00 table is requested, but an
+   8:15 table ends the watch as fulfilled. Either illustrate the requested match,
+   or establish an acceptable range in the request/readback before treating it
+   as success. A useful near-match is an alternative, not automatic fulfillment
+   or permission to stop the original work. Preserve simple subject/window/stop
+   communication and the named policy decision; add no settings workflow.
+2. **12 X2/X3, complete the travel judgment:** the reception runs until eleven,
+   but the proposed return train leaves at 10:40. Name early departure and the
+   transfer/buffer it requires, or offer a supported alternative. Carry the same
+   choice through the response and kept day. Do not leave the person to rediscover
+   this conflict or imply an external transaction has happened. Times remain
+   fixtures, but the fixture's whole experience must fit together.
+3. **Current-day and service return:** inspect Home 08c and Life P3.4/P3.5, not
+   just their earlier labels. Return one consistent current/captured/change
+   example and an understandable continuation. Keep plan ownership behind clear
+   dates, useful changed facts and destinations, not consumer-facing authority
+   doctrine. Coordinate actor-specific participation with Social's latest branch.
+
+**Handback:** update the same index/report with changed frames, request-to-result
+and travel-fit readbacks, inspected sibling deltas and pending decisions. Review
+affected full-scroll/larger-text states; separate static illustration from wired
+behavior. Keep existing policy exceptions proposed. No booking execution, new
+scheduler, billing, Chat redesign, production implementation or new project.
+Integration remains paused; this document dispatches no lane or policy activation.
+
+### Historical assignment — September 8 consolidation
+
+**September 8 handoff, retained as history: focused extension of the existing project.**
+This was that round's task. Sections 0.1–0.8 and 1–12 preserve previous
+assignments, rationale and constraints, not a cumulative screen checklist.
+Preserve the reduced readable family, one contextual-help pattern, positive
+steering, optionality, independent participation and the distinction between
+current arrangements and reported experience. Keep 90–92 as labeled appendices;
+do not restore the pre-subtraction operations inventory or create a new project.
+
+Read the [shared handoff map](vesper-five-project-design-consolidation-2026-09-08.md#current-handoff-map--september-8),
+its second-pass service findings, the [accepted seven sentences](../decisions/2026-09-05-adopt-the-plan-in-seven-sentences.md),
+[consumer strategy §3](../decisions/2026-09-06-reconcile-consumer-strategy.md#3-own-bounded-assistance-not-universal-execution)
+and the [contribution contract](../systems/contribution-and-consequence.md).
+Design leadership here does not make Plan the owner of every service or artifact.
+
+**Must correct in existing canvases:** reconcile D3's owner-directed update with
+I1's optional sent proposal. Neither changes provider truth or another person's
+participation by implication. Match recipient states to actual answers. Complete
+the Nara overnight's fit with the Kyoto stay/dinner; a useful external link is
+not the full assessment. Check the current export before reassigning older
+J2f/F1 findings already addressed.
+
+**Must resolve — two bounded additions, not two new products:**
+
+1. **An arrangement made elsewhere.** Bring an existing itinerary, invitation or
+   calendar item; deliver useful understanding/checks without rebuilding it or
+   claiming its external transactions. Reuse the Trip, contextual-help and
+   provider-evidence families. Compare “help me choose” with “I've chosen; help
+   with the practical checks”; include a competing commitment in another
+   arrangement. Plans 06 already covers partial overlap, so do not rediscover it.
+2. **Bounded continuing help.** Contrast a current check with separately requested
+   continuing assistance for an ordinary practical item. Show accepted subject/
+   window, useful result or meaningful silence, coverage loss, stop/expiry and
+   return. Keep exact new mandate semantics proposed until approved. No implicit
+   watch through Keep, scheduler/dashboard, billing screens or provider execution.
+   Identify any proposed amendment to the seven sentences or service/retention
+   contract; do not adopt appendix W2/I1 semantics through a drawing.
+
+Coordinate Home 08c and Life 03b's current-day projection: after a change, the
+person reaches the actual current arrangement rather than an obsolete 8:40
+reading. Borrow Social's actor-specific hospitality/messages without independently
+changing guest identity or audiences. Chat handoff/return remains a dependency,
+not permission to redesign that root.
+
+**Later:** generalized scheduling, broad peer authority, every appendix recovery
+permutation, full external integrations, billing, booking, themes and production
+implementation. These are not closure requirements.
+
+**Handback:** update the same index and execution report with changed frame IDs,
+the two bounded encounters, exact Home/Life/Social deltas and pending decisions.
+Inspect affected full-scroll/larger-text states and any wired returns; label
+static, scripted, native-unverified and participant-unverified evidence. Stop
+when the selected family answers the named jobs and makes changes/responsibility
+understandable. Integration remains paused; this brief dispatches no agents,
+implementation or policy activation.
+
+### Historical September 6 assignment and baseline
+
+**Historical assignment — September 6, content and continuation cleanup.** Continue the existing **Vesper — Plans in Real Life** project. Read §0.8 first; it reviews the September 6, 11:50 export against §0.7. Preserve the reduced family and the improvements already made. Refine D3's message-first hierarchy, J2f's social assumption, F1's prominence of reported experience, and the precise consequence of I1's prepared message. Keep detailed recovery/coverage/prototype material in appendices 90–92. Earlier sections remain provenance and engineering evidence, not a cumulative screen checklist. No new project, operation-screen expansion, adjacent-root redesign, or production implementation is requested.
 
 This is a **design exploration**, not production implementation, a schema decision, or a new app-wide design system. The original handover preceded project creation; the subsequent [execution report](claude-design-plans-in-real-life-execution-report-2026-09-04.md) records the existing [Plans in Real Life project](https://claude.ai/design/p/cd2e1f82-9786-4ae6-993e-c0dfbe8d6302). The reviewed local export is `/Users/feihuyan/Downloads/vesper-plans-in-real-life/project`. Inspect the current live version before syncing; this revision does not independently certify that it matches the export. Do not invent integration commands or claim a sync succeeded without checking the live project.
 
@@ -382,7 +796,9 @@ Coordinate stable targets, session/history ownership, evidence custody and retur
 
 ### 0.7 Post-subtraction refinement: simplify the machinery, preserve the help
 
-**Review-stage note:** §0.8 records the subsequent September 6 export and governs the current bounded assignment. Keep the research and boundaries below; do not repeat corrections that the later review marks as addressed.
+**Review-stage note:** §0.8 records the subsequent September 6 export and governed
+that iteration. The current September 8 assignment is at the start of §0. Keep
+the research and boundaries below; do not repeat corrections later marked addressed.
 
 **Verdict and provenance — September 5.** The founder accepted the preceding research-backed recommendation to retain the simplified direction and refine effort within it. The reviewed export has files dated 15:25: reduced main boards, seven sentences on board 07, and engineering appendices 90–92. This is a credible Plan/Occasion design direction, not validated usability or complete product coverage. This update draws on the local design/source review and online research; no participant study, new native acceptance test, production implementation, or live-design sync was performed for this handover update.
 
@@ -909,7 +1325,10 @@ No production implementation is requested. If the founder later approves impleme
 
 ## 12. Required delivery back to the founder
 
-**Current-iteration override:** deliver §0.8.F's bounded cleanup and continuation review, preserving §0.7's amendment distinctions. The original full-project inventory below is retained for provenance; reuse existing material rather than treating it as a fresh assignment or restoring pre-subtraction screens.
+**Current-iteration override:** deliver §0's September 8 assignment, preserving
+§0.7's amendment distinctions. The original inventory below and §0.8's former
+stopping point remain history, not competing current instructions or permission
+to restore pre-subtraction screens.
 
 Original full-project delivery inventory:
 

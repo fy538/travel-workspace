@@ -1,0 +1,84 @@
+{
+  "consumer": "Vesper — Home (42876b8c-0d3a-40b2-9420-a953f095d8d1)",
+  "recorded": "2026-09-11",
+  "package": "vdl-stage1 0.4.1",
+  "package_note": "First adopted at 0.4 (09-11, §22 of the Home response). 0.4.1 changes only OriginalReader: the practical place line (placeMeta) moves from ink80 to ink60; provenance stays ink80 (brief §22.6). vdl.css, Notice and the kernel copy are byte-unchanged. Use this manifest for identity, not the vdl.css version string (it still reads 0.3).",
+  "workbench": "c13ae951-0977-4bac-90a6-c964146a9ca6",
+  "workbench_manifest_etag": "1789154045511825",
+  "kernel": "travel-app@e2e792913 tokens:80d0648dd300 gen:1",
+  "files": [
+    {
+      "path": "_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css",
+      "kind": "styles",
+      "sha256": "a843ca5ba6fe7595ff05c629ed88be8f3051e073a51cda4500e18ee5910d7f6c",
+      "bytes": 29657,
+      "home_etag": "1789146510111502"
+    },
+    {
+      "path": "vdl.css",
+      "kind": "styles",
+      "sha256": "7b6fa1d3dfccc92c59be1193cd68cdb032845a54c0316540e3ab58fe0b968515",
+      "bytes": 16055,
+      "source_etag": "1789098141934217",
+      "home_etag": "1789146510274930"
+    },
+    {
+      "path": "OriginalReader.dc.html",
+      "kind": "component",
+      "bytes": 13559,
+      "source_etag": "1789153753071940",
+      "home_etag": "1789154960600261",
+      "previous": "0.4 · source etag 1789145625170950 · 13,175 bytes"
+    },
+    {
+      "path": "Notice.dc.html",
+      "kind": "component",
+      "bytes": 2531,
+      "source_etag": "1789081717510486",
+      "home_etag": "1789146510591686"
+    },
+    {
+      "path": "vdl-refs.js",
+      "kind": "workbench instrument (not package)",
+      "bytes": 2585,
+      "source_etag": "1789081717510486",
+      "home_etag": "1789146510749859"
+    }
+  ],
+  "instances": {
+    "OriginalReader density=open": [
+      "02 (selected ordinary scroll + its history copy)",
+      "08b (row six)",
+      "16 (continuation 1 and 5)"
+    ],
+    "OriginalReader density=full": [
+      "16 (continuation 2 and 3)"
+    ],
+    "reader instances with a place line, affected by 0.4.1": [
+      "02 ×2",
+      "08b ×1",
+      "16 ×3 (continuation 1, 2 and 5)"
+    ],
+    "Notice tone=applied": [
+      "16 (continuation 5)"
+    ],
+    ".vdl-door": [
+      "02",
+      "04",
+      "08",
+      "08b",
+      "09",
+      "12",
+      "16"
+    ]
+  },
+  "before_references": [
+    "Before VDL 0.3 - 02 - Persona A - The New Yorker.dc.html",
+    "Before VDL 0.3 - 04 - Persona C - New User.dc.html",
+    "Before VDL 0.3 - 08 - Seam with Life.dc.html",
+    "Before VDL 0.3 - 08b - Seam with Life - Home to Life.dc.html",
+    "Before VDL 0.3 - 09 - Forms.dc.html",
+    "Before VDL 0.3 - 12 - Why This, Chat, and Degraded States.dc.html"
+  ],
+  "rule": "Changes flow from the shared owner. Do not edit these copies in Home; re-copy a newer version and record it here."
+}

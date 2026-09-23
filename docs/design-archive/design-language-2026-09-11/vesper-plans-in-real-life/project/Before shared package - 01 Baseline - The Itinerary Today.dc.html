@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <meta name="design_doc_mode" content="canvas" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" />
+        <link rel="stylesheet" href="./kit/plans.before-vdl.css" />
+        <style>
+          .x { min-height: 2100px; }
+          .shot { width: 393px; border-radius: 30px; border: 1px solid rgba(27,23,20,0.16); display: block; box-shadow: 0 1px 2px rgba(27,23,20,0.06), 0 14px 36px -20px rgba(27,23,20,0.3); }
+          .spec { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
+          .spec .col { display: flex; flex-direction: column; gap: 10px; }
+          .spec .lab { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 1px; color: var(--mute); padding-bottom: 6px; border-bottom: 1px solid var(--hairline); }
+          .spec .lab.p { color: var(--gold-deep); }
+          .specrow { display: grid; grid-template-columns: 44px 1fr; column-gap: 9px; padding: 8px 0; border-bottom: 1px solid var(--hair-thin); align-items: start; }
+          .specrow .n { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.5px; color: var(--mute); grid-column: 1 / span 2; margin-top: 2px; }
+          .kb { display: flex; flex-direction: column; gap: 4px; }
+          .kb .kk { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 1px; color: var(--mute); }
+          .kb .kv { font-size: 12.5px; line-height: 18px; color: var(--ink-2); }
+        </style>
+      </helmet>
+
+      <div class="board-h">
+        <div class="warn">BEFORE SHARED PACKAGE · FROZEN ORIGINAL KEPT AS THE BEFORE REFERENCE, 2026-09-11 · THE CURRENT BOARD IS “01 Baseline” · EXPLORATION · NOT CANON · NOT PRODUCTION · THE TWO CAPTURES ARE THE ONLY NON-SYNTHETIC ARTIFACTS ON THIS PROJECT</div>
+        <div class="id">01 · BASELINE · THE ITINERARY AS IT RENDERS TODAY · NATIVE CAPTURES + REDRAWN AT EQUAL SCALE · 2026-09-04</div>
+        <h1>What we are preserving, and what we are not preserving just because it exists.</h1>
+        <div class="lede">Left: the two fresh native captures from the registered <span style="font-family:var(--mono); font-size:11px;">04-plan</span> Maestro flow (run <span style="font-family:var(--mono); font-size:11px;">20260904T232754Z-trip-itinerary</span>, iPhone 16 Pro, checkout <span style="font-family:var(--mono); font-size:11px;">47735f406</span> on main, Ready-Kyoto mock). They are evidence of one build and one fixture, not a visual acceptance verdict; the checkout SHA is not attested binary provenance. Middle: the same first viewport redrawn from the resolved repo tokens, so every proposal on 02–06 can be judged against the current design <b>at the same scale and with comparable content</b>. Right: the type roles side by side.</div>
+      </div>
+
+      <!-- native top -->
+      <div class="frame" style="left: 40px; top: 230px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">N1</span>NATIVE · OPENING DAY <span class="s">plan-day-top.png · downscaled JPEG for embedding</span></div>
+        <div class="phw"><img class="shot" src="./evidence/plan-day-top.jpg" alt="Native capture: Kyoto Day 1 itinerary, opening viewport" /></div>
+        <div class="ann">
+          <div class="k">STRENGTHS TO PRESERVE</div>
+          <p>One continuous paper document. Kicker → 31pt serif date → one-line thesis → rail → day rule → chapter → rows. The serif stop title leads each row; the mono time hangs in a predictable gutter; one supporting line; one quiet “···”. Floating chrome is compact (back · people · chat/filters/map capsule). Warm, restrained, no photo needed.</p>
+          <div class="k">OBSERVED ISSUES</div>
+          <p><b>Chapter prose clipped mid-sentence</b> (“…while t…”, “…for the ki…”) by a two-line clamp (numberOfLines). <b>Times at 10.5pt</b> are decorative microtype for essential information. Italic 13pt for the opener sits under the 17pt voice floor the repo itself documents. “OPEN” as a gutter word for an undecided stay works — that grammar is kept and extended.</p>
+        </div>
+      </div>
+
+      <div class="frame" style="left: 500px; top: 230px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">N2</span>NATIVE · LATER DAY, SCROLLED <span class="s">plan-day-scrolled.png</span></div>
+        <div class="phw"><img class="shot" src="./evidence/plan-day-scrolled.jpg" alt="Native capture: later-day view showing a selected-day heading above the previous day's trailing rows" /></div>
+        <div class="ann">
+          <div class="k">OBSERVED · DAY IDENTITY MISMATCH</div>
+          <p>The heading says <b>Monday, June 22</b> while the rows directly beneath (Honen-in 11:00, Dinner — Pontocho 19:30) belong to the previous day; Day 6’s own rule appears further down. One capture cannot say whether selection, scroll offset or overlay timing causes it — investigate before inferring a fix. The composition rule this family adopts (03 · B6): the header names the selected day <b>and</b> the day being read whenever they differ.</p>
+          <p>Also visible: repeated oversized gaps below the fold once rows lose supporting lines. Sparse rows should tighten, not float.</p>
+        </div>
+      </div>
+
+      <!-- redrawn baseline -->
+      <div class="frame" style="left: 960px; top: 230px;">
+        <div class="flabel" data-drags-parent="1"><span class="n">R1</span>REDRAWN FROM REPO TOKENS · BASELINE ROLES <span class="s">10.5pt times · 13pt italic clipped · 10pt stamps</span></div>
+        <div class="phw">
+          <div class="ph" data-screen-label="R1 Redrawn baseline">
+            <div class="sb"><span>9:41</span><span class="r">●●● ᯤ ▮</span></div>
+            <div class="page">
+              <div class="chrome"><div class="lft"><div class="ctl">‹</div><div class="people"><div class="av a">BE</div><div class="av b">SA</div></div></div><div class="capsule"><div class="slot">CHAT</div><div class="slot">···</div><div class="slot">MAP</div></div></div>
+              <div class="kick" style="font-size:10px;">Kyoto · Day 1 of 8</div>
+              <div class="titleRow"><div class="dayTitle">Wednesday, June 17</div><div class="door">Details →</div></div>
+              <div class="thesis">Arrival + an early kissaten seat to set the rhythm.</div>
+              <div class="rail">
+                <div class="dc on"><div class="dw">WED</div><div class="dn">17</div><div class="dot"></div></div>
+                <div class="dc"><div class="dw">THU</div><div class="dn">18</div><div class="dot"></div></div>
+                <div class="dc"><div class="dw">FRI</div><div class="dn">19</div><div class="dot"></div></div>
+                <div class="dc"><div class="dw">SAT</div><div class="dn">20</div><div class="dot e"></div></div>
+                <div class="dc"><div class="dw">SUN</div><div class="dn">21</div><div class="dot"></div></div>
+                <div class="dc"><div class="dw">MON</div><div class="dn">22</div><div class="dot"></div></div>
+                <div class="dc"><div class="dw">TUE</div><div class="dn">23</div><div class="dot"></div></div>
+                <div class="dc"><div class="dw">WED</div><div class="dn">24</div><div class="dot"></div></div>
+              </div>
+              <div class="dayrule"><div class="dl" style="font-size:10px;">Day 1 · Wed, Jun 17</div><div class="ln"></div></div>
+              <div class="rows">
+                <div class="row first"><div class="time base loose word">open</div><div><div class="ttl">Check in — ryokan or hotel (deciding)</div><div class="sup" style="font-size:12px;">Ninenzaka · ryokan or station</div></div><div class="more">···</div></div>
+              </div>
+              <div class="chap"><div class="cl" style="font-size:10px;">Evening</div><div class="ln"></div></div>
+              <div class="opener italic">You land at Kansai mid-afternoon and you’ll be wrecked — don’t fight it. Drop bags in Higashiyama, walk the old stone lanes while the light is soft, and let tomorrow’s early coffee be the only real plan.</div>
+              <div class="opener-rule"></div>
+              <div class="rows">
+                <div class="row first"><div class="time base">17:00</div><div><div class="ttl">Ninenzaka + Sannenzaka lanes</div><div class="sup" style="font-size:12px;">Stone slopes to Kiyomizu-dera</div></div><div class="more">···</div></div>
+                <div class="row"><div class="time base">18:30</div><div><div class="ttl">Gion + Shirakawa at dusk</div><div class="sup" style="font-size:12px;">Canal lane · quiet after sunset</div></div><div class="more">···</div></div>
+                <div class="row"><div class="time base">19:30</div><div><div class="ttl">Dinner — easy izakaya, nothing booked</div><div class="sup" style="font-size:12px;">Loose first night after the flight</div></div><div class="more">···</div></div>
+              </div>
+              <div class="dayrule"><div class="dl" style="font-size:10px;">Day 2 · Thu, Jun 18</div><div class="ln"></div></div>
+              <div class="chap"><div class="cl" style="font-size:10px;">Morning</div><div class="ln"></div></div>
+              <div class="opener italic">The torii-gate climb is transcendent at 6am and a sweaty tour-bus crush by ten — so we front-load it, then land at a kissaten for the kind of slow coffee that resets a jet-lagged morning.</div>
+              <div class="opener-rule"></div>
+              <div class="rows">
+                <div class="row first"><div class="time base">06:00</div><div><div class="ttl">Fushimi Inari-taisha</div><div class="sup" style="font-size:12px;">Senbon torii · two-hour climb</div></div><div class="more">···</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="fold"><span>↑852</span></div>
+        </div>
+        <div class="ann">
+          <div class="k">EQUAL-SCALE CONTROL</div>
+          <p>Redrawn with the repo’s current roles: itineraryEntryTime 10.5/13, itineraryChapterThesis 13/18 italic clipped at two lines, monoStampStrong 10, caption 12 supporting line. Compare directly with 03 · B1, which differs only in the marked roles. The web rendering approximates native points at 393px; it is not native parity.</p>
+          <p>The redraw keeps the fixture’s “deciding” stay row and “nothing booked” times so the comparison is fair to the current design, not flattering to the proposal.</p>
+        </div>
+      </div>
+
+      <!-- type specimen -->
+      <div class="panel" style="left: 1420px; top: 230px; width: 620px;">
+        <div class="k">TYPE ROLES · BASELINE (REPO) vs PROPOSED · AT PHONE SCALE</div>
+        <h2>Change density and emphasis with the task, not the identity.</h2>
+        <div class="spec">
+          <div class="col">
+            <div class="lab">BASELINE · travel-app/constants</div>
+            <div class="specrow"><div class="time base">17:00</div><div class="ttl">Ninenzaka + Sannenzaka lanes</div><div class="n">itineraryEntryTime · JetBrains Mono 10.5/13 · itineraryEntryTitle · EB Garamond 500 · 17.5/21 · −0.2</div></div>
+            <div class="specrow"><div class="time base loose word">open</div><div class="ttl">Check in — ryokan or hotel</div><div class="n">gutter word at 10.5 · the one loose register the app has today</div></div>
+            <div class="specrow"><div></div><div class="opener italic" style="padding:0; margin:0;">You land at Kansai mid-afternoon and you’ll be wrecked — don’t fight it. Drop bags in Higashiyama, walk the old stone lanes while the light is soft, and let tomorrow’s early coffee be the only real plan.</div><div class="n">itineraryChapterThesis · 13/18 italic · two-line clamp → clipped</div></div>
+            <div class="specrow"><div></div><div class="chap" style="padding:0;"><div class="cl" style="font-size:10px;">Evening</div><div class="ln"></div></div><div class="n">monoStampStrong · 10 · tracking 1.3 · goldDeep</div></div>
+            <div class="specrow"><div></div><div class="sup" style="font-size:12px; margin:0;">Stone slopes to Kiyomizu-dera</div><div class="n">caption · System Sans 12 · ink60</div></div>
+            <div class="specrow"><div></div><div class="thesis" style="margin:0;">Arrival + an early kissaten seat to set the rhythm.</div><div class="n">itineraryHeaderThesis · 15/20 Roman · inkSoft — unchanged</div></div>
+          </div>
+          <div class="col">
+            <div class="lab p">PROPOSED · same faces, four size/weight changes</div>
+            <div class="specrow"><div class="time">17:00</div><div class="ttl">Ninenzaka + Sannenzaka lanes</div><div class="n"><span class="tag pp">PROPOSED</span> itineraryEntryTimeReadable · 12/14 · gutter stays 44 · title unchanged</div></div>
+            <div class="specrow"><div class="time exact">09:02</div><div class="ttl">Limited Express to Nara</div><div class="n"><span class="tag pp">PROPOSED</span> exact/provider/agreed time = mono 700 at the same size · source named in the support line</div></div>
+            <div class="specrow"><div class="time loose word">after</div><div class="ttl opt">Jazz at Corner Note</div><div class="n"><span class="tag pp">PROPOSED</span> loose interval = gutter word (10.5 caps) + Roman-weight title (400) for a possibility</div></div>
+            <div class="specrow"><div></div><div class="opener" style="padding:0; margin:0;">You land at Kansai mid-afternoon and you’ll be tired — don’t fight it. Drop the bags, walk the old stone lanes while the light is soft, and keep tonight loose.</div><div class="n"><span class="tag pp">PROPOSED</span> itineraryChapterOpener · 15/20 Roman · written complete · never clipped</div></div>
+            <div class="specrow"><div></div><div class="chap" style="padding:0;"><div class="cl">Evening</div><div class="ln"></div></div><div class="n"><span class="tag pp">PROPOSED</span> chapter/kicker stamps 11 (Apple 11pt minimum) · same tracking and color</div></div>
+            <div class="specrow"><div></div><div class="sup" style="margin:0;">Stone slopes up to Kiyomizu-dera</div><div class="n"><span class="tag pp">PROPOSED</span> supporting line bodySm 13/17 (existing role) instead of caption 12</div></div>
+          </div>
+        </div>
+        <div class="row2"><span class="rk">Unchanged</span><span>Day title 31/33 semibold · header thesis 15/20 · stop title 17.5/21 medium · rail geometry · paper/ink/gold values · 44pt gutter · 60pt row minimum · hairline weights · Quiet Paper r14 · capsule r16 · soft square r12.</span></div>
+        <div class="row2"><span class="rk">Web fallback</span><span>EB Garamond and JetBrains Mono load from Google Fonts in these boards (weights 400/500/600/700; italic 500 only for the comparison). Utility text is the platform system-sans stack. If a face fails to load the fallbacks are Georgia and Menlo — visibly different; do not judge type from a fallback render.</span></div>
+        <div class="row2"><span class="rk">Known conflict</span><span>Type doctrine says Roman-only; fonts.ts registers vesperVoiceItalic 17/24 as the one approved italic; textVariants also carries itineraryChapterThesis at 13/18 italic, below the documented 17pt italic floor, and the native capture renders it. Recorded, not resolved here. Recommendation: Roman opener as the family baseline; italic, if retained anywhere, at ≥17 and never clipped. Token changes need separate review.</span></div>
+      </div>
+
+      <div class="panel" style="left: 1420px; top: 1120px; width: 620px;">
+        <div class="k">MATERIAL · WHAT THE FAMILY USES, AND HOW OFTEN</div>
+        <div class="row2"><span class="rk">Paper</span><span>The page. Rows and sections are flat: alignment, proximity and hairlines do the grouping. No paper-on-paper for ordinary content.</span></div>
+        <div class="row2"><span class="rk">Quiet Paper (quietPanel)</span><span>Only for a bounded object that benefits from containment: the invitation as guests see it (C1), the resolved grant (C5), the “changing seven o’clock” note (D2), Home/Chat pointer cards. Card fill, hairline, r14, no lift.</span></div>
+        <div class="row2"><span class="rk">Preview card <span class="tag pp">PROPOSED</span></span><span>quietPanel + a dashed planning-ink edge = “not yet real”. Used for every private or scoped alternative (A4, B5, D1, D3, D7). Never for accepted content.</span></div>
+        <div class="row2"><span class="rk">Raised paper</span><span>Once: the selected-place card over the map (B3). Sheets and floating chrome use the overlay vocabulary (blur, capsule, soft square).</span></div>
+        <div class="row2"><span class="rk">Receipt band</span><span>One mono line on a gold wash (private change) or ink wash (something crossed a boundary / a non-event), with a sans sentence under it and, where true, Undo. Never stacked; never a feed.</span></div>
+        <div class="row2"><span class="rk">Color</span><span>Gold: kickers, chapter labels, attributed source facts, the “Open …” door. Planning ink: preview edges and external-link chips. Oxblood: once on 05 (the real mismatch), once on 02 (a tight fit) and on “Let it go”. No amber for optionality; no violet anywhere.</span></div>
+      </div>
+
+      <div class="x"></div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{}'>
+      class Component extends DCLogic {
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>

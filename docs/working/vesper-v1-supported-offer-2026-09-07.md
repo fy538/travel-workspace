@@ -15,22 +15,34 @@ source_of_truth_for: []
 
 ## 1. Recommendation
 
-**Offer useful help with what catches someone's attention, worthwhile things to
-discover, and less work turning a possibility into part of their life.** Questions,
-places, things from friends and plans taking shape are recognizable entrances—not
-four separate products or a mandatory sequence.
+**Offer worthwhile understanding and discovery, enjoyable things from friends,
+and practical help making an idea work when wanted.** Questions, places, things
+from friends and plans taking shape are recognizable entrances—not four separate
+products or a mandatory sequence. Opening Home for something worthwhile is also
+an independent entrance, not a reward unlocked by contributing first.
 
-Candidate explanation for discussion, **not approved availability copy**:
+Candidate explanation for discussion, **not approved availability copy**.
+September 10 alignment with the
+[consumer-promise comparison](vesper-consumer-promise-and-adaptive-value-research-2026-09-05.md#5-consumer-promise-hypotheses):
 
-> Vesper helps you make more of what catches your attention. Ask about something,
-> explore worthwhile possibilities, or pick up something a friend shared—and get
-> useful understanding and help making it work in real life. Keep what matters
-> so you can return to it without starting over.
+> Vesper helps you discover things worth exploring, understand what interests
+> you, and enjoy moments and ideas shared by friends. Open it for something
+> interesting, ask a question, or get practical help making an idea work—at home
+> or out in the world.
+
+Useful understanding, independent discovery and a friend's original contribution
+can each finish the experience. A reply, AI interpretation, practical next step
+or saved record is not required. Solo value does not depend on friends joining,
+and useful first value does not depend on a rich personal history.
 
 The intended added benefit of optional continuity is better judgment with less
-re-explanation, not more references to the user's past. That belongs in the
-public promise only to the extent the adopted agreement and delivered behavior
-support it. A good first answer can stand on its own.
+re-explanation, not more references to the user's past or repayment earned by
+saving and documenting everything. Deliberately retained material should remain
+easy to return to under its existing owner; optional conversation history is a
+separate, still-unadopted agreement. Continuity belongs in the public promise
+only to the extent the adopted agreement and delivered behavior support it.
+A good first answer can stand on its own. This wording alignment changes no
+inclusion, exclusion, permission, commercial or shipping commitment below.
 
 This is the working service specification requested after the
 [four-area research](vesper-audience-offer-and-market-strategy-research-2026-09-06.md#19-four-consequential-strategy-questions--september-7).

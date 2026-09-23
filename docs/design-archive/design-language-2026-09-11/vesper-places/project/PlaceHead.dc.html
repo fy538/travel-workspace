@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <link rel="stylesheet" href="_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css" />
+        <link rel="stylesheet" href="vdl.css" />
+        <style>
+          /* PlaceHead — the destination identity from Entity 14 R2: media-led opening, back,
+             Save/Share capsule, kind and location, sans identity, people byline, context line.
+             It is the head only; the body below it follows the reason for opening. */
+          .ph-hero{position:relative;height:230px;background-color:var(--vdl-media-hatch);background-image:repeating-linear-gradient(45deg,color-mix(in srgb,var(--vk-ink00) 10%,transparent) 0 1px,transparent 1px 6px)}
+          .ph-back{position:absolute;left:14px;top:14px;width:34px;height:34px;border-radius:10px;background:color-mix(in srgb,var(--vk-ink00) 35%,transparent);display:flex;align-items:center;justify-content:center}
+          .ph-cap{position:absolute;right:14px;top:16px;border-radius:9999px;padding:9px 12px;background:color-mix(in srgb,var(--vk-ink00) 35%,transparent);color:var(--vk-paper00);letter-spacing:1px}
+          .ph-media{position:absolute;left:16px;bottom:9px;color:var(--vk-ink20);letter-spacing:1px}
+          .ph-body{padding:12px 20px 0}
+          .ph-kind{color:var(--vk-ink60);letter-spacing:1px}
+          .ph-kind u{text-decoration-thickness:1px;text-underline-offset:3px}
+          .ph-name{margin-top:3px;line-height:27px}
+          .ph-by{display:flex;align-items:center;margin-top:8px}
+          .ph-av{width:22px;height:22px;border-radius:9999px;border:2px solid var(--vk-paper20);display:flex;align-items:center;justify-content:center;color:var(--vk-paper00);font-family:var(--vk-font-sans);font-size:10px;font-weight:700;margin-right:-1px}
+          .ph-av.i0{background:var(--vk-ink00)}
+          .ph-av.i1{background:var(--vk-color-action-primary)}
+          .ph-by .t{margin-left:11px;color:var(--vk-ink60)}
+          .ph-ctx{display:flex;gap:8px;align-items:flex-start;margin-top:8px;color:var(--vk-color-action-primary);letter-spacing:1px}
+          .ph-ctx i{flex:0 0 3px;height:6px;border-radius:9999px;background:currentColor;margin-top:3px}
+        </style>
+      </helmet>
+      <div data-screen-label="PlaceHead">
+        <div class="ph-hero">
+          <span class="ph-back"><svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M12.5 4L7 10L12.5 16" style="stroke:var(--vk-paper00)" stroke-width="1.8" stroke-linecap="round"></path></svg></span>
+          <span class="ph-cap vk-t-monoStampStrong">SAVE · SHARE</span>
+          <span class="ph-media vk-t-monoStampStrong">{{ media }}</span>
+        </div>
+        <div class="ph-body">
+          <div class="ph-kind vk-t-monoStampStrong">{{ kind }} · <u>{{ area }}</u></div>
+          <div class="ph-name vk-t-h1Large">{{ placeName }}</div>
+          <div class="ph-by">
+            <sc-for list="{{ people }}" as="p" hint-placeholder-count="2"><span class="{{ p.cls }}">{{ p.i }}</span></sc-for>
+            <span class="t vdl-t-supportLine">{{ byline }}</span>
+          </div>
+          <sc-if value="{{ hasContext }}"><div class="ph-ctx vk-t-monoStampStrong"><i></i><span>{{ context }}</span></div></sc-if>
+        </div>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{
+  "media": { "editor": "text", "default": "YOUR PHOTO · AUG 19" },
+  "kind": { "editor": "text", "default": "GARDEN RESTAURANT" },
+  "area": { "editor": "text", "default": "SORRENTO" },
+  "placeName": { "editor": "text", "default": "Hortus" },
+  "people": { "editor": "text", "default": "D,F" },
+  "byline": { "editor": "text", "default": "Dana and you have been here" },
+  "context": { "editor": "text", "default": "" }
+}'>
+      class Component extends DCLogic {
+        renderVals() {
+          const p = this.props || {};
+          const people = (p.people || 'D,F').split(',').filter(Boolean).map((i, n) => ({ i, cls: 'ph-av i' + (n % 2) }));
+          return {
+            media: p.media || 'YOUR PHOTO · AUG 19', kind: p.kind || 'GARDEN RESTAURANT', area: p.area || 'SORRENTO',
+            placeName: p.placeName || 'Hortus', people, byline: p.byline || 'Dana and you have been here',
+            hasContext: !!p.context, context: p.context || ''
+          };
+        }
+      }
+    </script>
+  </body>
+</html>
