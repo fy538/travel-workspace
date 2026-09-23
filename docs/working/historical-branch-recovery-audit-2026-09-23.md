@@ -56,8 +56,19 @@ full offline backend selection passed (`21,758` passed, `14` skipped, `1,458`
 deselected, `53` xpassed). App TypeScript, its Home screen suite (`20` tests),
 offline suite (`126` tests), and the changed QA-runner tests (`12` tests)
 passed. The Home design-reference check is doctrine-only; native capture,
-visual comparison and real API destination/return remain **unverified** because
-the booted simulator is assigned to another lane.
+visual comparison and real API destination/return remain **unverified**. On
+September 23 this recovery lane reserved a separate iPhone 16 Pro Max simulator
+(`074FD906-F69B-447E-93AD-83DA52D30E2A`) and ran Home Root's polish-QA
+doctor successfully with its own Metro port `53936`, Maestro `2.6.1`, and
+OpenJDK 17. The installed Vesper binary, built in July, could not render the
+current JavaScript: Worklets native `0.11.3` versus JS `0.12.1`. We also
+installed and tried Expo Go for the lane, as the Expo guidance recommends
+before a new native build; it produced the same mismatch. This is not a
+Home-screen visual verdict. A matching custom development build is still
+needed; it was not attempted because the local Mapbox download token required
+by this app's iOS build is unset. The other lane's booted simulator was not
+used. The successful doctor only establishes toolchain and Metro preflight,
+not binary compatibility or screen acceptance.
 
 The required full gates are **not green**. `make verify` stopped at eight
 expired world-catalog rows; current backend main fails the same check. Separate
