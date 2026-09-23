@@ -396,7 +396,9 @@ promise instantaneous physical erasure of every backup.
 
 ### 5. Research and what it does not settle
 
-Sources rechecked September 7, 2026:
+Sources rechecked September 7, 2026, except the individually dated September 15
+full-text refresh below. The refresh changes research provenance only; the
+proposed policy and current authority remain unchanged.
 
 - [Jones et al., CHI EA 2025](https://brennanjones.com/media/documents/publications/chiea25-666.pdf):
   six interviews and a preliminary analysis of 54 Reddit threads found
@@ -430,16 +432,19 @@ Sources rechecked September 7, 2026:
   claims into a universal causal rule. Our inference is to explain the default
   early without forcing configuration before help; the study does not validate
   Vesper's particular opt-in timing or copy.
-- [Huang et al., 2026, *Remembering or monitoring?*](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2026.1934857/abstract):
-  accepted August 28; only the accepted abstract was available at review. Six
-  experiments with 2,140 participants used fictitious memory references rather
-  than actual longitudinal retrieval. Relevant cue packages generally performed
-  better than intrusive ones on trust-related outcomes; comparisons with no
-  memory varied. An editable dashboard raised average trust without selectively
-  removing the intrusive-cue penalty. Bundled differences in relevance,
-  sensitivity, source and implied surveillance prevent isolating one mechanism.
-  Treat this as limited support for judging whether a use is welcome, not proof
-  that a particular control design fixes intrusion or that personalization wins.
+- [Huang et al., 2026, *Remembering or monitoring?*](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2026.1934857/full):
+  **September 15 refresh:** published September 10; methods, results and
+  limitations inspected in full text, superseding the earlier abstract-only
+  access note. Six experiments (N=2,140), with students and local adults in
+  China, used fictitious memory references, not longitudinal retrieval.
+  Relevant cues outperformed intrusive ones on trust-related measures;
+  comparisons with no memory varied. The specific editable dashboard increased
+  average trust without selectively removing the intrusive-cue penalty.
+  Bundled cue attributes prevent isolating a mechanism. Short interactions and
+  self-reports do not establish persistent-memory benefits or actual retention;
+  the dashboard finding does not generalize to all controls. Use this to test
+  appropriate reuse, not to select retention, expand permission or assert that
+  personalization wins.
 - [Mireshghallah et al., 2025 preprint, *CIMemories*](https://arxiv.org/abs/2511.14937):
   the abstract reports a synthetic-profile benchmark of inappropriate
   cross-context information flow and limitations of privacy-conscious prompting.

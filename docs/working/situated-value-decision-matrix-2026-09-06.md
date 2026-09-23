@@ -1573,6 +1573,32 @@ only what it exercises; a participant response establishes only that observed
 experience. Keep judged quality, observed behavior and inferred benefit separate.
 Use “not measured” for unknowns, not zero burden, zero cost or assumed satisfaction.
 
+#### September 15 refinement: distinguish kinds of benefit evidence
+
+The [2026 literature follow-through](vesper-ordinary-value-and-relationship-strategy-research-2026-09-06.md#11-2026-literature-follow-through-received-benefit-not-another-product-layer)
+sharpens this existing ledger; it does not rerun the historical cases or create
+new production fields, telemetry, consumer questionnaires or completion gates.
+
+| Distinction | What can support the claim | What must not stand in for it |
+| --- | --- | --- |
+| Felt benefit | The person's report that the encounter was interesting, reassuring, enjoyable or made something feel possible | An internal reviewer predicting their reaction, a fluent answer or a click |
+| Demonstrated benefit | Evidence matched to the claim: an actual usable preparation for practical relief, or an observed explanation/application for understanding | Treating a delivered payload as proof of comprehension, or confidence as proof of feasibility |
+| Later outcome, if known | Supported evidence of what happened afterward, attributed to the right person, time and source | Inferring attendance from a route tap, durable learning from one answer, or improved friendship from message volume |
+
+These are distinct claims, not a required ladder. Reported enjoyment is valid
+evidence of that experience; it need not produce an external action to count.
+A sound option can be useful even when declined. Lack of later observation is
+unknown, not failure or permission to ask the person to document their life.
+Clicks and dwell may describe behavior but do not certify curiosity, satisfaction
+or learning; do not replace click optimization with a time-spent target.
+
+For social cases, identify what was valuable about the **human contribution**
+separately from Vesper's optional assistance. Attribute benefit and unwanted work
+to sender and recipient independently. Compare original-only receiving with
+enrichment without requiring a reply, joint plan or equivalent contribution.
+An enjoyable share is not evidence of a stronger relationship; any such claim
+needs its own appropriate evidence, not more AI conversation.
+
 #### Compare context without rigging the alternative
 
 For relevant cases, compare a credible current workflow, Vesper with little

@@ -28,6 +28,11 @@ and selective differentiation with dependable foundations. It records the
 founder-authorized documentation refinements and their comparison requirements;
 it does not adopt pending policy proposals or certify delivery.
 
+The [September 15 literature follow-through](#11-2026-literature-follow-through-received-benefit-not-another-product-layer)
+adds research on agency, curiosity, memory, proactive assistance and human
+connection. It sharpens existing review criteria, not the product grammar;
+earlier research dates and implementation observations remain historical.
+
 This is desk research and proposed product reasoning, not a systematic literature
 review, participant study, implementation audit, new canon, or release approval.
 Research findings, vendor descriptions, existing Vesper decisions and our
@@ -699,3 +704,69 @@ deliver it, and how ordinary questions, loose intentions and human handoffs
 become useful results. It separates finite preparation from continuing
 monitoring, checks adjacent products and records the existing root-serving/
 production boundary. It is research, not a new mandate or replacement manuscript.
+
+## 11. 2026 literature follow-through: received benefit, not another product layer
+
+### 11.1 Scope and documentary consequence — September 15
+
+The founder requested a 2026 literature review and then authorized targeted
+updates to existing documents. This is a focused desk review, not a systematic
+review or new Vesper participant evidence. Publication in 2026 does not mean
+data collection in 2026 or evaluation of today's models. The access and transfer
+limits below matter to every recommendation.
+
+Most conclusions reinforce existing doctrine: substantive first value,
+reader-controlled depth, useful rather than performative memory, voluntary
+continuation, and human relationships rather than AI engagement as an end.
+Editorial Canon §§10, 13 and 16 already specify those boundaries. The additions
+are a clearer separation of perceived benefit from demonstrated benefit and
+later outcomes, plus explicit receiving contrasts in the existing specimens.
+No new canon, product move, persona, score, architecture lane or release gate
+follows. Enjoyment and understanding remain complete benefits without action.
+
+### 11.2 Primary research and limits
+
+| Source, status and access | Finding relevant to Vesper | Evidence boundary |
+| --- | --- | --- |
+| [Beacock et al., *AI usage patterns are shaped by perceived gains in human agency*](https://arxiv.org/abs/2607.02313), July 2, 2026 preprint; abstract and PDF methods/findings/limitations reviewed | Ethnographic work with 51 daily AI users in the US, Germany and Singapore connects sustained use to perceived increases in capability and agency | Data were collected in 2025 from selected experienced users. Qualitative accounts do not establish causal gains, durable capability, representative demand or Vesper retention; the authors explicitly distinguish perceived agency from material effects |
+| [Kim and Ji, *Exploratory search with generative AI*](https://doi.org/10.1016/j.ijhcs.2026.103771), 2026 journal article; publisher abstract and indexed methods/results excerpts reviewed | A within-participant experiment with 36 students found that progressive disclosure and greater prompt initiative supported reported engagement, perceived knowledge change and exploratory behavior | Perceived knowledge is not objective learning. A small exploratory-search study does not prescribe a Home layout, mandatory follow-up prompts or a universal amount of depth |
+| [Schumacher et al., *From clicks to curiosity*](https://pubmed.ncbi.nlm.nih.gov/41973775/), April 13, 2026 journal publication; abstract reviewed | In historical-hypertext exploration by 799 adults, choosing to click for additional information did not predict reported curiosity; reading time did | Data were collected in 2023, outside an AI app. This does not make dwell time a satisfaction objective or justify inferring an enduring interest from either behavior |
+| [Kuhail, Følstad and Alimamy, *ChatGPT, where should I go?*](https://zuscholars.zu.ac.ae/works/8132/), June 5, 2026 journal article; institutional abstract and publisher excerpts reviewed | Open-ended responses from 104 prior LLM travel-advice users describe practical clarity and efficiency alongside inspiration and enjoyment, with specific and exploratory interactions | Retrospective self-report, not observed trip outcomes or a comparative trial. Combining inspiration and utility is already an adjacent-tool benefit, not sufficient evidence of Vesper differentiation |
+| [Huang et al., *Remembering or monitoring?*](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2026.1934857/full), September 10, 2026 journal article; full text reviewed | Relevant simulated memory cues generally outperformed intrusive ones; comparisons with no memory varied | Fictitious recall and bundled cue differences limit transfer. See the [refreshed source note](conversation-history-source-expiry-decision-proposal-2026-09-06.md#5-research-and-what-it-does-not-settle); this is not evidence of a real persistent-memory advantage |
+| [Abbas et al., *Having Lunch Now*](https://adnan-abbas.github.io/assets/pdf/PITCH_CHI_2026.pdf), CHI 2026 published paper; final paper methods/findings reviewed | Twelve graduate students used a proactive planning/reflection agent for 14 days; acceptance and negotiation coexisted with resistance and disengagement. Failures included rigidity, premature turn-taking and overpromising | A small coaching deployment, not evidence that all proactive help is unwanted or that leisure users want daily check-ins. It motivates testing whether assistance creates supervision or reporting work |
+| [Kuhail et al., *Can Chatbots Foster Co-Creation in Collaborative Holiday Planning?*](https://link.springer.com/article/10.1007/s10796-026-10784-6), July 17, 2026 journal article; publisher abstract reviewed | In a multi-user planning chat with 112 participants in 56 pairs, perspective-taking was particularly associated with favorable reasons for use and willingness to co-create | Post-task perceptions and modeled associations are not causal evidence of improved holidays, reduced total coordination work or an advantage over ordinary group chat |
+| [Jiang et al., *Scaffolded Vulnerability*](https://arxiv.org/html/2602.07508v1), CHI 2026 paper; author manuscript methods/findings/limitations reviewed | A randomized study of 36 couples distinguished deeper disclosure from support between partners; the partner-mediated condition improved partner-support and perceived-closeness measures | One structured session, with unequal condition durations, does not establish lasting relationship benefit. Transfer the human-support question, not lengthy disclosure exercises, into Vesper's casual social experience |
+
+### 11.3 What changes in our review
+
+1. **Separate felt benefit, demonstrated benefit and later outcome.** A person
+   feeling more capable matters, but does not by itself establish learning,
+   feasibility or execution. A rendered result establishes what was delivered,
+   not whether someone enjoyed or understood it. The
+   [existing experience ledger](situated-value-decision-matrix-2026-09-06.md#119-whole-experience-review-received-value-context-and-human-work)
+   now records these evidence distinctions without adding a score or survey.
+2. **Reward the first encounter; make deeper exploration optional.** The opening
+   must contain a useful distinction, enjoyable human material or intelligible
+   possibility. Depth must add substance, not reveal an answer deliberately
+   withheld to induce a tap. Wanted exploration is not input debt.
+3. **Evaluate continuity through changed usefulness and appropriate restraint.**
+   Relevant history can improve selection, explanation or practical fit without
+   appearing in the wording. No-history ties are legitimate. Useful preparation,
+   availability on a visit, interruption and reporting requests remain separate;
+   neither remembered interest nor nonresponse creates a coaching mandate.
+4. **Evaluate the human contribution, not social traffic.** Compare receiving
+   the original offering with optional assistance that helps the recipient
+   understand, respond or do something together. No response may still leave a
+   complete benefit; message volume, disclosure and chatbot engagement do not
+   establish stronger friendship. Each person's effort and assent remain distinct.
+
+The [supported-offer review §9](vesper-v1-supported-offer-2026-09-07.md#9-received-value-review-three-complete-situations)
+applies these distinctions to the same three situations. This is an update to
+how existing outputs are reviewed, not another requirement to prove one loop
+before continuing system work. The four moves, tab roles, supported-service
+candidate, pending continuity agreement and roadmap ownership stay unchanged.
+
+Still unmeasured: actual comprehension and enjoyment, contextual advantage over
+capable alternatives, welcomed initiative, recipient value, voluntary return,
+offline benefit and willingness to pay. These studies make some mechanisms
+plausible; they do not resolve Vesper's commercial or delivery questions.
