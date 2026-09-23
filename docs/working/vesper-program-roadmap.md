@@ -20,6 +20,19 @@ depends_on:
 
 # Vesper program roadmap
 
+**September 22 local-main landing update:** the coordinated candidate below
+has since been fast-forwarded into the three *local* `main` branches: workspace
+through `92905f9`, backend `4fb3d76b9`, and app `db05b0e7f`. The workspace
+main's pre-existing design/doc edits were preserved as uncommitted work; one
+inventory autostash conflict was resolved by retaining both sets of document
+classifications. The backend's pre-existing untracked eval fixture also remains
+untouched. The next paragraph records the earlier pre-landing candidate state,
+not the present branch placement. Remote `origin/main` in all three repositories
+is unchanged. The dated verification/governance failures below still prevent a
+passing pre-push receipt, and protected remote mains require CI plus an
+independent approving review. No remote branch was published or old worktree
+deleted in this landing step.
+
 **September 22 repository consolidation candidate (not main):** coordinated
 branch `codex/consolidation-2026-09-22` now contains the latest functional lane
 in all three repositories, the complementary shared-engine backend lane, the
