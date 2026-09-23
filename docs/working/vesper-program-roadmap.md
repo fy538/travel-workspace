@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Strategy task
 created: 2026-09-07
-last_verified: 2026-09-21
+last_verified: 2026-09-23
 expires: 2026-10-07
 why_new: Extracts the present-tense cross-lane program map from a long Integration plan and its historical receipts so independent owners can coordinate without competing execution queues.
 supersedes:
@@ -2072,9 +2072,11 @@ changes. That does not justify merging Home and Places into one generic card or
 claim that visual alignment is complete. Share stable presentation rules; retain
 explicit surface composition and domain ownership.
 
-**Status: planned, not implemented.** Read-only caller and contract inspection
-supports the scope below. This is the implementation detail for the native-polish
-row above, not a new system roadmap or permission to restart Integration.
+**Status: C1–C3 implemented in three app commits. C4 capture closeout completed
+September 22–23; visual acceptance remains deliberately unclaimed where no
+current screen-addressable design target or independent reviewer exists.** This
+is the implementation detail for the native-polish row above, not a new system
+roadmap or permission to restart Integration.
 
 #### Baseline and scope
 
@@ -2083,6 +2085,11 @@ row above, not a new system roadmap or permission to restart Integration.
 - Workspace baseline `58e45dcccefa2d9171ae5030f44c6403c2f133da`;
   app baseline `456e84d86628a146333eda756b958c63114121a5`. Both were clean
   before this plan. These are lane-local observations, not main/adjacent-lane status.
+- App implementation commits: `8e9439610` (C1 explicit Places experience
+  presentation), `d1a32fc85` (C2 shared root follow-up controls), and
+  `9c956672d` (C3 remove unreachable Places composition while retaining live
+  helpers). C4 fixture/test closeout is `df3b945e6`. These are separate app
+  commits in the coordinated lane.
 - Product source ownership is the app child. Workspace changes are this plan
   and, at completion, its bounded evidence update. No backend, wire-model,
   generated schema, Life or Chat changes are proposed.
@@ -2253,13 +2260,97 @@ Before native checks, resolve the lane's actual runtime/device ownership with
 are not a reservation. Restore accessibility settings and release the device
 after the review. Do not interfere with the functional lane's running session.
 
+#### September 23 execution receipt
+
+The three implementation packages landed independently as planned. The only
+code changes during C4 corrected Places fixture evidence to match the current
+root contract:
+
+- `utils/api/mock/trips.ts` now lets the root projection observe an explicit
+  `around_me` write while leaving legacy explicit Saved-reader selection local.
+  `__tests__/utils/placesProjectionMock.test.ts` covers root-projection
+  read-after-write and passed 14/14.
+- `.maestro/polish/places-workspace-planning.yaml` checks the geographic
+  identity at large type, where fixed-height chrome intentionally omits the
+  longer posture label.
+- `.maestro/polish/places-workspace-cold.yaml` follows the current Lisbon
+  starter flow and asserts its current guide title. It proves the cold root and
+  city-open path; it does **not** prove explicit location UI readback.
+- `.maestro/polish/places-workspace-lisbon-urgency.yaml` now carries the
+  canonical Lisbon trip context and urgency clock. The previous flow rendered
+  future planning while expecting a booking hold. With explicit context, the
+  complete registered Places run passed all eight captures.
+
+Native capture evidence (fixture/mock UI evidence only):
+
+| Surface | Run | Result | Evidence boundary |
+| --- | --- | --- | --- |
+| Home Root | `.maestro/runs/20260922T234630Z-home-root` | 7/7 captures | Available, Planning, Live, Returned (top + close), Quiet, Cold, Urgent. Returned reaches the end close above navigation. |
+| Home Root, large text | `.maestro/runs/20260922T225854Z-home-root` | 1 live capture | One large-text viewport only; not a second full posture matrix. |
+| Places Workspace, standard text | `.maestro/runs/20260922T225757Z-places-workspace` | 1 planning capture | Standard-text planning viewport only; not a full state matrix. |
+| Places Workspace, Accessibility Large | `.maestro/runs/20260923T001136Z-places-workspace` | 8/8 captures | Saved projection, default, planning, live, urgent, group-decision, returned, cold. Simulator remained at Accessibility Large for this matrix; location UI is not part of this pass. |
+| Places planning, Accessibility Large | `.maestro/runs/20260922T234339Z-places-workspace` | 1/1 capture | Root preserves `KYOTO` identity; the corrected planning assertion was then exercised again in the 8/8 run. |
+
+The external Places authority was re-read from
+`/Users/feihuyan/Downloads/vesper-home-surfaces`, specifically `HANDOFF.md`
+and `project/Places - The Page.dc.html` (SHA-256
+`150ddea633181d8a4633a7722db438de3ff77d7c0bc6b2287f2773cf1dc0ad3c`; its
+`HANDOFF.md` hash is
+`95f473c7612b196870555953ec245cbed6446f4715bc30e847f37de245f8274c`). The
+current file is an editorial argument/section system, not a screen-addressable
+mock. `qa:design:compare` pairs only historical Vesper 405 references; these
+were not treated as current-canon comparisons. Home Root has no design-ref
+manifest and is judged against its accepted doctrine contract. Thus the runs
+establish rendering, interaction, and directionally coherent presentation—not
+pixel/layout parity with the latest Claude designs.
+
+Self-review found no P0/P1 regression in the inspected states, but this is not
+the independent product-quality pass required for final surface acceptance.
+The floating tab pill covers the bottom edge of the viewport while a feed is
+mid-scroll; inspected end states remain reachable above it, but touch and
+VoiceOver clearance still need deliberate review. The mock `Around Me`
+API/root-projection read-after-write test passes; the UI gesture-to-feed
+readback remains unverified and is not claimed.
+
+Final focused checks:
+
+- `npm run typecheck` — pass.
+- `npx jest --runInBand __tests__/utils/placesProjectionMock.test.ts` — pass,
+  14/14.
+- `npx eslint utils/api/mock/trips.ts __tests__/utils/placesProjectionMock.test.ts`
+  — zero errors; seven warnings remain in the existing mock module (unused mock
+  imports/fixtures and the existing unused `destinationCity` binding).
+- `npm run qa:polish:scenarios` — pass, 31 registered IDs.
+- `HOME_SURFACES_CANON_DIR=/Users/feihuyan/Downloads/vesper-home-surfaces npm
+  run qa:design:check -- places-workspace` — pass, one manifest/six reference
+  pairs and external canon hash verified.
+- `npm run qa:design:check -- home-root` — expected doctrine-only warning;
+  no design-ref manifest exists.
+- `git diff --check` — pass.
+- `make docs-links-check` — failed on five pre-existing links to design handoff
+  documents absent from this checkout (three in the older integration roadmap,
+  two in this roadmap's September 9 historical sections). No current replacement
+  target was present, and this implementation pass did not alter those links.
+- `scripts/measure_verification.py` ran the focused Jest command: 14/14 tests,
+  8.92 seconds; workspace `1273477`, app `9c956672d` (dirty, with the tested
+  C4 diff subsequently committed as `df3b945e6`), agent `d7d1538`. Its local
+  `.log` output is ignored by the repository; this receipt preserves the
+  measured result rather than force-adding a generated log.
+
+These fixtures are not governed-backend, integration, or final visual
+acceptance. C1–C3 are complete; C4 capture and focused interaction evidence are
+recorded, but its paired same-state/text-scale full-scroll comparison is only
+partial. Independent visual certification, current-design side-by-side
+comparison, paired large-text full-scroll coverage, and location-UI readback
+remain open evidence—not blockers to retaining this bounded consolidation.
+
 #### Finish conditions and what follows
 
-This batch is done when the gallery and production share the same explicit
-experience modes, duplicated assessment/action internals have one owner, the
-proven unused Places view family is retired, and combined visual/interaction
-evidence shows no regression. Required checks that fail or remain unrun are
-reported as such, not waived by cleanup success.
+Implementation conditions are met: the gallery and production share the same
+explicit experience modes, duplicated assessment/action internals have one
+owner, the proven unused Places view family is retired, and the recorded native
+capture set shows no observed regression. Visual acceptance remains open at the
+boundaries stated above; required checks are not waived by cleanup success.
 
 Stop there. Resume design-to-implementation review of the next meaningful
 full-scroll composition rather than continuously extracting more abstractions.
