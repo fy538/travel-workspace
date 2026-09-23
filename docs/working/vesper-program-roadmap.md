@@ -54,14 +54,21 @@ compatibility-ledger checks. Full export, app projection and generated types
 regenerate without a diff. Backend `898632684` replaces stale seasonal supply
 with source-reviewed autumn entries and checks review expiry across the runway.
 App `13f81ba04` removes 19 schema exceptions using generated enum/feed types;
-TypeScript and focused contract tests pass. **Landing is still blocked:** the
-fresh complete gate stops at 329 backend mypy errors in 69 files, and the
-separately executed schema check still has 40 expired facade exceptions. Native
+TypeScript and focused contract tests pass. Backend `c58db9afb` then repairs
+typed SQL-row boundaries, intake-page fan-in, Home result unions and Source
+worker argument/context handling without changing wire contracts. The affected
+Life/root/API offline selection passes 823 tests (48 deselected), with 34
+focused checks rerun after the final quality-helper adjustment.
+**Landing is still blocked:** the fresh complete gate now stops at 208 backend
+mypy errors in 59 files (down from 329 in 69), and the separately executed
+schema check still has 40 expired facade exceptions; mobile was unchanged in
+this latest batch. Native
 Places visual acceptance and the previously recorded surface-budget issues are
 also unresolved. No historical branch was removed or remote main changed.
 
-Next repair order: resolve shared backend typing boundaries (DB row mappings,
-owner-read collection types and validated literals) with affected behavioral
+Next repair order: finish the remaining backend typing boundaries (notably
+Relationships row adapters/routes, root v2 adapters and Life index consumers)
+with affected behavioral
 tests; resolve the remaining facade contracts against their actual endpoints
 rather than blanket-renewing exceptions; then rerun complete gates and finish
 the remaining presentation acceptance. Do not add new historical feature scope

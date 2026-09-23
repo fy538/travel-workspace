@@ -100,9 +100,63 @@ branch-name mappings
 are also in each `*-inventory.json`. These bundles precede the subsequent
 metadata repair commits; refresh the preservation receipt before final cleanup.
 
+### September 23 typed-owner integration repair — latest receipt
+
+Backend `c58db9afb` removes **121** of the previously measured 329 type errors;
+the complete checker now reports **208 errors in 59 files**. Workspace base was
+`79548f2`, backend base `898632684`, app `13f81ba04`. No mypy configuration,
+suppression, feature flag, database schema or app source changed.
+
+The batch repairs ten implementation files:
+
+- Life organization/resolution DB helpers declare SQLAlchemy `RowMapping`
+  results; decoders also continue accepting fixture mappings. Reconciliation
+  receives a concrete sequence matching its existing contract.
+- Life keyset queries bind explicitly typed literals. Tests preserve the
+  original UUID/time/string values, comparison direction and lookahead limit.
+- Both worker and HTTP intake fan-in preserve generic page-item types rather
+  than erase anchors and retained sources to `object`. Pagination limits,
+  continuation handling and current-authority checks are unchanged.
+- Retained-source withdrawal/restoration argument bundles retain typed owner
+  fences, exact revision tokens and the optional caller-owned connection.
+- Home v1 composition uses the existing semantic-result union across mixed
+  owners and empty states; no order, suppression or admission rule changed.
+- Source-worker telemetry uses a typed argument bundle. Accounting context
+  restoration binds each reset to its correctly typed token and runs in the
+  same reverse order. A failure-path regression asserts restoration inside the
+  worker's task, where `asyncio.run` isolation cannot mask leaked context.
+- Life quality joins validate and normalize the two string endpoints without
+  losing their fixed-pair type; measurement semantics remain unchanged.
+
+Verification (same arm64 macOS / Node 24.13.0 / backend Python 3.13.0 environment
+as the earlier receipt):
+
+| Command | Result |
+|---|---|
+| `PYTHONPATH=. .venv/bin/python -m pytest tests/life_projection tests/root_projection tests/api/test_root_projections.py -q --run-quarantined -m 'not requires_postgres and not requires_api_keys and not requires_dogfood_wedge'` | **823 passed, 48 deselected**, zero skips; offline behavior only, not real Postgres execution. |
+| Same pytest options on `tests/life_projection/test_life_quality.py tests/life_projection/test_life_organization_reader.py tests/root_projection/test_source_contribution_worker.py` | **34 passed** after the final fixed-pair normalization change. |
+| Targeted Ruff, formatting, `git diff --check`, backend commit hooks | **Passed**. No checker exceptions added. |
+| `./scripts/sync-types.sh` | **Passed** full offline export, app projection, generation and mobile TypeScript; all three generated files have **no diff**. |
+| `make verify` | **Failed** at backend mypy: **208 errors in 59 files**, 1,888 source files checked. Earlier architecture/catalog gates passed; subsequent full-test/frontend/workspace stages of this invocation were **unrun**. |
+
+Measured local logs under `/tmp/vesper-landing-verification/`:
+`integration-types-behavior-20260923T193140Z.log` (8.733 s),
+`integration-types-wave2-20260923T193141Z.log` (6.645 s; intermediate 209 errors),
+and `integration-types-final-gate-20260923T193259Z.log` (59.224 s; final 208).
+These record the base heads plus dirty backend changes, not a clean-main or
+published receipt. No runtime services were started and no DB cleanup ran.
+
+The 40 mobile facade exceptions and previously recorded presentation/budget
+gaps remain open. Next work is the remaining Relationships row/API boundaries,
+root v2 adapter unions and Life index/consumer contracts, followed by the
+mobile facade repair and a complete-gate rerun. Main and archived historical
+refs/worktrees remain untouched. This batch is committed integration progress,
+not completion of the consolidation mandate.
+
 ### September 23 landing-baseline repair receipt
 
-This is the latest gate state; earlier failures below are dated observations.
+This is the earlier catalog/schema repair state, superseded by the typed-owner
+receipt above where counts differ; failures below are dated observations.
 All changes remain on `codex/home-human-opening-recovery-2026-09-23`, not main.
 
 - Backend `898632684`: replaced expired August catalog supply with three
