@@ -83,12 +83,56 @@ with Python 3.14.6 on Darwin arm64. Receipt:
 The checked recovery tuple was workspace `75a4398`, backend `0aaa2ccc4`, app
 `717355b17`; this documentation receipt follows that check.
 
-**Still incomplete:** reconcile the 61 expired backend documents, verify and
+**Still incomplete:** reconcile the 53 remaining expired backend documents, verify and
 publish the recovery candidate through protected-main review, resolve the
 remaining acceptance/pin requirements, land useful work, and finally retire
 the recovery lane plus the old native-testing lane once no process uses it.
 Historical retirement does not prove recovery landing, native visual parity,
 or complete-goal acceptance.
+
+### Runtime-evidence lifecycle pass — September 23
+
+Backend `b3ba0e205` archives eight reviewed point-in-time records under
+`docs/archive/2026-08/runtime-evidence/`: the August 12 vector-release and runtime
+recheck, August 13 production-readonly recheck, the three August 14 runtime
+selections, the August 23 Intake baseline, and the completed August 21 Plan
+Shape implementation receipt. Their observations, failures, outstanding gates,
+test counts and original dates remain historical evidence—not present-day
+production assertions or a declaration that unfinished acceptance is complete.
+Archive metadata records each original path and full-file SHA-256. All eight
+archive transformations and five backlink edits were checked against their
+exact expected bytes; original bodies changed only for link relocation and
+an explicit historical notice.
+
+The offline eight-beat report directly reads the v206 document. Its input now
+points to the archive and its production-foundation summary explicitly names
+the historical observation and absence of current health verification. New
+regressions check the archive binding/wording and fail-closed missing input;
+existing missing-beat and fabricated-runtime-pass checks remain. The demo
+program registry points to the relocated evidence without changing task,
+acceptance, or lock statuses. Immutable JSON receipts were not rewritten to
+manufacture new input hashes.
+
+Checks: 18 focused report/registry tests pass; Ruff and formatting pass;
+backend links (6,722 Markdown files), product governance, workspace links
+(531 living documents), and child governance (404 post-baseline documents)
+pass. The child governance command initially failed before rename staging
+because Git still listed the eight removed source paths; it passed after
+explicitly staging both sides of the moves. This was not a checker exemption.
+Measured focused test receipt:
+`/tmp/vesper-landing-verification/runtime-receipt-archive-20260923T224232Z.log`
+(6.320 seconds, 18 passed). The freshness gate still fails with **53 expired
+active documents**, down from 61; measured receipt:
+`/tmp/vesper-landing-verification/runtime-archive-freshness-20260923T224321Z.log`.
+
+The remaining work is not one blanket archive batch. The live environment
+audit, production-dogfood/vector-release lane, content inventory/quality/delta
+notes, and Intake production canary still describe operating contracts and
+must be compared with current implementation and owner runbooks. Research,
+social doctrine, prototype portfolios and unresolved execution plans need
+separate provenance/authority disposition. Preserve open constraints in current
+owners before retiring their old working notes. No expiry extension, deployment,
+flag activation, complete-gate pass, or protected-main landing occurred here.
 
 ## September 23 consolidation mandate and current execution order
 

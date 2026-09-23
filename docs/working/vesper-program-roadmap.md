@@ -87,8 +87,8 @@ offline and Maestro syntax checks before finding missing/overdue flag metadata;
 source-reviewed registry repairs now pass separately. A clean final-tuple
 complete gate remains required; the earlier run overlapped app edits.
 
-**Publication blocker from the separate backend pre-push packet:** 61 active
-documents remain expired (one product working document, three research and 57
+**Publication blocker from the separate backend pre-push packet:** 53 active
+documents remain expired (one product working document, three research and 49
 working notes), down from 94. The code CI pass does not cover that hook.
 The final clean publication attempt was stopped before any push; it is not a
 complete-gate pass. Reconcile each document's actual owner/status, rather than
@@ -100,6 +100,16 @@ research and old indexes) now live under backend
 historical notices and repaired relative links. The live fundraising index routes
 new work to current product/evidence authorities. No submission status or market
 claim was reverified. The audit owns preservation and check details.
+
+Backend `b3ba0e205` additionally archives eight dated August runtime and
+implementation receipts under `docs/archive/2026-08/runtime-evidence/`.
+Their original observations and unfinished gates remain preserved; no current
+runtime was reverified. The offline demo report now resolves its v206 archive
+input and explicitly labels its historical health statement. Eighteen focused
+tests and documentation link/governance checks pass. Live operator contracts,
+research hypotheses and unresolved plans require their own owner review; do
+not treat them all as disposable receipts. The audit's lifecycle pass records
+the exact scope and remaining 53-document queue.
 
 **Next is delivery, not another recovery sweep:** resolve those lifecycle
 dispositions, verify the committed tuple,
