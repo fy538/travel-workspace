@@ -301,7 +301,7 @@ def build():
         ('PACHA', 'The venue and the act are real names the founder used as the example; the ticket details around them are fixtures.'),
     ]), w=560)
     body = heads + r1 + r2 + r3 + r4 + '<div style="display: flex; gap: 46px; align-items: flex-start; margin-top: 34px; border-top: 1px solid rgba(27,23,20,0.12); flex-wrap: wrap;">' + n2 + n3 + n4 + '</div>'
-    html = (HEAD_VDL + f'<div style="width: {bw(4, (560, 560))}px; min-height: {hh("10", 4400)}px; background: #F4F0E7; box-sizing: border-box; padding: 30px 32px 36px 32px; {SANS} color: {INK}; display: flex; flex-direction: column;">'
+    html = (HEAD_VDL + f'<div style="width: {bw(4, (560, 560))}px; min-height: {hh("10", 4400)}px; background: #D8D1C5; box-sizing: border-box; padding: 30px 32px 36px 32px; {SANS} color: {INK}; display: flex; flex-direction: column;">'
             + head('10 &middot; SHARING &middot; THE SOCIAL FOUNDATION', 'Four shares, seen three times',
                    'Words and pictures; a gathering invitation; where I&rsquo;ll be tonight, with the ticket; a place I love, and what it is good for. One shape for all four: the author, their words, and the thing attached under the words, smaller. Each one written, received, and as the sender sees it afterwards. '
                    'On the receiving side, the verbs everyone knows: one like, a comment, a quote into a chat with a person, and keep, for yourself. Nothing from Vesper under the share; it speaks in the chat, when asked. Drawn, not tested with anyone.')

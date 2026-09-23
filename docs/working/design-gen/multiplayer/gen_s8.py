@@ -189,7 +189,7 @@ def build():
                      ('THE THIRD DOOR', 'Whether keeping the night in a shared record needs Nora&rsquo;s agreement too is unresolved; drawn as Maya&rsquo;s alone.'),
                  ]), w=520)])
     bodyhtml = sA + rA + rA2 + sB + rB + rB2 + sechead('D', 'Being around, for a while', 'A bounded sentence about where you are, which stops being current.') + rD
-    html = (HEAD16 + f'<div style="width: 1860px; min-height: {hh("16", 4800)}px; background: #F4F0E7; box-sizing: border-box; padding: 30px 32px 36px 32px; {SANS} color: {INK}; display: flex; flex-direction: column;">'
+    html = (HEAD16 + f'<div style="width: 1860px; min-height: {hh("16", 4800)}px; background: #D8D1C5; box-sizing: border-box; padding: 30px 32px 36px 32px; {SANS} color: {INK}; display: flex; flex-direction: column;">'
             + head('16 &middot; GETTING TOGETHER, AND SAYING WHO YOU WERE WITH', 'Conversation-led, with the ballot demoted',
                    'Rewritten for the September 22 handoff. An opening, replies, and the author settling; availability kept distinct from attendance; the poll kept as an optional instrument a host asks for. &ldquo;With&rdquo; split into three separate things. '
                    'A bounded expression of being around, which goes stale. Drawn, not tested with anyone.')
