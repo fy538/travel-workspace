@@ -83,7 +83,7 @@ with Python 3.14.6 on Darwin arm64. Receipt:
 The checked recovery tuple was workspace `75a4398`, backend `0aaa2ccc4`, app
 `717355b17`; this documentation receipt follows that check.
 
-**Still incomplete:** reconcile the 30 remaining expired backend documents and two
+**Still incomplete:** reconcile the 30 remaining expired backend documents and five
 stale headers, verify and
 publish the recovery candidate through protected-main review, resolve the
 remaining acceptance/pin requirements, land useful work, and finally retire
@@ -138,6 +138,16 @@ claims still need lifecycle review. Receipt:
 (4.416s, exit 1). Full committed-tuple `make verify` and protected-main landing
 remain pending. Xcode PID 25951 was rechecked and still holds the old native
 worktree's screenshot directory; no worktree or process was removed this pass.
+
+Clean committed-tuple follow-up: workspace `3270330`, backend `0f898fd73`, app
+`480df92d4` passes the same 19 tests and all four documentation checks in 5.899s
+(`calibration-social-clean-committed-20260923T231905Z.log`). The final freshness
+run in 4.415s still finds 30 expired documents but **five** stale headers, not
+the staged run's two: committing backlinks makes the old verification dates of
+three additional documents observable to its Git-date check. This does not
+reverify those research/strategy claims. The final receipt is
+`calibration-social-committed-freshness-20260923T231920Z.log` in the same log
+directory; its exit is 1. Keep these five in the remaining lifecycle review.
 
 ### Runtime-evidence lifecycle pass — September 23
 

@@ -89,7 +89,8 @@ complete gate remains required; the earlier run overlapped app edits.
 
 **Publication blocker from the separate backend pre-push packet:** 30 active
 documents remain expired (one product working document, two research and 27
-working notes), down from 94. Two stale headers also require review. The code CI
+working notes), down from 94. Five stale headers also require review on the
+committed tuple (the staged check saw two). The code CI
 pass does not cover that hook.
 The final clean publication attempt was stopped before any push; it is not a
 complete-gate pass. Reconcile each document's actual owner/status, rather than
