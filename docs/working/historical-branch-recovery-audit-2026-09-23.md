@@ -83,13 +83,58 @@ with Python 3.14.6 on Darwin arm64. Receipt:
 The checked recovery tuple was workspace `75a4398`, backend `0aaa2ccc4`, app
 `717355b17`; this documentation receipt follows that check.
 
-**Still incomplete:** reconcile the 27 remaining expired backend documents and three
-stale headers, verify and
+**Still incomplete:** reconcile the 24 remaining expired backend documents and one
+stale header, verify and
 publish the recovery candidate through protected-main review, resolve the
 remaining acceptance/pin requirements, land useful work, and finally retire
 the recovery lane plus the old native-testing lane once no process uses it.
 Historical retirement does not prove recovery landing, native visual parity,
 or complete-goal acceptance.
+
+### Content, memory and profile research disposition — September 23
+
+Backend `21de41d49` preserves three full August investigations under
+`docs/archive/2026-08/pivot-research/`: differentiated Place-content strategy,
+platform memory versus human remembering, and profile/relationship views.
+All three were read in full, including founder stories, proposed schemas and
+workflows, implementation observations, studies, falsifiers and open questions.
+They remain available as research provenance, not erased or declared resolved.
+
+Current ownership is explicit in each archive and its live backlinks:
+
+| Archived investigation | Current rules retained | Still not proved/adopted by this pass |
+|---|---|---|
+| Place-content strategy | Accepted content runtime decision, Place Interpretation, World Foundry | New source collection, contribution economics, review automation, public promotion and field outcomes |
+| Human remembering | Product Model's five memory services, private-memory behavioral covenant, Contribution and Consequence | Six proposed human studies, memory/retention benefit, additional capture or inference authority |
+| Profile/relationship views | Product Model, Multiplayer Product Strategy, narrower Together PF1.0 projection contract | Broad private/public profile compositions, public-lens product, prototype sequence and old root layouts |
+
+The old content architecture now points to the existing accepted runtime owner;
+archival does not adopt the research wholesale or revive automatic dossier
+promotion. Memory Architecture labels its August 21 implementation inventory
+as dated rather than implying the link-maintenance date reverified all stores.
+Together PF1.0's reference-maintenance date likewise certifies no dogfood,
+implementation or activation. Its Decision/§13 implementation-versus-exposure
+wording conflict is explicitly unresolved; owner reconciliation is required
+before relying on broader authority. No gate or runtime code was changed.
+
+The initial 20-file relocation/backlink transformation was verified: 19 hashes
+matched exactly; one historical digest lacked a trailing newline, which
+`apply_patch` added. Removing only that final newline reproduces the expected
+hash. Subsequent owner notices were reviewed separately. Original hashes remain
+in the three archive headers; the original bodies change only for relocated
+links and an explicit archive/owner banner. App `372631d04` repairs two profile
+design references; no app implementation changes.
+
+Measured documentation checks pass: workspace child governance, living links,
+canon budgets; backend links and product governance; mobile links. Receipt:
+`/tmp/vesper-landing-verification/pivot-research-lifecycle-checks-20260923T232843Z.log`
+(3.647s). Committed child freshness remains exit 1 with **24 expired working
+documents and one stale header** in the August philosophical-foundations note:
+`pivot-research-committed-freshness-20260923T232910Z.log` in the same directory
+(4.622s). That remaining note's newly committed backlink makes its old review
+date observable; the research itself was not silently reverified. Full delivery
+verification, protected-main landing and the two retained lane retirements are
+still incomplete.
 
 ### Social-history follow-up — September 23
 

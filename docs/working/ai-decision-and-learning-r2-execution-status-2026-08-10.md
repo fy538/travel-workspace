@@ -14,7 +14,7 @@ related:
   - thesis-to-experience-convergence-audit-2026-08-09.md
   - home-surfaces-post-consolidation-engineering-plan-2026-08-09.md
   - cross-slice-engineering-coherence-audit-2026-08-09.md
-  - ../../travel-agent/docs/working/profile-system-and-relationship-views-2026-08-09.md
+  - ../../travel-agent/docs/archive/2026-08/pivot-research/profile-system-and-relationship-views-2026-08-09.md
 ---
 
 # AI decision and learning R2 execution status
@@ -29,10 +29,12 @@ which gates cannot be satisfied by a coding session.
 It also preserves the causal dependency on the four pivot audits:
 [thesis to experience](thesis-to-experience-convergence-audit-2026-08-09.md),
 [Home surfaces](home-surfaces-post-consolidation-engineering-plan-2026-08-09.md),
-[profile and relationship views](../../travel-agent/docs/working/profile-system-and-relationship-views-2026-08-09.md),
+[profile and relationship views](../../travel-agent/docs/archive/2026-08/pivot-research/profile-system-and-relationship-views-2026-08-09.md),
 and [cross-slice coherence](cross-slice-engineering-coherence-audit-2026-08-09.md).
-Those documents establish the product truth, scope, and projection contracts
-that the AI layer consumes; this work does not replace their authorities.
+Those documents preserve the audit and design provenance used by this dated
+execution record. The archived profile exploration is not current projection
+authority: Product Model, Multiplayer Product Strategy and Together PF1.0 own
+the applicable rules. This record does not replace those owners.
 
 ## Source implementation completed in this round
 

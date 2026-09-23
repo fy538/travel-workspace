@@ -87,8 +87,8 @@ offline and Maestro syntax checks before finding missing/overdue flag metadata;
 source-reviewed registry repairs now pass separately. A clean final-tuple
 complete gate remains required; the earlier run overlapped app edits.
 
-**Publication blocker from the separate backend pre-push packet:** 27 active
-working documents remain expired, down from 94. Three stale headers also require
+**Publication blocker from the separate backend pre-push packet:** 24 active
+working documents remain expired, down from 94. One stale header also requires
 review on the committed child tuple. The code CI
 pass does not cover that hook.
 The final clean publication attempt was stopped before any push; it is not a
@@ -122,7 +122,7 @@ The [audit's disposition table](historical-branch-recovery-audit-2026-09-23.md#i
 maps each to its current owner and preserves unfinished acceptance. In particular,
 addressed-handoff surface release remains machine-readable **pending**, and
 archival does not authorize itinerary replacement, legacy content cutover,
-automatic retention or feature activation. The remaining queue is 27 documents;
+automatic retention or feature activation. The remaining queue is 24 documents;
 research and unresolved plans still require individual disposition.
 
 The subsequent Place-calibration/social-research pass archives three frozen
@@ -145,6 +145,17 @@ repairs its design-brief reference. Documentation checks pass; the final
 freshness check still fails with the 27/three counts above. The
 [social-history follow-up](historical-branch-recovery-audit-2026-09-23.md#social-history-follow-up--september-23)
 records preservation, owner comparison and exact measured evidence.
+
+Backend `21de41d49` additionally archives the full dated content, human-memory
+and profile investigations, retaining their stories, proposals and questions.
+Current owner rules remain in Product Model, private-memory and multiplayer
+contracts, the accepted content-runtime decision, World Foundry and Together
+PF1.0. The latter's implementation/exposure wording conflict is recorded for
+owner reconciliation, not resolved through archival. App `372631d04` repairs two
+design references only. All focused documentation gates pass; publication
+freshness still fails at the 24/one counts above. The
+[research disposition table](historical-branch-recovery-audit-2026-09-23.md#content-memory-and-profile-research-disposition--september-23)
+records the exact ownership and evidence boundaries.
 
 **Next is delivery, not another recovery sweep:** resolve those lifecycle
 dispositions, verify the committed tuple,

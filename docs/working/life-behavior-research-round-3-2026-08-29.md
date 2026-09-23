@@ -15,7 +15,7 @@ depends_on:
   - docs/working/operationalizing-relational-intelligence-hci-research-round-2-2026-08-28.md
   - docs/working/source-claim-scoped-learning-and-multiplayer-purpose-research-2026-08-29.md
   - docs/systems/contribution-and-consequence.md
-  - travel-agent/docs/working/platform-memory-and-human-remembering-2026-08-21.md
+  - travel-agent/docs/archive/2026-08/pivot-research/platform-memory-and-human-remembering-2026-08-21.md
   - travel-agent/docs/product/Personal Experience Loop.md
   - travel-agent/docs/product/Product Model.md
 ---
