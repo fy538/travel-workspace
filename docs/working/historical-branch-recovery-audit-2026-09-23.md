@@ -153,9 +153,22 @@ these recovery refs unless they are explicitly published or bundled.
 |---|---|---|
 | Workspace | `40044cd6ab` (content Home receipt), `c11cc8fff6` (Home source checkpoint), `813deb7284` (Home factual context), `b9abf374f8` (Life capture shadow), `128ea16005` (old generated Plan API snapshot) | Each has one tip commit beyond named refs; main has newer corresponding owner material. Low feature-port priority, but protect exact commits before worktree removal. |
 | Backend | `3cce198dd9` (Home public content), `57ebb95652` (Home trip context), `5dbf7eb019` (Life capture shadow), `6d2b84d72d` (Life withdrawal) | Each single detached tip is patch-equivalent to main. Preserve exact identity before pruning if historical recovery matters. |
-| Backend — high attention | `7b93243be2` (finished-lane docs) | Tip patch is equivalent, but its inherited lineage has 106 non-equivalent commits. Audit that lineage before removing the worktree. |
+| Backend — high attention | `7b93243be2` (finished-lane docs) | Tip patch is equivalent, but its inherited lineage has 106 patch-distinct commits. Local ref preserves the tip; review any targeted recovery before removing the worktree. |
 | App | `5f6a068cdf` (Source results), `70453a0bd9` (Place depth), `019c81b7bb` (baseline repair), `6ab20f227d` (social touch target) | Each single detached tip is patch-equivalent to main. |
-| App — high attention | `ae8100363b` (receiving history) | 130 ancestry commits are not patch-equivalent to main; includes the absent mixed Places ordering and custom visit-window work. Protect this HEAD with an explicit ref before any worktree pruning. |
+| App — high attention | `ae8100363b` (receiving history) | 130 ancestry commits are patch-distinct from main; includes the absent mixed Places ordering and custom visit-window work. Local ref preserves the tip; targeted review still precedes worktree pruning. |
+
+The September 23 read-only lineage check confirmed why tip-only cleanup would
+be misleading. Backend `7b93243be2` has `128` commits beyond its merge base:
+`106` patch-distinct from main and `22` patch-equivalent. App `ae8100363b`
+has `155`: `130` patch-distinct and `25` patch-equivalent. Their tip commits
+are finished-lane documentation checkpoints, while their ancestry ranges
+across Source preparation/continuity, Home and Places receiving, Life
+organization, practical windows, native QA, and the explicit mixed Places
+order. Patch-distinct means *not the same patch*, not *missing behavior*;
+current main often has newer owners and different implementation. The
+identified selective candidates and product gates above remain the recovery
+queue. These two refs and worktrees are retained; no ancestry was bulk-merged
+or pruned on the strength of a tip comparison.
 
 ## Plan of attack
 
