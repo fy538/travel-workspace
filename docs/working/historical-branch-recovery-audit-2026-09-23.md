@@ -83,12 +83,40 @@ with Python 3.14.6 on Darwin arm64. Receipt:
 The checked recovery tuple was workspace `75a4398`, backend `0aaa2ccc4`, app
 `717355b17`; this documentation receipt follows that check.
 
-**Still incomplete:** reconcile the 11 remaining expired backend documents, verify and
+**Still incomplete:** verify and
 publish the recovery candidate through protected-main review, resolve the
 remaining acceptance/pin requirements, land useful work, and finally retire
 the recovery lane plus the old native-testing lane once no process uses it.
 Historical retirement does not prove recovery landing, native visual parity,
 or complete-goal acceptance.
+
+### Spatial/demo lifecycle closure — September 23
+
+Backend `1eb22daf7` archives nine dated documents: Place-entity and routing
+research, the spatial execution plan, and six demo receipts/plans. Their bodies
+are preserved with archive metadata, dated authority notices and repaired links.
+The beat contract and program remain live references for executable YAML;
+the older integration-engine plan remains a requirement reference for pending
+`readiness.py` entries. Maintenance does not release families, certify cloud
+state, clear the demo registry's recorded lock or restore an August backlog.
+The recorded lock is not evidence of a live process.
+
+App `f77f4f310` repairs two historical source paths. Current indexes and this
+program's scheduling boundary distinguish history from active authority.
+Place Relationship Surface's maintenance date covers ownership/provenance
+review, not implementation or visual certification.
+
+Focused offline validation passed **46 tests**, both demo validators, backend
+and app links, backend product governance and workspace child-governance,
+links and canon budgets. Log:
+`/tmp/vesper-landing-verification/spatial-demo-lifecycle-20260923T235326Z.log`.
+After the child commits, the exact command
+`travel-agent/.venv/bin/python travel-agent/scripts/check_docs_status.py --ci`
+passed in **4.797 seconds**, with zero expired-active or stale-header findings:
+`/tmp/vesper-landing-verification/spatial-demo-committed-freshness-20260923T235819Z.log`.
+The checker scans bounded headers, not every historical statement; the focused
+pass preceded final index-label/provenance edits. A clean coordinated gate
+remains the next step. No remote, production or canonical main change occurred.
 
 ### Research and prototype portfolio disposition — September 23
 

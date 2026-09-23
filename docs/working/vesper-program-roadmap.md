@@ -22,6 +22,31 @@ depends_on:
 
 ## August execution-plan handoff — September 23
 
+The bounded August demo beat and program contracts remain at their existing
+paths because the executable YAML consumes them; their inventories, old
+backlogs and phase observations are explicitly historical. `DEMO-ENG-06` still
+records an unresolved environment lock, which is not proof of a live worker.
+Do not clear it, resume its cloud program or promote evidence from this cleanup.
+Current scheduling stays here. The old acceptance ledger, presenter script,
+engineering receipt, adoption scope and Riviera selection/reconciliation are
+preserved in the backend [demo archive](../../travel-agent/docs/archive/2026-08/demo-program/).
+Before any rehearsal or apply, rebind actual runtime/owner, current targets,
+independent review, per-beat truth and signed-in device evidence; no catalog
+count, old fixture or local review certifies those. Retain identity/adoption
+adjudication and explicit holds instead of treating similar slugs as no-ops.
+
+The old Place/routing investigations and spatial execution plan are historical
+as well. Current movement/distance/provider-policy and Lived Experience owners
+retain foreground-only, viewer-private position, expiring permitted route use,
+materiality/silence and canonical consequence rules. Backend/device-real
+continuity, arrival/deviation hysteresis, later governed reuse, legacy-reader
+retirement and any provider bakeoff/rights expansion require fresh evidence.
+The August claims do not prove these remain missing or now work; no provider,
+background tracking, navigation SDK or data-retention change is authorized.
+The older integration-engine plan is retained as a requirement reference for
+`readiness.py`, not a parallel execution queue; its pending references and all
+family activation gates remain unchanged.
+
 The related [pivot research](../../travel-agent/docs/archive/2026-08/pivot-research/)
 and [social research](../../travel-agent/docs/archive/2026-08/social-research/)
 are preserved historical provenance, not competing active research queues.
@@ -127,13 +152,15 @@ offline and Maestro syntax checks before finding missing/overdue flag metadata;
 source-reviewed registry repairs now pass separately. A clean final-tuple
 complete gate remains required; the earlier run overlapped app edits.
 
-**Publication blocker from the separate backend pre-push packet:** 11 active
-working documents remain expired, down from 94. No stale headers remain on the
-committed child tuple after backend `2475e6161`. The code CI
-pass does not cover that hook.
-The final clean publication attempt was stopped before any push; it is not a
-complete-gate pass. Reconcile each document's actual owner/status, rather than
-extend all dates or archive current plans by age. **The founder has resolved the
+**Documentation publication blocker resolved:** the committed freshness check
+passes at backend `1eb22daf7` with zero expired-active or stale-header findings,
+down from the original 94 expired documents. Nine final spatial/demo records
+are archived; live demo contracts and readiness references remain at stable
+paths with explicitly bounded maintenance scope. This is the checker's header
+scope, not certification of every historical claim or runtime. The final clean
+coordinated gate and protected-main landing remain required. Earlier publication
+attempts stopped before pushing; no earlier partial pass certifies this tuple.
+**The founder has resolved the
 fundraising question:** the August packet is historical reference, not an active
 application queue. All 50 packet documents (including previously archived
 research and old indexes) now live under backend
@@ -162,8 +189,8 @@ The [audit's disposition table](historical-branch-recovery-audit-2026-09-23.md#i
 maps each to its current owner and preserves unfinished acceptance. In particular,
 addressed-handoff surface release remains machine-readable **pending**, and
 archival does not authorize itinerary replacement, legacy content cutover,
-automatic retention or feature activation. The remaining queue is 11 documents;
-research and unresolved plans still require individual disposition.
+automatic retention or feature activation. The later spatial/demo disposition
+closes the checker's expired-document queue without closing those product gates.
 
 The subsequent Place-calibration/social-research pass archives three frozen
 August Place notes and two superseded multiplayer research documents, preserving
