@@ -174,7 +174,31 @@ An Xcode DTServiceHub process (PID 25951 at inspection) still holds a working
 directory inside the old native-presentation-wave1 app screenshots. Recheck it
 before retirement; a clean Git status alone does not establish runtime ownership.
 
-Remaining delivery sequence: clean final-tuple verification; publish for the
+**Additional publication blocker discovered by the actual backend pre-push
+packet:** `pre-commit run --hook-stage pre-push --from-ref origin/main --to-ref HEAD`
+fails on **94 expired active documents**: 33 fundraising documents, one product
+working document (`MVP Social Loop.md`), three research documents and 57 working
+documents. The touched Workbench module's stale `Last updated` header is repaired
+to match its September 23 catalog change. Other pre-push checks passed or were
+explicitly skipped for unchanged file categories. No hook was disabled.
+
+This is distinct from passing `make -C travel-agent ci`: that command does not
+include the full documentation-freshness pre-push check. The clean coordinated
+attempt at workspace `f750682`, backend `486e8abaf`, app `717355b17` was deliberately
+stopped before any publication once this independent blocker was established.
+Its backend, contract and mobile stages passed, but its remaining Maestro/
+governance/publication stages are **incomplete**, not a final-tuple pass.
+
+Do not blanket-renew or blanket-archive those 94 documents. For example, the
+fundraising index still calls its fact ledger and application drafts current;
+PearX W27's draft records a future October 4 deadline, while founder submission
+status cannot be inferred from Git. Some working receipts already name promoted
+owners and can become historical; others still claim live social/architecture
+authority and need individual reconciliation. The required founder input is
+which August fundraising applications remain active. Preserve all content while
+resolving it; no external factual re-verification is claimed in this cleanup.
+
+Remaining delivery sequence: resolve that lifecycle disposition; clean final-tuple verification; publish for the
 protected-main process and align dependency pins in dependency order; resolve
 native mixed-Places appearance acceptance; obtain required independent review;
 land; refresh preservation and retire exact historical refs/worktrees. Neither

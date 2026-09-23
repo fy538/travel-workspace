@@ -70,7 +70,17 @@ offline and Maestro syntax checks before finding missing/overdue flag metadata;
 source-reviewed registry repairs now pass separately. A clean final-tuple
 complete gate remains required; the earlier run overlapped app edits.
 
-**Next is delivery, not another recovery sweep:** verify the committed tuple,
+**Publication blocker from the separate backend pre-push packet:** 94 active
+documents have expired (33 fundraising, one product working document, three
+research and 57 working notes). The code CI pass does not cover that hook.
+The final clean publication attempt was stopped before any push; it is not a
+complete-gate pass. Reconcile each document's actual owner/status, rather than
+extend all dates or archive current plans by age. Founder confirmation of which
+fundraising applications remain active is required; their submission state
+cannot be established from repository history. The audit owns the details.
+
+**Next is delivery, not another recovery sweep:** resolve those lifecycle
+dispositions, verify the committed tuple,
 publish for protected-main review, align CI dependency pins in dependency order,
 resolve mixed-Places native appearance acceptance, obtain required independent
 review, then land and retire preserved historical branches/worktrees. Do not
