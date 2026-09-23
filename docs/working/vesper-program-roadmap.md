@@ -20,6 +20,21 @@ depends_on:
 
 # Vesper program roadmap
 
+**Latest cleanup result — September 23, 22:35 UTC:** historical retirement is
+executed: **83 branches and 167 worktrees removed** with verified local Git and
+non-regenerable asset preservation. Across the three repositories there are
+now **six local branches and nine worktrees**, all clean at post-removal check.
+Each repository keeps only main and the recovery branch. The additional three
+detached checkouts form one old native-testing lane still used by Xcode's
+`DTServiceHub`; leave it intact until live ownership clears. Seven remote
+dependency branches are separately retained. Main revisions and remote refs
+were not changed. The audit's
+[retirement receipt](historical-branch-recovery-audit-2026-09-23.md#september-23-actual-historical-retirement--latest-inventory)
+owns exact recovery locations, commands and verification. Remaining work is
+recovery-candidate lifecycle/gate repair and protected-main landing, followed
+by retirement of those last non-main checkouts—not another historical-branch
+sweep. Older counts and “not yet removed” notes below describe earlier stages.
+
 **September 23 consolidation mandate — current coordination priority:** the
 founder assigned this task to finish useful integration across the three
 repositories and retire the dangling historical branches. Use the existing

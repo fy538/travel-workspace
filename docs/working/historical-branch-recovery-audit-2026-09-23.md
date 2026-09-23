@@ -18,6 +18,78 @@ canon or a direction to merge every historical implementation wholesale. The
 continue to decide what to build. “Retire” below means *no whole-branch merge
 or current feature port*; it does **not** mean a Git ref or worktree was deleted.
 
+## September 23 actual historical retirement — latest inventory
+
+The historical disposition is now executed, not just proposed. At 22:35 UTC,
+**83 local historical branch names and 167 historical worktrees were removed**.
+The older inventory and receipts below remain provenance, not current counts.
+
+| Repository | Branches removed | Local branches remaining | Worktrees removed | Worktrees remaining |
+|---|---:|---:|---:|---:|
+| Workspace | 28 | 2 | 55 | 3 |
+| Backend | 31 | 2 | 56 | 3 |
+| App | 24 | 2 | 56 | 3 |
+| Total | 83 | 6 | 167 | 9 |
+
+Each repository retains only `main` and
+`codex/home-human-opening-recovery-2026-09-23` as local branches. Its three
+checkouts are canonical main, the active recovery lane, and the detached
+`functional-implementation-2026-09-20--native-presentation-wave1-2026-09-21`
+lane. Xcode's `DTServiceHub` (PID 25951 at recheck) still holds a screenshot
+directory in that lane. All three checkouts in that coordinated lane were
+retained; no unrelated Xcode process was killed. Recheck live ownership before
+removing them. The seven cached remote dependency branches remain deliberately
+outside product-branch retirement; no remote ref was changed in this batch.
+
+Preservation and execution evidence:
+
+- Reverified the three original Git bundle checksums and every inventoried
+  ref's exact bundled identity. Standalone restore evidence remains in each
+  original inventory. All 77 local-asset archive checksums matched before
+  retirement; regular file bytes/hashes and symlink targets were compared with
+  the archived inventory again before each checkout's removal.
+- Rechecked exact HEAD/branch, clean tracked and untracked status, locks,
+  archive pins, current process working directories and retained-checkout
+  symlink dependencies. A full open-file snapshot additionally protected live
+  use. Removed backend/app checkouts before their containing workspaces.
+  No unexpected preservation or identity check failed.
+- Used exact `git worktree remove --force` targets only after local evidence
+  was preserved. Generated dependencies/caches were excluded from the asset
+  archives; they must be recreated if restoring a checkout.
+- Created named recovery refs under
+  `refs/archive/retired-2026-09-23/codex/<historical-name>`, then deleted only
+  the matching branch tip with `git update-ref -d <ref> <expected-sha>`.
+  Existing archive refs and bundles remain. These histories were archived,
+  **not falsely described as ancestrally merged**. No object pruning ran.
+- Exact per-operation paths, SHAs, asset archives, skips and outcomes are in
+  `/Users/feihuyan/vesper-repository-archive-2026-09-23.c4wYxq/retirement-zx9gg870/operations.jsonl`.
+  The original inventories retain branch-name mappings, and
+  `local-assets-dl9syyft/manifest.json` maps ignored files to their archives.
+  Recovery is local, not offsite: recreate a branch/worktree from its retained
+  SHA/ref or original bundle, restore its specific asset archive if needed,
+  and reinstall generated dependencies. Do not extract an archive over a
+  current checkout without reviewing the destination.
+
+The one-off retirement guard tests passed eight cases: valid preserved
+checkout, changed HEAD, dirty checkout, live owner, new ignored file, locked
+checkout, retained dependency, and ownership-tool failure. The independent
+post-removal audit passed: all 167 paths are absent, all 83 branch names are
+absent, every retired tip still resolves through its recovery ref, all nine
+remaining checkouts are clean, canonical main SHAs are unchanged, and all
+three Git bundle checksums still match. Exact command:
+`python3 /tmp/vesper-verify-retirement-20260923.py`, measured at **3.123 seconds**
+with Python 3.14.6 on Darwin arm64. Receipt:
+`/tmp/vesper-landing-verification/historical-retirement-audit-20260923T223547Z.log`.
+The checked recovery tuple was workspace `75a4398`, backend `0aaa2ccc4`, app
+`717355b17`; this documentation receipt follows that check.
+
+**Still incomplete:** reconcile the 61 expired backend documents, verify and
+publish the recovery candidate through protected-main review, resolve the
+remaining acceptance/pin requirements, land useful work, and finally retire
+the recovery lane plus the old native-testing lane once no process uses it.
+Historical retirement does not prove recovery landing, native visual parity,
+or complete-goal acceptance.
+
 ## September 23 consolidation mandate and current execution order
 
 The existing `codex/home-human-opening-recovery-2026-09-23` coordinated lane
