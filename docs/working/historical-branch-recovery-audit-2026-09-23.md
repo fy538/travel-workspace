@@ -43,18 +43,33 @@ branch wholesale.
 ## Recovery lane progress (not landed on main)
 
 The isolated `codex/home-human-opening-recovery-2026-09-23` lane now contains
-backend commits `d4b617a39` and `d41ebcd08`, plus app commits `de35c7dc0`
-and `b75681279`. It adapts the old
-human-note/current-Place join to today's Home projection and gives the
-attributed note a human-first native hierarchy. The backend root-projection
-suite passed (`493` tests), including exact-entity, ambiguity, withdrawal,
-open-now, repeat and independent-fallback cases. Locked Node dependencies were
-installed in the isolated app lane; app TypeScript passed and the Home screen
-Jest suite passed (`20` tests), including the joined-context rendering check.
-Targeted ESLint had no errors (one pre-existing file-length warning). Actual
-device visual comparison and destination/return acceptance remain **unverified**.
-The lane has not been
-merged, pushed or represented as product acceptance. The Places mixed-order
+backend tip `5bc7c5994` and app tip `163cc4da9`. It selectively adapts the
+human-note/current-Place join and gives the attributed note a human-first
+native hierarchy. The join is limited to pending notes so Keep cannot make
+an already-handled contribution look newly received. Three existing native
+rehearsals now resolve the presented unit by its exact handoff and venue owner
+refs rather than assuming the standalone unit ID; absent or ambiguous matches
+fail.
+
+At these tips, the backend root-projection suite passed (`494` tests) and the
+full offline backend selection passed (`21,758` passed, `14` skipped, `1,458`
+deselected, `53` xpassed). App TypeScript, its Home screen suite (`20` tests),
+offline suite (`126` tests), and the changed QA-runner tests (`12` tests)
+passed. The Home design-reference check is doctrine-only; native capture,
+visual comparison and real API destination/return remain **unverified** because
+the booted simulator is assigned to another lane.
+
+The required full gates are **not green**. `make verify` stopped at eight
+expired world-catalog rows; current backend main fails the same check. Separate
+contract and API coverage checks found `55` expired operation-review policies
+on current workspace main too. App `verify:pr` stopped at `59` expired
+schema-bridge exceptions in an unchanged manifest. The Maestro governance
+check reports the same `12` findings on main and this lane. Backend mypy
+reports the same `329` errors in `69` files on main and this lane (the only
+Home portfolio error shifts one line after the new import; no error points to
+the new join). These are current baseline/owner-review work, not permission to
+bump dates or bypass gates in this recovery lane. The lane remains clean,
+unmerged and unpushed; it is not product acceptance. The Places mixed-order
 and Source activation decisions below remain gated.
 
 ## Cross-repository decision
