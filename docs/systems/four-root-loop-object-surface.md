@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / product / design / architecture / engineering
 created: 2026-08-29
-last_verified: 2026-08-30
+last_verified: 2026-09-22
 why_new: Integrates the Home, Chat, Places, and Life root postures with one compounding context loop, shared object lifecycle, cross-root projection law, action grammar, multiplayer flow, and orchestration boundary.
 supersedes: []
 source_of_truth_for:
@@ -84,8 +84,16 @@ view launched from these roots.
 
 ## 3. The core compounding context loop
 
-The product-level loop is not ingestion alone. It closes only when contribution
-produces visible return and increases the person's desire to contribute again.
+Distinguish **consumer return** from **system compounding**. A person may return
+because another question arises, they want something worthwhile to receive,
+something is unfolding, a friend shares, or they need entrusted material.
+Repeated usefulness can earn future choice; it does not require another
+contribution, daily use, personal-history growth, or passage through every root.
+
+The following is a possible **compounding context path**, not a mandatory
+consumer funnel. Use only the stages justified by the encounter and authority;
+an answer, original human contribution, practical result, or retrieval may end
+the encounter without creating new durable state.
 
 ```text
 Give, ask, point, or authorize
@@ -96,34 +104,44 @@ Give, ask, point, or authorize
   -> reconcile what actually happened
   -> organize the result in Life
   -> improve the next answer, opening, Place view, or social experience
-  -> make future contribution feel worthwhile
+  -> make a later encounter more useful, whether or not the person contributes
 ```
 
-Every meaningful contribution should create two forms of value when evidence
-and authority permit:
+Evaluate the immediate payoff and conditional later benefit separately:
 
 1. **Immediate value** — answer, explanation, connection, prepared option,
    correction, or authorized consequence now.
-2. **Compounding value** — a better future Home, Places, Life return, agent
-   operation, or multiplayer experience.
+2. **Conditional compounding value** — eligible context can improve a future
+   Home, Places, Life return, agent operation, or multiplayer experience. More
+   history need not change every result; irrelevant history may add nothing.
 
-Deferred value alone turns contribution into homework. Immediate value alone
-reduces Vesper to a disposable assistant.
+Deferred value cannot be the admission price for useful help. Immediate
+competence can itself earn preference; the first thing that compounds may be
+confidence in Vesper rather than an artifact collection. Independent receiving
+also draws on worthwhile world material and permitted human contributions, not
+only on the recipient's earlier input. Fresh supply is distinct from improved
+personal judgment, and neither implies satisfied or returning users.
+
+This alignment applies the accepted
+[consumer-strategy refinement](../decisions/2026-09-06-reconcile-consumer-strategy.md#5-september-7-refinement-complete-benefits-selective-context-and-voluntary-choice).
+It does not adopt pending retention, AI-use, audience, or monitoring agreements.
 
 ### 3.1 Session and situational loops
 
-The meta-loop contains several loops with different timescales:
+These recurring situations have different timescales and may stand alone or
+connect. They are not five new modes or required habits:
 
 | Loop | Trigger | Core movement | Return |
 | --- | --- | --- | --- |
-| **Contribution and inquiry** | The person notices, has, or asks something | Chat or contextual capture -> immediate job -> authorized residue | Useful answer now; richer governed context later |
-| **Daily value** | The person opens Vesper without a specific request | Home or Places -> complete-value contribution -> optional depth or action | Understanding, possibility, capability, or reduced assembly work |
-| **Real-world assistance** | A condition, commitment, or plan changes | Assess -> propose or act -> monitor -> reconcile | Stable next step and verified receipt |
-| **Return and re-finding** | The person remembers vaguely or wants to revisit | Life search/lens -> episode/source -> See anew or Continue | Restored context without archive work |
-| **Multiplayer** | A person shares, invites, or contributes to an Occasion | Attributed contribution -> governed shared state -> coordination -> plural outcomes | Better gathering and richer future context for each authorized participant |
+| **Contribution and inquiry** | Something raises a question or needs figuring out | Chat or contextual capture -> complete immediate help; justified residue only where permitted | Useful answer now; continuity may improve later help |
+| **Independent receiving** | The person wants something interesting or worthwhile without assembling a query | Home or Places -> substantive receiving -> optional depth or action | Enjoyment, understanding, possibility, capability, or reduced assembly work without new input |
+| **Real-world assistance** | The person wants an idea to fit actual circumstances, or a condition changes | Assess -> bounded answer or authorized preparation/action; monitor only under an accepted mandate | Usable judgment or practical relief; owner readback where an effect occurs |
+| **Return and re-finding** | The person needs something entrusted or wants to revisit it | Chat or Life search/lens -> exact retained episode/source/result; further interpretation or continuation optional | Restored material and context without archive work |
+| **Social and multiplayer** | Someone wants a glimpse of friends' lives, receives a share, or chooses to share/invite | Attributed original -> enjoy and stop, or choose an eligible reply, exploration, or shared consequence | Human presence, perspective, useful handoff, or easier gathering; equivalent effort not required |
 
 No single screen must display the entire loop. Context and identity must survive
-the handoffs that complete it.
+the handoffs a person actually chooses. Receiving without reply or adoption is
+legitimate; silence or a delivered view is not evidence of satisfaction.
 
 ## 4. Stable owners, projections, and derived assessments
 
@@ -407,6 +425,12 @@ during infrequent live trips.
 
 Social and multiplayer are cross-cutting, not a fifth root or engagement feed.
 
+An attributed human original can deliver complete value without AI enrichment,
+reciprocal contribution, permanent recipient custody, or an offline plan.
+The path below describes an optional collaborative continuation, not the
+required destination of casual sharing. Preserve existing Home/Places social
+placement and distinguish human Reply from private eligible Ask.
+
 ```text
 person creates, shares, or invites
   -> others contribute with attribution and bounded scope
@@ -588,8 +612,12 @@ The four-root system is coherent only if complete fixture portfolios show that:
 10. generated output remains distinguishable from human observation and world
     truth;
 11. weak evidence, stale state, revoked authority, or low marginal value makes
-    the projection degrade or disappear; and
-12. no fifth root is needed to complete the full object lifecycle.
+    the projection degrade or disappear;
+12. no fifth root is needed to complete the full object lifecycle; and
+13. repeated receiving remains worthwhile without new user contributions, and
+    an ordinary share can finish at recipient enjoyment without reply, keeping,
+    AI enrichment, or gathering. Internal fixtures establish design coverage,
+    not actual enjoyment, preference, retention, or growth.
 
 Before production shell migration, run these tests against at least:
 
