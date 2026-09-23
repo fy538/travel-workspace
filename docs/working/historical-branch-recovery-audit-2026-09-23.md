@@ -83,7 +83,7 @@ with Python 3.14.6 on Darwin arm64. Receipt:
 The checked recovery tuple was workspace `75a4398`, backend `0aaa2ccc4`, app
 `717355b17`; this documentation receipt follows that check.
 
-**Still incomplete:** reconcile the 53 remaining expired backend documents, verify and
+**Still incomplete:** reconcile the 46 remaining expired backend documents, verify and
 publish the recovery candidate through protected-main review, resolve the
 remaining acceptance/pin requirements, land useful work, and finally retire
 the recovery lane plus the old native-testing lane once no process uses it.
@@ -133,6 +133,51 @@ social doctrine, prototype portfolios and unresolved execution plans need
 separate provenance/authority disposition. Preserve open constraints in current
 owners before retiring their old working notes. No expiry extension, deployment,
 flag activation, complete-gate pass, or protected-main landing occurred here.
+
+### Operator-note promotion — September 23
+
+Backend `84b69664b` resolves seven more expired working documents by retaining
+their useful procedures as Operations runbooks: live environment audit,
+production-dogfood release, vector release, content inventory, legacy structural
+quality audit, place-content delta review and Intake production canary. These
+are promotions after source/test review, not blanket expiry extensions. They
+grant no new production authority and do not replace World Foundry policy.
+
+The live audit's original August 12 deployment observations are preserved in
+the runtime-evidence archive with original-path/hash metadata; the current
+procedure links to them as history, not current service health. The demo task
+registry now names the promoted production-dogfood procedure without changing
+its task status, lock or acceptance. No immutable execution JSON was rewritten.
+
+Source review corrected concrete drift: content inventory's default contacts
+configured stores (`--repo-only` is the offline mode); store-unavailable status
+does not necessarily produce a nonzero exit; the quality audit detects headings
+and structural signals, not prose quality or complete Git/readability evidence;
+Intake semantic confirmation precedes deletion; and delta preview transaction
+guarantees differ for adapter-owned versus caller-supplied connections. Existing
+consequence-policy binding limits and live-audit Intake schema checks are now
+explicit. No runtime behavior, authority gate or product policy changed.
+
+Evidence on the edited candidate: **105 passed, two deselected**, with backend
+links (6,723 files), product governance, child governance (405 post-baseline
+documents) and workspace links (531 living documents) passing. The two excluded
+tests are `test_postgres_adapter_previews_and_applies_one_accepted_create` and
+`test_postgres_adapter_persists_reviewed_proactive_expiry`; real DB behavior and
+production health remain unverified. Measured receipts retain exact commands,
+base tuple and dirty-state boundary:
+
+- `/tmp/vesper-landing-verification/operator-promotion-backend-20260923T225652Z.log`
+  — 8.844 seconds, links/governance plus focused operator and registry tests.
+- `/tmp/vesper-landing-verification/operator-promotion-docs-20260923T225636Z.log`
+  — 1.047 seconds, workspace links and child metadata.
+
+The documented repository-only inventory and quality-audit commands executed
+successfully; Intake plan mode returned `planned` with zero API calls. No live
+store or production command was run. Freshness still fails with **46 expired
+active documents**, down from 53: one product working document, three research
+notes and 42 working documents. Full clean-tuple verification and landing remain
+outstanding. At the 22:57 UTC ownership recheck, Xcode `DTServiceHub` PID 25951
+still held the native-testing screenshot directory; its three worktrees remain.
 
 ## September 23 consolidation mandate and current execution order
 

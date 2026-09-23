@@ -87,8 +87,8 @@ offline and Maestro syntax checks before finding missing/overdue flag metadata;
 source-reviewed registry repairs now pass separately. A clean final-tuple
 complete gate remains required; the earlier run overlapped app edits.
 
-**Publication blocker from the separate backend pre-push packet:** 53 active
-documents remain expired (one product working document, three research and 49
+**Publication blocker from the separate backend pre-push packet:** 46 active
+documents remain expired (one product working document, three research and 42
 working notes), down from 94. The code CI pass does not cover that hook.
 The final clean publication attempt was stopped before any push; it is not a
 complete-gate pass. Reconcile each document's actual owner/status, rather than
@@ -109,7 +109,14 @@ input and explicitly labels its historical health statement. Eighteen focused
 tests and documentation link/governance checks pass. Live operator contracts,
 research hypotheses and unresolved plans require their own owner review; do
 not treat them all as disposable receipts. The audit's lifecycle pass records
-the exact scope and remaining 53-document queue.
+the exact scope. Backend `84b69664b` subsequently promotes seven verified operator
+notes into maintained Operations runbooks and preserves the live audit's August
+deployment observations in the archive. It corrects offline inventory usage,
+Intake semantic-before-cleanup ordering, structural-audit limits and delta
+transaction/policy boundaries. The batch passes 105 focused offline tests (two
+Postgres-dependent tests deselected), backend/workspace links and governance.
+No production execution or serving activation occurred. The remaining queue is
+46 documents; research and unresolved plans still require individual disposition.
 
 **Next is delivery, not another recovery sweep:** resolve those lifecycle
 dispositions, verify the committed tuple,
