@@ -43,8 +43,8 @@ make doctor
 make contract-check
 ```
 
-`make bootstrap` clones or validates the child repos at `Travel Agent/` and
-`Travel App/`. Those folders remain independent Git repos and are ignored by
+`make bootstrap` clones or validates the child repos at `travel-agent/` and
+`travel-app/`. Those folders remain independent Git repos and are ignored by
 the workspace repo.
 
 ## Common Commands
@@ -88,7 +88,11 @@ make status
 ./scripts/new-worktree.sh trip-group-chat
 ```
 
-That creates a paired worktree lane (siblings of `travel-agent/` and `travel-app/`) on the same branch name in both child repos, for parallel implementation threads. Use `./scripts/land-worktree.sh` to land and clean up the lane.
+That creates a separate workspace checkout containing its own `travel-agent/` and
+`travel-app/` worktrees, all on the named branch. Cross-repo tools resolve this
+exact lane. `scripts/land-worktree.sh <name>` verifies its committed revisions;
+`--publish` pushes lane branches for protected-main review. It preserves the
+canonical checkouts and the lane for review/recovery.
 
 ### Offline reliability workflow
 
@@ -112,11 +116,11 @@ The reliability folder also includes [trace artifacts](./docs/reliability/traces
 
 ### Frontend-only task
 
-Open and work from `Travel App/`
+Open and work from `travel-app/`
 
 ### Backend-only task
 
-Open and work from `Travel Agent/`
+Open and work from `travel-agent/`
 
 ## Notes
 

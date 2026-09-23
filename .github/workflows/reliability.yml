@@ -12,7 +12,7 @@ on:
       - travel-app-ci-success
 
 concurrency:
-  group: reliability-${{ github.ref }}
+  group: reliability-${{ github.ref }}-${{ github.event.client_payload.source_repo }}-${{ github.event.client_payload.source_sha }}
   cancel-in-progress: true
 
 permissions:
@@ -24,33 +24,20 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
-      - name: Show cross-repo trigger
-        if: github.event_name == 'repository_dispatch'
-        run: |
-          echo "Triggered by: ${{ github.event.action }}"
-          echo "Source repo: ${{ github.event.client_payload.source_repo }}"
-          echo "Source SHA: ${{ github.event.client_payload.source_sha }}"
-          echo "Source run: ${{ github.event.client_payload.source_run_id }}"
-
       - name: Check out workspace
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
-      - name: Resolve child repo refs
+      - name: Resolve and record immutable candidate tuple
         id: child_refs
+        run: python3 scripts/resolve_ci_tuple.py
+
+      - name: Require private checkout credentials
+        env:
+          CHECKOUT_TOKEN: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN }}
         run: |
-          LOCK="${GITHUB_WORKSPACE}/docs/child-repos.ci-lock.json"
-          AGENT_REF=main
-          APP_REF=main
-          if [ -f "$LOCK" ]; then
-            AGENT_REF=$(python3 -c "import json; print(json.load(open('$LOCK')).get('travel-agent') or 'main')")
-            APP_REF=$(python3 -c "import json; print(json.load(open('$LOCK')).get('travel-app') or 'main')")
-          fi
-          python3 -c "import re,sys; refs=sys.argv[1:]; assert all(re.fullmatch(r'[0-9a-f]{40}', ref) for ref in refs), f'child refs must be immutable 40-character SHAs: {refs}'" "$AGENT_REF" "$APP_REF"
-          echo "agent_ref=$AGENT_REF" >> "$GITHUB_OUTPUT"
-          echo "app_ref=$APP_REF" >> "$GITHUB_OUTPUT"
-          echo "Child repo pins: travel-agent@$AGENT_REF travel-app@$APP_REF"
+          test -n "$CHECKOUT_TOKEN" || { echo "::error::TRAVEL_WORKSPACE_CI_TOKEN must have read access to both private child repositories"; exit 1; }
 
       - name: Check out Travel Agent
         uses: actions/checkout@v6
@@ -58,7 +45,7 @@ jobs:
           repository: ${{ github.repository_owner }}/travel-agent
           path: travel-agent
           ref: ${{ steps.child_refs.outputs.agent_ref }}
-          token: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN || github.token }}
+          token: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN }}
           fetch-depth: 0
 
       - name: Check out Travel App
@@ -67,8 +54,19 @@ jobs:
           repository: ${{ github.repository_owner }}/travel-app
           path: travel-app
           ref: ${{ steps.child_refs.outputs.app_ref }}
-          token: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN || github.token }}
+          token: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN }}
           fetch-depth: 0
+
+      - name: Assert actual checkouts equal candidate tuple
+        run: python3 scripts/resolve_ci_tuple.py --assert-checkouts
+
+      - name: Upload candidate identity
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: candidate-tuple
+          path: candidate-tuple.json
+          if-no-files-found: error
 
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -87,6 +85,9 @@ jobs:
           node-version: 20
           cache: npm
           cache-dependency-path: travel-app/package-lock.json
+
+      - name: Workspace reliability tooling regression tests
+        run: python -m pytest scripts/tests/ -q
 
       - name: Set up Java for Maestro
         uses: actions/setup-java@v5

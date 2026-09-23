@@ -1,0 +1,9 @@
+from kit3 import *
+import instruments as I
+def cellp(name, svg, use): return f'<div style="width: 393px; flex: none; display: flex; flex-direction: column; gap: 8px;"><span style="{MONO} font-size: 11px; font-weight: 700; letter-spacing: 1.1px;">{name}</span><div style="width: 393px; background: {PAPER}; border-radius: 12px; padding: 18px 22px; box-sizing: border-box;">{kick("SATURDAY AT THE PIER · KEPT WITH MAYA")}{svg}<div style="margin-top: 12px;">{serifline("Sunset from the west pier at 7:04; it turns cold fast. The lawn is nine minutes on, the film at 8:30.")}</div>{fn("MAYA, TUESDAY · &ldquo;TUESDAY, SEVEN.&rdquo;", 8)}</div><div style="font-size: 12.5px; line-height: 17px; color: {MUTE};">{use}</div></div>'
+cells = [cellp('A · three tracks', I.pier_tracks(), 'Light, water and plan as three bars on one axis; no curves. The low-water window is a gap in the water band; the kayaks a gold hairline under it. 76 px, two labels.'),
+         cellp('B · the arc, reduced', I.pier_arc_small(), 'The sun as a thin arc with a gold end for the pier, the film as an ink bar on the baseline, low water as a bracket below. 72 px, two labels.'),
+         cellp('C · one line', I.pier_line(), 'The day as one track: a gold wash from sunrise to sunset, the pier as the gold pill, the film as ink, low water as a bracket below. 52 px, two labels.'),
+         cellp('NOW · the chart', I.pier_day(plan=('18:30', '19:04', 'THE PIER'), after=('20:30', '22:00', 'THE FILM')), 'As drawn today: 224 px, nine labels, two curves, ticks.')]
+h = HEAD + BOARD_OPEN.replace('min-height: 5233px', 'min-height: 700px') + headblock('THE PIER · CANDIDATES', 'The pier&rsquo;s day, three ways', '') + '<div style="display: flex; gap: 46px; flex-wrap: wrap; align-items: flex-start;">' + ''.join(cells) + '</div>' + FOOT + TAIL
+open('out2/_pier.html', 'w').write(h); print('ok')

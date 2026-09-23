@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / architecture / engineering
 created: 2026-09-01
-last_verified: 2026-09-06
+last_verified: 2026-09-07
 expires: 2026-10-01
 why_new: Records the executed, cross-repository Life v1 foundation and its validation evidence so future design work can build on committed seams rather than re-open the architecture.
 depends_on:
@@ -15,18 +15,166 @@ depends_on:
 
 # Life v1 — execution status
 
-## September 6 reading order
+## September 7 reading order
 
-Use the [replacement roadmap's current baseline](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#current-execution-baseline--september-6)
-for what to execute next. This file is the evidence ledger, not a second
-sequence. The canonical Life tab and four-lens readers have landed; older
+Use the [replacement roadmap's current queue](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#current-execution-queue)
+and [evidence-stage ledger](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#evidence-stage-ledger)
+for what to execute next and what is actually integrated. This file is the
+evidence ledger, not a second sequence. The canonical Life tab and four-lens readers have landed; older
 flag/Atlas descriptions below are historical. The owner-safe shadow section
-records index/outbox/restore helpers plus the new identifier-only outbox
-delivery bridge and retained-source shadow projector, not broader owner
-producer wiring, populated data or a serving cutover. Native acceptance remains deferred for
-current engineering, not retrospectively passed. Source and future-intent
-dependencies follow the integration register and its explicitly unadopted
-decision proposals.
+records the integrated index/outbox/restore helpers, owner adapters and
+identifier-only delivery bridge; it still does not claim populated data or a
+serving cutover. Native acceptance remains deferred for current engineering,
+not retrospectively passed. Source and future-intent dependencies follow the
+integration register and its explicitly unadopted decision proposals.
+
+**Latest implementation checkpoint — September 7:** Life backend `333f447be`
+and preceding `4a19414be` remain on `codex/life-shadow-rehearsal-2026-09-07`,
+not merged into inspected backend main `b7df20cdc`. The documentation is on
+`codex/life-organization-value-research-2026-09-07`, based at `62b25a5` before
+this status update; canonical workspace main does not yet contain that cut.
+App `b479c3289` on the entity completion branch does not establish adoption
+of the new organizer. The roadmap records the exact inspection baseline and
+Integration handoff; no merge, push or activation occurred here.
+
+The [latest receipt](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#1315-executed-measurement-and-first-b1-product-world-checkpoint--september-7)
+records separate record-recovery and typed-relationship metrics, plus a bounded
+deterministic B1 compiler exercised across five product worlds and real derived
+store/pagination/correction tests. The recorded selection passed **296 tests**,
+including PostgreSQL, excluding API-key tests; the focused new/updated files
+passed **44**. These are previous implementation receipts, not tests rerun by
+this documentation update. Known repository-wide size/status hook failures
+remain recorded; no complete green-gate claim follows.
+
+All five worlds use supplied interpretations. Nine required relationships are
+recovered; 18 additional relationships remain unjudged. Automatic extraction,
+general grouping quality, human usefulness, public eligible reader adoption and
+serving readiness remain unestablished. The next work is broader independent
+judgments, the real evidence/delivery contract, maintained organization and
+useful bounded readers, with a budgeted B2 comparison only where warranted.
+See the roadmap queue rather than repeating the completed measurement/M1 work.
+
+**Independent holdout quality slice — September 7:** the Life rehearsal branch
+adds six separately namespaced, independently labeled synthetic holdouts for
+ambiguity, stale correction, nonattendance, late import, shared privacy and
+repeated-place separation. The existing B0/B1 compiler and typed relationship
+evaluator now require explicit accepted/forbidden judgments for every emitted
+relation in that fixture. The focused holdout selection passed **4 tests**; the
+full Life/worker/broadcast selection passed **300 tests** after this addition.
+Its deterministic report is marked oracle, `model_calls=0`,
+`human_value_measured=false` and `serving_ready=false`. This is a
+quality-harness checkpoint only; it does not establish raw extraction, human
+usefulness, public reader adoption or model promotion. The roadmap §13.16 is
+the canonical receipt for the committed package.
+
+## Historical September 7 implementation receipts
+
+The receipts below preserve their original revisions and test boundaries.
+Their earlier “remaining” and “first checkpoint” statements are superseded by
+the roadmap's opening queue where later packages have executed; unfulfilled
+acceptance conditions remain. In particular, `b1ab469f0` initially mislabeled
+record recovery as required-link recall; `4a19414be` corrects that measurement.
+
+**Architecture review and next plan — September 7:** at this review checkpoint,
+the inspected Life backend was `b1ab469f0` on its isolated branch, distinct from
+backend main `7a1d18070`; mobile was `f4401ef73` on the entity completion branch.
+The review passed **194 offline Life tests**, with **34** database cases
+deselected, and reproduced a discarded organization-repair result with an
+in-memory Plan projector probe. These are review receipts, not new feature or
+release evidence. The [roadmap §13](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#13-architecture-review-follow-through--september-7)
+provided the detailed corrective sequence: shared maintenance completion,
+real-owner evidence and scoped organization, bounded eligible readers, four-lens
+receiving, quality/Returns, and gated Atlas replacement. Its M0–M6 packages
+refine existing R0–R8/P0–P7 work; none was executed by writing that plan. Its
+original M0/M1 first checkpoint has subsequent receipts below; it is not the
+current work queue.
+
+**M1 maintenance completion — September 7:** backend commit `0b822c3aa`
+introduces the shared typed maintainer used by live owner consumers and
+non-dry-run backfill. Commit `767f70499` adds exact retained-source restore
+state, explicit shadow-version propagation and default-backfill dispatch
+regressions. Offline validation is **199 passed, 34 deselected** under the
+Life selection. The size-budget and status-dead-gate hooks were the same
+pre-existing repository-wide failures and were skipped explicitly; all other
+applicable hooks passed. The remaining M1 checkpoint is a controlled
+current-owner/index/organization transaction race and durable continuation for
+work that exceeds one bounded transaction. Neither commit changes serving,
+owner producers, migrations, Atlas state or remote branches.
+
+**Publication fence — September 7:** commit `3a44caf0f` keeps default Life
+index writes and Plan/Occasion owner-group materialization/archive in one
+short transaction; resolution repair remains a post-commit bounded stage whose
+result can keep delivery pending. The barrier regression and offline Life
+selection are green at **200 passed, 34 deselected**. Resolution atomicity,
+continuation persistence and any serving/Atlas transition remain unexecuted.
+
+**Reverse reconciliation — September 7:** commit `91024a856` aligns bounded
+repair with the shared maintainer and surfaces pending completion when
+organization work remains. Legacy injected projector callers remain intact;
+the default repair path now cannot silently treat an index-only update as a
+complete Life repair. The complete Life selection with local PostgreSQL passes
+**235 tests** under `-m 'not requires_api_keys'`. Durable multi-slice progress
+and serving remain pending.
+
+**M2 source-evidence handoff — September 7:** commit `bac99b1b0` adds the
+conservative retained-source evidence adapter with capture-time semantics and
+exact source/owner references. It cannot establish occurrence, place or
+attendance; those require the Capture-owned bounded evidence contract. The
+offline Life selection is **204 passed, 34 deselected**. No producer, schema,
+serving or Atlas state changed.
+
+**M3 cursor scope — September 7:** commits `bb2677abd` and `f0a8d4f69` bind
+newly issued derived-index cursors to viewer, lens and projection version,
+reject cross-scope replay before SQL, and reject legacy unscoped cursors at the
+repository boundary. Invalid lens values fail closed; legacy two-field
+cursors remain only for pure comparison fixtures. Focused index and connected
+corpus checks pass. The isolated Life package passes **226 tests** when the
+unrelated root-route collection is excluded because this worktree lacks the
+pre-existing `openai` dependency; this environment limitation is not counted
+as Life evidence. Public reader wiring, full eligibility composition and
+serving cutover remain open.
+
+**M0 historical migration evidence — September 7:** commit `c4af8dfee`
+executes the real `lifeorg04 → lifeorg05` Alembic upgrade inside a disposable
+PostgreSQL schema. It preserves source evidence, records the conservative
+`legacy_rebuild_required` before-image status and sentinels, drops only the
+membership foreign keys intended by `lifeorg05`, and retains viewer/resolution
+ownership. Migration-specific and offline guards pass **10 tests**. No shared
+database migration or downgrade was run.
+
+**M5 quality measurement seam — September 7:** commit `b1ab469f0` adds a
+deterministic evaluator for required-link recall, false joins, exact-original
+findability and useful coverage. It is observational and can be embedded in
+the existing rehearsal measurements; it does not group records, call models
+or set thresholds. Five focused quality tests and the Life selection pass
+**232 tests** with the unrelated root-route collection excluded for the
+isolated worktree's missing pre-existing `openai` dependency. Evaluation
+worlds, thresholds and model experiments remain future work.
+
+The [September 7 operational packet](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#11-bounded-shadow-rehearsal-execution-packet--september-7)
+now has an executed bounded slice. Backend commits `41e07297e`, `ca559b2f7`,
+`bfb26e6a9`, `27258111c`, `d062d1810`, and `f9b687055` add all-lens owner materialization, explicit
+coverage/report wiring, bounded indexed-owner reconciliation, and a
+deterministic owner-commit/publication race, plus live-set cleanup when a
+deferred backfill identity later resolves or is already current, and retryable
+enumeration failure handling. Backend commits `b7425b548`, `d7714e38c`, and
+`6c7d07847` add connected durable Plan/Occasion/Outcome outbox-to-consumer
+replay proof, specialized graph-owner dispatch, and isolated event-bus state.
+`949fdd524` tightens required-handler acknowledgement to explicit owner
+consumer `True`, and `09d6f9b69` adds connected checkpoint/lease and outbox
+reclaim evidence. The focused retry selection passed 9 tests and the full
+`tests/life_projection` selection passed 182 tests on the isolated database.
+On isolated local database
+`vesper_life_rehearsal_20260907` at migration head `lifebackfill02`, the Life
+offline selection passed 165 tests and the complete connected Life selection
+passed 17 tests; the report command passed 2 tests and emitted
+`vesper.life-shadow-rehearsal.v1` with `supported_scope=pass`,
+`whole_portfolio_complete=false`, and `serving_ready=false`. This is evidence
+for the supported Plan/Occasion/shared-Outcome delivery slice, not a populated
+whole-portfolio certificate. The specialized graph-owner dispatch correction
+also proves that generic delivery cannot acknowledge these events in place of
+their owner-specific consumers (and therefore cannot drop Outcome audience
+dependency tokens).
 
 ## September 5 roadmap and evidence clarification
 
@@ -141,11 +289,13 @@ shadow-only.
 The workspace replay manifest and validator (`ed0568a`) pin
 W1–W6 transitions and their repair/must-not expectations.
 
-These are scaffolding and shadow-population seams, not a populated index,
-serving cutover, or claim that grouping quality is solved. Owner-specific event
-producers, a worker that rehydrates current owner/authorization state, paged
-backfill, and shadow parity at payload/grant/dependency level remain the next
-connected implementation work.
+These are scaffolding and shadow-population seams, not a populated whole
+portfolio, serving cutover, or claim that grouping quality is solved. The
+remaining connected work is the full seven-record/four-viewer corpus, paused-run
+restart against persisted unresolved work, broader lease/acknowledgement and
+retry interleavings, independent Anchor/Atlas/social/authored owner adapters,
+and final payload, grant, dependency, destination and cursor parity. The report
+intentionally keeps unsupported families and `serving_ready=false` visible.
 
 ## Landed checkpoints
 
@@ -291,14 +441,21 @@ Home persister, and account teardown still clears all position keys.
 4. Together/multiplayer write paths and generalized Occasion architecture.
 5. Visual composition polish beyond the production HTML design reference.
 
-The next implementation batch is owner-specific Life event delivery and shadow
-replay in the replacement roadmap: connect only owners with trustworthy
-revision/audience contracts, then certify paged backfill and shadow parity before
-any indexed serving switch. Remaining dossiers, lenses, custody, refinding,
-shared/prospective continuity, Returns and Atlas deletion are explicit packages
-in that program, rather than indefinite deferrals.
+The owner-specific delivery batch is now integrated locally. The next batch is
+bounded shadow rehearsal against an explicit corpus and viewer cohort: certify
+paged population, replay/out-of-order revision handling, withdrawal/restore,
+audience changes and parity/coverage reporting. Classify unsupported owner
+families explicitly. Advance deterministic organization and durable corrections
+in parallel, then take the separate retrieval, serving and Atlas-retirement
+gates. Remaining dossiers, lenses, custody, refinding, shared/prospective
+continuity and Returns are explicit packages in that program, rather than
+indefinite deferrals.
 
 ### R1/R2 consumer delivery receipt — 2026-09-06
+
+The following receipt is historical package provenance. Its isolated worktree
+and pre-integration wording do not describe the current branch; use the
+September 7 replacement roadmap and execution receipt for the active baseline.
 
 The owner-change consumer is now connected to the existing durable bridge in
 `travel-agent` commit `b4d87161f` (based on bridge commit `1bb03e1c7`). The

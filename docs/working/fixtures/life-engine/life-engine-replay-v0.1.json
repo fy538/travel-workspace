@@ -1,6 +1,6 @@
 {
   "schema_version": "vesper.life-engine-replay.v0.1",
-  "fixture_version": "2026-09-05.1",
+  "fixture_version": "2026-09-07.1",
   "not_production_data": true,
   "purpose": "Replay owner transitions and verify Life organization, authority, and repair without tuning a model.",
   "scenarios": [
@@ -23,17 +23,17 @@
     {
       "scenario_id": "W2",
       "title": "Ordinary NYC week without a major occasion",
-      "owner_kinds": ["plan", "retained_source"],
+      "owner_kinds": ["retained_source"],
       "transitions": [
-        {"event_id": "w2-week-opened", "change_kind": "plan_opened", "owner_kind": "plan", "owner_id": "fixture-nyc-week", "owner_revision": "1"},
+        {"event_id": "w2-local-account-kept", "change_kind": "source_admitted", "owner_kind": "retained_source", "owner_id": "fixture-nyc-outing-account", "owner_revision": "r1"},
         {"event_id": "w2-place-observed", "change_kind": "source_admitted", "owner_kind": "retained_source", "owner_id": "fixture-nyc-place", "owner_revision": "r1"},
         {"event_id": "w2-italy-imported", "change_kind": "historical_source_imported", "owner_kind": "retained_source", "owner_id": "fixture-italy-source", "owner_revision": "r3"}
       ],
       "expected": {
         "record_behavior": "keep the current week coherent while historical material remains separately addressable",
-        "preserve_unknown": ["no major occasion is required"],
+        "preserve_unknown": ["no Plan or Occasion is required", "an undated source remains findable without invented occurrence time"],
         "repair_consumers": ["life", "home"],
-        "must_not": ["let an old Italy source take ownership of the current week", "manufacture a social obligation"]
+        "must_not": ["let an old Italy source take ownership of the current week", "manufacture a social obligation", "create a Plan or Occasion to organize an ordinary week"]
       }
     },
     {

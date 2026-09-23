@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Life engineering / cross-repository architecture
 created: 2026-09-06
-last_verified: 2026-09-06
+last_verified: 2026-09-07
 expires: 2026-10-06
 why_new: Records the implementation and verification evidence for the connected Life shadow-system packages executed from the September 6 roadmap.
 depends_on:
@@ -16,15 +16,21 @@ depends_on:
 
 ## Result
 
-The remaining connected R1/R2 shadow path is implemented in isolated child
-worktrees:
+This receipt records the connected R1/R2 shadow path as it was executed in
+isolated child worktrees. Those packages are now integrated into the current
+backend/app lines; the old worktree locations and “not merged” wording below
+are historical provenance, not the current repository state.
 
 `eligible owner change → durable Life delivery → current-authority projector →
-shadow index row`, with bounded historical population, catch-up/reverse
+shadow index row`, with bounded historical population, single-owner
 reconciliation, typed comparison, coverage accounting, and mobile continuity.
+These are implemented components; complete traversal, recovery and all-lens
+materialization still need the connections identified below.
 
 The work remains shadow-only. No Life reader cutover, Atlas deletion, source
-data migration, production activation, push, or merge was performed.
+data migration or production activation was performed. Integration has landed
+the package commits locally, but publication/remote status and release approval
+remain separate gates.
 
 The implementation is intentionally additive: canonical Plans, Occasions,
 Outcomes, and retained Intake sources remain authoritative; `life_corpus_entries`
@@ -32,7 +38,7 @@ and the backfill control row are rebuildable downstream state.
 
 ## Committed packages
 
-### Backend — `codex/life-system-execution`
+### Backend — originally `codex/life-system-execution`, now integrated on local `main`
 
 The worktree is based on backend `68e72d3f7` and is clean at the receipt
 checkpoint.
@@ -48,13 +54,28 @@ checkpoint.
 | Operator worker boundary | `4f4519778` | Explicit queue entry point for one bounded backfill slice; no cron side effect or serving switch. |
 | Publication edge correction | `9508f9ddd` | Private Outcome audience tokens preserve subject/occasion context when the owner fence recomputes dependency authority. |
 | Enumeration edge correction | `f35144a5e` | Occasion keyset enumeration uses `DISTINCT` owner identities so multi-member Occasions cannot consume the historical work budget repeatedly. |
+| R2-G deterministic organization/control slice | `143c54079` | `lifeorg01` adds stable viewer/version-scoped group identities, evidence-backed memberships, and a revision-bound control ledger for rename, detach/exclusion, and exact Undo; learned clustering and serving remain out of scope. |
+| R2-G command-ledger race fence | `a6c21a0ca` | Rename, detach, and Undo claim the viewer/version/control-key idempotency boundary before mutating derived state; a concurrent duplicate rereads the committed control result. |
+| R2-G owner-projector organization bridge | `29d2a799b` | Existing Plan/Occasion consumers now materialize owner groups after successful index publication, archive groups on fenced withdrawal, and reactivate superseded memberships only on explicit restore; no new delivery path or canonical owner is introduced. |
+| R2-G resolution application | `04e9ab8fd` | A single active alias/merge target transfers memberships with deterministic evidence/exclusion preservation and redirects the source; multiple split targets remain an explicit ambiguity and do not move memberships. |
+| R2-G ambiguity fence | `3b17dacd9` | Multiple active resolution rows remain ambiguous even if they name the same target; application never picks one hidden resolution kind. |
+| R2-G target exclusion evidence | `7c5154740` | Connected merge coverage proves a target-side exclusion remains authoritative while source evidence is unioned. |
+| R2-G resolution lifecycle and owner trigger | `1854e4740` | `lifeorg03` adds explicit successor lineage and replay-safe, revision-bound revoke; Plan/Occasion owner publication invokes the existing organization-resolution application adapter. |
+| R2-G lifecycle repair reporting | `c718fc0cc` | Owner-triggered reconciliation reports missing, ambiguous, applied, and post-transfer repair-required states; it never treats a revoked/replaced transfer as a successful no-op. |
+| R2-G transfer lineage and repair inventory | `1e49ba0b5` | `lifeorg04` records source/target membership transfer lineage and exposes a bounded affected-set plan for later rebuild; no reverse mutation or reader cutover. |
+| R2-G lifecycle comparison correction | `e00123f3d` | Replacement replay compares resolution-kind values explicitly, preserving idempotent successor detection across equivalent enum instances. |
+| R2-G CAS-guarded affected-set repair | `c82f6ceb4` | `lifeorg05` captures target pre-state/post-revision evidence and reverses transfer lineage in reverse order; revoked resolutions restore source state, replacements can reapply successors, and stale/unrelated changes fail closed. |
+| R2-G repair lifecycle race coverage | `c6cc768fc` | Rollback now requires a redirected source and active targets; connected PostgreSQL regressions cover multiple transfers, later target detach with atomic no-partial-mutation failure, and archived target-owner fencing. |
+| R2-G explicit restore race coverage | `59cab4f88` | The archived-target regression now also restores the target explicitly and proves the old transfer remains blocked by the newer restored membership revision; no stale rollback can overwrite the restored state. |
+| Life route fixture alignment | `4e41b23c4` | Supplies the retained-source `created_at` required by the canonical Life ordering contract; no production behavior changed. |
+| R2-G legacy lineage boundary | `6f4a977bb` | A legacy transfer row returns `group_rebuild_required` from both planning and mutation APIs; source/group/lineage state remains untouched rather than being guessed. |
 
 The existing retained-source, Plan, Occasion, and Outcome projectors all reuse
 the same owner-fenced writer and return explicit `updated`/`withdrawn`/`stale`
 counts. Owner contracts remain `shadow_only`; no family is silently promoted to
 serving authority.
 
-### Mobile — `codex/life-system-execution`
+### Mobile — originally `codex/life-system-execution`, now integrated on `main`
 
 The app worktree is based on app `d7d1a3271` and is clean at the receipt
 checkpoint.
@@ -72,7 +93,7 @@ continues independently.
 Backend, using the repository virtual environment:
 
 ```text
-160 passed in 6.32s
+227 passed in 7.40s
   /Users/feihuyan/travel-workspace/travel-agent/.venv/bin/python -m pytest -q \
     tests/life_projection \
     tests/workers/test_life_projection_jobs.py \
@@ -83,8 +104,14 @@ Backend, using the repository virtual environment:
 The migration chain reports one head:
 
 ```text
-lifebackfill02 (head)
+lifeorg05 (head after the R2-G CAS-guarded repair package)
 ```
+
+The current connected organization/projector selection is `37 passed`,
+including migration-backed replacement/revocation, transfer lineage, multiple
+transfer rollback, stale-control fencing, explicit restoration, and
+owner-triggered repair classification. The full `tests/life_projection`
+selection is `205 passed`.
 
 Mobile verification:
 
@@ -107,35 +134,53 @@ lint, import-cycle, boundary, timeout, and other applicable hooks pass.
 
 ## What is deliberately not complete
 
+- September 7 code inspection confirms Time-only owner materialization,
+  single-owner reconciliation without a bounded corpus traversal, unresolved
+  run items without a connected recovery path, and report helpers without a
+  complete executable rehearsal. The [operational packet](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md#11-bounded-shadow-rehearsal-execution-packet--september-7)
+  defines the exact fixture, interfaces, commands, thresholds and remaining work.
+  Its scenarios and race tests are planned, not newly passing evidence.
 - The index is not populated for real users and is not read by Home, Places, or
   Life routes. The canonical snapshot path remains the serving oracle.
-- A non-`life.v1` target build does not yet receive live owner fan-out. Before
-  starting such a build, add per-target durable delivery/replay or explicitly
-  constrain the operator to the live shadow version; never leave an orphaned
-  target version running.
+- A non-`life.v1` target build does not yet receive live owner fan-out. Use
+  `life.v1` in the isolated local rehearsal database. Other versions are finite
+  historical-only diagnostics until durable per-target delivery is implemented;
+  their population completion does not establish continuity.
 - Source-owned producer changes for graph owners must still be coordinated with
   Plan/Occasion/Outcome owners. This batch did not invent a competing source
   transaction or claim Capture's acknowledgement.
 - Experience anchors, historical Atlas material, generic social contributions,
   authored compositions, and retained booking-reader mapping remain explicit
   coverage gaps.
-- R2-G deterministic organization and durable human corrections remain a
-  contract/design package. R8 migration certification, read-time authorization,
-  device QA, serving cutover, and Atlas retirement remain downstream gates.
+- R2-G is landed only for deterministic proposal/materialization and the
+  rename/detach control ledger, including conflict-safe first-attempt
+  idempotency. Plan/Occasion owner-driven wiring now exists for the first
+  deterministic owner-group path; identity reconciliation,
+  accepted alias/split/merge persistence and unambiguous merge application now
+  exist; split choice and the first merge/alias affected-set rebuild now exist;
+  multi-transfer/legacy rebuild coverage, model-assisted candidates,
+  Outcome/source organization and Life serving remain downstream work. R8
+  migration certification,
+  read-time authorization, device QA, serving cutover, and Atlas retirement
+  remain separate gates.
 
-## Next checkpoint
+## Next checkpoint — rebaselined September 7
 
-1. Agree and verify the missing owner-side producer/event contracts with
+1. Agree and verify the remaining owner-side producer/event contracts with
    Capture and the graph-owner lanes; add PostgreSQL interleavings for first
-   insert, audience-only change, restoration, lost acknowledgement, and lease
-   reclaim.
-2. Run a bounded dry-run against an explicit viewer cohort, inspect the
-   machine-readable comparison/coverage report, and resolve every supported
-   mismatch or classify it as an owner capability gap.
-3. Choose and implement the per-target live-delivery strategy before any
-   shadow version other than `life.v1` is populated.
-4. Only after the report is complete, expand owner coverage and the durable
-   organization/correction seam; then separately review indexed serving and
-   Atlas retirement conditions.
+   insert, audience-only change, restoration, lost acknowledgement and lease
+   reclaim. Preserve Intake's independent acknowledgement.
+2. Implement the thin test fixture/driver in roadmap §11, inventory with a
+   dry-run, then use a separate writing run to populate `life.v1` in the isolated
+   local database. Exercise replay, late revisions, withdrawal/restoration,
+   audience changes and bounded reconciliation before comparing. Report actual
+   defects, unsupported capability, blocked infrastructure and revision drift.
+3. Require per-target durable delivery before continuously maintaining another
+   shadow version; historical-only diagnostics must not appear live.
+4. Expand affected-set repair to legacy lineage fallback and migration-backed
+   historical rows. Keep split choices ambiguous until an exact descendant is
+   supported, then expand organization coverage to the next supported owner
+   family. Keep exact retrieval/return acceptance, indexed serving, and Atlas
+   retirement as separate downstream gates.
 
 This receipt is evidence of the executed packages, not a release certificate.

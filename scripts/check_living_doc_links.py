@@ -12,6 +12,22 @@ DOCS = ROOT / "docs"
 LINK = re.compile(r"(?<!!)\[[^]]*\]\(([^)]+)\)")
 
 
+def prose_lines(text: str):
+    """Yield original line numbers, excluding Markdown code spans and fences."""
+    fence = None
+    for number, line in enumerate(text.splitlines(), 1):
+        marker = re.match(r"^\s{0,3}(`{3,}|~{3,})", line)
+        if marker:
+            token = marker.group(1)
+            if fence is None:
+                fence = token
+            elif token[0] == fence[0] and len(token) >= len(fence):
+                fence = None
+            continue
+        if fence is None:
+            yield number, re.sub(r"(`+).*?\1", "", line)
+
+
 def target_path(source: Path, raw: str) -> Path | None:
     target = raw.strip().split(" #", 1)[0].strip()
     if target.startswith("<") and target.endswith(">"):
@@ -29,7 +45,7 @@ def main() -> int:
         if "archive" not in path.relative_to(DOCS).parts
     ]
     for source in sorted(files):
-        for line_number, line in enumerate(source.read_text(errors="replace").splitlines(), 1):
+        for line_number, line in prose_lines(source.read_text(errors="replace")):
             for match in LINK.finditer(line):
                 target = target_path(source, match.group(1))
                 if target is not None and not target.exists():

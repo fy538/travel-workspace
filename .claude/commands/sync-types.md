@@ -1,16 +1,11 @@
-Regenerate the OpenAPI snapshot and the Travel App TypeScript types from it.
+Regenerate the full backend snapshot, active-mobile projection and app types in
+this task's coordinated workspace. Follow AGENTS.md's API contract workflow.
 
-`docs/openapi.json` (workspace repo) is the single source of truth — every
-type-gen tool reads it. `sync-types.sh` regenerates it OFFLINE (no running
-backend needed) via Travel Agent's `export_openapi.py`.
+1. Verify the workspace and both child checkout revisions/dirty changes.
+2. Run `./scripts/sync-types.sh` (offline export by default).
+3. Review `docs/openapi.json`, `docs/openapi.app.json`, and
+   `travel-app/utils/api/schema.gen.ts`; fix affected consumers and type errors.
+4. Run the relevant API operation/contract checks and stage only intended files.
 
-Steps:
-1. Run `./scripts/sync-types.sh` from the workspace root
-2. Review the diff in `Travel App/utils/api/schema.gen.ts`
-3. Fix any TypeScript errors surfaced by tsc
-4. Commit `docs/openapi.json` and the Travel App changes together
-
-Modes:
-- `./scripts/sync-types.sh` — default; regenerate offline from backend models
-- `./scripts/sync-types.sh --from-snapshot` — use the committed snapshot as-is
-- `./scripts/sync-types.sh --live` — pull from a running backend (curl localhost:8000)
+`--from-snapshot` uses committed input; `--live` queries the selected API.
+Neither mode certifies a different backend revision automatically.

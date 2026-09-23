@@ -4,7 +4,7 @@ status: accepted
 owner: founder / product / strategy
 created: 2026-09-06
 decided: 2026-09-06
-last_verified: 2026-09-06
+last_verified: 2026-09-07
 why_new: Reconciles everyday product entry, optional conversational continuity, bounded practical responsibility and consumer-funded economics after the August pivot and September booking retirement.
 supersedes: []
 amends:
@@ -141,6 +141,85 @@ Evaluate net revenue against model/tool/data work, refreshing and monitoring,
 storage/delivery, free-participant cost and variable support. Rich Home value
 must not require bespoke generation on every visit. Subscription success is
 not identical to daily use, and absence must not create content or response debt.
+
+## 5. September 7 refinement: complete benefits, selective context and voluntary choice
+
+Following the four-area research review, the founder requested follow-through.
+This dated refinement accepts the product and evaluation direction below. It
+does not select launch coverage, approve an account/history agreement, activate
+long-range retrieval, set a price or certify the first release. Earlier sections
+retain their September 6 decision scope.
+
+### Complete the benefit within a declared service boundary
+
+The first supported service should cover the following received benefits across
+the existing four moves. These are acceptance targets, not five new objects,
+products, tabs, paywalls or a mandatory sequence:
+
+| Person's job | Complete Vesper benefit | Not implied |
+| --- | --- | --- |
+| Ask about something | A substantive answer, explanation, comparison or useful adaptation from supported material | New retention, a project or required follow-up |
+| Open Home or Places | Worthwhile understanding, human material or grounded possibilities without extensive setup | Rich history, friends, fresh generation or an urgent task as prerequisites |
+| Get practical help | A grounded assessment or preparation, with relevant uncertainty and remaining human/provider work made clear | Accepted monitoring, provider execution or a completed external transaction |
+| Receive something from a person | The original contribution or offer is useful in context with attribution and chosen audience; further help is optional | Equivalent effort, compulsory adoption or permission for every AI derivative |
+| Return to entrusted material | Reopen the exact deliberately retained source or result under its owner and lifecycle | Saving an adaptation by saving its source, perpetual eligibility or obligatory Life organization |
+
+Bound the launch by supported situations/materials, evidenced world coverage
+and accepted responsibility—not by reducing the architecture to one loop.
+Publish only the offer supported by receiving evidence. An external handoff may
+finish Vesper's bounded assistance without claiming the provider acted; it must
+preserve the useful subject/result instead of requiring needless reconstruction.
+The live engine contributes present feasibility before any watch is accepted.
+
+### Context earns influence; history does not freeze circumstances
+
+Selective long-range continuity is the preferred design direction to resolve,
+rather than treating a universal 90-day cutoff as the product's answer. The
+[history/source proposal](../working/conversation-history-source-expiry-decision-proposal-2026-09-06.md#10-selective-long-range-continuity-four-complete-experiences)
+still owns the unadopted material, duration, use and repair agreement. Current
+Ask/T0, expiry and no-backfill boundaries remain unchanged.
+
+Evaluate appropriate non-use as well as recall. Current purpose, subject and
+corrections must govern applicability; old circumstances are not standing facts.
+Context may improve selection or remove re-explanation without a visible callback.
+A capable no-history answer may tie the contextual answer. Do not turn questions
+into traits, require per-turn Keep or expose a memory-maintenance queue as the
+price of intended continuity.
+
+### Judge the result and the whole receiving experience
+
+Home and Places remain substantial receiving surfaces. Different topics and
+media do not guarantee different benefits: a whole page of trip callbacks can
+still be repetitive. Select for worthwhile understanding, enjoyment, practical
+relief, human perspective or possibility as relevant—not fixed benefit slots.
+Preserve accepted social placement; this refinement does not move casual spatial
+sharing from Places into Home.
+
+Compare substantive output, total human work and whole-page composition against
+capable alternatives under matched current evidence. Weak reports and identity
+readings are negative controls, not sufficient competitive baselines. Automated
+checks support review; they do not certify delight, attendance or satisfaction.
+Finished direct answers and original human contributions need no further action.
+
+### Learn from existing intent and voluntary return
+
+The leading audience hypothesis is existing question/save/share behavior at a
+moment of need, not a rich archive or founder-like travel habits. Keep current
+question/material, independent Home/Places receiving, and social receiving as
+independent entrances. Recipient value is distinct from subsequent adoption.
+
+Judge repeat choice when relevant situations recur, including after absence;
+do not assign daily use or manufacture return through obligation. Comprehension,
+received quality, return, purchase and renewal are different evidence. Membership
+remains a hypothesis, with episodic access an alternative; neither is implemented
+by this decision. Count unsuccessful production, free participants and support
+in whole-cohort costs as well as successful paid-user responses.
+
+The [research synthesis](../working/vesper-audience-offer-and-market-strategy-research-2026-09-06.md#19-four-consequential-strategy-questions--september-7)
+preserves evidence and limitations. The
+[existing roadmap acceptance refinement](../working/complete-system-integration-roadmap-2026-09-05.md#9811-supported-service-and-received-value-acceptance--september-7)
+maps this direction to existing packages and unresolved release decisions; it
+does not establish another execution queue.
 
 ## Consequences and implementation boundary
 

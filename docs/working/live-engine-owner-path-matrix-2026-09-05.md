@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Strategy integration task
 created: 2026-09-05
-last_verified: 2026-09-05
+last_verified: 2026-09-07
 expires: 2026-10-05
 why_new: Records the current owner boundaries and missing runtime joins for the lived-experience engine before new watches, producers, or shared writers are added.
 supersedes: []
@@ -43,6 +43,10 @@ authorized observation
 
 ## 1. Current family paths
 
+The family inventory below records the September 5 baseline. September 7's
+refresh rechecks practical owner reads, coverage and shared judgment in §3–§5;
+it does not recertify activation or complete delivery for every family.
+
 | Family | Trigger / observation owner | Context actually admitted | Judgment and treatment | Consequence / readback owner | Delivery and activation truth | Missing join / next package |
 | --- | --- | --- | --- | --- | --- | --- |
 | `private_disruption` | Concierge-authorized run, turn, loaded state; a current Plan or commitment change may be an input | `concierge_authorized_run`, `turn`, `loaded`; opening and Plan revision refs; request clock | Provider-free engine admission; candidates may choose Chat, Plan, or Push; shadow policy `private_grounded_disruption_v1` | Plan/commitment domain gateway; canonical readback and causal arc contracts exist, but no general visible worker | Registered as `shadow`; no visible root or push release | Connect an authoritative revision/change event to bounded reevaluation without making every Plan read a live watch (I1/I2/I5) |
@@ -79,12 +83,15 @@ or readback receipt.
 
 ### D2 — Readiness must be executable
 
-`route.evaluate` is currently catalogued and bound to an owner-read registry,
-but its canonical reader returns `canonical_route_reader_not_available` and
-place reads omit current-condition/reachability fields. Until a real owner and
-field contract exists, generic root plans must not spend routine budget on the
-known-unavailable operation. The next change should be a readiness/field
-coverage gate, not a speculative route service.
+An executable operation-readiness gate now exists: routine plans exclude
+known-unavailable canonical work such as `route.evaluate`. Its reader still
+returns `canonical_route_reader_not_available`. Field coverage remains
+incomplete: Moment conditions are overstated, and aggregate requirements are
+assigned to unrelated operations. Correct those declarations against actual
+payloads, then connect cache-backed Place facts to claim-specific judgment.
+Reader readiness, returned facts and a useful practical assessment are separate
+milestones. Place's real reachability omission is `reachability_unavailable`;
+the earlier fixture's `route_unavailable` did not demonstrate an actual route.
 
 ### D3 — Request clock is necessary but not a snapshot
 
@@ -126,15 +133,34 @@ Already-landed continuity receipts that this matrix consumes:
 - The concurrent Life lane has since advanced its cursor/revision and direct
   history work; this matrix does not reassign those files.
 
-The next bounded implementation package is **I2 readiness and serving**:
+Since that baseline, readiness gating, bounded optional reads and CV-1 prepared
+Source serving have landed. Ordinary root serving is separated from production;
+this does not establish plentiful supply or activated live delivery.
 
-1. add an executable readiness/field-coverage result to owner-read planning;
-2. omit routine known-unavailable work such as `route.evaluate` from production
-   root budgets while retaining truthful limitation evidence;
-3. measure optional source production separately from fast root assembly; and
-4. add focused tests for practical value surviving unavailable enrichment.
+The next sequence is [CV-2A–E in the integration roadmap](complete-system-integration-roadmap-2026-09-05.md#94-cv-2-detailed-execution-plan--september-7):
+correct operation-field coverage and temporal/revision admission, then join
+cache-only venue observations to shared judgment and actual Home/Places output.
+Review the whole portfolio before extending route/movement or weather coverage.
+The roadmap owns package order, files, tests and checkpoints; this matrix owns
+the inventory. No new watch, scheduler, provider or second root producer is
+implied by the sequence.
 
-Do not add watch persistence, a general scheduler, a new route owner, or a
-second Home/Life producer in that package. Reassess after the package against
-latency, cost, usefulness, and the live-engine invariants before proceeding to
-I3 shared material or I4 surface promotion.
+## 5. Practical-fact inventory — September 7
+
+| Fact / current owner | Available evidence and limits | Next integration disposition |
+| --- | --- | --- |
+| Venue opening/closure — `places/cache.py` | Cache-only corpus venue batch; separate opening-status, hours and identity freshness. Current DTO omits provider identity and raw field deadlines. | First adapter: retain field values, provenance, observation identity/time and expiry through Place reads, then assess the particular claim. No network/write on root serving. |
+| Place identity/lifecycle — canonical entity/venue owner | Durable identity and source revisions; catalog lifecycle is distinct from opening status. | Repair pinned-revision and future-evidence admission. Preserve history/save even when a current visit claim fails. |
+| Moment — current context and Opening owners | Represented time, bounded location and active Opening context; conditions remain unavailable. | Fix coverage. Opening availability cannot stand in for calendar free time, bookability or venue inventory. |
+| Routing — distance gateway / `RouteFact` | Duration/distance, mode, provider/product, intended-use policy, observation/expiry and degradation; specialized consumers supply origin and timing context. | Specify trusted scoped inputs and eligible observation owner before canonical admission. Keep generic route unavailable until that adapter exists. |
+| Foreground movement — movement/session owner | Qualified position, commitment/time context and route evidence; specialized situated judgment exists. | Integrate only a named current consumer and session lifetime; no inferred background tracking. |
+| Object-page situation — entity situation owner | Request-scoped route/plan assessment; origin and expiry constraints are view-specific. | Reuse underlying contracts where suitable; root composition does not call the object-page HTTP endpoint as a substitute for an owner reader. |
+| Weather — weather provider and specialist producers | Current observation lacks the forecast path's richer provenance/time envelope. | Require appropriate observation identity and validity before shared use; current weather and forecast serve different claims. |
+| Commitment/provider status — existing `provider.status.read` | Owner-backed commitment evidence with revision/freshness checks; coverage is scoped to supported readback. | Preserve and consume this practical evidence. Do not rebuild booking execution to expose retained facts. |
+
+Common judgment currently validates evidence and omissions; receiving typed
+references alone does not evaluate “closed now.” The planned assessment joins
+the returned value to its dependent claim. Unknown conditions should remove
+unjustified confidence while independent saved material, interpretation and
+human contribution retain their own eligibility. The closure/unknown/survival
+matrix in CV-2D is a required consumer test, not an already shipped receipt.

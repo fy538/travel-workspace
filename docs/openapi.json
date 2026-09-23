@@ -459,6 +459,66 @@
         }
       }
     },
+    "/api/agent-workflows/source-contribution": {
+      "post": {
+        "tags": [
+          "agent-workflows"
+        ],
+        "summary": "Submit Source Contribution Request",
+        "description": "Accept one bounded private Source preparation request.\n\nAcceptance persists the exact job in the existing workflow fence. It does\nnot promise that a provider or worker is available; callers recover the\neventual outcome through the returned workflow/status reference and the\nowner-scoped exact-result route.",
+        "operationId": "submit_source_contribution_request_api_agent_workflows_source_contribution_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SourceContributionRequestCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceContributionRequestResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/agent-workflows/{workflow_id}": {
       "get": {
         "tags": [
@@ -526,6 +586,75 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Read Agent Workflow Api Agent Workflows  Workflow Id  Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/agent-workflows/{workflow_id}/result": {
+      "get": {
+        "tags": [
+          "agent-workflows"
+        ],
+        "summary": "Read Source Contribution Result",
+        "description": "Reopen one completed private Source result by its exact version.\n\nThis route is deliberately actor-scoped and read-only. It bypasses Home or\nPlaces ranking, but it still uses Source's current custody/expiry checks;\nan unavailable result is never regenerated from a GET.",
+        "operationId": "read_source_contribution_result_api_agent_workflows__workflow_id__result_get",
+        "parameters": [
+          {
+            "name": "workflow_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Workflow Id"
+            }
+          },
+          {
+            "name": "root",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/ProductRoot",
+              "default": "home"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceContributionExactResultResponse"
                 }
               }
             }
@@ -19533,6 +19662,69 @@
         }
       }
     },
+    "/api/intake/submissions/{submission_id}/objects/{object_id}/media": {
+      "get": {
+        "tags": [
+          "intake"
+        ],
+        "summary": "Get Intake Source Object Media",
+        "description": "Stream one current owner-scoped Intake original.\n\nThe submission reader intentionally returns custody metadata, not a storage\nURL. This route is the matching permitted-media reader: it reuses the\nIntake owner/custody boundary, keeps the storage key server-side, and\nrefuses expired, revoked, deleted, or otherwise unverified originals.",
+        "operationId": "get_intake_source_object_media_api_intake_submissions__submission_id__objects__object_id__media_get",
+        "parameters": [
+          {
+            "name": "submission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Submission Id"
+            }
+          },
+          {
+            "name": "object_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Object Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/intake/submissions/{submission_id}/lifecycle": {
       "get": {
         "tags": [
@@ -24256,6 +24448,66 @@
         }
       }
     },
+    "/api/life/originals/refind": {
+      "post": {
+        "tags": [
+          "life"
+        ],
+        "summary": "Life Original Refind",
+        "description": "Current owner-only original metadata; no query retention or body indexing.",
+        "operationId": "life_original_refind_api_life_originals_refind_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LifeOriginalRefindRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LifeOriginalRefindResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/life/refind": {
       "post": {
         "tags": [
@@ -27864,6 +28116,231 @@
         }
       }
     },
+    "/api/trips/{trip_id}/stops/{block_id}/assistance": {
+      "post": {
+        "tags": [
+          "plan-assistance"
+        ],
+        "summary": "Ask Plan Stop",
+        "operationId": "ask_plan_stop_api_trips__trip_id__stops__block_id__assistance_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Block Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlanAssistanceAsk"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanAssistanceAnswer"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/stops/{block_id}/assistance/messages": {
+      "post": {
+        "tags": [
+          "plan-assistance"
+        ],
+        "summary": "Send Plan Stop Message",
+        "operationId": "send_plan_stop_message_api_trips__trip_id__stops__block_id__assistance_messages_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Block Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlanAssistanceSend"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanAssistanceMessage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "plan-assistance"
+        ],
+        "summary": "Get Plan Stop Messages",
+        "operationId": "get_plan_stop_messages_api_trips__trip_id__stops__block_id__assistance_messages_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Block Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanAssistanceReadback"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/places/map": {
       "get": {
         "tags": [
@@ -28420,7 +28897,7 @@
           "places"
         ],
         "summary": "Get Places Reading",
-        "description": "Return manually approved reading inside an explicit Places context.",
+        "description": "Return a scoped reading collection or one exact selected primitive.",
         "operationId": "get_places_reading_api_places_reading_get",
         "parameters": [
           {
@@ -28463,6 +28940,60 @@
                 }
               ],
               "title": "Context Handle"
+            }
+          },
+          {
+            "name": "selected_source_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Selected Source Id"
+            }
+          },
+          {
+            "name": "selected_source_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Selected Source Revision"
+            }
+          },
+          {
+            "name": "selected_entity_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Selected Entity Id"
             }
           },
           {
@@ -29172,6 +29703,445 @@
         }
       }
     },
+    "/api/relationships/original-deliveries": {
+      "post": {
+        "tags": [
+          "relationships"
+        ],
+        "summary": "Create Relationship Original Delivery",
+        "description": "Send one exact retained original to one existing eligible account.",
+        "operationId": "create_relationship_original_delivery_api_relationships_original_deliveries_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RelationshipOriginalDeliveryCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RelationshipOriginalDeliveryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "relationships"
+        ],
+        "summary": "List Relationship Original Deliveries",
+        "description": "Return the recipient's current original-first doorway queue.",
+        "operationId": "list_relationship_original_deliveries_api_relationships_original_deliveries_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelationshipOriginalDeliveryResponse"
+                  },
+                  "title": "Response List Relationship Original Deliveries Api Relationships Original Deliveries Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/relationships/original-deliveries/eligible-recipients": {
+      "get": {
+        "tags": [
+          "relationships"
+        ],
+        "summary": "List Relationship Original Recipients",
+        "description": "Return only existing eligible accounts for the exact-original picker.",
+        "operationId": "list_relationship_original_recipients_api_relationships_original_deliveries_eligible_recipients_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelationshipOriginalEligibleRecipient"
+                  },
+                  "title": "Response List Relationship Original Recipients Api Relationships Original Deliveries Eligible Recipients Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/relationships/original-deliveries/sent": {
+      "get": {
+        "tags": [
+          "relationships"
+        ],
+        "summary": "List Sent Relationship Original Deliveries",
+        "description": "Return sender-owned readback/control history without recipient reads.",
+        "operationId": "list_sent_relationship_original_deliveries_api_relationships_original_deliveries_sent_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelationshipOriginalDeliveryResponse"
+                  },
+                  "title": "Response List Sent Relationship Original Deliveries Api Relationships Original Deliveries Sent Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/relationships/original-deliveries/{delivery_id}": {
+      "get": {
+        "tags": [
+          "relationships"
+        ],
+        "summary": "Get Relationship Original Delivery",
+        "description": "Read delivery metadata for one explicit participant.",
+        "operationId": "get_relationship_original_delivery_api_relationships_original_deliveries__delivery_id__get",
+        "parameters": [
+          {
+            "name": "delivery_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Delivery Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RelationshipOriginalDeliveryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/relationships/original-deliveries/{delivery_id}/withdraw": {
+      "post": {
+        "tags": [
+          "relationships"
+        ],
+        "summary": "Withdraw Relationship Original Delivery",
+        "description": "Withdraw sender custody without creating a recipient read receipt.",
+        "operationId": "withdraw_relationship_original_delivery_api_relationships_original_deliveries__delivery_id__withdraw_post",
+        "parameters": [
+          {
+            "name": "delivery_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Delivery Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RelationshipOriginalDeliveryWithdrawRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RelationshipOriginalDeliveryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/relationships/original-deliveries/{delivery_id}/content": {
+      "get": {
+        "tags": [
+          "relationships"
+        ],
+        "summary": "Read Relationship Original Delivery Content",
+        "description": "Stream the current source bytes only after recipient grant checks.",
+        "operationId": "read_relationship_original_delivery_content_api_relationships_original_deliveries__delivery_id__content_get",
+        "parameters": [
+          {
+            "name": "delivery_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Delivery Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/relationships/pair-conversations": {
       "post": {
         "tags": [
@@ -29490,6 +30460,89 @@
                     "$ref": "#/components/schemas/RelationshipPlaceHandoffResponse"
                   },
                   "title": "Response List Relationship Handoffs Api Relationships Place Handoffs Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/relationships/place-handoffs/sent": {
+      "get": {
+        "tags": [
+          "relationships"
+        ],
+        "summary": "List Sent Relationship Handoffs",
+        "description": "Return the current sender's own addressed handoff history.\n\nUnlike the recipient queue, this projection includes terminal rows for\nsender-owned control and reconciliation. Recipient attention (kept or\ndismissed) is deliberately not exposed in this response.",
+        "operationId": "list_sent_relationship_handoffs_api_relationships_place_handoffs_sent_get",
+        "parameters": [
+          {
+            "name": "world_entity_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "World Entity Id"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 100,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelationshipPlaceHandoffSenderResponse"
+                  },
+                  "title": "Response List Sent Relationship Handoffs Api Relationships Place Handoffs Sent Get"
                 }
               }
             }
@@ -30982,6 +32035,207 @@
             }
           },
           {
+            "name": "visit_place_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Place Id"
+            }
+          },
+          {
+            "name": "visit_place_kind",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40,
+              "default": "venue",
+              "title": "Visit Place Kind"
+            }
+          },
+          {
+            "name": "visit_window_start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Window Start"
+            }
+          },
+          {
+            "name": "visit_window_end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Window End"
+            }
+          },
+          {
+            "name": "visit_duration_minutes",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 1440,
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Duration Minutes"
+            }
+          },
+          {
+            "name": "visit_travel_mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Travel Mode"
+            }
+          },
+          {
+            "name": "visit_origin_ref",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Origin Ref"
+            }
+          },
+          {
+            "name": "visit_origin_lat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "maximum": 90,
+                  "minimum": -90
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Origin Lat"
+            }
+          },
+          {
+            "name": "visit_origin_lng",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "maximum": 180,
+                  "minimum": -180
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Origin Lng"
+            }
+          },
+          {
+            "name": "visit_origin_accuracy_m",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Origin Accuracy M"
+            }
+          },
+          {
+            "name": "visit_origin_observed_at",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Origin Observed At"
+            }
+          },
+          {
+            "name": "visit_origin_max_age_seconds",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 86400,
+              "minimum": 1,
+              "default": 900,
+              "title": "Visit Origin Max Age Seconds"
+            }
+          },
+          {
             "name": "authorization",
             "in": "header",
             "required": false,
@@ -31047,6 +32301,207 @@
                 }
               ],
               "title": "Context Handle"
+            }
+          },
+          {
+            "name": "visit_place_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Place Id"
+            }
+          },
+          {
+            "name": "visit_place_kind",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40,
+              "default": "venue",
+              "title": "Visit Place Kind"
+            }
+          },
+          {
+            "name": "visit_window_start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Window Start"
+            }
+          },
+          {
+            "name": "visit_window_end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Window End"
+            }
+          },
+          {
+            "name": "visit_duration_minutes",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 1440,
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Duration Minutes"
+            }
+          },
+          {
+            "name": "visit_travel_mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Travel Mode"
+            }
+          },
+          {
+            "name": "visit_origin_ref",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Origin Ref"
+            }
+          },
+          {
+            "name": "visit_origin_lat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "maximum": 90,
+                  "minimum": -90
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Origin Lat"
+            }
+          },
+          {
+            "name": "visit_origin_lng",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "maximum": 180,
+                  "minimum": -180
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Origin Lng"
+            }
+          },
+          {
+            "name": "visit_origin_accuracy_m",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Origin Accuracy M"
+            }
+          },
+          {
+            "name": "visit_origin_observed_at",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visit Origin Observed At"
+            }
+          },
+          {
+            "name": "visit_origin_max_age_seconds",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 86400,
+              "minimum": 1,
+              "default": 900,
+              "title": "Visit Origin Max Age Seconds"
             }
           },
           {
@@ -31216,7 +32671,7 @@
           "root-projections"
         ],
         "summary": "Get Life Record Page V1",
-        "description": "Return one stable, merged page of the canonical Life corpus.",
+        "description": "Return one stable, merged page of the canonical Life corpus.\n\n``group_key`` is an additive depth scope. It reads the existing derived\norganization layer, then rehydrates every pointer through this same\ncurrent Life owner snapshot before it can render. It never serves the\norganization table as an alternate corpus.",
         "operationId": "get_life_record_page_v1_api_root_projections_v1_life_record_get",
         "parameters": [
           {
@@ -31249,7 +32704,114 @@
                 {
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 512
+                  "maxLength": 2048
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          },
+          {
+            "name": "group_key",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 2,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Group Key"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LifeRecordPageV1"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/root-projections/v1/life/organization/groups": {
+      "get": {
+        "tags": [
+          "root-projections"
+        ],
+        "summary": "Get Life Organization Groups V1",
+        "description": "List current groups that can safely open an organized Life read.\n\nThe derived group page is only a doorway. Every row is checked against\nactive membership pointers and the same current owner Life snapshot so a\ndelayed archive/revocation cannot disclose a stale group title.",
+        "operationId": "get_life_organization_groups_v1_api_root_projections_v1_life_organization_groups_get",
+        "parameters": [
+          {
+            "name": "lens",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/LifeLens",
+              "default": "time"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 100,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 768
                 },
                 {
                   "type": "null"
@@ -31281,7 +32843,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LifeRecordPageV1"
+                  "$ref": "#/components/schemas/LifeOrganizationGroupPageV1"
                 }
               }
             }
@@ -43151,6 +44713,76 @@
             }
           },
           {
+            "name": "trip_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Block Id"
+            }
+          },
+          {
+            "name": "reading_source_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Reading Source Id"
+            }
+          },
+          {
+            "name": "reading_source_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Reading Source Revision"
+            }
+          },
+          {
             "name": "authorization",
             "in": "header",
             "required": false,
@@ -43456,6 +45088,76 @@
             }
           },
           {
+            "name": "trip_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Block Id"
+            }
+          },
+          {
+            "name": "reading_source_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Reading Source Id"
+            }
+          },
+          {
+            "name": "reading_source_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Reading Source Revision"
+            }
+          },
+          {
             "name": "authorization",
             "in": "header",
             "required": false,
@@ -43580,7 +45282,7 @@
     "/api/me/entities/{entity_type}/{entity_id}/people-lines": {
       "get": {
         "summary": "Get My Entity People Lines",
-        "description": "Return addressed, exact-place lines authorized for this viewer.\n\nThe object page never infers friends from co-presence or circle\nmembership. When the clean relationship handoff owner is disabled, the\ncapability is absent rather than represented by synthetic people.",
+        "description": "Return addressed, exact-place lines authorized for this viewer.\n\nThe object page never infers friends from co-presence or circle\nmembership. A selected_handoff_id returns only that current, eligible\nline at the requested revision; it never falls back to another\ncontribution. When the clean\nrelationship handoff owner is disabled, the capability is absent rather\nthan represented by synthetic people.",
         "operationId": "get_my_entity_people_lines_api_me_entities__entity_type___entity_id__people_lines_get",
         "parameters": [
           {
@@ -43605,6 +45307,39 @@
             "schema": {
               "type": "string",
               "title": "Entity Id"
+            }
+          },
+          {
+            "name": "selected_handoff_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Selected Handoff Id"
+            }
+          },
+          {
+            "name": "selected_handoff_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Selected Handoff Revision"
             }
           },
           {
@@ -52126,6 +53861,15 @@
         ],
         "title": "AttendanceWritebackPayload"
       },
+      "AttentionBurden": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "title": "AttentionBurden"
+      },
       "AuditEvent": {
         "properties": {
           "kind": {
@@ -55122,6 +56866,7 @@
                 "type": "string",
                 "enum": [
                   "keep",
+                  "dismiss",
                   "open_together"
                 ]
               },
@@ -59189,6 +60934,16 @@
         ],
         "title": "ContentDecisionReceipt",
         "description": "Replayable result of selecting or withholding content."
+      },
+      "ContributionSituation": {
+        "type": "string",
+        "enum": [
+          "ordinary_current_world",
+          "open_interval",
+          "recent_return",
+          "live_shared"
+        ],
+        "title": "ContributionSituation"
       },
       "ConversationAgencyResponse": {
         "properties": {
@@ -66207,6 +67962,16 @@
               }
             ]
           },
+          "reading_selection_state": {
+            "type": "string",
+            "enum": [
+              "not_requested",
+              "available",
+              "unavailable"
+            ],
+            "title": "Reading Selection State",
+            "default": "not_requested"
+          },
           "interpretation": {
             "anyOf": [
               {
@@ -66302,6 +68067,16 @@
                 "type": "null"
               }
             ]
+          },
+          "reading_selection_state": {
+            "type": "string",
+            "enum": [
+              "not_requested",
+              "available",
+              "unavailable"
+            ],
+            "title": "Reading Selection State",
+            "default": "not_requested"
           },
           "interpretation": {
             "anyOf": [
@@ -67238,6 +69013,70 @@
               }
             ],
             "title": "Active Trip Title"
+          },
+          "arrangement_state": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "planned",
+                  "confirmed",
+                  "user_reported_booked"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Arrangement State"
+          },
+          "confirmation_reference": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confirmation Reference"
+          },
+          "schedule_timezone": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Schedule Timezone"
+          },
+          "arrangement_starts_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Arrangement Starts At"
+          },
+          "arrangement_ends_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Arrangement Ends At"
           }
         },
         "additionalProperties": false,
@@ -69340,6 +71179,12 @@
             "const": "confirmed",
             "title": "Status",
             "default": "confirmed"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Revision",
+            "default": 1
           },
           "correction_action": {
             "anyOf": [
@@ -72511,7 +74356,8 @@
           "horizon_prepared_alternatives",
           "horizon_world_fact_row",
           "people_authored_region",
-          "now_sample_demonstration"
+          "now_sample_demonstration",
+          "people_original_delivery"
         ],
         "title": "HomeUnitKind"
       },
@@ -74449,6 +76295,15 @@
         ],
         "title": "IntentWorkingAssumption",
         "description": "A reversible planning hypothesis, never a confirmed constraint."
+      },
+      "InteractionAudience": {
+        "type": "string",
+        "enum": [
+          "private",
+          "group",
+          "public"
+        ],
+        "title": "InteractionAudience"
       },
       "InteractionRequest": {
         "properties": {
@@ -80114,6 +81969,249 @@
         ],
         "title": "LifeLens"
       },
+      "LifeOrganizationGroupPageV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "life-organization-group-page.v1",
+            "title": "Schema Version",
+            "default": "life-organization-group-page.v1"
+          },
+          "viewer_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "projection_version": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Projection Version"
+          },
+          "groups": {
+            "items": {
+              "$ref": "#/components/schemas/LifeOrganizationGroupV1"
+            },
+            "type": "array",
+            "maxItems": 100,
+            "title": "Groups"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          },
+          "authority": {
+            "$ref": "#/components/schemas/LifeAuthority",
+            "default": "complete"
+          },
+          "source_revisions": {
+            "items": {
+              "$ref": "#/components/schemas/RootSourceRevision"
+            },
+            "type": "array",
+            "title": "Source Revisions",
+            "default": []
+          },
+          "degradations": {
+            "items": {
+              "$ref": "#/components/schemas/RootDegradation"
+            },
+            "type": "array",
+            "title": "Degradations",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "viewer_ref",
+          "projection_version",
+          "groups"
+        ],
+        "title": "LifeOrganizationGroupPageV1",
+        "description": "Bounded group identities used to open an organized Life view."
+      },
+      "LifeOrganizationGroupV1": {
+        "properties": {
+          "group_key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,199}$",
+            "title": "Group Key"
+          },
+          "group_kind": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Group Kind"
+          },
+          "display_title": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 180
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Title"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Revision"
+          },
+          "content_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Content Revision"
+          },
+          "read_epoch": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Read Epoch"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "group_key",
+          "group_kind",
+          "revision",
+          "content_revision",
+          "read_epoch"
+        ],
+        "title": "LifeOrganizationGroupV1",
+        "description": "One current, owner-scoped organization identity."
+      },
+      "LifeOriginalMatch": {
+        "properties": {
+          "entry": {
+            "$ref": "#/components/schemas/LifeRecordEntry"
+          },
+          "captured_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Captured At"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "media_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Media Type"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "entry",
+          "captured_at"
+        ],
+        "title": "LifeOriginalMatch"
+      },
+      "LifeOriginalRefindRequest": {
+        "properties": {
+          "q": {
+            "type": "string",
+            "maxLength": 200,
+            "title": "Q",
+            "default": ""
+          },
+          "limit": {
+            "type": "integer",
+            "maximum": 100.0,
+            "minimum": 1.0,
+            "title": "Limit",
+            "default": 20
+          },
+          "cursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cursor"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "LifeOriginalRefindRequest"
+      },
+      "LifeOriginalRefindResponse": {
+        "properties": {
+          "viewer_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Viewer Id"
+          },
+          "entries": {
+            "items": {
+              "$ref": "#/components/schemas/LifeOriginalMatch"
+            },
+            "type": "array",
+            "title": "Entries"
+          },
+          "scan_limit": {
+            "type": "integer",
+            "title": "Scan Limit",
+            "default": 100
+          },
+          "has_more_sources": {
+            "type": "boolean",
+            "title": "Has More Sources"
+          },
+          "has_more_matches": {
+            "type": "boolean",
+            "title": "Has More Matches"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "viewer_id",
+          "entries",
+          "has_more_sources",
+          "has_more_matches"
+        ],
+        "title": "LifeOriginalRefindResponse"
+      },
       "LifeRecordEntry": {
         "properties": {
           "entry_id": {
@@ -80332,6 +82430,42 @@
             "type": "array",
             "title": "Degradations",
             "default": []
+          },
+          "organization_group_key": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_.:-]{1,199}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Organization Group Key"
+          },
+          "organization_group_title": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 180
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Organization Group Title"
+          },
+          "organization_group_kind": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Organization Group Kind"
           }
         },
         "additionalProperties": false,
@@ -87083,6 +89217,17 @@
         ],
         "title": "OrganizerHandoffLeaveResponse"
       },
+      "OriginalDeliveryStatus": {
+        "type": "string",
+        "enum": [
+          "prepared",
+          "active",
+          "revoked",
+          "expired"
+        ],
+        "title": "OriginalDeliveryStatus",
+        "description": "Lifecycle for one exact original delivered to one account."
+      },
       "OwnerLinkResult": {
         "properties": {
           "result_id": {
@@ -90467,6 +92612,91 @@
         "title": "PlacesEncounterTruth",
         "description": "Factual, non-preference evidence connecting this viewer to a venue.\n\nThe source distinguishes explicit member attendance from a shared Plan\noutcome. Neither establishes that the viewer selected or enjoyed it. The\nlatest originating Plan remains inspectable provenance rather than being\ncollapsed into an affinity score."
       },
+      "PlacesExactReading": {
+        "properties": {
+          "source_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "entity_ref": {
+            "$ref": "#/components/schemas/EntityRef"
+          },
+          "place_name": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Place Name"
+          },
+          "place_slug": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Place Slug"
+          },
+          "primitive_type": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Primitive Type"
+          },
+          "headline": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "Headline"
+          },
+          "body": {
+            "type": "string",
+            "maxLength": 12000,
+            "minLength": 1,
+            "title": "Body"
+          },
+          "conditions": {
+            "type": "string",
+            "maxLength": 4000,
+            "minLength": 1,
+            "title": "Conditions"
+          },
+          "limits": {
+            "type": "string",
+            "maxLength": 4000,
+            "minLength": 1,
+            "title": "Limits"
+          },
+          "source_artifact": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 1,
+            "title": "Source Artifact"
+          },
+          "valid_until": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid Until"
+          }
+        },
+        "type": "object",
+        "required": [
+          "source_ref",
+          "entity_ref",
+          "place_name",
+          "place_slug",
+          "primitive_type",
+          "headline",
+          "body",
+          "conditions",
+          "limits",
+          "source_artifact"
+        ],
+        "title": "PlacesExactReading",
+        "description": "One exact public primitive selected by a typed Home/Places door."
+      },
       "PlacesExperienceAvailability": {
         "type": "string",
         "enum": [
@@ -90813,6 +93043,14 @@
             "type": "array",
             "maxItems": 6,
             "title": "Place Names"
+          },
+          "venue_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "maxItems": 6,
+            "title": "Venue Ids"
           }
         },
         "type": "object",
@@ -91535,8 +93773,48 @@
       "PlacesReadingItem": {
         "properties": {
           "dossier_id": {
-            "type": "integer",
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Dossier Id"
+          },
+          "source_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "primitive_type": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 100,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Primitive Type"
           },
           "title": {
             "type": "string",
@@ -91601,10 +93879,10 @@
         },
         "type": "object",
         "required": [
-          "dossier_id",
           "title"
         ],
-        "title": "PlacesReadingItem"
+        "title": "PlacesReadingItem",
+        "description": "One reading door backed by either a legacy dossier or a Place Source.\n\nDossiers remain the compatibility corpus.  Public Place primitives use\ntheir immutable Source and subject refs so the root can open the existing\nexact owner read rather than pretending the primitive is a dossier."
       },
       "PlacesReadingPage": {
         "properties": {
@@ -91660,6 +93938,16 @@
           "has_more": {
             "type": "boolean",
             "title": "Has More"
+          },
+          "selected": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesExactReading"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -92177,6 +94465,77 @@
         ],
         "title": "PlacesScopeKind"
       },
+      "PlacesSearchReadingItem": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "title": "Kind",
+            "default": "reading"
+          },
+          "id": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Id"
+          },
+          "source_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "entity_ref": {
+            "$ref": "#/components/schemas/EntityRef"
+          },
+          "subject_label": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Subject Label"
+          },
+          "primitive_type": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Primitive Type"
+          },
+          "content_version": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Content Version"
+          },
+          "valid_until": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid Until"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "source_ref",
+          "entity_ref",
+          "subject_label",
+          "primitive_type",
+          "content_version"
+        ],
+        "title": "PlacesSearchReadingItem",
+        "description": "A retained, source-bound reading door beside catalog search rows.\n\nThe source ref is the exact immutable primitive version that was\nrevalidated by the canonical owner reader.  The entity ref is the existing\ndetail destination; it is deliberately separate so a reading is never\nmistaken for a catalog row.  Discovery is metadata-only: the prose stays\nbehind the existing eligible entity-detail owner read."
+      },
+      "PlacesSearchReadingState": {
+        "type": "string",
+        "enum": [
+          "available",
+          "empty",
+          "unavailable"
+        ],
+        "title": "PlacesSearchReadingState",
+        "description": "Independent status of retained reading discovery for one search."
+      },
       "PlacesSearchResponse": {
         "properties": {
           "query": {
@@ -92217,6 +94576,22 @@
             },
             "type": "array",
             "title": "Items"
+          },
+          "reading_items": {
+            "items": {
+              "$ref": "#/components/schemas/PlacesSearchReadingItem"
+            },
+            "type": "array",
+            "title": "Reading Items"
+          },
+          "reading_state": {
+            "$ref": "#/components/schemas/PlacesSearchReadingState",
+            "default": "unavailable"
+          },
+          "readings_has_more": {
+            "type": "boolean",
+            "title": "Readings Has More",
+            "default": false
           },
           "limit": {
             "type": "integer",
@@ -92635,6 +95010,315 @@
         ],
         "title": "PlacesVenueAddPreviewRequest",
         "description": "A displayed bounded Places selection; Trips supplies all write authority."
+      },
+      "PlanAssistanceAnswer": {
+        "properties": {
+          "stop": {
+            "$ref": "#/components/schemas/PlanAssistanceStop"
+          },
+          "answer": {
+            "type": "string",
+            "title": "Answer"
+          },
+          "draft": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlanAssistanceDraft"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "stop",
+          "answer"
+        ],
+        "title": "PlanAssistanceAnswer"
+      },
+      "PlanAssistanceAsk": {
+        "properties": {
+          "question": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "Question"
+          },
+          "history": {
+            "items": {
+              "$ref": "#/components/schemas/PlanAssistanceExchange"
+            },
+            "type": "array",
+            "maxItems": 6,
+            "title": "History"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "question"
+        ],
+        "title": "PlanAssistanceAsk"
+      },
+      "PlanAssistanceAudience": {
+        "properties": {
+          "conversation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Conversation Id"
+          },
+          "recipients": {
+            "items": {
+              "$ref": "#/components/schemas/PlanAssistancePerson"
+            },
+            "type": "array",
+            "title": "Recipients"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "conversation_id",
+          "recipients"
+        ],
+        "title": "PlanAssistanceAudience"
+      },
+      "PlanAssistanceDraft": {
+        "properties": {
+          "audience": {
+            "$ref": "#/components/schemas/PlanAssistanceAudience"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "audience",
+          "text"
+        ],
+        "title": "PlanAssistanceDraft"
+      },
+      "PlanAssistanceExchange": {
+        "properties": {
+          "question": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "Question"
+          },
+          "answer": {
+            "type": "string",
+            "maxLength": 3000,
+            "minLength": 1,
+            "title": "Answer"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "question",
+          "answer"
+        ],
+        "title": "PlanAssistanceExchange"
+      },
+      "PlanAssistanceMessage": {
+        "properties": {
+          "message_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Message Id"
+          },
+          "audience": {
+            "$ref": "#/components/schemas/PlanAssistanceAudience"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "effect": {
+            "type": "string",
+            "const": "message_only",
+            "title": "Effect",
+            "default": "message_only"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "message_id",
+          "audience",
+          "text",
+          "created_at"
+        ],
+        "title": "PlanAssistanceMessage"
+      },
+      "PlanAssistancePerson": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "user_id",
+          "display_name"
+        ],
+        "title": "PlanAssistancePerson"
+      },
+      "PlanAssistanceReadback": {
+        "properties": {
+          "stop": {
+            "$ref": "#/components/schemas/PlanAssistanceStop"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/PlanAssistanceMessage"
+            },
+            "type": "array",
+            "title": "Messages"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "stop",
+          "messages"
+        ],
+        "title": "PlanAssistanceReadback"
+      },
+      "PlanAssistanceSend": {
+        "properties": {
+          "conversation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Conversation Id"
+          },
+          "recipient_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "maxItems": 30,
+            "minItems": 1,
+            "title": "Recipient Ids"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Revision"
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 10000,
+            "minLength": 1,
+            "title": "Text"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Idempotency Key"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "conversation_id",
+          "recipient_ids",
+          "expected_revision",
+          "text",
+          "idempotency_key"
+        ],
+        "title": "PlanAssistanceSend"
+      },
+      "PlanAssistanceStop": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "block_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Block Id"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "time_start": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Start"
+          },
+          "time_end": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time End"
+          },
+          "timezone": {
+            "type": "string",
+            "title": "Timezone"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "trip_id",
+          "block_id",
+          "revision",
+          "title",
+          "timezone"
+        ],
+        "title": "PlanAssistanceStop"
       },
       "PlanBlock": {
         "properties": {
@@ -94961,6 +97645,126 @@
         "title": "PostcardRenderResponse",
         "description": "Outcome of a postcard render request.\n\n``render_status`` is ``ready`` (rendered_image_url set), ``failed`` (a stable\n``error`` token explains why \u2014 e.g. ``feature_disabled``, ``daily_cap_reached``,\n``no_source_image``, ``below_quality_floor``), or ``none``."
       },
+      "PracticalAssessment": {
+        "properties": {
+          "question": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,119}$",
+            "title": "Question"
+          },
+          "state": {
+            "$ref": "#/components/schemas/PracticalAssessmentState"
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Reason"
+          },
+          "evidence_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Evidence Refs",
+            "default": []
+          },
+          "observed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed At"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "question",
+          "state",
+          "reason"
+        ],
+        "title": "PracticalAssessment",
+        "description": "Claim-specific practical evidence; never a universal feasibility score."
+      },
+      "PracticalAssessmentState": {
+        "type": "string",
+        "enum": [
+          "supported",
+          "unsupported",
+          "unknown"
+        ],
+        "title": "PracticalAssessmentState",
+        "description": "Evidence state for one explicitly named practical claim."
+      },
+      "PracticalVisitIntent": {
+        "properties": {
+          "window_start": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Window Start"
+          },
+          "window_end": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Window End"
+          },
+          "visit_duration_minutes": {
+            "type": "integer",
+            "maximum": 1440.0,
+            "minimum": 1.0,
+            "title": "Visit Duration Minutes"
+          },
+          "origin_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "travel_mode": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_.:-]{1,39}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Travel Mode"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "window_start",
+          "window_end",
+          "visit_duration_minutes"
+        ],
+        "title": "PracticalVisitIntent",
+        "description": "Explicit timing supplied for one bounded place-fit question.\n\nThis is intent, not inferred availability.  A producer may ask whether a\nvisit of a known duration fits inside a stated window; it may optionally\nname an origin, but the assessment must remain unknown until a matching\nroute owner read exists for that case."
+      },
       "PredictedRecovery": {
         "type": "string",
         "enum": [
@@ -95993,6 +98797,16 @@
             "type": "string",
             "title": "Provider State",
             "default": "unbound"
+          },
+          "time": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TimeWindow"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "participant_ids": {
             "items": {
@@ -101140,6 +103954,282 @@
         "title": "RelationshipMemoryClaim",
         "description": "One governed claim; corrections supersede rather than erase history."
       },
+      "RelationshipOriginalDeliveryCreateRequest": {
+        "properties": {
+          "recipient_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Recipient User Id"
+          },
+          "submission_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Submission Id"
+          },
+          "source_object_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Source Object Id"
+          },
+          "source_revision": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 64,
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Source Revision"
+          },
+          "custody_receipt_sha256": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 64,
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Custody Receipt Sha256"
+          },
+          "caption": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 280
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Caption"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "recipient_user_id",
+          "submission_id",
+          "source_object_id",
+          "source_revision",
+          "custody_receipt_sha256",
+          "idempotency_key"
+        ],
+        "title": "RelationshipOriginalDeliveryCreateRequest",
+        "description": "Bind one exact owner-controlled Intake source to one recipient."
+      },
+      "RelationshipOriginalDeliveryResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "handoff_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Handoff Id"
+          },
+          "sender_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Sender User Id"
+          },
+          "sender_display_name": {
+            "type": "string",
+            "title": "Sender Display Name"
+          },
+          "recipient_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Recipient User Id"
+          },
+          "selection": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RelationshipOriginalSelection"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "media_type": {
+            "type": "string",
+            "title": "Media Type"
+          },
+          "byte_count": {
+            "type": "integer",
+            "title": "Byte Count"
+          },
+          "original_filename": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Original Filename"
+          },
+          "caption": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Caption"
+          },
+          "status": {
+            "$ref": "#/components/schemas/OriginalDeliveryStatus"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "effective_read_expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Effective Read Expires At"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "sender_user_id",
+          "sender_display_name",
+          "recipient_user_id",
+          "media_type",
+          "byte_count",
+          "status",
+          "revision",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "RelationshipOriginalDeliveryResponse",
+        "description": "Participant-safe metadata; source IDs are sender-only projections."
+      },
+      "RelationshipOriginalDeliveryWithdrawRequest": {
+        "properties": {
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Revision"
+          }
+        },
+        "type": "object",
+        "required": [
+          "expected_revision"
+        ],
+        "title": "RelationshipOriginalDeliveryWithdrawRequest"
+      },
+      "RelationshipOriginalEligibleRecipient": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "display_name"
+        ],
+        "title": "RelationshipOriginalEligibleRecipient"
+      },
+      "RelationshipOriginalSelection": {
+        "properties": {
+          "submission_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Submission Id"
+          },
+          "source_object_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Source Object Id"
+          },
+          "source_revision": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 64,
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Source Revision"
+          },
+          "custody_receipt_sha256": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 64,
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Custody Receipt Sha256"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "submission_id",
+          "source_object_id",
+          "source_revision",
+          "custody_receipt_sha256"
+        ],
+        "title": "RelationshipOriginalSelection",
+        "description": "The exact Source/Intake component a sender chose to deliver.\n\n``source_revision`` and ``custody_receipt_sha256`` are snapshots, not\nauthority by themselves.  The Source owner rechecks both against the\ncurrent Intake rows immediately before a recipient read."
+      },
       "RelationshipOutcomeSummary": {
         "properties": {
           "verdict": {
@@ -101459,6 +104549,16 @@
             "maxLength": 200,
             "minLength": 1,
             "title": "Idempotency Key"
+          },
+          "selected_original": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RelationshipOriginalSelection"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -101571,6 +104671,16 @@
             "maxLength": 200,
             "minLength": 1,
             "title": "Idempotency Key"
+          },
+          "selected_original": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RelationshipOriginalSelection"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -101736,6 +104846,165 @@
         "title": "RelationshipPlaceHandoffResponse",
         "description": "Viewer-safe projection that cannot leak terminal or nearby-only content."
       },
+      "RelationshipPlaceHandoffSenderResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/backend__domains__relationships__models__RelationshipScope"
+          },
+          "sender_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Sender User Id"
+          },
+          "recipient_user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Recipient User Id"
+          },
+          "world_entity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "World Entity Id"
+          },
+          "conversation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Conversation Id"
+          },
+          "message_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message Id"
+          },
+          "source_anchor_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Anchor Id"
+          },
+          "source_artifact_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Artifact Id"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "artifact_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Artifact Ref"
+          },
+          "permissions": {
+            "$ref": "#/components/schemas/HandoffPermissionEnvelope"
+          },
+          "delivery_mode": {
+            "$ref": "#/components/schemas/HandoffDeliveryMode"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "revoked",
+              "expired"
+            ],
+            "title": "Status"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "title": "Idempotency Key"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "scope",
+          "sender_user_id",
+          "conversation_id",
+          "message",
+          "permissions",
+          "delivery_mode",
+          "status",
+          "revision",
+          "idempotency_key",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "RelationshipPlaceHandoffSenderResponse",
+        "description": "Sender control projection without recipient attention state."
+      },
       "RelationshipPlaceHandoffTransition": {
         "properties": {
           "handoff": {
@@ -101880,6 +105149,64 @@
             "type": "string",
             "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@+-]{0,159}$",
             "title": "Source Ref"
+          },
+          "arrangement_state": {
+            "type": "string",
+            "enum": [
+              "planned",
+              "confirmed",
+              "user_reported_booked"
+            ],
+            "title": "Arrangement State",
+            "default": "planned"
+          },
+          "confirmation_reference": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confirmation Reference"
+          },
+          "schedule_timezone": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Schedule Timezone"
+          },
+          "starts_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Starts At"
+          },
+          "ends_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ends At"
           }
         },
         "additionalProperties": false,
@@ -103407,6 +106734,332 @@
         ],
         "title": "RootAudience"
       },
+      "RootCandidate": {
+        "properties": {
+          "candidate_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Candidate Id"
+          },
+          "root": {
+            "type": "string",
+            "enum": [
+              "home",
+              "places"
+            ],
+            "title": "Root"
+          },
+          "kind": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/HomeUnitKind"
+              },
+              {
+                "$ref": "#/components/schemas/PlacesUnitKind"
+              }
+            ],
+            "title": "Kind"
+          },
+          "region": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RootRegion"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "state": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesState"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "dominant_job": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Dominant Job"
+          },
+          "material_trigger": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Material Trigger"
+          },
+          "evidence_cluster_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Evidence Cluster Id"
+          },
+          "surface_seat_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Surface Seat Id"
+          },
+          "semantic_role": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Semantic Role"
+          },
+          "represented_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Represented Refs",
+            "default": []
+          },
+          "owner_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Owner Refs",
+            "default": []
+          },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Source Refs",
+            "default": []
+          },
+          "grant_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Grant Refs",
+            "default": []
+          },
+          "projected_surfaces": {
+            "items": {
+              "$ref": "#/components/schemas/ProductRoot"
+            },
+            "type": "array",
+            "title": "Projected Surfaces",
+            "default": []
+          },
+          "audience": {
+            "$ref": "#/components/schemas/RootAudience",
+            "default": "private"
+          },
+          "status": {
+            "$ref": "#/components/schemas/RootStatus",
+            "default": "current"
+          },
+          "freshness": {
+            "$ref": "#/components/schemas/RootFreshness",
+            "default": "fresh"
+          },
+          "lifecycle": {
+            "$ref": "#/components/schemas/RootLifecycle",
+            "default": "ephemeral"
+          },
+          "owner_surface": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ProductRoot"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "fact_key": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 300
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fact Key"
+          },
+          "novelty": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Novelty"
+          },
+          "burden": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Burden"
+          },
+          "admission_priority": {
+            "type": "integer",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Admission Priority",
+            "default": 50
+          },
+          "feasible": {
+            "type": "boolean",
+            "title": "Feasible",
+            "default": true
+          },
+          "actions": {
+            "items": {
+              "$ref": "#/components/schemas/RootAction"
+            },
+            "type": "array",
+            "title": "Actions",
+            "default": []
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RootDestination"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "payload": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/RootDirectState"
+              },
+              {
+                "$ref": "#/components/schemas/RootComposition"
+              },
+              {
+                "$ref": "#/components/schemas/RootInstrument"
+              },
+              {
+                "$ref": "#/components/schemas/RootReceipt"
+              },
+              {
+                "$ref": "#/components/schemas/RootLink"
+              },
+              {
+                "$ref": "#/components/schemas/RootRead"
+              },
+              {
+                "$ref": "#/components/schemas/RootOriginalDelivery"
+              },
+              {
+                "$ref": "#/components/schemas/RootSilence"
+              },
+              {
+                "$ref": "#/components/schemas/RootWeekShape"
+              }
+            ],
+            "title": "Payload",
+            "discriminator": {
+              "propertyName": "family",
+              "mapping": {
+                "composition": "#/components/schemas/RootComposition",
+                "direct_state": "#/components/schemas/RootDirectState",
+                "instrument": "#/components/schemas/RootInstrument",
+                "link": "#/components/schemas/RootLink",
+                "original_delivery": "#/components/schemas/RootOriginalDelivery",
+                "read": "#/components/schemas/RootRead",
+                "receipt": "#/components/schemas/RootReceipt",
+                "silence": "#/components/schemas/RootSilence",
+                "week_shape": "#/components/schemas/RootWeekShape"
+              }
+            }
+          },
+          "lead_medium": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LeadMedium"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "support_medium": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LeadMedium"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "dependency_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Dependency Refs",
+            "default": []
+          },
+          "treatment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SurfaceTreatmentProjection"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "why_this": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Why This"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "value_candidate": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ValueCandidate"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "candidate_id",
+          "root",
+          "kind",
+          "dominant_job",
+          "material_trigger",
+          "evidence_cluster_id",
+          "surface_seat_id",
+          "semantic_role",
+          "novelty",
+          "burden",
+          "payload",
+          "why_this"
+        ],
+        "title": "RootCandidate",
+        "description": "One owner-backed semantic candidate before surface admission."
+      },
       "RootComposition": {
         "properties": {
           "family": {
@@ -104329,6 +107982,78 @@
         ],
         "title": "RootLink"
       },
+      "RootOriginalDelivery": {
+        "properties": {
+          "family": {
+            "type": "string",
+            "const": "original_delivery",
+            "title": "Family",
+            "default": "original_delivery"
+          },
+          "delivery_id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Delivery Id"
+          },
+          "delivery_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Delivery Revision"
+          },
+          "sender_display_name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Sender Display Name"
+          },
+          "media_type": {
+            "type": "string",
+            "enum": [
+              "image/jpeg",
+              "image/png",
+              "image/gif",
+              "image/webp",
+              "text/plain"
+            ],
+            "title": "Media Type"
+          },
+          "caption": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 280
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Caption"
+          },
+          "effective_read_expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Effective Read Expires At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "delivery_id",
+          "delivery_revision",
+          "sender_display_name",
+          "media_type"
+        ],
+        "title": "RootOriginalDelivery",
+        "description": "Recipient-safe Home preview of an exact human original.\n\nThis payload carries no source identifiers or storage references.  The\nRelationships delivery remains the grant and source owner; the native\nreader rehydrates its current metadata/content through that owner."
+      },
       "RootProjectionDegradation": {
         "properties": {
           "owner_kind": {
@@ -104804,6 +108529,18 @@
             "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
             "title": "Unit Id"
           },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
           "kind": {
             "anyOf": [
               {
@@ -104912,6 +108649,9 @@
                 "$ref": "#/components/schemas/RootRead"
               },
               {
+                "$ref": "#/components/schemas/RootOriginalDelivery"
+              },
+              {
                 "$ref": "#/components/schemas/RootSilence"
               },
               {
@@ -104926,12 +108666,23 @@
                 "direct_state": "#/components/schemas/RootDirectState",
                 "instrument": "#/components/schemas/RootInstrument",
                 "link": "#/components/schemas/RootLink",
+                "original_delivery": "#/components/schemas/RootOriginalDelivery",
                 "read": "#/components/schemas/RootRead",
                 "receipt": "#/components/schemas/RootReceipt",
                 "silence": "#/components/schemas/RootSilence",
                 "week_shape": "#/components/schemas/RootWeekShape"
               }
             }
+          },
+          "practical_assessment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PracticalAssessment"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "actions": {
             "items": {
@@ -109671,6 +113422,569 @@
           "created_at"
         ],
         "title": "SocialCircleTripLink"
+      },
+      "SourceContributionAssemblyFindingCode": {
+        "type": "string",
+        "enum": [
+          "portfolio_clock_mismatch",
+          "portfolio_audience_mismatch",
+          "source_read_missing",
+          "source_not_authorized",
+          "source_audience_exceeded",
+          "current_context_not_authorized",
+          "current_context_audience_exceeded",
+          "current_context_expired",
+          "subject_not_authorized",
+          "shared_owner_read_missing",
+          "shared_grant_missing",
+          "selection_grant_mismatch",
+          "owner_scope_empty",
+          "owner_scope_exceeded",
+          "producer_declined",
+          "producer_failed"
+        ],
+        "title": "SourceContributionAssemblyFindingCode"
+      },
+      "SourceContributionAssemblyFindingV1": {
+        "properties": {
+          "code": {
+            "$ref": "#/components/schemas/SourceContributionAssemblyFindingCode"
+          },
+          "path": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Path"
+          },
+          "detail": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Detail"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "code",
+          "path",
+          "detail"
+        ],
+        "title": "SourceContributionAssemblyFindingV1"
+      },
+      "SourceContributionAssemblyV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "source-contribution-assembly.v1",
+            "title": "Schema Version",
+            "default": "source-contribution-assembly.v1"
+          },
+          "admitted": {
+            "type": "boolean",
+            "title": "Admitted"
+          },
+          "seed": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SourceContributionSeedV1"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "findings": {
+            "items": {
+              "$ref": "#/components/schemas/SourceContributionAssemblyFindingV1"
+            },
+            "type": "array",
+            "title": "Findings",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "admitted"
+        ],
+        "title": "SourceContributionAssemblyV1"
+      },
+      "SourceContributionCompilationV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "source-contribution-compilation.v1",
+            "title": "Schema Version",
+            "default": "source-contribution-compilation.v1"
+          },
+          "contribution_id": {
+            "type": "string",
+            "maxLength": 120,
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Contribution Id"
+          },
+          "situation": {
+            "$ref": "#/components/schemas/ContributionSituation"
+          },
+          "represented_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Represented At"
+          },
+          "grant_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Grant Refs",
+            "default": []
+          },
+          "correction_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "admitted": {
+            "type": "boolean",
+            "title": "Admitted"
+          },
+          "briefs": {
+            "items": {
+              "$ref": "#/components/schemas/CompositionBriefV1"
+            },
+            "type": "array",
+            "title": "Briefs",
+            "default": []
+          },
+          "findings": {
+            "items": {
+              "$ref": "#/components/schemas/SourceContributionFindingV1"
+            },
+            "type": "array",
+            "title": "Findings",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "contribution_id",
+          "situation",
+          "represented_at",
+          "admitted"
+        ],
+        "title": "SourceContributionCompilationV1"
+      },
+      "SourceContributionExactResultResponse": {
+        "properties": {
+          "workflow_id": {
+            "type": "string",
+            "title": "Workflow Id"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "ready",
+              "no_useful_result",
+              "failed",
+              "cancelled",
+              "unavailable"
+            ],
+            "title": "Status"
+          },
+          "result_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "production": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SourceContributionProductionV1"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          }
+        },
+        "type": "object",
+        "required": [
+          "workflow_id",
+          "status"
+        ],
+        "title": "SourceContributionExactResultResponse",
+        "description": "Owner-scoped read of one exact Source result version."
+      },
+      "SourceContributionFindingCode": {
+        "type": "string",
+        "enum": [
+          "duplicate_id",
+          "duplicate_surface",
+          "unknown_source",
+          "source_metadata_changed",
+          "source_expired",
+          "source_audience_exceeded",
+          "unknown_claim",
+          "claim_changed",
+          "unused_claim",
+          "subject_exceeded",
+          "owner_exceeded",
+          "root_not_allowed",
+          "root_coverage_incomplete",
+          "move_not_allowed",
+          "audience_changed",
+          "known_claim_relabeled",
+          "unsupported_personal_inference",
+          "novel_contribution_missing",
+          "synthesis_support_weak",
+          "root_expression_duplicated",
+          "root_job_invalid",
+          "root_payload_too_long",
+          "expression_rejected"
+        ],
+        "title": "SourceContributionFindingCode"
+      },
+      "SourceContributionFindingV1": {
+        "properties": {
+          "code": {
+            "$ref": "#/components/schemas/SourceContributionFindingCode"
+          },
+          "path": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Path"
+          },
+          "detail": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Detail"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "code",
+          "path",
+          "detail"
+        ],
+        "title": "SourceContributionFindingV1"
+      },
+      "SourceContributionProductionV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "source-contribution-production.v1",
+            "title": "Schema Version",
+            "default": "source-contribution-production.v1"
+          },
+          "assembly": {
+            "$ref": "#/components/schemas/SourceContributionAssemblyV1"
+          },
+          "compilation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SourceContributionCompilationV1"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "candidates": {
+            "items": {
+              "$ref": "#/components/schemas/RootCandidate"
+            },
+            "type": "array",
+            "title": "Candidates",
+            "default": []
+          },
+          "findings": {
+            "items": {
+              "$ref": "#/components/schemas/SourceContributionAssemblyFindingV1"
+            },
+            "type": "array",
+            "title": "Findings",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "assembly"
+        ],
+        "title": "SourceContributionProductionV1"
+      },
+      "SourceContributionRequestCreate": {
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Request Id"
+          },
+          "purpose": {
+            "$ref": "#/components/schemas/SourceContributionRequestPurpose"
+          },
+          "situation": {
+            "$ref": "#/components/schemas/ContributionSituation"
+          },
+          "allowed_roots": {
+            "items": {
+              "$ref": "#/components/schemas/ProductRoot"
+            },
+            "type": "array",
+            "maxItems": 2,
+            "minItems": 1,
+            "uniqueItems": true,
+            "title": "Allowed Roots"
+          },
+          "subject_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 16,
+            "title": "Subject Refs",
+            "default": []
+          },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 16,
+            "title": "Source Refs",
+            "default": []
+          },
+          "context_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "represented_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Represented At"
+          },
+          "timezone_name": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Timezone Name"
+          },
+          "expires_in_seconds": {
+            "type": "integer",
+            "maximum": 3600.0,
+            "minimum": 60.0,
+            "title": "Expires In Seconds",
+            "default": 900
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "request_id",
+          "purpose",
+          "situation",
+          "allowed_roots",
+          "represented_at",
+          "timezone_name"
+        ],
+        "title": "SourceContributionRequestCreate",
+        "description": "The small, content-free request a person can submit from a root.\n\nThe request names the job and its exact owner refs; it never accepts source\ntext or a free-form prompt.  ``represented_at`` is supplied by the caller\nso retries keep the same semantic identity instead of creating a fresh\nrequest merely because the network recovered later."
+      },
+      "SourceContributionRequestPurpose": {
+        "type": "string",
+        "enum": [
+          "contextual_warm",
+          "exact_comparison",
+          "public_discovery"
+        ],
+        "title": "SourceContributionRequestPurpose",
+        "description": "The bounded job a Source production request is allowed to fulfill."
+      },
+      "SourceContributionRequestResponse": {
+        "properties": {
+          "workflow_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Workflow Id"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "accepted",
+              "already_exists"
+            ],
+            "title": "Status"
+          },
+          "workflow_status": {
+            "type": "string",
+            "title": "Workflow Status"
+          },
+          "request_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "result_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          }
+        },
+        "type": "object",
+        "required": [
+          "workflow_id",
+          "status",
+          "workflow_status",
+          "request_ref",
+          "result_ref"
+        ],
+        "title": "SourceContributionRequestResponse",
+        "description": "Accepted request identity; output is recovered through the result route."
+      },
+      "SourceContributionSeedV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "source-contribution-seed.v1",
+            "title": "Schema Version",
+            "default": "source-contribution-seed.v1"
+          },
+          "seed_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Seed Id"
+          },
+          "situation": {
+            "$ref": "#/components/schemas/ContributionSituation"
+          },
+          "represented_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Represented At"
+          },
+          "audience": {
+            "$ref": "#/components/schemas/CompositionAudience"
+          },
+          "allowed_roots": {
+            "items": {
+              "$ref": "#/components/schemas/ProductRoot"
+            },
+            "type": "array",
+            "maxItems": 4,
+            "minItems": 1,
+            "uniqueItems": true,
+            "title": "Allowed Roots"
+          },
+          "allowed_moves": {
+            "items": {
+              "$ref": "#/components/schemas/CompositionProductMove"
+            },
+            "type": "array",
+            "maxItems": 4,
+            "minItems": 1,
+            "uniqueItems": true,
+            "title": "Allowed Moves"
+          },
+          "subject_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 16,
+            "minItems": 1,
+            "title": "Subject Refs"
+          },
+          "owner_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 16,
+            "minItems": 1,
+            "title": "Owner Refs"
+          },
+          "grant_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 16,
+            "title": "Grant Refs",
+            "default": []
+          },
+          "correction_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/CompositionSourceV1"
+            },
+            "type": "array",
+            "maxItems": 32,
+            "minItems": 1,
+            "title": "Sources"
+          },
+          "known_claim_texts": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 64,
+            "title": "Known Claim Texts",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "seed_id",
+          "situation",
+          "represented_at",
+          "audience",
+          "allowed_roots",
+          "allowed_moves",
+          "subject_refs",
+          "owner_refs",
+          "sources"
+        ],
+        "title": "SourceContributionSeedV1",
+        "description": "Authority-scoped material visible to a contribution producer."
       },
       "SourceRef": {
         "properties": {
@@ -118583,9 +122897,9 @@
               {
                 "type": "string",
                 "enum": [
-                  "low",
+                  "high",
                   "medium",
-                  "high"
+                  "low"
                 ]
               },
               {
@@ -120143,6 +124457,277 @@
           "type"
         ],
         "title": "ValidationError"
+      },
+      "ValueCandidate": {
+        "properties": {
+          "candidate_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Candidate Id"
+          },
+          "immediate_job": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,119}$",
+            "title": "Immediate Job"
+          },
+          "material_trigger": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Material Trigger"
+          },
+          "role": {
+            "$ref": "#/components/schemas/ValueCandidateRole"
+          },
+          "product_move": {
+            "$ref": "#/components/schemas/CompositionProductMove"
+          },
+          "result_family": {
+            "$ref": "#/components/schemas/ValueResultFamily"
+          },
+          "target_root": {
+            "$ref": "#/components/schemas/ProductRoot"
+          },
+          "audience": {
+            "$ref": "#/components/schemas/InteractionAudience",
+            "default": "private"
+          },
+          "preferred_treatment": {
+            "$ref": "#/components/schemas/TreatmentKind"
+          },
+          "quiet_treatment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TreatmentKind"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "decision_mode": {
+            "$ref": "#/components/schemas/ValueDecisionMode",
+            "default": "inferred"
+          },
+          "read_requirements": {
+            "items": {
+              "$ref": "#/components/schemas/ValueReadRequirement"
+            },
+            "type": "array",
+            "maxItems": 16,
+            "minItems": 1,
+            "title": "Read Requirements"
+          },
+          "subject_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 16,
+            "minItems": 1,
+            "title": "Subject Refs"
+          },
+          "novelty": {
+            "$ref": "#/components/schemas/CompositionClaimNovelty"
+          },
+          "evidence_strength": {
+            "$ref": "#/components/schemas/ValueSignal"
+          },
+          "epistemic_yield": {
+            "$ref": "#/components/schemas/ValueSignal"
+          },
+          "present_relevance": {
+            "$ref": "#/components/schemas/ValueSignal"
+          },
+          "compression": {
+            "$ref": "#/components/schemas/ValueSignal"
+          },
+          "burden": {
+            "$ref": "#/components/schemas/AttentionBurden"
+          },
+          "actionable": {
+            "type": "boolean",
+            "title": "Actionable",
+            "default": false
+          },
+          "feasible": {
+            "type": "boolean",
+            "title": "Feasible",
+            "default": true
+          },
+          "interruption_eligible": {
+            "type": "boolean",
+            "title": "Interruption Eligible",
+            "default": false
+          },
+          "practical_question": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_.:-]{1,119}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Practical Question"
+          },
+          "practical_answer_requested": {
+            "type": "boolean",
+            "title": "Practical Answer Requested",
+            "default": false
+          },
+          "practical_intent": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PracticalVisitIntent"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "practical_assessment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PracticalAssessment"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "lead_medium": {
+            "$ref": "#/components/schemas/LeadMedium"
+          },
+          "support_medium": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LeadMedium"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Expires At"
+          },
+          "correction_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "candidate_id",
+          "immediate_job",
+          "material_trigger",
+          "role",
+          "product_move",
+          "result_family",
+          "target_root",
+          "preferred_treatment",
+          "read_requirements",
+          "subject_refs",
+          "novelty",
+          "evidence_strength",
+          "epistemic_yield",
+          "present_relevance",
+          "compression",
+          "burden",
+          "lead_medium",
+          "expires_at"
+        ],
+        "title": "ValueCandidate",
+        "description": "One owner-bound proposal before root layout or generated expression."
+      },
+      "ValueCandidateRole": {
+        "type": "string",
+        "enum": [
+          "operational",
+          "clarification",
+          "coordination",
+          "world_opening",
+          "continuity"
+        ],
+        "title": "ValueCandidateRole"
+      },
+      "ValueDecisionMode": {
+        "type": "string",
+        "enum": [
+          "deterministic",
+          "inferred"
+        ],
+        "title": "ValueDecisionMode"
+      },
+      "ValueReadRequirement": {
+        "properties": {
+          "operation_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.]{2,79}$",
+            "title": "Operation Id"
+          },
+          "resource_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Resource Refs",
+            "default": []
+          },
+          "accepted_omission_codes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Accepted Omission Codes",
+            "default": []
+          },
+          "requires_evidence_refs": {
+            "type": "boolean",
+            "title": "Requires Evidence Refs",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "operation_id"
+        ],
+        "title": "ValueReadRequirement"
+      },
+      "ValueResultFamily": {
+        "type": "string",
+        "enum": [
+          "direct_state",
+          "composition",
+          "instrument",
+          "receipt",
+          "owner_link",
+          "read",
+          "week_shape",
+          "prose"
+        ],
+        "title": "ValueResultFamily"
+      },
+      "ValueSignal": {
+        "type": "string",
+        "enum": [
+          "zero",
+          "low",
+          "medium",
+          "high"
+        ],
+        "title": "ValueSignal"
       },
       "VenueBriefFeedResponse": {
         "properties": {

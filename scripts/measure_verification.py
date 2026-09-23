@@ -73,6 +73,7 @@ def git_commit(repo_path: Path) -> str | None:
         out = subprocess.run(
             ["git", "rev-parse", "HEAD"],
             cwd=repo_path,
+            env={k: v for k, v in os.environ.items() if k not in {"GIT_DIR", "GIT_WORK_TREE", "GIT_COMMON_DIR", "GIT_INDEX_FILE"}},
             capture_output=True,
             text=True,
             check=True,
@@ -95,6 +96,7 @@ def git_dirty(repo_path: Path) -> bool | None:
         out = subprocess.run(
             ["git", "status", "--porcelain"],
             cwd=repo_path,
+            env={k: v for k, v in os.environ.items() if k not in {"GIT_DIR", "GIT_WORK_TREE", "GIT_COMMON_DIR", "GIT_INDEX_FILE"}},
             capture_output=True,
             text=True,
             check=True,

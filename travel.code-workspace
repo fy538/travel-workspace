@@ -6,11 +6,11 @@
     },
     {
       "name": "Travel Agent",
-      "path": "Travel Agent"
+      "path": "travel-agent"
     },
     {
       "name": "Travel App",
-      "path": "Travel App"
+      "path": "travel-app"
     }
   ],
   "settings": {

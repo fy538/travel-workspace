@@ -1,192 +1,115 @@
 # AGENTS.md — Travel Workspace
 
-## Purpose
+This is the cross-repository coordination workspace for Vesper. The workspace,
+`travel-agent/` (Python/FastAPI/Postgres/Qdrant), and `travel-app/` (React Native/
+Expo/TypeScript) are three independent Git repositories. Keep their histories
+separate; never convert the children into submodules. Shared docs, scripts,
+contracts and meta tooling belong here; product source belongs in the children.
 
-This folder is the **cross-repo workspace root** for the travel product.
+## Task context
 
-It coordinates two independent repositories:
+1. Establish actual paths, branches, HEADs, worktrees and dirty changes before
+   substantive edits: `git status --short`, `git branch -a`, `git worktree list`
+   in each affected repo. `python3 scripts/session-context.py` gives a bounded
+   orientation from this workspace or a descendant. Committed history and
+   uncommitted work both matter; remembered status is only a dated observation.
+2. Use `docs/README.md` to find the relevant authority. Read the affected child's
+   `AGENTS.md`, its Task Intake, owner contract and nearest implementation/tests.
+   Onboarding is for setup or unfamiliar architecture; expand context when the
+   task or an explicit rule requires it. Claude-specific adapters are in
+   `CLAUDE.md`; shared rules are owned here and in the child AGENTS files.
+3. State intended behavior, owning layer and acceptance evidence before changing
+   behavior. One sentence is enough for a small change. Classify uncertainty as
+   unresolved until evidence supports or refutes it; reviewer votes are not proof.
+4. Use an isolated coordinated lane when another session owns the same files.
+   `scripts/new-worktree.sh <name>` creates a workspace plus both child worktrees
+   from their recorded current HEADs. `--base REF` is explicit. Run cross-repo
+   commands inside that lane, never against an unrelated canonical sibling.
 
-| Repo | Path | Stack | Purpose |
-|---|---|---|---|
-| `Travel Agent` | `./Travel Agent/` | Python, FastAPI, Postgres, Qdrant | Backend API, agent systems, database, OpenAPI source |
-| `Travel App` | `./Travel App/` | React Native, Expo, TypeScript | Mobile client, UI, generated API types |
+For Chat input, share/intake, memory write-back, Occasion contribution, receipts,
+correction, audience effects or delegated action, read
+`docs/systems/contribution-and-consequence.md`: it owns gesture resolution,
+five-axis authority, owner handoff and causal repair across repositories.
 
-This is a **workspace repo**, not a superproject:
+## API contract
 
-- Keep `Travel Agent` and `Travel App` as separate git repositories.
-- Do **not** convert them into submodules.
-- Use this parent folder for shared docs, shared scripts, and cross-repo workflows.
+The complete backend snapshot is `docs/openapi.json`. The workspace derives
+`docs/openapi.app.json` from active mobile operations and their governance;
+`travel-app/utils/api/schema.gen.ts` is generated from that projection.
 
-Read each repo's own `AGENTS.md` / `CLAUDE.md` for repo-specific rules.
+After backend models/routes change:
 
-For work on Chat input, share/intake, memory write-back, Occasion contribution,
-receipts, correction, audience effects, or delegated action, read
-`docs/systems/contribution-and-consequence.md`; it is the cross-repository
-contract for gesture resolution, five-axis authority, owner handoff, and causal
-repair.
+1. Update backend implementation and tests in this lane's `travel-agent/`.
+2. Run `./scripts/sync-types.sh` from this lane's workspace. It exports offline
+   by default. `--from-snapshot` regenerates from committed input; `--live` uses
+   an explicitly selected running backend.
+3. Review the full snapshot, app projection, generated types and consumers
+   together. Resolve frontend breakage before finishing.
+4. Run `make api-coverage-check` after adding, adopting or retiring an endpoint.
 
-## Working Model
+Never hand-edit generated types or duplicate backend wire models in TypeScript.
+UI-specific models and reviewed adapters follow the app's schema-bridge policy.
 
-Use this workspace root when:
+## Verification and delivery
 
-- a task spans backend + frontend
-- you are syncing API contract changes
-- you are editing shared docs or scripts
-- you want Codex to see both repos in one project
+Run focused checks during iteration and retain the relevant Task Intake contract,
+integration, behavioral and visual evidence. `make verify` remains the coordinated
+pre-push gate; `verify-changed` is experimental and does not replace it.
 
-Use a child repo root when:
+For setup or verification changes, prove the command in its intended environment:
+record checkout/tool versions, required services and packaged inputs. Distinguish
+a defined check, an executed check and a required merge check. Missing tools,
+crashes and unavailable services are unverified/error states. Consequential
+checker changes need representative valid, violating and tool-failure cases.
 
-- the task is isolated to one codebase
-- you want tighter context and fewer accidental cross-repo edits
+Report exact commands, revisions and evidence boundaries: passed, failed,
+blocked, unrun or stale. Name skipped/quarantined tests. Mocked tests, carried
+verdicts and another agent's review prove only their stated boundaries. Record
+measurements with `scripts/measure_verification.py`; do not infer productivity
+improvements from fewer instructions or more tests.
 
-## Cross-Repo Contract
+Update the existing owner doc/check when a defect exposes missing context.
+Preserve its rationale; avoid adding a permanent global rule for every incident.
+Follow `docs/governance/README.md` for documentation lifecycle and admission.
 
-### API schema
+## Git and runtime ownership
 
-The backend exposes OpenAPI at:
+- Name branches descriptively with the `codex/` prefix unless the task specifies
+  otherwise. A commit lands on the branch currently checked out; verify it.
+- Stage explicit filenames; never `git add -A` or `git add .`. Preserve another
+  session's edits and branches. Do not switch or fast-forward its checkout.
+- `scripts/land-worktree.sh <name>` requires clean, current lane branches and
+  runs `make verify` before any publishing. `--publish` pushes lane branches for
+  protected-main PR review. It does not push main or remove worktrees.
+- A worktree isolates files, not services. The lane's `.workspace-lane.json`
+  records Compose project, Postgres/Qdrant/API/Expo ports and exclusive device.
+  Check `scripts/dev.sh --print-runtime` before starting it. Details and legacy
+  layout support live in `docs/Workspace Repo Setup.md`.
+- Backend DB tests require `TEST_DATABASE_URL` and `TEST_DATABASE_DISPOSABLE=1`.
+  Never run fixture cleanup against an ambient development/production database.
+- Existing user authorization applies to necessary implementation work. Preserve
+  founder review for unresolved product/authority/architecture choices; do not
+  ask the same permission again just because an authorized fix touches a named file.
+  Deployment, publication and product-policy changes need their own authorization.
 
-- live: `http://localhost:8000/openapi.json`
-- complete committed snapshot: `./docs/openapi.json`
+## Commands and setup
 
-The workspace deterministically derives the active mobile contract at:
-
-- generated app projection: `./docs/openapi.app.json`
-
-The frontend consumes generated types from:
-
-- `Travel App/utils/api/schema.gen.ts`
-
-### Required workflow for backend API changes
-
-When backend models or routes change:
-
-1. Update backend code and tests in `Travel Agent`
-2. Run `./scripts/sync-types.sh` from this workspace root
-3. Review `docs/openapi.json` and the derived `docs/openapi.app.json`
-4. Review `Travel App/utils/api/schema.gen.ts`
-5. Fix any frontend type breakage before finishing
-
-Do not hand-maintain TypeScript copies of backend schema models when generated types are appropriate.
-
-## Commands
-
-Run these from `/Users/feihuyan/Documents/Claude/Travel Workspace`:
-
-```bash
-make dev                  # backend infra + API + Expo
-make dev-backend          # backend infra + API only
-make sync-types           # fetch live OpenAPI and regenerate frontend types
-make sync-types-snapshot  # regenerate from committed snapshot
-make typecheck            # frontend typecheck
-make doctor               # workspace health check
-make test-backend         # backend offline tests
-make test-frontend        # frontend Jest
-make test-all             # offline backend + frontend tests
-make status               # quick cross-repo git status
-```
-
-## Git Guidance
-
-- Treat this repo as a lightweight coordination layer.
-- Keep child-repo history in the child repos.
-- Avoid storing product source code directly in this parent repo.
-- It is okay for this repo to track:
-  - shared docs
-  - scripts
-  - workspace files
-  - meta tooling
-
-Recommended git model:
-
-- one branch in `Travel Agent` per backend change
-- one branch in `Travel App` per frontend change
-- this parent repo changes only when shared tooling/docs/workspace config changes
-
-### Concurrent sessions
-
-Multiple agent sessions are routinely active across both child repos at once
-(parallel branches, review worktrees like `travel-agent-review/`,
-`travel-app-fixes/`). There's no shared lock or task board today, so the only
-protection against silently colliding is discipline:
-
-- **Before starting substantive work**, check `git branch -a` and `git status`
-  in the repo(s) you're about to touch — another session's uncommitted or
-  unmerged work on the same surface is the most common source of confusion,
-  not a merge conflict you'll see coming.
-- **Name branches descriptively** (`<surface>-<short-desc>`, e.g.
-  `fix/discover-order-trips-refetch`) so a human or another session scanning
-  `git branch -a` can tell what's in flight without opening each one.
-- **Stage commits explicitly by filename — never `git add -A` or `git add .`.**
-  This is the single most effective guard: it means a concurrent session's
-  unrelated, uncommitted changes in the same working tree never get swept
-  into your commit by accident, whichever branch happens to be checked out.
-- **Whatever branch is checked out when you commit is where the commit
-  lands** — there's no automatic routing to `main`. If your work needs to be
-  on `main`, check the current branch first and say so explicitly if it
-  isn't, rather than assuming.
-
-## Suggested Local Setup
-
-- Open this parent folder as a Codex project for cross-repo work.
-- Keep a saved multi-root editor workspace that includes:
-  - `Travel Agent`
-  - `Travel App`
-  - this parent repo's `docs/` and `scripts/`
-- Use `git worktree` inside each child repo when you want parallel feature branches or multiple AI threads.
-
-## Files In This Repo
-
-- `AGENTS.md` — cross-repo AI guidance
-- `CLAUDE.md` — existing cross-repo guidance for Claude-oriented workflows
-- `README.md` — human-readable workspace map
-- `Makefile` — cross-repo commands
-- `docs/openapi.json` — committed API snapshot
-- `docs/openapi.app.json` — generated active-mobile API projection
-- `scripts/dev.sh` — start local stack
-- `scripts/doctor.sh` — validate workspace/tooling setup
-- `scripts/new-worktree.sh` / `scripts/land-worktree.sh` — coordinated cross-repo worktree lane (create/land)
-- `scripts/sync-types.sh` — regenerate frontend API types
-- `travel.code-workspace` — editor workspace file
-
-## Cursor Cloud specific instructions
-
-### Prerequisite: child repo access
-
-This workspace coordinates two **private** child repos (`fy538/travel-agent` and `fy538/travel-app`). The Cursor GitHub App installation must be granted access to both repos, otherwise `make bootstrap` and all downstream commands will fail. The repos must be added under **Settings → GitHub Apps → Cursor → Repository access** for the `fy538` GitHub account.
-
-### System dependencies (pre-installed in the VM snapshot)
-
-- **Python 3.13** — installed via `deadsnakes` PPA (`python3.13`, `python3.13-venv`, `python3.13-dev`)
-- **Node.js 20** — managed by `nvm` (pre-installed in the base image)
-- **Docker Engine 28.x** — configured with `fuse-overlayfs` storage driver and `iptables-legacy` for nested-container compatibility
-
-### Starting Docker
-
-Docker daemon is not auto-started. Run before any `docker compose` operation:
+Run from the actual workspace/lane root, not a hardcoded personal path:
 
 ```bash
-sudo dockerd &>/tmp/dockerd.log &
-sleep 3
+make bootstrap             # clone/adopt lowercase independent child checkouts
+make doctor                # source/tooling checks; services are opt-in
+make dev-backend            # isolated infra + migrations + supervised API
+make dev                   # also starts Expo; select the intended device
+make sync-types            # offline backend export + projection + frontend types
+make sync-types-snapshot   # regenerate from committed full snapshot
+make typecheck
+make test-backend           # offline; no DB probing or cleanup
+make test-frontend
+make verify
+make status
 ```
 
-### Bootstrap sequence (once child repos are accessible)
-
-```bash
-make bootstrap                                              # clone child repos
-cd travel-agent && python3.13 -m venv .venv && source .venv/bin/activate && pip install -r requirements-dev.txt
-cd travel-app && npm ci
-```
-
-### Running services
-
-See `README.md` and `CLAUDE.md` for the full command reference. Key commands:
-
-- `make dev-backend` — Docker infra (Postgres + Qdrant) + API server (no Expo)
-- `make test-backend` — offline pytest (skips `requires_postgres` and `requires_api_keys`)
-- `make test-frontend` — Jest
-- `make typecheck` — `tsc --noEmit` in Travel App
-- `make contract-check` — verify OpenAPI snapshot ↔ generated types
-
-### Environment variables
-
-The backend requires `ANTHROPIC_API_KEY` for AI features. Set `SKIP_AUTH=true` to bypass Clerk JWT auth in dev. Database and Qdrant URLs are auto-configured by `docker-compose.yml` defaults.
+Private child access, Python 3.13, Node/Expo prerequisites and cloud setup are in
+`README.md` and `docs/Workspace Repo Setup.md`. Actual GitHub check names, token
+requirements and tested revision tuples live in `docs/reliability/CI Plan.md`.

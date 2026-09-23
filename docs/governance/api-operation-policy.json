@@ -714,7 +714,13 @@
     },
     "GET /api/me/entities/{entity_type}/{entity_id}/presentation-v2": {
       "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "getEntityDetailPresentationV2", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "getEntityDetailPresentationV2",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "places",
@@ -724,7 +730,13 @@
     },
     "POST /api/me/entities/{entity_type}/{entity_id}/situation": {
       "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "getEntitySituation", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "getEntitySituation",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "places",
@@ -851,6 +863,38 @@
       "owner": "multiplayer",
       "reason": "Server-side control ledger remains dark pending a verified client recovery flow.",
       "removal_trigger": "Add a device-validated client or remove the transport.",
+      "review_by": "2026-10-30"
+    },
+    "GET /api/agent-workflows/{workflow_id}/result": {
+      "audience": "app",
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "integration",
+      "reason": "Owner-only exact Source result reopening is a read-only recovery path for already retained output; new production remains separately gated.",
+      "removal_trigger": "Remove only with an equivalent owner-scoped exact-result recovery transport.",
+      "review_by": "2026-10-30",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "getSourceContributionResult",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ]
+    },
+    "POST /api/agent-workflows/source-contribution": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "submitSourceContributionRequest",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": "ROOT_SOURCE_CONTRIBUTION_PRODUCTION_ENABLED",
+      "lifecycle": "active",
+      "owner": "integration",
+      "reason": "A typed mobile request can submit one bounded private Source job to the existing durable workflow fence.",
+      "removal_trigger": "Remove only with an equivalent owner-scoped request transport.",
       "review_by": "2026-10-30"
     },
     "POST /api/proposal-guest-capabilities/{capability_token}/claim": {
@@ -2988,6 +3032,16 @@
       "removal_trigger": null,
       "review_by": null
     },
+    "POST /api/life/originals/refind": {
+      "audience": "app",
+      "consumers": [{ "kind": "app_source", "name": "lifeOriginalRefind", "source": "travel-app/utils/api/http.ts" }],
+      "feature_flag": "EXPO_PUBLIC_LIFE_REFIND_LANE",
+      "lifecycle": "active",
+      "owner": "life",
+      "reason": "Internal Life metadata refinding of at most 100 current owner-retained originals; no body indexing or new custody.",
+      "removal_trigger": "Retire only with a successor preserving owner-scoped exact original re-entry.",
+      "review_by": "2026-10-31"
+    },
     "POST /api/life/refind": {
       "audience": "app",
       "consumers": [
@@ -3678,6 +3732,22 @@
       "removal_trigger": "Remove only when an equivalent owner-visible lifecycle receipt is served by another transport.",
       "review_by": "2026-10-30"
     },
+    "GET /api/intake/submissions/{submission_id}/objects/{object_id}/media": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "intakeSourceObjectMediaUrl",
+          "source": "travel-app/utils/intakeSourceMedia.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "intake",
+      "reason": "The owner-scoped original reader streams verified source bytes without exposing private storage keys.",
+      "removal_trigger": "Remove only when an equivalent owner-scoped media reader preserves current custody checks.",
+      "review_by": "2026-10-30"
+    },
     "DELETE /api/intake/submissions/{submission_id}": {
       "audience": "app",
       "consumers": [
@@ -3782,6 +3852,91 @@
       "owner": "life",
       "reason": "Additive typed Life v1 read projection; native client root remains independently flag-gated.",
       "removal_trigger": "Remove only after an equivalent canonical Life read contract is landed.",
+      "review_by": "2026-10-30"
+    },
+    "GET /api/relationships/place-handoffs/sent": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "listSentRelationshipPlaceHandoffs"
+        }
+      ],
+      "feature_flag": "RELATIONSHIP_UUID_HANDOFFS_ENABLED",
+      "lifecycle": "active",
+      "owner": "relationships",
+      "reason": "Sender-only handoff history is consumed by the reviewed Place-card sender control to restore withdrawal state and reconcile uncertain delivery; the response omits recipient attention and remains behind the relationship gate.",
+      "removal_trigger": "Remove only with an equivalent sender-control history reader or when the sender withdrawal/reconciliation capability is retired.",
+      "review_by": "2026-10-30"
+    },
+    "GET /api/relationships/original-deliveries": {
+      "audience": "app",
+      "consumers": [{"kind": "app_source", "name": "listOriginalDeliveries", "source": "travel-app/utils/api/httpOriginalDeliveries.ts"}],
+      "feature_flag": "RELATIONSHIP_UUID_HANDOFFS_ENABLED",
+      "lifecycle": "active",
+      "owner": "relationships",
+      "reason": "Recipient-only original-first doorway for the adopted one-account exact-original display rule.",
+      "removal_trigger": "Remove with the bounded original receiving capability.",
+      "review_by": "2026-10-30"
+    },
+    "GET /api/relationships/original-deliveries/eligible-recipients": {
+      "audience": "app",
+      "consumers": [{"kind": "app_source", "name": "listEligibleOriginalRecipients", "source": "travel-app/utils/api/httpOriginalDeliveries.ts"}],
+      "feature_flag": "RELATIONSHIP_UUID_HANDOFFS_ENABLED",
+      "lifecycle": "active",
+      "owner": "relationships",
+      "reason": "Sender picker is limited to existing eligible account pairs.",
+      "removal_trigger": "Remove with the bounded original sending capability.",
+      "review_by": "2026-10-30"
+    },
+    "GET /api/relationships/original-deliveries/sent": {
+      "audience": "app",
+      "consumers": [{"kind": "app_source", "name": "listSentOriginalDeliveries", "source": "travel-app/utils/api/httpOriginalDeliveries.ts"}],
+      "feature_flag": "RELATIONSHIP_UUID_HANDOFFS_ENABLED",
+      "lifecycle": "active",
+      "owner": "relationships",
+      "reason": "Sender-owned durable readback omits recipient attention and read receipts.",
+      "removal_trigger": "Remove with sender withdrawal/readback.",
+      "review_by": "2026-10-30"
+    },
+    "GET /api/relationships/original-deliveries/{delivery_id}": {
+      "audience": "app",
+      "consumers": [{"kind": "app_source", "name": "getOriginalDelivery", "source": "travel-app/utils/api/httpOriginalDeliveries.ts"}],
+      "feature_flag": "RELATIONSHIP_UUID_HANDOFFS_ENABLED",
+      "lifecycle": "active",
+      "owner": "relationships",
+      "reason": "Participant-scoped metadata rechecks current grant before the exact viewer.",
+      "removal_trigger": "Remove with the bounded original viewer.",
+      "review_by": "2026-10-30"
+    },
+    "GET /api/relationships/original-deliveries/{delivery_id}/content": {
+      "audience": "app",
+      "consumers": [{"kind": "app_url", "name": "originalDeliveryContentUrl", "source": "travel-app/utils/api/httpOriginalDeliveries.ts"}],
+      "feature_flag": "RELATIONSHIP_UUID_HANDOFFS_ENABLED",
+      "lifecycle": "active",
+      "owner": "relationships",
+      "reason": "Recipient-only no-store stream of current owner-validated text/image bytes.",
+      "removal_trigger": "Remove with the exact original viewer.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/relationships/original-deliveries": {
+      "audience": "app",
+      "consumers": [{"kind": "app_source", "name": "createOriginalDelivery", "source": "travel-app/utils/api/httpOriginalDeliveries.ts"}],
+      "feature_flag": "RELATIONSHIP_UUID_HANDOFFS_ENABLED",
+      "lifecycle": "active",
+      "owner": "relationships",
+      "reason": "One sender-selected exact retained original to one eligible account.",
+      "removal_trigger": "Remove with the bounded original sender action.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/relationships/original-deliveries/{delivery_id}/withdraw": {
+      "audience": "app",
+      "consumers": [{"kind": "app_source", "name": "withdrawOriginalDelivery", "source": "travel-app/utils/api/httpOriginalDeliveries.ts"}],
+      "feature_flag": "RELATIONSHIP_UUID_HANDOFFS_ENABLED",
+      "lifecycle": "active",
+      "owner": "relationships",
+      "reason": "Sender-controlled withdrawal with optimistic revision checking.",
+      "removal_trigger": "Remove with sender withdrawal.",
       "review_by": "2026-10-30"
     }
   },

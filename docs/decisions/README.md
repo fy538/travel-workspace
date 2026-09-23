@@ -4,7 +4,7 @@ status: accepted
 owner: founder / engineering
 created: 2026-07-09
 decided: 2026-07-09
-last_verified: 2026-09-06
+last_verified: 2026-09-07
 why_new: Provide one index and lifecycle for durable decisions instead of leaving them in working notes.
 supersedes: []
 source_of_truth_for: [decision-record-index]
@@ -18,7 +18,9 @@ Durable choices that constrain future work belong here. Use the
 
 | Date | Decision | Status |
 |---|---|---|
-| 2026-09-06 | [Reconcile consumer strategy: everyday entry, continuity, responsibility and economics](2026-09-06-reconcile-consumer-strategy.md) | accepted direction; memory policy and pricing unresolved |
+| 2026-09-09 | [Exact selected-original display for one recipient](2026-09-09-exact-original-recipient-display.md) | accepted bounded Send/display contract; AI use, broader audiences and runtime activation remain separate |
+| 2026-09-08 | [Capture owns candidate lifecycle; graph anchors remain projections](2026-09-08-capture-candidate-lifecycle.md) | accepted ownership and implementation boundary; serving remains gated |
+| 2026-09-06 | [Reconcile consumer strategy: everyday entry, continuity, responsibility and economics](2026-09-06-reconcile-consumer-strategy.md), with [September 7 refinement](2026-09-06-reconcile-consumer-strategy.md#5-september-7-refinement-complete-benefits-selective-context-and-voluntary-choice) | accepted direction and evaluation standard; history/use agreement, launch coverage and pricing unresolved |
 | 2026-09-05 | [Adopt the Plan in seven sentences](2026-09-05-adopt-the-plan-in-seven-sentences.md) | accepted |
 | 2026-09-05 | [Home borrows Life's pass grammar; the crown is arbitrated](2026-09-05-home-borrows-life-pass-grammar.md) | accepted |
 | 2026-09-05 | [Amend the Home composition canon](2026-09-05-amend-home-composition-canon.md) | accepted |
@@ -56,8 +58,9 @@ Investigations must not turn into settled choices without explicit graduation he
 
 ## Pending decision packets — not adopted
 
-The following working proposals were requested on September 6. They are not
-accepted ADRs and do not change runtime authority. Review/approval promotes the
+The following working proposals were requested on September 6, with subsequent
+refinements recorded in their own documents. They are not accepted ADRs and do
+not change runtime authority. Review/approval promotes the
 agreed choice into a dated decision; the existing contribution contract remains
 in force until then.
 
@@ -69,5 +72,8 @@ in force until then.
   recommends one person-owned prospective owner in the existing graph domain,
   not a mandatory Plan or a Life/Home writer.
 - [Conversation history, source expiry and optional continuity](../working/conversation-history-source-expiry-decision-proposal-2026-09-06.md):
-  recommends separate history/custody/reuse permissions; optional cross-session
-  continuity remains unadopted. No retention expansion or historical purge follows.
+  latest recommendation is [selective long-range continuity, §10](../working/conversation-history-source-expiry-decision-proposal-2026-09-06.md#10-selective-long-range-continuity-four-complete-experiences),
+  with [scoped controls, §4](../working/conversation-history-source-expiry-decision-proposal-2026-09-06.md#4-simple-controls-with-exact-consequences).
+  The older 90-day treatment remains a comparison, not the current recommendation.
+  The agreement is still unadopted; current Ask/T0 and source-expiry rules remain
+  effective. No retention expansion, backfill or historical purge follows.

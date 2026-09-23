@@ -2,6 +2,7 @@
 # bootstrap-repos.sh — Clone or validate the child repos used by this workspace.
 
 set -euo pipefail
+unset GIT_DIR GIT_WORK_TREE GIT_COMMON_DIR GIT_INDEX_FILE
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
@@ -33,8 +34,13 @@ clone_or_validate() {
   local target="$WORKSPACE_DIR/$dirname"
 
   header "$label"
+  # Adopt a valid legacy checkout by alias without duplicating its history.
+  if [ ! -e "$target" ] && [ -e "$WORKSPACE_DIR/$label/.git" ]; then
+    git -C "$WORKSPACE_DIR/$label" rev-parse --is-inside-work-tree >/dev/null || fail "Invalid legacy checkout: $label"
+    ln -s "$label" "$target"
+  fi
 
-  if [ -d "$target/.git" ]; then
+  if [ -e "$target/.git" ] && git -C "$target" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
     ok "$dirname already exists as a git repo"
     local origin
     origin="$(git -C "$target" remote get-url origin 2>/dev/null || true)"
@@ -55,11 +61,11 @@ clone_or_validate() {
 }
 
 header "Workspace"
-[ -d "$WORKSPACE_DIR/.git" ] || fail "Run this from a cloned Travel Workspace repo"
+[ -e "$WORKSPACE_DIR/.git" ] || fail "Run this from a cloned Travel Workspace repo"
 ok "workspace repo present at $WORKSPACE_DIR"
 
-clone_or_validate "Travel Agent" "Travel Agent" "$TRAVEL_AGENT_REPO"
-clone_or_validate "Travel App" "Travel App" "$TRAVEL_APP_REPO"
+clone_or_validate "Travel Agent" "travel-agent" "$TRAVEL_AGENT_REPO"
+clone_or_validate "Travel App" "travel-app" "$TRAVEL_APP_REPO"
 
 header "Next"
 printf "Run: make doctor\n"

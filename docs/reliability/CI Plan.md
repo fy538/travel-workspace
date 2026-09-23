@@ -1,137 +1,93 @@
-# Reliability CI Plan
+---
+doc_type: runbook
+status: active
+owner: engineering
+created: 2026-09-07
+last_verified: 2026-09-07
+why_new: Describes the actual three-repository CI contract, immutable candidate identity, private checkout credentials, and enforcement checks.
+---
 
-The workspace repo is not a superproject, so CI must check out three repos:
+# Reliability CI
 
-- The workspace repo at the job root.
-- `travel-agent` into `Travel Agent/`.
-- `travel-app` into `Travel App/`.
+Use one coordinated checkout: workspace at the job root, backend in
+`travel-agent/`, frontend in `travel-app/`. Both children remain independent
+repositories. Local worktrees use the same layout.
 
-That shape matches local development and lets the workspace Makefile run the
-same commands in CI.
+## Required checks and evidence
 
-## Current CI Gate
+GitHub Actions was disabled in workspace and backend at the September 7 audit.
+It has been re-enabled. Their main-branch protection had unrelated frontend
+check names; those names have been replaced while preserving strict updates,
+review approval, administrator enforcement, and no force pushes/deletions.
 
-The workspace reliability workflow runs:
+| Repository | Required GitHub Actions checks |
+| --- | --- |
+| workspace | `Contract and golden paths` |
+| backend | `lint`, `import-boundaries`, `typecheck`, `test`, `test-db-migrate`, `test-db`, `dogfood-persona-gate`, `eval-replay` |
+| frontend | `Lint`, `Frontend governance`, `Security audit`, `Visual evidence contracts`, `Type check`, `Test`, `API types freshness`, `Logic QA journeys`, `QA tooling contracts`, `Design alignment gate` (also emitted for documentation-only PRs) |
 
-```bash
-make contract-check
-make golden-path-qa
-```
+The new `package-smoke` job is implemented in this lane. Add it to required
+checks after publishing the workflow and verifying its emitted check name;
+requiring it before a remote workflow can emit it would block unrelated PRs.
 
-This is intentionally smaller than `make offline-qa`. The full offline ladder
-is great locally, but the backend suite has thousands of tests and belongs in
-the backend repo's own CI. The workspace gate should catch cross-repo contract
-drift and MVP journey regressions without duplicating every child-repo check.
+A workflow definition, a completed passing run, and a required branch-protection
+check are three different facts. Verify all three on the candidate revision.
+A passing local subset cannot certify failed, skipped, or unrun required lanes.
+Inspect Actions enablement, branch protection, and run/check conclusions through
+the GitHub UI or API when troubleshooting enforcement. Keep screenshots and
+native judgments separate from build/typecheck evidence.
 
-The workflow also writes `reliability-report.txt` and uploads it as a GitHub
-Actions artifact on every run, including failed runs. That report is a cheap
-snapshot of OpenAPI shape, test surface, and the three repo working states.
+## Exact candidate identity
 
-## Cross-Repo Triggering
+`docs/child-repos.ci-lock.json` pins immutable child commits. On a child-success
+repository dispatch, `scripts/resolve_ci_tuple.py` substitutes only the triggering
+child SHA after validating repository, event type, and full commit format. The
+other child remains pinned. It records the workspace and both child SHAs in
+`candidate-tuple.json`, checks actual checked-out HEADs against that tuple, and
+uploads the tuple even on failure. The dispatch payload is data, never shell code.
 
-The workspace workflow runs on:
+App CI separately pins its workspace/backend dependencies in
+`.github/ci-lock.json`. Publish child commits before pinning them in a dependent
+repository. A newer untested child commit does not inherit an older tuple's pass.
 
-- pushes and pull requests in `travel-workspace`
-- manual `workflow_dispatch`
-- `repository_dispatch` events from child repos
+Backend dispatch waits for every backend prerequisite, including the deployed
+artifact import smoke. App dispatch follows its own required lanes. Workspace
+CI owns cross-repository OpenAPI freshness, generated contracts, journeys,
+registry/governance, and reliability checks. Child CI owns its language and
+runtime suites. Explicit failing prerequisites must not become successful skips.
 
-Child repo CI should dispatch the workspace workflow only after its own `main`
-CI succeeds. This makes the workspace repo a real coordination gate without
-duplicating full child-repo CI inside the parent.
+## Private checkout and dispatch credentials
 
-Expected dispatch event types:
+| Secret location | Secret | Minimum purpose |
+| --- | --- | --- |
+| workspace | `TRAVEL_WORKSPACE_CI_TOKEN` | Read contents of both private child repos |
+| frontend | `TRAVEL_AGENT_CI_TOKEN` | Read backend contents for contract and logic jobs |
+| frontend (when workspace is private) | `TRAVEL_WORKSPACE_CI_TOKEN` | Read workspace contents |
+| both children | `TRAVEL_WORKSPACE_DISPATCH_TOKEN` | Send repository dispatch to workspace (workspace contents write permission) |
 
-- `travel-agent-ci-success`
-- `travel-app-ci-success`
+Prefer a narrowly scoped GitHub App token or fine-grained token for these exact
+repositories. Secret presence is insufficient: confirm actual checkout access.
+Never replace a missing/invalid private token with the caller repository's
+`GITHUB_TOKEN` or copy a broad personal credential into CI as a workaround.
 
-Child dispatch jobs intentionally skip with a notice if their dispatch token is
-missing. That keeps child CI from breaking before the secret is installed, while
-making the missing automation visible in logs.
+The audit observed frontend run `34120618861` fail private backend checkout with
+“Repository not found” despite a present secret. Credential renewal/access must
+be verified by a subsequent candidate run; this document does not certify it.
 
-## Private Child Repo Access
+## Reproduce a failure
 
-If `travel-agent` and `travel-app` are private, the workspace repo's default
-`GITHUB_TOKEN` cannot check them out as sibling repositories. Add a workspace
-repo secret named:
+- Run `make verify` for the coordinated gate; `make -C travel-agent ci` and
+  `npm --prefix travel-app run verify:pr` identify child failures.
+- Regenerate changed backend contracts with `make sync-types`, then inspect
+  both workspace OpenAPI snapshots and `travel-app/utils/api/schema.gen.ts`.
+- Use an explicit disposable `TEST_DATABASE_URL` plus
+  `TEST_DATABASE_DISPOSABLE=1` for DB lanes. Offline checks must not probe or
+  clean a development database.
+- Use `make doctor` for source/tool setup, and `./scripts/doctor.sh --services`
+  for service diagnosis.
+- Use `scripts/new-worktree.sh` for a separate lane. Landing runs the coordinated
+  gate before publication and preserves the protected-main review path.
 
-```text
-TRAVEL_WORKSPACE_CI_TOKEN
-```
-
-Use a fine-grained GitHub token with read-only contents access to:
-
-- `fy538/travel-agent`
-- `fy538/travel-app`
-- `fy538/travel-workspace`
-
-The workflow falls back to `github.token` for public child repos, but the secret
-is required for private sibling checkout.
-
-## Child-to-Parent Dispatch Token
-
-Each private child repo needs a separate secret named:
-
-```text
-TRAVEL_WORKSPACE_DISPATCH_TOKEN
-```
-
-Use a fine-grained GitHub token with `Contents: read and write` access to:
-
-- `fy538/travel-workspace`
-
-This token is used only to call GitHub's `repository_dispatch` endpoint on the
-workspace repo. Keep it separate from `TRAVEL_WORKSPACE_CI_TOKEN`, which is a
-read-only checkout token owned by the workspace workflow.
-
-## Contract Ownership
-
-The workspace repo is the canonical cross-repo contract gate.
-
-- Backend CI owns backend lint, import boundaries, offline tests, DB tests, and
-  manual evals.
-- Frontend CI owns app lint, typecheck, and Jest tests.
-- Workspace CI owns committed OpenAPI snapshot vs generated frontend type drift
-  and deterministic MVP golden-path coherence.
-
-Do not duplicate the full workspace contract check inside `travel-app` CI unless
-there is a specific release reason. Duplicating it requires private sibling repo
-checkout and tends to become more fragile than the parent coordination gate.
-
-Independent signals must not be hidden behind unrelated `needs:` chains: lint,
-deterministic tests, migration checks, and contract checks run independently unless
-one result is a genuine prerequisite for the next. Every test process has a timeout
-and reports its slow tail. Coverage thresholds hold the established baseline and
-rise deliberately; they are a regression floor, not a proxy for journey quality.
-
-Backend-only API counts are generated evidence, never a maintained spreadsheet.
-Use `python3 scripts/api_contract_audit.py --list-transport-only`; classify an
-endpoint from current callers and ownership before deprecating it. Non-mobile
-consumers and lifecycle exceptions live in
-`docs/governance/api-operation-policy.json`.
-
-## Promotion Path
-
-Start with:
-
-- `contract-check`
-- `golden-path-qa`
-
-Add later if the workflow is stable and runtime is acceptable:
-
-- `mock-real-parity`
-- selected trace-specific tests for newly promoted MVP journeys
-
-Do not add live canaries to CI until there is a separate budget, fixture, and
-secret-management decision.
-
-## Failure Triage
-
-- Contract failure: run `make sync-types-snapshot`, review
-  `docs/openapi.json`, `docs/openapi.app.json`, and
-  `Travel App/utils/api/schema.gen.ts`.
-- Backend golden-path failure: inspect the failing backend test and the trace
-  file in `docs/reliability/traces/`.
-- Frontend golden-path failure: run the matching Jest command from
-  `scripts/golden-path-qa.sh` in `Travel App`.
-- Cross-repo checkout failure: verify repo names and permissions in
-  `.github/workflows/reliability.yml`.
+Live providers, corpus mutation, production migrations, and physical-device
+judgments have separate evidence and authorization boundaries. Container package
+smoke runs the supported operator's `--help` without network or DB access.

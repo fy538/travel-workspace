@@ -19,6 +19,7 @@ import re
 import shlex
 import subprocess
 import sys
+import os
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -250,7 +251,7 @@ def _git(
     repo: Repo, args: list[str], *, timeout: int = 30
 ) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
-        ["git", *args], cwd=repo.root, capture_output=True, text=True, timeout=timeout
+        ["git", *args], cwd=repo.root, env={k: v for k, v in os.environ.items() if k not in {"GIT_DIR", "GIT_WORK_TREE", "GIT_COMMON_DIR", "GIT_INDEX_FILE"}}, capture_output=True, text=True, timeout=timeout
     )
 
 

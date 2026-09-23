@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / product / architecture / engineering
 created: 2026-08-29
-last_verified: 2026-09-06
+last_verified: 2026-09-09
 why_new: Defines one cross-repository boundary from human contribution through immediate value, retention, consequence, projection, receipt, and causal repair across Chat, Intake, Occasions, Home, Places, and Life.
 supersedes: []
 source_of_truth_for:
@@ -269,6 +269,29 @@ invitation, messaging, or public Place use.
 Every multiplayer flow preserves distinct roles for contributor, subject or
 affected principal, custodian, recipient, and canonical owner. One person may
 hold several roles; policy may not assume they always coincide.
+
+### 3.6.1 Exact-original Send to one recipient
+
+Under the [September 9 display decision](../decisions/2026-09-09-exact-original-recipient-display.md),
+an explicit Send of one selected original to one named eligible account
+recipient grants display of that exact source/object or component at its
+applicable revision, while the share and source remain valid. Relationships
+owns the addressed share and selection; the original owner retains custody.
+Resolve current recipient, share, selection, source and applicable subject/
+precision restrictions before original access. A participant-only row lookup,
+old attachment string or private upload is not sufficient authority.
+
+Display does not authorize AI use, inference, onward distribution, the remaining
+source bundle, or an independent retained recipient copy. Opening requires no
+Keep, reply or sender-visible read receipt. Do not widen an owner-only route or
+impersonate the sender. Withdrawal, expiry and loss of source/access eligibility
+invalidate subsequent receiving and dependent caches; already received bytes
+and screenshots cannot be promised erased. Preserve distinct source, share and
+attention revisions and independently authorized value.
+
+This is an adopted implementation contract, not runtime activation or general
+Friends/guest/AI-use policy. Do not backfill ambiguous historical shares or
+invent spatial context for an original that has none.
 
 ### 3.7 Co-owned material separates custody from projection
 
@@ -646,6 +669,26 @@ whose identity, revision, lifecycle, or viewer scope disagrees with the
 outbox. This is delivery/read validation only: Capture emits source metadata,
 Life owns projector/index rows, and the unadopted history/continuity proposals
 remain inactive.
+
+### Candidate-owned anchor handoff — 2026-09-08
+
+The accepted Capture lifecycle decision keeps semantic candidates as a separate
+owner from retained Source custody. Candidate transitions use the existing
+Intake and Life outboxes but carry a nested `candidate-owner-change.v1` envelope
+with `owner_kind=experience_anchor`, `owner_id=intake_artifact_candidates.id`,
+and a positive decimal owner revision issued by the candidate row. Its partition
+is the candidate ID; the submission/source references are dependencies, not the
+owner identity. `confirmed`, `withdrawn`, and explicit `restored` transitions
+reuse the exact event key across both durable outboxes. The candidate mutation,
+Intake graph handoff, and Life handoff are one transaction.
+
+Life must validate the candidate owner identity, revision/sequence, lifecycle,
+viewer scope, current submission custody, source eligibility and applicable
+controls before shadow projection. An older or reordered event cannot resurrect
+a withdrawn candidate; restoration is a newer owner-authorized transition and
+does not revive deleted/revoked sources or user exclusions by implication. The
+graph remains a rebuildable projection, and this contract does not activate
+indexed Life serving or widen retention/audience.
 
 ## 13. Migration order
 

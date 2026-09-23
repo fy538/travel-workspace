@@ -4,11 +4,12 @@ from __future__ import annotations
 
 import subprocess
 import sys
+import hashlib
 from pathlib import Path
 
 import yaml
 
-from check_doc_governance import validate
+from check_doc_governance import Finding, validate
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG = ROOT / "docs/governance/child-baselines.yaml"
@@ -55,6 +56,24 @@ def new_docs(repo: Path, docs_root: str, baseline: str) -> list[Path]:
     return [repo / path for path in sorted(current - legacy)]
 
 
+def preserved_artifact_findings(repo: Path, entry: dict) -> list[Finding]:
+    """Frozen/generated evidence is governed externally without rewriting bytes."""
+    path = repo / entry.get("path", "")
+    owner = repo / entry.get("metadata_owner", "")
+    try:
+        path.resolve().relative_to((repo / "docs").resolve())
+        owner.resolve().relative_to((repo / "docs").resolve())
+        if path == owner or not entry.get("reason") or len(entry["reason"]) < 20:
+            raise ValueError("requires a distinct metadata owner and concrete preservation reason")
+        if not path.is_file() or not owner.is_file():
+            raise ValueError("preserved artifact or metadata owner is missing")
+        if hashlib.sha256(path.read_bytes()).hexdigest() != entry.get("sha256"):
+            raise ValueError("preserved artifact bytes changed; review provenance and registry digest")
+        return validate(owner)
+    except (OSError, ValueError) as exc:
+        return [Finding(path, str(exc))]
+
+
 def main() -> int:
     config = yaml.safe_load(CONFIG.read_text())
     findings = []
@@ -70,7 +89,13 @@ def main() -> int:
             print(f"child-doc-governance: {name}: {exc}", file=sys.stderr)
             return 2
         checked += len(paths)
-        findings.extend((name, finding) for path in paths for finding in validate(path))
+        preserved = item.get("preserved_artifacts", [])
+        registered = [entry["path"] for entry in preserved]
+        if len(registered) != len(set(registered)):
+            findings.append((name, Finding(repo / item["docs_root"], "duplicate preserved-artifact registration")))
+        for entry in preserved:
+            findings.extend((name, finding) for finding in preserved_artifact_findings(repo, entry))
+        findings.extend((name, finding) for path in paths if path.relative_to(repo).as_posix() not in registered for finding in validate(path))
     for name, finding in findings:
         print(f"{name}/{finding.path.relative_to(ROOT / name)}: {finding.message}", file=sys.stderr)
     if findings:

@@ -1,0 +1,201 @@
+---
+doc_type: working
+status: active
+decision_status: implemented
+owner: Integration
+created: 2026-09-07
+last_verified: 2026-09-07
+expires: 2026-10-07
+why_new: Records the September 7 execution receipts for the connected Source request, exact result, stop, and Home/Places receiving batch.
+supersedes: []
+depends_on:
+  - complete-system-integration-roadmap-2026-09-05.md
+  - source-request-result-control-mapping-2026-09-07.md
+---
+
+# Connected Source value — execution receipt (2026-09-07)
+
+This receipt is the implementation companion to the [complete-system
+integration roadmap](complete-system-integration-roadmap-2026-09-05.md). It
+records what landed, what was verified locally, and what remains gated. It does
+not activate the worker or claim native evidence.
+
+## Landed packages
+
+| Package | Receipt | Commit |
+| --- | --- | --- |
+| SP-2a callback repair | The resolver's workflow-fenced completer accepts the orchestration deadline, verifies it is unchanged, and forwards the authoritative value. A regression exercises the workflow wrapper and canonical readback; focused continuity/canonical/worker/Postgres tests: 54 passed. | `86f04589` — `fix: forward source work deadline through fenced completion` |
+| SP-0a request/result/control mapping | Existing Source work-item fields, missing exact-commission fields, request/reuse/result identity distinctions, and truthful lifecycle states are documented without inventing a second store. | `51fc6c9` — `docs: map source request result and control boundaries` |
+| SP-1b exact result binding | Canonical Source execution computes a deterministic production digest; the completion receipt can carry a typed versioned result reference; an owner-only result route reopens the retained version without current Home/Places ranking or acquisition. Replaced/expired results return unavailable. Exact reads now revalidate a referenced Places context before serving, validate digest shape, fail closed on owner-read/storage errors, and canonicalize unordered fields before hashing; worker regressions prove the digest is carried into the receipt. | `381bbba29` — `feat: bind exact source result identities`; `7d8552f29` — `fix: revalidate source context on exact reads`; `35c1b203f` — `fix: harden exact source result reads`; `90955883f` — `test: prove exact source result receipt binding`; `1961eebff` — `fix: canonicalize source result identities` |
+| SP-1c exact-result independence and fail-closed context handling | Exact requester readback now uses the retained production seed's source/context coordinates instead of re-running current opportunity discovery or ranking. Its shared validation still rechecks owner custody, audience, expiry, represented time, current Opening state, and deterministic candidate expiry. The API route maps both Places-context and retained-result storage failures to the existing unavailable state rather than leaking a server error. Regressions prove discovery is not called and both read boundaries fail closed. | `fd08f68f4` — `fix(source): keep exact result readback independent`; `fb521f38d` — `fix(source): fail closed on context read errors`; `f2bf741a1` — `fix(source): fail closed on result read errors` |
+| SP-2b effective stop | Source-only cancellation uses a transaction-time actor/type/revision fence, records the applied command, cancels the workflow atomically, and remains behind the existing shared workflow-control flag. Generic steer/pause/resume/handoff semantics remain intent-only. | `1447eeccd` — `feat: apply source workflow cancellation` |
+| SP-2c terminal result semantics | The exact-result reader now distinguishes a completed `producer_silence` ending (`no_useful_result`) from a malformed or missing result identity (`unavailable`), and maps superseded workflows to an unavailable result without attempting regeneration. | `9c1eda6e9` — `fix(source): report terminal silence and supersession` |
+| SP-2d bounded request admission | Authenticated clients can submit a strict, private, content-free request with a named purpose, subjects, Sources, root scope, represented clock and bounded expiry. The request is persisted through the existing workflow fence; malformed exact comparisons are rejected and disabled production returns a truthful unavailable response. | Backend `bc012aca2` — `feat(source): accept bounded preparation requests`; `40eb81b2a` — `fix(source): gate preparation on production rollout` |
+| Contract publication and mobile recovery | The full OpenAPI snapshot and active projection include the request and owner-only exact result routes. Generated mobile types, HTTP methods, mock parity and focused transport tests consume both routes; the result read remains available for already-retained output while new production is separately gated. The shared result hook is root-scoped, does not read without a workflow identity, treats unavailable/failed outcomes as terminal, and polls only a pending result. The request hook submits the bounded body and invalidates only that exact root/result key; it never retries by creating a new request. | Workspace `f60f2e6`, `1434694`, `20d833a`; app `c9d208632`, `66d61f59c`, `15b38e18f`, `d874bb778`, `90b8ba7b5`, `c201457d3`, `c6300cc1e`, `b479c3289` |
+| CV-3 Home/Places receiving | The tested receiving adapter is landed on backend `main` and the app's Entity checkout and clean app-`main` integration worktree. It preserves owner-backed composition, exact continuations, practical delivery, and return-token behavior without adding a new producer or screen family. | Backend `1146ae041`; app `f4401ef73` (Entity checkout) and `8bed6ca82` (clean `main` worktree) |
+| E1 current-job owner-read compiler and root wiring | Root composition now derives bounded owner reads from the actual current candidates, immediate job, subject/Source/context refs and purpose. Exact request-local scopes are reused; unsupported semantic operations such as `route.evaluate` are omitted instead of being scheduled by scenario name. The existing scenario compiler remains a compatibility path for legacy callers and fixtures. | Backend `1bd838f4c` — `feat(integration): compile root reads from current jobs` |
+| E3 unsupported practical claims fail closed | Practical candidates carrying an unadmitted question now receive an explicit unknown assessment and are not treated as feasible. The supported `place.open_now` path is unchanged; no generic route assessor or provider was invented. | Backend `455048802` — `fix(integration): fail closed on unsupported practical claims` |
+| Request/worker version compatibility | Bounded request admission now emits the canonical `source.v1` and `compiler.v1` versions accepted by the existing dark worker, avoiding a producer/consumer version mismatch without activating execution. | Backend `b7df20cdc` — `fix(source): align requests with worker versions` |
+| Controlled local request-to-root checkpoint | A loopback-Postgres fixture submits through the HTTP contract, claims the existing dark-worker adapter directly, runs the canonical executor with an authored fixture producer, persists and reopens the exact result from JSONB, receives the same production in Home and Places, proves idempotent reuse without another producer call, records read-only cost evidence, and proves cancellation/source withdrawal prevent or remove delivery. | Backend `d8fdb55d6` — `test(source): exercise request to root delivery` |
+
+## Existing receiving evidence consumed
+
+No new Home/Places producer or store was introduced. The existing prepared
+read path already composes eligible retained Source value into both Home v2 and
+Places v2/runtime through `root_composition._prepared_source_contribution`.
+The parallel Content lane also landed an exact public Place-content source
+handoff in `b0d5a80ca`; this is an owner/ref/revision receiving boundary, not a
+broad public recommendation publisher:
+
+* `59f323b31` provides provider-free prepared Source admission;
+* `ea816526d` carries verified Place facts through root delivery;
+* `tests/api/test_root_composition_service.py` and
+  `tests/api/test_practical_root_delivery.py` cover bounded, read-only
+  composition; and
+* `backend/core/place_content_sources.py` plus its tests provide the public
+  content owner/ref/revision/current-state receiving boundary (`b0d5a80ca`).
+
+The integration implication is deliberate: private exact requester recovery,
+ordinary Home/Places ranking, and public Content supply remain distinct owners
+that can converge at the existing typed receiving boundary. A private Source
+result is not automatically public content, a Life artifact, a notification,
+or an action.
+
+## Validation
+
+### What the connected checkpoint repaired
+
+The real HTTP/storage path found two failures that typed handler calls and
+in-memory fixtures had not exposed:
+
+1. The request transport's Python-strict validation rejected valid mobile JSON
+   strings and arrays before a workflow could be created. The transport now
+   normalizes those wire representations while preserving bounded integer
+   expiry, an explicit timezone-aware datetime, allowed roots, private scope and
+   the strict internal work item. Numeric timestamps, extra authority fields
+   and invalid comparison scopes remain rejected.
+2. Exact recovery hashed the stored JSONB representation differently from the
+   typed production used at completion: unordered sets and datetime
+   serialization lost their original types. The Source serving owner now
+   rehydrates the production before computing its existing canonical digest.
+   There is no new result store, schema column or identity algorithm. Malformed
+   retained rows are skipped without hiding a valid matching result.
+
+The fixture uses actual workflow persistence, claiming, completion, JSONB
+storage, HTTP request/result routes and the shared prepared-value reader used
+by each root. Discovery, owner/source material and the producer are authored
+fixtures. This is **not** a full Home/Places HTTP response or native rendering
+test. Cancellation proves a late executor cannot publish; it does not establish
+instant preemption of an already-running external model call.
+
+### Recorded checks
+
+Focused local suites passed during this batch:
+
+* 114 tests across workflow API/DB, Source continuity, canonical executor,
+  worker, serving, workflow, and Source storage;
+* 304 tests across the integrated Home/Places composition, practical delivery,
+  workflow API, Source projection, and Source storage packet;
+* 69 focused backend tests across the merged Home/Places receiving and workflow
+  packet;
+* 46 focused mobile Home/Places/navigation tests plus TypeScript typecheck on
+  the merged Entity checkout. The clean app-`main` integration worktree has no
+  installed dependencies, so it was not re-run independently there;
+* 6 public Place-content owner/receiving tests, including the exact handoff
+  added by `b0d5a80ca`;
+* the route pre-commit gates including route-auth, response-model, import-cycle,
+  and status-guard checks;
+* 22 focused backend workflow API tests, including request admission, strict
+  exact scope validation and the production rollout gate;
+* 85 focused mobile HTTP tests, including content-free request submission and
+  owner-scoped exact result recovery;
+* 2 focused mobile result-hook tests, including no-read-without-identity and
+  explicit terminal recovery after a pending result;
+* 1 focused mobile request-hook test, including exact-body submission and
+  root-scoped result invalidation;
+* `make contract-check` passed with the request/result routes in the active
+  mobile projection, generated types synchronized, 370 facade entries
+  classified, and the canonical place/Occasion checks green.
+* 22 focused current-job owner-read tests, 50 combined root/practical/portfolio
+  tests, 21 value-composition tests and 53 request/worker/executor tests passed;
+  Ruff passed on all modified backend files.
+* 65 checkpoint tests passed, including 15 JSON-boundary tests, 2 loopback
+  PostgreSQL request→executor→readback/root/cancellation tests, storage/digest
+  regressions and read-only cost-report tests.
+
+The offer-follow-through pass independently ran **152 focused offline tests**
+across HTTP admission, workflow API, canonical execution, worker, exact serving,
+storage/digest, root/practical composition, model accounting and the cost report;
+**2 loopback-PostgreSQL tests** passed separately. Ruff and formatting checks
+passed on the nine implementation/test files. `scripts/sync-types.sh` completed
+with TypeScript clean; `make contract-check` passed. Regeneration also reconciled
+existing handoff-action and Places-note schema drift with the current backend;
+no Chat or Life screen was edited.
+
+The attempted whole offline suite is **not green**: with database construction
+and socket connections explicitly blocked, it stopped after **364 passed,
+9 skipped and 1 failure** (1,368 deselected). The failing
+`test_concierge_home_feed_uses_cold_start_fallback` reaches the database for group
+unread counts and is already listed in `tests/postgres_leak_baseline.txt`. This
+is a known test-isolation gap, not a claim that the rest of the suite passed.
+It was not changed as part of this Source integration package.
+
+The repository-wide living-link check also reports one unrelated existing
+broken `state` link at line 53 of
+`claude-design-interaction-kernel-lab-v2-3-arrangements-execution-report-2026-09-04.md`.
+The linked receipt and cost-report targets added in this pass exist; no clean
+repository-wide documentation gate is claimed.
+
+## Cost evidence — ready to collect, not a measured service price
+
+The read-only [Source cost report](../../travel-agent/scripts/source_service_cost_report.py)
+uses existing workflow and model-call ledgers, not a new billing or metering
+system. Run from `travel-agent`, substituting a real reviewed workflow UUID and
+repeating the option for its amendments/retries as appropriate:
+
+```bash
+PYTHONPATH=. .venv/bin/python scripts/source_service_cost_report.py --workflow-id WORKFLOW_UUID
+```
+
+The report accepts 1–100 explicitly selected Source workflows, includes recorded
+failed calls and earlier attempts, preserves jobs without ledger rows, and
+does not multiply a result's production cost because two roots receive it.
+Missing records remain unknown rather than zero. Reuse can refer to production
+outside the selected set; include that original workflow when assessing cost.
+Late/unlinked records and non-model costs are not reconstructed. No Source
+text, prompt or profile is read, and no provider work is started.
+
+The database test checks worker attribution and the report's actual query,
+then inserts explicitly **synthetic** failed/successful ledger records to test
+aggregation. Those amounts are not observed Vesper usage or a price estimate.
+`whole_service_cost_usd` intentionally stays null: public supply, non-model
+lookups, media, storage, delivery, support and fees still need accounting before
+the commercial worksheet can be populated. A completed result is not evidence
+that a person found it useful or would pay for it.
+
+## Still gated / not claimed
+
+1. The request owner now expresses an exact commissioned subject/Source set,
+   and root composition has a current-job read compiler, but the production
+   worker is still dark; acceptance is not evidence that a provider-backed
+   result will arrive.
+2. The worker remains dark. No queue registration, provider activation, paid
+   call, or ordinary GET acquisition was added.
+3. Exact result lookup still requires the retained row and current Source/
+   context custody; replacement or expiry is truthfully unavailable rather
+   than an archival promise.
+4. Public Content receiving exists as a canonical owner boundary, but a broad
+   public recommendation supply job and its coverage/evidence portfolio are
+   not implemented by this batch.
+5. Native Home/Places rendering and consumer value are not evidenced here, per
+   the current engineering instruction.
+
+## Next checkpoint
+
+The controlled local request → canonical executor → durable readback → exact
+route → Home/Places receiving checkpoint is complete in `d8fdb55d6`, including
+idempotent reuse, cost-evidence boundaries, source withdrawal and cancellation
+winning against a late executor. The next checkpoint is a reassessment of E2
+public owner-to-depth breadth and E3's supported practical specialist. Keep
+production queue/provider activation dark; no public preparation or mobile
+consumer activation follows automatically from this fixture.

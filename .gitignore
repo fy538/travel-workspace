@@ -20,6 +20,7 @@ worktrees
 
 # Logs and local output
 *.log
+output/
 .cache/
 .tmp/
 tmp/
@@ -61,3 +62,7 @@ design/atlas-direction-03-claude-design/
 docs/**/__pycache__/
 *.pyc
 design/vesper-canon-anchor/
+
+# Local lane endpoints and exclusive-device assignment
+.workspace-lane.json
+candidate-tuple.json
