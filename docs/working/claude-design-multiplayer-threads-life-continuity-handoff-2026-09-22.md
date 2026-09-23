@@ -26,16 +26,15 @@ shipping claim, retention agreement, or engineering roadmap.
 capabilities, not three more social destinations. Apply these within §9's
 existing compositions rather than starting a parallel assignment queue.
 
-The original project-specific handoff exists in the isolated exploration
-worktree:
-[Multiplayer product-shapes exploration brief](/Users/feihuyan/travel-workspace--multiplayer-design-exploration-2026-09-20/docs/working/claude-design-multiplayer-product-shapes-exploration-2026-09-20.md).
+The original project-specific handoff is the dated
+[Multiplayer product-shapes exploration brief](claude-design-multiplayer-product-shapes-exploration-2026-09-20.md).
 Its earlier delivered-board account is the
 [exploration response](multiplayer-shapes-exploration-response-2026-09-21.md).
 Those documents contain earlier work and unresolved assignments; they do not
 describe the complete current board 10–16 export. Do not mark their remaining
 work complete or discard it because this follow-up exists. The original brief
-is a local, uncommitted working file in another checkout; include it explicitly
-when handing this packet to another computer.
+was first written in an isolated worktree and is now preserved here so this
+packet can travel with the repository.
 
 Read this follow-up first for the topics below. Retain compatible earlier
 requirements. Where directions conflict, name the conflict in the handback:
