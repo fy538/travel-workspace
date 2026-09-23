@@ -83,7 +83,7 @@ with Python 3.14.6 on Darwin arm64. Receipt:
 The checked recovery tuple was workspace `75a4398`, backend `0aaa2ccc4`, app
 `717355b17`; this documentation receipt follows that check.
 
-**Still incomplete:** reconcile the 46 remaining expired backend documents, verify and
+**Still incomplete:** reconcile the 36 remaining expired backend documents, verify and
 publish the recovery candidate through protected-main review, resolve the
 remaining acceptance/pin requirements, land useful work, and finally retire
 the recovery lane plus the old native-testing lane once no process uses it.
@@ -178,6 +178,47 @@ active documents**, down from 53: one product working document, three research
 notes and 42 working documents. Full clean-tuple verification and landing remain
 outstanding. At the 22:57 UTC ownership recheck, Xcode `DTServiceHub` PID 25951
 still held the native-testing screenshot directory; its three worktrees remain.
+
+### Implementation/proposal lifecycle pass — September 23
+
+Backend `2ae8682fe` moves ten August working notes, with original bodies and hashes preserved,
+to backend `docs/archive/2026-08/implementation-slices/`. This retires duplicate
+as-built narratives, not their useful code or unresolved release obligations.
+Relative links are relocated; notices distinguish old observations and proposals
+from current authority. Living references that called the prototype an owner
+now point to the accepted runtime decision or lifecycle contract instead.
+
+Disposition and preserved requirements:
+
+| Historical note(s) | Current owner / still-required evidence |
+|---|---|
+| `attention-intake-v2-implementation`, `custody-first-ingestion-slice`, `intake-v2-architecture-execution` | [Contribution and Consequence](../systems/contribution-and-consequence.md), [CC-4–CC-6 completion plan](contribution-contract-and-legacy-memory-migration-plan-2026-08-29.md#11-completion-plan--september-5), and backend Inbound `FEATURE.md` retain useful-first capture, exact custody, retry, correction, retention, raw/derived separation and canonical handoff requirements. Old local migration heads, 59/346-test totals and unsupported-format descriptions are historical observations, not current device/provider acceptance. Deployed storage/worker/provider parity and clean generated-contract evidence remain separately required where applicable. |
+| `experience-anchor-and-consequence-bridge` | Contribution and Consequence plus the Lived Experience gateway/readback owners retain explicit canonical bindings, owner confirmation, private derived anchors, correction/retraction, expiry and no inferred recipient. Current `activation_authority.py` and the prepared-command gateway supersede the note's unregistered-adapter/pending-resolver descriptions for their supported paths; that is not proof that every proposed family is released. |
+| `addressed-place-handoff` | [Lived Experience release boundary](../../travel-agent/backend/lived_experience/FEATURE.md#addressed-place-handoff-release-boundary) now retains the connected prepare/deliver/recipient-action/revoke/expiry/older-client obligation. The machine-readable `surface_release` evidence points there and remains **pending** with the same work item; flags, rollout and statuses are unchanged. |
+| `contextual-engine-slice` | [Content runtime authority decision](../../travel-agent/docs/architecture/content-convergence-runtime-authority-2026-08-22.md) and Lived Experience `FEATURE.md` own one runtime, scoped context, arbitration, hold/silence and owner consequence. The tools-only contextual engine remains a replay oracle, not another production system. |
+| `content-convergence-implementation`, `content-authority-clean-break` | The content runtime decision, [World Foundry](../../travel-agent/docs/operations/World%20Foundry.md) and [delta runbook](../../travel-agent/docs/operations/place-content-delta-review.md) retain independent review, exact source/target hashes, policy binding and Postgres authority. Legacy-versus-canonical comparison, freshness/cost/queue measurements, durable release results and surface-specific Home/Push acceptance remain requirements before their respective cutovers. `LEGACY_RESEARCH_WRITEBACK_ENABLED` is still code-default true; archival does not flip it. Historical corpus counts or local DB state are not current measurements. |
+| `plan-shape-and-occasion-slice`, `flexible-plans-occasions-and-personal-projections` | [Product Model](../../travel-agent/docs/product/Product%20Model.md), [Plan/Occasion lifecycle](../../travel-agent/docs/architecture/plan-occasion-lifecycle-contract-2026-08-22.md), and [arrangement handoff](lightweight-arrangements-implementation-handoff-2026-09-04.md) retain sparse viewer-relative projections, partial overlap/split/rejoin, private anchors, plural outcomes and typed revision-bound mutations. The existing Trip writer stays authoritative until explicit cutover. Fixtures do not establish live producer/readback, deployed data, final native parity or a new persistence owner. |
+
+These are existing obligations carried into current navigation, not newly
+introduced requirements that every dark feature ship before repository cleanup.
+The integration roadmap continues to decide delivery scope; archival cannot be
+used to mark any acceptance gate passed. A regression asserts that the addressed
+handoff release reference names the living owner section and retains its pending
+work item. Original test counts and deployment claims were not re-certified.
+
+Verification: all ten archive outputs matched their expected transformed bytes
+(original bodies changed only for historical notices and relative links). The
+focused readiness, shadow binding, Intake activation, relationship gateway,
+content authority, Plan Shape and Occasion capsule suites pass **37 tests**;
+Ruff and formatting pass. Backend links (6,723 files), product governance,
+workspace links (531 living documents) and child governance (405 post-baseline
+documents) pass. The first link check caught one archived Plan receipt still
+pointing to the old working path; its link was repaired and the complete batch
+rerun. No gate was weakened. Measured recheck:
+`/tmp/vesper-landing-verification/implementation-archive-recheck-20260923T230452Z.log`
+— 7.323 seconds on the edited candidate. Freshness still fails with **36**
+expired active documents; no full verification, live deployment, native journey,
+feature activation or protected-main landing is claimed by this pass.
 
 ## September 23 consolidation mandate and current execution order
 

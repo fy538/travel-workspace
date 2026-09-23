@@ -87,8 +87,8 @@ offline and Maestro syntax checks before finding missing/overdue flag metadata;
 source-reviewed registry repairs now pass separately. A clean final-tuple
 complete gate remains required; the earlier run overlapped app edits.
 
-**Publication blocker from the separate backend pre-push packet:** 46 active
-documents remain expired (one product working document, three research and 42
+**Publication blocker from the separate backend pre-push packet:** 36 active
+documents remain expired (one product working document, three research and 32
 working notes), down from 94. The code CI pass does not cover that hook.
 The final clean publication attempt was stopped before any push; it is not a
 complete-gate pass. Reconcile each document's actual owner/status, rather than
@@ -115,8 +115,14 @@ deployment observations in the archive. It corrects offline inventory usage,
 Intake semantic-before-cleanup ordering, structural-audit limits and delta
 transaction/policy boundaries. The batch passes 105 focused offline tests (two
 Postgres-dependent tests deselected), backend/workspace links and governance.
-No production execution or serving activation occurred. The remaining queue is
-46 documents; research and unresolved plans still require individual disposition.
+No production execution or serving activation occurred. A further ten historical
+implementation/proposal notes now live in `docs/archive/2026-08/implementation-slices/`.
+The [audit's disposition table](historical-branch-recovery-audit-2026-09-23.md#implementationproposal-lifecycle-pass--september-23)
+maps each to its current owner and preserves unfinished acceptance. In particular,
+addressed-handoff surface release remains machine-readable **pending**, and
+archival does not authorize itinerary replacement, legacy content cutover,
+automatic retention or feature activation. The remaining queue is 36 documents;
+research and unresolved plans still require individual disposition.
 
 **Next is delivery, not another recovery sweep:** resolve those lifecycle
 dispositions, verify the committed tuple,
