@@ -43,7 +43,7 @@ branch wholesale.
 ## Recovery lane progress (not landed on main)
 
 The isolated `codex/home-human-opening-recovery-2026-09-23` lane now contains
-backend tip `4327c09fa` and app tip `163cc4da9`. It selectively adapts the
+backend tip `e2838dbea` and app tip `29cc92a97`. It selectively adapts the
 human-note/current-Place join and gives the attributed note a human-first
 native hierarchy. The join is limited to pending notes so Keep cannot make
 an already-handled contribution look newly received. Three existing native
@@ -81,10 +81,21 @@ authorized later Source use. The corrected root-projection suite passed
 fixture account, and live Home/Place owner routes then passed the full native
 Home → exact Place note → Keep → exact revision read → Home return flow; the
 disposable sender/venue fixture was cleaned. This proves the standalone
-receiving path and its handled-state transition. The new joined human/current-
-world Home unit still has pure composition tests, but no native real-owner
-fixture that forces that exact joined presentation; acceptance of that
-specific treatment and strict visual parity remain open. A fresh iOS build
+receiving path and its handled-state transition. A second disposable fixture
+temporarily gave the eval-only recipient a SoHo Home and two verified nearby
+venues. Paired with the existing SEND_NOW note at the same café, it forced the
+server's exact-entity `home.human-opening.*` composition. The app's
+`run-home-real-joined-opening.sh` passed the full real-API native Home → joined
+note → exact Place owner read → Keep → advanced-revision owner read → Home
+withdrawal/return flow on the reserved device. The script cleaned both
+fixtures; a fresh API read showed no pending note unit and direct DB checks
+found no temporary Home or companion venues. The root-projection suite passed
+`499` tests and six focused app runner checks passed at backend `e2838dbea`
+and app `29cc92a97`. This is structural joined-path evidence, not strict visual parity
+or proof that the opening is worth receiving. The capture still shows generic
+“In Places” basis copy and a partial-read banner above the opening; the real
+human note is visible, but its contextual value and presentation need a
+separate design/content review against a verified reference. A fresh iOS build
 would still need the missing Mapbox download token.
 
 The required full gates are **not green**. `make verify` stopped at eight
@@ -110,7 +121,7 @@ rows expired September 15. No expiry was silently renewed for this recovery.
 
 | Priority | Candidate | Disposition and acceptance boundary |
 |---|---|---|
-| 1 — built in isolated lane; joined-treatment acceptance pending | One attributed human Place note joined to one current-world Place opening | Backend `engine-er123-integration` / `native-receiving-next` supplied a selective reference; current main supplies `people_note_door` and `horizon_aperture_row` separately. The lane above adapts the exact-entity, single-author join and native treatment while preserving both owner reads and fallbacks. The standalone addressed-note exact destination/Keep/return now passes on a real local backend and device; a real joined-unit fixture, design-reference comparison and landing remain. This is a current-Home value slice, not a branch merge. |
+| 1 — built and native path rehearsed in isolated lane; quality and landing pending | One attributed human Place note joined to one current-world Place opening | Backend `engine-er123-integration` / `native-receiving-next` supplied a selective reference; current main supplies `people_note_door` and `horizon_aperture_row` separately. The lane above adapts the exact-entity, single-author join and native treatment while preserving both owner reads and fallbacks. Standalone and joined addressed-note exact destination/Keep/return now pass on a real local backend and reserved device with disposable fixtures. Value/copy review, design-reference comparison and landing remain. This is a current-Home value slice, not a branch merge. |
 | 2 — contract decision | One server-authored mixed Places page order | Backend `engine-er123-integration` and app `quality-comparison` / `native-receiving-next` / `timing-proactive-delivery` contain a `page_sequence` approach. Current Places contract says the section list is the sole client-visible order, while current app still locally promotes the dominant browse section. Decide one canonical order for both semantic units and mature sections; do **not** add a competing order array. Then adapt producer, OpenAPI/types, app renderer and order/exposure tests together. |
 | 3 — policy decision | Automatic returned-Source activation | `strategy-useful-supply` and `native-receiving-next` contain trigger/work-item code, but the current roadmap explicitly holds `trip.completed` activation pending source, purpose, audience, lineage, correction/withdrawal, expiry, duplicate and sparse behavior. Do not port this under a generic “resume old work” instruction. It does not block ordinary Home composition. |
 | 4 — separate receiving option | Timed delivery of an *already explicitly requested* Source result | `timing-proactive-delivery` adds durable reconsideration, exact workflow reread and in-app Activity destination. This is separable from automatic activation, but still needs an explicit background/notification treatment decision, current delivery-contract adaptation, migration/restart evidence and app destination authority checks. |
