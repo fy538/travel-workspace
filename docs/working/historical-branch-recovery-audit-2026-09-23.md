@@ -83,13 +83,52 @@ with Python 3.14.6 on Darwin arm64. Receipt:
 The checked recovery tuple was workspace `75a4398`, backend `0aaa2ccc4`, app
 `717355b17`; this documentation receipt follows that check.
 
-**Still incomplete:** reconcile the 30 remaining expired backend documents and five
+**Still incomplete:** reconcile the 27 remaining expired backend documents and three
 stale headers, verify and
 publish the recovery candidate through protected-main review, resolve the
 remaining acceptance/pin requirements, land useful work, and finally retire
 the recovery lane plus the old native-testing lane once no process uses it.
 Historical retirement does not prove recovery landing, native visual parity,
 or complete-goal acceptance.
+
+### Social-history follow-up — September 23
+
+Backend `8103a9aa8` archives three further historical documents under
+`docs/archive/2026-08/social-research/`: the explicitly superseded August 7
+multiplayer strategy and the August 23 adjacent-product and Occasion/identity
+psychology research snapshots. These were read in full. Their original market
+claims, open questions, studies and falsifiers remain historical research, not
+revalidated claims or completed experiments. The older strategy's mandatory
+group-travel sequence, ambient-centric position and blanket scroll/feed ban
+must not override today's broader social-benefit portfolio. Current Multiplayer
+Product Strategy already owns that distinction; no new product ruling was made.
+
+The existing `docs/product/MVP Social Loop.md` is retained in place as a maintained
+circulation-boundary contract, rather than archived or given another arbitrary
+working expiry. Its portfolio, non-reciprocal effort, source/audience boundaries
+and still-gated distribution mechanisms were compared with Product Model,
+Multiplayer Product Strategy, Growth Strategy and the contribution contract.
+An explicit authority/verification section limits this lifecycle promotion to
+those existing rules. It does not claim implemented guest entry, native delivery,
+consumer validation or permission to ship a new social mechanism.
+
+Fourteen archival/backlink transformations match their expected SHA-256 values.
+Original file hashes remain in archive metadata. Eleven incoming references
+(including a YAML supersession entry) are repaired across the three repositories;
+app `4d1f9140d` only changes the design brief's historical reference. Source/test
+search found no executable consumer of the three moved documents.
+The measured documentation packet passes backend links/product governance,
+workspace links/child governance, and mobile links:
+`/tmp/vesper-landing-verification/social-portfolio-lifecycle-checks-20260923T232244Z.log`
+(3.384s). This is documentation evidence, not a new runtime test result.
+
+After both child commits, freshness exits 1 with **27 expired active documents,
+all in `docs/working/`, and three stale headers** (Place-content strategy,
+human remembering, and profile/relationship views). Receipt:
+`/tmp/vesper-landing-verification/social-portfolio-committed-freshness-20260923T232306Z.log`
+(4.483s). The prior pass's 30/five count below is historical. The remaining
+working proposals and execution programs require individual owner/lifecycle
+reconciliation; this pass does not complete them or waive the publication gate.
 
 ### Place calibration and social-research lifecycle pass — September 23
 
