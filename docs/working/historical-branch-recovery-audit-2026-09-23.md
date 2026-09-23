@@ -107,8 +107,13 @@ separate design/content review against a verified reference. A fresh iOS build
 would still need the missing Mapbox download token.
 
 The required full gates are **not green**. `make verify` stopped at eight
-expired world-catalog rows; current backend main fails the same check. Separate
-contract and API coverage checks found `55` expired operation-review policies
+expired world-catalog rows; current backend main fails the same check. As of
+September 23, simply removing those expired rows would leave only two
+current Season windows and no current Here window, below the check's
+three-per-band, 14-day runway. New source-reviewed editorial supply or an
+explicit product decision about that legacy band is required; an expiry bump
+is not a cleanup. Separate contract and API coverage checks found `55` expired
+operation-review policies
 on current workspace main too. App `verify:pr` stopped at `59` expired
 schema-bridge exceptions in an unchanged manifest. The Maestro governance
 check reports the same `12` findings on main and this lane. Backend mypy
