@@ -43,13 +43,17 @@ branch wholesale.
 ## Recovery lane progress (not landed on main)
 
 The isolated `codex/home-human-opening-recovery-2026-09-23` lane now contains
-backend commit `d4b617a39` and app commit `de35c7dc0`. It adapts the old
+backend commits `d4b617a39` and `d41ebcd08`, plus app commits `de35c7dc0`
+and `b75681279`. It adapts the old
 human-note/current-Place join to today's Home projection and gives the
 attributed note a human-first native hierarchy. The backend root-projection
 suite passed (`493` tests), including exact-entity, ambiguity, withdrawal,
-open-now, repeat and independent-fallback cases. App TypeScript/Jest and
-device visual acceptance remain **unverified** because no Node dependencies
-are installed in the lane or current canonical app. The lane has not been
+open-now, repeat and independent-fallback cases. Locked Node dependencies were
+installed in the isolated app lane; app TypeScript passed and the Home screen
+Jest suite passed (`20` tests), including the joined-context rendering check.
+Targeted ESLint had no errors (one pre-existing file-length warning). Actual
+device visual comparison and destination/return acceptance remain **unverified**.
+The lane has not been
 merged, pushed or represented as product acceptance. The Places mixed-order
 and Source activation decisions below remain gated.
 
@@ -57,7 +61,7 @@ and Source activation decisions below remain gated.
 
 | Priority | Candidate | Disposition and acceptance boundary |
 |---|---|---|
-| 1 — built in isolated lane; acceptance pending | One attributed human Place note joined to one current-world Place opening | Backend `engine-er123-integration` / `native-receiving-next` supplied a selective reference; current main supplies `people_note_door` and `horizon_aperture_row` separately. The lane above adapts the exact-entity, single-author join and native treatment while preserving both owner reads and fallbacks. Node-backed native verification, device comparison, exact destination/return and landing remain. This is a current-Home value slice, not a branch merge. |
+| 1 — built in isolated lane; acceptance pending | One attributed human Place note joined to one current-world Place opening | Backend `engine-er123-integration` / `native-receiving-next` supplied a selective reference; current main supplies `people_note_door` and `horizon_aperture_row` separately. The lane above adapts the exact-entity, single-author join and native treatment while preserving both owner reads and fallbacks. Device comparison, exact destination/return and landing remain. This is a current-Home value slice, not a branch merge. |
 | 2 — contract decision | One server-authored mixed Places page order | Backend `engine-er123-integration` and app `quality-comparison` / `native-receiving-next` / `timing-proactive-delivery` contain a `page_sequence` approach. Current Places contract says the section list is the sole client-visible order, while current app still locally promotes the dominant browse section. Decide one canonical order for both semantic units and mature sections; do **not** add a competing order array. Then adapt producer, OpenAPI/types, app renderer and order/exposure tests together. |
 | 3 — policy decision | Automatic returned-Source activation | `strategy-useful-supply` and `native-receiving-next` contain trigger/work-item code, but the current roadmap explicitly holds `trip.completed` activation pending source, purpose, audience, lineage, correction/withdrawal, expiry, duplicate and sparse behavior. Do not port this under a generic “resume old work” instruction. It does not block ordinary Home composition. |
 | 4 — separate receiving option | Timed delivery of an *already explicitly requested* Source result | `timing-proactive-delivery` adds durable reconsideration, exact workflow reread and in-app Activity destination. This is separable from automatic activation, but still needs an explicit background/notification treatment decision, current delivery-contract adaptation, migration/restart evidence and app destination authority checks. |
