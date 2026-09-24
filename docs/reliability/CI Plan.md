@@ -84,6 +84,17 @@ not an enforcement change; migrations still own the physical constraint names.
 The regression suite exercises valid, violating and tool-failure cases against
 PostgreSQL. Workflow wiring is not evidence of a passing published candidate.
 
+**Open migration-policy mismatch (September 23):** the workflow still requires
+`downgrade base`, but `notifenv04`, `notifenv02`, `notifrecord01`, and
+`notifcorr01` deliberately reject downgrade to protect notification history.
+The fresh-database recovery audit reaches the `notifenv04` refusal. Do not
+silently remove these guards, skip the failing step, or call the migration job
+green. Reconcile supported rollback boundaries with forward-upgrade and
+data-preservation evidence before changing this gate. Failed full-chain tests
+can leave a partial revision because older concurrent-index migrations use
+autocommit; inspect `alembic_version` and start subsequent full-chain attempts
+from a new disposable database, not an assumed transaction rollback.
+
 ## Private checkout and dispatch credentials
 
 | Secret location | Secret | Minimum purpose |

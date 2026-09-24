@@ -384,6 +384,71 @@ These are the next concrete migration repairs, not permission to bypass the
 round-trip or add CASCADE. The full offline pass recorded above predates this
 bounded rollback repair; focused results do not replace the next complete gate.
 
+### Historical naming and reconciliation repairs — September 23 (UTC September 24)
+
+Four migration repairs are now exercised against disposable PostgreSQL:
+
+- `depthencounter01`: CHECK drops use the same naming convention and identifier
+  truncation as their creation, rather than an untyped physical-name guess.
+- `rootdelivery01`: retires all three historical event-CHECK spellings and uses
+  `op.f` for its already-canonical name. Downgrade still retains the broader
+  event vocabulary; re-upgrade succeeds without duplicate constraints or
+  deleting exposure rows.
+- `multiplayer08`: dropping `invited_by` removes its own FK, without guessing
+  a PostgreSQL-generated name different from the metadata convention.
+- `schemaalign01`: preserves the Trip-reading table and canonical share index
+  belonging to earlier migrations. It no longer destroys the table or
+  resurrects a drift-only index spelling during rollback. Trip-kind index
+  restoration remains owned by its original chain.
+
+Fresh head upgrade passed in **3.669s** on `vesper_cleanup_validation`:
+`recovery-naming-validation-upgrade-20260924T015616Z.log`. The combined
+migration/CHECK regression suites passed **38/38**, zero skips, including
+schema-isolated upgrade/downgrade/re-upgrade cases, retained rows, actual FK
+reflection, forbidden event rejection, and both previously present/missing
+Trip-reading repair paths:
+`recovery-migration-repairs-final-tests-20260924T015652Z.log`.
+
+Full historical rollback remains **failed**, but now reaches an intentional
+boundary, not those defects. On a new empty database, upgrade passed and
+downgrade stopped at `notifenv04`'s explicit refusal:
+`recovery-alignment-v2-fresh-roundtrip-20260924T015551Z.log` (**5.593s**).
+`notifenv02`, `notifrecord01`, and `notifcorr01` also deliberately reject
+downgrade. No guard or CI requirement was removed. The
+[CI owner document](../reliability/CI%20Plan.md#backend-schema-drift-boundary)
+records this unresolved policy mismatch.
+
+Earlier attempts in this batch exposed and retained evidence for the circle FK,
+Trip-reading removal and share-index rename failures. A failed full downgrade
+committed intermediate revisions at concurrent-index/autocommit boundaries;
+the first target was verified at `geoggist02`, not head. A subsequent regression
+attempt against that target failed its head-only delegation case (14 passed,
+one failed); this was invalid environment evidence, not an application
+regression or a passing run. Subsequent full-chain attempts used fresh databases
+and final regressions used a separately verified fresh-head database. Never
+infer all-chain rollback from the transactional behavior of an earlier segment.
+
+A separate bounded real-database round-trip **passed**: head → `notifenv04`
+(without invoking its forbidden downgrade) → head, followed by the CHECK gate
+over **201 tables**, zero differences/errors, in **5.092s**.
+Log: `recovery-supported-boundary-roundtrip-20260924T015817Z.log`.
+This certifies the tested reversible segment, not `downgrade base`, production
+data preservation across every migration, or a change to required CI policy.
+
+The repair batch is committed as backend `9729e3fcf`, hooks enabled. Full
+standalone backend `make ci` passed in **177.224s**, with the mobile sibling
+deliberately unavailable, including 1,004 checker tests and 422 deterministic
+replay checks; 14 LLM-backed replay checks remain skipped. Log:
+`recovery-migration-repairs-backend-ci-20260924T015653Z.log`.
+The subsequent `alembic check` still fails with the previously identified
+non-CHECK metadata drift:
+`recovery-post-roundtrip-schema-drift-20260924T015844Z.log`.
+
+The labelled, tmpfs-backed disposable container `6095c0ab88bf` and its four
+synthetic databases were removed after verifying zero other clients. No user
+database or unrelated Docker service was modified. The recovery app remains
+unchanged; no pin update, remote publication or protected-main merge occurred.
+
 All logs above are under `/tmp/vesper-landing-verification/`. This is a narrower,
 more trustworthy diagnosis, **not a passing migration job**. Full coordinated
 verification, publication, required CI, review and native acceptance remain open.
