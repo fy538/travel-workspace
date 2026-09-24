@@ -18,6 +18,98 @@ canon or a direction to merge every historical implementation wholesale. The
 continue to decide what to build. “Retire” below means *no whole-branch merge
 or current feature port*; it does **not** mean a Git ref or worktree was deleted.
 
+## September 23 late follow-up — verification, security and legacy dependency retirement
+
+Current inventory: **six local branches, ten remote branches, nine worktrees**.
+The remote set is three main, three recovery and four dependency branches
+(backend #232; app #198, #196, #194). The earlier eleven-branch count below is
+historical. Recovery is still not landed; canonical main was not changed.
+
+### Full cross-repository verification
+
+`python3 scripts/measure_verification.py --label recovery-consolidation-verify-repaired
+--log-dir /tmp/vesper-landing-verification -- make verify` **passed** in
+833.019 seconds at clean workspace `679f54b`, backend `1e176e111`, app
+`31eb64f4f`. Backend offline tests reported 21,878 passed, 14 existing skips,
+1,492 deselected and 53 xpasses; the checker suite reported 1,004 passed.
+Frontend journey, API-seam and offline groups reported 173, 185 and 126 passed
+respectively (overlapping groups, not an additive unique-test count). Contract
+drift, API coverage, typecheck, Maestro syntax, registry and governance gates
+also completed. The replay's LLM-backed skips remain unverified; this command
+does not certify real-backend/device appearance or clear GitHub review gates.
+Full log: `/tmp/vesper-landing-verification/`
+`recovery-consolidation-verify-repaired-20260924T031109Z.log`.
+
+### Scoped dependency security repair
+
+App commit `ef86daa75` refreshes exactly six dependency records: xmldom
+0.8.13 → 0.8.15 and 0.9.10 → 0.9.12; js-yaml 4.3.1 → 4.3.2;
+the Redocly dependency's brace-expansion 2.1.2 → 2.1.7; fast-uri
+3.1.2 → 3.1.8; ip-address 10.2.0 → 10.7.2. The existing js-yaml
+override is advanced; the other updates remain inside their consumers'
+declared ranges. No direct dependency, package membership, Expo/React/native
+version, security exception or severity threshold changed.
+
+The narrow repair follows the upstream
+[YAML merge-budget advisory](https://github.com/advisories/GHSA-2883-xcg3-v3hh),
+[XML parser advisory](https://github.com/advisories/GHSA-93r5-fhx6-vmg9),
+[brace-expansion advisory](https://github.com/advisories/GHSA-rgw5-rvv9-x895),
+[URI parser advisory](https://github.com/advisories/GHSA-f65p-4m7j-42xc), and
+[IP parser advisory](https://github.com/advisories/GHSA-mwp4-54f8-5fhr).
+
+Lock generation used `npm install --package-lock-only --ignore-scripts`, then
+`npm update @xmldom/xmldom brace-expansion fast-uri ip-address
+--package-lock-only --ignore-scripts`. A clean `npm ci` completed, including
+the existing Metro runtime patch. Node was 24.13.0 and npm 11.6.2 on Darwin
+arm64; GitHub's Node 20 environment has not yet run this new commit.
+
+The new parser compatibility tests run in the existing Security audit CI job.
+Both actual plist consumers preserve strings, booleans, numbers, arrays,
+dates and binary values. The YAML empty-source work-budget and malformed-IPv6
+tests **failed before** the installed dependency update; all 17 security and
+parser tests **passed after**, with no skips. The production security gate and
+full `npm audit --audit-level=high` both passed: zero high/critical findings.
+The full audit still reports **one low and nineteen moderate findings**; this
+is not a zero-vulnerability claim. No blanket `npm audit fix` or native upgrade
+was used. `verify:pr` plus size budgets passed in 52.951 seconds, including
+185 parity tests and the unchanged lint/typecheck debt ratchets.
+
+Measured logs in `/tmp/vesper-landing-verification/`:
+
+- `recovery-parser-prepatch-regression-20260924T032557Z.log`: expected failure,
+  15 passed / 2 failed, 0.332 seconds, before dependency installation.
+- `recovery-security-patches-20260924T032651Z.log`: 17 tests and both security
+  commands passed, 2.003 seconds.
+- `recovery-security-pr-20260924T032652Z.log`: app PR checks and size budgets
+  passed, 52.951 seconds.
+
+The full cross-repo pass above predates these dependency edits. Re-run the
+coordinated gate before publishing the new tuple; do not inherit its pass.
+
+### Backend #226 retired without changing production dependencies
+
+PR #226 only raised `sentence-transformers>=6.0.0` to `>=6.1.0` in the
+developer-only `requirements-legacy-embeddings.in`. The old range already
+permits 6.1.0. Production excludes that file, as documented in
+`travel-agent/docs/operations/Configuration.md`; the PR identifies no required
+production fix. Closed without merging, retaining the optional developer path.
+
+Exact tip `c200e9e74c8bcceb57a4ec519f92072e86cf3428` is preserved at
+`refs/archive/dependency-retirement-2026-09-23/sentence-transformers-6.1.0`
+and in the verified complete bundle
+`/Users/feihuyan/vesper-repository-archive-2026-09-23.c4wYxq/backend-legacy-embedding-retirement-20260923.bundle`.
+SHA-256: `b0b86d6d24dbcd5d7d2257811dc5e8e23c120378a1a3838583df5b19bf5088b4`.
+Following closure the remote branch disappeared; an exact-lease delete was
+rejected as stale, fresh `ls-remote` confirmed absence, and fetch pruned the
+tracking ref. No forced retry. Recovery remains local, not offsite.
+
+The other four dependency proposals are not product branches: the backend
+group mixes 26 upgrades (including a Ruff version that would disagree with
+the current CI/pre-commit pins), the app group mixes React/native/tooling
+changes, and the two RevenueCat proposals independently upgrade only one
+member of the installed 10.7.1 pair. These still need explicit dispositions;
+their existence does not justify absorbing a broad upgrade into recovery.
+
 ## September 23 follow-up — two incompatible dependency branches retired
 
 After screen/API refactoring, local branches remain **six** and worktrees
