@@ -212,6 +212,75 @@ failure is still an open landing requirement even though `design:gate` itself
 now passes. No remote publication, main merge or worktree removal occurred in
 this round. All six local/six remote branch heads remain main plus recovery.
 
+### Shared Life and reader header adoption — app `36671fd65`
+
+The eight failures recorded above are now addressed by actual component
+adoption, not exemptions. Life root renders `RootFloatingHeader` and one
+three-action `HeaderActionCapsule`, reusing shared clearance and scroll-edge
+progress. Record, group, search, private-original and received-original pages
+render `ProductiveHeader`; it owns the top safe area without double-padding
+their scroll content. Record/group loading and failure states retain an exit.
+This uses the existing grounded productive cohort; it does not certify or
+implement a whole-app floating-header migration.
+
+The canonical artifact reader uses `ReaderChrome`, measured floating clearance
+and scroll-state material. Its exact Life lens/group/anchor return, history
+return and cold-entry fallback are preserved. Source/grant readers keep their
+existing authority, revision, focus, expiry and playback logic. The private
+reader preserves the `intake-source-return` control identity used by native
+journeys; unavailable exact revisions now name the same destination as their
+actual return action. No API, permissions, rollout gates or audience policy
+changed.
+
+The conditional history adapter is explicitly traced through both its Life
+record and legacy Atlas compact-header branches. The audit has **zero
+unclassified routes**, with 15 passing header-tooling checks. Tests exercise
+the real shared chrome rather than mocking a passing header owner. The new
+canonical-reader test mocks its content card and data read: it proves header
+geometry consumption/navigation, not the card's rendering or backend custody.
+
+Measured evidence at W `45e919d` / B `1e176e111` / A `71e85858a` plus the
+header-adoption diff committed as `36671fd65`; logs remain in
+`/tmp/vesper-landing-verification/`. Environment: Darwin arm64, Node 24.13.0,
+npm 11.6.2 (not the CI Node 20 environment):
+
+- `recovery-header-final-focused-20260924T043952Z.log`: **passed**, 5.482s,
+  15 header-tooling checks and 142 Jest tests across 11 suites, no skips.
+- `recovery-header-adoption-pr-20260924T043844Z.log`: **passed**, 66.625s,
+  `verify:pr`, including 185 parity tests. No ratchet was relaxed; lint reports
+  168 warnings against its existing 169 limit.
+- `recovery-header-polish-tooling-20260924T044032Z.log`: **passed**, 4.062s,
+  31 scenario definitions, the full `qa:polish:test` bundle, and `design:gate`.
+- `recovery-header-docs-20260924T044233Z.log`: **passed**, 7.536s,
+  `make docs-check` before this ledger addition.
+- `recovery-header-full-app-20260924T044119Z.log`: **passed**, 319.945s,
+  full `npm test -- --ci --runInBand`: **8,660 tests across 1,250 suites**, no
+  failures or skips; one snapshot passed. This run has no coverage collection,
+  no native rendering, and no real-backend/provider proof.
+- `recovery-header-visual-contracts-20260924T044447Z.log`: **passed**, 3.037s,
+  artifact-baseline contracts (four Jest tests) and backend-derived snapshot
+  freshness. These checks validate artifacts/contracts, not new screenshots.
+- `recovery-header-ledger-docs-20260924T044448Z.log`: **passed**, 7.057s,
+  `make docs-check` including this section before final measurement additions.
+- `recovery-life-header-native-preflight-20260924T044057Z.log`: **failed**,
+  0.453s. The promoted Life HTML reference validates (with a non-image warning),
+  but the surface registry has `captures: []`, so the runner exits with
+  `No captures matched --flow=null` **before device preflight**. This is a
+  missing capture registration, not a Maestro/Metro failure or native pass.
+  Separately, the owned port 53936 has no listener and the booted presentation
+  device belongs to the other lane. No captures or fresh visual judgments were
+  produced. The existing old native worktree remains held by PID 25951.
+
+Earlier focused-check failures in this round were new test expectations (the
+legacy owner actually uses `AtlasCompactHeader`, cold return omits the default
+query, and React's memo wrapper is not the rendered `HeaderFrame` node). Those
+tests were corrected against actual implementation; no required behavior or
+assertion was waived. The subsequent focused run above passed.
+
+Final coordinated verification, fresh native capture coverage, publication of
+the current tuple, required remote checks/independent review, landing and safe
+worktree retirement remain open. The goal is not complete.
+
 ## September 23 late follow-up — verification, security and legacy dependency retirement (historical)
 
 Current inventory: **six local branches, ten remote branches, nine worktrees**.
