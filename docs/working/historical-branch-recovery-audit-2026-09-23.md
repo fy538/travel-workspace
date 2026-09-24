@@ -89,6 +89,57 @@ the recovery lane plus the old native-testing lane once no process uses it.
 Historical retirement does not prove recovery landing, native visual parity,
 or complete-goal acceptance.
 
+### Mobile API decomposition — September 23 (UTC September 24 logs)
+
+App commit `0cc0daf93` resolves the three API size violations without raising
+budgets or changing product behavior. Catalog, profile and finance endpoint
+implementations now compose into the existing public HTTP facade; intake
+composes through the existing Memory extension. `MemoryAPI` holds the extracted
+method declarations and is inherited by `API`, not a second runtime owner.
+Authentication, retries, error parsing, uploads and account-session checks
+remain in the one shared transport. No backend routes, generated wire models,
+SDK versions, booking policy or product surfaces changed.
+
+The schema-bridge checker includes the new declaration file and its method-only
+adapter entry. Eighteen explicit operation-policy consumer paths and the entity
+query adapter source now point at the extracted implementations. This changes
+source provenance only; operation lifecycle, audience, flags and review dates
+are unchanged. The obsolete `http.ts` size exception was removed: the file is
+now 3,160 lines, below the normal 3,193-line limit; `interface.ts` is 3,017.
+
+Local evidence, Node 24.13.0 / Darwin arm64:
+
+- Compared all **506 API method signatures**, **99 Memory/intake methods**,
+  **361 core HTTP methods** and **10 shared transport/helper functions** with
+  the pre-refactor app HEAD (`4c30863a3`): no missing or duplicate methods and
+  unchanged parsed implementations/signatures. The first standalone lexical
+  scanner comparison incorrectly treated template-literal tails as whitespace-
+  sensitive tokens; parser/printer AST comparison resolved that diagnostic.
+- `make api-coverage-check`, schema-bridge (**376 exports/entries**), all
+  **25 schema-checker tests**, app typecheck and contract-test typecheck passed.
+- Final API suite: **248 passed**, zero skipped, 23.825s including contract-test
+  typecheck. New tests exercise custody paths/uploads/errors and the public
+  facade's catalog encoding, profile pagination, receipt authentication,
+  idempotency headers and permission failures through mocked fetch.
+- `npm run verify:pr`: **passed**, 53.924s, including **181 parity tests**.
+  Focused lint has zero errors; pre-existing array-type and test import-order
+  warnings remain. `git diff --check` and commit hooks passed.
+- `npm run size-budgets`: **still fails**, now only for VenueDetailScreen
+  (1,033 lines), ImportCaptureScreen (876), TravelPlanScreen (861) and
+  PlaceHomeScreen (857). No screen limit or exception was enlarged.
+
+Measured logs in `/tmp/vesper-landing-verification/`:
+`recovery-api-decomposition-checks-20260924T025104Z.log`,
+`recovery-api-decomposition-pr-20260924T025153Z.log`, and
+`recovery-api-decomposition-final-tests-20260924T025251Z.log`.
+The post-commit AST comparison passed in 0.212s
+(`recovery-api-decomposition-equivalence-20260924T025450Z.log`);
+`make docs-check` passed in 5.162s
+(`recovery-api-decomposition-docs-20260924T025420Z.log`).
+These checks establish the offline API/refactor boundary, not real-backend,
+native appearance or full release acceptance. Coordinated `make verify`,
+updated candidate pins, publication and protected-main landing remain pending.
+
 ### Migration lifecycle gate reconciliation — September 23 (UTC September 24 logs)
 
 Backend commit `ef1e19682` replaces the impossible unconditional `head → base`

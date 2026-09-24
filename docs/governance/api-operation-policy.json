@@ -702,7 +702,7 @@
         {
           "kind": "app_url",
           "name": "getEntityDetailPresentation",
-          "source": "travel-app/utils/api/http.ts"
+          "source": "travel-app/utils/api/httpCatalogEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -718,7 +718,7 @@
         {
           "kind": "app_url",
           "name": "getEntityDetailPresentationV2",
-          "source": "travel-app/utils/api/http.ts"
+          "source": "travel-app/utils/api/httpCatalogEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -734,7 +734,7 @@
         {
           "kind": "app_url",
           "name": "getEntitySituation",
-          "source": "travel-app/utils/api/http.ts"
+          "source": "travel-app/utils/api/httpCatalogEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -765,7 +765,7 @@
         {
           "kind": "app_url",
           "name": "getSelfProfilePortrait",
-          "source": "travel-app/utils/api/http.ts"
+          "source": "travel-app/utils/api/httpProfileEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -781,7 +781,7 @@
         {
           "kind": "app_url",
           "name": "getProfileFeatureCandidates",
-          "source": "travel-app/utils/api/http.ts"
+          "source": "travel-app/utils/api/httpProfileEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -1415,7 +1415,7 @@
         {
           "kind": "app_url",
           "name": "getVenueExactPhoto",
-          "source": "travel-app/utils/api/http.ts"
+          "source": "travel-app/utils/api/httpCatalogEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -2460,7 +2460,7 @@
         {
           "kind": "app_source",
           "name": "AtlasPrivacyApiClient",
-          "source": "travel-app/utils/api/http.ts"
+          "source": "travel-app/utils/api/httpProfileEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -2476,7 +2476,7 @@
         {
           "kind": "app_source",
           "name": "AtlasPrivacyApiClient",
-          "source": "travel-app/utils/api/http.ts"
+          "source": "travel-app/utils/api/httpProfileEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -2492,7 +2492,7 @@
         {
           "kind": "app_url",
           "name": "personal-memory-learning-confirmation",
-          "source": "travel-app/utils/api/http.ts"
+          "source": "travel-app/utils/api/httpProfileEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3292,7 +3292,7 @@
         {
           "kind": "app_url",
           "name": "personal-memory-learning-confirmation",
-          "source": "travel-app/utils/api/http.ts"
+          "source": "travel-app/utils/api/httpProfileEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3634,7 +3634,7 @@
         {
           "kind": "app_source",
           "name": "getIntakeInterpretations",
-          "source": "travel-app/utils/api/httpMemoryEndpoints.ts"
+          "source": "travel-app/utils/api/httpIntakeEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3650,7 +3650,7 @@
         {
           "kind": "app_source",
           "name": "resolveIntakeCandidate",
-          "source": "travel-app/utils/api/httpMemoryEndpoints.ts"
+          "source": "travel-app/utils/api/httpIntakeEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3706,7 +3706,7 @@
         {
           "kind": "app_source",
           "name": "getIntakeSubmission",
-          "source": "travel-app/utils/api/httpMemoryEndpoints.ts"
+          "source": "travel-app/utils/api/httpIntakeEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3722,7 +3722,7 @@
         {
           "kind": "app_source",
           "name": "getIntakeSubmissionLifecycle",
-          "source": "travel-app/utils/api/httpMemoryEndpoints.ts"
+          "source": "travel-app/utils/api/httpIntakeEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3754,7 +3754,7 @@
         {
           "kind": "app_source",
           "name": "deleteIntakeSubmission",
-          "source": "travel-app/utils/api/httpMemoryEndpoints.ts"
+          "source": "travel-app/utils/api/httpIntakeEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3770,7 +3770,7 @@
         {
           "kind": "app_source",
           "name": "createIntakeSubmission",
-          "source": "travel-app/utils/api/httpMemoryEndpoints.ts"
+          "source": "travel-app/utils/api/httpIntakeEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3786,7 +3786,7 @@
         {
           "kind": "app_source",
           "name": "finalizeIntakeSubmission",
-          "source": "travel-app/utils/api/httpMemoryEndpoints.ts"
+          "source": "travel-app/utils/api/httpIntakeEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3802,7 +3802,7 @@
         {
           "kind": "app_source",
           "name": "uploadIntakeSourceObject",
-          "source": "travel-app/utils/api/httpMemoryEndpoints.ts"
+          "source": "travel-app/utils/api/httpIntakeEndpoints.ts"
         }
       ],
       "feature_flag": null,
