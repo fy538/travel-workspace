@@ -98,7 +98,12 @@ error was also corrected, without increasing the 406-error legacy ratchet.
 Final focused regressions (18 tests), `verify:pr` (including 185 parity tests),
 lint/typecheck ratchets, and size budgets **passed in 57.946 seconds**.
 Log: `recovery-final-regression-pr-20260924T040049Z.log` in the same log folder.
-The full-suite success claim still requires a rerun at this final commit.
+The final full-suite rerun at clean W `8b10863` / B `1e176e111` / A
+`cd600bd85` **passed: 8,646 tests across 1,249 suites, zero skips**, in
+269.247 seconds. Command: `npm test -- --ci --runInBand`, measured through
+`scripts/measure_verification.py`; log
+`recovery-full-app-final-20260924T040330Z.log`. This is local Jest without
+CI coverage, not native appearance or real-backend certification.
 
 Polish scenario validation passed (31 registered scenarios), but native
 preflight failed because Metro was not running. This recovery lane owns port
@@ -108,6 +113,50 @@ pass is claimed. Full GitHub/coverage runs, design/calibration and visual
 evidence gates, cross-repo pin publication, independent review and final landing
 remain separate obligations. Re-run coordinated verification after final repairs;
 do not inherit the earlier pass for changed source.
+
+### Current route verification repair — app `b3f0720ce`
+
+The committed route inventory had 193 routes while the actual tree has 198.
+Five newer routes were hidden from ownership checks; combined with the two
+already reported gaps, seven routes needed explicit ownership. Life now owns
+its real tab, full record, groups, search, private-original and recipient-original
+readers. Intake owns the exact contribution-result receipt. Source and
+Relationships retain their data/custody authority. No route was exempted, no
+release flag was enabled, and no new native visual evidence is claimed.
+
+`design:gate` now checks the inventory against the actual tree, failing on
+structural drift, missing/malformed inputs, missing route trees, and collisions.
+It ignores generation date alone and never repairs the snapshot during checks.
+The generator is import-safe. Six added regression cases bring `qa:gate:test`
+to 24 passing checks. Route freshness, 31 scenario definitions, and `verify:pr`
+(185 parity tests; existing lint/typecheck ratchets unchanged) passed in 52.318
+seconds. Log: `recovery-route-focused-pr-20260924T041456Z.log`, measured on
+`cd600bd85` plus the diff committed as `b3f0720ce`.
+
+Two separate evidence gaps remain visible:
+
+- The full `qa:polish:test` bundle **failed** in 2.075 seconds at the header
+  audit: 14 unclassified routes and 12 production routes absent from its
+  conformance matrix. Some are delegated wrappers; Life/original/artifact
+  screens also contain local header controls. Inspect actual owners before
+  declaring conformance, adding exemptions, or changing UI. Log:
+  `recovery-route-ownership-20260924T041209Z.log`.
+- A fresh visual inspection of all four committed g1 calibration images found
+  the documented defects. The scorer nevertheless **failed all three defect
+  cases solely because the answer key requires overall `fail` and the current
+  protocol derives `mixed` for p1 defects without p0/capture blockers**. The
+  recorded judgments and failed scored report are preserved, not revised to
+  force a pass. This was an informed known-fixture smoke test (the README and
+  filenames disclose categories), not blind/held-out evaluation or fresh app
+  screenshots. Reconcile the scoring contract with the canonical verdict
+  roll-up using independent test cases; do not change defect thresholds or
+  inflate severity merely to pass.
+
+After regeneration, `design:gate` has current status and zero route gaps;
+its sole failure is calibration (0.147 seconds,
+`recovery-design-gate-route-repair-20260924T041556Z.log`). These changes are
+committed locally only. Full coordinated re-verification, current remote CI,
+review, publication/landing, and safe final worktree removal remain open.
 
 ## September 23 late follow-up — verification, security and legacy dependency retirement (historical)
 
