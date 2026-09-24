@@ -136,6 +136,52 @@ the lane's existing virtualenv on PATH passed the hook without disabling it.
 These repairs require a new pinned candidate and full gate before publication;
 they do not inherit the previous tuple's complete verification.
 
+### Fixture-clock repair and CHECK-constraint diagnosis — September 23
+
+The subsequent fixture-clock repair reproduced both J08 failures on a fresh
+disposable PostGIS 15/3.3 database at lane port 53932. Fixture birth now passes
+its represented `occurred_at`; the scenario injects the same instant into Map's
+real canonical time evaluator. Display pins do not grant operational authority,
+and no production lifecycle policy changed. Both historical midnight-boundary
+cases pass with `--run-quarantined` (**2 passed**, 9.118s), after first reproducing
+`lifecycle_ineligible` and then the previously masked completed-Map mismatch.
+Log: `/tmp/vesper-landing-verification/recovery-j08-authority-clock-fixed-20260924T010032Z.log`.
+
+Dao's authored completed-trip pin now represents August 10, two days after the
+inclusive August 8 end date. All manifests validate; the separate live-calendar
+freshness command still correctly fails both stale August windows. Backend/mobile
+persona snapshots were regenerated, changing their source hash only. Clock and
+cross-repo tests passed **23/23**, mobile persona tests **33/33**. Logs use labels
+`recovery-fixture-clock-contracts` and `recovery-persona-mobile-projection` in the
+same directory. These are fixture repairs, not refreshed native or live-dogfood
+certificates.
+
+Migration diagnosis remains **unresolved, not a blanket false positive**.
+Alembic 1.19.1's check reproduces the remote failure on a fresh migration.
+A disposable-only probe compares `pg_get_constraintdef` against each metadata
+CHECK parsed by PostgreSQL on temporary LIKE tables, rolling back all probe DDL.
+It found 174 tables with identical definition multisets (84 with differing name
+sets) and 27 tables needing further reconciliation; no probe errors occurred.
+Many differences are enum ordering, truncation, duplicate naming prefixes or
+cast representation, but the evidence also identifies:
+
+- Four migrated `trips` checks absent from metadata (source, plan editing,
+  booking initiation and expense entry policies).
+- Migrated far-out generation-status and notification action-depth checks absent
+  from metadata.
+- `entity_takes` metadata allowing `trip_story` while the migrated constraint
+  excludes it; inspect the completed narrowing migration and Take owner before
+  choosing which side to repair.
+- Delegation metadata allowing `restore` and `dissolve_parallel_plan` while its
+  migrated operation vocabulary excludes them; inspect the delegation contract
+  before expanding accepted authority.
+
+Evidence: `/tmp/vesper-landing-verification/recovery-check-constraint-semantics-20260924T010202Z.log`;
+reproduction: `/tmp/vesper-audit-check-constraints-20260923.py` (hard-guarded to the
+disposable local database). First reconcile semantic discrepancies with owners,
+then solve CHECK naming/truncation without suppressing real drift. No dependency
+upgrade, constraint exclusion, migration change or production DB write is claimed.
+
 ### Clean verification and publication preparation — September 23
 
 The clean coordinated gate passed at workspace `ff08cc1`, backend
