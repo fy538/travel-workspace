@@ -34,6 +34,149 @@ has not been removed or its unrelated process terminated. The earlier 83 local
 branch / 167 worktree removals remain the historical retirement result, not a
 claim that their full implementations were merged.
 
+### September 24 broad verification and mobile governance follow-up
+
+This checkpoint supersedes the pending local backend verdict below, not the
+publication, independent-review, or native-acceptance boundaries. Branch counts
+remain main plus recovery in each repository; no branches/worktrees were deleted
+in this round. Candidate backend: `6a3ca1bbe`; candidate app: `cc361bd0c`.
+
+**Backend repairs verified locally:**
+
+- `make -C travel-agent ci` passed in 249.055s on `6a3ca1bbe`: the broad offline
+  group reported **21,883 passed / 14 skipped / 1,492 deselected / 53 historical
+  xpasses**, followed by 1,004 package tests and 422 deterministic replay checks
+  (14 LLM-backed checks skipped). Log:
+  `/tmp/vesper-landing-verification/recovery-backend-repair-ci-stable-20260924T061605Z.log`.
+- The CI database selector, `pytest tests/ -q -m 'not requires_api_keys'
+  --tb=short --durations=25`, passed against task-owned disposable PostGIS and
+  Qdrant: **23,321 passed / 0 failed / 52 skipped / 16 deselected / 53 historical
+  xpasses**, 357.498s including the wrapper. Existing quarantine and optional
+  test boundaries remain; this is not an unmasked all-feature certificate.
+  Log: `recovery-db-ci-environment-20260924T062222Z.log` in the same directory.
+- The first full database invocation was invalid as a CI reproduction: the
+  temporary launcher forced `AI_MODE=replay`, a dogfood profile, and disabled
+  background loops. It produced 107 failures by blocking mocked provider and
+  background paths. The corrected launcher removes those overrides while
+  retaining explicit disposable DSNs and blank provider credentials. No
+  production policy or assertions were weakened to fit that mistaken runner.
+  Failed log retained: `recovery-db-full-suite-20260924T061604Z.log`.
+- `make itinerary-canonical-cert PYTHON=.venv/bin/python` passed both groups,
+  **444 + 376 tests**, 54.553s. Qdrant emitted a client/server minor-version
+  warning (client 1.19.0, CI-pinned server 1.17.1), not a test failure. Log:
+  `recovery-db-canonical-cert-20260924T062928Z.log`.
+- The generated fixture-ID map was preserved at
+  `/tmp/vesper-db-repair.9sBzZE/fixture_id_map.full-suite.json` and restored from
+  HEAD only after all database runs finished. The two task-created test
+  containers and synthetic volumes were removed; the unrelated existing
+  PostgreSQL container was not changed. Backend worktree is clean.
+
+**Mobile fixes committed, broader gate still failing:**
+
+- `b559ec895` uses existing `h1` for the 20pt intake heading and `small` for the
+  10pt WeekShape note, and removes 21 obsolete raw-size exceptions. No new type
+  role or exception was introduced. The heading deliberately adopts h1's 500
+  weight and standard ink rather than its former local 600/default ink; the
+  week note retains 10/12 geometry and its large-text fallback remains 12pt.
+  Raw-size inventory passes at 77; role usage passes at 81/81. **23 focused
+  tests and 185 parity tests passed**, alongside `verify:pr`, in 77.413s:
+  `recovery-mobile-typography-focused-20260924T062555Z.log`.
+- `dda575ff9` moves 14 screens to already-exported row/state entrypoints, with
+  no new public exports or rendering changes. The text-clamp ratchet tightens
+  from three to two existing DocumentEditCard cases. Public imports and clamp
+  checks, **82 focused screen tests**, and `verify:pr` including **185 parity
+  tests** passed in 77.545s: `recovery-mobile-public-boundaries-20260924T062906Z.log`.
+  Separate valid, violation, stale-baseline and missing-source-directory cases
+  confirm the tightened checker still fails appropriately:
+  `recovery-clamp-ratchet-cases-20260924T062929Z.log`.
+- GitHub job `107511483476` explicitly reports exceeding 15 minutes; its log
+  shows suites continuing to complete until cancellation. `cc361bd0c` gives
+  only the app **Test** job 30 minutes, retaining all coverage thresholds,
+  selectors and subsequent itinerary certification. This is not a skip,
+  force-exit, or a claim of faster tests. The first full local coverage run
+  finished with 8,658 passed / 2 failed: a hydration fixture race and stale
+  row-ownership classification. The new Ubuntu job budget remains unverified
+  until publication.
+- Native preflight validated scenario IDs but failed because Metro was absent
+  on port 8081. Home remains doctrine-only with zero registered design-ref
+  image pairs; that check is not a design-fidelity pass. No screenshots or
+  native verdicts were produced. Log:
+  `recovery-native-preflight-20260924T063121Z.log`. DTServiceHub PID 25951 still
+  has its cwd inside the old native worktree, which remains preserved.
+
+The complete frontend-governance inventory ran all steps independently rather
+than stopping at the first failure (18.099s;
+`recovery-mobile-governance-inventory-20260924T062556Z.log`). After the public
+import/clamp repairs, the remaining categories are:
+
+| Open boundary | Observed failure | Required disposition |
+| --- | --- | --- |
+| Typography geometry | Nine Home overrides, including repeated hero-face replacement | Consolidate against authored geometry; do not merely register a blanket exemption or alter appearance to satisfy a counter |
+| Radius | 248 literals against 222 | Reuse exact existing tokens where equivalent; review genuinely new geometry |
+| Containment | 175 local containers against 162 | Migrate real repeated containers to existing recipes without flattening their distinctions |
+| Spacing | 378 declarations against 361 | Reuse matching tokens; preserve intentionally authored off-grid geometry |
+| Quiet ink | 130 muteSoft references against 107 | Distinguish decorative marks from meaningful text; retain readable text, not a renamed weak color |
+| Modal ownership | ArtifactMediaPreview adds one raw Modal against zero | Preserve full-screen original viewing, dismissal and privacy while using a reviewed interaction owner |
+| Local controls | 14 unclassified controls, one stale ExemplarInlineCard entry | Reuse existing controls where equivalent and resolve the actual remaining control roles |
+| Motion ownership | Resolved locally in the follow-up below | No new animation, spring permission, or loop exemption |
+
+**Row, hydration, and motion integration follow-up:**
+
+- The hydration test now controls the pending backend response. It checks
+  cached trips remain visible before resolution and an authoritative empty
+  response subsequently removes them. No production cache policy changed.
+- Row ownership now distinguishes actual public shell imports from accessories,
+  tokens, comments and type-only imports. DecisionInlineRow and the Places map
+  fallback now use the existing RowCore rather than borrowing only a chevron.
+  Places detail and private Ask are sibling actions, not nested buttons.
+  **74 focused tests passed**, followed by `verify:pr` including its 185 parity
+  tests (65.581s): `recovery-row-actions-20260924T064218Z.log`.
+- The next full coverage run passed 8,669 tests and failed one source contract:
+  its file-wide regex mistook the Places outer group's padding for a shell
+  override. The checker now follows styles actually attached to RowCore and
+  retains rejection of preset-density overrides. It also recognizes the
+  **existing**, documented `rowTokens.ts` `density="none"` contract for
+  caller-owned bespoke geometry (already used by Canon 126 StartRow). This
+  clarification was added to the existing Row System doc; no allowlist grew
+  and StartRow's visual geometry was not altered. Failed full log retained:
+  `recovery-mobile-full-coverage-repaired-20260924T064344Z.log`.
+- Motion review identifies HomeRootV2Screen as scroll-position owner,
+  RootScrollEdge as its opacity consumer, PlacesRootHeaderLeading as an existing
+  rootMorph style host, and trips-home-kit as a static gallery shared value.
+  PlacesWorkspace no longer imports Reanimated. The exact registry now matches
+  these owners. There are no new clocks, loops, springs or Reduce Motion
+  exceptions. **44 focused tests, motion governance and typecheck passed** in
+  17.714s: `recovery-row-density-contract-20260924T064754Z.log` (a further nested
+  checker case was added afterward and belongs to the final full run).
+- Motion registry validation also exercised a valid checkout, missing owner,
+  stale owner, and missing-checkout/tool-environment case. All four returned
+  their expected status and diagnostic (0.563s):
+  `recovery-motion-registry-cases-20260924T064822Z.log`.
+
+Final row/full-coverage closeout **passed**: **8,679 tests across 1,251 suites,
+zero failures/skips**, one snapshot, followed by `verify:pr` (185 parity tests),
+mobile doc headers/links and `git diff --check`. Total command time 122.561s;
+log `recovery-mobile-row-closeout-20260924T064832Z.log`. Row/hydration repairs
+are committed as `12469268d`; motion registration is a separate following commit.
+The verification used the same combined source changes on app `cc361bd0c` plus
+the then-uncommitted diff; it did not test the old published app head.
+
+The remaining governance inventory was rerun independently (4.504s;
+`recovery-remaining-mobile-governance-20260924T064930Z.log`): motion now passes;
+typography geometry, radius, containment, spacing, quiet ink, modal ownership
+(two checks), and local-control classification still fail. None was waived or
+had its budget increased. Native visual acceptance, the combined workspace
+gate, publication and independent approval are still open. Fresh PR reads
+confirm all three remain open/review-required and app #201 remains draft.
+All logs in this section are under `/tmp/vesper-landing-verification/`.
+
+Next: finish these bounded mobile integration repairs, complete full coverage
+and current native acceptance, rerun the combined workspace gate on committed
+inputs, then publish and refresh dependency pins in order. Private-checkout
+credentials and independent protected-main approvals remain external gates.
+Neither the backend pass nor the smaller `verify:pr` pass makes the full mobile
+governance gate green. Do not discard useful implementation to force clean Git.
+
 ### September 24 integration repair follow-up
 
 The earlier checkpoints below are historical observations, not the latest
