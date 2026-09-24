@@ -20,6 +20,31 @@ depends_on:
 
 # Vesper program roadmap
 
+## Recovery delivery checkpoint — September 23
+
+The clean coordinated `make verify` passed at workspace `ff08cc1`,
+backend `1eb22daf7`, app `f77f4f310`; the separate documentation and
+mobile PR checks passed too. Backend and app recovery branches were published.
+The workspace push exposed a hook-only Git-environment ownership bug,
+corrected in `6cba254` with 113 passing workspace/evidence regression tests.
+No hook was disabled. The app's new CI pin commit `7c034796c` selects that
+workspace tooling bridge and the recovered backend; the workspace lock selects
+the same backend and pinned app.
+
+Next delivery order is a clean updated-tuple gate, then publish the workspace
+bridge, app pin and final workspace tip in that dependency order, followed by
+coordinated protected-main review. Read the PR's exact-revision evidence for
+subsequent results; the earlier pass does not certify later commits. This is
+not a new product workstream. Do not reopen deferred historical features merely
+to finish cleanup.
+
+The registered Places reference bundle is hash-verified and available, but
+native mixed-Places appearance and Home value/design acceptance are not
+established by offline/syntax checks. Independent review and retirement of the
+still-Xcode-owned native lane also remain. The
+[recovery audit](historical-branch-recovery-audit-2026-09-23.md#clean-verification-and-publication-preparation--september-23)
+records revisions, evidence limits and commands.
+
 ## August execution-plan handoff — September 23
 
 The bounded August demo beat and program contracts remain at their existing

@@ -90,6 +90,53 @@ the recovery lane plus the old native-testing lane once no process uses it.
 Historical retirement does not prove recovery landing, native visual parity,
 or complete-goal acceptance.
 
+### Clean verification and publication preparation — September 23
+
+The clean coordinated gate passed at workspace `ff08cc1`, backend
+`1eb22daf7`, app `f77f4f310` in **938.773 seconds**. It ran through
+`land-worktree.sh` (without publishing), which fetched each remote main and
+checked clean revisions before and after `make verify`. The log is
+`/tmp/vesper-landing-verification/recovery-clean-coordinated-gate-20260923T235946Z.log`.
+Backend offline evidence: **21,811 passed, 14 skipped, 1,458 deselected,
+53 xpassed**; mypy: zero errors in 1,888 files. Full contract generation, API
+coverage, mobile journeys/seams/offline tests, 384 Maestro syntax validations
+and workspace governance passed. Syntax validation is not device execution.
+The separate mobile `verify:pr`, `make docs-check`, backend documentation
+push packet and preservation audit also passed at this clean tuple. Logs use
+the labels `recovery-app-final-pr-gate`, `recovery-documentation-final`,
+`recovery-backend-documentation-push-packet` and
+`recovery-preservation-recheck` in the same directory.
+
+The initial publication pushed backend `1eb22daf7` and app `f77f4f310`
+to the recovery branch. Workspace publication failed, not the prior shell
+gate: the pre-push environment selected the parent's Git index/HEAD during
+child evidence reads. `6cba254` fixes the release/journey-evidence ownership
+boundary without bypassing the hook or changing release intent. Regression
+tests first reproduced the fault; **113 tests** then passed, including real
+temporary repositories, wrong-parent index rejection, dirty/clean identity and
+Git tool-failure cases. The current-state checker also passed under explicit
+hook-style repository variables. Log:
+`/tmp/vesper-landing-verification/recovery-workspace-hook-regressions-20260924T002001Z.log`.
+
+CI pin preparation now selects backend `1eb22daf7`, app `7c034796c`
+and workspace tooling bridge `6cba254` (the app's dependency). Publish the
+workspace bridge first, then the pinned app, then the final workspace tip;
+all remote dependency SHAs must resolve before opening the coordinated PRs.
+The bridge and final workspace differ only in dependency pins and this dated
+receipt/roadmap, not evidence tooling or product contracts. The updated tuple
+requires its own clean gate; use the PR's exact-revision results for subsequent
+publication/merge status rather than carrying the earlier tuple's pass.
+
+Places' external canonical bundle was hash-verified from the local Downloads
+export (one manifest, six pairs, one verified external authority), but no new
+native capture was made. Its reserved simulator was shut down and its Metro
+port had no listener. Mixed-Places appearance, Home value/design acceptance,
+independent protected-main review, and final lane retirement remain separate.
+All three remote mains still require one independent review with administrator
+enforcement; the authenticated author cannot supply that approval. The old
+native lane still has a live Xcode directory owner. No main merge, review
+bypass, process termination or final lane removal is claimed.
+
 ### Spatial/demo lifecycle closure — September 23
 
 Backend `1eb22daf7` archives nine dated documents: Place-entity and routing
