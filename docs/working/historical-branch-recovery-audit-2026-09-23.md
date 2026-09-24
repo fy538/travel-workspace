@@ -34,6 +34,105 @@ has not been removed or its unrelated process terminated. The earlier 83 local
 branch / 167 worktree removals remain the historical retirement result, not a
 claim that their full implementations were merged.
 
+### September 24 publication repair checkpoint
+
+The clean candidate W `0b4e94a` / B `39287cb66` / A `36671fd65` passed
+`make verify`, including **21,878 backend tests passed, 14 skipped, 1,492
+deselected and 53 historical xpasses**, contract freshness, mobile journey/seam/
+offline checks, 384 Maestro syntax checks and documentation governance.
+The measured **publication command nevertheless exited 1** after 1,173.636s:
+workspace was already published, backend publication succeeded, and the app's
+pre-push dead-client check correctly found two unconsumed adapters. Log:
+`/tmp/vesper-landing-verification/recovery-corrected-publication-20260924T051235Z.log`.
+
+Backend `39287cb66` archives the expired hosted-Occasion exploration without
+promoting its deferred policy matrix, corrects the architecture index, documents
+the existing Takes projection-version cache input, and fixes onboarding's
+missing virtualenv activation. The former enum-parity failure was an ambient
+Python dependency problem, not a reason to exempt the check. Correctly scoped
+doc/enum/link checks passed in 9.489s. Two earlier measurement invocations used
+the wrong working directory and failed; they are retained, not counted as passes.
+
+App `2783b0a68` removes only `getInviteEligibility` and `getNarrationManifest`
+from interface, HTTP and mock layers after confirming no application callers.
+The workspace operation policy now records their absent mobile adapters. Backend
+routes remain retiring pending deployed-traffic evidence; invitation mint-time
+checks and existing narration/voice paths remain intact. Dead-client lint, API
+coverage and `verify:pr` passed in 82.259s (185 parity tests, no skips), logged as
+`recovery-unused-client-removal-20260924T053343Z.log`. This app revision is not
+yet published, and the earlier whole-app Jest pass is not a fresh run on it.
+
+Published backend run `35960348227` at `39287cb66` passed `test-db-migrate`,
+lint, import boundaries, typecheck, eval replay and package smoke. The dogfood
+job passed manifest/clock checks, then exposed a missing cold-CI replacement
+venue. Backend `bfc0973a1` adds only the catalog identity and representative
+point already reviewed in `lisbon.2026-08.demo-anchors-01`; it makes no hours,
+availability, reservation or production-promotion claim. A regression binds
+the authored replacement, reviewed pack and cold fixture together.
+
+- Focused manifest/proposal regressions: **63 passed**, no skips, plus Ruff
+  checks; 8.114s, `recovery-lisbon-cold-world-unit-20260924T053823Z.log`.
+- Full cold Lisbon seed replay: **passed in 46.010s** on newly created local
+  PostGIS 15/3.3 and Qdrant 1.17.1 containers, with explicit disposable DSNs,
+  Python 3.13 and token-free replay mode. The same twelve CI seed kinds ran,
+  followed by **23 persona checks passed / 0 failed / 0 skipped**, five
+  interactive checks passed, and content gates **0 failed / 2 warnings / 4
+  passed / 0 skipped**. Warnings: constraint substantiation and Discover angle
+  parity. Coherence used `--dry-run` to avoid rewriting reports, not to skip
+  its checks. Log: `recovery-lisbon-cold-ci-replay-20260924T053947Z.log`.
+- Both disposable containers and their synthetic data were removed; the
+  generated local fixture-ID map was preserved under `/tmp/vesper-cleanup-pins.mcPS4r/`
+  and restored to its pre-run repository content. No development database,
+  production corpus or other lane's running container was changed.
+
+Remaining: publish the fixture repair and app, refresh immutable dependency
+pins in publication order, rerun the final combined gate, inspect candidate
+GitHub results, obtain independent protected-main review, and retire the final
+branches/worktrees after landing. Workspace run `35958329144` separately failed
+private backend checkout authentication; token presence does not prove access.
+Native design acceptance remains unverified. None of these local passes grants
+permission to bypass the corresponding open boundary.
+
+Backend `bfc0973a1` subsequently passed its full local delivery gate and normal
+pre-push hooks and was published: 322.739s in
+`recovery-lisbon-backend-publication-20260924T054153Z.log`, including **21,879
+tests passed, 14 skipped, 1,492 deselected and 53 historical xpasses**. This is
+not a claim that the separate real-DB CI suite is passing. App `cddbd692e`
+pins published W `0b4e94a` and B `bfc0973a1`; its publication is pending at
+this checkpoint. The workspace bridge is intentionally the published prior
+revision, avoiding circular dependency pins.
+
+#### Real-DB CI failures newly reached — unresolved
+
+Run `35960348227` at B `39287cb66` completed: the offline `test` job passed,
+but `test-db` failed with **14 failed / 23,296 passed / 58 skipped / 16
+deselected / 53 xpassed** in 509.71s. Job `107507896695` is the authoritative
+failure log. The Lisbon fixture repair addresses the separate dogfood seed
+failure; it does not resolve these database-suite failures by implication.
+
+| Exact failing test (under `tests/`) | Observed failure, not yet a proven cause |
+| --- | --- |
+| `concierge/test_planning_context_race_postgres.py::test_committed_context_change_blocks_canonical_planner_persistence[member context]` | Plain object reached an itinerary attribute access. |
+| `concierge/test_turn_loader_golden.py::test_load_turn_state_matches_seeded_shape` | Fixture materialization denied: `lifecycle_ineligible`. |
+| `concierge/test_turn_loader_golden.py::test_regen_would_have_fired_but_was_neutralized` | Same lifecycle refusal. |
+| `core/test_context_db_replay_evaluation_postgres.py::test_db_replay_covers_cohorts_once_and_returns_only_bounded_evidence` | Four resolved personal claims, expected five. |
+| `core/test_context_source_loader_postgres.py::test_postgres_loader_reads_complete_three_member_snapshot_without_writes` | Internal group-profile projection absent. |
+| `core/test_trip_context_operation.py::test_context_shift_is_atomic_idempotent_and_preserves_local_clock` | Fixture materialization denied: `lifecycle_ineligible`. |
+| `core/test_trip_context_operation.py::test_context_preview_does_not_advertise_a_denied_provider_shift` | Same lifecycle refusal. |
+| `core/test_trip_creation_confirmation_postgres.py::test_different_proposals_cannot_overwrite_same_blank_trip` | Authored proposal dates rejected as past. |
+| `db/test_place_projections.py::test_projection_is_versioned_and_outbox_is_idempotent` | `place_projection_publish` handler absent. |
+| `dogfood/test_canonical_itinerary_seed.py::test_seed_proposals_uses_canonical_gateway_and_runtime_identity` | Canonical proposal conflict: `lifecycle_ineligible`. |
+| `dogfood/test_canonical_itinerary_seed.py::test_seed_move_proposal_uses_exact_authored_placement` | Same lifecycle refusal. |
+| `life/test_original_refind_postgres.py::test_represented_retained_original_matches_literal_metadata_and_exact_identity` | Too many values for two-value tuple unpack. |
+| `life_projection/test_life_shadow_corpus_postgres.py::test_bounded_shadow_corpus_rehearses_supported_families_and_viewers` | Backfill did not finish within 100 slices. |
+| `root_projection/test_v2_contracts.py::test_root_reads_apply_process_admission_and_recover_after_physical_completion` | Healthy read still unavailable with `process_read_capacity`. |
+
+Reproduce against an explicitly disposable migrated database, distinguish
+historical clock/contract drift from implementation defects, preserve the
+underlying lifecycle/privacy/admission invariants, then run the complete DB
+suite after focused repairs. Do not lower assertions, increase retry budgets,
+add quarantines or bypass the required job merely to land the branch.
+
 ### Final dependency dispositions and recoverability
 
 These four proposals were closed without merging after preserving exact tips.

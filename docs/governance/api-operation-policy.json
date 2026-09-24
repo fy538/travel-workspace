@@ -2282,7 +2282,7 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "invites",
-      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Only transport declarations remain: travel-app/utils/api/http.ts::getInviteEligibility; no product caller was discovered. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: The transport facade exists, but no product screen currently calls this read-only preflight. Keep the backend mint-time substance gate authoritative; adopt this endpoint with a named invite journey or remove the unused facade and operation.",
+      "reason": "Reviewed 2026-09-24: removed the unused getInviteEligibility mobile interface, HTTP adapter and mock after confirming no application caller. Keep the backend mint-time substance gate authoritative. The backend preflight remains retiring; deployed traffic has not been verified, so route deletion is not yet justified. Any future adoption requires a named invite journey and reviewed client.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless an active invite journey adopts this preflight with a named app consumer.",
       "review_by": "2026-10-07"
     },
@@ -2398,7 +2398,7 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "live-companion",
-      "reason": "Reviewed 2026-09-23 against the current full OpenAPI export and mobile source: Only transport declarations remain: travel-app/utils/api/http.ts::getNarrationManifest; no product caller was discovered. Preserve retiring status and the existing removal trigger; deployed traffic has not been verified, so deletion is not yet justified. Earlier rationale: Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "reason": "Reviewed 2026-09-24: removed the unused getNarrationManifest mobile interface, HTTP adapter and mock after confirming no application caller. The backend manifest remains retiring with its existing traffic-based removal trigger; no narration, voice-guide or offline-download capability is activated by retaining that route.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
       "review_by": "2026-10-07"
     },
