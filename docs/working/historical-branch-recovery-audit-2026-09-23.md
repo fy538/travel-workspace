@@ -34,9 +34,64 @@ has not been removed or its unrelated process terminated. The earlier 83 local
 branch / 167 worktree removals remain the historical retirement result, not a
 claim that their full implementations were merged.
 
-### September 24 UI consolidation — four more categories repaired
+### September 24 control-owner consolidation — two mobile categories remain
 
-This is the latest mobile checkpoint; the older seven-category inventory below
+Latest mobile candidate: **`6f3e88f6b`**; backend remains `6a3ca1bbe`.
+Recovery is still local/unmerged. This round did not publish, remove branches,
+or touch the canonical workspace's concurrent design edits.
+
+Thirteen previously unclassified controls now use existing owners: Button for
+ordinary actions (including room creation, artifact continuation and Plan/map
+handoff), IconButton for floating map chrome, SegmentedChoice for reachability
+time/mode, and CommandRow for local-plan voice. These deliberately adopt the
+shared control register; they are **not pixel-identical styling changes**.
+Callbacks, authority, feature gating, labels and disabled behavior remain
+caller-owned. Button now forwards an optional accessibility hint so adopting it
+does not discard the local-evidence clear action's scope explanation. The map
+badge is decorative/non-intercepting and its count remains in the button label.
+
+The one retained finding, CardChipRow's stacked layout, is classified alongside
+its existing wrap/fill siblings: the same chat-card owner carries long labels,
+option-specific in-flight state and telemetry. The stale ExemplarInlineCard
+entry is removed. The local-control allowance remains **59/59**, with no new
+budget or checker exemption. Radius tightens **219→217**, spacing **361→360**.
+
+Evidence under `/tmp/vesper-landing-verification/`:
+
+- `recovery-control-owners-20260924T071508Z.log`: typecheck, local-control
+  inventory and **105 focused tests passed** (21.195s).
+- `recovery-control-regressions-final-20260924T071806Z.log`: **28 focused
+  tests**, `verify:pr` (including 185 parity tests), controls/radius/spacing,
+  mobile docs and whitespace passed (67.720s). Existing debt remains 163 lint
+  warnings and 406 test-typecheck errors, unchanged by this batch. Two earlier
+  attempts failed in the new test: a non-focusable group queried as a focusable
+  element, then an unavailable matcher. The final test asserts group metadata,
+  individually operable radios, controlled selection/readback and exact values;
+  production was not changed to hide those test failures.
+- `recovery-control-full-20260924T071938Z.log`: final control/radius/spacing/
+  motion checks and full CI coverage **8,701 tests / 1,253 suites / one snapshot,
+  zero failures or skips** (65.126s). Includes added unauthenticated-room and
+  gated voice-handoff tests. Started on `c7a6e485b` plus the exact committed diff.
+- `recovery-control-budget-cases-20260924T072046Z.log`: both tightened counters
+  accept the ceiling, reject one additional literal, and fail on an unreadable
+  source-directory fixture; six expected outcomes (0.836s), no algorithm edits.
+- `recovery-control-native-preflight-20260924T072117Z.log`: 31 scenario IDs
+  validate, but trip-itinerary doctor fails because Metro is absent on `:8081`
+  (1.132s). No screenshots or native visual verdict were produced. Start the
+  correctly owned runtime after checking lane configuration; this is not proof
+  that native verification is impossible.
+
+**Next repairs:** nine Home typography overrides (including the duplicated
+medium-face override) and **175 hand-built containers against a 162 ceiling**.
+The action migrations did not reduce that separate containment count. Preserve
+the authored Home metrics when consolidating roles, and choose container recipes
+by actual content role rather than mechanically flattening the surface. Native
+acceptance, coordinated `make verify`, publication, private-child CI credentials
+and independent PR approval remain separate unfinished steps.
+
+### September 24 UI consolidation — four more categories repaired (prior checkpoint)
+
+This is the preceding mobile checkpoint; the older seven-category inventory below
 is retained as the diagnosis. App candidate is now `c7a6e485b`; backend remains
 `6a3ca1bbe`. No branches were merged, published or removed in this round.
 
