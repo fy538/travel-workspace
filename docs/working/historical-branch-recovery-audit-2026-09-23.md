@@ -34,7 +34,51 @@ has not been removed or its unrelated process terminated. The earlier 83 local
 branch / 167 worktree removals remain the historical retirement result, not a
 claim that their full implementations were merged.
 
-### September 24 control-owner consolidation — two mobile categories remain
+### September 24 dead-style retirement — mobile consolidation checks pass
+
+Latest mobile candidate: **`27eefa0fb`**; backend remains `6a3ca1bbe`.
+This supersedes the two-category repair queue below. The apparent typography
+and containment failures were largely **unreferenced legacy definitions**, not
+live surfaces needing new typography roles or a redesign.
+
+- Removed 243 unused TripsHomeStyles definitions and the 21-entry unused
+  TripsHomeArtStyles file. The 36 remaining Home definitions are unchanged.
+  The existing foundation contract test now checks their exact consumer set.
+- Removed four unused container styles from BookingOfferRow,
+  BookingSessionSurfaces and DiscoverCoverHome. Their surviving definitions are
+  unchanged. No rendered booking or discovery feature was removed.
+- Removed nine now-unused legacy typography roles and six stale override
+  exceptions. All removed source remains recoverable from Git.
+- Tightened radius **217→210**, spacing **360→359**, quiet-ink **105→103**,
+  and Home stylesheet line budget **1483→197**. Containment is **162/162**;
+  no new allowance or checker exemption was introduced.
+
+Evidence under `/tmp/vesper-landing-verification/`:
+
+- `recovery-dead-style-checks-20260924T072911Z.log`: **160 focused tests**,
+  typecheck, docs, typography/containment and tightened budgets pass (21.541s).
+- `recovery-dead-style-equivalence-20260924T073004Z.log`: AST comparisons
+  against `6f3e88f6b` establish identical surviving style definitions in all
+  four changed style owners (0.218s). This is source evidence, not visual QA.
+- `recovery-retired-style-budget-cases-20260924T073035Z.log`: nine expected
+  valid/over-ceiling/unreadable-source outcomes for three tightened counters
+  (0.902s); checker algorithms were not changed.
+- `recovery-retirement-mobile-full-20260924T073052Z.log`: full mobile CI
+  coverage **8,702 passed, zero failed or skipped**, followed by `verify:pr`,
+  mobile docs and whitespace checks (123.054s). Existing lint/test-typecheck
+  debt remains separately ratcheted, not claimed eliminated.
+- `recovery-native-owned-preflight-20260924T073449Z.log`: Trip Itinerary
+  doctor passes with Maestro 2.6.1 on this lane's assigned iPhone 16 Pro Max,
+  using Metro `http://localhost:53936`. This supersedes the absent-8081
+  preflight below. It establishes driver/runtime readiness, not visual quality.
+
+The coordinated `make verify` run and a bounded `04-plan` native capture are
+in progress at this checkpoint. The native runtime is explicitly **mock /
+legacy visual**, not governed Home v2 or real-backend acceptance. Publication,
+remote CI credentials and independent PR review remain unfinished; no merge
+readiness is inferred from the mobile checks alone.
+
+### September 24 control-owner consolidation — preceding checkpoint
 
 Latest mobile candidate: **`6f3e88f6b`**; backend remains `6a3ca1bbe`.
 Recovery is still local/unmerged. This round did not publish, remove branches,
