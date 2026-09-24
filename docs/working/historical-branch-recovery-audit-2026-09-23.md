@@ -449,6 +449,63 @@ synthetic databases were removed after verifying zero other clients. No user
 database or unrelated Docker service was modified. The recovery app remains
 unchanged; no pin update, remote publication or protected-main merge occurred.
 
+### Core metadata drift reconciled — September 23 (UTC September 24)
+
+The remaining core-metadata differences were traced to their original
+migrations and runtime owners, rather than exempted from drift detection:
+
+- Chat images require `message_id`; group outbox authority/lifecycle events
+  permit no message. The outbox's comment/nullability had been placed on the
+  image table. Metadata now matches `roomrt02`, the baseline image schema,
+  and the existing writers; no database nullability or API changed.
+- Distance cache pruning, Intake dead-letter, Life resolution supersession,
+  and pipeline scoped-checkpoint indexes are represented in metadata.
+- The entity-resolution and two place-handoff indexes match their migrated
+  ascending key definitions. Runtime `ORDER BY` behavior is unchanged.
+- Four nullable Trip-evidence columns already persisted by `xgraph12` are
+  represented without conflating Trip evidence with `graph_occurrence_evidence`.
+  The Occasion FK uses an isolated external-key reference, not an import or
+  partial adoption of the separate domain's metadata. Readers still project
+  their explicit existing fields; this enables no new evidence writes.
+
+The initial string FK could not resolve Occasion in core metadata and correctly
+failed autogenerate. The isolated key reference fixes that ownership seam;
+regressions assert the real domain key's name/type, core schema isolation,
+sorting, and on-delete behavior. No autogenerate filter was expanded and no
+new migration is needed to reflect schema already installed by existing ones.
+
+Verification under `/tmp/vesper-landing-verification/`:
+
+- `recovery-owner-metadata-drift-fixed-20260924T020456Z.log`: **passed** in
+  **2.999s**; Alembic reports no new operations and the CHECK gate reports
+  **201 tables, zero differences/errors**.
+- `recovery-owner-metadata-db-20260924T020513Z.log`: **41/41 passed**, zero
+  skips, including reflected columns/keys/indexes for all nine affected tables.
+- `recovery-owner-runtime-postgres-20260924T020539Z.log`: **17/17 passed**,
+  zero skips, for occurrence, membership outbox and Life resolution DB paths.
+- `recovery-owner-metadata-offline-20260924T020247Z.log`: **41/41 passed**
+  in the selected offline image, outbox, handoff and Intake suites.
+- `recovery-owner-metadata-roundtrip-20260924T020606Z.log`: **passed** in
+  **5.760s**; head → `notifenv04` → head, then both Alembic and CHECK gates.
+
+This resolves the previously reported **core metadata drift**. It does not
+certify the separate graph schema or waive the forward-only/full-base CI
+mismatch. Fresh GitHub readback still shows all three recovery PRs open,
+blocked and requiring review, with the app PR draft.
+
+Backend commit `5b19ba11e` passed hooks and full standalone `make ci` in
+**182.315s**: **21,845 passed, 14 skipped, 1,488 deselected, 53 xpassed**,
+mypy 1,888 files, 1,004 checker cases, and 422 deterministic replay checks.
+The 14 LLM-backed replay checks remain skipped. Log:
+`recovery-owner-metadata-backend-ci-20260924T020514Z.log`.
+Docs checks passed in **6.430s** (`recovery-owner-metadata-docs-20260924T020737Z.log`).
+The labelled disposable container `f69c64f681bb` was removed after confirming
+head revision and zero other clients; its synthetic database is discarded.
+The old native worktree remains protected: live Xcode `DTServiceHub` PID 25951
+still holds its screenshot directory. All three old-native checkouts remain
+tracked/untracked clean. No unrelated process was stopped, and no main or
+remote branch was changed in this batch.
+
 All logs above are under `/tmp/vesper-landing-verification/`. This is a narrower,
 more trustworthy diagnosis, **not a passing migration job**. Full coordinated
 verification, publication, required CI, review and native acceptance remain open.

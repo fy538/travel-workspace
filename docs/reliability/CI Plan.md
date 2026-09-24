@@ -84,6 +84,13 @@ not an enforcement change; migrations still own the physical constraint names.
 The regression suite exercises valid, violating and tool-failure cases against
 PostgreSQL. Workflow wiring is not evidence of a passing published candidate.
 
+These comparisons cover the registered core metadata, not every physical
+table. Experience-graph metadata remains domain-owned and separate. Existing
+Trip-evidence compatibility columns refer to Occasion's external key through
+an isolated key reference, not an incomplete core-owned Occasion table. The
+reference must stay outside core autogenerate metadata; declaring an external
+key is not permission to migrate or drop the domain owner's other columns.
+
 **Open migration-policy mismatch (September 23):** the workflow still requires
 `downgrade base`, but `notifenv04`, `notifenv02`, `notifrecord01`, and
 `notifcorr01` deliberately reject downgrade to protect notification history.
