@@ -50,7 +50,8 @@ the exact repaired workflow canary passed **11 tests** against a freshly
 migrated disposable PostGIS database. The task-owned container was stopped
 afterward. Evidence: `recovery-atlas-canary-20260924T080831Z.log` (14.334s,
 three existing PostgreSQL leak-baseline warnings), under the verification
-directory below. This backend repair is committed locally, not yet published.
+directory below. Backend **`e6d58564147094b998255c503860a758c66a35fa`** is now
+confirmed published on the recovery branch, not merged.
 
 App run **35971851563** passed Logic QA journeys and mock/real parity, but its
 full Test job ended with **8,701 passed / one failed**: the Place foreground
@@ -63,7 +64,9 @@ reader on withdrawal. No production behavior, timeout or skip was changed.
 The focused screen suite passed **17 tests** and TypeScript completed without
 diagnostics (`recovery-place-foreground-deterministic-20260924T081104Z.log`).
 The remote timeout's exact cause remains unproven; local hardening is not yet
-proof of a successful remote rerun. This test repair is also local/unpublished.
+proof of a successful remote rerun. Published app
+**`5cc8326ffbb53009ffa10e0733efed8599e4ca8d`** contains that test repair plus
+the published backend pin; no additional product source changed.
 
 Fresh mobile full coverage, `verify:pr`, docs and whitespace checks **passed
 in 391.290s**: **8,702 tests / 1,253 suites / one snapshot**, zero failed or
@@ -72,13 +75,28 @@ skipped, followed by **185 parity tests**. Evidence:
 test-typecheck debt remains governed by its unchanged ratchets, not eliminated.
 The run began with the exact mobile diff subsequently committed as `47e42fd8b`.
 
-The fresh coordinated `make verify` remains **in progress at this checkpoint**:
+The fresh coordinated **`make verify` passed in 936.790s**:
 `recovery-final-ci-repairs-coordinated-20260924T081517Z.log`. Its backend
 offline suite passed **21,889 tests**, with 14 skips, 1,492 deselections and
 53 historical XPASS results; its separate tool-contract packet passed 1,004
-tests. Contract checks, mobile journey/seam/offline checks and Maestro's
-structural inventory have passed; semantic flow validation is still running.
-This is not yet a complete passing `make verify` receipt.
+tests. Contract checks, mobile journey/seam/offline checks, Maestro structural
+and semantic validation, API coverage, and final workspace governance passed.
+The run ended on workspace `59141e1`, backend `e6d585641`, and app `47e42fd8b`,
+all clean. Workspace changes since its start were confined to this ledger;
+the tested child sources were unchanged. This is local integration evidence,
+not remote CI, independent review, native design acceptance or main landing.
+
+Normal backend publication passed in **77.875s** with the required backend
+virtualenv (`recovery-atlas-repair-publish-venv-20260924T083257Z.log`). An
+earlier attempt without it failed its PyYAML-dependent hooks; that failure is
+retained in `recovery-atlas-repair-publish-20260924T083113Z.log`, not counted as
+publication. Mobile publication passed in **14.966s**
+(`recovery-foreground-repair-publish-20260924T083445Z.log`). Conditional hook
+skips remain skips, not executed coverage. Workspace child pins were generated
+only after exact `ls-remote` comparisons confirmed both published HEADs.
+Fresh backend run **35976026080** and mobile run **35976096222** are in progress;
+their terminal results remain required. Workspace publication of this updated
+pin/ledger pair is the next step, not yet established by this document.
 
 Workspace run **35972399521** at published **`5c2bc89`** independently confirms
 the same private-child checkout authentication failure described below.
