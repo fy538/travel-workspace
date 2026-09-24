@@ -78,6 +78,11 @@ be verified by a subsequent candidate run; this document does not certify it.
 
 - Run `make verify` for the coordinated gate; `make -C travel-agent ci` and
   `npm --prefix travel-app run verify:pr` identify child failures.
+- Cross-repository release/evidence Git reads clear hook-local repository
+  selectors before reading a child's index or HEAD. A passing shell invocation
+  alone does not prove the pre-push environment: exercise the hook as well.
+  Parent-only tracked paths cannot certify child implementation, and Git failure
+  must remain an error/unknown rather than passing evidence.
 - Regenerate changed backend contracts with `make sync-types`, then inspect
   both workspace OpenAPI snapshots and `travel-app/utils/api/schema.gen.ts`.
 - Use an explicit disposable `TEST_DATABASE_URL` plus
