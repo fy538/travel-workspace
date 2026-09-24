@@ -89,6 +89,55 @@ the recovery lane plus the old native-testing lane once no process uses it.
 Historical retirement does not prove recovery landing, native visual parity,
 or complete-goal acceptance.
 
+### Historical rollback repair — September 23 (UTC September 24 logs)
+
+Backend commit `a898f6472` repaired four older migration inverses without changing
+their upgrade paths, current product tables, API, or notification-history guards:
+
+- `66ff0fada263` now drops its actual, already-double-prefixed CHECK name via
+  `op.f`, preventing a third naming-convention prefix.
+- `f8d3b2c91a40` restores an unfiltered dashboard with explicit used columns,
+  releasing the otherwise hidden `origin` dependency introduced by `SELECT *`.
+- `3616fd3a1d25` drops and recreates the summary view before removing its extra
+  output column; PostgreSQL cannot shrink a view with `CREATE OR REPLACE`.
+  No `CASCADE` suppresses unexpected downstream dependencies.
+- `d2e4f6a8b0c1` no longer has an empty downgrade after dropping five tables.
+  It recreates their frozen immediate-parent schemas, including indexes, keys,
+  defaults and the `story_archive` CHECK extension. This restores **empty
+  structure, not deleted data**; it does not revive retired product features.
+
+Verification on disposable PostGIS 15/3.3, Python 3.13.0 / Alembic 1.19.2:
+
+- Historical prefix `base → onboardevt01 → base`: **passed**, 4.436s.
+  Earlier fresh attempts exposed the naming, view and missing-table defects;
+  those failed databases were not reused as clean test starts.
+- Re-upgrade from that base to head, Alembic drift, 201-table CHECK comparison,
+  and live event/entity parity: **passed**, 8.827s.
+- Schema-hardening plus CHECK regression suite: **44 passed**, zero skips,
+  3.980s. The new regressions preserve existing parent rows through counter and
+  view rollbacks and compare all five retired schemas against their original
+  migration DDL, not current runtime metadata. Earlier memory/safety inverses
+  execute successfully against the restored tables.
+
+Measured commands and revision tuples are under
+`/tmp/vesper-landing-verification/`:
+`recovery-retired-table-roundtrip-20260924T021840Z.log`,
+`recovery-historical-head-drift-20260924T022016Z.log`, and
+`recovery-historical-all-db-20260924T021944Z.log`.
+The complete backend `make ci` passed in **170.647s**: **21,845 passed,
+14 skipped, 1,491 deselected, 53 xpassed**, mypy 1,888 files, another 1,004
+checker tests, and 422 deterministic replay checks (14 LLM-backed checks
+remain skipped). Log: `recovery-historical-backend-ci-20260924T021945Z.log`.
+The commit hook updated only two existing migration-ID line numbers and the
+timestamp in the secret baseline; no finding was added or waived. Hooks passed
+on retry. The owned disposable database container was stopped and its removal
+verified; only synthetic test data was discarded. Workspace `make docs-check`
+passed in 6.124s before this final receipt update.
+
+Publication still needs new child pins and coordinated verification. The CI requirement to downgrade
+through four deliberately forward-only notification revisions remains
+unresolved; these local passes do not certify that job or merged main.
+
 ### Published candidate and CI repair — September 23 (UTC September 24 logs)
 
 Workspace `a0fab00`, backend `1eb22daf7`, app `7c034796c` passed the clean

@@ -102,6 +102,17 @@ can leave a partial revision because older concurrent-index migrations use
 autocommit; inspect `alembic_version` and start subsequent full-chain attempts
 from a new disposable database, not an assumed transaction rollback.
 
+The recovery lane now verifies the historical prefix separately:
+`base → onboardevt01 → base → head`, followed by both drift checks and live
+event/entity parity. Historical inverses must restore their immediate parent's
+schema, not merely change the Alembic revision. In particular, retiring tables
+requires frozen parent definitions on downgrade; restoring empty tables does
+**not** recover rows previously deleted by the forward migration. CHECK drops
+must mark already-conventioned physical names with `op.f`, and dashboard
+rollback must release removed-column dependencies before dropping columns.
+This local prefix evidence does not resolve or bypass the four forward-only
+notification boundaries above, nor certify a published `test-db-migrate` run.
+
 ## Private checkout and dispatch credentials
 
 | Secret location | Secret | Minimum purpose |
