@@ -9,6 +9,7 @@ include dogfood.mk
 
 .PHONY: bootstrap dev dev-backend m3-demo-backend sync-types typecheck doctor status help
 .PHONY: new-worktree land-worktree worktrees
+.PHONY: cross-repo-fixture-check
 .PHONY: contract-check occasion-behavior-contract-check place-identity-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate entity-health mock-slug-parity surface-contraction-check
 .PHONY: certify-fast certify-logic certify-corpus certify-visual certify-visual-cloud certify-live maestro-flow-check journey-registry-check journey-registry-verify-passes journey-evidence-report dogfood-status corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-journey-live-api qa-persona dogfood-status-sync
 .PHONY: preflight-eas fly-secrets verify m0-reachability-report docs-governance-check docs-child-governance-check docs-inventory-check docs-inventory-report docs-spine-check docs-canon-check docs-release-check docs-release-sync docs-status-check docs-status-sync docs-links-check docs-home-surfaces-check docs-check life-composition-fixture-check life-engine-fixture-check compatibility-check card-arrival-check chat-card-types-check pre-dogfood dogfood-fast dogfood-local dogfood-device dogfood-physical dogfood-staging test-backend-postgres journey-evidence-promote convergence-candidate-check
@@ -58,7 +59,10 @@ worktrees: ## List active worktree lanes for both child repos
 
 # ── Reliability ───────────────────────────────────────────────────────────────
 
-contract-check: ## Verify full OpenAPI → app projection → generated types
+cross-repo-fixture-check: ## Compare actual mobile enums and dogfood snapshots with backend owners
+	@python3 scripts/check_cross_repo_fixtures.py
+
+contract-check: cross-repo-fixture-check ## Verify full OpenAPI → app projection → generated types
 	@./scripts/contract-check.sh
 	@travel-agent/.venv/bin/python scripts/check_occasion_behavior_contract.py
 

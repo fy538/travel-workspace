@@ -83,12 +83,58 @@ with Python 3.14.6 on Darwin arm64. Receipt:
 The checked recovery tuple was workspace `75a4398`, backend `0aaa2ccc4`, app
 `717355b17`; this documentation receipt follows that check.
 
-**Still incomplete:** verify and
-publish the recovery candidate through protected-main review, resolve the
+**Still incomplete:** land the published recovery candidate through protected-main review, resolve the
 remaining acceptance/pin requirements, land useful work, and finally retire
 the recovery lane plus the old native-testing lane once no process uses it.
 Historical retirement does not prove recovery landing, native visual parity,
 or complete-goal acceptance.
+
+### Published candidate and CI repair — September 23 (UTC September 24 logs)
+
+Workspace `a0fab00`, backend `1eb22daf7`, app `7c034796c` passed the clean
+coordinated gate in **936.409 seconds** and were published with hooks enabled.
+The three open PRs are [workspace #36](https://github.com/fy538/travel-workspace/pull/36),
+[backend #233](https://github.com/fy538/travel-agent/pull/233), and
+[app #201](https://github.com/fy538/travel-app/pull/201). The app remains draft;
+no main has merged. The earlier publication-preparation section below is history.
+
+Remote checks exposed boundaries not certified by that local pass:
+
+- Backend run `35938177449`: standalone offline tests assumed an undeclared
+  sibling mobile checkout (six failures); migration drift check reports CHECK
+  constraint name differences; the authored Dao returned-trip clock contradicts
+  its completed status. DB tests were skipped after migration-check failure.
+- Workspace run `35939522206`: private backend checkout fails authentication
+  although the secret is present. Credential access/configuration is unresolved;
+  no credential has been replaced and no access expansion is authorized.
+- App run `35939465963`: frontend size budgets fail; dependency audit reports
+  unapproved xmldom/js-yaml advisories; two Life routes lack design ownership;
+  calibration is stale, and header inventory/conformance tests fail. These are
+  unresolved findings, not permission to refresh baselines or fabricate reviews.
+  The Logic QA job also reports two J08 fixture materializations denied as
+  `lifecycle_ineligible`: its fixed September 8 scenario does not pass that
+  scenario clock to the canonical fixture helper. This is a repair lead, not
+  verified resolution; DB reproduction is still required.
+
+The first repair separates standalone backend parser/snapshot tests from actual
+cross-repository assertions. `make contract-check` now includes the fail-closed
+`cross-repo-fixture-check`, comparing four registered real mobile enum vocabularies
+and both generated snapshots against backend owners. Missing children/files,
+stale snapshots, enum drift, and failed tooling cannot count as passing. Backend
+unit tests use owned parser inputs; no test is quarantined or silently skipped.
+Focused standalone tests passed **18/18** with `TRAVEL_APP_ROOT` deliberately
+absent. Workspace tooling passed **91/91**, including **11** new positive,
+violation, missing-input, and tool-failure checks. Measured log:
+`/tmp/vesper-landing-verification/cross-repo-ownership-workspace-suite-20260924T005010Z.log`.
+Backend repair commit `1391b1f4d` also passed the complete local `make ci`
+with the mobile path absent (**226.691s**): **21,812 passed, 14 skipped,
+1,458 deselected, 53 xpassed**, mypy 1,888 files, a further 1,004 checker tests,
+and 422 deterministic replay checks (14 LLM-backed checks remain skipped).
+Log: `/tmp/vesper-landing-verification/backend-standalone-ownership-ci-20260924T005011Z.log`.
+The initial commit hook selected a Python without SQLAlchemy; rerunning with
+the lane's existing virtualenv on PATH passed the hook without disabling it.
+These repairs require a new pinned candidate and full gate before publication;
+they do not inherit the previous tuple's complete verification.
 
 ### Clean verification and publication preparation — September 23
 

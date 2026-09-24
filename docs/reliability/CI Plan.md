@@ -56,6 +56,13 @@ CI owns cross-repository OpenAPI freshness, generated contracts, journeys,
 registry/governance, and reliability checks. Child CI owns its language and
 runtime suites. Explicit failing prerequisites must not become successful skips.
 
+`make contract-check` includes `make cross-repo-fixture-check`: registered mobile
+enum unions must match backend CHECK vocabularies, and both canonical persona
+and angle snapshots must match the backend exporters. Missing child inputs,
+stale mobile snapshots, drift and failed tooling fail this gate. The workspace
+checks actual pinned children; backend standalone tests own parser fixtures and
+backend snapshots, so they do not require an undeclared mobile checkout.
+
 ## Private checkout and dispatch credentials
 
 | Secret location | Secret | Minimum purpose |
