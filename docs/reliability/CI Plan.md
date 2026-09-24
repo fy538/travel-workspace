@@ -66,7 +66,7 @@ backend snapshots, so they do not require an undeclared mobile checkout.
 ### Backend schema drift boundary
 
 `test-db-migrate` pairs Alembic autogenerate drift with
-`scripts/check_check_constraints.py` before and after its full migration
+`scripts/check_check_constraints.py` before and after its supported migration
 round-trip. Both must pass. Alembic 1.19.2 disables its name-only CHECK detector
 by default because historical naming conventions cause false positives; that
 detector also did not compare expressions under unchanged names. The dedicated
@@ -91,27 +91,47 @@ an isolated key reference, not an incomplete core-owned Occasion table. The
 reference must stay outside core autogenerate metadata; declaring an external
 key is not permission to migrate or drop the domain owner's other columns.
 
-**Open migration-policy mismatch (September 23):** the workflow still requires
-`downgrade base`, but `notifenv04`, `notifenv02`, `notifrecord01`, and
-`notifcorr01` deliberately reject downgrade to protect notification history.
-The fresh-database recovery audit reaches the `notifenv04` refusal. Do not
-silently remove these guards, skip the failing step, or call the migration job
-green. Reconcile supported rollback boundaries with forward-upgrade and
-data-preservation evidence before changing this gate. Failed full-chain tests
-can leave a partial revision because older concurrent-index migrations use
-autocommit; inspect `alembic_version` and start subsequent full-chain attempts
-from a new disposable database, not an assumed transaction rollback.
+**Migration lifecycle (September 23 recovery correction):** an unconditional
+`head → base` round-trip conflicts with the existing notification-history
+safeguards. CI now requires all of the following, without removing those guards:
 
-The recovery lane now verifies the historical prefix separately:
-`base → onboardevt01 → base → head`, followed by both drift checks and live
-event/entity parity. Historical inverses must restore their immediate parent's
+1. `scripts/check_migration_lifecycle.py` runs only with
+   `TEST_DATABASE_DISPOSABLE=1` and an explicit local PostgreSQL
+   `TEST_DATABASE_URL`, refusing nonempty targets before any migration. It
+   rejects URL/libpq redirection options and overrides both application DSN
+   aliases for migration subprocesses. Its target must be a newly provisioned
+   disposable database, not a development database being repurposed.
+2. Exercise `base → onboardevt01 → base`, then upgrade through the four
+   forward-only revisions: `notifcorr01`, `notifrecord01`, `notifenv02`, and
+   `notifenv04`. Attempt each immediate-parent rollback and require its exact
+   existing refusal, an unchanged Alembic revision, and unchanged application
+   relations, column/constraint/index definitions, views and fixture rows.
+   This is not a general audit of privileges, functions or sequence counters.
+   Unexpected failures, successful forbidden rollback, changed state, missing
+   tooling and timeouts all fail; no arbitrary error is treated as an exemption.
+3. Retain a no-chat-message outcome and an envelope-owned deterministic
+   delivery through the compatibility rename. Separately exercise the reversible
+   `notifenv02 → notifenv03 → notifenv02 → notifenv03` segment. At `notifenv04`,
+   include a permitted optional-correlation row that the old CHECK cannot accept.
+4. Upgrade to head; run both drift checks and live event/entity parity. Then
+   exercise `head → notifenv04 → head` and rerun both drift checks. A new
+   unsupported rollback boundary fails this step and requires explicit review,
+   not addition to a generic failure allowlist.
+
+Failed full-chain tests can leave a partial revision because older
+concurrent-index migrations use autocommit; inspect `alembic_version` and start
+subsequent full-chain attempts from a new disposable database, not an assumed
+transaction rollback. Local execution verifies the check's stated boundary;
+it does not certify an unpublished candidate's GitHub job.
+
+Historical inverses must restore their immediate parent's
 schema, not merely change the Alembic revision. In particular, retiring tables
 requires frozen parent definitions on downgrade; restoring empty tables does
 **not** recover rows previously deleted by the forward migration. CHECK drops
 must mark already-conventioned physical names with `op.f`, and dashboard
 rollback must release removed-column dependencies before dropping columns.
-This local prefix evidence does not resolve or bypass the four forward-only
-notification boundaries above, nor certify a published `test-db-migrate` run.
+Restoring schema is not permission to roll production notification history
+back through a forward-only boundary.
 
 ## Private checkout and dispatch credentials
 

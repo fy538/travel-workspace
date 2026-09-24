@@ -89,6 +89,52 @@ the recovery lane plus the old native-testing lane once no process uses it.
 Historical retirement does not prove recovery landing, native visual parity,
 or complete-goal acceptance.
 
+### Migration lifecycle gate reconciliation — September 23 (UTC September 24 logs)
+
+Backend commit `ef1e19682` replaces the impossible unconditional `head → base`
+CI rollback with explicit lifecycle coverage. `check_migration_lifecycle.py`
+requires a fresh, explicitly disposable local PostgreSQL target; rejects
+redirection overrides; and pins both application DSN aliases for subprocesses.
+It verifies the historical prefix to base, all four exact notification-history
+rollback refusals, and the reversible `notifenv03` bridge. Each refusal must
+preserve revision, application relational definitions and fixture rows. A
+successful forbidden rollback, unexpected error, changed state, missing tool
+or timeout fails. The refusal fingerprint does not certify grants, functions
+or sequence counters; its boundary is documented in the CI owner contract.
+
+Fixtures exercise optional chat correlation and preservation of a deterministic
+delivery through record-to-envelope renaming. The workflow then upgrades to
+head, runs both drift checks plus event/entity parity, and verifies
+`head → notifenv04 → head` with both drift checks again. Existing forward-only
+guards are unchanged. New incompatible boundaries fail rather than silently
+joining a generic migration-error allowlist.
+
+Local evidence on fresh disposable PostGIS 15/3.3, Python 3.13.0 / Alembic 1.19.2:
+
+- Final fresh lifecycle verifier: **passed**, 15.106s.
+- Subsequent head upgrade, paired drift/parity checks and supported head
+  round-trip: **passed**, 13.074s; CHECK comparison covers 201 metadata tables.
+- Lifecycle, schema-hardening and CHECK regressions: **73 passed**, zero skips,
+  7.376s. Cases include unsafe DSNs, ambient redirects, missing/failed tooling,
+  wrong exit/error/revision, mutation despite an expected refusal, and real
+  PostgreSQL fingerprint sensitivity to changed rows and schema.
+
+Measured logs in `/tmp/vesper-landing-verification/`:
+`recovery-lifecycle-final-boundaries-20260924T023116Z.log`,
+`recovery-lifecycle-final-head-20260924T023234Z.log`, and
+`recovery-lifecycle-db-regressions-20260924T023114Z.log`.
+The complete backend `make ci` passed in **167.106s**: **21,873 passed,
+14 skipped, 1,492 deselected, 53 xpassed**, plus 1,004 checker tests and
+422 deterministic replay checks (14 LLM-backed checks remain skipped).
+Log: `recovery-lifecycle-backend-ci-20260924T023117Z.log`. Commit hooks,
+including checker wiring and strict script-state checks, passed. A final
+readback confirmed the seeded outcome, envelope body and deterministic
+delivery ownership remained after the head round-trip. The owned disposable
+container was stopped; only synthetic test databases were discarded.
+
+These local checks do not certify a published GitHub job; candidate pins, coordinated verification,
+publication and protected review remain outstanding.
+
 ### Historical rollback repair — September 23 (UTC September 24 logs)
 
 Backend commit `a898f6472` repaired four older migration inverses without changing
