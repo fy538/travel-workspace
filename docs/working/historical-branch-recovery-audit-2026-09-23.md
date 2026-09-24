@@ -34,6 +34,67 @@ has not been removed or its unrelated process terminated. The earlier 83 local
 branch / 167 worktree removals remain the historical retirement result, not a
 claim that their full implementations were merged.
 
+### September 24 UI consolidation — four more categories repaired
+
+This is the latest mobile checkpoint; the older seven-category inventory below
+is retained as the diagnosis. App candidate is now `c7a6e485b`; backend remains
+`6a3ca1bbe`. No branches were merged, published or removed in this round.
+
+- `039a35376` replaces **29 corner literals and 17 spacing literals** with
+  existing tokens across eight files. Bespoke off-grid spacing is unchanged.
+  Fixed-size circular marks use the existing circular token. An AST comparison
+  against the prior commit resolves token values and clamps radii to the fixed
+  bounds: all eight files retain their effective geometry and non-layout source.
+  This is source-level equivalence, not a native screenshot verdict.
+  Radius inventory is now **219** (ceiling lowered from 222); spacing **361/361**.
+  Logs: `recovery-layout-token-equivalence-20260924T065420Z.log` (1.396s),
+  `recovery-layout-token-checks-20260924T065505Z.log` (**61 focused tests** plus
+  `verify:pr`, 69.310s). The initial selector included nonexistent Home/memory
+  directories; the subsequent explicit HomeRootV2Screen and trip-memory route
+  checks below and full suite cover those actual paths.
+- `e9ddf9c71` extracts **PhotoViewerSurface** from the existing photo-intake
+  lightbox owner. Both trip photos and artifact originals now share native
+  full-screen presentation, system close, accessibility escape/isolation and
+  Reduce Motion. Artifact authorization headers, `cachePolicy="none"`, retry,
+  previous/next and explicit close remain caller-owned and tested. No raw-Modal
+  exemption or budget was added: sheet bypass is **0/0**, and the existing
+  exception inventory remains **11**. The existing interaction doctrine names
+  the narrow shared photo boundary, not a general-purpose modal library.
+  **25 focused tests**, catalog/type checks passed (17.815s):
+  `recovery-photo-viewer-owner-20260924T065721Z.log`. Follow-up private-image
+  request assertions and explicit Home/renderer/memory-route checks passed
+  **54 tests**, then `verify:pr` and mobile docs checks (66.768s):
+  `recovery-photo-owner-and-home-regressions-20260924T065811Z.log`.
+- `c7a6e485b` moves **25 confirmed content-text sites** to the existing readable
+  muted ink: privacy/status copy, lens labels, dates and counts. Decorative
+  separators, arrows, borders and marks are unchanged. The quiet-ink inventory
+  is **105**, tightening the prior 107 ceiling. **77 focused tests** and typecheck
+  passed (18.121s): `recovery-readable-content-ink-20260924T070122Z.log`.
+  Contrast checks cover the opaque token against four paper backgrounds; they
+  do not certify ancestor opacity, image backdrops, or native legibility.
+- Both tightened counters were checked with valid, over-ceiling and missing
+  checkout cases; all six produced the expected status/diagnostic (1.073s):
+  `recovery-tightened-style-budgets-20260924T070311Z.log`.
+
+**Combined mobile command passed:** radius, spacing, quiet ink, both modal
+checks, motion governance, full CI coverage (**8,698 tests / 1,252 suites,
+zero failed/skipped; one snapshot**), `verify:pr` including 185 parity tests,
+mobile docs and diff whitespace. Time **131.663s**; log
+`recovery-ui-consolidation-full-20260924T070208Z.log`. The measurement began on
+`e9ddf9c71` plus the exact ink diff subsequently committed as `c7a6e485b`.
+All named logs remain under `/tmp/vesper-landing-verification/`.
+
+**Still open:** typography geometry, containment and local-control ownership;
+native visual acceptance; the final coordinated workspace gate; publication,
+private-checkout credentials and independent PR approvals. The next repair pass
+should handle local controls and their overlapping containers together, and
+consolidate authored Home typography without silently changing its geometry.
+Do not read this bounded passing command as the complete governance gate.
+
+The old native worktree set is Git-clean but still held by Xcode DTServiceHub
+PID 25951, freshly checked with `lsof -a -p 25951 -d cwd -Fn`. It remains intact.
+Canonical workspace design work is not part of these commits.
+
 ### September 24 broad verification and mobile governance follow-up
 
 This checkpoint supersedes the pending local backend verdict below, not the
