@@ -29,14 +29,82 @@ Recovery is **not merged**; the checkpoint below distinguishes published
 child revisions from local verification and final landing. The canonical workspace's
 concurrent Home/multiplayer design edits remain untouched.
 
-Nine worktrees remain: canonical, recovery, and the old native set in each
-repository. A fresh process check still finds Xcode DTServiceHub PID 25951 with
+Eight worktrees remain: canonical and recovery in each repository, plus the
+old native workspace/app pair. The old native backend checkout was removed
+on September 24 after confirming its exact `d7d153810` HEAD is already an
+ancestor of backend main, has retained archive refs, has no dirty/untracked
+source, and contains only 1,907 ignored Python/pytest/Ruff cache files. A
+process/file-handle check found only the short-lived inspection itself in
+that backend directory; the current recovery environment is separate. Its
+source remains recoverable from main/archive; the removed caches regenerate.
+A fresh process check still finds Xcode DTServiceHub PID 25951 with
 its working directory inside the old native app's screenshot folder. That set
 has not been removed or its unrelated process terminated. The earlier 83 local
 branch / 167 worktree removals remain the historical retirement result, not a
 claim that their full implementations were merged.
 
 ### September 24 publication and review handoff
+
+**Next remote result and reconnect repair:** backend run **35976026080** at
+`e6d585641` completed **successfully**, including the full database job and
+repaired Atlas canary. Mobile run **35976096222** at `5cc8326ff` passed Logic
+QA and the repaired Place test, but its full suite ended with **8,701 passed /
+one failed**: the accepted group-turn reconnect test inspected an undefined
+AI message immediately after seeing the replacement transport call. The
+subsequent itinerary certification step was therefore unrun remotely.
+
+Local app **`efbdba7ec`** changes that test to wait for React's committed
+replacement row before sending stale first-stream callbacks, then asserts
+that the entire message-list identity remains unchanged. Waiting only for
+the mocked network call did not establish the committed presentation state.
+The canonical retry text, completion metric and stable idempotency-key
+assertions remain. No production code, timeout or skip changed. Focused group
+and concierge regressions passed **25 tests**; the separate full-on itinerary
+certification passed **546 tests / 71 suites**. Evidence:
+`recovery-group-reconnect-state-20260924T085153Z.log` (31.787s total).
+This is local evidence; a successful remote rerun is still required.
+
+Fresh full mobile coverage/`verify:pr`/docs and coordinated `make verify` were
+started for `efbdba7ec`; their passing results are recorded below. The preceding
+published tuple is workspace **`333d7db`**, backend
+**`e6d585641`**, app **`5cc8326ff`**. Workspace publication hooks passed in
+5.193s (`recovery-ci-repairs-workspace-publish-20260924T083604Z.log`), but its
+remote run **35976210908** again failed private backend checkout before tests.
+Required independent approvals remain absent; the 22 canonical design edits
+and Xcode-held old native worktree remain untouched pending owner direction.
+
+The two-worker mobile invocation subsequently **failed** when Jest worker
+PID 34660 terminated with `SIGSEGV` before `useApplyReschedule.test.ts` ran:
+8,696 tests passed, but one suite failed to execute. This is a tool/runtime
+failure, not a complete passing suite; `verify:pr` and docs were not reached
+in that invocation. Evidence: `recovery-group-repair-mobile-full-20260924T085310Z.log`
+(168.931s). The unchanged complete suite was rerun serially and **passed in
+403.296s**: **8,702 tests / 1,253 suites / one snapshot**, zero failed or skipped,
+followed by `verify:pr`, mobile docs and whitespace checks. Evidence:
+`recovery-group-repair-mobile-serial-20260924T085719Z.log`. No assertion,
+suite, timeout or CI command was weakened to mask the crash. Coordinated
+verification also **passed in 944.834s**, with the full backend CI, contract/API,
+mobile journey/seam/offline, Maestro semantic and workspace governance gates:
+`recovery-group-repair-coordinated-20260924T085311Z.log`. It verified backend
+`e6d585641`, app `efbdba7ec`, and workspace `333d7db` plus the two documentation
+edits to this ledger and Owner Action Items. These passes do not certify a
+future remote run or manufacture native appearance acceptance.
+
+App **`efbdba7ec7b8416acb38db181fb36e4369651327`** is now confirmed published
+after normal pre-push hooks passed in **15.074s**
+(`recovery-group-repair-mobile-publish-20260924T090919Z.log`). Its fresh remote
+CI run is **35979539670**, still in progress at this checkpoint. The workspace
+pin was regenerated from the confirmed remote app HEAD and unchanged published
+backend `e6d585641`. Publishing this workspace pin/documentation batch remains
+to be confirmed externally; no main landing or approval is implied.
+
+The CI/Git rows in `docs/Owner Action Items.md` were refreshed without
+re-certifying its unrelated August release claims. September 24 collaborator
+and PR reads establish a specific review-access gap: all three PRs were
+authored by `fy538`; workspace currently lists only that collaborator, while
+both children have another write-access collaborator. Workspace needs an
+eligible independent reviewer under its existing rule. No repository access
+or protection was changed, and owner direction remains outstanding.
 
 **Subsequent terminal results and local repairs:** backend run **35971757316**
 passed its full offline suite, main database suite, canonical itinerary

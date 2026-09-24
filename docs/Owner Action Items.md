@@ -24,6 +24,13 @@ current GitHub Actions state, and live `/health`, `/ready`, and `/privacy`
 probes. External-console rows remain explicitly unverified. Supersedes the
 2026-05-22 version, most of which is now done or was misdiagnosed.
 
+**CI/Git-only refresh — 2026-09-24:** the CI and repository-consolidation rows
+below supersede their August queue/branch observations. Other release, live
+service and external-console claims retain their original verification dates;
+this update is not a fresh release certification. Current recovery revisions,
+test boundaries and remaining worktrees are recorded in the
+[recovery audit](working/historical-branch-recovery-audit-2026-09-23.md).
+
 **Status legend:** 🔴 blocks first TestFlight · 🟠 before external cohort · 🟡 before public
 launch · ✅ done (evidence cited) · ❓ FOUNDER-MUST-CONFIRM (external console — not visible
 from the repo)
@@ -60,7 +67,7 @@ The critical path only. `(A)` = founder-only ops · `(B)` = delegable engineerin
 
 | # | Item | A/B | Status |
 |---|------|-----|--------|
-| 0 | **Restore a reliable green child-repo CI signal.** App CI run `31322965305` executed on 2026-08-09 but failed multiple code/contract gates; the latest backend CI runs `31232999675` and `31120695581` remain queued with no jobs. Determine whether the backend queue is account capacity, concurrency, or Actions configuration, then rerun both current heads. | **A/B** | 🔴 open — app executes but is red; backend is queued |
+| 0 | **Finish current-candidate CI and protected-main landing.** Both child workflows execute; backend run `35976026080` passed including the database job. Use the recovery audit for mobile repairs and subsequent candidate results. Workspace run `35976210908` fails private-child checkout authentication before tests. Resolve the credential and independent-review items in Section 2; the August queue diagnosis is retired. | **A/B** | 🔴 open — current checks, checkout access and approvals required |
 | 1 | **Verify `/privacy` stays reachable in the release build** — `https://vesper-backend.fly.dev/privacy` returned HTTP 200 with the privacy policy on 2026-08-09. Apple requires this URL to remain live; recheck after the next backend deployment. | **B** | ✅ live probe verified 2026-08-09; release-build / post-deploy recheck remains |
 | 2 | **Verify v1 microphone posture in the release build** — voice remains flag-OFF. `app.config.js` now strips stale microphone and audio-background capabilities when voice is disabled, while preserving the explicit dogfood voice opt-in. | **B** | ✅ static Expo introspection verified 2026-07-26; inspect the generated production IPA before submission |
 | 3 | **Confirm App Store Connect app exists** (bundle `com.fyan.vesper`, iOS 17+) + set `INVITE_IOS_APP_STORE_ID` / `INVITE_APP_STORE_URL` in Fly secrets. Old A5. | **A** | ❓ FOUNDER-MUST-CONFIRM (external console) |
@@ -81,7 +88,8 @@ Play — all deferred (Section 5). Eval baselines — done (Section 4). Secret h
 
 | Item | Status | Evidence / note |
 |------|--------|-----------------|
-| GitHub Actions execution | 🔴 REQUIRES TRIAGE | App CI currently executes, disproving the older claim that every child job is billing-blocked. Backend runs remain queued without jobs. Check Actions concurrency and account capacity, then rerun current heads; do not reuse the obsolete `29069359543` diagnosis as current evidence. |
+| Workspace private checkout credential | 🔴 OWNER ACCESS REQUIRED | `TRAVEL_WORKSPACE_CI_TOKEN` is present, but run `35976210908` fails fetching the private backend with exit 128. Confirm its validity and read access to both children, then rerun the current candidate. The exact failure cause is not established by secret presence or its May 11 update date. Follow [Reliability CI](reliability/CI%20Plan.md#private-checkout-and-dispatch-credentials); do not copy a broad local credential into CI. |
+| Protected-main independent review | 🔴 REVIEWER ACCESS / APPROVAL REQUIRED | Workspace #36, backend #233 and app #201 all require approval. September 24 API inspection found only the PR author as a workspace collaborator; the children have another write-access collaborator. Arrange an eligible independent workspace reviewer and the required PR reviews. Adding access or changing protection is an owner decision, not an implicit cleanup permission. |
 | Custom domain `travelagent.app` → Fly | ❓ OPEN but **OFF critical path** | Live probe: apex serves a marketing lander (`/lander` redirect), not the backend; AASA/health there fail. App uses Fly host directly — see scope correction above. Deferred to Section 5. |
 | App Store Connect app + listing | ❓ FOUNDER-MUST-CONFIRM | Copy ready in `docs/launch/App Store Connect Copy.md`. **Bundle must be `com.fyan.vesper`** (matches app.json + live AASA) — the launch docs' `com.travelagent.app` is stale; use the app.json value. |
 | APNs auth key (.p8) → Expo | ❓ FOUNDER-MUST-CONFIRM | `EXPO_ACCESS_TOKEN` is set in Fly; `EXPO_PUSH_ENABLED` default is `false` (registry.yaml) — confirm the Fly secret is `true` for real push. |
@@ -104,7 +112,7 @@ Play — all deferred (Section 5). Eval baselines — done (Section 4). Secret h
 | **Reachability audit on a release build** | M | v1 DoD open item: walk every entry point on the actual EAS build, confirm no OUT surface (voice/booking-txn/postcards/ambient/story-share) is reachable and no IN surface lost a load-bearing dep (Discover→trip-create, Atlas→Story, Search→profiles). Needs the build from Section 1 #7. |
 | **App Store asset finalization** | S–M | Copy is written; remaining is capturing 5 real-device screenshots (list in App Store Connect Copy §Screenshots) — needs the build. Text fields are paste-ready. |
 | **Deploy-surface `.env.example` hygiene** (items #1/#2/#4/#5/#6/#10) | S | ~30–45 min of doc/config: R2 vars, geofence toggle, mark `REDIS_URL` required, boot-fail on `SKIP_AUTH=false`+empty JWKS, "Production toggles" section, guard-mode table. Non-blocking but cheap. |
-| **Commit the dirty working trees** | S | `travel-agent` has ~9 modified BE files uncommitted; `travel-app` is on branch `cc1-atom-adoption` (not main). Branch/commit/merge before cutting the build so the build is reproducible. |
+| **Finish recovery consolidation and preserve separate design work** | S | The old `cc1-atom-adoption`/nine-dirty-backend-files observation is obsolete. Only main plus the coordinated recovery branch remains in each repo. Land the reviewed candidate through its required checks and approvals, then retire recovery checkouts. The canonical Home/multiplayer design edits remain separately owned; do not discard or absorb them without resolving that ownership. See the recovery audit for the live worktree and evidence boundaries. |
 
 ---
 
