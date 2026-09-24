@@ -89,6 +89,43 @@ the recovery lane plus the old native-testing lane once no process uses it.
 Historical retirement does not prove recovery landing, native visual parity,
 or complete-goal acceptance.
 
+### Remaining screen size repairs — September 23 (UTC September 24 logs)
+
+App commit `31eb64f4f` resolves the four remaining function-size violations by
+extracting existing responsibilities, not deleting capabilities or increasing
+budgets. Venue compatibility content and legacy intake receipts are separate
+compositions. Place-scoped saved/artifact aggregation, custody-source/subject
+parsing, Plan reading-scroll geometry and post-join receipt lifetime have
+focused, co-located hooks. Route state, action authority, data facades and
+generated contracts remain their existing owners. The obsolete VenueDetailScreen
+size exception was removed. No styling, copy, navigation or feature-flag policy
+was intentionally changed; no new component library or state store was added.
+
+Local evidence on Node 24.13.0 / Darwin arm64:
+
+- `npm run size-budgets`: **passed**, including all four previously failing
+  screens. Existing unrelated exceptions remain unchanged.
+- Final affected screen suites: **97 passed**, zero skips, **9.396s**. They
+  cover venue compatibility/rebuilt states and actions, city/neighborhood
+  filtering and exact reading continuity, custody-first/legacy intake and
+  retries, and canonical Plan behavior.
+- `npm run verify:pr && npm run size-budgets`: **passed**, **52.652s**, including
+  **185 parity tests**. Typecheck, contract-test typecheck, lint/ratchets and
+  ownership checks passed within that command; pre-existing lint warnings remain.
+- All **31 polish scenario IDs** validate. Direct source comparison confirms
+  identical style declarations in all four files and unchanged extracted venue
+  compatibility JSX and legacy receipt conditions/JSX. This is refactor
+  evidence, **not a device render or native acceptance verdict**.
+
+Measured logs: `/tmp/vesper-landing-verification/`
+`recovery-screen-decomposition-pr-20260924T030230Z.log` and
+`recovery-screen-decomposition-final-tests-20260924T030306Z.log`.
+The earlier focused typecheck/size/97-test pass is
+`recovery-screen-decomposition-tests-20260924T030129Z.log` (21.984s).
+No real-backend or native run is claimed by these checks. Recovery PRs W#36,
+B#233 and A#201 remain open and review-required at the fresh read; A#201 remains
+draft. Coordinated verification, pins, publication and final landing are pending.
+
 ### Mobile API decomposition — September 23 (UTC September 24 logs)
 
 App commit `0cc0daf93` resolves the three API size violations without raising
