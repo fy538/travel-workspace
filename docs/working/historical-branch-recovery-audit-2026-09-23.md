@@ -38,6 +38,60 @@ claim that their full implementations were merged.
 
 ### September 24 publication and review handoff
 
+**Subsequent terminal results and local repairs:** backend run **35971757316**
+passed its full offline suite, main database suite, canonical itinerary
+certification and concurrency/storage proofs, but failed the final Atlas
+canary at collection: its command still referenced a deleted map test file
+and the former almanac-bearing function name. Backend **`e6d585641`** repairs
+those stale selectors against the July 12 retirement (`eba936e02`) and adds
+selector regression checks. It does not restore the retired endpoints or skip
+the retained canary. The engineering-check test file passed **40 tests**;
+the exact repaired workflow canary passed **11 tests** against a freshly
+migrated disposable PostGIS database. The task-owned container was stopped
+afterward. Evidence: `recovery-atlas-canary-20260924T080831Z.log` (14.334s,
+three existing PostgreSQL leak-baseline warnings), under the verification
+directory below. This backend repair is committed locally, not yet published.
+
+App run **35971851563** passed Logic QA journeys and mock/real parity, but its
+full Test job ended with **8,701 passed / one failed**: the Place foreground
+withdrawal test exceeded five seconds. This was not the job's 30-minute limit.
+App **`47e42fd8b`** makes that test's event delivery match React Native's
+subscription snapshot and explicitly resolves the owner response, flushing
+notifications without advancing the clock into expiry. Assertions retain the
+reader while revalidating, require one foreground request, and remove the
+reader on withdrawal. No production behavior, timeout or skip was changed.
+The focused screen suite passed **17 tests** and TypeScript completed without
+diagnostics (`recovery-place-foreground-deterministic-20260924T081104Z.log`).
+The remote timeout's exact cause remains unproven; local hardening is not yet
+proof of a successful remote rerun. This test repair is also local/unpublished.
+
+Fresh mobile full coverage, `verify:pr`, docs and whitespace checks **passed
+in 391.290s**: **8,702 tests / 1,253 suites / one snapshot**, zero failed or
+skipped, followed by **185 parity tests**. Evidence:
+`recovery-final-mobile-ci-repair-20260924T081518Z.log`. Existing lint and
+test-typecheck debt remains governed by its unchanged ratchets, not eliminated.
+The run began with the exact mobile diff subsequently committed as `47e42fd8b`.
+
+The fresh coordinated `make verify` remains **in progress at this checkpoint**:
+`recovery-final-ci-repairs-coordinated-20260924T081517Z.log`. Its backend
+offline suite passed **21,889 tests**, with 14 skips, 1,492 deselections and
+53 historical XPASS results; its separate tool-contract packet passed 1,004
+tests. Contract checks, mobile journey/seam/offline checks and Maestro's
+structural inventory have passed; semantic flow validation is still running.
+This is not yet a complete passing `make verify` receipt.
+
+Workspace run **35972399521** at published **`5c2bc89`** independently confirms
+the same private-child checkout authentication failure described below.
+Required independent review remains outstanding on all three PRs. No branch
+protection, credential, main branch or concurrent design work was changed.
+As a diagnostic comparison, app run 35971851563's Logic QA job successfully
+checked out the same backend revision using checkout v6 and Git 2.55.0 under
+its own `TRAVEL_AGENT_CI_TOKEN`. That narrows the workspace failure but neither
+proves its secret is expired nor authorizes copying credentials between repos.
+
+The following publication handoff describes the preceding published tuple,
+not the newer local repairs:
+
 Workspace `a01caeb313397063277250d1b64b5a6e6df50c72`, backend
 `6a3ca1bbe07d1793b8de36fab4ed47e04331d2c0`, and app
 `2de2e3ab8c1485e7a85e55d6197990ba317ebb39` were confirmed as exact remote
@@ -57,8 +111,8 @@ authentication did not. Do not infer the exact token-expiry/permission cause
 from that message alone. The later reliability-report failure is downstream
 of the unavailable child checkout, not evidence of a product regression.
 
-Backend run **35971757316** and app run **35971851563** remain in progress at
-this handoff. Backend dogfood, migration, lint, typecheck, import boundaries,
+Backend run **35971757316** and app run **35971851563** were in progress at
+that earlier handoff; their terminal results are recorded above. Backend dogfood, migration, lint, typecheck, import boundaries,
 replay and package checks have passed. App governance, TypeScript, lint,
 security, API types and design/evidence tooling checks have passed. Remaining
 tests must be judged on their own terminal results; tooling passes do not
