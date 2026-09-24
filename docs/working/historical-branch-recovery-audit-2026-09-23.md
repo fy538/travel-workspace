@@ -34,6 +34,54 @@ has not been removed or its unrelated process terminated. The earlier 83 local
 branch / 167 worktree removals remain the historical retirement result, not a
 claim that their full implementations were merged.
 
+### September 24 integration repair follow-up
+
+The earlier checkpoints below are historical observations, not the latest
+candidate verdict. No additional branches or worktrees were removed in this round.
+
+- App `ba0f3cbfc` registers MediaPlate, RestClose, RootScrollEdge and RouteStrip
+  in the existing shared-component catalog, all provisional. No rendering,
+  public API or stability promotion changed. Catalog coverage/lifecycle checks
+  and `verify:pr` passed (185 parity tests, no skips; 70.027s):
+  `/tmp/vesper-landing-verification/recovery-component-registration-20260924T055906Z.log`.
+- Backend focused repair evidence: **480 tests passed, zero failed/skipped** in
+  37.511s, including all `tests/life_projection/` and the originally failing
+  clock, context, refinding, registry and root-admission cases. The suite used
+  explicit disposable PostgreSQL with `--run-quarantined`; it is not the full
+  database suite or release/native acceptance. Log:
+  `/tmp/vesper-landing-verification/recovery-db-repairs-combined-20260924T061026Z.log`.
+- The substantive Life defect was cross-owner interference: Plan and Occasion
+  workers merged unrelated Outcomes before selecting their own record. Exact
+  owner selection now precedes strict all-lens merging. Selected-owner
+  conflicts still fail; the real shadow-corpus rehearsal now finishes without
+  raising its work budget or retry count. Pure regressions cover unscoped
+  conflict, selected-owner conflict, unrelated-owner isolation and absence.
+- Historical itinerary fixtures now name their represented creation/display
+  clocks; live proposal-confirmation tests derive future dates. Compiler
+  fixtures bind synthetic memory to actual seeded source manifests; constraint
+  changes explicitly prove dependent-memory withdrawal. No production
+  lifecycle, privacy, source-currentness or persistence gate was weakened.
+- Task-registry tests restore prior handlers instead of erasing imported
+  registrations. Original refinding asserts the current three-value return and
+  absent terminal cursor. The root saturation test waits for physical admission
+  release rather than treating timed-out awaiters as completed workers.
+- The subsequent backend CI run `35961497437` also exposed unordered SQL
+  assumptions in the candidate lifecycle test. Its assertions now sort by owner
+  revision while retaining exact revision/lifecycle pairing and cardinality;
+  the real-DB case passed (3.009s): `recovery-inbound-outbox-order-20260924T061211Z.log`.
+- App CI `35961703457` completed with frontend governance failed and its Test
+  job cancelled. Local reproduction identifies two unregistered raw typography
+  sizes (`share-capture.candidateHeading`, `WeekShape.note`) and 21 stale raw-size
+  exceptions. These are **still open**, not covered by the component-catalog fix.
+  The separate design-system workflow failed the four registrations now repaired.
+
+The full backend/local coordinated gates and publication of these new repairs
+remain pending. One broad backend gate was deliberately interrupted because a
+simultaneous commit hook temporarily stashed unstaged fixes; that unstable-input
+run is **not passing evidence**. Finish commits before the next broad gate.
+Workspace private-checkout credentials, independent PR review, mobile native
+acceptance and final worktree retirement remain separate open boundaries.
+
 ### September 24 publication repair checkpoint
 
 The clean candidate W `0b4e94a` / B `39287cb66` / A `36671fd65` passed
