@@ -133,6 +133,16 @@ underlying lifecycle/privacy/admission invariants, then run the complete DB
 suite after focused repairs. Do not lower assertions, increase retry budgets,
 add quarantines or bypass the required job merely to land the branch.
 
+App `cddbd692e` was then published after `verify:pr` and all normal pre-push
+hooks passed, including TypeScript and the previously failing dead-client
+check: 94.529s, 185 parity tests passed, no skips; log
+`recovery-mobile-pinned-publication-20260924T054832Z.log`. The workspace lock
+now pins published B `bfc0973a1` and A `cddbd692e`. The app's W `0b4e94a`
+bridge remains deliberate; only workspace policy rationale, this audit and
+pins have changed since that bridge. Final combined verification/publication
+of these workspace changes remains pending; the 14 DB failures above are not
+waived by either child's local delivery gate.
+
 ### Final dependency dispositions and recoverability
 
 These four proposals were closed without merging after preserving exact tips.
