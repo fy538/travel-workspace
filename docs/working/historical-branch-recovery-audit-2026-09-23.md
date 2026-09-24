@@ -18,7 +18,98 @@ canon or a direction to merge every historical implementation wholesale. The
 continue to decide what to build. “Retire” below means *no whole-branch merge
 or current feature port*; it does **not** mean a Git ref or worktree was deleted.
 
-## September 23 late follow-up — verification, security and legacy dependency retirement
+## September 24 follow-up — branch retirement complete; integration still open
+
+Fresh local and `git ls-remote --heads origin` inventories show **six local
+branches and six remote branches**: main plus recovery in each independent
+repository. All Dependabot PRs are closed. Only workspace #36, backend #233,
+and app #201 remain open; all require independent review and app #201 remains
+draft. Recovery is **not merged or fully published**. The canonical workspace's
+concurrent Home/multiplayer design edits remain untouched.
+
+Nine worktrees remain: canonical, recovery, and the old native set in each
+repository. A fresh process check still finds Xcode DTServiceHub PID 25951 with
+its working directory inside the old native app's screenshot folder. That set
+has not been removed or its unrelated process terminated. The earlier 83 local
+branch / 167 worktree removals remain the historical retirement result, not a
+claim that their full implementations were merged.
+
+### Final dependency dispositions and recoverability
+
+These four proposals were closed without merging after preserving exact tips.
+Their remote branches disappeared on closure; subsequent fetch/prune and direct
+remote reads confirmed removal. No blanket dependency upgrade was introduced.
+
+| Proposal | Preserved tip | Disposition |
+|---|---|---|
+| Backend #232 grouped Python | `f5fca7a74bdcf5042f171fc5b7f1a205056b38a4` | Declined mixed LLM/database/voice/server/tool update; Ruff 0.16.8 disagrees with explicit 0.15.10 CI/pre-commit pins. Regenerate a focused candidate with aligned pins and domain evidence. |
+| App #198 grouped npm | `48e5c862e989922677760f3d433a967494559172` | Deferred React 19.3/native/LiveKit/Sentry group rather than claiming the combination verified on Expo 55/RN 0.83.10. The six scoped security repairs are retained separately. |
+| App #196 purchases | `4ceffd55912f12b1974622e4a2e7b8f52344308f` | Candidate actually upgrades to 10.10.0 while purchases-ui remains 10.7.1; defer to coordinated native purchase/restore/paywall maintenance. |
+| App #194 purchases-ui | `32dbfc58401f3ee60f98cbd87e5968c8562b9aae` | Inverse independently upgraded SDK/UI pair; defer with #196, not a claim that the upstream release is broken. |
+
+Refs remain under `refs/archive/dependency-retirement-2026-09-23/` with suffixes
+`python-minor-patch-6245ec17e7`, `npm-minor-patch-aa826fd39b`,
+`react-native-purchases-10.10.0`, and `react-native-purchases-ui-10.10.0`.
+Complete-history bundles were reverified using `git bundle verify` and SHA-256
+under `/Users/feihuyan/vesper-repository-archive-2026-09-23.c4wYxq/`:
+
+- `backend-grouped-dependency-retirement-20260923.bundle`:
+  `00204c3baf129826d81545ad5b4c18f963b1ed8e10254743cf70d3e7f2bfdc62`.
+- `app-final-dependency-retirement-20260923.bundle` (all three app tips):
+  `ea7e8584f65354687bb731051872063629c1c37fdb707f5baa74c554a21f966f`.
+
+These are local recovery archives, not off-device backups. Dependabot remains
+enabled; later proposals are new work, not evidence that these retirements failed.
+
+### Verification repairs — app `cd600bd85`
+
+At clean W `41402a9` / B `1e176e111` / A `ef86daa75`, the measured full
+`make verify` **passed in 836.227 seconds**, including the security changes.
+Log: `/tmp/vesper-landing-verification/`
+`recovery-consolidation-verify-security-20260924T032922Z.log`.
+The separate full app baseline then found **18 failed / 8,612 passed** tests
+across 1,249 suites (15 failed), with no skips. The coordinated gate therefore
+did not establish whole-app Jest success.
+
+App `cd600bd85` repairs stale mutation/navigation expectations; tests the
+actual typed card props, imports and mapping branches rather than comment text
+or quote style; and requires the central silent reflection helper to forward
+its explicit conversation ID without broadly exempting the routes module.
+Checker fixtures cover valid, violating, comment-only and missing-owner cases.
+Places engagement now supplies a matching semantic owner and separately tests
+that a treatment alone earns no causal receipt. Mixed/fallback Places section
+keys are tested across content revisions. The obsolete PlanBuild tertiary-ink
+allowance is removed. The bounded onboarding composer and photo-carousel
+previous control are explicitly reviewed, with input/disabled/bounds tests.
+
+Production repairs consolidate control-gallery registration into the shared
+dev registry under its **existing** `Stack.Protected` guard (it was not publicly
+exposed), adopt shared `Tap` controls for current-shape/gallery actions, disable
+inspection when no owner inspect action exists, and use shared guarded history
+navigation for Life records. Four-root cold-entry fallbacks are tested. The
+design-system guidance preserves existing primitives and the 44pt touch floor;
+it does not authorize a new visual system or certify native appearance.
+
+The broad intermediate rerun found **8,645 passed / one failed** in 276.225
+seconds, with no skips: all original 18 failures were resolved, but another
+control-gallery test still assumed literal registration. That test now checks
+the actual registry plus protected mapping. A new optional-array test type
+error was also corrected, without increasing the 406-error legacy ratchet.
+Final focused regressions (18 tests), `verify:pr` (including 185 parity tests),
+lint/typecheck ratchets, and size budgets **passed in 57.946 seconds**.
+Log: `recovery-final-regression-pr-20260924T040049Z.log` in the same log folder.
+The full-suite success claim still requires a rerun at this final commit.
+
+Polish scenario validation passed (31 registered scenarios), but native
+preflight failed because Metro was not running. This recovery lane owns port
+53936 and device `074FD906-F69B-447E-93AD-83DA52D30E2A`; the currently booted
+presentation device belongs to another lane. No screenshot or native visual
+pass is claimed. Full GitHub/coverage runs, design/calibration and visual
+evidence gates, cross-repo pin publication, independent review and final landing
+remain separate obligations. Re-run coordinated verification after final repairs;
+do not inherit the earlier pass for changed source.
+
+## September 23 late follow-up — verification, security and legacy dependency retirement (historical)
 
 Current inventory: **six local branches, ten remote branches, nine worktrees**.
 The remote set is three main, three recovery and four dependency branches
