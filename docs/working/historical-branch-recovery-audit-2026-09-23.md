@@ -158,6 +158,60 @@ its sole failure is calibration (0.147 seconds,
 committed locally only. Full coordinated re-verification, current remote CI,
 review, publication/landing, and safe final worktree removal remain open.
 
+### Calibration and delegated header repair — app `71e85858a`
+
+The calibration disagreement above is resolved in the scorer, not by altering
+the recorded image judgments. Scoring policy `verdict-schema-rollup-v2` reuses
+the real `validateVerdict` and severity-derived overall. Defect cases require
+`not-pass` plus the **unchanged** required dimensions, severity floors and failed
+gates. A p1-only `mixed` can pass calibration; `fail` without a blocker is
+invalid. Missing/invalid verdict fields and missing controls now fail closed
+instead of being counted as caught. The original judgment time and known-fixture
+scope survive re-scoring. Images, findings and severities are unchanged.
+
+Six independent synthetic tests cover p1/mixed, p0/fail, invented overall,
+wrong dimension, too-low severity, missing gate failure, malformed structure,
+missing control and false alarms (37 verdict-schema checks total). A separate
+CLI failure check confirmed that a nonexistent judged run exits nonzero and
+does not overwrite the previous calibration report. The corrected current
+report is **3/3 defects caught, 1/1 control clean**. This remains the small g1
+smoke test, not native product acceptance or new blind research.
+
+Six header failures were real delegations omitted from the static classifier:
+Home-pushed Places, its map/reading/saved depths, the exact contribution result,
+and Site's shared object state shell. They now name the existing shared owner
+and tests verify the wrapper-to-component chain. No exemption or replacement
+header system was introduced. The conformance matrix now accounts for every
+production route exactly once and explicitly retracts its old implementation-
+complete claim. Its durable route-coverage ownership is promoted from the
+expired working-note classification to a contract, without claiming visual
+certification.
+
+**Eight header gaps still fail the audit:** Life root, Life record/find/groups,
+the private Intake original reader, recipient original reader, canonical
+artifact reader, and the conditional history adapter selecting Life record.
+These need genuine adoption of existing shared header owners, retaining exact
+query/lens/group/source/grant/return behavior; do not solve them with annotations
+over undelegated controls. Native appearance remains unverified.
+
+Measured evidence (logs in `/tmp/vesper-landing-verification/`):
+
+- `recovery-calibration-scorer-20260924T041935Z.log`: **passed**, 0.553s,
+  verdict tests, actual re-score, status regeneration and design gate.
+- `recovery-header-owner-trace-20260924T042128Z.log`: **failed**, 0.470s,
+  13 header checks passed; the zero-unclassified-chrome check lists the eight
+  gaps above. Matrix coverage and delegated-owner assertions passed.
+- `recovery-scorer-owner-pr-20260924T042227Z.log`: **passed**, 52.044s,
+  37 verdict and 24 gate checks, design gate and `verify:pr` (185 parity tests,
+  no skips). Checked the diff committed as `71e85858a`.
+- `recovery-design-docs-20260924T042356Z.log`: **passed**, 5.895s,
+  `make docs-check` at clean W `7ac985c` / B `1e176e111` / A `71e85858a`.
+
+The GitHub design job also runs the full polish tooling bundle, so its header
+failure is still an open landing requirement even though `design:gate` itself
+now passes. No remote publication, main merge or worktree removal occurred in
+this round. All six local/six remote branch heads remain main plus recovery.
+
 ## September 23 late follow-up — verification, security and legacy dependency retirement (historical)
 
 Current inventory: **six local branches, ten remote branches, nine worktrees**.
