@@ -23,8 +23,9 @@ or current feature port*; it does **not** mean a Git ref or worktree was deleted
 Fresh local and `git ls-remote --heads origin` inventories show **six local
 branches and six remote branches**: main plus recovery in each independent
 repository. All Dependabot PRs are closed. Only workspace #36, backend #233,
-and app #201 remain open; all require independent review and app #201 remains
-draft. Recovery is **not merged**; the checkpoint below distinguishes published
+and app #201 remain open; all require independent review. App #201 is now ready
+for independent code/integration review, not release or visual acceptance.
+Recovery is **not merged**; the checkpoint below distinguishes published
 child revisions from local verification and final landing. The canonical workspace's
 concurrent Home/multiplayer design edits remain untouched.
 
@@ -34,6 +35,35 @@ its working directory inside the old native app's screenshot folder. That set
 has not been removed or its unrelated process terminated. The earlier 83 local
 branch / 167 worktree removals remain the historical retirement result, not a
 claim that their full implementations were merged.
+
+### September 24 publication and review handoff
+
+Workspace `a01caeb313397063277250d1b64b5a6e6df50c72`, backend
+`6a3ca1bbe07d1793b8de36fab4ed47e04331d2c0`, and app
+`2de2e3ab8c1485e7a85e55d6197990ba317ebb39` were confirmed as exact remote
+recovery heads after normal pre-push hooks passed. The workspace publication
+log is `recovery-workspace-publish-20260924T075150Z.log` (5.376s). No main
+branch was changed. All recovery checkouts were clean after publication.
+
+The three PR descriptions now distinguish these published candidates and
+current evidence from earlier failed revisions. App #201's draft flag was
+removed solely to enable independent integration review; required checks and
+approval still apply, and the native acceptance gaps below remain explicit.
+
+Workspace run **35971957111** at `a01caeb` failed before product tests in
+**Check out Travel Agent**: Git fetch exited 128 with `could not read Username`
+and terminal prompts disabled. The secret-presence check passed; usable
+authentication did not. Do not infer the exact token-expiry/permission cause
+from that message alone. The later reliability-report failure is downstream
+of the unavailable child checkout, not evidence of a product regression.
+
+Backend run **35971757316** and app run **35971851563** remain in progress at
+this handoff. Backend dogfood, migration, lint, typecheck, import boundaries,
+replay and package checks have passed. App governance, TypeScript, lint,
+security, API types and design/evidence tooling checks have passed. Remaining
+tests must be judged on their own terminal results; tooling passes do not
+certify native appearance. Private-checkout authentication and independent
+protected-main approvals remain external landing requirements.
 
 ### September 24 dead-style retirement — mobile consolidation checks pass
 
