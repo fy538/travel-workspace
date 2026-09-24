@@ -294,6 +294,100 @@ remaining naming/truncation and historical cast expressions. Do not use this
 bounded repair to waive the whole drift gate. No remote publication, main merge,
 new full coordinated gate, native acceptance, or production migration occurred.
 
+### CHECK enforcement gate replaces name noise — September 23 (UTC September 24)
+
+The upstream [Alembic 1.19.2 release notes](https://alembic.sqlalchemy.org/en/latest/changelog.html#change-1.19.2)
+confirm that name-only CHECK detection is disabled by default because naming
+conventions can produce persistent false positives. That detector also never
+compared expressions when names matched. Runtime and development locks were
+regenerated with Python 3.13/pip-tools; their only package change is Alembic
+1.19.1 → **1.19.2**. The recovery virtualenv uses that exact patch release.
+
+This is paired with a replacement enforcement check, not a blanket exemption.
+`scripts/check_check_constraints.py` is wired into backend `test-db-migrate`
+before and after the round-trip. It compares table/column CHECK-expression
+multisets by parsing metadata on empty PostgreSQL temporary tables and reading
+`pg_get_constraintdef`. The existing migration-managed-index filter was not
+expanded. Only closed-form enum-order, literal-cast and range-proven numeric
+sign equivalences are normalized; other differences and errors fail.
+See the [CI owner boundary](../reliability/CI%20Plan.md#backend-schema-drift-boundary).
+
+Local disposable PostGIS evidence:
+
+- Fresh `upgrade head` passed on 1.19.2 in **3.382s**:
+  `recovery-alembic192-upgrade-20260924T013712Z.log`.
+- New checker regressions: **14 offline cases**, then **23 total cases with
+  PostgreSQL**, zero skips. Cases include changed expressions under the same
+  logical subject, different names with identical behavior, column-level checks,
+  missing/extra/duplicate constraints, malformed SQL, refused non-PostgreSQL
+  targets, and bounded numeric zero/NULL/NaN/sign boundaries. Logs:
+  `recovery-check-parity-offline-20260924T013713Z.log` and
+  `recovery-check-parity-postgres-20260924T013736Z.log`.
+- Standalone CHECK gate passed **201 tables, zero differences, zero errors** in
+  **1.559s**: `recovery-check-expression-gate-20260924T013806Z.log`.
+- `alembic check` remains **failed**, now with a bounded non-CHECK diff:
+  `recovery-alembic192-check-20260924T013737Z.log`. It identifies chat image /
+  group outbox message nullability, missing occurrence-evidence metadata
+  columns/FKs, missing index declarations, and three index-order discrepancies.
+  These need owner-grounded reconciliation; no exemption was added for them.
+- The previously masked full downgrade test also **failed**:
+  `recovery-alembic192-roundtrip-down-20260924T013831Z.log`.
+  Dropping `commitments` is blocked by
+  `fk_graph_occurrence_evidence_subject_id_commitments`; no CASCADE workaround
+  or destructive change was applied. The transaction rolled back to
+  `irdelegationtypes01`, verified in `alembic_version` afterward.
+
+The enforcement-gate repair is committed as backend `f2f1cab2b`, with commit
+hooks enabled. Complete standalone backend `make ci` passed in **180.084s**
+with `TRAVEL_APP_ROOT=/nonexistent/standalone-mobile`: **21,843 passed,
+14 skipped, 1,476 deselected, 53 xpassed**, followed by **1,004 checker tests**
+and **422 deterministic replay checks**. The 14 LLM-backed replay checks remain
+skipped. Log: `recovery-alembic192-backend-ci-20260924T013934Z.log`.
+This is offline evidence; it does not override the two migration failures above.
+
+The rollback failure is now traced to `xgraph16_identity_binding_ledger.py`:
+its upgrade either renames graph-shaped `occurrence_evidence` or creates
+`graph_occurrence_evidence` beside the existing Trip-owned table. Its downgrade
+only reverses the rename when the Trip-owned name is absent; when both tables
+exist it leaves the graph table behind. Later `xgraph01` cannot drop its
+referenced `commitments` table. The correction must distinguish those two
+upgrade paths and preserve the Trip-owned table; no fix or successful complete
+round-trip is claimed yet.
+
+### Graph rollback repair — September 23 (UTC September 24)
+
+Backend `0b2b9bad9` handles both `xgraph16` upgrade paths: rename graph-only
+evidence back, or remove the newly created graph table when Trip evidence
+already exists. `xgraph01` now preserves the Trip-shaped table it skipped during
+upgrade. No production upgrade, schema shape, or action authority changed.
+
+Four new PostgreSQL cases exercise both paths with and without the identity
+ledger; retained evidence rows and the shared users table survive as intended.
+The containing migration regression suite passed **8/8**, zero skips, and the
+offline graph/chain suite passed **22/22**, five DB cases deselected. The first
+test attempt incorrectly included public tables in the fixture search path;
+it failed before migration teardown and rolled back. Removing public from the
+transaction-local fixture search path produced the isolated passing run.
+Logs: `recovery-graph-rollback-tests-isolated-20260924T014734Z.log` and
+`recovery-graph-rollback-offline-20260924T014810Z.log`.
+
+The actual database downgrade now passes the graph boundary. Full `downgrade
+base` still fails later at `depthencounter01`: its downgrade targets a CHECK
+name absent from the migrated schema (`ck_experience_outcome_next_thread_length`).
+Log: `recovery-graph-rollback-full-down-20260924T014748Z.log`.
+The explicit downgrade to `intakeretention01` succeeds, but re-upgrade fails at
+`rootdelivery01` with an existing doubly-prefixed `user_events` CHECK name.
+That upgrade transaction rolled back; `alembic_version` is
+`intakeretention01`, not head. Log:
+`recovery-graph-boundary-roundtrip-20260924T014828Z.log`.
+These are the next concrete migration repairs, not permission to bypass the
+round-trip or add CASCADE. The full offline pass recorded above predates this
+bounded rollback repair; focused results do not replace the next complete gate.
+
+All logs above are under `/tmp/vesper-landing-verification/`. This is a narrower,
+more trustworthy diagnosis, **not a passing migration job**. Full coordinated
+verification, publication, required CI, review and native acceptance remain open.
+
 ### Clean verification and publication preparation — September 23
 
 The clean coordinated gate passed at workspace `ff08cc1`, backend

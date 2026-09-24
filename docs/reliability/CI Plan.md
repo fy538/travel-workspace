@@ -63,6 +63,27 @@ stale mobile snapshots, drift and failed tooling fail this gate. The workspace
 checks actual pinned children; backend standalone tests own parser fixtures and
 backend snapshots, so they do not require an undeclared mobile checkout.
 
+### Backend schema drift boundary
+
+`test-db-migrate` pairs Alembic autogenerate drift with
+`scripts/check_check_constraints.py` before and after its full migration
+round-trip. Both must pass. Alembic 1.19.2 disables its name-only CHECK detector
+by default because historical naming conventions cause false positives; that
+detector also did not compare expressions under unchanged names. The dedicated
+gate compares CHECK-expression multisets after PostgreSQL parses metadata on
+empty temporary tables, including column-level constraints. It never alters
+persistent tables and requires an explicit disposable test database.
+
+Only bounded equivalences are normalized: enum membership order, unbounded
+varchar-to-text casts on enum literals, and sign-versus-zero casts on reflected
+bounded numeric columns whose finite range cannot overflow/underflow float8.
+Unknown expressions remain differences, duplicate/missing checks remain visible,
+and query/DDL errors fail. This is not a general SQL equivalence prover or a
+replacement for Alembic's column, index, key and type checks. Renaming alone is
+not an enforcement change; migrations still own the physical constraint names.
+The regression suite exercises valid, violating and tool-failure cases against
+PostgreSQL. Workflow wiring is not evidence of a passing published candidate.
+
 ## Private checkout and dispatch credentials
 
 | Secret location | Secret | Minimum purpose |
