@@ -238,6 +238,62 @@ not another database run. No check result was suppressed or converted to pass.
 The disposable database was stopped and removed after verifying ownership
 and zero client connections. Only generated test data was discarded.
 
+### Take/delegation vocabulary reconciliation — September 23 (UTC September 24)
+
+Two real discrepancies now have different, owner-grounded repairs:
+
+- **Take metadata:** `c58cab3db` makes `TAKE_CACHE_ENTITY_TYPES` equal the
+  public Take subject vocabulary. The original `ta7b8c9d0e1f` creation migration
+  and `73a1ca90a2ef` baseline both exclude `trip_story`; no narrowing migration,
+  production-row deletion, or production-data assertion is needed for this
+  declaration repair. Two regressions first failed; **27 Take/schema tests
+  passed** after repair, including the migrated PostgreSQL catalog.
+- **Delegation migration:** `9b2c8fec7` adds `irdelegationtypes01` after
+  `pmevidence02`. The API, metadata, access-state enumeration, and Vesper-attributed
+  recovery builders already support `restore` and `dissolve_parallel_plan`;
+  their original migrations expanded only `itinerary_operations`, omitting
+  delegation storage. Both explicit settings reproduced DB constraint failures.
+  The new migration permits persistence of the existing contract, not new
+  grants: levels remain none/suggest/prepare-preview/request-confirmation,
+  default off, private, explicit and revocable. Execution policy is unchanged.
+  The broader schema/access suite passed **87 tests**; the subsequent recovery,
+  branch, compound-operation and migration suite passed **35 tests**, including
+  transactional downgrade refusal when a recovery setting exists. No setting
+  is silently deleted or converted during rollback. Upgrade and single-head
+  checks passed on the disposable database.
+
+The entity parity checker also had two hidden defects: `:t::regclass` was not
+bound by SQLAlchemy, and a column-substring query assumed only one constraint
+could mention that column. A syntax error had been mislabeled as database
+unavailability; the first query repair exposed a separate paired-column CHECK.
+The corrected query binds `CAST(:t AS regclass)`, selects the actual enum
+expression, and propagates programming/ambiguous-result failures rather than
+skipping them. Connection unavailability remains the existing explicit skip.
+**Seven checker tests passed** (valid input, drift, absent/ambiguous checks,
+unavailable connection, SQL failure). The final real-database run checked
+**11 Literal mirrors, 14 metadata checks and all 14 live constraints**, passing
+with no live-DB skip. Earlier checker runs that printed “Leg C skipped” are
+not live-schema evidence.
+
+Measured logs, all under `/tmp/vesper-landing-verification/`:
+
+- `recovery-take-schema-before-20260924T012109Z.log` and
+  `recovery-take-schema-after-20260924T012304Z.log`
+- `recovery-delegation-before-20260924T012303Z.log` and
+  `recovery-delegation-upgrade-20260924T012400Z.log`
+- `recovery-domain-schema-suite-20260924T012430Z.log` and
+  `recovery-delegation-rollback-20260924T012524Z.log`
+- `recovery-live-checker-complete-20260924T013018Z.log` and
+  `recovery-live-entity-parity-complete-20260924T013017Z.log`
+
+**Still not ready to land:** the full Alembic drift check exits 255 in **1.679s**
+(`recovery-domain-alembic-check-20260924T012559Z.log`). The column-aware
+diagnostic reports 177 matching definition multisets and 24 differing tables;
+the repaired vocabularies still differ in harmless list order, alongside
+remaining naming/truncation and historical cast expressions. Do not use this
+bounded repair to waive the whole drift gate. No remote publication, main merge,
+new full coordinated gate, native acceptance, or production migration occurred.
+
 ### Clean verification and publication preparation — September 23
 
 The clean coordinated gate passed at workspace `ff08cc1`, backend
