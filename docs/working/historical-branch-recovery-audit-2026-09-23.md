@@ -24,7 +24,8 @@ Fresh local and `git ls-remote --heads origin` inventories show **six local
 branches and six remote branches**: main plus recovery in each independent
 repository. All Dependabot PRs are closed. Only workspace #36, backend #233,
 and app #201 remain open; all require independent review and app #201 remains
-draft. Recovery is **not merged or fully published**. The canonical workspace's
+draft. Recovery is **not merged**; the checkpoint below distinguishes published
+child revisions from local verification and final landing. The canonical workspace's
 concurrent Home/multiplayer design edits remain untouched.
 
 Nine worktrees remain: canonical, recovery, and the old native set in each
@@ -37,6 +38,18 @@ claim that their full implementations were merged.
 ### September 24 dead-style retirement — mobile consolidation checks pass
 
 Latest mobile candidate: **`27eefa0fb`**; backend remains `6a3ca1bbe`.
+Backend `6a3ca1bbe` and mobile **`2de2e3ab8`** are now published to the recovery
+branches, not merged to main. Mobile's final commit only updates its backend
+dependency pin; product source is still the verified `27eefa0fb` revision.
+Normal pre-push hooks passed: backend publication 129.320s, mobile 15.915s
+(`recovery-backend-publish-20260924T074737Z.log` and
+`recovery-mobile-publish-20260924T075031Z.log`). Conditional hooks reported
+their no-matching-file skips; they are not extra executed test coverage.
+Workspace child pins were generated from those HEADs only after exact remote
+head checks confirmed publication. App retains compatible published workspace
+`0b4e94ac4`; the workspace delta since that revision changes child pins,
+operation-policy lifecycle metadata and this ledger, not API wire schemas.
+
 This supersedes the two-category repair queue below. The apparent typography
 and containment failures were largely **unreferenced legacy definitions**, not
 live surfaces needing new typography roles or a redesign.
@@ -72,11 +85,37 @@ Evidence under `/tmp/vesper-landing-verification/`:
   using Metro `http://localhost:53936`. This supersedes the absent-8081
   preflight below. It establishes driver/runtime readiness, not visual quality.
 
-The coordinated `make verify` run and a bounded `04-plan` native capture are
-in progress at this checkpoint. The native runtime is explicitly **mock /
-legacy visual**, not governed Home v2 or real-backend acceptance. Publication,
-remote CI credentials and independent PR review remain unfinished; no merge
-readiness is inferred from the mobile checks alone.
+The coordinated **`make verify` passed** in 976.032s:
+`recovery-coordinated-closeout-20260924T073051Z.log`. It ran backend CI,
+contract drift, API coverage, mobile typecheck, journey/seam/offline tests,
+Maestro semantic syntax and workspace governance. It began at workspace
+`f457289` and ended at documentation-only `ee30b27`; backend `6a3ca1bbe` and
+mobile `27eefa0fb` were unchanged. The ledger's separate docs check passed in
+7.580s using the backend virtualenv; the first system-Python attempt failed
+because that interpreter lacked PyYAML, not because governance passed.
+
+The first native capture timed out at 300s before mock readiness. A diagnostic
+screen showed the installed client requesting IPv4 `127.0.0.1:53936` while
+Metro listened only on IPv6 `::1`. Restarting this lane's Metro with
+`NODE_OPTIONS=--dns-result-order=ipv4first` fixed the connection without code
+changes. The subsequent `04-plan` capture **passed in 41.828s**:
+`recovery-native-plan-ipv4-20260924T074700Z.log`. Both `plan-day-top.png` and
+`plan-day-scrolled.png` exist and were opened; the day-6 rail assertion reached
+Train to Nara. The files and manifest are in the app's
+`.maestro/runs/_pairs/trip-itinerary/after/` directory.
+The capture directory and passing capture/coordinated-check logs were copied to
+`/Users/feihuyan/vesper-repository-archive-2026-09-23.c4wYxq/native-recovery-2026-09-24.kNL2Wb/`;
+`diff -qr` confirms the archived capture matches. The task-owned Metro process
+was stopped and its assigned simulator shut down after capture. The other
+lane's simulator and Xcode process were left untouched.
+
+This is a **bounded mock / legacy visual capture**, not a full structured
+design verdict, governed Home v2 proof, real-backend acceptance or coverage of
+every changed control. Full native acceptance, remote CI credentials and
+independent PR review remain unfinished; no merge readiness is inferred from
+capture alone. This workspace update carries the new published-child pins;
+its own publication must be confirmed against the remote, not inferred from
+the existence of this ledger.
 
 ### September 24 control-owner consolidation — preceding checkpoint
 
