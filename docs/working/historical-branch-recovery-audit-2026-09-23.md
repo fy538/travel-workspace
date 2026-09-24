@@ -160,18 +160,22 @@ Migration diagnosis remains **unresolved, not a blanket false positive**.
 Alembic 1.19.1's check reproduces the remote failure on a fresh migration.
 A disposable-only probe compares `pg_get_constraintdef` against each metadata
 CHECK parsed by PostgreSQL on temporary LIKE tables, rolling back all probe DDL.
-It found 174 tables with identical definition multisets (84 with differing name
-sets) and 27 tables needing further reconciliation; no probe errors occurred.
+The original probe reported 174 tables with identical definition multisets
+(84 with differing name sets) and 27 tables needing reconciliation. **That
+probe omitted column-level CHECKs.** A corrected rerun includes both table and
+column constraints and reports 175 matching tables and 26 mismatches before
+repair, with no probe errors. The far-out generation-status CHECK already
+exists as a column constraint; its discrepancy is naming, not missing metadata.
 Many differences are enum ordering, truncation, duplicate naming prefixes or
 cast representation, but the evidence also identifies:
 
 - Four migrated `trips` checks absent from metadata (source, plan editing,
   booking initiation and expense entry policies).
-- Migrated far-out generation-status and notification action-depth checks absent
-  from metadata.
+- The migrated notification action-depth check absent from metadata.
 - `entity_takes` metadata allowing `trip_story` while the migrated constraint
-  excludes it; inspect the completed narrowing migration and Take owner before
-  choosing which side to repair.
+  excludes it; trace the baseline/migration history and Take owner before
+  choosing which side to repair. A completed narrowing migration has not been
+  established; the earlier wording overstated that evidence.
 - Delegation metadata allowing `restore` and `dissolve_parallel_plan` while its
   migrated operation vocabulary excludes them; inspect the delegation contract
   before expanding accepted authority.
@@ -181,6 +185,58 @@ reproduction: `/tmp/vesper-audit-check-constraints-20260923.py` (hard-guarded to
 disposable local database). First reconcile semantic discrepancies with owners,
 then solve CHECK naming/truncation without suppressing real drift. No dependency
 upgrade, constraint exclusion, migration change or production DB write is claimed.
+
+### Migrated CHECK metadata repair — September 23 (UTC September 24)
+
+Backend commit `8e5187e51` restored the four Trip checks and notification action-depth check in SQLAlchemy
+metadata, with the names and expressions already enforced by migrations
+`a7b4c1d8e5f2`, `tripagency01`, `costbookauth01`, and `a9f3e2b8c7d1`.
+This repairs declarations; it does not change the migrated schema, public API,
+accepted permissions, or historical migration files. No new migration is needed
+to install checks that are already present. Also corrected the Trip source
+comment's migration ID.
+
+Five offline regressions first failed on the missing checks. After repair,
+**71 tests passed, zero skips**, including five PostgreSQL cases comparing the
+live migrated catalog against metadata parsed by PostgreSQL. Accepted values,
+invalid values, and nullable/non-nullable boundaries were exercised on isolated
+probe tables. All probe DDL/rows were rolled back. The fresh disposable PostGIS
+15/3.3 migration passed in **4.908s**; the final schema suite took **2.318s**.
+Ruff, formatting, and diff checks passed. Commands and measured revision tuples:
+
+- `/tmp/vesper-landing-verification/recovery-metadata-fresh-migration-20260924T011131Z.log`
+- `/tmp/vesper-landing-verification/recovery-metadata-regression-before-20260924T011235Z.log`
+- `/tmp/vesper-landing-verification/recovery-metadata-schema-suite-20260924T011357Z.log`
+
+The corrected column-aware diagnostic before/after logs are
+`recovery-check-column-aware-before-20260924T011245Z.log` and
+`recovery-check-column-aware-after-20260924T011359Z.log` in that directory.
+After repair: **177 matching definition multisets, 24 tables with differences,
+86 matching-definition tables with name differences, no probe errors**.
+Definition-string differences are not all behavioral differences; enum order,
+casts, naming and the Take/delegation vocabulary discrepancies still require
+resolution. This remains a diagnostic, not a passing migration gate or evidence
+that all schema drift is fixed. Full coordinated verification and publication
+remain outstanding for these local repairs.
+
+The post-repair Alembic run emitted remaining differences to
+`recovery-metadata-alembic-check-20260924T011500Z.log`. Its command had exited
+and no DB connections remained, but the measurement process consumed a full
+CPU in `parse_test_counts`; interrupting that owned wrapper confirmed its
+unanchored regex in the traceback. This run has no completed measurement
+record and must not be cited as a timed pass/fail certificate. The parser now
+matches summary lines from their start, preserving pytest banners while
+avoiding repeated scans over long non-test diagnostics. A bounded subprocess
+regression exercises a 380 KB diagnostic, prior valid summary, and preserved
+nonzero exit status; the parser suite passed **27 tests**, and the complete
+workspace script suite passed **93 tests** in **11.322s**
+(`recovery-workspace-parser-suite-20260924T011730Z.log`). The first saved-log
+replay used a nonexistent filename and proves nothing about Alembic output;
+the corrected replay uses the exact saved log and is tooling evidence only,
+not another database run. No check result was suppressed or converted to pass.
+
+The disposable database was stopped and removed after verifying ownership
+and zero client connections. Only generated test data was discarded.
 
 ### Clean verification and publication preparation — September 23
 
