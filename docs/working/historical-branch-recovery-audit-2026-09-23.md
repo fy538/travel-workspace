@@ -18,7 +18,50 @@ canon or a direction to merge every historical implementation wholesale. The
 continue to decide what to build. “Retire” below means *no whole-branch merge
 or current feature port*; it does **not** mean a Git ref or worktree was deleted.
 
-## September 23 actual historical retirement — latest inventory
+## September 23 follow-up — two incompatible dependency branches retired
+
+After screen/API refactoring, local branches remain **six** and worktrees
+remain **nine**. Remote branches are now **eleven**: three main, three recovery,
+two backend dependency branches and three app dependency branches. The older
+seven-dependency inventory below is historical, not the current count.
+
+App PRs **#195** (React Native 0.87.1) and **#193** (Worklets 0.13.0, on the
+historically named `react-native-worklets-0.12.1` branch) were closed without
+merging. The former is an uncoordinated runtime upgrade from the current Expo
+55 / RN 0.83.10 baseline; the latter conflicts with installed Reanimated 4.6.x's
+vendor matrix requiring Worklets 0.12.x. Neither is a product recovery. A future
+coordinated SDK/native upgrade remains possible; these closures do not claim
+the packages are universally incompatible.
+
+Before closing, exact remote tips were compared with local tracking refs and
+preserved under `refs/archive/dependency-retirement-2026-09-23/`:
+
+- `react-native-0.87.1`: `48dbba4dd67fe2ffff62fa8ca221364858713ddc`.
+- `react-native-worklets-0.13.0`: `b2fff2d71e597bc3c810fb7a86ad1fd4a8cff100`.
+
+Both complete histories are in the verified local bundle
+`/Users/feihuyan/vesper-repository-archive-2026-09-23.c4wYxq/app-dependency-retirement-20260923.bundle`,
+SHA-256 `41eb0c6d2fbcdd0a91dc4fb0fa0037571d065310ceae90dd413144da1c33bd6d`.
+Following PR closure the remote branches disappeared. A lease-protected delete
+was rejected as stale; fresh `ls-remote` confirmed absence, so no forced retry
+was attempted. `fetch --prune` removed only those stale tracking refs. Recovery
+refs and bundle remain local, not offsite. The other five dependency PRs remain
+open pending their own review; no bulk dependency upgrade was performed.
+
+The full `make verify` attempt at workspace `c3bcfd9`, backend `ef1e19682`, app
+`31eb64f4f` failed in 156.317s: 21,872 backend tests passed but the story contract
+test still searched only inline `interface.ts` after its declaration moved to
+the inherited `MemoryAPI`. Backend commit `1e176e111` repairs that source lookup,
+requires the import/inheritance connection, and fails for a missing module.
+Five source-lookup regressions cover inline/composed declarations, disconnected
+inheritance, missing import and missing file. Focused enum tests and Ruff passed
+(12 passed, three existing skips, 2.176s); the 202/composing response assertion
+remains. Logs: `/tmp/vesper-landing-verification/`
+`recovery-consolidation-verify-20260924T030424Z.log` and
+`recovery-composed-story-contract-20260924T030925Z.log`.
+The failed full gate is not a passing receipt; a fresh coordinated run is required.
+
+## September 23 actual historical retirement — earlier inventory
 
 The historical disposition is now executed, not just proposed. At 22:35 UTC,
 **83 local historical branch names and 167 historical worktrees were removed**.
