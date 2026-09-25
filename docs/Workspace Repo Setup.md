@@ -115,6 +115,12 @@ That prints Git status for the workspace and both child repos separately.
 `scripts/new-worktree.sh <name>` creates all three independent worktrees under
 `../<workspace-name>--<name>/`, with lowercase child paths. The default records
 each repository's current HEAD; `--base REF` deliberately selects another base.
+Use `make worktrees` first to see existing coordinated lanes. Reuse the owning
+lane for continued work on the same outcome. For a new independent outcome,
+`scripts/new-worktree.sh <name> --owner <person-or-task> --outcome <result>`
+records who will carry it through review and landing. The owner and outcome are
+helpful context, not a separate approval process. Read-only helpers and focused
+subagents do not need their own persistent lane.
 Existing spaced-name checkouts are adopted by lowercase symlinks during
 `make bootstrap`; they are not cloned again or rewritten. Linked worktree `.git`
 files are supported. An invalid or already occupied lane fails visibly.
@@ -153,6 +159,21 @@ Integrate upstream and refresh immutable cross-repo pins deliberately; it never
 rebases one repo behind the other repos' pins, pushes main, mutates a canonical
 checkout or deletes a lane. Partial multi-repo pushes cannot be atomic; retain
 the lane and report which remote branches were published if a push fails.
+
+After the work has merged, run `scripts/worktree_lane.py retire <name>` to
+preview cleanup. It fetches main in all three repositories and accepts only a
+registered lane whose branch tips are ancestors of `origin/main`, whose trees
+have no tracked or untracked changes, and whose ignored files contain only the
+lane manifest and the two independently checked child repositories. Squash
+merges, partial ports, remote branches that advanced beyond the local lane,
+other ignored assets and detached or incomplete lanes
+need deliberate review; the tool will not infer adoption. Stop that lane's
+services and device session, then run `retire <name> --apply --runtime-stopped`.
+The acknowledgement states that runtime ownership was checked; the command
+does not inspect processes. It removes only checked worktrees and their exact
+local branch tips; it never deletes remote branches. A failed partial cleanup
+needs inspection before retrying. `make worktrees` reports remaining lanes,
+including unmanaged or incomplete worktrees, without changing them.
 
 ## Agent instruction discovery
 
