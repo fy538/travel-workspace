@@ -366,7 +366,19 @@ rules:
 overrides:
   docs/working/vesper-program-roadmap.md:
     disposition: keep_authoritative
-    rationale: Compact current cross-lane priority, assignment and dependency map extracted from the Integration roadmap; lane plans retain implementation detail and product, permissions, generated status and release authorities remain unchanged.
+    rationale: Single current dispatch queue and checkpointed priority map; bounded execution plans supply detail while product, permissions and release authorities remain unchanged.
+
+  docs/archive/vesper-program-roadmap-history-through-2026-09-25.md:
+    disposition: archive
+    rationale: Preserves dated program assignments and receipts intact after the September 25 rebaseline; not current execution authority.
+
+  docs/archive/complete-system-integration-history-through-2026-09-25.md:
+    disposition: archive
+    rationale: Preserves the original technical plan and scoped receipts; current dispatch belongs only to the program roadmap.
+
+  docs/working/home-value-composition-execution-plan-2026-09-25.md:
+    disposition: keep_reference
+    rationale: Bounded primary implementation assignment subordinate to the program queue and accepted Home owner/design contracts.
 
   docs/working/vesper-v1-supported-offer-2026-09-07.md:
     disposition: keep_reference
@@ -437,8 +449,8 @@ overrides:
     rationale: Active Life replacement engineering sequence and bounded implementation receipts; accepted experience and owner contracts retain product authority.
 
   docs/working/complete-system-integration-roadmap-2026-09-05.md:
-    disposition: keep_authoritative
-    rationale: Shared-system technical sequencing and landing plan with code-backed packages and scoped evidence; the Vesper program roadmap now owns cross-lane priorities and allocation, while product canon and release approvals retain authority.
+    disposition: keep_reference
+    rationale: Shared-system integration obligations and historical links retained as supporting guidance, not a competing execution queue.
 
   docs/working/home-connected-experience-plan-2026-09-04.md:
     disposition: keep_reference

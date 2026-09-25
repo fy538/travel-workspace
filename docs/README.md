@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / engineering
 created: 2026-05-01
-last_verified: 2026-09-07
+last_verified: 2026-09-25
 why_new: Promote the existing workspace index into the canonical documentation entry point.
 supersedes: []
 source_of_truth_for: [workspace-docs-navigation]
@@ -20,7 +20,7 @@ and a bounded milestone are not interchangeable.
 |---|---|---|
 | **What product are we building?** | [Product Thesis](../travel-agent/docs/product/Product%20Thesis.md) → [Product Model](../travel-agent/docs/product/Product%20Model.md) → [accepted consumer strategy](decisions/2026-09-06-reconcile-consumer-strategy.md) | understanding direction and boundaries |
 | **What matters next across the whole product?** | [Vesper program roadmap](working/vesper-program-roadmap.md) — current priorities, accountable tasks, dependencies and system checkpoint | coordinating independent lanes without reconstructing task history |
-| **How do we implement and integrate it?** | [Complete-system integration roadmap](working/complete-system-integration-roadmap-2026-09-05.md) and the program's linked lane plans | shared technical sequencing, scoped implementation and landing under existing contracts |
+| **How do we implement and integrate it?** | The program's active [Home execution package](working/home-value-composition-execution-plan-2026-09-25.md), supported by the [integration reference](working/complete-system-integration-roadmap-2026-09-05.md) | complete a bounded outcome under existing contracts; the reference is not a second queue |
 | **What must the M1 demo establish?** | [M1 — Plan Repair](release/m1-plan-repair.md) | executing or certifying that bounded operational-alpha milestone |
 | **What evidence supports completion?** | Current owner/package receipts for local progress; [`evidence-attestations.json`](journeys/evidence-attestations.json) for promoted journey evidence | distinguishing implementation progress from certification |
 | **What must I not break?** | [V1 scope](release/v1-scope.md) for dark surfaces · [Journey Status](journeys/STATUS.md) for the regression floor | shipping work |
@@ -44,12 +44,13 @@ Three things follow from that table and are worth stating once:
 - **Lighting a flag outside its declared `gate:` is a scope change**, not a
   config change.
 
-The program roadmap owns cross-lane coordination; Integration owns shared
-technical execution and landing; lane plans own their current implementation
-queues and receipts. These working plans do not replace product, permissions,
-generated current-state signals or release authorities. Read the relevant owner
-contract before changing it. Older Integration assignment tables are historical;
-use the program's dated baseline and verify Git before starting work.
+The program roadmap owns the single current dispatch queue. Normally one
+implementation task owns a complete package, including integration; a second
+task is optional when independent. At most one or two active package plans own
+implementation detail and current receipts. Specialist roadmaps and archived
+assignment tables are supporting references, not automatic work queues. These
+plans do not replace product, permissions, generated current-state signals or
+release authorities. Read the relevant owner contract and verify Git before work.
 
 ## Current strategy review
 
