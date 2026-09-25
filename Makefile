@@ -8,7 +8,7 @@
 include dogfood.mk
 
 .PHONY: bootstrap dev dev-backend m3-demo-backend sync-types typecheck doctor status help
-.PHONY: new-worktree land-worktree worktrees
+.PHONY: new-worktree land-worktree worktrees retire-worktree
 .PHONY: cross-repo-fixture-check
 .PHONY: contract-check occasion-behavior-contract-check place-identity-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate entity-health mock-slug-parity surface-contraction-check
 .PHONY: certify-fast certify-logic certify-corpus certify-visual certify-visual-cloud certify-live maestro-flow-check journey-registry-check journey-registry-verify-passes journey-evidence-report dogfood-status corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-journey-live-api qa-persona dogfood-status-sync
@@ -44,18 +44,17 @@ doctor: ## Validate workspace layout and key local tooling
 
 # ── Concurrent agent lanes ──────────────────────────────────────────────────────
 
-new-worktree: ## Create an isolated worktree lane in both repos: make new-worktree NAME=my-feature
+new-worktree: ## Create an isolated workspace and child-repo lane: make new-worktree NAME=my-feature
 	@./scripts/new-worktree.sh $(NAME)
 
 land-worktree: ## Verify a clean, current coordinated lane; does not merge main or remove worktrees: make land-worktree NAME=my-feature
 	@./scripts/land-worktree.sh $(NAME)
 
-worktrees: ## List active worktree lanes for both child repos
-	@echo "== Travel Agent =="
-	@cd travel-agent && git worktree list
-	@echo ""
-	@echo "== Travel App =="
-	@cd travel-app && git worktree list
+worktrees: ## Show coordinated lanes, owners, and local Git status
+	@python3 scripts/worktree_lane.py status
+
+retire-worktree: ## Preview safe cleanup of a merged lane: make retire-worktree NAME=my-feature
+	@python3 scripts/worktree_lane.py retire $(NAME)
 
 # ── Reliability ───────────────────────────────────────────────────────────────
 

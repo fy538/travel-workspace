@@ -244,3 +244,128 @@ def test_failed_coordinated_gate_never_pushes(tmp_path, monkeypatch):
             )
         )
     assert not any(args[0] == "push" for args in calls)
+
+
+def test_status_reports_lanes_without_mutation(tmp_path, monkeypatch, capsys):
+    module = load("worktree_lane")
+    root = tmp_path / "source"
+    for name in ("", "travel-agent", "travel-app"):
+        init(root / name)
+    monkeypatch.setattr(module, "ROOT", root)
+    lane = tmp_path / "lane"
+    module.create(
+        SimpleNamespace(
+            name="fixture",
+            prefix="codex/",
+            directory=str(lane),
+            base=None,
+            owner="eng",
+            outcome="one finished slice",
+        )
+    )
+    capsys.readouterr()
+    module.status(None)
+    output = capsys.readouterr().out
+    assert "owner: eng" in output
+    assert "outcome: one finished slice" in output
+    assert output.count("registered") == 3
+    orphan = tmp_path / "child-only"
+    git(root / "travel-agent", "worktree", "add", "--detach", str(orphan))
+    module.status(None)
+    assert f"Unpaired travel-agent worktree: {orphan}" in capsys.readouterr().out
+
+
+def test_retire_previews_then_removes_only_merged_clean_lane(tmp_path, monkeypatch):
+    module = load("worktree_lane")
+    root = tmp_path / "source"
+    for name in ("", "travel-agent", "travel-app"):
+        source = root / name
+        init(source)
+        git(source, "branch", "-M", "main")
+        if not name:
+            (source / ".gitignore").write_text(
+                ".workspace-lane.json\ntravel-agent/\ntravel-app/\n"
+            )
+            git(source, "add", ".gitignore")
+            git(
+                source, "-c", "user.name=Test", "-c", "user.email=test@example.test",
+                "commit", "-qm", "ignore lane manifest",
+            )
+        remote = tmp_path / f"{name or 'workspace'}-remote.git"
+        git(tmp_path, "init", "--bare", "-q", str(remote))
+        git(source, "remote", "add", "origin", str(remote))
+        git(source, "push", "-q", "-u", "origin", "main")
+    monkeypatch.setattr(module, "ROOT", root)
+    lane = tmp_path / "lane"
+    module.create(
+        SimpleNamespace(name="fixture", prefix="codex/", directory=str(lane), base=None)
+    )
+    args = SimpleNamespace(
+        name="fixture",
+        prefix="codex/",
+        directory=str(lane),
+        apply=False,
+        runtime_stopped=False,
+    )
+    # An unmerged change in just one child must preserve the entire lane.
+    git(
+        lane / "travel-agent", "-c", "user.name=Test",
+        "-c", "user.email=test@example.test", "commit", "--allow-empty",
+        "-qm", "change",
+    )
+    with pytest.raises(ValueError, match="not merged"):
+        module.retire(args)
+    assert lane.exists()
+    git(
+        root / "travel-agent", "-c", "user.name=Test",
+        "-c", "user.email=test@example.test", "merge", "--no-ff", "-qm",
+        "adopt", "codex/fixture",
+    )
+    git(root / "travel-agent", "push", "-q", "origin", "main")
+
+    (lane / "travel-app" / "scratch.txt").write_text("keep")
+    with pytest.raises(ValueError, match="untracked changes"):
+        module.retire(args)
+    (lane / "travel-app" / "scratch.txt").unlink()
+    (lane / "travel-app" / ".gitignore").write_text("secret.local\n")
+    git(lane / "travel-app", "add", ".gitignore")
+    git(
+        lane / "travel-app", "-c", "user.name=Test",
+        "-c", "user.email=test@example.test", "commit", "-qm", "ignore",
+    )
+    git(
+        root / "travel-app", "-c", "user.name=Test",
+        "-c", "user.email=test@example.test", "merge", "--no-ff", "-qm",
+        "adopt", "codex/fixture",
+    )
+    git(root / "travel-app", "push", "-q", "origin", "main")
+    git(root / "travel-app", "branch", "remote-extra", "codex/fixture")
+    git(root / "travel-app", "switch", "-q", "remote-extra")
+    git(
+        root / "travel-app", "-c", "user.name=Test",
+        "-c", "user.email=test@example.test", "commit", "--allow-empty",
+        "-qm", "new remote work",
+    )
+    git(
+        root / "travel-app", "push", "-q", "origin",
+        "HEAD:refs/heads/codex/fixture",
+    )
+    git(root / "travel-app", "switch", "-q", "main")
+    with pytest.raises(ValueError, match="remote branch has moved"):
+        module.retire(args)
+    git(root / "travel-app", "push", "-q", "origin", "--delete", "codex/fixture")
+    (lane / "travel-app" / "secret.local").write_text("keep")
+    with pytest.raises(ValueError, match="ignored files"):
+        module.retire(args)
+    (lane / "travel-app" / "secret.local").unlink()
+
+    module.retire(args)
+    assert lane.exists()
+    args.apply = True
+    with pytest.raises(ValueError, match="runtime is stopped"):
+        module.retire(args)
+    args.runtime_stopped = True
+    module.retire(args)
+    assert not lane.exists()
+    for name in ("", "travel-agent", "travel-app"):
+        assert "codex/fixture" not in git(root / name, "branch", "--list")

@@ -74,6 +74,11 @@ Follow `docs/governance/README.md` for documentation lifecycle and admission.
 
 ## Git and runtime ownership
 
+- Check `make worktrees` before opening an implementation lane. Reuse its owner
+  for follow-on work on the same outcome; independent read-only helpers need no
+  persistent branch. The lane owner carries a coherent slice through review,
+  landing and safe retirement, or reports the specific blocker. Use
+  `scripts/worktree_lane.py retire <name>` to preview post-merge cleanup.
 - Name branches descriptively with the `codex/` prefix unless the task specifies
   otherwise. A commit lands on the branch currently checked out; verify it.
 - Stage explicit filenames; never `git add -A` or `git add .`. Preserve another
