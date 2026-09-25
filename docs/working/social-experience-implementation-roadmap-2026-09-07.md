@@ -18,6 +18,11 @@ depends_on:
 
 # Social implementation roadmap — a shared layer of the lived-world product
 
+> September 25 execution clarification: this is supporting capability detail
+> and dated evidence. The [program roadmap](vesper-program-roadmap.md) alone
+> activates assignments. Recheck old gaps and integration status against current
+> code; this clarification does not certify a new social implementation baseline.
+
 ## Current execution queue — program-aligned September 10
 
 **Completed locally, still gated:** bounded exact selected-original sending and receiving under

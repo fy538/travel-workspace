@@ -11,6 +11,11 @@ supersedes: []
 
 # Recommendation world supply: architecture and implementation roadmap
 
+> September 25 execution clarification: retain this technical/supply reference,
+> not its old queue as an active assignment. The [program roadmap](vesper-program-roadmap.md)
+> owns dispatch; recheck the dated gaps below before implementing them. This
+> clarification does not certify a new provider or runtime baseline.
+
 ## Current execution queue — program-aligned September 7
 
 The [program roadmap](vesper-program-roadmap.md) owns cross-lane priority and
