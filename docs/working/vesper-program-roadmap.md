@@ -58,53 +58,30 @@ were restored and verified afterward:
 | App | `43225df35a01295993def384b5958c53ab8f1c8b` | [#201](https://github.com/fy538/travel-app/pull/201) |
 
 The current implementation owner is the coordinated `codex/home-value-delivery`
-lane. Its workspace checkout carries local roadmap/execution-record commits
-after the merged baseline. Its backend checkout is now at local revision
-`bf1e5dadf`, three commits beyond merged `c8c9f57`: explicit offline API startup
-(`6c792ed8b`), cold-demo coexistence with the Places door (`8fbad4db7`), and
-shared value admission for the fixed Home sample (`bf1e5dadf`). These backend
-commits are not yet merged.
-Its app checkout has the first H1 share-time treatment committed locally as
-`66e2c3c`, renderer-level owner-read regression coverage in `122f4d2`, and an
-explicit UTC fallback correction in `e0bf0a7`. A prior app slice,
-`8fc767355`, preserves the Home unit's viewport position on exact return; if
-the projection changed, Home retains strict recomposition. The prior slice,
-`1b23ed891`, removes a redundant editorial kicker below named Home sections but
-keeps it for a standalone dominant reading. The latest slice, `a963fa0b9`, also
-removes the generic canonical-outcome basis caption while retaining its actual
-value and Life continuation. App revision `957fddde2` adds a QA-only received-
-photo scenario and fixes native image sizing to preserve the original aspect
-ratio, with a Home → exact reader → Home return capture. App revision
-`6489ef4c4` removes a redundant alternatives label and makes the polish runner
-cold-start through the assigned Metro URL; its Available fixture capture passed
-1/1 at `20260926T195030Z-home-root`. App revision `42cba2d30`
-replaces Quiet Home's self-referential cliff match with a source-bound geological
-comparison and removes its duplicate connection card; it has focused regression
-coverage and a fixture-backed native capture. Current app revision
-`7d7d5b762` tightens the headline's geological precision; a post-commit
-Quiet-flow capture (`20260926T204547Z-home-root`) now passes on that revision,
-including an exact headline assertion and the zero-demand/page-close checks.
-This remains frontend-fixture evidence; the lower-page screenshot does not
-establish first-viewport design parity or real content supply. Accepted
-App revision `48ee7ba88` also makes the real Home full-scroll rehearsal target
-the lane-assigned simulator before writing fixtures. That run
-(`h1-home-scroll-20260926T205800Z`) passed against the local real backend with
-synthetic owner data, composing two public Place readings, an addressed
-friend note, and an individually authorized original into one Home scroll;
-the runner verified fixture withdrawal afterward. This closes that bounded
-local owner-read/presentation path, not production or recurring supply. The
-existing explicit Source workflow's durable request, worker fence, exact
-result, and Home/Places prepared-read seam now also pass a disposable-Postgres
-acceptance with authored fixtures; this proves server-side persistence/readback,
-not canonical user-owned Sources or the native Home Ask-to-result experience.
-Accepted design-reference parity, real-photo rendering, the native Source
-interaction, canonical owner-backed Source provenance, recurring content
-supply, the full verification gate and release readiness remain open. Detailed
-evidence is recorded in the active H1 plan.
-A seven-posture fixture capture and the single Returned recapture are both
-fixture-backed, not reference parity or real-owner acceptance. The new
-Available capture is also fixture-backed and does not render the changed
-alternatives unit. Do not treat the coordinated lane as ready to publish.
+lane. Its current local heads are workspace `2bb74e6`, backend `debbf7b1e`, and
+app `758f15460`, all after the merged recovery revisions above and not yet
+published. The lane has advanced past the earlier status recorded below; the
+[active H1 plan](home-value-composition-execution-plan-2026-09-25.md) owns the
+detailed receipt and exact test boundaries.
+
+H1 has now connected ordinary, social and practical value through the Home
+surface. It includes a source-bound Quiet Home geology comparison, exact Home
+return, recipient-attributed originals contained as one authored share, the
+native Home Ask-to-Source-result workflow, and the real-Postgres practical
+`place.open_now` rehearsal from Home to exact venue and back. The shared
+full-scroll rehearsal also composes public Place readings, an addressed friend
+note and individually authorized originals, with owner readback and fixture
+withdrawal. The user-facing flows and local database lifecycle are materially
+more complete than at the previous rebaseline.
+
+These results still use authored/synthetic fixtures where noted; they do not
+establish recurring or production content supply, provider-backed freshness,
+canonical user-owned Source provenance, real-photo rendering, or accepted
+full-scroll design-reference parity. `make verify` remains blocked at the
+date-sensitive World Catalog runway gate (the October 9 horizon lacks required
+`season` and `here` entries); the catalog was not padded with invented rows.
+This is a scoped gate failure, not evidence that Home behavior failed. H1 is
+therefore not ready to publish or declare complete.
 The older recovery worktree and detached native-presentation checkout are
 separate, already-merged work; do not reuse or retire them without a fresh
 owner/runtime check. The former 145-branch inventory is historical, not
@@ -150,7 +127,7 @@ forward or reopen the repair without new evidence.
 | Order / state | Package and accountable owner | Outcome / exit |
 | --- | --- | --- |
 | 0 — complete | **Recovered candidate baseline**, merged through #36 / #233 / #201 | Reuse recovered Home/Places and app behavior; original protections restored. The workspace checkout/reliability gate remains a pre-publication evidence gap, not a reason to reopen or bypass the merged PRs |
-| 1 — active | **H1: Complete Home value delivery**, `codex/home-value-delivery` lane owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md): close supply/selection/presentation/continuation gaps across ordinary, social and healthy live situations; include accepted native reference alignment. Social material has exact recipient-local share time (`66e2c3c`) and a mock-only, aspect-preserving photo presentation/return path (`957fddde2`); `6489ef4c4` removes redundant alternatives hierarchy and repairs cold-start QA; `42cba2d30` makes Quiet Home's geology connection substantive; `7d7d5b762` sharpens its title. Package exit is not yet met |
+| 1 — active | **H1: Complete Home value delivery**, `codex/home-value-delivery` lane owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md): close supply/selection/presentation/continuation gaps across ordinary, social and healthy live situations; include accepted native reference alignment. The lane now has native local evidence for explicit Home Source continuation, original-share receiving/return and practical open-now → exact venue → Home return (`758f15460`); Quiet Home's source-bound geology and bounded full-scroll/social work remain in the package receipts. These are local/synthetic acceptance, not production supply or design parity. Package exit is not yet met |
 | 2 — select from H1's actual bottleneck, not tab order | **Recurring supply / Places depth / Life continuity**, same owner by default | Choose the specific missing producer connection, spatial depth, refinding or permitted later-use path that most improves the delivered experience; do not activate three standing lanes |
 | Cross-cutting within each package | **Practical help, live-engine behavior and production cost**, package owner | Current facts and permitted context materially change an appropriate result; freshness, authority, degradation, latency and generation costs stay explicit |
 | Before publishing each integrated package / before cutover | **Landing and retirement**, implementation owner with coordination review | Review combined changes, run required gates, publish only with authorization, record landed revisions and disposition the branch/worktree; migrations, replacement retirement and release retain their separate gates |
