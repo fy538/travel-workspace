@@ -86,6 +86,13 @@ the date-sensitive World Catalog runway gate (the October 9 horizon lacks requir
 `season` and `here` entries); the catalog was not padded with invented rows.
 This is a scoped gate failure, not evidence that Home behavior failed. H1 is
 therefore not ready to publish or declare complete.
+
+The prepared-Source serving adapter already revalidates exact current owner
+materials and context and fails closed on missing or changed evidence; Home
+does not generate on an ordinary miss. Current H1 workflow/native receipts use
+authored Source/material fixtures, so canonical owner-data use and recurring
+preparation remain unproven. This is a real-data/supply acceptance gap, not a
+known missing serving connection.
 The older recovery worktree and detached native-presentation checkout are
 separate, already-merged work; do not reuse or retire them without a fresh
 owner/runtime check. The former 145-branch inventory is historical, not

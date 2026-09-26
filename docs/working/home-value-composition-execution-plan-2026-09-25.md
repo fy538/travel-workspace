@@ -146,6 +146,17 @@ This is a code-path trace, not production-supply or native-visual acceptance.
 | Evening with other people | Relationships supplies exact addressed Place notes and individually authorized original deliveries → Home composes a same-Place note with eligible world material, or an attributed multi-note region; original previews keep per-delivery grants → Place or original reader revalidates owner state and returns through Home | Recovered human/Place composition is present. Original media is projected as separate deliveries (maximum two candidates in the current Home adapter); the reader has no reply affordance. No event/photo-set grouping or reply policy is inferred. The newer Home 18 K/L scroll is useful design input for a lead photo and shape-preserving remainder, but cannot create a shared-set identity from individual grants. |
 | Healthy live/travel situation | Experience Graph and Plan/proposal owners establish Live; Places current context can supply separately evidenced practical alternatives → Live Home selector keeps independent possibilities eligible; Urgent alone suppresses most support → owner-specific destination/action and exact return | Live is not treated as urgent, and functional selection is covered by the focused backend suite. A real-Postgres native rehearsal now opens a supported `place.open_now` Home possibility, the exact venue, and returns to the same Home unit. Provider-backed freshness, recurring generated supply, and native presentation against the selected design remain separate unproven claims. |
 
+The ordinary Home Source read adapter is present: `compose_home_root_v2` reads
+only an already-prepared result, and `read_prepared_source_contribution`
+re-discovers the viewer-relative opportunity and reloads the exact current
+Source and context refs through the governed material readers. Missing,
+changed, expired, wrong-audience or incomplete material makes the prepared
+contribution unavailable; an ordinary Home miss does not start generation.
+The H1 Source workflow and native continuation evidence so far use authored
+owner/material fixtures, however. Therefore canonical user-owned Source use is
+an evidence/supply gap, not a demonstrated missing serving adapter. A real
+canonical owner corpus and recurring preparation remain unproven.
+
 The first H1 app slice adds the exact owner-read share time to a received
 original's Home attribution line (`MAYA · SHARED SAT, 4:25 PM` in the
 recipient's local timezone). It labels this as sharing time, not photo-capture
