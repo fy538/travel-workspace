@@ -71,13 +71,17 @@ keeps it for a standalone dominant reading. The latest slice, `a963fa0b9`, also
 removes the generic canonical-outcome basis caption while retaining its actual
 value and Life continuation. App revision `957fddde2` adds a QA-only received-
 photo scenario and fixes native image sizing to preserve the original aspect
-ratio, with a Home → exact reader → Home return capture. Focused checks and
-native evidence are recorded in the active H1 plan; accepted design-reference
+ratio, with a Home → exact reader → Home return capture. App revision
+`6489ef4c4` removes a redundant alternatives label and makes the polish runner
+cold-start through the assigned Metro URL; its Available fixture capture passed
+1/1 at `20260926T195030Z-home-root`. Focused checks and native evidence are
+recorded in the active H1 plan; accepted design-reference
 parity, real-owner photo-media readback, recurring photo supply, the full
 verification gate and release readiness remain open.
 A seven-posture fixture capture and the single Returned recapture are both
-fixture-backed, not reference parity or real-owner acceptance. Do not treat the
-coordinated lane as ready to publish.
+fixture-backed, not reference parity or real-owner acceptance. The new
+Available capture is also fixture-backed and does not render the changed
+alternatives unit. Do not treat the coordinated lane as ready to publish.
 The older recovery worktree and detached native-presentation checkout are
 separate, already-merged work; do not reuse or retire them without a fresh
 owner/runtime check. The former 145-branch inventory is historical, not
@@ -104,10 +108,13 @@ Two additional implementation boundaries change H1's scope. Ordinary Home reads
 consume prepared Source results without generating/enqueueing work; the existing
 controlled Source worker accepts explicit preparation, not arbitrary signal-based
 production. Recurring useful supply must therefore be traced, not assumed from
-the presence of a generator. Separately, the registered `home-root` QA surface
-currently has no visual `designRefs` and judges against doctrine. Select/adopt
-and register the specific accepted Home references before claiming Claude-design
-parity; the old external Home-surfaces registry is not blanket authority for it.
+the presence of a generator. Separately, the `home-root` QA surface now registers
+Home 02/03 first-viewport images as L0/reference pairs while continuing to judge
+against doctrine. They support hierarchy comparison only—not full-scroll or
+same-data parity, and not a decision to move social notes to Home's opening.
+The accepted full-scroll reference scope and matching content fixtures remain
+unresolved; the old
+external Home-surfaces registry is not blanket authority for them.
 
 Documentation validation on this rebaseline: `python3 scripts/check_docs.py
 --all` passed, including the compatibility ledger checks. The expired bridge
@@ -120,7 +127,7 @@ forward or reopen the repair without new evidence.
 | Order / state | Package and accountable owner | Outcome / exit |
 | --- | --- | --- |
 | 0 — complete | **Recovered candidate baseline**, merged through #36 / #233 / #201 | Reuse recovered Home/Places and app behavior; original protections restored. The workspace checkout/reliability gate remains a pre-publication evidence gap, not a reason to reopen or bypass the merged PRs |
-| 1 — active | **H1: Complete Home value delivery**, `codex/home-value-delivery` lane owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md): close supply/selection/presentation/continuation gaps across ordinary, social and healthy live situations; include accepted native reference alignment. Social material now has exact recipient-local share time (`66e2c3c`) and a mock-only, aspect-preserving photo presentation/return path (`957fddde2`); package exit is not yet met |
+| 1 — active | **H1: Complete Home value delivery**, `codex/home-value-delivery` lane owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md): close supply/selection/presentation/continuation gaps across ordinary, social and healthy live situations; include accepted native reference alignment. Social material has exact recipient-local share time (`66e2c3c`) and a mock-only, aspect-preserving photo presentation/return path (`957fddde2`); app `6489ef4c4` removes redundant alternatives hierarchy and repairs cold-start QA. Package exit is not yet met |
 | 2 — select from H1's actual bottleneck, not tab order | **Recurring supply / Places depth / Life continuity**, same owner by default | Choose the specific missing producer connection, spatial depth, refinding or permitted later-use path that most improves the delivered experience; do not activate three standing lanes |
 | Cross-cutting within each package | **Practical help, live-engine behavior and production cost**, package owner | Current facts and permitted context materially change an appropriate result; freshness, authority, degradation, latency and generation costs stay explicit |
 | Before publishing each integrated package / before cutover | **Landing and retirement**, implementation owner with coordination review | Review combined changes, run required gates, publish only with authorization, record landed revisions and disposition the branch/worktree; migrations, replacement retirement and release retain their separate gates |

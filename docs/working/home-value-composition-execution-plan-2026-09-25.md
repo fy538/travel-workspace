@@ -150,10 +150,12 @@ unit or represented source changed while the person was away. This is local
 navigation state only: no persistence, API change, new permission, or guarantee
 that a changed Home page will jump to stale content.
 
-The `home-root` QA surface still has no registered screenshot/design-reference
-manifest. The newer `vesper-home` Board 18 is an additive extension of the
-selected 02/03 scrolls; within that assignment, K/L is the selected photo-
-integrated full scroll and D/E is a narrower study. K/L keeps one lead original,
+The `home-root` QA surface now registers selected Home 02/03 first-viewport
+references at L0/reference scope while retaining `judgeAgainst: 'doctrine'`;
+these are not an accepted full-scroll visual canon. The newer `vesper-home`
+Board 18 is an additive extension of the selected 02/03 scrolls; within that
+assignment, K/L is the selected photo-integrated full scroll and D/E is a
+narrower study. K/L keeps one lead original,
 the remainder in a shape-preserving row, the rest of Home's city/future value,
 and larger-text treatment. The fixture's album, Reply/Ask path, and actual-photo
 assets are not supported by current production owners. Home now retains the
@@ -161,9 +163,12 @@ opened unit's viewport position when the same projection is revalidated, but
 that behavior has focused projection/UI tests, not native-device observation.
 Relationship currently supplies individual grants, not a shared-set identity;
 the present Home/original-reader path has no Reply action.
-Until the applicable owner contracts and a specific isolated reference are
-registered through the app's design workflow, this board informs implementation
-but establishes neither those behaviors nor native parity.
+Board 18 informs exploration, but absent the applicable owner contracts and an
+accepted full-scroll visual scope, it establishes neither those behaviors nor
+native parity. The Home 03
+note-first opening is not an adopted placement decision: its screenshot remains
+a comparison reference, not an implementation requirement or evidence of a
+composition bug.
 
 For each value unit record its actual source/preparation trigger, owner/read,
 candidate, region/treatment, received benefit, depth/action and return. Classify
@@ -253,8 +258,9 @@ Remaining unsupported design concepts are explicitly
 separated from defects in the delivered scope. A package is not finished merely
 because its branch exists or its mocked screenshot is attractive.
 
-Latest receipt: **in progress**. On the merged recovery baseline, the focused
-backend Home portfolio and selection suite passed (86 tests). The first H1 app
+Receipt log (chronological; most recent entry is at the end): **in progress**.
+On the merged recovery baseline, the focused backend Home portfolio and
+selection suite passed (86 tests). The first H1 app
 slice is committed in app revision `66e2c3c`; its owner-read regression
 coverage is committed in `122f4d2`. The following focused command passed
 (3 suites, 25 tests); `npm run typecheck` passed as well:
@@ -529,8 +535,8 @@ dogfood-media route. The mock has no private owner token, so its native flow
 uses the visible “Open original” action; it does not exercise authorized image
 tap-through. This does not prove owner-backed S3/private-media reads, recurring
 photo supply, album/set semantics, replies, production data, or Claude-design
-parity. Home still has no accepted visual-reference manifest, and `make verify`
-remains unrun.
+parity. Home now has an L0 first-viewport reference manifest, not an accepted
+complete visual reference; `make verify` remains unrun.
 
 ```sh
 (cd travel-app && npm test -- --runInBand --runTestsByPath \
@@ -642,10 +648,43 @@ the week strip and Worth Knowing, followed by rest-close. This is mock fixture
 evidence on the lane iPhone 16 Pro, with no backend or production data.
 
 That proves the local recipient path, not Home 03 first-viewport parity. The
-accepted design leads with the received note; the current native note requires
-scrolling and sits later in Home. Keep the registered first-viewport pair
-marked `reference`, and do not infer matching content, placement, real-owner
-value, or full-scroll acceptance from it. The temporary Metro server is
-stopped. Next, create an evidence-matched native capture for Home 02's
-`Today, in order` state, then review Home 03's note-first placement against the
-current feed as an explicit product-composition gap before claiming parity.
+accepted product decision does not adopt the note-first opening as Home's
+placement, so its difference from the current feed is not an implementation
+defect absent a new decision. Keep the registered pair marked `reference`; do
+not infer matching content, placement, real-owner value, or full-scroll
+acceptance from it. Home 02's timed `Today, in order` composition remains
+outside current owner-backed data: `RootCompositionSequenceStep` has no time
+field or accepted producer contract for this timeline. Treat that as a
+capability/contract dependency, not a renderer bug; do not invent times or
+seed owner facts to match the canvas. Continue H1 on existing owner-backed
+value and its real presentation/return gaps while those dependencies remain
+unresolved.
+
+#### September 26 — Home alternatives hierarchy and cold-start capture
+
+App revision `6489ef4c4` removes the generic “A few ways in” kicker directly
+above a supplied alternative's semantic title. The component regression test
+asserts that the meaningful title remains and the duplicate generic label is
+absent. This is a narrow hierarchy correction; the test fixture covers the
+affected alternatives renderer.
+
+The first cold-start polish attempt exposed a test-harness ordering issue: the
+readiness flow launched the development client before connecting it to the
+lane's Metro server. The simulator returned to SpringBoard and emitted a JSI
+native crash during that disconnected startup. The readiness runner now passes
+the encoded lane Metro URL and opens the Expo development-client link as the
+first app command. With this ordering, the cold-start readiness assertion and
+registered Home Available flow passed together: run
+`20260926T195030Z-home-root`, 1/1 capture, on the lane iPhone 16 Pro. The
+capture is fixture-backed. It does not include the alternatives unit changed
+above, so it verifies cold-start and overall Home flow only; the renderer change
+is supported by the component test, not a matching native alternatives
+screenshot.
+
+Checks for this slice: the Home smoke suite passed (22 tests); the readiness
+contract tests passed (4); TypeScript passed; ESLint reported no errors and the
+existing `HomeRootV2UnitRenderer.tsx` max-lines warning; `qa:polish:scenarios`
+passed with 31 registered flows; `qa:design:check -- home-root` passed with one
+manifest and two reference pairs. `git diff --check` passed. The full app suite,
+`make verify`, accepted visual parity, real-owner readback and release readiness
+remain unverified.
