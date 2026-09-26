@@ -18,14 +18,14 @@ Status: in progress in the coordinated `codex/home-value-delivery` lane. The
 recovered workspace/backend/app baseline is merged as recorded in the
 [program roadmap](vesper-program-roadmap.md). This package owns the current
 Home implementation. App refinements are committed locally through
-`7e7108d9e`: exact share-time attribution (`66e2c3c`, `122f4d2`, `e0bf0a7`),
+`58f53d3fb`: exact share-time attribution (`66e2c3c`, `122f4d2`, `e0bf0a7`),
 exact Home return (`8fc767355`), reduced repeated section/canonical-outcome
-copy (`1b23ed891`, `a963fa0b9`), and a recipient-only original-material mock
-transport plus a dedicated Home scenario (`2840a2420`), and an accessibility
-fix for the original note (`7e7108d9e`). Focused tests, typecheck, lint, the
-seven-posture native fixture capture, and the recipient/default native Home
-flows pass. The full app suite, design-reference acceptance and combined
-verification remain open.
+copy (`1b23ed891`, `a963fa0b9`), a recipient-only original-material mock
+transport plus a dedicated Home scenario (`2840a2420`), an accessibility fix
+for the original note (`7e7108d9e`), and original-owner polling lifecycle
+handling (`58f53d3fb`). Focused tests, typecheck, lint, the seven-posture native
+fixture capture, and recipient/default native Home flows pass. The full app
+suite, design-reference acceptance and combined verification remain open.
 
 ## Outcome and scope
 
@@ -462,3 +462,46 @@ is still unrun. This is local owner-backed integration evidence for one
 recipient path—not recurring social supply, multi-recipient behavior, photo
 presentation, production acceptance, or Home-design parity. Home has no
 registered design refs, so no Claude-design parity claim is made.
+
+#### September 26 — Original-reader and owner-poll lifecycle
+
+The first post-return runtime observation showed periodic original-owner reads
+continuing after the synthetic delivery was removed. Investigation separated
+two callers that share the same owner endpoint: the depth reader, and Home's
+still-rendered original card. The reader now supplies its 30-second revalidation
+only while its route is focused. The shared material hook now cancels
+revalidation when it no longer has a confirmed owner-backed delivery to protect;
+this prevents a stale Home projection from retrying a missing/revoked owner
+record indefinitely. The Home card retains its normal grant/expiry checks while
+the delivery is confirmed.
+
+The final native local-owner rehearsal passed again on the assigned iPhone 16
+Pro simulator. After cleanup, Home performed one expected owner read, received
+`404` at `2026-09-26T17:20:56Z`, then emitted no further original-delivery reads
+in the following 35 seconds. This is distinct from the earlier repeated
+30-second reads before the shared-hook guard. Focused screen/data tests passed
+(2 suites, 28 tests), app typecheck and targeted ESLint passed, and the
+owner-backed fixture was removed and absent from both the recipient owner list
+and Home projection.
+
+```sh
+(cd travel-app && npm test -- --runInBand --runTestsByPath \
+  __tests__/screens/original-delivery.test.tsx \
+  __tests__/data/originalDeliveries.test.tsx)
+(cd travel-app && npm run typecheck)
+(cd travel-app && npx eslint 'app/original-delivery/[deliveryId].tsx' \
+  data/originalDeliveries.ts \
+  __tests__/screens/original-delivery.test.tsx \
+  __tests__/data/originalDeliveries.test.tsx)
+(cd travel-app && QA_ALLOW_DATABASE=vesper \
+  QA_USER_ID=31ccbc41-123c-4fb3-b433-7be7f10f9bb2 \
+  DATABASE_URL=postgresql://vesper:localdev@localhost:53173/vesper \
+  EXPO_PUBLIC_API_URL=http://127.0.0.1:53176 \
+  VESPER_MAESTRO_UDID=AF31B886-E837-4962-834A-5CBAD5C306DB \
+  scripts/maestro/run-home-original-delivery.sh)
+```
+
+This closes the observed polling regression for the reader and its shared
+material lifecycle. It is local synthetic-owner evidence only; it does not
+change the separate Home supply, recurrence, visual-reference, or production
+acceptance gaps. `make verify` remains unrun.
