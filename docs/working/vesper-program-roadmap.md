@@ -59,8 +59,11 @@ were restored and verified afterward:
 
 The current implementation owner is the coordinated `codex/home-value-delivery`
 lane. Its workspace checkout carries local roadmap/execution-record commits
-after the merged baseline; its backend checkout remains at merged revision
-`c8c9f57`.
+after the merged baseline. Its backend checkout is now at local revision
+`bf1e5dadf`, three commits beyond merged `c8c9f57`: explicit offline API startup
+(`6c792ed8b`), cold-demo coexistence with the Places door (`8fbad4db7`), and
+shared value admission for the fixed Home sample (`bf1e5dadf`). These backend
+commits are not yet merged.
 Its app checkout has the first H1 share-time treatment committed locally as
 `66e2c3c`, renderer-level owner-read regression coverage in `122f4d2`, and an
 explicit UTC fallback correction in `e0bf0a7`. A prior app slice,
@@ -89,11 +92,15 @@ the lane-assigned simulator before writing fixtures. That run
 synthetic owner data, composing two public Place readings, an addressed
 friend note, and an individually authorized original into one Home scroll;
 the runner verified fixture withdrawal afterward. This closes that bounded
-local owner-read/presentation path, not production or recurring supply.
-Accepted design-reference parity, real-photo rendering, the prepared
-Source-result workflow, recurring content supply, the full verification gate
-and release readiness remain open. Detailed evidence is recorded in the active
-H1 plan.
+local owner-read/presentation path, not production or recurring supply. The
+existing explicit Source workflow's durable request, worker fence, exact
+result, and Home/Places prepared-read seam now also pass a disposable-Postgres
+acceptance with authored fixtures; this proves server-side persistence/readback,
+not canonical user-owned Sources or the native Home Ask-to-result experience.
+Accepted design-reference parity, real-photo rendering, the native Source
+interaction, canonical owner-backed Source provenance, recurring content
+supply, the full verification gate and release readiness remain open. Detailed
+evidence is recorded in the active H1 plan.
 A seven-posture fixture capture and the single Returned recapture are both
 fixture-backed, not reference parity or real-owner acceptance. The new
 Available capture is also fixture-backed and does not render the changed

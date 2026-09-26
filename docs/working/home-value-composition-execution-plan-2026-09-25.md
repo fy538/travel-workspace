@@ -31,8 +31,9 @@ headline “The Palisades began as magma between older rock layers”
 affected content path; the post-commit Quiet capture now asserts the revised
 headline. A later local real-Postgres full-scroll rehearsal also passes for a
 bounded set of social/editorial/original owners (recorded below). The full app
-suite, accepted design-reference alignment, production/recurring editorial
-supply, and combined verification remain open.
+suite, accepted design-reference alignment, the native Home Ask-to-result path
+for an owner-backed Source contribution, production/recurring editorial supply,
+and combined verification remain open.
 
 ## Outcome and scope
 
@@ -779,8 +780,10 @@ rehearsal is recorded below.
 This remains fixture-only evidence: it proves the composition can be rendered
 and understood in the native Home surface, not that live owner data or a
 production generation service will discover, source, refresh, or reliably
-produce this kind of connection. It does not prove the deeper owner-backed
-Source contribution workflow or recurring content supply.
+produce this kind of connection. At this point in the sequence it did not prove
+the deeper Source contribution workflow or recurring content supply; the
+separate Postgres workflow receipt below now establishes a bounded server-side
+workflow result, not the native Home interaction or production supply.
 
 #### September 26 — Real owner-backed Home full-scroll composition
 
@@ -805,9 +808,52 @@ The screenshot is locally available at `travel-app/home-full-scroll.png`.
 This closes the specific gap for a bounded synthetic social + editorial +
 original-material composition through actual local owner reads, native
 presentation, and fixture withdrawal. It does not establish production-data
-quality, recurring/AI-generated supply, the prepared Source-result workflow,
-real photo rendering, design-reference parity, or global four-root readiness.
+quality, recurring/AI-generated supply, the native Home Ask-to-Source-result
+interaction, real photo rendering, design-reference parity, or global
+four-root readiness.
 The Home 02/03 references remain first-viewport aids; the external canonical
 bundle was not verified. The runner does not open every destination in this
 full-scroll flow; use the separate original-reader return receipt for that
 behavior. `make verify` and release readiness remain unverified.
+
+#### September 26 — Explicit Source workflow on disposable Postgres
+
+The existing `tests/api/test_source_request_delivery_postgres.py` acceptance
+was executed against this lane's isolated PostgreSQL service after upgrading
+that database to the backend's current Alembic head. All three tests passed.
+The main case submits an explicit request over HTTP, confirms idempotent replay,
+observes the pending exact-result response, runs the canonical worker fence,
+then reads the same persisted production through the exact-result endpoint and
+the prepared-value reader for both Home and Places. It also checks reuse rather
+than a second provider call, truthful unknown cost when no provider ledger row
+exists, and owner revocation making the exact result unavailable. The adjacent
+cases verify that a completed result can reach Places runtime and that a late
+worker cannot publish after cancellation.
+
+This is real workflow/storage/readback execution on disposable Postgres, but
+the Source inventory, materials, owner-read portfolio, and producer output are
+authored fixtures. The test does not exercise the native “Why this?” → “Ask
+Vesper” → result-screen tap-through, does not read canonical user-owned Source
+records, and makes no paid model call. It closes the DB-persistence/exact
+readback proof gap only. The result reaching the composed and rendered Home
+experience remains open.
+
+```sh
+# Lane-only service and migration; use the exact assignments in
+# .workspace-lane.json. Credentials are intentionally omitted here.
+docker compose up -d --wait postgres
+DATABASE_URL=<lane-local-postgres-url> PYTHONPATH=. \
+  .venv/bin/python -m alembic upgrade head
+
+# Executed with TEST_DATABASE_URL and DATABASE_URL both set to the isolated
+# loopback database, plus TEST_DATABASE_DISPOSABLE=1.
+AI_MODE=off WEB_SEARCH_MODE=off DISABLE_LLM_BACKGROUND_LOOPS=true \
+  PYTHONPATH=. .venv/bin/python -m pytest \
+  tests/api/test_source_request_delivery_postgres.py -q -x
+```
+
+Result: 3 passed on backend `bf1e5dadf`. Supporting same-lane evidence:
+97 focused backend Source/workflow/API tests passed; 4 focused app suites / 36
+tests passed across explicit request, Home route handoff, exact-result states,
+and result destinations. These test boundaries do not replace native device
+acceptance, `make verify`, production-source evaluation, or release readiness.
