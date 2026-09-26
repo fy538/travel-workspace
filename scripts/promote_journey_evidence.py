@@ -48,6 +48,7 @@ def _git_lines(root: Path, *args: str) -> list[str]:
     output = subprocess.check_output(
         ["git", *args],
         cwd=root,
+        env=evidence.repository_git_environment(),
         text=True,
         stderr=subprocess.DEVNULL,
     )

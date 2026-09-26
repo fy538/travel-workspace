@@ -501,7 +501,7 @@ All of these come from the final "Why" paragraph and the phase notes.
 
 ## DOC 6: Profile system and relationship views (2026-08-09, refined 08-16 and 08-23)
 
-`/Users/feihuyan/travel-workspace/travel-agent/docs/working/profile-system-and-relationship-views-2026-08-09.md`
+`/Users/feihuyan/travel-workspace/travel-agent/docs/archive/2026-08/pivot-research/profile-system-and-relationship-views-2026-08-09.md`
 
 ### A. Social values and experiences proposed
 

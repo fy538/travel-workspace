@@ -57,6 +57,7 @@ def _path_is_tracked(relative: str) -> bool:
         subprocess.run(
             ["git", "ls-files", "--error-unmatch", "--", pathspec],
             cwd=repo,
+            env=journey_evidence.repository_git_environment(),
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
             check=False,

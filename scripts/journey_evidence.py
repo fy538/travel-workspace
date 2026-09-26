@@ -17,6 +17,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 import subprocess
 import sys
@@ -126,10 +127,22 @@ def validate_runner_binding(
     return runner_digest(runner_id)
 
 
+def repository_git_environment() -> dict[str, str]:
+    """Keep a calling Git hook from selecting another repository's index/HEAD."""
+    local_variables = {
+        "GIT_DIR", "GIT_WORK_TREE", "GIT_COMMON_DIR", "GIT_INDEX_FILE",
+        "GIT_OBJECT_DIRECTORY", "GIT_ALTERNATE_OBJECT_DIRECTORIES",
+        "GIT_PREFIX", "GIT_IMPLICIT_WORK_TREE", "GIT_GRAFT_FILE",
+        "GIT_SHALLOW_FILE", "GIT_NAMESPACE",
+    }
+    return {key: value for key, value in os.environ.items() if key not in local_variables}
+
+
 def _revision(path: Path) -> str:
     try:
         sha = subprocess.check_output(
-            ["git", "rev-parse", "HEAD"], cwd=path, text=True, stderr=subprocess.DEVNULL
+            ["git", "rev-parse", "HEAD"], cwd=path, text=True,
+            stderr=subprocess.DEVNULL, env=repository_git_environment(),
         ).strip()
         # A pass receipt is evidence for the complete checkout, not just HEAD.
         # Include untracked files: a new source/config file can change behavior
@@ -138,6 +151,7 @@ def _revision(path: Path) -> str:
         status = subprocess.check_output(
             ["git", "status", "--porcelain", "--untracked-files=all"],
             cwd=path,
+            env=repository_git_environment(),
             text=True,
             stderr=subprocess.DEVNULL,
         )

@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Strategy task
 created: 2026-09-07
-last_verified: 2026-09-22
+last_verified: 2026-09-23
 expires: 2026-10-07
 why_new: Extracts the present-tense cross-lane program map from a long Integration plan and its historical receipts so independent owners can coordinate without competing execution queues.
 supersedes:
@@ -19,6 +19,259 @@ depends_on:
 ---
 
 # Vesper program roadmap
+
+## Recovery delivery checkpoint — September 23
+
+The clean coordinated `make verify` passed at workspace `ff08cc1`,
+backend `1eb22daf7`, app `f77f4f310`; the separate documentation and
+mobile PR checks passed too. Backend and app recovery branches were published.
+The workspace push exposed a hook-only Git-environment ownership bug,
+corrected in `6cba254` with 113 passing workspace/evidence regression tests.
+No hook was disabled. The app's new CI pin commit `7c034796c` selects that
+workspace tooling bridge and the recovered backend; the workspace lock selects
+the same backend and pinned app.
+
+Next delivery order is a clean updated-tuple gate, then publish the workspace
+bridge, app pin and final workspace tip in that dependency order, followed by
+coordinated protected-main review. Read the PR's exact-revision evidence for
+subsequent results; the earlier pass does not certify later commits. This is
+not a new product workstream. Do not reopen deferred historical features merely
+to finish cleanup.
+
+The registered Places reference bundle is hash-verified and available, but
+native mixed-Places appearance and Home value/design acceptance are not
+established by offline/syntax checks. Independent review and retirement of the
+still-Xcode-owned native lane also remain. The
+[recovery audit](historical-branch-recovery-audit-2026-09-23.md#clean-verification-and-publication-preparation--september-23)
+records revisions, evidence limits and commands.
+
+## August execution-plan handoff — September 23
+
+The bounded August demo beat and program contracts remain at their existing
+paths because the executable YAML consumes them; their inventories, old
+backlogs and phase observations are explicitly historical. `DEMO-ENG-06` still
+records an unresolved environment lock, which is not proof of a live worker.
+Do not clear it, resume its cloud program or promote evidence from this cleanup.
+Current scheduling stays here. The old acceptance ledger, presenter script,
+engineering receipt, adoption scope and Riviera selection/reconciliation are
+preserved in the backend [demo archive](../../travel-agent/docs/archive/2026-08/demo-program/).
+Before any rehearsal or apply, rebind actual runtime/owner, current targets,
+independent review, per-beat truth and signed-in device evidence; no catalog
+count, old fixture or local review certifies those. Retain identity/adoption
+adjudication and explicit holds instead of treating similar slugs as no-ops.
+
+The old Place/routing investigations and spatial execution plan are historical
+as well. Current movement/distance/provider-policy and Lived Experience owners
+retain foreground-only, viewer-private position, expiring permitted route use,
+materiality/silence and canonical consequence rules. Backend/device-real
+continuity, arrival/deviation hysteresis, later governed reuse, legacy-reader
+retirement and any provider bakeoff/rights expansion require fresh evidence.
+The August claims do not prove these remain missing or now work; no provider,
+background tracking, navigation SDK or data-retention change is authorized.
+The older integration-engine plan is retained as a requirement reference for
+`readiness.py`, not a parallel execution queue; its pending references and all
+family activation gates remain unchanged.
+
+The related [pivot research](../../travel-agent/docs/archive/2026-08/pivot-research/)
+and [social research](../../travel-agent/docs/archive/2026-08/social-research/)
+are preserved historical provenance, not competing active research queues.
+Earlier three-root proposals, one-opening Home limits, universal Opening
+grammar, exclusive travel-launch assumptions and identity-facet experiments
+must not override the accepted four roots, four moves, everyday-first strategy
+and human-authored Status/contribution-first social policy.
+
+Unanswered research remains available to the existing Product/Design owners:
+value before history; legible Keep/forget/correction and later authorized use;
+non-repetitive Place horizons and capability gains; private protected anchors
+improving shared action; asymmetric social effort, invitation comprehension,
+plural aftermath and voluntary reconnection; and reciprocal public contribution
+without extractive labor. The archived scenarios, falsifiers and blank study
+worksheet are starting material, **not completed studies or current study
+authorization**. Reconcile rejected treatments, privacy/consent, current surfaces
+and current code before reusing them. Do not reopen settled canon by treating
+every August question as still undecided, or implement those experiments merely
+to finish repository cleanup.
+
+The August Content activation, Intake V2 completion and Occasion grammar
+execution documents are now historical plans/receipts, not parallel active
+backlogs. Their full text and unfinished gates remain in the backend
+[implementation archive](../../travel-agent/docs/archive/2026-08/implementation-slices/).
+This disposition closes the obsolete sequencing documents, **not** the following
+work. Schedule it through the existing owners rather than revive August phases:
+
+| Area | Current owner and next decision/evidence | Not authorized or established by cleanup |
+|---|---|---|
+| Content activation | [Runtime authority](../../travel-agent/docs/architecture/content-convergence-runtime-authority-2026-08-22.md), [runtime acceptance](../../travel-agent/docs/operations/content-runtime-acceptance.md) and World Foundry. Reconcile the frozen calibration program and obtain a fresh independent exact-input review before relying on it; recheck target/evidence freshness before any separately authorized policy apply. Track exact case bindings or explicit holds, surface receipts, scoped serving, derived-index parity/fallback and legacy-writeback rollback. | The old `-05` review or August counts do not certify the current target. The 11-eligible/13-total distinction cannot become a requirement to bind two stale Sorrento rows. No DB/vector write, automatic refresh of review hashes, serving flag or legacy cutover follows. |
+| Intake completion | [Production canary](../../travel-agent/docs/operations/intake-production-canary.md) and Contribution and Consequence. Require deployed custody, worker cadence, object-store permissions, controlled URL/audio delivery/replay, owner correction, graph projection and deletion evidence before an explicit legacy-writer cutover. Preserve existing readback and rollback until that decision. | `intake_cutover_audit` is a static review-readiness report, not production acceptance; even `ready_for_operator_review` retains blocking items. August local-complete claims are not current native or deployed evidence. No old-data deletion or retention expansion. |
+| Occasion grammar | Product Model, Multiplayer Product Strategy, [Plan/Occasion lifecycle](../../travel-agent/docs/architecture/plan-occasion-lifecycle-contract-2026-08-22.md), current arrangement/social lane plans. Reassess the old time, invitation intent, exact Outcome audience and continuity questions against current owners before proposing gaps or migrations; preserve invitee-safe readback, plural Outcomes, refusal and deliberate silence. | Old unknown fields do not prove today's schema lacks them. Pure compilers and August fixture counts do not prove signed-in two-account, restart, stale-membership or device behavior. No required Occasion profile, inferred relationship, synthetic host intent, new audience permission or blanket ban on current object-page work. |
+
+These are carried requirements and explicit evidence limits, not new cleanup
+features or a request to activate production. Current program priorities still
+own scheduling. The [consolidation audit](historical-branch-recovery-audit-2026-09-23.md)
+records the archival and verification evidence.
+
+**Latest cleanup result — September 23, 22:35 UTC:** historical retirement is
+executed: **83 branches and 167 worktrees removed** with verified local Git and
+non-regenerable asset preservation. Across the three repositories there are
+now **six local branches and nine worktrees**, all clean at post-removal check.
+Each repository keeps only main and the recovery branch. The additional three
+detached checkouts form one old native-testing lane still used by Xcode's
+`DTServiceHub`; leave it intact until live ownership clears. Seven remote
+dependency branches are separately retained. Main revisions and remote refs
+were not changed. The audit's
+[retirement receipt](historical-branch-recovery-audit-2026-09-23.md#september-23-actual-historical-retirement--latest-inventory)
+owns exact recovery locations, commands and verification. Remaining work is
+recovery-candidate lifecycle/gate repair and protected-main landing, followed
+by retirement of those last non-main checkouts—not another historical-branch
+sweep. Older counts and “not yet removed” notes below describe earlier stages.
+
+**September 23 consolidation mandate — current coordination priority:** the
+founder assigned this task to finish useful integration across the three
+repositories and retire the dangling historical branches. Use the existing
+`codex/home-human-opening-recovery-2026-09-23` coordinated lane as the
+integration host, not a new lane for every historical tip. The
+[branch recovery audit](historical-branch-recovery-audit-2026-09-23.md#september-23-consolidation-mandate-and-current-execution-order)
+owns the exact inventory, disposition queue, recovery bundles and execution
+receipts. Preserve history and local non-code assets, then adapt justified
+remaining work and repair baseline gates. Retire adjudicated historical
+refs/worktrees independently of publication once exact preservation and current
+ownership checks pass; keep the recovery lane until verification and landing.
+A deferred product experiment may be explicitly
+archived without being implemented. Do not bulk-merge it merely to empty the
+branch list.
+
+**Useful-work recovery update:** the integration candidate now also implements
+mixed Places rendering in app `7e94c42a8`. It uses existing semantic order and
+whole browse-section boundaries, not the historical `page_sequence` wire
+array or local dominant promotion. Backend validation rejects wrong-card
+treatments and untreated browse/field duplicates (`078d915cb`); mobile prevents withdrawn
+field geometry from restoring exposure. The full root-projection packet passes
+505 tests; the four affected mobile suites pass 76 tests and TypeScript passes.
+The Social roadmap now carries the historical exact-original human-Reply
+safety requirements without restoring the reverted Reply code. Automatic
+Source activation, timed-result delivery, custom visit-window controls and
+dark assistance expansion are explicitly deferred, preserved references—not
+unfinished cleanup prerequisites. Old search-error handling targets a replaced
+implementation; old run-trace machinery has no demonstrated current gap.
+The [recovery receipt](historical-branch-recovery-audit-2026-09-23.md#september-23-useful-work-integration-receipt)
+owns commands and evidence boundaries. **Next is landing-baseline repair and
+verified landing, not another historical-feature sweep.** The September 23
+baseline repair now clears the catalog runway, API-operation review and
+compatibility-ledger checks. Full export, app projection and generated types
+regenerate without a diff. Backend `898632684` replaces stale seasonal supply
+with source-reviewed autumn entries and checks review expiry across the runway.
+App `13f81ba04` removes 19 schema exceptions using generated enum/feed types;
+TypeScript and focused contract tests pass. Backend `c58db9afb` then repairs
+typed SQL-row boundaries, intake-page fan-in, Home result unions and Source
+worker argument/context handling without changing wire contracts. The affected
+Life/root/API offline selection passes 823 tests (48 deselected), with 34
+focused checks rerun after the final quality-helper adjustment.
+**Latest baseline repair:** backend `486e8abaf` now passes full offline CI with
+zero mypy errors across 1,888 source files and 21,808 passing tests (14 skipped,
+1,458 deselected, 53 xpassed). App through `717355b17` resolves facade derivation,
+Places size budgets, typed fixture drift and query-key ownership. `verify:pr`
+passes, including 181 seam tests. The existing all-test type allowance remains
+406; its pass is not elimination of legacy test-type debt. No gate threshold or
+feature flag was relaxed. The full workspace run passed code, journey, seam,
+offline and Maestro syntax checks before finding missing/overdue flag metadata;
+source-reviewed registry repairs now pass separately. A clean final-tuple
+complete gate remains required; the earlier run overlapped app edits.
+
+**Documentation publication blocker resolved:** the committed freshness check
+passes at backend `1eb22daf7` with zero expired-active or stale-header findings,
+down from the original 94 expired documents. Nine final spatial/demo records
+are archived; live demo contracts and readiness references remain at stable
+paths with explicitly bounded maintenance scope. This is the checker's header
+scope, not certification of every historical claim or runtime. The final clean
+coordinated gate and protected-main landing remain required. Earlier publication
+attempts stopped before pushing; no earlier partial pass certifies this tuple.
+**The founder has resolved the
+fundraising question:** the August packet is historical reference, not an active
+application queue. All 50 packet documents (including previously archived
+research and old indexes) now live under backend
+`docs/archive/2026-08/fundraising/`; original text is preserved apart from
+historical notices and repaired relative links. The live fundraising index routes
+new work to current product/evidence authorities. No submission status or market
+claim was reverified. The audit owns preservation and check details.
+
+Backend `b3ba0e205` additionally archives eight dated August runtime and
+implementation receipts under `docs/archive/2026-08/runtime-evidence/`.
+Their original observations and unfinished gates remain preserved; no current
+runtime was reverified. The offline demo report now resolves its v206 archive
+input and explicitly labels its historical health statement. Eighteen focused
+tests and documentation link/governance checks pass. Live operator contracts,
+research hypotheses and unresolved plans require their own owner review; do
+not treat them all as disposable receipts. The audit's lifecycle pass records
+the exact scope. Backend `84b69664b` subsequently promotes seven verified operator
+notes into maintained Operations runbooks and preserves the live audit's August
+deployment observations in the archive. It corrects offline inventory usage,
+Intake semantic-before-cleanup ordering, structural-audit limits and delta
+transaction/policy boundaries. The batch passes 105 focused offline tests (two
+Postgres-dependent tests deselected), backend/workspace links and governance.
+No production execution or serving activation occurred. A further ten historical
+implementation/proposal notes now live in `docs/archive/2026-08/implementation-slices/`.
+The [audit's disposition table](historical-branch-recovery-audit-2026-09-23.md#implementationproposal-lifecycle-pass--september-23)
+maps each to its current owner and preserves unfinished acceptance. In particular,
+addressed-handoff surface release remains machine-readable **pending**, and
+archival does not authorize itinerary replacement, legacy content cutover,
+automatic retention or feature activation. The later spatial/demo disposition
+closes the checker's expired-document queue without closing those product gates.
+
+The subsequent Place-calibration/social-research pass archives three frozen
+August Place notes and two superseded multiplayer research documents, preserving
+their constraints and proposed studies. The maintained backend
+`docs/operations/content-runtime-acceptance.md` now distinguishes the historical
+validators from current runtime authority. Nineteen focused tests pass, but the
+offline acceptance report still correctly refuses promotion: its review input
+hash is stale and all 23 trace cases remain unresolved. No review, flag or
+release gate was bypassed. This bounded historical program needs owner
+reconciliation, not blanket expansion into a new whole-product build gate.
+See the [audit's lifecycle evidence](historical-branch-recovery-audit-2026-09-23.md#place-calibration-and-social-research-lifecycle-pass--september-23).
+
+Backend `8103a9aa8` then retires the explicitly superseded August multiplayer
+strategy and two dated social-research snapshots. It keeps the current social
+circulation portfolio (`MVP Social Loop.md`) as a maintained contract applying
+existing owners, with distribution hypotheses and shipping gates still explicit.
+No social policy or runtime capability is newly authorized. App `4d1f9140d`
+repairs its design-brief reference. Documentation checks pass; the final
+freshness check still fails with the 27/three counts above. The
+[social-history follow-up](historical-branch-recovery-audit-2026-09-23.md#social-history-follow-up--september-23)
+records preservation, owner comparison and exact measured evidence.
+
+Backend `21de41d49` additionally archives the full dated content, human-memory
+and profile investigations, retaining their stories, proposals and questions.
+Current owner rules remain in Product Model, private-memory and multiplayer
+contracts, the accepted content-runtime decision, World Foundry and Together
+PF1.0. The latter's implementation/exposure wording conflict is recorded for
+owner reconciliation, not resolved through archival. App `372631d04` repairs two
+design references only. All focused documentation gates pass; publication
+freshness still fails at the 24/one counts above. The
+[research disposition table](historical-branch-recovery-audit-2026-09-23.md#content-memory-and-profile-research-disposition--september-23)
+records the exact ownership and evidence boundaries.
+
+**Next is delivery, not another recovery sweep:** resolve those lifecycle
+dispositions, verify the committed tuple,
+publish for protected-main review, align CI dependency pins in dependency order,
+resolve mixed-Places native appearance acceptance, obtain required independent
+review, then land and retire the recovery lane. Historical retirement can proceed
+separately under the audit's preservation and ownership checks. Do not
+reinterpret local checks as remote-main delivery or visual acceptance. Exact
+commands, commits and boundaries are in the audit's latest baseline receipt.
+No historical branch was removed or remote main changed in these repairs.
+
+Fresh canonical heads are workspace `827aace`, backend `fdf789d06`, app
+`23cff76f4`, all clean at inventory. The workspace main is five commits ahead
+of its remote; both child mains match their remotes. The clean recovery
+candidate before the consolidation repairs is workspace `eebe061`, backend
+`a277ba617`, app `9372e154c`. The Home join has bounded native/API evidence;
+the full landing gates remain non-green. All 176 worktree HEADs and existing
+refs now have independently restored, verified local Git-bundle coverage.
+Ignored settings, designs, native builds and captures now have separate private
+archives: 170 historical worktrees, 77 archives and 143,185 readback-verified
+members; regenerable dependency/cache directories are excluded. The audit owns
+the manifest path and runtime-ownership caveat. No historical worktree has been
+removed in this step. The September 22
+paragraphs below are earlier progress receipts, not the current Git inventory.
 
 **September 22 local-main landing update:** the coordinated candidate below
 has since been fast-forwarded into the three *local* `main` branches: workspace

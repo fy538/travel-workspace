@@ -423,10 +423,10 @@ The execution method follows several established practices:
 - `travel-agent/docs/product/Product Thesis.md`
 - `travel-agent/docs/product/Product Model.md`
 - `travel-agent/docs/product/What We Believe.md`
-- `travel-agent/docs/working/current-product-and-effortless-shape-audit-2026-08-19.md`
-- `travel-agent/docs/working/three-entry-longitudinal-product-simulations-2026-08-20.md`
-- `travel-agent/docs/working/flexible-plans-occasions-and-personal-projections-2026-08-21.md`
-- `travel-agent/docs/working/custody-first-ingestion-slice-2026-08-21.md`
+- `travel-agent/docs/archive/2026-08/pivot-research/current-product-and-effortless-shape-audit-2026-08-19.md`
+- `travel-agent/docs/archive/2026-08/pivot-research/three-entry-longitudinal-product-simulations-2026-08-20.md`
+- `travel-agent/docs/archive/2026-08/implementation-slices/flexible-plans-occasions-and-personal-projections-2026-08-21.md`
+- `travel-agent/docs/archive/2026-08/implementation-slices/custody-first-ingestion-slice-2026-08-21.md`
 - `travel-agent/docs/working/contextual-value-engine-v1-2026-08-21.md`
 - `travel-agent/backend/api/routes/intake.py`
 - `travel-agent/backend/inbound/semantic_interpreter.py`

@@ -14,7 +14,7 @@ related:
   - chat-artifact-closed-loop-optimization-plan-2026-08-16.md
   - ../../travel-agent/docs/architecture/Agent Control Plane Refactor.md
   - ../../travel-agent/docs/working/Tool Surface Consolidation Plan.md
-  - ../../travel-agent/docs/working/flexible-plans-occasions-and-personal-projections-2026-08-21.md
+  - ../../travel-agent/docs/archive/2026-08/implementation-slices/flexible-plans-occasions-and-personal-projections-2026-08-21.md
   - ../../travel-agent/docs/architecture/plan-occasion-lifecycle-contract-2026-08-22.md
 ---
 

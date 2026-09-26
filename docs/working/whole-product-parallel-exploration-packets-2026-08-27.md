@@ -905,9 +905,9 @@ Read first, in this order:
 10. /Users/feihuyan/travel-workspace/docs/working/first-thesis-proof-sorrento-menu-2026-08-21.md
 11. /Users/feihuyan/travel-workspace/docs/working/second-thesis-proof-rome-couple-evening-2026-08-22.md
 12. /Users/feihuyan/travel-workspace/travel-agent/docs/working/lived-experience-harness-architecture-2026-08-16.md
-13. /Users/feihuyan/travel-workspace/travel-agent/docs/working/platform-memory-and-human-remembering-2026-08-21.md
-14. /Users/feihuyan/travel-workspace/travel-agent/docs/working/place-familiarity-world-openings-and-capability-loop-2026-08-20.md
-15. /Users/feihuyan/travel-workspace/travel-agent/docs/working/attention-traces-consequential-memory-and-multiplayer-perception-2026-08-18.md
+13. /Users/feihuyan/travel-workspace/travel-agent/docs/archive/2026-08/pivot-research/platform-memory-and-human-remembering-2026-08-21.md
+14. /Users/feihuyan/travel-workspace/travel-agent/docs/archive/2026-08/pivot-research/place-familiarity-world-openings-and-capability-loop-2026-08-20.md
+15. /Users/feihuyan/travel-workspace/travel-agent/docs/archive/2026-08/pivot-research/attention-traces-consequential-memory-and-multiplayer-perception-2026-08-18.md
 
 Inspect the implementation. Begin with:
 

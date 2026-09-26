@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -100,6 +101,31 @@ def test_parse_test_counts_returns_none_when_unrecognized() -> None:
     should not report passed=0/failed=0 as if it were an empty test run."""
     assert MODULE.parse_test_counts("All checks passed!\n") is None
     assert MODULE.parse_test_counts("") is None
+
+
+def test_parse_pytest_banner_summary() -> None:
+    counts = MODULE.parse_test_counts("===== 71 passed, 2 skipped in 2.31s =====\n")
+    assert counts["passed"] == 71
+    assert counts["skipped"] == 2
+
+
+def test_long_non_test_diagnostic_does_not_stall_summary_parsing() -> None:
+    # A separate process gives this regression a hard bound even with the
+    # original quadratic regex. This is a synthetic schema diagnostic, not a
+    # test result; it must not manufacture counts or mask command failure.
+    script = (
+        "import runpy\n"
+        f"module = runpy.run_path({str(MODULE_PATH)!r})\n"
+        "noise = 'ERROR: new upgrade operations: ' + 'CheckConstraint(x), ' * 20000\n"
+        "assert module['parse_test_counts'](noise) is None\n"
+        "counts = module['parse_test_counts']('5 passed in 0.5s\\n' + noise)\n"
+        "assert counts['passed'] == 5\n"
+        "record = module['build_record'](label='failure', cmd=['check'], "
+        "run_result={'exit_code': 255, 'timed_out': False, 'wall_time_seconds': 1, "
+        "'log_path': 'synthetic.log'}, repos={}, env={}, log_text=noise)\n"
+        "assert record['exit_code'] == 255 and record['test_counts'] is None\n"
+    )
+    subprocess.run([sys.executable, "-c", script], check=True, timeout=5)
 
 
 # ── build_record: JSON schema shape ──────────────────────────────────────

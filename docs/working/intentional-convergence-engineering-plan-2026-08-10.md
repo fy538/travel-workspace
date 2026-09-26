@@ -63,7 +63,7 @@ This plan reconciles four August 9 documents:
 
 - [Thesis-to-experience convergence audit](thesis-to-experience-convergence-audit-2026-08-09.md);
 - [Home surfaces post-consolidation engineering plan](home-surfaces-post-consolidation-engineering-plan-2026-08-09.md);
-- [Profile system and relationship views](../../travel-agent/docs/working/profile-system-and-relationship-views-2026-08-09.md);
+- [Profile system and relationship views](../../travel-agent/docs/archive/2026-08/pivot-research/profile-system-and-relationship-views-2026-08-09.md);
 - [Cross-slice engineering coherence audit](cross-slice-engineering-coherence-audit-2026-08-09.md).
 
 It also incorporates three independent read-only verification lanes run on

@@ -1329,10 +1329,10 @@ Read these files completely before drawing:
 
 ### Multiplayer development and evidence
 
-1. `travel-agent/docs/working/attention-traces-consequential-memory-and-multiplayer-perception-2026-08-18.md`
-2. `travel-agent/docs/working/differentiated-social-multiplayer-strategy-2026-08-21.md`
-3. `travel-agent/docs/working/gathering-psychology-social-accessibility-and-occasion-continuity-2026-08-23.md`
-4. `travel-agent/docs/working/occasion-social-behavioral-prototype-matrix-2026-08-23.md`
+1. `travel-agent/docs/archive/2026-08/pivot-research/attention-traces-consequential-memory-and-multiplayer-perception-2026-08-18.md`
+2. `travel-agent/docs/archive/2026-08/social-research/differentiated-social-multiplayer-strategy-2026-08-21.md`
+3. `travel-agent/docs/archive/2026-08/social-research/gathering-psychology-social-accessibility-and-occasion-continuity-2026-08-23.md`
+4. `travel-agent/docs/archive/2026-08/social-research/occasion-social-behavioral-prototype-matrix-2026-08-23.md`
 5. `docs/working/four-root-roles-and-home-composition-studies-2026-08-27.md`
 6. `docs/working/source-claim-scoped-learning-and-multiplayer-purpose-research-2026-08-29.md`
 7. `docs/working/places-consumer-experience-anatomy-2026-08-29.md`

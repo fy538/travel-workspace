@@ -23,8 +23,8 @@
       "markers": [
         "compatibility_id: discover-url-bridge"
       ],
-      "removal_trigger": "Confirm no supported released client or tracked deep link still opens the legacy Discover root, then remove the route.",
-      "expires": "2026-09-15"
+      "removal_trigger": "Confirm no supported released client or tracked deep link still opens the legacy Discover root, then remove the route. Reviewed 2026-09-23: current routes.discover() targets Places; this context-preserving Redirect still handles old URLs. Released-client/link traffic remains unverified, so retain for the bounded October 7 review rather than deleting on source-search evidence alone.",
+      "expires": "2026-10-07"
     },
     {
       "id": "atlas-tab-url-bridge",
@@ -38,8 +38,8 @@
       "markers": [
         "compatibility_id: atlas-tab-url-bridge"
       ],
-      "removal_trigger": "Confirm no supported released client or tracked deep link still opens the former Atlas tab root, then remove the route.",
-      "expires": "2026-09-15"
+      "removal_trigger": "Confirm no supported released client or tracked deep link still opens the former Atlas tab root, then remove the route. Reviewed 2026-09-23: routes.atlas() targets Life and the legacy tab default export redirects there. Released-client/link traffic remains unverified; preserve the redirect until the October 7 review.",
+      "expires": "2026-10-07"
     },
     {
       "id": "discover-map-api-bridge",
@@ -53,8 +53,8 @@
       "markers": [
         "compatibility_id: discover-map-api-bridge"
       ],
-      "removal_trigger": "Confirm zero supported-client and deployed traffic to GET /api/discover/map after the Places contract is published, then delete the route.",
-      "expires": "2026-09-15"
+      "removal_trigger": "Confirm zero supported-client and deployed traffic to GET /api/discover/map after the Places contract is published, then delete the route. Reviewed 2026-09-23: data/discover.ts::useDiscoverMapPins still calls api.getDiscoverMap, whose transport uses this route; canonical getPlacesMap is separate. Remove or migrate that remaining facade before traffic-based retirement; retain until October 7 without claiming zero usage.",
+      "expires": "2026-10-07"
     },
     {
       "id": "life-exact-history-record-bridge",

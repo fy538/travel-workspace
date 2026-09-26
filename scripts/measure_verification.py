@@ -167,7 +167,11 @@ def parse_test_counts(log_text: str) -> dict | None:
 
     pytest_match = None
     for line in reversed(log_text.splitlines()):
-        m = _PYTEST_SUMMARY_RE.search(line)
+        # Summary lines begin with counts (optionally surrounded by pytest's
+        # '=' banner). Unanchored search retries the optional-prefix pattern
+        # at every position of long non-test diagnostics, causing quadratic
+        # work on Alembic's single-line constraint reports.
+        m = _PYTEST_SUMMARY_RE.match(line.strip("= \t"))
         if m and (m.group("passed") or m.group("failed") or m.group("errors")):
             pytest_match = m
             break

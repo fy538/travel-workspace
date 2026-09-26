@@ -25,7 +25,7 @@ Status of each document first, because it affects how much authority they carry:
 
 ## DOCUMENT 1. Attention Traces, Consequential Memory, and Multiplayer Perception (2026-08-18)
 
-`/Users/feihuyan/travel-workspace/travel-agent/docs/working/attention-traces-consequential-memory-and-multiplayer-perception-2026-08-18.md`
+`/Users/feihuyan/travel-workspace/travel-agent/docs/archive/2026-08/pivot-research/attention-traces-consequential-memory-and-multiplayer-perception-2026-08-18.md`
 
 ### A. Social values / human payoffs
 
