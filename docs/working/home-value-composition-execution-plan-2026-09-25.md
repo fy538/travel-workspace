@@ -17,9 +17,14 @@ depends_on:
 Status: in progress in the coordinated `codex/home-value-delivery` lane. The
 recovered workspace/backend/app baseline is merged as recorded in the
 [program roadmap](vesper-program-roadmap.md). This package owns the current
-Home implementation; the share-time slice and follow-up regression/correction
-are committed locally as `66e2c3c`, `122f4d2`, and `e0bf0a7`. Focused tests,
-typecheck and a seven-posture native fixture capture pass; the full app suite,
+Home implementation. App refinements are committed locally through
+`2840a2420`: exact share-time attribution (`66e2c3c`, `122f4d2`, `e0bf0a7`),
+exact Home return (`8fc767355`), reduced repeated section/canonical-outcome
+copy (`1b23ed891`, `a963fa0b9`), and a recipient-only original-material mock
+transport plus a dedicated Home scenario (`2840a2420`). Focused tests,
+typecheck and the seven-posture native fixture capture pass. The new received-
+original native flow is added but its content read is blocked on the already
+running Metro build's disabled internal relationship flag. The full app suite,
 design-reference acceptance and combined verification remain open.
 
 ## Outcome and scope
@@ -319,3 +324,48 @@ remediation was attempted. This is implementation progress only, not H1
 completion, recurring-supply evidence, accepted-reference parity or release
 readiness. Preserve older detailed evidence in Git/history rather than
 accumulating competing “latest” overrides.
+
+### September 26 — Received-original path and Home scenario
+
+App revision `2840a24204af777ebd0d2396a22ce973c365d288` adds one
+opt-in `home-original-recipient` fixture to the existing Returned posture. It
+contributes exactly one private, individually addressed original; it does not
+invent a shared album or reply action. Exact-text reads now pass through the
+original-delivery API owner for both HTTP and mock transports. The HTTP owner
+preserves the prior bearer-token read, one retry after `401`, cancellation and
+no-store behavior. The mock content is returned only to its recipient persona,
+and mock metadata reads are constrained to sender or recipient. No backend
+wire contract, generated types, release flag or production data changed.
+
+The focused command below passed: 4 suites, 19 tests. `npm run typecheck` also
+passed. Targeted ESLint had no errors; it reported two pre-existing
+`array-type` warnings in `constants/personas/index.ts:352-353`. The scenario-ID
+and surface-index checks passed. `npm run qa:design:check -- home-root` still
+reports that Home is doctrine-only with no registered reference manifest.
+
+```sh
+npm test -- --runInBand --runTestsByPath \
+  __tests__/utils/api/homeOriginalDelivery.mock.test.ts \
+  __tests__/utils/homeRootV2PostureFixtures.test.ts \
+  __tests__/data/originalDeliveries.test.tsx \
+  __tests__/components/home-root/HomeRootExperience.connected.test.tsx
+```
+
+The new Maestro path is
+`.maestro/polish/home-root-social-original.yaml`. Its native attempt on the
+lane-assigned iPhone 16 Pro reached the Home card, but failed the current-owner
+attribution assertion: the running Metro bundle has the internal
+`RELATIONSHIP_UUID_HANDOFFS_ENABLED` flag off, so it correctly remained in the
+loading state rather than displaying mock material. The screenshot is retained
+at `/tmp/vesper-home-social-original/.maestro/tests/2026-09-26_120040/screenshot-❌-1790438473530-(home-root-social-original.yaml).png`.
+The running Metro process was not restarted or its flag changed. This is an
+unverified native read/return path, not a passing capture. A purpose-built
+internal QA bundle with the flag enabled is still required; no release-flag
+change is authorized or implied.
+
+This fixture is only interaction/presentation evidence. The real-owner original
+rehearsal remains blocked by missing local QA database/account/provider
+configuration, and the accepted Home design reference is still unresolved.
+`make verify` remains unrun. H1 is not complete, and this mock does not establish
+recurring social supply, photo presentation, production owner readback, or
+design parity.
