@@ -83,10 +83,17 @@ Quiet-flow capture (`20260926T204547Z-home-root`) now passes on that revision,
 including an exact headline assertion and the zero-demand/page-close checks.
 This remains frontend-fixture evidence; the lower-page screenshot does not
 establish first-viewport design parity or real content supply. Accepted
-design-reference parity,
-real-owner editorial/photo readback, recurring content supply, the full
-verification gate and release readiness remain open. Detailed evidence is
-recorded in the active H1 plan.
+App revision `48ee7ba88` also makes the real Home full-scroll rehearsal target
+the lane-assigned simulator before writing fixtures. That run
+(`h1-home-scroll-20260926T205800Z`) passed against the local real backend with
+synthetic owner data, composing two public Place readings, an addressed
+friend note, and an individually authorized original into one Home scroll;
+the runner verified fixture withdrawal afterward. This closes that bounded
+local owner-read/presentation path, not production or recurring supply.
+Accepted design-reference parity, real-photo rendering, the prepared
+Source-result workflow, recurring content supply, the full verification gate
+and release readiness remain open. Detailed evidence is recorded in the active
+H1 plan.
 A seven-posture fixture capture and the single Returned recapture are both
 fixture-backed, not reference parity or real-owner acceptance. The new
 Available capture is also fixture-backed and does not render the changed

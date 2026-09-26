@@ -17,8 +17,9 @@ depends_on:
 Status: in progress in the coordinated `codex/home-value-delivery` lane. The
 recovered workspace/backend/app baseline is merged as recorded in the
 [program roadmap](vesper-program-roadmap.md). This package owns the current
-Home implementation. App refinements are committed locally through
-`7d7d5b762`: exact share-time attribution (`66e2c3c`, `122f4d2`, `e0bf0a7`),
+Home implementation. Home content and renderer refinements are committed
+locally through `7d7d5b762`: exact share-time attribution (`66e2c3c`,
+`122f4d2`, `e0bf0a7`),
 exact Home return (`8fc767355`), reduced repeated section/canonical-outcome
 copy (`1b23ed891`, `a963fa0b9`), a recipient-only original-material mock
 transport plus a dedicated Home scenario (`2840a2420`), an accessibility fix
@@ -27,8 +28,10 @@ handling (`58f53d3fb`), a source-bound geological comparison in Quiet Home
 with its duplicate connection card removed (`42cba2d30`), and the more precise
 headline “The Palisades began as magma between older rock layers”
 (`7d7d5b762`). Focused checks and fixture-backed native captures pass for the
-affected content path; the native capture predates the headline refinement.
-The full app suite, accepted design-reference alignment, real-owner editorial
+affected content path; the post-commit Quiet capture now asserts the revised
+headline. A later local real-Postgres full-scroll rehearsal also passes for a
+bounded set of social/editorial/original owners (recorded below). The full app
+suite, accepted design-reference alignment, production/recurring editorial
 supply, and combined verification remain open.
 
 ## Outcome and scope
@@ -314,8 +317,11 @@ npx eslint components/home-root/HomeRootV2Screen.tsx components/home-root/HomeRo
 The interaction test captures a unit at viewport y=160; the return registry
 test verifies that anchor survives an exact projection return. This remains
 mocked projection/navigation evidence, not device-level scroll observation or
-live owner-data readback. The real-owner API rehearsal remains blocked by its
-current provider-key startup contract; no key or substitute was supplied.
+live owner-data readback. The real-owner API rehearsal was still blocked by
+the then-current provider-key startup contract; no key or substitute was
+supplied at that point. Backend revision `6c792ed8b` later made explicit
+`AI_MODE=off` startup valid, and the lane's local real-Postgres rehearsal below
+ran without a provider call.
 
 The latest native refinements are committed in app revisions `1b23ed891` and
 `a963fa0b9`. Non-dominant Home editorial readings no longer repeat the region's
@@ -766,12 +772,42 @@ Focused continuation checks on `7d7d5b762` passed 5 suites / 49 tests across
 Home source inspection, source-result presentation, Home routing, return
 tracking, and strict return resolution; `npm run typecheck` passed. These
 checks establish the client-side contract, not a real owner-backed Source
-workflow. A disposable database and its required owner-path rehearsal remain
-unavailable in this lane; do not substitute the mock flow for that evidence.
+contribution workflow. At that point in the September 26 sequence, no
+disposable database had yet been configured; a later real-Postgres Home
+rehearsal is recorded below.
 
 This remains fixture-only evidence: it proves the composition can be rendered
 and understood in the native Home surface, not that live owner data or a
 production generation service will discover, source, refresh, or reliably
-produce this kind of connection. Real-owner selection, source-link behavior,
-recurring supply, the full app suite, `make verify`, visual parity, and release
-readiness remain unverified.
+produce this kind of connection. It does not prove the deeper owner-backed
+Source contribution workflow or recurring content supply.
+
+#### September 26 — Real owner-backed Home full-scroll composition
+
+App revision `48ee7ba88` makes the full-scroll runner read the exact simulator
+assigned in the workspace `.workspace-lane.json`, verify it is booted before
+any fixture write, and pass its UDID to Maestro. The previous runner could
+silently pick among multiple booted simulators. The accompanying Home contract
+records this boundary.
+
+The guarded real-Postgres run `h1-home-scroll-20260926T205800Z` passed 1/1 on
+the assigned iPhone 16 Pro (`AF31B886-E837-4962-834A-5CBAD5C306DB`) against
+backend `bf1e5dadf` and Home implementation `7d7d5b762` (the later app commit
+contains only the runner guard and its contract note). In one ordinary
+Home-v2 scroll, the canonical owner read rendered two public Place
+interpretations, a Place-addressed note from a friend, and an individually
+authorized original. The flow asserted each exact unit and authored text; the
+runner then confirmed that the fixture units no longer appeared in Home after
+its cleanup trap completed. The local run used a newly created synthetic QA
+account, a lane-only PostgreSQL database, `AI_MODE=off`, and no provider calls.
+The screenshot is locally available at `travel-app/home-full-scroll.png`.
+
+This closes the specific gap for a bounded synthetic social + editorial +
+original-material composition through actual local owner reads, native
+presentation, and fixture withdrawal. It does not establish production-data
+quality, recurring/AI-generated supply, the prepared Source-result workflow,
+real photo rendering, design-reference parity, or global four-root readiness.
+The Home 02/03 references remain first-viewport aids; the external canonical
+bundle was not verified. The runner does not open every destination in this
+full-scroll flow; use the separate original-reader return receipt for that
+behavior. `make verify` and release readiness remain unverified.
