@@ -145,10 +145,12 @@ manifest. The newer `vesper-home` Board 18 is an additive extension of the
 selected 02/03 scrolls; within that assignment, K/L is the selected photo-
 integrated full scroll and D/E is a narrower study. K/L keeps one lead original,
 the remainder in a shape-preserving row, the rest of Home's city/future value,
-and larger-text treatment. The fixture's album, Reply/Ask path, actual-photo
-assets and native scroll-position behavior are not all supported or exercised
-by production owners. Relationship currently supplies individual grants, not a
-shared-set identity; the present Home/original-reader path has no Reply action.
+and larger-text treatment. The fixture's album, Reply/Ask path, and actual-photo
+assets are not supported by current production owners. Home now retains the
+opened unit's viewport position when the same projection is revalidated, but
+that behavior has focused projection/UI tests, not native-device observation.
+Relationship currently supplies individual grants, not a shared-set identity;
+the present Home/original-reader path has no Reply action.
 Until the applicable owner contracts and a specific isolated reference are
 registered through the app's design workflow, this board informs implementation
 but establishes neither those behaviors nor native parity.
