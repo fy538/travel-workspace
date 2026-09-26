@@ -131,6 +131,15 @@ context while preserving the existing delivery grant and one-delivery rendering
 boundary. If the device timezone is invalid, the visible fallback now labels
 the time as UTC rather than implying it is local.
 
+The next app slice (`8fc767355`) captures the opened Home unit's vertical
+position in the viewport as ephemeral return context. After the destination
+revalidates the same Home projection, the original item returns at that same
+screen position instead of being pulled up to the top rail. The existing strict
+recomposition path remains authoritative if the projection, viewer, audience,
+unit or represented source changed while the person was away. This is local
+navigation state only: no persistence, API change, new permission, or guarantee
+that a changed Home page will jump to stale content.
+
 The `home-root` QA surface still has no registered screenshot/design-reference
 manifest. The newer `vesper-home` Board 18 is an additive extension of the
 selected 02/03 scrolls; within that assignment, K/L is the selected photo-
@@ -264,6 +273,25 @@ isolated Postgres/Qdrant services; migrations completed, but API startup failed
 because `ANTHROPIC_API_KEY` is required by the current startup contract. The
 lane containers were stopped without deleting their named volumes. No QA
 account or delivery fixture was created.
+
+The subsequent exact-return slice is committed in app revision `8fc767355`.
+This focused command passed (4 suites, 53 tests):
+
+```sh
+npm test -- --runInBand --runTestsByPath __tests__/utils/rootProjectionReturnRegistry.test.ts __tests__/components/HomeRootV2Screen.smoke.test.tsx __tests__/components/home-root/HomeRootExperience.test.tsx __tests__/components/home-root/HomeRootExperience.connected.test.tsx
+```
+
+`npm run typecheck` and the following targeted ESLint command passed:
+
+```sh
+npx eslint components/home-root/HomeRootV2Screen.tsx components/home-root/HomeRootExperience.tsx utils/rootProjectionReturnRegistry.ts __tests__/utils/rootProjectionReturnRegistry.test.ts __tests__/components/HomeRootV2Screen.smoke.test.tsx __tests__/components/home-root/HomeRootExperience.test.tsx
+```
+
+The interaction test captures a unit at viewport y=160; the return registry
+test verifies that anchor survives an exact projection return. This remains
+mocked projection/navigation evidence, not device-level scroll observation or
+live owner-data readback. The real-owner API rehearsal remains blocked by its
+current provider-key startup contract; no key or substitute was supplied.
 
 The combined `make verify` gate remains unrun. Only the isolated lane database
 schema was migrated; no product-data fixture, production data, release flag

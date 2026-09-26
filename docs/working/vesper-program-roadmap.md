@@ -63,10 +63,14 @@ after the merged baseline; its backend checkout remains at merged revision
 `c8c9f57`.
 Its app checkout has the first H1 share-time treatment committed locally as
 `66e2c3c`, renderer-level owner-read regression coverage in `122f4d2`, and an
-explicit UTC fallback correction in `e0bf0a7`. A seven-posture native fixture
-capture now exists on the lane simulator; design-reference acceptance, the
-full verification gate and release readiness remain open. Do not treat the
-coordinated lane as ready to publish.
+explicit UTC fallback correction in `e0bf0a7`. The latest app slice,
+`8fc767355`, preserves the Home unit's viewport position on return when the
+same projection remains valid; if it changed, Home retains strict recomposition.
+Its focused check passed (4 suites, 53 tests), TypeScript and targeted ESLint.
+A seven-posture native fixture capture now exists on the lane simulator;
+design-reference acceptance, real-owner readback, the full verification gate
+and release readiness remain open. Do not treat the coordinated lane as ready
+to publish.
 The older recovery worktree and detached native-presentation checkout are
 separate, already-merged work; do not reuse or retire them without a fresh
 owner/runtime check. The former 145-branch inventory is historical, not
