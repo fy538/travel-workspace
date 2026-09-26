@@ -998,8 +998,26 @@ npm run typecheck
 
 Results: app 1 suite / 10 tests passed, ESLint clean, TypeScript passed;
 backend 9 tests passed and Ruff checks passed. The backend route test still uses
-mocked owner and storage functions. This lane has no private S3-compatible
-media-store configuration, so an owner-backed Intake image read and native
-photo render remain unverified. No photo fixture, permission, storage adapter,
-or production behavior was added. Full-scroll design parity, recurring
-production supply and the coordinated `make verify` gate also remain open.
+mocked owner and storage functions.
+
+#### October 9 — Owner-custodied photo grant through Home
+
+Backend revision `4aba48201` extends the disposable-Postgres original-delivery
+acceptance to a PNG source. It creates real Intake custody and relationship
+rows, sends the exact original through the production repository/route
+functions, reads the recipient-safe grant and content, and composes the actual
+Home owner read/projection. Only `download_private_bytes` is stubbed to return
+the exact PNG fixture; the test asserts the exact private storage key, PNG
+signature, and MIME type. The existing text case remains in the same
+parameterized acceptance.
+
+Verification used the lane-assigned PostgreSQL service on port 53173 and its
+disposable database. The whole
+`tests/domains/relationships/test_original_deliveries_postgres.py` file passed
+(4 tests); Ruff check/format and the commit hooks passed. The test directly
+invokes the real route functions, not a running HTTP server. Since this lane
+has no private S3-compatible media-store configuration, the actual private
+object download and native image render remain open. No runtime permission,
+storage adapter, or production behavior was changed. Full-scroll design
+parity, recurring production supply and the coordinated `make verify` gate
+also remain open.

@@ -57,7 +57,7 @@ were restored and verified afterward:
 | App | `43225df35a01295993def384b5958c53ab8f1c8b` | [#201](https://github.com/fy538/travel-app/pull/201) |
 
 The current implementation owner is the coordinated `codex/home-value-delivery`
-lane. Its current product-code heads are backend `e41ea8dcf` and app
+lane. Its current product-code heads are backend `4aba48201` and app
 `6244103fe`, both after the merged recovery revisions above and not yet
 published. The active workspace lane contains this queue and the H1 execution
 plan on branch `codex/home-value-delivery`. The lane has advanced past the
@@ -77,11 +77,14 @@ more complete than at the previous rebaseline.
 
 These results still use authored/synthetic fixtures where noted; they do not
 establish recurring or production content supply, provider-backed freshness,
-canonical user-owned Source provenance, an owner-backed private-media photo
-read/native render, or accepted full-scroll design-reference parity. Focused
-regressions now check authenticated, cache-disabled image transport and
-byte/MIME-correct binary route behavior, but use mocked media storage and do
-not close the owner-backed photo gap. The last `make verify` attempt failed at
+canonical user-authored Source contribution in recurring editorial value, a
+live private object-store image read/native render, or accepted full-scroll
+design-reference parity. Focused regressions now check authenticated,
+cache-disabled image transport and byte/MIME-correct binary route behavior.
+The disposable-Postgres acceptance also verifies exact Intake custody, recipient
+grant and Home projection for a PNG, but stubs only the private object-store
+download. It does not close the live storage/native photo gap. The last
+`make verify` attempt failed at
 the date-sensitive World Catalog runway gate (the October 9 horizon lacks required
 `season` and `here` entries); the catalog was not padded with invented rows.
 This is a scoped gate failure, not evidence that Home behavior failed. H1 is
