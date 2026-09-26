@@ -117,7 +117,7 @@ This is a code-path trace, not production-supply or native-visual acceptance.
 | Situation | Owner → Home → continuation | Current finding |
 | --- | --- | --- |
 | Ordinary day / available time | Experience Graph, saves, receipts, automatic Places context and current public Place Sources, plus an optional current prepared Source result → bounded Home portfolio and shared admission → exact Place/Source/owner door and semantic return token | The read path is implemented and bounded; a Home miss does not invoke a provider or enqueue generation. Deeper Source work requires the existing explicit “Ask Vesper” gesture. Existing portfolio/composition tests pass. Ordinary production coverage is not established. |
-| Evening with other people | Relationships supplies exact addressed Place notes and individually authorized original deliveries → Home composes a same-Place note with eligible world material, or an attributed multi-note region; original previews keep per-delivery grants → Place or original reader revalidates owner state and returns through Home | Recovered human/Place composition is present. Original media is projected as separate deliveries (maximum two candidates in the current Home adapter); the reader has no reply affordance. No event/photo-set grouping or reply policy is inferred. Home's current design-time proposal for a named shared photo set needs an explicit supported owner/group before it can be implemented as a set. |
+| Evening with other people | Relationships supplies exact addressed Place notes and individually authorized original deliveries → Home composes a same-Place note with eligible world material, or an attributed multi-note region; original previews keep per-delivery grants → Place or original reader revalidates owner state and returns through Home | Recovered human/Place composition is present. Original media is projected as separate deliveries (maximum two candidates in the current Home adapter); the reader has no reply affordance. No event/photo-set grouping or reply policy is inferred. The newer Home 18 K/L scroll is useful design input for a lead photo and shape-preserving remainder, but cannot create a shared-set identity from individual grants. |
 | Healthy live/travel situation | Experience Graph and Plan/proposal owners establish Live; Places current context can supply separately evidenced practical alternatives → Live Home selector keeps independent possibilities eligible; Urgent alone suppresses most support → owner-specific destination/action and exact return | Live is not treated as urgent, and functional selection is covered by the focused backend suite. Provider-backed freshness, recurring generated supply, and native presentation against the selected design remain separate unproven claims. |
 
 The first H1 app slice adds the exact owner-read share time to a received
@@ -129,11 +129,17 @@ context while preserving the existing delivery grant and one-delivery rendering
 boundary.
 
 The `home-root` QA surface still has no registered screenshot/design-reference
-manifest. The `vesper-home` project index identifies the current 02/03 scrolls
-as selected and the 2026-09-21 photo board as additive; its photo-set fixture
-does not by itself authorize inferred grouping. Until a specific isolated
-reference can be registered through the app's design workflow, no native parity
-claim is made.
+manifest. The newer `vesper-home` Board 18 is an additive extension of the
+selected 02/03 scrolls; within that assignment, K/L is the selected photo-
+integrated full scroll and D/E is a narrower study. K/L keeps one lead original,
+the remainder in a shape-preserving row, the rest of Home's city/future value,
+and larger-text treatment. The fixture's album, Reply/Ask path, actual-photo
+assets and native scroll-position behavior are not all supported or exercised
+by production owners. Relationship currently supplies individual grants, not a
+shared-set identity; the present Home/original-reader path has no Reply action.
+Until the applicable owner contracts and a specific isolated reference are
+registered through the app's design workflow, this board informs implementation
+but establishes neither those behaviors nor native parity.
 
 For each value unit record its actual source/preparation trigger, owner/read,
 candidate, region/treatment, received benefit, depth/action and return. Classify
