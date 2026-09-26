@@ -20,7 +20,7 @@ def destination(sent=False):
     inner = anchor('THE PIER AT SUNSET', 'SATURDAY', back=True, sub='Kept from Maya&rsquo;s share')
     inner += gut(author_row('M', 'Maya', 'TUESDAY') + quote(MAYA_PIER, 18, 25) + fn('KEPT TUESDAY · FROM MAYA&rsquo;S SHARE', 8), top=12)
     if sent: inner += gut(readback('SENT', 'Asked Maya about Saturday · 7:12 PM · no answer yet'), top=12)
-    inner += sect('This Saturday') + gut(day_band([(186, 0, 'SUNSET 7:04', 'dot'), (302, 43, '8:30', 'ink')], [(2, 'SATURDAY', 'start'), (345, 'THE FILM · THE LAWN, 9 MIN ON', 'end')]) + '<div style="margin-top: 6px;">' + prow('Sunset at 7:04', 'THE WEST PIER FACES IT · IT TURNS COLD FAST', first=True) + prow('Getting there', 'THE N OR R TO 59TH STREET · TWENTY MINUTES · THE PIER IS NINE MINUTES ON FOOT') + prow('Playtime on the lawn, after', '8:30 · FREE · THE SAME PARK', last=True) + '</div>')
+    inner += sect('This Saturday') + gut(day_band([(133, 0, 'SUNSET 6:25', 'dot'), (302, 43, '8:30', 'ink')], [(2, 'SATURDAY', 'start'), (345, 'THE FILM · THE LAWN, 9 MIN ON', 'end')]) + '<div style="margin-top: 6px;">' + prow('Sunset at 6:25', 'THE WEST PIER FACES IT · IT TURNS COLD FAST', first=True) + prow('Getting there', 'THE N OR R TO 59TH STREET · TWENTY MINUTES · THE PIER IS NINE MINUTES ON FOOT') + prow('Playtime on the lawn, after', '8:30 · FREE · THE SAME PARK', last=True) + '</div>')
     inner += gut(door_list(['Open the message', 'The pier']) if sent else door('Ask Maya about Saturday') + door('The pier', MUTE), top=12)
     return phone(inner)
 def returned_sent(): return field_with(f'<div class="fn" style="margin-top: 4px; color: {GOLDD};">ASKED MAYA ABOUT SATURDAY · NO ANSWER YET</div>')

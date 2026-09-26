@@ -75,7 +75,7 @@ def section(points, sea, labels, scale_m=None, h=110, w=349, zmax=None):
     return svg + '</svg>'
 
 # ── the pier's day, redesigned: candidates ──
-def pier_line(rise='6:31', set_='19:04', plan=('18:30', '19:04'), after=('20:30', '22:00'), low=('14:40', '17:00'), t0=6, t1=23, h=62):
+def pier_line(rise='6:31', set_='18:25', plan=('17:50', '18:25'), after=('20:30', '22:00'), low=('14:40', '17:00'), t0=6, t1=23, h=62):
     """One track, the day. Two overlapping bars: the light (gold wash, sunrise to sunset) and the water (a water bar for the low-water window), offset so both read where they overlap.
     The pier is the gold pill at the light's end; the film is the ink pill after dark, labelled. Three labels, mono."""
     ax = Axis(t0, t1, 2, 347); r, s_, p0, p1, a0, a1, l0, l1 = map(hm, (rise, set_, plan[0], plan[1], after[0], after[1], low[0], low[1])); y = 26

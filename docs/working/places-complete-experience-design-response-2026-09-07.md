@@ -763,3 +763,28 @@ The mono share of in-phone words stays about a fifth. That is expected: in Place
 **Not changed.** The instruments, maps and compositions; people's words; the Harbor Book's quoted prose; captions outside the phones, which still explain decisions to the reviewer. The Stage 2 instrument migration waits for its selection checkpoint, and the shared place collection from the September 22 multiplayer brief is not assigned to Places.
 
 **Verification.** All eleven boards rebuilt from the generators, measured from the document and pushed. The lint was run before and after. Four changed frames were rendered and read locally; the local render drops the shared stylesheet's number discs and mono fonts, which the published boards resolve.
+
+## 44. The shared Saturday, and a current decision record (September 26)
+
+Follow-up to a review of Places against Home's September 23–26 live boards. Three things changed; no composition, instrument or interaction did.
+
+**Correction to the review that prompted this.** The review listed three Home/Places conflicts. On checking Home's generator, two were overstated. Home also calls the flea "under the bridge", so that phrase and Home 19's Red Hook location can both be true; it was under-specified, not contradictory. Places has drawn the Red Hook pier as a page, in 08.10–08.13. The light was a real conflict. Home's earlier pierogi-at-the-flea wording is no longer on its boards.
+
+**The Saturday, written once.** The shared fixture ledger (`docs/working/fixtures/shared-fixture-world-2026-09-07.md`) now carries §12, *The Red Hook Saturday*, appended after a §11 that another session added the same day. The ledger file is left uncommitted because that session's §11 is uncommitted; the record below duplicates it here so it survives either way.
+
+| Item | The record | Places | Home |
+|---|---|---|---|
+| The morning | Clear, 41° at 9:30 | 03.3 | 14.3; 19 says 58° at 10:45 (Home to fix) |
+| The flea | Under the bridge in Red Hook; Saturdays through October, 8 to 3; the bread stall sells out by ten | 03.3, now naming Red Hook | 14, 19 |
+| The tide | Low water 2:40 to 5; high 8:40 | 01's day line, 03.3, 08.11 | 14; 19.3 says until 5:10 (Home to fix) |
+| The light | Sunset 6:25; dark 6:52 | 01's day line, 04.2, 07; moved from 7:04 | 19 (dark 6:52) |
+| The Red Hook pier | Floods before the street does: on the old creek bed, below the 1911 sill; the iron squares at the crossing are the pump intakes | 08.10–08.13 | 19.3 names it "the west pier" and draws its own page (Home to fix) |
+| The west pier | Sunset Park's, where the sunset is watched; the lawn and the film are nine minutes on | 01 | — |
+
+Places moved on the one real conflict: the sunset is 6:25, before Home's "dark 6:52", which also suits an October Saturday. Home's items are listed in the ledger for Home's owner; Home's boards were not edited.
+
+**Board 05, rebuilt as the current record.** The September 8 board was titled "proposed, not accepted", still described stand-in drawings and a From friends row that no longer exist, and didn't mention the September 9 decision. The new 05 has four tables: nine decided items, each with where it's drawn and where it was decided; six rules still proposed; five questions waiting on the founder; and what Places needs from the shared workbench and from Home. The old board is in `before-copy-pass/`. Generator: `gen05.py`, built by `renumber.py`.
+
+**Index.** "Where things stand" now names every board through 10, the accepted decision, the shared package, the voice and photograph rules, and the ledger record. The reading order is 01, 08, 10, 02, 03.
+
+**Verification.** All eleven boards rebuilt, measured and pushed. No "7:04" remains on any board; the new 05 was rendered and read.
