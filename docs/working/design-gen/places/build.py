@@ -16,6 +16,7 @@ def tokenize(html):
 def post(html):
     if 'vdl.css' not in html: html = html.replace('<helmet>', '<helmet>' + LINKS, 1)
     html = html.replace('class="fn" style="', 'class="vdl-t-metaLine" style="color: #B5AFA5; ')
+    html = html.replace('PHOTOGRAPH PLATES ARE SLOTS', 'A PLACE WITHOUT A PHOTOGRAPH HAS NO PLATE')
     return tokenize(html)
 if __name__ == '__main__':
     for g in ['gen07.py', 'gen08.py', 'gen09.py', 'gen10.py', 'renumber.py']:

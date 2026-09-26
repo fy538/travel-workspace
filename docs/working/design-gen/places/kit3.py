@@ -101,12 +101,17 @@ def seq_strip(stops, top=10):
     return out + '</div>'
 # ── kinds ──
 def shelf_item(name, line, chip_):
-    plate = f'<div style="height: 84px; border-radius: 12px; position: relative; background: {HATCH};"><span style="position: absolute; left: 10px; top: 9px; {MONO} font-size: 10px; font-weight: 700; letter-spacing: 0.9px; color: {GOLDD};">PHOTO · TO BE SOURCED</span></div>'
-    return (f'<div>{plate}<div style="font-size: 15px; font-weight: 600; letter-spacing: -0.2px; line-height: 19px; margin-top: 7px; min-height: 38px;">{name}</div><div style="font-size: 12.5px; line-height: 17px; color: {MUTE}; min-height: 34px;">{line}</div>'
+    """A shelf tile. A place without its own photograph has no plate (photo or nothing), so the tile is its name, one line and one chip."""
+    return (f'<div style="border-top: 1px solid {HAIR7}; padding-top: 10px;"><div style="font-size: 15px; font-weight: 600; letter-spacing: -0.2px; line-height: 19px; min-height: 38px;">{name}</div><div style="font-size: 12.5px; line-height: 17px; color: {MUTE}; min-height: 34px;">{line}</div>'
             f'<span style="display: inline-block; {MONO} font-size: 10px; font-weight: 700; letter-spacing: 0.9px; color: {GOLDD}; border: 1px solid rgba(138,102,40,0.4); border-radius: 999px; padding: 2.5px 7px; margin-top: 6px;">{chip_}</span></div>')
+
 def browse_shelf(items, kick_t=None): return f'<div style="display: flex; flex-direction: column; gap: 10px;">' + (kick(kick_t) if kick_t else '') + '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px 12px;">' + ''.join(shelf_item(*it) for it in items) + '</div></div>'
 def cover(svg_or_none, kick_t, t, h=186):
-    inner = svg_or_none or ''
+    """A reading's cover. With its own drawing or photograph it is a plate; without one it opens on its title (photo or nothing)."""
+    if not svg_or_none:
+        return (f'<div style="border-radius: 12px; background: {CARD}; border: 1px solid {HAIR}; padding: 14px 15px;"><div style="{MONO} font-weight: 700; font-size: 10px; letter-spacing: 1.2px; color: {GOLDD};">{kick_t}</div>'
+                f'<div style="{SERIF} font-weight: 600; font-size: 20px; line-height: 24px; color: {INK}; margin-top: 4px;">{t}</div></div>')
+    inner = svg_or_none
     return (f'<div style="height: {h}px; border-radius: 12px; overflow: hidden; position: relative; background: {HATCH if not svg_or_none else WASH};">{inner}'
             f'<div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(27,23,20,0) 42%, rgba(27,23,20,0.70) 100%);"></div>'
             + ('' if svg_or_none else f'<span style="position: absolute; left: 15px; top: 12px; {MONO} font-size: 10px; font-weight: 700; letter-spacing: 0.9px; color: #F2E6CC;">PHOTOGRAPH · TO BE SOURCED</span>')

@@ -18,7 +18,7 @@ def shared_supply():
     """The place-relative view of the set Home 14.3 opens, after Home re-paired on September 9: the same locality (New York), day and hour (Saturday 9:30).
     Items and dates exactly as Home carries them: the flea (its own notice; Saturdays through October; today 8 to 3; the bread stall by ten); Open House New York (Oct 17-18; timed registration Tuesday noon to Thursday, closed; walk-ins need none);
     the L (MTA; after 11 PM Mon-Thu; normal today; end date unknown); the forecast and tide (clear 41 degrees; low 2:40-5, high 8:40); The Harbor Book ch. 4. Home shows what a person receives; this shows the same set as a field."""
-    body = anchor('NEW YORK', 'SATURDAY 9:30 AM') + orientation('The flea, under the bridge, until three.', 'Clear, 41&deg; · Saturdays through October · nothing else has changed since Thursday') + ask()
+    body = anchor('NEW YORK', 'SATURDAY 9:30 AM') + orientation('The flea, under the bridge, until three.', 'Clear, 41&deg; · Saturdays through October') + ask()
     body += gut('<div>' + prow('The flea, under the bridge', 'FROM 8 UNTIL 3 · THE BREAD STALL SELLS OUT BY TEN · THE MARKET&rsquo;S OWN NOTICE', first=True, last=True) + '</div>' + door('Directions'), top=24)
     body += sect('Open House, October 17 and 18') + gut('<div>' + prow('The walk-in sites', 'NO REGISTRATION NEEDED · OCT 17&ndash;18', first=True) + prow('The timed sites', 'REGISTRATION CLOSED THURSDAY · IT RAN FROM TUESDAY NOON', last=True) + '</div>')
     body += sect('Getting around') + gut(hours_register([('THE L', 'Normal today; single-tracking after 11 PM, Monday to Thursday'), ('THE TIDE', 'Low water 2:40 to 5; high 8:40')]))
@@ -32,16 +32,16 @@ def mistaken():
     inner += orientation('Step-free, the way your afternoons usually go.', 'The rooms upstairs are kept off this page for you', 26, 31)
     inner += gut(hours_register([('THE FLOOR', 'Level from the door; the presses are working till 4'), ('THE ROOMS', 'Upstairs &middot; kept off your afternoons'), ('THE PIER', 'Nine minutes, level, benches at the end')]), top=16)
     inner += gut(relationship_trace('Because of the afternoon you planned in March: you asked for a level way in, so stairs are kept off what you are shown.', 'WHAT VESPER UNDERSTOOD &middot; ABOUT YOU'), top=16)
-    inner += gut(door('That is not right') + door('The level afternoon', MUTE), top=16)
+    inner += gut(door('That&rsquo;s not right') + door('The level afternoon', MUTE), top=16)
     return phone(inner)
 def correction():
     """The correction, on the consumer side: one natural acknowledgment, then the useful result.
     Today still comes out level, because the father is here; what returns is the exhibition upstairs, and the remaining feasible chance to see it is Sunday, its last day, alone.
     Whose constraint it is, which days it covers and how long it lasts are review analysis and live in this board's notes, not on the phone."""
     inner = anchor('THE PRINT ROOM', 'SAT 1:05 PM', back=True, sub='Red Hook · with your father, back by 5')
-    inner += orientation('Understood &mdash; that was for your father.', 'Today is still the level afternoon, and the rooms are back on this page', 26, 31)
+    inner += orientation('The stairs were your father&rsquo;s. Today stays level.', 'Rooms Remade is back on this page · it ends Sunday', 26, 31)
     inner += gut(readback('YOU SAID', '&ldquo;That was for my parents.&rdquo;', GOLDD), top=16)
-    inner += gut(consequence('WHAT THIS CHANGES', 'Today reads the same and for the right reason: the level floor, the pier, the 3:20 boat back by 5. Rooms Remade ends tomorrow, so Sunday is the last chance at the rooms upstairs, on your own.'), top=16)
+    inner += gut(consequence('WHAT THIS CHANGES', 'Today: the level floor, the pier, and the 3:20 boat back by five. Sunday is the last day for the rooms upstairs, and you&rsquo;d be going on your own.'), top=16)
     inner += gut('<div>' + prow('Rooms Remade, upstairs', 'SUNDAY 11&ndash;6 · THE LAST DAY · A FLIGHT OF STAIRS', first=True, last=True) + '</div>', top=16)
     inner += gut(door_list(['The level afternoon, today', 'Sunday, the last day', 'Ask the workshop about a lift']), top=24)
     return phone(inner)
@@ -50,10 +50,9 @@ def later_visit():
     The record says what is actually known: an afternoon was planned in March; no visit is recorded, because nothing observed one."""
     inner = anchor('THE PRINT ROOM', 'SAT 10:20 AM', back=True, sub='Red Hook')
     inner += orientation('Ink and Water, upstairs, from Saturday.', 'A print workshop on Van Brunt Street &middot; the show after Rooms Remade', 26, 31)
-    inner += gut(photo_plate(150), top=16)
     inner += gut(hours_register([('HOURS', 'Tue&ndash;Sun 11&ndash;6'), ('THE ROOMS', 'Upstairs, by a flight of stairs'), ('TICKETS', 'Not confirmed')]), top=16)
     inner += gut(consequence('FOR SATURDAY', 'The new show is upstairs and Saturday is its first day.'), top=16)
-    inner += gut(relationship_trace('Twice you planned a level afternoon here, with your father.', 'NO VISIT RECORDED'), top=16)
+    inner += gut(relationship_trace('Twice you planned a level afternoon here, with your father.', 'FROM YOUR PLANS'), top=16)
     inner += sect('Getting there') + gut(arr_two() + horizon_doors([('ACCESS', 'The ferry against the B61: the wait, the crossing, the stairs')]))
     inner += gut(door_list(['Why this, and what it rests on', 'Back to Red Hook']), top=24)
     return phone(inner)
@@ -62,16 +61,15 @@ def arr_two():
                              ('BY THE B61', [(4, 'foot'), (6, 'wait'), (28, 'ride'), (3, 'foot'), (2, 'stairs')], 'EVERY 12 · 37 MOVING, 6 DRAWN, 37 TO 49 IN ALL · THE SAME STAIRS')], origin='FROM CANAL STREET', h=118)
 def unavailable_information():
     """Current information unavailable: the field keeps what it knows, dates it, and does not ask the person to supply it."""
-    body = anchor('NEW YORK', 'FRIDAY 5:40 PM') + orientation('The pier at sunset, then the film on the lawn. Saturday.', 'Hours and tides as last seen Thursday · the listings are not reachable right now') + ask()
-    body += gut(f'<div style="display: flex; flex-direction: column;">{kick("SATURDAY AT THE PIER · AS LAST SEEN THURSDAY")}{I.pier_line()}<div style="margin-top: 12px;">{serifline("It turns cold fast after sunset; the lawn is nine minutes on, and the film is free if the listing holds.")}</div>{fn("MAYA, TUESDAY · &ldquo;TUESDAY, SEVEN.&rdquo; · NOTHING FRESH SINCE THURSDAY", 8)}<div style="margin-top: 8px;">{doors(("The pier", GOLDD), ("Ask Maya about Saturday", MUTE))}</div></div>', top=24)
-    body += sect('Any day') + gut(browse_shelf(g.SHELF[:2])) + gut(consequence('WHAT IS NOT FRESH', 'Every hour and every tide here is Thursday&rsquo;s. Nothing is invented to fill the gap, and nothing asks you to.'), top=16)
+    body = anchor('NEW YORK', 'FRIDAY 5:40 PM') + orientation('The pier at sunset, then the film on the lawn. Saturday.', 'Hours and tides as of Thursday · the listings are down') + ask()
+    body += gut(f'<div style="display: flex; flex-direction: column;">{kick("SATURDAY AT THE PIER · AS LAST SEEN THURSDAY")}{I.pier_line()}<div style="margin-top: 12px;">{serifline("It turns cold fast after sunset; the lawn is nine minutes on, and the film is free if the listing holds.")}</div>{fn("MAYA, TUESDAY · &ldquo;TUESDAY, SEVEN.&rdquo; · HER SHARE", 8)}<div style="margin-top: 8px;">{doors(("The pier", GOLDD), ("Ask Maya about Saturday", MUTE))}</div></div>', top=24)
+    body += sect('Any day') + gut(browse_shelf(g.SHELF[:2])) + gut(consequence('AS OF THURSDAY', 'Every hour and tide here is from Thursday.'), top=16)
     body += g.redhook(True) + gut(door_list(['Another neighborhood', 'Try again']), top=24)
     return phone(body)
 def unhurried():
     """One afternoon, unhurried: the crossing is the point; the rooms upstairs if the mood takes; no times."""
     inner = anchor('THE PRINT ROOM', 'SAT 12:40 PM', back=True, sub='Red Hook · this afternoon')
-    inner += orientation('The crossing, then the rooms upstairs if you like.', 'No times to keep · the workshop is open till 6 · the pier and the pool are on the way back', 26, 31)
-    inner += gut(photo_plate(150), top=16)
+    inner += orientation('The crossing, then the rooms upstairs if you like.', 'The workshop&rsquo;s open till 6 · the pier and the pool are on the way back', 26, 31)
     inner += gut(hours_register([('THE ROOMS', 'Rooms Remade, upstairs, to Sunday'), ('THE CROSSING', 'Every 40 from Pier 11; the boat is half the visit'), ('AROUND', 'The pier, nine minutes; the pool till 8:30 tomorrow')]), top=16)
     inner += sect('Maya and Priya were there') + gut(plural_comparison((('M', 'Maya', 'THURSDAY'), 'THE SIDE ROOM', MAYA_ROOM), (('P', 'Priya', 'A RAINY TUESDAY'), 'THE BACK ROOM', 'The back room to myself for an hour.')))
     inner += gut(door_list(['The next ferry', 'Reply to Maya']), top=24)
@@ -81,7 +79,7 @@ def constrained():
     inner = anchor('THE PRINT ROOM', 'SAT 12:40 PM', back=True, sub='Red Hook · with your father, back by 5')
     inner += orientation('The rooms are up a flight of stairs; no lift is listed.', 'The crossing and the workshop floor are level · back by 5 means the 3:20 boat', 26, 31)
     inner += gut(I.access_compare([('BY FERRY', [(6, 'foot'), (20, 'wait'), (25, 'ride'), (9, 'foot'), (2, 'stairs')], 'PIER 11 · EVERY 40 · 42 MOVING, 20 DRAWN, 42 TO 82 IN ALL'), ('BY THE B61', [(4, 'foot'), (6, 'wait'), (28, 'ride'), (3, 'foot'), (2, 'stairs')], 'EVERY 12 · 37 MOVING, 6 DRAWN, 37 TO 49 IN ALL · THE SAME STAIRS')], origin='FROM CANAL STREET', h=118), top=16)
-    inner += gut(consequence('THE DECISIVE FACT', 'The exhibition is upstairs and the listing names no lift. The workshop floor, the crossing and the pier are level; that is the afternoon that serves you both, unless the workshop confirms a lift.'), top=16)
+    inner += gut(consequence('THE DECISIVE FACT', 'The exhibition is upstairs and the listing names no lift. The workshop floor, the crossing and the pier are level; that&rsquo;s the afternoon for you both, unless the workshop confirms a lift.'), top=16)
     inner += gut(I.day_band(12, 18, [('13:20', '13:45', '', 'ink'), ('14:00', '15:00', 'THE FLOOR 2–3', 'gold'), ('15:20', '15:45', '', 'ink')], [('17:00', 'BACK BY 5', 'ring')], [('start', 'NOON · 1:20 BOAT OUT', 'start'), ('end', '3:20 BACK', 'end')]), top=16)
     inner += gut(door('Ask the workshop about a lift') + door('The level afternoon: the crossing, the floor, the pier', MUTE), top=8)
     inner += gut(relationship_trace('Maya and Priya wrote about the rooms upstairs.', 'THEIR NOTES, ON THE PLACE'), top=16)
@@ -106,9 +104,10 @@ def board():
               ('WHAT MOVED', N('03.3 returns to the flea and Open House set, which is what Home 14 draws today; the film and pier version drawn earlier on September 9 is withdrawn. Kingston stays withdrawn. 03.7 to 03.9 are new: Home&rsquo;s scoped help (14 row two B, &ldquo;for tonight, you asked for closer and quieter&rdquo;) received on a place, drawn end to end as the mistaken understanding, the correction and the visit three weeks later. No new city, supply system or persona set is added.')),
               ('OPEN', N('Whether the Open House walk-in sites deserve a pocket with a map once the sites are known; drawn as rows. The lift question on 03.6 is a fixture unknown; a live version reads the venue&rsquo;s access listing. The correction sequence has its own notes on the row below. Interaction untested.'))], w=760)]
     r3 = [viewport(col(mistaken(), caption('03.7 · WHAT VESPER HAD UNDERSTOOD', 'A LIMITATION READ ONTO THE PERSON', 'Before the correction: one March afternoon with a father has become &ldquo;stairs are kept off your afternoons&rdquo;. The page says what it believes and where it got it, and offers the one door that matters'))),
-          viewport(col(correction(), caption('03.8 · THE CORRECTION, AND WHAT IT IS WORTH', '&ldquo;THAT WAS FOR MY PARENTS&rdquo; · ONE ACKNOWLEDGMENT, THEN THE RESULT', 'The phone says it understood and moves straight to what changes: today stays level for the stated reason, the exhibition comes back onto the page, and the last day to reach it upstairs is named. The scope analysis is in the notes, where review evidence belongs'))),
+          viewport(col(correction(), caption('03.8 · THE CORRECTION, AND WHAT IT IS WORTH', '&ldquo;THAT WAS FOR MY PARENTS&rdquo; · THE FACT, THEN THE RESULT', 'The phone opens on the fact, the stairs were his, and moves straight to what changes: today stays level for the stated reason, the exhibition comes back onto the page, and the last day to reach it upstairs is named. The scope analysis is in the notes, where review evidence belongs'))),
           viewport(col(later_visit(), caption('03.9 · THREE WEEKS ON, ALONE', 'NOTHING PERSONAL WAS INHERITED', 'The stairs are a fact of the building again. The record says the level afternoons were planned; it does not claim either visit happened, because nothing in this design observed one'))),
           notecol('One correction, from the mistake to the visit after it', [
+              ('DECIDED, NOT DISPLAYED', N('The unavailable field no longer says that nothing is invented or that nothing asks you to fill the gap; its facts carry their date instead. The correction opens on the fact, &ldquo;the stairs were your father&rsquo;s&rdquo;, rather than an acknowledgment, and the later visit&rsquo;s record says where it comes from, your plans, rather than what did not happen.')),
               ('WHERE THE ANALYSIS LIVES', N('The table below is review evidence. It is deliberately not on the phone: a person correcting a wrong assumption does not want a scope audit read back at them, they want the acknowledgment and the useful consequence, which is what 03.8 shows.')),
               ('THE SEQUENCE', N('Three frames, one person, one place. 03.7 draws the mistaken understanding rather than implying it: a single afternoon spent with a father has been generalised into a standing limitation of the person&rsquo;s, and the page names the March afternoon as its source, which is what makes the error correctable. 03.8 settles three questions in three rows. 03.9 is the visit three weeks later.')),
               ('WHAT THE CORRECTION SETTLES', tbl(['QUESTION', 'BEFORE', 'AFTER'], [['Whose constraint is it', 'The person&rsquo;s, inferred', 'Their father&rsquo;s, as stated'], ['Which outings does it cover', 'All of them, by default', 'The March afternoon and today, because he is with them'], ['What happens to the mistaken relation', 'It stood as a fact about the person and filtered every page', 'Invalidated at its owner; its dependent uses are repaired, not just this card'], ['What is kept', 'Nothing distinguished him from them', 'His stair constraint, attached to outings he is on'], ['What expires by itself', '&mdash;', 'Today&rsquo;s level treatment, because he is here today'], ['What is offered today', 'The level afternoon, as a preference', 'The level afternoon, for the stated reason'], ['What comes back', 'Nothing; the rooms were hidden', 'The rooms upstairs, with the show&rsquo;s last day, for a Saturday alone']])),

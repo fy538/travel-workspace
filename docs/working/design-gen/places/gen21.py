@@ -14,17 +14,17 @@ def e3():
     inner += gut(redhook_rows(True, facts=False), top=12)
     return phone(inner)
 def e4():
-    inner = anchor('THE HARBOR PRINT ROOM', '', back=True, sub='Red Hook · Tue–Sun 11–6') + gut(photo_plate(190), top=16)
+    inner = anchor('THE HARBOR PRINT ROOM', '', back=True, sub='Red Hook · Tue–Sun 11–6')
     inner += gut(title('Rooms Remade, through Sunday', 20, 25, 600) + sup('A print workshop in a former warehouse on Van Brunt Street; the exhibition is in the two upstairs rooms.') + unc(UNK_ROOM), top=12)
     inner += gut(f'<div style="padding-top: 12px; border-top: 1px solid {HAIR7};">' + author_row('M', 'Maya', 'THURSDAY') + quote(MAYA_ROOM, 16, 22) + '</div>', top=12)
     inner += sect('Getting there') + gut(burden_strip('TO PIER 11', 'THE FERRY · 25 MIN · EVERY 40', '9 MIN ON FOOT', '40 MOVING') + getting_in())
     inner += gut(door_list(['Reply to Maya', 'Ask Vesper privately']), top=12)
     return phone(inner)
 E = [('THE FIELD', 'Friday, as it stands; the first viewport', lambda: field(True), True), ('A QUESTION TYPED', 'The page becomes map-led because orientation was asked for; the burden strip says what the crossing costs', e2, False),
-     ('THE MAP', 'The same exploration, larger; the question stays in the header; the four places without their facts', e3, False), ('A RESULT', 'The Print Room: its photo slot, what is unconfirmed, Maya&rsquo;s words, the crossing; two doors, no primary', e4, False),
+     ('THE MAP', 'The same exploration, larger; the question stays in the header; the four places without their facts', e3, False), ('A RESULT', 'The Print Room: what is unconfirmed, Maya&rsquo;s words, the crossing; two doors, no primary', e4, False),
      ('BACK', 'The question, the four places and the position preserved; the opened one says so', lambda: e2(True), False)]
 def h2():
-    inner = anchor('FROM FRIENDS', 'THIS WEEK', back=True, sub='Four people') + gut('<div style="margin-top: 6px;">' + share_row('M', 'Maya', 'THURSDAY', MAYA_ROOM, 'THE HARBOR PRINT ROOM · RED HOOK') + share_row('M', 'Maya', 'TUESDAY', MAYA_PIER, 'THE PIER AT SUNSET · KEPT, WITH MAYA') + share_row('P', 'Priya', 'SATURDAY', PRIYA_PIGEONS, 'THE GREENMARKET · DOWNTOWN') + share_row('T', 'Theo', 'TUESDAY', THEO_BREAD, 'THE GREENMARKET · DOWNTOWN') + share_row('S', 'Sam', 'NOT THIS SATURDAY', SAM_HALL, 'THE LISTENING HOUR AT CANAL HALL', last=True) + '</div>', top=12)
+    inner = anchor('FROM FRIENDS', 'THIS WEEK', back=True, sub='Four people') + gut('<div style="margin-top: 6px;">' + share_row('M', 'Maya', 'THURSDAY', MAYA_ROOM, 'THE HARBOR PRINT ROOM · RED HOOK') + share_row('M', 'Maya', 'TUESDAY', MAYA_PIER, 'THE PIER AT SUNSET · SUNSET PARK') + share_row('P', 'Priya', 'SATURDAY', PRIYA_PIGEONS, 'THE GREENMARKET · DOWNTOWN') + share_row('T', 'Theo', 'TUESDAY', THEO_BREAD, 'THE GREENMARKET · DOWNTOWN') + share_row('S', 'Sam', 'LAST SATURDAY', SAM_HALL, 'THE LISTENING HOUR AT CANAL HALL', last=True) + '</div>', top=12)
     inner += gut(door_list(['All of New York']), top=24)
     return phone(inner)
 def h3(sent=False):
@@ -65,9 +65,9 @@ def p1():
 def p2():
     """The conditional step: seats first. The rearrangement is not offered as ready until the hour is."""
     inner = anchor('THE HOUR, SATURDAY', 'FRIDAY 4:42 PM', back=True, sub='Canal Hall')
-    inner += gut(K.hours_register([('SEATS', 'The hall posts them at 5 today; not yet, as of 4:42'), ('DOORS', '6:45; about an hour, ends 8:15'), ('YOUR TABLE', '8:15 at the noodle counter, three minutes away')]), top=16)
+    inner += gut(K.hours_register([('SEATS', 'Posted by the hall at 5 today'), ('DOORS', '6:45; about an hour, ends 8:15'), ('YOUR TABLE', '8:15 at the noodle counter, three minutes away')]), top=16)
     inner += gut(K.consequence('WHAT DEPENDS ON WHAT', 'If there are seats, dinner would move to about 8:45 and Maya and Alex would be asked. If not, dinner stays at 8:15 and the hour plays again next Saturday.'), top=16)
-    inner += gut(readback('CHECKED 4:42', 'Not posted yet · this was one look at the hall&rsquo;s page, not a watch'), top=16)
+    inner += gut(readback('CHECKED 4:42', 'Seats not posted yet'), top=16)
     inner += gut(door('Check again after 5') + door('Back to Saturday evening', MUTE), top=16)
     return phone(inner)
 def p3():
@@ -76,13 +76,13 @@ def p3():
     inner = anchor('THE HOUR, SATURDAY', 'FRIDAY 5:12 PM', back=True, sub='Canal Hall')
     inner += gut(readback('YOU CHECKED AT 5:12', 'Posted 5:10 · seats left for Saturday · $12 at the door'), top=16)
     inner += gut(band_evening([('20:45', 'DINNER 8:45?', 'ring')]), top=12)
-    inner += gut(card(f'<div class="kickm">TO MAYA AND ALEX · PREPARED, NOT SENT · YOU SEND IT</div><div style="{SERIF} font-size: 17px; line-height: 24px; color: {INK}; margin-top: 8px;">{MSG}</div>'), top=16)
+    inner += gut(card(f'<div class="kickm">DRAFT TO MAYA AND ALEX</div><div style="{SERIF} font-size: 17px; line-height: 24px; color: {INK}; margin-top: 8px;">{MSG}</div>'), top=16)
     inner += gut(door('Ask Maya and Alex about 8:45') + door('Change the wording', MUTE) + door('Leave dinner at 8:15', MUTE), top=8)
     return phone(inner)
 def p4():
     """Sent, answered, moved: one page, three lines of state, because the person acts once. Notified appears only after the move."""
     inner = anchor('MOVE DINNER?', 'FRIDAY 6:06 PM', back=True, sub='With Maya and Alex')
-    inner += gut(readback('SENT', 'You asked Maya and Alex about 8:45 · Friday 5:14 PM · a proposal, not a change'), top=16)
+    inner += gut(readback('SENT', 'To Maya and Alex · Friday 5:14 PM · &ldquo;Could we make dinner 8:45?&rdquo;'), top=16)
     inner += gut(card(author_row('M', 'Maya', '6:02 PM') + quote('8:45 is fine for both of us. Alex says he&rsquo;ll be hungry either way.', 17, 24)), top=12)
     inner += gut(band_evening([('20:45', 'DINNER 8:45', 'ring')]), top=12)
     inner += gut(door('Move dinner to 8:45') + door('Leave it at 8:15', MUTE), top=8)
@@ -94,8 +94,8 @@ def p5():
     inner = anchor('NEW YORK', 'SATURDAY 5:50 PM') + ask(q='Saturday evening', ctx='Around dinner') + gut(dinner('Saturday 8:45 · the noodle counter · Maya and Alex notified'), top=12)
     changed = (f'<div class="kickm" style="color: {OX};">CHANGED · 5:40 PM</div>' + f'<div style="margin-top: 6px;">{title("The noodle counter stops taking orders at 9 tonight", 20, 25, 600)}</div>' + fn('FROM THE COUNTER&rsquo;S OWN LISTING · POSTED 5:40 PM', 6)
                + band_evening([('20:45', 'DINNER 8:45', 'ring'), ('21:00', '', 'dot')], right='LAST ORDERS 9 · CAFÉ TILL 11')
-               + K.consequence('WHAT THIS CHANGES', 'Arriving at 8:45 leaves fifteen minutes to order. The evening still works if you order the moment you sit; it does not if the hour runs long.')
-               + f'<div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid {HAIR7};">{title("Three honest ways", 16, 21, 600)}</div><div>' + prow('Keep 8:45 at the counter, order on arrival', 'YOUR DINNER AS ARRANGED · MAYA AND ALEX NEED NOTHING NEW', first=True) + prow('Leave the hour at 8:15 and keep dinner as it was', 'THE HOUR PLAYS AGAIN NEXT SATURDAY') + prow('The long table at the caf&eacute;', 'OPEN TILL 11 · NO TABLES HELD · A TABLE FOR THREE ISN&rsquo;T CONFIRMED · ASK BEFORE MOVING', last=True) + '</div>'
+               + K.consequence('WHAT THIS CHANGES', 'Arriving at 8:45 leaves fifteen minutes to order. The evening still works if you order the moment you sit; it doesn&rsquo;t if the hour runs long.')
+               + f'<div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid {HAIR7};">{title("Three honest ways", 16, 21, 600)}</div><div>' + prow('Keep 8:45 at the counter, order on arrival', 'AS ARRANGED WITH MAYA AND ALEX', first=True) + prow('Leave the hour at 8:15 and keep dinner as it was', 'THE HOUR PLAYS AGAIN NEXT SATURDAY') + prow('The long table at the caf&eacute;', 'OPEN TILL 11 · NO TABLES HELD · A TABLE FOR THREE ISN&rsquo;T CONFIRMED', last=True) + '</div>'
                + door('Keep 8:45 at the counter') + door('Ask the caf&eacute; about a table for three', MUTE))
     inner += gut(card(changed), top=12) + sect('Still on tonight') + gut(hour_unit(sup('Doors 6:45; seats confirmed Friday.'))) + sect('Instead') + gut('<div>' + film_row() + '</div>')
     return phone(inner)
@@ -124,10 +124,10 @@ def h_arrange(sent=False):
     inner += gut(place_strip('The Harbor Print Room', 'RED HOOK · TUE–SUN 11–6 · ROOMS REMADE, TO SUNDAY'), top=16)
     inner += gut(I.day_band(11, 18, [('14:00', '16:00', 'THE ROOMS', 'gold')], [('13:20', 'FERRY 1:20', 'dot')], [('start', 'SATURDAY', 'start'), ('end', 'CLOSES 6', 'end')]), top=12)
     if not sent:
-        inner += gut(card(f'<div class="kickm">TO MAYA · NOT SENT</div><div style="{SERIF} font-size: 17px; line-height: 24px; color: {INK}; margin-top: 8px;">Saturday at the Print Room, the 1:20 ferry, two o&rsquo;clock upstairs? I want the side room you wrote about.</div>'), top=16)
+        inner += gut(card(f'<div class="kickm">DRAFT TO MAYA</div><div style="{SERIF} font-size: 17px; line-height: 24px; color: {INK}; margin-top: 8px;">Saturday at the Print Room, the 1:20 ferry, two o&rsquo;clock upstairs? I want the side room you wrote about.</div>'), top=16)
         inner += gut(door('Propose Saturday to Maya') + door('Change the wording', MUTE), top=8)
     else:
-        inner += gut(readback('PROPOSED', 'To Maya · Saturday 2:00 at the Print Room · not arranged until she answers'), top=16)
+        inner += gut(readback('PROPOSED', 'To Maya · Saturday 2:00 at the Print Room · waiting on her'), top=16)
         inner += gut(door_list(['Back to Maya&rsquo;s note']), top=16)
     return phone(inner)
 H4j = [('MAKE IT SATURDAY, WITH MAYA', 'An intentional arrangement from her note: the place, a time on the band, one short proposal; the arrangement owner&rsquo;s command, not a Places planner', lambda: h_arrange(False), False), ('PROPOSED', '&ldquo;From Maya&rdquo; is her share; &ldquo;with Maya&rdquo; only once she answers; the readback says so', lambda: h_arrange(True), False), ('BACK', 'The field as it was; one proposal out; nothing arranged', lambda: field(True), True)]
@@ -139,6 +139,8 @@ def frames(js, prefix):
     return out
 def board():
     notes = [notecol('What each journey shows (§13.6, §14)', [
+        ('DECIDED, NOT DISPLAYED', N('The practical chain no longer explains itself inside the phone. &ldquo;One look, not a watch&rdquo; is shown by the door to check again; &ldquo;prepared, not sent, you send it&rdquo; is the word Draft; &ldquo;a proposal, not a change&rdquo; is the separate Move dinner door that follows her answer. Maya&rsquo;s Tuesday share reads as the pier at sunset, never &ldquo;with Maya&rdquo;, until she answers.')),
+
         ('EXPLORATION', N('Field and map are expressions of the same exploration: the question typed into the field makes the page map-led, the burden strip says what the crossing costs in movement, with the headway named and the wait left to the comparison on 08, the map page carries the same four places and the same question, the result page carries the place and Maya&rsquo;s words with two doors and no primary, and Back preserves the question, the four places and the position, marking the one opened. The map&rsquo;s geometry is illustrative, not routing. Five frames; no target exercised.')),
         ('HUMAN RECEIVING', N('From friends is a list of people&rsquo;s own words, once each, under the place each concerns. The original is enjoyed as itself; the two continuations are doors, independent, and neither is prerequisite to the other (§14.4). Branch 1 reads and returns with nothing sent. Branch 2 replies to Maya: the composer names her, the readback sits on her page, the field is unchanged. Branch 3 asks Vesper privately: the header says it is private and what it is about; the answer draws the crossing; Maya is never a recipient. No combined completion state is drawn. The requirements live here, not in the phone (§14.3).')),
         ('PRACTICAL CONTINUATION (REVIEW §P8)', N('The chain is complete now. Seats for the hour were unconfirmed, so the possibility shows that as the decisive constraint (the hour faint on the band) and offers a seat check before any rearrangement; the existing dinner is a door of its own at every step. Once seats are posted, the proposal is grounded and short; asking is the primary. The send, Maya&rsquo;s answer and the move share one page because the person acts once; notified appears only after the move. On Saturday the change is re-read against the whole evening: 8:45 leaves fifteen minutes to order, so three honest ways are offered, and the caf&eacute; is described as what it is, open late with no table for three confirmed, never as a workable dinner. The person keeps the counter; nothing moves on an unconfirmed table.'))], w=640),

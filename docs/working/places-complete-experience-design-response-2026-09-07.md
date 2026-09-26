@@ -728,3 +728,38 @@ The review doc's current assignment is still the September 12 coverage assignmen
 **Published state checked.** Before this pass, the served board 10 was captured and inspected: all thirteen original frames, the chooser, the marker ring and the 1.3× frame render with the runtime resolving them. The earlier truncation of the local working copy never reached the project.
 
 **Not claimed.** Narrow and larger-text readings are drawn, not tested on devices. Selection, scope and scroll continuity across a real provider handoff remain native verification.
+
+## 43. Copy pass and photo or nothing (September 26)
+
+Founder-approved follow-up to a review of Places against rulings that arrived after the September 11–21 passes. Two changes to every board, plus two cleanups. No composition, instrument or interaction changed. The pre-pass boards are kept in the project under `before-copy-pass/`.
+
+**Why.** The September 20–21 voice ruling (recorded against the Multiplayer project, with the Voice Canon's object-first rule and Editorial Canon §13.3) says the phone renders the object and never narrates the product: explanations addressed to the reviewer stay outside the phone, and mono lines carry facts and sources. Places was written before that ruling. Entity's accepted imagery ruling is a photograph or nothing, and the founder withdrew Places' representative photographs on September 7, so a place without a photograph has no plate.
+
+**Measured with the Multiplayer copy lint, adapted to Places' markup** (boards 00–04 and 08–10; 07 has no phone frames).
+
+| Measure | Before | After |
+|---|---|---|
+| Lines that narrate the product | 5 | 1, the deliberately mistaken frame 03.7 |
+| Mono lines stating what a source did not do | 3 | 0 |
+| Product lines left uncontracted | 25 | 8, all in the Harbor Book's own prose or the mistaken frame |
+| In-phone words | 17,666 | 16,609 |
+| Mono lines carrying a time, day, price, distance, frequency or source | not measured | 545 of 646 |
+
+The mono share of in-phone words stays about a fifth. That is expected: in Places the mono lane is mostly the facts under each place name (hours, prices, walking times), which the rule allows. What left were lines like "The scope and the question are two chips · either comes off on its own", "Asks Vesper, not the workshop · Maya is not a recipient", "Prepared, not sent · you send it", "a proposal, not a change" and "Nothing is invented to fill the gap, and nothing asks you to". Each board's notes now carry them under **Decided, not displayed** (02, 03, 08, 10).
+
+**Rewritten, by board.**
+
+- **01, 09, 10.** "From Maya's share, kept · not yet arranged with her" becomes "Kept from Maya's share · an idea so far"; the arrangement state in ordinary words.
+- **02.** Maya's Tuesday share read "The pier at sunset · kept, with Maya", which broke the September 8 rule that it's "with Maya" only after she answers; it now reads "Sunset Park". Sam's note was dated "not this Saturday"; it's "last Saturday". The practical chain says "Draft to Maya and Alex", "Seats not posted yet", and the sent readback quotes the question; the door to check again and the separate Move dinner door carry what the old lines explained.
+- **03.** 03.8 opens on the fact, "The stairs were your father's. Today stays level.", and names Sunday as the last day for the rooms upstairs. The unavailable field dates its facts ("as of Thursday") instead of saying nothing is invented. 03.9's record says "from your plans".
+- **04.** The kept possibility reads "Kept from Maya's share", not "Kept, with Maya".
+- **08.** The context line reads "From Maya's share · an idea for Saturday". Trace lines no longer say "not yet visited" or that a keeping stays in the record; a trace with no visit simply has none.
+- **10.** Seven explanatory mono lines are gone. The provider handoff says "Opens Maps at Van Brunt Street. The route stays in Maps." 10.A5 had contradicted itself, saying nothing was quiet at six and then naming a quiet walk; it now leads with "At six on a Friday, only the bench walk is quiet."
+
+**Photo or nothing.** The shared photo fixtures (PH-01 to PH-07) are personal pictures, none of a Places place, so no plate is replaced by a photograph. Page frames on 02, 03, 04 and 08 now open on their sentence and register; the field's shelf is text tiles; a reading without its own image opens on its title. The board footer now reads "A place without a photograph has no plate". The shared photo set could still be used later if a real picture of a Places place is approved.
+
+**Cleanups.** American spelling throughout (harbor, color, behavior). The retired two-curve day charts and the helper only they used left `instruments.py` for `archive/generators/instruments_retired.py`, with the two generators and two tests that still called them; the Stage 2 brief had flagged their approximated sun and tide curves. 01's notes no longer describe the retired chart.
+
+**Not changed.** The instruments, maps and compositions; people's words; the Harbor Book's quoted prose; captions outside the phones, which still explain decisions to the reviewer. The Stage 2 instrument migration waits for its selection checkpoint, and the shared place collection from the September 22 multiplayer brief is not assigned to Places.
+
+**Verification.** All eleven boards rebuilt from the generators, measured from the document and pushed. The lint was run before and after. Four changed frames were rendered and read locally; the local render drops the shared stylesheet's number discs and mono fonts, which the published boards resolve.
