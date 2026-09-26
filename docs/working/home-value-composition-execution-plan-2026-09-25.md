@@ -31,10 +31,15 @@ headline “The Palisades began as magma between older rock layers”
 Ask-to-result-to-return workflow through an explicit, provider-free Source
 request. Revision `bf96a00f0` aligns received originals with the contract's
 authored-share containment: provenance, material and the exact-open action now
-read as one card. Focused checks and native captures pass for these bounded
-paths; their fixture/synthetic data do not establish production supply. The
-full app suite, accepted full-scroll design-reference alignment,
-production/recurring editorial supply, and combined verification remain open.
+read as one card. Revision `c012b2724` binds the Home practical/open-now
+rehearsal to the lane-assigned API and iOS simulator, with explicit cleanup
+readback; `758f15460` requires the exact lane API origin and manifest-assigned
+simulator. Its native path now proves practical suggestion → exact venue → same
+Home unit return on the recovered implementation. Focused checks and native
+captures pass for these bounded paths; their fixture/synthetic data do not
+establish production supply. The full app suite, accepted full-scroll
+design-reference alignment, production/recurring editorial supply, and
+combined verification remain open.
 
 ## Outcome and scope
 
@@ -139,7 +144,7 @@ This is a code-path trace, not production-supply or native-visual acceptance.
 | --- | --- | --- |
 | Ordinary day / available time | Experience Graph, saves, receipts, automatic Places context and current public Place Sources, plus an optional current prepared Source result → bounded Home portfolio and shared admission → exact Place/Source/owner door and semantic return token | The read path is implemented and bounded; a Home miss does not invoke a provider or enqueue generation. Deeper Source work requires the existing explicit “Ask Vesper” gesture. An eligible fixed cold/quiet demonstration may coexist with the automatic `places_context` navigation door; other owner content and contextual-Places value still take precedence, and existing retirement, feature, receipt, and signing-secret gates are unchanged. A deeper break was found: the sample had no shared value manifest and was withheld by common admission. Backend revision `bf1e5dadf` now gives this fictional, deterministic sample an explicit low-burden value contract, a bounded `moment.read` dependency (accepting partial availability), and a six-hour expiry. Its unit is covered through candidate construction, shared value admission, and Home selection. The lane-local API returned `home.sample-ticket-demo.v1` as `now_sample_demonstration`; `candidate_manifest_missing` disappeared. This used a synthetic development actor, not a real person or production data. Two bounded `conditions_unavailable` Moment degradations remained, and Home posture was `quiet`. This proves local API composition only—not recurring supply, production coverage, or design parity. |
 | Evening with other people | Relationships supplies exact addressed Place notes and individually authorized original deliveries → Home composes a same-Place note with eligible world material, or an attributed multi-note region; original previews keep per-delivery grants → Place or original reader revalidates owner state and returns through Home | Recovered human/Place composition is present. Original media is projected as separate deliveries (maximum two candidates in the current Home adapter); the reader has no reply affordance. No event/photo-set grouping or reply policy is inferred. The newer Home 18 K/L scroll is useful design input for a lead photo and shape-preserving remainder, but cannot create a shared-set identity from individual grants. |
-| Healthy live/travel situation | Experience Graph and Plan/proposal owners establish Live; Places current context can supply separately evidenced practical alternatives → Live Home selector keeps independent possibilities eligible; Urgent alone suppresses most support → owner-specific destination/action and exact return | Live is not treated as urgent, and functional selection is covered by the focused backend suite. Provider-backed freshness, recurring generated supply, and native presentation against the selected design remain separate unproven claims. |
+| Healthy live/travel situation | Experience Graph and Plan/proposal owners establish Live; Places current context can supply separately evidenced practical alternatives → Live Home selector keeps independent possibilities eligible; Urgent alone suppresses most support → owner-specific destination/action and exact return | Live is not treated as urgent, and functional selection is covered by the focused backend suite. A real-Postgres native rehearsal now opens a supported `place.open_now` Home possibility, the exact venue, and returns to the same Home unit. Provider-backed freshness, recurring generated supply, and native presentation against the selected design remain separate unproven claims. |
 
 The first H1 app slice adds the exact owner-read share time to a received
 original's Home attribution line (`MAYA · SHARED SAT, 4:25 PM` in the
@@ -921,3 +926,32 @@ presentation/interaction evidence, not real-owner readback, actual-photo
 rendering, full-scroll parity, or production acceptance. The Home design check
 has two first-viewport reference pairs but reports `externalCanonVerified=0`;
 accepted full-scroll visual parity remains open.
+
+#### September 26 — Practical Home possibility → exact venue → return
+
+App revisions `c012b2724` and `758f15460` update the existing practical
+rehearsal runner to
+read its API port and reserved simulator from `.workspace-lane.json`, refuse an
+unbooted assigned device, pass that exact UDID to Maestro, reject a different
+API origin, and check that fixture cleanup reports both deletion and
+restoration of the owner's prior Home location. A short runner-contract test
+retains these requirements and the existing open-now/venue/return assertions.
+
+On the lane's merged backend `debbf7b1e` and product app `bf96a00f0`, with the
+runner changes later committed as `c012b2724` and `758f15460`, the native flow
+`80-home-practical-open-now` passed 1/1 on its assigned iPhone 16 Pro (iOS
+18.2; Xcode 26.5; Maestro 2.6.1). The first attempt used Metro without the
+five governed-root flags from the Home-root contract and correctly opened the
+legacy Plans shell; it failed before exercising the target behavior. Restarting
+Metro with the documented internal rehearsal posture fixed the environment,
+and the repeated runs passed: Home exposed the supported `place.open_now` unit,
+its destination opened the exact provisioned venue, Back returned to the same
+Home unit, and cleanup confirmed row deletion and Home-location restoration.
+The runs used only lane Postgres and a synthetic QA actor; `AI_MODE=off` and
+`WEB_SEARCH_MODE=off` prevented external generation/search. The runner test
+(`node --test scripts/maestro/home-practical-open-now.test.mjs`), `bash -n` on
+the runner, targeted ESLint, and `git diff --check` passed. The Maestro debug
+record confirms both screenshot commands ran, but the successful debug folder
+did not retain PNGs; this is functional integration evidence, not a reviewed
+visual-design verdict, real-provider freshness, production venue coverage, or
+recurring supply. Full-scroll design acceptance and `make verify` remain open.
