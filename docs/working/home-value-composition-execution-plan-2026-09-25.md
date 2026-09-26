@@ -18,14 +18,16 @@ Status: in progress in the coordinated `codex/home-value-delivery` lane. The
 recovered workspace/backend/app baseline is merged as recorded in the
 [program roadmap](vesper-program-roadmap.md). This package owns the current
 Home implementation. App refinements are committed locally through
-`58f53d3fb`: exact share-time attribution (`66e2c3c`, `122f4d2`, `e0bf0a7`),
+`42cba2d30`: exact share-time attribution (`66e2c3c`, `122f4d2`, `e0bf0a7`),
 exact Home return (`8fc767355`), reduced repeated section/canonical-outcome
 copy (`1b23ed891`, `a963fa0b9`), a recipient-only original-material mock
 transport plus a dedicated Home scenario (`2840a2420`), an accessibility fix
-for the original note (`7e7108d9e`), and original-owner polling lifecycle
-handling (`58f53d3fb`). Focused tests, typecheck, lint, the seven-posture native
-fixture capture, and recipient/default native Home flows pass. The full app
-suite, design-reference acceptance and combined verification remain open.
+for the original note (`7e7108d9e`), original-owner polling lifecycle
+handling (`58f53d3fb`), and a source-bound geological comparison in Quiet Home
+with its duplicate connection card removed (`42cba2d30`). Focused checks and
+fixture-backed native captures pass for the affected paths. The full app suite,
+accepted design-reference alignment, real-owner editorial supply, and combined
+verification remain open.
 
 ## Outcome and scope
 

@@ -74,10 +74,13 @@ photo scenario and fixes native image sizing to preserve the original aspect
 ratio, with a Home → exact reader → Home return capture. App revision
 `6489ef4c4` removes a redundant alternatives label and makes the polish runner
 cold-start through the assigned Metro URL; its Available fixture capture passed
-1/1 at `20260926T195030Z-home-root`. Focused checks and native evidence are
-recorded in the active H1 plan; accepted design-reference
-parity, real-owner photo-media readback, recurring photo supply, the full
-verification gate and release readiness remain open.
+1/1 at `20260926T195030Z-home-root`. The latest app revision, `42cba2d30`,
+replaces Quiet Home's self-referential cliff match with a source-bound geological
+comparison and removes its duplicate connection card; it has focused regression
+coverage and a fixture-backed native capture. Accepted design-reference parity,
+real-owner editorial/photo readback, recurring content supply, the full
+verification gate and release readiness remain open. Detailed evidence is
+recorded in the active H1 plan.
 A seven-posture fixture capture and the single Returned recapture are both
 fixture-backed, not reference parity or real-owner acceptance. The new
 Available capture is also fixture-backed and does not render the changed
@@ -127,7 +130,7 @@ forward or reopen the repair without new evidence.
 | Order / state | Package and accountable owner | Outcome / exit |
 | --- | --- | --- |
 | 0 — complete | **Recovered candidate baseline**, merged through #36 / #233 / #201 | Reuse recovered Home/Places and app behavior; original protections restored. The workspace checkout/reliability gate remains a pre-publication evidence gap, not a reason to reopen or bypass the merged PRs |
-| 1 — active | **H1: Complete Home value delivery**, `codex/home-value-delivery` lane owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md): close supply/selection/presentation/continuation gaps across ordinary, social and healthy live situations; include accepted native reference alignment. Social material has exact recipient-local share time (`66e2c3c`) and a mock-only, aspect-preserving photo presentation/return path (`957fddde2`); app `6489ef4c4` removes redundant alternatives hierarchy and repairs cold-start QA. Package exit is not yet met |
+| 1 — active | **H1: Complete Home value delivery**, `codex/home-value-delivery` lane owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md): close supply/selection/presentation/continuation gaps across ordinary, social and healthy live situations; include accepted native reference alignment. Social material has exact recipient-local share time (`66e2c3c`) and a mock-only, aspect-preserving photo presentation/return path (`957fddde2`); `6489ef4c4` removes redundant alternatives hierarchy and repairs cold-start QA; `42cba2d30` makes Quiet Home's geology connection substantive. Package exit is not yet met |
 | 2 — select from H1's actual bottleneck, not tab order | **Recurring supply / Places depth / Life continuity**, same owner by default | Choose the specific missing producer connection, spatial depth, refinding or permitted later-use path that most improves the delivered experience; do not activate three standing lanes |
 | Cross-cutting within each package | **Practical help, live-engine behavior and production cost**, package owner | Current facts and permitted context materially change an appropriate result; freshness, authority, degradation, latency and generation costs stay explicit |
 | Before publishing each integrated package / before cutover | **Landing and retirement**, implementation owner with coordination review | Review combined changes, run required gates, publish only with authorization, record landed revisions and disposition the branch/worktree; migrations, replacement retirement and release retain their separate gates |
