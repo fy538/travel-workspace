@@ -17,10 +17,10 @@ depends_on:
 Status: in progress in the coordinated `codex/home-value-delivery` lane. The
 recovered workspace/backend/app baseline is merged as recorded in the
 [program roadmap](vesper-program-roadmap.md). This package owns the current
-Home implementation; the first app slice is committed locally as `66e2c3c`.
-Focused tests, typecheck and a seven-posture native fixture capture pass; the
-full app suite, design-reference acceptance and combined verification remain
-open.
+Home implementation; the share-time slice and follow-up regression/correction
+are committed locally as `66e2c3c`, `122f4d2`, and `e0bf0a7`. Focused tests,
+typecheck and a seven-posture native fixture capture pass; the full app suite,
+design-reference acceptance and combined verification remain open.
 
 ## Outcome and scope
 
@@ -128,7 +128,8 @@ recipient's local timezone). It labels this as sharing time, not photo-capture
 time; it adds no inference, persistence, API field, generation, or reply
 obligation. This addresses the selected Home study's lightweight temporal
 context while preserving the existing delivery grant and one-delivery rendering
-boundary.
+boundary. If the device timezone is invalid, the visible fallback now labels
+the time as UTC rather than implying it is local.
 
 The `home-root` QA surface still has no registered screenshot/design-reference
 manifest. The newer `vesper-home` Board 18 is an additive extension of the
@@ -251,10 +252,14 @@ all seven registered fixture postures (Available, Planning, Live, Returned,
 Quiet, Cold, Urgent); their scripted visibility/assertion flows completed.
 The screens were reviewed against the active Home contract, but the manifest
 still has `designRefs: []`, so this is not Claude-design parity or final
-product-quality acceptance. These fixture postures do not contain the received
-original whose new share-time line was changed; that behavior has focused
+product-quality acceptance. `npm run qa:design:check -- home-root` confirms
+that Home remains doctrine-only, and `HOME_SURFACES_CANON_DIR` is unset in this
+shell. These fixture postures do not contain the received original whose new
+share-time line was changed; that behavior has focused
 formatter/component/renderer coverage but no dedicated native capture or live
-owner-data readback.
+owner-data readback. The controlled real-owner original/full-scroll rehearsal
+was not run: `QA_ALLOW_DATABASE`, `QA_USER_ID`, and `DATABASE_URL` were unset,
+so no database was changed.
 
 The combined `make verify` gate remains unrun. No production data, durable
 backend writes, release flag changes or publication were involved. The Expo
