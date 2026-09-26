@@ -78,8 +78,12 @@ cold-start through the assigned Metro URL; its Available fixture capture passed
 replaces Quiet Home's self-referential cliff match with a source-bound geological
 comparison and removes its duplicate connection card; it has focused regression
 coverage and a fixture-backed native capture. Current app revision
-`7d7d5b762` tightens the headline's geological precision; the native capture
-predates that copy-only refinement. Accepted design-reference parity,
+`7d7d5b762` tightens the headline's geological precision; a post-commit
+Quiet-flow capture (`20260926T204547Z-home-root`) now passes on that revision,
+including an exact headline assertion and the zero-demand/page-close checks.
+This remains frontend-fixture evidence; the lower-page screenshot does not
+establish first-viewport design parity or real content supply. Accepted
+design-reference parity,
 real-owner editorial/photo readback, recurring content supply, the full
 verification gate and release readiness remain open. Detailed evidence is
 recorded in the active H1 plan.

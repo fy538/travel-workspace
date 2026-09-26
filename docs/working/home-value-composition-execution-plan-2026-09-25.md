@@ -739,6 +739,36 @@ XCTest driver during mock-readiness, before the product flow, and was
 interrupted; it is not product-failure evidence and predates the headline
 refinement.
 
+#### September 26 — Post-commit Quiet Home native acceptance
+
+The headline refinement now has native evidence on the committed app revision
+`7d7d5b762`. Run `20260926T204547Z-home-root` passed the registered
+`polish/home-root-quiet` flow 1/1 on the lane iPhone 16 Pro. The flow reached
+the Home v2 screen, asserted the exact revised Palisades headline, confirmed
+the Quiet state has no dominant demand card, and reached the honest
+`NOTHING ELSE WAITS` close. Its final screenshot is
+`travel-app/.maestro/runs/20260926T204547Z-home-root/screenshots/full/home-root-quiet.png`;
+it shows the lower page at the close, while the preceding headline assertion
+proves the copy was present before the flow scrolled down. This is fixture
+rendering/interaction evidence, not production sourcing or recurring supply.
+
+The first post-commit attempt (`20260926T204154Z-home-root`) opened the legacy
+Plans screen because Metro was started without the internal four-root rollout
+flags. It failed the expected `home-v2-screen` assertion before product
+content was exercised. Restarting the lane Metro with the five local rehearsal
+flags enabled and pointing Maestro to `http://192.168.86.189:53177` corrected
+the setup; no app code or committed rollout default changed. The lane-specific
+Home design check passed with two reference pairs, but the external canonical
+bundle was not verified and the quiet screenshot does not include the
+reference-matched first viewport.
+
+Focused continuation checks on `7d7d5b762` passed 5 suites / 49 tests across
+Home source inspection, source-result presentation, Home routing, return
+tracking, and strict return resolution; `npm run typecheck` passed. These
+checks establish the client-side contract, not a real owner-backed Source
+workflow. A disposable database and its required owner-path rehearsal remain
+unavailable in this lane; do not substitute the mock flow for that evidence.
+
 This remains fixture-only evidence: it proves the composition can be rendered
 and understood in the native Home surface, not that live owner data or a
 production generation service will discover, source, refresh, or reliably
