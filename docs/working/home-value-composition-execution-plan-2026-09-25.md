@@ -18,16 +18,18 @@ Status: in progress in the coordinated `codex/home-value-delivery` lane. The
 recovered workspace/backend/app baseline is merged as recorded in the
 [program roadmap](vesper-program-roadmap.md). This package owns the current
 Home implementation. App refinements are committed locally through
-`42cba2d30`: exact share-time attribution (`66e2c3c`, `122f4d2`, `e0bf0a7`),
+`7d7d5b762`: exact share-time attribution (`66e2c3c`, `122f4d2`, `e0bf0a7`),
 exact Home return (`8fc767355`), reduced repeated section/canonical-outcome
 copy (`1b23ed891`, `a963fa0b9`), a recipient-only original-material mock
 transport plus a dedicated Home scenario (`2840a2420`), an accessibility fix
 for the original note (`7e7108d9e`), original-owner polling lifecycle
-handling (`58f53d3fb`), and a source-bound geological comparison in Quiet Home
-with its duplicate connection card removed (`42cba2d30`). Focused checks and
-fixture-backed native captures pass for the affected paths. The full app suite,
-accepted design-reference alignment, real-owner editorial supply, and combined
-verification remain open.
+handling (`58f53d3fb`), a source-bound geological comparison in Quiet Home
+with its duplicate connection card removed (`42cba2d30`), and the more precise
+headline “The Palisades began as magma between older rock layers”
+(`7d7d5b762`). Focused checks and fixture-backed native captures pass for the
+affected content path; the native capture predates the headline refinement.
+The full app suite, accepted design-reference alignment, real-owner editorial
+supply, and combined verification remain open.
 
 ## Outcome and scope
 
@@ -695,7 +697,9 @@ remain unverified.
 
 App commit `42cba2d30` replaces the mock Quiet-state cliff card's relational
 placeholder (“Sorrento's cliff has a New York counterpoint”) with a concrete
-geological contrast: “Those Hudson cliffs cooled underground.” The comparison
+geological contrast. A follow-up copy correction in `7d7d5b762` makes the title
+“The Palisades began as magma between older rock layers,” avoiding the
+misleading implication that the cliffs themselves cooled underground. The comparison
 explains that a CNR study examined a tuff cliff at one Sorrento Peninsula site,
 while the Palisades expose a diabase sill formed by magma intruding between
 older layers and cooling below the surface. The card states the limit of the
@@ -711,7 +715,7 @@ substantive geology composition and the existing recorded trip outcome—with no
 input actions. This is a presentation/content fixture change; no API contract,
 backend producer, or live content-generation behavior changed.
 
-Verification on app commit `42cba2d30`: the focused Home/projection suites
+Verification on app commit `7d7d5b762`: the focused Home/projection suites
 passed (3 suites, 38 tests); `npm run typecheck` passed; targeted ESLint passed;
 `node scripts/polish-qa/validate-scenario-ids.mjs` passed (31 registered
 flows); and `git diff --check` passed. The workspace `python3
@@ -723,14 +727,17 @@ Native boundary: the Quiet flow passed 1/1 on the lane iPhone 16 Pro in run
 That capture was taken from the functional working-tree diff immediately
 before it was committed as `42cba2d30`; its generated manifest therefore
 records the preceding HEAD `6489ef4c4`, not the later commit. The only edit
-between capture and commit restored unrelated test formatting to its original
-form. Do not treat the manifest SHA as committed-revision evidence. An earlier
+between capture and that commit restored unrelated test formatting to its
+original form. It shows the comparison body but is scrolled below the title, so
+it does not visually prove the final headline in `7d7d5b762`. Do not treat the
+manifest SHA as committed-revision evidence. An earlier
 capture attempt (`20260926T201821Z-home-root`) was setup-only failure: Metro
 was bound to localhost/IPv6 while the simulator tried `127.0.0.1`; restarting
 Metro on the lane-reachable interface produced the passing capture. A later
 post-commit repeat (`20260926T202325Z-home-root`) stalled in Maestro's iOS
 XCTest driver during mock-readiness, before the product flow, and was
-interrupted; it is not product-failure evidence.
+interrupted; it is not product-failure evidence and predates the headline
+refinement.
 
 This remains fixture-only evidence: it proves the composition can be rendered
 and understood in the native Home surface, not that live owner data or a
