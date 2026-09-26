@@ -258,11 +258,16 @@ shell. These fixture postures do not contain the received original whose new
 share-time line was changed; that behavior has focused
 formatter/component/renderer coverage but no dedicated native capture or live
 owner-data readback. The controlled real-owner original/full-scroll rehearsal
-was not run: `QA_ALLOW_DATABASE`, `QA_USER_ID`, and `DATABASE_URL` were unset,
-so no database was changed.
+was not run: `QA_ALLOW_DATABASE`, `QA_USER_ID`, and `DATABASE_URL` were unset.
+I installed the lane's ignored Python 3.13 dependencies and brought up its
+isolated Postgres/Qdrant services; migrations completed, but API startup failed
+because `ANTHROPIC_API_KEY` is required by the current startup contract. The
+lane containers were stopped without deleting their named volumes. No QA
+account or delivery fixture was created.
 
-The combined `make verify` gate remains unrun. No production data, durable
-backend writes, release flag changes or publication were involved. The Expo
+The combined `make verify` gate remains unrun. Only the isolated lane database
+schema was migrated; no product-data fixture, production data, release flag
+change or publication was involved. The Expo
 rehearsal flags were local to the lane; the native build required disabling the
 local Sentry source-map upload because no Sentry organization was configured.
 `npm ci` reported 20 audit vulnerabilities (1 low, 19 moderate); no dependency
