@@ -69,9 +69,12 @@ the projection changed, Home retains strict recomposition. The prior slice,
 `1b23ed891`, removes a redundant editorial kicker below named Home sections but
 keeps it for a standalone dominant reading. The latest slice, `a963fa0b9`, also
 removes the generic canonical-outcome basis caption while retaining its actual
-value and Life continuation. Focused checks and the Returned fixture capture
-are recorded in the active H1 plan; design-reference acceptance, real-owner
-readback, the full verification gate and release readiness remain open.
+value and Life continuation. App revision `957fddde2` adds a QA-only received-
+photo scenario and fixes native image sizing to preserve the original aspect
+ratio, with a Home → exact reader → Home return capture. Focused checks and
+native evidence are recorded in the active H1 plan; accepted design-reference
+parity, real-owner photo-media readback, recurring photo supply, the full
+verification gate and release readiness remain open.
 A seven-posture fixture capture and the single Returned recapture are both
 fixture-backed, not reference parity or real-owner acceptance. Do not treat the
 coordinated lane as ready to publish.
@@ -117,7 +120,7 @@ forward or reopen the repair without new evidence.
 | Order / state | Package and accountable owner | Outcome / exit |
 | --- | --- | --- |
 | 0 — complete | **Recovered candidate baseline**, merged through #36 / #233 / #201 | Reuse recovered Home/Places and app behavior; original protections restored. The workspace checkout/reliability gate remains a pre-publication evidence gap, not a reason to reopen or bypass the merged PRs |
-| 1 — active | **H1: Complete Home value delivery**, `codex/home-value-delivery` lane owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md): close supply/selection/presentation/continuation gaps across ordinary, social and healthy live situations; include accepted native reference alignment. The first social-material refinement now shows exact recipient-local share time on a currently revalidated original (`66e2c3c`); package exit is not yet met |
+| 1 — active | **H1: Complete Home value delivery**, `codex/home-value-delivery` lane owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md): close supply/selection/presentation/continuation gaps across ordinary, social and healthy live situations; include accepted native reference alignment. Social material now has exact recipient-local share time (`66e2c3c`) and a mock-only, aspect-preserving photo presentation/return path (`957fddde2`); package exit is not yet met |
 | 2 — select from H1's actual bottleneck, not tab order | **Recurring supply / Places depth / Life continuity**, same owner by default | Choose the specific missing producer connection, spatial depth, refinding or permitted later-use path that most improves the delivered experience; do not activate three standing lanes |
 | Cross-cutting within each package | **Practical help, live-engine behavior and production cost**, package owner | Current facts and permitted context materially change an appropriate result; freshness, authority, degradation, latency and generation costs stay explicit |
 | Before publishing each integrated package / before cutover | **Landing and retirement**, implementation owner with coordination review | Review combined changes, run required gates, publish only with authorization, record landed revisions and disposition the branch/worktree; migrations, replacement retirement and release retain their separate gates |

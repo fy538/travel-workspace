@@ -505,3 +505,58 @@ This closes the observed polling regression for the reader and its shared
 material lifecycle. It is local synthetic-owner evidence only; it does not
 change the separate Home supply, recurrence, visual-reference, or production
 acceptance gaps. `make verify` remains unrun.
+
+#### September 26 — Native received-photo presentation
+
+App revision `957fddde2` adds a QA-only Home scenario for one individually
+addressed photo original, backed by the repository's existing local dogfood
+image. The registered native flow captures Home, opens that exact original,
+and returns to the same Home context. The capture exposed and corrected a
+presentation defect: previews had a fixed-height image frame that left blank
+side gutters around landscape media. Image layout now uses the loaded image's
+intrinsic aspect ratio; tall images are height-capped without cropping. The
+fresh iPhone 16 Pro capture shows the landscape photo filling the Home content
+width, the reader preserving its proportions, and the original remaining
+visible after return.
+
+This is presentation and navigation evidence for a mock persona using a local
+dogfood-media route. The mock has no private owner token, so its native flow
+uses the visible “Open original” action; it does not exercise authorized image
+tap-through. This does not prove owner-backed S3/private-media reads, recurring
+photo supply, album/set semantics, replies, production data, or Claude-design
+parity. Home still has no accepted visual-reference manifest, and `make verify`
+remains unrun.
+
+```sh
+(cd travel-app && npm test -- --runInBand --runTestsByPath \
+  __tests__/components/ReceivedOriginalSurface.test.tsx \
+  __tests__/screens/original-delivery.test.tsx \
+  __tests__/utils/api/homeOriginalDelivery.mock.test.ts \
+  __tests__/conventions/cardContract.test.ts \
+  __tests__/utils/homeRootV2PostureFixtures.test.ts)
+(cd travel-app && npm run typecheck)
+(cd travel-app && npx eslint \
+  constants/personas/index.ts constants/mocks/rootProjectionV2.ts \
+  utils/api/mock/originalDeliveries.ts scripts/polish-qa/surfaces.mjs \
+  scripts/maestro/home-original-delivery-photo.test.mjs \
+  __tests__/utils/api/homeOriginalDelivery.mock.test.ts \
+  __tests__/utils/homeRootV2PostureFixtures.test.ts \
+  __tests__/conventions/cardContract.test.ts \
+  components/inbound/OriginalMaterialView.tsx \
+  __tests__/components/ReceivedOriginalSurface.test.tsx)
+(cd travel-app && node scripts/maestro/normalize-metadata.mjs)
+(cd travel-app && node scripts/maestro/home-original-delivery-photo.test.mjs)
+(cd travel-app && node scripts/polish-qa/validate-scenario-ids.mjs)
+(cd travel-app && VESPER_METRO_URL=http://127.0.0.1:53177 \
+  node scripts/polish-qa/run-polish-qa.mjs home-root \
+  --flow=polish/home-root-social-photo)
+```
+
+The focused tests passed (5 suites, 155 tests), typecheck passed, Maestro
+metadata validated (386 flows), the photo-flow contract test passed, and
+scenario validation passed (`registered=31`). Targeted ESLint reported zero
+errors and three warnings in the touched persona/card-contract files. The
+native flow completed with all three captures (`home-root-social-photo`, its
+reader, and its return) on the lane-assigned iPhone 16 Pro. `git diff --check`
+passed before commit. These checks do not replace the full app suite or the
+coordinated `make verify` gate.
