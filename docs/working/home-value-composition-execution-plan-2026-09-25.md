@@ -688,3 +688,51 @@ passed with 31 registered flows; `qa:design:check -- home-root` passed with one
 manifest and two reference pairs. `git diff --check` passed. The full app suite,
 `make verify`, accepted visual parity, real-owner readback and release readiness
 remain unverified.
+
+#### September 26 — Quiet Home: a sourced connection with actual explanatory value
+
+App commit `42cba2d30` replaces the mock Quiet-state cliff card's relational
+placeholder (“Sorrento's cliff has a New York counterpoint”) with a concrete
+geological contrast: “Those Hudson cliffs cooled underground.” The comparison
+explains that a CNR study examined a tuff cliff at one Sorrento Peninsula site,
+while the Palisades expose a diabase sill formed by magma intruding between
+older layers and cooling below the surface. The card states the limit of the
+Sorrento evidence explicitly: one study site does not characterize every cliff
+on the peninsula. Sources consulted: [CNR institutional study](https://iris.cnr.it/handle/20.500.14243/330594)
+and [Palisades Interstate Park geology](https://njpalisades.org/nature/).
+
+The fixture now carries comparison anatomy and a structured composition brief
+with source-bound claims, an explicit uncertainty note, and a visible
+source-owner trust line. It removes the second Quiet card that merely repeated
+that Vesper had connected the two cliffs. Quiet now has two units—the
+substantive geology composition and the existing recorded trip outcome—with no
+input actions. This is a presentation/content fixture change; no API contract,
+backend producer, or live content-generation behavior changed.
+
+Verification on app commit `42cba2d30`: the focused Home/projection suites
+passed (3 suites, 38 tests); `npm run typecheck` passed; targeted ESLint passed;
+`node scripts/polish-qa/validate-scenario-ids.mjs` passed (31 registered
+flows); and `git diff --check` passed. The workspace `python3
+scripts/check_docs.py --all` check passed before this receipt was added.
+
+Native boundary: the Quiet flow passed 1/1 on the lane iPhone 16 Pro in run
+`20260926T202128Z-home-root`; screenshot:
+`travel-app/.maestro/runs/20260926T202128Z-home-root/screenshots/full/home-root-quiet.png`.
+That capture was taken from the functional working-tree diff immediately
+before it was committed as `42cba2d30`; its generated manifest therefore
+records the preceding HEAD `6489ef4c4`, not the later commit. The only edit
+between capture and commit restored unrelated test formatting to its original
+form. Do not treat the manifest SHA as committed-revision evidence. An earlier
+capture attempt (`20260926T201821Z-home-root`) was setup-only failure: Metro
+was bound to localhost/IPv6 while the simulator tried `127.0.0.1`; restarting
+Metro on the lane-reachable interface produced the passing capture. A later
+post-commit repeat (`20260926T202325Z-home-root`) stalled in Maestro's iOS
+XCTest driver during mock-readiness, before the product flow, and was
+interrupted; it is not product-failure evidence.
+
+This remains fixture-only evidence: it proves the composition can be rendered
+and understood in the native Home surface, not that live owner data or a
+production generation service will discover, source, refresh, or reliably
+produce this kind of connection. Real-owner selection, source-link behavior,
+recurring supply, the full app suite, `make verify`, visual parity, and release
+readiness remain unverified.
