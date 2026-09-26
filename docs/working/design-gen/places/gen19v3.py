@@ -9,7 +9,7 @@ notes = S_('notes_col.html')
 UNK_ROOM = 'Whether the exhibition is ticketed hasn&rsquo;t been confirmed.'; UNK_HOUR = 'Seats left for this Saturday haven&rsquo;t been confirmed.'
 MAYA_ROOM = 'The side room was my favorite. Go on a weekday, it was empty.'; PRIYA_PIGEONS = 'The pigeons at the market have a system. I have watched it for twenty minutes.'
 FLOOD = lambda h=150: I.section([(0, 0.6), (34, 0.6), (34, 1.2), (60, 1.2)], 0.9, [(2, 0.68, 'THE PIER · CREEK BED', 'start', INK), (36, 1.3, 'THE STREET · SILL 1911', 'start', INK), (2, 0.96, 'HARBOR · HIGH WATER', 'start', WATER)], scale_m='m', h=h, zmax=1.42)
-SHELF = [('The noodle counter', 'Hand-pulled at the counter', 'CASH'), ('The lunch counter on Columbia Street', 'One plate a day · standing room', 'TILL 4'), ('The reading room at the branch library', 'Long tables, lamps, quiet', 'NO ONE ASKING'), ('The long table at the caf&eacute;', 'One communal table', 'ROOM FOR STRANGERS'), ('The waterfront loop', 'Five kilometres, flat', 'SHADED AFTER 2'), ('The old ferry waiting room', 'Benches, the harbor', 'USUALLY NOBODY')]
+SHELF = [('The noodle counter', 'Hand-pulled at the counter', 'CASH'), ('The lunch counter on Columbia Street', 'One plate a day · standing room', 'TILL 4'), ('The reading room at the branch library', 'Long tables, lamps, quiet', 'NO ONE ASKING'), ('The long table at the caf&eacute;', 'One communal table', 'ROOM FOR STRANGERS'), ('The waterfront loop', 'Five kilometers, flat', 'SHADED AFTER 2'), ('The old ferry waiting room', 'Benches, the harbor', 'USUALLY NOBODY')]
 
 def top(populated=True):
     out = anchor('NEW YORK', 'FRIDAY 5:40 PM')

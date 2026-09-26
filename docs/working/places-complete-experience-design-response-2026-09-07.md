@@ -731,7 +731,7 @@ The review doc's current assignment is still the September 12 coverage assignmen
 
 ## 43. Copy pass and photo or nothing (September 26)
 
-Founder-approved follow-up to a review of Places against rulings that arrived after the September 11–21 passes. Two changes to every board, plus two cleanups. No composition, instrument or interaction changed. The pre-pass boards are kept in the project under `before-copy-pass/`.
+Founder-approved follow-up to a review of Places against rulings that arrived after the September 11–21 passes. Two changes to every board, plus two cleanups. No composition, instrument or interaction changed. The pre-pass boards are kept in the project under `before-copy-pass/`, with their own copies of the runtime, stylesheets and shared components so they render as they did.
 
 **Why.** The September 20–21 voice ruling (recorded against the Multiplayer project, with the Voice Canon's object-first rule and Editorial Canon §13.3) says the phone renders the object and never narrates the product: explanations addressed to the reviewer stay outside the phone, and mono lines carry facts and sources. Places was written before that ruling. Entity's accepted imagery ruling is a photograph or nothing, and the founder withdrew Places' representative photographs on September 7, so a place without a photograph has no plate.
 
@@ -758,7 +758,7 @@ The mono share of in-phone words stays about a fifth. That is expected: in Place
 
 **Photo or nothing.** The shared photo fixtures (PH-01 to PH-07) are personal pictures, none of a Places place, so no plate is replaced by a photograph. Page frames on 02, 03, 04 and 08 now open on their sentence and register; the field's shelf is text tiles; a reading without its own image opens on its title. The board footer now reads "A place without a photograph has no plate". The shared photo set could still be used later if a real picture of a Places place is approved.
 
-**Cleanups.** American spelling throughout (harbor, color, behavior). The retired two-curve day charts and the helper only they used left `instruments.py` for `archive/generators/instruments_retired.py`, with the two generators and two tests that still called them; the Stage 2 brief had flagged their approximated sun and tide curves. 01's notes no longer describe the retired chart.
+**Cleanups.** American spelling throughout, including words inherited from older source slices (harbor, color, behavior, kilometers, meters, neighbor, gray); the build now applies it to every board, and none remain. The retired two-curve day charts and the helper only they used left `instruments.py` for `archive/generators/instruments_retired.py`, with the two generators and two tests that still called them; the Stage 2 brief had flagged their approximated sun and tide curves. 01's notes no longer describe the retired chart.
 
 **Not changed.** The instruments, maps and compositions; people's words; the Harbor Book's quoted prose; captions outside the phones, which still explain decisions to the reviewer. The Stage 2 instrument migration waits for its selection checkpoint, and the shared place collection from the September 22 multiplayer brief is not assigned to Places.
 

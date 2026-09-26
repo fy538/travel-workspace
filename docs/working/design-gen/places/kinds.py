@@ -11,7 +11,7 @@ def branch_row(svg, name, line, last=False, first=False):
 def branch_lead():
     return '<div>' + branch_row(G_HARBOR, 'Red Hook', 'Harbor first · a scheduled way in · a flexible way out', first=True) + branch_row(G_PIER, 'Sunset Park', 'Continuous land access · easiest to shorten') + branch_row(G_PARK, 'Downtown', 'The market and the church · on foot from the train', last=True) + '</div>'
 def returned_understanding():
-    return kick('DISTANCE IS NOT THE WHOLE ARRIVAL') + f'<div style="margin-top: 8px;">{serifline("What Sorrento taught: a cliff between two points 180 metres apart. New York&rsquo;s waterfronts separate access differently, by water.", 16, 22)}</div>' + door('Follow the threshold comparison')
+    return kick('DISTANCE IS NOT THE WHOLE ARRIVAL') + f'<div style="margin-top: 8px;">{serifline("What Sorrento taught: a cliff between two points 180 meters apart. New York&rsquo;s waterfronts separate access differently, by water.", 16, 22)}</div>' + door('Follow the threshold comparison')
 def provenance_label(): return f'<div style="display: flex; align-items: center; gap: 8px; {MONO} font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: {GOLDD};"><span>FROM HOME</span><span style="color: {GHOST};">·</span><span>SATURDAY, THE PIER</span><span style="color: {GHOST};">·</span><span style="color: {ANCHOR}; font-weight: 400;">RENDERED FROM WHAT HOME SENT</span></div>'
 # ── focus (the place page) ──
 def identity_map(h=150):
