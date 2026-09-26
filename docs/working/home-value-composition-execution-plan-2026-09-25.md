@@ -279,7 +279,9 @@ I installed the lane's ignored Python 3.13 dependencies and brought up its
 isolated Postgres/Qdrant services; migrations completed, but API startup failed
 because `ANTHROPIC_API_KEY` is required by the current startup contract. The
 lane containers were stopped without deleting their named volumes. No QA
-account or delivery fixture was created.
+account or delivery fixture was created in that attempt. This is a dated
+hold, not the current state; it is superseded by the owner-backed rehearsal
+below.
 
 The subsequent exact-return slice is committed in app revision `8fc767355`.
 This focused command passed (4 suites, 53 tests):
@@ -396,10 +398,67 @@ maestro test --udid AF31B886-E837-4962-834A-5CBAD5C306DB \
   .maestro/polish/home-root-returned.yaml
 ```
 
-This fixture is only mock interaction/presentation evidence. The real-owner
-original rehearsal remains blocked by missing local QA database/account/
-provider configuration, and the accepted Home design reference is still
-unresolved.
-`make verify` remains unrun. H1 is not complete, and this mock does not establish
-recurring social supply, photo presentation, production owner readback, or
-design parity.
+That earlier capture was mock interaction/presentation evidence only. Its
+real-owner hold was superseded by the controlled local rehearsal below. The
+accepted Home design reference remains unresolved; `make verify` remains
+unrun. H1 is not complete, and the mock capture does not establish recurring
+social supply, photo presentation, production data, or design parity.
+
+#### September 26 — Offline owner-backed original → Home return
+
+Backend revision `6c792ed8b` now accepts explicitly configured `AI_MODE=off`
+without an Anthropic key; `live` and `cheap` modes still require one. This
+makes the declared offline rehearsal mode executable without weakening
+provider-backed startup. The local rehearsal also enabled the existing
+relationship-handoff route gate; no release flag, API schema or generated app
+type changed.
+
+The first local owner-backed native run reached the exact original reader but
+failed on return: Home issued two root reads together (ordinary focus refresh
+and semantic-return refresh), and competing compositions left the surface
+partial. Home now coalesces those triggers onto one in-flight owner read. The
+focused regression test verifies that focus and semantic restoration share the
+same revalidation path. This fix and the strengthened runner are in app revision
+`04d4ed85c`.
+
+The final local owner-backed run passed on the lane-assigned iPhone 16 Pro
+simulator (`AF31B886-E837-4962-834A-5CBAD5C306DB`): the app rendered the
+synthetic recipient's original from the local backend, opened its exact text,
+returned to Home with the same original visible, and the backend owner read
+confirmed the delivery remained active until fixture cleanup. The runner then
+removed the disposable sender/source/delivery and verified that neither the
+recipient owner list nor Home projection retained it. The recipient was the
+existing synthetic QA account Mara; no founder or production data was used.
+`AI_MODE=off` and `WEB_SEARCH_MODE=off` meant there were no provider calls.
+
+```sh
+# From workspace root. Backend runtime contract; live and cheap remain strict.
+(cd travel-agent && .venv/bin/python -m pytest --run-quarantined \
+  tests/api/test_error_handlers.py::TestStartupValidation::test_fails_without_anthropic_key \
+  tests/api/test_error_handlers.py::TestStartupValidation::test_passes_without_anthropic_key_when_ai_is_explicitly_off \
+  tests/api/test_error_handlers.py::TestStartupValidation::test_still_fails_without_anthropic_key_when_ai_is_live -q)
+(cd travel-agent && .venv/bin/ruff check backend/api/lifecycle.py tests/api/test_error_handlers.py)
+
+# App return behavior, native runner contract, and local owner-backed device path.
+(cd travel-app && npm test -- --runInBand --runTestsByPath \
+  __tests__/components/home-root/HomeRootExperience.test.tsx \
+  __tests__/components/home-root/HomeRootExperience.connected.test.tsx \
+  __tests__/utils/rootProjectionReturnRegistry.test.ts)
+(cd travel-app && npm run typecheck)
+(cd travel-app && node --test scripts/maestro/home-original-delivery.test.mjs)
+(cd travel-app && bash -n scripts/maestro/run-home-original-delivery.sh)
+(cd travel-app && QA_ALLOW_DATABASE=vesper \
+  QA_USER_ID=31ccbc41-123c-4fb3-b433-7be7f10f9bb2 \
+  DATABASE_URL=postgresql://vesper:localdev@localhost:53173/vesper \
+  EXPO_PUBLIC_API_URL=http://127.0.0.1:53176 \
+  VESPER_MAESTRO_UDID=AF31B886-E837-4962-834A-5CBAD5C306DB \
+  scripts/maestro/run-home-original-delivery.sh)
+```
+
+Backend focused tests passed (3), Ruff passed; app focused tests passed (3
+suites, 31 tests), typecheck passed, runner contract tests passed (3), and the
+native path passed with exact fixture cleanup. The combined `make verify` gate
+is still unrun. This is local owner-backed integration evidence for one
+recipient path—not recurring social supply, multi-recipient behavior, photo
+presentation, production acceptance, or Home-design parity. Home has no
+registered design refs, so no Claude-design parity claim is made.
