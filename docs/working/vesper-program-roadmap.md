@@ -21,8 +21,8 @@ depends_on:
 
 ## Current direction — September 25
 
-Build a coherent product from the capabilities already implemented. First
-establish the recovered system as the working candidate; then execute
+Build a coherent product from the capabilities already implemented. Treat the
+merged recovery work as the working baseline; then execute
 **complete Home value delivery on that system**: supported material reaching
 useful composition, polished presentation, meaningful depth/action and return.
 Do not start overlapping Home work from older main or mistake a thin screen
@@ -47,43 +47,34 @@ detail only when a package below invokes them. Historical receipts are in the
 
 ## Inspected baseline and evidence limits
 
-The September 25 inspection began at these independent local mains. Subsequent
-workspace documentation commits do not change the product baseline below:
+The recovery baseline is now merged. The three authorized PRs landed on the
+independent repository mains on September 26 UTC; original branch protections
+were restored and verified afterward:
 
-| Repository | HEAD |
-| --- | --- |
-| Workspace | `827aace9f61fc208376402e4bb3d198746f5d2c4` |
-| Backend | `fdf789d06e8b889ac9882072e595e2d7cea02f21` |
-| App | `23cff76f41fddc931a20db8b2016b131bb70d329` |
+| Repository | Merged main revision | Landing |
+| --- | --- | --- |
+| Workspace | `6ef3dca09be2b4ea40c83ae21d8cbf112ee17f24` | [#36](https://github.com/fy538/travel-workspace/pull/36) |
+| Backend | `c8c9f578594a98beb41300c1a780f86ebb30eca4` | [#233](https://github.com/fy538/travel-agent/pull/233) |
+| App | `43225df35a01295993def384b5958c53ab8f1c8b` | [#201](https://github.com/fy538/travel-app/pull/201) |
 
-Backend and app were clean. Workspace contains ongoing design work; preserve
-it separately from this task's documentation and worktree-lifecycle changes.
-Each repository has main and a remaining Home human-opening recovery branch;
-there is also a detached native-presentation checkout. The former 145-branch
-inventory is historical, not today's state. Runtime ownership and safe retirement
-require a fresh check before action.
+The current implementation owner is the coordinated `codex/home-value-delivery`
+lane. Its workspace checkout also carries two local roadmap/worktree-lifecycle
+commits (`98ebeb9`, `45ababc`); its backend checkout remains at merged revision
+`c8c9f57`. Its app checkout has the first H1 share-time treatment committed
+locally as `66e2c3c`; the workspace roadmap edits are still in progress. Do not
+treat the coordinated lane as ready to publish: the full verification gate and
+native presentation evidence remain open.
+The older recovery worktree and detached native-presentation checkout are
+separate, already-merged work; do not reuse or retire them without a fresh
+owner/runtime check. The former 145-branch inventory is historical, not
+today's state.
 
-The recovery branch is a substantial **unmerged candidate**, not incidental
-cleanup. It is ahead of the inspected mains by 56 workspace, 40 backend and
-42 app commits, with no main-only commits at that inspection. Candidate heads:
-workspace `9ab85edb77246d36a43673161c85b4795e426295`, backend
-`e6d58564147094b998255c503860a758c66a35fa`, app
-`efbdba7ec7b8416acb38db181fb36e4369651327`. Recompute divergence after local
-documentation commits; the counts are not a standing merge instruction.
-Recovered behavior includes attributed human Place openings, mixed Places
-composition, native treatment/shared controls, and Life/database repairs.
-Inspect and reuse those changes rather than reimplementing them.
-
-Fresh September 25 reads of [workspace #36](https://github.com/fy538/travel-workspace/pull/36),
-[backend #233](https://github.com/fy538/travel-agent/pull/233) and
-[app #201](https://github.com/fy538/travel-app/pull/201) show open PRs requiring
-independent review. Reported backend/app CI passed; workspace reliability fails
-private-backend checkout authentication before product tests. Its Maestro smoke
-was skipped. Resolve the credential and review requirements through existing
-owners; do not bypass protection or count that failure as a product test result.
-Candidate-local work can proceed through the existing owner while remote landing
-is blocked. Reconcile this workspace's newer roadmap changes at landing rather
-than overwriting either branch's useful work.
+At landing, backend/app CI reported passed. The workspace reliability job failed
+at private-backend checkout authentication before product tests, and its
+Maestro smoke was skipped. Those are not product-test results. The merged PRs
+are landed, but the workspace full gate, a clean combined build, native Home
+capture and release readiness have not thereby been certified. No branch
+protection bypass is currently in effect.
 
 Code inspection confirms an existing bounded Home owner portfolio, application
 composer, native root experience, semantic renderer registry and exact-return
@@ -103,24 +94,18 @@ currently has no visual `designRefs` and judges against doctrine. Select/adopt
 and register the specific accepted Home references before claiming Claude-design
 parity; the old external Home-surfaces registry is not blanket authority for it.
 
-Documentation validation on this rebaseline: governance, child governance,
-inventory, spine, canon budgets, release scope, generated status, living links
-and Home design-registry structure pass. `python3 scripts/check_docs.py --all`
-remains **failed** on three unchanged September 15 expiries in the
-[compatibility ledger](../governance/compatibility-ledger.json):
-`discover-url-bridge`, `atlas-tab-url-bridge`, `discover-map-api-bridge`.
-Before publication, reconcile these main-based findings against the recovery
-candidate's ledger and implementation. Remove a bridge when safe or justify
-renewal under existing policy only if still needed; do not repeat a repair
-already present on the candidate. Dates were not extended by this documentation
-cleanup; independent H1 work can proceed.
+Documentation validation on this rebaseline: `python3 scripts/check_docs.py
+--all` passed, including the compatibility ledger checks. The expired bridge
+entries found in the older main-based inspection were reconciled by the merged
+recovery work; they are not current blockers. Do not carry that stale finding
+forward or reopen the repair without new evidence.
 
 ## One queue, bounded work in progress
 
 | Order / state | Package and accountable owner | Outcome / exit |
 | --- | --- | --- |
-| 0 — first prerequisite for overlapping writes | **Recovered candidate baseline**, existing lane owner | Confirm candidate ownership and reusable changes; reconcile current docs; carry required review/CI repair to landing. Remote delay does not block independent candidate-local work |
-| 1 — next primary build; baseline selection precedes edits | **H1: Complete Home value delivery**, one implementation owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md): close supply/selection/presentation/continuation gaps across ordinary, social and healthy live situations; include native reference alignment |
+| 0 — complete | **Recovered candidate baseline**, merged through #36 / #233 / #201 | Reuse recovered Home/Places and app behavior; original protections restored. The workspace checkout/reliability gate remains a pre-publication evidence gap, not a reason to reopen or bypass the merged PRs |
+| 1 — active | **H1: Complete Home value delivery**, `codex/home-value-delivery` lane owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md): close supply/selection/presentation/continuation gaps across ordinary, social and healthy live situations; include accepted native reference alignment. The first social-material refinement now shows exact recipient-local share time on a currently revalidated original (`66e2c3c`); package exit is not yet met |
 | 2 — select from H1's actual bottleneck, not tab order | **Recurring supply / Places depth / Life continuity**, same owner by default | Choose the specific missing producer connection, spatial depth, refinding or permitted later-use path that most improves the delivered experience; do not activate three standing lanes |
 | Cross-cutting within each package | **Practical help, live-engine behavior and production cost**, package owner | Current facts and permitted context materially change an appropriate result; freshness, authority, degradation, latency and generation costs stay explicit |
 | Before publishing each integrated package / before cutover | **Landing and retirement**, implementation owner with coordination review | Review combined changes, run required gates, publish only with authorization, record landed revisions and disposition the branch/worktree; migrations, replacement retirement and release retain their separate gates |

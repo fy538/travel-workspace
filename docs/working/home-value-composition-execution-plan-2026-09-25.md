@@ -1,7 +1,7 @@
 ---
 doc_type: working
 status: active
-owner: next primary implementation task
+owner: codex/home-value-delivery lane
 created: 2026-09-25
 last_verified: 2026-09-25
 expires: 2026-10-25
@@ -14,11 +14,11 @@ depends_on:
 
 # H1 — Complete Home value delivery on the recovered system
 
-Status: assignment prepared; select the recovered candidate and its owner before
-overlapping edits. No new implementation is dispatched by this documentation
-update. The [program roadmap](vesper-program-roadmap.md) owns priority, inspected
-main/candidate tuples and current landing blockers. Recheck Git before starting;
-a dated tuple is not permission to overwrite current work.
+Status: in progress in the coordinated `codex/home-value-delivery` lane. The
+recovered workspace/backend/app baseline is merged as recorded in the
+[program roadmap](vesper-program-roadmap.md). This package owns the current
+Home implementation; the first app slice is committed locally as `66e2c3c` but
+has not yet passed the full app test/build or native visual acceptance.
 
 ## Outcome and scope
 
@@ -91,11 +91,11 @@ Numbers are not an instruction to fill every slot or add every design kind.
 
 ### 1. Select the recovered baseline and trace actual remaining gaps
 
-Start by comparing current main with the candidate named in the program. Reuse
-the existing lane owner for this overlapping outcome; do not branch from older
-main and rediscover the recovered Home/Places changes. Merge only through the
-required checks and review. If remote landing is blocked, independent work may
-continue on an explicitly recorded candidate tuple with the owning task.
+Start from the merged recovery revisions recorded in the program roadmap. The
+current coordinated lane owns this package; do not branch from an older main or
+edit the separate recovery/native worktrees. The original recovery PRs are
+already merged; this package's new changes must use the normal current checks
+and review, with no inherited protection bypass.
 
 Trace three materially different supported situations on that baseline:
 
@@ -109,6 +109,31 @@ These are system-coverage cases, not three parallel projects or a single-loop
 launch gate. Sparse context, urgent compression, source expiry/unavailability
 and exact return are relevant regression variants, not a combinatorial test
 campaign. A pending study's unsupported service is not part of the required case.
+
+### First trace — current baseline, 2026-09-25 local
+
+This is a code-path trace, not production-supply or native-visual acceptance.
+
+| Situation | Owner → Home → continuation | Current finding |
+| --- | --- | --- |
+| Ordinary day / available time | Experience Graph, saves, receipts, automatic Places context and current public Place Sources, plus an optional current prepared Source result → bounded Home portfolio and shared admission → exact Place/Source/owner door and semantic return token | The read path is implemented and bounded; a Home miss does not invoke a provider or enqueue generation. Deeper Source work requires the existing explicit “Ask Vesper” gesture. Existing portfolio/composition tests pass. Ordinary production coverage is not established. |
+| Evening with other people | Relationships supplies exact addressed Place notes and individually authorized original deliveries → Home composes a same-Place note with eligible world material, or an attributed multi-note region; original previews keep per-delivery grants → Place or original reader revalidates owner state and returns through Home | Recovered human/Place composition is present. Original media is projected as separate deliveries (maximum two candidates in the current Home adapter); the reader has no reply affordance. No event/photo-set grouping or reply policy is inferred. Home's current design-time proposal for a named shared photo set needs an explicit supported owner/group before it can be implemented as a set. |
+| Healthy live/travel situation | Experience Graph and Plan/proposal owners establish Live; Places current context can supply separately evidenced practical alternatives → Live Home selector keeps independent possibilities eligible; Urgent alone suppresses most support → owner-specific destination/action and exact return | Live is not treated as urgent, and functional selection is covered by the focused backend suite. Provider-backed freshness, recurring generated supply, and native presentation against the selected design remain separate unproven claims. |
+
+The first H1 app slice adds the exact owner-read share time to a received
+original's Home attribution line (`MAYA · SHARED SAT, 4:25 PM` in the
+recipient's local timezone). It labels this as sharing time, not photo-capture
+time; it adds no inference, persistence, API field, generation, or reply
+obligation. This addresses the selected Home study's lightweight temporal
+context while preserving the existing delivery grant and one-delivery rendering
+boundary.
+
+The `home-root` QA surface still has no registered screenshot/design-reference
+manifest. The `vesper-home` project index identifies the current 02/03 scrolls
+as selected and the 2026-09-21 photo board as additive; its photo-set fixture
+does not by itself authorize inferred grouping. Until a specific isolated
+reference can be registered through the app's design workflow, no native parity
+claim is made.
 
 For each value unit record its actual source/preparation trigger, owner/read,
 candidate, region/treatment, received benefit, depth/action and return. Classify
@@ -198,6 +223,16 @@ Remaining unsupported design concepts are explicitly
 separated from defects in the delivered scope. A package is not finished merely
 because its branch exists or its mocked screenshot is attractive.
 
-Latest receipt: **not started**. Update this paragraph with one current summary
-at the first working result and final handoff. Preserve older detailed evidence
-in Git/history rather than accumulating competing “latest” overrides.
+Latest receipt: **in progress**. On the merged recovery baseline, the focused
+backend Home portfolio and selection suite passed (86 tests, using the existing
+canonical Python virtual environment with lane source). The app's registered
+polish scenario IDs pass (31 registered), and the changed app files pass a
+TypeScript parser/syntax check. `python3 scripts/check_docs.py --all` passed.
+The design-reference preflight passes with a warning that Home has no manifest.
+The two changed-file Jest tests could not start because this lane has no
+`node_modules`/Jest installation. The native QA doctor ran but was blocked
+because Metro was not reachable at `:8081`; no native capture was produced. The
+combined `make verify` gate remains unrun. This is implementation progress only,
+not H1 completion, recurring-supply evidence or visual parity. Preserve older
+detailed evidence in Git/history rather than accumulating competing “latest”
+overrides.
