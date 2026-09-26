@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: codex/home-value-delivery lane
 created: 2026-09-25
-last_verified: 2026-09-25
+last_verified: 2026-09-26
 expires: 2026-10-25
 why_new: Gives one complete Home implementation assignment after separating the program queue from historical receipts; existing design contracts define behavior but not this bounded delivery package.
 depends_on:
@@ -17,8 +17,10 @@ depends_on:
 Status: in progress in the coordinated `codex/home-value-delivery` lane. The
 recovered workspace/backend/app baseline is merged as recorded in the
 [program roadmap](vesper-program-roadmap.md). This package owns the current
-Home implementation; the first app slice is committed locally as `66e2c3c` but
-has not yet passed the full app test/build or native visual acceptance.
+Home implementation; the first app slice is committed locally as `66e2c3c`.
+Focused tests, typecheck and a seven-posture native fixture capture pass; the
+full app suite, design-reference acceptance and combined verification remain
+open.
 
 ## Outcome and scope
 
@@ -230,15 +232,26 @@ separated from defects in the delivered scope. A package is not finished merely
 because its branch exists or its mocked screenshot is attractive.
 
 Latest receipt: **in progress**. On the merged recovery baseline, the focused
-backend Home portfolio and selection suite passed (86 tests, using the existing
-canonical Python virtual environment with lane source). The app's registered
-polish scenario IDs pass (31 registered), and the changed app files pass a
-TypeScript parser/syntax check. `python3 scripts/check_docs.py --all` passed.
-The design-reference preflight passes with a warning that Home has no manifest.
-The two changed-file Jest tests could not start because this lane has no
-`node_modules`/Jest installation. The native QA doctor ran but was blocked
-because Metro was not reachable at `:8081`; no native capture was produced. The
-combined `make verify` gate remains unrun. This is implementation progress only,
-not H1 completion, recurring-supply evidence or visual parity. Preserve older
-detailed evidence in Git/history rather than accumulating competing “latest”
-overrides.
+backend Home portfolio and selection suite passed (86 tests). The first H1 app
+slice is committed in app revision `66e2c3c`; its focused Jest suite passed
+(2 suites, 9 tests) and `npm run typecheck` passed. `python3
+scripts/check_docs.py --all` passed. After installing the lane's ignored app
+dependencies, the Home polish doctor passed against the lane Metro and its
+assigned iPhone 16 Pro simulator. Run `20260926T143155Z-home-root` captured
+all seven registered fixture postures (Available, Planning, Live, Returned,
+Quiet, Cold, Urgent); their scripted visibility/assertion flows completed.
+The screens were reviewed against the active Home contract, but the manifest
+still has `designRefs: []`, so this is not Claude-design parity or final
+product-quality acceptance. These fixture postures do not contain the received
+original whose new share-time line was changed; that behavior has focused unit
+coverage but no dedicated native capture or live owner-data readback.
+
+The combined `make verify` gate remains unrun. No production data, durable
+backend writes, release flag changes or publication were involved. The Expo
+rehearsal flags were local to the lane; the native build required disabling the
+local Sentry source-map upload because no Sentry organization was configured.
+`npm ci` reported 20 audit vulnerabilities (1 low, 19 moderate); no dependency
+remediation was attempted. This is implementation progress only, not H1
+completion, recurring-supply evidence, accepted-reference parity or release
+readiness. Preserve older detailed evidence in Git/history rather than
+accumulating competing “latest” overrides.

@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / coordination task
 created: 2026-09-07
-last_verified: 2026-09-25
+last_verified: 2026-09-26
 expires: 2026-10-07
 why_new: Owns the single current execution queue, accountable packages and system reassessment without duplicating product or implementation contracts.
 supersedes:
@@ -58,12 +58,13 @@ were restored and verified afterward:
 | App | `43225df35a01295993def384b5958c53ab8f1c8b` | [#201](https://github.com/fy538/travel-app/pull/201) |
 
 The current implementation owner is the coordinated `codex/home-value-delivery`
-lane. Its workspace checkout also carries two local roadmap/worktree-lifecycle
-commits (`98ebeb9`, `45ababc`); its backend checkout remains at merged revision
-`c8c9f57`. Its app checkout has the first H1 share-time treatment committed
-locally as `66e2c3c`; the workspace roadmap edits are still in progress. Do not
-treat the coordinated lane as ready to publish: the full verification gate and
-native presentation evidence remain open.
+lane. Its workspace checkout carries four local roadmap/execution-record
+commits (`98ebeb9`, `45ababc`, `2d3bf68`, `e0dbce0`); its backend checkout
+remains at merged revision `c8c9f57`. Its app checkout has the first H1
+share-time treatment committed locally as `66e2c3c`. A seven-posture native
+fixture capture now exists on the lane simulator; design-reference acceptance,
+the full verification gate and release readiness remain open. Do not treat the
+coordinated lane as ready to publish.
 The older recovery worktree and detached native-presentation checkout are
 separate, already-merged work; do not reuse or retire them without a fresh
 owner/runtime check. The former 145-branch inventory is historical, not
@@ -72,8 +73,9 @@ today's state.
 At landing, backend/app CI reported passed. The workspace reliability job failed
 at private-backend checkout authentication before product tests, and its
 Maestro smoke was skipped. Those are not product-test results. The merged PRs
-are landed, but the workspace full gate, a clean combined build, native Home
-capture and release readiness have not thereby been certified. No branch
+are landed, but the workspace full gate, a clean combined verification,
+production-data acceptance, design-reference parity and release readiness have
+not thereby been certified. No branch
 protection bypass is currently in effect.
 
 Code inspection confirms an existing bounded Home owner portfolio, application
@@ -81,9 +83,9 @@ composer, native root experience, semantic renderer registry and exact-return
 machinery. The app registry currently lists 20 renderable Home kinds. A kind's
 presence does not establish sufficient supply, attractive composition or full
 design parity. The September 22 test totals in the archives are dated evidence;
-this rebaseline did not rerun product tests, install a build, verify external
-design hashes or certify release readiness. No percentage-complete claim is
-supported by this inspection.
+the targeted checks run during H1 are recorded in its active execution plan.
+External design hashes and release readiness remain unverified. No
+percentage-complete claim is supported by this inspection.
 
 Two additional implementation boundaries change H1's scope. Ordinary Home reads
 consume prepared Source results without generating/enqueueing work; the existing
