@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: codex/home-value-delivery lane
 created: 2026-09-25
-last_verified: 2026-09-26
+last_verified: 2026-10-09
 expires: 2026-10-25
 why_new: Gives one complete Home implementation assignment after separating the program queue from historical receipts; existing design contracts define behavior but not this bounded delivery package.
 depends_on:
@@ -955,3 +955,40 @@ record confirms both screenshot commands ran, but the successful debug folder
 did not retain PNGs; this is functional integration evidence, not a reviewed
 visual-design verdict, real-provider freshness, production venue coverage, or
 recurring supply. Full-scroll design acceptance and `make verify` remain open.
+
+#### October 9 — Private original-photo transport contract
+
+App revision `6244103fe` adds a focused regression at the shared Home/reader
+media boundary: an individually addressed photo passes its exact content URL
+and recipient bearer token to `AppImage`, with client caching disabled. The
+test protects the existing private-read design; it adds no media route and
+does not broaden the grant.
+
+Backend revision `e41ea8dcf` corrects the image branch of the original-content
+route test to use PNG bytes rather than text bytes labelled `image/png`. The
+test now asserts byte preservation, PNG signature and `image/png` media type,
+while retaining the existing recipient recheck, private/no-store headers,
+withdrawal-race, size/hash, and storage-failure assertions.
+
+Focused evidence:
+
+```sh
+# travel-app
+npm test -- --runInBand --runTestsByPath \
+  __tests__/components/ReceivedOriginalSurface.test.tsx
+npx eslint __tests__/components/ReceivedOriginalSurface.test.tsx
+npm run typecheck
+
+# travel-agent
+.venv/bin/python -m pytest tests/api/test_original_delivery_content.py -q
+.venv/bin/ruff check tests/api/test_original_delivery_content.py
+.venv/bin/ruff format --check tests/api/test_original_delivery_content.py
+```
+
+Results: app 1 suite / 10 tests passed, ESLint clean, TypeScript passed;
+backend 9 tests passed and Ruff checks passed. The backend route test still uses
+mocked owner and storage functions. This lane has no private S3-compatible
+media-store configuration, so an owner-backed Intake image read and native
+photo render remain unverified. No photo fixture, permission, storage adapter,
+or production behavior was added. Full-scroll design parity, recurring
+production supply and the coordinated `make verify` gate also remain open.

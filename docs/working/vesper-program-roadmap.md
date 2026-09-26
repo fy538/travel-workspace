@@ -1,11 +1,10 @@
 ---
-doc_type: working
+doc_type: current_status
 status: active
 owner: founder / coordination task
 created: 2026-09-07
-last_verified: 2026-09-26
-expires: 2026-10-07
-why_new: Owns the single current execution queue, accountable packages and system reassessment without duplicating product or implementation contracts.
+last_verified: 2026-10-09
+why_new: Owns the single live cross-lane execution queue, accountable package assignments, and system reassessment without duplicating product or implementation contracts.
 supersedes:
   - current assignments and sequencing in the historical program and Integration roadmaps
 source_of_truth_for:
@@ -19,7 +18,7 @@ depends_on:
 
 # Vesper program roadmap
 
-## Current direction — September 25
+## Current direction — October 9
 
 Build a coherent product from the capabilities already implemented. Treat the
 merged recovery work as the working baseline; then execute
@@ -58,9 +57,11 @@ were restored and verified afterward:
 | App | `43225df35a01295993def384b5958c53ab8f1c8b` | [#201](https://github.com/fy538/travel-app/pull/201) |
 
 The current implementation owner is the coordinated `codex/home-value-delivery`
-lane. Its current local heads are workspace `2bb74e6`, backend `debbf7b1e`, and
-app `758f15460`, all after the merged recovery revisions above and not yet
-published. The lane has advanced past the earlier status recorded below; the
+lane. Its current product-code heads are backend `e41ea8dcf` and app
+`6244103fe`, both after the merged recovery revisions above and not yet
+published. The active workspace lane contains this queue and the H1 execution
+plan on branch `codex/home-value-delivery`. The lane has advanced past the
+earlier status recorded below; the
 [active H1 plan](home-value-composition-execution-plan-2026-09-25.md) owns the
 detailed receipt and exact test boundaries.
 
@@ -76,9 +77,12 @@ more complete than at the previous rebaseline.
 
 These results still use authored/synthetic fixtures where noted; they do not
 establish recurring or production content supply, provider-backed freshness,
-canonical user-owned Source provenance, real-photo rendering, or accepted
-full-scroll design-reference parity. `make verify` remains blocked at the
-date-sensitive World Catalog runway gate (the October 9 horizon lacks required
+canonical user-owned Source provenance, an owner-backed private-media photo
+read/native render, or accepted full-scroll design-reference parity. Focused
+regressions now check authenticated, cache-disabled image transport and
+byte/MIME-correct binary route behavior, but use mocked media storage and do
+not close the owner-backed photo gap. The last `make verify` attempt failed at
+the date-sensitive World Catalog runway gate (the October 9 horizon lacks required
 `season` and `here` entries); the catalog was not padded with invented rows.
 This is a scoped gate failure, not evidence that Home behavior failed. H1 is
 therefore not ready to publish or declare complete.
@@ -127,7 +131,7 @@ forward or reopen the repair without new evidence.
 | Order / state | Package and accountable owner | Outcome / exit |
 | --- | --- | --- |
 | 0 — complete | **Recovered candidate baseline**, merged through #36 / #233 / #201 | Reuse recovered Home/Places and app behavior; original protections restored. The workspace checkout/reliability gate remains a pre-publication evidence gap, not a reason to reopen or bypass the merged PRs |
-| 1 — active | **H1: Complete Home value delivery**, `codex/home-value-delivery` lane owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md): close supply/selection/presentation/continuation gaps across ordinary, social and healthy live situations; include accepted native reference alignment. The lane now has native local evidence for explicit Home Source continuation, original-share receiving/return and practical open-now → exact venue → Home return (`758f15460`); Quiet Home's source-bound geology and bounded full-scroll/social work remain in the package receipts. These are local/synthetic acceptance, not production supply or design parity. Package exit is not yet met |
+| 1 — active | **H1: Complete Home value delivery**, `codex/home-value-delivery` lane owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md): close supply/selection/presentation/continuation gaps across ordinary, social and healthy live situations; include accepted native reference alignment. The lane has native local evidence for explicit Home Source continuation, original-share receiving/return and practical open-now → exact venue → Home return (`758f15460`), plus focused private-photo transport checks (`6244103fe`, `e41ea8dcf`); Quiet Home's source-bound geology and bounded full-scroll/social work remain in the package receipts. These are local/synthetic acceptance, not production supply or design parity. Package exit is not yet met |
 | 2 — select from H1's actual bottleneck, not tab order | **Recurring supply / Places depth / Life continuity**, same owner by default | Choose the specific missing producer connection, spatial depth, refinding or permitted later-use path that most improves the delivered experience; do not activate three standing lanes |
 | Cross-cutting within each package | **Practical help, live-engine behavior and production cost**, package owner | Current facts and permitted context materially change an appropriate result; freshness, authority, degradation, latency and generation costs stay explicit |
 | Before publishing each integrated package / before cutover | **Landing and retirement**, implementation owner with coordination review | Review combined changes, run required gates, publish only with authorization, record landed revisions and disposition the branch/worktree; migrations, replacement retirement and release retain their separate gates |
