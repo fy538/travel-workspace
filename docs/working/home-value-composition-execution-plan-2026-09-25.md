@@ -295,16 +295,19 @@ mocked projection/navigation evidence, not device-level scroll observation or
 live owner-data readback. The real-owner API rehearsal remains blocked by its
 current provider-key startup contract; no key or substitute was supplied.
 
-The latest native refinement is committed in app revision `1b23ed891`.
-Non-dominant Home editorial readings no longer repeat the region's meaning with
-an extra “A closer reading” kicker; the kicker remains when the reading is
-promoted to the standalone dominant. Focused renderer tests verify both forms.
-`npm run qa:polish:scenarios` passed; a Returned posture capture at
-`travel-app/.maestro/runs/20260926T153217Z-home-root` records the changed
-screen at that exact app revision. It is a fixture capture
-(`dataContext: null`) with no registered design refs, so it is evidence of the
-native treatment only—not real-owner supply, reference comparison, or Claude
-design parity.
+The latest native refinements are committed in app revisions `1b23ed891` and
+`a963fa0b9`. Non-dominant Home editorial readings no longer repeat the region's
+meaning with an extra “A closer reading” kicker; the kicker remains when the
+reading is promoted to the standalone dominant. For outcome continuity, Home
+no longer shows the generic “Canonical outcome” basis caption; it keeps the
+record label, substantive value and Life door. Other direct-state bases remain
+visible. Focused checks passed: 2 renderer/screen suites (36 tests), TypeScript,
+and targeted ESLint (with the existing file-length warning). The Home scenario
+registry check passed; the Returned posture capture at
+`travel-app/.maestro/runs/20260926T153747Z-home-root` records the combined
+screen at app revision `a963fa0b9`. It is fixture-backed (`dataContext: null`)
+with no registered design refs: evidence of this native treatment only, not
+real-owner supply, reference comparison, or Claude design parity.
 
 The combined `make verify` gate remains unrun. Only the isolated lane database
 schema was migrated; no product-data fixture, production data, release flag

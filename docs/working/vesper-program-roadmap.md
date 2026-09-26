@@ -65,12 +65,13 @@ Its app checkout has the first H1 share-time treatment committed locally as
 `66e2c3c`, renderer-level owner-read regression coverage in `122f4d2`, and an
 explicit UTC fallback correction in `e0bf0a7`. A prior app slice,
 `8fc767355`, preserves the Home unit's viewport position on exact return; if
-the projection changed, Home retains strict recomposition. The current slice,
+the projection changed, Home retains strict recomposition. The prior slice,
 `1b23ed891`, removes a redundant editorial kicker below named Home sections but
-keeps it for a standalone dominant reading. Focused checks and a Returned
-fixture capture are recorded in the active H1 plan; design-reference acceptance,
-real-owner readback, the full verification gate and release readiness remain
-open.
+keeps it for a standalone dominant reading. The latest slice, `a963fa0b9`, also
+removes the generic canonical-outcome basis caption while retaining its actual
+value and Life continuation. Focused checks and the Returned fixture capture
+are recorded in the active H1 plan; design-reference acceptance, real-owner
+readback, the full verification gate and release readiness remain open.
 A seven-posture fixture capture and the single Returned recapture are both
 fixture-backed, not reference parity or real-owner acceptance. Do not treat the
 coordinated lane as ready to publish.
