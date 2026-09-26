@@ -233,8 +233,17 @@ because its branch exists or its mocked screenshot is attractive.
 
 Latest receipt: **in progress**. On the merged recovery baseline, the focused
 backend Home portfolio and selection suite passed (86 tests). The first H1 app
-slice is committed in app revision `66e2c3c`; its focused Jest suite passed
-(2 suites, 9 tests) and `npm run typecheck` passed. `python3
+slice is committed in app revision `66e2c3c`; its owner-read regression
+coverage is committed in `122f4d2`. The following focused command passed
+(3 suites, 25 tests); `npm run typecheck` passed as well:
+
+```sh
+npm test -- --runInBand --runTestsByPath __tests__/screens/original-delivery.test.tsx __tests__/components/ReceivedOriginalSurface.test.tsx __tests__/utils/originalDeliveryTime.test.ts
+```
+
+The renderer-level case verifies Home reads the
+sender and shared-at time from the current `useOriginalDelivery` result; this
+is mocked owner-read evidence, not a live backend readback. `python3
 scripts/check_docs.py --all` passed. After installing the lane's ignored app
 dependencies, the Home polish doctor passed against the lane Metro and its
 assigned iPhone 16 Pro simulator. Run `20260926T143155Z-home-root` captured
@@ -243,8 +252,9 @@ Quiet, Cold, Urgent); their scripted visibility/assertion flows completed.
 The screens were reviewed against the active Home contract, but the manifest
 still has `designRefs: []`, so this is not Claude-design parity or final
 product-quality acceptance. These fixture postures do not contain the received
-original whose new share-time line was changed; that behavior has focused unit
-coverage but no dedicated native capture or live owner-data readback.
+original whose new share-time line was changed; that behavior has focused
+formatter/component/renderer coverage but no dedicated native capture or live
+owner-data readback.
 
 The combined `make verify` gate remains unrun. No production data, durable
 backend writes, release flag changes or publication were involved. The Expo
