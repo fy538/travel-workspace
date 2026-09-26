@@ -59,7 +59,7 @@ were restored and verified afterward:
 
 The current implementation owner is the coordinated `codex/home-value-delivery`
 lane. Its workspace checkout carries local roadmap/execution-record commits
-through `12774fb`; its backend checkout remains at merged revision `c8c9f57`.
+through `6c61cba`; its backend checkout remains at merged revision `c8c9f57`.
 Its app checkout has the first H1 share-time treatment committed locally as
 `66e2c3c`, renderer-level owner-read regression coverage in `122f4d2`, and an
 explicit UTC fallback correction in `e0bf0a7`. A seven-posture native fixture
