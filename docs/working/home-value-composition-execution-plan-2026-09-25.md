@@ -18,14 +18,14 @@ Status: in progress in the coordinated `codex/home-value-delivery` lane. The
 recovered workspace/backend/app baseline is merged as recorded in the
 [program roadmap](vesper-program-roadmap.md). This package owns the current
 Home implementation. App refinements are committed locally through
-`2840a2420`: exact share-time attribution (`66e2c3c`, `122f4d2`, `e0bf0a7`),
+`7e7108d9e`: exact share-time attribution (`66e2c3c`, `122f4d2`, `e0bf0a7`),
 exact Home return (`8fc767355`), reduced repeated section/canonical-outcome
 copy (`1b23ed891`, `a963fa0b9`), and a recipient-only original-material mock
-transport plus a dedicated Home scenario (`2840a2420`). Focused tests,
-typecheck and the seven-posture native fixture capture pass. The new received-
-original native flow is added but its content read is blocked on the already
-running Metro build's disabled internal relationship flag. The full app suite,
-design-reference acceptance and combined verification remain open.
+transport plus a dedicated Home scenario (`2840a2420`), and an accessibility
+fix for the original note (`7e7108d9e`). Focused tests, typecheck, lint, the
+seven-posture native fixture capture, and the recipient/default native Home
+flows pass. The full app suite, design-reference acceptance and combined
+verification remain open.
 
 ## Outcome and scope
 
@@ -352,20 +352,54 @@ npm test -- --runInBand --runTestsByPath \
 ```
 
 The new Maestro path is
-`.maestro/polish/home-root-social-original.yaml`. Its native attempt on the
-lane-assigned iPhone 16 Pro reached the Home card, but failed the current-owner
-attribution assertion: the running Metro bundle has the internal
+`.maestro/polish/home-root-social-original.yaml`. Its first native attempt on
+the lane-assigned iPhone 16 Pro reached the Home card, but failed the current-
+owner attribution assertion: the pre-existing Metro bundle had the internal
 `RELATIONSHIP_UUID_HANDOFFS_ENABLED` flag off, so it correctly remained in the
-loading state rather than displaying mock material. The screenshot is retained
-at `/tmp/vesper-home-social-original/.maestro/tests/2026-09-26_120040/screenshot-❌-1790438473530-(home-root-social-original.yaml).png`.
-The running Metro process was not restarted or its flag changed. This is an
-unverified native read/return path, not a passing capture. A purpose-built
-internal QA bundle with the flag enabled is still required; no release-flag
-change is authorized or implied.
+loading state. That Metro process was not restarted or changed. To finish the
+device check, a separate temporary internal-only Metro server was started on
+port `53178` with mock API, internal build, root-shell, projection, Places/Life
+renderer and relationship-handoff flags enabled. The same Maestro flow then
+passed on the lane-assigned iPhone 16 Pro
+(`AF31B886-E837-4962-834A-5CBAD5C306DB`), including sender/time attribution,
+caption, exact note text, opening the original, returning to Home and verifying
+the card remained. Its debug output is under
+`/tmp/vesper-home-social-original-internal-a11y/.maestro/tests/2026-09-26_121259/`;
+a Home screenshot is at `/tmp/vesper-home-social-original-passed.png`. The
+temporary server was stopped after the capture; this was an internal QA run,
+not a release-flag change.
 
-This fixture is only interaction/presentation evidence. The real-owner original
-rehearsal remains blocked by missing local QA database/account/provider
-configuration, and the accepted Home design reference is still unresolved.
+The first passing capture exposed a real accessibility defect: the note's
+explicit accessibility label replaced its actual text, hiding it from VoiceOver
+and the native test hierarchy. App revision
+`7e7108d9e146af8b572d182696690dccb2775e02` removes that override and makes the
+note selectable. The focused follow-up passed 5 suites / 39 tests, typecheck,
+and targeted ESLint; the recipient Maestro flow passed again, and the ordinary
+`home-root-returned` flow passed on the same simulator after restoring the
+default persona.
+
+```sh
+npm test -- --runInBand --runTestsByPath \
+  __tests__/components/ReceivedOriginalSurface.test.tsx \
+  __tests__/screens/original-delivery.test.tsx \
+  __tests__/data/originalDeliveries.test.tsx \
+  __tests__/utils/api/homeOriginalDelivery.mock.test.ts \
+  __tests__/utils/homeRootV2PostureFixtures.test.ts
+npm run typecheck
+npx eslint components/inbound/OriginalMaterialView.tsx \
+  __tests__/components/ReceivedOriginalSurface.test.tsx
+maestro test --udid AF31B886-E837-4962-834A-5CBAD5C306DB \
+  --debug-output /tmp/vesper-home-social-original-internal-a11y \
+  .maestro/polish/home-root-social-original.yaml
+maestro test --udid AF31B886-E837-4962-834A-5CBAD5C306DB \
+  --debug-output /tmp/vesper-home-social-original-default-restore \
+  .maestro/polish/home-root-returned.yaml
+```
+
+This fixture is only mock interaction/presentation evidence. The real-owner
+original rehearsal remains blocked by missing local QA database/account/
+provider configuration, and the accepted Home design reference is still
+unresolved.
 `make verify` remains unrun. H1 is not complete, and this mock does not establish
 recurring social supply, photo presentation, production owner readback, or
 design parity.
