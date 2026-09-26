@@ -27,13 +27,14 @@ for the original note (`7e7108d9e`), original-owner polling lifecycle
 handling (`58f53d3fb`), a source-bound geological comparison in Quiet Home
 with its duplicate connection card removed (`42cba2d30`), and the more precise
 headline “The Palisades began as magma between older rock layers”
-(`7d7d5b762`). Focused checks and fixture-backed native captures pass for the
-affected content path; the post-commit Quiet capture now asserts the revised
-headline. A later local real-Postgres full-scroll rehearsal also passes for a
-bounded set of social/editorial/original owners (recorded below). The full app
-suite, accepted design-reference alignment, the native Home Ask-to-result path
-for an owner-backed Source contribution, production/recurring editorial supply,
-and combined verification remain open.
+(`7d7d5b762`). App revision `aa3e235d6` now carries the native Home
+Ask-to-result-to-return workflow through an explicit, provider-free Source
+request. Revision `bf96a00f0` aligns received originals with the contract's
+authored-share containment: provenance, material and the exact-open action now
+read as one card. Focused checks and native captures pass for these bounded
+paths; their fixture/synthetic data do not establish production supply. The
+full app suite, accepted full-scroll design-reference alignment,
+production/recurring editorial supply, and combined verification remain open.
 
 ## Outcome and scope
 
@@ -808,9 +809,10 @@ The screenshot is locally available at `travel-app/home-full-scroll.png`.
 This closes the specific gap for a bounded synthetic social + editorial +
 original-material composition through actual local owner reads, native
 presentation, and fixture withdrawal. It does not establish production-data
-quality, recurring/AI-generated supply, the native Home Ask-to-Source-result
-interaction, real photo rendering, design-reference parity, or global
-four-root readiness.
+quality, recurring/AI-generated supply, real photo rendering, design-reference
+parity, or global four-root readiness. At this point the native Home
+Ask-to-Source-result interaction was still open; it is covered by the later
+native workflow receipt below.
 The Home 02/03 references remain first-viewport aids; the external canonical
 bundle was not verified. The runner does not open every destination in this
 full-scroll flow; use the separate original-reader return receipt for that
@@ -832,11 +834,11 @@ worker cannot publish after cancellation.
 
 This is real workflow/storage/readback execution on disposable Postgres, but
 the Source inventory, materials, owner-read portfolio, and producer output are
-authored fixtures. The test does not exercise the native “Why this?” → “Ask
-Vesper” → result-screen tap-through, does not read canonical user-owned Source
-records, and makes no paid model call. It closes the DB-persistence/exact
-readback proof gap only. The result reaching the composed and rendered Home
-experience remains open.
+authored fixtures. This backend test alone does not exercise the native “Why
+this?” → “Ask Vesper” → result-screen tap-through, read canonical user-owned
+Source records, or make a paid model call. The bounded native flow is now
+covered separately below; neither receipt establishes production-source
+quality or recurring supply.
 
 ```sh
 # Lane-only service and migration; use the exact assignments in
@@ -857,3 +859,65 @@ Result: 3 passed on backend `bf1e5dadf`. Supporting same-lane evidence:
 tests passed across explicit request, Home route handoff, exact-result states,
 and result destinations. These test boundaries do not replace native device
 acceptance, `make verify`, production-source evaluation, or release readiness.
+
+#### September 26 — Native Home Source request → exact result → return
+
+App revision `aa3e235d6` completes the native continuation from a prepared
+Home Source card: “Why this?” → “Ask Vesper” → the exact pending result → the
+same Home contribution after the provider-free worker has produced or reused a
+persisted result. The Home request now carries the visible contribution's full
+governed `source_refs` set rather than only its private attachment. The runner
+prepares the owner-backed fixture, submits the initial controlled production,
+lets the registered Home action create its own workflow, runs the canonical
+worker fence, verifies exact-result readback, and cleans up both workflows and
+the fixture production.
+
+`travel-app/scripts/maestro/run-home-source-result-real.sh` passed on the
+assigned iPhone 16 Pro against the lane API and disposable Postgres database.
+The synthetic QA owner and authored fixture are not production-user or
+production-supply evidence; `AI_MODE=off` means no paid model call. The separate
+backend workflow receipt above proves the API/storage boundary, while the
+native run proves the Home gesture, pending/ready result, return and cleanup.
+No release flag or API schema changed. This closes the bounded local
+Home-to-Source-result path, not recurring editorial supply or production
+quality.
+
+#### September 26 — Home received original as one authored share
+
+App revision `bf96a00f0` makes an individually addressed original a contained
+Home share object: current sender/share-time attribution, the material preview,
+and its exact “Open original” door sit together inside the existing quiet-object
+card. Text previews no longer render a second inset panel inside that card.
+This follows the Home contract's rule that authored shares are coherent carded
+objects. It changes neither recipient authorization nor original-reader
+revalidation; no album, inferred grouping, reply affordance, or audience change
+was added.
+
+Focused verification on the committed app revision:
+
+```sh
+npm test -- --runInBand --runTestsByPath \
+  __tests__/utils/homeRootV2Renderer.test.ts \
+  __tests__/components/ReceivedOriginalSurface.test.tsx \
+  __tests__/components/home-root/HomeRootExperience.connected.test.tsx
+npm run typecheck
+npx eslint components/home-root/HomeRootV2UnitRenderer.tsx \
+  components/inbound/OriginalMaterialView.tsx \
+  __tests__/utils/homeRootV2Renderer.test.ts
+```
+
+Result: 3 suites / 26 tests passed; TypeScript passed; ESLint reported no errors
+and the pre-existing `HomeRootV2UnitRenderer.tsx` max-lines warning. The
+registered native flow
+`polish/home-root-social-original` passed 1/1 on the lane's assigned iPhone 16
+Pro. Capture:
+`travel-app/.maestro/runs/20260926T221849Z-home-root/screenshots/full/home-root-social-original.png`.
+That run rendered the working-tree change immediately before it was committed;
+the manifest records prior HEAD `aa3e235d6`, so it is not represented as a
+post-commit revision receipt. A repeat after commit stalled in Maestro's iOS
+XCTest driver before the product flow and was stopped; it is a harness-startup
+failure, not product-failure evidence. The passing capture is mock-fixture
+presentation/interaction evidence, not real-owner readback, actual-photo
+rendering, full-scroll parity, or production acceptance. The Home design check
+has two first-viewport reference pairs but reports `externalCanonVerified=0`;
+accepted full-scroll visual parity remains open.
