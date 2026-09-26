@@ -295,6 +295,17 @@ mocked projection/navigation evidence, not device-level scroll observation or
 live owner-data readback. The real-owner API rehearsal remains blocked by its
 current provider-key startup contract; no key or substitute was supplied.
 
+The latest native refinement is committed in app revision `1b23ed891`.
+Non-dominant Home editorial readings no longer repeat the region's meaning with
+an extra “A closer reading” kicker; the kicker remains when the reading is
+promoted to the standalone dominant. Focused renderer tests verify both forms.
+`npm run qa:polish:scenarios` passed; a Returned posture capture at
+`travel-app/.maestro/runs/20260926T153217Z-home-root` records the changed
+screen at that exact app revision. It is a fixture capture
+(`dataContext: null`) with no registered design refs, so it is evidence of the
+native treatment only—not real-owner supply, reference comparison, or Claude
+design parity.
+
 The combined `make verify` gate remains unrun. Only the isolated lane database
 schema was migrated; no product-data fixture, production data, release flag
 change or publication was involved. The Expo
