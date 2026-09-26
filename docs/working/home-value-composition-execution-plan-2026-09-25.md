@@ -74,10 +74,15 @@ below is absent just because a September 22 receipt says it was unfinished.
    export or copy the external canonical bundle into the repo.
 
 The current `home-root` entry in `travel-app/scripts/polish-qa/surfaces.mjs`
-has `designRefs: []` and `judgeAgainst: 'doctrine'`. Establish specific accepted
-screen references through the existing export/registration workflow as part of
-H1. A doctrine pass cannot establish visual parity. This bounded reference task
-does not require every pending design study to finish before implementation.
+now registers selected 02/03 first-viewport image references while retaining
+`judgeAgainst: 'doctrine'`. The pair manifest marks them `reference`, not full
+visual canon: the native Available/Returned fixture captures have different
+dates and content, and the comparisons cover only the first 874 logical pixels.
+They establish a repeatable visual review input, not full-scroll parity or a
+final design verdict. The full accepted Root Boards and surface contract remain
+the authorities; a doctrine pass alone still cannot establish visual parity.
+This bounded reference work does not require every pending design study to
+finish before implementation.
 
 ## Starting implementation map
 
@@ -588,3 +593,59 @@ in `now`, alongside the `places-context.current` aperture in `horizons`; the
 person or production account; this proves HTTP composition wiring, not
 real-user value, recurring supply, or visual parity. No full `make verify` was
 run as part of this slice.
+
+#### September 26 — Home 02/03 first-viewport reference comparison
+
+The selected ordinary-day Home 02 and post-return Home 03 phone canvases from
+the accepted 2026-09-09 direction are now exported into the app repository as
+top-viewport references. The existing exporter gained an exact-match
+Playwright-locator mode with a required single output name, static-page guard,
+unique-match assertion, optional bounded viewport crop, and capture provenance.
+The source Downloads project was not edited. The design crops are 393px wide,
+874 logical pixels tall; their proportions are close to the iPhone 16 Pro
+native viewport captures and make above-the-fold hierarchy reviewable.
+
+The `home-root` comparison manifest pairs Home 02 with the native Available
+fixture and Home 03 with the native Returned fixture. Both are registered as
+`reference`/L0: native captures include system chrome, and the fixture dates,
+postures, and content intentionally do not match the authored canvases. Review
+is limited to hierarchy, visual treatment, and first-viewport density; neither
+pair proves full-scroll parity, same-data state parity, real-owner value, or
+product acceptance. The complete scroll remains a separate acceptance gap.
+The surface registry now includes the two images in its visual review context,
+while `judgeAgainst: 'doctrine'` remains unchanged until the full accepted
+reference and its scope can be represented honestly.
+
+Fresh native captures at app revision `957fddde2` now replace the historical
+screenshots for this comparison: Available passed in
+`20260926T185857Z-home-root`; Returned passed in
+`20260926T185943Z-home-root` (including its close capture). Both ran on the
+lane iPhone 16 Pro with mock data and no backend. The broad warm surface, serif
+lead, section-label treatment, and spacing are directionally consistent. Home
+02's timed `Today, in order` composition is not yet exercised by a matching
+native state; the current Available fixture is a different Saturday
+possibility, so this comparison cannot classify that difference as a defect.
+
+The social-original native flow required both the app and API relationship
+handoff flags. The two first attempts (`20260926T190143Z-home-root` and
+`20260926T190801Z-home-root`) lacked the app flag and are setup failures, not
+product evidence. With the flag enabled, the flow reached the recipient unit
+and exposed two capture issues: `20260926T191126Z-home-root` asserted preview
+copy that was below the opening viewport, and `20260926T191912Z-home-root`
+passed the exact reader and return but its Home screenshot still showed the
+opening. The flow now explicitly scrolls to show the received unit before
+capturing it. At app revision `957fddde2`,
+`20260926T192044Z-home-root` passed 1/1 with 2/2 extra captures: share-time
+attribution and caption on Home, exact fixture text in the reader, and return
+to the same Home context. Its Home screenshot shows the received note after
+the week strip and Worth Knowing, followed by rest-close. This is mock fixture
+evidence on the lane iPhone 16 Pro, with no backend or production data.
+
+That proves the local recipient path, not Home 03 first-viewport parity. The
+accepted design leads with the received note; the current native note requires
+scrolling and sits later in Home. Keep the registered first-viewport pair
+marked `reference`, and do not infer matching content, placement, real-owner
+value, or full-scroll acceptance from it. The temporary Metro server is
+stopped. Next, create an evidence-matched native capture for Home 02's
+`Today, in order` state, then review Home 03's note-first placement against the
+current feed as an explicit product-composition gap before claiming parity.
