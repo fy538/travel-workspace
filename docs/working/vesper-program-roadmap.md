@@ -140,6 +140,14 @@ or accepted full-scroll design parity. None of these results establishes
 production/recurring supply, accepted full-scroll design parity, or H1. H1 is
 still not ready to publish or declare complete.
 
+The coordinated lane revisions at the latest gate run passed `make verify`:
+workspace `8f2ecf0fcf03b0fbae8525d10e9cb3e4cd97df63`, backend
+`a444db9fa82a6cd297c4078bc9e235c9bebbf35c`, app
+`ccef6395382f650f97a1a7dea9aee28f8529cca2`. The current-gate receipt in the
+[H1 execution plan](home-value-composition-execution-plan-2026-09-25.md)
+records counts and limits. This removes the stale local integration-gate gap;
+it does not resolve supply, design acceptance or publication readiness.
+
 The prepared-Source serving adapter already revalidates exact current owner
 materials and context and fails closed on missing or changed evidence; Home
 does not generate on an ordinary miss. Current H1 workflow/native receipts use

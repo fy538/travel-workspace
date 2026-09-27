@@ -37,15 +37,16 @@ readback; `758f15460` requires the exact lane API origin and manifest-assigned
 simulator. Its native path now proves practical suggestion → exact venue → same
 Home unit return on the recovered implementation. Focused checks and native
 captures pass for these bounded paths; their fixture/synthetic data do not
-establish production supply. The last coordinated `make verify` pass is
-recorded for workspace `881a66a`, backend `a444db9fa`, and app `670d49183`;
-that gate predates the latest Home surface changes and is not a current-tuple
-pass. The post-fix native capture used app rendering revision `cd8e8652e`; app
+establish production supply. A fresh coordinated `make verify` passes on the
+current lane tuple: workspace `8f2ecf0fcf03b0fbae8525d10e9cb3e4cd97df63`,
+backend `a444db9fa82a6cd297c4078bc9e235c9bebbf35c`, and app
+`ccef6395382f650f97a1a7dea9aee28f8529cca2`. The post-fix native capture used
+app rendering revision `cd8e8652e`; app
 revision `ccef63953` adds the structured verdict and generated design-status
 receipt, not product code. At that capture, workspace HEAD was `1b75593` and
-backend HEAD was `a444db9fa`. Exact gate results and limits are recorded at
-the end of this plan. Accepted full-scroll design-reference alignment and
-production/recurring editorial supply remain open.
+backend HEAD was `a444db9fa`. The coordinated gate results and limits are
+recorded at the end of this plan. Accepted full-scroll design-reference
+alignment and production/recurring editorial supply remain open.
 September 27 Home polish commits align the four-root Home tab glyph with its
 label while preserving the briefcase glyph in legacy Plans, then align region
 headings to D-H10 and remove the prohibited gold edge from Home readings.
@@ -1573,5 +1574,23 @@ refreshed the generated status projection.
 This receipt strengthens native posture/social evidence and creates a
 re-runnable visual review record. It does not establish full-scroll design
 alignment, real-owner personalization, recurring editorial supply, cost, or
-H1 completion. The last full coordinated `make verify` remains the older tuple
-recorded above; it was not rerun after the latest app/workspace changes.
+H1 completion.
+
+#### September 27 — Current coordinated gate
+
+`make verify` passed on the coordinated lane revisions at the time of the run:
+workspace `8f2ecf0fcf03b0fbae8525d10e9cb3e4cd97df63`, backend
+`a444db9fa82a6cd297c4078bc9e235c9bebbf35c`, app
+`ccef6395382f650f97a1a7dea9aee28f8529cca2`. Backend offline tests reported
+21,914 passed, 14 skipped, 1,496 deselected and 53 xpassed; the local-Qdrant
+payload-index warning remains expected. The 1,004 workspace tool/validator
+tests, backend mypy over 1,888 files, 422 deterministic eval checks, OpenAPI
+snapshot/projection/generated-type checks, API coverage, app typecheck, 34
+journey suites / 173 tests, 6 mock/API suites / 185 tests, 8 offline suites /
+126 tests, and the 389-flow Maestro syntax/governance sweep passed. Fourteen
+LLM-backed eval checks were skipped. The gate completed its World Catalog
+runway, branch/flag, documentation, compatibility and evidence-integrity
+checks. `uvicorn` was unavailable; services, native simulator flows, production
+data, external providers and full-scroll design parity were not exercised.
+This is current local integration evidence, not H1 completion or release
+authorization.
