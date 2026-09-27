@@ -1594,3 +1594,52 @@ checks. `uvicorn` was unavailable; services, native simulator flows, production
 data, external providers and full-scroll design parity were not exercised.
 This is current local integration evidence, not H1 completion or release
 authorization.
+
+#### September 27 — Comparison-led Home output avoids duplicate explanation
+
+Home now omits the composition's prose `substance` only when the Home
+projection is led by a native comparison. The comparison title and structured
+facts, scope caveat, source provenance, and Life continuation remain visible;
+standard/deeper projections and prose-led Home reads still show the substance.
+This is a bounded presentation choice: let the comparison carry its own
+meaning rather than explain the same contrast a second time. App change and
+focused test are committed as `9a0b25e13`.
+
+The photo-social native flow also now follows the affordance actually available
+in the mock recipient session. Without an auth token, the preview deliberately
+offers the explicit **Open original** action instead of making the image itself
+a tappable button; the exact reader and return are unchanged. The old Maestro
+selector expected the authenticated image-tap affordance. The test was updated
+to assert the mock session's explicit button, not to alter product behavior.
+
+Focused verification passed:
+
+```sh
+npm test -- --runInBand __tests__/components/RootCompositionRenderer.test.tsx __tests__/components/HomeRootV2Screen.smoke.test.tsx
+npm run typecheck
+npm run qa:polish:scenarios
+npm run qa:design:check -- home-root
+VESPER_METRO_URL=http://127.0.0.1:53177 npm run qa:surface -- home-root --after
+```
+
+The native matrix captured **9/9** states on the assigned iPhone 16 Pro,
+including the exact photo reader/return and Returned full-scroll close. The
+staged JPG was served read-only from the lane's existing dogfood-media file
+through a temporary static bridge on assigned port `53176`; Metro used `53177`
+and the internal four-root, mock and relationship-handoff flags. No database,
+live API, LLM provider, production account, or persistent environment change
+was used. The capture manifest records base HEAD `ccef63953`: capture happened
+before commit, with exactly the three reviewed app files dirty; those exact
+files were committed as `9a0b25e13` without subsequent content edits. Thus the
+rendered tree matches this app commit, although the manifest itself names its
+pre-commit HEAD.
+
+The selected Home 02/03 references and the updated Available, Returned, Quiet,
+and received-photo screenshots were visually reviewed. The comparison is
+shorter and still retains its caveat and provenance; its detailed anatomy
+remains scroll content, and the references are first-viewport composition aids
+only. `qa:surface` generated a new pending verdict scaffold, not a completed
+structured visual verdict. This is capture and focused-behavior evidence, not
+accepted full-scroll design parity, recurring/production supply, or H1
+completion. The coordinated workspace `make verify` has not been rerun after
+this app slice.
