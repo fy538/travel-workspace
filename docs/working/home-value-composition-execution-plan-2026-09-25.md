@@ -49,7 +49,11 @@ recorded at the end of this plan. Accepted full-scroll design-reference
 alignment and production/recurring editorial supply remain open.
 September 27 Home polish commits align the four-root Home tab glyph with its
 label while preserving the briefcase glyph in legacy Plans, then align region
-headings to D-H10 and remove the prohibited gold edge from Home readings.
+headings to D-H10 and remove the prohibited gold edge from Home readings. The
+same-day native review-first Chat capture now covers all three supported Home
+resource doors: Plan, nearby opening and recovery. These are synthetic,
+mock-only composer captures; they do not exercise Send or establish full-scroll
+visual acceptance.
 
 ## Outcome and scope
 
@@ -1814,5 +1818,28 @@ the captured accessibility label retains its full title. The test verifies the
 accessible attachment and screenshot only; no structured visual verdict or
 design comparison was completed. This adds native evidence for the Plan owner
 path, not native proof of backend Plan resolution, generated answer quality,
-the other two Home-to-Chat owner paths, full-scroll parity, recurring supply,
-or H1 completion.
+full-scroll parity, recurring supply, or H1 completion.
+
+#### September 27 — native Home opening and recovery to private Chat composer
+
+App commit `772bee902` adds isolated mock personas and registered native
+scenarios for the two remaining supported Home resource doors. On the assigned
+iPhone 16 Pro / iOS 18.2, both passed 1/1: nearby opening
+(`20260927T162503Z-home-root`, scenario `M1-ana-cold-start`) and recovery
+(`20260927T162550Z-home-root`, scenario `M6-urgent-open-decision`). Each flow
+opens the private, editable composer, retains the exact resource attachment,
+asserts the suggested prompt and full accessible attachment label, and stops
+before Send. Both manifests have `dataContext: null`; the capture used mock
+mode and the lane-reachable Metro server on port `53177`.
+
+The manifest app SHA is `eb8429120`; the new fixture/flow changes were present
+in the running app and committed afterward as `772bee902`, with no subsequent
+app edits. Screenshots and attempt logs remain in the ignored, run-specific
+folders under `travel-app/.maestro/runs/20260927T162503Z-home-root/` and
+`travel-app/.maestro/runs/20260927T162550Z-home-root/`. No live API, database,
+production account, provider, or send was involved. As on the Plan capture, the
+attachment chip is visually ellipsized while its accessible label remains
+complete. These captures prove client-side UI routing and review posture for
+the three mock owner types; they do not prove backend resolution on-device,
+answer quality, persisted real-owner data, a structured visual verdict,
+full-scroll design parity, recurring supply, or H1 completion.
