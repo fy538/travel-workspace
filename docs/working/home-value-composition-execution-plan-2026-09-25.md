@@ -1753,3 +1753,38 @@ claimed for this change.
 H1's remaining high-level gaps are recurring/production supply and accepted
 full-scroll design parity; the Home-to-Chat resource-fallback context break is
 now closed locally for these three supported owners.
+
+#### September 27 — focused native receiving and return capture
+
+After the Home-to-Chat code and coordinated gate, a focused native capture
+rechecked the pre-existing received-original continuation on app
+`af441e1e5`. On the lane-assigned iPhone 16 Pro, the mock recipient opened the
+attributed Home original, opened its exact reader, and returned to the same
+Home unit. The Maestro result captured 1/1 persona and both extra screenshots;
+the manifest records `dataContext: null`. Command:
+
+```sh
+VESPER_METRO_URL=http://192.168.86.189:53177 \
+  node scripts/polish-qa/run-polish-qa.mjs home-root --after \
+  --flow=polish/home-root-social-original
+```
+
+The server was started in Expo LAN mode on the assigned Metro port with
+process-only internal, four-root, relationship-handoff and mock flags. This
+used no live API, database, account, model or paid provider. The exact captured
+screens and log are retained under
+`travel-app/.maestro/runs/_pairs/home-root/after/` on the lane (ignored QA
+output, not committed evidence). The first attempt with host-loopback Metro
+passed the doctor but the simulator could not connect; the lane-reachable LAN
+address made the actual flow pass. `travel-app/AGENTS.md` now records the
+simulator-reachability check so a host-side doctor result is not mistaken for
+capture evidence.
+
+This capture does **not** exercise the new Home-to-Chat owner-seeded composer,
+does not provide a structured visual verdict, and is not accepted full-scroll
+design parity. The screen was opened to confirm the native path, but no
+comparison against an adopted full-scroll canon was performed. The Home-to-Chat
+context behavior remains covered by focused connected/component and backend
+seed tests, not a native composer capture. The current `--after` run folder
+contains only this targeted persona; it is not the previously captured 9-state
+matrix. No H1 exit criterion is removed by this receipt.

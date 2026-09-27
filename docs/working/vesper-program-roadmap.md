@@ -156,6 +156,14 @@ skipped; the doctor also reported `uvicorn` unavailable and left service
 probes unrun. This gate is local/offline evidence, not live-service,
 production-supply, design-acceptance, or publication evidence.
 
+A subsequent focused iPhone 16 Pro capture on app `af441e1e5` verifies the
+mock-only received-original → exact reader → Home-return path (one persona,
+`dataContext: null`) using the lane-reachable Metro address. This supersedes
+only the earlier “no native capture” observation for that existing social
+continuation; it does not capture the newly implemented Home-to-Chat composer,
+establish a structured visual verdict, or satisfy full-scroll design parity.
+The active H1 plan records the command and evidence boundary.
+
 The prepared-Source serving adapter already revalidates exact current owner
 materials and context and fails closed on missing or changed evidence; Home
 does not generate on an ordinary miss. Current H1 workflow/native receipts use
