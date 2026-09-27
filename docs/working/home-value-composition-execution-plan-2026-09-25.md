@@ -1457,3 +1457,67 @@ production data, or external providers. Its result establishes a current local
 cross-repository code/contract baseline only—not recurring useful supply,
 accepted full-scroll design parity, or H1 completion. No files were generated
 or left dirty by the gate.
+
+#### September 27 — Full native Home posture and social-receiving capture
+
+The registered native Home matrix now captures all seven postures plus the
+separate received-note and received-photo paths on the lane-assigned iPhone 16
+Pro. Final run `20260927T050123Z-home-root` completed **9/9** captures, with
+the photo flow also capturing its exact reader and return. The screenshots and
+manifest are local QA artifacts under
+`travel-app/.maestro/runs/20260927T050123Z-home-root/`; they are not committed
+design references. App product code in the capture was `670d49183`; the
+photo-flow selector/test correction was committed immediately after as
+`1b6cfd127` (QA-only; no Home rendering code changed).
+
+The photo flow had been targeting the generic text-original button. The
+photo-specific reader is opened through
+`home-v2-original-image-open:<delivery_id>`, so the Maestro selector and its
+unit assertion now name that actual affordance. Initial photo retries also
+showed the mock image as unavailable because the local dogfood-media API and
+mock media authorization were not in the runtime. The passing capture used
+this lane's API on port `53176` with LLM background loops disabled, Metro on
+`53177`, the internal four-root flags, and a process-only local QA JWT. No
+credential or environment file was changed. One earlier setup attempt used a
+placeholder key before disabling background loops; a startup task received an
+Anthropic 401, then the process was stopped and restarted with
+`DISABLE_LLM_BACKGROUND_LOOPS=true`. No valid model call succeeded. Keep that
+flag enabled for future local QA API sessions without real credentials.
+
+Validation after the flow correction:
+
+```sh
+cd travel-app
+npm run qa:polish:scenarios
+node scripts/maestro/home-original-delivery-photo.test.mjs
+VESPER_METRO_URL=http://192.168.86.189:53177 npm run qa:polish -- home-root
+```
+
+The first two checks passed (`31` registered scenario IDs; photo-flow test
+passed). The full native run passed `9/9`. `qa:design:compare` generated both
+registered first-viewport comparison sheets and they were visually reviewed.
+These are L0 composition references, not full-scroll design acceptance.
+
+Review notes that remain open rather than being hidden by the capture pass:
+
+- The Returned native first viewport leads with the current-life read and
+  recorded trip outcome; Maya's received original is proven only in a separate
+  scrolled Home flow, not in the note-first position of the Home 03 reference.
+  Decide whether the ordering is intentional before calling that composition
+  aligned.
+- The Cold fixture is truthful and gives one nearby opening, but its lower
+  viewport has substantial whitespace after the week strip. Judge whether this
+  reads as a deliberate low-pressure beginning or as insufficient first-use
+  value; do not fill it with invented personalization.
+- The Live screenshot's Tuesday, September 1 context presents a Saturday
+  dinner under `CURRENT`. Confirm this means an active commitment rather than
+  an upcoming event; correct the fixture/state label if not.
+- The seven posture screenshots are primarily viewport captures, not accepted
+  full-scroll references. Production owner reads, recurring content supply,
+  and matched full-scroll Claude-design evidence remain unproven.
+
+This improves native implementation/interaction evidence and closes the
+photo-flow harness mismatch. It does not promote Home to design parity or
+complete H1. The coordinated workspace `make verify` result above predates this
+QA-only app commit; the focused checks and the full native capture are the
+post-change evidence.
