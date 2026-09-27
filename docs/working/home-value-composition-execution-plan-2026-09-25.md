@@ -1980,8 +1980,8 @@ provider, real owner data, recurring supply or production behavior was
 exercised. The active comparison references remain first-viewport L0 aids;
 full-scroll product design is not certified. This review also corrected three
 older verdict roll-ups whose recorded 4–18 minor findings exceeded the shared
-threshold: Home \`20260927T053220Z\`, Places Workspace
-\`places-workspace-after\`, and Trip Itinerary \`trip-itinerary-after\` are now
+threshold: Home `20260927T053220Z`, Places Workspace
+`places-workspace-after`, and Trip Itinerary `trip-itinerary-after` are now
 MIXED rather than PASS. Against Home's prior dimension/gate snapshot, this run
 records 17 newly judged fail states; those are newly surfaced review findings,
 not proof that product code regressed between builds. Both Home runs now derive
