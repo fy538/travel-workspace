@@ -55,6 +55,13 @@ resource doors: Plan, nearby opening and recovery. These are synthetic,
 mock-only composer captures; they do not exercise Send or establish full-scroll
 visual acceptance.
 
+A later structured native review of the full Home-root matrix is recorded
+below. It captures all 12 registered Home/Chat-receiving states on the lane
+simulator and returns a **MIXED** product-quality verdict, not H1 completion or
+design parity. The review exposes an unresolved Planning composition mismatch
+and bounded copy, hierarchy and mobile-overlay issues; implementation work
+remains.
+
 ## Outcome and scope
 
 Complete the path from supported input or existing material to a useful result,
@@ -1942,3 +1949,62 @@ source files; `git diff --check` passed. The uniquely named synthetic database
 was confirmed to have zero connections, dropped, and its lane Postgres
 container stopped without deleting the volume. The coordinated `make verify`
 has not been rerun after this test-only slice. H1 remains in progress.
+
+#### September 27 — full native Home-root acceptance review
+
+Run `20260927T180109Z-home-root` captured all 12 registered Home-root and
+Home-to-Chat states on the lane-assigned iPhone 16 Pro, using app revision
+`f481d22c5`, mock mode and synthetic fixture content. The review completed
+all 29 manifest assertions, all four gates and all ten rubric dimensions per
+persona. Capture and visible-data correctness passed for every persona; one
+Planning assertion failed, along with that persona's visual and intent gates.
+The structured verdict is **MIXED**, with 24 evidence-linked findings (one
+`p1`, 23 `p2`) and no blocker. It is committed at
+`travel-app/docs/surfaces/home-root/verdicts/20260927T180109Z.json`.
+
+The highest-priority finding is precise: the Planning manifest requires one
+compact In-motion status row without an icon plate, but the native screen
+renders the unresolved meeting point as a large crown card and adds a second
+large Saturday route card. Other findings cover vague cold-start place detail,
+generic unsent Chat drafts and visually truncated context chips, repeated Live
+dinner copy, text-heavy Home readings, an unclear source-freshness word, and
+the floating dock overlapping content at some reading positions. The returned
+full-scroll close is separately visible above navigation. Home 03's note-first
+crop remains reference-only: its order is not treated as an adopted rule or a
+contract failure. The photo recipient capture uses a synthetic media fixture;
+it does not establish an authorized private-media grant.
+
+This run is native **mock presentation and interaction** evidence only. The
+Home-to-Chat captures stop before Send. No backend, authenticated account,
+provider, real owner data, recurring supply or production behavior was
+exercised. The active comparison references remain first-viewport L0 aids;
+full-scroll product design is not certified. This review also corrected three
+older verdict roll-ups whose recorded 4–18 minor findings exceeded the shared
+threshold: Home \`20260927T053220Z\`, Places Workspace
+\`places-workspace-after\`, and Trip Itinerary \`trip-itinerary-after\` are now
+MIXED rather than PASS. Against Home's prior dimension/gate snapshot, this run
+records 17 newly judged fail states; those are newly surfaced review findings,
+not proof that product code regressed between builds. Both Home runs now derive
+MIXED under the same baseline.
+
+Focused checks passed:
+
+```sh
+node scripts/polish-qa/verdict.mjs validate .maestro/runs/20260927T180109Z-home-root
+node scripts/polish-qa/verdict-schema.test.mjs
+node --test scripts/maestro/home-original-delivery-photo.test.mjs
+npm run qa:polish:scenarios
+npm run qa:design:health -- home-root .maestro/runs/20260927T180109Z-home-root
+```
+
+Results: verdict valid with derived `mixed`; 39 schema checks passed; photo
+fixture contract test passed; 31 scenario IDs registered; capture-health
+reported no visual-health assertions are configured for Home. The verdict
+diff's 17 dimension/gate changes were recomputed against the previous Home
+review after its overall roll-up was corrected; the filed regression list
+matches that computed diff. The coordinated
+`make verify` has not been rerun on this latest app/backend tuple. Next Home
+implementation should close the compact Planning-row mismatch and improve
+immediate cold-start specificity, then recapture; keep Chat and Life screen
+design outside this package, and do not infer production supply from these
+fixtures.
