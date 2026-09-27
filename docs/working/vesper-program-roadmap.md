@@ -3,7 +3,7 @@ doc_type: current_status
 status: active
 owner: founder / coordination task
 created: 2026-09-07
-last_verified: 2026-09-26
+last_verified: 2026-09-27
 why_new: Owns the single live cross-lane execution queue, accountable package assignments, and system reassessment without duplicating product or implementation contracts.
 supersedes:
   - current assignments and sequencing in the historical program and Integration roadmaps
@@ -18,7 +18,7 @@ depends_on:
 
 # Vesper program roadmap
 
-## Current direction — September 26
+## Current direction — September 27
 
 Build a coherent product from the capabilities already implemented. Treat the
 merged recovery work as the working baseline; then execute
@@ -57,8 +57,8 @@ were restored and verified afterward:
 | App | `43225df35a01295993def384b5958c53ab8f1c8b` | [#201](https://github.com/fy538/travel-app/pull/201) |
 
 The current implementation owner is the coordinated `codex/home-value-delivery`
-lane. Its current product-code heads are backend `3350cd3b4` and app
-`6244103fe`, both after the merged recovery revisions above and not yet
+lane. Its current product-code heads are backend `08b03fd14` and app
+`9d7ff2fd6`, both after the merged recovery revisions above and not yet
 published. The active workspace lane contains this queue and the H1 execution
 plan on branch `codex/home-value-delivery`. The lane has advanced past the
 earlier status recorded below; the
@@ -77,13 +77,17 @@ more complete than at the previous rebaseline.
 
 These results still use authored/synthetic fixtures where noted; they do not
 establish recurring or production content supply, provider-backed freshness,
-canonical user-authored Source contribution in recurring editorial value, a
-live private object-store image read/native render, or accepted full-scroll
-design-reference parity. Focused regressions now check authenticated,
-cache-disabled image transport and byte/MIME-correct binary route behavior.
-The disposable-Postgres acceptance also verifies exact Intake custody, recipient
-grant and Home projection for a PNG, but stubs only the private object-store
-download. It does not close the live storage/native photo gap. The first
+canonical user-authored Source contribution in recurring editorial value, or
+accepted full-scroll design-reference parity. Focused regressions check
+authenticated, cache-disabled image transport and byte/MIME-correct binary
+route behavior. The disposable-Postgres acceptance verifies exact Intake
+custody, recipient grant and Home projection for a PNG, but stubs the private
+object-store download. That gap is now closed locally for one synthetic JPG:
+the running API read exact bytes from a loopback Moto S3-compatible store, and
+the assigned iPhone simulator rendered the recipient's original from Home and
+returned to that Home unit. Exact database/object cleanup was verified. This
+does not establish AWS/R2 or production storage, recurring real-user supply,
+or visual parity with accepted references. The first
 `make verify` attempt failed at the date-sensitive World Catalog runway gate:
 existing season and NYC `here` rows expired before the full 14-day runway.
 After rechecking official sources, the lane refreshed the source/review
@@ -97,9 +101,11 @@ rows now expire at October 12 00:00 UTC, preserving an explicit near-term
 re-review without extending any exhibition/season window. No generic or
 invented catalog rows were added. The checker passes with 5 season and 5
 `here` rows, and a regression now rejects expiry at the start of the final
-runway day. `make verify` passes on the corrected catalog and test boundary.
-This closes the date-sensitive catalog gate, not production/recurring supply,
-design parity, or H1. H1 is still not ready to publish or declare complete.
+runway day. `make verify` passed for the corrected catalog and test boundary
+before the latest local photo slice; the full gate has not been rerun after
+that slice. This closes the date-sensitive catalog gate, not
+production/recurring supply, design parity, or H1. H1 is still not ready to
+publish or declare complete.
 
 The prepared-Source serving adapter already revalidates exact current owner
 materials and context and fails closed on missing or changed evidence; Home

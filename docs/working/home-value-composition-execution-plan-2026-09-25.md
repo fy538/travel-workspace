@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: codex/home-value-delivery lane
 created: 2026-09-25
-last_verified: 2026-09-26
+last_verified: 2026-09-27
 expires: 2026-10-25
 why_new: Gives one complete Home implementation assignment after separating the program queue from historical receipts; existing design contracts define behavior but not this bounded delivery package.
 depends_on:
@@ -1067,3 +1067,60 @@ not exercise a running API or private object store. This closes the immediate
 date-sensitive runway gate, not recurring supply, future catalog review before
 October 12 UTC, production freshness, full-scroll design parity, or H1's
 broader Home value-delivery exit criteria.
+
+#### September 27 — Local private-photo object → native Home → return
+
+The optional photo mode in the existing original-delivery rehearsal now proves
+the actual local object-store path rather than stopping at a mocked storage
+read. It uploads the checked-in synthetic Rome-table JPG to an explicitly
+loopback Moto S3-compatible service, records exact Intake custody, and reads
+the recipient-authorized bytes through the running local API. Before launching
+Maestro, the runner checks MIME type, byte count and SHA-256 against that
+custody record. The assigned iPhone 16 Pro simulator then opened the same
+photo from Home, rendered the exact-original reader, returned to the original
+Home unit, and preserved the active owner delivery. Cleanup removed the exact
+private object and disposable delivery/sender; the API then returned 404 for
+the removed content. Database inspection confirmed no rehearsal delivery
+remained. The separate lane-local QA recipient is retained for this lane's
+remaining work.
+
+The first native attempt correctly exposed that Maestro's accessibility
+visibility check could consider “Open original” visible while its touch point
+was underneath the floating tab bar. The flow now performs and captures an
+actual upward Home scroll before tapping. This is test-flow correction only;
+no production UI behavior or API contract changed.
+
+The exact API body was `image/jpeg`, 368,414 bytes, SHA-256
+`0f52adbee1d0275cef3c3904cbca0e01199cec98a1f45cda7dc9017a5e451f44`. Focused
+checks passed:
+
+```sh
+# travel-agent
+PYTHONPATH=. .venv/bin/python -m pytest -q tests/scripts/test_original_delivery_native_rehearsal.py
+.venv/bin/ruff check scripts/provision_original_delivery_native_rehearsal.py tests/scripts/test_original_delivery_native_rehearsal.py
+.venv/bin/ruff format --check scripts/provision_original_delivery_native_rehearsal.py tests/scripts/test_original_delivery_native_rehearsal.py
+
+# travel-app
+bash -n scripts/maestro/run-home-original-delivery.sh scripts/maestro/run-life-original-delivery.sh
+node --test scripts/maestro/home-original-delivery.test.mjs scripts/maestro/home-original-delivery-photo.test.mjs scripts/maestro/home-original-delivery-real-photo.test.mjs
+(cd travel-app && QA_ALLOW_DATABASE=vesper QA_USER_ID=4b7effb2-bafb-4fcc-8b6b-5ea0d55a09f1 \
+  DATABASE_URL=postgresql://vesper:localdev@localhost:53173/vesper \
+  EXPO_PUBLIC_API_URL=http://127.0.0.1:53176 \
+  MEDIA_S3_BUCKET=vesper-qa-home-originals \
+  MEDIA_S3_ENDPOINT_URL=http://127.0.0.1:5013 MEDIA_S3_REGION=us-east-1 \
+  AWS_ACCESS_KEY_ID=vesper-qa AWS_SECRET_ACCESS_KEY=vesper-qa \
+  VESPER_HOME_ORIGINAL_DELIVERY_MEDIA_KIND=photo \
+  VESPER_MAESTRO_UDID=AF31B886-E837-4962-834A-5CBAD5C306DB \
+  bash scripts/maestro/run-home-original-delivery.sh)
+```
+
+Backend guard tests passed (11), Ruff check/format passed, shell syntax passed,
+and app runner contract tests passed (7). The owner-backed runner additionally
+passed on the assigned simulator with its cleanup and post-cleanup API checks.
+The run used local Postgres on port 53173, API port 53176 and Moto on port 5013;
+AI and provider calls were not used. This closes the local private-object and
+native photo-render gap for one synthetic owner-authorized delivery. It does
+not verify AWS/R2 or production storage, recurring real-user supply, multiple
+recipients, provider-generated Home value, accepted design-reference parity,
+or H1 completion. The coordinated `make verify` gate remains unrun after this
+slice.
