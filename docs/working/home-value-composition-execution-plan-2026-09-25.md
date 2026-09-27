@@ -1509,9 +1509,19 @@ Review notes that remain open rather than being hidden by the capture pass:
   viewport has substantial whitespace after the week strip. Judge whether this
   reads as a deliberate low-pressure beginning or as insufficient first-use
   value; do not fill it with invented personalization.
-- The Live screenshot's Tuesday, September 1 context presents a Saturday
-  dinner under `CURRENT`. Confirm this means an active commitment rather than
-  an upcoming event; correct the fixture/state label if not.
+- **Resolved:** in the September 1 Live fixture, Saturday dinner is upcoming.
+  `current` is the owner-read validity state, not event timing; the old native
+  renderer exposed that enum as `CURRENT`, which could misread as “happening
+  now.” Home now leaves the valid state implicit and uses the existing
+  human-readable owner-state treatment for non-current states. A focused test
+  checks both cases. The dated dinner fixture remains accurate. The post-change
+  iPhone 16 Pro Live capture passed and was visually reviewed. A broader native
+  attempt passed Available, Planning, Live, and Returned, then failed the
+  social-original flow after three retries: the original stayed at
+  `Opening original…` with only the mock runtime active and the API stopped, so
+  its sender/timestamp assertion could not pass. This attempt does not certify
+  the full post-change matrix; the earlier 9/9 receipt is from the prior app
+  revision.
 - The seven posture screenshots are primarily viewport captures, not accepted
   full-scroll references. Production owner reads, recurring content supply,
   and matched full-scroll Claude-design evidence remain unproven.
