@@ -57,7 +57,7 @@ were restored and verified afterward:
 | App | `43225df35a01295993def384b5958c53ab8f1c8b` | [#201](https://github.com/fy538/travel-app/pull/201) |
 
 The current implementation owner is the coordinated `codex/home-value-delivery`
-lane. Its current product-code heads are backend `4aba48201` and app
+lane. Its current product-code heads are backend `3350cd3b4` and app
 `6244103fe`, both after the merged recovery revisions above and not yet
 published. The active workspace lane contains this queue and the H1 execution
 plan on branch `codex/home-value-delivery`. The lane has advanced past the
@@ -90,19 +90,16 @@ After rechecking official sources, the lane refreshed the source/review
 metadata for existing entries, added two source-backed NYC exhibitions to
 cover the runway after the current NYBG exhibitions end, and added a
 source-backed Smokies monarch migration window to preserve seasonal coverage
-through late October. Their `expires_at` values remain freshness deadlines,
-set just after the currently reviewed 14-day runway (October 11 UTC);
-exhibition/season dates are unchanged. No generic or invented catalog rows were
-added. The focused gate passes with 5 season and 5 `here` rows. The focused
-workbench/treatment/voice/catalog suite passes 70 tests with 1 service-gated
-test deselected; all 6 catalog checker tests are included. A coordinated
-`make verify` passed on the catalog-adjusted lane before the final test-fixture
-timestamp-only edit (September 23 to September 26); the focused suite and
-catalog checker were rerun and passed after that edit. The full gate therefore
-covers the catalog implementation, while the final fixture timestamp has
-focused—not full-gate—verification. This was a catalog-freshness/coverage gate
-failure, not evidence that Home behavior failed. H1 is still not ready to
-publish or declare complete.
+through late October. The checker evaluates today plus the next 14 UTC dates,
+including the entire final date. A full run on September 27 UTC exposed that an
+October 11 midnight freshness expiry did not cover that final day. The active
+rows now expire at October 12 00:00 UTC, preserving an explicit near-term
+re-review without extending any exhibition/season window. No generic or
+invented catalog rows were added. The checker passes with 5 season and 5
+`here` rows, and a regression now rejects expiry at the start of the final
+runway day. `make verify` passes on the corrected catalog and test boundary.
+This closes the date-sensitive catalog gate, not production/recurring supply,
+design parity, or H1. H1 is still not ready to publish or declare complete.
 
 The prepared-Source serving adapter already revalidates exact current owner
 materials and context and fails closed on missing or changed evidence; Home

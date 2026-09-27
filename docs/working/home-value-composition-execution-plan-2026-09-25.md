@@ -1024,14 +1024,18 @@ also remain open.
 
 #### September 26 — Source-backed World Catalog runway
 
-Backend revision `9647d67c2` refreshes the reviewed freshness metadata for
+Backend revision `3350cd3b4` refreshes the reviewed freshness metadata for
 active seasonal and NYC `here` entries, adds two source-backed NYC exhibitions
 that extend useful coverage beyond the current NYBG exhibition window, and
 adds the Smokies monarch migration window through late October. New and
 refreshed `expires_at` values are source-review deadlines, not event end dates;
 the active entries retain explicit re-review rather than being given an
-artificially long freshness window. The 14-day runway is now backed by 5
-seasonal and 5 `here` entries, with no generic or invented rows. The newly
+artificially long freshness window. The checker covers today plus the next 14
+UTC calendar dates, including the whole final day. On September 27 UTC, an
+October 11 00:00 expiry proved too early; active rows now expire at October 12
+00:00 UTC and remain source-fresh through the full October 11 runway day. The
+14-day runway is backed by 5 seasonal and 5 `here` entries, with no generic or
+invented rows. The newly
 curated exhibition sources are the [Met's Krasner and Pollock exhibition](https://www.metmuseum.org/exhibitions/krasner-and-pollock-past-continuous),
 the [Brooklyn Museum's Iris van Herpen exhibition](https://opencollection.brooklynmuseum.org/exhibitions/3450),
 and the [National Park Service's monarch migration guidance](https://www.nps.gov/articles/000/witness-a-migration-marvel-this-fall.htm).
@@ -1047,10 +1051,19 @@ The catalog checker passed with `--runway-days 14`. Focused tests passed:
   -m 'not requires_postgres and not requires_dogfood_wedge and not requires_api_keys' -q
 ```
 
-Result: 70 passed, 1 deselected because it requires a service-gated
-environment. A coordinated `make verify` also passed after the catalog data
-changes. It ran before the final fixture-only timestamp adjustment to the
-current review date; the focused tests and checker above passed afterward.
-This closes the immediate date-sensitive runway gate, not recurring supply,
-future catalog review after October 11 UTC, production freshness, full-scroll
-design parity, or H1's broader Home value-delivery exit criteria.
+Result: 71 passed, 1 deselected because it requires a service-gated
+environment. The catalog checker passed 7 tests, including the boundary
+regression that an October 11 00:00 expiry cannot cover the entire final day.
+The coordinated `make verify` passed on workspace `510bb15`, the backend
+working tree subsequently committed as `3350cd3b4` (same checked code/data),
+and app `6244103fe`. Backend offline tests: 21,895 passed, 14 skipped, 1,493
+deselected, 53 xpassed, one local-Qdrant warning. Tool/validator tests: 1,004
+passed; eval replay verified 422 deterministic checks and skipped 14
+LLM-backed checks; app journeys: 34 suites / 173 tests; mock/API seams: 6
+suites / 185 tests; offline app: 8 suites / 126 tests. Workspace governance,
+contract drift, generated types, and documentation gates passed. The doctor
+reported `uvicorn` unavailable and service probes unrun by design; the gate did
+not exercise a running API or private object store. This closes the immediate
+date-sensitive runway gate, not recurring supply, future catalog review before
+October 12 UTC, production freshness, full-scroll design parity, or H1's
+broader Home value-delivery exit criteria.
