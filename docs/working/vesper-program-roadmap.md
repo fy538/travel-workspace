@@ -164,6 +164,15 @@ continuation; it does not capture the newly implemented Home-to-Chat composer,
 establish a structured visual verdict, or satisfy full-scroll design parity.
 The active H1 plan records the command and evidence boundary.
 
+A separate registered native path now covers the newly implemented Home Plan
+door into Chat: tapping the planning row opens an editable private composer with
+the Plan attachment and suggested prompt, and the flow stops before Send. App
+commit `eb8429120` adds the isolated screenshot fixture/flow; the capture
+manifest names pre-commit app HEAD `7f96afa8a`, with those exact changes present
+and committed afterward. This closes the native-composer screenshot gap for
+the Plan path only, not backend resolution on-device, answer quality, social or
+recovery native paths, or visual-design acceptance.
+
 The prepared-Source serving adapter already revalidates exact current owner
 materials and context and fails closed on missing or changed evidence; Home
 does not generate on an ordinary miss. Current H1 workflow/native receipts use

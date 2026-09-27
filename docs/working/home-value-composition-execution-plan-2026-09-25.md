@@ -1788,3 +1788,31 @@ context behavior remains covered by focused connected/component and backend
 seed tests, not a native composer capture. The current `--after` run folder
 contains only this targeted persona; it is not the previously captured 9-state
 matrix. No H1 exit criterion is removed by this receipt.
+
+#### September 27 — native Home Plan to private Chat composer
+
+App commit `eb8429120` adds a registered native scenario for the just-implemented
+Plan fallback. The mock-only Home row opens the review-first Chat composer; the
+capture asserts the private audience, suggested draft, and full accessible
+label of the removable Plan attachment. The draft was not sent. The dedicated
+persona uses a UUID-shaped synthetic owner ref so it takes the guarded route;
+it is isolated from normal Home mock personas and is **not** a persisted Plan,
+backend-read evidence, or send authority.
+
+The assigned iPhone 16 Pro captured 1/1 persona on iOS 18.2, with
+`dataContext: null`. The screenshot is
+`travel-app/.maestro/runs/_pairs/home-root/after/screenshots/full/home-root-chat-plan-composer.png`;
+the exact capture command and attempt log are retained in the same ignored QA
+run folder. The manifest records pre-commit app HEAD `7f96afa8a`; the four
+captured fixture/registry/flow changes were committed as `eb8429120` without
+subsequent edits. No live API, database, production account, provider or send
+was involved. Metro and the app used the lane-assigned `53177` port and LAN
+address.
+
+The attachment appears as a compact, visually ellipsized chip in the composer;
+the captured accessibility label retains its full title. The test verifies the
+accessible attachment and screenshot only; no structured visual verdict or
+design comparison was completed. This adds native evidence for the Plan owner
+path, not native proof of backend Plan resolution, generated answer quality,
+the other two Home-to-Chat owner paths, full-scroll parity, recurring supply,
+or H1 completion.
