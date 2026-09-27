@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: codex/home-value-delivery lane
 created: 2026-09-25
-last_verified: 2026-10-09
+last_verified: 2026-09-26
 expires: 2026-10-25
 why_new: Gives one complete Home implementation assignment after separating the program queue from historical receipts; existing design contracts define behavior but not this bounded delivery package.
 depends_on:
@@ -967,7 +967,7 @@ did not retain PNGs; this is functional integration evidence, not a reviewed
 visual-design verdict, real-provider freshness, production venue coverage, or
 recurring supply. Full-scroll design acceptance and `make verify` remain open.
 
-#### October 9 — Private original-photo transport contract
+#### September 26 — Private original-photo transport contract
 
 App revision `6244103fe` adds a focused regression at the shared Home/reader
 media boundary: an individually addressed photo passes its exact content URL
@@ -1000,7 +1000,7 @@ Results: app 1 suite / 10 tests passed, ESLint clean, TypeScript passed;
 backend 9 tests passed and Ruff checks passed. The backend route test still uses
 mocked owner and storage functions.
 
-#### October 9 — Owner-custodied photo grant through Home
+#### September 26 — Owner-custodied photo grant through Home
 
 Backend revision `4aba48201` extends the disposable-Postgres original-delivery
 acceptance to a PNG source. It creates real Intake custody and relationship
@@ -1021,3 +1021,36 @@ object download and native image render remain open. No runtime permission,
 storage adapter, or production behavior was changed. Full-scroll design
 parity, recurring production supply and the coordinated `make verify` gate
 also remain open.
+
+#### September 26 — Source-backed World Catalog runway
+
+Backend revision `9647d67c2` refreshes the reviewed freshness metadata for
+active seasonal and NYC `here` entries, adds two source-backed NYC exhibitions
+that extend useful coverage beyond the current NYBG exhibition window, and
+adds the Smokies monarch migration window through late October. New and
+refreshed `expires_at` values are source-review deadlines, not event end dates;
+the active entries retain explicit re-review rather than being given an
+artificially long freshness window. The 14-day runway is now backed by 5
+seasonal and 5 `here` entries, with no generic or invented rows. The newly
+curated exhibition sources are the [Met's Krasner and Pollock exhibition](https://www.metmuseum.org/exhibitions/krasner-and-pollock-past-continuous),
+the [Brooklyn Museum's Iris van Herpen exhibition](https://opencollection.brooklynmuseum.org/exhibitions/3450),
+and the [National Park Service's monarch migration guidance](https://www.nps.gov/articles/000/witness-a-migration-marvel-this-fall.htm).
+
+The catalog checker passed with `--runway-days 14`. Focused tests passed:
+
+```sh
+.venv/bin/python -m pytest \
+  tests/home/test_vesper_workbench.py \
+  tests/home/test_vesper_workbench_treatment_contract.py \
+  tests/home/test_vesper_workbench_voice.py \
+  tests/scripts/test_check_vesper_world_catalogs.py \
+  -m 'not requires_postgres and not requires_dogfood_wedge and not requires_api_keys' -q
+```
+
+Result: 70 passed, 1 deselected because it requires a service-gated
+environment. A coordinated `make verify` also passed after the catalog data
+changes. It ran before the final fixture-only timestamp adjustment to the
+current review date; the focused tests and checker above passed afterward.
+This closes the immediate date-sensitive runway gate, not recurring supply,
+future catalog review after October 11 UTC, production freshness, full-scroll
+design parity, or H1's broader Home value-delivery exit criteria.

@@ -3,7 +3,7 @@ doc_type: current_status
 status: active
 owner: founder / coordination task
 created: 2026-09-07
-last_verified: 2026-10-09
+last_verified: 2026-09-26
 why_new: Owns the single live cross-lane execution queue, accountable package assignments, and system reassessment without duplicating product or implementation contracts.
 supersedes:
   - current assignments and sequencing in the historical program and Integration roadmaps
@@ -18,7 +18,7 @@ depends_on:
 
 # Vesper program roadmap
 
-## Current direction — October 9
+## Current direction — September 26
 
 Build a coherent product from the capabilities already implemented. Treat the
 merged recovery work as the working baseline; then execute
@@ -83,12 +83,26 @@ design-reference parity. Focused regressions now check authenticated,
 cache-disabled image transport and byte/MIME-correct binary route behavior.
 The disposable-Postgres acceptance also verifies exact Intake custody, recipient
 grant and Home projection for a PNG, but stubs only the private object-store
-download. It does not close the live storage/native photo gap. The last
-`make verify` attempt failed at
-the date-sensitive World Catalog runway gate (the October 9 horizon lacks required
-`season` and `here` entries); the catalog was not padded with invented rows.
-This is a scoped gate failure, not evidence that Home behavior failed. H1 is
-therefore not ready to publish or declare complete.
+download. It does not close the live storage/native photo gap. The first
+`make verify` attempt failed at the date-sensitive World Catalog runway gate:
+existing season and NYC `here` rows expired before the full 14-day runway.
+After rechecking official sources, the lane refreshed the source/review
+metadata for existing entries, added two source-backed NYC exhibitions to
+cover the runway after the current NYBG exhibitions end, and added a
+source-backed Smokies monarch migration window to preserve seasonal coverage
+through late October. Their `expires_at` values remain freshness deadlines,
+set just after the currently reviewed 14-day runway (October 11 UTC);
+exhibition/season dates are unchanged. No generic or invented catalog rows were
+added. The focused gate passes with 5 season and 5 `here` rows. The focused
+workbench/treatment/voice/catalog suite passes 70 tests with 1 service-gated
+test deselected; all 6 catalog checker tests are included. A coordinated
+`make verify` passed on the catalog-adjusted lane before the final test-fixture
+timestamp-only edit (September 23 to September 26); the focused suite and
+catalog checker were rerun and passed after that edit. The full gate therefore
+covers the catalog implementation, while the final fixture timestamp has
+focused—not full-gate—verification. This was a catalog-freshness/coverage gate
+failure, not evidence that Home behavior failed. H1 is still not ready to
+publish or declare complete.
 
 The prepared-Source serving adapter already revalidates exact current owner
 materials and context and fails closed on missing or changed evidence; Home
