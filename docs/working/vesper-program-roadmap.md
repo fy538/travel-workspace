@@ -58,7 +58,7 @@ were restored and verified afterward:
 
 The current implementation owner is the coordinated `codex/home-value-delivery`
 lane. Its current child-repository heads are backend
-`c50268c6eb39812e0f21ba08e3ca43c7d26e92f0`, and app
+`a38d5c7f3` (cold Home owner-route fix) and app
 `d1f2111cf` (Cold Home code `1408699e1` plus its committed structured native
 verdict); these revisions are after the merged recovery revisions above and
 are not yet published. The active workspace branch contains this queue and the
@@ -100,6 +100,21 @@ handler is replaced with a deterministic capture stub. This closes the
 request/session transport gap without a paid model call; it does not establish
 generated-answer quality, on-device backend resolution, recurring supply, or
 full-scroll design parity. Exact evidence and command are in the H1 plan.
+
+Cold Home now has its own real-Postgres HTTP acceptance. It caught and fixed a
+posture leak: Places' world-only readers attached a local `quiet` signal when
+they had content, and Home treated that as evidence about the person's own
+life. Home now ignores posture signals from world-only readers, leaving a
+genuinely empty Experience Graph classified as cold so a source-backed Place
+reading can be promoted into the first substantive Home opening. The route
+acceptance preserves both accepted Place Source references and the exact
+Places destination. Backend `a38d5c7f3` passes the complete portfolio and
+Place-readback test files (87 tests), backend lint and mypy (1,888 source
+files). This is a synthetic, locally provisioned database proof of the dark
+route, not live app-to-backend delivery, real editorial supply, or production
+content. The disposable database was removed after zero active connections;
+the lane's normal database and volume were untouched. Details and exact
+commands are in the active H1 plan.
 
 The latest backend slice also closes expected Source non-production outcomes:
 compiler rejection no longer becomes a canonical-readback lease failure, and
@@ -264,7 +279,7 @@ forward or reopen the repair without new evidence.
 | Order / state | Package and accountable owner | Outcome / exit |
 | --- | --- | --- |
 | 0 — complete | **Recovered candidate baseline**, merged through #36 / #233 / #201 | Reuse recovered Home/Places and app behavior; original protections restored. The workspace checkout/reliability gate remains a pre-publication evidence gap, not a reason to reopen or bypass the merged PRs |
-| 1 — active | **H1: Complete Home value delivery**, `codex/home-value-delivery` lane owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md). That plan owns the detailed receipts and exact evidence boundaries. Backend `c50268c6e` adds a route-level disposable-Postgres private Home-seed acceptance; it does not call a model. App `1408699e1` aligns Cold Home to a source-backed Places reading and exact dossier door, while preserving separate Home-to-Chat fixtures. Native run `20260927T193324Z-home-root` passes 1/1 Cold capture; structured verdict `d1f2111cf` records two P2 copy/hierarchy findings. Focused Home tests (47), typecheck, scenario registry (31), design-reference check and ESLint (0 errors; existing max-lines warning) pass. These remain distinct-layer local proofs: no live backend Cold delivery, production/recurring content supply, model answer, or accepted full-scroll parity. Full Home matrix remains MIXED and H1 exit is not met. |
+| 1 — active | **H1: Complete Home value delivery**, `codex/home-value-delivery` lane owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md). The new backend `a38d5c7f3` closes the Cold posture leak and proves accepted persisted Place material reaches a cold invitation through the dark Home HTTP route, preserving the exact Place/source destination; the private Home Chat seed route remains at `c50268c6e` and does not call a model. App `1408699e1` aligns the Cold Home fixture to that source-backed Places reading, while preserving separate Home-to-Chat fixtures. Native run `20260927T193324Z-home-root` passes 1/1 Cold capture; structured verdict `d1f2111cf` records two P2 copy/hierarchy findings. Backend portfolio + Place-route tests (87), lint and mypy (1,888 files) pass; focused app tests (47), typecheck, scenario registry (31), design-reference check and ESLint (0 errors; existing max-lines warning) pass. These are distinct local proofs: no authenticated live app-to-backend Cold delivery, production/recurring content supply, model answer, or accepted full-scroll parity. Full Home matrix remains MIXED and H1 exit is not met. |
 | 2 — select from H1's actual bottleneck, not tab order | **Recurring supply / Places depth / Life continuity**, same owner by default | Choose the specific missing producer connection, spatial depth, refinding or permitted later-use path that most improves the delivered experience; do not activate three standing lanes |
 | Cross-cutting within each package | **Practical help, live-engine behavior and production cost**, package owner | Current facts and permitted context materially change an appropriate result; freshness, authority, degradation, latency and generation costs stay explicit |
 | Before publishing each integrated package / before cutover | **Landing and retirement**, implementation owner with coordination review | Review combined changes, run required gates, publish only with authorization, record landed revisions and disposition the branch/worktree; migrations, replacement retirement and release retain their separate gates |

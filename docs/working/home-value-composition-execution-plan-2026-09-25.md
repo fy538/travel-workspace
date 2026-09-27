@@ -2057,3 +2057,54 @@ passed (2 passed, 81 deselected), proving the existing deterministic portfolio
 selection boundary only. The lane-assigned PostgreSQL endpoint at
 `127.0.0.1:53173` did not respond, so no database-backed owner acceptance was
 attempted. `make verify` has not been rerun after this slice.
+
+#### September 27 follow-up — persisted cold Home Place opening
+
+Backend commit `a38d5c7f3` closes a real posture-boundary defect. When a
+world-only Places reader had candidates, its helper attached a local `quiet`
+signal. Home incorrectly treated that as the person's own Home lifecycle, so a
+genuinely empty Experience Graph with useful Place material became `quiet`
+before the cold promotion could run. Posture resolution now ignores signals
+from `places_context` and `contextual_places`; owner-derived signals and
+owned-content posture behavior remain intact. The unit regression supplies the
+world-only `quiet` signal explicitly, and the HTTP acceptance reads a genuinely
+cold Experience Graph plus accepted public Place Sources through the real Home
+route and portfolio.
+
+The route test verifies `home_posture=cold`, one substantive
+`now_invitation`/composition, both persisted Place Source references, the exact
+city Place destination, and the Places root/capability. Its unrelated owner
+readers return empty results so this remains a focused source-to-Home contract,
+not a timing benchmark or a synthetic outage simulation. The Place, Source
+records, and owner are test fixtures; the route does not call a model or a
+provider. This proves the local dark HTTP path can deliver existing accepted
+world material before personal history exists. It does not prove real-source
+quality or supply, authenticated app-to-backend behavior, recurring/production
+content, or full design parity.
+
+The focused Home portfolio plus persisted Place HTTP modules passed (87 tests)
+against a newly created lane-owned disposable database. The named database was
+confirmed absent before creation, migrated to head, had zero active connections
+after the tests, and was dropped; the lane's normal `vesper` database and
+Compose volume were untouched.
+
+```sh
+TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:53173/vesper_home_cold_http_20260927 \
+  TEST_DATABASE_DISPOSABLE=1 PYTHONPATH=. .venv/bin/python -m pytest -q \
+  tests/root_projection/test_home_portfolio.py \
+  tests/integration/test_public_place_content_home_http_pg.py
+PATH="$PWD/.venv/bin:$PATH" make lint
+make typecheck
+git diff --check
+```
+
+Backend lint passed (including Ruff, formatting, import boundaries, lazy-import
+inventory, import-cycle ratchet, and route ordering); backend mypy passed for
+1,888 source files. A first bare `make lint` selected system Python and stopped
+at the route checker because FastAPI was unavailable there; the documented
+`.venv`-first invocation above passed. Coordinated workspace `make verify`,
+backend `make ci`, on-device backend use, real/recurring editorial supply and
+the full Home matrix were not established by this slice. H1 remains in
+progress. The next decisive gap is substantive, authorized current Source
+supply and its actual app-to-backend delivery; do not treat another synthetic
+accepted row as evidence that this supply problem is solved.
