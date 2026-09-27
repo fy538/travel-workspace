@@ -1221,9 +1221,9 @@ checks, API coverage, workspace/child governance, and 389 Maestro flow
 structure plus serial syntax validation passed. This is local coordinated
 verification only—not hosted CI, production-data acceptance, recurring supply,
 or design parity. The first-viewport captures also show the floating root dock
-over part of the long reading while the person is at the top of the scroll;
-whether this should be changed belongs to the shared shell/content inset
-decision, not to the Home reading renderer, and remains a polish review item.
+over part of the long reading. At that point it remained an open review item;
+the following investigation identified the actionable cause and corrected it
+at the Home-to-shell interaction seam, without changing shell geometry.
 
 #### September 27 — Canonical retained Source material read
 
@@ -1389,3 +1389,45 @@ backend `make ci` gates were not rerun after this slice. This verifies expected
 terminal handling and retained-output boundaries, not provider-backed quality,
 production supply or H1 completion. The implementation is committed on the
 backend lane as `a444db9fa`; it has not been published.
+
+#### September 27 — Home reading now drives shared dock collapse
+
+Investigation of the expanded dock over the long Home reading found that both
+`HomeRootV2Screen` and its compatibility `HomeRootScreen` maintained their own
+scroll behavior but did not forward the clamped vertical offset to the shared
+`NavChromeContext.handleScroll`. The scroll callback now updates root reading /
+exposure state and forwards that same offset to shared navigation. No new
+navigation policy or inset was introduced: the existing contract collapses the
+full pill on downward reading and expands it on upward movement or return to
+the top. The registered Quiet flow leaves its terminal "rest close" read
+uncentered, preventing an automatic centering correction from reversing scroll
+direction, and asserts the accessible compact-nav action before capture.
+
+Evidence on the lane's assigned iPhone 16 Pro simulator: mock-only
+`home-root-quiet` passed, including the compact-navigation assertion. The
+captured end-of-scroll frame shows the Home affordance collapsed to one icon
+instead of covering the reading with the full four-tab dock. Run folder:
+`travel-app/.maestro/runs/20260927T035625Z-home-root` (local QA artifact; not a
+committed design reference). An initial run with `centerElement: true` did not
+prove the scroll posture: centering introduces reverse movement and expanded
+the dock. The registered flow now avoids that ambiguity.
+
+Focused checks after the code change:
+
+```sh
+cd travel-app
+npm test -- --runInBand \
+  __tests__/components/HomeRootV2Screen.smoke.test.tsx \
+  __tests__/components/HomeRootScreen.smoke.test.tsx
+npm run typecheck
+npx eslint \
+  components/home-root/HomeRootV2Screen.tsx \
+  components/home-root/HomeRootScreen.tsx \
+  __tests__/components/HomeRootV2Screen.smoke.test.tsx \
+  __tests__/components/HomeRootScreen.smoke.test.tsx
+```
+
+These checks establish scroll-signal wiring and one internal mock-device
+interaction; they do not establish all-posture behavior, full-scroll design
+parity, production data or H1 completion. The coordinated `make verify` was
+not rerun after this slice.
