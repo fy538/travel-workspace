@@ -37,9 +37,12 @@ readback; `758f15460` requires the exact lane API origin and manifest-assigned
 simulator. Its native path now proves practical suggestion → exact venue → same
 Home unit return on the recovered implementation. Focused checks and native
 captures pass for these bounded paths; their fixture/synthetic data do not
-establish production supply. The coordinated `make verify` now passes on this
-lane. Accepted full-scroll design-reference alignment and production/recurring
-editorial supply remain open. Current local app HEAD is `6035e428d`.
+establish production supply. The full coordinated `make verify` passed on
+workspace `a765026`, backend `490d222ed`, and app `6035e428d`; the subsequent
+backend revision `bda484a37` changes only the focused Postgres regression, which
+was re-run separately. Accepted full-scroll design-reference alignment and
+production/recurring editorial supply remain open. Current local app HEAD is
+`6035e428d`.
 September 27 Home polish commits align the four-root Home tab glyph with its
 label while preserving the briefcase glyph in legacy Plans, then align region
 headings to D-H10 and remove the prohibited gold edge from Home readings.
@@ -159,11 +162,13 @@ The earlier H1 Source workflow and native continuation evidence used authored
 owner/material fixtures. The September 27 receipt below now closes the
 one-path integration gap with persisted Intake and editorial owner records:
 canonical discovery, owner reads, material loading, explicit workflow,
-production readback, and prepared Home all participate. The producer remains
-authored and provider-free, and the owner/data are synthetic. This proves that
-the existing governed serving path can deliver one canonical owner-backed
-composition; it does not prove production content supply, a real-user corpus,
-or recurring preparation.
+production readback, and prepared Home all participate. It exercises the
+registered structured producer with a deterministic injected caller; the
+owner/data and proposal are synthetic, and no external model or paid provider
+is used. This proves that the existing governed serving path can deliver one
+canonical owner-backed composition through the production proposal/authority/
+compiler boundary; it does not prove production content supply, real-user
+quality, or recurring preparation.
 
 The first H1 app slice adds the exact owner-read share time to a received
 original's Home attribution line (`MAYA · SHARED SAT, 4:25 PM` in the
@@ -1252,17 +1257,20 @@ audience/deletion boundary against persisted Intake rows—not the complete
 Source discovery → workflow → generated result → Home path, actual user
 content, production supply, or design parity. H1 remains in progress.
 
-#### September 27 — Explicit canonical Source workflow reaches prepared Home
+#### September 27 — Canonical Source workflow reaches Home through structured producer
 
 A new disposable-Postgres regression now sends an explicit OS-share text
 submission through persisted Intake state, confirms its derived Experience
 Anchor, and pairs it with an evidence-receipted approved Place dossier. It uses
 the production Source discoverer, canonical owner-read registry and plan,
 governed material loader, explicit workflow route/worker, canonical result
-readback, and prepared Home reader. The authored deterministic producer emits a
-source-bound Home composition from the exact Anchor and dossier; no paid model
-or provider is involved. Deleting the Intake submission makes the exact result
-unavailable and removes it from prepared Home.
+readback, and prepared Home reader. The registered `StructuredSourceContributionProducer`
+receives both exact owner materials and decodes/hydrates a deterministic
+proposal returned by an injected local caller; canonical authority, source
+metadata, and Home/Places expressions are then compiled and retained through
+the regular path. No external model or paid provider is involved. Deleting the
+Intake submission makes the exact result unavailable and removes it from
+prepared Home.
 
 This exercise found and fixed a real authority seam: discovery provides a
 revisionless canonical venue handle while the canonical Place owner read
@@ -1278,7 +1286,9 @@ DATABASE_URL=postgresql://vesper:localdev@localhost:53173/vesper \
 TEST_DATABASE_DISPOSABLE=1 AI_MODE=off WEB_SEARCH_MODE=off \
 DISABLE_LLM_BACKGROUND_LOOPS=true PYTHONPATH=. .venv/bin/python -m pytest \
 tests/api/test_source_request_delivery_postgres.py -q -x --tb=short
-.venv/bin/python -m pytest tests/root_projection/test_source_contribution_runtime.py -q
+.venv/bin/python -m pytest \
+tests/root_projection/test_source_contribution_producer.py \
+tests/root_projection/test_source_contribution_runtime.py -q
 .venv/bin/ruff check backend/root_projection/v2/source_contribution_runtime.py \
 tests/root_projection/test_source_contribution_runtime.py \
 tests/api/test_source_request_delivery_postgres.py
@@ -1287,12 +1297,27 @@ tests/root_projection/test_source_contribution_runtime.py \
 tests/api/test_source_request_delivery_postgres.py
 ```
 
-Results: Postgres Source-delivery module 4 passed; Source runtime module 33
-passed; Ruff check and format passed. Backend change is committed as
-`490d222ed`. These checks establish one persisted, synthetic-owner
-Intake → canonical discovery/reads → explicit production → exact result →
-prepared Home → withdrawal path. The producer, user, and editorial record are
-fixtures; this is not evidence of real-world quality, provider-backed or
-recurring supply, all Home postures, mobile rendering, full-scroll design
-parity, or H1 completion. The full coordinated `make verify` has not been
-rerun after `490d222ed` and is stale for this revision. H1 remains in progress.
+Results: Postgres Source-delivery module 4 passed; structured-producer plus
+Source-runtime suites 42 passed; Ruff check and format passed. The authority
+fix is committed as `490d222ed`; the follow-on integration-test commit is
+`bda484a37`. These checks establish one persisted, synthetic-owner Intake →
+canonical discovery/reads → registered structured-producer contract → explicit
+production → exact result → prepared Home → withdrawal path. The source, user,
+dossier, and model proposal are fixtures; the caller is injected and local.
+This is not evidence of real-world editorial quality, paid-provider behavior
+or cost, recurring supply, all Home postures, mobile rendering, full-scroll
+design parity, or H1 completion.
+
+The full coordinated `make verify` passed on workspace `a765026`, backend
+`490d222ed`, and app `6035e428d` before the test-only commit `bda484a37`. It
+reported backend offline tests 21,907 passed / 14 skipped / 1,494 deselected /
+53 xpassed (one local-Qdrant warning), 1,004 tool/validator tests passed, 422
+deterministic eval checks verified with 14 LLM-backed checks skipped, API
+projection/type/coverage checks green, app journeys 34 suites / 173 tests,
+mock/API seams 6 suites / 185 tests, and offline app 8 suites / 126 tests.
+Workspace governance and all 389 Maestro flow syntax checks passed. The
+workspace doctor reported `uvicorn` unavailable and service probes unrun by
+design; `make verify` did not exercise a running API or production data. The
+latest test-only commit was separately re-run against the lane's disposable
+Postgres (4 delivery tests) and the 42 producer/runtime tests. H1 remains in
+progress.

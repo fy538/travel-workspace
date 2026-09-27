@@ -115,20 +115,24 @@ re-review without extending any exhibition/season window. No generic or
 invented catalog rows were added. The checker passes with 5 season and 5
 `here` rows, and a regression now rejects expiry at the start of the final
 runway day. After the later local-photo and Home polish slices,
-`make verify` passed on workspace `73e3d2b`, backend `08b03fd14`, and app
-`6035e428d`; detailed results and exclusions are recorded in the active H1
-receipt. This closes the local coordinated verification gate and the
-date-sensitive catalog gate, not production/recurring supply, accepted
-full-scroll design parity, or H1. H1 is still not ready to publish or declare
-complete.
+The latest full `make verify` passed on workspace `a765026`, backend
+`490d222ed`, and app `6035e428d`; the detailed counts, skips, and evidence
+limits are recorded in the active H1 receipt. The subsequent backend commit
+`bda484a37` changes only the focused owner-backed Postgres test; it was
+separately verified with the full four-test delivery module and 42 producer/
+runtime tests. The local coordinated gate and date-sensitive catalog gate are
+green, not production/recurring supply, accepted full-scroll design parity, or
+H1. H1 is still not ready to publish or declare complete.
 
 The prepared-Source serving adapter already revalidates exact current owner
 materials and context and fails closed on missing or changed evidence; Home
 does not generate on an ordinary miss. Current H1 workflow/native receipts use
-authored producers and synthetic owner data. Canonical owner-data use now has
-one end-to-end explicit-path receipt; real-user/editorial supply, provider-
-backed quality and freshness, and recurring preparation remain unproven. This
-is a supply/quality acceptance gap, not a known missing serving connection.
+synthetic owner data; one explicit path now traverses canonical Intake, Source
+discovery, owner reads, the registered structured producer (with an injected
+mock caller), exact result, prepared Home, and withdrawal. Real-user/editorial
+supply, provider-backed quality and freshness, and recurring preparation
+remain unproven. This is a supply/quality acceptance gap, not a known missing
+serving connection.
 The older recovery worktree and detached native-presentation checkout are
 separate, already-merged work; do not reuse or retire them without a fresh
 owner/runtime check. The former 145-branch inventory is historical, not
