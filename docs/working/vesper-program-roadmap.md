@@ -75,6 +75,13 @@ note and individually authorized originals, with owner readback and fixture
 withdrawal. The user-facing flows and local database lifecycle are materially
 more complete than at the previous rebaseline.
 
+A fresh disposable-Postgres regression now verifies the canonical Source
+material adapter against a retained Place-photo attachment: exact private
+loading succeeds, group use is refused, and owner deletion invalidates the
+material. This closes a direct owner-adapter evidence gap only; it does not
+turn the fixture-backed contribution workflow into an end-to-end
+owner-backed Home result.
+
 These results still use authored/synthetic fixtures where noted; they do not
 establish recurring or production content supply, provider-backed freshness,
 canonical user-authored Source contribution in recurring editorial value, or
