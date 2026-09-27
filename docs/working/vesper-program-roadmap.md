@@ -112,9 +112,12 @@ Places destination. Backend `a38d5c7f3` passes the complete portfolio and
 Place-readback test files (87 tests), backend lint and mypy (1,888 source
 files). This is a synthetic, locally provisioned database proof of the dark
 route, not live app-to-backend delivery, real editorial supply, or production
-content. The disposable database was removed after zero active connections;
-the lane's normal database and volume were untouched. Details and exact
-commands are in the active H1 plan.
+content. The app already has a typed Home v2 query, but uses its persona fixture
+in mock mode and requires the joint four-root development/internal gate for
+real-mode serving. The next gap is authenticated app-level delivery, not a
+second API client. The disposable database was removed after zero active
+connections; the lane's normal database and volume were untouched. Details
+and exact commands are in the active H1 plan.
 
 The latest backend slice also closes expected Source non-production outcomes:
 compiler rejection no longer becomes a canonical-readback lease failure, and

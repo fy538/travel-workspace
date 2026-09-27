@@ -2108,3 +2108,26 @@ the full Home matrix were not established by this slice. H1 remains in
 progress. The next decisive gap is substantive, authorized current Source
 supply and its actual app-to-backend delivery; do not treat another synthetic
 accepted row as evidence that this supply problem is solved.
+
+#### September 27 — app delivery seam recheck
+
+The app already has the semantic Home v2 network path; another API client or
+parallel Home data service is not the next implementation. `HomeRootExperience`
+consumes `useHomeRootProjectionV2`, which requests the typed backend operation
+in real mode and uses the persona fixture in mock mode. The request is part of
+the coherent product-system gate: shell, Home v2, Places governed runtime and
+Life v1 must all be requested, and the build must have development/internal
+authority. These flags default off. Thus the mock iPhone pass and the
+disposable-Postgres HTTP proof establish adjacent boundaries, not the combined
+authenticated app experience.
+
+The next delivery acceptance should turn on that existing internal/dev gate,
+point the real app at the lane API, and confirm the cold Place-backed unit
+renders and opens its exact Places destination without using the fixture. Use
+the same synthetic owner/source only for this local rehearsal; it would still
+not validate real editorial quality or recurring source supply. If the existing
+auth/dev rehearsal cannot supply a test identity safely, resolve that setup
+separately rather than bypassing the authenticated route or broadening the
+serving contract. The remaining cold-copy P2s and the MIXED full Home matrix
+still need their own acceptance; they are not blockers to tracing the current
+network seam.
