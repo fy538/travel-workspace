@@ -57,7 +57,7 @@ were restored and verified afterward:
 | App | `43225df35a01295993def384b5958c53ab8f1c8b` | [#201](https://github.com/fy538/travel-app/pull/201) |
 
 The current implementation owner is the coordinated `codex/home-value-delivery`
-lane. Its current product-code heads are backend `08b03fd14` and app
+lane. Its current product-code heads are backend `a444db9fa` and app
 `6035e428d`, both after the merged recovery revisions above and not yet
 published. The active workspace lane contains this queue and the H1 execution
 plan on branch `codex/home-value-delivery`. The lane has advanced past the
@@ -88,6 +88,16 @@ read; explicitly revisioned subject requests remain exact. The producer,
 owner, and records are synthetic, so this establishes one owner-backed path,
 not real or recurring content supply.
 
+The latest backend slice also closes expected Source non-production outcomes:
+compiler rejection no longer becomes a canonical-readback lease failure, and
+pipeline/compiler rejection retain their exact terminal reason through the
+worker receipt and result route. Two persisted Postgres cases verify completed
+workflow state with no retained output. After this slice, the focused offline
+Source/root/worker suite (302 tests), disposable-Postgres Source-delivery module
+(6 tests), Ruff and backend mypy (1,888 files) pass. Full coordinated
+`make verify` and backend `make ci` were not rerun after it; the detailed
+commands and boundaries are in the active H1 plan.
+
 These results still use authored/synthetic fixtures where noted; they do not
 establish recurring or production content supply, provider-backed freshness,
 canonical user-authored Source contribution in recurring editorial value, or
@@ -117,12 +127,13 @@ invented catalog rows were added. The checker passes with 5 season and 5
 runway day. After the later local-photo and Home polish slices,
 The latest full `make verify` passed on workspace `a765026`, backend
 `490d222ed`, and app `6035e428d`; the detailed counts, skips, and evidence
-limits are recorded in the active H1 receipt. The subsequent backend commit
-`bda484a37` changes only the focused owner-backed Postgres test; it was
-separately verified with the full four-test delivery module and 42 producer/
-runtime tests. The local coordinated gate and date-sensitive catalog gate are
-green, not production/recurring supply, accepted full-scroll design parity, or
-H1. H1 is still not ready to publish or declare complete.
+limits are recorded in the active H1 receipt. Backend commits `bda484a37` and
+`a444db9fa` followed that coordinated gate and were tested at their changed
+boundaries as summarized above. The local coordinated gate and date-sensitive
+catalog gate passed at the recorded revisions; the latest backend slice has
+focused verification only. None of these results establishes
+production/recurring supply, accepted full-scroll design parity, or H1. H1 is
+still not ready to publish or declare complete.
 
 The prepared-Source serving adapter already revalidates exact current owner
 materials and context and fails closed on missing or changed evidence; Home

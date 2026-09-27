@@ -38,11 +38,12 @@ simulator. Its native path now proves practical suggestion → exact venue → s
 Home unit return on the recovered implementation. Focused checks and native
 captures pass for these bounded paths; their fixture/synthetic data do not
 establish production supply. The full coordinated `make verify` passed on
-workspace `a765026`, backend `490d222ed`, and app `6035e428d`; the subsequent
-backend revision `bda484a37` changes only the focused Postgres regression, which
-was re-run separately. Accepted full-scroll design-reference alignment and
-production/recurring editorial supply remain open. Current local app HEAD is
-`6035e428d`.
+workspace `a765026`, backend `490d222ed`, and app `6035e428d`; backend commits
+`bda484a37` and `a444db9fa` followed that gate and were verified at their
+changed boundaries below. The full coordinated gate has not been rerun after
+those backend commits. Accepted full-scroll design-reference alignment and
+production/recurring editorial supply remain open. Current local backend/app
+HEADs are `a444db9fa` / `6035e428d`.
 September 27 Home polish commits align the four-root Home tab glyph with its
 label while preserving the briefcase glyph in legacy Plans, then align region
 headings to D-H10 and remove the prohibited gold edge from Home readings.
@@ -1321,3 +1322,70 @@ design; `make verify` did not exercise a running API or production data. The
 latest test-only commit was separately re-run against the lane's disposable
 Postgres (4 delivery tests) and the 42 producer/runtime tests. H1 remains in
 progress.
+
+#### September 27 — Expected Source rejections close as explicit outcomes
+
+Review of the persisted worker path found that continuity classified normal
+non-admission states, but then tried canonical readback for any non-`None`
+production object. A compiler-rejected draft therefore raised lease loss after
+its attempt had already been completed; a pipeline rejection completed storage
+but surfaced to the worker as generic producer silence. Continuity now returns
+a content-free terminal outcome and exposes a production only for admitted
+output. Only `produced` is retained and read back; a canonical cache hit is
+`reused`; silence, provider failure, compiler rejection and pipeline rejection
+complete without output/readback. The exact-result route now reports those
+no-output outcomes as `no_useful_result` with their precise reason. Rejected
+drafts do not cross the worker receipt boundary.
+
+The regressions cover all four non-production outcomes at the continuity seam.
+The real disposable-Postgres workflow additionally exercises pipeline and
+compiler rejection end to end: each attempt records the precise state, the
+workflow reaches `completed`, the result contains no production, and the
+retained-contribution table stays empty. The repeated worker run is
+`not_claimed`, not stranded in `running`.
+
+```sh
+# travel-agent; offline tests do not probe or clean an ambient database.
+PYTHONPATH=. .venv/bin/python -m pytest \
+  -m "not requires_postgres and not requires_api_keys and not requires_dogfood_wedge" \
+  tests/root_projection/test_source_contribution*.py \
+  tests/api/test_root_source_contribution_wiring.py \
+  tests/api/test_agent_workflows.py -q --tb=short
+
+# These URLs identify only the lane's disposable Compose Postgres on port 53173.
+TEST_DATABASE_URL=postgresql://vesper:localdev@localhost:53173/vesper \
+TEST_DATABASE_DISPOSABLE=1 \
+DATABASE_URL=postgresql://vesper:localdev@localhost:53173/vesper \
+SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest \
+  tests/api/test_source_request_delivery_postgres.py -q --tb=short
+
+.venv/bin/ruff check \
+  backend/api/routes/agent_workflows.py \
+  backend/application/root_composition.py \
+  backend/root_projection/v2/source_contribution_canonical_executor.py \
+  backend/root_projection/v2/source_contribution_continuity.py \
+  tests/root_projection/test_source_contribution_continuity.py \
+  tests/root_projection/test_source_contribution_canonical_executor.py \
+  tests/api/test_root_source_contribution_wiring.py \
+  tests/api/test_source_request_delivery_postgres.py
+.venv/bin/ruff format --check \
+  backend/api/routes/agent_workflows.py \
+  backend/application/root_composition.py \
+  backend/root_projection/v2/source_contribution_canonical_executor.py \
+  backend/root_projection/v2/source_contribution_continuity.py \
+  tests/root_projection/test_source_contribution_continuity.py \
+  tests/root_projection/test_source_contribution_canonical_executor.py \
+  tests/api/test_root_source_contribution_wiring.py \
+  tests/api/test_source_request_delivery_postgres.py
+.venv/bin/python -m mypy --config-file mypy.ini backend/
+```
+
+Results: offline Source/root/worker regressions 302 passed; the disposable-
+Postgres Source-delivery module 6 passed; Ruff check and formatting passed;
+backend mypy passed across 1,888 files with no issues.
+The lane Postgres service was stopped after the tests. No API shape, database
+schema, trigger policy or prompt changed. The coordinated `make verify` and
+backend `make ci` gates were not rerun after this slice. This verifies expected
+terminal handling and retained-output boundaries, not provider-backed quality,
+production supply or H1 completion. The implementation is committed on the
+backend lane as `a444db9fa`; it has not been published.
