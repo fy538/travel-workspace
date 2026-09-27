@@ -1654,13 +1654,11 @@ units retain their existing generic labels. This makes the action's subject
 legible without changing Home selection, ownership, destination resolution,
 permissions, or generation.
 
-The boundary matters: these resource-only fallbacks still open the existing
-Chat route with Home's return token; they do **not** seed or send a prompt, nor
-do they prove the subject is carried into the conversation. A typed
-`chat.continue` destination keeps its existing `/conversations/create` route,
-`experience_graph/opening` seed, and return token. Extending contextual handoff
-for resource fallbacks would be a separate, contract-sensitive step; this
-slice does not claim it is solved.
+At that copy-only change, these resource fallbacks still opened the existing
+Chat route with Home's return token; they did not seed context. The typed
+`chat.continue` route already carried graph context. The follow-on below closes
+the resource-fallback gap for three supported Home owner rows without changing
+other resource kinds.
 
 Focused verification after the commit passed: the connected Home suite (6
 tests), app typecheck, Prettier, 31 registered polish scenario IDs, and the
@@ -1681,6 +1679,77 @@ Metro used the lane's assigned port `53177`; the app bundle used explicit
 process-only four-root/internal and mock flags. These captures used no live API,
 database, provider, or production account. They cover only the three changed
 states; the nine-state matrix, structured visual verdict, full-scroll parity,
-and coordinated `make verify` were not rerun for this slice. The existing H1
-gaps around recurring/production supply, contextual Chat handoff, and accepted
-full-scroll design parity remain open.
+and coordinated `make verify` were not rerun for this copy-only slice.
+
+#### September 27 — Home owner context reaches review-first Chat
+
+The three subject-labeled Home resource fallbacks now enter the existing
+private review-first composer with the exact current owner attached:
+
+| Home door | Seed owner | Draft | Composer attachment |
+| --- | --- | --- | --- |
+| Planning loose end | `experience_graph/plan` | “Help me think through this open choice.” | The rendered loose-end label |
+| Nearby invitation | `experience_graph/opening` | “Tell me more about this possibility.” | The rendered invitation title |
+| Recovery instrument | `experience_graph/commitment` (the exact underlying Commitment id) | “Help me understand this change and what I can do next.” | The rendered recovery summary |
+
+The app creates this route only when the owner ref is a UUID and exactly
+matches the resource represented by that unit. Non-UUID fixture ids continue
+to use the existing unseeded fallback. The user can inspect or remove the
+attachment and edit the draft; no first turn is staged until they explicitly
+send. Home's return token is preserved.
+
+The backend now resolves `plan` in the authenticated viewer's personal or
+together Experience Graph projection. The Plan block contains its current
+title/type/lifecycle/revision/horizon plus only currently visible linked
+Commitments and Occasions from that same projection. As with the existing graph
+seed kinds, stale Home `clientContext` does not enter the prompt. This is
+one-turn contextual grounding; it adds no memory write-back, group delivery,
+provider call, autonomous action, or permission grant.
+
+Focused verification passed:
+
+```sh
+cd travel-app
+npm test -- --runInBand \
+  __tests__/components/home-root/HomeRootExperience.connected.test.tsx \
+  __tests__/utils/rootProjectionNavigation.test.ts \
+  __tests__/screens/conversation-create.smoke.test.tsx
+npm run typecheck
+cd ../travel-agent
+PYTHONPATH=. .venv/bin/python -m pytest -q \
+  tests/concierge/test_conversation_seed.py
+```
+
+These changes are committed on the coordinated lane as app `af441e1e5`
+(`Carry Home owner context into Chat`) and backend `f9fed77a3`
+(`Resolve Home Plan context for Chat seeds`). The focused app run passed 96
+tests across the three named suites; backend seed tests passed 46 cases. App
+typecheck and focused Ruff checks passed. ESLint exited successfully with one
+import-order warning in the existing conversation-create smoke test. The
+31-scenario polish registry and Home design-reference governance check also
+passed.
+
+The connected Home tests cover all three owner paths and ensure mock IDs do not
+become authoritative seeds. Composer tests cover visible context, editable
+draft, explicit send, and private audience. Backend seed tests cover
+viewer-scoped Plan re-resolution and exclusion of stale Home copy. These checks
+do not establish generated-answer quality, live-service acceptance, group
+behavior, a native screenshot of the composer, recurring production supply,
+accepted full-scroll design parity, or H1 completion. The coordinated
+`make verify` subsequently passed on workspace code HEAD `714f2724e`, backend
+`f9fed77a3`, and app `af441e1e5`; the workspace contained only the two receipt
+doc edits recorded here and in the program roadmap. Backend CI passed 21,916
+tests (14 skipped, 1,496 deselected, 53 xpassed; one local-Qdrant warning),
+tool-contract tests passed 1,004, eval replay verified 422 deterministic checks
+with 14 LLM-backed checks skipped, app journeys passed 173, API seam tests
+passed 185, and offline app tests passed 126. OpenAPI projection, API coverage,
+workspace governance, and serial Maestro syntax checks for 389 flows all
+passed. The doctor noted `uvicorn` unavailable and left service probes unrun;
+this gate did not start live services. Separately, the native polish doctor
+stopped before capture because Metro was not running at default `:8081` (the
+assigned lane port is `53177`). No composer screenshot or visual acceptance is
+claimed for this change.
+
+H1's remaining high-level gaps are recurring/production supply and accepted
+full-scroll design parity; the Home-to-Chat resource-fallback context break is
+now closed locally for these three supported owners.

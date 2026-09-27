@@ -57,8 +57,8 @@ were restored and verified afterward:
 | App | `43225df35a01295993def384b5958c53ab8f1c8b` | [#201](https://github.com/fy538/travel-app/pull/201) |
 
 The current implementation owner is the coordinated `codex/home-value-delivery`
-lane. Its current product-code heads are backend `a444db9fa` and app
-`9a0b25e13`, both after the merged recovery revisions above and not yet
+lane. Its current product-code heads are backend `f9fed77a3` and app
+`af441e1e5`, both after the merged recovery revisions above and not yet
 published. The active workspace lane contains this queue and the H1 execution
 plan on branch `codex/home-value-delivery`. The lane has advanced past the
 earlier status recorded below; the
@@ -145,8 +145,16 @@ workspace `8f2ecf0fcf03b0fbae8525d10e9cb3e4cd97df63`, backend
 `a444db9fa82a6cd297c4078bc9e235c9bebbf35c`, app
 `ccef6395382f650f97a1a7dea9aee28f8529cca2`. The current-gate receipt in the
 [H1 execution plan](home-value-composition-execution-plan-2026-09-25.md)
-records counts and limits. This removes the stale local integration-gate gap;
-it does not resolve supply, design acceptance or publication readiness.
+records counts and limits. A subsequent `make verify` passed on workspace code
+HEAD `714f2724e`, backend `f9fed77a3`, and app `af441e1e5`; the workspace had
+only the two receipt-doc edits recorded here and in the H1 plan. It passed
+21,916 backend tests (14 skipped, 1,496 deselected, 53 xpassed), 1,004 tool
+contract tests, 422 deterministic eval checks, 173 app journeys, 185 API seam
+tests, 126 offline app tests, API/OpenAPI checks, workspace governance, and
+Maestro syntax checks for 389 flows. Fourteen LLM-backed eval checks were
+skipped; the doctor also reported `uvicorn` unavailable and left service
+probes unrun. This gate is local/offline evidence, not live-service,
+production-supply, design-acceptance, or publication evidence.
 
 The prepared-Source serving adapter already revalidates exact current owner
 materials and context and fails closed on missing or changed evidence; Home
@@ -203,7 +211,7 @@ forward or reopen the repair without new evidence.
 | Order / state | Package and accountable owner | Outcome / exit |
 | --- | --- | --- |
 | 0 — complete | **Recovered candidate baseline**, merged through #36 / #233 / #201 | Reuse recovered Home/Places and app behavior; original protections restored. The workspace checkout/reliability gate remains a pre-publication evidence gap, not a reason to reopen or bypass the merged PRs |
-| 1 — active | **H1: Complete Home value delivery**, `codex/home-value-delivery` lane owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md): close supply/selection/presentation/continuation gaps across ordinary, social and healthy live situations; include accepted native reference alignment. The lane has native local evidence for explicit Home Source continuation, original-share receiving/return and practical open-now → exact venue → Home return (`758f15460`), focused private-photo transport checks (`6244103fe`, `e41ea8dcf`), and Sept 27 captures/review of the selected L0 Home 02/03 first-viewport references. The four-root Home glyph was corrected in `43d4a7a95`; Home D-H10 headings, semantic heading role, and removal of the prohibited reading edge are in `383c226ac`, `624f5b114`, `4d2532bd8`, and `6035e428d`, with post-style Available/Returned native captures. The Sept 27 Home scroll/dock hookup and Quiet native check are recorded in the active plan. App commit `9a0b25e13` removes duplicated explanation from comparison-led reads; `d1cea4334` makes three Home-to-Chat resource-fallback labels name their subject, with planning/Cold/Urgent native captures. That copy change does not seed Chat context; the existing Home return path remains, and contextual handoff is open. Focused component tests, typecheck, polish governance and three-state native captures passed; no nine-state rerun or full coordinated gate followed this slice. Quiet Home's source-bound geology and bounded full-scroll/social work remain in the package receipts. These are local/synthetic acceptance, not production supply or full design parity. Package exit is not yet met |
+| 1 — active | **H1: Complete Home value delivery**, `codex/home-value-delivery` lane owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md): close supply/selection/presentation/continuation gaps across ordinary, social and healthy live situations; include accepted native reference alignment. The lane has native local evidence for explicit Home Source continuation, original-share receiving/return and practical open-now → exact venue → Home return (`758f15460`), focused private-photo transport checks (`6244103fe`, `e41ea8dcf`), and Sept 27 captures/review of the selected L0 Home 02/03 first-viewport references. The four-root Home glyph was corrected in `43d4a7a95`; Home D-H10 headings, semantic heading role, and removal of the prohibited reading edge are in `383c226ac`, `624f5b114`, `4d2532bd8`, and `6035e428d`, with post-style Available/Returned native captures. The Sept 27 Home scroll/dock hookup and Quiet native check are recorded in the active plan. App commit `9a0b25e13` removes duplicated explanation from comparison-led reads; `d1cea4334` names the three Home-to-Chat resource doors, and `af441e1e5` now carries their exact owner into the private review-first composer. Backend commit `f9fed77a3` resolves Plan seeds from the authenticated viewer's current Experience Graph projection. The user reviews/edits and explicitly sends; owner refs fail closed when invalid or mismatched. Focused tests pass (app: 96 tests plus typecheck; backend: 46 tests plus Ruff), and current-revision `make verify` passed. Static polish/design checks pass, but the native QA doctor could not start capture because Metro was unavailable at its default `:8081`; the lane's assigned Metro port is `53177`. No native composer screenshot. Quiet Home's source-bound geology and bounded full-scroll/social work remain in the package receipts. These are local/synthetic acceptance, not production supply or full design parity. Package exit is not yet met |
 | 2 — select from H1's actual bottleneck, not tab order | **Recurring supply / Places depth / Life continuity**, same owner by default | Choose the specific missing producer connection, spatial depth, refinding or permitted later-use path that most improves the delivered experience; do not activate three standing lanes |
 | Cross-cutting within each package | **Practical help, live-engine behavior and production cost**, package owner | Current facts and permitted context materially change an appropriate result; freshness, authority, degradation, latency and generation costs stay explicit |
 | Before publishing each integrated package / before cutover | **Landing and retirement**, implementation owner with coordination review | Review combined changes, run required gates, publish only with authorization, record landed revisions and disposition the branch/worktree; migrations, replacement retirement and release retain their separate gates |
