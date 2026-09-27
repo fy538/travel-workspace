@@ -57,8 +57,8 @@ were restored and verified afterward:
 | App | `43225df35a01295993def384b5958c53ab8f1c8b` | [#201](https://github.com/fy538/travel-app/pull/201) |
 
 The current implementation owner is the coordinated `codex/home-value-delivery`
-lane. Its current product-code heads are backend `f9fed77a3` and app
-`af441e1e5`, both after the merged recovery revisions above and not yet
+lane. Its current product-code heads are backend `1a190224a` and app
+`772bee902`, both after the merged recovery revisions above and not yet
 published. The active workspace lane contains this queue and the H1 execution
 plan on branch `codex/home-value-delivery`. The lane has advanced past the
 earlier status recorded below; the
@@ -183,6 +183,16 @@ proves client-side routing and review posture only—not backend owner resolutio
 on-device, answer quality, a structured visual verdict, full-scroll parity,
 real-user supply, or H1 completion. Exact run IDs and evidence boundaries are
 recorded in the [active H1 plan](home-value-composition-execution-plan-2026-09-25.md).
+
+Backend commit `1a190224a` now carries owner status, coordination state,
+provider state, revision, visibility and an optional time window into both
+direct Commitment and Plan-linked Home-to-Chat seed context, from the same
+authenticated viewer-scoped projection. Stale Home prose remains excluded.
+The 47-case focused seed suite, repository lint gate and backend type check
+passed. This is synthetic projection/formatter evidence, not live-service,
+on-device seed resolution or generated-answer quality; the previously passing
+coordinated `make verify` predates this backend change and the latest app-only
+native capture commit.
 
 The prepared-Source serving adapter already revalidates exact current owner
 materials and context and fails closed on missing or changed evidence; Home

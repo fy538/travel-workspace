@@ -1843,3 +1843,29 @@ complete. These captures prove client-side UI routing and review posture for
 the three mock owner types; they do not prove backend resolution on-device,
 answer quality, persisted real-owner data, a structured visual verdict,
 full-scroll design parity, recurring supply, or H1 completion.
+
+#### September 27 — preserve current commitment state in Home-to-Chat seeds
+
+Backend commit `1a190224a` extends the existing viewer-scoped seed formatter
+for direct Experience Graph Commitments and Plan-linked Commitments. The seed
+now keeps owner status, coordination state, provider state, revision,
+visibility, and an optional current time window distinct. Both paths derive
+these values from the same personal-then-together projection used to resolve
+the exact current owner; stale Home `clientContext` remains excluded. No API
+shape, authorization, provider call, memory write-back, or action authority
+changed.
+
+The focused seed suite passed (47 tests):
+
+```sh
+PYTHONPATH=. .venv/bin/python -m pytest -q tests/concierge/test_conversation_seed.py
+```
+
+`PATH="$PWD/.venv/bin:$PATH" make lint` passed, including Ruff, import-boundary,
+lazy-import, import-cycle, and route-shadowing checks. `make typecheck` passed
+for 1,888 backend source files; `git diff --check` passed. The initial lint
+invocation with the system Python could not import FastAPI; rerunning with the
+repository virtual environment on `PATH` passed. This test uses synthetic
+projection objects and proves formatter/owner-selection behavior only. It does
+not exercise a live API/database, on-device backend resolution, generated
+answer quality, provider cost, recurring supply, design parity, or H1 exit.
