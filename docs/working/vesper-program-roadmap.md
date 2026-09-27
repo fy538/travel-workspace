@@ -57,11 +57,15 @@ were restored and verified afterward:
 | App | `43225df35a01295993def384b5958c53ab8f1c8b` | [#201](https://github.com/fy538/travel-app/pull/201) |
 
 The current implementation owner is the coordinated `codex/home-value-delivery`
-lane. Its current product-code heads are backend `6d99a195c` and app
-`772bee902`, both after the merged recovery revisions above and not yet
-published. The active workspace lane contains this queue and the H1 execution
-plan on branch `codex/home-value-delivery`. The lane has advanced past the
-earlier status recorded below; the
+lane. Its current heads are workspace
+`18460f6654a608d59c09085d89173a0a2a13b5c7`, backend
+`c50268c6eb39812e0f21ba08e3ca43c7d26e92f0`, and app
+`f481d22c546fa9656f273ea490142a86347b7692`, all after the merged recovery
+revisions above and not yet published. The app's latest product-code changes
+remain in `772bee902`; `f481d22c5` records the private Home Chat seed contract.
+The active workspace lane contains this queue and the H1 execution plan on
+branch `codex/home-value-delivery`. The lane has advanced past the earlier
+status recorded below; the
 [active H1 plan](home-value-composition-execution-plan-2026-09-25.md) owns the
 detailed receipt and exact test boundaries.
 
@@ -87,6 +91,15 @@ between a revisionless venue subject handle and its current-revision owner
 read; explicitly revisioned subject requests remain exact. The producer,
 owner, and records are synthetic, so this establishes one owner-backed path,
 not real or recurring content supply.
+
+The Home-to-Chat seed now has an additional route-level receipt: an in-process
+request through the canonical private conversation HTTP endpoint creates the
+real session and reaches the production prompt assembler, which resolves the
+current Plan and Commitment from disposable Postgres. Only the final agent
+handler is replaced with a deterministic capture stub. This closes the
+request/session transport gap without a paid model call; it does not establish
+generated-answer quality, on-device backend resolution, recurring supply, or
+full-scroll design parity. Exact evidence and command are in the H1 plan.
 
 The latest backend slice also closes expected Source non-production outcomes:
 compiler rejection no longer becomes a canonical-readback lease failure, and

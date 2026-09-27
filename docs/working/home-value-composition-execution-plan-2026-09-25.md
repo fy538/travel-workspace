@@ -1902,3 +1902,43 @@ prompt-assembly boundary but is not an HTTP request, provider/model call,
 generated-answer quality evaluation, on-device backend proof, recurring supply,
 design parity, or H1 completion. The coordinated `make verify` has not been
 rerun after these backend changes.
+
+#### September 27 — private Home seed through the canonical Chat HTTP route
+
+Backend commit `c50268c6e` adds a route-level disposable-Postgres acceptance
+for the Home-to-Chat seed. The test creates a synthetic owner, personal
+conversation, Plan and changed Commitment through canonical persistence
+commands, then sends a request to
+`POST /api/conversations/{conversation_id}/messages` with the Home seed. The
+real conversation route and `ConciergeSession` create the `TurnContext`; the
+production `_build_turn_prompt_kwargs` assembler then resolves the current
+owner projection from Postgres. The test confirms the current Plan and
+Commitment states, revision `0`, exact time window and owner-specific copy
+reach the prompt, while stale Home prose does not.
+
+Only the final `handle_turn` provider/model boundary is replaced: the capture
+stub invokes the production prompt assembler and returns a fixed response.
+This is an in-process FastAPI HTTP-boundary test, not a networked API server or
+a model/provider call. It proves private request-to-session-to-owner-prompt
+grounding with synthetic data; it does not establish answer quality, on-device
+backend resolution, recurring/production supply, or accepted full-scroll
+design parity.
+
+The combined real-Postgres route, owner-assembly and focused seed suite passed
+(50 tests):
+
+```sh
+TEST_DATABASE_URL=postgresql://vesper:localdev@localhost:53173/vesper_home_seed_http_20260927_a \
+  TEST_DATABASE_DISPOSABLE=1 PYTHONPATH=. .venv/bin/python -m pytest -q \
+  tests/integration/test_home_seed_chat_http_pg.py \
+  tests/concierge/test_conversation_seed_postgres.py \
+  tests/concierge/test_conversation_seed.py
+```
+
+`PATH="$PWD/.venv/bin:$PATH" make lint` passed, including Ruff, formatting,
+import boundaries, lazy-import inventory, SCC ratchet and route-shadowing
+checks. `PATH="$PWD/.venv/bin:$PATH" make typecheck` passed for 1,888 backend
+source files; `git diff --check` passed. The uniquely named synthetic database
+was confirmed to have zero connections, dropped, and its lane Postgres
+container stopped without deleting the volume. The coordinated `make verify`
+has not been rerun after this test-only slice. H1 remains in progress.
