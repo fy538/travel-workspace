@@ -58,9 +58,9 @@ visual acceptance.
 A later structured native review of the full Home-root matrix is recorded
 below. It captures all 12 registered Home/Chat-receiving states on the lane
 simulator and returns a **MIXED** product-quality verdict, not H1 completion or
-design parity. The review exposes an unresolved Planning composition mismatch
-and bounded copy, hierarchy and mobile-overlay issues; implementation work
-remains.
+design parity. A targeted follow-up now closes the Planning loose-end
+composition mismatch for its registered native posture; bounded copy,
+hierarchy and mobile-overlay issues elsewhere in the full matrix remain.
 
 ## Outcome and scope
 
@@ -2003,8 +2003,36 @@ reported no visual-health assertions are configured for Home. The verdict
 diff's 17 dimension/gate changes were recomputed against the previous Home
 review after its overall roll-up was corrected; the filed regression list
 matches that computed diff. The coordinated
-`make verify` has not been rerun on this latest app/backend tuple. Next Home
-implementation should close the compact Planning-row mismatch and improve
-immediate cold-start specificity, then recapture; keep Chat and Life screen
-design outside this package, and do not infer production supply from these
-fixtures.
+`make verify` has not been rerun on this latest app/backend tuple.
+
+#### September 27 follow-up — compact Planning loose end
+
+App commit `fd765d1ba` keeps the unresolved Plan visible under **In motion** as
+one compact, tappable status row, while preserving its exact Plan destination.
+It no longer renders as a page-level crown or icon-plated card. The Home
+renderer test explicitly guards this compact treatment even when the row is
+the dominant semantic item. The focused component/renderer suites passed (42
+tests), app typecheck passed, and ESLint reported zero errors plus its existing
+`max-lines` warning for `HomeRootV2UnitRenderer.tsx`.
+
+Native mock capture `20260927T185946Z-home-root` used app revision `fd765d1ba`,
+branch `codex/home-value-delivery`, iPhone 16 Pro and Maestro 2.6.1. Its
+Planning flow captured 1/1 state; `npm run qa:polish:scenarios` registered 31
+flows. The structured one-state verdict is **PASS** and records no regressions,
+with two bounded P2 findings still open: repeated meeting-point wording and
+reduced pre-tap action discoverability after removing the explicit “Ask about”
+label. This is a posture-specific result, not a new full-matrix verdict.
+
+The flow-filtered run had no matching Available/Returned app screenshots for
+the two Home design-reference comparisons, so those comparisons are not
+certified by this capture. The prior 12-state Home matrix remains **MIXED**;
+full-scroll design parity, backend/real-owner behavior, production supply, and
+the coordinated `make verify` are not established here. An initial capture
+attempt using simulator loopback could not load its bundle; restarting the
+lane-owned Metro server on LAN resolved the environment issue, and the passing
+capture used that corrected setup.
+
+Next Home work should address cold-start specificity and decide whether the
+two minor Planning-row clarity findings merit a copy/action adjustment before
+recapturing. Keep Chat and Life screen design outside this package, and do not
+infer production supply from these fixtures.
