@@ -57,7 +57,7 @@ were restored and verified afterward:
 | App | `43225df35a01295993def384b5958c53ab8f1c8b` | [#201](https://github.com/fy538/travel-app/pull/201) |
 
 The current implementation owner is the coordinated `codex/home-value-delivery`
-lane. Its current product-code heads are backend `1a190224a` and app
+lane. Its current product-code heads are backend `6d99a195c` and app
 `772bee902`, both after the merged recovery revisions above and not yet
 published. The active workspace lane contains this queue and the H1 execution
 plan on branch `codex/home-value-delivery`. The lane has advanced past the
@@ -184,15 +184,17 @@ on-device, answer quality, a structured visual verdict, full-scroll parity,
 real-user supply, or H1 completion. Exact run IDs and evidence boundaries are
 recorded in the [active H1 plan](home-value-composition-execution-plan-2026-09-25.md).
 
-Backend commit `1a190224a` now carries owner status, coordination state,
-provider state, revision, visibility and an optional time window into both
-direct Commitment and Plan-linked Home-to-Chat seed context, from the same
-authenticated viewer-scoped projection. Stale Home prose remains excluded.
-The 47-case focused seed suite, repository lint gate and backend type check
-passed. This is synthetic projection/formatter evidence, not live-service,
-on-device seed resolution or generated-answer quality; the previously passing
-coordinated `make verify` predates this backend change and the latest app-only
-native capture commit.
+Backend commit `6d99a195c` follows `1a190224a` with a real-Postgres check of
+Home seed grounding through the production prompt assembler. Canonical owner
+commands created a synthetic Plan and Commitment in a fresh lane-owned
+disposable database; current state, initial revision `0`, exact time window,
+stale-copy exclusion and denial for another viewer are verified from actual
+viewer-scoped projection reads. The same group-turn assembly drops the
+Experience Graph seed before owner lookup, closing a private-to-group prompt
+leak in the previous guard. The combined focused suite passed 49 tests; backend
+lint and typecheck passed. This is database-to-prompt-assembly evidence, not
+HTTP route, provider/model or generated-answer acceptance; the previous
+coordinated `make verify` predates this backend change.
 
 The prepared-Source serving adapter already revalidates exact current owner
 materials and context and fails closed on missing or changed evidence; Home
@@ -249,7 +251,7 @@ forward or reopen the repair without new evidence.
 | Order / state | Package and accountable owner | Outcome / exit |
 | --- | --- | --- |
 | 0 — complete | **Recovered candidate baseline**, merged through #36 / #233 / #201 | Reuse recovered Home/Places and app behavior; original protections restored. The workspace checkout/reliability gate remains a pre-publication evidence gap, not a reason to reopen or bypass the merged PRs |
-| 1 — active | **H1: Complete Home value delivery**, `codex/home-value-delivery` lane owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md): close supply/selection/presentation/continuation gaps across ordinary, social and healthy live situations; include accepted native reference alignment. The lane has native local evidence for explicit Home Source continuation, original-share receiving/return and practical open-now → exact venue → Home return (`758f15460`), focused private-photo transport checks (`6244103fe`, `e41ea8dcf`), and Sept 27 captures/review of the selected L0 Home 02/03 first-viewport references. The four-root Home glyph was corrected in `43d4a7a95`; Home D-H10 headings, semantic heading role, and removal of the prohibited reading edge are in `383c226ac`, `624f5b114`, `4d2532bd8`, and `6035e428d`, with post-style Available/Returned native captures. The Sept 27 Home scroll/dock hookup and Quiet native check are recorded in the active plan. App commit `9a0b25e13` removes duplicated explanation from comparison-led reads; `d1cea4334` names the three Home-to-Chat resource doors, and `af441e1e5` now carries their exact owner into the private review-first composer. Backend commit `f9fed77a3` resolves Plan seeds from the authenticated viewer's current Experience Graph projection. App commit `772bee902` adds native mock captures for Plan, nearby opening and recovery to the private composer; all three stop before Send, with `dataContext: null`. These are client UI evidence, not backend resolution on-device, answer quality or visual acceptance. The user reviews/edits and explicitly sends; owner refs fail closed when invalid or mismatched. Focused app checks pass (42 tests plus typecheck); focused backend checks and prior coordinated `make verify` are recorded in the plan, but that gate predates the latest QA-only app commits. The assigned-port native captures pass; static design-reference checks remain L0/reference-only. Quiet Home's source-bound geology and bounded full-scroll/social work remain in the package receipts. These are local/synthetic acceptance, not production supply or full design parity. Package exit is not yet met |
+| 1 — active | **H1: Complete Home value delivery**, `codex/home-value-delivery` lane owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md). That plan owns the detailed receipts and exact evidence boundaries. Latest backend commit `6d99a195c` verifies real owner-projection-to-prompt assembly on a disposable database, preserves initial revision `0`, and drops Experience Graph seeds on group turns before owner lookup; focused suite, lint and typecheck pass. App commit `772bee902` supplies mock native coverage for all three Home-to-Chat composer doors, stopping before Send. These are separate-layer local proofs—not a live HTTP/model answer, recurring/production content supply, or accepted full-scroll parity. Current full-scroll design reference and sustained useful supply remain open; H1 exit is not met. |
 | 2 — select from H1's actual bottleneck, not tab order | **Recurring supply / Places depth / Life continuity**, same owner by default | Choose the specific missing producer connection, spatial depth, refinding or permitted later-use path that most improves the delivered experience; do not activate three standing lanes |
 | Cross-cutting within each package | **Practical help, live-engine behavior and production cost**, package owner | Current facts and permitted context materially change an appropriate result; freshness, authority, degradation, latency and generation costs stay explicit |
 | Before publishing each integrated package / before cutover | **Landing and retirement**, implementation owner with coordination review | Review combined changes, run required gates, publish only with authorization, record landed revisions and disposition the branch/worktree; migrations, replacement retirement and release retain their separate gates |

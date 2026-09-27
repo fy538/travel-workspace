@@ -1847,12 +1847,16 @@ full-scroll design parity, recurring supply, or H1 completion.
 #### September 27 — preserve current commitment state in Home-to-Chat seeds
 
 Backend commit `1a190224a` extends the existing viewer-scoped seed formatter
-for direct Experience Graph Commitments and Plan-linked Commitments. The seed
-now keeps owner status, coordination state, provider state, revision,
-visibility, and an optional current time window distinct. Both paths derive
-these values from the same personal-then-together projection used to resolve
-the exact current owner; stale Home `clientContext` remains excluded. No API
-shape, authorization, provider call, memory write-back, or action authority
+for direct Experience Graph Commitments and Plan-linked Commitments. A later
+disposable-Postgres acceptance found that the initial revision `0` was dropped
+by truthy-value filtering; follow-up commit `6d99a195c` now preserves revision
+zero in graph seeds and plan-linked commitment summaries. The seed keeps owner
+status, coordination state, provider state, revision, visibility, and an
+optional current time window distinct. Both paths derive these values from the
+same personal-then-together projection used to resolve the exact current owner;
+stale Home `clientContext` remains excluded. The same follow-up closes a group
+privacy gap: Experience Graph seeds are discarded before owner lookup on group
+turns. No API shape, provider call, memory write-back, or action authority
 changed.
 
 The focused seed suite passed (47 tests):
@@ -1869,3 +1873,32 @@ repository virtual environment on `PATH` passed. This test uses synthetic
 projection objects and proves formatter/owner-selection behavior only. It does
 not exercise a live API/database, on-device backend resolution, generated
 answer quality, provider cost, recurring supply, design parity, or H1 exit.
+
+#### September 27 — database-backed Home seed assembly and group privacy
+
+Backend commit `6d99a195c` adds a real-PostgreSQL acceptance test for the
+production `_build_turn_prompt_kwargs` path. In a fresh lane-owned disposable
+database migrated to Alembic head, the test creates a synthetic owner, Plan,
+and changed Commitment through the canonical owner commands, then assembles
+the prompt context from the real viewer-scoped Experience Graph projection.
+It verifies the distinct current state fields and exact time window, preserves
+initial Plan/Commitment revision `0`, excludes stale Home copy, and returns no
+owner context for another viewer. The same real owner ref returns no context
+on a group turn, proving that the seed is dropped before the owner read.
+
+The combined disposable-Postgres and focused seed suite passed (49 tests):
+
+```sh
+TEST_DATABASE_URL=<lane-owned-disposable-postgres-url> \
+  TEST_DATABASE_DISPOSABLE=1 PYTHONPATH=. .venv/bin/python -m pytest -q \
+  tests/concierge/test_conversation_seed_postgres.py \
+  tests/concierge/test_conversation_seed.py
+```
+
+The disposable database was unique to this run; no ambient/dev database was
+used. Backend lint, typecheck (1,888 source files), formatting, import checks,
+and route-shadowing checks passed. This reaches the real owner repository and
+prompt-assembly boundary but is not an HTTP request, provider/model call,
+generated-answer quality evaluation, on-device backend proof, recurring supply,
+design parity, or H1 completion. The coordinated `make verify` has not been
+rerun after these backend changes.
