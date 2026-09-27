@@ -43,7 +43,9 @@ workspace `a765026`, backend `490d222ed`, and app `6035e428d`; backend commits
 changed boundaries below. The full coordinated gate has not been rerun after
 those backend commits. Accepted full-scroll design-reference alignment and
 production/recurring editorial supply remain open. Current local backend/app
-HEADs are `a444db9fa` / `6035e428d`.
+HEADs are `a444db9fa` / `670d49183`; the app HEAD includes the September 27
+Home scroll-to-dock integration recorded in the latest receipt. The full
+coordinated gate remains unrun against this current revision tuple.
 September 27 Home polish commits align the four-root Home tab glyph with its
 label while preserving the briefcase glyph in legacy Plans, then align region
 headings to D-H10 and remove the prohibited gold edge from Home readings.

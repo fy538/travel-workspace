@@ -58,7 +58,7 @@ were restored and verified afterward:
 
 The current implementation owner is the coordinated `codex/home-value-delivery`
 lane. Its current product-code heads are backend `a444db9fa` and app
-`6035e428d`, both after the merged recovery revisions above and not yet
+`670d49183`, both after the merged recovery revisions above and not yet
 published. The active workspace lane contains this queue and the H1 execution
 plan on branch `codex/home-value-delivery`. The lane has advanced past the
 earlier status recorded below; the
