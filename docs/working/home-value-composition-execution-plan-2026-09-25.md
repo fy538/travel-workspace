@@ -1643,3 +1643,44 @@ structured visual verdict. This is capture and focused-behavior evidence, not
 accepted full-scroll design parity, recurring/production supply, or H1
 completion. The coordinated workspace `make verify` has not been rerun after
 this app slice.
+
+#### September 27 — Home continuation doors name their subject
+
+App commit `d1cea4334` gives three Home-to-Chat resource fallbacks contextual
+labels from their already-rendered unit semantics: the planning loose end says
+**Ask about the meeting point**, a cold nearby invitation says **Ask about this
+walk**, and urgent recovery says **Ask about the alternative**. Unmatched
+units retain their existing generic labels. This makes the action's subject
+legible without changing Home selection, ownership, destination resolution,
+permissions, or generation.
+
+The boundary matters: these resource-only fallbacks still open the existing
+Chat route with Home's return token; they do **not** seed or send a prompt, nor
+do they prove the subject is carried into the conversation. A typed
+`chat.continue` destination keeps its existing `/conversations/create` route,
+`experience_graph/opening` seed, and return token. Extending contextual handoff
+for resource fallbacks would be a separate, contract-sensitive step; this
+slice does not claim it is solved.
+
+Focused verification after the commit passed: the connected Home suite (6
+tests), app typecheck, Prettier, 31 registered polish scenario IDs, and the
+Home design-reference check (1 manifest, 2 pairs; `externalCanonVerified=0`).
+The Home Polish QA doctor passed. Three mock-only native captures on the
+assigned iPhone 16 Pro rendered and were visually reviewed. Their manifests
+record app base SHA `9a0b25e13` with this slice's two app files modified; only
+Prettier formatting followed before those exact behavior changes were committed
+as `d1cea4334`:
+
+| Flow | Result |
+| --- | --- |
+| `polish/home-root-planning` | Captured; “Ask about the meeting point” — `.maestro/runs/20260927T144648Z-home-root/screenshots/full/home-root-planning.png` |
+| `polish/home-root-cold` | Captured; “Ask about this walk” — `.maestro/runs/20260927T144742Z-home-root/screenshots/full/home-root-cold.png` |
+| `polish/home-root-urgent` | Captured; “Ask about the alternative” — `.maestro/runs/20260927T144832Z-home-root/screenshots/full/home-root-urgent.png` |
+
+Metro used the lane's assigned port `53177`; the app bundle used explicit
+process-only four-root/internal and mock flags. These captures used no live API,
+database, provider, or production account. They cover only the three changed
+states; the nine-state matrix, structured visual verdict, full-scroll parity,
+and coordinated `make verify` were not rerun for this slice. The existing H1
+gaps around recurring/production supply, contextual Chat handoff, and accepted
+full-scroll design parity remain open.
