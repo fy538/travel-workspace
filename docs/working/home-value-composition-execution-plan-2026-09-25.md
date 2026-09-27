@@ -155,14 +155,15 @@ re-discovers the viewer-relative opportunity and reloads the exact current
 Source and context refs through the governed material readers. Missing,
 changed, expired, wrong-audience or incomplete material makes the prepared
 contribution unavailable; an ordinary Home miss does not start generation.
-The H1 Source workflow and native continuation evidence so far use authored
-owner/material fixtures, however. A new disposable-Postgres regression now
-exercises the canonical material adapter against an actual Intake-owned,
-retained Place-photo attachment: exact private loading succeeds, group loading
-is refused, and deletion makes the same revision unavailable. This narrows the
-evidence gap to the full owner-backed preparation-to-Home path; it is not a
-demonstrated missing serving adapter. A real canonical owner corpus and
-recurring preparation remain unproven.
+The earlier H1 Source workflow and native continuation evidence used authored
+owner/material fixtures. The September 27 receipt below now closes the
+one-path integration gap with persisted Intake and editorial owner records:
+canonical discovery, owner reads, material loading, explicit workflow,
+production readback, and prepared Home all participate. The producer remains
+authored and provider-free, and the owner/data are synthetic. This proves that
+the existing governed serving path can deliver one canonical owner-backed
+composition; it does not prove production content supply, a real-user corpus,
+or recurring preparation.
 
 The first H1 app slice adds the exact owner-read share time to a received
 original's Home attribution line (`MAYA · SHARED SAT, 4:25 PM` in the
@@ -1250,3 +1251,48 @@ before testing. This proves the owner-backed material adapter and its private
 audience/deletion boundary against persisted Intake rows—not the complete
 Source discovery → workflow → generated result → Home path, actual user
 content, production supply, or design parity. H1 remains in progress.
+
+#### September 27 — Explicit canonical Source workflow reaches prepared Home
+
+A new disposable-Postgres regression now sends an explicit OS-share text
+submission through persisted Intake state, confirms its derived Experience
+Anchor, and pairs it with an evidence-receipted approved Place dossier. It uses
+the production Source discoverer, canonical owner-read registry and plan,
+governed material loader, explicit workflow route/worker, canonical result
+readback, and prepared Home reader. The authored deterministic producer emits a
+source-bound Home composition from the exact Anchor and dossier; no paid model
+or provider is involved. Deleting the Intake submission makes the exact result
+unavailable and removes it from prepared Home.
+
+This exercise found and fixed a real authority seam: discovery provides a
+revisionless canonical venue handle while the canonical Place owner read
+returns the same venue at its current revision. Subject authorization now
+matches kind/id/path for such handles, but continues to require exact equality
+when the requested subject carries a revision. The unit regression proves both
+cases; the Postgres workflow proves the real venue/Place owner-read path.
+
+```sh
+# travel-agent; TEST_DATABASE_URL names only this lane's disposable Postgres.
+TEST_DATABASE_URL=postgresql://vesper:localdev@localhost:53173/vesper \
+DATABASE_URL=postgresql://vesper:localdev@localhost:53173/vesper \
+TEST_DATABASE_DISPOSABLE=1 AI_MODE=off WEB_SEARCH_MODE=off \
+DISABLE_LLM_BACKGROUND_LOOPS=true PYTHONPATH=. .venv/bin/python -m pytest \
+tests/api/test_source_request_delivery_postgres.py -q -x --tb=short
+.venv/bin/python -m pytest tests/root_projection/test_source_contribution_runtime.py -q
+.venv/bin/ruff check backend/root_projection/v2/source_contribution_runtime.py \
+tests/root_projection/test_source_contribution_runtime.py \
+tests/api/test_source_request_delivery_postgres.py
+.venv/bin/ruff format --check backend/root_projection/v2/source_contribution_runtime.py \
+tests/root_projection/test_source_contribution_runtime.py \
+tests/api/test_source_request_delivery_postgres.py
+```
+
+Results: Postgres Source-delivery module 4 passed; Source runtime module 33
+passed; Ruff check and format passed. Backend change is committed as
+`490d222ed`. These checks establish one persisted, synthetic-owner
+Intake → canonical discovery/reads → explicit production → exact result →
+prepared Home → withdrawal path. The producer, user, and editorial record are
+fixtures; this is not evidence of real-world quality, provider-backed or
+recurring supply, all Home postures, mobile rendering, full-scroll design
+parity, or H1 completion. The full coordinated `make verify` has not been
+rerun after `490d222ed` and is stale for this revision. H1 remains in progress.

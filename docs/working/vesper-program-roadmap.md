@@ -78,9 +78,15 @@ more complete than at the previous rebaseline.
 A fresh disposable-Postgres regression now verifies the canonical Source
 material adapter against a retained Place-photo attachment: exact private
 loading succeeds, group use is refused, and owner deletion invalidates the
-material. This closes a direct owner-adapter evidence gap only; it does not
-turn the fixture-backed contribution workflow into an end-to-end
-owner-backed Home result.
+material. A second disposable-Postgres regression now carries a confirmed
+Intake Experience Anchor and evidence-receipted approved dossier through real
+Source discovery, canonical owner reads, governed material loading, explicit
+workflow/result readback, and prepared Home. Withdrawal removes the exact
+result and prepared Home value. It exposed and closed a revision mismatch
+between a revisionless venue subject handle and its current-revision owner
+read; explicitly revisioned subject requests remain exact. The producer,
+owner, and records are synthetic, so this establishes one owner-backed path,
+not real or recurring content supply.
 
 These results still use authored/synthetic fixtures where noted; they do not
 establish recurring or production content supply, provider-backed freshness,
@@ -119,9 +125,10 @@ complete.
 The prepared-Source serving adapter already revalidates exact current owner
 materials and context and fails closed on missing or changed evidence; Home
 does not generate on an ordinary miss. Current H1 workflow/native receipts use
-authored Source/material fixtures, so canonical owner-data use and recurring
-preparation remain unproven. This is a real-data/supply acceptance gap, not a
-known missing serving connection.
+authored producers and synthetic owner data. Canonical owner-data use now has
+one end-to-end explicit-path receipt; real-user/editorial supply, provider-
+backed quality and freshness, and recurring preparation remain unproven. This
+is a supply/quality acceptance gap, not a known missing serving connection.
 The older recovery worktree and detached native-presentation checkout are
 separate, already-merged work; do not reuse or retire them without a fresh
 owner/runtime check. The former 145-branch inventory is historical, not
