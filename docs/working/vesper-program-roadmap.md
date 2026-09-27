@@ -58,7 +58,7 @@ were restored and verified afterward:
 
 The current implementation owner is the coordinated `codex/home-value-delivery`
 lane. Its current product-code heads are backend `08b03fd14` and app
-`43d4a7a95`, both after the merged recovery revisions above and not yet
+`6035e428d`, both after the merged recovery revisions above and not yet
 published. The active workspace lane contains this queue and the H1 execution
 plan on branch `codex/home-value-delivery`. The lane has advanced past the
 earlier status recorded below; the
@@ -101,11 +101,13 @@ rows now expire at October 12 00:00 UTC, preserving an explicit near-term
 re-review without extending any exhibition/season window. No generic or
 invented catalog rows were added. The checker passes with 5 season and 5
 `here` rows, and a regression now rejects expiry at the start of the final
-runway day. `make verify` passed for the corrected catalog and test boundary
-before the latest local photo slice; the full gate has not been rerun after
-that slice. This closes the date-sensitive catalog gate, not
-production/recurring supply, design parity, or H1. H1 is still not ready to
-publish or declare complete.
+runway day. After the later local-photo and Home polish slices,
+`make verify` passed on workspace `73e3d2b`, backend `08b03fd14`, and app
+`6035e428d`; detailed results and exclusions are recorded in the active H1
+receipt. This closes the local coordinated verification gate and the
+date-sensitive catalog gate, not production/recurring supply, accepted
+full-scroll design parity, or H1. H1 is still not ready to publish or declare
+complete.
 
 The prepared-Source serving adapter already revalidates exact current owner
 materials and context and fails closed on missing or changed evidence; Home
@@ -120,11 +122,12 @@ today's state.
 
 At landing, backend/app CI reported passed. The workspace reliability job failed
 at private-backend checkout authentication before product tests, and its
-Maestro smoke was skipped. Those are not product-test results. The merged PRs
-are landed, but the workspace full gate, a clean combined verification,
-production-data acceptance, design-reference parity and release readiness have
-not thereby been certified. No branch
-protection bypass is currently in effect.
+Maestro smoke was skipped. Those are not product-test results. That historical
+hosted-check failure remains an authentication/infrastructure gap; it is
+separate from the subsequently passing local coordinated gate above. Local
+verification does not establish production-data acceptance,
+design-reference parity or release readiness. No branch protection bypass is
+currently in effect.
 
 Code inspection confirms an existing bounded Home owner portfolio, application
 composer, native root experience, semantic renderer registry and exact-return
@@ -158,7 +161,7 @@ forward or reopen the repair without new evidence.
 | Order / state | Package and accountable owner | Outcome / exit |
 | --- | --- | --- |
 | 0 — complete | **Recovered candidate baseline**, merged through #36 / #233 / #201 | Reuse recovered Home/Places and app behavior; original protections restored. The workspace checkout/reliability gate remains a pre-publication evidence gap, not a reason to reopen or bypass the merged PRs |
-| 1 — active | **H1: Complete Home value delivery**, `codex/home-value-delivery` lane owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md): close supply/selection/presentation/continuation gaps across ordinary, social and healthy live situations; include accepted native reference alignment. The lane has native local evidence for explicit Home Source continuation, original-share receiving/return and practical open-now → exact venue → Home return (`758f15460`), focused private-photo transport checks (`6244103fe`, `e41ea8dcf`), and Sept 27 captures/review of the selected L0 Home 02/03 first-viewport references. The visible legacy briefcase under the Home label was corrected in app `43d4a7a95`; Quiet Home's source-bound geology and bounded full-scroll/social work remain in the package receipts. These are local/synthetic acceptance, not production supply or full design parity. Package exit is not yet met |
+| 1 — active | **H1: Complete Home value delivery**, `codex/home-value-delivery` lane owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md): close supply/selection/presentation/continuation gaps across ordinary, social and healthy live situations; include accepted native reference alignment. The lane has native local evidence for explicit Home Source continuation, original-share receiving/return and practical open-now → exact venue → Home return (`758f15460`), focused private-photo transport checks (`6244103fe`, `e41ea8dcf`), and Sept 27 captures/review of the selected L0 Home 02/03 first-viewport references. The four-root Home glyph was corrected in `43d4a7a95`; Home D-H10 headings, semantic heading role, and removal of the prohibited reading edge are in `383c226ac`, `624f5b114`, `4d2532bd8`, and `6035e428d`, with post-style Available/Returned native captures. Quiet Home's source-bound geology and bounded full-scroll/social work remain in the package receipts. These are local/synthetic acceptance, not production supply or full design parity. Package exit is not yet met |
 | 2 — select from H1's actual bottleneck, not tab order | **Recurring supply / Places depth / Life continuity**, same owner by default | Choose the specific missing producer connection, spatial depth, refinding or permitted later-use path that most improves the delivered experience; do not activate three standing lanes |
 | Cross-cutting within each package | **Practical help, live-engine behavior and production cost**, package owner | Current facts and permitted context materially change an appropriate result; freshness, authority, degradation, latency and generation costs stay explicit |
 | Before publishing each integrated package / before cutover | **Landing and retirement**, implementation owner with coordination review | Review combined changes, run required gates, publish only with authorization, record landed revisions and disposition the branch/worktree; migrations, replacement retirement and release retain their separate gates |

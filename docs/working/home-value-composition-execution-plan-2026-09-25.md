@@ -37,11 +37,12 @@ readback; `758f15460` requires the exact lane API origin and manifest-assigned
 simulator. Its native path now proves practical suggestion → exact venue → same
 Home unit return on the recovered implementation. Focused checks and native
 captures pass for these bounded paths; their fixture/synthetic data do not
-establish production supply. The full app suite, accepted full-scroll
-design-reference alignment, production/recurring editorial supply, and
-combined verification remain open. Current local app HEAD is `43d4a7a95`;
-its September 27 Home polish slice aligns the four-root Home tab glyph with
-its label while preserving the briefcase glyph in the legacy Plans shell.
+establish production supply. The coordinated `make verify` now passes on this
+lane. Accepted full-scroll design-reference alignment and production/recurring
+editorial supply remain open. Current local app HEAD is `6035e428d`.
+September 27 Home polish commits align the four-root Home tab glyph with its
+label while preserving the briefcase glyph in legacy Plans, then align region
+headings to D-H10 and remove the prohibited gold edge from Home readings.
 
 ## Outcome and scope
 
@@ -1160,3 +1161,55 @@ passed with the Home glyph visible. `npm run qa:design:check -- home-root`
 reports two reference pairs and zero external canon verification. This small
 polish fix does not close full-scroll design alignment, recurring or production
 supply, or H1. The coordinated `make verify` gate remains unrun.
+
+#### September 27 — Home region-heading and reading polish
+
+A fresh review of the selected Home 02/03 references found that the v2 Home
+renderer was reusing the archive's uppercase mono `SectionHeader`. D-H10 calls
+for sentence-case sans 13/600 headings with a hairline. App revision
+`383c226ac` adds a Home-only header and a named `sectionHeading` text role,
+leaving the shared archive component unchanged. Direct native comparison then
+found the heading ink was too muted; `4d2532bd8` aligns it to Home's primary
+ink. The heading is also exposed to assistive navigation as a semantic header
+in `6035e428d`.
+
+That same visual review caught a gold vertical strip on the source-backed Home
+reading. It violated kernel §12.6's left-edge accent ban. App revision
+`624f5b114` removes that strip without changing the reading, its comparison,
+source attribution, or the existing gold status/door roles. The focused Home
+screen test now guards the no-left-border treatment and sentence-case region
+labels.
+
+The updated Available and Returned states were captured on the assigned iPhone
+16 Pro after the visual changes:
+
+- `.maestro/runs/20260927T014514Z-home-root` — Available, app `4d2532bd8`.
+- `.maestro/runs/20260927T014612Z-home-root` — Returned top + close, app
+  `4d2532bd8`.
+
+Both were manually reviewed against the registered L0 references; the heading
+register, contrast and hairline now align, and the Home reading no longer has
+the banned colored edge. The accessibility-role commit followed those captures
+and does not alter pixels; its behavior is covered by the focused component
+test. `qa:design:check -- home-root` still reports one manifest/two reference
+pairs and zero verified external canon. This is a targeted native polish
+review—not all-seven-posture certification, full-scroll/same-content design
+parity, recurring real-owner supply, or H1 completion.
+
+Checks after these changes: `npm test -- --runInBand
+__tests__/components/HomeRootV2Screen.smoke.test.tsx` passed (23 tests);
+`npm run typecheck` passed; targeted ESLint passed (the renderer file reports
+only its existing 1,408-line max-lines warning); and
+`npm run design-tokens:check` passed. The coordinated `make verify` also
+passed on this lane after the polish wave: backend offline suite 21,906 passed,
+14 skipped, 1,493 deselected and 53 XPASS (one local-Qdrant warning); tool and
+validator checks 1,004 passed; deterministic eval replay 422 checks with 14
+LLM-backed checks skipped; 34 app journey suites / 173 tests and 126 app
+offline tests passed; app typecheck, API snapshot/projection/generated-type
+checks, API coverage, workspace/child governance, and 389 Maestro flow
+structure plus serial syntax validation passed. This is local coordinated
+verification only—not hosted CI, production-data acceptance, recurring supply,
+or design parity. The first-viewport captures also show the floating root dock
+over part of the long reading while the person is at the top of the scroll;
+whether this should be changed belongs to the shared shell/content inset
+decision, not to the Home reading renderer, and remains a polish review item.
