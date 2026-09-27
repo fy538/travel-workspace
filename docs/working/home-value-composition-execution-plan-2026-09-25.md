@@ -39,7 +39,9 @@ Home unit return on the recovered implementation. Focused checks and native
 captures pass for these bounded paths; their fixture/synthetic data do not
 establish production supply. The full app suite, accepted full-scroll
 design-reference alignment, production/recurring editorial supply, and
-combined verification remain open.
+combined verification remain open. Current local app HEAD is `43d4a7a95`;
+its September 27 Home polish slice aligns the four-root Home tab glyph with
+its label while preserving the briefcase glyph in the legacy Plans shell.
 
 ## Outcome and scope
 
@@ -1124,3 +1126,37 @@ not verify AWS/R2 or production storage, recurring real-user supply, multiple
 recipients, provider-generated Home value, accepted design-reference parity,
 or H1 completion. The coordinated `make verify` gate remains unrun after this
 slice.
+
+#### September 27 — Selected Home viewport review and shell icon correction
+
+The selected Home 02 ordinary-day and Home 03 post-return crops were captured
+on the assigned iPhone 16 Pro against local app revision `43d4a7a95`. The QA
+doctor passed with lane Metro on port 53177. Focused native captures passed:
+
+```sh
+VESPER_METRO_URL=http://127.0.0.1:53177 npm run qa:polish -- home-root --flow=home-root-available
+VESPER_METRO_URL=http://127.0.0.1:53177 npm run qa:polish -- home-root --flow=home-root-returned
+```
+
+Artifacts: `.maestro/runs/20260927T012045Z-home-root` and
+`.maestro/runs/20260927T012146Z-home-root`. The first attempt used a Metro
+process without the internal four-root rehearsal flags and correctly exposed
+the legacy Plans screen; this was an environment setup failure, not Home UI
+evidence. Restarting lane-local Metro with the five governed-rehearsal flags
+and mock API mode produced the current Home captures. Manual comparison found
+the warm palette, Roman-first value hierarchy, prepared-possibility crown,
+week shape and substantial source-bound reading coherent with the selected
+02/03 reference direction. These remain L0, reference-only first-viewport
+anchors with different fixture content and native status/tab chrome; this is
+not full-scroll acceptance, same-content parity, or a claim that the Home 03
+note-first example is a required placement.
+
+The concrete visual defect was the four-root tab labeled Home retaining the
+legacy briefcase glyph. App revision `43d4a7a95` makes the icon mode-aware:
+home/home-outline in the four-root shell, briefcase/briefcase-outline in legacy
+Plans. The shell regression suite passed (2 tests), `npm run typecheck`
+passed, targeted ESLint passed, and the post-commit Available native capture
+passed with the Home glyph visible. `npm run qa:design:check -- home-root`
+reports two reference pairs and zero external canon verification. This small
+polish fix does not close full-scroll design alignment, recurring or production
+supply, or H1. The coordinated `make verify` gate remains unrun.
