@@ -131,14 +131,12 @@ rows now expire at October 12 00:00 UTC, preserving an explicit near-term
 re-review without extending any exhibition/season window. No generic or
 invented catalog rows were added. The checker passes with 5 season and 5
 `here` rows, and a regression now rejects expiry at the start of the final
-runway day. After the later local-photo and Home polish slices,
-The latest full `make verify` passed on workspace `a765026`, backend
-`490d222ed`, and app `6035e428d`; the detailed counts, skips, and evidence
-limits are recorded in the active H1 receipt. Backend commits `bda484a37` and
-`a444db9fa` followed that coordinated gate and were tested at their changed
-boundaries as summarized above. The local coordinated gate and date-sensitive
-catalog gate passed at the recorded revisions; the latest backend slice has
-focused verification only. None of these results establishes
+runway day. After the backend Source-outcome and September 27 Home scroll/dock slices, the
+coordinated `make verify` passed on workspace `881a66a`, backend `a444db9fa`,
+and app `670d49183`. Exact counts, skips, warnings and evidence limits are in
+the active H1 receipt. The gate verifies local repository contracts and tests;
+it does not exercise a live API, simulator, production data, recurring supply,
+or accepted full-scroll design parity. None of these results establishes
 production/recurring supply, accepted full-scroll design parity, or H1. H1 is
 still not ready to publish or declare complete.
 

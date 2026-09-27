@@ -37,15 +37,12 @@ readback; `758f15460` requires the exact lane API origin and manifest-assigned
 simulator. Its native path now proves practical suggestion → exact venue → same
 Home unit return on the recovered implementation. Focused checks and native
 captures pass for these bounded paths; their fixture/synthetic data do not
-establish production supply. The full coordinated `make verify` passed on
-workspace `a765026`, backend `490d222ed`, and app `6035e428d`; backend commits
-`bda484a37` and `a444db9fa` followed that gate and were verified at their
-changed boundaries below. The full coordinated gate has not been rerun after
-those backend commits. Accepted full-scroll design-reference alignment and
-production/recurring editorial supply remain open. Current local backend/app
-HEADs are `a444db9fa` / `670d49183`; the app HEAD includes the September 27
-Home scroll-to-dock integration recorded in the latest receipt. The full
-coordinated gate remains unrun against this current revision tuple.
+establish production supply. The coordinated `make verify` now passes on
+workspace `881a66a`, backend `a444db9fa`, and app `670d49183`. The app HEAD
+includes the September 27 Home scroll-to-dock integration recorded in the
+latest receipt. Exact gate results and limits are recorded at the end of this
+plan. Accepted full-scroll design-reference alignment and production/recurring
+editorial supply remain open.
 September 27 Home polish commits align the four-root Home tab glyph with its
 label while preserving the briefcase glyph in legacy Plans, then align region
 headings to D-H10 and remove the prohibited gold edge from Home readings.
@@ -1433,3 +1430,30 @@ These checks establish scroll-signal wiring and one internal mock-device
 interaction; they do not establish all-posture behavior, full-scroll design
 parity, production data or H1 completion. The coordinated `make verify` was
 not rerun after this slice.
+
+#### September 27 — Coordinated local gate on the current lane tuple
+
+The full workspace gate was run after the backend Source-outcome slice and the
+Home scroll/dock change, against workspace `881a66a`, backend `a444db9fa`, and
+app `670d49183`:
+
+```sh
+make verify
+```
+
+Result: passed. Backend CI reported 21,914 passed, 14 skipped, 1,496
+deselected, and 53 xpassed in the offline suite; the local-Qdrant payload-index
+warning remains expected. All 1,004 tool/validator tests passed, mypy passed on
+1,888 source files, and 422 deterministic eval checks passed while 14
+LLM-backed checks were skipped. OpenAPI snapshot/projection/type sync,
+operation coverage, frontend typecheck, 34 journey suites / 173 tests, 6
+mock/API seam suites / 185 tests, and 8 offline suites / 126 tests passed. The
+Maestro syntax/governance checks covered 389 flows; the remaining workspace
+registry, documentation, compatibility, and evidence-integrity checks passed.
+
+The doctor reported `uvicorn` unavailable and intentionally did not probe or
+start services. This gate does not run native simulator flows, a live API,
+production data, or external providers. Its result establishes a current local
+cross-repository code/contract baseline only—not recurring useful supply,
+accepted full-scroll design parity, or H1 completion. No files were generated
+or left dirty by the gate.
