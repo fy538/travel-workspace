@@ -112,12 +112,15 @@ Places destination. Backend `a38d5c7f3` passes the complete portfolio and
 Place-readback test files (87 tests), backend lint and mypy (1,888 source
 files). This is a synthetic, locally provisioned database proof of the dark
 route, not live app-to-backend delivery, real editorial supply, or production
-content. The app already has a typed Home v2 query, but uses its persona fixture
-in mock mode and requires the joint four-root development/internal gate for
-real-mode serving. The next gap is authenticated app-level delivery, not a
-second API client. The disposable database was removed after zero active
-connections; the lane's normal database and volume were untouched. Details
-and exact commands are in the active H1 plan.
+content. A subsequent assigned-iPhone native rehearsal now closes one
+local development-owner path: the real app used the cold portfolio response,
+opened the exact rebuilt Place page, and returned to the same Home unit. It ran
+with `SKIP_AUTH=true` and synthetic reviewed Place sources in a newly created
+disposable database; it is not Clerk-auth or production-source evidence. The
+rehearsal database was dropped after fixture cleanup. This closes the narrow
+app-to-API seam for this path. Production/recurring content quality, accepted
+full-scroll parity, and coordinated verification on the final tuple remain
+open. Details and exact commands are in the active H1 plan.
 
 The latest backend slice also closes expected Source non-production outcomes:
 compiler rejection no longer becomes a canonical-readback lease failure, and
@@ -282,7 +285,7 @@ forward or reopen the repair without new evidence.
 | Order / state | Package and accountable owner | Outcome / exit |
 | --- | --- | --- |
 | 0 — complete | **Recovered candidate baseline**, merged through #36 / #233 / #201 | Reuse recovered Home/Places and app behavior; original protections restored. The workspace checkout/reliability gate remains a pre-publication evidence gap, not a reason to reopen or bypass the merged PRs |
-| 1 — active | **H1: Complete Home value delivery**, `codex/home-value-delivery` lane owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md). The new backend `a38d5c7f3` closes the Cold posture leak and proves accepted persisted Place material reaches a cold invitation through the dark Home HTTP route, preserving the exact Place/source destination; the private Home Chat seed route remains at `c50268c6e` and does not call a model. App `1408699e1` aligns the Cold Home fixture to that source-backed Places reading, while preserving separate Home-to-Chat fixtures. Native run `20260927T193324Z-home-root` passes 1/1 Cold capture; structured verdict `d1f2111cf` records two P2 copy/hierarchy findings. Backend portfolio + Place-route tests (87), lint and mypy (1,888 files) pass; focused app tests (47), typecheck, scenario registry (31), design-reference check and ESLint (0 errors; existing max-lines warning) pass. These are distinct local proofs: no authenticated live app-to-backend Cold delivery, production/recurring content supply, model answer, or accepted full-scroll parity. Full Home matrix remains MIXED and H1 exit is not met. |
+| 1 — active | **H1: Complete Home value delivery**, `codex/home-value-delivery` lane owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md). Backend `a38d5c7f3` closes the Cold posture leak. App `91c93cd6e` updates the lane-pinned native rehearsal to select the current `now_invitation`, serve it from the real local Home API to the assigned iPhone 16 Pro, open the exact rebuilt Place page, and return to the same Home unit. It uses a development owner identity (`SKIP_AUTH=true`), synthetic accepted sources, and a disposable database; it proves this local viewer-scoped path, not Clerk auth or production supply. The private Home Chat seed route remains covered at `c50268c6e` and does not call a model. The cold fixture capture `d1f2111cf` retains two P2 copy/hierarchy findings; the 12-state Home matrix remains MIXED. The coordinated `make verify` must run on the final tuple. Production/recurring content supply and accepted full-scroll design parity remain open; H1 exit is not met. |
 | 2 — select from H1's actual bottleneck, not tab order | **Recurring supply / Places depth / Life continuity**, same owner by default | Choose the specific missing producer connection, spatial depth, refinding or permitted later-use path that most improves the delivered experience; do not activate three standing lanes |
 | Cross-cutting within each package | **Practical help, live-engine behavior and production cost**, package owner | Current facts and permitted context materially change an appropriate result; freshness, authority, degradation, latency and generation costs stay explicit |
 | Before publishing each integrated package / before cutover | **Landing and retirement**, implementation owner with coordination review | Review combined changes, run required gates, publish only with authorization, record landed revisions and disposition the branch/worktree; migrations, replacement retirement and release retain their separate gates |

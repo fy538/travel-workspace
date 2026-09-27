@@ -17,8 +17,9 @@ depends_on:
 Status: in progress in the coordinated `codex/home-value-delivery` lane. The
 recovered workspace/backend/app baseline is merged as recorded in the
 [program roadmap](vesper-program-roadmap.md). Current lane child heads are
-backend `c50268c6e` and app `d1f2111cf`; the latter contains cold Home code
-`1408699e1` and its structured native verdict. The current Home implementation
+backend `a38d5c7f3` and app `91c93cd6e`; the app includes cold Home code
+`1408699e1`, its structured native verdict, and the corrected real-API native
+rehearsal. The current Home implementation
 includes the earlier exact share-time attribution and return, received-original
 reader and lifecycle, source-bound Quiet geology comparison, Home Ask-to-Source
 result, practical/open-now venue handoff and Home-to-Chat Plan/opening/recovery
@@ -2131,3 +2132,34 @@ separately rather than bypassing the authenticated route or broadening the
 serving contract. The remaining cold-copy P2s and the MIXED full Home matrix
 still need their own acceptance; they are not blockers to tracing the current
 network seam.
+
+#### September 27 — governed cold Home through API, native app, and return
+
+The previous runner still searched for the retired `horizon_editorial_passage`
+kind and could select any booted simulator. App commit `91c93cd6e` updates its
+selection to the current `now_invitation` composition and requires the assigned
+lane device to be booted before provisioning; it passes that device explicitly
+to Maestro. The matching runner-contract test checks the selector, device
+preflight, and exact-source assertions.
+
+On the lane-assigned iPhone 16 Pro (iOS 18.2), the existing Home public-reading
+sequence passed against the local API and a newly created, lane-owned disposable
+Postgres database. The route returned Cold posture and one invitation with both
+persisted accepted Place Source references. The real app displayed both
+interpretations, opened the exact venue in the internal Object Page rebuild,
+and Back returned to the same Home unit. The registered flow is
+`travel-app/.maestro/78-home-public-reading-sequence.yaml`; its run log is in
+`/tmp/vesper-home-cold-native-20260927b/.maestro/tests/2026-09-27_172310/`.
+No model or external provider was called. This used a synthetic QA owner with
+development `SKIP_AUTH=true`; it establishes viewer-scoped local delivery, not
+Clerk JWT behavior, production data quality, or recurring editorial supply.
+
+The rehearsal database was newly created, migrated, verified to have zero
+remaining run-scoped observations and zero active connections, then dropped.
+The lane's retained `vesper` database and Compose volume were not used for
+fixture writes. Runner tests passed (4), shell syntax and `git diff --check`
+passed, and the native run exercised the actual owner API in real API mode.
+The coordinated `make verify` is still required after the final workspace and
+backend revisions. The full Home matrix remains **MIXED**; this specific cold
+delivery and return path passes, while full-scroll design parity, recurring
+supply, and the remaining copy findings stay open.
