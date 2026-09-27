@@ -37,12 +37,15 @@ readback; `758f15460` requires the exact lane API origin and manifest-assigned
 simulator. Its native path now proves practical suggestion → exact venue → same
 Home unit return on the recovered implementation. Focused checks and native
 captures pass for these bounded paths; their fixture/synthetic data do not
-establish production supply. The coordinated `make verify` now passes on
-workspace `881a66a`, backend `a444db9fa`, and app `670d49183`. The app HEAD
-includes the September 27 Home scroll-to-dock integration recorded in the
-latest receipt. Exact gate results and limits are recorded at the end of this
-plan. Accepted full-scroll design-reference alignment and production/recurring
-editorial supply remain open.
+establish production supply. The last coordinated `make verify` pass is
+recorded for workspace `881a66a`, backend `a444db9fa`, and app `670d49183`;
+that gate predates the latest Home surface changes and is not a current-tuple
+pass. The post-fix native capture used app rendering revision `cd8e8652e`; app
+revision `ccef63953` adds the structured verdict and generated design-status
+receipt, not product code. At that capture, workspace HEAD was `1b75593` and
+backend HEAD was `a444db9fa`. Exact gate results and limits are recorded at
+the end of this plan. Accepted full-scroll design-reference alignment and
+production/recurring editorial supply remain open.
 September 27 Home polish commits align the four-root Home tab glyph with its
 label while preserving the briefcase glyph in legacy Plans, then align region
 headings to D-H10 and remove the prohibited gold edge from Home readings.
@@ -1531,3 +1534,44 @@ photo-flow harness mismatch. It does not promote Home to design parity or
 complete H1. The coordinated workspace `make verify` result above predates this
 QA-only app commit; the focused checks and the full native capture are the
 post-change evidence.
+
+#### September 27 — Post-fix native matrix and structured visual verdict
+
+After the owner-validity wording correction, the registered Home matrix was
+rerun against app rendering revision `cd8e8652e` and the lane-local API/Metro
+runtime. The current run, `20260927T053220Z-home-root`, passed all **9/9**
+native captures: Available, Planning, Live, Returned, received original,
+received photo, Quiet, Cold, and Urgent. The API and Metro used this lane's
+ports (`53176` and `53177`), internal four-root and relationship handoff flags,
+and a process-only local QA identity. Background generation/provider loops
+were disabled; this run did not validate paid providers or production data.
+
+The two registered Home 02/03 pairs were opened and reviewed beside their
+native captures. They are L0 first-viewport composition references, not
+same-content comparisons or full-scroll canon. The verdict validated and was
+committed at
+`travel-app/docs/surfaces/home-root/verdicts/20260927T053220Z.json`, with its
+manifest snapshot. It records all 23 expected assertions: 21 pass and two are
+`na` because the returned four-region scroll and Quiet crown are outside the
+captured frames. All four gates pass for the evidence captured; the verdict's
+bounded `overall: pass` does **not** certify full-scroll parity. The run had no
+prior dimension summary, so it establishes the first structured rubric
+baseline rather than a before/after regression result.
+
+The committed verdict records 18 p2 refinements across the captures, including
+the long geology-reading stack, generic Ask Vesper doors, repeated urgent/live
+copy, and the collapsed Home control overlapping a small part of the received
+photo. The two already-open H1 composition questions remain unresolved:
+whether Maya's note should lead the returned opening, and whether Cold's lower
+whitespace feels like deliberate low pressure or insufficient first-use value.
+Do not turn either into a code change without resolving the composition intent.
+The regenerated app design status now places Home at **L4-doctrine** for this
+capture matrix; this is not L5 or accepted Claude-design parity. App
+`docs:check` passed after adding the verdict, and `npm run design:status`
+refreshed the generated status projection.
+
+This receipt strengthens native posture/social evidence and creates a
+re-runnable visual review record. It does not establish full-scroll design
+alignment, real-owner personalization, recurring editorial supply, cost, or
+H1 completion. The last full coordinated `make verify` remains the older tuple
+recorded above; it was not rerun after the latest app/workspace changes.
