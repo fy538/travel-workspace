@@ -16,37 +16,25 @@ depends_on:
 
 Status: in progress in the coordinated `codex/home-value-delivery` lane. The
 recovered workspace/backend/app baseline is merged as recorded in the
-[program roadmap](vesper-program-roadmap.md). This package owns the current
-Home implementation. Home content and renderer refinements are committed
-locally through `7d7d5b762`: exact share-time attribution (`66e2c3c`,
-`122f4d2`, `e0bf0a7`),
-exact Home return (`8fc767355`), reduced repeated section/canonical-outcome
-copy (`1b23ed891`, `a963fa0b9`), a recipient-only original-material mock
-transport plus a dedicated Home scenario (`2840a2420`), an accessibility fix
-for the original note (`7e7108d9e`), original-owner polling lifecycle
-handling (`58f53d3fb`), a source-bound geological comparison in Quiet Home
-with its duplicate connection card removed (`42cba2d30`), and the more precise
-headline “The Palisades began as magma between older rock layers”
-(`7d7d5b762`). App revision `aa3e235d6` now carries the native Home
-Ask-to-result-to-return workflow through an explicit, provider-free Source
-request. Revision `bf96a00f0` aligns received originals with the contract's
-authored-share containment: provenance, material and the exact-open action now
-read as one card. Revision `c012b2724` binds the Home practical/open-now
-rehearsal to the lane-assigned API and iOS simulator, with explicit cleanup
-readback; `758f15460` requires the exact lane API origin and manifest-assigned
-simulator. Its native path now proves practical suggestion → exact venue → same
-Home unit return on the recovered implementation. Focused checks and native
-captures pass for these bounded paths; their fixture/synthetic data do not
-establish production supply. A fresh coordinated `make verify` passes on the
-current lane tuple: workspace `8f2ecf0fcf03b0fbae8525d10e9cb3e4cd97df63`,
-backend `a444db9fa82a6cd297c4078bc9e235c9bebbf35c`, and app
-`ccef6395382f650f97a1a7dea9aee28f8529cca2`. The post-fix native capture used
-app rendering revision `cd8e8652e`; app
-revision `ccef63953` adds the structured verdict and generated design-status
-receipt, not product code. At that capture, workspace HEAD was `1b75593` and
-backend HEAD was `a444db9fa`. The coordinated gate results and limits are
-recorded at the end of this plan. Accepted full-scroll design-reference
-alignment and production/recurring editorial supply remain open.
+[program roadmap](vesper-program-roadmap.md). Current lane child heads are
+backend `c50268c6e` and app `d1f2111cf`; the latter contains cold Home code
+`1408699e1` and its structured native verdict. The current Home implementation
+includes the earlier exact share-time attribution and return, received-original
+reader and lifecycle, source-bound Quiet geology comparison, Home Ask-to-Source
+result, practical/open-now venue handoff and Home-to-Chat Plan/opening/recovery
+doors. Those connected paths are documented in the dated receipts below; most
+native evidence is still fixture-backed.
+
+The latest bounded change gives Cold Home a substantive current-Places reading
+before any request for contribution. The mock unit preserves source references
+and the exact Places dossier destination, and its standalone Chat-seed fixture
+remains separate. App commit `1408699e1` records that composition and renderer;
+`d1f2111cf` records the reviewed native capture. The cold-specific review passes
+its two expected assertions with two P2 findings. It is not a live-owner read.
+The prior coordinated `make verify` was on an earlier tuple and has not been
+rerun after current app/backend changes. The 12-state Home matrix remains
+MIXED; accepted full-scroll design-reference alignment and production/recurring
+editorial supply remain open.
 September 27 Home polish commits align the four-root Home tab glyph with its
 label while preserving the briefcase glyph in legacy Plans, then align region
 headings to D-H10 and remove the prohibited gold edge from Home readings. The
@@ -2032,7 +2020,36 @@ attempt using simulator loopback could not load its bundle; restarting the
 lane-owned Metro server on LAN resolved the environment issue, and the passing
 capture used that corrected setup.
 
-Next Home work should address cold-start specificity and decide whether the
-two minor Planning-row clarity findings merit a copy/action adjustment before
-recapturing. Keep Chat and Life screen design outside this package, and do not
-infer production supply from these fixtures.
+Next Home work should close the remaining connected-value gap using current
+owner-backed evidence, not broaden the fixture matrix: verify that the
+source-backed Place reading and exact destination survive the governed Home
+owner path, then judge the delivered content with its real provenance. The cold
+native review has two bounded P2 follow-ups—equal visual weight for `Why this?`
+and `Open in Places`, and the cryptic newcomer close “The rest keeps.” The
+12-state Home matrix remains MIXED, and the earlier two Planning-row clarity
+findings remain open. Keep Chat and Life screen design outside this package;
+mock-native success does not establish production/recurring supply or full
+design parity.
+
+#### September 27 — source-backed Cold Home opening
+
+App commit `1408699e1` aligns the Cold Home fixture with the backend's existing
+Places editorial promotion: one substantive Red Hook reading, preserved source
+refs and an exact `/dossier/41` Places destination. The previous generic
+waterfront-walk prompt now exists only in the separate Home-to-Chat seed
+scenario, so Cold Home demonstrates delivered value instead of another input
+request. The dominant read uses the registered serif reading role. The QA
+manifest explicitly marks its home/route/dinner week-shape labels as synthetic
+demo data rather than live calendar evidence.
+
+On the lane-assigned iPhone 16 Pro, run
+`20260927T193324Z-home-root` captured 1/1 Cold state. Structured verdict
+`d1f2111cf` is **PASS** for that posture with two P2 findings: `Why this?` and
+`Open in Places` have equal visual weight, and “The rest keeps” is cryptic for a
+newcomer. The exact destination is separately verified by the connected route
+test. The run is a mock-native presentation/interaction capture; it proves no
+live owner read, production editorial quality, recurring supply, real calendar
+context or full-scroll design parity. The focused Home suite passed 47 tests,
+`npm run typecheck` passed, ESLint exited 0 with the existing renderer
+`max-lines` warning, 31 polish flows registered, and the Home design-reference
+check passed. `make verify` has not been rerun after this slice.

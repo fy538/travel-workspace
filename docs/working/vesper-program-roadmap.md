@@ -59,12 +59,13 @@ were restored and verified afterward:
 The current implementation owner is the coordinated `codex/home-value-delivery`
 lane. Its current child-repository heads are backend
 `c50268c6eb39812e0f21ba08e3ca43c7d26e92f0`, and app
-`f481d22c546fa9656f273ea490142a86347b7692`; these revisions are after the
-merged recovery revisions above and are not yet published. The active workspace
-branch contains this queue and the H1 execution plan on
-`codex/home-value-delivery`. The app's latest product-code changes remain in
-`772bee902`; `f481d22c5` records the private Home Chat seed contract. The lane
-has advanced past the earlier status recorded below; the
+`d1f2111cf` (Cold Home code `1408699e1` plus its committed structured native
+verdict); these revisions are after the merged recovery revisions above and
+are not yet published. The active workspace branch contains this queue and the
+H1 execution plan on `codex/home-value-delivery`. The app also carries the
+private Home Chat seed contract at `f481d22c5`; the current cold opening now
+reuses the backend's source-backed Places-reading shape in its mock-native
+scenario. The lane has advanced past the earlier status recorded below; the
 [active H1 plan](home-value-composition-execution-plan-2026-09-25.md) owns the
 detailed receipt and exact test boundaries.
 
@@ -263,7 +264,7 @@ forward or reopen the repair without new evidence.
 | Order / state | Package and accountable owner | Outcome / exit |
 | --- | --- | --- |
 | 0 — complete | **Recovered candidate baseline**, merged through #36 / #233 / #201 | Reuse recovered Home/Places and app behavior; original protections restored. The workspace checkout/reliability gate remains a pre-publication evidence gap, not a reason to reopen or bypass the merged PRs |
-| 1 — active | **H1: Complete Home value delivery**, `codex/home-value-delivery` lane owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md). That plan owns the detailed receipts and exact evidence boundaries. Latest backend commit `6d99a195c` verifies real owner-projection-to-prompt assembly on a disposable database, preserves initial revision `0`, and drops Experience Graph seeds on group turns before owner lookup; focused suite, lint and typecheck pass. App commit `772bee902` supplies mock native coverage for all three Home-to-Chat composer doors, stopping before Send. These are separate-layer local proofs—not a live HTTP/model answer, recurring/production content supply, or accepted full-scroll parity. Current full-scroll design reference and sustained useful supply remain open; H1 exit is not met. |
+| 1 — active | **H1: Complete Home value delivery**, `codex/home-value-delivery` lane owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md). That plan owns the detailed receipts and exact evidence boundaries. Backend `c50268c6e` adds a route-level disposable-Postgres private Home-seed acceptance; it does not call a model. App `1408699e1` aligns Cold Home to a source-backed Places reading and exact dossier door, while preserving separate Home-to-Chat fixtures. Native run `20260927T193324Z-home-root` passes 1/1 Cold capture; structured verdict `d1f2111cf` records two P2 copy/hierarchy findings. Focused Home tests (47), typecheck, scenario registry (31), design-reference check and ESLint (0 errors; existing max-lines warning) pass. These remain distinct-layer local proofs: no live backend Cold delivery, production/recurring content supply, model answer, or accepted full-scroll parity. Full Home matrix remains MIXED and H1 exit is not met. |
 | 2 — select from H1's actual bottleneck, not tab order | **Recurring supply / Places depth / Life continuity**, same owner by default | Choose the specific missing producer connection, spatial depth, refinding or permitted later-use path that most improves the delivered experience; do not activate three standing lanes |
 | Cross-cutting within each package | **Practical help, live-engine behavior and production cost**, package owner | Current facts and permitted context materially change an appropriate result; freshness, authority, degradation, latency and generation costs stay explicit |
 | Before publishing each integrated package / before cutover | **Landing and retirement**, implementation owner with coordination review | Review combined changes, run required gates, publish only with authorization, record landed revisions and disposition the branch/worktree; migrations, replacement retirement and release retain their separate gates |
