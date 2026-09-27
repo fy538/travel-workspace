@@ -2052,4 +2052,8 @@ live owner read, production editorial quality, recurring supply, real calendar
 context or full-scroll design parity. The focused Home suite passed 47 tests,
 `npm run typecheck` passed, ESLint exited 0 with the existing renderer
 `max-lines` warning, 31 polish flows registered, and the Home design-reference
-check passed. `make verify` has not been rerun after this slice.
+check passed. The matching backend cold-promotion and fallback tests also
+passed (2 passed, 81 deselected), proving the existing deterministic portfolio
+selection boundary only. The lane-assigned PostgreSQL endpoint at
+`127.0.0.1:53173` did not respond, so no database-backed owner acceptance was
+attempted. `make verify` has not been rerun after this slice.
