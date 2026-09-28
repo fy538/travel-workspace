@@ -1074,6 +1074,14 @@ valid local Apple Development identity belongs to `J6ZKHAT2H7`. The required
 App Group/Keychain access therefore was not present in the built signature, so
 installing it would not test the protected journal or account handoff.
 
+Credential recheck on September 28 confirmed the blocker is not just an Xcode
+override: the local keychain still has no valid development identity for the
+project's `QNZ5K23A74` team. Two installed provisioning profiles name that team,
+but neither carries the required App Group entitlement. The available valid
+identity remains under `J6ZKHAT2H7`; rebuilding with the same mismatch cannot
+produce meaningful device evidence. The prerequisite is a team-matched signing
+identity and profile with the extension's shared-container entitlement.
+
 Measured records in `docs/reliability/runs/`:
 
 - `native-capture-signed-simulator-prebuild-20260928T155316Z.log` is an invalid
