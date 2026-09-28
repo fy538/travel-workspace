@@ -799,16 +799,17 @@ auth.
 
 ### In-place extension delivery and protected retry journal — local implementation, September 28
 
-The current uncommitted app work connects the native share host to the existing
-Intake custody service and extension-scoped authenticated client. Before
-dispatch, it copies supported source bytes into protected App Group storage and
-records the immutable owner generation, payload and idempotency identity. An
-exact replay of a committed local preparation returns the same journal record;
-changed text or attachment bytes under that key are rejected. Startup reconciles
-the current owner's saved attempts before exposing a newly received share. The
-server submission ID is journaled before source upload, then current-owner
-readback controls the receipt and Undo. Pending, uncertain or mismatched results
-remain recoverable rather than being discarded.
+App `f850dc0e2`, followed by test-type correction `6005dd39b`, connects the
+native share host to the existing Intake custody service and extension-scoped
+authenticated client. Before dispatch, it copies supported source bytes into
+protected App Group storage and records the immutable owner generation, payload
+and idempotency identity. An exact replay of a committed local preparation
+returns the same journal record; changed text or attachment bytes under that key
+are rejected. Startup reconciles the current owner's saved attempts before
+exposing a newly received share. The server submission ID is journaled before
+source upload, then current-owner readback controls the receipt and Undo.
+Pending, uncertain or mismatched results remain recoverable rather than being
+discarded.
 
 The native target requires `VESPER_NATIVE_CAPTURE_HOST=1`; Keep additionally
 requires `__DEV__` and `EXPO_PUBLIC_CAPTURE_DELIVERY_ENABLED=true`. The default
@@ -875,13 +876,56 @@ loops disabled, and
 `curl --fail --silent --show-error --max-time 3
 http://127.0.0.1:53176/health` returned `{"status":"ok"}`. Measured health log:
 `docs/reliability/runs/native-capture-local-api-health-20260928T153821Z.log`.
-Health is not proof of authenticated Intake delivery or owner readback. The
-Expo/Xcode app build still needs an explicit local API URL, and no Clerk session
-was exercised. Both already-booted simulators contain `com.fyan.vesper`; this
-pass did not overwrite either. Use a dedicated simulator or coordinate a
-specific device/account session for acceptance. Keep remains disabled by
-default until signed-device evidence proves the whole path. Do not repeat the
-completed host composer or create a second capture/auth service.
+Health is not proof of authenticated Intake delivery or owner readback. Both
+already-booted simulators contain `com.fyan.vesper`; this pass did not overwrite
+either. Keep remains disabled by default until signed-device evidence proves the
+whole path. Do not repeat the completed host composer or create a second
+capture/auth service.
+
+### Signed-simulator build and entitlement boundary — September 28
+
+The opt-in app and `ShareExtension` also compiled for the lane-assigned iPhone 16
+Pro simulator with the app configured for the local API URL and Clerk test
+issuer. The default native project was then restored and CocoaPods reinstalled;
+the native generator/configuration suite passed **10/10**, and both child and
+workspace worktrees were clean before this documentation update. No build was
+installed, no existing app data was touched, and no authenticated Intake request
+or Clerk session was exercised.
+
+This build must **not** be described as signed-device acceptance. `codesign
+--verify --deep --strict` succeeded, but inspection of both resulting bundles
+reported `Signature=adhoc`, `TeamIdentifier=not set` and an empty signed
+entitlement set. An explicit `CODE_SIGN_IDENTITY`/`DEVELOPMENT_TEAM` override
+still produced that result. The Xcode project names team `QNZ5K23A74`; the only
+valid local Apple Development identity belongs to `J6ZKHAT2H7`. The required
+App Group/Keychain access therefore was not present in the built signature, so
+installing it would not test the protected journal or account handoff.
+
+Measured records in `docs/reliability/runs/`:
+
+- `native-capture-signed-simulator-prebuild-20260928T155316Z.log` is an invalid
+  first attempt (measurement wrapper invoked Expo from the workspace root); it
+  failed before project changes. The corrected opt-in prebuild passed in
+  `native-capture-signed-simulator-prebuild-20260928T155347Z.log`.
+- `native-capture-signed-simulator-pods-20260928T155402Z.log` records successful
+  Pod installation.
+- `native-capture-signed-simulator-build-20260928T155440Z.log` records the
+  259.586-second simulator build; `native-capture-signed-simulator-build-team-20260928T160113Z.log`
+  records the 129.628-second identity-override retry. Both compiled, neither
+  produced the required entitlements.
+- The ordinary `VESPER_NATIVE_CAPTURE_HOST=0` prebuild and `pod install` were
+  rerun after experimentation; `node scripts/private-capture-host.test.mjs`
+  passed 10/10 and no tracked app-native drift remained. This cleanup does not
+  resolve the signing prerequisite.
+
+Next acceptance prerequisite: obtain a signing setup that matches the app's
+registered team/provisioning and includes the app-group and Keychain entitlements,
+or establish a deliberately supported local signing path with equivalent
+entitlements. Then inspect the installed signature **before** using an isolated
+simulator/device for Clerk and owner-backed Keep/recovery/Undo. If no such local
+identity is available, treat native acceptance as externally blocked and
+continue an independent roadmap slice; do not infer acceptance from simulator
+compilation, `codesign --verify`, the store-reopen harness, or API health.
 
 ### Local bounded-preview and recovery-copy checkpoint — September 28
 

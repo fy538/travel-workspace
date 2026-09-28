@@ -170,10 +170,14 @@ record exact commands and limits. At that revision this remained an experimental
 account bootstrap with no delivery. The current lane advances it: the extension
 now invokes the existing custody service/client with a protected retry journal,
 submission-ID persistence, current-owner readback and Undo behind a
-development-only opt-in. Keep is still off by default; signed-device Keychain
-access and real Clerk lifecycle remain unverified. The ordinary build is
-restored, and production-profile enablement remains rejected. See the current
-[native capture checkpoint](home-value-composition-execution-plan-2026-09-25.md#in-place-extension-delivery-and-protected-retry-journal--local-implementation-september-28).
+development-only opt-in. Keep is still off by default. The latest opt-in
+simulator build compiles, but both app and extension are ad-hoc signed with no
+signed entitlements, even with an explicit local identity override. The project
+team (`QNZ5K23A74`) does not match the only valid local Apple Development
+identity (`J6ZKHAT2H7`), so this is not signed-device acceptance. The ordinary
+build is restored, and production-profile enablement remains rejected. See the
+[native capture checkpoint](home-value-composition-execution-plan-2026-09-25.md#in-place-extension-delivery-and-protected-retry-journal--local-implementation-september-28)
+and [signing boundary](home-value-composition-execution-plan-2026-09-25.md#signed-simulator-build-and-entitlement-boundary--september-28).
 
 App `e5788100f` extracts the resumable binary Source-custody sequence from the
 React data module into one injected-client service, while keeping the app
@@ -225,29 +229,32 @@ are not the next product increment.
 | --- | --- | --- |
 | 0 — delivery closeout | Current lane owner closes the three published PRs, preserving exact revisions and evidence. Fix the workspace checkout credential through the repository owner; honor already-recorded merge authority without treating blocked checks as green. | Record actual merged heads and branch/worktree disposition. Reuse the lane for follow-on Home work if it remains suitable; do not archive it merely because a PR merged. This administrative gap does not block independent local building. |
 | 1 — H1 checkpoint / retained gaps | Connected implementation and bounded-preview/copy follow-ups are committed. The [assignment](home-value-composition-execution-plan-2026-09-25.md#next-complete-assignment) retains recovery's missing owner-backed comparison, social hierarchy and real recurring-supply uncertainty. | Do not call Home fully accepted. Repair recovery at the existing preparation owner with current option facts/unknowns; do not substitute prettier fixture text. These named residuals do not block independent capture/share foundations. |
-| 2 — active capture/share package | Same coordinated owner continues from private Keep/Undo, root-add authoring, private Chat, local email and OS host-composer handoff. The in-place native extension now implements the existing Intake path, protected retry journal and owner receipt/Undo behind a development-only opt-in; the simulator build passes. The lane API starts with model/search disabled, LLM background loops disabled, and Clerk JWKS/issuer verification configured. Next is signed simulator/device acceptance with an explicit app API URL and a real Clerk session, using an isolated target rather than either occupied simulator. Email delivery/attachment gaps remain explicit. Broader Send/Share still needs its relationship/audience owner amendment. | A complete authored item can enter, return immediate value, reach its selected authorized audience, be refound and be corrected/withdrawn. Host-app redirection is not in-place OS completion. Authoring and its receipt alone do not complete sharing, all six doors, full Life continuity or later value. Pending policies remain excluded. |
+| 2 — active capture/share package | Same coordinated owner continues from private Keep/Undo, root-add authoring, private Chat, local email and OS host-composer handoff. The in-place native extension implements the existing Intake path, protected retry journal and owner receipt/Undo behind a development-only opt-in; simulator compilation passes, but signature inspection found ad-hoc app/extension bundles with no signed entitlements. The Xcode project team (`QNZ5K23A74`) differs from the only valid local development identity (`J6ZKHAT2H7`). Next: establish a matching signing/provisioning setup that includes App Group/Keychain entitlements, then use an isolated target for real Clerk and owner-backed acceptance. The lane API starts with model/search disabled, LLM background loops disabled, and Clerk JWKS/issuer verification configured; health 200 is startup evidence only. Email delivery/attachment gaps remain explicit. Broader Send/Share still needs its relationship/audience owner amendment. | A complete authored item can enter, return immediate value, reach its selected authorized audience, be refound and be corrected/withdrawn. Host-app redirection is not in-place OS completion. Authoring, simulator compilation and API health alone do not complete sharing, all six doors, full Life continuity or later value. Pending policies remain excluded. |
 | 3 — reassess receiving and later value | At the capture/share checkpoint, choose the next whole-product package against the actual retained/shared material: richer Home/Places receiving, Life continuity, or an accepted preparation gap. | Select from observed code/design gaps and received benefit, not a standing parallel backlog. Do not launch all three automatically. |
 
-**Next execution checkpoint:** review and verify app `6005dd39b`'s journal-backed
-in-place path on a signed device: host closed, share payload preserved, explicit
-Keep, same-attempt recovery after interruption, current-owner receipt, Undo,
-dismissal and repeated invocation; include account expiry/switching. The latest
-code passed 41 focused Jest tests, seven Swift journal scenarios,
-typecheck, ten native-configuration tests and an opt-in ShareExtension
-simulator build. `VESPER_NATIVE_CAPTURE_HOST=0` prebuild and `pod install`
-restored the ordinary configuration afterward. The first app gate found two
-new test-type errors in this slice; both were fixed. Final `verify:pr` passed,
-including 185/185 `qa:parity` tests with zero skips; the full-suite test-type
-ratchet remains at its existing 406-error baseline. This lane has a
-paired iPhone and two booted simulators that already contain `com.fyan.vesper`;
-neither simulator was overwritten. The lane API now starts without provider
-spend under `AI_MODE=off`, with the declared Clerk test issuer, and its `/health`
-endpoint returned 200. That is only startup evidence: the Expo/Xcode app build
-still needs an explicit local API URL, and no Clerk session, authenticated
-Intake call or device run has been exercised. Use an isolated simulator or
-coordinate the intended device/account session. Preserve the double development
-gate and do not infer acceptance from store-reopen harness tests or a simulator
-compile. Do not reopen connected private Chat entrances.
+**Next execution checkpoint:** first resolve the signing prerequisite for app
+`6005dd39b`'s journal-backed in-place path, then verify on an isolated signed
+device: host closed, share payload preserved, explicit Keep, same-attempt
+recovery after interruption, current-owner receipt, Undo, dismissal and repeated
+invocation; include account expiry/switching. The latest code passed 41 focused
+Jest tests, seven Swift journal scenarios, typecheck, ten native-configuration
+tests and opt-in ShareExtension simulator compilation. However, both app and
+extension signatures were ad hoc and contained no signed entitlements even when
+an identity override was requested; the configured Xcode team
+`QNZ5K23A74` differs from the only valid local identity team `J6ZKHAT2H7`.
+Therefore no build was installed and this is **not** signed-device acceptance.
+The exact evidence and prerequisite are recorded in the [H1 native checkpoint](home-value-composition-execution-plan-2026-09-25.md#signed-simulator-build-and-entitlement-boundary--september-28).
+The ordinary configuration was restored, Pods installed, and the native
+configuration suite passed 10/10. The first app gate found two new test-type
+errors in this slice; both were fixed. Final `verify:pr` passed, including
+185/185 `qa:parity` tests with zero skips; the full-suite test-type ratchet
+remains at its existing 406-error baseline. Both already-booted simulators and
+the paired iPhone were left untouched. The lane API's `/health` returned 200,
+but no Clerk session or authenticated Intake call was exercised. Do not infer
+acceptance from store-reopen harness tests, signature-integrity verification or
+simulator compilation. If matching signing credentials are unavailable, record
+the device acceptance boundary as externally blocked and proceed with an
+independent roadmap slice. Do not reopen connected private Chat entrances.
 Keep the unresolved broader-audience owner amendment, email provider/attachment
 gaps, October 12 catalog failure and Home recovery comparison visible; none is
 fixed by this capture checkpoint.
