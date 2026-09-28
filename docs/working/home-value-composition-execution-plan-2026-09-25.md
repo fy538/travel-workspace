@@ -862,12 +862,21 @@ The Swift harness reconstructs the store, not an actual killed/relaunched OS
 extension. No signed app was installed. Real Clerk refresh/sign-out/account
 switching, host-closed authenticated submission, device process interruption,
 current-owner readback/Undo and repeated invocation remain unverified. The
-lane's API URL was unset and its local API health endpoint was unavailable, so
-this checkout could not yet exercise the real owner from the paired device.
-Keep remains disabled by default until signed-device evidence proves the whole
-path. Do not repeat the completed host composer or create a second capture/auth
-service; the next native task is device acceptance once the lane has a reachable
-authenticated API and usable signed install.
+runtime blocker narrowed on September 28: `AI_MODE=off WEB_SEARCH_MODE=off
+DISABLE_LLM_BACKGROUND_LOOPS=true CLERK_JWKS_URL=https://picked-firefly-95.clerk.accounts.dev/.well-known/jwks.json
+CLERK_ISSUER=https://picked-firefly-95.clerk.accounts.dev make dev-backend`
+started the lane API with model and web search disabled and LLM background
+loops disabled, and
+`curl --fail --silent --show-error --max-time 3
+http://127.0.0.1:53176/health` returned `{"status":"ok"}`. Measured health log:
+`docs/reliability/runs/native-capture-local-api-health-20260928T153821Z.log`.
+Health is not proof of authenticated Intake delivery or owner readback. The
+Expo/Xcode app build still needs an explicit local API URL, and no Clerk session
+was exercised. Both already-booted simulators contain `com.fyan.vesper`; this
+pass did not overwrite either. Use a dedicated simulator or coordinate a
+specific device/account session for acceptance. Keep remains disabled by
+default until signed-device evidence proves the whole path. Do not repeat the
+completed host composer or create a second capture/auth service.
 
 ### Local bounded-preview and recovery-copy checkpoint — September 28
 

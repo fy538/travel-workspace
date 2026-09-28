@@ -223,7 +223,7 @@ are not the next product increment.
 | --- | --- | --- |
 | 0 — delivery closeout | Current lane owner closes the three published PRs, preserving exact revisions and evidence. Fix the workspace checkout credential through the repository owner; honor already-recorded merge authority without treating blocked checks as green. | Record actual merged heads and branch/worktree disposition. Reuse the lane for follow-on Home work if it remains suitable; do not archive it merely because a PR merged. This administrative gap does not block independent local building. |
 | 1 — H1 checkpoint / retained gaps | Connected implementation and bounded-preview/copy follow-ups are committed. The [assignment](home-value-composition-execution-plan-2026-09-25.md#next-complete-assignment) retains recovery's missing owner-backed comparison, social hierarchy and real recurring-supply uncertainty. | Do not call Home fully accepted. Repair recovery at the existing preparation owner with current option facts/unknowns; do not substitute prettier fixture text. These named residuals do not block independent capture/share foundations. |
-| 2 — active capture/share package | Same coordinated owner continues from private Keep/Undo, root-add authoring, private Chat, local email and OS host-composer handoff. The in-place native extension now implements the existing Intake path, protected retry journal and owner receipt/Undo behind a development-only opt-in; the simulator build passes. Next is signed-device/host-closed acceptance when a reachable authenticated API and signed install are available. Email delivery/attachment gaps remain explicit. Broader Send/Share still needs its relationship/audience owner amendment. | A complete authored item can enter, return immediate value, reach its selected authorized audience, be refound and be corrected/withdrawn. Host-app redirection is not in-place OS completion. Authoring and its receipt alone do not complete sharing, all six doors, full Life continuity or later value. Pending policies remain excluded. |
+| 2 — active capture/share package | Same coordinated owner continues from private Keep/Undo, root-add authoring, private Chat, local email and OS host-composer handoff. The in-place native extension now implements the existing Intake path, protected retry journal and owner receipt/Undo behind a development-only opt-in; the simulator build passes. The lane API starts with model/search disabled, LLM background loops disabled, and Clerk JWKS/issuer verification configured. Next is signed simulator/device acceptance with an explicit app API URL and a real Clerk session, using an isolated target rather than either occupied simulator. Email delivery/attachment gaps remain explicit. Broader Send/Share still needs its relationship/audience owner amendment. | A complete authored item can enter, return immediate value, reach its selected authorized audience, be refound and be corrected/withdrawn. Host-app redirection is not in-place OS completion. Authoring and its receipt alone do not complete sharing, all six doors, full Life continuity or later value. Pending policies remain excluded. |
 | 3 — reassess receiving and later value | At the capture/share checkpoint, choose the next whole-product package against the actual retained/shared material: richer Home/Places receiving, Life continuity, or an accepted preparation gap. | Select from observed code/design gaps and received benefit, not a standing parallel backlog. Do not launch all three automatically. |
 
 **Next execution checkpoint:** review and verify app `f850dc0e2`'s journal-backed
@@ -235,10 +235,14 @@ typecheck, ten native-configuration tests and an opt-in ShareExtension
 simulator build. `VESPER_NATIVE_CAPTURE_HOST=0` prebuild and `pod install`
 restored the ordinary configuration afterward. The app `verify:pr` gate stopped at the legacy test-typecheck
 ratchet (408 vs 406), and `qa:parity` therefore did not run. This lane has a
-paired iPhone and booted simulator, but its API URL is unset (defaulting to
-localhost) and the local API health endpoints were unavailable; no authenticated
-device run can yet prove real submission. Preserve the double development gate
-and do not infer acceptance from store-reopen harness tests or a simulator
+paired iPhone and two booted simulators that already contain `com.fyan.vesper`;
+neither simulator was overwritten. The lane API now starts without provider
+spend under `AI_MODE=off`, with the declared Clerk test issuer, and its `/health`
+endpoint returned 200. That is only startup evidence: the Expo/Xcode app build
+still needs an explicit local API URL, and no Clerk session, authenticated
+Intake call or device run has been exercised. Use an isolated simulator or
+coordinate the intended device/account session. Preserve the double development
+gate and do not infer acceptance from store-reopen harness tests or a simulator
 compile. Do not reopen connected private Chat entrances.
 Keep the unresolved broader-audience owner amendment, email provider/attachment
 gaps, October 12 catalog failure and Home recovery comparison visible; none is
