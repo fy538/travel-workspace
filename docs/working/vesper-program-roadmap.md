@@ -181,9 +181,11 @@ facade stable. The focused suite (12/12) and app gate (185 seam tests) pass.
 This removes the service's React/data dependency; it does **not** connect that
 service to the native extension or prove authenticated HTTP. Before journaling,
 App `67c33c8f3` adds the extension-safe authenticated transport and shared Intake
-v2 route owner; their focused tests and app gate passed. App `f850dc0e2` now
-connects that owner through a protected pre-dispatch journal and in-place
-resume/readback/Undo path. Exact local evidence, the app-gate failure, and the
+v2 route owner; their focused tests and app gate passed. App `f850dc0e2` connects
+that owner through a protected pre-dispatch journal and in-place
+resume/readback/Undo path. Follow-up `6005dd39b` fixes the two test-type errors
+introduced with that slice; the final app gate passes, with the existing
+406-error test-type debt unchanged. Exact local evidence and the still
 unverified device boundary are in the linked native capture checkpoint.
 Do not copy endpoint paths or import the app-wide HTTP facade. Keep stays
 disabled by default until signed-device acceptance is proven.
@@ -226,15 +228,17 @@ are not the next product increment.
 | 2 — active capture/share package | Same coordinated owner continues from private Keep/Undo, root-add authoring, private Chat, local email and OS host-composer handoff. The in-place native extension now implements the existing Intake path, protected retry journal and owner receipt/Undo behind a development-only opt-in; the simulator build passes. The lane API starts with model/search disabled, LLM background loops disabled, and Clerk JWKS/issuer verification configured. Next is signed simulator/device acceptance with an explicit app API URL and a real Clerk session, using an isolated target rather than either occupied simulator. Email delivery/attachment gaps remain explicit. Broader Send/Share still needs its relationship/audience owner amendment. | A complete authored item can enter, return immediate value, reach its selected authorized audience, be refound and be corrected/withdrawn. Host-app redirection is not in-place OS completion. Authoring and its receipt alone do not complete sharing, all six doors, full Life continuity or later value. Pending policies remain excluded. |
 | 3 — reassess receiving and later value | At the capture/share checkpoint, choose the next whole-product package against the actual retained/shared material: richer Home/Places receiving, Life continuity, or an accepted preparation gap. | Select from observed code/design gaps and received benefit, not a standing parallel backlog. Do not launch all three automatically. |
 
-**Next execution checkpoint:** review and verify app `f850dc0e2`'s journal-backed
+**Next execution checkpoint:** review and verify app `6005dd39b`'s journal-backed
 in-place path on a signed device: host closed, share payload preserved, explicit
 Keep, same-attempt recovery after interruption, current-owner receipt, Undo,
 dismissal and repeated invocation; include account expiry/switching. The latest
 code passed 41 focused Jest tests, seven Swift journal scenarios,
 typecheck, ten native-configuration tests and an opt-in ShareExtension
 simulator build. `VESPER_NATIVE_CAPTURE_HOST=0` prebuild and `pod install`
-restored the ordinary configuration afterward. The app `verify:pr` gate stopped at the legacy test-typecheck
-ratchet (408 vs 406), and `qa:parity` therefore did not run. This lane has a
+restored the ordinary configuration afterward. The first app gate found two
+new test-type errors in this slice; both were fixed. Final `verify:pr` passed,
+including 185/185 `qa:parity` tests with zero skips; the full-suite test-type
+ratchet remains at its existing 406-error baseline. This lane has a
 paired iPhone and two booted simulators that already contain `com.fyan.vesper`;
 neither simulator was overwritten. The lane API now starts without provider
 spend under `AI_MODE=off`, with the declared Clerk test issuer, and its `/health`

@@ -816,8 +816,12 @@ configuration was restored after the opt-in build. Production-profile
 enablement remains rejected and Keep stays off outside the explicit development
 opt-in.
 
-Local verification on workspace `d65b2b5fe`, backend `5c54a2d5e`, app commit
-**`f850dc0e2`** (based on `c22727678`):
+Local verification on workspace `1c9dbcc43`, backend `5c54a2d5e`, and app commit
+**`6005dd39b`** (based on `f850dc0e2`, itself based on `c22727678`). The
+final focused/gate runs executed against the working tree immediately before
+that commit, with the two test-type corrections applied. The contract update
+was added before commit; no production-source changes followed the passing
+gate.
 
 - `npm --prefix travel-app test -- --runInBand --runTestsByPath
   __tests__/native-capture/capture-attempt-service.test.ts
@@ -846,12 +850,13 @@ Local verification on workspace `d65b2b5fe`, backend `5c54a2d5e`, app commit
   -derivedDataPath .tmp/capture-host-build CODE_SIGNING_ALLOWED=NO build`.
   Then `VESPER_NATIVE_CAPTURE_HOST=0 CI=1 npx expo prebuild --platform ios
   --no-install` and `pod install` restored the ordinary configuration.
-- `npm --prefix travel-app run verify:pr` is **not green**: its final legacy
-  full-test typecheck ratchet reported **408 errors against a 406 baseline**.
-  The edited capture tests are not among the reported diagnostics. The earlier
-  fast checks, including the focused test-typecheck contract, passed; later QA
-  parity did not run. Log:
-  `docs/reliability/runs/native-capture-app-gate-final-20260928-20260928T152251Z.log`.
+- The first `verify:pr` run found two new test-type errors in this capture
+  slice. Both are fixed. The final `npm --prefix travel-app run verify:pr`
+  passed: the full-test typecheck ratchet is unchanged at **406 errors** and
+  `qa:parity` passed **185/185 tests, zero skips**, in six suites. Log:
+  `docs/reliability/runs/native-capture-app-gate-final-fixed-20260928T154825Z.log`.
+  Focused regression log:
+  `docs/reliability/runs/native-capture-attempt-focused-fixed-20260928T154554Z.log`.
   This does not certify the cross-repository `make verify`.
 
 These measurement logs are local run evidence and are ignored by Git; the
