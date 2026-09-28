@@ -54,7 +54,9 @@ The founder's direction on September 28, in substance:
   different.
 
 The founder also asked for board I0, which draws this model, and had its rows
-relabeled as doors and things.
+relabeled as doors and things. Later the same day the founder asked for research
+on related designs. On its findings, they approved redrawing I0 without
+confirmations and drawing a new board, I1 ("Asked once").
 
 ## Decision
 
@@ -89,6 +91,11 @@ relabeled as doors and things.
    contract §3.9:
    - Vesper filters before it reads, and keeps only what matches, never the
      mailbox.
+   - A booking is filed as the person's only when it names them. TripIt's inbox
+     scan admits importing other travelers' trips. Many confirmation emails
+     carry the traveler as structured data (schema.org `underName`).
+   - It works with whatever scopes the person grants, including partial grants
+     from Google's granular consent.
    - It keeps a visible log of what it found and where it went.
    - It never sends, deletes or changes mail.
    - Disconnecting stops the search and deletes what was read but not kept.
@@ -113,21 +120,37 @@ relabeled as doors and things.
 
 ## Not decided here — founder ruling pending
 
-- **The friction proposal** (September 28, unanswered). It has five parts:
-  - Sending is the permission: the share sheet shows the payoff and closes
-    itself, with no confirm step.
-  - Vesper acts when confident and people correct afterward, so there are no
-    yes-or-no questions at entry.
-  - Undo replaces confirmation.
-  - Vesper asks once, just in time. It offers the inbox after the first booking
-    screenshot, notification permission when a friend first adds something, and
-    a standing rule when a collection is first shared.
-  - Nothing is asked up front. A photograph carries its own time and place, so
-    no location or contacts permission is needed.
-
-  The proposal has three presets under "How much Vesper does on its own": *Keep
-  and organize* (default), *Just keep*, and *Do more for me*. Each has
-  per-source, per-collection and per-notification switches.
+- **The friction proposal.** Proposed on September 28 and refined by research
+  the same day. The founder approved drawing it on I0 and I1; a ruling on those
+  boards is pending.
+  - **Save on share.** There is no Keep tap. The receipt closes itself, for
+    example "Flight · TAP 210 · Oct 12 · Trips".
+    - There are two share targets: *Send to Vesper*, which saves at once, and
+      *Send to a collection…*, for choosing.
+    - Precedents: mymind and Raindrop.
+  - **No yes-or-no questions.**
+    - When confident, Vesper files the thing with a short, factual "why ·
+      Change" line on the item.
+    - When unsure, the thing waits in *Not yet placed*, and nothing asks.
+    - A correction made on the item applies to similar things going forward.
+  - **Undo replaces confirmation.** Undo lives on the item. A collapsed,
+    non-alerting "Filed quietly · N" group in notifications keeps a durable
+    record of silent actions.
+  - **Ask once, when it pays off.**
+    - The inbox is offered after the first booking screenshot.
+    - Notifications start as iOS provisional (quiet) notifications, and full
+      alerts are asked for when a friend first adds something.
+    - A standing rule is offered when a collection is first shared.
+    - Nothing is asked up front: the photo picker, share extension and Wallet
+      need no permission, and a shared photograph carries its own time and
+      place.
+  - **Presets** under "How much Vesper does on its own": *Keep and organize*
+    (default), *Just keep*, and *Do more for me*. Each has per-source,
+    per-collection and per-notification switches.
+  - **Shared collections are the exception to act-then-undo,** because
+    showing something to others cannot be undone. Things enter only by the
+    person's choice or by a standing rule they previewed, with a visible
+    marker on each item.
 
   It is in tension with September 27 item 10, where the send control is
   labelled *Keep* for just me. A ruling should say whether the share sheet shows
@@ -137,16 +160,26 @@ relabeled as doors and things.
     item 14).
   - One email holding several things becomes several items, grouped.
   - Vesper offers one guess about where or when, only when the photograph's own
-    time and place support it. The friction proposal would turn this into act
-    first, correct after.
+    time and place support it. The friction proposal replaces the question with
+    filing plus a "why · Change" line, or with *Not yet placed*.
   - A friend's share of something the person already has links to it rather
     than copying it.
 - **Which mail counts.** Travel, reservations and tickets are the starting set.
-  Receipts, orders and subscriptions are not decided.
+  Google's user-data policy explicitly permits apps that "automate travel
+  itineraries or track flights or package delivery statuses." Receipts, orders
+  and subscriptions are not decided.
+- **Showing inbox-found things to others.** It is unverified whether Google's
+  user-data policy allows Gmail-derived items to be shown to other people.
+  - Recommended default: anything found in the inbox stays private, even in a
+    shared collection, until that is confirmed.
+  - Google Calendar does the same with events it creates from Gmail on shared
+    calendars.
 - **Providers for v1.** Gmail first:
   - Its read scope is a restricted scope, which needs Google OAuth verification
     and an annual third-party security assessment (CASA) when mail data reaches
     Vesper's servers. That takes weeks, so it is on the critical path.
+  - Until verification is complete, the app shows an unverified-app warning and
+    is capped at 100 new users.
   - Microsoft and Yahoo requirements have not been checked.
   - Camera-roll scanning (Life board 04) stays out of v1.
 - **Grouped-notification cadence** for found items: per arrival, daily, or with
@@ -170,11 +203,14 @@ relabeled as doors and things.
   cohort. No runtime behaviour, flag or schema is changed by this record, and
   implementation needs a lane and Task Intake evidence.
 - **Trust.** The caution is Meta Muse's message sync, reported to have copied a
-  columnist's texts after access was declined. The connected inbox is
-  explained, narrow and visible, and people can leave it.
-- **Design.** Life board I0 ("Five ways in, one thing out") draws this model. It
-  still shows the confirmations the friction proposal would remove. C7 is on
-  hold until it is rebuilt on I0.
+  columnist's texts after access was declined. Flighty, meanwhile, positions
+  itself as "we do not scrape your inbox" and leads with forwarding. The
+  connected inbox is explained, narrow and visible, and people can leave it;
+  forwarding stays available as the no-permission option.
+- **Design.** Life board I0 ("Five ways in, one thing out") draws this model.
+  On September 28 a parallel session was redrawing I0 without its
+  confirmations and drawing I1 ("Asked once"). C7 is on hold until it is
+  rebuilt on I0.
 
 ## Revisit trigger
 

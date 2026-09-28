@@ -40,6 +40,11 @@ The roadmap's "Capture/share package boundaries" already follow the September
     - keep only matches;
     - a visible log;
     - disconnect deletes what was read but not kept.
+  - A booking is filed as the person's only when it names them. Use
+    schema.org reservation markup (`underName`) where the email carries it.
+  - Partial scope grants from Google's granular consent must work.
+  - Until Google's policy on showing Gmail-derived items to others is
+    confirmed, inbox-found things stay private, even in shared collections.
   - The adapter depends on Google verification (§5).
 - **Doors and things are separate.** Replace the six-door map with this door
   list: the OS share sheet, inside Vesper (camera, photos, add, Keep/Send on an
@@ -62,6 +67,11 @@ The roadmap's "Capture/share package boundaries" already follow the September
   and later value" conditions. Its policy (batching, quiet hours, push versus
   in-app) is still pending a founder ruling, so build the owner and hold the
   policy.
+
+The friction proposal (save on share, "why · Change" instead of questions, *Not
+yet placed*, a "Filed quietly" group) is being drawn on I0 and I1 and is not
+ruled. It is worth keeping in mind for the share extension's receipt, because it
+would remove the in-sheet Keep tap.
 
 Still excluded, as the roadmap already says:
 - R1–R5;
@@ -119,9 +129,9 @@ silently.
   annual CASA assessment.
   - The lane can draft the scope justification and the data-handling
     description.
-  - Check whether Google's testing mode can serve a 20–30 person cohort before
-    verification completes. It reportedly allows a limited list of test users,
-    with short-lived tokens; this is unverified.
+  - Until verification, Google shows an unverified-app warning and caps the
+    app at 100 new users (Google Cloud help, accessed September 28). That could
+    carry a 20–30 person cohort through the warning screen.
 - **The founder setup (about 45 minutes):**
   - the workspace CI token;
   - branch protection for a solo founder;

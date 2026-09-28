@@ -38,6 +38,9 @@ the decisions win:
 transcripts store UTC, so a late-evening exchange appears there under the next
 day.
 
+**Coverage.** The trace runs from September 24, 18:01 to September 28, about
+15:21. A forked session was still drawing boards at that point.
+
 **Branches.** The thread ran in several Claude Code sessions, some forked from
 one another. Two branches ran in parallel on the evening of September 26: the
 product map and the "primary mode" thesis. Two more ran in parallel on
@@ -689,7 +692,31 @@ user is different."** Claude proposed (Proposed, unanswered):
 - no permissions asked up front;
 - presets from *Just keep* to *Do more for me*.
 
-This is recorded as pending in the ingestion decision.
+**Founder:** "can you do some research online on related designs?"
+
+The research mostly confirmed the direction and sharpened it:
+- save on share, with two share targets (Raindrop, mymind);
+- no yes-or-no questions: file with a short "why · Change" line, or hold the
+  thing in *Not yet placed* (Copilot Money, TripIt);
+- a correction applies going forward (Google Photos, Gmail);
+- a durable "Filed quietly" group in notifications, because toasts are missed;
+- iOS provisional notifications with no prompt;
+- no consumer app yet offers named automation levels.
+
+It kept the inbox ruling with three conditions:
+1. Google verification gates scale: an unverified app shows a warning and is
+   capped at 100 new users.
+2. File a booking as yours only when it names you.
+3. Keep inbox-found things private, even in shared collections, until Google's
+   policy on showing them to others is confirmed.
+
+It named one risk the proposal had understated: showing something to a friend
+cannot be undone, so shared collections need a person's choice or a previewed
+standing rule.
+
+**Founder:** "go ahead." The forked session began redrawing I0 without
+confirmations and drawing I1, "Asked once." The ingestion decision records
+all of this as pending a ruling on those boards.
 
 ---
 
@@ -764,6 +791,8 @@ and was still true on September 28.
 | Sep 28 | Email forwarding in v1, inbox later | Founder: connect the inbox | Connected inbox; forwarding as fallback |
 | Sep 28 | I0's "five ways" (Wallet as a way in) | Founder: share sheet vs screenshot? | Doors × things |
 | Sep 28 | I0's confirmations (Keep, Yes / Not there) | Founder: too much friction | Friction proposal (pending) |
+| Sep 28 | One guess answered with Yes / Not there | Design research | File with "why · Change", or *Not yet placed* (pending) |
+| Sep 28 | Act first, undo after, everywhere | Research: you cannot un-show a share | Shared collections only by choice or a previewed rule |
 
 ---
 
@@ -868,6 +897,53 @@ Engadget, WIRED, 404 Media, CNN, Inc.
   - https://developer.nylas.com/docs/cookbook/use-cases/build/google-oauth-scopes/
 - **Other providers.** iCloud Mail has no API. Microsoft and Yahoo review
   requirements were not checked.
+- **Before verification,** a Google app shows an unverified-app warning and is
+  capped at 100 new users. Google's granular consent lets people grant only some
+  scopes. Sources:
+  - https://support.google.com/cloud/answer/7454865
+  - https://developers.google.com/identity/protocols/oauth2/resources/granular-permissions
+- **Google's user-data policy** explicitly permits apps that automate travel
+  itineraries or track flights and packages. Whether Gmail-derived items may be
+  shown to other people was not verified. Source:
+  - https://developers.google.com/workspace/workspace-api-user-data-developer-policy
+- **Trust positioning.** Flighty says it does not scrape inboxes and leads with
+  forwarding. TripIt admits its scan imports other travelers' trips. Sources:
+  - https://flighty.com/help/email-forwarding
+  - https://help.tripit.com/en/support/solutions/articles/103000063359-inbox-sync-posting-other-traveler-s-trips
+
+### Low-friction capture and permissions (September 28)
+
+- **Save on share.**
+  - mymind saves on share and closes its panel itself:
+    https://mymind.helpscoutdocs.com/article/31-how-to-save-something-to-mymind-on-mobile
+  - Raindrop ships an instant target and a full form:
+    https://blog.raindrop.io/ios-ipados-app-5-0-8d5dc9c14751/
+  - Notion and Pinterest require a picker, which makes every save a filing
+    decision.
+- **Confident filing with a visible reason; a holding lane when unsure.**
+  - Copilot Money:
+    https://help.copilot.money/en/articles/8182433-copilot-intelligence-for-spending
+  - TripIt Unfiled Items:
+    https://help.tripit.com/en/support/solutions/articles/103000063393-unfiled-items
+  - People accept an imperfect algorithm more readily when they can adjust it
+    (Dietvorst, 2018).
+- **Permissions.**
+  - Apple's HIG says to ask when the feature is used. A screen before the
+    system prompt may have only one "Continue" button, and iOS prompts once.
+    Provisional notifications need no prompt.
+    - https://developer.apple.com/design/human-interface-guidelines/privacy
+    - https://developer.apple.com/documentation/usernotifications/asking-permission-to-use-notifications
+  - The photo picker needs no library permission:
+    https://developer.apple.com/videos/play/wwdc2023/10053/
+  - Chrome's notification prompts are granted 12% of the time on desktop and
+    23% on Android (USENIX Security 2021).
+- **Undo over confirm, and defaults over toggles.**
+  - Undo over confirm: NN/g, Raskin, Horvitz 1999.
+  - Defaults over toggles: Johnson & Goldstein 2003. A few profiles cover most
+    privacy preferences (Liu et al., SOUPS 2016).
+- **Accidental sharing is the costly failure.** iCloud Shared Library frames
+  its rules as who, what and since when. Macworld documents accidental
+  placement of private photos in it.
 
 ### Code and delivery facts (dated; re-verify before relying on them)
 
@@ -934,7 +1010,9 @@ and should be closed against it. The Life organization design expires October 5.
   - whether Vesper may add to a shared collection on its own (default: no);
   - notification policy.
 - **Ingestion:**
-  - the friction proposal and presets;
+  - the friction proposal and presets, being drawn on I0 and I1;
+  - keeping inbox-found things private in shared collections until Google's
+    policy is confirmed;
   - the I0 defaults;
   - which mail counts;
   - providers;
@@ -969,7 +1047,8 @@ Life project: https://claude.ai/design/p/e72a2fd2-799f-4c3d-861a-d5acaac1cdaf
 | C0–C5 Collections | Object, updates, starting, together, time, what it powers | C0, C1 and C3 need a redraw for the September 28 rulings |
 | C6 Vesper's voice, three ways | Style grid | Superseded |
 | C7 One week with Vesper | Monday–Saturday storyboard | On hold; rebuild on I0 |
-| I0 Five ways in, one thing out | Doors × things → one artifact | Current; still shows confirmations the friction proposal would remove |
+| I0 Five ways in, one thing out | Doors × things → one artifact | Being redrawn without confirmations (parallel session, Sep 28) |
+| I1 Asked once | One-time requests and the three presets | Being drawn (parallel session, Sep 28) |
 
 Multiplayer Shapes project:
 https://claude.ai/design/p/caf916f9-c0ce-466b-92ee-49ebefe1ca38. Boards 08–10
@@ -1034,7 +1113,7 @@ by it:
    - The signed-device share extension.
    - The two-week own-data test.
 4. **Design, limited to the loop.**
-   - Redraw I0 without confirmations, and add I1, "Asked once."
+   - Rule on the redrawn I0 and on I1 once the parallel session finishes them.
    - Redraw C0, C1 and C3.
    - Rewrite D0.
    - Then draw one end-to-end loop board: Share → Land → Join → Grow → Return.
