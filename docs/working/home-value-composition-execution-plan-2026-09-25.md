@@ -586,6 +586,71 @@ archive repair, scheduled Life projection and later generated value are not
 certified by this local Keep/refind/Undo result. Broader Send/Share still requires
 its explicit audience owner amendment.
 
+### Forwarded email attachment Intake checkpoint — September 28
+
+The v2 webhook now reads SendGrid's numbered multipart file parts and maps
+supported bytes into ordinary Intake `attachment` sources in the same private
+email submission. Each source passes existing byte-signature/MIME checks and
+basic scan admission, owner-authorized storage binding, finalization, immutable
+custody receipt, Life projection and the existing submission Undo. The provider
+archive remains metadata-only/custody-only. No new table, attachment store,
+OpenAPI shape, generated mobile type, or semantic/booking consequence was added.
+
+Bounds: at most 15 attachments and 8 MiB total within the webhook's 10 MB body
+limit. PDF, PKPass, HEIC/HEIF, generic ZIP and any other active Intake scanner or
+decoder exclusions remain unsupported. Rejection is currently all-or-nothing:
+if any attachment is unsupported, the webhook acknowledges a dropped message
+without keeping otherwise-supported sibling files or message text, and there is
+no sender-facing warning. The capture primitive is implemented; that rejection
+experience is not product-complete. Real SendGrid delivery and native mobile
+attachment presentation are not certified.
+
+The first disposable-Postgres run exposed a generic Intake insert defect:
+SQLAlchemy omitted nullable custody receipt columns from a mixed pending-binary
+verified-inline-text bulk insert because the per-row mappings had different
+keys. Source row creation now supplies those nullable fields uniformly, so the
+verified inline source can carry its receipt while binary custody remains
+pending. This was corrected at the Intake owner, not bypassed in the email
+adapter. A subsequent real-read pass confirmed that ordinary pending-submission
+reads intentionally redact filenames and storage references; upload retry now
+uses Intake's existing owner-authorized source read, while constructing finalize
+metadata only from server-detected MIME, current owner source state and the
+attempt's exact hash/size.
+
+The attachment implementation is committed in backend `e8448f75d`; its focused
+tests below ran on the identical tree immediately before commit, with workspace
+`47c91b303` and app `33bf54503` checked out.
+
+- Focused offline acceptance: **27 passed, zero skips** across email service,
+  SendGrid multipart parsing, Intake replay identity and the existing v2 MIME
+  boundary. Command:
+  `PYTHONPATH=. travel-agent/.venv/bin/pytest travel-agent/tests/inbound/test_email_forward_v2.py travel-agent/tests/api/test_inbound_email_attachment_parsing.py travel-agent/tests/inbound/test_intake_v2_replay_identity.py travel-agent/tests/inbound/test_v2_security.py -q`.
+- Real local disposable Postgres: **9 passed, zero skips** in the email webhook
+  suite. New cases cover both a text-plus-PNG email and an attachment-only
+  email, owner/Life source readback, same-Message-ID exact replay, changed bytes
+  rejected without overwriting the original, and Undo. Object storage is
+  substituted. Command:
+  `env TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:53173/vesper_capture_keep_test_20260928 TEST_DATABASE_DISPOSABLE=1 PYTHONPATH=. travel-agent/.venv/bin/pytest travel-agent/tests/inbound/test_email_capture_postgres.py -q --run-quarantined`.
+- The first DB run failed on the heterogeneous-row receipt constraint; after
+  the owner-layer correction, all nine tests passed. That initial failure is
+  evidence of the mixed-source boundary and was not suppressed.
+- Backend `make typecheck` passed (1,889 files). `make docs-check` passed.
+  The first coordinated API audit stopped at eight `stale-consumer` findings:
+  the policy named `httpIntakeEndpoints.ts`, while the extracted custody client
+  now owns the literal route paths in `httpIntakeCustodyEndpoints.ts`. This was
+  a stale source pointer, not an API-shape change. The workspace policy and
+  app schema-bridge manifest now point to the actual owner. Follow-up evidence:
+  `make api-coverage-check` **passed** (579 active, 15 dark, zero unflagged, 62
+  retiring); `make contract-check` **passed** (full snapshot, active projection,
+  and generated types current); `./scripts/sync-types.sh` completed and left no
+  generated-file diff; app `schema-bridge` **passed** (376 exports and manifest
+  entries); the API audit/projector tests passed **19/19**. The audit was not
+  run before the attachment code change, so this correction makes no claim
+  about the earlier baseline. No route or request/response shape changed.
+- These checks do not prove external SendGrid payload/signature delivery,
+  hosted-object deletion, native attachment presentation, scanner coverage for
+  excluded types, or a user-visible explanation when intake is rejected.
+
 ### OS common-composer host adapter — September 28
 
 Text/link/file shares now enter the existing private composer through an
