@@ -35,11 +35,14 @@ three open PRs, rechecked September 28. The reading, exact-context Chat and
 practical-state/action follow-ups are locally committed with bounded tests and
 native self-review, not part of the published candidate's coordinated gate. Follow
 the program's exact tuple and current lane owner rather than redispatching
-completed connections from an older local main. H1's remaining assignment covers
-useful supply, native hierarchy and
-continuation quality, not rebuilding the Source, original, practical and Chat
-paths already connected. Source generation infrastructure and prepared-result
-serving do not by themselves prove recurring useful supply.
+completed connections from an older local main. Backend `539edb00d` and app
+`af8a126af` add bounded owner previews and clearer Returned/recovery copy.
+The connected H1 checkpoint is reached, but product acceptance is incomplete:
+Urgent lacks owner-backed alternative trade-offs, social hierarchy has residuals,
+and real recurring supply remains unverified. A passing Chat-continuation capture
+does not close a different Urgent capture's P1. Capture/share foundations may
+proceed under the program while these named gaps remain open; do not rebuild
+already connected Source, original, practical and Chat paths.
 
 The accepted [September 26 multiplayer direction](../decisions/2026-09-26-multiplayer-direction.md)
 and [September 27 one-composer decision](../decisions/2026-09-27-documenting-core-loop-and-one-composer.md)

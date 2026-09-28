@@ -20,10 +20,14 @@ The core Home connections are implemented in the published, unmerged
 `codex/home-value-delivery` candidate. The reading and exact-context Chat H1-A
 follow-ups are locally committed at app `332e77523` and `64961a9cf`. Backend
 `a8e87e64c` and app `97e0d0ac9` add practical-state clarity and quieter action
-hierarchy, with bounded native acceptance as of September 28.
-**The remaining assignment is useful
-supply and a coherent, polished receiving experience—not rebuilding those
-connections.** The [program roadmap](vesper-program-roadmap.md#inspected-baseline-and-publication-state)
+hierarchy. Backend `539edb00d` repairs long owner text overflowing Home chrome;
+app `af8a126af` clarifies Returned/recovery fixtures and strengthens draft editing.
+**The connected implementation checkpoint is reached, not full Home acceptance.**
+Returned and contextual Chat passed bounded reviews; Urgent is MIXED because an
+alternative's name is not enough to make a decision. Real recurring supply
+remains unverified. These specific residuals stay open while the accepted
+capture/share package begins; do not rebuild delivered connections or repeatedly
+rehearse fixtures as a substitute for missing value. The [program roadmap](vesper-program-roadmap.md#inspected-baseline-and-publication-state)
 owns the exact baseline, PR state and current sequencing.
 
 Home should return substantive value without more input, reflective homework
@@ -95,16 +99,17 @@ call a provider or enqueue generation. Keep these boundaries.
 
 ### H1-A — Finish the known native receiving defects
 
-Start here, using the existing full-matrix findings as a backlog, not redoing the
-already-fixed Planning crown.
+These are retained Home obligations, not a second dispatch queue. When the
+program selects their follow-up, use current findings rather than redoing the
+already-fixed Planning crown or completed connections.
 
 | Cluster | Current implementation and remaining improvement |
 | --- | --- |
 | Obscured value and controls | Closed for the inspected Quiet/original cases in app `332e77523`: shared floating-nav inset reserves the readable viewport and continuous paper background in both readers; native standard/XXXL reading and original-return checks passed. Maximum accessibility sizes, Android and unrelated destinations are not certified. |
-| Reading and social hierarchy | Full-width comparison rows and the standard original-reader Door replace narrow fact boxes and the amber text-original button; targeted native review passed. The long Returned introduction and note-versus-article hierarchy remain open. Loaded images already open directly with no redundant button; do not redispatch that stale finding. |
+| Reading and social hierarchy | Full-width comparison rows and the standard original-reader Door replace narrow fact boxes and the amber text-original button; targeted native review passed. App `af8a126af` shortens the Returned fixture introduction and shows the concrete journey; backend `539edb00d` bounds real owner previews. Note-versus-article hierarchy remains open. Loaded images already open directly with no redundant button; do not redispatch that stale finding. |
 | Planning and continuation | Exact-context Chat closed in app `64961a9cf`; app `97e0d0ac9` names the compact row's actual continuation, removes the fixture's duplicate orientation sentence and preserves one tap target. Planning native passed. The optional route's visual weight and prepared-opening boilerplate remain minor refinements. |
-| Live, recovery and possibility | Backend `a8e87e64c` returns the current subject and independent agreement/provider facts; app `97e0d0ac9` uses productive sans and corrects ambiguous Live fixture language. Live standard/XXXL passed. Separate Occasion repetition, generic healthy-commitment continuation and recovery-specific copy/alternative usefulness remain open. Do not merge distinct owners merely because their text matches. |
-| Sources and quiet endings | Routine “current” suffix omitted, live/stale/unknown retained, close simplified. App `97e0d0ac9` makes source inspection visually subordinate without shrinking its touch target; Cold native passed. Long source labels, storage-oriented continuity, generic Cold orientation and the wide separation between provenance and object doors remain refinements. |
+| Live, recovery and possibility | Backend `a8e87e64c` returns the current subject and independent agreement/provider facts; app `97e0d0ac9` uses productive sans and corrects ambiguous Live fixture language. Live standard/XXXL passed. App `af8a126af` makes recovery explicitly proposed/unconfirmed. Urgent remains MIXED: no owner-backed timing, cost or trade-off is provided to compare. Its passing private Chat continuation does not close that P1. Separate Occasion repetition and generic healthy-commitment continuation remain refinements. Do not merge distinct owners merely because their text matches. |
+| Sources and quiet endings | Routine “current” suffix omitted, live/stale/unknown retained, close simplified. App `97e0d0ac9` makes source inspection visually subordinate without shrinking its touch target; Cold native passed. Storage-description boilerplate is replaced by the concrete fixture journey and a real same-Occasion count/order. Long source labels, generic Life Doors, Cold orientation and provenance/door separation remain refinements. |
 
 The full [September 27 matrix](../../travel-app/docs/surfaces/home-root/verdicts/20260927T180109Z.json)
 was MIXED with one P1 and 23 P2 findings. The
@@ -120,12 +125,21 @@ focused behavior tests and an honest remaining-findings list. A wording change
 can be small; dock/return fixes must cover affected destinations and larger text.
 No need to recapture unrelated states for each edit.
 
-The reading, exact-context Chat and practical-state/action checkpoints are complete locally. Continue
-the remaining clusters above, especially repetitive producer copy and receiving
-hierarchy, rather than reopening those same fixes. Do not call all of H1-A complete from this subset
-or let its native work expand into an unbounded redesign. The original's visible
+The reading, exact-context Chat, practical-state/action and bounded-preview
+checkpoints are complete locally. H1-A remains incomplete as product acceptance,
+with the specific Urgent P1 and hierarchy refinements above. Capture/share work
+may proceed under the program without converting those residuals into a green
+Home verdict. The original's visible
 share stamp also lacks a “to you” cue despite exact single-recipient delivery;
 if amended, use that existing owner fact rather than infer a wider audience.
+
+**Recovery follow-up boundary:** current `ProjectedCommitment` carries subject,
+status, coordination/provider states and optional time. Its Home adapter emits
+`_home_commitment_summary` and `chat.prepare_commitment_repair`, not a prepared
+alternatives comparison. Trace the existing Plan/recovery preparation owner
+before adding detail. The next increment needs current, authorized option facts
+and their unknowns, with exact depth/action and return—not fabricated fixture
+estimates, a second generator or reinstated booking execution.
 
 ### H1-B — Deliver useful supported supply, not more synthetic richness
 
@@ -205,54 +219,67 @@ need their named contract work; Home styling cannot create them.
 
 ## Latest verification evidence
 
-### Local H1-A practical-state/action follow-up — September 28, not published
+### Local bounded-preview and recovery-copy checkpoint — September 28
 
-Backend `a8e87e64c` returns the commitment's viewer-safe subject and independent
-status/agreement/provider facts. App `97e0d0ac9` uses productive sans,
-names the compact row's actual handler and quiets source inspection. No wire
-shape, owner read, authority, provider call or ranking changes.
+Backend `539edb00d`; app `af8a126af`; workspace before this update `5a15198`.
+The backend excerpt fix is real producer behavior. Mobile Returned/recovery copy
+changes are fixture composition evidence, not recurring production content.
 
-- Backend: measured `home-state-projection-final` ran
-  `env AI_MODE=off WEB_SEARCH_MODE=off PYTHONPATH=travel-agent travel-agent/.venv/bin/python -m pytest travel-agent/tests/root_projection/test_v2_contracts.py travel-agent/tests/root_projection/test_home_composition.py travel-agent/tests/root_projection/test_home_portfolio.py -q -m 'not requires_postgres and not requires_api_keys and not requires_dogfood_wedge'`:
-  **140 passed**, 4.741s. Cases cover holds, unbound/unknown/contradictory states,
-  bounded long subjects and exact owner/revision requirements. No DB/provider run.
-- App: measured `home-state-action-reviewed` ran
-  `npm --prefix travel-app test -- --runInBand __tests__/components/HomeRootV2Screen.smoke.test.tsx __tests__/components/root-projection/RootActionControls.test.tsx __tests__/components/root-projection/RootUnitFollowups.test.tsx __tests__/components/home-root/HomeRootExperience.connected.test.tsx`:
-  **48 passed**, 4.612s. Captions follow capability → destination → resource
-  priority; unavailable handlers expose no false button. Native text styles,
-  not unforwarded component props, are asserted.
-- Final app gate: measured `home-state-final-app`,
-  `npm --prefix travel-app run verify:pr`: **passed**, 68.205s, 185 seam tests.
-  Existing test-type baseline and lint warnings remain. Exact logs live under
-  `docs/reliability/runs/` with these labels and September 28 timestamps.
-- Native self-reviews:
-  [Planning](../../travel-app/docs/surfaces/home-root/verdicts/20260928T073023Z.json),
-  [Cold](../../travel-app/docs/surfaces/home-root/verdicts/20260928T073615Z.json),
-  [Live](../../travel-app/docs/surfaces/home-root/verdicts/20260928T073801Z.json) and
-  [Live XXXL](../../travel-app/docs/surfaces/home-root/verdicts/20260928T073915Z.json)
-  passed their bounded assertions, two P2 findings each (Live findings overlap).
-  Actual command: `VESPER_METRO_URL=http://192.168.86.189:53177 node scripts/polish-qa/run-polish-qa.mjs home-root --device='iPhone 16 Pro' --flow=polish/home-root-planning`,
-  then the `-cold` and `-live` flows. Lane iPhone 16 Pro / iOS 18.2,
-  Maestro 2.6.1, existing mock development client. XXXL was set explicitly and
-  restored to `large`. Four PNGs, registered refs and indexes were reviewed;
-  no matched Planning/Live/Cold design pair exists, and Home health has no
-  configured assertions. Scenario/verdict validation passed (31 / 59 records).
-- Initial Planning readiness failed in the native driver; the runner's second
-  attempt captured successfully. An initial Live capture exposed “tonight”
-  contradicting Saturday; that fixture-only heading was corrected and Live
-  recaptured, not given a passing judgment. Planning/Cold precede this last
-  Live-only text correction and are retained at their actual capture inputs.
-  No final correctness/intent judgment was carried onto changed screenshots.
-- Tested at workspace `24706a3`, backend `c50b2286e` + patch (then `a8e87e64c`),
-  app `64961a9cf` + patch now committed above. Earlier assertions against an
-  unforwarded text prop failed and were replaced by actual rendered styles.
-  No full coordinated gate, live-provider result, Android or maximum
-  accessibility evidence was added. H1 remains incomplete, local and unmerged.
-- The first commit attempt exposed a status-literal guard mismatch: this is the
-  model's `CommitmentStatus.provider_confirmed` vocabulary, not a DB status
-  column. The comparison now uses the existing enum; no guard or baseline was
-  weakened. Status guards and commit hooks passed. A standalone guard invocation
-  without `PYTHONPATH=.` failed import and was rerun correctly.
+- **Red/green:** `home-preview-bounds-before` failed three new cases (4 passed):
+  long Outcome meanings, including 4,000 non-space characters, and a long source
+  reason exceeded the smaller `RootRead` fields. The shared excerpt now bounds
+  chrome and previews, marks omission, and preserves owner text/id/revision/read.
+- **Backend:** measured `home-preview-bounds-after`,
+  `env AI_MODE=off WEB_SEARCH_MODE=off PYTHONPATH=travel-agent travel-agent/.venv/bin/python -m pytest travel-agent/tests/root_projection/test_home_composition.py travel-agent/tests/root_projection/test_home_portfolio.py travel-agent/tests/root_projection/test_v2_contracts.py -q -m 'not requires_postgres and not requires_api_keys and not requires_dogfood_wedge'`:
+  **143 passed**, 5.675s. Ruff and backend commit hooks passed.
+- **App:** measured `home-recovery-returned-copy`,
+  `npm --prefix travel-app test -- --runInBand __tests__/components/HomeRootV2Screen.smoke.test.tsx __tests__/components/home-root/HomeRootExperience.connected.test.tsx __tests__/screens/conversation-create.smoke.test.tsx`:
+  **70 passed**, 6.939s. Existing React act warnings remain.
+  `home-returned-final-app`, `npm --prefix travel-app run verify:pr`:
+  **passed**, 62.860s, 185 seam tests; existing lint/test-type baseline remains.
+  This gate preceded only the later native flow correction/verdict files, not a
+  subsequent app-runtime change. Native replay below exercised that correction.
+- **Native:** `VESPER_METRO_URL=http://192.168.86.189:53177 node scripts/polish-qa/run-polish-qa.mjs home-root --device='iPhone 16 Pro' --flow=polish/home-root-returned`,
+  then `-urgent` and `-chat-recovery` on the lane's iPhone 16 Pro / iOS 18.2,
+  Maestro 2.6.1, existing mock development client, standard system text.
+  [Returned](../../travel-app/docs/surfaces/home-root/verdicts/20260928T075252Z.json)
+  passed with two P2 findings.
+  [Urgent](../../travel-app/docs/surfaces/home-root/verdicts/20260928T075418Z.json)
+  is **MIXED**, one P1 (no useful option comparison) and one P2 (generic status).
+  [Recovery to Chat](../../travel-app/docs/surfaces/home-root/verdicts/20260928T075802Z.json)
+  passed with two P2 findings. Six final PNGs, both references and generated
+  indexes were opened; only Returned has a matching reference pair. Home health
+  has no configured assertions. Scenario/verdict validation passed (31/62).
+- **Test correction, not app defect:** the first Chat replay
+  `20260928T075543Z` exposed a trailing draft fragment after backspacing from a
+  middle caret. Replaced it with [Maestro's documented Select All/erase sequence](https://docs.maestro.dev/reference/commands-available/erasetext)
+  and exact text assertions, then replayed. The initial capture is not promoted.
+  No native Send, provider execution or real-model answer quality was exercised.
+- **Evidence separation:** the verdict tool's sequential overall transitions
+  compare different personas/captures (Returned → Urgent → Chat). They are not
+  a temporal regression/improvement of the same experience; the Urgent P1 remains
+  open after Chat passes. These are self-reviews, not independent acceptance.
+- **Delivery:** all changes are local. No full coordinated gate, DB/live-provider,
+  Android or maximum-accessibility check was added. No wire contract changed.
+  Measurement logs under `docs/reliability/runs/` are
+  `home-preview-bounds-before-20260928T074609Z.log`,
+  `home-preview-bounds-after-20260928T074740Z.log`,
+  `home-recovery-returned-copy-20260928T074742Z.log`, and
+  `home-returned-final-app-20260928T074838Z.log`.
+- Documentation check: measured `home-preview-roadmap-final`, `make docs-check`,
+  passed in 8.134s; final wording was rechecked before committing. No new
+  registry entry or product policy was introduced.
+
+### Earlier practical-state/action checkpoint — retained bounded evidence
+
+Backend `a8e87e64c` and app `97e0d0ac9` passed 140 backend tests, 48 focused
+app tests and the app gate (185 seam tests). Planning, Cold, Live and Live XXXL
+native self-reviews passed with two minor findings each; Live findings overlap.
+System text was restored to large. The first Planning driver-readiness attempt
+retried successfully; the misleading Live “tonight” fixture was corrected and
+recaptured. An enum guard mismatch was fixed using the canonical enum, not an
+exemption. Exact commands, runs, counts and evidence limits remain in this
+document at workspace `5a15198`; no newer full coordinated gate is implied.
 
 ### Earlier exact-context Chat follow-up — retained bounded evidence
 
