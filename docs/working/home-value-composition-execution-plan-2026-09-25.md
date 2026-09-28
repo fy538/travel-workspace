@@ -25,9 +25,12 @@ app `af8a126af` clarifies Returned/recovery fixtures and strengthens draft editi
 **The connected implementation checkpoint is reached, not full Home acceptance.**
 Returned and contextual Chat passed bounded reviews; Urgent is MIXED because an
 alternative's name is not enough to make a decision. Real recurring supply
-remains unverified. These specific residuals stay open while the accepted
-capture/share package begins; do not rebuild delivered connections or repeatedly
-rehearse fixtures as a substitute for missing value. The [program roadmap](vesper-program-roadmap.md#inspected-baseline-and-publication-state)
+remains unverified. App `932abe25a` now sends the Urgent action CTA through the
+same review-first, editable, owner-seeded question as the recovery source door;
+it does not add or imply option evidence. These specific residuals stay open
+while the accepted capture/share package begins; do not rebuild delivered
+connections or repeatedly rehearse fixtures as a substitute for missing value.
+The [program roadmap](vesper-program-roadmap.md#inspected-baseline-and-publication-state)
 owns the exact baseline, PR state and current sequencing.
 
 Home should return substantive value without more input, reflective homework
@@ -134,12 +137,16 @@ share stamp also lacks a “to you” cue despite exact single-recipient deliver
 if amended, use that existing owner fact rather than infer a wider audience.
 
 **Recovery follow-up boundary:** current `ProjectedCommitment` carries subject,
-status, coordination/provider states and optional time. Its Home adapter emits
+status, coordination/provider states and optional time. The Home adapter emits
 `_home_commitment_summary` and `chat.prepare_commitment_repair`, not a prepared
-alternatives comparison. Trace the existing Plan/recovery preparation owner
-before adding detail. The next increment needs current, authorized option facts
-and their unknowns, with exact depth/action and return—not fabricated fixture
-estimates, a second generator or reinstated booking execution.
+alternatives comparison. The Chat seed resolver re-reads the viewer-scoped
+commitment but includes only those same fields; code search found no recovery
+option-provider or preparation capability behind the Home action. The route
+mismatch is closed in app `932abe25a`; the urgent P1 is not. Before adding detail,
+identify the canonical owner that can supply current, authorized option facts
+and explicit unknowns, or decide that this recovery does not support a
+comparison. Preserve exact depth/action/return; do not fabricate fixture
+estimates, introduce a second generator, or reinstate booking execution.
 
 ### H1-B — Deliver useful supported supply, not more synthetic richness
 
@@ -926,6 +933,45 @@ simulator/device for Clerk and owner-backed Keep/recovery/Undo. If no such local
 identity is available, treat native acceptance as externally blocked and
 continue an independent roadmap slice; do not infer acceptance from simulator
 compilation, `codesign --verify`, the store-reopen harness, or API health.
+
+### Recovery action route convergence — September 28
+
+App **`932abe25a`** routes Home's `chat.prepare_commitment_repair` action through
+the same review-first, editable handoff as the recovery unit's explicit Chat
+door. Both preserve the Home return token, display the current recovery summary,
+and seed only the exact viewer-scoped commitment; the suggested question remains
+an unsent draft. No recovery-option source, comparison data, or booking action
+was added. This closes a divergent route, **not** the Urgent value P1: the
+current `ProjectedCommitment` and backend Chat seed expose subject, state,
+provider/coordination facts and optional time, but no current alternative set.
+
+Measured on workspace `f76e3c31c`, backend `5c54a2d5e`, app **`932abe25a`**:
+
+- `home-recovery-action-route-focused-fixed` ran
+  `npm --prefix travel-app test -- --runInBand --runTestsByPath
+  __tests__/components/home-root/HomeRootExperience.connected.test.tsx
+  __tests__/utils/rootProjectionNavigation.test.ts`: **74 passed, zero skips**.
+- `home-recovery-action-app-gate-final`, `npm --prefix travel-app run verify:pr`:
+  **passed**, 185/185 `qa:parity` tests, zero skips. The existing test-type
+  ratchet remains at **406 errors** and lint remains at **167 warnings**; neither
+  baseline was relabeled as clean.
+- The first focused invocation failed 10 connected-screen tests because its
+  Expo Router mock omitted the newly used `useRouter` hook from shared
+  `CaptureEntry`; the production route-navigation suite itself passed. The
+  fixture mock was corrected, then the full focused suite and app gate passed.
+  This was test-harness setup, not a runtime product failure.
+- `home-recovery-action-route-final` separately ran the new action regression:
+  **1 passed**; nine unrelated tests were filtered out. No visual layout changed,
+  and no device/visual acceptance is claimed.
+
+Logs are local under `docs/reliability/runs/`: `home-recovery-action-route-focused-20260928T161445Z.log`
+(initial harness failure), `home-recovery-action-route-focused-fixed-20260928T161525Z.log`,
+`home-recovery-action-app-gate-20260928T161538Z.log` (pre-cleanup-refactor gate),
+`home-recovery-action-route-final-20260928T161754Z.log`, and
+`home-recovery-action-app-gate-final-20260928T161808Z.log`. The remaining owner
+question is to locate an existing canonical source for current, authorized
+recovery options or narrow the comparison promise; do not let this route fix
+stand in for that work.
 
 ### Local bounded-preview and recovery-copy checkpoint — September 28
 
