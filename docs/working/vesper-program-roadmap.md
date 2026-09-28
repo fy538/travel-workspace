@@ -123,7 +123,11 @@ Group/unresolved audience, carried references and ordinary questions do not
 receive a new retention default. Scope, retry, source removal and typed owner
 checks are recorded in the [Chat checkpoint](home-value-composition-execution-plan-2026-09-25.md#private-chat-bring--ask-checkpoint--september-28).
 This is local implementation, not native acceptance or completion of the six-door
-composer. Home's dock and new-thread create remain explicit adapter work.
+composer. App `8a1337d62` now connects the Chat landing dock
+(legacy Vesper Home) and private/private-trip create through the same source
+owner and durable pending-turn path, including idempotent room creation,
+context preservation and destination Open/Undo. Native acceptance is still open;
+see the [entrance checkpoint](home-value-composition-execution-plan-2026-09-25.md#private-chat-entrances-checkpoint--september-28).
 
 The separate canonical checkout contains concurrent design work and is not the
 execution target. Do not switch it, advance its children, or bring unrelated
@@ -160,13 +164,15 @@ are not the next product increment.
 | --- | --- | --- |
 | 0 — delivery closeout | Current lane owner closes the three published PRs, preserving exact revisions and evidence. Fix the workspace checkout credential through the repository owner; honor already-recorded merge authority without treating blocked checks as green. | Record actual merged heads and branch/worktree disposition. Reuse the lane for follow-on Home work if it remains suitable; do not archive it merely because a PR merged. This administrative gap does not block independent local building. |
 | 1 — H1 checkpoint / retained gaps | Connected implementation and bounded-preview/copy follow-ups are committed. The [assignment](home-value-composition-execution-plan-2026-09-25.md#next-complete-assignment) retains recovery's missing owner-backed comparison, social hierarchy and real recurring-supply uncertainty. | Do not call Home fully accepted. Repair recovery at the existing preparation owner with current option facts/unknowns; do not substitute prettier fixture text. These named residuals do not block independent capture/share foundations. |
-| 2 — active capture/share package | Same coordinated owner continues from private Keep/Undo, root-add authoring and existing-private-thread Keep/Ask only. Next verify the native photo flow and converge the Home dock/new-thread entrances and native/server adapters on this same owner; broader Send/Share needs its relationship/audience owner amendment. | A complete authored item can enter, return immediate value, reach its selected authorized audience, be refound and be corrected/withdrawn. Authoring and its receipt alone do not complete sharing, all six doors, Life refinding or later value. Pending policies remain excluded. |
+| 2 — active capture/share package | Same coordinated owner continues from private Keep/Undo, root-add authoring and private Chat Keep/Ask only across existing threads, the Chat landing dock and private create. Verify the native photo/dock/receipt flow when the Mac is available; independently finish native OS/email adapters on this same owner. Broader Send/Share needs its relationship/audience owner amendment. | A complete authored item can enter, return immediate value, reach its selected authorized audience, be refound and be corrected/withdrawn. Authoring and its receipt alone do not complete sharing, all six doors, Life refinding or later value. Pending policies remain excluded. |
 | 3 — reassess receiving and later value | At the capture/share checkpoint, choose the next whole-product package against the actual retained/shared material: richer Home/Places receiving, Life continuity, or an accepted preparation gap. | Select from observed code/design gaps and received benefit, not a standing parallel backlog. Do not launch all three automatically. |
 
 **Next execution checkpoint:** finish the private Chat door across its actual
-entrances and native photo/recovery states, preserving ordinary-question
-retention. Existing resolved private threads now have the control/owner handoff;
-the Home dock and create doorway still need adapters. A locked Mac blocked the
+entrances' native photo/recovery states, preserving ordinary-question
+retention. Resolved private threads, the Chat landing dock and private create
+now have the control/owner handoff. Continue OS/email adapter implementation
+independently of the unavailable native review; do not rebuild these entrances.
+A locked Mac blocked the
 new visual review, not the independent owner/code work. In-app text/photo
 authoring, Just me, root add and private receipt/Undo are implemented locally;
 the six-door map records their verification boundaries. Wider audience ownership

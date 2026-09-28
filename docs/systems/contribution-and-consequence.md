@@ -651,10 +651,12 @@ erases source, truth type, scope, expiry, disagreement, or correction.
 - ordinary conversation does not expose a complete continuity-read/no-write
   posture equivalent to the contract's T0 promise.
 - verified retained share capture now finishes privately with Done/Undo before
-  optional candidate review. Existing resolved private Chat threads now expose
-  Keep/Ask only for newly selected photos and use the same custody owner, with
-  separate answer-only question admission. Native acceptance, the other Chat
-  entrances, the common composer across all six doors and wider-audience schema
+  optional candidate review. Resolved private Chat threads, the Chat landing
+  dock and private/private-trip create expose Keep/Ask only for newly selected
+  photos and use the same custody owner with separate answer-only question
+  admission. Pre-thread adapters retain source/context/turn/room retry identity
+  and carry current-owner receipt access into the target. Native acceptance,
+  the common composer across all six doors and wider-audience schema
   remain incomplete; see the active capture/share package.
 - causal correction across every Home, Places, Life, story, memory, social, and
   pending-action consumer is not certified.

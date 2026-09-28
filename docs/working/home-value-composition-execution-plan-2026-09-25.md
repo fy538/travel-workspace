@@ -237,14 +237,14 @@ literal original, not an invented personal interpretation. All changes remain lo
 | OS share | App `ios/ShareExtension/ShareViewController.swift` → `components/sharing/ShareIntentHandler.tsx` → `app/share-capture/index.tsx`; Intake Source custody | New receipt removes review-first completion after host entry. Native extension still redirects to the host; in-place authoring, authenticated delivery, retry and completion remain. |
 | Camera/photos | App `hooks/useCaptureDraft.ts` → existing `data/inboundItems.ts` upload; entity capture shares MIME handling through `utils/intakePhoto.ts` | New in-app composer stages camera/library images and a note before explicit Keep, bounded to 16 and supported formats. Picker denial/cancel, lifecycle and retry have focused coverage; actual native camera/library selection still needs evidence. Entity/Chat adapters have not all converged on this authoring UI. |
 | Global add | Shared app `components/inbound/capture-entry.tsx` → `/share-capture?compose=1` → `capture-composer.tsx` | Normal Home v2, Places, Life and Chat root headers now expose the same entrance alongside their existing controls. Chat is not required. Home loading/error and compatibility coverage, large type, and all root-state visual acceptance remain explicit follow-up scope rather than implied by the normal-root capture. |
-| Chat attachment | Existing resolved private Concierge threads use `private-capture-composer.tsx` → common Intake custody → answer-only pending Chat turn with exact source refs; Ask only keeps the old image-send path | Visible private Keep/Ask only, current-owner Open/Undo and immutable retries are implemented locally. Native photo/keyboard/failure evidence is pending. Home dock/new-thread create remain separate adapters to converge; unresolved/group rooms and carried references do not silently opt in. |
+| Chat attachment | Existing private threads, Chat landing dock (legacy Vesper Home), and private/private-trip create use `private-capture-composer.tsx` → common Intake custody → answer-only pending Chat turn with exact source refs; pre-thread entry shares `usePrivateCaptureChatEntry` | Visible Keep/Ask only, current-owner Open/Undo, stable source/turn/room retries and contextual handoff are local. Native photo/keyboard/dock/failure evidence is pending. Group rooms and carried references do not silently opt in. |
 | Existing-object Keep/Send | App `hooks/useSaveEntity.ts` owns place saves; `data/relationshipPlaceHandoffs.ts` owns addressed, place-bound pair delivery; selected originals retain Source ownership | Route authored sharing through the common component while keeping bookmark and Source ownership distinct. The current place-required, single-recipient handoff is not the accepted general person/group/Friends schema. |
 | Email | Backend `backend/api/routes/inbound_email.py` and `backend/inbound/email_forward.py`: authenticated alias/webhook, flag-gated v2 inline intake and provider archive binding | A server adapter exists, not a mobile composer. Reconcile its explicit retention/receipt semantics and replay/failure behavior with the same private contract; forwarding delivery and author-visible payoff are not certified here. |
 
 **Next implementation order:** common in-app private authoring/root add is now
 implemented; (1) complete its remaining native media/root-state coverage while
-(2) completing deliberate Chat Bring + Ask across its entrances (existing private
-thread wiring is local; native acceptance and Home/create remain) with unchanged
+(2) verifying deliberate Chat Bring + Ask across its now-connected private
+entrances (native acceptance remains) with unchanged
 conversation retention; (3) finish native OS/email adapters against that same
 contract; (4) extend Send/Share only through the named relationship/audience
 owner amendment. Keep broader audiences, friend-material AI use and the pending
@@ -363,14 +363,63 @@ these selected suites; do not add overlapping counts):
   keyboard, failed handoff → receipt/Undo → return and enlarged-type acceptance
   remain open. Prior text-capture or Chat verdicts do not certify this change.
 
-**Continue from here:** finish the registered native private-photo flow when
-the Mac is unlocked; independently adapt the Home dock and private new-conversation entrance to this same capture
-owner and immutable pending-turn path. Retain group behavior. Continue the
+**Checkpoint continuation (superseded by the entrance checkpoint below):**
+finish the registered native private-photo flow when the Mac is unlocked.
+The following checkpoint connects the Home dock and private new-conversation
+entrances to this same capture owner and immutable pending-turn path. Retain
+group behavior. Continue the
 OS/email and general Send/Share work in the door map; do not call this one
 adapter the complete horizontal composer. Ordinary Life refinding and later
 value remain required. These commits are local; backend `make ci` and the
 coordinated `make verify` have not been rerun for this tuple, so publication
 and merge remain unverified.
+
+### Private Chat entrances checkpoint — September 28
+
+The Chat landing dock (legacy Vesper Home) and private/private-trip create now
+reuse the private capture composer and one pre-thread adapter. They stage the
+question separately from kept originals, create a personal room with a stable
+idempotency key when needed, bind the exact pending turn, then navigate. Source,
+question, context, timezone and target are fixed across uncertain retries.
+The destination gets its receipt from owner-authorized pending-turn readback,
+not private content in the URL. Group sends retain their existing policy.
+
+The dock now measures photo/choice/receipt rows separately from the capped
+writing field. Context and target controls cannot change a locked capture.
+A deliberately completed navigation can clear the originating draft, but never
+a replacement account's draft. Existing create-path Ask-only failures now
+reject rather than silently clearing the question; failed auto-start restores
+the proposed question as an editable draft.
+
+App commit **`8a1337d62`**, backend unchanged at `099ac6360`. Measurements below
+ran on the corresponding app patch tree based on `f3c402a72`:
+
+- `chat-entry-adapters-final-tests`: **165 passed, zero skips**, 8.085s. Exact
+  command: `npm --prefix travel-app test -- --runInBand --runTestsByPath __tests__/hooks/usePrivateCaptureChatEntry.test.ts __tests__/hooks/useChatCaptureSubmission.test.ts __tests__/hooks/useConversationEntrySeed.test.tsx __tests__/hooks/useConciergeHomeConversationEntry.test.ts __tests__/screens/conversation-create.smoke.test.tsx __tests__/screens/concierge-home.smoke.test.tsx __tests__/screens/concierge-chat.smoke.test.tsx __tests__/components/chat/composer-capture-choice.test.tsx __tests__/components/nav/FloatingTabBar.test.tsx __tests__/utils/pendingChatTurnOutbox.test.ts`.
+- `chat-entry-adapters-final-gate`: `npm --prefix travel-app run verify:pr`
+  **passed**, 60.392s, including 185 seam tests. Existing lint/test-type debt
+  remains within unchanged ratchets; this is not a whole-app test pass.
+- `chat-entry-roadmap-check`: `make docs-check` **passed**, 6.910s before final
+  revision/evidence annotation. A final docs check accompanies the commit.
+- `chat-entry-source-pending-db`: **50 passed, zero skips**, 3.692s; eight actual
+  disposable-Postgres cases. Exact command:
+  `TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:53173/vesper_capture_keep_test_20260928 TEST_DATABASE_DISPOSABLE=1 PYTHONPATH=travel-agent travel-agent/.venv/bin/python -m pytest travel-agent/tests/inbound/test_chat_keep_handoff_postgres.py travel-agent/tests/inbound/test_intake_v2_retention.py travel-agent/tests/core/test_contribution_admission.py travel-agent/tests/core/test_pending_chat_turns.py -q --run-quarantined`.
+  Same owner boundary as the preceding checkpoint: no HTTP scanner, hosted
+  storage, live-model or native proof.
+- Earlier red passes were test integration failures: missing query/auth
+  providers, an assertion missing the new lifetime guard, and a Place fixture
+  without a typed entity followed by an incorrectly named return-token field.
+  All were corrected without weakening retention or backend acceptance.
+- CUA attempted Simulator inspection again and reported the Mac locked.
+  **No new native capture or visual acceptance.** The existing `vesper-chat`
+  contract now names dock/choice/receipt geometry, keyboard/large type,
+  private create and failure/Undo/return evidence still required.
+
+Next independent build work is the OS/email door adaptation, with retained
+Life refinding and later value still in scope. This does not complete all six
+doors or adopt broader audience/use-grant policies. Full coordinated
+`make verify`, backend `make ci`, publication and merge remain unrun for this
+new tuple; focused checks do not replace those gates.
 
 ### Local bounded-preview and recovery-copy checkpoint — September 28
 
