@@ -157,16 +157,18 @@ extension completion claim. Minimal native hosting, accessible text, Clerk
 session sharing and process-death retry recovery remain the next package;
 the host-free UI is not proof those boundaries work.
 
-App `6243f85f5` advances that package with a reproducible, opt-in native host,
-separate embedded bundle and ordered attachment staging. The iOS simulator
-build, five configuration tests and nine Foundation collector scenarios pass;
-the [native checkpoint](home-value-composition-execution-plan-2026-09-25.md#reproducible-native-capture-host-checkpoint--september-28)
-records exact scope. This is a read-only development host, **not** a completed
-in-sheet composer. Production-profile enablement is rejected, and the normal
-generated adapter was restored. Continue by mounting the existing common UI
-with only its required native providers, integrating Clerk's real session,
-and adding durable attempt recovery before device acceptance/activation. No
-second composer, Source store or auth service is authorized by this checkpoint.
+App `95bc70d14` advances `6243f85f5`'s opt-in native host to the **same editable
+composer**, with bounded Expo/native providers and accessible text-scaling props.
+`fb559640a` repairs duplicate generated source references. Native simulator builds,
+70 focused UI tests, the app gate, 13 configuration/boundary tests and nine
+Foundation scenarios passed their stated scopes; the
+[native checkpoint](home-value-composition-execution-plan-2026-09-25.md#reproducible-native-capture-host-checkpoint--september-28)
+owns exact commands and boundaries. **Authenticated Keep, durable retry recovery
+and native receipt/Undo are not connected**; Keep is disabled, production-profile
+enablement is rejected, and the default host-app adapter was restored. Continue
+with Clerk session sharing/account invalidation, pre-dispatch attempt identity
+and the existing receipt owner before device acceptance/activation. Do not
+redispatch composer extraction or create another Source/auth service.
 
 The separate canonical checkout contains concurrent design work and is not the
 execution target. Do not switch it, advance its children, or bring unrelated
@@ -211,8 +213,10 @@ entrances' native photo/recovery states, preserving ordinary-question
 retention. Resolved private threads, the Chat landing dock and private create
 now have the control/owner handoff. Email now has local private Keep/refind/Undo
 coverage; OS text/link/files now use the common host composer. Continue the
-in-place native extension independently of unavailable visual review, establishing
-SDK/session feasibility before changing credentials or native generation.
+in-place native extension independently of unavailable visual review. Its shared
+UI and bounded SDK graph now compile; real session sharing and durable delivery
+remain next, not another composer or hosting investigation. Credential lifecycle
+must be reviewed before activation, and native compilation is not launch evidence.
 Do not rebuild connected entrances or imply real email delivery.
 A locked Mac blocked the
 new visual review, not the independent owner/code work. In-app text/photo
@@ -295,7 +299,8 @@ Documentation validation: the September 27 rebaseline refreshed the generated
 inventory with `make docs-status-sync`. September 28 owner alignment changes no
 registry or word-budget policy; measured `capture-roadmap-docs` passed
 `make docs-check` in 6.103s.
-The separately committed capture runtime and its evidence are bounded in H1.
+The shared-composer checkpoint also passed measured `capture-shared-composer-docs`,
+`make docs-check`, in 7.882s. Its runtime and exact evidence are bounded in H1.
 A docs check does not refresh the full coordinated product gate.
 
 ## History, not another queue
