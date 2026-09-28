@@ -797,11 +797,77 @@ The measurements ran on the app working tree based on `796228ee0`, subsequently
 committed as `67c33c8f3`; they do not establish native execution or signed-device
 auth.
 
-Next, connect the existing custody service/client to a protected attempt journal:
-persist immutable owner, payload, local bytes and idempotency identity before
-dispatch, reconcile that same attempt after interruption, and show the existing
-current-owner receipt/Undo inside the extension. Keep remains disabled; the
-full coordinated gate and signed-device acceptance remain outstanding.
+### In-place extension delivery and protected retry journal — local implementation, September 28
+
+The current uncommitted app work connects the native share host to the existing
+Intake custody service and extension-scoped authenticated client. Before
+dispatch, it copies supported source bytes into protected App Group storage and
+records the immutable owner generation, payload and idempotency identity. An
+exact replay of a committed local preparation returns the same journal record;
+changed text or attachment bytes under that key are rejected. Startup reconciles
+the current owner's saved attempts before exposing a newly received share. The
+server submission ID is journaled before source upload, then current-owner
+readback controls the receipt and Undo. Pending, uncertain or mismatched results
+remain recoverable rather than being discarded.
+
+The native target requires `VESPER_NATIVE_CAPTURE_HOST=1`; Keep additionally
+requires `__DEV__` and `EXPO_PUBLIC_CAPTURE_DELIVERY_ENABLED=true`. The default
+configuration was restored after the opt-in build. Production-profile
+enablement remains rejected and Keep stays off outside the explicit development
+opt-in.
+
+Local verification on workspace `d65b2b5fe`, backend `5c54a2d5e`, app commit
+**`f850dc0e2`** (based on `c22727678`):
+
+- `npm --prefix travel-app test -- --runInBand --runTestsByPath
+  __tests__/native-capture/capture-attempt-service.test.ts
+  __tests__/hooks/useCaptureDraft.test.ts
+  __tests__/components/native-capture-host.test.tsx
+  __tests__/components/native-capture-account-host.test.tsx
+  __tests__/components/native-capture-attempt-host.test.tsx`: **41 passed, zero
+  skips**, five suites, 2.289s. Log:
+  `docs/reliability/runs/native-capture-attempt-focused-final-20260928-20260928T152251Z.log`.
+- `native-capture-attempt-swift`: **7 journal-harness scenarios passed**,
+  covering exact preparation replay, process-store reopen, immutable receipt
+  identity, changed-payload conflict, stale-owner isolation, interrupted
+  staging and source validation. `npm --prefix travel-app run
+  capture-journal:test`. Log:
+  `docs/reliability/runs/native-capture-attempt-swift-final-20260928-20260928T152251Z.log`.
+- `npm --prefix travel-app run typecheck` passed. Log:
+  `docs/reliability/runs/native-capture-attempt-typecheck-final-20260928-20260928T152251Z.log`.
+- `node scripts/private-capture-host.test.mjs` from `travel-app`: ten
+  native-generator/configuration tests passed. Log:
+  `docs/reliability/runs/native-capture-config-final-20260928-20260928T152251Z.log`.
+- Opt-in `ShareExtension` simulator build compiled the extension and enclosing
+  app with `CODE_SIGNING_ALLOWED=NO` (167.336s):
+  `VESPER_NATIVE_CAPTURE_HOST=1 SENTRY_DISABLE_AUTO_UPLOAD=true xcodebuild -quiet
+  -workspace ios/TravelApp.xcworkspace -scheme ShareExtension -configuration
+  Debug -sdk iphonesimulator -destination "generic/platform=iOS Simulator"
+  -derivedDataPath .tmp/capture-host-build CODE_SIGNING_ALLOWED=NO build`.
+  Then `VESPER_NATIVE_CAPTURE_HOST=0 CI=1 npx expo prebuild --platform ios
+  --no-install` and `pod install` restored the ordinary configuration.
+- `npm --prefix travel-app run verify:pr` is **not green**: its final legacy
+  full-test typecheck ratchet reported **408 errors against a 406 baseline**.
+  The edited capture tests are not among the reported diagnostics. The earlier
+  fast checks, including the focused test-typecheck contract, passed; later QA
+  parity did not run. Log:
+  `docs/reliability/runs/native-capture-app-gate-final-20260928-20260928T152251Z.log`.
+  This does not certify the cross-repository `make verify`.
+
+These measurement logs are local run evidence and are ignored by Git; the
+commands, outcomes and limitations are recorded here so this checkpoint does
+not depend on those machine-local files being present in another checkout.
+
+The Swift harness reconstructs the store, not an actual killed/relaunched OS
+extension. No signed app was installed. Real Clerk refresh/sign-out/account
+switching, host-closed authenticated submission, device process interruption,
+current-owner readback/Undo and repeated invocation remain unverified. The
+lane's API URL was unset and its local API health endpoint was unavailable, so
+this checkout could not yet exercise the real owner from the paired device.
+Keep remains disabled by default until signed-device evidence proves the whole
+path. Do not repeat the completed host composer or create a second capture/auth
+service; the next native task is device acceptance once the lane has a reachable
+authenticated API and usable signed install.
 
 ### Local bounded-preview and recovery-copy checkpoint — September 28
 

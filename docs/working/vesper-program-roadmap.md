@@ -166,23 +166,27 @@ simulator build, app gate (185 seam tests), 44 focused session/host regressions,
 10 native configuration tests and inspected real-mode dependency bundle passed
 their measured scopes. The
 [native and account checkpoints](home-value-composition-execution-plan-2026-09-25.md#development-only-clerk-account-handoff--september-28)
-record exact commands and limits. This is an experimental account bootstrap:
-signed-device Keychain access and real Clerk lifecycle are unverified. **Keep
-remains disabled**; pre-dispatch durable attempt recovery, actual Intake delivery,
-current-owner readback/Undo and native acceptance are unfinished. The default
-build has been restored and production-profile enablement remains rejected.
-Continue with the existing Intake owner and a durable retry journal; do not
-redispatch composer extraction or create another Source/auth service.
+record exact commands and limits. At that revision this remained an experimental
+account bootstrap with no delivery. The current lane advances it: the extension
+now invokes the existing custody service/client with a protected retry journal,
+submission-ID persistence, current-owner readback and Undo behind a
+development-only opt-in. Keep is still off by default; signed-device Keychain
+access and real Clerk lifecycle remain unverified. The ordinary build is
+restored, and production-profile enablement remains rejected. See the current
+[native capture checkpoint](home-value-composition-execution-plan-2026-09-25.md#in-place-extension-delivery-and-protected-retry-journal--local-implementation-september-28).
 
 App `e5788100f` extracts the resumable binary Source-custody sequence from the
 React data module into one injected-client service, while keeping the app
 facade stable. The focused suite (12/12) and app gate (185 seam tests) pass.
 This removes the service's React/data dependency; it does **not** connect that
 service to the native extension or prove authenticated HTTP. Before journaling,
-wire it to the existing Intake endpoint owner through a narrow extension-safe
-request/upload transport, without copying endpoint paths or importing the
-app-wide HTTP facade. Then continue the existing durable-attempt, owner-readback
-and Undo sequence. Keep stays disabled.
+App `67c33c8f3` adds the extension-safe authenticated transport and shared Intake
+v2 route owner; their focused tests and app gate passed. App `f850dc0e2` now
+connects that owner through a protected pre-dispatch journal and in-place
+resume/readback/Undo path. Exact local evidence, the app-gate failure, and the
+unverified device boundary are in the linked native capture checkpoint.
+Do not copy endpoint paths or import the app-wide HTTP facade. Keep stays
+disabled by default until signed-device acceptance is proven.
 
 The separate canonical checkout contains concurrent design work and is not the
 execution target. Do not switch it, advance its children, or bring unrelated
@@ -219,24 +223,23 @@ are not the next product increment.
 | --- | --- | --- |
 | 0 — delivery closeout | Current lane owner closes the three published PRs, preserving exact revisions and evidence. Fix the workspace checkout credential through the repository owner; honor already-recorded merge authority without treating blocked checks as green. | Record actual merged heads and branch/worktree disposition. Reuse the lane for follow-on Home work if it remains suitable; do not archive it merely because a PR merged. This administrative gap does not block independent local building. |
 | 1 — H1 checkpoint / retained gaps | Connected implementation and bounded-preview/copy follow-ups are committed. The [assignment](home-value-composition-execution-plan-2026-09-25.md#next-complete-assignment) retains recovery's missing owner-backed comparison, social hierarchy and real recurring-supply uncertainty. | Do not call Home fully accepted. Repair recovery at the existing preparation owner with current option facts/unknowns; do not substitute prettier fixture text. These named residuals do not block independent capture/share foundations. |
-| 2 — active capture/share package | Same coordinated owner continues from private Keep/Undo, root-add authoring, private Chat, local email and OS host-composer handoff. Build the actual in-place native extension using the existing session/Intake owners; resume native photo/dock/receipt review when the Mac is available. Email delivery/attachment gaps remain explicit. Broader Send/Share needs its relationship/audience owner amendment. | A complete authored item can enter, return immediate value, reach its selected authorized audience, be refound and be corrected/withdrawn. Host-app redirection is not in-place OS completion. Authoring and its receipt alone do not complete sharing, all six doors, full Life continuity or later value. Pending policies remain excluded. |
+| 2 — active capture/share package | Same coordinated owner continues from private Keep/Undo, root-add authoring, private Chat, local email and OS host-composer handoff. The in-place native extension now implements the existing Intake path, protected retry journal and owner receipt/Undo behind a development-only opt-in; the simulator build passes. Next is signed-device/host-closed acceptance when a reachable authenticated API and signed install are available. Email delivery/attachment gaps remain explicit. Broader Send/Share still needs its relationship/audience owner amendment. | A complete authored item can enter, return immediate value, reach its selected authorized audience, be refound and be corrected/withdrawn. Host-app redirection is not in-place OS completion. Authoring and its receipt alone do not complete sharing, all six doors, full Life continuity or later value. Pending policies remain excluded. |
 | 3 — reassess receiving and later value | At the capture/share checkpoint, choose the next whole-product package against the actual retained/shared material: richer Home/Places receiving, Life continuity, or an accepted preparation gap. | Select from observed code/design gaps and received benefit, not a standing parallel backlog. Do not launch all three automatically. |
 
-**Next execution checkpoint:** implement the protected pre-dispatch journal and
-resume protocol for the in-place native extension. Persist the immutable owner,
-payload and idempotency identity with supported attachment bytes before dispatch;
-reconcile uncertain outcomes through the existing Intake owner after relaunch;
-then use the existing current-owner receipt and Undo inside the extension.
-Exercise Keep/readback/Undo/dismissal with the host app closed before enabling the
-development host. The app-owned Clerk handoff and a narrow extension-scoped
-authenticated Intake transport now compile and are unit-tested; the extension
-does not invoke the transport yet. Focused transport/resumability tests passed
-39/39 and the app PR gate passed 185/185 seam tests (zero skips) on app commit
-`67c33c8f3`'s working tree; the measurements are recorded in the execution plan.
-These are not signed-device or host-closed runtime acceptance. Signed-device
-access, real account switching/expiry, process-death recovery, owner readback/Undo
-inside the extension and repeated invocation remain unverified. Do not infer
-delivery from a restored account or reopen connected private Chat entrances.
+**Next execution checkpoint:** review and verify app `f850dc0e2`'s journal-backed
+in-place path on a signed device: host closed, share payload preserved, explicit
+Keep, same-attempt recovery after interruption, current-owner receipt, Undo,
+dismissal and repeated invocation; include account expiry/switching. The latest
+code passed 41 focused Jest tests, seven Swift journal scenarios,
+typecheck, ten native-configuration tests and an opt-in ShareExtension
+simulator build. `VESPER_NATIVE_CAPTURE_HOST=0` prebuild and `pod install`
+restored the ordinary configuration afterward. The app `verify:pr` gate stopped at the legacy test-typecheck
+ratchet (408 vs 406), and `qa:parity` therefore did not run. This lane has a
+paired iPhone and booted simulator, but its API URL is unset (defaulting to
+localhost) and the local API health endpoints were unavailable; no authenticated
+device run can yet prove real submission. Preserve the double development gate
+and do not infer acceptance from store-reopen harness tests or a simulator
+compile. Do not reopen connected private Chat entrances.
 Keep the unresolved broader-audience owner amendment, email provider/attachment
 gaps, October 12 catalog failure and Home recovery comparison visible; none is
 fixed by this capture checkpoint.
