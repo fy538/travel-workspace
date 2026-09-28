@@ -157,6 +157,17 @@ extension completion claim. Minimal native hosting, accessible text, Clerk
 session sharing and process-death retry recovery remain the next package;
 the host-free UI is not proof those boundaries work.
 
+App `6243f85f5` advances that package with a reproducible, opt-in native host,
+separate embedded bundle and ordered attachment staging. The iOS simulator
+build, five configuration tests and nine Foundation collector scenarios pass;
+the [native checkpoint](home-value-composition-execution-plan-2026-09-25.md#reproducible-native-capture-host-checkpoint--september-28)
+records exact scope. This is a read-only development host, **not** a completed
+in-sheet composer. Production-profile enablement is rejected, and the normal
+generated adapter was restored. Continue by mounting the existing common UI
+with only its required native providers, integrating Clerk's real session,
+and adding durable attempt recovery before device acceptance/activation. No
+second composer, Source store or auth service is authorized by this checkpoint.
+
 The separate canonical checkout contains concurrent design work and is not the
 execution target. Do not switch it, advance its children, or bring unrelated
 uncommitted design changes into this lane.

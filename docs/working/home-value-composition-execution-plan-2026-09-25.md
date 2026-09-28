@@ -605,6 +605,78 @@ committed as `bc0adbac5` (local measurement logs under `docs/reliability/runs/`)
   full `make verify` catalog-runway failure is unresolved and was not rerun.
   Documentation checks accompany this checkpoint. No publication or merge.
 
+### Reproducible native capture host checkpoint — September 28
+
+App **`6243f85f5`** adds an opt-in host to the existing iOS ShareExtension target.
+Tracked config-plugin/Swift sources regenerate the native project; a separate
+embedded `index.capture.js` does not load the main Router shell. The extension's
+native dependency graph and built binary contain React core/Hermes, not the
+main app's Mapbox, voice or billing libraries. No new package, credential,
+entitlement, backend model or Source owner was introduced. Extension API checks
+remain enabled; no blanket Pod setting exemption was added.
+
+**This is compiled hosting infrastructure, not completed in-sheet capture.**
+`native-capture/capture-host.tsx` is an explicitly read-only development check.
+It displays the staged payload but cannot Keep, authenticate, interpret or Undo.
+The normal build continues using the prior host-app adapter. The opt-in is
+rejected for the EAS production profile, and the generated lane project was
+restored to its normal adapter after verification. No build was installed,
+published or deployed.
+
+The new collector awaits all item providers in order, preserves captions and
+URL/text/file combinations, and copies each provider's temporary file before
+its callback returns. Sixteen files may have an additional text provider;
+oversized, unreadable, unsupported, directory or symlink input fails the whole
+batch. Cancellation prevents late presentation. Staging is per invocation and
+uses iOS complete file protection; it is not durable custody or retry recovery.
+This fixes the collection design **inside the opt-in host**; the old redirect
+adapter is not thereby repaired or retired.
+
+Installed React Native **0.83.10**'s `RCTFontSizeMultiplier` reads
+`RCTSharedApplication().preferredContentSizeCategory`. The explicit
+`dynamicTypeRamp` path uses `UIFontMetrics` instead. The host uses shared text
+roles with that path, retaining scaling; the common composer still needs actual
+large-text and VoiceOver evidence. Build success does not establish that.
+
+Evidence on workspace **`d7feb91`**, backend **`5c54a2d5e`**, app patch now
+**`6243f85f5`**; Node **24.13.0**, Expo **55.0.31**, Xcode **26.5 (17F42)**:
+
+- `native-capture-host-checked-build`: **passed**, 48.160s, simulator arm64 and
+  x86_64 compile/link plus embedded bundle and enclosing app build. Exact command:
+  `cd travel-app && VESPER_NATIVE_CAPTURE_HOST=1 CI=1 npx expo prebuild --platform ios --no-install && cd .. && VESPER_NATIVE_CAPTURE_HOST=1 SENTRY_DISABLE_AUTO_UPLOAD=true xcodebuild -workspace travel-app/ios/TravelApp.xcworkspace -scheme ShareExtension -configuration Debug -sdk iphonesimulator -destination "generic/platform=iOS Simulator" -derivedDataPath travel-app/.tmp/capture-host-build CODE_SIGNING_ALLOWED=NO build`.
+  Initial full build failed in the host app's Sentry upload configuration, not
+  native compilation; the local rerun explicitly disabled source-map uploads.
+  Signing, installation, extension launch, memory ceiling and App Store validation
+  are **unverified**. Native artifacts/logs remain local and ignored.
+- `native-capture-host-checked-tests`: **passed**, 1.404s: five config/Xcode-model
+  tests and nine grouped Foundation item-provider scenarios, including delayed
+  files, actual byte copies, 16 files plus text, cancellation and scoped cleanup.
+  Exact command: `cd travel-app && node --test scripts/private-capture-host.test.mjs && xcrun swiftc -warnings-as-errors -swift-version 5 plugins/private-capture-host/CaptureAttachments.swift scripts/test-capture-attachments.swift -o .tmp/test-capture-attachments && .tmp/test-capture-attachments`.
+  The macOS collector harness does **not** test iOS protected storage, OS sheet
+  presentation, authentication or backend custody. Iteration found URL providers
+  returning UTF-8 data instead of NSURL; both are now decoded without accepting
+  relative paths. The macOS harness does not weaken the iOS protection branch.
+- `native-capture-host-app-gate`: `npm --prefix travel-app run verify:pr`
+  **passed**, 135.945s, including 185 seam tests. Later changes were limited to
+  native/plugin regression refinements and docs; no shared TS/UI behavior changed.
+- `native-capture-host-default-restored`: normal prebuild plus `pod install`
+  **passed**, 21.675s. Inspected the generated project: no development bundle
+  phase or collector source reference remains; the redirect adapter is restored.
+- `native-capture-host-surface-registry`: `npm --prefix travel-app run qa:polish:scenarios`
+  **passed**, 0.206s. No new native screenshots or visual verdict. The prior locked
+  Mac boundary was not re-probed. Full `make verify` was not rerun; its known
+  catalog-runway failure remains unresolved. Backend/real-DB checks were not
+  rerun for this native-only package. Docs checks accompany the checkpoint.
+
+**Next:** extend this host only with the native providers needed by the existing
+`PrivateCaptureSession`. Expo 55's Expo-module boundary requires its current
+`ExpoReactNativeFactory`, not an assumed SDK-54 bridge. Connect the real Clerk
+session with encrypted shared-cache lifecycle/account invalidation reviewed
+before activation; then persist exact attempt identity before dispatch and
+exercise current-owner Keep/readback/Undo/close in the sheet. Do not expand the
+read-only host check into a second composer or declare item 13 delivered from
+this build. The accepted endpoint and six-door scope are unchanged.
+
 ### Local bounded-preview and recovery-copy checkpoint — September 28
 
 Backend `539edb00d`; app `af8a126af`; workspace before this update `5a15198`.
