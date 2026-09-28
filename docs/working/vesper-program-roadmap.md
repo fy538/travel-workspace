@@ -12,351 +12,179 @@ source_of_truth_for:
   - cross-lane dependency routing and system reassessment
 depends_on:
   - ../decisions/2026-09-06-reconcile-consumer-strategy.md
+  - ../decisions/2026-09-26-multiplayer-direction.md
+  - ../decisions/2026-09-27-documenting-core-loop-and-one-composer.md
   - ../systems/four-root-loop-object-surface.md
   - ../systems/contribution-and-consequence.md
 ---
 
 # Vesper program roadmap
 
-## Current direction — September 27
+## Direction and immediate priority — September 27
 
-Build a coherent product from the capabilities already implemented. Treat the
-merged recovery work as the working baseline; then execute
-**complete Home value delivery on that system**: supported material reaching
-useful composition, polished presentation, meaningful depth/action and return.
-Do not start overlapping Home work from older main or mistake a thin screen
-for a presentation-only problem.
-This is a delivery priority, not a narrower product thesis or a requirement to
-prove one behavior loop before designing the system.
+Build the complete product on the connected system already implemented.
+**Finish the remaining Home value and usability work, then implement the accepted
+horizontal capture/share experience.** Landing the published Home package is a
+separate delivery task, not a reason to redispatch its completed connections or
+wait on every unfinished design.
 
-Vesper's four moves remain **Make sense. Open possibility. Help it work. Carry
+The four moves remain **Make sense. Open possibility. Help it work. Carry
 forward.** Home returns value for now and the anticipated future; Places opens
-the situated world; Chat makes bringing and asking easy; Life organizes what
-the person can revisit. Multiplayer and practical adaptation run through these
-experiences rather than becoming separate products. Follow the
-[Product Thesis](../../travel-agent/docs/product/Product%20Thesis.md) and
-[four-root contract](../systems/four-root-loop-object-surface.md).
+the situated world; Chat supports conversation; Life organizes what can be
+revisited. Multiplayer and practical adaptation run through these experiences.
 
-This file is the only current dispatch queue. The
+The [September 26 multiplayer direction](../decisions/2026-09-26-multiplayer-direction.md)
+and [September 27 core-loop/composer decision](../decisions/2026-09-27-documenting-core-loop-and-one-composer.md)
+now sharpen the entrance: documenting for oneself or others, through one
+composer with many doors. Chat is a door, not a compulsory gateway. Immediate
+benefit, private Keep with Undo, explicit audience and provisional interpretation
+must coexist. This is not diary homework or a return to booking execution.
+
+Those two decision files are unchanged snapshots brought from the concurrent
+design checkout into this execution lane on September 27. Their accepted
+rulings constrain the next implementation; their presence does **not** mean the
+owner contracts, schema, runtime or all design boards have been updated.
+Their pending recommendations remain pending.
+
+This file owns the only current dispatch queue. The
+[H1 package](home-value-composition-execution-plan-2026-09-25.md) owns implementation
+detail and current evidence; the
 [integration reference](complete-system-integration-roadmap-2026-09-05.md)
-preserves technical obligations, not a second schedule. Specialist plans supply
-detail only when a package below invokes them. Historical receipts are in the
-[program archive](../archive/vesper-program-roadmap-history-through-2026-09-25.md) and
-[integration archive](../archive/complete-system-integration-history-through-2026-09-25.md).
+owns supporting technical guidance, not another schedule.
 
-## Inspected baseline and evidence limits
+## Inspected baseline and publication state
 
-The recovery baseline is now merged. The three authorized PRs landed on the
-independent repository mains on September 26 UTC; original branch protections
-were restored and verified afterward:
+The recovery work is merged on remote main; the subsequent Home package is
+published but **not merged** at this checkpoint.
 
-| Repository | Merged main revision | Landing |
+| Repository | Merged recovery baseline | Published Home candidate | Open PR |
+| --- | --- | --- | --- |
+| Workspace | `6ef3dca09be2b4ea40c83ae21d8cbf112ee17f24` (#36) | `a73e9d2348c07b398a91a4aee3733cfca4485252` | [#37](https://github.com/fy538/travel-workspace/pull/37) |
+| Backend | `c8c9f578594a98beb41300c1a780f86ebb30eca4` (#233) | `c50b2286e9fcb477d015d7df20bcfdcce791f8b6` | [#234](https://github.com/fy538/travel-agent/pull/234) |
+| App | `43225df35a01295993def384b5958c53ab8f1c8b` (#201) | `551e2a94b1ef58137a2fa7b3e309b245571e7e17` | [#202](https://github.com/fy538/travel-app/pull/202) |
+
+The coordinated `codex/home-value-delivery` lane owns the Home candidate in all
+three independent repositories. This docs rebaseline advances only its workspace
+history beyond the published tuple above. Re-inspect branch heads and PR state
+before further execution; a dated table is not current Git state.
+
+The separate canonical checkout contains concurrent design work and is not the
+execution target. Do not switch it, advance its children, or bring unrelated
+uncommitted design changes into this lane.
+
+| Evidence at the published tuple | State and boundary |
+| --- | --- |
+| Coordinated local verification | `scripts/land-worktree.sh home-value-delivery --publish` completed `make verify` and published the three branches. This evidence predates the docs-only rebaseline; detailed counts and exclusions are in H1. |
+| Backend CI | [Passed](https://github.com/fy538/travel-agent/actions/runs/36355954051), including DB and migration checks. |
+| App CI | [Passed on the final app head](https://github.com/fy538/travel-app/actions/runs/36358544184), including tests, types, design/governance and contracts. |
+| Workspace CI | [Failed before product tests](https://github.com/fy538/travel-workspace/actions/runs/36355993401/job/108723720414): private child checkout could not authenticate. Renew/fix `TRAVEL_WORKSPACE_CI_TOKEN` access, then rerun. A configured secret is not proof of usable access. |
+| Merge | All three PRs remain open and review-required; no merge conflict was reported. User authorization to publish/merge is already recorded in the task. Any owner-approved one-off override must be reported with the failed/unrun boundary intact; do not silently change standing protections or label an override a passing check. |
+| Native product quality | Full Home matrix remains MIXED. Targeted Planning and Cold follow-ups passed their bounded assertions, not full-scroll design parity. |
+
+## What is already delivered in the candidate
+
+| Capability | Established progress | Still not established |
 | --- | --- | --- |
-| Workspace | `6ef3dca09be2b4ea40c83ae21d8cbf112ee17f24` | [#36](https://github.com/fy538/travel-workspace/pull/36) |
-| Backend | `c8c9f578594a98beb41300c1a780f86ebb30eca4` | [#233](https://github.com/fy538/travel-agent/pull/233) |
-| App | `43225df35a01295993def384b5958c53ab8f1c8b` | [#201](https://github.com/fy538/travel-app/pull/201) |
+| Supported Source value | Canonical owner discovery/read, explicit preparation, production boundary, saved result, Home serving and withdrawal connected; rejected outputs preserve their true terminal outcome | Recurring useful supply or real-model editorial quality; the integrated producer caller was deterministic |
+| Contextual Home continuation | Exact Plan/opening/recovery context reaches a private editable Chat draft and supported backend prompt assembly | Quality of a real model answer or authority to send automatically |
+| Received original | Exact authorized private photo through local DB, object storage, API and native reader/return | Production media service, album/grouped-photo identity, Reply or broader audience model |
+| Practical value | Supported open-now possibility reaches the exact venue and returns | Provider-backed freshness or a generalized live service |
+| Cold Home | Source-backed current-Places reading before an input request; owner-backed local API to native depth and return | Real recurring editorial supply, full design parity |
+| Native composition | Compact planning motion, corrected Home glyph/region treatment, removed gold reading edge, exact return position and selected first-viewport references | All remaining matrix findings resolved or full-scroll reference acceptance |
 
-The current implementation owner is the coordinated `codex/home-value-delivery`
-lane. Its current child-repository heads are backend
-`a38d5c7f3` (cold Home owner-route fix) and app
-`d1f2111cf` (Cold Home code `1408699e1` plus its committed structured native
-verdict); these revisions are after the merged recovery revisions above and
-are not yet published. The active workspace branch contains this queue and the
-H1 execution plan on `codex/home-value-delivery`. The app also carries the
-private Home Chat seed contract at `f481d22c5`; the current cold opening now
-reuses the backend's source-backed Places-reading shape in its mock-native
-scenario. The lane has advanced past the earlier status recorded below; the
-[active H1 plan](home-value-composition-execution-plan-2026-09-25.md) owns the
-detailed receipt and exact test boundaries.
+Do not repeat these connection projects under new names. The
+[H1 completion map](home-value-composition-execution-plan-2026-09-25.md#delivered-connections)
+records their limits. More tests or fixture screenshots of the same paths alone
+are not the next product increment.
 
-H1 has now connected ordinary, social and practical value through the Home
-surface. It includes a source-bound Quiet Home geology comparison, exact Home
-return, recipient-attributed originals contained as one authored share, the
-native Home Ask-to-Source-result workflow, and the real-Postgres practical
-`place.open_now` rehearsal from Home to exact venue and back. The shared
-full-scroll rehearsal also composes public Place readings, an addressed friend
-note and individually authorized originals, with owner readback and fixture
-withdrawal. The user-facing flows and local database lifecycle are materially
-more complete than at the previous rebaseline.
+## Current dispatch queue
 
-A fresh disposable-Postgres regression now verifies the canonical Source
-material adapter against a retained Place-photo attachment: exact private
-loading succeeds, group use is refused, and owner deletion invalidates the
-material. A second disposable-Postgres regression now carries a confirmed
-Intake Experience Anchor and evidence-receipted approved dossier through real
-Source discovery, canonical owner reads, governed material loading, explicit
-workflow/result readback, and prepared Home. Withdrawal removes the exact
-result and prepared Home value. It exposed and closed a revision mismatch
-between a revisionless venue subject handle and its current-revision owner
-read; explicitly revisioned subject requests remain exact. The producer,
-owner, and records are synthetic, so this establishes one owner-backed path,
-not real or recurring content supply.
-
-The Home-to-Chat seed now has an additional route-level receipt: an in-process
-request through the canonical private conversation HTTP endpoint creates the
-real session and reaches the production prompt assembler, which resolves the
-current Plan and Commitment from disposable Postgres. Only the final agent
-handler is replaced with a deterministic capture stub. This closes the
-request/session transport gap without a paid model call; it does not establish
-generated-answer quality, on-device backend resolution, recurring supply, or
-full-scroll design parity. Exact evidence and command are in the H1 plan.
-
-Cold Home now has its own real-Postgres HTTP acceptance. It caught and fixed a
-posture leak: Places' world-only readers attached a local `quiet` signal when
-they had content, and Home treated that as evidence about the person's own
-life. Home now ignores posture signals from world-only readers, leaving a
-genuinely empty Experience Graph classified as cold so a source-backed Place
-reading can be promoted into the first substantive Home opening. The route
-acceptance preserves both accepted Place Source references and the exact
-Places destination. Backend `a38d5c7f3` passes the complete portfolio and
-Place-readback test files (87 tests), backend lint and mypy (1,888 source
-files). This is a synthetic, locally provisioned database proof of the dark
-route, not live app-to-backend delivery, real editorial supply, or production
-content. A subsequent assigned-iPhone native rehearsal now closes one
-local development-owner path: the real app used the cold portfolio response,
-opened the exact rebuilt Place page, and returned to the same Home unit. It ran
-with `SKIP_AUTH=true` and synthetic reviewed Place sources in a newly created
-disposable database; it is not Clerk-auth or production-source evidence. The
-rehearsal database was dropped after fixture cleanup. This closes the narrow
-app-to-API seam for this path. Production/recurring content quality, accepted
-full-scroll parity, and coordinated verification on the final tuple remain
-open. Details and exact commands are in the active H1 plan.
-
-The latest backend slice also closes expected Source non-production outcomes:
-compiler rejection no longer becomes a canonical-readback lease failure, and
-pipeline/compiler rejection retain their exact terminal reason through the
-worker receipt and result route. Two persisted Postgres cases verify completed
-workflow state with no retained output. After this slice, the focused offline
-Source/root/worker suite (302 tests), disposable-Postgres Source-delivery module
-(6 tests), Ruff and backend mypy (1,888 files) pass. Full coordinated
-`make verify` and backend `make ci` were not rerun after it; the detailed
-commands and boundaries are in the active H1 plan.
-
-The next native polish check closed a Home-shell integration gap: both Home
-renderers now forward their scroll offset into the existing shared navigation
-collapse behavior without changing shell geometry. Focused Home tests and a
-mock-only iPhone 16 Pro Quiet capture confirm compact navigation after a
-down-scroll. This is local interaction evidence, not full-scroll visual parity;
-the capture and exact test boundary are recorded in the H1 plan.
-
-These results still use authored/synthetic fixtures where noted; they do not
-establish recurring or production content supply, provider-backed freshness,
-canonical user-authored Source contribution in recurring editorial value, or
-accepted full-scroll design-reference parity. Focused regressions check
-authenticated, cache-disabled image transport and byte/MIME-correct binary
-route behavior. The disposable-Postgres acceptance verifies exact Intake
-custody, recipient grant and Home projection for a PNG, but stubs the private
-object-store download. That gap is now closed locally for one synthetic JPG:
-the running API read exact bytes from a loopback Moto S3-compatible store, and
-the assigned iPhone simulator rendered the recipient's original from Home and
-returned to that Home unit. Exact database/object cleanup was verified. This
-does not establish AWS/R2 or production storage, recurring real-user supply,
-or visual parity with accepted references. The first
-`make verify` attempt failed at the date-sensitive World Catalog runway gate:
-existing season and NYC `here` rows expired before the full 14-day runway.
-After rechecking official sources, the lane refreshed the source/review
-metadata for existing entries, added two source-backed NYC exhibitions to
-cover the runway after the current NYBG exhibitions end, and added a
-source-backed Smokies monarch migration window to preserve seasonal coverage
-through late October. The checker evaluates today plus the next 14 UTC dates,
-including the entire final date. A full run on September 27 UTC exposed that an
-October 11 midnight freshness expiry did not cover that final day. The active
-rows now expire at October 12 00:00 UTC, preserving an explicit near-term
-re-review without extending any exhibition/season window. No generic or
-invented catalog rows were added. The checker passes with 5 season and 5
-`here` rows, and a regression now rejects expiry at the start of the final
-runway day. After the backend Source-outcome and September 27 Home scroll/dock slices, the
-coordinated `make verify` passed on workspace `881a66a`, backend `a444db9fa`,
-and app `670d49183`. Exact counts, skips, warnings and evidence limits are in
-the active H1 receipt. The gate verifies local repository contracts and tests;
-it does not exercise a live API, simulator, production data, recurring supply,
-or accepted full-scroll design parity. None of these results establishes
-production/recurring supply, accepted full-scroll design parity, or H1. H1 is
-still not ready to publish or declare complete.
-
-The coordinated lane revisions at the latest gate run passed `make verify`:
-workspace `8f2ecf0fcf03b0fbae8525d10e9cb3e4cd97df63`, backend
-`a444db9fa82a6cd297c4078bc9e235c9bebbf35c`, app
-`ccef6395382f650f97a1a7dea9aee28f8529cca2`. The current-gate receipt in the
-[H1 execution plan](home-value-composition-execution-plan-2026-09-25.md)
-records counts and limits. A subsequent `make verify` passed on workspace code
-HEAD `714f2724e`, backend `f9fed77a3`, and app `af441e1e5`; the workspace had
-only the two receipt-doc edits recorded here and in the H1 plan. It passed
-21,916 backend tests (14 skipped, 1,496 deselected, 53 xpassed), 1,004 tool
-contract tests, 422 deterministic eval checks, 173 app journeys, 185 API seam
-tests, 126 offline app tests, API/OpenAPI checks, workspace governance, and
-Maestro syntax checks for 389 flows. Fourteen LLM-backed eval checks were
-skipped; the doctor also reported `uvicorn` unavailable and left service
-probes unrun. This gate is local/offline evidence, not live-service,
-production-supply, design-acceptance, or publication evidence.
-
-A subsequent focused iPhone 16 Pro capture on app `af441e1e5` verifies the
-mock-only received-original → exact reader → Home-return path (one persona,
-`dataContext: null`) using the lane-reachable Metro address. This supersedes
-only the earlier “no native capture” observation for that existing social
-continuation; it does not capture the newly implemented Home-to-Chat composer,
-establish a structured visual verdict, or satisfy full-scroll design parity.
-The active H1 plan records the command and evidence boundary.
-
-A separate registered native path now covers the newly implemented Home Plan
-door into Chat: tapping the planning row opens an editable private composer with
-the Plan attachment and suggested prompt, and the flow stops before Send. App
-commit `eb8429120` adds the isolated screenshot fixture/flow; the capture
-manifest names pre-commit app HEAD `7f96afa8a`, with those exact changes present
-and committed afterward. At that checkpoint, the Plan path was the only native
-composer capture; backend resolution on-device, answer quality, the other
-resource paths and visual-design acceptance remained unverified.
-
-App commit `772bee902` adds native captures for the nearby-opening and recovery
-Home-to-Chat doors, completing mock-only composer coverage for all three
-supported resource types. Both assigned-iPhone flows reached the private,
-editable composer with the exact attachment and suggested prompt, and stopped
-before Send (`dataContext: null`). Their manifests name app HEAD `eb8429120`,
-with the captured fixture/flow changes present and committed afterward. This
-proves client-side routing and review posture only—not backend owner resolution
-on-device, answer quality, a structured visual verdict, full-scroll parity,
-real-user supply, or H1 completion. Exact run IDs and evidence boundaries are
-recorded in the [active H1 plan](home-value-composition-execution-plan-2026-09-25.md).
-
-Backend commit `6d99a195c` follows `1a190224a` with a real-Postgres check of
-Home seed grounding through the production prompt assembler. Canonical owner
-commands created a synthetic Plan and Commitment in a fresh lane-owned
-disposable database; current state, initial revision `0`, exact time window,
-stale-copy exclusion and denial for another viewer are verified from actual
-viewer-scoped projection reads. The same group-turn assembly drops the
-Experience Graph seed before owner lookup, closing a private-to-group prompt
-leak in the previous guard. The combined focused suite passed 49 tests; backend
-lint and typecheck passed. This is database-to-prompt-assembly evidence, not
-HTTP route, provider/model or generated-answer acceptance; the previous
-coordinated `make verify` predates this backend change.
-
-The prepared-Source serving adapter already revalidates exact current owner
-materials and context and fails closed on missing or changed evidence; Home
-does not generate on an ordinary miss. Current H1 workflow/native receipts use
-synthetic owner data; one explicit path now traverses canonical Intake, Source
-discovery, owner reads, the registered structured producer (with an injected
-mock caller), exact result, prepared Home, and withdrawal. Real-user/editorial
-supply, provider-backed quality and freshness, and recurring preparation
-remain unproven. This is a supply/quality acceptance gap, not a known missing
-serving connection.
-The older recovery worktree and detached native-presentation checkout are
-separate, already-merged work; do not reuse or retire them without a fresh
-owner/runtime check. The former 145-branch inventory is historical, not
-today's state.
-
-At landing, backend/app CI reported passed. The workspace reliability job failed
-at private-backend checkout authentication before product tests, and its
-Maestro smoke was skipped. Those are not product-test results. That historical
-hosted-check failure remains an authentication/infrastructure gap; it is
-separate from the subsequently passing local coordinated gate above. Local
-verification does not establish production-data acceptance,
-design-reference parity or release readiness. No branch protection bypass is
-currently in effect.
-
-Code inspection confirms an existing bounded Home owner portfolio, application
-composer, native root experience, semantic renderer registry and exact-return
-machinery. The app registry currently lists 20 renderable Home kinds. A kind's
-presence does not establish sufficient supply, attractive composition or full
-design parity. The September 22 test totals in the archives are dated evidence;
-the targeted checks run during H1 are recorded in its active execution plan.
-External design hashes and release readiness remain unverified. No
-percentage-complete claim is supported by this inspection.
-
-Two additional implementation boundaries change H1's scope. Ordinary Home reads
-consume prepared Source results without generating/enqueueing work; the existing
-controlled Source worker accepts explicit preparation, not arbitrary signal-based
-production. Recurring useful supply must therefore be traced, not assumed from
-the presence of a generator. Separately, the `home-root` QA surface now registers
-Home 02/03 first-viewport images as L0/reference pairs while continuing to judge
-against doctrine. They support hierarchy comparison only—not full-scroll or
-same-data parity, and not a decision to move social notes to Home's opening.
-The accepted full-scroll reference scope and matching content fixtures remain
-unresolved; the old
-external Home-surfaces registry is not blanket authority for them.
-
-Documentation validation on this rebaseline: `python3 scripts/check_docs.py
---all` passed, including the compatibility ledger checks. The expired bridge
-entries found in the older main-based inspection were reconciled by the merged
-recovery work; they are not current blockers. Do not carry that stale finding
-forward or reopen the repair without new evidence.
-
-## One queue, bounded work in progress
-
-| Order / state | Package and accountable owner | Outcome / exit |
+| Order | Outcome / accountable owner | Finish condition and next decision |
 | --- | --- | --- |
-| 0 — complete | **Recovered candidate baseline**, merged through #36 / #233 / #201 | Reuse recovered Home/Places and app behavior; original protections restored. The workspace checkout/reliability gate remains a pre-publication evidence gap, not a reason to reopen or bypass the merged PRs |
-| 1 — active | **H1: Complete Home value delivery**, `codex/home-value-delivery` lane owner | Execute the [bounded package](home-value-composition-execution-plan-2026-09-25.md). Backend `a38d5c7f3` closes the Cold posture leak. App `91c93cd6e` updates the lane-pinned native rehearsal to select the current `now_invitation`, serve it from the real local Home API to the assigned iPhone 16 Pro, open the exact rebuilt Place page, and return to the same Home unit. It uses a development owner identity (`SKIP_AUTH=true`), synthetic accepted sources, and a disposable database; it proves this local viewer-scoped path, not Clerk auth or production supply. The private Home Chat seed route remains covered at `c50268c6e` and does not call a model. The cold fixture capture `d1f2111cf` retains two P2 copy/hierarchy findings; the 12-state Home matrix remains MIXED. The coordinated `make verify` must run on the final tuple. Production/recurring content supply and accepted full-scroll design parity remain open; H1 exit is not met. |
-| 2 — select from H1's actual bottleneck, not tab order | **Recurring supply / Places depth / Life continuity**, same owner by default | Choose the specific missing producer connection, spatial depth, refinding or permitted later-use path that most improves the delivered experience; do not activate three standing lanes |
-| Cross-cutting within each package | **Practical help, live-engine behavior and production cost**, package owner | Current facts and permitted context materially change an appropriate result; freshness, authority, degradation, latency and generation costs stay explicit |
-| Before publishing each integrated package / before cutover | **Landing and retirement**, implementation owner with coordination review | Review combined changes, run required gates, publish only with authorization, record landed revisions and disposition the branch/worktree; migrations, replacement retirement and release retain their separate gates |
+| 0 — delivery closeout | Current lane owner closes the three published PRs, preserving exact revisions and evidence. Fix the workspace checkout credential through the repository owner; honor already-recorded merge authority without treating blocked checks as green. | Record actual merged heads and branch/worktree disposition. Reuse the lane for follow-on Home work if it remains suitable; do not archive it merely because a PR merged. This administrative gap does not block independent local building. |
+| 1 — active H1 remainder | Same owner finishes Home usefulness, hierarchy and continuation under the [bounded assignment](home-value-composition-execution-plan-2026-09-25.md#next-complete-assignment). Start with the known native defects; trace and repair the next actual authorized supply gap using existing owners. | Changed states are usable and polished; supported preparation/serving works with explicit evidence limits. Review the first working result and close the connected package or name the specific remaining gap. Do not keep H1 open indefinitely by expanding it into all future content production. |
+| 2 — next capture/share package | One coordinated owner reconciles the accepted decisions with contribution, Chat and social owners, then implements the common private Keep/Send path. Begin with a contract/door map, not a new universal artifact store. | A complete authored item can enter, return immediate value, reach its selected authorized audience, be refound and be corrected/withdrawn. Door coverage and staged implementation order must be explicit; completing one adapter is not completing all six entrances. Pending policies remain excluded. |
+| 3 — reassess receiving and later value | At the capture/share checkpoint, choose the next whole-product package against the actual retained/shared material: richer Home/Places receiving, Life continuity, or an accepted preparation gap. | Select from observed code/design gaps and received benefit, not a standing parallel backlog. Do not launch all three automatically. |
 
-H1 includes existing multiplayer and practical value from the start, not only
-editorial content. It may resolve a narrow dependency in another surface without
-rewriting that surface. Later packages are candidates, not estimated commitments.
-At the first working result, choose the next package from the exposed bottleneck.
-No speculative subsystem, new retention grant or ambient production policy is
-authorized by this table.
+### Capture/share package boundaries
 
-A second implementation task is optional, not the default. Start it only with
-an independent outcome, disjoint write ownership, stable shared contracts and
-available review/landing capacity. A useful candidate is a bounded Life
-refinding/media gap that does not change H1's owner or navigation contracts.
-If those conditions fail, use one implementation owner with temporary bounded
-workers instead. Do not create permanent lanes for every product domain.
+The next owner should produce one compact implementation map in the active
+package, using existing canonical owners and generated contracts. It must cover:
 
-## Operating model
+- **Owner reconciliation before affected runtime changes:** contribution §3.2,
+  §9 and §12; Product Thesis/Model entrance wording; Chat ruling 04; group/social
+  optional polls and occasion rooms; relationship audience and use-grant rules.
+  Amend only accepted rulings, retain rationale, and identify remaining conflicts.
+- **Shared path:** just-me default, Keep/Send/Share labels, immediate private
+  custody with Undo, provisional recognition and truthful send-time payoff.
+  Remove review-first capture without replacing it with invisible personal claims.
+- **Doors:** OS share sheet finishing in place; camera/photo picker; global add;
+  Chat attachments with visible keep state and Ask only; existing-object Keep/Send;
+  email forwarding. Audit existing adapters, share one contract, and identify
+  native/server delivery constraints rather than pretending every door is a
+  React component.
+- **Receiving and repair:** existing selected-original and place/link ownership,
+  authorship, permitted audience, forward-only Friends eligibility, withdrawal
+  and independent kept place survival. The newer audience model is accepted
+  direction but its schema is not designed; do not force it through the old
+  place-required one-recipient note or silently widen an existing grant.
+- **Separate policy dependencies:** friend's words used for an explicit question
+  require the named use-grant amendment. Guest identity, notifications, retention
+  periods and export are not settled by the decisions; they need a ruling only
+  where the selected implementation depends on them.
 
-- **Coordination task:** owns this queue, consequential decisions and reviews of
-  the combined product. It does not relay every technical message or routinely
-  implement large slices. A new coordination task can take over from this file;
-  a very long conversation is not the source of truth.
-- **Implementation task:** owns one coherent outcome through inspection,
-  implementation, focused tests, review corrections and handoff. Continue across
-  ordinary obstacles; stop only at a genuine missing authority or dependency.
-  Start a fresh task when the outcome changes, not for every commit.
-- **Temporary workers/reviewers:** use only when delegation is authorized and
-  work is concrete and independent. Give file ownership, interfaces, finish
-  conditions and evidence boundaries. Keep shared schemas/navigation with one
-  owner. A reviewer is not proof; resolve findings against code and tests.
-- **Integration is a responsibility, not a permanent waiting lane.** Integrate
-  a coherent, reviewable package, or earlier for a changing shared contract.
-  Do not force a combined environment after every small change; do not leave
-  completed work indefinitely on disconnected branches either.
+The September 27 R1–R5 recommendations are **not adopted by this roadmap**:
+thread-intersection mechanics, the new voice register, autonomous artifact-type
+evolution, status-triggered offers and the proposed intersection-offer sequence.
+The accepted one-composer work can proceed without them. Selecting capture/share
+as the next package does not approve an offer that depends on those pending rules.
+Casual-question continuity remains unadopted; deliberate share-plus-question is
+the separate accepted amendment.
 
-Use the existing [workspace lane lifecycle](../Workspace%20Repo%20Setup.md)
-and root `AGENTS.md`; do not create another registry or enforcement service.
-One package has one owner until its branch is landed, intentionally held, or
-discarded with authorization. Report residual worktree/branch disposition at
-handoff. Do not switch another task's checkout or assume isolation includes
-devices and services.
+## Execution and reassessment
 
-## Checkpoints and roadmap maintenance
+Use the existing [lane lifecycle](../Workspace%20Repo%20Setup.md) and root AGENTS.
+One owner keeps responsibility through landing or an explicitly held disposition;
+temporary workers require authorized delegation and disjoint write ownership.
+Keep at most one or two active implementation packages, not a new tracking system.
 
-Check in at the **first working result, a consequential blocker, and the final
-reviewed result**. Ordinary debugging and successful intermediate tests need no
-founder round trip. Owners coordinate interfaces directly; coordination resolves
-priority conflicts and changes to product, authority or architecture.
+- **One complete assignment per round.** The owner carries diagnosis, implementation,
+  focused tests, review corrections and landing. Ordinary debugging needs no
+  founder round trip.
+- **Parallelize only independent outcomes.** A bounded worker can handle Home
+  presentation while another inspects existing preparation/serving, with one
+  owner for shared wire contracts and navigation. Contract mapping for the next
+  package can run independently; no competing runtime owner or permanent
+  integration lane is needed.
+- **Check in at the first working result, a consequential decision/blocker, and
+  the reviewed finish.** Coordinate shared files, runtime and devices directly;
+  escalate changed product/authority/architecture choices.
+- **Verify proportionately.** Focused checks during implementation; affected
+  contract/behavior/native evidence at package completion; required coordinated
+  `make verify` before publication. Do not repeat the full matrix for every copy
+  change or replace the required gate with a weaker one.
+- **Maintain this roadmap in place.** Replace the baseline and queue; do not
+  prepend dated overrides. H1 holds one current evidence summary; large receipts
+  remain historical. Retire or replace its active assignment when done, not by
+  accumulating another endless log.
 
-At a checkpoint ask:
+At each package checkpoint ask: what is now worth receiving; does context improve
+it; how much effort remains with the person; did we reuse the right owners; and
+what exact evidence supports the result? Judge progress by finished outcomes,
+rework, blocked time and founder intervention—not agents, commits or doc volume.
 
-1. What can a person now receive or accomplish that they could not before?
-2. Does context materially improve it, and how much work remains with them?
-3. Did we reuse the right owners, or add competing state/policy/generation?
-4. What evidence is current, and what remains mocked, unrun or blocked?
-5. Is the next package still the best investment?
+Documentation validation for this rebaseline: `make docs-status-sync` refreshed
+the generated inventory count; `make docs-check` passed all documentation gates.
+No product source changed and no full product-suite rerun is claimed for the
+docs-only revision.
 
-Update this file's baseline, package state and next decision in place. Do not
-prepend another “current override.” Keep implementation details and the latest
-verification receipt in the active package; keep large historical evidence in
-closed package records. Do not duplicate test counts across both roadmaps.
-Retire the package's active status when finished. At most one or two execution
-plans are active; product/system/design references do not count as execution
-queues. Review this working roadmap by its expiry rather than silently extending
-dated claims.
+## History, not another queue
 
-Judge execution by completed consumer outcomes, rework, blocked time and founder
-intervention, with actual measurements when making productivity claims. Agent
-count, commit count and document volume are not progress measures.
+The [September 27 program snapshot](../archive/vesper-program-roadmap-history-through-2026-09-27.md)
+and [H1 receipts](../archive/home-value-composition-history-through-2026-09-27.md)
+preserve the full prior bodies at workspace `a73e9d2`. Older strategy and
+integration history remain linked below. No historical “current” statement
+overrides the baseline above.
 
 ## Historical link compatibility
 

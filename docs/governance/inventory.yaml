@@ -372,6 +372,14 @@ overrides:
     disposition: archive
     rationale: Preserves dated program assignments and receipts intact after the September 25 rebaseline; not current execution authority.
 
+  docs/archive/vesper-program-roadmap-history-through-2026-09-27.md:
+    disposition: archive
+    rationale: Preserves the September 25–27 program body before replacing stale status with the published Home candidate and accepted capture/share direction.
+
+  docs/archive/home-value-composition-history-through-2026-09-27.md:
+    disposition: archive
+    rationale: Preserves the original Home assignment and detailed receipts while the active package holds only delivered paths, remaining work and latest evidence.
+
   docs/archive/complete-system-integration-history-through-2026-09-25.md:
     disposition: archive
     rationale: Preserves the original technical plan and scoped receipts; current dispatch belongs only to the program roadmap.

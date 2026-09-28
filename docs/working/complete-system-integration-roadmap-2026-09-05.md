@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: coordination / implementation owner
 created: 2026-09-05
-last_verified: 2026-09-25
+last_verified: 2026-09-27
 expires: 2026-10-05
 why_new: Retains shared-system integration obligations and historical references without a competing execution queue.
 depends_on:
@@ -30,13 +30,22 @@ and composition → mobile presentation → action/readback → return/later use
 Implement the broken connection at its owning layer. Do not solve a receiving
 gap with a parallel store, feed, generator or authority model.
 
-The September 25 priority review identifies the unmerged recovery candidate as
-the baseline to reconcile before overlapping work. It already adds human/world
-Home composition and mixed Places behavior. Follow the program's candidate
-tuple and owner rather than redispatching those changes from older main.
-H1 now owns complete value delivery across supply, selection, presentation and
-continuation, not just a longer Home scroll. Source generation infrastructure
-and prepared-result serving do not by themselves prove recurring useful supply.
+The recovery baseline is merged; the subsequent Home candidate is published in
+three open PRs at the September 27 checkpoint. Follow the program's exact tuple
+and current lane owner rather than redispatching completed connections from an
+older main. H1's remaining assignment covers useful supply, native hierarchy and
+continuation quality, not rebuilding the Source, original, practical and Chat
+paths already connected. Source generation infrastructure and prepared-result
+serving do not by themselves prove recurring useful supply.
+
+The accepted [September 26 multiplayer direction](../decisions/2026-09-26-multiplayer-direction.md)
+and [September 27 one-composer decision](../decisions/2026-09-27-documenting-core-loop-and-one-composer.md)
+shape the next capture/share package. Before affected runtime changes, reconcile
+their named contribution, Chat, social and product owners. One horizontal
+composer must reuse Source custody, candidate lifecycle and relationship owners,
+not become a universal artifact store. Deliberate share-plus-question now has
+an accepted Bring-plus-Ask amendment; casual-question continuity, autonomous
+type evolution and thread/status-triggered offers are not adopted by this plan.
 
 | Responsibility | Required boundary | Existing authority / detail |
 | --- | --- | --- |
@@ -84,10 +93,12 @@ registered external references must be verified for a parity claim. A passing
 renderer test is not native visual acceptance, and a fixture capture is not
 provider-backed runtime evidence.
 
-For Home specifically, the current `home-root` registration has no visual
-`designRefs` and judges doctrine. H1 must establish the applicable accepted
-references through the existing surface workflow. The older external bundle
-for Trips Home/Places Workspace does not automatically supply these references.
+For Home specifically, the current `home-root` registration includes selected
+02/03 first-viewport `designRefs` but still judges doctrine. Those reference
+pairs have different content/dates and do not establish full-scroll parity.
+H1 records the remaining native findings and reference boundaries. The older
+Trips Home/Places Workspace bundle does not automatically adopt newer studies,
+grouped-photo ownership or reply behavior.
 
 ## Package handoff and integration
 

@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / engineering
 created: 2026-05-01
-last_verified: 2026-09-25
+last_verified: 2026-09-27
 why_new: Promote the existing workspace index into the canonical documentation entry point.
 supersedes: []
 source_of_truth_for: [workspace-docs-navigation]
@@ -54,6 +54,15 @@ release authorities. Read the relevant owner contract and verify Git before work
 
 ## Current strategy review
 
+- [Accepted September 27 core loop and one composer](decisions/2026-09-27-documenting-core-loop-and-one-composer.md):
+  documenting for oneself or others through one horizontal capture/share
+  capability; immediate Keep with Undo and a specific share-plus-question
+  amendment. Its R1–R5 recommendations remain pending, and owner/runtime
+  propagation is scheduled separately in the program.
+- [Accepted September 26 multiplayer direction](decisions/2026-09-26-multiplayer-direction.md):
+  lightweight authored sharing, explicit audiences, Home/Places placement,
+  occasion conversation and whole collections. The new audience schema and
+  named use-grant amendment are not implemented merely by recording direction.
 - [Accepted September 7 refinement](decisions/2026-09-06-reconcile-consumer-strategy.md#5-september-7-refinement-complete-benefits-selective-context-and-voluntary-choice):
   complete benefits, selective context and voluntary choice; no new retention
   agreement, price or launch readiness follows.

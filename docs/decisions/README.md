@@ -4,7 +4,7 @@ status: accepted
 owner: founder / engineering
 created: 2026-07-09
 decided: 2026-07-09
-last_verified: 2026-09-07
+last_verified: 2026-09-27
 why_new: Provide one index and lifecycle for durable decisions instead of leaving them in working notes.
 supersedes: []
 source_of_truth_for: [decision-record-index]
@@ -18,6 +18,8 @@ Durable choices that constrain future work belong here. Use the
 
 | Date | Decision | Status |
 |---|---|---|
+| 2026-09-27 | [Documenting core loop and one composer](2026-09-27-documenting-core-loop-and-one-composer.md) | accepted direction; amends contribution §3.2 and Chat ruling 04 for share-plus-question, and adds just me to the September 26 audiences; owner/runtime propagation remains work; R1–R5 remain pending |
+| 2026-09-26 | [Multiplayer direction](2026-09-26-multiplayer-direction.md) | accepted direction; amends group/social ruling 4 to optional host-requested polls; new share/audience schema and use-grant amendment remain work; notifications and guest identity remain separate |
 | 2026-09-09 | [Select coherent destinations and bounded prepared continuations](2026-09-09-select-design-convergence-and-prepared-continuations.md) | accepted delegated design selection; amends Plan sentence 6 only; retention, audiences, watches and runtime activation remain separate |
 | 2026-09-09 | [Exact selected-original display for one recipient](2026-09-09-exact-original-recipient-display.md) | accepted bounded Send/display contract; AI use, broader audiences and runtime activation remain separate |
 | 2026-09-08 | [Capture owns candidate lifecycle; graph anchors remain projections](2026-09-08-capture-candidate-lifecycle.md) | accepted ownership and implementation boundary; serving remains gated |
