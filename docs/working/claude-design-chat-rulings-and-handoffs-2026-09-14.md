@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Chat design
 created: 2026-09-14
-last_verified: 2026-09-14
+last_verified: 2026-09-28
 expires: 2026-10-14
 why_new: The Chat design exploration selected a composition (2026-09-13) and the founder ruled on the seventeen remaining open decisions (2026-09-14); this records the rulings, the design project's current shape, and four bounded handoffs to other owners. The 2026-09-12 exploration brief is superseded as the current description of the project.
 supersedes:
@@ -59,11 +59,18 @@ person's agreement; Chat is not a feed, a second Home or a mandatory gateway.
 | 02 | Uncertainty | In the voice, one step quieter; never a stamp | |
 | 22 | What is material | By length (~160 characters); origin is not tracked | yes |
 | 15 | Vesper in a room | Answers when addressed | |
-| 04 | Carried-in context | Goes with one question only; the held strip is a pre-send state | yes |
+| 04 | Carried-in context | Context references go with one question; deliberate composer attachments follow the September 27 Bring + Ask amendment below | yes |
 | 10 | Microphone | In the send slot while the line is empty | |
 | 06 | Search | Real, from the capsule; bounded by the retention agreement | yes |
 | 14 | Answer states its fate | Says nothing | |
 | 16 | Side chat afterwards | Folded under its room; the room's row says it is there | |
+
+The [September 27 accepted composer decision](../decisions/2026-09-27-documenting-core-loop-and-one-composer.md)
+amends 04 for deliberately shared Chat attachments: visible private Keep with
+Undo and one-tap **Ask only**. Question/answer retention is unchanged; merely
+carrying a reference into a question is not a new Keep. Runtime remains on its
+existing retention behavior until those controls land. Casual-question
+continuity remains unadopted.
 
 Two new proposals await a founder ruling: page 8 B2 (a hairline "while you
 were away" line where a new answer begins, or nothing) and page 9 O1 (first-
