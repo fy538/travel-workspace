@@ -68,9 +68,11 @@ person's agreement; Chat is not a feed, a second Home or a mandatory gateway.
 The [September 27 accepted composer decision](../decisions/2026-09-27-documenting-core-loop-and-one-composer.md)
 amends 04 for deliberately shared Chat attachments: visible private Keep with
 Undo and one-tap **Ask only**. Question/answer retention is unchanged; merely
-carrying a reference into a question is not a new Keep. Runtime remains on its
-existing retention behavior until those controls land. Casual-question
-continuity remains unadopted.
+carrying a reference into a question is not a new Keep. The September 28 local
+implementation exposes those controls in resolved private Concierge threads;
+its [bounded checkpoint](home-value-composition-execution-plan-2026-09-25.md#private-chat-bring--ask-checkpoint--september-28)
+does not certify native use or change the remaining Home/create/group adapters.
+Casual-question continuity remains unadopted.
 
 Two new proposals await a founder ruling: page 8 B2 (a hairline "while you
 were away" line where a new answer begins, or nothing) and page 9 O1 (first-

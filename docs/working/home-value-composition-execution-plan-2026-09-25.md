@@ -237,13 +237,14 @@ literal original, not an invented personal interpretation. All changes remain lo
 | OS share | App `ios/ShareExtension/ShareViewController.swift` → `components/sharing/ShareIntentHandler.tsx` → `app/share-capture/index.tsx`; Intake Source custody | New receipt removes review-first completion after host entry. Native extension still redirects to the host; in-place authoring, authenticated delivery, retry and completion remain. |
 | Camera/photos | App `hooks/useCaptureDraft.ts` → existing `data/inboundItems.ts` upload; entity capture shares MIME handling through `utils/intakePhoto.ts` | New in-app composer stages camera/library images and a note before explicit Keep, bounded to 16 and supported formats. Picker denial/cancel, lifecycle and retry have focused coverage; actual native camera/library selection still needs evidence. Entity/Chat adapters have not all converged on this authoring UI. |
 | Global add | Shared app `components/inbound/capture-entry.tsx` → `/share-capture?compose=1` → `capture-composer.tsx` | Normal Home v2, Places, Life and Chat root headers now expose the same entrance alongside their existing controls. Chat is not required. Home loading/error and compatibility coverage, large type, and all root-state visual acceptance remain explicit follow-up scope rather than implied by the normal-root capture. |
-| Chat attachment | App `ComposerBar.tsx` stages photos and passes encoded images/context to its conversation callback; `/share-capture` also has a `from_chat` adapter | Visible private Keep/Ask only and the corresponding durable Source handoff are not implemented. Preserve existing answer-only behavior until controls and owner intent agree; do not apply the new default invisibly. |
+| Chat attachment | Existing resolved private Concierge threads use `private-capture-composer.tsx` → common Intake custody → answer-only pending Chat turn with exact source refs; Ask only keeps the old image-send path | Visible private Keep/Ask only, current-owner Open/Undo and immutable retries are implemented locally. Native photo/keyboard/failure evidence is pending. Home dock/new-thread create remain separate adapters to converge; unresolved/group rooms and carried references do not silently opt in. |
 | Existing-object Keep/Send | App `hooks/useSaveEntity.ts` owns place saves; `data/relationshipPlaceHandoffs.ts` owns addressed, place-bound pair delivery; selected originals retain Source ownership | Route authored sharing through the common component while keeping bookmark and Source ownership distinct. The current place-required, single-recipient handoff is not the accepted general person/group/Friends schema. |
 | Email | Backend `backend/api/routes/inbound_email.py` and `backend/inbound/email_forward.py`: authenticated alias/webhook, flag-gated v2 inline intake and provider archive binding | A server adapter exists, not a mobile composer. Reconcile its explicit retention/receipt semantics and replay/failure behavior with the same private contract; forwarding delivery and author-visible payoff are not certified here. |
 
 **Next implementation order:** common in-app private authoring/root add is now
-implemented; complete its remaining native media/root-state coverage while
-(2) wiring deliberate Chat Bring + Ask with visible Ask only and unchanged
+implemented; (1) complete its remaining native media/root-state coverage while
+(2) completing deliberate Chat Bring + Ask across its entrances (existing private
+thread wiring is local; native acceptance and Home/create remain) with unchanged
 conversation retention; (3) finish native OS/email adapters against that same
 contract; (4) extend Send/Share only through the named relationship/audience
 owner amendment. Keep broader audiences, friend-material AI use and the pending
@@ -304,6 +305,72 @@ ordinary Life and later value need explicit evidence, not just this receipt.
   The full coordinated `make verify` has not been refreshed for this
   local tuple and remains required before publication. Home's Urgent P1 and
   recurring supply uncertainty remain open.
+
+<a id="private-chat-bring--ask-checkpoint--september-28"></a>
+
+### Private Chat Bring + Ask checkpoint — September 28
+
+Backend `099ac6360` and app `f3c402a72` implement the next bounded connection:
+new photos in an existing resolved private Concierge thread offer **Keep photos
+· Just me** and one-tap **Ask only** before Send. Keep submits original files to
+the common Intake owner, with explicit Chat Keep provenance and no question in
+the source note. A separate answer-only pending Chat turn carries exact source
+references into the existing conversation transport. Open/Undo reads current
+source custody; it does not claim that the model answered or a later useful
+opening was generated.
+
+The implementation preserves these distinctions:
+
+- Picking does not write. Ask only uses the existing image-message transport
+  without creating a retained Intake Source. Ordinary text questions and
+  carried-in Home/Place references acquire no new retention policy.
+- An unresolved explicit conversation and group rooms never opt in. A stable
+  route/account composer lifetime plus a conversation-visit guard prevents late
+  upload, staging, binding or send across account/conversation changes, including
+  A→B→A.
+- Keep and asking can succeed separately. Uncertain failure freezes original
+  files, question, source key, turn key, route metadata and device timezone;
+  retry reconciles the same owners. The exact removed owner releases the draft
+  after Undo. A known initial offline refusal is editable without an uncertain
+  write claim.
+- MIME handling is shared with private capture; unsupported HEIC is rejected,
+  not mislabeled JPEG. Duplicate picker/send gestures are guarded. The composer
+  subtree is memoized so transcript deltas do not rebuild attachment controls.
+
+Measured evidence on the committed runtime patch trees (no quarantines/skips in
+these selected suites; do not add overlapping counts):
+
+- `chat-capture-delivery-regressions`: **122 passed**, 6.404s. Command:
+  `npm --prefix travel-app test -- --runInBand --runTestsByPath __tests__/hooks/useChatCaptureSubmission.test.ts __tests__/hooks/useConversationEntrySeed.test.tsx __tests__/screens/concierge-chat.smoke.test.tsx __tests__/components/chat/composer-capture-choice.test.tsx __tests__/utils/pendingChatTurnOutbox.test.ts __tests__/utils/api/mockIntakeV2.test.ts __tests__/data/intakeV2Resumability.test.ts __tests__/data/intakeReadAuthority.test.tsx __tests__/data/intake-source-removal-lifetime.test.tsx __tests__/hooks/useCaptureDraft.test.ts __tests__/utils/chat/temporalContext.test.ts`.
+- `chat-capture-delivery-app-gate`: `npm --prefix travel-app run verify:pr`
+  **passed**, 59.968s, including **185 seam tests**. Existing lint/test-type debt
+  remains bounded by its unchanged ratchets; this is not a whole-app test pass.
+- `chat-keep-source-question-db`: **50 passed**, 3.840s, including **eight actual
+  disposable-Postgres cases**. Command:
+  `TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:53173/vesper_capture_keep_test_20260928 TEST_DATABASE_DISPOSABLE=1 PYTHONPATH=travel-agent travel-agent/.venv/bin/python -m pytest travel-agent/tests/inbound/test_chat_keep_handoff_postgres.py travel-agent/tests/inbound/test_intake_v2_retention.py travel-agent/tests/core/test_contribution_admission.py travel-agent/tests/core/test_pending_chat_turns.py -q --run-quarantined`.
+  The new image test uses the real custody/finalize/pending owners and owner
+  deletion, with private-object download supplied by a test adapter. It does
+  not prove HTTP upload/scanning, hosted storage or a live model answer.
+- Earlier failed passes were corrected, not suppressed: the mock parameter
+  table accidentally supplied Jest's `done` slot; new component tests omitted
+  required props; memoization changed the test's component lookup. The first
+  real-DB pass from the preceding continuation found a second source-kind
+  retention predicate, which is now aligned with explicit Chat Keep.
+- Native preflight for `vesper-chat` passed with Maestro 2.6.1, the existing
+  SDK 55 dev client and lane Metro `53177` / iPhone 16 Pro
+  `AF31B886-E837-4962-834A-5CBAD5C306DB`. Attempted visual inspection reported a
+  locked Mac. **No new native capture or verdict is claimed.** Library/camera,
+  keyboard, failed handoff → receipt/Undo → return and enlarged-type acceptance
+  remain open. Prior text-capture or Chat verdicts do not certify this change.
+
+**Continue from here:** finish the registered native private-photo flow when
+the Mac is unlocked; independently adapt the Home dock and private new-conversation entrance to this same capture
+owner and immutable pending-turn path. Retain group behavior. Continue the
+OS/email and general Send/Share work in the door map; do not call this one
+adapter the complete horizontal composer. Ordinary Life refinding and later
+value remain required. These commits are local; backend `make ci` and the
+coordinated `make verify` have not been rerun for this tuple, so publication
+and merge remain unverified.
 
 ### Local bounded-preview and recovery-copy checkpoint — September 28
 
