@@ -17,8 +17,9 @@ depends_on:
 ## Status and intended outcome
 
 The core Home connections are implemented in the published, unmerged
-`codex/home-value-delivery` candidate. The first H1-A native follow-up is locally
-committed at app `332e77523`, with bounded native acceptance as of September 28.
+`codex/home-value-delivery` candidate. The reading and exact-context Chat H1-A
+follow-ups are locally committed at app `332e77523` and `64961a9cf`, with bounded
+native acceptance as of September 28.
 **The remaining assignment is useful
 supply and a coherent, polished receiving experience—not rebuilding those
 connections.** The [program roadmap](vesper-program-roadmap.md#inspected-baseline-and-publication-state)
@@ -100,7 +101,7 @@ already-fixed Planning crown.
 | --- | --- |
 | Obscured value and controls | Closed for the inspected Quiet/original cases in app `332e77523`: shared floating-nav inset reserves the readable viewport and continuous paper background in both readers; native standard/XXXL reading and original-return checks passed. Maximum accessibility sizes, Android and unrelated destinations are not certified. |
 | Reading and social hierarchy | Full-width comparison rows and the standard original-reader Door replace narrow fact boxes and the amber text-original button; targeted native review passed. The long Returned introduction and note-versus-article hierarchy remain open. Loaded images already open directly with no redundant button; do not redispatch that stale finding. |
-| Planning and continuation | Remove duplicated meeting-point state, clarify the compact row's available action, retain the exact referent in Home-to-Chat labels and useful draft context. Do not transfer basic explanation back to the person. |
+| Planning and continuation | Exact-context Chat portion closed in app `64961a9cf`: full removable Plan/Opening/recovery referent, concrete editable requests and no starter prompts after context removal. Navigation and manual-send owner grounding are unchanged. Duplicated meeting-point state and the compact row's action clarity remain open. |
 | Live, recovery and possibility | Remove repeated dinner/cancellation copy; distinguish a proposal from a confirmed commitment; provide the concrete supported place/alternative rather than vague continuation. |
 | Sources and quiet endings | Implemented and natively inspected: routine “current” suffix omitted, live/stale/unknown retained, close simplified. Long source display labels, storage-oriented continuity copy, and primary Place continuation versus an equal-weight Why this control remain open. |
 
@@ -118,9 +119,9 @@ focused behavior tests and an honest remaining-findings list. A wording change
 can be small; dock/return fixes must cover affected destinations and larger text.
 No need to recapture unrelated states for each edit.
 
-The first patch checkpoint is complete locally. Continue the remaining clusters
-above, especially exact continuation and repetitive producer copy, rather than
-reopening the same layout fix. Do not call all of H1-A complete from this subset
+The reading and exact-context Chat checkpoints are complete locally. Continue
+the remaining clusters above, especially repetitive producer copy and receiving
+hierarchy, rather than reopening those same fixes. Do not call all of H1-A complete from this subset
 or let its native work expand into an unbounded redesign. The original's visible
 share stamp also lacks a “to you” cue despite exact single-recipient delivery;
 if amended, use that existing owner fact rather than infer a wider audience.
@@ -203,45 +204,63 @@ need their named contract work; Home styling cannot create them.
 
 ## Latest verification evidence
 
-### Local H1-A follow-up — September 28, not published
+### Local H1-A exact-context Chat follow-up — September 28, not published
 
-Captured/tested against workspace `84dcd94` (the earlier Quiet capture used
-`1f4a9e5`), backend `c50b2286e` and app `551e2a94b` plus its native/test/contract
-patch, now committed as app `332e77523`. No backend, API, grants or Chat behavior
-changed in this follow-up. These results do not cover later behavior edits.
+Tested/captured at workspace `b1d2df4`, backend `c50b2286e`, app `332e77523`
+plus the patch now committed as app `64961a9cf`. Mobile display/draft behavior
+changed; backend transport, current-owner resolution, API and authority did not.
 
-- Focused checks: 6 suites / 76 tests passed in 6.634 seconds, measured with
-  `python3 scripts/measure_verification.py --label home-reading-polish-reviewed -- npm --prefix travel-app test -- --runInBand __tests__/components/HomeRootV2Screen.smoke.test.tsx __tests__/components/HomeRootScreen.smoke.test.tsx __tests__/components/RootCompositionRenderer.test.tsx __tests__/components/RootCompositionAnatomy.test.ts __tests__/screens/original-delivery.test.tsx __tests__/components/home-root/HomeRootExperience.connected.test.tsx`.
-  Log: `docs/reliability/runs/home-reading-polish-reviewed-20260928T063743Z.log`.
-- App gate: `python3 scripts/measure_verification.py --label home-reading-verify-pr-reviewed -- npm --prefix travel-app run verify:pr`
-  passed in 66.209 seconds, including 185 API-seam tests and production typecheck.
-  Existing test-type debt remains 406 errors; lint reports 162 warnings, zero errors.
-  Log: `docs/reliability/runs/home-reading-verify-pr-reviewed-20260928T063825Z.log`.
-- Native: registered `home-root` runs on the lane's iPhone 16 Pro/iOS 18.2,
-  Maestro 2.6.1, installed development client, mock mode and Metro 53177.
-  [Quiet](../../travel-app/docs/surfaces/home-root/verdicts/20260928T062734Z.json),
-  [original/read/return](../../travel-app/docs/surfaces/home-root/verdicts/20260928T063615Z.json),
-  and [Quiet XXXL](../../travel-app/docs/surfaces/home-root/verdicts/20260928T063801Z.json)
-  self-reviews passed, two P2 findings per run (overlapping source/copy findings,
-  not six unique defects). Ran
-  `VESPER_METRO_URL=http://192.168.86.189:53177 node scripts/polish-qa/run-polish-qa.mjs home-root --device='iPhone 16 Pro' --flow=polish/home-root-quiet`
-  and the same command with `--flow=polish/home-root-social-original`. For XXXL,
-  `xcrun simctl ui AF31B886-E837-4962-834A-5CBAD5C306DB content_size extra-extra-extra-large`
-  preceded Quiet; the confirmed original `large` setting was restored afterward.
-  All seven captures were opened; source caveat, actions and closing remain
-  readable above expanded/collapsed navigation. Reference images and comparison
-  indexes were inspected; the filtered runs have no matched Available/Returned-top
-  reference pair, so this is doctrine/affected-state acceptance, not full-scroll
-  parity or provider-backed value. Maximum accessibility sizes remain unverified.
-- Registered scenario/design/doctor preflights and structured verdict validation
-  passed. Capture-health reports no configured Home assertions, not a health
-  PASS. Committed-verdict validation passed all 52 records. No same-persona
-  regressions can be inferred against the scaffolder's unrelated prior Cold run.
-- A first measurement invocation used `npm test` at the workspace root and
-  failed because there is no root `package.json`; the corrected commands above
-  target `travel-app`. This was a command setup error, not a failing product test.
-- The full coordinated `make verify` has not been rerun for app `332e77523`.
-  Required publication verification and delivery therefore remain outstanding.
+- Focused: `python3 scripts/measure_verification.py --label home-context-final-reviewed -- npm --prefix travel-app test -- --runInBand __tests__/components/home-root/HomeRootExperience.connected.test.tsx __tests__/screens/conversation-create.smoke.test.tsx __tests__/utils/rootProjectionNavigation.test.ts`
+  passed 102 tests in 3 suites (8.027s measured wall time). All three Home doors
+  cover edited Send with and without context, no automatic staging, and return.
+  Log: `docs/reliability/runs/home-context-final-reviewed-20260928T070546Z.log`.
+- App gate: `python3 scripts/measure_verification.py --label home-context-final-verify-pr -- npm --prefix travel-app run verify:pr`
+  passed (62.275s), including 185 API-seam tests, production types and lint.
+  Existing 406-error test-type baseline and 162 lint warnings remain; zero lint
+  errors. Log: `docs/reliability/runs/home-context-final-verify-pr-20260928T070547Z.log`.
+- Existing backend owner-grounding regression: measured label
+  `home-context-owner-grounding`, command
+  `env TRAVEL_APP_ROOT=/Users/feihuyan/travel-workspace--home-value-delivery/travel-app AI_MODE=off WEB_SEARCH_MODE=off SKIP_AUTH=true PYTHONPATH=travel-agent travel-agent/.venv/bin/python -m pytest travel-agent/tests/concierge/test_conversation_seed.py -q -m 'not requires_postgres and not requires_api_keys and not requires_dogfood_wedge'`
+  passed 48 tests (3.688s). Offline/mock owner checks, not a fresh HTTP/DB or real
+  provider answer. Log: `docs/reliability/runs/home-context-owner-grounding-20260928T065758Z.log`.
+- Native `home-root` self-reviews:
+  [Plan](../../travel-app/docs/surfaces/home-root/verdicts/20260928T071219Z.json),
+  [Opening](../../travel-app/docs/surfaces/home-root/verdicts/20260928T071320Z.json),
+  [Recovery XXXL](../../travel-app/docs/surfaces/home-root/verdicts/20260928T070438Z.json)
+  passed their bounded assertions, two P2 findings each. Captured with
+  `VESPER_METRO_URL=http://192.168.86.189:53177 node scripts/polish-qa/run-polish-qa.mjs home-root --device='iPhone 16 Pro' --flow=polish/home-root-chat-plan`
+  and the `-opening` / `-recovery` flows. Same iOS 18.2 / Maestro 2.6.1 / mock
+  development client as below. Recovery additionally opens the keyboard, edits
+  part of the draft, then removes context; it does not claim whole-field
+  replacement or a native send. System text was restored to `large` afterward.
+- All five captures, registered refs and comparison indexes were inspected.
+  The refs cover feed viewports, not Chat: this is handoff/doctrine acceptance,
+  not pixel parity or answer quality. Residuals: mismatched context/composer
+  insets; lengthy Plan request; generic Opening source title; dense/ambiguous
+  recovery source wording; scope header leaving view during XXXL keyboard editing.
+  Context removal's overlapping starter prompts were found and fixed.
+- Scenario and committed-verdict checks passed (31 scenarios / 55 records).
+  Health has no configured Home assertions. Earlier native setup failures and
+  stale-input captures were superseded by these actual recaptures, not promoted.
+  An interim unsafe optional-draft access failed types/tests and was corrected
+  before the final gates above. No full coordinated `make verify` rerun or
+  publication yet; required delivery verification remains outstanding.
+
+### Earlier local H1-A reading follow-up — retained bounded evidence
+
+App `332e77523` passed 76 focused tests, the app gate and native
+[Quiet](../../travel-app/docs/surfaces/home-root/verdicts/20260928T062734Z.json),
+[original/read/return](../../travel-app/docs/surfaces/home-root/verdicts/20260928T063615Z.json)
+and [Quiet XXXL](../../travel-app/docs/surfaces/home-root/verdicts/20260928T063801Z.json)
+reviews. Seven captures covered reading clearance, original depth and return;
+each review retained two overlapping source/copy P2 findings. This remains
+mock-native affected-state evidence, not maximum accessibility, Android,
+full-scroll parity or provider-backed value. Backend and API were unchanged.
+Exact commands and measurement records remain in this file at workspace
+`b1d2df4` and the local logs
+`docs/reliability/runs/home-reading-polish-reviewed-20260928T063743Z.log` and
+`docs/reliability/runs/home-reading-verify-pr-reviewed-20260928T063825Z.log`.
+The coordinated gate still predates both local app patches.
 
 ### Published candidate — prior full coordinated gate
 
