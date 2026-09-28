@@ -100,13 +100,17 @@ Local canonical `main` checkouts are not identical to remote main: workspace
 completion from the local branch name. Re-inspect heads, dirty changes and PR
 state before execution; a dated table is not current Git state.
 
-App `d07190235` now delivers immediate private capture completion with Undo,
-optional interpretation and account-bound owner readback. It also fixes stale
-kept receipts after deletion. Backend `dca7c1be6` aligns the canon entrance
-without a runtime change; contribution and Chat rulings are reconciled here.
-Focused tests, app gate, existing real-DB custody checks and the native
-Keep/offline/reconnect/remove flow passed. Native intent remains MIXED because
-the registered reference is unavailable; the six-door composer is not complete.
+App `9640fef0b` adds common private text/photo authoring and add controls on the
+four normal roots, building on `d07190235`'s immediate private receipt/Undo and
+account-bound custody. Keyboard-pinned Keep, immutable retries and draft-lifetime
+guards are implemented. Backend `d71d723df` adds verified-origin and real-DB
+retention/removal regressions; `dca7c1be6` aligns the canon entrance without a
+runtime change. Contribution and Chat rulings are reconciled here. Focused app
+tests, the final app gate (185 seam tests), 13 backend checks including four
+real-DB cases, and a nine-PNG native text flow passed their bounded checks.
+Native intent remains MIXED because the registered reference is unavailable;
+actual camera/library selection, all root states and the six-door composer are
+not certified. Chat Keep/Ask only and broader Send/Share are not implemented.
 The [capture checkpoint and door map](home-value-composition-execution-plan-2026-09-25.md#captureshare-continuation--private-custody-checkpoint-september-28)
 record exact evidence, residuals and implementation order. These commits remain
 local and need the coordinated gate before publication.
@@ -146,13 +150,14 @@ are not the next product increment.
 | --- | --- | --- |
 | 0 — delivery closeout | Current lane owner closes the three published PRs, preserving exact revisions and evidence. Fix the workspace checkout credential through the repository owner; honor already-recorded merge authority without treating blocked checks as green. | Record actual merged heads and branch/worktree disposition. Reuse the lane for follow-on Home work if it remains suitable; do not archive it merely because a PR merged. This administrative gap does not block independent local building. |
 | 1 — H1 checkpoint / retained gaps | Connected implementation and bounded-preview/copy follow-ups are committed. The [assignment](home-value-composition-execution-plan-2026-09-25.md#next-complete-assignment) retains recovery's missing owner-backed comparison, social hierarchy and real recurring-supply uncertainty. | Do not call Home fully accepted. Repair recovery at the existing preparation owner with current option facts/unknowns; do not substitute prettier fixture text. These named residuals do not block independent capture/share foundations. |
-| 2 — active capture/share package | Same coordinated owner continues from the private Keep/Undo receipt and six-door map. Next build common in-app authoring/private choice, then Chat Keep/Ask only and native/server adapters; broader Send/Share needs its relationship/audience owner amendment. | A complete authored item can enter, return immediate value, reach its selected authorized audience, be refound and be corrected/withdrawn. The receipt alone does not complete authored sharing, all six doors, Life refinding or later value. Pending policies remain excluded. |
+| 2 — active capture/share package | Same coordinated owner continues from private Keep/Undo and the new common in-app text/photo composer, reached by root add. Next wire Chat Keep/Ask only and native/server adapters; broader Send/Share needs its relationship/audience owner amendment. | A complete authored item can enter, return immediate value, reach its selected authorized audience, be refound and be corrected/withdrawn. Authoring and its receipt alone do not complete sharing, all six doors, Life refinding or later value. Pending policies remain excluded. |
 | 3 — reassess receiving and later value | At the capture/share checkpoint, choose the next whole-product package against the actual retained/shared material: richer Home/Places receiving, Life continuity, or an accepted preparation gap. | Select from observed code/design gaps and received benefit, not a standing parallel backlog. Do not launch all three automatically. |
 
-**Next execution checkpoint:** build common in-app capture authoring and explicit
-private choice over the existing custody owner, using the six-door implementation
-map. Private receipt/Undo is implemented; common authoring, the global entrance,
-Chat Keep/Ask only and wider audience ownership are not. Source preparation/serving is
+**Next execution checkpoint:** connect deliberate Chat Bring + Ask to the same
+custody owner with visible private Keep/Ask only, preserving ordinary-question
+retention. In-app text/photo authoring, Just me, root add and private receipt/Undo
+are implemented locally; the six-door map records their verification boundaries.
+Chat controls and wider audience ownership are not implemented. Source preparation/serving is
 implemented but real recurring value is unverified; Home recovery has an actual
 presentation/preparation gap, not a missing second generator. Retain those
 distinctions. No new ambient trigger, audience policy or pending R1–R5 rule is

@@ -221,28 +221,29 @@ need their named contract work; Home styling cannot create them.
 
 ### Capture/share continuation — private custody checkpoint, September 28
 
-App `d07190235` delivers immediate private Keep/Undo on the existing capture
-route; backend `dca7c1be6` aligns Thesis/Model with the accepted entrance
+App `9640fef0b` delivers common in-app private text/photo authoring and root add,
+building on `d07190235`'s immediate private receipt/Undo. Backend `d71d723df` adds
+custody tests; `dca7c1be6` aligns Thesis/Model with the accepted entrance
 (documentation only). Workspace contribution §3.2/§9/§12 and Chat ruling 04 are
-reconciled with September 27. This is the first shared custody building block,
-**not the complete composer or full send-time payoff**. Recognition and richer
-return still depend on existing processing; the receipt reports the literal
-original, not an invented personal interpretation. All changes remain local.
+reconciled with September 27. This is a shared authoring/custody building block,
+**not all six doors, broader sharing or full send-time payoff**. Recognition and
+richer return still depend on existing processing; the receipt reports the
+literal original, not an invented personal interpretation. All changes remain local.
 
 **Six-door implementation map** (paths relative to the named child):
 
 | Door | Existing owner / inspected implementation | Remaining accepted work |
 | --- | --- | --- |
 | OS share | App `ios/ShareExtension/ShareViewController.swift` → `components/sharing/ShareIntentHandler.tsx` → `app/share-capture/index.tsx`; Intake Source custody | New receipt removes review-first completion after host entry. Native extension still redirects to the host; in-place authoring, authenticated delivery, retry and completion remain. |
-| Camera/photos | App `hooks/useBringPhotoToEntity.ts`, `components/chat/composerAddCapabilities.ts` and `ComposerBar.tsx`; typed subject and existing source upload | Entity photo capture can reach the receipt. Reuse common authoring/choice semantics across picker and camera; not a separate picker-owned artifact store. Native media capture was not exercised here. |
-| Global add | Inspected app `FloatingTabBar.tsx` plus Home/Places/Life root action components expose navigation, Chat dock, search/history/profile/record controls | No common capture control is wired through those inspected roots. Add a direct, context-preserving entrance to the same authoring component; Chat cannot be compulsory. This is a bounded call-site finding, not proof no add control exists anywhere. |
+| Camera/photos | App `hooks/useCaptureDraft.ts` → existing `data/inboundItems.ts` upload; entity capture shares MIME handling through `utils/intakePhoto.ts` | New in-app composer stages camera/library images and a note before explicit Keep, bounded to 16 and supported formats. Picker denial/cancel, lifecycle and retry have focused coverage; actual native camera/library selection still needs evidence. Entity/Chat adapters have not all converged on this authoring UI. |
+| Global add | Shared app `components/inbound/capture-entry.tsx` → `/share-capture?compose=1` → `capture-composer.tsx` | Normal Home v2, Places, Life and Chat root headers now expose the same entrance alongside their existing controls. Chat is not required. Home loading/error and compatibility coverage, large type, and all root-state visual acceptance remain explicit follow-up scope rather than implied by the normal-root capture. |
 | Chat attachment | App `ComposerBar.tsx` stages photos and passes encoded images/context to its conversation callback; `/share-capture` also has a `from_chat` adapter | Visible private Keep/Ask only and the corresponding durable Source handoff are not implemented. Preserve existing answer-only behavior until controls and owner intent agree; do not apply the new default invisibly. |
 | Existing-object Keep/Send | App `hooks/useSaveEntity.ts` owns place saves; `data/relationshipPlaceHandoffs.ts` owns addressed, place-bound pair delivery; selected originals retain Source ownership | Route authored sharing through the common component while keeping bookmark and Source ownership distinct. The current place-required, single-recipient handoff is not the accepted general person/group/Friends schema. |
 | Email | Backend `backend/api/routes/inbound_email.py` and `backend/inbound/email_forward.py`: authenticated alias/webhook, flag-gated v2 inline intake and provider archive binding | A server adapter exists, not a mobile composer. Reconcile its explicit retention/receipt semantics and replay/failure behavior with the same private contract; forwarding delivery and author-visible payoff are not certified here. |
 
-**Next implementation order:** (1) build common in-app authoring and explicit
-private choice over existing Source custody, including global add and picker;
-(2) wire deliberate Chat Bring + Ask with visible Ask only and unchanged
+**Next implementation order:** common in-app private authoring/root add is now
+implemented; complete its remaining native media/root-state coverage while
+(2) wiring deliberate Chat Bring + Ask with visible Ask only and unchanged
 conversation retention; (3) finish native OS/email adapters against that same
 contract; (4) extend Send/Share only through the named relationship/audience
 owner amendment. Keep broader audiences, friend-material AI use and the pending
@@ -252,46 +253,57 @@ ordinary Life and later value need explicit evidence, not just this receipt.
 
 **Verification:**
 
-- Measured `capture-private-final-connected`: seven focused app suites,
-  **73 passed**, 6.383s. Exact command:
-  `npm --prefix travel-app test -- --runInBand __tests__/screens/share-capture-intake-v2.test.tsx __tests__/screens/share-capture-audio.test.tsx __tests__/utils/api/mockIntakeV2.test.ts __tests__/data/intakeV2Resumability.test.ts __tests__/data/intake-source-removal-lifetime.test.tsx __tests__/data/intakeReadAuthority.test.tsx __tests__/utils/api/httpIntakeEndpoints.test.ts`.
-  An additional older-read cancellation regression then passed with all seven
-  removal tests (`capture-owner-cache-green`, 4.094s); these counts overlap.
-- Measured `capture-private-final-app-gate`:
-  `npm --prefix travel-app run verify:pr` passed, 185 seam tests, 64.773s.
-  This predates only the extra cancellation regression and verdict promotion,
-  not later runtime changes. No wire model or backend runtime changed.
-- Real disposable Postgres: `capture-private-db-migrate` applied migrations;
-  `capture-private-backend` passed **31 tests, no skips**, 3.381s, using
-  `TEST_DATABASE_DISPOSABLE=1`, explicit lane DB
-  `vesper_capture_keep_test_20260928` on port 53173, `AI_MODE=off` and
-  `WEB_SEARCH_MODE=off`. Command suffix:
-  `PYTHONPATH=travel-agent travel-agent/.venv/bin/python -m pytest travel-agent/tests/inbound/test_intake_v2_retention.py travel-agent/tests/core/test_contribution_admission.py travel-agent/tests/api/test_intake_route.py -q`.
-  Three tests exercised actual DB retention/deletion, dependent withdrawal and
-  expiry; the remaining core/route checks have their own mocked boundaries.
-- Native: `VESPER_METRO_URL=http://192.168.86.189:53177 node scripts/polish-qa/run-polish-qa.mjs photo-media-intake --after --flow=polish/photo-media-intake-private-keep`
-  passed all flow assertions and captured three PNGs on the lane iPhone 16 Pro,
-  iOS 18.2, Maestro 2.6.1, existing mock dev client. The normal mock Intake API
-  was used, not a pre-rendered receipt fixture. Keep, offline Undo, reconnect,
-  removal and exact reopening were exercised; no native extension, provider,
-  real-model quality, Android or large-type certification follows.
-- The device failures exposed stale account-scoped custody after deletion.
-  The regression failed before the fix (5 passed/1 failed), then passed after
-  canceling older reads and updating mounted same-owner receipt caches. Initial
-  offline navigation timing was also corrected by waiting for the actual
-  offline banner and completed transition. Failed attempts are not acceptance.
-- [Native self-review](../../travel-app/docs/surfaces/photo-media-intake/verdicts/photo-media-intake-after.json):
-  functional and visual gates pass; overall **MIXED** because the registered
-  companion reference is unavailable (P1 intent evidence), with repeated offline
-  feedback (P2). Comparison generation has no manifest; material-health tooling
-  ran no image assertions. Doctrine, contract and all three PNGs were inspected;
-  this is not independent design acceptance. Scenario and verdict validation pass.
-- Exact measurement logs are under `docs/reliability/runs/`, labeled above.
-  `capture-roadmap-docs` passed `make docs-check` in 6.103s after the canon was
-  consolidated within existing word budgets; no budget exemption was added.
-  The full coordinated `make verify` has not been refreshed for this local
-  tuple and remains required before publication. Home's Urgent P1 and recurring
-  supply uncertainty remain open.
+- Measured `capture-composer-final-owner-regressions`: **170 passed, no skips**,
+  9.394s. Exact command:
+  `npm --prefix travel-app test -- --runInBand --runTestsByPath __tests__/hooks/useCaptureDraft.test.ts __tests__/hooks/useBringPhotoToEntity.test.ts __tests__/components/capture-composer.test.tsx __tests__/components/LifeRootV1Screen.test.tsx __tests__/components/places/PlacesWorkspaceState.test.tsx __tests__/components/HomeRootV2Screen.smoke.test.tsx __tests__/data/intake-capture-text-lifetime.test.tsx __tests__/data/intakeV2Resumability.test.ts __tests__/data/intake-source-removal-lifetime.test.tsx __tests__/data/intakeReadAuthority.test.tsx __tests__/screens/share-capture-intake-v2.test.tsx __tests__/screens/share-capture-audio.test.tsx __tests__/utils/api/mockIntakeV2.test.ts __tests__/utils/api/httpIntakeEndpoints.test.ts`.
+  After the Chat header-order fix, `capture-root-workbench-regressions` passed
+  **23 tests**, 5.867s:
+  `npm --prefix travel-app test -- --runInBand --runTestsByPath __tests__/components/vesper-workbench/VesperWorkbench.test.tsx __tests__/components/capture-composer.test.tsx`.
+  Three tests overlap. These use mocked media/transport except where explicitly
+  testing the real QueryClient cache; they do not prove native photo selection.
+- Measured final-runtime `capture-composer-delivery-app-gate`:
+  `npm --prefix travel-app run verify:pr` passed, **185 seam tests**, 60.427s.
+  Existing lint/test-type ratchets remain; this is not globally clean test
+  TypeScript. No wire model or backend runtime changed.
+- Real disposable Postgres: `capture-composer-real-custody` passed **13 tests,
+  no skips**, 3.474s, including four actual DB retention/removal cases. Command:
+  `env TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:53173/vesper_capture_keep_test_20260928 TEST_DATABASE_DISPOSABLE=1 PYTHONPATH=travel-agent travel-agent/.venv/bin/python -m pytest travel-agent/tests/inbound/test_intake_v2_retention.py travel-agent/tests/core/test_contribution_admission.py -q --run-quarantined`.
+  Explicit quarantined inclusion is recorded, not a hidden skip. Verified
+  paste/camera/library origins and reversible private text custody are covered;
+  this does not exercise a device-to-real-API upload or model interpretation.
+- Native: `VESPER_METRO_URL=http://192.168.86.189:53177 node scripts/polish-qa/run-polish-qa.mjs photo-media-intake --after --flow=polish/photo-media-intake-composer`
+  passed the full flow and produced **nine PNGs** in run `20260928T092938Z-photo-media-intake`.
+  Environment: exclusive iPhone 16 Pro `AF31B886-E837-4962-834A-5CBAD5C306DB`,
+  iOS 18.2, Maestro 2.6.1, existing SDK 55 development client and ordinary mock
+  Intake transport. Home add → authored text → keyboard-open Keep → literal
+  receipt → Undo → exact Removed owner; Places/Life/Chat add; offline Keep with
+  the keyboard open preserves the draft and reports Not sent. The final offline
+  PNG is after the attempt/keyboard blur. Native camera/library selection,
+  extension, real provider/model, Android, large type and all root states remain unverified.
+- Failed capture attempts exposed Keep behind the offline keyboard. A measured
+  scrollable form plus keyboard-sticky footer replaced unreliable mount-time
+  route-offset avoidance. Screenshot review also caught an unpainted Chat plus;
+  header ordering and flow readiness were corrected before the final nine-PNG
+  replay. A malformed picker regression failed (11 passed/1 failed), then
+  passed after rejecting the whole unreadable selection rather than silently
+  dropping a photo. Existing draft material remains intact.
+- Earlier [private receipt evidence](../../travel-app/docs/surfaces/photo-media-intake/verdicts/photo-media-intake-after.json)
+  retains offline Undo/reconnect coverage and the stale-custody repair: cancel
+  older reads and update already-mounted same-owner receipt caches after deletion.
+  These earlier checks do not establish the newer author's keyboard/media behavior.
+- [Final native self-review](../../travel-app/docs/surfaces/photo-media-intake/verdicts/20260928T092938Z.json):
+  six functional assertions and capture/correctness/visual gates pass; overall
+  **MIXED** because the registered companion reference remains unavailable (P1
+  intent evidence), plus excess offline header clearance (P2). All nine PNGs,
+  doctrine and contract were inspected. Comparison/health commands exited 1
+  for the absent reference manifest; no material image assertions ran. Registry
+  validation passed for 31 surfaces; verdict validation passed. This is neither
+  independent design acceptance nor whole-Chat/Home/Life/Places acceptance.
+- Measurements are retained under `docs/reliability/runs/`, with the labels
+  above. `capture-composer-roadmap-docs` passed `make docs-check` in 6.946s.
+  The full coordinated `make verify` has not been refreshed for this
+  local tuple and remains required before publication. Home's Urgent P1 and
+  recurring supply uncertainty remain open.
 
 ### Local bounded-preview and recovery-copy checkpoint — September 28
 
