@@ -174,6 +174,16 @@ build has been restored and production-profile enablement remains rejected.
 Continue with the existing Intake owner and a durable retry journal; do not
 redispatch composer extraction or create another Source/auth service.
 
+App `e5788100f` extracts the resumable binary Source-custody sequence from the
+React data module into one injected-client service, while keeping the app
+facade stable. The focused suite (12/12) and app gate (185 seam tests) pass.
+This removes the service's React/data dependency; it does **not** connect that
+service to the native extension or prove authenticated HTTP. Before journaling,
+wire it to the existing Intake endpoint owner through a narrow extension-safe
+request/upload transport, without copying endpoint paths or importing the
+app-wide HTTP facade. Then continue the existing durable-attempt, owner-readback
+and Undo sequence. Keep stays disabled.
+
 The separate canonical checkout contains concurrent design work and is not the
 execution target. Do not switch it, advance its children, or bring unrelated
 uncommitted design changes into this lane.

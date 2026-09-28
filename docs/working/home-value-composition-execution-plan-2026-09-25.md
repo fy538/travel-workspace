@@ -754,6 +754,42 @@ above. The exact native build used the previously verified Expo 55.0.31 / RN
 0.83.10 toolchain on Xcode 26.5 and `CODE_SIGNING_ALLOWED=NO`; no signed bundle
 was installed or deployed.
 
+### Reusable Intake custody service — September 28
+
+App **`e5788100f`** moves `submitIntakeSourcesWithClient` out of the React data
+hooks into `utils/intakeCaptureService.ts`. The data facade still exports the
+same function and capture types, and `useSubmitIntakeSources` still delegates
+to the same resumable sequence. `types/intakeCapture.ts` is the shared
+type-only boundary; utility preflight no longer imports a type through the data
+layer. The service receives only the three required Intake operations, checks
+the same source limits and lifetime fences, replays the same idempotency key,
+resumes uploaded/verified sources, and preserves server-owned quarantine
+finalization. No API route, payload, backend owner or visible app behavior
+changed.
+
+Measured on workspace `65f4aabd0`, backend `5c54a2d5e`, app **`e5788100f`**:
+
+- `intake-capture-service-focused`,
+  `npm --prefix travel-app test -- --runInBand --runTestsByPath __tests__/data/intakeV2Resumability.test.ts __tests__/data/intakeCaptureFacade.test.ts`:
+  **12 passed, zero skips**, 6.256s. The resumability test imports the pure
+  service directly; the facade test checks the old export is the identical
+  implementation. Its injected API is mocked, so this does not establish real
+  HTTP behavior or extension execution.
+- `intake-capture-service-app-gate`,
+  `npm --prefix travel-app run verify:pr`: **passed**, 62.604s, including 185
+  seam tests. This is not a native build or device test.
+- Logs are recorded under `docs/reliability/runs/` as
+  `intake-capture-service-focused-20260928T135250Z.log` and
+  `intake-capture-service-app-gate-20260928T135259Z.log`.
+
+The extension still does **not** invoke this service. Its client must be wired
+through the existing Intake route owner and a narrowly scoped authenticated
+request/upload transport; do not duplicate route strings or import the app-wide
+HTTP facade. Then persist immutable owner, payload, local bytes and idempotency
+identity before dispatch, reconcile the same attempt after interruption, and
+show the existing current-owner receipt/Undo. Keep remains disabled; the full
+coordinated gate and signed-device acceptance remain outstanding.
+
 ### Local bounded-preview and recovery-copy checkpoint — September 28
 
 Backend `539edb00d`; app `af8a126af`; workspace before this update `5a15198`.
