@@ -542,6 +542,69 @@ App **`fd6418e13`**, backend unchanged at `5c54a2d5e`. Measurements used workspa
   failure remains unresolved. No publication/merge. Final `make docs-check`
   accompanies the roadmap commit; local measurement logs remain ignored.
 
+### Shared in-place capture session — September 28
+
+App **`bc0adbac5`** moves authoring, current-owner readback, private receipt,
+Undo and dismissal into `PrivateCaptureSession`, used by the actual in-app
+composer. The host adapter retains the opaque receipt ID in route parameters
+for resuming without resubmission; source bytes remain outside navigation.
+Optional interpretation opens only on a tap after owner-matched recognition.
+Pending/error reads can check the same item again or close honestly. Account
+round trips end the session. A stale Leave dialog cannot dismiss its replacement.
+Routed and in-place receipts share the existing deletion owner through one
+Undo hook; no Source owner, API contract or retention policy changed.
+
+The composer and its explicit-callback header mount without using a router.
+This is a reusable **UI flow**, not a claim that the provider/HTTP graph is
+extension-safe. No new native package, entitlements, credentials or generated
+Swift were installed/changed. Native item 13 is still unfinished.
+
+The native investigation now has a more precise next sequence:
+
+1. Establish a reproducible minimal extension host on the pinned Expo 55 /
+   React Native 0.83 stack, without mounting maps, billing, voice or the whole
+   root shell. Compile and exercise its shared components before activating it.
+   `expo-share-extension` **5.0.6** was downloaded to a temporary inspection
+   directory, not installed in the app. Its published `src/ui/text.tsx` and
+   `text-input.tsx` both force `allowFontScaling={false}`; the README's suggested
+   helper imports therefore do **not** resolve our accessibility requirement.
+   Its documented compatibility still stops at SDK 54. Do not waive either gap.
+2. Reuse Clerk's real session lifecycle, not a second auth service. Installed
+   Clerk Expo **2.20.0** reads its client cache before native requests and writes
+   refreshed credentials afterward; the current app cache is isolated
+   SecureStore. Shared encrypted storage alone does not settle concurrent
+   refresh, sign-out/account switching or a stale extension's writes. Native
+   hosting and session-sharing integration must be reviewed and verified before
+   claiming authenticated host-closed Keep. No credential was read or exported.
+3. Preserve every native attachment through collection, then persist the exact
+   attempt identity before dispatch so process death/response loss can resume
+   the same owner protocol. Shared temporary files are not retained custody.
+   Prove Keep, current-owner readback, Undo, dismissal and cleanup in the sheet.
+
+These are implementation requirements under the accepted endpoint, not a new
+product-policy decision or a reason to keep host redirection indefinitely.
+Primary upstream references remain in the preceding native-host investigation.
+
+Evidence on workspace `b8ae980`, backend `5c54a2d5e`, and the app patch now
+committed as `bc0adbac5` (local measurement logs under `docs/reliability/runs/`):
+
+- `capture-session-checked-tests`: **123 passed, zero skips**, 5.394s.
+  `npm --prefix travel-app test -- --runInBand --runTestsByPath __tests__/components/private-capture-session.test.tsx __tests__/components/capture-composer.test.tsx __tests__/components/ui/ProductiveHeader.test.tsx __tests__/screens/share-capture-intake-v2.test.tsx __tests__/screens/share-capture-audio.test.tsx __tests__/hooks/useCaptureDraft.test.ts __tests__/data/intake-source-removal-lifetime.test.tsx __tests__/components/sharing/ShareIntentHandler.test.tsx __tests__/data/intake-capture-text-lifetime.test.tsx __tests__/data/intakeV2Resumability.test.ts`.
+  Mocked data/UI seams, including a host whose router hook throws, not an iOS
+  extension or actual Clerk session. Initial iteration exposed a stale reset
+  callback and pre-refactor tests; both were corrected before this run.
+- `capture-session-final-app-gate`: `npm --prefix travel-app run verify:pr`
+  **passed**, 59.535s, including 185 seam tests. This is not a native build.
+- `capture-session-owner-regressions`: **39 passed, zero skips**, 3.668s.
+  `env TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:53173/vesper_capture_keep_test_20260928 TEST_DATABASE_DISPOSABLE=1 PYTHONPATH=travel-agent travel-agent/.venv/bin/python -m pytest travel-agent/tests/inbound/test_intake_v2_retention.py travel-agent/tests/core/test_contribution_admission.py travel-agent/tests/life/test_original_refind_postgres.py -q --run-quarantined`.
+  Existing real-DB retention/refinding plus policy regression; not a new
+  device-to-backend capture run. Backend and generated API remain unchanged.
+- `capture-session-surface-registry`: `npm --prefix travel-app run qa:polish:scenarios`
+  **passed**, 0.135s. CUA rechecked Simulator: Mac still locked. No current native
+  screenshots, large-text verdict or share-sheet completion claim. The preceding
+  full `make verify` catalog-runway failure is unresolved and was not rerun.
+  Documentation checks accompany this checkpoint. No publication or merge.
+
 ### Local bounded-preview and recovery-copy checkpoint — September 28
 
 Backend `539edb00d`; app `af8a126af`; workspace before this update `5a15198`.

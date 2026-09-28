@@ -148,6 +148,15 @@ package must own reproducible extension generation, current-session delivery,
 host-closed operation, retry/readback/Undo and dismissal; do not redispatch the
 finished host composer or add another capture/auth service.
 
+App `bc0adbac5` makes the common capture UI finish in place using the same
+current-owner receipt and Undo, with receipt-ID resumption and explicit optional
+depth. [The session checkpoint](home-value-composition-execution-plan-2026-09-25.md#shared-in-place-capture-session--september-28)
+records 123 focused app tests, the app gate, 39 owner regressions and the refined
+native implementation sequence. This is now used in the main app, not an iOS
+extension completion claim. Minimal native hosting, accessible text, Clerk
+session sharing and process-death retry recovery remain the next package;
+the host-free UI is not proof those boundaries work.
+
 The separate canonical checkout contains concurrent design work and is not the
 execution target. Do not switch it, advance its children, or bring unrelated
 uncommitted design changes into this lane.
