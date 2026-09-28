@@ -397,6 +397,40 @@ ordinary Life and later value need explicit evidence, not just this receipt.
   `photo-cancel-roadmap-docs` ran `make docs-check` on app `8fce18ca1`, backend
   `e8448f75d`, and workspace `dce05c7`: passed in 10.114s; log:
   `docs/reliability/runs/photo-cancel-roadmap-docs-20260928T203835Z.log`.
+- Native photo-draft hierarchy and source-preview follow-up — September 28:
+  app `6eff90e82` reduces the empty note frame from 160 pt to 72 pt and makes
+  the remove affordance visually smaller while preserving an effective 44 pt
+  target. The fresh screenshot showed that a smaller note still led selected
+  media, so `8cc9f8c6f` makes the draft content-adaptive: when media exists,
+  selected originals and add-media actions precede the optional note. The
+  screenshot then exposed a text-bearing library item cropped to fragments;
+  `abadbe457` switches editable image previews to full-frame `contain`. The
+  contract records those rules. App `8f0649bf0` then sets the empty note's
+  multiline resting frame to 52 pt. On that exact app code revision, iPhone 16
+  Pro / iOS 18.2 / Maestro 2.6.1 run `20260928T222054Z-photo-media-intake`
+  captured five full screenshots; all four registered assertions passed. The final
+  `npm run verify:pr` passed (lint warning ratchet 168/169, test-typecheck debt
+  unchanged at 406, parity 185 tests across six suites); the focused composer
+  and accessibility set passed 17 tests across three suites. Scenario registry
+  validation passed (31); `qa:design:check` emitted its expected doctrine-only
+  warning (no manifest/pairs). The verdict is **MIXED**, not a full design
+  acceptance: capture/correctness/visual pass; intent remains unverified (P1
+  `fix-canon`) because the registered companion HTML is absent. The former
+  oversized remove-overlay finding is resolved, as is the note-before-media
+  hierarchy problem, and the 52 pt note is now compact. One P2 remains because
+  text in the text-bearing image preview is thumbnail-sized and there is no
+  full-size open/zoom action before Keep. The mock receipt reads the lead local
+  original and `+ 1 more`, not each original independently. Current
+  tracked verdict/manifest are
+  `travel-app/docs/surfaces/photo-media-intake/verdicts/20260928T222054Z.json`
+  and `.manifest.json`; app evidence/contract commit `a5fc8ae00` records them.
+  Measured `photo-draft-compact-final-docs-check` ran `make docs-check`
+  successfully in 7.756s on workspace `b930e5099`, backend `e8448f75d`, and app
+  `a5fc8ae00`; log:
+  `docs/reliability/runs/photo-draft-compact-final-docs-check-20260928T222558Z.log`.
+  Camera, permission denial, selections above two, per-source original
+  readback, real authenticated upload/readback, large text, other roots,
+  extension, and six-door coverage remain unverified.
 - Earlier [private receipt evidence](../../travel-app/docs/surfaces/photo-media-intake/verdicts/photo-media-intake-after.json)
   retains offline Undo/reconnect coverage and the stale-custody repair: cancel
   older reads and update already-mounted same-owner receipt caches after deletion.

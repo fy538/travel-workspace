@@ -138,6 +138,23 @@ The [capture checkpoint and door map](home-value-composition-execution-plan-2026
 record exact evidence, residuals and implementation order. These commits remain
 local and need the coordinated gate before publication.
 
+The later two-photo refinement supersedes that earlier visual verdict's two P2
+findings. App `6eff90e82` compacted the note and reduced remove-chrome weight;
+`8cc9f8c6f` put selected media before the optional note; `abadbe457` preserved
+the full frame of text-bearing images; `8f0649bf0` compacted the empty note to
+52 pt while keeping it multiline. The iPhone 16 Pro / iOS 18.2 / Maestro 2.6.1
+run `20260928T222054Z-photo-media-intake` captured the final layout and passed
+all four registered interaction assertions. The app `verify:pr` gate passed on
+that code revision, including 185 parity tests across six suites. Its tracked
+verdict at app `a5fc8ae00` is still **MIXED**: the registered design reference
+is absent (intent P1, `fix-canon`), and one P2 remains because text-bearing
+images cannot be opened full-size before Keep. The two former P2s—note
+preceding media and oversized remove overlays—are no longer open. The receipt
+shows the lead original and `+ 1 more`, not independent readback of every source.
+This lane remains local/unpublished; this narrow mock-transport capture does not
+close Camera, denial, large-text, other-root, live-authenticated, extension or
+whole-product acceptance.
+
 The September 28 private-thread continuation connects newly selected Chat photos
 to the same Intake owner, with visible Keep/Ask only and a current-owner
 Open/Undo receipt. The question remains a separate answer-only pending turn.

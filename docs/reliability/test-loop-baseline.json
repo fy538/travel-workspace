@@ -366,5 +366,73 @@
     "wall_time_seconds": 10.114,
     "log_path": "docs/reliability/runs/photo-cancel-roadmap-docs-20260928T203835Z.log",
     "test_counts": null
+  },
+  {
+    "schema_version": 1,
+    "label": "photo-draft-final-docs-check",
+    "command": [
+      "make",
+      "docs-check"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "b930e5099ec5d918002174749f48441c36e4d0f1",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "e8448f75dda2a750428ce9b9a6afd93d93d940dc",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "325648dbb94c39ed48fc595b43810ea0e2facc27",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 7.066,
+    "log_path": "docs/reliability/runs/photo-draft-final-docs-check-20260928T221512Z.log",
+    "test_counts": null
+  },
+  {
+    "schema_version": 1,
+    "label": "photo-draft-compact-final-docs-check",
+    "command": [
+      "make",
+      "docs-check"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "b930e5099ec5d918002174749f48441c36e4d0f1",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "e8448f75dda2a750428ce9b9a6afd93d93d940dc",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "a5fc8ae003f0464df5b532ea4690290f3ff47210",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 7.756,
+    "log_path": "docs/reliability/runs/photo-draft-compact-final-docs-check-20260928T222558Z.log",
+    "test_counts": null
   }
 ]
