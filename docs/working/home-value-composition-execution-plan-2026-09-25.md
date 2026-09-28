@@ -290,14 +290,14 @@ literal original, not an invented personal interpretation. All changes remain lo
 | Door | Existing owner / inspected implementation | Remaining accepted work |
 | --- | --- | --- |
 | OS share | Generated `ios/ShareExtension/ShareViewController.swift` → `components/sharing/ShareIntentHandler.tsx` → common private composer and Intake Source custody | Text/link/file shares now enter an account-bound draft through an opaque navigation key and wait for explicit Keep; all originals/captions and retry identity survive the handoff. Single audio stays on compatibility. The extension still redirects to the host; in-place authenticated delivery, durable recovery and native completion remain. |
-| Camera/photos | App `hooks/useCaptureDraft.ts` → existing `data/inboundItems.ts` upload; entity capture shares MIME handling through `utils/intakePhoto.ts` | New in-app composer stages camera/library images and a note before explicit Keep, bounded to 16 and supported formats. One native iOS Photos-library selection → editable draft → mock private Keep/exact-original receipt → same-owner Undo path is now captured from Home root add. Native Camera, picker cancellation/denial, multiple-image selection, other roots, live authenticated readback, accessibility sizing, and entity/Chat convergence remain open. |
+| Camera/photos | App `hooks/useCaptureDraft.ts` → existing `data/inboundItems.ts` upload; entity capture shares MIME handling through `utils/intakePhoto.ts` | New in-app composer stages camera/library images and a note before explicit Keep, bounded to 16 and supported formats. Native iOS Photos-library paths now cover both one- and two-image selection from Home root add, editable drafts/removal, mock private Keep, lead-original readback and same-owner Undo. Native Camera, picker cancellation/denial, selections above two, individual readback for every image, other roots, live authenticated readback, accessibility sizing, and entity/Chat convergence remain open. |
 | Global add | Shared app `components/inbound/capture-entry.tsx` → `/share-capture?compose=1` → `capture-composer.tsx` | Normal Home v2, Places, Life and Chat root headers now expose the same entrance alongside their existing controls. Chat is not required. Home loading/error and compatibility coverage, large type, and all root-state visual acceptance remain explicit follow-up scope rather than implied by the normal-root capture. |
 | Chat attachment | Existing private threads, Chat landing dock (legacy Vesper Home), and private/private-trip create use `private-capture-composer.tsx` → common Intake custody → answer-only pending Chat turn with exact source refs; pre-thread entry shares `usePrivateCaptureChatEntry` | Visible Keep/Ask only, current-owner Open/Undo, stable source/turn/room retries and contextual handoff are local. The registered existing-thread native mock flow now covers library photo selection, Ask only, Keep, exact-image receipt, Undo and offline draft. Dock/private-create, keyboard/failure/large-type evidence remains. Group rooms and carried references do not silently opt in. |
 | Existing-object Keep/Send | App `hooks/useSaveEntity.ts` owns place saves; `data/relationshipPlaceHandoffs.ts` owns addressed, place-bound pair delivery; selected originals retain Source ownership | Route authored sharing through the common component while keeping bookmark and Source ownership distinct. The current place-required, single-recipient handoff is not the accepted general person/group/Friends schema. |
 | Email | Backend `backend/api/routes/inbound_email.py` and `backend/inbound/email_forward.py`: authenticated alias/webhook, flag-gated v2 inline intake and provider archive binding | New message text now receives private Keep, Source-to-Life handoff, metadata refinding and existing receipt/Undo without interpretation review. Historical retries preserve their policy. Provider envelopes are excluded from human original counts. Local HTTP/Postgres and mobile behavior are covered; real delivery, attachments and native payoff remain unverified. |
 
 **Next implementation order:** common in-app private authoring/root add is now
-implemented; the single-photo native library happy path is evidenced, while
+implemented; native one- and two-photo library happy paths are evidenced, while
 (1) complete its remaining native media/root-state coverage while
 (2) verifying deliberate Chat Bring + Ask across its now-connected private
 entrances (the existing-thread photo path has bounded native mock acceptance;
@@ -360,6 +360,27 @@ ordinary Life and later value need explicit evidence, not just this receipt.
   replay. A malformed picker regression failed (11 passed/1 failed), then
   passed after rejecting the whole unreadable selection rather than silently
   dropping a photo. Existing draft material remains intact.
+- Native shared root-add **two-photo** path: `VESPER_METRO_URL=http://192.168.86.189:53177 node scripts/polish-qa/run-polish-qa.mjs photo-media-intake --device='iPhone 16 Pro' --flow=polish/photo-media-intake-root-photo-multi`
+  completed on the same iPhone 16 Pro / iOS 18.2 / Maestro 2.6.1 / SDK 55
+  development-client environment with the ordinary mock Intake transport.
+  Run `20260928T202625Z-photo-media-intake` contains five full screenshots: the
+  native Photos picker, two selected items, two editable/removable draft tiles,
+  the private receipt and Removed after Undo. All four registered functional
+  assertions passed; scenario registration (31 surfaces), design-ref check and
+  structured verdict validation passed. The committed verdict is **MIXED**:
+  capture/correctness/visual gates pass, intent remains unverified because the
+  registered companion reference is unavailable (P1), and the screenshot
+  retains two P2 refinements—the tall empty optional note field competes with
+  media and large remove tiles cover part of each thumbnail. The receipt proves
+  the exact lead local original and `+ 1 more`, not individual readback of the
+  second original. This is native-picker + mock-custody evidence only; no Camera,
+  larger selection, picker recovery, live authenticated readback, Android,
+  accessibility-size, other-root, extension, or whole-surface acceptance.
+  Evidence: `travel-app/docs/surfaces/photo-media-intake/verdicts/20260928T202625Z.json`
+  and its committed manifest snapshot. Measured `home-value-multiphoto-docs-final`
+  reran `make docs-check` on workspace `2bed1fb`, app `33791bc00`, and backend
+  `e8448f75d`: passed in 7.687s; log:
+  `docs/reliability/runs/home-value-multiphoto-docs-final-20260928T203154Z.log`.
 - Earlier [private receipt evidence](../../travel-app/docs/surfaces/photo-media-intake/verdicts/photo-media-intake-after.json)
   retains offline Undo/reconnect coverage and the stale-custody repair: cancel
   older reads and update already-mounted same-owner receipt caches after deletion.

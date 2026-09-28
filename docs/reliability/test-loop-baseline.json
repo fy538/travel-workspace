@@ -264,5 +264,73 @@
         "wall_time_seconds": 7.48
       }
     }
+  },
+  {
+    "schema_version": 1,
+    "label": "home-value-multiphoto-docs",
+    "command": [
+      "make",
+      "docs-check"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "2bed1fb8e4d07bcca5ee0edb832afcf1f058c7b8",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "e8448f75dda2a750428ce9b9a6afd93d93d940dc",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "33791bc0096eb34ef49a3f0c292a7f65c6404b57",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 7.579,
+    "log_path": "docs/reliability/runs/home-value-multiphoto-docs-20260928T203130Z.log",
+    "test_counts": null
+  },
+  {
+    "schema_version": 1,
+    "label": "home-value-multiphoto-docs-final",
+    "command": [
+      "make",
+      "docs-check"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "2bed1fb8e4d07bcca5ee0edb832afcf1f058c7b8",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "e8448f75dda2a750428ce9b9a6afd93d93d940dc",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "33791bc0096eb34ef49a3f0c292a7f65c6404b57",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 7.687,
+    "log_path": "docs/reliability/runs/home-value-multiphoto-docs-final-20260928T203154Z.log",
+    "test_counts": null
   }
 ]

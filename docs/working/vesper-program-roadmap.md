@@ -114,10 +114,19 @@ selection → editable draft → mock private Keep/exact-original receipt →
 same-owner Undo path through Home root add. Its capture/correctness/visual gates
 pass; the structured verdict remains MIXED because exact companion-reference
 parity is unavailable and it records two small composer visual refinements.
-This proves one iOS library happy path only: Camera, picker recovery, multi-image,
-real authenticated readback, accessibility sizing, all root states and the
-six-door composer remain uncertified. The newer Chat checkpoints below add
-Keep/Ask only across private entrances; broader Send/Share remains incomplete.
+App `33791bc00` adds a separately registered and captured two-photo variant:
+native iOS Photos multi-selection → two editable/removable draft tiles → mock
+private Keep with lead-original readback and `+ 1 more` → same-owner Undo.
+The five-screenshot run `20260928T202625Z-photo-media-intake` completed on iPhone 16
+Pro / iOS 18.2 / Maestro 2.6.1; all four functional assertions and verdict
+validation passed. Its structured verdict is also MIXED: the companion design
+reference remains unavailable (intent P1), and it carries the same two P2
+composer refinements. Combined, these captures establish one- and two-photo
+native iOS library happy paths only. Camera, picker recovery, selections above
+two, individual readback of each selected original, real authenticated
+readback, accessibility sizing, all root states and the six-door composer
+remain uncertified. The newer Chat checkpoints below add Keep/Ask only across
+private entrances; broader Send/Share remains incomplete.
 The [capture checkpoint and door map](home-value-composition-execution-plan-2026-09-25.md#captureshare-continuation--private-custody-checkpoint-september-28)
 record exact evidence, residuals and implementation order. These commits remain
 local and need the coordinated gate before publication.
