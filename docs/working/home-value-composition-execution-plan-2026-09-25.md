@@ -259,16 +259,20 @@ Verification on app `a11d1a061`:
   scenarios). `npm --prefix travel-app run qa:design:check -- life-root` passed
   with one note: the reference asset is an HTML preview, not a common image
   type; there is no external design-canon verification.
-- An exploratory iPhone 16 Pro / iOS 18.2 / Maestro 2.6.1 run reached the Life
-  source row and exact original, but could not re-find Chat's receipt after
-  returning from Life. The run was stopped during retries; **this is not a
-  passing native flow or visual acceptance**. The earlier committed Chat
-  capture remains unchanged.
+- A registered standalone iPhone 16 Pro / iOS 18.2 / Maestro 2.6.1 mock flow
+  now passes end to end: private Chat Keep → Life Time row → exact Intake
+  original → existing owner receipt → Undo Keep → row absent from Life. The
+  first combined attempt could not re-find Chat's receipt after returning from
+  Life, so the passing flow deliberately avoids claiming that Chat-return
+  continuity. Captures are mock-transport evidence, not live authenticated
+  readback or visual acceptance; rich/ordinary/thin Life compositions remain
+  unverified against native design captures.
 
 This closes the data/cache seam for mock presentation and reuses the existing
-live owner projection. It does not prove an authenticated live mobile read,
-native round-trip acceptance, broader Life design parity, or full capture/share
-completion.
+live owner projection. The registered native mock flow verifies Keep, exact
+source opening and owner-authorized removal from Life. It does not prove an
+authenticated live mobile read, Chat-return continuity, broader Life design
+parity, or full capture/share completion.
 
 ### Capture/share continuation — private custody checkpoint, September 28
 
