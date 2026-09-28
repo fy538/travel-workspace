@@ -228,12 +228,18 @@ payload and idempotency identity with supported attachment bytes before dispatch
 reconcile uncertain outcomes through the existing Intake owner after relaunch;
 then use the existing current-owner receipt and Undo inside the extension.
 Exercise Keep/readback/Undo/dismissal with the host app closed before enabling the
-development host. The app-owned Clerk handoff now compiles and is unit-tested,
-but signed-device access, real account switching/expiry and repeated invocation
-remain unverified. Do not infer delivery from a restored account or reopen
-connected private Chat entrances. Keep the unresolved broader-audience owner
-amendment, email provider/attachment gaps, October 12 catalog failure and Home
-recovery comparison visible; none is fixed by this capture checkpoint.
+development host. The app-owned Clerk handoff and a narrow extension-scoped
+authenticated Intake transport now compile and are unit-tested; the extension
+does not invoke the transport yet. Focused transport/resumability tests passed
+39/39 and the app PR gate passed 185/185 seam tests (zero skips) on app commit
+`67c33c8f3`'s working tree; the measurements are recorded in the execution plan.
+These are not signed-device or host-closed runtime acceptance. Signed-device
+access, real account switching/expiry, process-death recovery, owner readback/Undo
+inside the extension and repeated invocation remain unverified. Do not infer
+delivery from a restored account or reopen connected private Chat entrances.
+Keep the unresolved broader-audience owner amendment, email provider/attachment
+gaps, October 12 catalog failure and Home recovery comparison visible; none is
+fixed by this capture checkpoint.
 A locked Mac blocked the
 new visual review, not the independent owner/code work. In-app text/photo
 authoring, Just me, root add and private receipt/Undo are implemented locally;

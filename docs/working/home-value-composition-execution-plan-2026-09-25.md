@@ -782,13 +782,26 @@ Measured on workspace `65f4aabd0`, backend `5c54a2d5e`, app **`e5788100f`**:
   `intake-capture-service-focused-20260928T135250Z.log` and
   `intake-capture-service-app-gate-20260928T135259Z.log`.
 
-The extension still does **not** invoke this service. Its client must be wired
-through the existing Intake route owner and a narrowly scoped authenticated
-request/upload transport; do not duplicate route strings or import the app-wide
-HTTP facade. Then persist immutable owner, payload, local bytes and idempotency
-identity before dispatch, reconcile the same attempt after interruption, and
-show the existing current-owner receipt/Undo. Keep remains disabled; the full
-coordinated gate and signed-device acceptance remain outstanding.
+The extension still does **not** invoke this service or its API client. App
+**`67c33c8f3`** adds a narrow authenticated transport and
+`createCaptureIntakeApi`: the app facade and extension share one Intake v2
+endpoint builder, while the extension supplies its current Clerk account lease
+without importing the app-wide HTTP facade. The app and extension also share
+the pure API base-URL policy. The transport's current-owner fencing, single
+fresh-token retry, error mapping and multipart behavior are covered by
+`capture-authenticated-transport-focused` (**39 passed, zero skips**) and
+`capture-authenticated-transport-app-pr` (**185 seam tests passed, zero skips**).
+Logs are `docs/reliability/runs/capture-authenticated-transport-focused-20260928T140936Z.log`
+and `docs/reliability/runs/capture-authenticated-transport-app-pr-20260928T140956Z.log`.
+The measurements ran on the app working tree based on `796228ee0`, subsequently
+committed as `67c33c8f3`; they do not establish native execution or signed-device
+auth.
+
+Next, connect the existing custody service/client to a protected attempt journal:
+persist immutable owner, payload, local bytes and idempotency identity before
+dispatch, reconcile that same attempt after interruption, and show the existing
+current-owner receipt/Undo inside the extension. Keep remains disabled; the
+full coordinated gate and signed-device acceptance remain outstanding.
 
 ### Local bounded-preview and recovery-copy checkpoint — September 28
 
