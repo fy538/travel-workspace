@@ -139,6 +139,15 @@ coordinated gate **failed** at the world-catalog runway: no Season/Here rows
 cover October 12. Its earlier pass does not certify this tuple; repair the
 catalog through its existing owner before publication, without weakening gates.
 
+App `fd6418e13` connects OS text/link/file handoff to the common private composer:
+account-bound draft, explicit Keep, preserved originals/captions and existing
+receipt/Undo. [Its checkpoint](home-value-composition-execution-plan-2026-09-25.md#os-common-composer-host-adapter--september-28)
+records 94 focused app tests, the app gate and owner regressions. This remains
+a **host-app adapter**, not the accepted in-place OS experience. The next native
+package must own reproducible extension generation, current-session delivery,
+host-closed operation, retry/readback/Undo and dismissal; do not redispatch the
+finished host composer or add another capture/auth service.
+
 The separate canonical checkout contains concurrent design work and is not the
 execution target. Do not switch it, advance its children, or bring unrelated
 uncommitted design changes into this lane.
@@ -174,15 +183,17 @@ are not the next product increment.
 | --- | --- | --- |
 | 0 — delivery closeout | Current lane owner closes the three published PRs, preserving exact revisions and evidence. Fix the workspace checkout credential through the repository owner; honor already-recorded merge authority without treating blocked checks as green. | Record actual merged heads and branch/worktree disposition. Reuse the lane for follow-on Home work if it remains suitable; do not archive it merely because a PR merged. This administrative gap does not block independent local building. |
 | 1 — H1 checkpoint / retained gaps | Connected implementation and bounded-preview/copy follow-ups are committed. The [assignment](home-value-composition-execution-plan-2026-09-25.md#next-complete-assignment) retains recovery's missing owner-backed comparison, social hierarchy and real recurring-supply uncertainty. | Do not call Home fully accepted. Repair recovery at the existing preparation owner with current option facts/unknowns; do not substitute prettier fixture text. These named residuals do not block independent capture/share foundations. |
-| 2 — active capture/share package | Same coordinated owner continues from private Keep/Undo, root-add authoring, private Chat Keep/Ask only and the local email owner path. Implement the native OS adapter; resume native photo/dock/receipt review when the Mac is available. Email delivery/attachment gaps remain explicit. Broader Send/Share needs its relationship/audience owner amendment. | A complete authored item can enter, return immediate value, reach its selected authorized audience, be refound and be corrected/withdrawn. Authoring and its receipt alone do not complete sharing, all six doors, full Life continuity or later value. Pending policies remain excluded. |
+| 2 — active capture/share package | Same coordinated owner continues from private Keep/Undo, root-add authoring, private Chat, local email and OS host-composer handoff. Build the actual in-place native extension using the existing session/Intake owners; resume native photo/dock/receipt review when the Mac is available. Email delivery/attachment gaps remain explicit. Broader Send/Share needs its relationship/audience owner amendment. | A complete authored item can enter, return immediate value, reach its selected authorized audience, be refound and be corrected/withdrawn. Host-app redirection is not in-place OS completion. Authoring and its receipt alone do not complete sharing, all six doors, full Life continuity or later value. Pending policies remain excluded. |
 | 3 — reassess receiving and later value | At the capture/share checkpoint, choose the next whole-product package against the actual retained/shared material: richer Home/Places receiving, Life continuity, or an accepted preparation gap. | Select from observed code/design gaps and received benefit, not a standing parallel backlog. Do not launch all three automatically. |
 
 **Next execution checkpoint:** finish the private Chat door across its actual
 entrances' native photo/recovery states, preserving ordinary-question
 retention. Resolved private threads, the Chat landing dock and private create
 now have the control/owner handoff. Email now has local private Keep/refind/Undo
-coverage. Continue native OS adapter implementation independently of unavailable
-native review; do not rebuild the connected entrances or imply real email delivery.
+coverage; OS text/link/files now use the common host composer. Continue the
+in-place native extension independently of unavailable visual review, establishing
+SDK/session feasibility before changing credentials or native generation.
+Do not rebuild connected entrances or imply real email delivery.
 A locked Mac blocked the
 new visual review, not the independent owner/code work. In-app text/photo
 authoring, Just me, root add and private receipt/Undo are implemented locally;

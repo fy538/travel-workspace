@@ -234,7 +234,7 @@ literal original, not an invented personal interpretation. All changes remain lo
 
 | Door | Existing owner / inspected implementation | Remaining accepted work |
 | --- | --- | --- |
-| OS share | App `ios/ShareExtension/ShareViewController.swift` → `components/sharing/ShareIntentHandler.tsx` → `app/share-capture/index.tsx`; Intake Source custody | New receipt removes review-first completion after host entry. Native extension still redirects to the host; in-place authoring, authenticated delivery, retry and completion remain. |
+| OS share | Generated `ios/ShareExtension/ShareViewController.swift` → `components/sharing/ShareIntentHandler.tsx` → common private composer and Intake Source custody | Text/link/file shares now enter an account-bound draft through an opaque navigation key and wait for explicit Keep; all originals/captions and retry identity survive the handoff. Single audio stays on compatibility. The extension still redirects to the host; in-place authenticated delivery, durable recovery and native completion remain. |
 | Camera/photos | App `hooks/useCaptureDraft.ts` → existing `data/inboundItems.ts` upload; entity capture shares MIME handling through `utils/intakePhoto.ts` | New in-app composer stages camera/library images and a note before explicit Keep, bounded to 16 and supported formats. Picker denial/cancel, lifecycle and retry have focused coverage; actual native camera/library selection still needs evidence. Entity/Chat adapters have not all converged on this authoring UI. |
 | Global add | Shared app `components/inbound/capture-entry.tsx` → `/share-capture?compose=1` → `capture-composer.tsx` | Normal Home v2, Places, Life and Chat root headers now expose the same entrance alongside their existing controls. Chat is not required. Home loading/error and compatibility coverage, large type, and all root-state visual acceptance remain explicit follow-up scope rather than implied by the normal-root capture. |
 | Chat attachment | Existing private threads, Chat landing dock (legacy Vesper Home), and private/private-trip create use `private-capture-composer.tsx` → common Intake custody → answer-only pending Chat turn with exact source refs; pre-thread entry shares `usePrivateCaptureChatEntry` | Visible Keep/Ask only, current-owner Open/Undo, stable source/turn/room retries and contextual handoff are local. Native photo/keyboard/dock/failure evidence is pending. Group rooms and carried references do not silently opt in. |
@@ -477,6 +477,70 @@ Email subject/body search, attachment bytes, real SendGrid delivery, hosted
 archive repair, scheduled Life projection and later generated value are not
 certified by this local Keep/refind/Undo result. Broader Send/Share still requires
 its explicit audience owner amendment.
+
+### OS common-composer host adapter — September 28
+
+Text/link/file shares now enter the existing private composer through an
+account/lifetime-bound in-memory handoff. Only its opaque key enters the route;
+the original text/file paths are not navigation parameters. The composer takes
+over the draft and the handoff is cleared. Account teardown also clears it;
+missing or stale handoffs fail without fabricating successful custody. A link
+and distinct caption are both preserved, unknown MIME is not rewritten as JPEG,
+and unsupported files remain visible/removable before any upload. Explicit
+Keep reuses existing Intake mutation/receipt/Undo and an immutable retry key.
+No new backend owner or wire schema was added. Audio remains on compatibility.
+
+**This is not in-place OS completion.** The accepted endpoint remains a share
+sheet which finishes without opening the main app. Repository inspection found
+that `ios/ShareExtension` is generated/untracked here; `expo-share-intent` 6.1.1
+and the `app.json` plugin own regeneration. Do not patch only the generated
+Swift file. The app's Clerk token cache uses default SecureStore isolation;
+the generated App Group entitlement does not itself share those stored items.
+
+The next native package must choose a reproducible extension host, reuse the
+existing Clerk session and Intake protocol, and prove fresh/expired session,
+sign-out/account change, host-closed upload, lost-response retry, owner readback,
+Undo and dismissal. Do not invent a long-lived alternate capture credential or
+call locally staged bytes “Kept.” A React Native extension could reuse the
+composer, but compatibility, memory and accessible text need investigation
+before adoption. Primary references inspected September 28:
+
+- [Expo SDK 55 SecureStore](https://docs.expo.dev/versions/v55.0.0/sdk/securestore/)
+  exposes an iOS access group; [Apple's keychain guidance](https://developer.apple.com/documentation/security/sharing-access-to-keychain-items-among-a-collection-of-apps)
+  explains isolation and shared-item access. Shared storage still needs a valid
+  session refresh and revocation strategy; it is not an auth implementation.
+- [Clerk native configuration](https://clerk.com/docs/ios/reference/native-mobile/configuration)
+  documents native shared-session options, not compatibility with this pinned
+  Expo SDK/cache. Do not infer an automatic Expo-to-native bridge.
+- [expo-share-extension](https://github.com/MaxAst/expo-share-extension)
+  supports a separate React Native view/entry. Its published compatibility
+  table stops at SDK 54 and it documents a text-scaling issue; neither SDK 55
+  support nor the workaround's accessibility acceptability is established here.
+
+The host adapter is useful implementation progress, not a reason to downgrade
+decision item 13, claim all six doors complete, or postpone the real native work.
+
+App **`fd6418e13`**, backend unchanged at `5c54a2d5e`. Measurements used workspace
+`777abc8` and the corresponding app patch over `7597b84cd`:
+
+- `os-capture-composer-final-tests`: **94 passed, no skips**, 5.660s.
+  `npm --prefix travel-app test -- --runInBand --runTestsByPath __tests__/components/sharing/ShareIntentHandler.test.tsx __tests__/components/capture-composer.test.tsx __tests__/hooks/useCaptureDraft.test.ts __tests__/utils/captureDraftHandoff.test.ts __tests__/utils/accountTeardown.test.ts __tests__/screens/share-capture-intake-v2.test.tsx __tests__/screens/share-capture-audio.test.tsx __tests__/data/intake-capture-text-lifetime.test.tsx __tests__/data/intakeV2Resumability.test.ts`.
+  Strict Mode adoption, account teardown, editable/unsupported drafts, literal
+  text and native provenance, no mount-time upload, exact retries, and audio
+  compatibility. UI/data boundaries are mocked; no actual extension claim.
+- `os-capture-app-final-gate`: `npm --prefix travel-app run verify:pr` **passed**,
+  60.797s, 185 seam tests. An earlier attempt failed on a nonexistent theme
+  alias; the component now uses the existing `surface.cardWarm` token.
+- `os-capture-owner-regressions`: **39 passed, zero skips**, 3.560s.
+  `env TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:53173/vesper_capture_keep_test_20260928 TEST_DATABASE_DISPOSABLE=1 PYTHONPATH=travel-agent travel-agent/.venv/bin/python -m pytest travel-agent/tests/inbound/test_intake_v2_retention.py travel-agent/tests/core/test_contribution_admission.py travel-agent/tests/life/test_original_refind_postgres.py -q --run-quarantined`.
+  Existing owner DB lifecycles plus contribution policy, not a device-to-provider
+  replay. No backend implementation or API schema changed in this checkpoint.
+- `os-capture-surface-registry`: `npm --prefix travel-app run qa:polish:scenarios`
+  **passed**, 0.138s. CUA still reports a locked Mac; no native verdict. The
+  Photo & Media Intake contract retains the needed device states.
+- Full coordinated verification was not rerun; the preceding world-catalog
+  failure remains unresolved. No publication/merge. Final `make docs-check`
+  accompanies the roadmap commit; local measurement logs remain ignored.
 
 ### Local bounded-preview and recovery-copy checkpoint — September 28
 
