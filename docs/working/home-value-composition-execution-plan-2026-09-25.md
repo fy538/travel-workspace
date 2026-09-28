@@ -290,7 +290,7 @@ literal original, not an invented personal interpretation. All changes remain lo
 | Door | Existing owner / inspected implementation | Remaining accepted work |
 | --- | --- | --- |
 | OS share | Generated `ios/ShareExtension/ShareViewController.swift` → `components/sharing/ShareIntentHandler.tsx` → common private composer and Intake Source custody | Text/link/file shares now enter an account-bound draft through an opaque navigation key and wait for explicit Keep; all originals/captions and retry identity survive the handoff. Single audio stays on compatibility. The extension still redirects to the host; in-place authenticated delivery, durable recovery and native completion remain. |
-| Camera/photos | App `hooks/useCaptureDraft.ts` → existing `data/inboundItems.ts` upload; entity capture shares MIME handling through `utils/intakePhoto.ts` | New in-app composer stages camera/library images and a note before explicit Keep, bounded to 16 and supported formats. Native iOS Photos-library paths now cover both one- and two-image selection from Home root add, editable drafts/removal, mock private Keep, lead-original readback and same-owner Undo. Native Camera, picker cancellation/denial, selections above two, individual readback for every image, other roots, live authenticated readback, accessibility sizing, and entity/Chat convergence remain open. |
+| Camera/photos | App `hooks/useCaptureDraft.ts` → existing `data/inboundItems.ts` upload; entity capture shares MIME handling through `utils/intakePhoto.ts` | New in-app composer stages camera/library images and a note before explicit Keep, bounded to 16 and supported formats. Native iOS Photos-library paths now cover one- and two-image selection, editable drafts/removal, and cancellation of a reopened picker without losing an existing draft; all reach mock private Keep, lead-original readback and same-owner Undo. Native Camera, permission-denial recovery, selections above two, individual readback for every image, other roots, live authenticated readback, accessibility sizing, and entity/Chat convergence remain open. |
 | Global add | Shared app `components/inbound/capture-entry.tsx` → `/share-capture?compose=1` → `capture-composer.tsx` | Normal Home v2, Places, Life and Chat root headers now expose the same entrance alongside their existing controls. Chat is not required. Home loading/error and compatibility coverage, large type, and all root-state visual acceptance remain explicit follow-up scope rather than implied by the normal-root capture. |
 | Chat attachment | Existing private threads, Chat landing dock (legacy Vesper Home), and private/private-trip create use `private-capture-composer.tsx` → common Intake custody → answer-only pending Chat turn with exact source refs; pre-thread entry shares `usePrivateCaptureChatEntry` | Visible Keep/Ask only, current-owner Open/Undo, stable source/turn/room retries and contextual handoff are local. The registered existing-thread native mock flow now covers library photo selection, Ask only, Keep, exact-image receipt, Undo and offline draft. Dock/private-create, keyboard/failure/large-type evidence remains. Group rooms and carried references do not silently opt in. |
 | Existing-object Keep/Send | App `hooks/useSaveEntity.ts` owns place saves; `data/relationshipPlaceHandoffs.ts` owns addressed, place-bound pair delivery; selected originals retain Source ownership | Route authored sharing through the common component while keeping bookmark and Source ownership distinct. The current place-required, single-recipient handoff is not the accepted general person/group/Friends schema. |
@@ -381,6 +381,22 @@ ordinary Life and later value need explicit evidence, not just this receipt.
   reran `make docs-check` on workspace `2bed1fb`, app `33791bc00`, and backend
   `e8448f75d`: passed in 7.687s; log:
   `docs/reliability/runs/home-value-multiphoto-docs-final-20260928T203154Z.log`.
+- Native shared root-add **picker-cancellation recovery**: `VESPER_METRO_URL=http://192.168.86.189:53177 node scripts/polish-qa/run-polish-qa.mjs photo-media-intake --device='iPhone 16 Pro' --flow=polish/photo-media-intake-root-photo-cancel`
+  completed on iPhone 16 Pro / iOS 18.2 / Maestro 2.6.1 with the ordinary mock
+  Intake transport. Run `20260928T203504Z-photo-media-intake` has five full
+  screenshots: one selected image, the reopened native picker, the same draft
+  after Cancel, private Keep/readback and Removed after Undo. The four registered
+  assertions pass: native Cancel leaves the original selected and Keep enabled,
+  and the preserved draft can still be kept and undone. The committed verdict is
+  **MIXED** for the same absent companion reference (intent P1) and two recurring
+  P2 composer refinements; no regression appeared against the two-photo capture.
+  This does not prove permission-denial, Camera, larger selection, authenticated
+  readback, extension, Android, accessibility sizing or cross-root behavior.
+  Evidence: `travel-app/docs/surfaces/photo-media-intake/verdicts/20260928T203504Z.json`
+  and its manifest snapshot. App commit: `8fce18ca1`. Measured
+  `photo-cancel-roadmap-docs` ran `make docs-check` on app `8fce18ca1`, backend
+  `e8448f75d`, and workspace `dce05c7`: passed in 10.114s; log:
+  `docs/reliability/runs/photo-cancel-roadmap-docs-20260928T203835Z.log`.
 - Earlier [private receipt evidence](../../travel-app/docs/surfaces/photo-media-intake/verdicts/photo-media-intake-after.json)
   retains offline Undo/reconnect coverage and the stale-custody repair: cancel
   older reads and update already-mounted same-owner receipt caches after deletion.

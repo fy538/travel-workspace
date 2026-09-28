@@ -332,5 +332,39 @@
     "wall_time_seconds": 7.687,
     "log_path": "docs/reliability/runs/home-value-multiphoto-docs-final-20260928T203154Z.log",
     "test_counts": null
+  },
+  {
+    "schema_version": 1,
+    "label": "photo-cancel-roadmap-docs",
+    "command": [
+      "make",
+      "docs-check"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "dce05c70dd7f3a0c165de3b452a71e511907e2b0",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "e8448f75dda2a750428ce9b9a6afd93d93d940dc",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "8fce18ca13a516bb01d827878aae5eced63bf016",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 10.114,
+    "log_path": "docs/reliability/runs/photo-cancel-roadmap-docs-20260928T203835Z.log",
+    "test_counts": null
   }
 ]
