@@ -74,9 +74,14 @@ useful editable Home-to-Chat questions, readable/removable source context and
 draft preservation without starter prompts reappearing. Its 102 focused tests,
 app gate, 48 backend owner-grounding tests and three targeted native reviews
 passed. These bounded reviews retain content/hierarchy residuals; the full
-matrix remains MIXED. Both patches are local, not published or merged, and need
-the coordinated gate before publishing. H1 records exact evidence and remaining
-findings. Backend is clean at the published head.
+matrix remains MIXED. Backend `a8e87e64c` and app `97e0d0ac9` add current commitment
+facts without booking inference, productive state typography, explicit compact-row
+continuation and quieter provenance. They passed 140 backend and 48 focused app
+tests, the app gate, and four bounded native self-reviews including Live XXXL.
+Minor content/hierarchy findings remain. All these follow-ups are local, not
+published or merged, and need the coordinated gate before publishing. H1 records
+exact evidence and remaining findings; do not inherit full acceptance from a
+targeted native pass.
 
 Local canonical `main` checkouts are not identical to remote main: workspace
 `8a14d87` also contains separate design commits and dirty design work; backend
@@ -118,13 +123,13 @@ are not the next product increment.
 | Order | Outcome / accountable owner | Finish condition and next decision |
 | --- | --- | --- |
 | 0 — delivery closeout | Current lane owner closes the three published PRs, preserving exact revisions and evidence. Fix the workspace checkout credential through the repository owner; honor already-recorded merge authority without treating blocked checks as green. | Record actual merged heads and branch/worktree disposition. Reuse the lane for follow-on Home work if it remains suitable; do not archive it merely because a PR merged. This administrative gap does not block independent local building. |
-| 1 — active H1 remainder | Same owner finishes the remaining bounded usefulness/hierarchy work under the [assignment](home-value-composition-execution-plan-2026-09-25.md#next-complete-assignment); reading/navigation/original-door and exact-context Chat patches are committed. Trace and repair the next actual authorized supply gap using existing owners. | Address remaining producer copy and receiving hierarchy, retaining changed-state evidence and explicit preparation/serving limits. Close the connected package or name the specific remaining gap; do not expand H1 into all future content production. |
+| 1 — active H1 remainder | Same owner finishes the remaining bounded usefulness/hierarchy work under the [assignment](home-value-composition-execution-plan-2026-09-25.md#next-complete-assignment); reading, exact-context Chat and practical-state/action patches are committed. Trace and repair the next actual authorized supply gap using existing owners. | Address remaining recovery/Returned copy and receiving hierarchy, retaining changed-state evidence and explicit preparation/serving limits. Close the connected package or name the specific remaining gap; do not expand H1 into all future content production or another full fixture matrix per copy edit. |
 | 2 — next capture/share package | One coordinated owner reconciles the accepted decisions with contribution, Chat and social owners, then implements the common private Keep/Send path. Begin with a contract/door map, not a new universal artifact store. | A complete authored item can enter, return immediate value, reach its selected authorized audience, be refound and be corrected/withdrawn. Door coverage and staged implementation order must be explicit; completing one adapter is not completing all six entrances. Pending policies remain excluded. |
 | 3 — reassess receiving and later value | At the capture/share checkpoint, choose the next whole-product package against the actual retained/shared material: richer Home/Places receiving, Life continuity, or an accepted preparation gap. | Select from observed code/design gaps and received benefit, not a standing parallel backlog. Do not launch all three automatically. |
 
-**Next execution checkpoint:** reading/navigation and exact-context Chat patches
-are complete locally; do not repeat them. Work the remaining producer-copy and
-receiving-hierarchy clusters in H1, and classify the supply gap as
+**Next execution checkpoint:** reading/navigation, exact-context Chat and
+practical-state/action patches are complete locally; do not repeat them. Work the
+remaining recovery/Returned and substantive receiving clusters in H1, and classify the supply gap as
 implemented-but-unverified, a repair in an existing authorized path, or a
 capability requiring a separate decision. Missing
 external access does not justify repeated fixture rehearsals or indefinitely
