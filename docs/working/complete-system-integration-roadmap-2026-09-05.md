@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: coordination / implementation owner
 created: 2026-09-05
-last_verified: 2026-09-27
+last_verified: 2026-09-28
 expires: 2026-10-05
 why_new: Retains shared-system integration obligations and historical references without a competing execution queue.
 depends_on:
@@ -31,9 +31,11 @@ Implement the broken connection at its owning layer. Do not solve a receiving
 gap with a parallel store, feed, generator or authority model.
 
 The recovery baseline is merged; the subsequent Home candidate is published in
-three open PRs at the September 27 checkpoint. Follow the program's exact tuple
-and current lane owner rather than redispatching completed connections from an
-older main. H1's remaining assignment covers useful supply, native hierarchy and
+three open PRs, rechecked September 28. A further native H1-A patch is local and
+uncommitted; it is not part of the published candidate's verification. Follow
+the program's exact tuple and current lane owner rather than redispatching
+completed connections from an older local main. H1's remaining assignment covers
+useful supply, native hierarchy and
 continuation quality, not rebuilding the Source, original, practical and Chat
 paths already connected. Source generation infrastructure and prepared-result
 serving do not by themselves prove recurring useful supply.

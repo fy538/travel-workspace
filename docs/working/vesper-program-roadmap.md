@@ -3,7 +3,7 @@ doc_type: current_status
 status: active
 owner: founder / coordination task
 created: 2026-09-07
-last_verified: 2026-09-27
+last_verified: 2026-09-28
 why_new: Owns the single live cross-lane execution queue, accountable package assignments, and system reassessment without duplicating product or implementation contracts.
 supersedes:
   - current assignments and sequencing in the historical program and Integration roadmaps
@@ -20,7 +20,7 @@ depends_on:
 
 # Vesper program roadmap
 
-## Direction and immediate priority — September 27
+## Direction and immediate priority — September 28
 
 Build the complete product on the connected system already implemented.
 **Finish the remaining Home value and usability work, then implement the accepted
@@ -55,7 +55,9 @@ owns supporting technical guidance, not another schedule.
 ## Inspected baseline and publication state
 
 The recovery work is merged on remote main; the subsequent Home package is
-published but **not merged** at this checkpoint.
+published but **not merged**. Remote branch heads and all three PR states were
+rechecked on September 28; the table below is the published baseline, not a
+claim that the local follow-up has shipped.
 
 | Repository | Merged recovery baseline | Published Home candidate | Open PR |
 | --- | --- | --- | --- |
@@ -64,9 +66,20 @@ published but **not merged** at this checkpoint.
 | App | `43225df35a01295993def384b5958c53ab8f1c8b` (#201) | `551e2a94b1ef58137a2fa7b3e309b245571e7e17` | [#202](https://github.com/fy538/travel-app/pull/202) |
 
 The coordinated `codex/home-value-delivery` lane owns the Home candidate in all
-three independent repositories. This docs rebaseline advances only its workspace
-history beyond the published tuple above. Re-inspect branch heads and PR state
-before further execution; a dated table is not current Git state.
+three independent repositories. Workspace `1f4a9e5` contains the local roadmap
+and accepted-decision rebaseline beyond the published tuple. The app has an
+**uncommitted H1-A follow-up** above `551e2a94b`: reading clearance above the
+floating navigation, quieter provenance, readable comparison rows and a lighter
+original-reader door. Focused checks passed; final native acceptance and package
+publication remain unfinished. H1 records the exact evidence. Backend is clean
+at the published head. Preserve this local work; do not redispatch it as absent
+or count it as merged.
+
+Local canonical `main` checkouts are not identical to remote main: workspace
+`8a14d87` also contains separate design commits and dirty design work; backend
+`fdf789d06` and app `23cff76f4` predate the merged recovery baseline. Do not derive
+completion from the local branch name. Re-inspect heads, dirty changes and PR
+state before execution; a dated table is not current Git state.
 
 The separate canonical checkout contains concurrent design work and is not the
 execution target. Do not switch it, advance its children, or bring unrelated
@@ -79,7 +92,7 @@ uncommitted design changes into this lane.
 | App CI | [Passed on the final app head](https://github.com/fy538/travel-app/actions/runs/36358544184), including tests, types, design/governance and contracts. |
 | Workspace CI | [Failed before product tests](https://github.com/fy538/travel-workspace/actions/runs/36355993401/job/108723720414): private child checkout could not authenticate. Renew/fix `TRAVEL_WORKSPACE_CI_TOKEN` access, then rerun. A configured secret is not proof of usable access. |
 | Merge | All three PRs remain open and review-required; no merge conflict was reported. User authorization to publish/merge is already recorded in the task. Any owner-approved one-off override must be reported with the failed/unrun boundary intact; do not silently change standing protections or label an override a passing check. |
-| Native product quality | Full Home matrix remains MIXED. Targeted Planning and Cold follow-ups passed their bounded assertions, not full-scroll design parity. |
+| Native product quality | Full Home matrix remains MIXED. Targeted Planning and Cold follow-ups passed their bounded assertions, not full-scroll design parity. The newer local H1-A patch does not inherit a full PASS from these older captures or from its passing component checks. |
 
 ## What is already delivered in the candidate
 
@@ -102,9 +115,17 @@ are not the next product increment.
 | Order | Outcome / accountable owner | Finish condition and next decision |
 | --- | --- | --- |
 | 0 — delivery closeout | Current lane owner closes the three published PRs, preserving exact revisions and evidence. Fix the workspace checkout credential through the repository owner; honor already-recorded merge authority without treating blocked checks as green. | Record actual merged heads and branch/worktree disposition. Reuse the lane for follow-on Home work if it remains suitable; do not archive it merely because a PR merged. This administrative gap does not block independent local building. |
-| 1 — active H1 remainder | Same owner finishes Home usefulness, hierarchy and continuation under the [bounded assignment](home-value-composition-execution-plan-2026-09-25.md#next-complete-assignment). Start with the known native defects; trace and repair the next actual authorized supply gap using existing owners. | Changed states are usable and polished; supported preparation/serving works with explicit evidence limits. Review the first working result and close the connected package or name the specific remaining gap. Do not keep H1 open indefinitely by expanding it into all future content production. |
+| 1 — active H1 remainder | Same owner completes the local H1-A follow-up, then finishes the remaining bounded usefulness/hierarchy work under the [assignment](home-value-composition-execution-plan-2026-09-25.md#next-complete-assignment). Trace and repair the next actual authorized supply gap using existing owners. | Review changed states, larger text and original-reader return; commit the coherent patch and record residuals. Supported preparation/serving must have explicit evidence limits. Close the connected package or name the specific remaining gap; do not expand H1 into all future content production. |
 | 2 — next capture/share package | One coordinated owner reconciles the accepted decisions with contribution, Chat and social owners, then implements the common private Keep/Send path. Begin with a contract/door map, not a new universal artifact store. | A complete authored item can enter, return immediate value, reach its selected authorized audience, be refound and be corrected/withdrawn. Door coverage and staged implementation order must be explicit; completing one adapter is not completing all six entrances. Pending policies remain excluded. |
 | 3 — reassess receiving and later value | At the capture/share checkpoint, choose the next whole-product package against the actual retained/shared material: richer Home/Places receiving, Life continuity, or an accepted preparation gap. | Select from observed code/design gaps and received benefit, not a standing parallel backlog. Do not launch all three automatically. |
+
+**Next execution checkpoint:** finish the existing H1-A patch rather than start
+another subsystem. Reconcile native findings against current code, retain
+affected-state evidence, and review/commit the patch. In the same bounded H1
+assignment, classify the supply gap as implemented-but-unverified, a repair in an
+existing authorized path, or a capability requiring a separate decision. Missing
+external access does not justify repeated fixture rehearsals or indefinitely
+postponing capture/share. Keep a specific residual; do not declare it solved.
 
 ### Capture/share package boundaries
 
@@ -173,10 +194,12 @@ it; how much effort remains with the person; did we reuse the right owners; and
 what exact evidence supports the result? Judge progress by finished outcomes,
 rework, blocked time and founder intervention—not agents, commits or doc volume.
 
-Documentation validation for this rebaseline: `make docs-status-sync` refreshed
-the generated inventory count; `make docs-check` passed all documentation gates.
-No product source changed and no full product-suite rerun is claimed for the
-docs-only revision.
+Documentation validation: the September 27 rebaseline refreshed the generated
+inventory with `make docs-status-sync`; this September 28 status update changes
+no registry and passed `make docs-check` for the updated documents. No additional
+product behavior is changed by this update; the separate uncommitted app patch
+and its checks remain explicitly bounded in H1. A docs check does not refresh
+the full coordinated product gate.
 
 ## History, not another queue
 

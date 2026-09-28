@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: codex/home-value-delivery lane
 created: 2026-09-25
-last_verified: 2026-09-27
+last_verified: 2026-09-28
 expires: 2026-10-25
 why_new: Gives one complete Home implementation assignment after separating the program queue from historical receipts; existing design contracts define behavior but not this bounded delivery package.
 depends_on:
@@ -16,8 +16,9 @@ depends_on:
 
 ## Status and intended outcome
 
-The core Home connections are implemented in the published
-`codex/home-value-delivery` candidate. **The remaining assignment is useful
+The core Home connections are implemented in the published, unmerged
+`codex/home-value-delivery` candidate. A further H1-A native patch is local and
+uncommitted as of September 28. **The remaining assignment is useful
 supply and a coherent, polished receiving experience—not rebuilding those
 connections.** The [program roadmap](vesper-program-roadmap.md#inspected-baseline-and-publication-state)
 owns the exact baseline, PR state and current sequencing.
@@ -94,13 +95,13 @@ call a provider or enqueue generation. Keep these boundaries.
 Start here, using the existing full-matrix findings as a backlog, not redoing the
 already-fixed Planning crown.
 
-| Remaining cluster | Required improvement |
+| Cluster | Current implementation and remaining improvement |
 | --- | --- |
-| Obscured value and controls | Dock/orb must not cover geology caveat/provenance, first reading, original-photo action or Carried forward. Resolve shared layout ownership and check larger text. |
-| Reading and social hierarchy | Reduce comparison mini-report density and long Returned introduction; let a human note/original remain legible beside an article. Buttons must not overpower the received contribution. |
+| Obscured value and controls | Local patch uses the shared floating-nav inset to reserve Home's readable viewport, including the compatibility reader, while retaining a continuous paper background. Confirm affected-state native results, original-reader return and larger text before closing; end padding alone was insufficient. |
+| Reading and social hierarchy | Local patch reuses full-width comparison rows and the standard original-reader Door instead of an amber block button for text. Review native density and social salience; the long Returned introduction and note-versus-article hierarchy remain open. The earlier redundant photo-button finding must be checked against current code, not assumed still present. |
 | Planning and continuation | Remove duplicated meeting-point state, clarify the compact row's available action, retain the exact referent in Home-to-Chat labels and useful draft context. Do not transfer basic explanation back to the person. |
 | Live, recovery and possibility | Remove repeated dinner/cancellation copy; distinguish a proposal from a confirmed commitment; provide the concrete supported place/alternative rather than vague continuation. |
-| Sources and quiet endings | Do not expose internal projection/freshness jargon as provenance. Make the primary Place continuation clear without an equal-weight Why this control; replace cryptic closing copy. |
+| Sources and quiet endings | Local patch omits the default “current” suffix, retains live/stale/unknown qualifications, and simplifies the close. Native acceptance is still required. Primary Place continuation versus an equal-weight Why this control remains open. |
 
 The full [September 27 matrix](../../travel-app/docs/surfaces/home-root/verdicts/20260927T180109Z.json)
 was MIXED with one P1 and 23 P2 findings. The
@@ -115,6 +116,12 @@ Finish includes affected-state native captures against the stated reference,
 focused behavior tests and an honest remaining-findings list. A wording change
 can be small; dock/return fixes must cover affected destinations and larger text.
 No need to recapture unrelated states for each edit.
+
+The next completion checkpoint is the existing patch, not a new visual system:
+review its affected states and responsive behavior, correct findings, then commit
+the coherent app change. Keep the remaining clusters above explicit. Do not call
+all of H1-A complete from this first subset or let its native work expand into
+an unbounded redesign.
 
 ### H1-B — Deliver useful supported supply, not more synthetic richness
 
@@ -185,6 +192,34 @@ need their named contract work; Home styling cannot create them.
 
 ## Latest verification evidence
 
+### Local H1-A follow-up — September 28, not published
+
+Recorded against workspace `1f4a9e5`, backend `c50b2286e` and app `551e2a94b`
+plus its dirty ten-file native/test/contract patch. No backend, API, grants or
+Chat behavior changed in this follow-up. These results do not cover later edits.
+
+- Focused checks: 6 suites / 75 tests passed in 6.947 seconds, measured with
+  `python3 scripts/measure_verification.py --label home-reading-polish-final -- npm --prefix travel-app test -- --runInBand __tests__/components/HomeRootV2Screen.smoke.test.tsx __tests__/components/HomeRootScreen.smoke.test.tsx __tests__/components/RootCompositionRenderer.test.tsx __tests__/components/RootCompositionAnatomy.test.ts __tests__/screens/original-delivery.test.tsx __tests__/components/home-root/HomeRootExperience.connected.test.tsx`.
+  Log: `docs/reliability/runs/home-reading-polish-final-20260928T062807Z.log`.
+- App gate: `python3 scripts/measure_verification.py --label home-reading-verify-pr-final -- npm --prefix travel-app run verify:pr`
+  passed in 63.436 seconds, including 185 API-seam tests and production typecheck.
+  Existing test-type debt remains 406 errors; lint reports 162 warnings, zero errors.
+  Log: `docs/reliability/runs/home-reading-verify-pr-final-20260928T062814Z.log`.
+- Native fixture capture: registered Quiet run
+  `20260928T062734Z-home-root` completed its flow and both captures after the
+  background correction. Earlier social-original run
+  `20260928T062608Z-home-root` completed open/read/return before that final
+  correction. These are local `.maestro/runs/` outputs, **not new committed visual
+  verdicts**. Final image review, corrected social capture and native larger-text
+  coverage remain unverified. No full matrix or full-scroll parity claim follows.
+- A first measurement invocation used `npm test` at the workspace root and
+  failed because there is no root `package.json`; the corrected commands above
+  target `travel-app`. This was a command setup error, not a failing product test.
+- The full coordinated `make verify` has not been rerun for the dirty app patch.
+  Required publication verification and delivery therefore remain outstanding.
+
+### Published candidate — prior full coordinated gate
+
 The full coordinated gate passed before this docs rebaseline on workspace
 `a73e9d2348c07b398a91a4aee3733cfca4485252`, backend
 `c50b2286e9fcb477d015d7df20bcfdcce791f8b6`, app
@@ -208,6 +243,7 @@ The command published branches, not main.
 
 Historical exact commands, temporary runtime details and per-slice native/DB
 boundaries remain in the [archived receipts](../archive/home-value-composition-history-through-2026-09-27.md).
-This docs-only rebaseline passed `make docs-check` after `make docs-status-sync`;
-it does not refresh product/runtime evidence or rerun those full suites. Future behavior
-changes use focused checks during iteration and `make verify` before publication.
+The September 27 docs-only rebaseline passed `make docs-check` after
+`make docs-status-sync`; the September 28 status correction also passed
+`make docs-check` and does not rerun those full suites. Behavior changes use focused
+checks during iteration and `make verify` before publication.
