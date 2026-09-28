@@ -694,12 +694,65 @@ below ran through `scripts/measure_verification.py`; logs are local under
   in 7.882s. This updates the existing package and program, not another roadmap
   or a new product policy.
 
-**Next:** connect Clerk's real session with encrypted shared-cache lifecycle and
-account invalidation reviewed before activation; persist owner/payload/idempotency
-identity before dispatch, retaining exact retry identity across process death;
-then reuse current-owner receipt/Undo and exercise Keep/readback/Undo/close with
-the host app closed. Do not redispatch shared composer extraction or build another
+**Next:** persist an account-bound capture attempt and supported attachment bytes
+before any Intake request can dispatch; after interruption, reconcile that exact
+idempotency key through the existing Intake owner, then show its current-owner
+receipt and Undo inside the sheet. Keep stays disabled until that path and a
+signed-device run work together. Do not rebuild the composer or create a second
 Source/auth service. Item 13 and the full six-door endpoint remain incomplete.
+
+### Development-only Clerk account handoff — September 28
+
+App **`9424daf82`** connects the opt-in extension to the app's actual Clerk
+identity without granting it capture delivery. The app alone writes an atomic
+Keychain snapshot containing Clerk's persistent client credential, user/session,
+publishable-key installation and generation. Its `WhenUnlockedThisDeviceOnly`
+access group is added to the app and existing share extension only when the
+development host is enabled. Ordinary builds and Expo Go have no enabled store;
+the extension cannot write or rebind the snapshot. Sign-out and expiry revoke
+the generation before completion, while account teardown still clears the other
+caches after a revocation error.
+
+The extension lazily loads the pinned Clerk Expo **2.20.0** singleton through a
+narrow exported entry, uses an isolated in-memory refresh cache, and checks the
+same user, session and generation at each token boundary. The SDK's own request
+and refresh implementation remains the owner. The focused suite contains
+**44 passing tests** across the session publisher, token-cache bridge,
+fixed extension lease, account checks, app teardown and host states. They mock
+Clerk/native storage and do not read a real credential. An inspected real-mode
+bundle contains 1,098 modules including the pinned Clerk singleton and excludes
+Router, UserContext, API facade, mock domain data, telemetry, maps, browser and
+biometric UI.
+
+Evidence on app `9424daf82`, workspace `b8f6567`, backend `5c54a2d5e`:
+
+- `capture-account-final-app-gate`: `npm --prefix travel-app run verify:pr`
+  passed in 61.891s, including 185 seam tests; the existing lint and test-type
+  baselines were not reset. `capture-account-reviewed-regressions` passed 44/44
+  focused tests with zero skips, including error containment and teardown.
+- `capture-account-native-build`: the opt-in `ShareExtension` simulator build
+  compiled both architectures and the enclosing app. `capture-account-real-mode-bundle`
+  confirmed the narrow Clerk graph. These establish compilation and dependency
+  shape, not signing, installation, memory or authenticated runtime behavior.
+- `capture-session-native-config` passed ten generator tests and opt-in prebuild/
+  pod integration. `capture-account-default-restored` passed; generated default
+  app/extension plists and entitlements have no capture Keychain group, and the
+  Xcode project has no capture target references or dangling build entries.
+  `capture-account-patches` and `capture-account-config-and-patch-review` passed;
+  the four SDK patches apply to the installed tree and the Clerk patch reverse-
+  applies. Fresh dependency installation was not run.
+- The extension never received delivery in this checkpoint; Keep remains disabled
+  and the production-profile guard remains closed. Signed-device Keychain access,
+  real Clerk refresh/sign-out/account switching, repeated invocations, process
+  interruption, owner readback and Undo remain unverified. The Mac simulator was
+  unavailable for native visual review. Full `make verify` remains failed at the
+  world-catalog Season/Here runway for October 12; that independent failure must
+  be repaired by its owner before publication.
+
+Local measurement logs are recorded under `docs/reliability/runs/` with labels
+above. The exact native build used the previously verified Expo 55.0.31 / RN
+0.83.10 toolchain on Xcode 26.5 and `CODE_SIGNING_ALLOWED=NO`; no signed bundle
+was installed or deployed.
 
 ### Local bounded-preview and recovery-copy checkpoint — September 28
 

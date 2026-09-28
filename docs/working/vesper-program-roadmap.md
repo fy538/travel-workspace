@@ -153,21 +153,25 @@ current-owner receipt and Undo, with receipt-ID resumption and explicit optional
 depth. [The session checkpoint](home-value-composition-execution-plan-2026-09-25.md#shared-in-place-capture-session--september-28)
 records 123 focused app tests, the app gate, 39 owner regressions and the refined
 native implementation sequence. This is now used in the main app, not an iOS
-extension completion claim. Minimal native hosting, accessible text, Clerk
-session sharing and process-death retry recovery remain the next package;
-the host-free UI is not proof those boundaries work.
+extension completion claim. The native host and shared authoring are implemented;
+its account snapshot is an experimental follow-up below. Neither host-free UI nor
+a simulator compile proves signed-device authentication or complete delivery.
 
 App `95bc70d14` advances `6243f85f5`'s opt-in native host to the **same editable
 composer**, with bounded Expo/native providers and accessible text-scaling props.
-`fb559640a` repairs duplicate generated source references. Native simulator builds,
-70 focused UI tests, the app gate, 13 configuration/boundary tests and nine
-Foundation scenarios passed their stated scopes; the
-[native checkpoint](home-value-composition-execution-plan-2026-09-25.md#reproducible-native-capture-host-checkpoint--september-28)
-owns exact commands and boundaries. **Authenticated Keep, durable retry recovery
-and native receipt/Undo are not connected**; Keep is disabled, production-profile
-enablement is rejected, and the default host-app adapter was restored. Continue
-with Clerk session sharing/account invalidation, pre-dispatch attempt identity
-and the existing receipt owner before device acceptance/activation. Do not
+`fb559640a` repairs duplicate generated source references. App `9424daf82`
+connects an app-owned Clerk session snapshot and read-only extension restore,
+including generation fencing on account changes and teardown. The opt-in
+simulator build, app gate (185 seam tests), 44 focused session/host regressions,
+10 native configuration tests and inspected real-mode dependency bundle passed
+their measured scopes. The
+[native and account checkpoints](home-value-composition-execution-plan-2026-09-25.md#development-only-clerk-account-handoff--september-28)
+record exact commands and limits. This is an experimental account bootstrap:
+signed-device Keychain access and real Clerk lifecycle are unverified. **Keep
+remains disabled**; pre-dispatch durable attempt recovery, actual Intake delivery,
+current-owner readback/Undo and native acceptance are unfinished. The default
+build has been restored and production-profile enablement remains rejected.
+Continue with the existing Intake owner and a durable retry journal; do not
 redispatch composer extraction or create another Source/auth service.
 
 The separate canonical checkout contains concurrent design work and is not the
@@ -208,16 +212,18 @@ are not the next product increment.
 | 2 — active capture/share package | Same coordinated owner continues from private Keep/Undo, root-add authoring, private Chat, local email and OS host-composer handoff. Build the actual in-place native extension using the existing session/Intake owners; resume native photo/dock/receipt review when the Mac is available. Email delivery/attachment gaps remain explicit. Broader Send/Share needs its relationship/audience owner amendment. | A complete authored item can enter, return immediate value, reach its selected authorized audience, be refound and be corrected/withdrawn. Host-app redirection is not in-place OS completion. Authoring and its receipt alone do not complete sharing, all six doors, full Life continuity or later value. Pending policies remain excluded. |
 | 3 — reassess receiving and later value | At the capture/share checkpoint, choose the next whole-product package against the actual retained/shared material: richer Home/Places receiving, Life continuity, or an accepted preparation gap. | Select from observed code/design gaps and received benefit, not a standing parallel backlog. Do not launch all three automatically. |
 
-**Next execution checkpoint:** finish the private Chat door across its actual
-entrances' native photo/recovery states, preserving ordinary-question
-retention. Resolved private threads, the Chat landing dock and private create
-now have the control/owner handoff. Email now has local private Keep/refind/Undo
-coverage; OS text/link/files now use the common host composer. Continue the
-in-place native extension independently of unavailable visual review. Its shared
-UI and bounded SDK graph now compile; real session sharing and durable delivery
-remain next, not another composer or hosting investigation. Credential lifecycle
-must be reviewed before activation, and native compilation is not launch evidence.
-Do not rebuild connected entrances or imply real email delivery.
+**Next execution checkpoint:** implement the protected pre-dispatch journal and
+resume protocol for the in-place native extension. Persist the immutable owner,
+payload and idempotency identity with supported attachment bytes before dispatch;
+reconcile uncertain outcomes through the existing Intake owner after relaunch;
+then use the existing current-owner receipt and Undo inside the extension.
+Exercise Keep/readback/Undo/dismissal with the host app closed before enabling the
+development host. The app-owned Clerk handoff now compiles and is unit-tested,
+but signed-device access, real account switching/expiry and repeated invocation
+remain unverified. Do not infer delivery from a restored account or reopen
+connected private Chat entrances. Keep the unresolved broader-audience owner
+amendment, email provider/attachment gaps, October 12 catalog failure and Home
+recovery comparison visible; none is fixed by this capture checkpoint.
 A locked Mac blocked the
 new visual review, not the independent owner/code work. In-app text/photo
 authoring, Just me, root add and private receipt/Undo are implemented locally;
