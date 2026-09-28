@@ -109,9 +109,15 @@ runtime change. Contribution and Chat rulings are reconciled here. Focused app
 tests, the final app gate (185 seam tests), 13 backend checks including four
 real-DB cases, and a nine-PNG native text flow passed their bounded checks.
 Native intent remains MIXED because the registered reference is unavailable;
-camera/library selection through the shared root-add composer, all root states
-and the six-door composer are not certified. The newer Chat checkpoints below add Keep/Ask only across the
-private entrances; broader Send/Share remains incomplete.
+app `c27923302` now adds a six-frame iPhone 16 Pro native Photos-library
+selection → editable draft → mock private Keep/exact-original receipt →
+same-owner Undo path through Home root add. Its capture/correctness/visual gates
+pass; the structured verdict remains MIXED because exact companion-reference
+parity is unavailable and it records two small composer visual refinements.
+This proves one iOS library happy path only: Camera, picker recovery, multi-image,
+real authenticated readback, accessibility sizing, all root states and the
+six-door composer remain uncertified. The newer Chat checkpoints below add
+Keep/Ask only across private entrances; broader Send/Share remains incomplete.
 The [capture checkpoint and door map](home-value-composition-execution-plan-2026-09-25.md#captureshare-continuation--private-custody-checkpoint-september-28)
 record exact evidence, residuals and implementation order. These commits remain
 local and need the coordinated gate before publication.
