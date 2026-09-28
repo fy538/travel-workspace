@@ -109,8 +109,8 @@ runtime change. Contribution and Chat rulings are reconciled here. Focused app
 tests, the final app gate (185 seam tests), 13 backend checks including four
 real-DB cases, and a nine-PNG native text flow passed their bounded checks.
 Native intent remains MIXED because the registered reference is unavailable;
-actual camera/library selection, all root states and the six-door composer are
-not certified. The newer Chat checkpoints below add Keep/Ask only across the
+camera/library selection through the shared root-add composer, all root states
+and the six-door composer are not certified. The newer Chat checkpoints below add Keep/Ask only across the
 private entrances; broader Send/Share remains incomplete.
 The [capture checkpoint and door map](home-value-composition-execution-plan-2026-09-25.md#captureshare-continuation--private-custody-checkpoint-september-28)
 record exact evidence, residuals and implementation order. These commits remain
@@ -122,8 +122,9 @@ Open/Undo receipt. The question remains a separate answer-only pending turn.
 Group/unresolved audience, carried references and ordinary questions do not
 receive a new retention default. Scope, retry, source removal and typed owner
 checks are recorded in the [Chat checkpoint](home-value-composition-execution-plan-2026-09-25.md#private-chat-bring--ask-checkpoint--september-28).
-This is local implementation, not native acceptance or completion of the six-door
-composer. App `8a1337d62` now connects the Chat landing dock
+The new private-photo flow now has bounded native mock-transport acceptance and
+shows the exact original before Undo; real authenticated mobile readback and
+the complete six-door composer remain unverified. App `8a1337d62` now connects the Chat landing dock
 (legacy Vesper Home) and private/private-trip create through the same source
 owner and durable pending-turn path, including idempotent room creation,
 context preservation and destination Open/Undo. Native acceptance is still open;
@@ -194,6 +195,18 @@ unverified device boundary are in the linked native capture checkpoint.
 Do not copy endpoint paths or import the app-wide HTTP facade. Keep stays
 disabled by default until signed-device acceptance is proven.
 
+App `ce8649e68` closes the private image-readback gap in the in-app capture
+path: verified Chat Keep now previews the exact selected photo, and Life's
+original reader shares the same owner-scoped media resolver. Mock readback
+checks current persona custody and clears the local URI on Undo; both readers
+fence account/source-stale results, including A → signed out → A. Seven focused
+suites (112 tests), app `verify:pr` (185 parity tests), four backend media-route
+tests and the registered native mock Chat flow passed. The native flow used a
+real simulator library selection but not the live mobile/API transport. The
+[H1 receipt](home-value-composition-execution-plan-2026-09-25.md#private-photo-original-readback--september-28)
+has exact commands and limits. This does not resolve extension signing, real
+Clerk/mobile media readback, all six doors or broader sharing policy.
+
 The separate canonical checkout contains concurrent design work and is not the
 execution target. Do not switch it, advance its children, or bring unrelated
 uncommitted design changes into this lane.
@@ -229,7 +242,7 @@ are not the next product increment.
 | --- | --- | --- |
 | 0 — delivery closeout | Current lane owner closes the three published PRs, preserving exact revisions and evidence. Fix the workspace checkout credential through the repository owner; honor already-recorded merge authority without treating blocked checks as green. | Record actual merged heads and branch/worktree disposition. Reuse the lane for follow-on Home work if it remains suitable; do not archive it merely because a PR merged. This administrative gap does not block independent local building. |
 | 1 — H1 checkpoint / retained gaps | Connected implementation and bounded-preview/copy follow-ups are committed. App `932abe25a` closes the Urgent action's divergent Chat route by reusing the same review-first, editable, owner-seeded handoff as the recovery source door. The [assignment](home-value-composition-execution-plan-2026-09-25.md#next-complete-assignment) retains the missing owner-backed option comparison, social hierarchy and real recurring-supply uncertainty. Code inspection finds `ProjectedCommitment` and its Chat seed expose current subject/state/time only; no current recovery-option provider is wired to Home. | Do not call Home fully accepted. First identify the canonical owner for current, authorized recovery options and unknowns—or refine the comparison promise if no such owner exists. Do not fabricate facts or substitute prettier fixture text. These named residuals do not block independent capture/share foundations. |
-| 2 — active capture/share package | Same coordinated owner continues from private Keep/Undo, root-add authoring, private Chat, local email and OS host-composer handoff. The in-place native extension implements the existing Intake path, protected retry journal and owner receipt/Undo behind a development-only opt-in; simulator compilation passes, but signature inspection found ad-hoc app/extension bundles with no signed entitlements. The Xcode project team (`QNZ5K23A74`) differs from the only valid local development identity (`J6ZKHAT2H7`). Next: establish a matching signing/provisioning setup that includes App Group/Keychain entitlements, then use an isolated target for real Clerk and owner-backed acceptance. The lane API starts with model/search disabled, LLM background loops disabled, and Clerk JWKS/issuer verification configured; health 200 is startup evidence only. Email delivery/attachment gaps remain explicit. Broader Send/Share still needs its relationship/audience owner amendment. | A complete authored item can enter, return immediate value, reach its selected authorized audience, be refound and be corrected/withdrawn. Host-app redirection is not in-place OS completion. Authoring, simulator compilation and API health alone do not complete sharing, all six doors, full Life continuity or later value. Pending policies remain excluded. |
+| 2 — active capture/share package | Same coordinated owner continues from private Keep/Undo, root-add authoring, private Chat, local email and OS host-composer handoff. App `ce8649e68` adds exact private-photo readback on the Chat receipt and through Life's shared owner-scoped resolver; native mock-flow and owner-route tests pass, but mobile live-route/Clerk readback is not proven. The in-place native extension implements the existing Intake path, protected retry journal and owner receipt/Undo behind a development-only opt-in; simulator compilation passes, but signature inspection found ad-hoc app/extension bundles with no signed entitlements. The Xcode project team (`QNZ5K23A74`) differs from the only valid local development identity (`J6ZKHAT2H7`). Next: establish matching signing/provisioning with App Group/Keychain entitlements, then use an isolated target for real Clerk and owner-backed acceptance. The lane API starts with model/search disabled, LLM background loops disabled, and Clerk JWKS/issuer verification configured; health 200 is startup evidence only. Email delivery/attachment gaps remain explicit. Broader Send/Share still needs its relationship/audience owner amendment. | A complete authored item can enter, return immediate value, reach its selected authorized audience, be refound and be corrected/withdrawn. Host-app redirection is not in-place OS completion. Authoring, simulator compilation and API health alone do not complete sharing, all six doors, full Life continuity or later value. Pending policies remain excluded. |
 | 3 — reassess receiving and later value | At the capture/share checkpoint, choose the next whole-product package against the actual retained/shared material: richer Home/Places receiving, Life continuity, or an accepted preparation gap. | Select from observed code/design gaps and received benefit, not a standing parallel backlog. Do not launch all three automatically. |
 
 **Next execution checkpoint:** first resolve the signing prerequisite for app

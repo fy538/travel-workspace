@@ -244,14 +244,15 @@ literal original, not an invented personal interpretation. All changes remain lo
 | OS share | Generated `ios/ShareExtension/ShareViewController.swift` → `components/sharing/ShareIntentHandler.tsx` → common private composer and Intake Source custody | Text/link/file shares now enter an account-bound draft through an opaque navigation key and wait for explicit Keep; all originals/captions and retry identity survive the handoff. Single audio stays on compatibility. The extension still redirects to the host; in-place authenticated delivery, durable recovery and native completion remain. |
 | Camera/photos | App `hooks/useCaptureDraft.ts` → existing `data/inboundItems.ts` upload; entity capture shares MIME handling through `utils/intakePhoto.ts` | New in-app composer stages camera/library images and a note before explicit Keep, bounded to 16 and supported formats. Picker denial/cancel, lifecycle and retry have focused coverage; actual native camera/library selection still needs evidence. Entity/Chat adapters have not all converged on this authoring UI. |
 | Global add | Shared app `components/inbound/capture-entry.tsx` → `/share-capture?compose=1` → `capture-composer.tsx` | Normal Home v2, Places, Life and Chat root headers now expose the same entrance alongside their existing controls. Chat is not required. Home loading/error and compatibility coverage, large type, and all root-state visual acceptance remain explicit follow-up scope rather than implied by the normal-root capture. |
-| Chat attachment | Existing private threads, Chat landing dock (legacy Vesper Home), and private/private-trip create use `private-capture-composer.tsx` → common Intake custody → answer-only pending Chat turn with exact source refs; pre-thread entry shares `usePrivateCaptureChatEntry` | Visible Keep/Ask only, current-owner Open/Undo, stable source/turn/room retries and contextual handoff are local. Native photo/keyboard/dock/failure evidence is pending. Group rooms and carried references do not silently opt in. |
+| Chat attachment | Existing private threads, Chat landing dock (legacy Vesper Home), and private/private-trip create use `private-capture-composer.tsx` → common Intake custody → answer-only pending Chat turn with exact source refs; pre-thread entry shares `usePrivateCaptureChatEntry` | Visible Keep/Ask only, current-owner Open/Undo, stable source/turn/room retries and contextual handoff are local. The registered existing-thread native mock flow now covers library photo selection, Ask only, Keep, exact-image receipt, Undo and offline draft. Dock/private-create, keyboard/failure/large-type evidence remains. Group rooms and carried references do not silently opt in. |
 | Existing-object Keep/Send | App `hooks/useSaveEntity.ts` owns place saves; `data/relationshipPlaceHandoffs.ts` owns addressed, place-bound pair delivery; selected originals retain Source ownership | Route authored sharing through the common component while keeping bookmark and Source ownership distinct. The current place-required, single-recipient handoff is not the accepted general person/group/Friends schema. |
 | Email | Backend `backend/api/routes/inbound_email.py` and `backend/inbound/email_forward.py`: authenticated alias/webhook, flag-gated v2 inline intake and provider archive binding | New message text now receives private Keep, Source-to-Life handoff, metadata refinding and existing receipt/Undo without interpretation review. Historical retries preserve their policy. Provider envelopes are excluded from human original counts. Local HTTP/Postgres and mobile behavior are covered; real delivery, attachments and native payoff remain unverified. |
 
 **Next implementation order:** common in-app private authoring/root add is now
 implemented; (1) complete its remaining native media/root-state coverage while
 (2) verifying deliberate Chat Bring + Ask across its now-connected private
-entrances (native acceptance remains) with unchanged
+entrances (the existing-thread photo path has bounded native mock acceptance;
+dock/private-create, failure and large-type acceptance remain) with unchanged
 conversation retention; (3) finish native OS/email adapters against that same
 contract; (4) extend Send/Share only through the named relationship/audience
 owner amendment. Keep broader audiences, friend-material AI use and the pending
@@ -286,7 +287,8 @@ ordinary Life and later value need explicit evidence, not just this receipt.
   Intake transport. Home add → authored text → keyboard-open Keep → literal
   receipt → Undo → exact Removed owner; Places/Life/Chat add; offline Keep with
   the keyboard open preserves the draft and reports Not sent. The final offline
-  PNG is after the attempt/keyboard blur. Native camera/library selection,
+  PNG is after the attempt/keyboard blur. Native camera/library selection through
+  the shared root-add composer,
   extension, real provider/model, Android, large type and all root states remain unverified.
 - Failed capture attempts exposed Keep behind the offline keyboard. A measured
   scrollable form plus keyboard-sticky footer replaced unreliable mount-time
@@ -365,21 +367,71 @@ these selected suites; do not add overlapping counts):
   retention predicate, which is now aligned with explicit Chat Keep.
 - Native preflight for `vesper-chat` passed with Maestro 2.6.1, the existing
   SDK 55 dev client and lane Metro `53177` / iPhone 16 Pro
-  `AF31B886-E837-4962-834A-5CBAD5C306DB`. Attempted visual inspection reported a
-  locked Mac. **No new native capture or verdict is claimed.** Library/camera,
-  keyboard, failed handoff → receipt/Undo → return and enlarged-type acceptance
-  remain open. Prior text-capture or Chat verdicts do not certify this change.
+  `AF31B886-E837-4962-834A-5CBAD5C306DB`. The subsequent bounded native flow is
+  recorded below; it closes only the existing-private-thread photo/Keep/Ask
+  receipt path, not the other Chat entrance, failure, dock or large-type cases.
+  Prior text-capture or Chat verdicts do not certify those remaining states.
 
-**Checkpoint continuation (superseded by the entrance checkpoint below):**
-finish the registered native private-photo flow when the Mac is unlocked.
-The following checkpoint connects the Home dock and private new-conversation
-entrances to this same capture owner and immutable pending-turn path. Retain
-group behavior. Continue the
-OS/email and general Send/Share work in the door map; do not call this one
-adapter the complete horizontal composer. Ordinary Life refinding and later
-value remain required. These commits are local; backend `make ci` and the
-coordinated `make verify` have not been rerun for this tuple, so publication
-and merge remain unverified.
+**Checkpoint continuation (superseded by the entrance checkpoint below):** the
+registered existing-private-thread photo flow has now been exercised natively;
+see the readback checkpoint below for its exact boundary. The following
+checkpoint connects the Home dock and private new-conversation entrances to
+this same capture owner and immutable pending-turn path. Retain group behavior.
+Continue OS/email and general Send/Share work in the door map; do not call this
+one adapter the complete horizontal composer. Ordinary Life refinding and later
+value remain required.
+
+<a id="private-photo-original-readback--september-28"></a>
+
+### Private photo original readback — September 28
+
+App **`ce8649e68`** completes literal image readback for a privately kept photo
+without creating another media owner. Chat's verified Keep receipt and Life's
+original reader share `data/inboundItems.intakeSourceMediaResource`: real mode
+uses the existing authenticated owner-scoped original-media route; mock mode
+returns only the selected local URI for the active persona's verified private
+source. Neither UI builds a URL from `storage_ref`. Undo clears the mock URI.
+Both readers fence late media results by a fresh account/submission/source
+identity; A → signed out → A requires a new read and cannot remount the previous
+authorized URI. Custody/lifecycle state still controls display.
+
+Measured evidence (app changes were committed after the checks; the measured
+source tree matches `ce8649e68`):
+
+- `private-photo-readback-identity-focused-final-20260928`: **112 passed, zero
+  skips**, seven suites. Command:
+  `npm --prefix travel-app test -- --runInBand --runTestsByPath __tests__/data/intakeSourceMediaResource.test.ts __tests__/components/private-capture-receipt.test.tsx __tests__/components/private-capture-session.test.tsx __tests__/screens/share-capture-intake-v2.test.tsx __tests__/screens/intake-submission.test.tsx __tests__/utils/api/mockIntakeV2.test.ts __tests__/hooks/useChatCaptureSubmission.test.ts`.
+- `private-photo-readback-app-pr-identity-final-20260928`:
+  `npm --prefix travel-app run verify:pr` passed; its parity boundary was
+  **185/185 tests, zero skips**. Existing test-type debt stayed at its ratchet;
+  this is not a full-app or whole-system test claim.
+- `private-photo-owner-media-route-final-20260928`: **four route tests passed,
+  zero skips** with
+  `travel-agent/.venv/bin/python -m pytest travel-agent/tests/api/test_intake_route.py -k source_media_route -q`.
+  Route/persistence and byte delivery use test adapters; this is not a live
+  mobile request or hosted object-storage proof.
+- `private-photo-native-identity-replay-20260928` passed on iPhone 16 Pro,
+  iOS 18.2, Maestro 2.6.1, lane Metro `53177`, ordinary mock Intake transport.
+  The real simulator library selection, Ask only, private Keep, exact visible
+  original, Undo with question preserved, and offline draft were captured in
+  seven PNGs. Command:
+  `VESPER_METRO_URL=http://192.168.86.189:53177 node travel-app/scripts/polish-qa/run-polish-qa.mjs vesper-chat --after --flow=polish/vesper-chat-private-capture`.
+  The existing `polish/vesper-chat` flow also passed after its wait-condition
+  correction. Scenario validation found 31 registrations; Chat design-reference
+  validation found one manifest and 30 pairs, with zero verified external
+  canon references. No matching photo-receipt design ref exists, so these are
+  behavior/visible-media checks, not full visual-parity acceptance.
+- App docs headers/links passed (9 files / 392 Markdown files); workspace
+  `make docs-check` passed after the roadmap edits, measured as
+  `private-photo-readback-roadmap-docs-20260928` in 6.888s.
+
+This closes the exact mock-native private photo receipt path and proves the
+Life screen uses the same data facade under unit/component coverage. It does
+**not** prove that the mobile client fetched bytes from the authenticated live
+route, Clerk account renewal, signed extension delivery, real provider/model
+behavior, photo grouping, broader audience access or full Life native parity.
+Those remain separate acceptance boundaries; do not convert this checkpoint
+into completion of the six-door composer.
 
 ### Private Chat entrances checkpoint — September 28
 
