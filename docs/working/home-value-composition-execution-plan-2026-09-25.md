@@ -395,8 +395,9 @@ Both readers fence late media results by a fresh account/submission/source
 identity; A → signed out → A requires a new read and cannot remount the previous
 authorized URI. Custody/lifecycle state still controls display.
 
-Measured evidence (app changes were committed after the checks; the measured
-source tree matches `ce8649e68`):
+Measured evidence (the runtime and tests were committed after the checks as
+`ce8649e68`; the follow-on app commit `3be794149` only clarifies the native
+camera-evidence boundary in the surface contract):
 
 - `private-photo-readback-identity-focused-final-20260928`: **112 passed, zero
   skips**, seven suites. Command:
