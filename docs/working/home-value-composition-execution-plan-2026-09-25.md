@@ -239,7 +239,7 @@ literal original, not an invented personal interpretation. All changes remain lo
 | Global add | Shared app `components/inbound/capture-entry.tsx` → `/share-capture?compose=1` → `capture-composer.tsx` | Normal Home v2, Places, Life and Chat root headers now expose the same entrance alongside their existing controls. Chat is not required. Home loading/error and compatibility coverage, large type, and all root-state visual acceptance remain explicit follow-up scope rather than implied by the normal-root capture. |
 | Chat attachment | Existing private threads, Chat landing dock (legacy Vesper Home), and private/private-trip create use `private-capture-composer.tsx` → common Intake custody → answer-only pending Chat turn with exact source refs; pre-thread entry shares `usePrivateCaptureChatEntry` | Visible Keep/Ask only, current-owner Open/Undo, stable source/turn/room retries and contextual handoff are local. Native photo/keyboard/dock/failure evidence is pending. Group rooms and carried references do not silently opt in. |
 | Existing-object Keep/Send | App `hooks/useSaveEntity.ts` owns place saves; `data/relationshipPlaceHandoffs.ts` owns addressed, place-bound pair delivery; selected originals retain Source ownership | Route authored sharing through the common component while keeping bookmark and Source ownership distinct. The current place-required, single-recipient handoff is not the accepted general person/group/Friends schema. |
-| Email | Backend `backend/api/routes/inbound_email.py` and `backend/inbound/email_forward.py`: authenticated alias/webhook, flag-gated v2 inline intake and provider archive binding | A server adapter exists, not a mobile composer. Reconcile its explicit retention/receipt semantics and replay/failure behavior with the same private contract; forwarding delivery and author-visible payoff are not certified here. |
+| Email | Backend `backend/api/routes/inbound_email.py` and `backend/inbound/email_forward.py`: authenticated alias/webhook, flag-gated v2 inline intake and provider archive binding | New message text now receives private Keep, Source-to-Life handoff, metadata refinding and existing receipt/Undo without interpretation review. Historical retries preserve their policy. Provider envelopes are excluded from human original counts. Local HTTP/Postgres and mobile behavior are covered; real delivery, attachments and native payoff remain unverified. |
 
 **Next implementation order:** common in-app private authoring/root add is now
 implemented; (1) complete its remaining native media/root-state coverage while
@@ -415,11 +415,68 @@ ran on the corresponding app patch tree based on `f3c402a72`:
   contract now names dock/choice/receipt geometry, keyboard/large type,
   private create and failure/Undo/return evidence still required.
 
-Next independent build work is the OS/email door adaptation, with retained
-Life refinding and later value still in scope. This does not complete all six
-doors or adopt broader audience/use-grant policies. Full coordinated
-`make verify`, backend `make ci`, publication and merge remain unrun for this
-new tuple; focused checks do not replace those gates.
+The following checkpoint advances the email adapter; native OS adaptation,
+retained Life continuity and later value remain in scope. Neither checkpoint
+completes all six doors or adopts broader audience/use-grant policies.
+
+### Forwarded email private Keep checkpoint — September 28
+
+Forwarding now retains the verified subject/body privately without semantic
+confirmation, Plan creation or review homework. The existing alias/webhook,
+Intake owner, Life source projection, exact original reader and private receipt
+are connected; no parallel email store or review queue was introduced. Raw
+provider envelopes are not additional human artifacts. The reader opens the
+canonical receipt for Undo and revalidates custody on return.
+
+Retries preserve the original immutable envelope and retention decision,
+including pre-cutover transient email. Expiry, deletion or loss of the original
+prevents late archive binding. On uncertain binding acknowledgment, owner
+readback precedes cleanup of the attempt's upload. Unknown outcome preserves
+bytes, not a false claim of rollback. Archive storage is still best-effort with
+no durable repair job. The setup copy explicitly excludes attachment import.
+
+Committed locally as backend **`5c54a2d5e`** and app **`7597b84cd`**.
+Verification ran on workspace `a31b71c`, backend `099ac6360` plus the email patch,
+and app `8a1337d62` plus the receipt patch. Measured logs are under
+`docs/reliability/runs/` (local, ignored); exact commands and boundaries:
+
+- `email-capture-owner-http-db-final`: **60 passed, zero skips/errors**, 4.108s.
+  `env TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:53173/vesper_capture_keep_test_20260928 TEST_DATABASE_DISPOSABLE=1 PYTHONPATH=travel-agent travel-agent/.venv/bin/python -m pytest travel-agent/tests/inbound/test_email_capture_postgres.py travel-agent/tests/inbound/test_email_forward_v2.py travel-agent/tests/core/test_contribution_admission.py travel-agent/tests/inbound/test_intake_v2_retention.py travel-agent/tests/life/test_original_refind_postgres.py -q --run-quarantined`.
+  Actual alias/webhook, owner APIs and disposable Postgres; object storage
+  substituted. The first run had seven teardown errors from test-created
+  personal conversations; explicit test-owner cleanup fixed them, not weaker
+  assertions. No external provider, hosted deletion or scheduled worker proof.
+- `email-capture-mobile-receipts`: **77 passed**, 6.584s.
+  `npm --prefix travel-app test -- --runInBand --runTestsByPath __tests__/screens/email-import.test.tsx __tests__/screens/intake-submission.test.tsx __tests__/screens/share-capture-intake-v2.test.tsx __tests__/utils/intakeSourceOriginal.test.ts __tests__/data/intake-source-removal-lifetime.test.tsx`.
+- `email-capture-backend-regressions`: **301 passed, 36 deselected**, 5.509s.
+  `env PYTHONPATH=travel-agent travel-agent/.venv/bin/python -m pytest travel-agent/tests/inbound travel-agent/tests/life travel-agent/tests/core/test_contribution_admission.py travel-agent/tests/core/test_contribution_policy.py -q -m 'not requires_postgres and not requires_api_keys and not requires_dogfood_wedge' --run-quarantined`.
+  Zero skipped/quarantined cases; the marker expression explicitly excludes
+  DB/provider/dogfood cases rather than certifying them.
+- `email-capture-app-gate`: `npm --prefix travel-app run verify:pr` **passed**,
+  64.015s, including 185 seam tests; existing warning/type-debt ratchets unchanged.
+  `email-capture-backend-types`: `make -C travel-agent typecheck` **passed**, 6.700s.
+- `email-capture-schema-sync`: `./scripts/sync-types.sh` **passed**, 34.996s,
+  no generated changes. `email-capture-contract-coverage`:
+  `make contract-check api-coverage-check` **passed**, 17.542s.
+- `email-capture-surface-registry`: `npm --prefix travel-app run qa:polish:scenarios`
+  **passed**, 0.136s. CUA again reported the Mac locked; **no native capture or
+  visual acceptance**. Life-reader and Trust & Controls contracts are updated.
+- `email-capture-owner-docs`: `make docs-check` **passed**, 6.491s; a final
+  check follows the revision/evidence annotation before the workspace commit.
+- `email-capture-coordinated-gate`: `make verify` with the lane backend venv
+  prepended to `PATH` **failed**, 50.978s. Doctor, Ruff/format, import boundaries
+  and structural gates passed. The world-catalog runway has zero Season/Here
+  rows for **2026-10-12**; later stages did not run in this invocation. Separate
+  focused passes do not turn this into a green full gate. Refresh that catalog
+  through its existing source/promotion owner, not by moving dates or weakening
+  the check. No publication or merge in this checkpoint.
+
+**Next:** implement the native OS door against the same private custody and
+receipt contract; resume native Chat/email review when the Mac is available.
+Email subject/body search, attachment bytes, real SendGrid delivery, hosted
+archive repair, scheduled Life projection and later generated value are not
+certified by this local Keep/refind/Undo result. Broader Send/Share still requires
+its explicit audience owner amendment.
 
 ### Local bounded-preview and recovery-copy checkpoint — September 28
 

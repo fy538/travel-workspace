@@ -658,6 +658,12 @@ erases source, truth type, scope, expiry, disagreement, or correction.
   and carry current-owner receipt access into the target. Native acceptance,
   the common composer across all six doors and wider-audience schema
   remain incomplete; see the active capture/share package.
+- new forwarded-email originals now use the same verified private Bring
+  retention, receipt and Life handoff. Old replay retains its original policy;
+  expiry/deletion cannot rearchive released bytes. Provider envelopes are
+  custody-only, not additional visible artifacts. Local HTTP/Postgres and
+  mobile behavioral checks cover this seam; external delivery, attachment
+  bytes, scheduled projection and native acceptance remain separate evidence.
 - causal correction across every Home, Places, Life, story, memory, social, and
   pending-action consumer is not certified.
 
