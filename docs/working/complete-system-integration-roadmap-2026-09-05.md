@@ -31,8 +31,9 @@ Implement the broken connection at its owning layer. Do not solve a receiving
 gap with a parallel store, feed, generator or authority model.
 
 The recovery baseline is merged; the subsequent Home candidate is published in
-three open PRs, rechecked September 28. A further native H1-A patch is local and
-uncommitted; it is not part of the published candidate's verification. Follow
+three open PRs, rechecked September 28. The first native H1-A follow-up is locally
+committed at app `332e77523`, with targeted checks and native self-review; it is
+not part of the published candidate's coordinated verification. Follow
 the program's exact tuple and current lane owner rather than redispatching
 completed connections from an older local main. H1's remaining assignment covers
 useful supply, native hierarchy and

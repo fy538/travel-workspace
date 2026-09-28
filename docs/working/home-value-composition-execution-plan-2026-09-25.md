@@ -17,8 +17,9 @@ depends_on:
 ## Status and intended outcome
 
 The core Home connections are implemented in the published, unmerged
-`codex/home-value-delivery` candidate. A further H1-A native patch is local and
-uncommitted as of September 28. **The remaining assignment is useful
+`codex/home-value-delivery` candidate. The first H1-A native follow-up is locally
+committed at app `332e77523`, with bounded native acceptance as of September 28.
+**The remaining assignment is useful
 supply and a coherent, polished receiving experience—not rebuilding those
 connections.** The [program roadmap](vesper-program-roadmap.md#inspected-baseline-and-publication-state)
 owns the exact baseline, PR state and current sequencing.
@@ -97,11 +98,11 @@ already-fixed Planning crown.
 
 | Cluster | Current implementation and remaining improvement |
 | --- | --- |
-| Obscured value and controls | Local patch uses the shared floating-nav inset to reserve Home's readable viewport, including the compatibility reader, while retaining a continuous paper background. Confirm affected-state native results, original-reader return and larger text before closing; end padding alone was insufficient. |
-| Reading and social hierarchy | Local patch reuses full-width comparison rows and the standard original-reader Door instead of an amber block button for text. Review native density and social salience; the long Returned introduction and note-versus-article hierarchy remain open. The earlier redundant photo-button finding must be checked against current code, not assumed still present. |
+| Obscured value and controls | Closed for the inspected Quiet/original cases in app `332e77523`: shared floating-nav inset reserves the readable viewport and continuous paper background in both readers; native standard/XXXL reading and original-return checks passed. Maximum accessibility sizes, Android and unrelated destinations are not certified. |
+| Reading and social hierarchy | Full-width comparison rows and the standard original-reader Door replace narrow fact boxes and the amber text-original button; targeted native review passed. The long Returned introduction and note-versus-article hierarchy remain open. Loaded images already open directly with no redundant button; do not redispatch that stale finding. |
 | Planning and continuation | Remove duplicated meeting-point state, clarify the compact row's available action, retain the exact referent in Home-to-Chat labels and useful draft context. Do not transfer basic explanation back to the person. |
 | Live, recovery and possibility | Remove repeated dinner/cancellation copy; distinguish a proposal from a confirmed commitment; provide the concrete supported place/alternative rather than vague continuation. |
-| Sources and quiet endings | Local patch omits the default “current” suffix, retains live/stale/unknown qualifications, and simplifies the close. Native acceptance is still required. Primary Place continuation versus an equal-weight Why this control remains open. |
+| Sources and quiet endings | Implemented and natively inspected: routine “current” suffix omitted, live/stale/unknown retained, close simplified. Long source display labels, storage-oriented continuity copy, and primary Place continuation versus an equal-weight Why this control remain open. |
 
 The full [September 27 matrix](../../travel-app/docs/surfaces/home-root/verdicts/20260927T180109Z.json)
 was MIXED with one P1 and 23 P2 findings. The
@@ -117,15 +118,25 @@ focused behavior tests and an honest remaining-findings list. A wording change
 can be small; dock/return fixes must cover affected destinations and larger text.
 No need to recapture unrelated states for each edit.
 
-The next completion checkpoint is the existing patch, not a new visual system:
-review its affected states and responsive behavior, correct findings, then commit
-the coherent app change. Keep the remaining clusters above explicit. Do not call
-all of H1-A complete from this first subset or let its native work expand into
-an unbounded redesign.
+The first patch checkpoint is complete locally. Continue the remaining clusters
+above, especially exact continuation and repetitive producer copy, rather than
+reopening the same layout fix. Do not call all of H1-A complete from this subset
+or let its native work expand into an unbounded redesign. The original's visible
+share stamp also lacks a “to you” cue despite exact single-recipient delivery;
+if amended, use that existing owner fact rather than infer a wider audience.
 
 ### H1-B — Deliver useful supported supply, not more synthetic richness
 
 Trace the next real supply gap through existing preparation and serving:
+
+September 28 code recheck: the default canonical executor already binds
+`StructuredSourceContributionProducer` to current owner reads and retained
+production readback. The shared Arq job and recovery sweep exist; production,
+worker and named-cohort gates constrain explicit warming. The structured caller
+has bounded evidence, tokens, timeout and attempts. Ordinary Home reads only
+serve prepared results. **No missing second generator or implicit Home-read
+trigger was found in this boundary check.** It did not run a live provider or
+establish deployed recurring supply; continue from those actual unknowns.
 
 1. Select permitted retained/public material with inspectable provenance; name
    the actual existing trigger and owner. Distinguish unavailable provider/input
@@ -194,28 +205,42 @@ need their named contract work; Home styling cannot create them.
 
 ### Local H1-A follow-up — September 28, not published
 
-Recorded against workspace `1f4a9e5`, backend `c50b2286e` and app `551e2a94b`
-plus its dirty ten-file native/test/contract patch. No backend, API, grants or
-Chat behavior changed in this follow-up. These results do not cover later edits.
+Captured/tested against workspace `84dcd94` (the earlier Quiet capture used
+`1f4a9e5`), backend `c50b2286e` and app `551e2a94b` plus its native/test/contract
+patch, now committed as app `332e77523`. No backend, API, grants or Chat behavior
+changed in this follow-up. These results do not cover later behavior edits.
 
-- Focused checks: 6 suites / 75 tests passed in 6.947 seconds, measured with
-  `python3 scripts/measure_verification.py --label home-reading-polish-final -- npm --prefix travel-app test -- --runInBand __tests__/components/HomeRootV2Screen.smoke.test.tsx __tests__/components/HomeRootScreen.smoke.test.tsx __tests__/components/RootCompositionRenderer.test.tsx __tests__/components/RootCompositionAnatomy.test.ts __tests__/screens/original-delivery.test.tsx __tests__/components/home-root/HomeRootExperience.connected.test.tsx`.
-  Log: `docs/reliability/runs/home-reading-polish-final-20260928T062807Z.log`.
-- App gate: `python3 scripts/measure_verification.py --label home-reading-verify-pr-final -- npm --prefix travel-app run verify:pr`
-  passed in 63.436 seconds, including 185 API-seam tests and production typecheck.
+- Focused checks: 6 suites / 76 tests passed in 6.634 seconds, measured with
+  `python3 scripts/measure_verification.py --label home-reading-polish-reviewed -- npm --prefix travel-app test -- --runInBand __tests__/components/HomeRootV2Screen.smoke.test.tsx __tests__/components/HomeRootScreen.smoke.test.tsx __tests__/components/RootCompositionRenderer.test.tsx __tests__/components/RootCompositionAnatomy.test.ts __tests__/screens/original-delivery.test.tsx __tests__/components/home-root/HomeRootExperience.connected.test.tsx`.
+  Log: `docs/reliability/runs/home-reading-polish-reviewed-20260928T063743Z.log`.
+- App gate: `python3 scripts/measure_verification.py --label home-reading-verify-pr-reviewed -- npm --prefix travel-app run verify:pr`
+  passed in 66.209 seconds, including 185 API-seam tests and production typecheck.
   Existing test-type debt remains 406 errors; lint reports 162 warnings, zero errors.
-  Log: `docs/reliability/runs/home-reading-verify-pr-final-20260928T062814Z.log`.
-- Native fixture capture: registered Quiet run
-  `20260928T062734Z-home-root` completed its flow and both captures after the
-  background correction. Earlier social-original run
-  `20260928T062608Z-home-root` completed open/read/return before that final
-  correction. These are local `.maestro/runs/` outputs, **not new committed visual
-  verdicts**. Final image review, corrected social capture and native larger-text
-  coverage remain unverified. No full matrix or full-scroll parity claim follows.
+  Log: `docs/reliability/runs/home-reading-verify-pr-reviewed-20260928T063825Z.log`.
+- Native: registered `home-root` runs on the lane's iPhone 16 Pro/iOS 18.2,
+  Maestro 2.6.1, installed development client, mock mode and Metro 53177.
+  [Quiet](../../travel-app/docs/surfaces/home-root/verdicts/20260928T062734Z.json),
+  [original/read/return](../../travel-app/docs/surfaces/home-root/verdicts/20260928T063615Z.json),
+  and [Quiet XXXL](../../travel-app/docs/surfaces/home-root/verdicts/20260928T063801Z.json)
+  self-reviews passed, two P2 findings per run (overlapping source/copy findings,
+  not six unique defects). Ran
+  `VESPER_METRO_URL=http://192.168.86.189:53177 node scripts/polish-qa/run-polish-qa.mjs home-root --device='iPhone 16 Pro' --flow=polish/home-root-quiet`
+  and the same command with `--flow=polish/home-root-social-original`. For XXXL,
+  `xcrun simctl ui AF31B886-E837-4962-834A-5CBAD5C306DB content_size extra-extra-extra-large`
+  preceded Quiet; the confirmed original `large` setting was restored afterward.
+  All seven captures were opened; source caveat, actions and closing remain
+  readable above expanded/collapsed navigation. Reference images and comparison
+  indexes were inspected; the filtered runs have no matched Available/Returned-top
+  reference pair, so this is doctrine/affected-state acceptance, not full-scroll
+  parity or provider-backed value. Maximum accessibility sizes remain unverified.
+- Registered scenario/design/doctor preflights and structured verdict validation
+  passed. Capture-health reports no configured Home assertions, not a health
+  PASS. Committed-verdict validation passed all 52 records. No same-persona
+  regressions can be inferred against the scaffolder's unrelated prior Cold run.
 - A first measurement invocation used `npm test` at the workspace root and
   failed because there is no root `package.json`; the corrected commands above
   target `travel-app`. This was a command setup error, not a failing product test.
-- The full coordinated `make verify` has not been rerun for the dirty app patch.
+- The full coordinated `make verify` has not been rerun for app `332e77523`.
   Required publication verification and delivery therefore remain outstanding.
 
 ### Published candidate — prior full coordinated gate
