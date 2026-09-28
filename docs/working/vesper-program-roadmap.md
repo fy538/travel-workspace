@@ -140,6 +140,15 @@ coordinated gate **failed** at the world-catalog runway: no Season/Here rows
 cover October 12. Its earlier pass does not certify this tuple; repair the
 catalog through its existing owner before publication, without weakening gates.
 
+App `a11d1a061` connects a newly retained private Intake source to the existing
+Life owner projection: unresolved sources appear in Time, and in Places only
+with an explicit Capture place subject; opening a row returns to its exact
+Intake source. Keep/resolve/Undo refresh the projection without a parallel
+artifact store or backend contract. Focused app tests, typecheck and
+`verify:pr` passed. The exploratory native round-trip reached Life's exact
+original but did not complete after Chat's receipt was unavailable on return;
+no native acceptance is claimed. See the [continuity checkpoint](home-value-composition-execution-plan-2026-09-25.md#private-intake-to-life-continuity--september-28).
+
 App `fd6418e13` connects OS text/link/file handoff to the common private composer:
 account-bound draft, explicit Keep, preserved originals/captions and existing
 receipt/Undo. [Its checkpoint](home-value-composition-execution-plan-2026-09-25.md#os-common-composer-host-adapter--september-28)

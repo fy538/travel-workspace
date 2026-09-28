@@ -226,6 +226,50 @@ need their named contract work; Home styling cannot create them.
 
 ## Latest verification evidence
 
+### Private Intake-to-Life continuity — September 28
+
+App **`a11d1a061`** connects an explicitly retained private Intake source to
+Life without creating a second artifact store or changing the backend contract.
+In mock mode, the existing Life projection now reads the active owner's verified,
+unexpired, non-revoked Intake sources; Time can show an unresolved
+`source_submission`, and Places shows one only when Capture supplied an explicit
+place subject. Its destination remains the Intake owner, so opening the row
+returns to the exact original. The row stays private and pending, with no
+inferred visit, occurrence date, or semantic memory. Keep, candidate resolution,
+and Undo refresh the same Life projection. A single-source item already
+represented by a confirmed semantic candidate is not duplicated in the mock
+projection.
+
+The live backend already owns retained-source Life projection and owner reads;
+the app invalidates that existing root read after the corresponding Intake
+change. No backend, schema, or generated-type change was needed. Thread/People
+lenses, group sharing, broader semantic interpretation, and visual redesign are
+not part of this connection.
+
+Verification on app `a11d1a061`:
+
+- Focused tests: **45 passed, zero skipped**, four suites. Command:
+  `npm --prefix travel-app test -- --runInBand --runTestsByPath __tests__/data/lifeRootProjectionMock.test.ts __tests__/utils/api/mockIntakeV2.test.ts __tests__/data/intakeSourceMediaResource.test.ts __tests__/components/LifeRootV1Screen.test.tsx`.
+- `npm --prefix travel-app run typecheck` passed.
+- `npm --prefix travel-app run verify:pr` passed. Its mock/HTTP parity seam
+  was **185 tests, six suites**; the warning ratchet reported 168 warnings
+  against 169, and test-typecheck debt stayed at the existing 406-error
+  baseline. This is the app gate, not whole-repository or release acceptance.
+- `npm --prefix travel-app run qa:polish:scenarios` passed (31 registered
+  scenarios). `npm --prefix travel-app run qa:design:check -- life-root` passed
+  with one note: the reference asset is an HTML preview, not a common image
+  type; there is no external design-canon verification.
+- An exploratory iPhone 16 Pro / iOS 18.2 / Maestro 2.6.1 run reached the Life
+  source row and exact original, but could not re-find Chat's receipt after
+  returning from Life. The run was stopped during retries; **this is not a
+  passing native flow or visual acceptance**. The earlier committed Chat
+  capture remains unchanged.
+
+This closes the data/cache seam for mock presentation and reuses the existing
+live owner projection. It does not prove an authenticated live mobile read,
+native round-trip acceptance, broader Life design parity, or full capture/share
+completion.
+
 ### Capture/share continuation — private custody checkpoint, September 28
 
 App `9640fef0b` delivers common in-app private text/photo authoring and root add,
