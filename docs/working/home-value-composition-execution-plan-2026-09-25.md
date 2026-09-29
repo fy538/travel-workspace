@@ -30,6 +30,11 @@ same review-first, editable, owner-seeded question as the recovery source door;
 it does not add or imply option evidence. These specific residuals stay open
 while the accepted capture/share package begins; do not rebuild delivered
 connections or repeatedly rehearse fixtures as a substitute for missing value.
+App `53699858c` and `acf0c7203` then remove an unsupported “new route” claim and
+the implication that Vesper is already repairing the disruption. The urgent
+fixture now states the known Capri ferry change and keeps provider status
+explicitly unknown. This is a truthfulness correction, not a recovery-value
+completion; the owner-backed option comparison remains open.
 The [program roadmap](vesper-program-roadmap.md#inspected-baseline-and-publication-state)
 owns the exact baseline, PR state and current sequencing.
 
@@ -147,6 +152,51 @@ identify the canonical owner that can supply current, authorized option facts
 and explicit unknowns, or decide that this recovery does not support a
 comparison. Preserve exact depth/action/return; do not fabricate fixture
 estimates, introduce a second generator, or reinstate booking execution.
+
+### Urgent copy and handoff truth correction — September 29
+
+The source boundary was checked before changing the fixture: `route.evaluate`
+currently establishes reachability, not alternate route options or comparison
+thresholds. The itinerary-alternatives operation is a same-category venue
+substitution and returns no venue for free-time/experience/transit blocks; it
+is not a transport-route or provider-recovery source. The current commitment
+and Chat seed expose the changed subject and current coordination/provider
+facts, not an option set. An existing link to a legacy trip block is not a
+safe current option source, so this lane did not invent a route, price, timing,
+or cancellation detail.
+
+App **`53699858c`** replaces the mock headline “Your return needs a new route”
+with “The Capri ferry has changed,” changes the projection-status fixture from
+`pending` to `unknown`, and corrects the stale native Chat flow that claimed a
+cancellation and proposed coast-road alternative. Its editable Chat draft
+separates confirmed facts from uncertainty and asks Vesper to identify a useful
+next step; it remains unsent. App **`acf0c7203`** removes the footer claim that
+the disruption “is repaired” and uses the neutral rest close, because no repair
+operation has run.
+
+Evidence on the committed app tree:
+
+- `npm run verify:pr`: passed. Parity **185/185**; lint **168 warnings** under
+  the **169** ratchet; test-typecheck remains **406 errors**, equal to its
+  recorded baseline. The parity suite includes expected diagnostic console
+  output from mocked network-failure cases; no test failed or was skipped.
+- Focused Jest across the four affected Home suites: **61/61**; targeted ESLint,
+  `npm run typecheck`, and `npm run qa:polish:scenarios` passed (31 registered
+  IDs).
+- Post-commit iPhone 16 Pro / iOS 18.2 / Maestro 2.6.1 urgent capture
+  `20260929T133250Z-home-root`: **1/1**. Visual review confirms the specific
+  ferry-change headline, “Not confirmed” status, current owner summary, review
+  CTA, and neutral close.
+- Post-commit private Chat capture `20260929T133359Z-home-root`: **1/1 flow,
+  2/2 extra screenshots**. The owner summary and editable, unsent question
+  remain present; editing the question and removing Home context do not send.
+  These are isolated mock-persona captures, not live provider or authenticated
+  owner-readback evidence.
+
+The incorrect alternatives and repair claims are removed, but urgent Home still
+does not produce a useful owner-backed comparison or substantive answer before
+the user asks. The urgent value P1 therefore remains open; these captures do not
+promote Home to full product acceptance.
 
 ### H1-B — Deliver useful supported supply, not more synthetic richness
 
