@@ -413,9 +413,10 @@ ordinary Life and later value need explicit evidence, not just this receipt.
   unchanged at 406, parity 185 tests across six suites); the focused composer
   and accessibility set passed 17 tests across three suites. Scenario registry
   validation passed (31); `qa:design:check` emitted its expected doctrine-only
-  warning (no manifest/pairs). The verdict is **MIXED**, not a full design
-  acceptance: capture/correctness/visual pass; intent remains unverified (P1
-  `fix-canon`) because the registered companion HTML is absent. The former
+  warning (no manifest/pairs). The verdict was **MIXED**, not a full design
+  acceptance: capture/correctness/visual pass; intent remained unverified (P1
+  `fix-canon`) because the registered companion HTML was unavailable in the
+  isolated lane. The former
   oversized remove-overlay finding is resolved, as is the note-before-media
   hierarchy problem, and the 52 pt note is now compact. One P2 remains because
   text in the text-bearing image preview is thumbnail-sized and there is no
@@ -431,6 +432,26 @@ ordinary Life and later value need explicit evidence, not just this receipt.
   Camera, permission denial, selections above two, per-source original
   readback, real authenticated upload/readback, large text, other roots,
   extension, and six-door coverage remain unverified.
+- Pre-Keep photo inspection — September 29: app `17db598c9` makes each selected
+  image open the exact local draft original in the existing full-screen dark
+  photo viewer, shows its position, and returns to the unchanged editable draft
+  on close. The viewer does not Keep, upload, or claim custody. The registered
+  two-photo Maestro path now captures this state and return; its exact run is
+  `20260929T025713Z-photo-media-intake` on iPhone 16 Pro / iOS 18.2 / Maestro
+  2.6.1. Its tracked structured verdict is **PASS** for this bounded capture
+  (`travel-app/docs/surfaces/photo-media-intake/verdicts/20260929T025713Z.json`);
+  it records all five functional assertions and two P2 refinements. The
+  targeted flow passed, and `npm run verify:pr` passed on the same code
+  content: 168 lint warnings against a 169 ratchet, unchanged 406 test-
+  typecheck baseline, and 185 parity tests across six suites. The native full-
+  surface matrix was not green; this verifies only the two-photo root-add flow.
+  The 2026-07 Photo Intake canon in the primary workspace establishes a dark
+  full-screen lightbox motif, but does not specify this newer private draft
+  preview state; exact draft-composition parity remains bounded. Two P2
+  refinements remain: no pinch-to-zoom, and no visible cue on the thumbnail that
+  it opens. Camera, denial, >2 selected images, individual readback for every
+  original, large text, other roots, live-authenticated readback, extension and
+  full product acceptance remain open.
 - Earlier [private receipt evidence](../../travel-app/docs/surfaces/photo-media-intake/verdicts/photo-media-intake-after.json)
   retains offline Undo/reconnect coverage and the stale-custody repair: cancel
   older reads and update already-mounted same-owner receipt caches after deletion.

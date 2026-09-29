@@ -155,6 +155,27 @@ This lane remains local/unpublished; this narrow mock-transport capture does not
 close Camera, denial, large-text, other-root, live-authenticated, extension or
 whole-product acceptance.
 
+App `17db598c9` closes the remaining pre-Keep **open-image** behavior for the
+two-photo draft: each selected original opens in the existing dark full-screen
+viewer, then closes back to the unchanged editable draft. A post-commit iPhone
+16 Pro / iOS 18.2 / Maestro 2.6.1 capture (`20260929T025713Z-photo-media-intake`)
+passed the targeted native multi-photo flow and its bounded structured verdict
+is **PASS** (`travel-app/docs/surfaces/photo-media-intake/verdicts/20260929T025713Z.json`);
+`npm run verify:pr` also passed on the same code content (168 lint warnings
+under a 169 ratchet, test-typecheck debt unchanged at 406, parity 185/185 across
+six suites). The older checkpoint
+above is historical evidence: its “cannot be opened” P2 is now closed. Two
+small refinements remain (no pinch-to-zoom and no visible cue that a photo tile
+opens). The actual 2026-07 intake canon exists in the primary workspace at
+`design/vesper-canon-anchor/project/Vesper Photo & Media Intake.html`, but its
+Artboard L depicts a trip-owned lightbox, not this newer private draft state;
+the targeted result therefore does not claim full composition parity. The
+previous seven-capture surface attempt remains non-green (only one capture
+completed); only the registered two-photo flow was rerun here. This does not
+close camera, permission denial, larger selections, accessibility sizing,
+other roots, real-authenticated readback, extension, or whole-surface
+acceptance.
+
 The September 28 private-thread continuation connects newly selected Chat photos
 to the same Intake owner, with visible Keep/Ask only and a current-owner
 Open/Undo receipt. The question remains a separate answer-only pending turn.
