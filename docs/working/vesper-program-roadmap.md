@@ -20,7 +20,7 @@ depends_on:
 
 # Vesper program roadmap
 
-## Direction and immediate priority — September 28
+## Direction and immediate priority — September 29
 
 Build the complete product on the connected system already implemented.
 **Implement the accepted horizontal capture/share experience from the connected
@@ -286,6 +286,15 @@ real simulator library selection but not the live mobile/API transport. The
 [H1 receipt](home-value-composition-execution-plan-2026-09-25.md#private-photo-original-readback--september-28)
 has exact commands and limits. This does not resolve extension signing, real
 Clerk/mobile media readback, all six doors or broader sharing policy.
+
+The current lane follow-up extends the confirmed canonical artifact projection
+from eight to the full 16-image Intake limit, preserving source ordinal order;
+the existing Life-linked reader can open each projected original and virtualizes
+offscreen full-size photo reads. Backend projection and app gallery tests cover
+the 16-item boundary, but native runs still stop at two selected images and
+mobile authenticated readback remains unverified. Continue within the same
+capture/share owner package; do not treat this as a separate media subsystem or
+as completion of the six-door outcome.
 
 The separate canonical checkout contains concurrent design work and is not the
 execution target. Do not switch it, advance its children, or bring unrelated

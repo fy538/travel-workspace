@@ -476,11 +476,29 @@ literal original, not an invented personal interpretation. All changes remain lo
 | Existing-object Keep/Send | App `hooks/useSaveEntity.ts` owns place saves; `data/relationshipPlaceHandoffs.ts` owns addressed, place-bound pair delivery; selected originals retain Source ownership | Route authored sharing through the common component while keeping bookmark and Source ownership distinct. The current place-required, single-recipient handoff is not the accepted general person/group/Friends schema. |
 | Email | Backend `backend/api/routes/inbound_email.py` and `backend/inbound/email_forward.py`: authenticated alias/webhook, flag-gated v2 inline intake and provider archive binding | New message text now receives private Keep, Source-to-Life handoff, metadata refinding and existing receipt/Undo without interpretation review. Historical retries preserve their policy. Provider envelopes are excluded from human original counts. Local HTTP/Postgres and mobile behavior are covered; real delivery, attachments and native payoff remain unverified. |
 
-**Next implementation order:** common in-app private authoring/root add is now
-implemented; native one- and two-photo library happy paths are evidenced, while
-(1) complete its remaining native media/root-state coverage while
-(2) verifying deliberate Chat Bring + Ask across its now-connected private
-entrances (the existing-thread photo path has bounded native mock acceptance;
+### Selected-image readback completion — September 29
+
+The in-app composer accepts up to 16 selected images, but its confirmed
+canonical artifact reader previously exposed only eight and the owner query did
+not guarantee original selection order. This lane now aligns the projection
+bound to Intake's 16-source limit, returns images in source-object ordinal order,
+and lets the existing virtualized authenticated gallery open every returned
+original without mounting all full-size photos at once. The backend
+route/compiler and app gallery tests cover all 16 entries and the exact
+last-image route. This is implementation evidence, not end-to-end device proof:
+the native capture still covers at most two selected images, immediate receipt
+still previews only the lead image plus a count, and real Clerk/mobile owner
+readback remains open. The surface contract records the resulting boundary.
+
+Common in-app private authoring/root add is implemented; native one- and
+two-photo library happy paths are evidenced, and the canonical reader can carry
+all 16 retained image sources in selection order.
+
+**Next implementation order:** (1) complete remaining native media/root-state
+coverage, including a selection above two and end-to-end authenticated
+per-image readback; (2) verify deliberate Chat Bring + Ask across its
+now-connected private entrances (the existing-thread photo path has bounded
+native mock acceptance;
 dock/private-create, failure and large-type acceptance remain) with unchanged
 conversation retention; (3) finish native OS/email adapters against that same
 contract; (4) extend Send/Share only through the named relationship/audience

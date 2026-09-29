@@ -56563,7 +56563,7 @@
               "$ref": "#/components/schemas/ArtifactMedia"
             },
             "type": "array",
-            "maxItems": 8,
+            "maxItems": 16,
             "title": "Media",
             "default": []
           },
