@@ -977,6 +977,10 @@ one-shot mock bind fault exercises this path in the registered
 `vesper-chat-private-create-bind-retry` flow; after retry it verifies the
 destination's exact receipt and Undo while retaining the question. The retry
 control is a full-width, minimum-height target separated from the receipt link.
+The flow now injects both a one-shot conversation-create rejection and a
+pending-turn-bind rejection, requiring two explicit retries before the same
+authored question reaches the room. This distinguishes the two client owner
+steps while retaining the existing source and attempt identity.
 
 - Focused Jest passed **25/25** across `PrivateCaptureComposer.retry`,
   `usePrivateCaptureChatEntry`, `useChatCaptureSubmission`, and
@@ -988,18 +992,24 @@ control is a full-width, minimum-height target separated from the receipt link.
   test-typecheck ratchet improved from 406 to **403**; parity passed **185/185**
   with no skips. `npm run qa:polish:scenarios` passed with **31** registered
   scenarios.
-- On iPhone 16 Pro / iOS 18.2 / Maestro 2.6.1, the registered flow completed
-  **1/1 on runner attempt 3 of 3** in `20260929T181558Z-vesper-chat`. Attempts
-  1 and 2 failed waiting for the destination composer after tapping retry; the
-  cause is unresolved. Record this as completed bounded mock-device evidence,
-  not first-pass-stable or root-caused retry behavior. It exercises a real
-  simulator photo-library selection but mock API/Chat transport.
+- On iPhone 16 Pro / iOS 18.2 / Maestro 2.6.1, the bind-only scenario completed
+  1/1 on runner attempt 1/3 in `20260929T183101Z-vesper-chat` after the flow
+  switched from text selection to the retry button's stable test ID. The
+  expanded create+bind scenario completed 1/1 on attempt 3/3 in
+  `20260929T184142Z-vesper-chat`; attempts 1 and 2 failed waiting for the
+  destination composer after the final retry, and their screenshots still show
+  the create composer. The cause is unresolved. Record the expanded path as
+  bounded mock-device evidence, not first-pass-stable or root-caused retry
+  behavior. The flow exercises a real simulator photo-library selection but
+  mock API/Chat transport.
 
 This does not establish authenticated upload, server persistence, answer
-quality, failed room-creation recovery, accessibility-size behavior, dock fit,
-or full Chat acceptance. Inspect the attempt screenshots/log before claiming
-the native retry interaction is reliable; do not infer that the underlying
-attempt semantics are flaky from the unresolved device-runner failures alone.
+quality, real-server room-creation idempotency, accessibility-size behavior,
+dock fit, or full Chat acceptance. A local mock fault rejects creation before
+side effects; it does not reproduce a server that created a room but lost the
+response. Inspect the attempt screenshots/log before claiming the full native
+retry interaction is reliable; the unit tests establish immutable attempt
+semantics, while the remaining device-runner failure is not root-caused.
 
 ### Forwarded email private Keep checkpoint — September 28
 

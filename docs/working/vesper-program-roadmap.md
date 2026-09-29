@@ -198,10 +198,10 @@ closes the specific native private-new-chat Keep → question → receipt → Un
 case and fixes the handed-off receipt state so Undo clears the exact owner
 receipt while preserving the question. Two strict iPhone 16 Pro / iOS 18.2 /
 Maestro 2.6.1 runs passed with the handoff-failure warning absent. This remains
-mock-transport evidence; live authenticated readback, failed room creation,
-dock-fit, large-type and full six-door acceptance remain open. The new bind
-retry case is covered separately below; its simulator scenario completed only
-after runner retries, so it does not establish first-pass stability. See the [entrance
+mock-transport evidence; live authenticated readback, dock-fit, large-type and
+full six-door acceptance remain open. Simulated room-create and bind retries
+are now exercised together, but the expanded native scenario completed only
+after runner retries; first-pass reliability remains unresolved. See the [entrance
 checkpoint](home-value-composition-execution-plan-2026-09-25.md#private-chat-entrances-checkpoint--september-28)
 and [September 29 follow-up](home-value-composition-execution-plan-2026-09-25.md#private-new-conversation-bring--ask-native-follow-up--september-29).
 
@@ -419,6 +419,19 @@ server-backed receipt persistence, or model answer quality, and it has no
 matching image-state design reference. The dock, failed-room/bind, large-type,
 full Chat visual and complete six-door gaps remain. The matching handoff defect
 and command evidence are recorded in the linked checkpoint.
+
+**Private retry-path expansion (September 29):** app `d41237757` adds an
+explicit same-attempt retry after private photo Keep succeeds but conversation
+creation or pending-turn binding fails. The registered native scenario injects
+both one-shot mock faults, keeps the create surface and authored question
+available between them, then completes Chat receipt/Undo. The bind-only rerun
+`20260929T183101Z-vesper-chat` passed on runner attempt 1/3 after changing the
+Maestro selector to the button's stable test ID. The expanded two-fault run
+`20260929T184142Z-vesper-chat` completed 1/1 on attempt 3/3; attempts 1 and 2
+failed waiting for the destination composer, with the create surface still
+visible. This is bounded simulated retry evidence, not a root-caused first-pass
+reliability result or a real-server idempotency claim. Exact diagnostics and
+remaining limits are in the [H1 checkpoint](home-value-composition-execution-plan-2026-09-25.md#private-capture-bind-retry-recovery--september-29).
 
 **Next execution checkpoint:** first resolve the signing prerequisite for app
 `6005dd39b`'s journal-backed in-place path, then verify on an isolated signed
