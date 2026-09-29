@@ -1187,21 +1187,42 @@ authority. A larger original remains retained but is not previewed. Provider
 archives remain excluded from the visible original path.
 
 Focused parser, data-boundary and Life-reader tests pass (41 tests across the
-three targeted suites). App `npm run verify:pr` also passed on this change set:
-the existing 168 lint warnings remain below the 169 ratchet, test-typecheck
-debt remains below its ratchet, and the 185 mock/HTTP seam tests pass. The
-registered native flow is not yet visual evidence: its doctor passed Metro
-reachability on port 53177 but stalled while preparing the Maestro iOS driver;
-it was interrupted after 70 seconds, so no screenshot was captured. These
-checks do not prove the production authenticated media route on a device, real
-SendGrid delivery, or correctness for every iCalendar extension. The current
-implementation is a literal private-source preview, not calendar import or
-scheduling support.
+three targeted suites). App `npm run verify:pr` passed on `0d74aa663`: the
+existing 168 lint warnings remained below the 169 ratchet, test-typecheck debt
+was 403 against a 406 ratchet, and all 185 mock/HTTP seam tests passed. After a
+small final receipt-copy refinement in `a113f009c`, the two focused UI suites
+passed (31 tests), app TypeScript and targeted ESLint passed; the route's
+pre-existing max-lines warning remains.
 
-The app implementation is committed locally as `fcbde3758`; it adds no backend
-route, API schema, generated type, storage owner, or calendar-write operation.
-The workspace roadmap and this receipt are updated in a separate documentation
-commit. Neither commit is pushed or merged.
+The registered `polish/life-email-calendar-original` mock flow captured 1/1 on
+iPhone 16 Pro in run `20260929T222917Z-life-root` at `a113f009c` (Maestro
+2.6.1), using lane Metro `http://127.0.0.1:53177` and
+`--skip-driver-smoke` after the registered driver-smoke preflight timed out at
+75 seconds. Visual review found the receipt inset clipping `1 SOURCE`, a
+duplicated `Private source` body heading and repetitive complete-state copy,
+operational explanations in editorial/mono type, and editorial gold on
+operational labels. The receipt component now owns its internal inset; the
+duplicate heading and completed-state detail are removed; operational
+explanations use productive sans; and gold is removed from source/status/receipt
+labels. The Maestro flow asserts the count; the final
+screenshot shows it fully inside the card. The generated design comparison
+still expects `life-root-time-rich.png`, which this filtered reader flow does
+not capture; design-intent alignment for this screen therefore remains
+uncertified. I did not file a structured design PASS: `life-root` is configured
+for `external-canon`, but the manifest has `externalCanon: null`, no canonical
+pages, and only a root-level design pair that this reader does not produce.
+Choosing a valid reader-level design authority or an explicit doctrine-only
+scope is still needed before a canon-scored verdict. This is scoped native
+mock-fixture evidence, not a full Life design acceptance or a verified
+driver-smoke pass. It does not prove the production
+authenticated media route on a device, real SendGrid delivery, or correctness
+for every iCalendar extension. The implementation is a literal private-source
+preview, not calendar import or scheduling support.
+
+App changes are committed locally as `0d74aa663` and `a113f009c`; they add no
+backend route, API schema, generated type, storage owner, or calendar-write
+operation. The workspace roadmap and app surface contract carry separate
+documentation updates. Nothing is pushed or merged.
 
 ### OS common-composer host adapter — September 28
 
