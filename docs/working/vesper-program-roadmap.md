@@ -88,6 +88,18 @@ exact blocking boundary, then publish the current heads and refresh their
 checks. The founder's previously recorded publication/merge authority remains
 in force; it does not turn failed or skipped checks green.
 
+**Coordinated local gate — September 29:** `make verify` ran on workspace
+`322c08b0`, app `d7b640824`, and backend `b4f49810e`. Workspace doctor passed;
+the backend structural checks reached the catalog gate, which failed because
+the 14-day runway requires at least three active rows per band on 2026-10-12
+and the reviewed catalog currently has `season=0, here=0` for that date. Backend
+tests and app checks were not reached. This is a real data-gate failure, not a
+green or an infrastructure crash. Do not weaken the checker or invent
+seasonal/local entries to unblock integration; refresh those bands from
+reviewable sources under the World Foundry operating contract, or retain the
+failed boundary and continue independent work. No publication or merge follows
+from this run.
+
 The coordinated `codex/home-value-delivery` lane owns the Home candidate in all
 three independent repositories. Workspace `1f4a9e5` contains the local roadmap
 and accepted-decision rebaseline beyond the published tuple. App `332e77523`
