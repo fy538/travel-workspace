@@ -190,11 +190,18 @@ receive a new retention default. Scope, retry, source removal and typed owner
 checks are recorded in the [Chat checkpoint](home-value-composition-execution-plan-2026-09-25.md#private-chat-bring--ask-checkpoint--september-28).
 The new private-photo flow now has bounded native mock-transport acceptance and
 shows the exact original before Undo; real authenticated mobile readback and
-the complete six-door composer remain unverified. App `8a1337d62` now connects the Chat landing dock
-(legacy Vesper Home) and private/private-trip create through the same source
-owner and durable pending-turn path, including idempotent room creation,
-context preservation and destination Open/Undo. Native acceptance is still open;
-see the [entrance checkpoint](home-value-composition-execution-plan-2026-09-25.md#private-chat-entrances-checkpoint--september-28).
+the complete six-door composer remain unverified. App `8a1337d62` connects the
+Chat landing dock (legacy Vesper Home) and private/private-trip create through
+the same source owner and durable pending-turn path, including idempotent room
+creation, context preservation and destination Open/Undo. App `8fd994143` now
+closes the specific native private-new-chat Keep → question → receipt → Undo
+case and fixes the handed-off receipt state so Undo clears the exact owner
+receipt while preserving the question. Two strict iPhone 16 Pro / iOS 18.2 /
+Maestro 2.6.1 runs passed with the handoff-failure warning absent. This remains
+mock-transport evidence; live authenticated readback, failed room/bind, dock-fit,
+large-type and full six-door acceptance remain open. See the [entrance
+checkpoint](home-value-composition-execution-plan-2026-09-25.md#private-chat-entrances-checkpoint--september-28)
+and [September 29 follow-up](home-value-composition-execution-plan-2026-09-25.md#private-new-conversation-bring--ask-native-follow-up--september-29).
 
 The [email checkpoint](home-value-composition-execution-plan-2026-09-25.md#forwarded-email-private-keep-checkpoint--september-28)
 connects forwarded message text to private Keep, current-owner receipt/Undo and
@@ -387,6 +394,29 @@ immediate next device milestone remains matching signed app/extension
 provisioning, then real Clerk and owner-backed readback. Detailed assertions,
 two non-blocking image-viewer refinements, the mock evidence boundary and exact
 commands live in the [H1 execution package](home-value-composition-execution-plan-2026-09-25.md#native-selection-beyond-two--september-29).
+
+**Private new-conversation Bring + Ask follow-up (September 29):** app
+`8fd994143` fixes a receipt handoff defect: the destination composer now adopts
+the owner-authorized receipt ID passed from the pending turn, and matching Undo
+clears that receipt without dropping the authored question. A regression test
+also proves a stale prior-source removal cannot clear a newer receipt. The
+registered `polish/vesper-chat-private-create-capture` flow selects a native
+Photos-library image, keeps it privately, creates the private conversation,
+verifies the exact receipt and Undo, and confirms the question remains. Strict
+native runs `20260929T152015Z-vesper-chat` and
+`20260929T152544Z-vesper-chat` passed **1/1**, each with five extra captures, on
+iPhone 16 Pro / iOS 18.2 / Maestro 2.6.1. Both assert the pending-turn failure
+warning is absent. An earlier intermediate run displayed that warning once; it
+did not recur in the next three runs, so its cause remains unconfirmed rather
+than being presented as a proven fix. Focused tests passed **37/37** across
+three suites; `npm run typecheck`, scenario registration (**31**), Chat design
+reference validation (one manifest, 30 pairs, zero verified external canon
+references), `git diff --check`, and workspace `make docs-check` passed. The
+native flow uses mock transport: it does not prove authenticated upload,
+server-backed receipt persistence, or model answer quality, and it has no
+matching image-state design reference. The dock, failed-room/bind, large-type,
+full Chat visual and complete six-door gaps remain. The matching handoff defect
+and command evidence are recorded in the linked checkpoint.
 
 **Next execution checkpoint:** first resolve the signing prerequisite for app
 `6005dd39b`'s journal-backed in-place path, then verify on an isolated signed

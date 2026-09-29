@@ -912,11 +912,59 @@ ran on the corresponding app patch tree based on `f3c402a72`:
 - CUA attempted Simulator inspection again and reported the Mac locked.
   **No new native capture or visual acceptance.** The existing `vesper-chat`
   contract now names dock/choice/receipt geometry, keyboard/large type,
-  private create and failure/Undo/return evidence still required.
+  private-create and failure/Undo/return evidence still required at this
+  checkpoint. The targeted private-create receipt/Undo case is captured in the
+  September 29 follow-up below; failed room/bind and large-type checks remain.
 
 The following checkpoint advances the email adapter; native OS adaptation,
 retained Life continuity and later value remain in scope. Neither checkpoint
 completes all six doors or adopts broader audience/use-grant policies.
+
+### Private new-conversation Bring + Ask native follow-up — September 29
+
+The new-private-conversation route now has its own registered native scenario,
+separate from the existing private-thread photo flow. It selects a photo from
+the iOS Photos library, uses the default private Keep choice, submits the
+question through the durable pending-turn handoff, opens the destination's
+exact owner receipt, and Undoes that receipt while retaining the authored
+question. This is the same private Intake owner and existing Chat transport;
+it introduces no new audience or retention policy.
+
+App commit **`8fd994143`**, based on `5aa359203`. The flow exposed a defect in
+receipt transfer: the Chat composer displayed the entry receipt, but its
+submission hook did not own that handed-off ID, so Undo treated the removal as
+stale and left the receipt state visible. The hook now seeds its owner receipt
+state from the handoff, clears it only for a matching removal, and resets the
+visible confirmation/error state when the destination source changes. The
+focused regression also checks that an old source removal cannot clear a newer
+receipt. The native run verifies Undo still leaves the question in Chat.
+
+Evidence on the lane-assigned iPhone 16 Pro / iOS 18.2 / Maestro 2.6.1:
+
+- `20260929T152015Z-vesper-chat` and `20260929T152544Z-vesper-chat` each passed
+  **1/1** with five extra screenshots. Both strict runs checked that the
+  pending-turn failure warning was absent. The flow uses a real simulator
+  Photos-library selection but mock API/Chat transport.
+- One earlier intermediate capture (`20260929T150342Z-vesper-chat`) showed the
+  “message is safe, but could not send yet” warning once. It was not reproduced
+  by the following three runs; no causal explanation has been established.
+  Treat this as a non-reproduced warning with a regression guard, not proof that
+  the asynchronous failure path cannot occur.
+- Focused Jest: **37/37** across `useChatCaptureSubmission`,
+  `useConversationEntrySeed`, and `usePrivateCaptureChatEntry` suites.
+- `npm run typecheck` passed. `npm run qa:polish:scenarios` passed with **31**
+  registered scenarios. `npm run qa:design:check -- vesper-chat` passed with
+  one manifest / 30 pairs / **zero** verified external canon references.
+- Workspace `make docs-check` and app `git diff --check` passed. The backend
+  and full coordinated `make verify` gate were not run for this app-only slice.
+
+The screenshots show behavior and the existing Chat presentation only. The
+flow does not prove authenticated upload/readback, durable backend receipt
+persistence, a real model answer, or visual parity for the photo state (there
+is no matching reference). Failed room creation/bind, dock accessory fit,
+large-type behavior, full Chat visual acceptance, and the complete six-door
+composer remain separate work. Preserve the one-time warning anomaly in this
+record unless a later reproduction explains it.
 
 ### Forwarded email private Keep checkpoint — September 28
 
