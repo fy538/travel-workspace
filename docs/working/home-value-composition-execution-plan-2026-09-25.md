@@ -982,6 +982,16 @@ pending-turn-bind rejection, requiring two explicit retries before the same
 authored question reaches the room. This distinguishes the two client owner
 steps while retaining the existing source and attempt identity.
 
+The retry audit found a concrete mock/back-end mismatch: mock
+`stagePendingChatTurn` overwrote its existing record on an identical
+`client_turn_id`, which could reset a bound turn to `staged`; mock client reset
+also left pending-turn state behind. App `2644f51e2` now preserves the existing
+record for an identical request, rejects changed content under the same key,
+and clears both record and fingerprint state on reset. The backend stage route
+validates source custody before idempotently returning the prior record, so the
+client continues to restage on retry; it does not cache the pending-turn ID and
+skip that ownership check.
+
 - Focused Jest passed **25/25** across `PrivateCaptureComposer.retry`,
   `usePrivateCaptureChatEntry`, `useChatCaptureSubmission`, and
   `mockPrivateChatHandoffFault` suites. The tests check repeat submission with
@@ -1002,6 +1012,17 @@ steps while retaining the existing source and attempt identity.
   bounded mock-device evidence, not first-pass-stable or root-caused retry
   behavior. The flow exercises a real simulator photo-library selection but
   mock API/Chat transport.
+- After the mock correction, `20260929T192147Z-vesper-chat` again failed on
+  runner attempt 1 at the destination-composer assertion with the create
+  surface still visible; attempt 2 completed the full recovery, receipt and
+  Undo with both intermediate screenshots. This confirms the mock owner
+  mismatch was real but not the sole cause of the intermittent device failure.
+  The exact run command was
+  `VESPER_METRO_URL=http://localhost:53177 node scripts/polish-qa/run-polish-qa.mjs
+  vesper-chat --flow=private-create-bind-retry --device="iPhone 16 Pro"`.
+- App `npm run verify:pr` passed on `2644f51e2`: 168 lint warnings against the
+  169-warning ratchet, test-typecheck at 403 errors against 406, and parity
+  **185/185**, no skips. Focused Chat capture/mock suites passed **13/13**.
 
 This does not establish authenticated upload, server persistence, answer
 quality, real-server room-creation idempotency, accessibility-size behavior,

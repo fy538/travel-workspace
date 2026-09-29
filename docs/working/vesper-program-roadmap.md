@@ -76,15 +76,17 @@ private child checkout cannot authenticate; its Maestro configuration check
 passed and the smoke was skipped. App and backend checks passed on their
 published heads. Those results do **not** cover the current local follow-ups.
 
-The clean coordinated lane is at workspace `b72957ae8`, app `c43e3afc4`, and
-backend `b4f49810e`, respectively **48 / 58 / 8 commits ahead** of its matching
-published lane branches. Fetched `origin/main` is an ancestor of all three
-current heads, so no rebase is needed. The local follow-ups remain unpublished;
-do not merge the older PR heads and describe the later lane work as included.
-Before closeout, run the coordinated gate on the intended tuple, resolve or
-record its exact blocking boundary, then publish the current heads and refresh
-their checks. The founder's previously recorded publication/merge authority
-remains in force; it does not turn failed or skipped checks green.
+The coordinated product-code lane was at workspace `598422eb`, app `d7b640824`,
+and backend `b4f49810e` during this refresh; relative to the published lane
+branches it stood **49 / 60 / 8 commits ahead** before this workspace-only
+roadmap update. The three PRs remain open and blocked at the published heads in
+the table above. Current `origin/main` is an ancestor of all three product-code
+heads, so no rebase is needed. The local follow-ups remain unpublished; do not
+merge the older PR heads and describe later lane work as included. Before
+closeout, run the coordinated gate on the intended tuple, resolve or record its
+exact blocking boundary, then publish the current heads and refresh their
+checks. The founder's previously recorded publication/merge authority remains
+in force; it does not turn failed or skipped checks green.
 
 The coordinated `codex/home-value-delivery` lane owns the Home candidate in all
 three independent repositories. Workspace `1f4a9e5` contains the local roadmap
@@ -451,6 +453,20 @@ failed waiting for the destination composer, with the create surface still
 visible. This is bounded simulated retry evidence, not a root-caused first-pass
 reliability result or a real-server idempotency claim. Exact diagnostics and
 remaining limits are in the [H1 checkpoint](home-value-composition-execution-plan-2026-09-25.md#private-capture-bind-retry-recovery--september-29).
+
+The retry audit then corrected a separate mock/backend mismatch in app
+`2644f51e2`: the mock stage owner now replays an identical client turn without
+resetting bound state, rejects changed payload under the same idempotency key,
+and clears turn state on mock reset. The backend still validates source custody
+on every stage request, so the client deliberately restages with its stable key
+after Undo rather than caching an ID. The follow-up run
+`20260929T192147Z-vesper-chat` failed on runner attempt 1 at the destination
+composer (create screen remained visible) and completed on attempt 2, including
+receipt/Undo. The mismatch is fixed, but it did not remove the intermittent
+native failure; the cause remains open in H1. App `npm run verify:pr` passes on
+the corrected source (168 lint warnings; 403 test-typecheck errors; parity
+185/185, zero skips). This remains simulated transport evidence, not live
+authenticated custody, first-pass stability, or real-server delivery.
 
 **Next execution checkpoint:** first resolve the signing prerequisite for app
 `6005dd39b`'s journal-backed in-place path, then verify on an isolated signed
