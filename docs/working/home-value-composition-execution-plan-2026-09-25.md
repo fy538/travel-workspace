@@ -493,7 +493,7 @@ literal original, not an invented personal interpretation. All changes remain lo
 | Global add | Shared app `components/inbound/capture-entry.tsx` → `/share-capture?compose=1` → `capture-composer.tsx` | Home v2, compatibility, loading and recoverable error states now retain the same private capture entrance; focused component tests verify the route remains available when both Home reads fail. Places, Life and Chat normal-root headers already expose the shared entrance. Large type and all root-state visual acceptance remain open; ordinary root captures do not prove loading/error composition quality. |
 | Chat attachment | Existing private threads, Chat landing dock (legacy Vesper Home), and private/private-trip create use `private-capture-composer.tsx` → common Intake custody → answer-only pending Chat turn with exact source refs; pre-thread entry shares `usePrivateCaptureChatEntry` | Visible Keep/Ask only, current-owner Open/Undo, stable source/turn/room retries and contextual handoff are local. Photo Library now opens the OS-mediated picker directly without broad Photos access or a separate rationale; only the selected image enters the removable draft, while Camera retains its own permission. The registered existing-thread native mock flow covers library photo selection, Ask only, Keep, exact-image receipt, Undo and offline draft. Dock/private-create, keyboard/failure/large-type evidence remains. Group rooms and carried references do not silently opt in. |
 | Existing-object Keep/Send | App `hooks/useSaveEntity.ts` owns place saves; `data/relationshipPlaceHandoffs.ts` owns addressed, place-bound pair delivery; selected originals retain Source ownership | Route authored sharing through the common component while keeping bookmark and Source ownership distinct. The current place-required, single-recipient handoff is not the accepted general person/group/Friends schema. |
-| Email | Backend `backend/api/routes/inbound_email.py` and `backend/inbound/email_forward.py`: authenticated alias/webhook, flag-gated v2 inline intake and provider archive binding | New message text and supported attachment bytes receive private Keep, Source-to-Life handoff, metadata refinding and existing receipt/Undo without interpretation review. Historical retries preserve their policy. Provider envelopes are excluded from human original counts. Focused and disposable-Postgres checks cover text-plus-PNG and attachment-only messages; real SendGrid delivery, native attachment presentation, and per-message failure/recovery remain unverified. Unsupported attachment types still reject the whole email. |
+| Email | Backend `backend/api/routes/inbound_email.py` and `backend/inbound/email_forward.py`: authenticated alias/webhook, flag-gated v2 inline intake and provider archive binding | New message text and supported attachment bytes receive private Keep, Source-to-Life handoff, metadata refinding and existing receipt/Undo without interpretation review. Historical retries preserve their policy. Provider envelopes are excluded from human original counts. Life now has a bounded read-only `.ics` original preview through the existing owner-scoped source-media route; parser/data/screen tests cover time-zone labeling, attendee omission, size limits and provider-archive exclusion. Native visual capture and live authenticated mobile readback remain unverified. Real SendGrid delivery and per-message failure/recovery also remain unverified. Unsupported attachment types still reject the whole email. |
 
 ### Selected-image readback completion — September 29
 
@@ -1174,6 +1174,34 @@ tests below ran on the identical tree immediately before commit, with workspace
 - These checks do not prove external SendGrid payload/signature delivery,
   hosted-object deletion, native attachment presentation, scanner coverage for
   excluded types, or a user-visible explanation when intake is rejected.
+
+### Calendar attachment original preview — September 29
+
+Life's owner-scoped original reader now recognizes retained `text/calendar`
+attachments through the existing Source media endpoint. Its pure parser handles
+basic event summary, start, location, description and in-file status; unfolds
+folded lines, labels UTC/TZID/floating time explicitly, and caps the preview at
+256 KiB and three displayed events. It does not expose attendee properties,
+expand recurrence, add events to the device calendar, or create calendar
+authority. A larger original remains retained but is not previewed. Provider
+archives remain excluded from the visible original path.
+
+Focused parser, data-boundary and Life-reader tests pass (41 tests across the
+three targeted suites). App `npm run verify:pr` also passed on this change set:
+the existing 168 lint warnings remain below the 169 ratchet, test-typecheck
+debt remains below its ratchet, and the 185 mock/HTTP seam tests pass. The
+registered native flow is not yet visual evidence: its doctor passed Metro
+reachability on port 53177 but stalled while preparing the Maestro iOS driver;
+it was interrupted after 70 seconds, so no screenshot was captured. These
+checks do not prove the production authenticated media route on a device, real
+SendGrid delivery, or correctness for every iCalendar extension. The current
+implementation is a literal private-source preview, not calendar import or
+scheduling support.
+
+The app implementation is committed locally as `fcbde3758`; it adds no backend
+route, API schema, generated type, storage owner, or calendar-write operation.
+The workspace roadmap and this receipt are updated in a separate documentation
+commit. Neither commit is pushed or merged.
 
 ### OS common-composer host adapter — September 28
 
