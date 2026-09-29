@@ -289,6 +289,51 @@ retryable native permission prompting, visual acceptance beyond the captured
 flow, or Android behavior. The source limitation is specific to the assigned
 simulator; a capable physical camera remains necessary for shutter acceptance.
 
+### Home root add during loading and recovery — September 29
+
+App **`55022182e`** keeps the shared private-capture entrance reachable on Home
+while its projection is loading, after a recoverable read failure, and in the
+compatibility reader. The failure state retains its retry action; root-add still
+opens the existing private composer and does not create a second capture path.
+The compatibility reader now reserves the floating header's actual clearance
+instead of relying on the safe-area inset alone. The social-photo fixture has
+no direct private-media authorization grant, so its image is deliberately not
+tappable; it must open through the visible `Open original` source door.
+
+- Focused component tests passed: **33/33** across
+  `HomeRootExperience.test.tsx`, `HomeRootScreen.smoke.test.tsx` and
+  `capture-composer.test.tsx`. They assert that root-add stays visible and
+  navigates to `/share-capture?compose=1` during Home loading, after both v2 and
+  compatibility reads fail, and in the compatibility composition.
+- `npm run typecheck` passed on runtime commit `55022182e`. After correcting
+  the test-only fixture assumption, `node --test
+  scripts/maestro/home-original-delivery-photo.test.mjs` passed **1/1** and
+  `npm run qa:polish:test` passed. Scenario registration remains 31 IDs. The
+  app `verify:pr` gate passed on the runtime code before that test-only
+  correction: parity **185/185** across six suites, 168 lint warnings under the
+  169-warning ratchet, and the existing test-typecheck baseline of 406 errors.
+  This is not the cross-repository `make verify` gate.
+- The initial combined Home native run captured **11/12** flows; its social
+  photo case was not valid evidence. With the lane API stopped, the image URL
+  failed and showed retry. After starting the isolated API, the image loaded,
+  but a fresh screenshot showed the fixture's real affordance is the explicit
+  `Open original` Door, not `home-v2-original-image-open`: direct image opening
+  requires an authorization grant this synthetic recipient does not have. The
+  flow was restored to `home-v2-original-open`. Targeted command
+  `VESPER_METRO_URL=http://192.168.1.153:53177 npm run qa:polish -- home-root
+  --device='iPhone 16 Pro' --flow=polish/home-root-social-photo` then captured
+  **1/1**, including the Home image card, exact shared-original reader and
+  return to the same Home scroll (`20260929T050332Z-home-root`). The run's app
+  SHA is `55022182e`; it used the corrected local flow committed as
+  `a1d3633e4`. This is a targeted native mock-persona capture, not a rerun of
+  the complete Home matrix or an overall visual verdict.
+
+The shared root-add capability is now present in the required Home states, but
+the Urgent recovery value P1, full Home visual acceptance, real authenticated
+media and camera-shutter evidence remain open. The native photo fixture now
+opens and returns on its correct explicit source route; its mock-persona read
+does not prove real authenticated custody or broader audience authority.
+
 ### Private Intake-to-Life continuity — September 28
 
 App **`a11d1a061`** connects an explicitly retained private Intake source to
@@ -354,7 +399,7 @@ literal original, not an invented personal interpretation. All changes remain lo
 | --- | --- | --- |
 | OS share | Generated `ios/ShareExtension/ShareViewController.swift` → `components/sharing/ShareIntentHandler.tsx` → common private composer and Intake Source custody | Text/link/file shares now enter an account-bound draft through an opaque navigation key and wait for explicit Keep; all originals/captions and retry identity survive the handoff. Single audio stays on compatibility. The extension still redirects to the host; in-place authenticated delivery, durable recovery and native completion remain. |
 | Camera/photos | App `hooks/useCaptureDraft.ts` → existing `data/inboundItems.ts` upload; entity capture shares MIME handling through `utils/intakePhoto.ts` | New in-app composer stages camera/library images and a note before explicit Keep, bounded to 16 and supported formats. Native iOS Photos-library paths cover one- and two-image selection, editable drafts/removal, and picker cancellation without losing an existing draft; all reach mock private Keep, lead-original readback and same-owner Undo. The common photo-library door uses the system picker without broad Photos access; Camera requests permission only after an explicit tap. App `d8a133677` preserves the draft after denial, offers retry when `canAskAgain` is true, and offers Settings only when retry is unavailable. App `de02ae042` gives truthful camera-specific recovery when native capture cannot launch; the pinned simulator's unavailable-source state retains the draft and allows Photos fallback through Keep/Undo. Successful Camera shutter/custody, retryable native OS prompting, selections above two, individual readback for every image, other roots, live authenticated readback, accessibility sizing, and entity/Chat convergence remain open. |
-| Global add | Shared app `components/inbound/capture-entry.tsx` → `/share-capture?compose=1` → `capture-composer.tsx` | Normal Home v2, Places, Life and Chat root headers now expose the same entrance alongside their existing controls. Chat is not required. Home loading/error and compatibility coverage, large type, and all root-state visual acceptance remain explicit follow-up scope rather than implied by the normal-root capture. |
+| Global add | Shared app `components/inbound/capture-entry.tsx` → `/share-capture?compose=1` → `capture-composer.tsx` | Home v2, compatibility, loading and recoverable error states now retain the same private capture entrance; focused component tests verify the route remains available when both Home reads fail. Places, Life and Chat normal-root headers already expose the shared entrance. Large type and all root-state visual acceptance remain open; ordinary root captures do not prove loading/error composition quality. |
 | Chat attachment | Existing private threads, Chat landing dock (legacy Vesper Home), and private/private-trip create use `private-capture-composer.tsx` → common Intake custody → answer-only pending Chat turn with exact source refs; pre-thread entry shares `usePrivateCaptureChatEntry` | Visible Keep/Ask only, current-owner Open/Undo, stable source/turn/room retries and contextual handoff are local. Photo Library now opens the OS-mediated picker directly without broad Photos access or a separate rationale; only the selected image enters the removable draft, while Camera retains its own permission. The registered existing-thread native mock flow covers library photo selection, Ask only, Keep, exact-image receipt, Undo and offline draft. Dock/private-create, keyboard/failure/large-type evidence remains. Group rooms and carried references do not silently opt in. |
 | Existing-object Keep/Send | App `hooks/useSaveEntity.ts` owns place saves; `data/relationshipPlaceHandoffs.ts` owns addressed, place-bound pair delivery; selected originals retain Source ownership | Route authored sharing through the common component while keeping bookmark and Source ownership distinct. The current place-required, single-recipient handoff is not the accepted general person/group/Friends schema. |
 | Email | Backend `backend/api/routes/inbound_email.py` and `backend/inbound/email_forward.py`: authenticated alias/webhook, flag-gated v2 inline intake and provider archive binding | New message text now receives private Keep, Source-to-Life handoff, metadata refinding and existing receipt/Undo without interpretation review. Historical retries preserve their policy. Provider envelopes are excluded from human original counts. Local HTTP/Postgres and mobile behavior are covered; real delivery, attachments and native payoff remain unverified. |

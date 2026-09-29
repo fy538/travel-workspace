@@ -3,7 +3,7 @@ doc_type: current_status
 status: active
 owner: founder / coordination task
 created: 2026-09-07
-last_verified: 2026-09-28
+last_verified: 2026-09-29
 why_new: Owns the single live cross-lane execution queue, accountable package assignments, and system reassessment without duplicating product or implementation contracts.
 supersedes:
   - current assignments and sequencing in the historical program and Integration roadmaps
@@ -342,6 +342,20 @@ warnings under a 169 ratchet; test-typecheck debt remains 406; parity 185/185
 across six suites). The design-alignment test suite also passes with generated
 `.tmp` caches excluded from source discovery and symlinks skipped. See the
 [camera-unavailable evidence](home-value-composition-execution-plan-2026-09-25.md#camera-unavailable-recovery--september-29).
+
+**Home root-add recovery follow-up (September 29):** app `55022182e` keeps the
+shared private composer reachable on Home v2, compatibility, loading and
+recoverable-error states; focused tests cover the loading/error route and
+compatibility header clearance. Typecheck, 33 focused tests, the targeted flow
+contract, polish QA tests and scenario registration passed. The app `verify:pr`
+gate passed on this code content (185/185 parity; existing lint/test-typecheck
+ratchets unchanged). The first combined native Home run captured **11/12**; the
+photo case was invalid because the lane media endpoint was stopped and the flow
+also targeted direct-image opening for a fixture without that authorization.
+After starting this lane's API, the image loaded and showed the expected explicit
+“Open original” source door; the corrected targeted flow captured the card,
+reader and return (**1/1**). This is not a complete Home matrix or live custody
+acceptance. Exact evidence and limits are in the [H1 execution record](home-value-composition-execution-plan-2026-09-25.md#home-root-add-during-loading-and-recovery--september-29).
 
 **Next execution checkpoint:** first resolve the signing prerequisite for app
 `6005dd39b`'s journal-backed in-place path, then verify on an isolated signed
