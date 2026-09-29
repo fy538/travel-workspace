@@ -489,6 +489,50 @@ last-image route. This is implementation evidence, not end-to-end device proof:
 the native capture still covers at most two selected images, immediate receipt
 still previews only the lead image plus a count, and real Clerk/mobile owner
 readback remains open. The surface contract records the resulting boundary.
+The local commits are workspace `d3b614e70`, backend `b4f49810e`, and app
+`ee536f63d` on `codex/home-value-delivery`; all three checkouts are clean. These
+follow-up commits have not been pushed or merged.
+
+Verification on this tuple:
+
+- Workspace root: `./scripts/sync-types.sh` completed, regenerated both
+  OpenAPI snapshots, and passed its generated-type `tsc --noEmit` check;
+  `schema.gen.ts` required no type-shape change because `maxItems` is not
+  represented in TypeScript's array type.
+- Workspace-root backend tests:
+
+  ```sh
+  travel-agent/.venv/bin/python -m pytest travel-agent/tests/api/test_artifact_projections.py travel-agent/tests/core/test_canonical_artifact_projection.py -q
+  ```
+
+  **14 passed.** Focused Ruff passed from `travel-agent/`:
+
+  ```sh
+  .venv/bin/ruff check backend/core/models/canonical_artifact.py backend/core/db/intake_anchors.py backend/api/routes/artifact_projections.py tests/api/test_artifact_projections.py
+  ```
+
+- From `travel-app/`:
+
+  ```sh
+  npm test -- --runInBand --runTestsByPath __tests__/components/canonicalArtifactCard.test.tsx
+  npm run verify:pr
+  ```
+
+  The focused suite passed **6 tests**. `verify:pr` passed with 168 lint
+  warnings under the 169 ratchet, existing test typecheck debt unchanged at
+  406, and parity 185/185.
+- Workspace root: `make docs-check` passed.
+- Native `canonical-artifact-gallery` capture was attempted on the assigned
+  iPhone 16 Pro (`20260929T140250Z-canonical-artifact-gallery`) but failed after
+  its first screenshot: the flow's second same-route deep link left the gallery
+  on the flight fixture and missed the Colosseum assertion. The fixture has no
+  media, so even its captured frame would not verify gallery virtualization.
+  Treat native gallery/media acceptance as **unverified**, not passed.
+
+  Command:
+  ```sh
+  VESPER_METRO_URL=http://192.168.1.153:53177 node scripts/polish-qa/run-polish-qa.mjs canonical-artifact-gallery --device='iPhone 16 Pro' --flow=polish/canonical-artifact-gallery
+  ```
 
 Common in-app private authoring/root add is implemented; native one- and
 two-photo library happy paths are evidenced, and the canonical reader can carry
