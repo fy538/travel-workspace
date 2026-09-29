@@ -202,28 +202,45 @@ promote Home to full product acceptance.
 
 Trace the next real supply gap through existing preparation and serving:
 
-September 28 code recheck: the default canonical executor already binds
+September 29 checkpoint: the explicit Home trigger and end-to-end local path
+already exist. A retained-Source Home unit exposes a user-invoked `Ask Vesper`
+action; the request is scoped to that unit's admitted Source refs and goes
+through the existing explicit workflow, canonical worker, saved result and
+exact-result route. The September 26 native rehearsal covered the real local
+API, disposable Postgres, assigned iPhone, pending/ready result, return to the
+same Home unit, and fixture cleanup. Its synthetic owner, retained-photo/public-
+reading pair and provider-free authored worker prove this connection only;
+they do **not** establish model-authored quality or recurring useful supply.
+That exact rehearsal should not be repeated as a quality test.
+
+The September 28 code recheck confirmed the default canonical executor already binds
 `StructuredSourceContributionProducer` to current owner reads and retained
 production readback. The shared Arq job and recovery sweep exist; production,
 worker and named-cohort gates constrain explicit warming. The structured caller
 has bounded evidence, tokens, timeout and attempts. Ordinary Home reads only
 serve prepared results. **No missing second generator or implicit Home-read
-trigger was found in this boundary check.** It did not run a live provider or
-establish deployed recurring supply; continue from those actual unknowns.
+trigger was found.** The live model/provider path, its generated-content
+quality, and deployed recurring supply remain unverified.
 
-1. Select permitted retained/public material with inspectable provenance; name
-   the actual existing trigger and owner. Distinguish unavailable provider/input
-   from missing preparation, rejected output, absent candidate or selection loss.
-2. Use the existing governed producer/worker path. If a supported link is broken,
-   fix it and verify owner readback, expiry/withdrawal and the ordinary Home read.
-   Do not repeat the deterministic DB rehearsal as evidence of model quality.
+1. The existing bounded trigger is the person's explicit `Ask Vesper` action on
+   a retained-Source unit; its owner is that person. The local rehearsal used
+   inspectable synthetic/private and reviewed public material. Do not add an
+   ambient trigger or a second generation path to make the example recur.
+2. The supported Home → request → governed worker → exact owner readback → native
+   result → same Home return path is already connected. Do not repeat its
+   deterministic DB/device rehearsal unless a later code change breaks that
+   connection. Preserve the existing distinction between unavailable provider
+   or input, missing preparation, rejected output, absent candidate and
+   selection loss.
 3. Inspect the resulting benefit: new substance or useful practical help, not a
    paraphrase of what the person supplied; appropriate length; exact sources;
    meaningful depth; no request to document more as the payoff.
-4. If the authorized provider/runtime is available, retain one bounded real
-   preparation-to-native result and its limitations. If unavailable, finish
-   independent implementation, state the exact unverified claim and dependency,
-   and stop rerunning equivalent fixture proofs.
+4. A bounded real-model preparation-to-native result remains a separate
+   acceptance gap. It requires an available, authorized provider/runtime and a
+   named permitted source set; absent that, record the exact unverified claim
+   (model-authored quality and recurring supply) and dependency, and stop
+   rerunning equivalent fixture proofs. Continue H1-C review/closeout without
+   treating this product-quality gap as a missing implementation link.
 
 A completed example establishes that example, not daily coverage. Recurrence
 requires an authorized trigger, current inputs, reliable preparation, freshness
@@ -231,11 +248,13 @@ and bounded cost; it is not created by an ordinary Home read, a Keep, or this
 roadmap. A new ambient trigger, mandate or private-use agreement requires its
 named owner decision. Do not pad sparse supply to hit a card count.
 
-At the first working H1-A/B checkpoint, decide whether the remaining supply gap
-is a bounded authorized repair or a separately scoped capability/policy need.
-Close the implemented connection package with explicit residuals where justified;
-do not hold all capture/share work indefinitely behind unspecified “production
-content,” and do not call recurring Home value solved when it is not.
+At the H1-A/B checkpoint, the remaining supply gap is not a broken connection:
+the explicit request path is implemented and has bounded native evidence. The
+unverified live-model quality/recurrence claim depends on provider/runtime and
+source authorization, not another capture or serving repair. Close the
+implemented connection package with that residual explicit; do not hold all
+capture/share work behind unspecified “production content,” and do not call
+recurring Home value solved when it is not.
 
 ### H1-C — Review and land the coherent package
 
