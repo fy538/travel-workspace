@@ -198,8 +198,10 @@ closes the specific native private-new-chat Keep → question → receipt → Un
 case and fixes the handed-off receipt state so Undo clears the exact owner
 receipt while preserving the question. Two strict iPhone 16 Pro / iOS 18.2 /
 Maestro 2.6.1 runs passed with the handoff-failure warning absent. This remains
-mock-transport evidence; live authenticated readback, failed room/bind, dock-fit,
-large-type and full six-door acceptance remain open. See the [entrance
+mock-transport evidence; live authenticated readback, failed room creation,
+dock-fit, large-type and full six-door acceptance remain open. The new bind
+retry case is covered separately below; its simulator scenario completed only
+after runner retries, so it does not establish first-pass stability. See the [entrance
 checkpoint](home-value-composition-execution-plan-2026-09-25.md#private-chat-entrances-checkpoint--september-28)
 and [September 29 follow-up](home-value-composition-execution-plan-2026-09-25.md#private-new-conversation-bring--ask-native-follow-up--september-29).
 

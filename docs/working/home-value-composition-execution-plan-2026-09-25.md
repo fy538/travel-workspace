@@ -914,7 +914,8 @@ ran on the corresponding app patch tree based on `f3c402a72`:
   contract now names dock/choice/receipt geometry, keyboard/large type,
   private-create and failure/Undo/return evidence still required at this
   checkpoint. The targeted private-create receipt/Undo case is captured in the
-  September 29 follow-up below; failed room/bind and large-type checks remain.
+  September 29 follow-up below; failed room creation and large-type checks
+  remain, while bind-retry behavior is recorded separately below.
 
 The following checkpoint advances the email adapter; native OS adaptation,
 retained Life continuity and later value remain in scope. Neither checkpoint
@@ -961,10 +962,44 @@ Evidence on the lane-assigned iPhone 16 Pro / iOS 18.2 / Maestro 2.6.1:
 The screenshots show behavior and the existing Chat presentation only. The
 flow does not prove authenticated upload/readback, durable backend receipt
 persistence, a real model answer, or visual parity for the photo state (there
-is no matching reference). Failed room creation/bind, dock accessory fit,
-large-type behavior, full Chat visual acceptance, and the complete six-door
-composer remain separate work. Preserve the one-time warning anomaly in this
-record unless a later reproduction explains it.
+is no matching reference). Failed room creation, dock accessory fit, large-type
+behavior, full Chat visual acceptance, and the complete six-door composer
+remain separate work. Preserve the one-time warning anomaly in this record
+unless a later reproduction explains it.
+
+### Private capture bind-retry recovery — September 29
+
+The explicit retry now preserves the initial submission as one attempt: the
+question, selected image source, room/turn identity and owner callback are
+reused after an uncertain pending-turn bind failure. The create composer stays
+visible with the draft/source intact until the same attempt succeeds. A
+one-shot mock bind fault exercises this path in the registered
+`vesper-chat-private-create-bind-retry` flow; after retry it verifies the
+destination's exact receipt and Undo while retaining the question. The retry
+control is a full-width, minimum-height target separated from the receipt link.
+
+- Focused Jest passed **25/25** across `PrivateCaptureComposer.retry`,
+  `usePrivateCaptureChatEntry`, `useChatCaptureSubmission`, and
+  `mockPrivateChatHandoffFault` suites. The tests check repeat submission with
+  the same source/question and preserve the attempt identity across create and
+  bind failures.
+- App `npm run verify:pr` passed: lint **168 warnings / 0 errors** against a
+  169-warning baseline; runtime typecheck and API/schema/surface checks passed;
+  test-typecheck ratchet improved from 406 to **403**; parity passed **185/185**
+  with no skips. `npm run qa:polish:scenarios` passed with **31** registered
+  scenarios.
+- On iPhone 16 Pro / iOS 18.2 / Maestro 2.6.1, the registered flow completed
+  **1/1 on runner attempt 3 of 3** in `20260929T181558Z-vesper-chat`. Attempts
+  1 and 2 failed waiting for the destination composer after tapping retry; the
+  cause is unresolved. Record this as completed bounded mock-device evidence,
+  not first-pass-stable or root-caused retry behavior. It exercises a real
+  simulator photo-library selection but mock API/Chat transport.
+
+This does not establish authenticated upload, server persistence, answer
+quality, failed room-creation recovery, accessibility-size behavior, dock fit,
+or full Chat acceptance. Inspect the attempt screenshots/log before claiming
+the native retry interaction is reliable; do not infer that the underlying
+attempt semantics are flaky from the unresolved device-runner failures alone.
 
 ### Forwarded email private Keep checkpoint — September 28
 
