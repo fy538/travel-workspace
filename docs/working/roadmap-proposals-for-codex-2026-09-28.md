@@ -38,7 +38,7 @@ The roadmap's "Capture/share package boundaries" already follow the September
     - OAuth;
     - filter before reading;
     - keep only matches;
-    - a visible log;
+    - a record of which emails were read and kept, in the inbox's settings;
     - disconnect deletes what was read but not kept.
   - A booking is filed as the person's only when it names them. Use
     schema.org reservation markup (`underName`) where the email carries it.
@@ -50,17 +50,29 @@ The roadmap's "Capture/share package boundaries" already follow the September
   list: the OS share sheet, inside Vesper (camera, photos, add, Keep/Send on an
   object), Chat, the connected inbox, and a friend. A Wallet pass arrives
   through the share sheet.
-- **One thing through two doors is one artifact.** It merges and lists its
-  sources. This belongs in the shared intake contract, not in each door.
+- **Merge only repeated captures of the same material.** One ticket through
+  email and a screenshot becomes one artifact that lists both sources.
+  - Two visits to one restaurant, or a friend's recommendation and the
+    person's photograph of the same place, are related but never merged.
+  - The existing retry identity (`owner_id`, `idempotency_key`) deliberately
+    refuses content hashes as identity, and that should hold.
+  - Cross-door merging belongs in the shared intake contract, not in each
+    door.
 - **Where things land.**
   - A kept thing joins its kind collection silently, with Undo.
   - It enters a shared collection only when its author adds it.
   - Membership is many-to-many between Capture's typed artifacts and a
-    collection owner. No owner exists yet; identify it in the implementation
-    map rather than improvising it in a root.
+    collection owner. No owner exists yet: the backend `collections` table
+    serves the editorial Discover guides. Identify the owner in the
+    implementation map rather than renaming that table or improvising in
+    a root.
 - **Where people hear.**
-  - Found items arrive as one grouped notification.
   - Friends' actions arrive as notifications.
+  - Vesper's own filing is never narrated: no notification, no "filed" list
+    and no status bar on a collection (ingestion decision, item 7). Where a
+    thing is, and changing it, belong to the thing's own page.
+  - Whether found items send any notification is pending. The current boards
+    send none.
   - There is no Updates feed.
 
   A notifications surface is therefore a dependency of the package's "refound
@@ -68,8 +80,8 @@ The roadmap's "Capture/share package boundaries" already follow the September
   in-app) is still pending a founder ruling, so build the owner and hold the
   policy.
 
-The friction proposal (save on share, "why · Change" instead of questions, *Not
-yet placed*, a "Filed quietly" group) is being drawn on I0 and I1 and is not
+The friction proposal (save on share, filing when confident instead of asking,
+and corrections on the thing's own page) is drawn on I0 and I1 and is not
 ruled. It is worth keeping in mind for the share extension's receipt, because it
 would remove the in-sheet Keep tap.
 

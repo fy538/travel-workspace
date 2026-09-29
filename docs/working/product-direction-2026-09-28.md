@@ -31,7 +31,8 @@ the decisions win:
 - **Ruled:** the founder said it, in their own words or by accepting a specific
   recommendation.
 - **Recorded:** written into a decision as accepted direction.
-- **Proposed:** recommended by Claude and not ratified.
+- **Proposed:** recommended in the reviews, but not recorded as an accepted
+  decision; later Codex recommendations are identified as follow-ups.
 - **Superseded:** replaced later in the thread.
 
 **Time.** Times are the founder's local time, US Eastern (UTC−4). The
@@ -51,6 +52,12 @@ only through memory files and the repository. This note merges them.
 re-checked only where marked. Research findings are as relayed in conversation.
 URLs were kept only for the email research. Treat single-source claims as
 unverified before using them externally.
+
+**September 28 follow-up.** §1.1 and §1.2 add the founder's later emphasis,
+reached with Codex, on the record as a first-class benefit. They also add the
+findings of the [six-question research review](memory-as-product-direction-research-2026-09-28.md),
+which holds the full evidence. The chronological trace is unchanged, and the
+follow-up amends no decision.
 
 ---
 
@@ -79,8 +86,10 @@ asking:
   a book, a golf scorecard, a friend's recommendation.
 - You send it for yourself, or for family or friends. The default audience is
   just me.
-- It is not a diary: no writing, prompts or streaks. The record is a
-  by-product, and what comes back looks forward.
+- It does not require diary-writing, prompts or streaks. The earlier framing
+  called the record a by-product and emphasized looking forward. The follow-up
+  in §1.1 sharpens this: making the record should be effortless, but the record
+  itself is a first-class benefit, alongside what it makes possible next.
 
 **The loop** (recorded September 27):
 1. document;
@@ -91,6 +100,9 @@ asking:
 6. what happened is documented again.
 
 Vesper prepares; the person sends or commits. Booking stays retired.
+This is a complete possible path, not a funnel every contribution must finish.
+Keeping, understanding, revisiting or sharing something can already be a
+complete payoff; see §1.1.
 
 **One composer, many doors** (recorded September 27; the email door amended
 September 28):
@@ -140,6 +152,114 @@ capabilities:
 
 Production ran August 14 code. The direction is now much clearer than the
 product people can use.
+These are dated, inventory-based classifications, not percentages of product
+completion or a fresh assessment of the current build.
+
+### 1.1 September 28 follow-up: the record is worth having
+
+These points are the founder's emphasis after the thread, reached with Codex.
+
+- **The record is a benefit in itself.** Making it takes no effort: no
+  writing, prompts or filing. But some things are worth having without a next
+  action:
+  - a map of the places you have been;
+  - the dishes you loved and where each came from;
+  - an evening with everyone's photographs.
+
+  Memory includes what is ahead and still open. It is not a surveillance
+  record.
+- **The loop is a possible path, not a funnel.** A contribution can pay off in
+  any of these ways:
+  - it is kept and easy to find again;
+  - a connection adds something new;
+  - another person's view arrives;
+  - a possibility appears at the right time.
+
+  Keeping, refinding or enjoying something can complete the experience, and
+  acting on it is optional. The first contribution has to pay off before any
+  history exists.
+- **Multiplayer adds substance, not just distribution.** A friend's
+  photograph, or their account of an evening, changes what a collection lets
+  people revisit. Each person keeps their own voice; Vesper does not rewrite
+  them into one narrator. The shared-collection rules stand, and this grants no
+  new AI use of a friend's material.
+- **Compete on product shape, not capabilities.** Recognition, memory, booking
+  and agent actions are becoming commodities. Every capability-led pitch in the
+  thread collapsed into "sounds like Muse."
+  - Invest in a capability only when the shape depends on it: the payoff in
+    about two seconds, correct recognition, one identity across doors, and
+    well-timed returns.
+  - A shape is defensible only when it carries a stance Meta cannot adopt:
+    people's words stay theirs, finite and quiet, you send, no feed, and no
+    commissions.
+
+**Working description** (proposed; it does not replace canonical positioning):
+
+> Vesper turns what you document and share into a connected, living collection
+> of your life—worth keeping and exploring in itself, and useful for what comes
+> next.
+
+**Implementation cautions** (not rulings):
+- **Relating is not merging.** Only repeated captures of the same material
+  merge, such as one ticket forwarded by email and also shared as a screenshot.
+  - Two visits to the same restaurant stay two occurrences.
+  - A friend's recommendation and your photograph of the same place stay two
+    contributions.
+  - Identity keeps source, authorship, occurrence and audience apart.
+- **Collections are the consumer model, not a new owner of everything.** A
+  ticket in three collections still has one reservation owner. The backend's
+  existing `collections` table serves the editorial Discover guides
+  (`travel-agent/backend/core/db/collections.py`), so personal collections
+  need an owner.
+- **Zero-touch types are a hypothesis.** R3 is pending. When recognition is
+  uncertain, the thing needs a useful landing (*Not yet placed*) and an easy
+  correction, not forced classification.
+- **Product Thesis disagrees.** It still says "Memory is substrate, not the
+  endpoint." Reconcile that deliberately; this note does not amend it.
+
+### 1.2 What the research adds
+
+The [six-question review](memory-as-product-direction-research-2026-09-28.md)
+holds the full evidence. It supports the center as plausible, not as proven
+demand.
+
+- **The shape alone is taken.** Several products already offer
+  self-organizing collections, private or shared: mymind, Are.na, Fabric, Day
+  One's shared journals and Apple's Shared Photo Library.
+  - Vesper's shape is the combination of four things:
+    - the person's own material;
+    - lived time and place;
+    - other people's contributions, in their own words;
+    - connections that change as circumstances do.
+  - The combination has to show on one screen. The logo-off screenshot test
+    checks for it.
+- **The strongest argument against us.** In one study, people found at least
+  95% of web pages again months later without having saved them (Keeping Found
+  Things Found, 2004). Bringing something to Vesper must pay off at the first
+  send. A "Kept" receipt alone is not value.
+- **Originals and generated additions pass different tests.** A friend's exact
+  words or your own photograph can be the whole value. An explanation from
+  Vesper has to add something. Sometimes two attributed originals beat the
+  originals plus an AI paragraph.
+- **In multiplayer, persistence cuts both ways.** Lasting organization can make
+  casual sharing feel less casual.
+  - Measure the contributor's effort and the recipient's benefit separately.
+  - Let recipients enjoy what they receive without reciprocating.
+- **The architecture fits.** Intake, evidence and projection code already
+  separates retries, occurrences, authorship and generated claims. Connect it
+  and verify it end to end rather than restart.
+
+**The design brief.** Three experiences in one grammar:
+1. one contribution;
+2. a small personal collection, including a sparse everyday one;
+3. a shared collection.
+
+Show each at first receipt, at a later voluntary return, and at a correction.
+Offer practical continuation when it helps, never as the test every object must
+pass.
+
+The shape is fixed: what you bring, what you get to have, and where it lives.
+Exploration happens inside it.
 
 ---
 
@@ -1028,6 +1148,16 @@ and should be closed against it. The Life organization design expires October 5.
 - the two-week test on the founder's own data;
 - licensing checks for Google Places caching, TMDB and Open Library.
 
+**Follow-up implementation questions (§1.1), not new rulings:**
+- distinguish duplicate capture from shared subjects, separate occurrences and
+  different contributors before implementing automatic merges;
+- map collection membership and presentation to specialized state owners without
+  duplicating their authority;
+- establish useful behavior when recognition is uncertain before treating R3's
+  zero-touch mechanism as proven;
+- assess immediate keeping/refinding value and optional continuations, not only
+  completion of an action-oriented loop.
+
 ---
 
 ## 7. Claude Design boards from this thread
@@ -1112,15 +1242,28 @@ by it:
    - The latency spike.
    - The signed-device share extension.
    - The two-week own-data test.
-4. **Design, limited to the loop.**
+   - Compare the same material in Vesper and in the person's existing tools.
+     Include people with sparse records, not only the founder's rich history.
+     Separate prompted refinding from voluntary return. Separate contributor
+     effort from recipient benefit.
+4. **Design, inside a fixed shape.**
    - Rule on the redrawn I0 and on I1 once the parallel session finishes them.
-   - Redraw C0, C1 and C3.
-   - Rewrite D0.
-   - Then draw one end-to-end loop board: Share → Land → Join → Grow → Return.
-   - Freeze other exploration.
+   - Redraw C0, C1 and C3, and rewrite D0.
+   - Draw the three experiences in §1.2, each at first receipt, later return
+     and correction. Each should show a satisfying stopping point and an
+     optional continuation. These replace the single loop board.
+   - Keep the shape fixed; explore only open experience and ownership seams
+     inside it.
 5. **Build.** The Codex lane continues its capture/share package, with the
    adjustments in
    [roadmap proposals for Codex](roadmap-proposals-for-codex-2026-09-28.md).
+   - Map personal collections to their owners without breaking the existing
+     identity and repair guarantees.
+   - The program roadmap keeps sequencing authority.
+6. **Reconcile the canon.** Product Thesis and Product Model still treat memory
+   as substrate. Align them with the record as a first-class benefit after an
+   explicit review. Keep their rules on source custody, occurrence truth, plural
+   meaning, privacy and action authority.
 
 ## Exit
 
