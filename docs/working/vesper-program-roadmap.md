@@ -332,6 +332,17 @@ and otherwise exposes Settings. A targeted iPhone 16 Pro / iOS 18.2 / Maestro
 Camera capture remain open; exact receipt and checks are in the [active Home
 execution package](home-value-composition-execution-plan-2026-09-25.md#camera-permission-recovery--september-28).
 
+**Camera failure-path follow-up (September 29):** app `de02ae042` now reports
+native camera-launch failure accurately, preserves the editable draft, and
+keeps Photos available as fallback. Its registered iPhone 16 Pro / iOS 18.2 /
+Maestro 2.6.1 mock-transport flow passed through private Keep, image receipt and
+Undo. This is not successful shutter or real custody evidence: the assigned
+simulator has no camera source. The same app pre-PR gate passed (168 lint
+warnings under a 169 ratchet; test-typecheck debt remains 406; parity 185/185
+across six suites). The design-alignment test suite also passes with generated
+`.tmp` caches excluded from source discovery and symlinks skipped. See the
+[camera-unavailable evidence](home-value-composition-execution-plan-2026-09-25.md#camera-unavailable-recovery--september-29).
+
 **Next execution checkpoint:** first resolve the signing prerequisite for app
 `6005dd39b`'s journal-backed in-place path, then verify on an isolated signed
 device: host closed, share payload preserved, explicit Keep, same-attempt

@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: codex/home-value-delivery lane
 created: 2026-09-25
-last_verified: 2026-09-28
+last_verified: 2026-09-29
 expires: 2026-10-25
 why_new: Gives one complete Home implementation assignment after separating the program queue from historical receipts; existing design contracts define behavior but not this bounded delivery package.
 depends_on:
@@ -259,6 +259,36 @@ Android. The first flow attempt had the wrong Settings-page label assertion;
 after inspecting the failure screenshot, the assertion was corrected from
 `Camera` to the actual `Apps` label and the committed-revision run passed.
 
+### Camera unavailable recovery — September 29
+
+App **`de02ae042`** distinguishes a native Camera launch failure from a Photos
+picker failure. The pinned simulator has no usable camera source, so tapping
+Camera now explains that the camera could not open, leaves the editable note and
+Keep action intact, and lets the user choose Photos instead. The selected image
+can then be kept privately and undone. The receipt confirms the image source;
+it does not echo the draft note, so this run does not claim note persistence via
+receipt.
+
+- Focused capture-draft hook suite: **21 passed, zero skipped**, including a
+  native-launch rejection case that verifies camera-specific copy and an
+  unchanged draft.
+- Scenario registration passed (31 IDs). Native flow
+  `polish/photo-media-intake-camera-unavailable` passed **1/1** on the assigned
+  iPhone 16 Pro / iOS 18.2 / Maestro 2.6.1 simulator. Manifest revision is
+  `de02ae042`, generated `2026-09-29T04:20:22.641Z`. It verifies camera error,
+  unchanged note/Keep, Photos selection, private Keep, image receipt and Undo.
+- `npm run verify:pr` passed on this app code: 168 lint warnings against the
+  169-warning ratchet, unchanged 406 test-typecheck errors, and 185/185 parity
+  tests across six suites. The design-alignment QA suite also passed after its
+  source scanner was corrected to ignore generated `.tmp` trees and skip
+  symlinks; audit assertions were not relaxed.
+
+This is mocked-transport failure-path recovery only. It proves neither a
+successful Camera shutter nor real image custody, authenticated upload/readback,
+retryable native permission prompting, visual acceptance beyond the captured
+flow, or Android behavior. The source limitation is specific to the assigned
+simulator; a capable physical camera remains necessary for shutter acceptance.
+
 ### Private Intake-to-Life continuity — September 28
 
 App **`a11d1a061`** connects an explicitly retained private Intake source to
@@ -323,7 +353,7 @@ literal original, not an invented personal interpretation. All changes remain lo
 | Door | Existing owner / inspected implementation | Remaining accepted work |
 | --- | --- | --- |
 | OS share | Generated `ios/ShareExtension/ShareViewController.swift` → `components/sharing/ShareIntentHandler.tsx` → common private composer and Intake Source custody | Text/link/file shares now enter an account-bound draft through an opaque navigation key and wait for explicit Keep; all originals/captions and retry identity survive the handoff. Single audio stays on compatibility. The extension still redirects to the host; in-place authenticated delivery, durable recovery and native completion remain. |
-| Camera/photos | App `hooks/useCaptureDraft.ts` → existing `data/inboundItems.ts` upload; entity capture shares MIME handling through `utils/intakePhoto.ts` | New in-app composer stages camera/library images and a note before explicit Keep, bounded to 16 and supported formats. Native iOS Photos-library paths cover one- and two-image selection, editable drafts/removal, and picker cancellation without losing an existing draft; all reach mock private Keep, lead-original readback and same-owner Undo. The common photo-library door uses the system picker without broad Photos access; Camera requests permission only after an explicit tap. App `d8a133677` preserves the draft after denial, offers retry when `canAskAgain` is true, and offers Settings only when retry is unavailable. Native denial-to-Settings handoff is captured; retryable native OS prompting, successful Camera shutter/custody, selections above two, individual readback for every image, other roots, live authenticated readback, accessibility sizing, and entity/Chat convergence remain open. |
+| Camera/photos | App `hooks/useCaptureDraft.ts` → existing `data/inboundItems.ts` upload; entity capture shares MIME handling through `utils/intakePhoto.ts` | New in-app composer stages camera/library images and a note before explicit Keep, bounded to 16 and supported formats. Native iOS Photos-library paths cover one- and two-image selection, editable drafts/removal, and picker cancellation without losing an existing draft; all reach mock private Keep, lead-original readback and same-owner Undo. The common photo-library door uses the system picker without broad Photos access; Camera requests permission only after an explicit tap. App `d8a133677` preserves the draft after denial, offers retry when `canAskAgain` is true, and offers Settings only when retry is unavailable. App `de02ae042` gives truthful camera-specific recovery when native capture cannot launch; the pinned simulator's unavailable-source state retains the draft and allows Photos fallback through Keep/Undo. Successful Camera shutter/custody, retryable native OS prompting, selections above two, individual readback for every image, other roots, live authenticated readback, accessibility sizing, and entity/Chat convergence remain open. |
 | Global add | Shared app `components/inbound/capture-entry.tsx` → `/share-capture?compose=1` → `capture-composer.tsx` | Normal Home v2, Places, Life and Chat root headers now expose the same entrance alongside their existing controls. Chat is not required. Home loading/error and compatibility coverage, large type, and all root-state visual acceptance remain explicit follow-up scope rather than implied by the normal-root capture. |
 | Chat attachment | Existing private threads, Chat landing dock (legacy Vesper Home), and private/private-trip create use `private-capture-composer.tsx` → common Intake custody → answer-only pending Chat turn with exact source refs; pre-thread entry shares `usePrivateCaptureChatEntry` | Visible Keep/Ask only, current-owner Open/Undo, stable source/turn/room retries and contextual handoff are local. Photo Library now opens the OS-mediated picker directly without broad Photos access or a separate rationale; only the selected image enters the removable draft, while Camera retains its own permission. The registered existing-thread native mock flow covers library photo selection, Ask only, Keep, exact-image receipt, Undo and offline draft. Dock/private-create, keyboard/failure/large-type evidence remains. Group rooms and carried references do not silently opt in. |
 | Existing-object Keep/Send | App `hooks/useSaveEntity.ts` owns place saves; `data/relationshipPlaceHandoffs.ts` owns addressed, place-bound pair delivery; selected originals retain Source ownership | Route authored sharing through the common component while keeping bookmark and Source ownership distinct. The current place-required, single-recipient handoff is not the accepted general person/group/Friends schema. |
