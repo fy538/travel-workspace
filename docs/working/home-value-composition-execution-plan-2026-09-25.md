@@ -485,10 +485,12 @@ bound to Intake's 16-source limit, returns images in source-object ordinal order
 and lets the existing virtualized authenticated gallery open every returned
 original without mounting all full-size photos at once. The backend
 route/compiler and app gallery tests cover all 16 entries and the exact
-last-image route. This is implementation evidence, not end-to-end device proof:
-the native capture still covers at most two selected images, immediate receipt
-still previews only the lead image plus a count, and real Clerk/mobile owner
-readback remains open. The surface contract records the resulting boundary.
+last-image route. This is implementation evidence, not end-to-end device proof.
+A separate native iOS flow now covers selection of three images, opening item
+3/3, returning to the intact draft, mock Keep and Undo. Its receipt still
+previews only the lead image plus a count; real Clerk/mobile owner readback
+remains open, and this is not proof of the full 16-image bound. The surface
+contract records the boundary.
 Implementation commits are workspace `d3b614e70`, backend `b4f49810e`, and app
 `ee536f63d`. The follow-up commits remain local on
 `codex/home-value-delivery`; all three checkouts are clean and none of these
@@ -535,15 +537,54 @@ Verification on this tuple:
   VESPER_METRO_URL=http://192.168.1.153:53177 node scripts/polish-qa/run-polish-qa.mjs canonical-artifact-gallery --device='iPhone 16 Pro' --flow=polish/canonical-artifact-gallery
   ```
 
-Common in-app private authoring/root add is implemented; native one- and
-two-photo library happy paths are evidenced, and the canonical reader can carry
-all 16 retained image sources in selection order.
+### Native selection beyond two — September 29
 
-**Next implementation order:** (1) complete remaining native media/root-state
-coverage, including a selection above two and end-to-end authenticated
-per-image readback; (2) verify deliberate Chat Bring + Ask across its
-now-connected private entrances (the existing-thread photo path has bounded
-native mock acceptance;
+App **`ddde3259c`** adds a separately registered native flow for three selected
+Photos-library items. On the assigned iPhone 16 Pro / iOS 18.2 / Maestro 2.6.1,
+the committed-revision run **`20260929T142950Z-photo-media-intake`** captured
+**1/1 flows and 6/6 extra screenshots**. It verifies three marked selections,
+three removable draft tiles, the exact third item opening as **3 / 3**, return
+to the unchanged editable draft, private mock receipt showing the lead original
+and `+ 2 more`, and same-owner Undo. Its seven screenshots were reviewed; two
+previously recorded P2 refinements remain: tiles lack a visible open cue and the
+full-screen preview cannot magnify dense text.
+
+The first capture exposed that the final Removed screenshot was taken during a
+navigation transition. The flow now waits for animation completion; the final
+committed run shows the stable Removed state. This is a native selection / mock
+custody path, **not** authenticated server readback, proof that each retained
+image can be opened through the canonical owner route, coverage of all 16
+allowed images, Camera shutter proof or Claude-reference parity. The registered
+design check reports doctrine-only with no active reference manifest.
+
+Commands and evidence on `ddde3259c`:
+
+```sh
+npm run qa:polish:scenarios
+npm run qa:polish:test
+npm run verify:pr
+VESPER_METRO_URL=http://192.168.1.153:53177 npm run qa:polish -- photo-media-intake --flow=polish/photo-media-intake-root-photo-three
+npm run qa:design:check -- photo-media-intake
+```
+
+The native command passed **1/1** with **6/6** extra screenshots. The design
+check exited successfully with its explicit warning that no reference manifest
+exists; it does not certify Claude-board parity. `verify:pr` passed with **185 / 185**
+parity tests, **168 lint warnings** under the **169** ratchet and test-typecheck
+debt unchanged at **406**. The flow is mock transport only; no authenticated
+service read or data mutation was performed.
+
+Common in-app private authoring/root add is implemented; native one-, two- and
+three-photo library happy paths are evidenced, and the canonical reader can
+carry all 16 retained image sources in selection order. Authenticated
+per-image return is not yet proven.
+
+**Next implementation order:** (1) close the signed-device/authenticated
+per-image readback path for a multi-photo selection, preserving owner identity
+and exact source ordering (selection above two is now proven for three items);
+the roadmap's signing/provisioning mismatch is the prerequisite. (2) verify
+deliberate Chat Bring + Ask across its now-connected private entrances (the
+existing-thread photo path has bounded native mock acceptance;
 dock/private-create, failure and large-type acceptance remain) with unchanged
 conversation retention; (3) finish native OS/email adapters against that same
 contract; (4) extend Send/Share only through the named relationship/audience

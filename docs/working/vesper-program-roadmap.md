@@ -376,6 +376,18 @@ full Home visual acceptance and live authenticated media custody remain open.
 The H1 record carries exact commands, the 168/169 lint warning ratchet, the
 existing 406 test-typecheck-error baseline, and the evidence boundary.
 
+**Three-photo iOS capture checkpoint (September 29):** app `ddde3259c` adds a
+registered Home-root Photos flow selecting three images, opening the third as
+3/3, returning to the editable draft, mock Keep with `+ 2 more`, and same-owner
+Undo. The committed iPhone 16 Pro / iOS 18.2 / Maestro 2.6.1 run passed **1/1**
+with all six extra screenshots. This closes the native selection-above-two gap
+for a three-image example only—not authenticated per-image readback, all 16
+items, real custody, or the unavailable Claude-reference comparison. The
+immediate next device milestone remains matching signed app/extension
+provisioning, then real Clerk and owner-backed readback. Detailed assertions,
+two non-blocking image-viewer refinements, the mock evidence boundary and exact
+commands live in the [H1 execution package](home-value-composition-execution-plan-2026-09-25.md#native-selection-beyond-two--september-29).
+
 **Next execution checkpoint:** first resolve the signing prerequisite for app
 `6005dd39b`'s journal-backed in-place path, then verify on an isolated signed
 device: host closed, share payload preserved, explicit Keep, same-attempt
