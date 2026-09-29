@@ -489,9 +489,10 @@ last-image route. This is implementation evidence, not end-to-end device proof:
 the native capture still covers at most two selected images, immediate receipt
 still previews only the lead image plus a count, and real Clerk/mobile owner
 readback remains open. The surface contract records the resulting boundary.
-The local commits are workspace `d3b614e70`, backend `b4f49810e`, and app
-`ee536f63d` on `codex/home-value-delivery`; all three checkouts are clean. These
-follow-up commits have not been pushed or merged.
+Implementation commits are workspace `d3b614e70`, backend `b4f49810e`, and app
+`ee536f63d`. The follow-up commits remain local on
+`codex/home-value-delivery`; all three checkouts are clean and none of these
+follow-ups have been pushed or merged.
 
 Verification on this tuple:
 
