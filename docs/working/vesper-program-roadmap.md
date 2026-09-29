@@ -357,6 +357,16 @@ After starting this lane's API, the image loaded and showed the expected explici
 reader and return (**1/1**). This is not a complete Home matrix or live custody
 acceptance. Exact evidence and limits are in the [H1 execution record](home-value-composition-execution-plan-2026-09-25.md#home-root-add-during-loading-and-recovery--september-29).
 
+App `baeb7a2d9` then adds an explicit `TO YOU` cue to the individually addressed
+Home original stamp, using the existing current recipient-safe delivery read.
+Four focused suites passed (70 tests), the app `verify:pr` gate passed
+(185/185 parity), and post-commit native run `20260929T052518Z-home-root`
+captured the addressed photo, exact original reader and Home return (1/1) on
+iPhone 16 Pro / iOS 18.2 / Maestro 2.6.1. This closes only the copy detail;
+full Home visual acceptance and live authenticated media custody remain open.
+The H1 record carries exact commands, the 168/169 lint warning ratchet, the
+existing 406 test-typecheck-error baseline, and the evidence boundary.
+
 **Next execution checkpoint:** first resolve the signing prerequisite for app
 `6005dd39b`'s journal-backed in-place path, then verify on an isolated signed
 device: host closed, share payload preserved, explicit Keep, same-attempt

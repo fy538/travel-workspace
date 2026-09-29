@@ -328,6 +328,28 @@ tappable; it must open through the visible `Open original` source door.
   `a1d3633e4`. This is a targeted native mock-persona capture, not a rerun of
   the complete Home matrix or an overall visual verdict.
 
+App **`baeb7a2d9`** closes the remaining recipient-copy detail on that Home
+original: its attribution now says `MAYA · TO YOU · SHARED …`, derived only
+from the current individually addressed delivery read. The cue does not change
+audience, retention or reply authority and does not imply an album or public
+share. The adjacent exact-original reader remains source-only and returns to
+the same Home context.
+
+- Four focused Jest suites passed **70/70**; `npm run typecheck`,
+  `npm run qa:polish:test`, the registered scenario check (**31 IDs**), the
+  focused Maestro-flow source test and `git diff --check` passed. Focused ESLint
+  had no errors and retained one existing max-lines warning in the large Home
+  renderer. App `npm run verify:pr` passed: **185/185** mock/HTTP parity tests,
+  168 lint warnings under the 169-warning ratchet, and the existing
+  test-typecheck baseline of 406 errors.
+- Post-commit native run `20260929T052518Z-home-root` used iPhone 16 Pro /
+  iOS 18.2 / Maestro 2.6.1; manifest SHA is `baeb7a2d9`. The registered
+  photo-receiving flow captured **1/1**, including Home attribution, the exact
+  shared-original reader and the return to the same Home scroll. Screenshots
+  were reviewed for cue legibility and obstruction. This targeted mock-persona
+  capture is not a full Home-matrix visual verdict, live authenticated media
+  custody, or proof of broader sharing.
+
 The shared root-add capability is now present in the required Home states, but
 the Urgent recovery value P1, full Home visual acceptance, real authenticated
 media and camera-shutter evidence remain open. The native photo fixture now
