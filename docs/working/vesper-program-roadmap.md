@@ -152,8 +152,13 @@ images cannot be opened full-size before Keep. The two former P2s—note
 preceding media and oversized remove overlays—are no longer open. The receipt
 shows the lead original and `+ 1 more`, not independent readback of every source.
 This lane remains local/unpublished; this narrow mock-transport capture does not
-close Camera, denial, large-text, other-root, live-authenticated, extension or
-whole-product acceptance.
+close successful Camera capture, retryable native OS prompting, large-text,
+other-root, live-authenticated, extension or whole-product acceptance. App
+`d8a133677` preserves the draft after Camera denial, allows retry when
+`canAskAgain` is true, and offers Settings only when the OS cannot prompt again.
+Its denial-to-Settings handoff passed a targeted iPhone 16 Pro / iOS 18.2 /
+Maestro 2.6.1 flow; the retryable native prompt and successful Camera shutter
+remain unproven.
 
 App `17db598c9` closes the remaining pre-Keep **open-image** behavior for the
 two-photo draft: each selected original opens in the existing dark full-screen
@@ -172,9 +177,10 @@ Artboard L depicts a trip-owned lightbox, not this newer private draft state;
 the targeted result therefore does not claim full composition parity. The
 previous seven-capture surface attempt remains non-green (only one capture
 completed); only the registered two-photo flow was rerun here. This does not
-close camera, permission denial, larger selections, accessibility sizing,
-other roots, real-authenticated readback, extension, or whole-surface
-acceptance.
+close successful Camera capture, retryable native prompting, larger selections,
+accessibility sizing, other roots, real-authenticated readback, extension, or
+whole-surface acceptance. The separate `d8a133677` denial-to-Settings handoff
+is now covered by its own targeted native flow.
 
 The September 28 private-thread continuation connects newly selected Chat photos
 to the same Intake owner, with visible Keep/Ask only and a current-owner
@@ -318,6 +324,13 @@ are not the next product increment.
 | 1 — H1 checkpoint / retained gaps | Connected implementation and bounded-preview/copy follow-ups are committed. App `932abe25a` closes the Urgent action's divergent Chat route by reusing the same review-first, editable, owner-seeded handoff as the recovery source door. The [assignment](home-value-composition-execution-plan-2026-09-25.md#next-complete-assignment) retains the missing owner-backed option comparison, social hierarchy and real recurring-supply uncertainty. Code inspection finds `ProjectedCommitment` and its Chat seed expose current subject/state/time only; no current recovery-option provider is wired to Home. | Do not call Home fully accepted. First identify the canonical owner for current, authorized recovery options and unknowns—or refine the comparison promise if no such owner exists. Do not fabricate facts or substitute prettier fixture text. These named residuals do not block independent capture/share foundations. |
 | 2 — active capture/share package | Same coordinated owner continues from private Keep/Undo, root-add authoring, private Chat, local email and OS host-composer handoff. App `ce8649e68` adds exact private-photo readback on the Chat receipt and through Life's shared owner-scoped resolver; native mock-flow and owner-route tests pass, but mobile live-route/Clerk readback is not proven. The in-place native extension implements the existing Intake path, protected retry journal and owner receipt/Undo behind a development-only opt-in; simulator compilation passes, but signature inspection found ad-hoc app/extension bundles with no signed entitlements. The Xcode project team (`QNZ5K23A74`) differs from the only valid local development identity (`J6ZKHAT2H7`). Next: establish matching signing/provisioning with App Group/Keychain entitlements, then use an isolated target for real Clerk and owner-backed acceptance. The lane API starts with model/search disabled, LLM background loops disabled, and Clerk JWKS/issuer verification configured; health 200 is startup evidence only. Email v2 now captures supported attachment bytes through Intake; focused unit and disposable-Postgres acceptance passed, while real SendGrid delivery remains unverified. PDF/PKPass/HEIC and other scanner-gated types stay unsupported; rejected bundles currently receive no user-facing notice. The eight stale-consumer findings caused by the Intake custody-client extraction are resolved by correcting the policy and schema-bridge source pointers; the current API audit, contract check, type sync and schema-bridge all pass without a wire-shape change. Broader Send/Share still needs its relationship/audience owner amendment. | A complete authored item can enter, return immediate value, reach its selected authorized audience, be refound and be corrected/withdrawn. Host-app redirection is not in-place OS completion. Authoring, simulator compilation and API health alone do not complete sharing, all six doors, full Life continuity or later value. Pending policies remain excluded. |
 | 3 — reassess receiving and later value | At the capture/share checkpoint, choose the next whole-product package against the actual retained/shared material: richer Home/Places receiving, Life continuity, or an accepted preparation gap. | Select from observed code/design gaps and received benefit, not a standing parallel backlog. Do not launch all three automatically. |
+
+**New bounded capture evidence (September 28):** app `d8a133677` preserves
+the draft after Camera denial, offers retry only while the OS can prompt again,
+and otherwise exposes Settings. A targeted iPhone 16 Pro / iOS 18.2 / Maestro
+2.6.1 denial-to-Settings flow passed. The retryable native prompt and successful
+Camera capture remain open; exact receipt and checks are in the [active Home
+execution package](home-value-composition-execution-plan-2026-09-25.md#camera-permission-recovery--september-28).
 
 **Next execution checkpoint:** first resolve the signing prerequisite for app
 `6005dd39b`'s journal-backed in-place path, then verify on an isolated signed
