@@ -13,6 +13,9 @@ dispositions:
 # Overrides win over rules. Rules deliberately cover stable folder conventions;
 # top-level and working documents are classified one by one below.
 rules:
+  - glob: "docs/working/product-map/*.md"
+    disposition: keep_reference
+    rationale: "Dated, expiring orchestrator product map (Design Atlas, Build Map, supply, infra, decisions and gap map) used to measure progress and plan execution; product, system, design and program owners retain authority."
   - glob: "docs/working/historical-branch-recovery-audit-2026-09-23.md"
     disposition: keep_reference
     rationale: "Dated, expiring cross-repository Git recovery inventory and proposed selective-port plan; current product, system and program authorities retain all implementation decisions."

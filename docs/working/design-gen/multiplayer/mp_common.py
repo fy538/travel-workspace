@@ -25,9 +25,9 @@ assert HEAD_VDL != HEAD, 'helmet not found in HEAD'
 
 HAIR = 'rgba(27,23,20,0.10)'
 STAMP = 'EXPLORATORY &middot; BRAINSTORM ONLY &middot; 2026-09-20'
-FOOTX = (FOOT + ' &middot; EVERY CANVAS HERE IS AN EXPLORATION, NOT A SELECTED DESIGN: NOTHING ON THESE BOARDS IS ADOPTED, '
-         'RULED, OR PROMISED &middot; NO POLICY, NOTIFICATION, GUEST-IDENTITY OR SCHEMA COMMITMENT FOLLOWS FROM DRAWING IT &middot; '
-         'BRIEF: docs/working/claude-design-multiplayer-product-shapes-exploration-2026-09-20.md &middot; '
+FOOTX = (FOOT + ' &middot; THE BOARDS ARE EXPLORATION, NOT A PROMISE OF BEHAVIOUR; '
+         'THE DIRECTION LISTED ON 00 IS RECORDED IN docs/decisions/2026-09-26-multiplayer-direction.md &middot; NO POLICY, NOTIFICATION, GUEST-IDENTITY OR SCHEMA COMMITMENT FOLLOWS FROM DRAWING IT &middot; '
+         'BRIEFS: docs/working/claude-design-multiplayer-product-shapes-exploration-2026-09-20.md, claude-design-multiplayer-threads-life-continuity-handoff-2026-09-22.md &middot; '
          'SHARED DESIGN LANGUAGE: vdl-stage1 0.4.1, COPIED FROM WORKBENCH c13ae951')
 
 def dci(name, h, **props):
@@ -95,7 +95,17 @@ def sheetboard(w, h, kick, title_, sub, inner, foot=FOOTX, vdl=False):
             + head(kick, title_, sub) + f'<div style="display: flex; flex-direction: column; gap: 34px;">{inner}</div>'
             + f'<div class="fn" style="margin-top: 30px; line-height: 16px;">{foot}</div></div>' + TAIL)
 
+_LINE_PAD = __import__('re').compile(r'padding-left: 0 !important; padding-right: 0 !important;( padding: ([\d.]+px)(?: ([\d.]+px))?(?: ([\d.]+px))?(?: ([\d.]+px))?;)?')
+def _line_pad(m):
+    """The Design runtime drops !important from inline styles, so the retired card's side padding is rewritten here:
+    keep the vertical padding, zero the horizontal."""
+    if not m.group(1): return 'padding-left: 0; padding-right: 0;'
+    t, r, b = m.group(2), m.group(3), m.group(4)
+    if r is None: return f'padding: {t} 0;'
+    if b is None: return f'padding: {t} 0;'
+    return f'padding: {t} 0 {b} 0;'
 def write(name, html):
+    html = _LINE_PAD.sub(_line_pad, html)
     p = os.path.join(OUT, name + '.dc.html')
     open(p, 'w').write(html)
     return name, len(html.encode())

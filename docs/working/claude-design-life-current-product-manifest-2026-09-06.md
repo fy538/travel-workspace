@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Life design
 created: 2026-09-06
-last_verified: 2026-09-09
+last_verified: 2026-09-26
 expires: 2026-10-06
 why_new: Current inventory, source map, review order, and status for the companion Claude Design project "Life" (the primary Life design reference), with a dated history of the passes that produced it.
 depends_on:
@@ -17,7 +17,7 @@ supersedes: []
 
 # Vesper — Life / Current Product — manifest
 
-> **September 9 selection-and-correction pass delivered** (handoff §0). Earlier September 8/9 passes are history below. Inventory below is current; the handback section at the end records frame IDs, sequences, sibling deltas and pending decisions.
+> **Current as of September 26 (pass 17).** The inventory below is current; open choices are gathered on board D0; the handback sections at the end record each pass, newest last.
 
 **Project:** "Life" — `https://claude.ai/design/p/e72a2fd2-799f-4c3d-861a-d5acaac1cdaf`
 (type `PROJECT_TYPE_PROJECT`). **Archive:** "Vesper — Life & Anchors"
@@ -25,7 +25,7 @@ supersedes: []
 
 This section describes the project **as it is now**. History is at the end.
 
-## Inventory and status — eighteen boards
+## Inventory and status — nineteen boards
 
 | Board | Status | Question it answers |
 | --- | --- | --- |
@@ -42,6 +42,7 @@ This section describes the project **as it is now**. History is at the end.
 | 07 · The people in my life | Current | What does a friend actually add — and what if she takes it back? |
 | 08 · The actual source | Current | Can I read the message the ticket came from, and what happens when it will not open? |
 | 09 · Finishing a local action | Current (+ one Review card) | When I act on what I chose, what is in scope, what can I stop, and what if part of it fails? |
+| D0 · Decisions to rule | Review | What needs deciding, and what's recommended? |
 | P1 · What I keep ahead of me | Review | Where does a soft intention live next to what is arranged? |
 | P2 · Life changes without management | Review | When late material arrives or a grouping is wrong, what changes? |
 | P3 · Something I deliberately saved | Review (+ one Later card) | What happens to a saved piece when the record changes? |
@@ -49,7 +50,7 @@ This section describes the project **as it is now**. History is at the end.
 | R0 · Reference | Current (+ swipe Later) | Which components do the boards use, and what are their rules? |
 
 **Default walkthrough:** 00 → 01 → 02 → 03 → 03b → 04 → 04b → 04c → 05 → 06 → 07 → 08 → 09.
-**Optional:** P1–P4 (decisions, each with a recommendation), R0 (reference).
+**Decisions:** D0 gathers every open choice with alternatives, a recommendation and a ruling line; P1–P4 draw them. **Optional:** R0 (reference).
 
 Labels: the board's pill carries its status; a panel pill appears only where a
 panel's status differs from the board's (P1's Current Time root, P3's Later
@@ -84,7 +85,7 @@ shapes; nothing is hand-redrawn. Photographs are riso placeholder art.
 | 02 | the week root (393) · week two · zero record · 27's four thin columns · **02.4–02.6** formation strip (question answered, nothing kept → "keep that", kept) and a week with nothing kept · **02.7–02.8** the book, three weeks on (a better answer, grounded in her own note) and the book's own record (two notes, nothing else) · **02.9–02.10** the proposed continuity comparison (with an optional agreement / nothing retained) | `C3 Ordinary Week` [1] (content) + `26` header (shape); `07A Life at Week Two`; `27 Life v1 - Four Lenses At Week Two` [1]; the empty-week root composed from the week root | week rows now rest on authored evidence only (Middlemarch "Your note: page 280", Dana's note sent after, shoes "from your note" — no durations, mileage or progress implied); "6 things kept" reconciled; formation shows the T0 answer leaving nothing and the T1 keep leaving one sentence; the quiet week has no section, prompt or gap |; the ongoing-interest continuation adds no progress element — no percentage, streak or state to maintain; the continuity pair is labeled Review and creates no Life entry, inferred interest or notification either way
 | 03 | a journey · a place · a shared record · one evening | `06A Journey - Nice to Rome`; `06B Place - Bushwick`; shared record composed from `06D` [0]–[7],[18]–[19] + `17B` (note, lane, your account); minimum evening composed from `07B` | journey's "What this opens" = "The way south, in moments": six dated moments with placeholder thumbs (from `13A`'s sequence), no empty-day placeholder; shared record opens on Maya's note in her words (city-level, "she can take it back") with a "Write back" door — **no generated comparison**; the minimum: THE EVENING (two rows + reservation chip and facts inline) · BEFORE IT (the conversation) · THE PLACE · one sources line |
 | 03b | place → night → wristband; journey → chapter → day → ferry; "Direct, or by exploring" | `06B`, `06A` (origins); night/chapter/day pages from `06D` masthead + `06A` rows + `06B` chip/thumbs/people/place; object pages = `09A` shell + `09B` [6] / [3]; direct-retrieval strip = `26` chips + `11A` result row | two decisions on the board (no sibling nights; where-it-lives lists every containment, Back = door used) |
-| 04 | object page · two signatures · non-pass objects · Everything kept · photographs · passes | `09A`; `09B` [3],[6]; `C7` [1]; `10A`; `10C`; `10E` | Everything kept masthead now "Yours, and what others shared with you" — a path back does not imply ownership of revocable human originals |
+| 04 | object page · two signatures · non-pass objects · Everything kept · photographs · passes | `09A`; `09B` [3],[6]; `C7` [1]; `10A`; `10C`; `10E` | Everything kept masthead now "Yours, and what others shared with you" — a path back does not imply ownership of revocable human originals |; **Sep 26:** 04.5 Photographs is a door to 04b — no unplaced count, no at-rest doors (selection and its doors are 04b.11's)
 | 05 | search (pasta) · the target · no-result (Lisbon) · full record · **05.5–05.7** three similar evenings, a cue that belongs to a note, a partial-record miss · **05.8–05.9** two arrivals: “what happened when the flight was cancelled” lands on the account in order; “the Sorrento–Capri ferry ticket” lands on the object | `11A Search - Pasta` (whole and as the query/result/ask shapes); `06C Thread - Pasta` (Map dropped); `08A Scroll - By Time` (Map dropped) | no-result language speaks only about what is kept ("Nothing kept mentions a jazz bar in Lisbon — no ticket, photo, note, or plan does"); the wider door keeps the query; ambiguous retrieval shows supported candidates told apart by who/when, a match through a friend's words, and a near-but-not-answer with its date — no chooser, no taxonomy |; retrieval matches the reason for coming — neither arrival is routed through a drawer, a source count or a chronological inventory
 | 06 | Chat strip · the question page · Home strip · the Return · **06.5–06.8** Red Hook: what the record holds, the Saturday answer with it, the same answer without it, and a changed-purpose morning where it stays unused | `24` (wording of Chat/Home moments); `06C`; `26` Time RETURNS region (text replaced); **fixture v0.2 C05** | the Return is C05's bounded mechanism — "for cacio e pepe, 'creamy' is partly a stability problem" (starch, temperature, protein stability) with one optional single-variable comparison; it says nothing about what any kitchen did and does not repeat the emulsion hypothesis |; fixture v0.2 C04 — two supported episodes with different access plus one authored line; live times are Places', not Life's judgement
 | 07 | People root at rest · the note arrives · her note then the record · the dinner you hosted · the optional reply (strip) · after withdrawal · **07.7–07.8** the note's own reader (Write back · Keep a copy · Ask, independent) and the kept-place distinction · 07.8 now names three non-interchangeable terms | `26` People column; shared record as on 03; dinner composed from `17D`/`17F`; reply wording from `17E`/`21` | the dinner identifies the viewer's permitted originals ("what the three of you can see"; contributions "shared to the table"; your line only you see) — each participant's page holds the shared originals plus their own account, never another's; withdrawal is explained on reopening, not announced on the root |; opening keeps nothing, keeping is never required to enjoy or refind, and a kept place never becomes retained friends' words; access while shared · the share's own expiry · revocation by its author, and what each does to a kept copy
@@ -93,10 +94,13 @@ shapes; nothing is hand-redrawn. Photographs are riso placeholder art.
 | P3 | the piece as saved · after the record changed · Make my version (Later) · **P3.4–P3.5** the captured day (Home 08c's reading, then the plan's change, one door to the plan) and the same page on a disconnected return (originals readable · plan last-known with its time · freshness withheld) | pages composed with `38`'s fixture; captured day from Home `08c - Seam with Life - The Trip Day` (Aug 18, "what Home showed at 8:40") | Review; custody, retention and Plan ownership unchanged |; P3.4/P3.5 stay in **Home's stack** (Home tab active) because owner identity does not select the tab; the ticket that still says 11:20 is named beside the changed plan
 | P4 | Aug 19 (evidence + plan) · Aug 19 with a kept path · the journey route · Bushwick · the night (no map) · layers card | pages as on 03b/P2 with a THE MAP organ; schematic SVG maps | kept-path layer = contract question |
 | R0 | kernel · the chip (32pt) · chip in context (V1 only) · pass · lens switching · swipe (Later) | `00 Kernel Foundation` [1]–[3]; `01A6 The Uniform Drawer` [2]–[4]; `29 The Chip Enlarged` V1 context; `09B` [1]; `15 Mode Switching` [1],[2]; `12 The Swipe` [1],[4] | — |
+| D0 | seven decision rows in unblocking order · also waiting, owned elsewhere · how to rule | new (Sep 26); sources: the retained-intention proposal (Sep 6), the R1–R6 docket (Sep 4), P1–P4's own recommendations, the handoff's release section, the illustration brief §13 | nothing is adopted by the sheet |
 
 Archive-only (never transferred): rejected 01B/01C; historical 01/02/03/03A–03D4/03F/03G–03G2/04; rejected 03E4–03E9; the 03E roots themselves; tabled 05; 08/09/10/10B/10D/10F framing boards; 11; 13/13A/13C–13E; 14; 16; 18-series; 19-series; 20-series; 21–24 storyboards; 27 strips; 28/28B; 29 beyond V1; 30–39 beyond the regions named above; 00A; C1–C8 except the parts named above.
 
 ## Remaining decisions (unresolved product choices only)
+
+All seven are on **D0 · Decisions to rule** (September 26), each with the boards that draw it, three alternatives, a recommendation and what changes on approval.
 
 1. R1–R6 (AHEAD, kept-intention rendering, three keep-readbacks, lean homes, kept-apart counting) — P1.
 2. The retained-intention owner — the Sep-6 proposal, Components & Plan.
@@ -263,7 +267,7 @@ The workbench published vdl-stage1 0.4 while this pass ran. Only `OriginalReader
 - **`OriginalReader` retrieval with the result's own type glyph.** Place, episode and source result rows stay local; the component draws a document glyph only.
 - **`OriginalReader` for 07.7's note reader.** Its masthead and three independent doors, including "Keep a copy of this note", have no shared equivalent.
 
-**06.6/06.7, the September 10 additive review.** The corrected Red Hook paragraph in the September 10 handback above records the change. Both answers now say "Take the ferry in", end with the same Places-checked B61, and share the same live-check receipt. The with-history receipt adds only *your line about the ferry*. Fort Greene does appear in her record, as her first apartment in 2019, but nothing establishes it as Saturday's starting point, and C04 leaves the origin to Places. The competent-output requirement therefore stays open until the fixture names an origin. **06.8 has the same gap:** its van answer names Van Brunt loading spots before eleven and a Beard Street lot, which the fixture does not supply either. The handoff asks to preserve 06.8's non-use, so it is recorded here and not rewritten.
+**06.6/06.7, the September 10 additive review.** The corrected Red Hook paragraph in the September 10 handback above records the change. Both answers now say "Take the ferry in", end with the same Places-checked B61, and share the same live-check receipt. The with-history receipt adds only *your line about the ferry*. Fort Greene does appear in her record, as her first apartment in 2019, but nothing establishes it as Saturday's starting point, and C04 leaves the origin to Places. The competent-output requirement therefore stays open until the fixture names an origin. **06.8 has the same gap:** its van answer names Van Brunt loading spots before eleven and a Beard Street lot, which the fixture does not supply either. The handoff asks to preserve 06.8's non-use, so it is recorded here and not rewritten. **Closed September 26** at the founder's request: see that handback.
 
 **Before references.** `before-shared-package/` holds all 14 boards exactly as they were before this pass, with their own `support.js` so they still render.
 
@@ -355,6 +359,30 @@ Two new boards, built by `docs/working/design-gen/life/build_0915.py` from verba
 
 **State-preservation checks actually performed** (`walk_04c.mjs`, one run locally and one on the live hosted build; 44 of 44 each). 23 landings, each asserting the visible frame: the record; all five; Maya's picture; the late table from the strip; Back to all five; Select; Share to the preview; Not now to the selection; Share again; Send to nothing went; Not now from the failure; Send again; Try again to sent; Select after the send; the pair to part went; Send the late table; the pair to not known yet; Check again to sent; part went again; Done to all five; Home's Last night; the same viewer from Home; Back to Home. 21 state assertions: starts with the ledger's three; the non-default selection (near-duplicate added, late table removed); counts follow (3 selected, Share 2); the preview carries exactly the two chosen; its title reads "2 OF YOUR 3"; Maya's table is explained in the preview; Not now kept the non-default selection; the typed line survived Not now; part went is refused for a non-pair selection; the line survived the failure; the same two are still going after it; the failure's words follow the count; the selection is kept after the failure; the sent count is the two that went; a confirmed send cleared the selection; only the undelivered picture stays selected after part went; the retry names only the late table; no resend is offered while not known; Done released the pending selection; Home's tab stays active; the preview at 1.3× text has no spill. **Not checked:** scroll position, keyboard and screen-reader order, native gestures, real delivery.
 
+## Handback — September 26: the photographs seam, a ruling sheet, and small corrections (founder request)
+
+**Asked.** From a whole-project review, the founder approved four items: bring board 04's photographs in line with 04b; gather the open decisions on one sheet; refresh the archived copy and fix leftover spelling; and remove the invented streets from 06.8.
+
+**04.5 Photographs is now a door to 04b.** 04b was drawn on September 21 as an extension of 04, but 04's own photo grid was never reconciled and contradicted 04b in two ways. Its header counted "7 UNPLACED": 04b.6 draws no count of unplaced pictures asking to be cleared, and 04.4 counts seven unplaced things across every kind, not seven photographs. Its at-rest "Export these photographs" and "Delete selected" were a second selection model; in 04b.11 selection keeps the mixed set and each door counts only what it can reach ("Share 2 · Export 2 · Delete 2" of three chosen, Maya's picture excluded). The header now reads "214 HELD · 2019 — NOW", both doors are gone, and the note says a picture opens whole in 04b.2 and Select starts 04b.11. 04b.14's origin-and-return map gains the matching row: *Life, Photographs (04.5) · Opens: This viewer (04b.2) · Back: The same place in the grid*. The grid's composition and counts are otherwise unchanged.
+
+**A correction to the review that proposed this.** The review said "Delete selected" settled decision 6 before it was ruled. It didn't: deletion is already drawn (04.4's "Delete permanently", 04b.11's "Delete 2", 09's confirmation), and decision 6 is about what *release* means. The doors went because they were a competing, unscoped selection model.
+
+**Left as drawn, flagged.** 04.6 Passes & tickets keeps the same at-rest pattern ("Export these tickets", "Delete selected"); ticket selection has no 04b.11 equivalent and this pass covered photographs only. 04.5's tiles stay square index tiles while 04b's sets keep each picture's shape.
+
+**06.8.** The answer read "Van's fine: Van Brunt has loading spots before eleven, and the Beard Street lot takes anything under twenty feet." The streets, the loading hours and the size limit were all invented: fixture C04 supplies none of them and leaves live access to Places. It now reads "Van's the right call for a table. Bring a blanket and a couple of straps so it doesn't slide on the way back." It has no place facts, so nothing needs a source. The mono line "The ferry evenings were not used" was removed from the strip because it narrated non-use inside the product; the note beneath already says it. The September 10 gap recorded above is closed.
+
+**D0 · Decisions to rule (new, Review).** Seven rows in unblocking order: who holds a kept intention; AHEAD and R1–R6; what "release" means; the four stability laws; saved pieces; maps; the empty-record illustration. Each row names the boards that draw it, three real alternatives, a recommendation with its reason, what changes on approval, and an empty ruling box. A footer lists what's waiting but owned elsewhere (the permitted-copy term, conversational retention, Social placement and guest policy, approved photographs) and how to rule. Recommended: 1A; 2A, ruled with 1; 3A; 4A; 5A for the automatic record; 6A; 7A. The sheet adopts nothing. 00 lists D0 at the head of a renamed "Decisions" section and counts nineteen boards.
+
+**Spelling.** "Cancelled" → "Canceled" on 03, 03b, 04 (twice, uppercase) and 05 (three times). 08 and 09 were corrected on September 21.
+
+**Archive.** New dated snapshot `docs/design-archive/life-2026-09-26/`: 46 files with a sha256 manifest and a README. Top-level files match the live listing after the push; the three subfolders are byte-identical to the September 11 snapshot, which stays unchanged.
+
+**Verification.** 00, 03, 03b, 04, 04b, 05 and 06 were rendered before and after, and D0 after, in headless Chrome at 1× and with every computed type size ×1.3. No page errors, and no overflow that wasn't present before; the only measured change is 04's shorter "CANCELED" inside a line already ellipsized by design. Read at 1:1: D0 in full, 04.5, 04b.14, 06.8 and 00's index. 04c regenerates byte-identical from the updated generator. After the push, all eight sizes match the live listing, and hosted D0 and 04 render at the same heights with the expected text: seven ruling rows; no unplaced count and no photograph doors on 04.5; 04.6's doors intact.
+
+**Scripts.** `docs/working/design-gen/life/refine_0926.py` (04, 03, 03b, 05, 06, D0, 00); `build_0921.py` gains the map row; `shot_boards.mjs` takes `DIR` so before and after render from one harness.
+
+**Still open.** Real photographs for PH-01 to PH-07; everything on D0 until ruled; the not-checked list from September 22.
+
 ## History
 
 - **Pass 1 (Sep 6, morning)** — consolidation from the 121-canvas lab into twelve boards per the canonical-project handoff; corrections: 25/26 as roots, 27 strips removed, 26's swipe annotation dropped, reviewer phrases out of frames, 10A/10B release-from-use kept, universal-release wording left in Review.
@@ -373,3 +401,4 @@ Two new boards, built by `docs/working/design-gen/life/build_0915.py` from verba
 - **Pass 14 (Sep 21, ordinary photographs)** — board **04b · Ordinary photographs** (Review, fifteen panels: whole-picture viewer, shape-true collection, near-duplicate, undated picture, screenshot, direct retrieval, Bring versus Ask, scoped selection handing to Social, failure tile, derived order, origin and return map); fixture ledger §10 (PH-01 to PH-07); 08 and 09 in-phone doctrine moved to notes; 00 at seventeen boards. Scripts `build_0921.py`, `voice_0921_patch.py`, `shot_boards.mjs`.
 - **Pass 15 (Sep 21, export review)** — **04c · One photo path**, a tappable prototype (Life path to Social's preview with the exact two, Not now keeping the selection, four simulated outcomes in Social's words, Home's direct opening and return); 04b.11/04b.12/map corrected for selection modes and cancel versus confirmed send; walked 24/24 locally and live. Scripts `build_0921b.py`, `walk_04c.mjs`.
 - **Pass 16 (Sep 22, export review, evening revision)** — 04c on live state: toggleable selection, a real draft field, Social 10P's outcome model (nothing went on the share; part went leaves only the late table and retries it alone; not known yet checks, never resends); 04b.12 and the map aligned; 44/44 walked locally and live. Scripts `build_0921b.py`, `walk_04c.mjs`.
+- **Pass 17 (Sep 26, founder request after a whole-project review)** — 04.5 Photographs made a door to 04b (unplaced count and at-rest doors removed; 04b.14 map row added); **D0 · Decisions to rule** (seven open choices, each with alternatives, a recommendation and a ruling line); 06.8's invented streets, loading hours and size limit removed; "canceled" on 03/03b/04/05; dated archive `docs/design-archive/life-2026-09-26/`. Script `docs/working/design-gen/life/refine_0926.py`.

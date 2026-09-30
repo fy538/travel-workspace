@@ -20,7 +20,10 @@ def ticket_row():
 # ───────────────────────── the sharing kit, aesthetic pass 2026-09-21 ─────────────────────────
 # One card treatment (the Life ticket's: paper, soft shadow, no border). Actions are glyphs, not words with arrows.
 # Location lives on the footer row, left, in grey. Explanations stay outside the phone.
-CARD_CSS = 'background: #FBF8F1; border-radius: 12px; box-shadow: 0 1px 2px rgba(27,23,20,0.08), 0 6px 18px rgba(27,23,20,0.06);'
+PAPER_CSS = 'background: #FBF8F1; border-radius: 12px; box-shadow: 0 1px 2px rgba(27,23,20,0.08), 0 6px 18px rgba(27,23,20,0.06);'
+# Sept 26 visual pass: the generic boxed card is retired. Anything that was a card now sits between two hairlines, like the
+# place line; only real artifacts (the ticket, a paper menu) keep a paper surface (PAPER_CSS).
+CARD_CSS = 'background: transparent; border-radius: 0; box-shadow: none; border-top: 1px solid rgba(27,23,20,0.12); border-bottom: 1px solid rgba(27,23,20,0.12); padding-left: 0 !important; padding-right: 0 !important;'
 def _g(path, c, size=18, fill='none', sw='1.6'):
     return f'<svg width="{size}" height="{size}" viewBox="0 0 20 20" fill="{fill}" stroke="{c}" stroke-width="{sw}" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: block;">{path}</svg>'
 HEART_P = '<path d="M10 16.5s-6-3.7-6-8.2A3.3 3.3 0 0 1 10 6.4a3.3 3.3 0 0 1 6 1.9c0 4.5-6 8.2-6 8.2z"/>'
@@ -205,7 +208,35 @@ def c_after():
 LULU = 'the upstairs room at lulu&rsquo;s is the reason to go. downstairs gets loud. best long dinner i&rsquo;ve had this year'
 def good_for(items=('A long dinner', 'With parents')):
     return ''.join(f'<span style="font-size: 12px; font-weight: 500; color: {INK2}; background: rgba(27,23,20,0.05); border-radius: 999px; padding: 3px 10px; white-space: nowrap;">{c}</span>' for c in items)
-def place_card(good=('A long dinner', 'With parents'), by=None):
+def place_card(good=('A long dinner', 'With parents'), by=None, name='Lulu&rsquo;s', where='Carroll Gardens &middot; Italian'):
+    """A shared place, as a line (founder's pick, 2026-09-25; the comparison board was deleted once decided): pin, name, where, and the sender's reason in words.
+    No card, no picture, no live hours."""
+    return place_line(name, where, good_line(good) if good else '')
+def receipt(text, *doors_):
+    """A compact receipt after an action: what happened, in a line, with its doors (Add, Undo). Not a sheet, not a screen."""
+    d = ''.join(f'<span style="font-size: 13.5px; font-weight: 600; color: {GOLDD if i == 0 and len(doors_) > 1 else MUTE};">{t}</span>' for i, t in enumerate(doors_))
+    return (f'<div style="display: flex; align-items: center; gap: 14px; padding: 11px 14px; border-radius: 12px; background: {INK};">'
+            f'<span style="font-size: 13.5px; color: #F4EEDD; flex: 1;">{text}</span>{d.replace(MUTE, "rgba(244,238,221,0.7)").replace(GOLDD, "#E0B96A")}</div>')
+def good_line(items):
+    return 'Good for ' + ', '.join(i[0].lower() + i[1:] for i in items) + '.'
+LINE_CSS = 'border-top: 1px solid rgba(27,23,20,0.12); border-bottom: 1px solid rgba(27,23,20,0.12); padding: 11px 0; display: flex; gap: 11px; align-items: flex-start;'
+LINE_CHEV = '<svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="flex: none;"><path d="M4.5 2.5L9 6.5L4.5 10.5" stroke="#B5AFA5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+LINK_P = '<path d="M8 12a3.3 3.3 0 0 1 0-4.7l2.6-2.6a3.3 3.3 0 0 1 4.7 4.7l-1.3 1.3M12 8a3.3 3.3 0 0 1 0 4.7l-2.6 2.6a3.3 3.3 0 0 1-4.7-4.7l1.3-1.3"/>'
+def place_line(name, where, good='', extra=''):
+    g = f'<div style="{SERIF} font-size: 16px; line-height: 22px; color: #3A332C; margin-top: 2px;">{good}</div>' if good else ''
+    return (f'<div style="{LINE_CSS}"><div style="padding-top: 4px;">{_g(PIN_P, MUTE, 15)}</div><div style="flex: 1; min-width: 0;">'
+            f'<div style="display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;"><span style="{SERIF} font-size: 19px; line-height: 24px; font-weight: 600; color: {INK};">{name}</span>'
+            f'<span style="font-size: 12.5px; line-height: 17px; color: {MUTE};">{where}</span></div>{g}{extra}</div><div style="padding-top: 6px;">{LINE_CHEV}</div></div>')
+def link_line(headline='This week: one film, through Sunday', source='The Lantern&rsquo;s site &middot; Court Street'):
+    return (f'<div style="{LINE_CSS}"><div style="padding-top: 4px;">{_g(LINK_P, MUTE, 15)}</div><div style="flex: 1; min-width: 0;">'
+            f'<div style="{SERIF} font-size: 18px; line-height: 23px; font-weight: 600; color: {INK};">{headline}</div>'
+            f'<div style="font-size: 12.5px; line-height: 17px; color: {MUTE}; margin-top: 2px;">{source}</div></div><div style="padding-top: 6px;">{LINE_CHEV}</div></div>')
+def link_card_v0():
+    return (f'<div style="{CARD_CSS} padding: 14px 16px; display: flex; gap: 12px; align-items: center;">{thumb("film", 56)}'
+            f'<div style="min-width: 0; flex: 1;"><div class="fn" style="margin-bottom: 4px;">LINK &middot; THE LANTERN&rsquo;S SITE</div>'
+            f'<div style="{SERIF} font-weight: 600; font-size: 16px; line-height: 21px;">This week: one film, through Sunday</div>'
+            f'<div style="font-size: 13px; line-height: 18px; color: {INK2}; margin-top: 2px;">Court Street &middot; 7:15 nightly</div></div></div>')
+def place_card_v0(good=('A long dinner', 'With parents'), by=None):
     """The place as an attachment: name, where, what kind, and what the sender says it is good for."""
     return (f'<div style="{CARD_CSS} padding: 14px 16px;">'
             f'<div style="display: flex; gap: 12px; align-items: center;">{thumb("table", 56)}<div style="min-width: 0; flex: 1;">'
@@ -228,10 +259,9 @@ def d_after():
 def d_places():
     """Weeks later, in Places: the place, and Priya's words beside it."""
     inner = page_bar('PLACES')
-    inner += f'<div style="margin-top: 14px;">{plate("table", 140, tag="ILLUSTRATION &middot; NOT A PHOTOGRAPH").replace("margin: -16px -16px 12px -16px;", "margin: 0;")}</div>'
-    inner += page_title('Lulu&rsquo;s', 'Carroll Gardens &middot; Italian &middot; open till 11')
+    inner += page_title('Lulu&rsquo;s', 'Carroll Gardens &middot; Italian')
     inner += sect('From friends', top=24) + gut(status(80, author='Priya', meta='SEPT 21 · TO FRIENDS', words=LULU)
-        + f'<div style="display: flex; align-items: center; gap: 6px; margin-top: 10px; flex-wrap: wrap;"><span class="fn" style="margin-right: 2px;">GOOD FOR</span>{good_for()}</div>' + footer('Sent from here'))
+        + f'<div style="{SERIF} font-size: 16px; line-height: 22px; color: #3A332C; margin-top: 8px;">{good_line(('A long dinner', 'With parents'))}</div>' + footer('Sent from here'))
     inner += sep() + gut(status(60, author='Sam', meta='SEPT 22 · TO FRIENDS', words='downstairs is where the fun is though') + footer(), top=18)
     return phone2(inner, active='Places')
 
@@ -260,18 +290,18 @@ def build():
                     colhead('C', 'Where I&rsquo;ll be, with the ticket', 'Sam, to friends. An update, not an invitation. The ticket is the Life ticket, admission mode, at full size wherever the share appears.'),
                     colhead('D', 'A place I love', 'Priya, to friends. A recommendation, with what it is good for in her words. The place keeps her words: whoever opens it later sees them beside it.')], top=0)
     r1 = rowdiv([cell('FRIDAY 11:52 PM', 'A1', 'Written', 'Six words, three pictures tiled small, where she is. Gold in the toolbar is what is attached. Nothing is asked of anyone.', a_write(), (P('SENDER'),)),
-                 cell('THURSDAY 9:10 PM', 'B1', 'Written', 'Her sentence, and the gathering card as they will see it. The calendar is on, so she is asking: each of them answers her, not the group. No location; the card already says where.', b_write(), (P('SENDER'),)),
+                 cell('THURSDAY 9:10 PM', 'B1', 'Written', 'Her sentence and the gathering, as they will see it. The calendar is on, so each person answers her, not the group.', b_write(), (P('SENDER'),)),
                  cell('FRIDAY 10:38 PM', 'C1', 'Written', 'His sentence, his ticket, and where he is now, which is not Pacha yet. The calendar is off: an update, not an invitation. Nothing is asked of anyone.', c_write(), (P('SENDER'),)),
-                 cell('SUNDAY 9:40 PM', 'D1', 'Written', 'Her sentence, sent from the table at Lulu&rsquo;s, the place under it, and two &ldquo;good for&rdquo; she chose. Hours are the world&rsquo;s; the occasion is hers. The note stays with the place for everyone she sent it to.', d_write(), (P('SENDER'),))], top=26)
+                 cell('SUNDAY 9:40 PM', 'D1', 'Written', 'Her sentence, the place under it, and what she thinks it is good for, in words. The note stays with the place for everyone she sent it to.', d_write(), (P('SENDER'),))], top=26)
     r2 = rowdiv([cell('SATURDAY 8:10 AM', 'A2', 'Nora gets it', 'Her words, the pictures, and one quiet footer: where it was sent from, then heart, comment, quote and keep as glyphs.', a_receive(), (P('RECEIVER'),)),
-                 cell('THURSDAY 9:14 PM', 'B2', 'Sam gets it', 'Her words, then the gathering as a card: what, when, where, who&rsquo;s in, and the answer. His answer goes to Nora; everyone invited sees who&rsquo;s in, nobody sees who said no.', b_receive(), (P('RECEIVER'),)),
+                 cell('THURSDAY 9:14 PM', 'B2', 'Sam gets it', 'Her words, then the gathering: what, when, where, who&rsquo;s in. His answer goes to Nora; nobody sees who said no.', b_receive(), (P('RECEIVER'),)),
                  cell('FRIDAY 10:41 PM', 'C2', 'Nora gets it', 'His words, the ticket at full size, and the three verbs. If she&rsquo;s coming, she says so.', c_receive(), (P('RECEIVER'),)),
                  cell('SUNDAY 9:44 PM', 'D2', 'Nora gets it', 'Her words, the place, what it is good for, and the three verbs.', d_receive(), (P('RECEIVER'),))])
     r3 = rowdiv([cell('SATURDAY 10:30 AM', 'A3', 'What Maya sees', 'Who liked it, by name. One comment to her, one to everyone.', a_after(), (P('SENDER'),)),
                  cell('FRIDAY', 'B3', 'What Nora sees', 'Four answers in their words, and what each one needs from her.', b_after(), (P('SENDER'),)),
                  cell('SATURDAY 12:10 AM', 'C3', 'What Sam sees', 'Who liked it, and two comments; one of them says who&rsquo;s coming. Not who opened it.', c_after(), (P('SENDER'),)),
                  cell('MONDAY 8:15 AM', 'D3', 'What Priya sees', 'Who liked it; Nora is booking it; Sam disagrees, to everyone. Nothing tells her whether anyone went.', d_after(), (P('SENDER'),))])
-    r4 = rowdiv([cell('WEEKS LATER', 'D4', 'In Places, beside the place', 'Nora opens Lulu&rsquo;s. Priya&rsquo;s words and her &ldquo;good for&rdquo; are there, with Sam&rsquo;s disagreement under them. This is how a share makes the world richer: it stays with the thing it was about.', d_places(), (P('RECEIVER'), P('PLACES'))),
+    r4 = rowdiv([cell('WEEKS LATER', 'D4', 'In Places, beside the place', 'Weeks later, Priya&rsquo;s words and her &ldquo;good for&rdquo; are on Lulu&rsquo;s, with Sam&rsquo;s disagreement under them. The share stays with what it was about.', d_places(), (P('RECEIVER'), P('PLACES'))),
                  cell('FRIDAY 10:44 PM', 'Q', 'Quoted, to Maya', 'C, pulled into a chat with a person. Nora asks Vesper how they get back; its answer is marked with who asked, and both of them see it.', quote_chat(), (P('RECEIVER'), P('PERSON CHAT · PROPOSED'))),
                  notes('THE SAME FOUR, SIDE BY SIDE', tbl(['', 'A · WORDS AND PICTURES', 'B · COME', 'C · WHERE I&rsquo;LL BE', 'D · A PLACE I LOVE'], [
                      ['<b>Asked of the receiver</b>', 'Nothing', 'An answer, to the sender', 'Nothing', 'Nothing'],
@@ -284,7 +314,7 @@ def build():
         ('WHAT', 'A heart. One kind. It means &ldquo;I saw this and I&rsquo;m glad.&rdquo; No options, no reactions row.'),
         ('WHO SEES', 'The sender, by name. Never a count, never other receivers. Opening is not a like; there is no &ldquo;seen&rdquo;.'),
         ('COMMENT', 'To the sender. On B, answers are answers, not comments. On a share sent to a group, the composer says whether the group will see it.'),
-        ('KEEP', 'For you, not for the sender: puts the share into your own Life, under the person and under the place or thing it was about. The sender is not told. Board 11 shows it.'),
+        ('KEEP', 'For you, not for the sender: puts the share into your own Life, under the person and under the place or thing it was about. The sender is not told. Board 02 shows it.'),
         ('QUOTE', 'Into a chat with a person, or your own chat with Vesper. The original keeps its author and date; on C it carries the ticket row. This is where Vesper speaks, if anywhere: in the chat, when asked, not under the share.'),
     ]), w=560)
     n3 = notes('THE ARTIFACTS ARE THE EXISTING ONES', led([
@@ -301,12 +331,12 @@ def build():
         ('PACHA', 'The venue and the act are real names the founder used as the example; the ticket details around them are fixtures.'),
     ]), w=560)
     body = heads + r1 + r2 + r3 + r4 + '<div style="display: flex; gap: 46px; align-items: flex-start; margin-top: 34px; border-top: 1px solid rgba(27,23,20,0.12); flex-wrap: wrap;">' + n2 + n3 + n4 + '</div>'
-    html = (HEAD_VDL + f'<div style="width: {bw(4, (560, 560))}px; min-height: {hh("10", 4400)}px; background: #D8D1C5; box-sizing: border-box; padding: 30px 32px 36px 32px; {SANS} color: {INK}; display: flex; flex-direction: column;">'
-            + head('10 &middot; SHARING &middot; THE SOCIAL FOUNDATION', 'Four shares, seen three times',
+    html = (HEAD_VDL + f'<div style="width: {bw(4, (560, 560))}px; min-height: {hh("01", 4400)}px; background: #D8D1C5; box-sizing: border-box; padding: 30px 32px 36px 32px; {SANS} color: {INK}; display: flex; flex-direction: column;">'
+            + head('01 &middot; SHARING &middot; THE SOCIAL FOUNDATION', 'Four shares, seen three times',
                    'Words and pictures; a gathering invitation; where I&rsquo;ll be tonight, with the ticket; a place I love, and what it is good for. One shape for all four: the author, their words, and the thing attached under the words, smaller. Each one written, received, and as the sender sees it afterwards. '
                    'On the receiving side, the verbs everyone knows: one like, a comment, a quote into a chat with a person, and keep, for yourself. Nothing from Vesper under the share; it speaks in the chat, when asked. Drawn, not tested with anyone.')
             + body + f'<div class="fn" style="margin-top: 30px; line-height: 16px;">{FOOTX}</div></div>' + TAIL)
-    return write('10 - Sharing', html)
+    return write('01 - Sharing', html)
 
 if __name__ == '__main__':
     build()

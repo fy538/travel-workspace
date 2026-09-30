@@ -1,0 +1,53 @@
+{
+  "consumes": "vdl-stage1 0.3",
+  "workbench": "c13ae951-0977-4bac-90a6-c964146a9ca6",
+  "recorded": "2026-09-11",
+  "kernel": {
+    "stamp": "travel-app@e2e792913 tokens:80d0648dd300 gen:1",
+    "path": "_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css",
+    "sha256": "a843ca5ba6fe7595ff05c629ed88be8f3051e073a51cda4500e18ee5910d7f6c"
+  },
+  "files": [
+    {
+      "path": "vdl.css",
+      "sha256": "7b6fa1d3dfccc92c59be1193cd68cdb032845a54c0316540e3ab58fe0b968515",
+      "bytes": 16055
+    },
+    {
+      "path": "Ticket.dc.html",
+      "workbench_etag": "1789089040856299",
+      "bytes": 17327,
+      "sha256": "7d9e2135c05fd122730f40eb02ca8623f38b7f774de40e298acc9b417926d452"
+    },
+    {
+      "path": "Notice.dc.html",
+      "workbench_etag": "1789081717510486",
+      "bytes": 2531,
+      "sha256": "4fe7351b0782544354cca2d9daa26cf84ad73530778ec684723c1986203cf699"
+    },
+    {
+      "path": "OriginalReader.dc.html",
+      "workbench_etag": "1789098056754095",
+      "bytes": 11643,
+      "sha256": "2c6c47967b5044d6a91717ef51f44721fcd5d0289e081bb647b44030a04262a0",
+      "note": "The 0.3 file, as requested and as vdl-package.json recorded 0.3. The workbench published vdl-stage1 0.4 on 2026-09-11 while this adoption ran: only OriginalReader changed (§21.2 media/order fix, full density; etag 1789145625170950, 13,175 bytes). Life uses only the retrieval density, identical in both, and 0.4's consumer list names Social and Entity, not Life. Moving Life to 0.4 is a one-file copy with no visible effect on Life."
+    }
+  ],
+  "used": {
+    "Ticket": "full only: ferry x3 (04 wave tear, 03b, 05.9), flight x2 (04 object page, R0 pass at full size)",
+    "OriginalReader": "retrieval x1 (05.6)",
+    "Notice": "unavailable x1 (P3.5)",
+    "vdl.css": "Door construction (.vdl-door) on 75 doors",
+    "kernel": "Life tokens aliased to identical kernel tokens, local value kept as fallback"
+  },
+  "not_used_missing_variants": [
+    "Ticket row: no road mode (04 pass list, NCE→SOR · THE A7)",
+    "Ticket row: no leading-edge stub (04 pass list, NYP→BOS, NYP→HUD, VIE→VCE); with these two gaps the pass list stays local as a whole rather than mixing two row constructions",
+    "Ticket wristband (04 'WRISTBAND · THE DARK BAND')",
+    "Ticket chip at Life's 32pt V1 size (kept-object chips on 01, 03, 03b, 04, P1, P2, R0)",
+    "OriginalReader retrieval with the result's own type glyph (place/episode/source rows stay local)",
+    "OriginalReader for Life 07.7's note reader (masthead, three independent doors incl. Keep a copy)"
+  ],
+  "before_references": "before-shared-package/ holds the 14 boards exactly as they were before this adoption",
+  "package_status_at_adoption": "workbench manifest at vdl-stage1 0.4 (etag 1789145899922255); every file Life consumes other than OriginalReader is byte-identical between 0.3 and 0.4"
+}

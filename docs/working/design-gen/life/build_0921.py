@@ -400,6 +400,8 @@ f14 = panel('The evening, in order', '04b.14',
 MAP_ROWS = [('Home, the selected scroll', 'This viewer, directly', 'The same place in Home', 'Home'),
             ('Social, a received share', 'The original first, then this viewer', 'The same receiving screen', 'Social'),
             ('Life, a record (04b.1)', 'This viewer (04b.2)', 'The record, same scroll', 'Life'),
+            # Sep 26: board 04's Photographs grid (04.5) opens into this viewer rather than a model of its own
+            ('Life, Photographs (04.5)', 'This viewer (04b.2)', 'The same place in the grid', 'Life'),
             ('Life, a search (04b.8)', 'The picture', 'The same query', 'Life'),
             ('Life, a selection (04b.11)', 'Social&rsquo;s preview, the exact outgoing', 'Sent: the set, cleared. Not now: the same selection. Nothing went: the share. Part went: only the undelivered, retry it. Not known: check', 'Life &rarr; Social'),
             ('Any, image unavailable', 'The tile keeps its place (04b.13)', 'Unchanged', 'Life')]

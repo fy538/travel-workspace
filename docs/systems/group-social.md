@@ -85,7 +85,7 @@ privacy.
    everyone") stays banned for cohort 1 — the asymmetry implies someone needed
    accommodating; revisit with real cohort transcripts. *Status: implemented*
    (invisible-scaffolding prompt).
-4. **Voting visible by default; automation opt-in.** The old `voting_enabled`
+4. *(Amended 2026-09-26 by [the multiplayer direction decision](../decisions/2026-09-26-multiplayer-direction.md): a poll is an optional instrument a host asks for, not on by default; every occasion has a group chat on by default. Runtime unchanged until implemented.)* **Voting visible by default; automation opt-in.** The old `voting_enabled`
    conflated (a) members expressing an opinion with (b) timers converting silence
    into plan mutations. Split them: visible voting defaults ON for trips with ≥2
    members; consensus automation (deadlines, lazy-consensus auto-apply) defaults
