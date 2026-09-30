@@ -1640,3 +1640,46 @@ classification, a durable cost/billing ledger, or proof that the returned
 content is useful. No new paid consumer, API/schema or app change, persistent
 research storage, live provider call, database mutation, native build/readback,
 deployment or publication was introduced. R0–R7 remain open.
+
+#### Implementation receipt — caller-scoped answer-only research (September 30)
+
+Backend commit `89073b56a55760622e5287887c5aee430a99d41c` separates
+`completion_mode="answer_only"` from the dossier-oriented planning,
+reflection, synthesis, tool-profile and quality-gate route. The caller's
+question, purpose, scope and requested evidence now shape planning and
+reflection even when a recognized catalog target contributes existing
+coverage; a complete old dossier no longer suppresses a new caller question.
+Unknown target types bypass catalog lookup. Answer-only research stops before
+the dossier quality gate and all domain writers. It returns a bounded
+`answer` only when there is URL-backed page/search-snippet material and at
+least one citation resolves to that gathered evidence; otherwise it abstains
+and preserves an unresolved gap. Completion diagnostics log target type, not
+the internal target slug. Legacy completion remains on its prior dossier path.
+
+Evidence on the clean tuple workspace `89ce7035de4ed7480fb02254968083363bf3153e`,
+backend `89073b56a55760622e5287887c5aee430a99d41c`, app
+`28717c7cfec07b2313fe0e0cdff4431444df8335`, Darwin 25.5 arm64; focused tests
+used the backend virtual environment's Python 3.13.0:
+
+- Measured focused answer-only, content-pipeline, bounded-result,
+  quick-research and experience-research tests: **72 passed, 0 skipped**.
+- Measured `MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true make -C travel-agent
+  ci-static`: passed in **102.829 seconds**; Ruff, architecture/structural
+  gates and mypy passed. Log:
+  `/tmp/vesper-adaptive-context-roadmap-checks/answer-only-final-ci-static-20260930T193053Z.log`.
+- Measured `PYTEST_ADDOPTS='-p no:cacheprovider' RUFF_NO_CACHE=true make -C
+  travel-agent merge-check BASE_REF=main`: **22,014 passed, 14 skipped, 0
+  failed** in **103.189 seconds**. Log:
+  `/tmp/vesper-adaptive-context-roadmap-checks/answer-only-final-merge-check-20260930T193245Z.log`.
+- Measurements, including exact revisions and a corrected focused-test
+  invocation, are recorded in `/tmp/adaptive-research-roadmap-measurements.json`.
+  Backend commit hooks passed without exemptions or baseline changes.
+
+This improves answer-only task framing and prevents uncited/unattributable
+answers from escaping, but source-index binding is not semantic claim
+entailment. Caller-supplied public terms remain a trust boundary; no
+caller-independent privacy classifier, live model-quality evaluation, direct
+page fetch, candidate-discovery acceptance, durable chargeable-attempt ledger,
+consumer readback, API/schema or app change was exercised. Anthropic and Tavily
+keys were unavailable in this checkout, so live prompt evaluation is unrun.
+This does not complete R1 or the first R0/R1/R2/R6 increment. R0–R7 remain open.
