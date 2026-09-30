@@ -422,8 +422,27 @@ projection into a new canonical owner.
 | Selected component | Intake observations and `evidence_locator` validation in `travel-agent/backend/core/intake_evidence.py` | Evidence may point back into a source, but this is not yet a stable part identity with a normalized source-revision-bound text/image selector. The current reader opens the whole source. |
 | Life organization | Rebuildable viewer-specific groups and membership controls in `travel-agent/backend/life_projection/organization.py`, `travel-agent/backend/core/db/_tables/life_organization.py`, and `travel-agent/backend/core/db/life_organization.py` | Groups, memberships and controls are keyed by `viewer_id` and `projection_version`; memberships record evidence-backed derived relations to owner records. Durable controls rename a derived group, detach one derived membership, or undo that control. They provide useful revision/CAS and reversible-control patterns, but do not create or own a user's canonical Collection or its shared audience. |
 | Existing editorial collections | Public `/api/collections` reads in `travel-agent/backend/api/routes/collections.py`, backed by editorial guide bundles in `travel-agent/backend/core/models/collections.py` and `travel-agent/backend/core/db/collections.py` | This is content for Discover, with typed editorial member entity references and published/draft state. Its API is not the accepted personal/shared Collection owner, and its member schema does not point to stable consumer Thing references. |
-| Contextual selection and prepared additions | Strategy Technical's existing Source Contribution discovery, work, result, serving, and publication path (section 12) | There is a separate bounded candidate/result pipeline to consume. The artifact reader does not yet bind a selected target/component/context to that pipeline or claim prepared-result persistence as a kept edition. |
+| Contextual selection and prepared additions | Strategy Technical's existing Source Contribution discovery, work, result, serving, and publication path (section 12); mobile adapters in `travel-app/hooks/` and request/read routes in `travel-agent/backend/api/routes/agent_workflows.py` | The producer/result path is reusable, but current app integration is Home/Places-rooted, not artifact-bound. See the request-boundary note below. |
 | Kept edition | No kept-edition target or exact-snapshot action is exposed by the current canonical artifact projection/reader route | The current reader can reopen its original owner projection; it does not establish user-owned persistence of a generated explanation or a stable edition reference. P4 remains separate. |
+
+#### Artifact-specific discovery request boundary — September 30
+
+The Source Contribution producer and exact-result reader already exist; the
+missing piece is not another research provider. The app's
+`SourceContributionRoot` in
+`travel-app/hooks/useSourceContributionResult.ts` is limited to
+`home | places`; `useSubmitSourceContributionRequest.ts` and
+`useRootSourceInspection.ts` submit and consume root jobs. The backend
+contract in `travel-agent/backend/api/routes/agent_workflows.py` likewise
+accepts only Home/Places in `allowed_roots` and requires any `context_ref` to be a
+`places_context`. The request names subject/source/context refs and
+`represented_at`, but has no selected artifact target, target revision, or
+component locator. Consequently the current artifact reader cannot ask for and
+reopen a prepared result bound to the exact item being viewed. P0 must settle
+that target/revision/component contract before P3 adds an artifact adapter; do
+not pass a submission-local `experience_anchor` through `context_ref` or label
+a root-wide result as artifact-specific value. Exact kept-edition persistence
+remains the separate P4 owner.
 
 #### Collection owner comparison — September 30
 
