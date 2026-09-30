@@ -39,9 +39,13 @@ still needed before choosing new durable identity, component, collection, or
 correction authority. This is the beginning of P0/P1/P2, not completion of the
 first assignment: P0 still needs reviewed identity/subject/collection decisions,
 component/context and edition references, the complete supported-door/mode
-matrix and lifecycle replay fixtures. A reusable first portfolio fixture set
-now spans books, films, shows, music, source-backed passage and practical
-readers, dish fallback, sparse recognition, and one bounded friend contribution.
+matrix, selected-part representation fixtures and lifecycle replay fixtures.
+An isolated sparse-history example now covers one user observation plus one
+public source without the later personal evidence; it is a fixture/compiler
+boundary, not live-generation or desirability evidence. A reusable first
+portfolio fixture set now spans books, films, shows, music, source-backed
+passage and practical readers, dish fallback, sparse recognition, and one
+bounded friend contribution.
 A first crosswalk now
 separates source admission, family-reader behavior, and audience authorization;
 door-to-family recognition remains unproven. P1 still needs cross-door
@@ -449,11 +453,18 @@ format boundary is:
 
 The reader-mode matrix now has code-backed boundaries for its first app doors,
 including the all-or-nothing email case and one database-backed confirmed-
-artifact lifecycle through the canonical reader route. P0 still needs
-sparse-history and selected-part representation fixtures, plus a clearer
-caller-visible rejection/receipt for unsupported email content. Exercise those
-against the owner routes; do not change Orchestration's transport or enable a
-scanner from this artifact lane.
+artifact lifecycle through the canonical reader route. A separate sparse-
+history fixture in `travel-app/constants/mocks/artifactPortfolioFixtures.ts`
+admits a private Sorrento opening from only one viewer observation and one
+public research source. Its test retains the observation and sourced geology,
+and excludes the later lift/ferry movement synthesis because those personal
+sources are absent. This proves the existing composition compiler accepts that
+bounded shape; it does not prove live model generation, current-source
+verification, successful native rendering, or human desirability. P0 still
+needs selected-part representation fixtures and a clearer caller-visible
+rejection/receipt for unsupported email content. Exercise those against the
+owner routes; do not change Orchestration's transport or enable a scanner from
+this artifact lane.
 
 ### Typed reading contract
 
@@ -1628,3 +1639,20 @@ managed-checkout cache write returned `EPERM`; equivalent cacheless full lint
 over `app`, `components`, and the new test passed with zero errors and 169
 warnings. App evidence was committed separately as `1e82b3e55`. No backend,
 live-service, VoiceOver, or physical-device evidence is implied.
+
+### September 30 sparse-history composition fixture
+
+App commit `b212de7fa` adds a separate sparse-context variant of the Sorrento
+opening without changing the six-entry executable portfolio. It contains only
+the person's cliff observation and one cited public geology source; the
+existing lift and ferry evidence, and the synthesis that depends on them, are
+absent. The focused test confirms the compiler admits the two-source brief,
+preserves the source authors, excludes the unsupported movement claim, and
+leaves owner state unchanged under its ephemeral lifecycle.
+
+Validation: `npm test -- --runInBand __tests__/utils/artifactPortfolio.test.ts`
+(1 suite, 9 tests), targeted ESLint on the fixture and test, `npm run typecheck`,
+and `git diff --check` passed. This is deterministic fixture/compiler evidence
+only; it does not establish a live generation path, research freshness, a
+user-facing native rendering, or preference/desirability. Selected-part
+representation remains open pending the P0 reference decision.
