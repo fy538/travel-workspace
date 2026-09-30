@@ -2181,3 +2181,26 @@ IDs, `npm run qa:polish:test` validated 75 committed verdicts, and
 VoiceOver traversal/actions, loading/error states, physical-device/Android
 behavior, live-service readback, and value/desirability remain open; this
 closes only the largest-text iOS reflow slice, not P2 as a whole.
+
+### September 30 Home dock stability prerequisite
+
+App commit `5d56ef5ff` stabilizes the private-capture handler registered by the
+Vesper Home dock. The Home hook had passed a newly allocated capture-entry
+object on every render; that recreated the dock accessory and fed registration
+updates back through `NavChromeContext`. The app now memoizes the navigation
+adapter and entry, with a regression test that equivalent Home renders retain
+the same capture handler. This was an adjacent defect surfaced while preparing
+native artifact QA; it is not an artifact feature increment or a Home visual
+acceptance claim.
+
+Focused evidence: the Home capture/private-capture/dock suites passed (3 suites,
+23 tests); the Home smoke suite passed (18 tests); `npm run typecheck`, targeted
+ESLint and `git diff --check` passed. On the assigned Vesper QA SE simulator,
+the registered `polish/life-intake-source-continuity` flow completed (1/1
+scenario, 3/3 extras) and proved the fixture-backed source → exact-photo viewer
+→ source → removal path. That flow does not exercise photo gestures, VoiceOver,
+or the Home surface's design. `npm run verify:merge -- --base main` passed on
+app commit `5d56ef5ff` (1,288 suites, 9,124 tests, one snapshot); the runner
+reported one worker forced exit after the suite completed, with no failed
+tests. Native photo pan/pinch and assistive-action acceptance therefore remain
+open as recorded above.
