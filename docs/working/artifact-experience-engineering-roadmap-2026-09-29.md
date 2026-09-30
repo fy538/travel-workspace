@@ -44,9 +44,13 @@ the technical owner/reference model and new durable identity, subject,
 component, or correction authority; those are not reasons to reopen the
 accepted product semantics. This is the beginning of P0/P1/P2, not completion
 of the first assignment: P0 still needs reviewed identity/subject/owner
-mappings, component/context and edition references, the complete
-supported-door/mode matrix, selected-part representation fixtures and
-lifecycle replay fixtures.
+mappings, selected-component/context/edition references, selected-part
+representation fixtures, and the broader lifecycle replay portfolio. The
+supported-door/mode crosswalk is now recorded in section 3, but its capture
+outcome is incomplete: the unsupported-email rejection is verified before
+writes, while a useful sender-facing receipt belongs to Orchestration's capture
+path. Section 13 records revisioned correction and Undo replay, not the full
+source, audience, expiry, and collection lifecycle portfolio.
 An isolated sparse-history example now covers one user observation plus one
 public source without the later personal evidence; it is a fixture/compiler
 boundary, not live-generation or desirability evidence. A reusable first
@@ -57,11 +61,12 @@ The connected-neighborhood reader now uses a matching projection-supplied
 source/provenance label or a type-level fallback rather than displaying
 resource identifiers; this is presentation-only and does not resolve subjects
 or change graph identity.
-A first crosswalk now
-separates source admission, family-reader behavior, and audience authorization;
-door-to-family recognition remains unproven. P1 still needs cross-door
-recognizable identity, source-bound component continuity, and cross-door
-reconciliation. Revision-bound correction Undo is now an append-only command
+A first crosswalk now separates source admission, family-reader behavior, and
+audience authorization, including the all-or-nothing unsupported-email case;
+door-to-family recognition and sender-visible rejection remain unproven. The
+capture-lane receipt gap is separate from the P1 identity work. P1 still needs
+cross-door recognizable identity, source-bound component continuity, and
+cross-door reconciliation. Revision-bound correction Undo is now an append-only command
 that restores the preceding effective correction (or the unchanged
 source-derived interpretation) through the existing owner projection; source
 evidence is never rewritten. The backend's revisioned time-replacement path
