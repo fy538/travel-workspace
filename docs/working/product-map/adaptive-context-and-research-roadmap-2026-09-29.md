@@ -637,14 +637,16 @@ Strategy.
 lane. The first exact-original read is implemented across the owner-scoped
 backend reader and its mobile callers. Quick bounded results also carry
 query-free, request-scoped BaseTool attempt/retry/error/cancellation counts;
-this is observability, not a budget reservation or billing record. This is a
-partial R0/R1/R2/R6 result, not completion of any package: R0's complete
-scenario/owner matrix, R1's caller-independent disclosure and acquisition
-behavior, R2's supported
-candidate selection, R6's real consumer acceptance, and R7's matched-quality
-evidence remain open. R3/R4/R5 requirements are being applied with the first
-producer; their shared runtime, longitudinal and assistance-adaptation outcomes
-remain for later work. Receipts and exact limitations are in section 12.
+this is observability, not a budget reservation or billing record. Existing
+factual lookup and trip-direction fallback now share a typed, one-tool-attempt
+public acquisition adapter with distinct empty, unavailable, failed and
+deadline outcomes. This is a partial R0/R1/R2/R6 result, not completion of any
+package: R0's complete scenario/owner matrix, R1's caller-independent disclosure
+and acquisition behavior, R2's supported candidate selection, R6's real
+consumer acceptance, and R7's matched-quality evidence remain open. R3/R4/R5
+requirements are being applied with the first producer; their shared runtime,
+longitudinal and assistance-adaptation outcomes remain for later work. Receipts
+and exact limitations are in section 12.
 
 ### Minimum complete first increment
 
@@ -1517,3 +1519,49 @@ does not establish semantically sufficient research, honest empty/partial
 classification, claim entailment, or consumer value. No live provider,
 disposable-DB race, database write, app build, authenticated native readback,
 push or deployment was exercised. R0–R7 remain open.
+
+#### Implementation receipt — shared bounded public acquisition (September 30)
+
+Backend commit `e94bf253c6e26a75939e618ef26fdd92380a50b6` routes the existing
+factual `search_web` path and trip-direction public fallback through
+`core.public_research.acquire_public_research`. It returns a typed transient
+result with explicit success/no-results/unavailable/failure/deadline outcomes,
+URL-validated HTTP(S) search snippets, preserved titles/publication dates and a
+separate non-citable provider summary. Local subject identity is not included
+in the result or sent as provider query text. Provider errors are reduced to
+fixed codes; query and exception text are not logged. The selected lookup uses
+one `BaseTool.execute_once` call, bounded by the request deadline and result
+limit, without the default tool retry loop. The specialized live-event path
+remains separate and retains its own source verification.
+
+Evidence on the committed tuple workspace `467e4cae`, backend
+`e94bf253c6e26a75939e618ef26fdd92380a50b6`, app `28717c7c`, Darwin 25.5 arm64,
+Python 3.14.6:
+
+- Focused acquisition, retry, Concierge lookup/trip-direction, quick-research,
+  bounded-result and source-metadata tests: **79 passed** with the backend
+  virtual-environment interpreter.
+- Measured `MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true make -C travel-agent
+  ci-static`: passed in **100.533 seconds**; mypy reported no issues across
+  1,892 backend source files. The broad-exception and status-dead-gate ratchets
+  passed without baseline changes.
+- Measured `PYTEST_ADDOPTS='-p no:cacheprovider' RUFF_NO_CACHE=true make -C
+  travel-agent merge-check BASE_REF=main`: **22,001 passed, 14 skipped, 0
+  failed** in **101.747 seconds**.
+- Measurements and complete logs are in
+  `/tmp/adaptive-research-roadmap-measurements.json` and
+  `/tmp/vesper-adaptive-research-roadmap-checks/` (`bounded-public-acquisition-*`).
+- Initial commit hooks rejected a credential-shaped test URL and then caught
+  research outcome comparisons as database lifecycle status gates. The fixture
+  and code were corrected; no hook exemption or baseline update was made.
+
+This completes only a **shared existing-caller acquisition adapter**. It does
+not admit arbitrary selected artifacts or unresolved subjects from a consumer,
+classify private information mislabelled as `public_query`, fetch/verify source
+pages, prove claim entailment, or persist a durable attempt/billing ledger.
+The reported attempt is one call to the tool's `_execute` layer; any retry or
+multiple HTTP requests inside the provider SDK and final billing settlement
+remain unmeasured. It introduces no new paid consumer path, API/database schema,
+research persistence, app change or public candidate-discovery UI. No live
+provider call, database fixture, native build/readback, push or deployment was
+run. R0–R7 remain open.
