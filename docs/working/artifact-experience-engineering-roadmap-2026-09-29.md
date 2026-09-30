@@ -354,8 +354,8 @@ The first delivered reader-mode matrix is deliberately narrow:
 
 | Mode | Current behavior | Not implied |
 | --- | --- | --- |
-| Mine, confirmed `ExperienceAnchor`, recognized ticket/place/work with required source facts | Versioned descriptor may select the corresponding native reader; original-first fallback remains for missing facts, unknown types, or unsupported descriptor versions | Catalog match, validity, visit/attendance, external media, selected-part identity, or general input-format support |
-| Mine, sparse or unrecognized confirmed anchor | Existing source-fact reading/fallback | A new family-specific schema or generated interpretation |
+| Mine, confirmed `ExperienceAnchor`, recognized ticket/place/work with family-relevant source facts | Versioned descriptor may select the corresponding native reader; original-first fallback remains for missing facts, unknown types, or unsupported descriptor versions | Catalog match, validity, visit/attendance, external media, selected-part identity, or general input-format support |
+| Mine, sparse/unrecognized anchor or recognized passage/dish/practical record | Existing source-fact reader/fallback; passage, dish, and practical-record descriptors do not yet select specialized app readers | A new family-specific schema or generated interpretation |
 | Together | Canonical artifact projection route rejects the request until graph-owned sharing authorization exists; private reader-family metadata is withheld | That an Occasion link or source-level sharing elsewhere grants this reader access |
 | Catalog lookup, selected-part reading, contextual discovery, exact saved edition | Not connected by this reader increment | Any provider rights, answer generation, durable retention, or permission to share generated material |
 
