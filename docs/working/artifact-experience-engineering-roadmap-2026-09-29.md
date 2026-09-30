@@ -1486,10 +1486,20 @@ visual acceptance.
 
 Native acceptance, model comparisons, human preference and economic measurements
 remain future evidence—not completed results. On September 30 the assigned
-CoreSimulator was available, but its installed development binary crashed before
-the product route and a clean local rebuild was blocked by the generated
-CocoaPods/Xcode project failure above. No native visual judgment is claimed;
-resume capture only with a working, checkout-matched dev build. This file owns
-Strategy's package progress under the program boundaries, not the other lanes'
-queues. On expiry, refresh unfinished work with an explicit reason, promote
-durable contracts or archive completed planning and research.
+`Vesper QA SE` simulator was available, but the installed development binary
+crashed before the product route: the JS bundle used `react-native-worklets`
+`0.7.4` while that binary contained native Worklets `0.11.3`. The registered
+`canonical-artifact-reader` flow therefore captured 0/1 scenarios and no
+screenshots. A lockfile-pinned `pod install --deployment` completed without
+changing tracked files, but rebuilding with Xcode 26.5 (build `17F42`) still
+failed: Xcode reported the generated `Pods.xcodeproj` damaged while decoding
+`XCSwiftPackageProductDependency` (`_setSavedArchiveVersion` selector missing),
+then Swift compilation could not import `Expo`. CocoaPods was `1.16.2`; the
+checked-out app locks `react-native-worklets` `0.7.4`. This is an environment /
+generated-project build blocker, not reader-flow acceptance or evidence of a
+reader defect. No native visual judgment is claimed; resume capture only with a
+working, checkout-matched dev build and a Pods project the selected Xcode can
+load. This file owns Strategy's package progress under the program boundaries,
+not the other lanes' queues. On expiry, refresh unfinished work with an
+explicit reason, promote durable contracts or archive completed planning and
+research.
