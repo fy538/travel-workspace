@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: Claude orchestrator, for the program roadmap owner (Codex lane)
 created: 2026-09-28
-last_verified: 2026-09-28
+last_verified: 2026-09-29
 expires: 2026-10-12
 why_new: The program roadmap belongs to the codex/home-value-delivery lane, and other sessions do not edit it directly. These are proposed changes from the September 24–28 strategy thread, for the lane owner to accept, adapt or decline.
 promotes_to: docs/working/vesper-program-roadmap.md (by the lane owner)
@@ -17,6 +17,24 @@ source_of_truth_for: []
 `travel-workspace--home-value-delivery` at workspace `47c91b3` on September 28:
 queue items 0–3, with the capture/share package active. They are proposals. The
 lane owner decides, and the founder rules where a proposal needs a ruling.
+
+**September 29 documentation recheck:** the execution roadmap at workspace
+`af8f4912` still names the September 26–27 decisions as its imported baseline.
+This confirms a handoff gap, not that the implementing code was re-reviewed or
+that the work should restart. The research-to-execution refinements are in §8.
+Earlier deployment, signing, provider and latency observations below retain
+their original dates and need current verification before action.
+
+The September 29 evening artifact investigation is in §9. It supplies proposed
+package boundaries and acceptance cases, not a new current-state review of the
+execution lane or an instruction to interrupt its active work.
+
+The [detailed artifact engineering roadmap](artifact-experience-engineering-roadmap-2026-09-29.md)
+now expands §9 into shared contracts, eight dependent packages, migration,
+quality and lifecycle replay, decision boundaries and complete assignments.
+Its September 29 delivery-lane baseline is explicit. It is a supporting plan
+for the program owner to admit, not another dispatch queue; the earlier
+uncompleted proposals below remain intact.
 
 **Background.** The reasoning is in
 [product direction, September 24–28](product-direction-2026-09-28.md). Two
@@ -93,9 +111,10 @@ Still excluded, as the roadmap already says:
 
 ## 2. Make the send-time payoff a measured finish condition
 
-The core loop depends on the author seeing their thing recognized where they
-are, in about two seconds. As of September 27, capture reached semantics and
-anchors through a once-a-minute pipeline.
+The author should receive a recognizable useful thing where they contributed
+it. About two seconds is an unmeasured target, not an established service promise.
+The September 27 observation placed semantics and anchors on a once-a-minute
+pipeline; recheck the current path before treating that as today's bottleneck.
 
 **Proposed:**
 - Add p50 and p95 time-to-payoff for five share types to the capture/share
@@ -173,3 +192,174 @@ Both this branch (`codex/product-direction-2026-09-28`) and the Home lane add:
 Identical files merge cleanly. The README table and its `last_verified` line
 will conflict for whichever branch lands second. The fix is to keep both sets of
 rows, newest first.
+
+The September 29 Thesis/Model reconciliation is in a separate backend worktree
+at this strategy lane's `travel-agent/`, branch
+`codex/product-direction-2026-09-28`, based on `fdf789d06`. Do not replace
+the implementation lane's newer canon wholesale: preserve its September 27
+entrance amendments while applying the record-value and collection changes.
+Carry the [September 29 record-value amendment](../decisions/2026-09-29-record-as-first-class-value.md)
+and its index entry with those changes. Earlier accepted decision files are
+unchanged; the new amendment is limited to product value and optional continuation.
+
+## 8. Apply September 29 research to the collection experience
+
+The [research synthesis](memory-as-product-direction-research-2026-09-28.md#14-september-29-collection-experience-follow-up)
+and [direction refinement](product-direction-2026-09-28.md#13-september-29-collection-experience-refinements)
+do not add an implementation queue or adopt pending defaults. The program
+owner should map these requirements into existing packages at its next
+checkpoint, while finishing useful capture work already underway.
+
+| Concern | Owner boundary to preserve | Proposed acceptance evidence |
+| --- | --- | --- |
+| Collection formation | Source/capture identity, relationship evidence and collection membership are distinct; collections do not own reservation truth. | A relationship is useful without creating a new container; a noticed collection demonstrates a reason to persist before Keep. |
+| Recognition and enrichment | Original, attributed human addition and generated interpretation retain separate provenance. | Compare a capable original-only treatment with a genuine enrichment winner, including attribution on delayed return. |
+| Correction | Existing memory/contribution contracts resolve target, scope and authority. | One regrouping stays local; an explicit ongoing instruction affects its named class; neither widens sharing or action authority. |
+| Home receiving | Retained value, eligibility, whole-page prominence and interruption remain separate. | A quiet ordinary week after dense travel delivers current value without recap dominance, capture homework or a mandatory task. |
+| Life navigation | Stable item/collection identity and membership support views without copied records. | Refinding by partial person/time/place cues, an exact original, and a related-item detour with a clear way back. |
+| Multiplayer continuity | Contribution, source-use permission, audience and withdrawal survive every view. | A mostly receiving friend gets value without equal effort; original voices survive later additions and source withdrawal. |
+
+Use day 1 evidence, day 2 explanation and day 5 related material across these
+cases. A map/list/time switch preserves scope; following a relation preserves
+the return path; moving into asking, sharing or planning checks the new purpose.
+Membership removal, deletion and revoked access have different effects.
+Correctness and withdrawal outrank visual stability; preserve independent
+material rather than treating the entire collection as invalid.
+
+Distinguish the evidence layers: owner tests establish identity and repair;
+connected readback establishes current projections; installed surfaces establish
+interaction; voluntary behavior establishes preference or return. A fixture
+or attractive collection screenshot cannot certify all four. Retain a sparse
+everyday example and measure repeated repair/disorientation, not storage growth,
+generation volume or raw override count.
+
+No fixed item threshold, content ratio, retention target or push cadence follows.
+In particular, the ingestion proposal's “correction applies to similar things”
+needs the scoped clarification in the direction note, not automatic global
+learning. The collections decision's notifications destination is not permission
+to push. Keep friction presets, catalog mechanism and autonomous shared additions
+separate from implementation of already accepted private organizing.
+
+At the next package checkpoint, verify three outcomes: contribution is
+dependable; the resulting personal/shared collection is worthwhile to have;
+and later evidence improves it without avoidable repair. These are complementary
+system checks, not a demand to stop engineering until one behavior loop is proved.
+
+## 9. Focused artifact engineering proposals
+
+**Detailed package plan:** use the
+[artifact experience engineering roadmap](artifact-experience-engineering-roadmap-2026-09-29.md)
+for implementation dependencies, ownership, acceptance and rollout. The A/B/C
+map below remains the strategy-level summary; its package detail is expanded
+there rather than copied into a second implementation backlog here.
+
+The [focused artifact direction](product-direction-2026-09-28.md#14-september-29-focused-artifact-experience)
+and [technical investigation](memory-as-product-direction-research-2026-09-28.md#17-september-29-artifact-engineering-investigation)
+clarify the next experience: an appealing kept thing opens immediately, offers
+substantive contextual value when available, and stays recognizable as its
+relationships grow. The program owner should absorb the following into useful
+existing packages at its next checkpoint. These are coordinated workstreams,
+not three new services, an additional roadmap or automatic parallel dispatch.
+
+The inspection used backend fdf789d06 and app 23cff76f4 on September 29.
+Reconcile against the implementation lane's actual HEAD before scheduling or
+repairing anything below. Current and earlier uncompleted handoff items remain
+intact; this section does not report implementation, passing tests or launch
+readiness. The [accepted Life decision](../decisions/2026-09-29-life-model-occasions-collections-and-sharing.md)
+governs its named object/collection and sharing choices where earlier notes
+conflict; artifact form, pending grants and defaults remain separately open.
+
+### A Object and change contracts
+
+Map source, artifact, component, subject, occurrence, collection membership and
+derived relationship onto their existing owners. Establish consumer collection
+ownership without repurposing editorial collections by implication or
+duplicating reservation/commitment authority. Add reversible reconciliation
+for multiple captures of the same thing while preserving separate occasions
+and contributors.
+
+Specify event versus received time, uncertain dates and timezone handling,
+typed corrections, retry identity versus a new correction, and dependency
+revisions. Recheck the inspected fact writer's freshness/validity coupling and
+wrong-time correction behavior before making narrowly scoped repairs. This
+is not a prerequisite for a database replacement or universal noun migration.
+
+### B Stable focused artifact reading
+
+Build on the current artifact and exact-result readers. Deliver the
+recognizable object without waiting for generation, preserve original access
+and return navigation, and distinguish a changing exploration from the exact
+result deliberately kept. Use existing frozen/refreshable/live semantics.
+Revalidate current authority and expiry even when an expression is frozen.
+
+Recheck the result reader's stale-payload/action behavior, not just its
+expired-state heading. Exercise timer passage while open, return from a
+related object, permission change and provider failure. Honor whatever offline
+policy is adopted; do not promise current remote revocation while disconnected.
+Existing source and renderer plumbing can progress before exact visual
+composition settles; its absence need not block all engineering.
+
+### C Contextual discovery and delivery
+
+Provide a selected-object context path through the existing engine. Combine
+structured relationships, keyword/semantic retrieval and bounded relationship
+expansion across authorized collections, people, current circumstances and
+public evidence. Separate candidate discovery from judging supported value.
+Reuse composition and practical-help owners; no fabricated Trip or required
+Chat turn should be needed.
+
+Prepare reusable results and public subject evidence selectively, with bounded
+on-demand depth. Invalidate for corrected sources and newly available relevant
+material, including previous no-result selections. Track all supplied source
+dependencies, recheck before serving and preserve independent contributions
+after repair. Shared public evidence does not make private composition a
+shared cache. Budget reservations, concurrency deduplication and cancellation
+are separate from caching.
+
+The shared identity, context and revision contracts precede incompatible
+implementation choices; B and C can then advance independently. Do not hold
+unrelated capture, reader or reliability improvements until every research
+question is settled. Jev or another fast judge is an optional experiment
+within C, not a critical-path dependency. See [research §18](memory-as-product-direction-research-2026-09-28.md#18-september-29-bounded-decision-model-research).
+
+### Shared acceptance portfolio
+
+Use tickets, dish photographs, book passages and scorecards to exercise the
+same system with different media and evidence. These are comparison cases,
+not a commitment to four bespoke products or a fixed first-release catalog.
+
+| Case | Required comparison or invariant |
+| --- | --- |
+| First contribution with sparse history | A recognizable, worthwhile object without forced classification, another contribution or generated filler. |
+| Original versus enrichment | Include both an original-only winner and a supported addition that clearly improves what the person receives. |
+| Day 1 evidence, day 2 explanation, day 5 related material | New value without changing original authorship or confusing event time with upload time. |
+| Same ticket, another location or purpose | Relevant selection can change; retained identity, event facts and an actively read result do not silently drift. |
+| Related-object detour and exact kept explanation | Return to the originating selection; reopen the kept version without rerunning current ranking. |
+| Local correction and another later correction | Distinguish new edits from retries; repair only their dependencies and preserve explicit membership exclusions. |
+| Shared contribution withdrawn during generation | Resolve AI-use grants before context assembly, recheck before serving, and invalidate affected derivatives. |
+| Cold/warm open, offline or provider failure | Independently eligible retained value remains usable; no stale practical actions or fictitious freshness. |
+| Repeated opening without relevant change | No manufactured novelty or compulsory new model work; a complete original remains satisfactory. |
+
+Measure object recognition, added value, attribution, false novelty/suppression,
+retrieval recall, interaction/return, repair, p50/p95 and end-to-end cost.
+Separate automated correctness, connected readback, installed interaction and
+voluntary preference evidence. Reuse existing editorial and lifecycle
+evaluations rather than introduce a second evaluation platform.
+
+### Checkpoints and unresolved choices
+
+At contract mapping, resolve any consequential owner or sharing ambiguity
+before implementing its effect. At the first connected reader/discovery
+result, inspect the whole experience and total latency, not isolated model
+quality. At the repeated-use checkpoint, assess new evidence, return,
+correction, withdrawal and spend; adapt the package when failures reveal a
+wrong abstraction rather than adding receipts for an unchanged gap.
+
+Still open: focused layout and density, initial family coverage, preparation
+budgets and refresh cadence, offline retention, and what happens to a kept
+explanation or mixed-contributor Occasion after withdrawal. The general rule
+that things leave with their contributor does not by itself settle every
+composite case. A cheap model's score cannot resolve these product choices.
+Do not impose the current Home producer's two-source novelty or cross-root
+output requirements on all artifacts. Document adopted refinements in their
+existing owner contracts; the active program roadmap retains sequencing.

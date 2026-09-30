@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Claude orchestrator
 created: 2026-09-28
-last_verified: 2026-09-28
+last_verified: 2026-09-29
 expires: 2026-10-28
 why_new: The September 24–28 strategy thread between the founder and the orchestrating Claude session produced three decisions, about thirty Life boards and an unratified MVP. The thread was compacted several times and survived only in transcripts. This note keeps its reasoning, evidence and open items in one place so later sessions neither reopen settled points nor lose unratified ones.
 promotes_to: decisions (2026-09-27 core loop, 2026-09-28 collections, 2026-09-28 ingestion); Product Thesis and Product Model entrance wording; the program roadmap, through the separate Codex note
@@ -26,6 +26,8 @@ the decisions win:
   (September 28)
 - [Multiplayer direction](../decisions/2026-09-26-multiplayer-direction.md)
   (September 26, from a separate design review)
+- [The record as a first-class benefit](../decisions/2026-09-29-record-as-first-class-value.md)
+  (September 29, narrowly amending by-product-only and mandatory-loop readings)
 
 **Status labels used below:**
 - **Ruled:** the founder said it, in their own words or by accepting a specific
@@ -40,7 +42,9 @@ transcripts store UTC, so a late-evening exchange appears there under the next
 day.
 
 **Coverage.** The trace runs from September 24, 18:01 to September 28, about
-15:21. A forked session was still drawing boards at that point.
+15:21. A forked session was still drawing boards at that point. Sections 1.1–1.4
+record subsequent Strategy-thread refinements through September 29; they do
+not redate the historical code, delivery or research observations below.
 
 **Branches.** The thread ran in several Claude Code sessions, some forked from
 one another. Two branches ran in parallel on the evening of September 26: the
@@ -159,9 +163,10 @@ completion or a fresh assessment of the current build.
 
 These points are the founder's emphasis after the thread, reached with Codex.
 
-- **The record is a benefit in itself.** Making it takes no effort: no
-  writing, prompts or filing. But some things are worth having without a next
-  action:
+- **The record is a benefit in itself.** Making it requires no separate writing
+  or filing routine and no mandatory reflection prompts. Contributing and
+  correcting still take effort; the benefit must earn that effort. Some things
+  are worth having without a next action:
   - a map of the places you have been;
   - the dishes you loved and where each came from;
   - an evening with everyone's photographs.
@@ -186,12 +191,18 @@ These points are the founder's emphasis after the thread, reached with Codex.
 - **Compete on product shape, not capabilities.** Recognition, memory, booking
   and agent actions are becoming commodities. Every capability-led pitch in the
   thread collapsed into "sounds like Muse."
-  - Invest in a capability only when the shape depends on it: the payoff in
-    about two seconds, correct recognition, one identity across doors, and
-    well-timed returns.
-  - A shape is defensible only when it carries a stance Meta cannot adopt:
-    people's words stay theirs, finite and quiet, you send, no feed, and no
-    commissions.
+  - Invest in capabilities that make the experience work: prompt payoff,
+    correct recognition, consistent identity across doors, and well-timed
+    returns. About two seconds remains an unmeasured payoff target, not a
+    demonstrated service guarantee.
+  - Our advantage must come from consistently delivering this experience:
+    people's words stay theirs, the person sends, attention is respected, and
+    provider commissions do not drive recommendations. These commitments
+    distinguish our approach; they do not establish what Meta cannot adopt
+    or prove a durable moat.
+  - No engagement-driven social feed does not mean no substantial browsable
+    Home or Places surface. Quiet aesthetics and low social pressure can
+    coexist with rich material worth exploring.
 
 **Working description** (proposed; it does not replace canonical positioning):
 
@@ -214,8 +225,10 @@ These points are the founder's emphasis after the thread, reached with Codex.
 - **Zero-touch types are a hypothesis.** R3 is pending. When recognition is
   uncertain, the thing needs a useful landing (*Not yet placed*) and an easy
   correction, not forced classification.
-- **Product Thesis disagrees.** It still says "Memory is substrate, not the
-  endpoint." Reconcile that deliberately; this note does not amend it.
+- **Canon alignment:** the September 29 local Thesis/Model update recognizes
+  the record as a first-class benefit and collections as the consumer-facing
+  structure. It preserves specialized owners and optional continuations;
+  cross-lane landing is separate from this documentation update.
 
 ### 1.2 What the research adds
 
@@ -223,20 +236,37 @@ The [six-question review](memory-as-product-direction-research-2026-09-28.md)
 holds the full evidence. It supports the center as plausible, not as proven
 demand.
 
-- **The shape alone is taken.** Several products already offer
-  self-organizing collections, private or shared: mymind, Are.na, Fabric, Day
-  One's shared journals and Apple's Shared Photo Library.
-  - Vesper's shape is the combination of four things:
+- **Shared mechanisms do not imply the same product subject.** Adjacent
+  products already offer parts of the mechanism: automatic organization,
+  rediscovery, or private and shared collections. They do not all offer the
+  same combination, and overlap does not establish that Vesper's product
+  shape is taken.
+  - Vesper's subject is the person's encounters and relationships with the
+    world, not simply the content they save. The same photograph, link or
+    ticket can enter either kind of product; the distinction is what it
+    represents and what accumulates around it.
+  - The proposed combination is:
     - the person's own material;
     - lived time and place;
     - other people's contributions, in their own words;
     - connections that change as circumstances do.
-  - The combination has to show on one screen. The logo-off screenshot test
-    checks for it.
-- **The strongest argument against us.** In one study, people found at least
-  95% of web pages again months later without having saved them (Keeping Found
-  Things Found, 2004). Bringing something to Vesper must pay off at the first
-  send. A "Kept" receipt alone is not value.
+  - This is not a claim that adjacent products cannot support such behavior.
+    Vesper must make lived context and human contribution central to the
+    experience, not merely optional metadata.
+  - Use a logo-off screenshot to test recognizable presentation, then a short
+    sequence to show contribution, later evidence, another person's addition
+    and return. One screen cannot demonstrate continuity or the whole advantage.
+- **A challenge to a retrieval-only proposition.** In Keeping Found Things
+  Found (2004), participants returned successfully to at least 95% of sites
+  when cued with descriptions they had generated three to six months earlier.
+  Separately, two-thirds of refinding methods required no explicit keeping.
+  The study did not say that 95% were recovered without saving. Its workplace
+  setting and supplied cues limit generalization.
+  [Study summary](https://www.microsoft.com/en-us/research/publication/keeping-and-re-finding-information-on-the-web-what-do-people-do-and-what-do-they-need-to-do/)
+  - This challenges assuming that another repository is needed merely to find
+    things again; it does not test the value of shared remembering or new
+    connections. Bringing something to Vesper must earn the gesture. A
+    "Kept" receipt alone establishes persistence, not the additional benefit.
 - **Originals and generated additions pass different tests.** A friend's exact
   words or your own photograph can be the whole value. An explanation from
   Vesper has to add something. Sometimes two attributed originals beat the
@@ -258,10 +288,144 @@ Show each at first receipt, at a later voluntary return, and at a correction.
 Offer practical continuation when it helps, never as the test every object must
 pass.
 
-The shape is fixed: what you bring, what you get to have, and where it lives.
-Exploration happens inside it.
+Keep the product center stable: encounters and contributions become a connected
+record worth having. Compositions, interactions and ways back into that record
+remain testable. Clarify what people bring, what they get to have and where it
+lives without freezing every screen or reopening the product identity each round.
+
+### 1.3 September 29 collection experience refinements
+
+The [research follow-up](memory-as-product-direction-research-2026-09-28.md#14-september-29-collection-experience-follow-up)
+consolidates the psychology, collection and unresolved-seam investigations.
+The central implication is **value can deepen around material someone already
+has, without requiring more capture or more generated content**. The record
+should become more useful, enjoyable and connected—not simply larger.
+
+- **Preserve what makes it theirs.** Original material, deliberate arrangement
+  and authored meaning are different. Automate filing where authorized, not
+  the person's voice. Optional arranging can be enjoyable; it is not required
+  work before receiving value.
+- **Relating does not require a new collection.** For the noticed-collection
+  path, propose persistent structure when it helps returning, adding,
+  arranging or sharing. Otherwise show the useful relation or use an existing
+  collection. This is a refinement proposal, not a new minimum item count or
+  adoption of R3's catalog mechanism.
+- **Enrichment must earn its place.** Original, recognition context,
+  juxtaposition, explanation and practical help are alternative treatments.
+  Compare a strong original-only result with an equally strong example where
+  a new connection adds substance. Do not confuse restraint with ambition lost.
+- **Keeping does not allocate future attention.** Separate an item's lasting
+  value from Home eligibility, prominence and interruption. Enjoyment and
+  curiosity can justify a voluntary visit; urgency is not the only value.
+  Dense trip evidence does not entitle that trip to dominate the next week.
+- **Adapt around recognizable things.** Preserve identity, authorship,
+  deliberate membership, names/arrangement and ways back while testing views,
+  relevant relationships and Home order. Correction and withdrawal still
+  outrank stability. A saved possibility is not an overdue commitment.
+- **Make the kept object worth having.** The artifact research (research
+  §15) adds a second axis to enrichment: the object's own form over time. It
+  develops at send; earns a place-and-date mark only with evidence that it
+  happened; carries a back with facts from the person's own record; marks
+  firsts; shows real published sets in three states; and invites one optional
+  personal touch. Design one form per artifact family, not per type. These are
+  proposals; the object changes, and Vesper does not narrate.
+
+**Proposed correction clarification for the pending friction proposal:**
+correcting one grouping changes that grouping; an explicit instruction such as
+“Always put my golf scorecards here” can establish a narrow ongoing rule. Do
+not infer a universal preference from one drag or require a separate rule form
+when the scope is already explicit. Existing inference, audience and action
+boundaries still apply. This records a recommended resolution of the September
+28 proposal, not a silent rewrite of that accepted decision's historical text.
+
+**Design comparisons, not more product modules:** extend the three experiences
+in §1.2 with day 1 evidence/day 2 explanation/day 5 related material, changed
+purpose, local versus standing correction, a sparse ordinary week, and a friend
+who mainly receives. Test exact-item retrieval and relationship exploration
+without a compulsory Chat gateway, object dossier or four-tab tour. Compare
+voluntary return separately from assigned refinding, and organizer effort
+separately from recipient benefit. Research supports these comparisons; it
+does not establish demand, formation thresholds or notification cadence.
+
+Historical decision files remain unchanged; the [September 29 amendment](../decisions/2026-09-29-record-as-first-class-value.md)
+records first-class record value separately. The [roadmap handoff](roadmap-proposals-for-codex-2026-09-28.md)
+owns proposed sequencing changes for the implementation lane; notification
+defaults, friction presets and autonomous sharing remain unresolved.
 
 ---
+
+### 1.4 September 29 focused artifact experience
+
+The evening Strategy discussion moved from a connected record worth having to
+**recognizable things worth opening and exploring**. This section records that
+design direction and the proposed experience; it does not adopt a layout,
+catalog mechanism, model provider, retention default or shipping scope. The
+[research follow-up](memory-as-product-direction-research-2026-09-28.md#16-september-29-focused-artifact-experience)
+holds the evidence and technical findings.
+
+**The contribution should become something desirable immediately.** Ask which
+ordinary things make a person think, “I want the Vesper version of this.” A
+ticket, dish photograph, book passage or scorecard should offer recognizable
+form, useful detail and satisfying interaction before a rich history exists.
+Beauty is part of the benefit, not only polish. Standardization must preserve
+the original and personal specificity rather than turn everyone's encounter
+into the same generic information page. Artifact families provide reusable
+forms; this is not a mini-app or bespoke screen stack for every interest.
+
+**Opening the thing is an entrance to intelligence.** The selected object
+already tells Vesper what has the person's attention in this interaction; it
+does not establish a durable preference. Keep it visible, deliver an actual
+worthwhile addition when available, and offer a few understandable ways to
+continue. Chat remains available without becoming the admission fee. A
+photograph, audio recording, ticket and map need appropriate focused readers,
+not necessarily the same enlarged card or a halo of generated questions.
+
+Extensions can connect the object to the changing world, recent personal
+material, its collection, other collections, authorized human contributions,
+or something possible now. These are retrieval directions, not six required
+sections. A comparison, annotated detail, map, short explanation or useful
+original may be the right expression. Collections give things a home, not a
+boundary around their relationships. Receiving and enjoying can be complete;
+practical help and sharing remain optional continuations.
+
+The movie-ticket example makes the range concrete. Its recognizable ticket and
+admission details can pay off immediately. A sourced production detail can
+reward exploration; a later photograph or a friend's permitted contribution
+can enrich the actual encounter. In France, an evidenced local connection may
+become relevant. These are alternatives, not a sequence to complete. A ticket
+alone never proves attendance, and an interesting public fact must not be
+presented as the person's experience.
+
+**Different when there is a reason, not merely a new day.** Separate the kept
+object, the contextual result currently being read, and an exact explanation
+the person chooses to keep. New circumstances or evidence can change what is
+offered without silently rewriting the saved expression or moving the current
+reading. The existing [artifact persistence contract](../systems/artifact-expression-and-composition.md#persistence-policy)
+already supplies the frozen versus refreshable distinction; correction and
+withdrawal still outrank presentation stability. Showing a prepared result,
+generating an optional exploration and changing a saved record are different
+operations. Opening alone grants none of the latter's additional authority.
+
+This deepens the contribution loop without making acquisition its only source
+of growth: a desirable first object invites voluntary contribution, while
+later knowledge and human perspectives make existing material more rewarding.
+Neither more captures nor more generated paragraphs is the success measure.
+The counterpart to rejecting filler is demonstrating strong enrichment that
+clearly beats a good original-only treatment.
+
+**Engineering implication:** reuse the existing context, evidence, composition
+and live-help owners around a selected artifact. Do not build another assistant
+beside them or force every object into a Trip. Fast bounded model judgments may
+help selection, repetition checks and research routing; Jev is a candidate for
+evaluation, not an adopted dependency. The [roadmap handoff](roadmap-proposals-for-codex-2026-09-28.md#9-focused-artifact-engineering-proposals)
+maps this into proposed packages without taking over the execution queue.
+
+Still open: focused-reader composition and density, initial artifact-family
+coverage, refresh and offline promises, and saved-result treatment after a
+supporting shared contribution is withdrawn. The accepted [Life model decision](../decisions/2026-09-29-life-model-occasions-collections-and-sharing.md)
+governs its named collection and sharing choices; it explicitly leaves artifact
+form over time open. Do not treat the older pending-item lists in this
+chronological note as reopening choices that decision has subsequently settled.
 
 ## 2. The thought process, phase by phase
 
@@ -1158,6 +1322,18 @@ and should be closed against it. The Life organization design expires October 5.
 - assess immediate keeping/refinding value and optional continuations, not only
   completion of an action-oriented loop.
 
+**September 29 refinement proposals (§1.3):** noticed-collection usefulness,
+local versus standing correction scope, Home admission versus attention, and
+stable object identity versus adaptive views. These need concrete comparisons,
+not a new universal architecture or an assumed fixed threshold. Preserve the
+explicit pending status of friction, notifications and autonomous sharing.
+
+**Focused artifact proposals (§1.4):** object-first reading, contextual
+extensions, exact kept results, and the technical work in research §§17–18.
+Layout, refresh budgets, offline behavior, mixed-contributor withdrawal and
+model selection still require their named decisions or evidence. Literature
+and code inspection do not establish demand or an implemented experience.
+
 ---
 
 ## 7. Claude Design boards from this thread
@@ -1246,24 +1422,33 @@ by it:
      Include people with sparse records, not only the founder's rich history.
      Separate prompted refinding from voluntary return. Separate contributor
      effort from recipient benefit.
-4. **Design, inside a fixed shape.**
+4. **Design around a stable product center.**
    - Rule on the redrawn I0 and on I1 once the parallel session finishes them.
    - Redraw C0, C1 and C3, and rewrite D0.
    - Draw the three experiences in §1.2, each at first receipt, later return
      and correction. Each should show a satisfying stopping point and an
      optional continuation. These replace the single loop board.
-   - Keep the shape fixed; explore only open experience and ownership seams
-     inside it.
+   - Preserve the center while testing compositions, interactions and open
+     ownership seams. Pair a recognizable screen with a short continuity
+     sequence; do not treat the screenshot alone as proof of the advantage.
+   - Apply §1.3's delayed-evidence, correction, navigation and sparse-week
+     comparisons to the existing Home/Life/multiplayer work. Preserve unfinished
+     boards and include both original-only and enrichment-winning treatments.
+   - Apply §1.4 to focused tickets, dish photographs, passages and scorecards:
+     open the recognizable object, receive value, follow a specific connection,
+     return, and optionally keep the exact result. Show later evidence and a
+     changed location without turning every revisit into fresh generation.
 5. **Build.** The Codex lane continues its capture/share package, with the
    adjustments in
    [roadmap proposals for Codex](roadmap-proposals-for-codex-2026-09-28.md).
    - Map personal collections to their owners without breaking the existing
      identity and repair guarantees.
    - The program roadmap keeps sequencing authority.
-6. **Reconcile the canon.** Product Thesis and Product Model still treat memory
-   as substrate. Align them with the record as a first-class benefit after an
-   explicit review. Keep their rules on source custody, occurrence truth, plural
-   meaning, privacy and action authority.
+6. **Land the canon alignment.** The September 29 local Thesis/Model changes
+   recognize the record as a first-class benefit while preserving source
+   custody, occurrence truth, plural meaning, privacy and action authority.
+   Carry them with their decision references when the lane is integrated;
+   do not interpret local edits as an already-published canon migration.
 
 ## Exit
 

@@ -13,6 +13,9 @@ dispositions:
 # Overrides win over rules. Rules deliberately cover stable folder conventions;
 # top-level and working documents are classified one by one below.
 rules:
+  - glob: "docs/working/artifact-experience-engineering-roadmap-2026-09-29.md"
+    disposition: keep_reference
+    rationale: "Bounded supporting artifact implementation roadmap covering shared contracts, dependent packages, quality and lifecycle evaluation; the existing program roadmap retains scheduling and accepted owner contracts retain authority."
   - glob: "docs/working/memory-as-product-direction-research-2026-09-28.md"
     disposition: keep_reference
     rationale: "Dated six-question primary research and repository synthesis testing memory as a consumer-facing product surface; recommendations remain proposed and existing product, permission and roadmap owners retain authority."

@@ -4,7 +4,7 @@ status: accepted
 owner: founder / engineering
 created: 2026-07-09
 decided: 2026-07-09
-last_verified: 2026-09-28
+last_verified: 2026-09-29
 why_new: Provide one index and lifecycle for durable decisions instead of leaving them in working notes.
 supersedes: []
 source_of_truth_for: [decision-record-index]
@@ -18,6 +18,8 @@ Durable choices that constrain future work belong here. Use the
 
 | Date | Decision | Status |
 |---|---|---|
+| 2026-09-29 | [Occasions are things, spans are collections](2026-09-29-life-model-occasions-collections-and-sharing.md) | accepted Life model rulings: occasions are things and spans are collections; Life reads four ways; a thing's back is the viewer's own; leaving takes your things; inbox finds never auto-enter shared collections; Life boards reorganized |
+| 2026-09-29 | [The record is a first-class product benefit](2026-09-29-record-as-first-class-value.md) | accepted value clarification; narrowly amends substrate-only/by-product wording and mandatory-loop readings; no new retention, sharing, notification or runtime authority |
 | 2026-09-28 | [One way in: doors, things and a connected inbox](2026-09-28-ingestion-and-connected-inbox.md) | accepted direction; any thing through any door becomes one artifact; email is a connected inbox with forwarding as fallback, amending September 27 item 5 and contract §3.9's email starting point; friction proposal, entry defaults, mail scope and providers pending |
 | 2026-09-28 | [Collections are the spine](2026-09-28-collections-are-the-spine.md) | accepted direction; collections are the first-class object; shared collections show everything to members; notifications carry new structure and others' actions; Home carries insights; retires D0 rows 1–3; Vesper adding to shared collections pending |
 | 2026-09-27 | [Documenting core loop and one composer](2026-09-27-documenting-core-loop-and-one-composer.md) | accepted direction; amends contribution §3.2 and Chat ruling 04 for share-plus-question, and adds just me to the September 26 audiences; owner/runtime propagation remains work; R1–R5 remain pending |
