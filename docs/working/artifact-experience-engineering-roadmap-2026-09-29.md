@@ -1990,3 +1990,27 @@ managed worktree denies `.pytest_cache` writes; disabling that cache provider
 produced the clean result above. These tests prove projection/dispatch and
 route behavior at unit/component level, not simulator or authenticated live
 service behavior.
+
+### September 30 photo-reader bounds after layout change
+
+App commit `6dd9816f1` closes a P2 transform edge case in the shared
+`ZoomableOriginalPhoto`: after viewport layout or decoded source dimensions
+change, the current scale/translation is re-clamped against the new contained
+image bounds. This prevents stale pan offsets from exposing blank space after
+rotation, window/safe-area resizing, or a source-size update. Returning to fit
+still recenters. Intake, received-original Life, and canonical-artifact viewers
+all inherit the shared behavior; their source custody and authorization owners
+remain independent.
+
+Validation on app `6dd9816f1`: the focused component and route command
+`npm test -- --runInBand --no-cache
+__tests__/components/canonicalArtifactCard.test.tsx
+__tests__/components/zoomableOriginalPhoto.test.tsx
+__tests__/screens/canonical-artifact-reader.test.tsx` passed (3 suites, 44
+tests). The added regression changes from portrait to landscape bounds and
+asserts the corrected transform is used by the next zoom action. `npm run
+typecheck`, targeted ESLint for the changed component/test, and `git diff
+--check` passed. Native capture/gesture acceptance was not re-run because
+CoreSimulatorService remains unavailable in this environment; this closes a
+JS geometry regression only, not native pan/pinch, VoiceOver or physical-device
+acceptance.
