@@ -86,8 +86,10 @@ exact child pins after the child changes land before certifying the root candida
    replace broad `test`/`test-db`/`Test`/`Logic QA journeys` requirements with
    the validated merge policy. Keep schema/authority and relevant integration
    checks blocking for affected changes; do not confuse skipped with verified.
-4. Remove `pull_request` triggers from the old full-regression workflows only
-   after protection is updated. Retain main-push, nightly and manual execution;
+4. Exclude the old broad test jobs from `pull_request` events only after
+   protection is updated. These workflows also contain required fast checks:
+   keep their PR triggers and fast jobs, rather than disabling the entire CI
+   workflow. Retain main-push, nightly and manual full-regression execution;
    keep deployment separately gated by appropriate exact-revision evidence.
    A broken main regression is repaired promptly or reverted, not ignored.
 5. Measure representative docs-only, app, backend and contract changes with
@@ -102,6 +104,32 @@ an author cannot supply their own required GitHub approval.
 Cleanup scope stays bounded: retire duplicate execution first, then review
 high-maintenance source-string tests and obsolete behaviors. Do not introduce
 a new test platform or blanket-delete test directories to meet a count target.
+
+### September 30 integration update
+
+- GitHub approval count is confirmed zero in all three repositories. The
+  workspace checkout secret was updated; successful hosted checkout, not the
+  secret's existence, is still the access proof.
+- Removed all four September 30 AI compatibility registrations together with
+  their backend fallback/dispatch/emission paths. Existing mobile angle route
+  arguments now serialize as a ConversationSeed entity. Historical promotion
+  records and the separately governed promotion API remain readable/supported;
+  this retirement removes the agent tool, not that API or proposal confirmation.
+- Backend focused tests passed 256 cases; the additional stale-tool dispatch
+  rejection passed. App entry-sender tests passed 16. Static checks and the
+  regenerated cross-repository contract checks passed; no OpenAPI/type diff
+  resulted. Workspace tooling checks passed 110 cases.
+- The measured broad backend candidate took 81.668s locally: 21,955 passed,
+  four failed, 14 skipped, and 53 xpassed. The failures were three reviewed
+  prompt goldens plus the obsolete duplicate Atlas-step assertion; their
+  focused follow-up passed 60 tests. This is **not** a clean full-suite rerun.
+- The app run passed all 9,035 product tests but failed discovery of two
+  third-party tests under local `.tmp` native-build checkouts. Jest now excludes
+  that scratch tree from test/module/watch discovery while retaining product
+  tests. Hosted validation remains required for the final candidate.
+- No live-model, disposable-DB, native visual, or hosted five-minute latency
+  claim follows from these local results. Required checks remain unchanged
+  until the new exact candidates pass remotely.
 
 GitHub Actions was disabled in workspace and backend at the September 7 audit.
 It has been re-enabled. Their main-branch protection had unrelated frontend
