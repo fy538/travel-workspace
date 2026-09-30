@@ -1540,3 +1540,14 @@ matrix, real-world artifact usefulness, model quality, and the P3 discovery
 experience remain unverified/open. Continue with those narrower acceptance and
 product-value gates before treating the artifact reader as broadly native-
 accepted or moving to an unscoped generalized dynamic-content implementation.
+
+The adjacent registered Life continuity flow was also run after this recovery:
+`VESPER_METRO_URL=http://127.0.0.1:64747 npm run qa:polish -- life-root --device="Vesper QA SE" --flow=polish/life-intake-source-continuity`
+captured 1/1 scenario and 3/3 extras in
+`.maestro/runs/20260930T142555Z-life-root`. Reviewed screenshots show the exact
+mock owner-held photo from the Life source row, the focused viewer displaying
+that same uncropped photo, and the source absent from Life after owner-authorized
+Undo. This is fixture-backed route/entry/exit evidence; Maestro did not exercise
+pinch, pan, double-tap, or VoiceOver. It does not prove live-source persistence,
+and it is not a broader Life-root design verdict. Photo gesture and assistive
+acceptance therefore remain open.
