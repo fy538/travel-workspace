@@ -1345,7 +1345,8 @@ workspace HEAD `61486071`, backend `d6730f6d6`, and app `d7401a2ec` in the
 coordinated `codex/artifact-foundation` worktree. Subsequent commits added
 backend correction-replay coverage (`3cecd34f6`), an owner-scoped exact-original
 projection (`0cbd4b6a7`), the app's exact inspect route (`14b40fea6`), and
-generated API snapshots (`f3b693890`). Focused evidence:
+generated API snapshots (`f3b693890`), and a registered exact-original reader
+QA scenario (`f84ea3419`). Focused evidence:
 
 | Boundary | Command | Result and limit |
 | --- | --- | --- |
@@ -1354,15 +1355,18 @@ generated API snapshots (`f3b693890`). Focused evidence:
 | Backend correction replay | `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/inbound/test_anchor_runtime.py tests/inbound/test_intake_anchor_projection.py tests/core/test_canonical_artifact_projection.py tests/api/test_artifact_projections.py -q` | 49 passed at backend `3cecd34f6`; replay selects the newest semantic correction while ignoring a confirmation audit row, is deterministic, and preserves original source lineage/hash as interpretation claims change. Fixture-level evidence only; no database concurrency or persisted replay proof. |
 | Backend exact-original projection | `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/core/test_canonical_artifact_projection.py tests/core/test_intake_anchor_originals.py tests/api/test_artifact_projections.py tests/inbound/test_anchor_runtime.py tests/inbound/test_intake_anchor_projection.py -q` | 59 passed at backend `0cbd4b6a7`; private owner projection includes up to 16 supported exact source/revision references, excludes them from Together, and withholds inspection for unsupported, revoked or unverified originals. Fixture/unit/API-route evidence; no disposable-Postgres readback or concurrency proof. |
 | App exact-original inspection | `npm test -- --runInBand __tests__/utils/canonicalArtifactActions.test.ts __tests__/screens/canonical-artifact-reader.test.tsx __tests__/components/canonicalArtifactCard.test.tsx __tests__/screens/intake-submission.test.tsx`; `npm run typecheck`; targeted `npx eslint …` | 65 passed; exact source ID and revision reach the existing Intake reader, with a chooser for multiple originals. Typecheck and targeted lint passed at app `14b40fea6`; screen mocks exercise routing, not native bytes, image zoom or device interaction. |
-| App registered QA inventory | `npm run qa:polish:scenarios`; `node scripts/polish-qa/run-polish-qa.mjs canonical-artifact-reader --doctor` | 31 scenario IDs validate. The surface doctor found no registered captures for `canonical-artifact-reader`; there is no native screenshot evidence for this increment. |
+| App registered QA and native attempt | `npm run qa:polish:scenarios`; `npm run qa:polish:surfaces`; `npm run qa:polish:test`; `VESPER_METRO_URL=http://192.168.1.153:64747 npm run qa:polish -- canonical-artifact-reader --device='Vesper QA SE' --flow=polish/canonical-artifact-reader` | Scenario/surface registries passed (31/47); the harness suite passed. App `f84ea3419` registers an exact calendar-original open/return flow with a fixture bound to the existing mock source and Together redaction. The native attempt reached the assigned iOS 18.2 simulator but stopped at the runner's readiness gate: its installed dev app crashed with Reanimated/Worklets JS/native mismatch (0.7.4 vs 0.11.3). `npx expo run:ios --device 51A7A2C0-49CB-487E-A056-A771361EFA9B --no-bundler --no-build-cache` could not produce a replacement: Xcode 26.5 failed to load the generated CocoaPods project containing the RaTeX Swift-package product (`_setSavedArchiveVersion` selector error), followed by missing module-map errors. Only the redbox was captured; no product screenshots exist. Native visual acceptance remains pending. |
 | Generated API contract | `./scripts/sync-types.sh` | Offline export, app projection and generated TypeScript completed after adding `ArtifactOriginalReference`; the static fixture was updated before sync passed. Generated snapshot commit `f3b693890`. |
 | App reader fallbacks | `npm test -- --runInBand __tests__/components/canonicalArtifactCard.test.tsx` | 18 passed at app `d7401a2ec`, covering ticket/place/work readers and generic fallback for passage/dish/practical-record descriptors. |
 | App static/registered inventory | `npm run typecheck`; targeted `npm run lint -- __tests__/components/canonicalArtifactCard.test.tsx`; `npm run qa:polish:scenarios` | Passed; scenario inventory is 31 registered IDs. No screenshot was captured and this is not native visual acceptance. |
 | Workspace documentation | `make docs-check` (after `make docs-status-sync`) | Passed on workspace `f3b693890` plus this roadmap and generated-current-state edits in the working tree; both receipts landed together as workspace `ab0a3522`. Includes governance, child governance, inventory, spine, canon, release, generated status, links, compatibility and Home-surface checks. |
 
 Native acceptance, model comparisons, human preference and economic measurements
-remain future evidence—not completed results. CoreSimulator was unavailable in
-the preceding native-reader pass. This file owns Strategy's package progress
-under the program boundaries, not the other lanes' queues. On expiry, refresh
-unfinished work with an explicit reason, promote durable contracts or archive
-completed planning and research.
+remain future evidence—not completed results. On September 30 the assigned
+CoreSimulator was available, but its installed development binary crashed before
+the product route and a clean local rebuild was blocked by the generated
+CocoaPods/Xcode project failure above. No native visual judgment is claimed;
+resume capture only with a working, checkout-matched dev build. This file owns
+Strategy's package progress under the program boundaries, not the other lanes'
+queues. On expiry, refresh unfinished work with an explicit reason, promote
+durable contracts or archive completed planning and research.
