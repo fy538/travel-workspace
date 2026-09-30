@@ -39254,6 +39254,30 @@
             "title": "Paths",
             "default": []
           },
+          "actions": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "wrong_time",
+                "separate_from_occasion",
+                "keep_occurrence_forget_interpretation"
+              ]
+            },
+            "type": "array",
+            "title": "Actions",
+            "default": []
+          },
+          "target_submission_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Submission Id"
+          },
           "revision": {
             "anyOf": [
               {

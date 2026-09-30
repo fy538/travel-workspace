@@ -25,15 +25,17 @@ collection, saved-edition and discovery contracts deliberately. Do not create
 another assistant or a universal artifact service.
 
 **Execution status:** active in the Strategy lane's coordinated artifact
-worktree. The first implementation increment has added a versioned,
-viewer-facing reading descriptor to the existing artifact projection and a
-native travel/admission ticket reader, while leaving experience semantics and
-source/owner authority unchanged. Backend projection/API and app reader tests
-pass. This is the beginning of P0/P2, not completion of the first assignment:
-P0 still needs the identity/subject/collection owner map, component/context and
-edition references, the family/mode matrix and replay fixtures; P1 correction
-and reconciliation, PC catalog mapping/use gates, other family readers, and
-native visual acceptance remain open. This roadmap owns Strategy's package
+worktree. The first implementation increment added a versioned, viewer-facing
+reading descriptor and native travel/admission ticket reader. A follow-on
+increment now exposes three existing owner-governed semantic corrections on
+eligible private artifacts, then refreshes the exact owner projection; the
+original source remains untouched. Backend projection/API and app reader tests
+pass. This is the beginning of P0/P1/P2, not completion of the first
+assignment: P0 still needs the identity/subject/collection owner map,
+component/context and edition references, the family/mode matrix and replay
+fixtures; P1 still needs recognizable identity, field-level source/date edits,
+Undo and reconciliation; PC catalog mapping/use gates, other family readers,
+and native visual acceptance remain open. This roadmap owns Strategy's package
 sequence and receipts. The program owns cross-lane boundaries, not a
 permission queue for ordinary implementation. The earlier
 [strategy handoff](roadmap-proposals-for-codex-2026-09-28.md#9-focused-artifact-engineering-proposals)
@@ -715,7 +717,11 @@ before final composition is frozen.
 **Implementation increment:** travel and admission ticket formats now have a
 typed dispatch path. Other reading formats still use the generic
 source-fact/original reader; ticket-family dispatch does not imply that PDF,
-Wallet, every email attachment or native visual acceptance is complete.
+Wallet, every email attachment or native visual acceptance is complete. The
+canonical reader also exposes the existing owner correction command for
+declared time, Occasion-separation and interpretation-hiding actions. It does
+not yet support editing a replacement value, source deletion/Undo or native
+visual acceptance.
 
 ### P3 Contextual discovery and useful selection
 
