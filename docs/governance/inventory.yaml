@@ -15,7 +15,7 @@ dispositions:
 rules:
   - glob: "docs/working/artifact-experience-engineering-roadmap-2026-09-29.md"
     disposition: keep_reference
-    rationale: "Bounded supporting artifact implementation roadmap covering shared contracts, dependent packages, quality and lifecycle evaluation; the existing program roadmap retains scheduling and accepted owner contracts retain authority."
+    rationale: "Strategy lane's bounded artifact implementation plan and research, assigned by the September 30 program; owns its package details and receipts while the program owns lane boundaries and accepted contracts retain product authority."
   - glob: "docs/working/memory-as-product-direction-research-2026-09-28.md"
     disposition: keep_reference
     rationale: "Dated six-question primary research and repository synthesis testing memory as a consumer-facing product surface; recommendations remain proposed and existing product, permission and roadmap owners retain authority."
@@ -379,9 +379,13 @@ rules:
 
 
 overrides:
+  docs/working/product-map/adaptive-context-and-research-roadmap-2026-09-29.md:
+    disposition: keep_reference
+    rationale: Strategy Technical lane's bounded implementation plan and code/research audit; owns its assigned context/research packages under program boundaries, not a competing artifact or surface owner.
+
   docs/working/vesper-program-roadmap.md:
     disposition: keep_authoritative
-    rationale: Single current dispatch queue and checkpointed priority map; bounded execution plans supply detail while product, permissions and release authorities remain unchanged.
+    rationale: Current three-lane ownership and checkpoint map plus Orchestration execution plan; assigned Strategy and Technical roadmaps own their package details while product, permissions and release authorities remain unchanged.
 
   docs/archive/vesper-program-roadmap-history-through-2026-09-25.md:
     disposition: archive
@@ -400,7 +404,7 @@ overrides:
 
   docs/working/home-value-composition-execution-plan-2026-09-25.md:
     disposition: keep_reference
-    rationale: Bounded primary implementation assignment subordinate to the program queue and accepted Home owner/design contracts.
+    rationale: H1 implementation and evidence reference; the September 30 program distributes remaining work across three lanes, so this is not a fourth active queue.
 
   docs/working/vesper-v1-supported-offer-2026-09-07.md:
     disposition: keep_reference

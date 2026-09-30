@@ -1,632 +1,422 @@
 ---
 doc_type: current_status
 status: active
-owner: founder / coordination task
+owner: founder / Orchestration lane
 created: 2026-09-07
-last_verified: 2026-09-29
-why_new: Owns the single live cross-lane execution queue, accountable package assignments, and system reassessment without duplicating product or implementation contracts.
+last_verified: 2026-09-30
+why_new: Owns the existing program's lane boundaries and the Orchestration execution plan; specialist roadmaps own their own packages and receipts.
 supersedes:
-  - current assignments and sequencing in the historical program and Integration roadmaps
+  - single-lane dispatch and current assignments in earlier versions of this roadmap
 source_of_truth_for:
-  - cross-lane program priorities and accountable assignments
-  - cross-lane dependency routing and system reassessment
+  - cross-lane implementation ownership and dependency boundaries
+  - Orchestration lane execution order and system reassessment
 depends_on:
-  - ../decisions/2026-09-06-reconcile-consumer-strategy.md
-  - ../decisions/2026-09-26-multiplayer-direction.md
   - ../decisions/2026-09-27-documenting-core-loop-and-one-composer.md
-  - ../systems/four-root-loop-object-surface.md
+  - ../decisions/2026-09-28-collections-are-the-spine.md
+  - ../decisions/2026-09-29-record-as-first-class-value.md
+  - ../decisions/2026-09-29-life-model-occasions-collections-and-sharing.md
   - ../systems/contribution-and-consequence.md
 ---
 
 # Vesper program roadmap
 
-## Direction and immediate priority — September 29
+## Direction and current assignment
 
 Build the complete product on the connected system already implemented.
-**Implement the accepted horizontal capture/share experience from the connected
-Home checkpoint, retaining the specific Home quality/supply gaps below.**
-Home is not fully accepted: recovery still lacks a useful option comparison.
-Landing the published Home package is a separate delivery task, not a reason to
-redispatch its completed connections or
-wait on every unfinished design.
+The next execution model is **three autonomous implementation lanes in three
+coordinated worktrees**, each containing the workspace and both independent
+children. This file owns the boundaries between them and the work of
+**Orchestration**, not a queue through which every other lane must ask permission.
 
 The four moves remain **Make sense. Open possibility. Help it work. Carry
-forward.** Home returns value for now and the anticipated future; Places opens
-the situated world; Chat supports conversation; Life organizes what can be
-revisited. Multiplayer and practical adaptation run through these experiences.
+forward.** Keeping, enjoying and refinding a recognizable original are complete
+value in their own right. Optional intelligence must add substance. Home returns
+value for now and the anticipated future; Places opens the situated world;
+Chat supports conversation and contribution; Life organizes the record through
+Collections, Time, Places and People. Social participation and practical help
+run through those experiences.
 
-The [September 26 multiplayer direction](../decisions/2026-09-26-multiplayer-direction.md)
-and [September 27 core-loop/composer decision](../decisions/2026-09-27-documenting-core-loop-and-one-composer.md)
-now sharpen the entrance: documenting for oneself or others, through one
-composer with many doors. Chat is a door, not a compulsory gateway. Immediate
-benefit, private Keep with Undo, explicit audience and provisional interpretation
-must coexist. This is not diary homework or a return to booking execution.
+The accepted September 27–29 decisions amend older contracts where explicit;
+they do not declare their runtime migration complete. No new booking execution,
+automatic sharing, connected-inbox sharing, background-generation posture,
+notification policy or deployment is authorized by this roadmap.
 
-Those two decision files are unchanged snapshots brought from the concurrent
-design checkout into this execution lane on September 27. Their accepted
-rulings constrain the next implementation; their presence does **not** mean the
-owner contracts, schema, runtime or all design boards have been updated.
-Their pending recommendations remain pending.
+**Planning status:** the three lanes are scoped below, not started by this edit.
+First establish the common committed baseline in section 3. Then each lane can
+execute its own first assignment without waiting for the other two to finish.
+No new coordination service, fourth integration lane or routine inter-chat
+messaging is required.
 
-This file owns the only current dispatch queue. The
-[H1 package](home-value-composition-execution-plan-2026-09-25.md) owns implementation
-detail and current evidence; the
-[integration reference](complete-system-integration-roadmap-2026-09-05.md)
-owns supporting technical guidance, not another schedule.
+## 1 Inspected baseline and unfinished product work
 
-## Inspected baseline and publication state
+<a id="inspected-baseline-and-publication-state"></a>
 
-### September 30 integration checkpoint (UTC)
+September 30 inspection distinguishes implementation from publication and
+acceptance:
 
-The backend Home follow-up and CI cleanup landed through PR #237 at
-`3c170d21fc0ca9231b956f2b9de7f9f195231768`; the app Home/capture implementation
-and CI cleanup landed through PR #202 at
-`87eceee24512d9086962eea5b844cef9d7bffbeb`. Both passed their required hosted
-checks. Workspace PR #37 now consolidates the committed local Places design
-work and the committed September 28 product-direction branch, while preserving
-the newer implementation history when their older roadmap versions conflicted.
-Its child lock names these exact merged revisions. This checkpoint supersedes
-the older publication-state observations below, not their bounded evidence.
+| Repository | Observed revision | Meaning |
+| --- | --- | --- |
+| Canonical workspace | `7a5d434eb6025e792c0e1dd930d7d295a46f5304` | Includes prior consolidated decisions and roadmaps; current roadmap drafts are additional working changes |
+| Existing delivery workspace | `73d9679409793f337be120bf9d6e39e27c966677` | Includes the subsequent integrated documentation-link repair |
+| Backend main | `3c170d21fc0ca9231b956f2b9de7f9f195231768` | Home/capture follow-up and CI changes merged through PR #237 |
+| App main | `87eceee24512d9086962eea5b844cef9d7bffbeb` | Home/capture follow-up and CI changes merged through PR #202 |
 
-Uncommitted design/strategy drafts in the canonical workspace and the
-product-direction checkout remain owned by their sessions; they are not
-included merely because committed history was consolidated. Seven dependency
-upgrade PRs remain separate: their failed/stale checks and native/runtime
-compatibility need review rather than treating them as completed product work.
-The [CI plan](../reliability/CI%20Plan.md) owns the new required-check policy.
+Workspace [PR #37](https://github.com/fy538/travel-workspace/pull/37) was still
+open at the preceding publication check. The fresh GitHub request during this
+rebaseline could not connect; its current status is **unverified**, not assumed
+merged. Recheck it before choosing the launch baseline. Do not rerun old
+credential repairs or reopen already merged child packages merely because
+historical receipts describe those blockers.
 
-### Prior dated publication observation
+The latest completed Strategy roadmap draft was inspected in its existing
+product-direction checkout; the latest Technical draft was in the canonical
+workspace. This rebaseline consolidates those roadmap contents here without
+changing the source Strategy checkout. Reconcile their pending documentation
+changes once before branching, rather than launching lanes from different
+draft generations. Strategy-child Thesis/Model edits remain separate owned work.
 
-The recovery work is merged on remote main; the subsequent Home package is
-published but **not merged**. Remote branch heads and all three PR states were
-rechecked on September 28; the table below is the published baseline, not a
-claim that the local follow-up has shipped.
+| Area | Implemented foundation | Remaining work and owner |
+| --- | --- | --- |
+| Capture | Shared private composer, native extension host, retry/session custody, supported email attachment intake, original access | Supported-door delivery, failure/retry clarity and authenticated handoff: Orchestration D1 |
+| Home | Source discovery/request/worker/readback connections, contextual continuation, current commitment facts, native hierarchy improvements | Useful recurring supply, complete receiving, full-scroll quality and recovery options: D2/D3 |
+| Artifacts and Life | Source custody, original readers, owner references, Life projections and original receiving | Stable thing/component identity, typed family readers, catalog anchors, consumer collections and accepted Life model: Strategy |
+| Context and research | Existing retrieval, bounded research pieces, jobs, generation infrastructure and publication fences | General selected-object capability, evidence fidelity, correct reuse and bounded maintenance: Strategy Technical |
+| Places and practical help | Situated projections, entity pages, current place facts and owner-backed actions | Consume richer results coherently; useful current options and exact return: D2/D3 |
 
-| Repository | Merged recovery baseline | Published Home candidate | Open PR |
-| --- | --- | --- | --- |
-| Workspace | `6ef3dca09be2b4ea40c83ae21d8cbf112ee17f24` (#36) | `a73e9d2348c07b398a91a4aee3733cfca4485252` | [#37](https://github.com/fy538/travel-workspace/pull/37) |
-| Backend | `c8c9f578594a98beb41300c1a780f86ebb30eca4` (#233) | `c50b2286e9fcb477d015d7df20bcfdcce791f8b6` | [#234](https://github.com/fy538/travel-agent/pull/234) |
-| App | `43225df35a01295993def384b5958c53ab8f1c8b` (#201) | `551e2a94b1ef58137a2fa7b3e309b245571e7e17` | [#202](https://github.com/fy538/travel-app/pull/202) |
+These are code/evidence boundaries, not design-completion percentages.
+[H1](home-value-composition-execution-plan-2026-09-25.md) preserves the detailed
+implementation receipts. Its complete native matrix remains MIXED; targeted
+passes are not full acceptance. Real recurring supply, all-door authenticated
+readback, signed extension behavior and some provider paths remain unverified.
+Do not reconstruct completed Source/Home connections or build another generator.
 
-### Live lane/PR reconciliation — September 29
+## 2 Three lane ownership
 
-A fresh read-only GitHub check confirms PRs #37, #202, and #234 are still open
-and report `BLOCKED`; their published heads remain the revisions in the table.
-The workspace PR's `Contract and golden paths` check is failed because the
-private child checkout cannot authenticate; its Maestro configuration check
-passed and the smoke was skipped. App and backend checks passed on their
-published heads. Those results do **not** cover the current local follow-ups.
+| Lane and its execution roadmap | Owns | Does not own |
+| --- | --- | --- |
+| **Orchestration — this file** | Entry transport/custody integration; Home/Places composition and native presentation; practical live-engine adapters; caller-side navigation/return | Artifact identity, focused reader internals, Life/collection schema, public research or shared generation engine |
+| **Strategy — [Artifact roadmap](artifact-experience-engineering-roadmap-2026-09-29.md)** | P0/P1 identity, components, typed readings, consumer collections; PC subject/catalog anchoring; P2 focused readers; P4 exact kept editions; Life and original-sharing/collection semantics in P6 | A second P3/P5 research/runtime implementation; root-feed composition; native capture transport |
+| **Strategy Technical — [Adaptive context roadmap](product-map/adaptive-context-and-research-roadmap-2026-09-29.md)** | R0–R7 context/retrieval, bounded acquisition, evidence fidelity, prepared-result execution/reuse, budget/publication safeguards, relevance maintenance and evaluations | A second artifact store, collection owner, focused reader, Home/Places screen or notification policy |
 
-After the September 29 local recheck and calendar-preview slice, the coordinated
-lane tuple was workspace `d2c3e208`, app `fcbde3758`, and backend `b4f49810e`.
-All three remain descendants of `origin/main`; their local heads are ahead of
-the published lane refs by **53 / 62 / 8 commits** respectively (the workspace
-count is before this roadmap-only commit). The earlier PR #37/#202/#234 check
-snapshot remains a dated observation of the published heads, not evidence about
-these local follow-ups. No rebase is needed. The calendar preview is committed
-locally in the app, but no changes have been published or merged. Do not merge
-the older PR heads and describe later lane work as included. Before closeout,
-run the coordinated gate on the intended tuple, resolve or record its exact
-blocking boundary, then publish the current heads and refresh their checks.
-The founder's previously recorded publication/merge authority remains in
-force; it does not turn failed or skipped checks green.
+**One implementation, several experience requirements.** Artifact P3 and the
+shared research/runtime portion of P5 are fulfilled by Technical R1–R5; they
+remain useful requirements in the Artifact plan, not competing work orders.
+Artifact P4 owns durable kept editions; Technical R4 owns changing candidate
+selection and prepared-result validity, consuming P4 when retention is required.
+P6 is split: Strategy owns collections, original sharing/receiving and Life;
+Orchestration owns their Home/Places placements. Technical R6 provides result
+readback and consumer-conformance evidence, not its own mobile redesign.
 
-**Coordinated local gate — September 29:** `make verify` ran on workspace
-`322c08b0`, app `d7b640824`, and backend `b4f49810e`. Workspace doctor passed;
-the backend structural checks reached the catalog gate, which failed because
-the 14-day runway requires at least three active rows per band on 2026-10-12
-and the reviewed catalog currently has `season=0, here=0` for that date. Backend
-tests and app checks were not reached. This is a real data-gate failure, not a
-green or an infrastructure crash. Do not weaken the checker or invent
-seasonal/local entries to unblock integration; refresh those bands from
-reviewable sources under the World Foundry operating contract, or retain the
-failed boundary and continue independent work. No publication or merge follows
-from this run. This full gate has not been rerun on the current tuple. The app
-`npm run verify:pr` passes on `fcbde3758`, but that is app-level evidence only;
-it does not supersede the missing coordinated pass or the catalog failure.
+### Code boundaries and shared files
 
-The coordinated `codex/home-value-delivery` lane owns the Home candidate in all
-three independent repositories. Workspace `1f4a9e5` contains the local roadmap
-and accepted-decision rebaseline beyond the published tuple. App `332e77523`
-adds reading clearance, quieter provenance, readable comparison rows and a
-lighter original-reader door. App `64961a9cf` completes the next H1-A patch:
-useful editable Home-to-Chat questions, readable/removable source context and
-draft preservation without starter prompts reappearing. Its 102 focused tests,
-app gate, 48 backend owner-grounding tests and three targeted native reviews
-passed. These bounded reviews retain content/hierarchy residuals; the full
-matrix remains MIXED. Backend `a8e87e64c` and app `97e0d0ac9` add current commitment
-facts without booking inference, productive state typography, explicit compact-row
-continuation and quieter provenance. They passed 140 backend and 48 focused app
-tests, the app gate, and four bounded native self-reviews including Live XXXL.
-Minor content/hierarchy findings remain. All these follow-ups are local, not
-published or merged, and need the coordinated gate before publishing. H1 records
-exact evidence and remaining findings; do not inherit full acceptance from a
-targeted native pass.
+Choose exact files at each lane's intake from these existing owner areas.
+A directory is a starting point, not permission to rewrite every file in it.
 
-Backend `539edb00d` bounds long owner text at the Home projection boundary without
-changing canonical records. App `af8a126af` clarifies Returned/recovery fixtures
-and fixes the native draft-replacement test. 143 backend tests, 70 focused app
-tests and the app gate passed. Returned and recovery-to-Chat native reviews
-passed their bounded assertions; Urgent is **MIXED**, with a P1 for missing
-owner-backed alternative trade-offs. The latest Chat PASS does not supersede
-that different capture's open P1. These follow-ups remain local and need the
-coordinated gate before publication.
-
-Local canonical `main` checkouts are not identical to remote main: workspace
-`8a14d87` also contains separate design commits and dirty design work; backend
-`fdf789d06` and app `23cff76f4` predate the merged recovery baseline. Do not derive
-completion from the local branch name. Re-inspect heads, dirty changes and PR
-state before execution; a dated table is not current Git state.
-
-App `9640fef0b` adds common private text/photo authoring and add controls on the
-four normal roots, building on `d07190235`'s immediate private receipt/Undo and
-account-bound custody. Keyboard-pinned Keep, immutable retries and draft-lifetime
-guards are implemented. Backend `d71d723df` adds verified-origin and real-DB
-retention/removal regressions; `dca7c1be6` aligns the canon entrance without a
-runtime change. Contribution and Chat rulings are reconciled here. Focused app
-tests, the final app gate (185 seam tests), 13 backend checks including four
-real-DB cases, and a nine-PNG native text flow passed their bounded checks.
-Native intent remains MIXED because the registered reference is unavailable;
-app `c27923302` now adds a six-frame iPhone 16 Pro native Photos-library
-selection → editable draft → mock private Keep/exact-original receipt →
-same-owner Undo path through Home root add. Its capture/correctness/visual gates
-pass; the structured verdict remains MIXED because exact companion-reference
-parity is unavailable and it records two small composer visual refinements.
-App `33791bc00` adds a separately registered and captured two-photo variant:
-native iOS Photos multi-selection → two editable/removable draft tiles → mock
-private Keep with lead-original readback and `+ 1 more` → same-owner Undo.
-The five-screenshot run `20260928T202625Z-photo-media-intake` completed on iPhone 16
-Pro / iOS 18.2 / Maestro 2.6.1; all four functional assertions and verdict
-validation passed. Its structured verdict is also MIXED: the companion design
-reference remains unavailable (intent P1), and it carries the same two P2
-composer refinements. App `8fce18ca1` adds the third native path: select a photo,
-reopen the Photos picker, Cancel, then verify the unchanged draft still supports
-Keep and same-owner Undo. Its five-screenshot run
-`20260928T203504Z-photo-media-intake` completed on the same iPhone/iOS/Maestro
-configuration; all four functional assertions passed, with no dimensional or
-gate regressions against the two-photo run. The verdict remains MIXED for the
-missing companion reference and the same two P2 composer refinements. Combined,
-these captures establish one- and two-photo native iOS library happy paths plus
-draft-preserving cancellation only. Camera, permission-denial recovery,
-selections above two, individual readback of each selected original, real
-authenticated readback, accessibility sizing, all root states and the six-door
-composer remain uncertified. The newer Chat checkpoints below add Keep/Ask only
-across private entrances; broader Send/Share remains incomplete.
-The [capture checkpoint and door map](home-value-composition-execution-plan-2026-09-25.md#captureshare-continuation--private-custody-checkpoint-september-28)
-record exact evidence, residuals and implementation order. These commits remain
-local and need the coordinated gate before publication.
-
-The later two-photo refinement supersedes that earlier visual verdict's two P2
-findings. App `6eff90e82` compacted the note and reduced remove-chrome weight;
-`8cc9f8c6f` put selected media before the optional note; `abadbe457` preserved
-the full frame of text-bearing images; `8f0649bf0` compacted the empty note to
-52 pt while keeping it multiline. The iPhone 16 Pro / iOS 18.2 / Maestro 2.6.1
-run `20260928T222054Z-photo-media-intake` captured the final layout and passed
-all four registered interaction assertions. The app `verify:pr` gate passed on
-that code revision, including 185 parity tests across six suites. Its tracked
-verdict at app `a5fc8ae00` is still **MIXED**: the registered design reference
-is absent (intent P1, `fix-canon`), and one P2 remains because text-bearing
-images cannot be opened full-size before Keep. The two former P2s—note
-preceding media and oversized remove overlays—are no longer open. The receipt
-shows the lead original and `+ 1 more`, not independent readback of every source.
-This lane remains local/unpublished; this narrow mock-transport capture does not
-close successful Camera capture, retryable native OS prompting, large-text,
-other-root, live-authenticated, extension or whole-product acceptance. App
-`d8a133677` preserves the draft after Camera denial, allows retry when
-`canAskAgain` is true, and offers Settings only when the OS cannot prompt again.
-Its denial-to-Settings handoff passed a targeted iPhone 16 Pro / iOS 18.2 /
-Maestro 2.6.1 flow; the retryable native prompt and successful Camera shutter
-remain unproven.
-
-App `17db598c9` closes the remaining pre-Keep **open-image** behavior for the
-two-photo draft: each selected original opens in the existing dark full-screen
-viewer, then closes back to the unchanged editable draft. A post-commit iPhone
-16 Pro / iOS 18.2 / Maestro 2.6.1 capture (`20260929T025713Z-photo-media-intake`)
-passed the targeted native multi-photo flow and its bounded structured verdict
-is **PASS** (`travel-app/docs/surfaces/photo-media-intake/verdicts/20260929T025713Z.json`);
-`npm run verify:pr` also passed on the same code content (168 lint warnings
-under a 169 ratchet, test-typecheck debt unchanged at 406, parity 185/185 across
-six suites). The older checkpoint
-above is historical evidence: its “cannot be opened” P2 is now closed. Two
-small refinements remain (no pinch-to-zoom and no visible cue that a photo tile
-opens). The actual 2026-07 intake canon exists in the primary workspace at
-`design/vesper-canon-anchor/project/Vesper Photo & Media Intake.html`, but its
-Artboard L depicts a trip-owned lightbox, not this newer private draft state;
-the targeted result therefore does not claim full composition parity. The
-previous seven-capture surface attempt remains non-green (only one capture
-completed); only the registered two-photo flow was rerun here. This does not
-close successful Camera capture, retryable native prompting, larger selections,
-accessibility sizing, other roots, real-authenticated readback, extension, or
-whole-surface acceptance. The separate `d8a133677` denial-to-Settings handoff
-is now covered by its own targeted native flow.
-
-The September 28 private-thread continuation connects newly selected Chat photos
-to the same Intake owner, with visible Keep/Ask only and a current-owner
-Open/Undo receipt. The question remains a separate answer-only pending turn.
-Group/unresolved audience, carried references and ordinary questions do not
-receive a new retention default. Scope, retry, source removal and typed owner
-checks are recorded in the [Chat checkpoint](home-value-composition-execution-plan-2026-09-25.md#private-chat-bring--ask-checkpoint--september-28).
-The new private-photo flow now has bounded native mock-transport acceptance and
-shows the exact original before Undo; real authenticated mobile readback and
-the complete six-door composer remain unverified. App `8a1337d62` connects the
-Chat landing dock (legacy Vesper Home) and private/private-trip create through
-the same source owner and durable pending-turn path, including idempotent room
-creation, context preservation and destination Open/Undo. App `8fd994143` now
-closes the specific native private-new-chat Keep → question → receipt → Undo
-case and fixes the handed-off receipt state so Undo clears the exact owner
-receipt while preserving the question. Two strict iPhone 16 Pro / iOS 18.2 /
-Maestro 2.6.1 runs passed with the handoff-failure warning absent. This remains
-mock-transport evidence; live authenticated readback, dock-fit, large-type and
-full six-door acceptance remain open. Simulated room-create and bind retries
-are now exercised together, but the expanded native scenario completed only
-after runner retries; first-pass reliability remains unresolved. See the [entrance
-checkpoint](home-value-composition-execution-plan-2026-09-25.md#private-chat-entrances-checkpoint--september-28)
-and [September 29 follow-up](home-value-composition-execution-plan-2026-09-25.md#private-new-conversation-bring--ask-native-follow-up--september-29).
-
-The [email checkpoint](home-value-composition-execution-plan-2026-09-25.md#forwarded-email-private-keep-checkpoint--september-28)
-connects forwarded message text to private Keep, current-owner receipt/Undo and
-Life metadata refinding. Historical replay preserves its retention policy and
-cannot restore released originals. Raw provider envelopes are not additional
-visible artifacts. Supported email attachment bytes now use the same Intake
-source owner, receipts, Life projection and Undo; focused tests and disposable
-Postgres acceptance passed. Real provider delivery and native acceptance remain
-open; scanner-gated formats and the current no-notice rejection behavior remain
-product limitations. The latest
-coordinated gate **failed** at the world-catalog runway: no Season/Here rows
-cover October 12. Its earlier pass does not certify this tuple; repair the
-catalog through its existing owner before publication, without weakening gates.
-
-App `a11d1a061` connects a newly retained private Intake source to the existing
-Life owner projection: unresolved sources appear in Time, and in Places only
-with an explicit Capture place subject; opening a row returns to its exact
-Intake source. Keep/resolve/Undo refresh the projection without a parallel
-artifact store or backend contract. Focused app tests, typecheck and
-`verify:pr` passed. A registered standalone iPhone mock flow now passes private
-Keep → Life row → exact original → existing owner receipt → Undo → row absent.
-It deliberately does not claim return-to-Chat continuity, live authenticated
-mobile readback, or Life composition/design acceptance. See the [continuity
-checkpoint](home-value-composition-execution-plan-2026-09-25.md#private-intake-to-life-continuity--september-28).
-
-App `fd6418e13` connects OS text/link/file handoff to the common private composer:
-account-bound draft, explicit Keep, preserved originals/captions and existing
-receipt/Undo. [Its checkpoint](home-value-composition-execution-plan-2026-09-25.md#os-common-composer-host-adapter--september-28)
-records 94 focused app tests, the app gate and owner regressions. This remains
-a **host-app adapter**, not the accepted in-place OS experience. The next native
-package must own reproducible extension generation, current-session delivery,
-host-closed operation, retry/readback/Undo and dismissal; do not redispatch the
-finished host composer or add another capture/auth service.
-
-App `bc0adbac5` makes the common capture UI finish in place using the same
-current-owner receipt and Undo, with receipt-ID resumption and explicit optional
-depth. [The session checkpoint](home-value-composition-execution-plan-2026-09-25.md#shared-in-place-capture-session--september-28)
-records 123 focused app tests, the app gate, 39 owner regressions and the refined
-native implementation sequence. This is now used in the main app, not an iOS
-extension completion claim. The native host and shared authoring are implemented;
-its account snapshot is an experimental follow-up below. Neither host-free UI nor
-a simulator compile proves signed-device authentication or complete delivery.
-
-App `95bc70d14` advances `6243f85f5`'s opt-in native host to the **same editable
-composer**, with bounded Expo/native providers and accessible text-scaling props.
-`fb559640a` repairs duplicate generated source references. App `9424daf82`
-connects an app-owned Clerk session snapshot and read-only extension restore,
-including generation fencing on account changes and teardown. The opt-in
-simulator build, app gate (185 seam tests), 44 focused session/host regressions,
-10 native configuration tests and inspected real-mode dependency bundle passed
-their measured scopes. The
-[native and account checkpoints](home-value-composition-execution-plan-2026-09-25.md#development-only-clerk-account-handoff--september-28)
-record exact commands and limits. At that revision this remained an experimental
-account bootstrap with no delivery. The current lane advances it: the extension
-now invokes the existing custody service/client with a protected retry journal,
-submission-ID persistence, current-owner readback and Undo behind a
-development-only opt-in. Keep is still off by default. The latest opt-in
-simulator build compiles, but both app and extension are ad-hoc signed with no
-signed entitlements, even with an explicit local identity override. The project
-team (`QNZ5K23A74`) does not match the only valid local Apple Development
-identity (`J6ZKHAT2H7`), so this is not signed-device acceptance. The ordinary
-build is restored, and production-profile enablement remains rejected. See the
-[native capture checkpoint](home-value-composition-execution-plan-2026-09-25.md#in-place-extension-delivery-and-protected-retry-journal--local-implementation-september-28)
-and [signing boundary](home-value-composition-execution-plan-2026-09-25.md#signed-simulator-build-and-entitlement-boundary--september-28).
-
-App `e5788100f` extracts the resumable binary Source-custody sequence from the
-React data module into one injected-client service, while keeping the app
-facade stable. The focused suite (12/12) and app gate (185 seam tests) pass.
-This removes the service's React/data dependency; it does **not** connect that
-service to the native extension or prove authenticated HTTP. Before journaling,
-App `67c33c8f3` adds the extension-safe authenticated transport and shared Intake
-v2 route owner; their focused tests and app gate passed. App `f850dc0e2` connects
-that owner through a protected pre-dispatch journal and in-place
-resume/readback/Undo path. Follow-up `6005dd39b` fixes the two test-type errors
-introduced with that slice; the final app gate passes, with the existing
-406-error test-type debt unchanged. Exact local evidence and the still
-unverified device boundary are in the linked native capture checkpoint.
-Do not copy endpoint paths or import the app-wide HTTP facade. Keep stays
-disabled by default until signed-device acceptance is proven.
-
-App `ce8649e68` closes the private image-readback gap in the in-app capture
-path: verified Chat Keep now previews the exact selected photo, and Life's
-original reader shares the same owner-scoped media resolver. Mock readback
-checks current persona custody and clears the local URI on Undo; both readers
-fence account/source-stale results, including A → signed out → A. Seven focused
-suites (112 tests), app `verify:pr` (185 parity tests), four backend media-route
-tests and the registered native mock Chat flow passed. The native flow used a
-real simulator library selection but not the live mobile/API transport. The
-[H1 receipt](home-value-composition-execution-plan-2026-09-25.md#private-photo-original-readback--september-28)
-has exact commands and limits. This does not resolve extension signing, real
-Clerk/mobile media readback, all six doors or broader sharing policy.
-
-The current lane follow-up extends the confirmed canonical artifact projection
-from eight to the full 16-image Intake limit, preserving source ordinal order;
-the existing Life-linked reader can open each projected original and virtualizes
-offscreen full-size photo reads. Backend projection and app gallery tests cover
-the 16-item boundary, but native runs still stop at two selected images and
-mobile authenticated readback remains unverified. Continue within the same
-capture/share owner package; do not treat this as a separate media subsystem or
-as completion of the six-door outcome.
-
-The separate canonical checkout contains concurrent design work and is not the
-execution target. Do not switch it, advance its children, or bring unrelated
-uncommitted design changes into this lane.
-
-| Evidence at the published tuple | State and boundary |
+| Boundary | Initial writer |
 | --- | --- |
-| Coordinated local verification | `scripts/land-worktree.sh home-value-delivery --publish` completed `make verify` and published the three branches. This evidence predates the docs-only rebaseline; detailed counts and exclusions are in H1. |
-| Backend CI | [Passed](https://github.com/fy538/travel-agent/actions/runs/36355954051), including DB and migration checks. |
-| App CI | [Passed on the final app head](https://github.com/fy538/travel-app/actions/runs/36358544184), including tests, types, design/governance and contracts. |
-| Workspace CI | [Failed before product tests](https://github.com/fy538/travel-workspace/actions/runs/36355993401/job/108723720414): private child checkout could not authenticate. Renew/fix `TRAVEL_WORKSPACE_CI_TOKEN` access, then rerun. A configured secret is not proof of usable access. |
-| Merge | All three PRs remain open and review-required; no merge conflict was reported. User authorization to publish/merge is already recorded in the task. Any owner-approved one-off override must be reported with the failed/unrun boundary intact; do not silently change standing protections or label an override a passing check. |
-| Native product quality | Full Home matrix remains MIXED. Targeted Planning and Cold follow-ups passed their bounded assertions, not full-scroll design parity. The newer local H1-A patch does not inherit a full PASS from these older captures or from its passing component checks. |
+| App `native-capture/`, capture plugin/session modules, `components/inbound/`; backend inbound transport/security/email handling | Orchestration; artifact reconciliation and durable collection membership stay with Strategy |
+| App `components/home-root/`, Places feed/map/root composition, `data/home.ts`, `data/placesProjection.ts`; backend Home/root/Places projections | Orchestration |
+| Artifact/source open-target resolution, family renderer/reader, consumer collection and Life organization, subject/catalog identity | Strategy; place pages/facts remain existing domain owners, not automatically cultural-object capabilities |
+| Backend `research_agent/`, selected-evidence adapters, shared preparation/job execution and reuse | Strategy Technical; a root composer consumes their output rather than implementing research |
+| Lived-experience admission, surface treatment and practical owner adapters | Orchestration; shared research execution, retry/budget and result-publication changes stay Technical |
+| App navigation infrastructure, shared design tokens, dependency manifests, global CI/governance tooling | Preserve by default; assign a bounded owner before a change spanning lanes |
 
-## What is already delivered in the candidate
+Transport idempotency is not thing reconciliation. Catalog lookup is not general
+research. Research recommendations are not current operational facts or
+authorized commands. A shared UI component is not a new domain owner.
 
-| Capability | Established progress | Still not established |
+**Shared-file rule:** only the owning lane changes a semantic contract or its
+implementation. Other lanes consume the landed version or keep an explicit
+unsupported state. Avoid opportunistic moves/renames and cross-cutting cleanup.
+If a task reveals a necessary change outside its owner, record the exact missing
+interface in that lane's roadmap and continue its independent fallback work;
+resolve a consequential boundary change at the next program checkpoint.
+Do not edit the other lane's checkout or send it routine instructions.
+
+Generated OpenAPI/type files are an exception to exclusive physical-file
+ownership: every lane changing an owned API regenerates and reviews the complete
+snapshot/projection/types in its own coordinated checkout. At landing, regenerate
+against the combined backend and resolve consumers; never hand-merge generated
+models. Separate domain migrations may proceed independently. The later landing
+owner reconciles migration heads/order and validates the combined migration;
+do not rename or rewrite another lane's already landed migration.
+
+## 3 Prepare the common baseline once
+
+Before implementation starts:
+
+1. Preserve and reconcile the three latest roadmap drafts, accepted decisions
+   and relevant pending owner-contract edits. Resolve workspace PR #37's actual
+   state and the delivery-only link repair; do not assume local main equals
+   remote main. Commit/land the intended shared starting tuple under the current
+   publication authority.
+2. Inspect `make worktrees`, branches, HEADs and dirty files in all three repos.
+   Reuse suitable free coordinated lanes. Do not repurpose a read-only inventory
+   checkout or another session's unfinished checkout by assumption.
+3. Provision each execution checkout under the existing
+   [workspace setup](../Workspace%20Repo%20Setup.md) and root AGENTS. A root-only
+   app worktree is not sufficient: verify its own `travel-agent/` and
+   `travel-app/` checkouts, matching intended bases, before any cross-repo command.
+   Keep three independent Git histories; no submodules or canonical-child fallback.
+4. Record the same starting workspace/backend/app SHA tuple in each lane's
+   existing assignment. Select a descriptive `codex/` branch per lane. Reuse the
+   worktree for follow-on packages rather than retaining a new branch per helper.
+5. Check each lane's runtime manifest and `scripts/dev.sh --print-runtime`.
+   Use isolated API/Expo ports, Compose projects, disposable test databases and
+   caches. Reserve distinct simulator/device instances where capacity permits;
+   otherwise only the device-dependent check waits. Do not restart another lane's
+   services or repoint its app to a different backend.
+
+After this one-time setup, lanes are autonomous. Each keeps current progress
+in its own roadmap, not in all three. This file changes when priority or ownership
+changes, not whenever another lane passes a test.
+
+## 4 Interfaces and dependency order
+
+The following are semantic seams to map onto existing contracts, not four new
+services or an instruction to invent new wire schemas before inspecting owners.
+
+| Producer | Minimum shared seam | Consumer behavior while unavailable |
 | --- | --- | --- |
-| Supported Source value | Canonical owner discovery/read, explicit Home `Ask Vesper` request, governed preparation, saved result, exact readback, native result/return and withdrawal connected; rejected outputs preserve their true terminal outcome. The September 26 synthetic, provider-free native rehearsal already covers this bounded connection. | Model-authored editorial quality and recurring useful supply remain unverified; do not repeat the same fixture flow as a quality test or add a new trigger to compensate |
-| Contextual Home continuation | Exact Plan/opening/recovery context reaches a private editable Chat draft and supported backend prompt assembly | Quality of a real model answer or authority to send automatically |
-| Received original | Exact authorized private photo through local DB, object storage, API and native reader/return | Production media service, album/grouped-photo identity, Reply or broader audience model |
-| Practical value | Supported open-now possibility reaches the exact venue and returns | Provider-backed freshness or a generalized live service |
-| Cold Home | Source-backed current-Places reading before an input request; owner-backed local API to native depth and return | Real recurring editorial supply, full design parity |
-| Native composition | Compact planning motion, corrected Home glyph/region treatment, removed gold reading edge, exact return position and selected first-viewport references | All remaining matrix findings resolved or full-scroll reference acceptance |
+| Strategy P0/P1 | Stable source/thing/subject reference; selected component plus representation revision; typed reading and correction/withdrawal semantics | D1 uses existing supported custody/source references; Technical uses an existing-original adapter, with new identity modes disabled |
+| Technical R1/R2 plus required safeguards | Prepared result and state; selected target; eligible input/dependency revisions; evidence fidelity; error/empty/stale treatment; supported action references | Strategy shows a useful original; D2 uses existing authorized supply. No generated placeholders presented as product value |
+| Strategy P4/P6 | Exact retained-edition behavior and collection/audience operations, when adopted and implemented | Keep original-only and existing eligible receiving; disable unsupported retention/shared derivatives |
+| Orchestration D2/D3 | Root caller context and return behavior; invocation of existing practical owner commands and current facts | Other lanes preserve existing navigation/actions; do not emulate a provider result or successful mutation |
 
-Do not repeat these connection projects under new names. The
-[H1 completion map](home-value-composition-execution-plan-2026-09-25.md#delivered-connections)
-records their limits. More tests or fixture screenshots of the same paths alone
-are not the next product increment.
+**First parallel wave:**
 
-## Current dispatch queue
+- Strategy maps P0 early, then delivers the P1/PC/P2 foundation with original-first
+  value and honest catalog fallbacks.
+- Technical starts R0/R1 and an existing-original R2 path with first-producer
+  safeguards. It can improve evidence fidelity and public-acquisition boundaries
+  before new artifact identities land.
+- Orchestration starts D1 against existing custody and proceeds with independent
+  Home/Places improvements. It does not wait for catalog licensing, a new reader
+  or broad research infrastructure.
 
-| Order | Outcome / accountable owner | Finish condition and next decision |
-| --- | --- | --- |
-| 0 — delivery closeout | Reconcile the three open PRs with the current local lane before closing anything. The PRs still point at the published baseline; the local follow-ups are not included. Fix the workspace checkout credential through the repository owner, and run the coordinated gate on the intended current tuple. | Record actual merged heads and branch/worktree disposition. Reuse the lane for follow-on Home work if it remains suitable; do not archive it merely because a PR merged. This administrative gap does not block independent local building. |
-| 1 — H1 checkpoint / retained gaps | Connected implementation and bounded-preview/copy follow-ups are committed. App `932abe25a` closes the Urgent action's divergent Chat route. App `53699858c` and `acf0c7203` remove unsupported “new route” / “already being repaired” claims and align the mock Chat handoff with its actual owner facts; post-commit urgent and Chat native captures pass. The source trace found reachability but no authorized route-options source: `route.evaluate` does not provide alternatives, and the itinerary alternative operation is venue-only. The [assignment](home-value-composition-execution-plan-2026-09-25.md#next-complete-assignment) retains the missing owner-backed option comparison, social hierarchy and real recurring-supply uncertainty. | Do not call Home fully accepted. First identify the canonical owner for current, authorized recovery options and unknowns—or refine the comparison promise if no such owner exists. Truthful fixture copy is not recovery value. These named residuals do not block independent capture/share foundations. |
-| 2 — active capture/share package | Same coordinated owner continues from private Keep/Undo, root-add authoring, private Chat, local email and OS host-composer handoff. App `ce8649e68` adds exact private-photo readback on the Chat receipt and through Life's shared owner-scoped resolver; native mock-flow and owner-route tests pass, but mobile live-route/Clerk readback is not proven. The in-place native extension implements the existing Intake path, protected retry journal and owner receipt/Undo behind a development-only opt-in; simulator compilation passes, but signature inspection found ad-hoc app/extension bundles with no signed entitlements. The Xcode project team (`QNZ5K23A74`) differs from the only valid local development identity (`J6ZKHAT2H7`). Do not repeat simulator builds with the same identity mismatch. Resolve matching signing/provisioning with App Group/Keychain entitlements before signed-device acceptance. The H1-B Source trace is now complete at the connection boundary: Home's explicit `Ask Vesper` request and the synthetic provider-free native path already pass; keep model quality/recurring supply as unverified, and do not add another trigger or rerun the fixture as a substitute. The lane API starts with model/search disabled, LLM background loops disabled, and Clerk JWKS/issuer verification configured; health 200 is startup evidence only. Email v2 captures supported attachment bytes through Intake; focused unit and disposable-Postgres acceptance passed, while real SendGrid delivery remains unverified. App `fcbde3758` adds a bounded, read-only `.ics` original preview through Life's existing owner-scoped source-media route; parser/data/screen tests and `verify:pr` pass, but the registered native capture was not completed and live authenticated mobile readback remains unverified. PDF/PKPass/HEIC and other scanner-gated types stay unsupported; any unsupported file can drop the whole email. The Import-by-email setup discloses this boundary, but there is no per-message or sender-facing failure notice. The eight stale-consumer findings caused by the Intake custody-client extraction are resolved by correcting the policy and schema-bridge source pointers; the current API audit, contract check, type sync and schema-bridge all pass without a wire-shape change. Broader Send/Share still needs its relationship/audience owner amendment. | A complete authored item can enter, return immediate value, reach its selected authorized audience, be refound and be corrected/withdrawn. Host-app redirection is not in-place OS completion. Authoring, simulator compilation and API health alone do not complete sharing, all six doors, full Life continuity or later value. Pending policies remain excluded. |
-| 3 — reassess receiving and later value | At the capture/share checkpoint, choose the next whole-product package against the actual retained/shared material: richer Home/Places receiving, Life continuity, or an accepted preparation gap. | Select from observed code/design gaps and received benefit, not a standing parallel backlog. Do not launch all three automatically. |
+Land the small additive P0/interface portion once ready; do not hold shared
+interfaces until every family renderer is complete. Consumers adopt **landed
+revisions**, not copied uncommitted code or a sibling branch that may change
+under them. Typed fixtures can unblock presentation and adapter work but do not
+prove the producer connection. Recheck owner state at receipt, publication and
+readback where the existing contract requires it.
 
-**New bounded capture evidence (September 28):** app `d8a133677` preserves
-the draft after Camera denial, offers retry only while the OS can prompt again,
-and otherwise exposes Settings. A targeted iPhone 16 Pro / iOS 18.2 / Maestro
-2.6.1 denial-to-Settings flow passed. The retryable native prompt and successful
-Camera capture remain open; exact receipt and checks are in the [active Home
-execution package](home-value-composition-execution-plan-2026-09-25.md#camera-permission-recovery--september-28).
+The next connected checkpoint combines a real supported input, Strategy's
+reader and Technical's useful addition, with Orchestration's appropriate root
+preview and exact return. This is a system connection checkpoint across several
+representative families, not a decision to narrow Vesper to one behavior loop.
 
-**Camera failure-path follow-up (September 29):** app `de02ae042` now reports
-native camera-launch failure accurately, preserves the editable draft, and
-keeps Photos available as fallback. Its registered iPhone 16 Pro / iOS 18.2 /
-Maestro 2.6.1 mock-transport flow passed through private Keep, image receipt and
-Undo. This is not successful shutter or real custody evidence: the assigned
-simulator has no camera source. The same app pre-PR gate passed (168 lint
-warnings under a 169 ratchet; test-typecheck debt remains 406; parity 185/185
-across six suites). The design-alignment test suite also passes with generated
-`.tmp` caches excluded from source discovery and symlinks skipped. See the
-[camera-unavailable evidence](home-value-composition-execution-plan-2026-09-25.md#camera-unavailable-recovery--september-29).
+## 5 Orchestration execution plan
 
-**Home root-add recovery follow-up (September 29):** app `55022182e` keeps the
-shared private composer reachable on Home v2, compatibility, loading and
-recoverable-error states; focused tests cover the loading/error route and
-compatibility header clearance. Typecheck, 33 focused tests, the targeted flow
-contract, polish QA tests and scenario registration passed. The app `verify:pr`
-gate passed on this code content (185/185 parity; existing lint/test-typecheck
-ratchets unchanged). The first combined native Home run captured **11/12**; the
-photo case was invalid because the lane media endpoint was stopped and the flow
-also targeted direct-image opening for a fixture without that authorization.
-After starting this lane's API, the image loaded and showed the expected explicit
-“Open original” source door; the corrected targeted flow captured the card,
-reader and return (**1/1**). This is not a complete Home matrix or live custody
-acceptance. Exact evidence and limits are in the [H1 execution record](home-value-composition-execution-plan-2026-09-25.md#home-root-add-during-loading-and-recovery--september-29).
+### D0 Rebaseline and prepare execution
 
-App `baeb7a2d9` then adds an explicit `TO YOU` cue to the individually addressed
-Home original stamp, using the existing current recipient-safe delivery read.
-Four focused suites passed (70 tests), the app `verify:pr` gate passed
-(185/185 parity), and post-commit native run `20260929T052518Z-home-root`
-captured the addressed photo, exact original reader and Home return (1/1) on
-iPhone 16 Pro / iOS 18.2 / Maestro 2.6.1. This closes only the copy detail;
-full Home visual acceptance and live authenticated media custody remain open.
-The H1 record carries exact commands, the 168/169 lint warning ratchet, the
-existing 406 test-typecheck-error baseline, and the evidence boundary.
+**Current task:** reconcile these roadmaps, ownership, evidence and start order.
+**Finish:** the three documents agree; each lane has a first assignment,
+exclusions, dependency fallback and acceptance boundary. Execution preparation
+in section 3 remains a separate step until actually performed.
 
-**Three-photo iOS capture checkpoint (September 29):** app `ddde3259c` adds a
-registered Home-root Photos flow selecting three images, opening the third as
-3/3, returning to the editable draft, mock Keep with `+ 2 more`, and same-owner
-Undo. The committed iPhone 16 Pro / iOS 18.2 / Maestro 2.6.1 run passed **1/1**
-with all six extra screenshots. This closes the native selection-above-two gap
-for a three-image example only—not authenticated per-image readback, all 16
-items, real custody, or the unavailable Claude-reference comparison. The
-immediate next device milestone remains matching signed app/extension
-provisioning, then real Clerk and owner-backed readback. Detailed assertions,
-two non-blocking image-viewer refinements, the mock evidence boundary and exact
-commands live in the [H1 execution package](home-value-composition-execution-plan-2026-09-25.md#native-selection-beyond-two--september-29).
+Do not turn D0 into another architecture inventory or recurring acceptance-only
+lane. The existing system and unfinished product work are sufficiently concrete
+to begin bounded implementation after baseline preparation.
 
-**Private new-conversation Bring + Ask follow-up (September 29):** app
-`8fd994143` fixes a receipt handoff defect: the destination composer now adopts
-the owner-authorized receipt ID passed from the pending turn, and matching Undo
-clears that receipt without dropping the authored question. A regression test
-also proves a stale prior-source removal cannot clear a newer receipt. The
-registered `polish/vesper-chat-private-create-capture` flow selects a native
-Photos-library image, keeps it privately, creates the private conversation,
-verifies the exact receipt and Undo, and confirms the question remains. Strict
-native runs `20260929T152015Z-vesper-chat` and
-`20260929T152544Z-vesper-chat` passed **1/1**, each with five extra captures, on
-iPhone 16 Pro / iOS 18.2 / Maestro 2.6.1. Both assert the pending-turn failure
-warning is absent. An earlier intermediate run displayed that warning once; it
-did not recur in the next three runs, so its cause remains unconfirmed rather
-than being presented as a proven fix. Focused tests passed **37/37** across
-three suites; `npm run typecheck`, scenario registration (**31**), Chat design
-reference validation (one manifest, 30 pairs, zero verified external canon
-references), `git diff --check`, and workspace `make docs-check` passed. The
-native flow uses mock transport: it does not prove authenticated upload,
-server-backed receipt persistence, or model answer quality, and it has no
-matching image-state design reference. The dock, failed-room/bind, large-type,
-full Chat visual and complete six-door gaps remain. The matching handoff defect
-and command evidence are recorded in the linked checkpoint.
+### D1 Finish supported capture delivery
 
-**Private retry-path expansion (September 29):** app `d41237757` adds an
-explicit same-attempt retry after private photo Keep succeeds but conversation
-creation or pending-turn binding fails. The registered native scenario injects
-both one-shot mock faults, keeps the create surface and authored question
-available between them, then completes Chat receipt/Undo. The bind-only rerun
-`20260929T183101Z-vesper-chat` passed on runner attempt 1/3 after changing the
-Maestro selector to the button's stable test ID. The expanded two-fault run
-`20260929T184142Z-vesper-chat` completed 1/1 on attempt 3/3; attempts 1 and 2
-failed waiting for the destination composer, with the create surface still
-visible. This is bounded simulated retry evidence, not a root-caused first-pass
-reliability result or a real-server idempotency claim. Exact diagnostics and
-remaining limits are in the [H1 checkpoint](home-value-composition-execution-plan-2026-09-25.md#private-capture-bind-retry-recovery--september-29).
+**Outcome:** a supported contribution reaches durable custody with a clear
+receipt and opens the same eligible original. Failure and retry do not require
+the person to reconstruct their effort.
 
-The retry audit then corrected a separate mock/backend mismatch in app
-`2644f51e2`: the mock stage owner now replays an identical client turn without
-resetting bound state, rejects changed payload under the same idempotency key,
-and clears turn state on mock reset. The backend still validates source custody
-on every stage request, so the client deliberately restages with its stable key
-after Undo rather than caching an ID. The follow-up run
-`20260929T192147Z-vesper-chat` failed on runner attempt 1 at the destination
-composer (create screen remained visible) and completed on attempt 2, including
-receipt/Undo. The mismatch is fixed, but it did not remove the intermittent
-native failure; the cause remains open in H1. App `npm run verify:pr` passes on
-the corrected source (168 lint warnings; 403 test-typecheck errors; parity
-185/185, zero skips). This remains simulated transport evidence, not live
-authenticated custody, first-pass stability, or real-server delivery.
+Work from H1's remaining capture evidence and current inbound/native code:
 
-**Next execution checkpoint:** first resolve the signing prerequisite for app
-`6005dd39b`'s journal-backed in-place path, then verify on an isolated signed
-device: host closed, share payload preserved, explicit Keep, same-attempt
-recovery after interruption, current-owner receipt, Undo, dismissal and repeated
-invocation; include account expiry/switching. The latest code passed 41 focused
-Jest tests, seven Swift journal scenarios, typecheck, ten native-configuration
-tests and opt-in ShareExtension simulator compilation. However, both app and
-extension signatures were ad hoc and contained no signed entitlements even when
-an identity override was requested; the configured Xcode team
-`QNZ5K23A74` differs from the only valid local identity team `J6ZKHAT2H7`.
-Therefore no build was installed and this is **not** signed-device acceptance.
-The exact evidence and prerequisite are recorded in the [H1 native checkpoint](home-value-composition-execution-plan-2026-09-25.md#signed-simulator-build-and-entitlement-boundary--september-28).
-The ordinary configuration was restored, Pods installed, and the native
-configuration suite passed 10/10. The first app gate found two new test-type
-errors in this slice; both were fixed. Final `verify:pr` passed, including
-185/185 `qa:parity` tests with zero skips; the full-suite test-type ratchet
-remains at its existing 406-error baseline. Both already-booted simulators and
-the paired iPhone were left untouched. The lane API's `/health` returned 200,
-but no Clerk session or authenticated Intake call was exercised. Do not infer
-acceptance from store-reopen harness tests, signature-integrity verification or
-simulator compilation. If matching signing credentials are unavailable, record
-the device acceptance boundary as externally blocked and proceed with an
-independent roadmap slice. Do not reopen connected private Chat entrances.
-Keep the unresolved broader-audience owner amendment, email provider/attachment
-gaps, October 12 catalog failure and Home recovery comparison visible; none is
-fixed by this capture checkpoint.
-A locked Mac blocked the
-new visual review, not the independent owner/code work. In-app text/photo
-authoring, Just me, root add and private receipt/Undo are implemented locally;
-the six-door map records their verification boundaries. Wider audience ownership
-is not implemented. Source preparation/serving is
-implemented but real recurring value is unverified; Home recovery has an actual
-presentation/preparation gap, not a missing second generator. Retain those
-distinctions. No new ambient trigger, audience policy or pending R1–R5 rule is
-adopted to make this checkpoint easier.
+- Inventory actual door × file-format support, using existing contracts:
+  in-app text/link/photo, external share, forwarded email and already supported
+  structured attachments. Do not infer PDF/Wallet/HEIC support from “ticket.”
+- Finish transport failure, account/session changes, duplicate attempts,
+  cancellation and retry behavior. Preserve input and idempotency through the
+  established custody path; do not introduce new cross-door thing identity here.
+- Make rejected email bundles and unsupported files explicit. The inspected
+  email path rejects the bundle on an unsupported attachment; partial admission
+  is a separate reviewed behavior change, not a silent fix. Preserve scanner/
+  security requirements and clearly bound any unsupported format.
+- Connect receipts and open actions through the current source resolver,
+  adopting Strategy's stable target when landed. Ordinary capture must work
+  before model recognition or catalog lookup finishes.
+- Resolve native extension signing/entitlements when the required access is
+  available. The last device blocker was a team/provisioning mismatch; verify
+  credentials before another expensive build. Real email-provider configuration
+  and authenticated mobile readback need their own evidence.
 
-### Capture/share package boundaries
+**Acceptance:** current supported paths survive retry and account changes; a
+real authorized backend read returns the retained original; unsupported paths
+show honest failure and recovery. Separate in-app, extension, email-provider
+and signed-device results. Mock/DB-only checks do not establish all-door delivery.
 
-The next owner should produce one compact implementation map in the active
-package, using existing canonical owners and generated contracts. It must cover:
+**Independent work when blocked:** supported in-app delivery, email transport
+failure semantics, original-open integration and D2's existing-supply composition.
+Do not block the whole lane on signing, an unavailable provider or an unapproved
+sharing policy. No Chat redesign or Life implementation belongs to D1.
 
-- **Owner reconciliation before affected runtime changes:** contribution §3.2,
-  §9 and §12; Product Thesis/Model entrance wording; Chat ruling 04; group/social
-  optional polls and occasion rooms; relationship audience and use-grant rules.
-  Amend only accepted rulings, retain rationale, and identify remaining conflicts.
-- **Shared path:** just-me default, Keep/Send/Share labels, immediate private
-  custody with Undo, provisional recognition and truthful send-time payoff.
-  Remove review-first capture without replacing it with invisible personal claims.
-- **Doors:** OS share sheet finishing in place; camera/photo picker; global add;
-  Chat attachments with visible keep state and Ask only; existing-object Keep/Send;
-  email forwarding. Audit existing adapters, share one contract, and identify
-  native/server delivery constraints rather than pretending every door is a
-  React component.
-- **Receiving and repair:** existing selected-original and place/link ownership,
-  authorship, permitted audience, forward-only Friends eligibility, withdrawal
-  and independent kept place survival. The newer audience model is accepted
-  direction but its schema is not designed; do not force it through the old
-  place-required one-recipient note or silently widen an existing grant.
-- **Separate policy dependencies:** friend's words used for an explicit question
-  require the named use-grant amendment. Guest identity, notifications, retention
-  periods and export are not settled by the decisions; they need a ruling only
-  where the selected implementation depends on them.
+### D2 Make Home and Places complete receiving surfaces
 
-The September 27 R1–R5 recommendations are **not adopted by this roadmap**:
-thread-intersection mechanics, the new voice register, autonomous artifact-type
-evolution, status-triggered offers and the proposed intersection-offer sequence.
-The accepted one-composer work can proceed without them. Selecting capture/share
-as the next package does not approve an offer that depends on those pending rules.
-Casual-question continuity remains unadopted; deliberate share-plus-question is
-the separate accepted amendment.
+**Outcome:** both roots deliver substantial, navigable value from current
+authorized supply, with the polish of the adopted design references.
 
-## Execution and reassessment
+- Compare the current registered Home/Places designs and latest adopted handoffs
+  with actual section/row coverage. Implement missing supported sections and
+  interactions, not just another screenshot or first-viewport crown.
+- Home balances what matters now with immediately engageable possibilities,
+  useful records and eligible human contributions. A return from a trip does
+  not make the feed exclusively retrospective. No generated-card quota, routine
+  input prompt or speculative personality interpretation.
+- Places prioritizes situated discovery, spatial context and practical relevance.
+  Consume the same underlying objects/results through a place-appropriate view;
+  do not copy Home or create a second research pipeline.
+- Consume Technical's prepared results and Strategy's reader/collection seams as
+  they land. Keep originals recognizable; navigate to the exact object/component
+  and restore root position on return. Show useful original/current-owner
+  fallbacks for no result, failure, staleness or changed access.
+- Add social placements from existing permitted originals and later P6 contracts.
+  Preserve authorship, intended audience and distinct perspectives. No automatic
+  shared filing, equal-effort requirement or unsupported shared synthesis.
+- Complete hierarchy, density, image treatment, component spacing, large type,
+  touch behavior, loading/empty/error states and full-scroll continuity. Frontend
+  polish is part of completion, not a later optional pass.
 
-Use the existing [lane lifecycle](../Workspace%20Repo%20Setup.md) and root AGENTS.
-One owner keeps responsibility through landing or an explicitly held disposition;
-temporary workers require authorized delegation and disjoint write ownership.
-Keep at most one or two active implementation packages, not a new tracking system.
+**Acceptance:** representative sparse, ordinary, social, returned and live states
+have useful real-owner content and working actions. Review full-scroll native
+output against the correct adopted reference/build/data source. Name unavailable
+supply and unsupported components; fixture parity alone does not establish
+backend delivery or recurring value.
 
-- **One complete assignment per round.** The owner carries diagnosis, implementation,
-  focused tests, review corrections and landing. Ordinary debugging needs no
-  founder round trip.
-- **Parallelize only independent outcomes.** A bounded worker can handle Home
-  presentation while another inspects existing preparation/serving, with one
-  owner for shared wire contracts and navigation. Contract mapping for the next
-  package can run independently; no competing runtime owner or permanent
-  integration lane is needed.
-- **Check in at the first working result, a consequential decision/blocker, and
-  the reviewed finish.** Coordinate shared files, runtime and devices directly;
-  escalate changed product/authority/architecture choices.
-- **Verify proportionately.** Focused checks during implementation; affected
-  contract/behavior/native evidence at package completion; required coordinated
-  `make verify` before publication. Do not repeat the full matrix for every copy
-  change or replace the required gate with a weaker one.
-- **Maintain this roadmap in place.** Replace the baseline and queue; do not
-  prepend dated overrides. H1 holds one current evidence summary; large receipts
-  remain historical. Retire or replace its active assignment when done, not by
-  accumulating another endless log.
+**Independent work when blocked:** use existing Source/Place/commitment/authorized
+social supply; finish root layout, navigation and failure treatment. Do not
+rewrite P2's reader or generate pretend enrichment to fill a design.
 
-At each package checkpoint ask: what is now worth receiving; does context improve
-it; how much effort remains with the person; did we reuse the right owners; and
-what exact evidence supports the result? Judge progress by finished outcomes,
-rework, blocked time and founder intervention—not agents, commits or doc volume.
+### D3 Make practical help part of the same system
 
-Documentation validation: the September 27 rebaseline refreshed the generated
-inventory with `make docs-status-sync`. September 28 owner alignment changes no
-registry or word-budget policy; measured `capture-roadmap-docs` passed
-`make docs-check` in 6.103s.
-The shared-composer checkpoint also passed measured `capture-shared-composer-docs`,
-`make docs-check`, in 7.882s. Its runtime and exact evidence are bounded in H1.
-A docs check does not refresh the full coordinated product gate.
+**Outcome:** what is happening now changes the useful options and actions across
+the same Home/Places experience, without reviving the legacy booking product.
 
-## History, not another queue
+- Trace current plans/commitments, place constraints and situational changes
+  through existing domain producers, lived-experience admission, projection,
+  native action and owner readback.
+- Fill missing useful option evidence where a current authorized provider/domain
+  path exists. A renamed CTA or an alternative's name does not resolve H1's
+  recovery-quality gap. The inspected venue-alternative tool is not a transport
+  rerouting capability; scope such gaps honestly.
+- Keep public researched possibilities distinct from current availability, cost,
+  hours, commitment state and executable changes. Technical supplies bounded
+  research; the operational owner remains responsible for practical truth.
+- Connect permitted review/confirm/act/return behavior through existing commands.
+  An outbound booking link is allowed only as a link, not an executed booking.
+  Preserve the person's choice and do not infer obligations or attendance.
+- Reassess generation supply and surface behavior together: appropriate later
+  evidence may improve an option, but should not rewrite the original or silently
+  create monitoring. Existing initiative/notification authority still applies.
 
-The [September 27 program snapshot](../archive/vesper-program-roadmap-history-through-2026-09-27.md)
-and [H1 receipts](../archive/home-value-composition-history-through-2026-09-27.md)
-preserve the full prior bodies at workspace `a73e9d2`. Older strategy and
-integration history remain linked below. No historical “current” statement
-overrides the baseline above.
+**Acceptance:** a useful ordinary near-term situation and a material change
+reach current owner-backed options, correct action outcomes and exact return.
+Expired/unavailable facts stay distinguishable. Cover the meaningful changed
+contract and failure path; do not treat one synthetic ferry story as the product.
+
+**Independent work when blocked:** improve supported current-place/commitment
+paths and disclose unsupported provider capabilities. Record the exact external
+gap without building a parallel operational subsystem or pretending completion.
+
+## 6 Autonomous execution and landing
+
+Each lane starts by reading its roadmap, the ownership section above, root and
+affected child AGENTS, Task Intake and relevant owner contracts. It then owns
+diagnosis, implementation, focused verification, review corrections and delivery
+of its selected outcome. Ordinary debugging does not need an orchestrator reply.
+
+- Keep **one active coherent assignment per lane**, with bounded internal
+  subagents only when delegation is authorized and writes are disjoint. Three
+  lanes is a capacity limit, not a reason to invent work or run three native
+  builds simultaneously.
+- The owner updates only its own roadmap's current assignment: exact base tuple,
+  owned files/interfaces, finished behavior, remaining gaps and next action.
+  Use existing PRs and receipts; no new daily report files or duplicate trackers.
+- At assignment start and a meaningful interface/landing checkpoint, inspect
+  landed main and the required dependency. No constant polling or direct chat
+  relay. If absent, take the named independent work; escalate only a genuine
+  product/authority choice or incompatible boundary.
+- Complete long slices without status chatter. Checkpoints are a working result,
+  a consequential blocker and a reviewed finish. A helper's completion is not
+  automatically a reason to redispatch or stop the owning lane.
+- Integrate additive interfaces and complete useful increments while the next
+  part proceeds. Do not merge every tiny commit, but do not keep completed work
+  for weeks until all three roadmaps finish. If a dependency cannot land, name
+  the specific blocker and stop adding dependent branch-only work.
+- Each owner lands its own slice; Orchestration is not a required manual relay
+  for ordinary merges. Serialize actual landings onto shared main, recheck the
+  current base and affected compatibility, and follow the existing lane/CI policy.
+  Land required child changes and then the workspace's matching contract/lock
+  tuple. Never advance another session's checkout or overwrite its lock blindly.
+- Publishing, merging and deployment use their actual authorization. Passing a
+  local subset does not waive required hosted checks. A complete worktree can be
+  reused after landing; retiring it follows the existing recovery-safe lifecycle.
+
+### Proportionate verification
+
+Use focused checks during iteration. For a landing candidate use
+`make verify-changed WORKSPACE_BASE_REF=<base> AGENT_BASE_REF=<base> APP_BASE_REF=<base>`
+with explicit bases in that coordinated lane. API changes require
+`./scripts/sync-types.sh`, review of snapshots/generated consumers, and
+`make api-coverage-check`. Current root/child AGENTS and the
+[CI Plan](../reliability/CI%20Plan.md) govern actual required checks.
+
+`make verify` is the full diagnostic/release suite, not a mandatory rerun after
+every push. Native acceptance follows visible behavior changes; confirm runtime,
+persona, data source and reference before capture. Disposable DB tests require
+explicit opt-in. Keep exact commands, revisions and passed/failed/blocked/unrun/
+stale boundaries; use existing measurement tooling. Never claim a five-minute
+merge guarantee from this workflow or erase tests just to meet a slogan.
+
+## 7 Reassessment and scope control
+
+Reassess after the first shared interfaces, the first connected useful result,
+and each complete D/P/R outcome—not every ordinary code change.
+
+Ask: is the received result worth opening; is the original useful without AI;
+does context improve it; how much effort remains; does social participation
+benefit a thin recipient; are current practical claims dependable; and did we
+reuse the correct owners? Review original-only and enriched experiences as
+different valid modes. Track finished outcomes, rework, blocked time, generation
+cost/latency and founder intervention, not commits or agent utilization.
+
+Catalog rights, unresolved cultural/collection owner choices, shared derivative
+retention, connected-inbox policy, automatic preparation and notification cadence
+retain their explicit decision boundaries. Record which behavior is blocked and
+continue independent supported work. These are not blanket reasons to stop all
+three lanes or permission for an agent to decide new product policy.
+
+## 8 Research basis and history
+
+The worktree recommendation follows official [Codex worktree guidance](https://developers.openai.com/codex/app/worktrees/)
+and [Git's worktree documentation](https://git-scm.com/docs/git-worktree):
+separate checkouts permit parallel branches; they do not settle application
+ownership or isolate external runtimes. Our three-repository setup therefore
+needs coordinated child checkouts and separate runtime assignments.
+
+[Fowler's integration guidance](https://www.martinfowler.com/articles/continuousIntegration.html)
+distinguishes textual from semantic conflicts and warns that pulling main without
+landing one's own work does not prevent divergence. Our application is a
+bounded-slice landing practice, not a claim of strict continuous integration or
+evidence that exactly three agents is optimal. The lane count is the founder's
+chosen capacity. Explicit owners, additive interfaces and timely landing should
+reduce coordination; measure the result rather than assume a speedup.
+
+H1 remains the detailed implementation/evidence reference, not a fourth active
+queue. Earlier program wording is preserved in
+[the pre-rebaseline version](https://github.com/fy538/travel-workspace/blob/73d9679409793f337be120bf9d6e39e27c966677/docs/working/vesper-program-roadmap.md)
+and the [September 27 archive](../archive/vesper-program-roadmap-history-through-2026-09-27.md).
+The [integration roadmap](complete-system-integration-roadmap-2026-09-05.md)
+is technical reference, not another schedule. This update changes planning and
+ownership only; it is not new runtime, device, provider or consumer evidence.
 
 ## Historical link compatibility
 
-These anchors preserve older references. They do not reactivate old queues.
+These anchors preserve older references, not old queues.
 
 <a id="2-inspected-baseline--september-22"></a>
 <a id="2-inspected-baseline--september-8-after-reliability-landing"></a>

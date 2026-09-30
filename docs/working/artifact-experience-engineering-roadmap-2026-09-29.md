@@ -1,9 +1,9 @@
 ---
 doc_type: working
 status: active
-owner: founder / cross-repo architecture / program roadmap owner
+owner: founder / Strategy lane
 created: 2026-09-29
-last_verified: 2026-09-29
+last_verified: 2026-09-30
 expires: 2026-10-13
 why_new: The strategy handoff names three artifact workstreams but cannot hold their detailed contracts, dependencies, migration, evaluation and delivery sequence without becoming a second general roadmap. This bounded supporting plan expands that section for the existing program owner.
 supersedes: []
@@ -24,13 +24,15 @@ retrieval, jobs and native readers. Add the missing identity, selected-part,
 collection, saved-edition and discovery contracts deliberately. Do not create
 another assistant or a universal artifact service.
 
-**Execution status:** planning only. No package below is declared implemented,
-scheduled or accepted by writing this document. The
-[program roadmap](vesper-program-roadmap.md) retains the sole dispatch queue.
-The [strategy handoff](roadmap-proposals-for-codex-2026-09-28.md#9-focused-artifact-engineering-proposals)
-is the admission path into the active delivery lane. Preserve its unfinished
-capture, signing, authenticated readback, Home and sharing work. The program
-owner can absorb these packages into that work rather than restart it.
+**Execution status:** scoped for the Strategy lane in the September 30
+[three-lane program](vesper-program-roadmap.md#2-three-lane-ownership); execution
+has not started merely by editing this plan. This roadmap owns Strategy's
+package sequence and receipts. The program owns cross-lane boundaries, not a
+permission queue for ordinary implementation. The earlier
+[strategy handoff](roadmap-proposals-for-codex-2026-09-28.md#9-focused-artifact-engineering-proposals)
+is proposal provenance. Capture transport, signing and Home/Places delivery
+remain with Orchestration; shared context/research/runtime work remains with
+Strategy Technical.
 
 **In brief.**
 
@@ -39,9 +41,11 @@ owner can absorb these packages into that work rather than restart it.
   venues, and books, films, shows and music.
 - **What comes later:** discovery of additions (P3), exact kept editions (P4)
   and selective refresh (P5). P3 starts thin; saved editions and broader archive
-  maintenance wait until additions have shown people value. Original-record
-  correction belongs in P1; permission, publication and spending safeguards
-  accompany the first live discovery, not a later hardening phase.
+  maintenance wait until additions have shown people value, except that any
+  adopted retention trigger requires P4's minimum exact-snapshot support when
+  that behavior first ships. Original-record correction belongs in P1;
+  permission, publication and spending safeguards accompany the first live
+  discovery, not a later hardening phase.
 - **The object comes first.** Original access and an honest useful fallback
   must not wait for catalog resolution or generated enrichment. Recognition
   may use a model; its latency and failure must not block original access.
@@ -53,8 +57,59 @@ owner can absorb these packages into that work rather than restart it.
 - **Sharing originals is not downstream of generated editions.** Eligible
   attributed-original sharing and receiving advance with the relevant identity,
   reader and sharing contracts. Generated derivatives have later dependencies.
-- **One open decision** gates real art and live venue facts: which catalog
-  sources to license (section 6).
+- **Provider approval is use-specific:** which catalog sources to license and
+  which display, storage, inference/indexing, sharing and retained-edition uses
+  they permit (section 6). Unapproved uses stay gated, not the original reader.
+
+## 0 Strategy lane execution boundary
+
+**First assignment:** section 11's P0/P1/PC/P2 artifact foundation. Map the thin
+shared references and typed reading contract early, then deliver recognizable
+original-first readers and correction/identity continuity. Use already supported
+custody paths; every format, catalog provider and artifact family need not finish
+before a supported slice lands.
+
+**Write ownership:** thing/component and cultural-subject identity, reconciliation,
+typed readings, focused reader internals, consumer collections and Life, approved
+catalog/media adapters, exact kept editions and original-sharing semantics.
+Do not infer cultural-subject capabilities from place-only entity enums.
+Orchestration owns raw capture transport, native extension/session behavior,
+Home/Places feeds and caller-side navigation. Strategy Technical owns the
+general context/research/preparation machinery.
+
+**Package split, not duplicate implementation:**
+
+- P3 and shared P5 runtime/maintenance requirements are implemented by Technical
+  R1–R5. Strategy owns their reader adapters and experience acceptance, not a
+  second retrieval/generation/refresh engine.
+- P0/P1 publish source/thing/subject/component references, revisions, typed
+  readings and correction/withdrawal behavior. P4 owns exact retained editions;
+  Technical owns prepared-result validity/reselection and consumes P4.
+- P6 owns consumer collection membership, sharing/receiving and Life. Its
+  Home/Places requirements are delivered by Orchestration. Publish the eligible
+  projection/open target; do not edit their roots in parallel.
+- PC owns approved subject/catalog matching and media-use decisions; it reuses
+  shared acquisition/budget utilities where landed. Catalog facts do not grant
+  permission for general research or establish present practical availability.
+
+**Dependencies and useful fallback:** consume Technical's landed prepared-result
+contract when available; meanwhile originals, catalog fallbacks, corrections,
+collection organization and eligible original sharing remain complete work.
+Provider approval gates that provider/use, not all reader development. P0's
+unresolved owner/schema choices gate only dependent writes; inspect existing
+owners and original renderers without inventing an unapproved schema.
+
+**Operating agreement:** start from the program's common three-repository tuple
+in a complete coordinated worktree. Keep one current assignment and its receipts
+here. At start and meaningful landing checkpoints, inspect landed dependencies;
+no routine inter-chat dispatch or waiting for the other roadmaps to finish.
+Record an unavailable interface here and continue the independent work above.
+Preserve original caller routes until their owning lane adopts replacements.
+Follow the program's generated-file, migration, runtime and landing rules.
+
+The latest source Strategy draft's design, research and six refinements are
+preserved below. This ownership pass does not change pending provider, sharing,
+retention or generation policy.
 
 ## 1 Product outcome and boundaries
 
@@ -184,14 +239,22 @@ The detailed September 29 inspections used the active delivery checkout
 The committed delta was hook/CI tooling, not artifact runtime changes. The
 backend also had concurrent fixture-map and retained-source-projector test
 edits at the later check; neither was changed or tested by this investigation.
-Recheck actual HEADs and dirty work before implementation. The newer strategy
-decisions and notes include uncommitted work; they are not evidence of runtime
-conformance or a landed migration.
+Recheck actual HEADs and dirty work before implementation. At those inspections,
+the newer strategy decisions and notes included uncommitted work; they were not
+evidence of runtime conformance or a landed migration.
 
 A later verification-instruction check used backend `e8bbb03a769ffc7a0072d5153673a3867fb2caae`
 and app `212b87a4`. It confirmed the newer child static/bounded-merge commands
 recorded in section 9. This was a command-policy check, not another full product
 audit or an executed merge gate.
+
+A further September 29 repository and primary-source review used backend
+`3c170d21fc0ca9231b956f2b9de7f9f195231768` and app
+`87eceee24512d9086962eea5b844cef9d7bffbeb` in the delivery checkout. Workspace
+documentation advanced concurrently from `50e92512` to `7a5d434e`; the child
+revisions stayed unchanged. This read-only review sharpened source-to-artifact
+continuity, typed reading, input-format coverage, result reuse and provider-use
+boundaries below. It ran no runtime/device tests or paid provider/model calls.
 
 | Area | Reusable implementation found | Remaining boundary |
 | --- | --- | --- |
@@ -236,6 +299,14 @@ cultural subjects fit the owner model, including a work versus a particular
 edition or release. Work-level relationships can coexist with edition-specific
 evidence; neither collapses a person's artifact or separate occurrence.
 
+The current entity capability sets describe place-like things, including
+physical visit/page behavior. Do not add cultural subjects to those sets or
+route them through `custom` without reviewing the inherited capabilities and
+owner hydration. P0 chooses a bounded cultural owner exposed through existing
+references, or a reviewed extension of the identity substrate. Namespace
+external identifiers by provider and resource kind where needed; bare film,
+TV or release IDs are not assumed globally interchangeable.
+
 Selected parts need a bounded tagged contract: whole source, text range, image
 region, and later timed media. Define text normalization, coordinate units,
 image orientation and source representation revision. A locator is not the
@@ -247,6 +318,17 @@ Reconciliation must be evidence-backed and reversible. Preserve distinct
 source grants; merging identity does not union permission. Reference migration
 must preserve old links through a reviewed alias or redirect, and reversible
 split must leave each original addressable.
+
+### Typed reading contract
+
+Experience semantics and reader formats are separate dimensions: existing
+semantic families such as `attendance` and `attention` do not become the UI
+family enum for tickets, books or albums. Define a bounded, versioned adapter
+from eligible owner facts and source evidence to typed readings consumed by
+family renderers. Specify required/optional fields, uncertainty, units and
+timezones, and an original-preserving unknown-version fallback. A maintained
+registry is sufficient; no arbitrary model-authored schema or new UI framework
+is required. Backend wire models and generated app types remain authoritative.
 
 ### Context and edition semantics
 
@@ -283,6 +365,15 @@ can invalidate that selection while its former winners remain unchanged.
 Candidate arrival marks work eligible for reconsideration; it does not mandate
 generation. Coalesce changes and reuse equivalent eligible results.
 
+Define that equivalence explicitly, separately from retry tokens and exact
+edition identity. The reuse fingerprint or reviewed compatibility rule covers
+selected target/component and representation revision, job/purpose, materially
+relevant context, eligible input manifest, and method/policy versions. A new
+work-item key cannot compensate for an inner cache that ignores those inputs.
+Existing Home/Places grouping retains its own contract; extending it for P3
+does not establish that current Home serving is defective. Reuse still requires
+current eligibility and sufficiently current discovery, including empty results.
+
 Keep model calls outside database locks. A short publication transaction must
 check the current attempt, owner/grant revisions and expected selection
 generation before publishing the result and pointer. Read-time authorization
@@ -292,21 +383,22 @@ of a user-visible leak.
 
 ## 4 Delivery sequence and package dependencies
 
-Use one coordinated package owner with bounded subagent assignments. The waves
-below describe dependencies, not calendar estimates or a standing set of
-parallel lanes. All package statuses begin as **proposed**.
+Use one Strategy owner with bounded internal subagents only when authorized.
+The waves describe experience dependencies across the three assigned lanes,
+not calendar estimates or additional permanent lanes. Implementation is not
+started by this planning update; package status remains **proposed** until intake.
 
 | Package | Outcome | Entry dependency | Primary responsibility |
 | --- | --- | --- | --- |
-| P0 | Agreed shared contracts and evidence portfolio | Program-owner admission and current baseline | Cross-repo architecture |
-| P1 | Recognizable identity, correction, parts and collection continuity | P0; existing capture custody | Capture and Life owners |
-| PC | Catalog anchoring and licensed media | P0; approved sources for live provider use, not fallback work | Entity/catalog owner with capture and existing Places owners |
-| P2 | Immediate focused reader and exact return | P0 and usable source adapters; not all of P1 | Native reader owner |
-| P3 | Substantive selected-object discovery | P0 and available owner reads; staged P1 collection integration | Context/retrieval and content owners |
-| P4 | Kept editions and dependent correction | P0, P2 and a typed prepared-result seam; worthwhile additions to retain | Saved composition and correction owners |
-| P5 | Selective refresh and accountable spend | Minimum safeguards accompany first P3; broader maintenance follows value, P4 for saved-edition replay | Maintenance/production owners |
-| P6 | Shared value and cross-root continuity | Originals: relevant P1/P2 and existing sharing contracts; generated results: P3 and, when retained, P4/P5; grants for each behavior | Collection/social and root consumers |
-| P7 | Whole-system hardening and controlled exposure | Evidence work starts in P0; completion follows selected product scope | Coordinated package owner |
+| P0 | Agreed shared contracts and evidence portfolio | Common baseline; program's assigned boundaries | Strategy-owned identity/reading seams; Technical owns producer contracts |
+| P1 | Recognizable identity, correction, parts and collection continuity | P0; existing capture custody | Strategy |
+| PC | Catalog anchoring and licensed media | P0; approved sources for live provider use, not fallback work | Strategy catalog owner, retaining existing Places domain authority |
+| P2 | Immediate focused reader and exact return | P0 and usable source adapters; not all of P1 | Strategy |
+| P3 | Substantive selected-object discovery | P0 and available owner reads; staged P1 collection integration | Technical R1/R2 with first-producer safeguards; Strategy reader adapter |
+| P4 | Kept editions and dependent correction | P0, P2 and a typed prepared-result seam; minimum snapshot at the first adopted retention trigger, broader UX after worthwhile additions | Strategy |
+| P5 | Selective refresh and accountable spend | Minimum safeguards accompany first P3; broader maintenance follows value, P4 for saved-edition replay | Technical R3/R4/R5; Strategy retains P1/P4 repair |
+| P6 | Shared value and cross-root continuity | Originals: relevant P1/P2 and existing sharing contracts; generated results: P3 and, when retained, P4/P5; grants for each behavior | Strategy collections/receiving/Life; Orchestration Home/Places |
+| P7 | Whole-system hardening and controlled exposure | Evidence work starts in P0; completion follows selected product scope | Each lane validates its boundary; program checkpoint assesses combined experience |
 
 **Wave A:** P0 plus P1 identity and original-record correction, PC subject
 mapping and fallback contracts, and P2 foundation work. P2 can begin against
@@ -324,7 +416,9 @@ existing owners; they do not wait for generated editions or enrichment value.
 expressions and P5 expands selective maintenance. Extend P6 to the resulting
 generated value only under its applicable grants and adopted derivative policy.
 This deferral does not include original-record correctness, existing sharing,
-or the safeguards required by an already running producer.
+or the safeguards required by an already running producer. If an adopted
+retention trigger applies earlier, ship P4's minimum exact snapshot and
+dependency seam with that behavior; broader saved-edition UX can still wait.
 
 **Wave D:** complete the selected P6 root/social journeys and P7 hardening.
 An original-focused scope can reach this checkpoint without all of Wave C.
@@ -338,15 +432,23 @@ merely because all package branches have commits.
 **Deliver:** one reviewed owner/interface map and a common lifecycle portfolio
 that allows reader, retrieval and maintenance work to proceed independently.
 
-- Recheck actual worktrees, runtime ownership, pending work and the program
-  queue. Reuse the capture/share owner for overlapping files and outcomes.
+- Recheck actual worktrees, runtime ownership, pending work and the program's
+  lane boundaries. Consume Orchestration's existing capture path; do not take
+  over its transport files when implementing identity or sharing semantics.
 - Map the responsibilities in section 3 to concrete existing types, services
   and mutation paths. Decide the thin identity/reconciliation mapping and
   consumer collection owner; do not rename editorial collections into it.
   Name the cultural-subject owner, stable local references, external mappings
   and work/edition distinctions before PC and P2 choose incompatible models.
+  Review the physical capability assumptions and external ID namespaces in
+  section 3 instead of treating this as an enum-only extension.
 - Specify selected component, selected-object context, prepared result and
   kept-edition references. Reuse owner revisions and existing action envelopes.
+  Define the typed reading adapter and semantic reuse contract in section 3;
+  independently authored native fixtures do not establish backend compatibility.
+  Strategy owns target/component/reading and kept-edition references; Technical
+  owns prepared-result execution and reuse. Declare the consumer's required
+  target/purpose/revision semantics without independently implementing that cache.
 - Map representation, claim and context dependencies separately. Define what
   changes on correction, removal, deletion and access loss.
 - Read the accepted amendments into the affected owner contracts without
@@ -358,8 +460,15 @@ that allows reader, retrieval and maintenance work to proceed independently.
 - Establish the supported-family/mode matrix now: distinguish shared-contract
   coverage, first-delivery native coverage, honest fallback and deferred modes.
   Track original access, structured reading, catalog lookup, discovery and
-  sharing separately. Designing the full portfolio does not require every
-  provider and reader to finish before any supported family can be delivered.
+  sharing separately, with the supported entry doors and file representations
+  for each first-delivery path. Ticket-family support does not imply PDF,
+  Wallet or every email attachment works. The inspected intake blocks PDF and
+  Wallet pending a document scanner and rejects HEIC/HEIF unless an upstream
+  path converts it to a supported format. Exercise the actual door and the
+  rejection/receipt when an unsupported attachment rejects an email bundle;
+  do not assume supported siblings were retained. Enabling a scanner or changing
+  partial-bundle admission is explicit scoped work, never a security bypass.
+  Every provider, format and reader need not finish before delivery can begin.
 - Agree on complete assignments and shared-file ownership. Any new schema or
   authority choice receives the required founder review before it is treated
   as settled; this is not repeated permission for ordinary implementation.
@@ -375,6 +484,14 @@ identity and addressable originals, independent of its entry door.
 
 - Reuse Intake and its immediate private Keep/Undo path. Preserve provisional
   extraction, source ordering, original access and unsupported-type fallback.
+- Bridge kept-source and confirmed-artifact readers through a stable consumer
+  open target. Recognition may improve a provisional reading without requiring
+  candidate confirmation. Through confirmation, correction and candidate
+  withdrawal while Source custody remains eligible, preserve selected sources/
+  components, attached originals and collection references using existing
+  custody/owner identities and a thin resolver.
+  Source revocation still removes access. Do not create duplicate durable
+  artifacts merely to switch readers.
 - Add source-bound components for multiple admissions or passages. Preserve
   originals through OCR correction, representation replacement and partial
   extraction failure. Never synthesize unreadable details to fill a template.
@@ -396,8 +513,9 @@ identity and addressable originals, independent of its entry door.
   retired journey/chapter/day ownership hierarchy. Operational commitments
   stay with their domain owners.
 - Keep artifact-family normalization bounded and versioned. Reuse semantic
-  forms and client renderers; do not implement the pending self-promoting
-  catalog, arbitrary model-authored schemas or a bespoke screen per interest.
+  forms through section 3's typed reading adapter, distinct from semantic-family
+  classification; do not implement the pending self-promoting catalog,
+  arbitrary model-authored schemas or a bespoke screen per interest.
 
 **Acceptance:** email/screenshot of a proven same ticket converge without
 losing sources; two screenings remain separate; a multi-admission image opens
@@ -406,6 +524,9 @@ one membership and deleting the collection do not delete the thing. Source
 deletion and Undo cannot resurrect through indexing or retry. Two legitimate
 date corrections both apply, their retry applies once, and unrelated evidence
 survives. Historical event time does not become upload time or catalog freshness.
+Keep an unclassified supported image, open it immediately, finish recognition
+while it is open, confirm/correct it, and reopen the same selection. The original,
+collection references and return context survive without false confirmation.
 
 **Dependency boundary:** connected-inbox OAuth, provider approval and every
 capture door need not complete before the identity contract can be exercised
@@ -431,6 +552,15 @@ subjects have distinct, useful fallbacks.
   such as year, director or artist; missing evidence leaves resolution open.
   Provider replacement or a corrected match must not change the person's
   artifact identity, merge separate screenings or discard prior sources.
+- **Minimize public lookup inputs.** Extend the existing typed public-request
+  pattern with approved title/year/artist/ISBN or canonical venue discriminators.
+  Keep raw OCR, private attendee/traveler/recipient names, admission barcodes,
+  booking references, credential-bearing URLs, private constraints and friends'
+  notes out of catalog/discovery requests and their logs/shared cache keys.
+  Public artist/author/director identifiers can remain approved discriminators.
+  Private matching stays inside its authorized boundary; custody alone does not
+  authorize external disclosure. P3 reuses this rule rather than sending
+  free-form private context to public search.
 - **Handle unresolved subjects explicitly.** Matched, ambiguous, not found,
   and provider-unavailable outcomes are different. With an incomplete capture
   or no confident match, show supported captured details and the appropriate
@@ -450,9 +580,14 @@ subjects have distinct, useful fallbacks.
   Hours and current open status have different freshness requirements, with
   timezone and provider coverage accounted for. Catalog refresh changes the
   anchor's current facts, never the address, date or details on an old original.
-- **Honor each source's terms:** attribution, caching limits and display rules.
-  Record provenance per field. Choosing the sources is a founder decision
-  (section 6), because it sets cost and what may be shown.
+- **Approve particular source uses:** display/attribution, storage and delivery,
+  inference/indexing, sharing/export and retained-edition eligibility. Record
+  field/media provenance, applicable policy version and expiry where relevant.
+  Metadata access does not establish artwork rights or every downstream use;
+  training and inference permissions are not interchangeable. Extend existing
+  media policy and delivery contracts, not a parallel rights service or blanket
+  immutable image cache. Source selection and its permitted uses remain the
+  founder decision in section 6; unsupported uses stay disabled.
 - **Bound provider work from the first connected lookup.** Reuse existing
   limits where applicable; declare call, concurrency, timeout, retry and spend
   budgets, with attempt accounting and permitted cache reuse. Repeated opens
@@ -467,7 +602,9 @@ subjects have distinct, useful fallbacks.
   Never generate imagery.
 - **Own the latency of the recognizable object.**
   - Provide a fast recognition path: text reading for tickets and cached
-    subject lookups.
+    subject lookups. The inspected image normalizer does not already perform
+    OCR; interpretation currently uses a model. Measure that path before
+    introducing a separate extraction stack or claiming a fast path exists.
   - Measure time to recognizable object (p50 and p95) separately from any
     model enrichment.
   - The ingestion decision's two-second goal remains a target until measured.
@@ -484,8 +621,13 @@ subjects have distinct, useful fallbacks.
 - A corrected match preserves personal identity and original access.
 - Venue status is current within its declared freshness boundary or explicitly
   stale/unknown; changing it does not rewrite historical source facts.
-- Missing art falls back to the house design.
-- Required attribution appears.
+- Missing or withdrawn art falls back according to its use policy, including
+  provider-specific blank-image responses, not only network errors. The original
+  survives; an exact kept edition never silently substitutes different artwork.
+- Required attribution appears; display-only or non-retainable material cannot
+  enter an unapproved inference, index, shared or retained-edition path.
+- A private-ticket fixture containing names, barcodes and booking references
+  produces an actual outgoing request containing only approved discriminators.
 - Provider failure and repeated opens respect declared call/retry/spend limits.
 - Original availability, structured recognition and catalog-enrichment latency
   are measured separately, including cold and unresolved cases.
@@ -500,6 +642,12 @@ and returns correctly from related material. It remains useful without AI.
 - Define reusable family-level readers for appropriate inspection: an original
   photo, ticket details, a selected passage, and structured practical evidence.
   A single giant conditional ArtifactCard is not the abstraction.
+- Reuse a common original-inspection interaction across Intake, confirmed
+  artifacts and received originals, retaining each owner's authorization adapter.
+  Test dense print, zoom/pan, selected parts, supported text copying and dismissal
+  back to the reading. Evaluate existing image/gallery and platform text-selection
+  capabilities before adding a native OCR dependency; inspection is not durable
+  extraction or a source selector.
 - Open anchors as pages too: a venue, work or course in its standard face,
   with the person's attached things. Follow the Artifacts project boards
   (section 1A) for the forms: ticket kinds, place cards, media formats and
@@ -512,6 +660,9 @@ and returns correctly from related material. It remains useful without AI.
   official ticket, alter evidence, or imply validity or attendance.
 - Read prepared eligible additions separately. No generation spinner replaces
   the whole object. Distinguish no addition from incomplete discovery/failure.
+  Reserve known media geometry; late recognition, artwork or additions must not
+  move controls under a finger, reset accessibility focus, or insert content
+  above the active reading position. Preserve selection as the object improves.
 - Preserve originating root, collection, component, result edition and return
   position. Returning from another artifact should not rerank the reading.
 - Recheck time-based expiry while mounted, app foregrounding, account change,
@@ -528,6 +679,10 @@ remain separately openable; a related detour restores exact context. Expiry and
 authority changes affect actionable content; provider failure leaves
 independently eligible value intact. Native QA must prove interaction and
 visual fit beyond component tests.
+Actual semantic output must reach the family renderer through the generated
+contract, including uncertainty and unknown-version fallback. Exercise the
+kept-to-recognized transition and inspect the same small-print original after
+Keep, confirmation and authorized receiving, including multiple large images.
 
 Retain reviewed original-first specimens across the portfolio: readable
 admission details, photograph inspection, a passage with its source context,
@@ -542,6 +697,10 @@ before final composition is frozen.
 
 ### P3 Contextual discovery and useful selection
 
+**Implementation owner:** Strategy Technical R1/R2 with required R3–R5 safeguards.
+The requirements below remain part of this experience; Strategy implements the
+P2 receiving adapter, not the shared producer.
+
 **Deliver:** opening a thing can reveal a supported addition that the existing
 Place-pair selector could not reliably discover, without requiring more input.
 
@@ -553,7 +712,8 @@ Place-pair selector could not reliably discover, without requiring more input.
   screening, exhibition or local possibility, not just explain already known
   evidence. Use current authorized world/provider/research adapters and finite
   coverage; no continuous web search per artifact. Check present availability
-  separately before expressing a practical option.
+  separately before expressing a practical option. Apply PC's typed public-query
+  and source-use boundaries before external requests, indexing or synthesis.
 - Extend indexed representations only where they supply independent value:
   source text, passage/context, image OCR or identified detail, and relevant
   collection relationships. Indexes remain derived; hydrate current owners
@@ -565,6 +725,10 @@ Place-pair selector could not reliably discover, without requiring more input.
   obsolete results, bounded calls/retries and reserved budgets, complete input
   dependencies, and actual-attempt accounting. Reuse existing mechanisms;
   this does not require the later archive-maintenance system.
+- Extend production reuse with section 3's semantic equivalence contract.
+  Changing selected component, purpose or materially relevant context must not
+  reuse incompatible output merely because source bytes or group IDs match.
+  Keep command retries and exact-result reopening separate from this decision.
 - Separate candidate discovery from relationship/value judgment. Preserve
   original-only, attributed juxtaposition, single-source explanation, supported
   comparison and practical continuation as legitimate treatments.
@@ -595,10 +759,22 @@ its call/retry/spend bounds; broad P5 deferral does not waive those checks.
 Human preference is a separate product-evidence checkpoint, not an
 invented passing label or a prerequisite to all implementation.
 
+**Retention boundary:** P3 can remain ephemeral only while no adopted retention
+trigger applies. Explicit Keep/share, an exact governed reference, or citation,
+action, repair or collaboration requiring a stable expression invokes the
+existing persistence policy. Ship P4's minimum exact snapshot and dependency
+seam with the first such behavior, or keep that behavior unavailable. This is
+not permission to adopt unresolved shared-derivative policy or retain every Ask.
+
 ### P4 Exact kept editions and dependent correction
 
 **Deliver:** the person can retain a named explanation and reopen exactly what
 they chose, with honest correction and availability over time.
+
+**Staging:** broader saved-edition UX follows worthwhile additions. Minimum
+retention support follows the actual trigger, including those beyond Keep/share
+listed in the [owner policy](../systems/artifact-expression-and-composition.md#persistence-policy).
+Current production-cache readback is not an immutable edition store.
 
 - Implement the saved-composition persistence seam from the existing contract:
   ID/edition, exact content/media, selected target, complete dependencies,
@@ -623,6 +799,10 @@ approved before the affected shared path ships.
 
 ### P5 Selective maintenance and bounded cost
 
+**Implementation owner:** Strategy Technical R3/R4 and related R5 applicability.
+Strategy retains P1 original repair and P4 exact-edition storage/repair; catalog
+PC retains its own approved-use obligations. No second maintenance queue here.
+
 **Deliver:** meaningful changes create timely new possibilities without
 continuously regenerating the archive.
 
@@ -645,8 +825,9 @@ required by PC itself, not covered implicitly by generation accounting.
   ineligible content before prompting; use bounded owner-query fallback where
   valid. An index failure is not a successful no-result judgment.
 - Coalesce invalidations and deduplicate work across processes. Recompute cheap
-  selection first; reuse equivalent eligible prepared content. Generate only
-  under a supported request or adopted preparation policy.
+  selection first; reuse equivalent eligible prepared content under section 3's
+  fingerprint/compatibility rule. Generate only under a supported request or
+  adopted preparation policy. Broader P5 deferral does not defer correct P3 reuse.
 - Extend short atomic publication fences using existing owner/grant patterns.
   Protect first-insert versus delete, takeover, concurrent edit and cancellation.
   Model calls never run inside those database locks.
@@ -666,6 +847,10 @@ late evidence can change an empty selection; index lag is observable. Report
 measured cold/warm latency, cost and fan-out before setting production defaults.
 
 ### P6 Shared value and cross root continuity
+
+**Implementation split:** Strategy owns collection/social operations, recipient
+readers and Life. Orchestration owns Home/Places placements and caller return.
+Technical supplies only the permitted generated-result/readback capability.
 
 **Deliver:** artifacts become more valuable through authorized people and
 different roots without duplicating material or inventing a second social feed.
@@ -737,13 +922,13 @@ checkpoint. Retire replaced adapters only after consumer/readback coverage.
 
 | Decision | Recommendation or current boundary | Blocks | Does not block |
 | --- | --- | --- | --- |
-| Thing reconciliation and component ownership | Approve a thin mapping and shared selectors in P0; preserve domain truth | Incompatible identity/schema implementations | Original rendering against existing source references |
+| Thing reconciliation, components and cultural subjects | Approve a thin mapping, shared selectors and cultural owner in P0; review physical capabilities, external ID namespaces and typed readings | Incompatible identity/schema implementations | Original rendering against existing source references |
 | Consumer collection owner | Map accepted many-to-many behavior explicitly; do not reuse editorial guide tables by name | Durable collection writes and corresponding sharing | Single-object private reader and owner-linked discovery |
 | Kept edition after supporting withdrawal | Recommended default: withhold affected content, preserve only permitted metadata, offer a new independently supported version; exact policy unadopted | Shared derivative retention and partial salvage promises | Private originals and edition mechanics tested without disputed shared material |
 | Offline retained material | Adopt what can be cached, for how long and how reconnect handles loss; no instant remote revocation promise | Persistent shared offline caches and their user promise | Online reader, locally available independently eligible originals under existing rules |
 | Automatic preparation | Separate selection refresh from generation; define allowed triggers and budget owner | New proactive generation/background posture | Existing explicit requests, pure reads and cheap authorized selection |
-| Initial families and reader density | Map designed families and comparison cases in P0; distinguish contract coverage, first-delivery modes, fallback and deferred coverage | Final family-specific visual acceptance and unsupported-format exposure | Shared reader/data/lifecycle foundations |
-| Catalog and art sources | Choose per-medium sources for films/TV, books, music and venues, with their terms, costs and caching limits | Shipping real art, credits and live venue facts | House-design fallbacks, reader foundations, identity work |
+| Initial families, input paths and reader density | Map designed families in P0 by supported door, representation and mode; explicitly scope scanner or partial-email admission work | Final family-specific visual acceptance and exposure of unsupported input paths | Shared reader/data/lifecycle foundations and supported photo/text paths |
+| Catalog sources and permitted uses | Choose per-medium sources and approve display, storage/delivery, inference/indexing, sharing/export and retention uses, with terms and costs | Each unapproved use of provider art/data, not every integration at once | House-design fallbacks, reader foundations, identity work |
 | Open catalog and model vendor | Keep reviewed bounded families and current model infrastructure until a change earns adoption | Self-promoting type registry or new provider rollout | All baseline packages |
 | Shared additions and notification cadence | Preserve accepted explicit sharing and placement; pending automation/push defaults stay pending | Those automatic or interruptive behaviors | Attributed originals, explicit add/remove and in-context receiving |
 
@@ -805,6 +990,9 @@ status labels. Persist evidence of the tested revision tuple.
 | Late photo of an earlier event | New ingestion position triggers discovery; event time and existing edition stay unchanged |
 | New useful source after empty selection | Candidate scope invalidates emptiness even if old sources never changed |
 | Two corrections and one retry | Both new commands apply; the retry does not apply twice; unrelated evidence survives |
+| Recognition completes during reading, then confirmation/correction | Same selected thing, original and collection reference remain openable; no forced confirmation, shifted controls or lost return position |
+| Same source, different admission or explanation versus practical purpose | Incompatible output is not reused; unchanged eligible scope reuses without generation |
+| Same retry token with changed parameters | Reject the parameter mismatch rather than returning a result for a different request |
 | Location or purpose changes | Select new context without moving the original or changing an active reading |
 | Grant loss during generation | Current publication/read guards deny affected output; index cleanup is not the safety boundary |
 | Concurrent edits and worker takeover | Older revisions/leases cannot publish over current state |
@@ -814,9 +1002,12 @@ status labels. Persist evidence of the tested revision tuple.
 | Burst import and repeated opens | Bounded fan-out and coalesced work; unchanged opens require no generation |
 | Source expiry while screen remains open | Stale content/actions become unavailable, with stable navigation and honest recovery |
 | Withdrawal after Keep | Apply adopted derivative policy; preserve independent originals and no revoked content resurrection |
+| Exact expression cited or acted through under a retention trigger | Retain the required snapshot/dependencies before that behavior is supported; later context does not rewrite the referenced result |
+| Catalog art removed or not retainable | Preserve personal original and subject identity; block unapproved reuse and do not replace media inside an exact edition silently |
+| Unsupported file in a mixed email bundle | Exercise actual admission/rejection and sender-facing receipt or its documented absence; do not imply supported siblings were kept |
 | Account switch and offline reconnect | No prior-account late response/cache leakage; current grants rechecked on reconnect |
 
-Record time to recognizable object and time to useful extension separately,
+Record time to original access, recognizable object and useful extension separately,
 including p50/p95, cold/warm state, queue and index lag, failures, cancellation,
 reuse, stale-publication rejection, duplicate work and unused prepared content.
 Cost includes extraction, embedding, public evidence preparation, generation,
@@ -859,16 +1050,11 @@ and are generally parity-sensitive, not visual-only work.
   skips/quarantines. Source and lifecycle fixtures prove only their inputs.
 - Database race tests require explicit `TEST_DATABASE_URL` and
   `TEST_DATABASE_DISPOSABLE=1`; never probe or clean ambient development data.
-- Follow the implementing checkout's current child preflight: at the command
-  review above, backend `make ci-static` plus
-  `make merge-check BASE_REF=<explicit-base>`, and app `npm run verify:fast`
-  plus `npm run verify:merge -- --base <explicit-base>`. Full regression suites
-  are separate deliberate/main/nightly/release checks, not automatically
-  repeated after every edit. Retain coordinated `make verify` under this
-  workspace's delivery instruction and the currently required hosted checks.
-  Resolve any staged-gate transition through the execution lane's CI Plan;
-  this roadmap does not itself promote `verify-changed` to a replacement or
-  waive required checks. A defined command is not evidence it ran.
+- Follow current root/child AGENTS and the [CI Plan](../reliability/CI%20Plan.md).
+  Use `make verify-changed WORKSPACE_BASE_REF=<base> AGENT_BASE_REF=<base> APP_BASE_REF=<base>`
+  as local merge preflight in the actual coordinated lane. Full `make verify`
+  is diagnostic/release coverage, not a mandatory rerun on every push. Required
+  hosted checks remain authoritative. A defined command is not evidence it ran.
 - For visible changes, use registered surface contracts and the existing
   polish QA path: scenario/reference validation, doctor, capture, structured
   comparison and verdict. Establish the correct build, persona, data source
@@ -883,53 +1069,46 @@ and are generally parity-sensitive, not visual-only work.
 
 | Checkpoint | Review | Decision |
 | --- | --- | --- |
-| After P0 | Do owners, selectors, revisions and policy boundaries fit the family/mode matrix? | Approve interfaces and first-delivery coverage; resolve only actual blockers |
-| First connected P1/PC/P2 result | Are originals desirable and correct, including no-match/provider failure and historical-versus-current facts? | Accept supported reader/catalog modes without requiring every family or P3 |
-| First connected P2/P3 result | Is the addition substantive and low effort, with permission, publication and spend safeguards exercised? | Adjust reader/selection together; decide whether saved editions and broader maintenance now earn work |
+| After P0 | Do owners, typed readings, selectors, reuse semantics and policy boundaries fit supported families, input paths and modes? | Approve interfaces and first-delivery coverage; resolve only actual blockers |
+| First connected P1/PC/P2 result | Do real supported inputs stay inspectable and recognizable through recognition/correction, including no-match/provider failure and historical-versus-current facts? | Accept supported reader/catalog modes without requiring every family or P3 |
+| First connected P2/P3 result | Does a worthwhile addition meet the usable reader, with changed-scope reuse, permission, publication and spend safeguards exercised? | Adjust reader/selection together; supply minimum retention for any triggered behavior and decide whether broader P4/P5 now earn work |
 | P4/P5 lifecycle replay | Do change, exact retention, revocation, index lag and spend behave coherently? | Harden affected seams or revise the abstraction before broadening |
 | P6 receiving and P7 integration | Can a sparse-history person and a thin social participant receive complete value? | Review originals as soon as ready; add derivative cases only when supported, then choose exposure under existing authority |
 
 Checkpoints guide direction; they are not a demand to pause after every small
 technical obstacle. No single movie-ticket demo certifies the whole product.
+Original-only value is the immediate foundation, not a substitute for the
+connected P2/P3 checkpoint demonstrating a substantive addition. Neither that
+addition nor human preference is required for every original or sharing path.
 
 ## 10 Operational delegation
 
-One owner carries the coherent package through implementation, review,
-integration and handoff. Use in-session subagents for bounded parallel work;
-do not create user-owned sessions unless requested. Reuse an appropriate
-coordinated worktree and verify runtime/device ownership before work.
+One Strategy owner carries its assignment through implementation, focused
+verification, review corrections and landing in its own coordinated worktree.
+Use bounded in-session subagents only when delegation is authorized and writes
+are disjoint; P0–P7 are packages, not additional permanent lanes.
 
-After P0, sensible parallel assignments are native focused reading and PC
-provider integration, while capture/Life owns shared identity, correction and
-membership. Thin discovery can join once its interfaces are stable; early
-original sharing stays with its existing owner. Avoid turning every package
-into a standing lane. P4 and broader P5 separate persistence from maintenance
-only when value, contracts and file ownership permit it. One owner controls
-shared models, migrations, generated contracts and navigation integration.
+Within this lane, reader work and approved catalog adapters can proceed
+independently once their owned interfaces are settled. Shared identity,
+collection writes and migration ownership stay explicit. General research and
+runtime implementation belongs to Strategy Technical; root composition and
+entry transport belong to Orchestration.
 
-Each assignment includes outcome, relevant canon/code, exact write ownership,
-allowed scope, acceptance evidence, dependency contracts, and escalation rules.
-It should continue through ordinary diagnosis, implementation, local tests,
-review fixes and a verified handoff. Report at first integrated result,
-consequential blocker and completion—not every minor success.
-
-Coordinate interfaces directly. Escalate product authority, incompatible owner
-design, missing external access, or consequential scope changes. Do not broaden
-policy, weaken checks, enable background work or switch another session's
-checkout to clear a blocker.
-
-Use focused checks continuously, integrate when an interface changes or a
-complete outcome is ready, and run coordinated gates at landing/checkpoints.
-Avoid requiring every small commit to wait for a full device matrix, while
-preserving required delivery checks. Commit coherent changes with explicit
-filenames when implementation is authorized; publishing and deployment retain
-their separate authority.
+Follow the [program operating agreement](vesper-program-roadmap.md#6-autonomous-execution-and-landing).
+Consume landed contracts, not a changing sibling checkout. Publish additive
+P0/interface work before holding it behind every renderer. No direct owner-to-owner
+chat relay is required. Escalate unresolved product/authority choices or a genuinely
+incompatible interface; ordinary debugging continues in this lane. Land coherent
+increments, not every small commit or one branch after the entire roadmap ends.
+Update only this roadmap's current assignment and evidence, leaving the other
+lanes' queues and checkouts untouched.
 
 ## 11 Recommended first assignment
 
-At the next program checkpoint, admit **P0 plus the necessary P1 foundation,
-PC catalog anchoring for the first families, and P2 reader integration** as a
-complete artifact-foundation assignment inside the current capture/Life work.
+After the common baseline is prepared, execute **P0 plus the necessary P1
+foundation, PC catalog anchoring for the first families, and P2 reader
+integration** as this lane's artifact-foundation assignment. Existing custody
+is its input; raw capture transport remains Orchestration's work.
 The first families are those already designed (section 1A): tickets, venue
 anchors, and books, films, shows and music. P0 distinguishes their shared-contract
 coverage from supported first-delivery modes and honest fallbacks; every family
@@ -938,29 +1117,37 @@ and provider need not finish at once.
 For a fast first release:
 
 - Deliver ordinary source/date correction and Undo with the P1 foundation.
-- Start P3 thin, with one or two kinds of addition, once its interfaces and
-  eligible owner reads are stable. Connect to a usable P2 reader early.
+- Adopt Technical's thin P3 capability once its landed interfaces and eligible
+  owner reads are stable. Connect its useful additions to P2 early; do not build
+  another producer while waiting.
 - Include permission, publication, input-lineage and spend safeguards with
   the first live P3; include provider limits with PC.
 - Defer saved editions and broader archive maintenance until additions show
-  people value, not the safeguards required by already running work.
+  people value, except for minimum exact-snapshot support at any adopted
+  retention trigger. Do not defer safeguards required by already running work.
 - Advance eligible original sharing and receiving with the relevant P1/P2 and
   sharing contracts; only generated derivatives wait for their later dependencies.
 
 The finish condition is not a document alone:
 
-- shared target/component/edition contracts are mapped and reviewed;
+- shared target/component/edition, typed reading and semantic reuse contracts
+  are mapped and reviewed, without conflating semantic and presentation families;
 - eligible kept originals from existing supported doors open through the same
-  references, with honest selected-part, unresolved-catalog and fallback behavior;
+  references before and after recognition/confirmation/correction, with honest
+  selected-part, unresolved-catalog and fallback behavior;
+- actual first-delivery file formats and mixed-bundle failure behavior are
+  exercised; no unsupported scanner path is implied by ticket-family coverage;
 - distinct source/date corrections and retries behave correctly, and refreshed
   subject facts never overwrite historical captured facts;
 - subject identity is application-owned, provider mappings are reversible,
   and work/edition distinctions preserve both shared and specific evidence;
-- approved catalog integrations obey freshness, attribution and provider limits;
-  unresolved provider decisions do not block the original/fallback reader;
+- approved catalog integrations obey use-specific rights, public-query limits,
+  freshness, attribution and provider budgets; unresolved provider decisions
+  do not block the original/fallback reader;
 - collection and reconciliation ownership are explicit, with the adopted
   portion connected rather than improvised in a screen;
-- exact return and expiry/authority behavior have focused test coverage;
+- exact return, common original inspection, stable progressive reading and
+  expiry/authority behavior have focused test coverage;
 - original-first family specimens have concrete visual/interaction review,
   preserving the submitted material's specificity; do not postpone the whole
   desirability question as later polish or claim measured user preference;
@@ -968,13 +1155,14 @@ The finish condition is not a document alone:
   are ready for P3 and the relevant P5 stages;
 - unresolved shared policy remains isolated behind its explicit boundary.
 
-Dispatch P3 as soon as its selected-object/context interfaces and eligible
-owner reads are stable, while the remaining P1/P2 work continues. Do not wait
+Adopt the Technical lane's P3 output as soon as its selected-object/context
+interfaces and eligible owner reads are landed, while P1/P2 work continues. Do not wait
 for every first-assignment finish condition, complete collection writes or
-edition persistence. Review the first connected P1/PC/P2 foundation, then the
-connected P2/P3 result; neither checkpoint waits for all families. Prepare P4
+broader edition persistence beyond any triggered minimum. Review the first
+connected P1/PC/P2 foundation, then the connected P2/P3 result; neither checkpoint
+waits for all families. Prepare P4
 and broader P5 contract tests in parallel where files are independent, while
-the minimum producer safeguards ship with P3.
+the minimum producer safeguards and any triggered retention support ship with P3.
 Do not block on signing, a new model vendor, complete connected inbox delivery
 or final visual polish when unrelated work can proceed.
 
@@ -998,6 +1186,17 @@ implementation lane before editing. Existing strategy and research details:
   [correction handling](../../travel-agent/backend/core/db/intake_semantics.py),
   [time correction adapter](../../travel-agent/backend/inbound/anchor_runtime.py),
   [historical fact writer](../../travel-agent/backend/core/db/entity_facts.py).
+- [Confirmed artifact route](../../travel-agent/backend/api/routes/artifact_projections.py),
+  [retained-source projection](../../travel-agent/backend/core/db/intake_anchors.py),
+  [semantic families](../../travel-agent/backend/inbound/semantic_contract.py),
+  [native reading adapter](../../travel-app/utils/canonicalArtifactView.ts),
+  [entity capabilities](../../travel-agent/backend/core/entity_types.py),
+  [intake format boundary](../../travel-agent/backend/inbound/v2_security.py)
+  and [email admission](../../travel-agent/backend/inbound/email_forward.py).
+- [Media policy](../../travel-agent/backend/media/policy.py),
+  [public Places query boundary](../../travel-agent/backend/places/FEATURE.md),
+  [source inspection](../../travel-app/components/inbound/OriginalMaterialView.tsx)
+  and [artifact gallery](../../travel-app/components/artifacts/ArtifactMediaPreview.tsx).
 - [Atlas retrieval](../../travel-agent/backend/core/vector/atlas.py),
   [Source discovery](../../travel-agent/backend/root_projection/v2/source_contribution_discovery.py),
   [selection](../../travel-agent/backend/root_projection/v2/source_contribution_opportunities.py),
@@ -1006,6 +1205,8 @@ implementation lane before editing. Existing strategy and research details:
   [serving](../../travel-agent/backend/root_projection/v2/source_contribution_serving.py),
   [producer](../../travel-agent/backend/root_projection/v2/source_contribution_producer.py),
   [publication and invalidation](../../travel-agent/backend/core/db/source_contributions.py),
+  [work-item identity](../../travel-agent/backend/core/models/source_contribution_work.py),
+  [continuity handoff](../../travel-agent/backend/root_projection/v2/source_contribution_canonical_executor.py),
   [Life fences](../../travel-agent/backend/life_projection/owner_fence.py),
   [LLM accounting](../../travel-agent/backend/core/llm_accounting.py).
 - [Native result reader](../../travel-app/components/source/SourceContributionResultScreen.tsx),
@@ -1022,6 +1223,20 @@ Vesper is a design recommendation, not validation of Vesper's product advantage:
 - [Web Annotation](https://www.w3.org/TR/annotation-model/): source, selector
   and representation state; locators need revision context. No JSON-LD or
   universal graph implementation is required.
+- [IIIF Presentation](https://iiif.io/api/presentation/3.0/): distinguish compound
+  objects, representations, annotations and rights. Borrow those distinctions,
+  not a new IIIF/JSON-LD platform or a substitute for semantic retrieval.
+- [AWS idempotent APIs](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/):
+  retry identity follows intent; changed parameters under one token are rejected.
+  Artifact result reuse still needs its own explicit equivalence contract.
+- [TMDB licensing FAQ](https://developer.themoviedb.org/docs/faq) and
+  [Places policies](https://developers.google.com/maps/documentation/places/web-service/policies):
+  access, commercial licensing, attribution and storage are bounded by source
+  terms. They do not establish Vesper's negotiated rights or blanket permission
+  for downstream inference, sharing or retention; approve those uses explicitly.
+- [Expo SDK 55 Image](https://docs.expo.dev/versions/v55.0.0/sdk/image/): existing
+  iOS Live Text interaction is an inspection option to evaluate, not backend OCR,
+  a durable selector, or a cross-platform capability promise.
 - [Qdrant multi-representation retrieval](https://qdrant.tech/documentation/tutorials-search-engineering/multi-representation-search/)
   and [MMR](https://aclanthology.org/X98-1025.pdf): complementary retrieval
   representations and relevance-aware redundancy reduction. Neither establishes
@@ -1038,7 +1253,7 @@ Vesper is a design recommendation, not validation of Vesper's product advantage:
 
 This document records planning and inspection evidence only. Runtime tests,
 native acceptance, model comparisons and economic measurements in the packages
-are required future work, not completed results. On expiry, the program owner
-should absorb useful package detail into the active execution plan, refresh this
-supporting plan with an explicit reason, or archive it. Do not maintain a second
-dispatch queue here after execution is admitted.
+are required future work, not completed results. This file now owns Strategy's
+assigned package progress under the program boundaries, not the other lanes'
+queues. On expiry, its owner should refresh unfinished work with an explicit
+reason, promote durable contracts or archive completed planning and research.
