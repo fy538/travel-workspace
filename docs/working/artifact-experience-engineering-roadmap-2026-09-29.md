@@ -1358,7 +1358,7 @@ generated API snapshots (`f3b693890`). Focused evidence:
 | Generated API contract | `./scripts/sync-types.sh` | Offline export, app projection and generated TypeScript completed after adding `ArtifactOriginalReference`; the static fixture was updated before sync passed. Generated snapshot commit `f3b693890`. |
 | App reader fallbacks | `npm test -- --runInBand __tests__/components/canonicalArtifactCard.test.tsx` | 18 passed at app `d7401a2ec`, covering ticket/place/work readers and generic fallback for passage/dish/practical-record descriptors. |
 | App static/registered inventory | `npm run typecheck`; targeted `npm run lint -- __tests__/components/canonicalArtifactCard.test.tsx`; `npm run qa:polish:scenarios` | Passed; scenario inventory is 31 registered IDs. No screenshot was captured and this is not native visual acceptance. |
-| Workspace documentation | `make docs-check` (after `make docs-status-sync`) | Passed on workspace `f3b693890` plus this roadmap and generated-current-state edits in the working tree. Includes governance, child governance, inventory, spine, canon, release, generated status, links, compatibility and Home-surface checks; the final receipt commit follows. |
+| Workspace documentation | `make docs-check` (after `make docs-status-sync`) | Passed on workspace `f3b693890` plus this roadmap and generated-current-state edits in the working tree; both receipts landed together as workspace `ab0a3522`. Includes governance, child governance, inventory, spine, canon, release, generated status, links, compatibility and Home-surface checks. |
 
 Native acceptance, model comparisons, human preference and economic measurements
 remain future evidence—not completed results. CoreSimulator was unavailable in
