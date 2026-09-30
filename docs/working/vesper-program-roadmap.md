@@ -469,6 +469,24 @@ passed, and targeted lint had no errors with the existing renderer-size
 warning. No native visual verdict is claimed for these copy and route-label
 corrections. D2's broader receiving and full-scroll acceptance remain open.
 
+**Additional current lane increment — 2026-09-30:** backend commit
+`fd0013758` and app commit `c97db7847` make a fresh Anywhere Home read use the
+existing approved Places starter guide when it has a readable preview. Home
+shows the guide's own title and preview, verifies the exact dossier through
+`source.inspect`, opens that dossier in Places, and suppresses the redundant
+generic Anywhere row. If no display-ready guide exists, the fallback remains a
+simple “Explore Places” door. No user-interest claim, generation, endpoint or
+new content store was added. Places' no-lead state now gives a direct
+search/map starting point and does not render the owner diagnostic. Focused
+backend coverage passed **7/7**, Ruff check/format passed, the Places root
+component suite passed **10/10**, and focused Home-renderer/exact-dossier-route
+coverage passed **2/2**; both child-repo pre-commit hooks passed. Native visual
+acceptance remains **unverified**: CoreSimulatorService again refused the
+registered-device query, so no screenshot or design-parity verdict is claimed.
+This closes a cold-start receiving and empty-state clarity gap only; D2 remains
+active. Continue with existing-supply coverage and full-scroll/real-owner
+acceptance independently of the simulator blocker.
+
 ### D3 Make practical help part of the same system
 
 **Outcome:** what is happening now changes the useful options and actions across
