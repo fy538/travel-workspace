@@ -1,3 +1,5 @@
 # Preserve exact bytes of captured design exports and generated design boards.
 docs/design-archive/design-language-2026-09-11/** -whitespace
+# Frozen byte-verified source export; do not reformat its manifest inputs.
+docs/design-archive/life-2026-09-26/project/** -whitespace
 docs/working/design-gen/** -whitespace

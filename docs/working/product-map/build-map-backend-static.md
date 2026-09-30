@@ -1120,4 +1120,3 @@ notes on Home. Similarly Home reads public place-content primitives with no flag
   Google/Foursquare refreshes per seeded user (`places/saved_place_watch.py:142-149`).
 * **Governance drift:** 17 operations past `review_by`; stale registry rows for a deleted flag; ~45 unregistered
   behavior-changing env toggles; registry defaults that contradict `fly.toml` (§3c).
-

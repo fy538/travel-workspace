@@ -145,4 +145,3 @@ Static drawings establish the proposed paths only, not usability, demand, implem
 ## 10. September 26 — decisions recorded
 
 The founder answered the open questions: group conversation is always allowed and every occasion has a group chat on by default; EB Garamond stays the serif; the remaining recommendations were accepted. They are recorded in [the multiplayer direction decision](../decisions/2026-09-26-multiplayer-direction.md), which amends the group/social charter's voting-first rule and supersedes the September 22 handoff's selective-sharing composition. The shared fixture ledger gained a labelled Multiplayer Shapes section (§11) naming where this project's world differs. Boards 00, 02, 04–11 were updated to match (06 gained the brunch's group chat); §8.4's open list is replaced by 00's "Still to do".
-
