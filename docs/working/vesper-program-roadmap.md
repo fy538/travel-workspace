@@ -250,8 +250,28 @@ real authorized backend read returns the retained original; unsupported paths
 show honest failure and recovery. Separate in-app, extension, email-provider
 and signed-device results. Mock/DB-only checks do not establish all-door delivery.
 
-**Independent work when blocked:** supported in-app delivery, email transport
-failure semantics, original-open integration and D2's existing-supply composition.
+**Implementation checkpoint — September 30:** app `1f041a30a` adds durable
+recovery for ordinary iOS in-app private Keeps. It journals text/photo bytes in
+the app-private protected store before Intake dispatch, binds the record to the
+backend owner plus the Clerk session generation, replays the same key when the
+common composer is reopened, and clears local bytes only after terminal
+current-owner readback. This reuses Intake v2 and the existing capture journal;
+it does not cover a seeded OS-share handoff, Android, a Home-level resume
+indicator, or signed/live backend acceptance. Focused app suites passed **51/51**,
+production/test TypeScript checks passed, and nine Foundation journal-harness
+scenarios passed. Native iOS build/device behavior remains **unverified**.
+
+**OS-share identity correction — September 30:** app `bc1b54fac` fixes a
+Clerk-subject versus backend-owner UUID mismatch in the opted-in native host.
+It preserves the existing Clerk-keyed extension journal (so pending local
+records remain discoverable), resolves the internal owner through authenticated
+`GET /api/me`, and validates Intake receipts against that UUID. Six focused
+Jest suites now pass **65/65**, including the external-to-internal owner mapping
+and fail-closed resolution path; native/device and live-backend acceptance
+remain unverified.
+
+**Independent work when blocked:** in-app authenticated/native acceptance, email
+transport failure semantics, original-open integration and D2's existing-supply composition.
 Do not block the whole lane on signing, an unavailable provider or an unapproved
 sharing policy. No Chat redesign or Life implementation belongs to D1.
 

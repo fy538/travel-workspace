@@ -1928,6 +1928,49 @@ checkout. No API or app contract changed. Native visual and authenticated
 owner-readback evidence were not part of this bounded correction; broader D2
 acceptance remains open.
 
+### In-app private Keep recovery after reopening — 2026-09-30
+
+App `1f041a30a` extends the existing protected capture journal to ordinary
+iOS in-app text/photo Keeps. Before the existing Intake v2 submission starts,
+the app copies selected original bytes and the exact text, source channel and
+idempotency key into app-private `Application Support` storage with complete
+file protection and backup exclusion. Image-picker source URLs are accepted
+only from the app cache; the store rejects paths outside that root and
+symlink escapes. This stays separate from the extension's App Group journal and
+does not reinterpret provider-owned OS-share handoffs.
+
+The durable owner is the hydrated backend user UUID plus the actual Clerk
+session ID (also used as the stable session-generation fence). When the person
+reopens the common composer in that same session, it finds the oldest pending
+record and resumes the identical payload/key; no new capture or server identity
+is created. A terminal receipt is cleared only after current-owner readback.
+Changing account or Clerk session cannot reopen the old record. The code does
+not auto-launch the composer or add a separate Home recovery card; recovery
+starts when the person next opens the existing common composer entry.
+
+Focused evidence: `npm --prefix travel-app run typecheck` and
+`npm --prefix travel-app run test:typecheck:contracts` passed; the four affected
+Jest suites passed **51/51**; after the follow-on owner-mapping fix, six focused
+Jest suites pass **65/65**; `capture-journal:test` passed all **9** Foundation
+harness scenarios, including app-cache copy, outside-cache rejection and
+symlink escape rejection; the changed TypeScript files passed targeted ESLint.
+`CaptureAttemptJournalModule.swift` passed Swift syntax parsing. This is not an
+iOS app/extension build, simulator/real-device process-restart run, file
+protection acceptance on device, or authenticated live-backend readback. Those
+remain required before claiming native in-app recovery acceptance. Android,
+seeded OS-share recovery, and the extension's separate retry/session flow remain
+outside this slice.
+
+The follow-on native-host correction is app `bc1b54fac`. The extension journal
+continues using its existing Clerk subject as local owner identity so any
+previously prepared record remains discoverable. Before accessing that journal,
+the host resolves Vesper's internal UUID from authenticated `GET /api/me`; the
+Intake service compares create/read/delete receipts against this backend owner
+without conflating it with the local journal key. Tests cover successful owner
+mapping and refusal to open the journal if that authenticated mapping fails.
+This repairs the code-level ID-domain mismatch; it does not establish an
+authenticated live-backend or signed-device pass.
+
 ### Published candidate — prior full coordinated gate
 
 The full coordinated gate passed before this docs rebaseline on workspace
