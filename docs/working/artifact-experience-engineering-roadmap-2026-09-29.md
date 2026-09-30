@@ -1719,3 +1719,24 @@ test failure was reported.
 Native visual acceptance was not run because the Mac UI was locked; these
 checks prove fixture/component behavior only, not native rendering or live
 projection behavior. No backend, API schema, or identity change was made.
+
+### September 30 photo-selection zoom reset regression
+
+App commit `5b6a4e2c7` adds a regression proving that after the first original
+is zoomed, selecting the next original begins from fit rather than carrying
+over the previous photo's transform. The production reader already remounts
+the zoom surface using the selected source identity; this test protects that
+P2 contract without changing runtime behavior.
+
+Validation on app `5b6a4e2c7`: `npm test -- --runInBand --no-cache
+__tests__/components/canonicalArtifactCard.test.tsx` passed (1 suite, 27
+tests), targeted ESLint passed, `npm run typecheck` passed, and
+`npm run verify:merge -- --base main` passed (1,287 suites, 9,101 tests, one
+snapshot). The focused Jest run printed the existing asynchronous
+`VirtualizedList` `act(...)` warning; the suite passed. The 31 registered QA
+scenario IDs validated. A native QA retry was unavailable: CoreSimulatorService
+returned a connection error, and the runner's doctor stopped before device
+preflight because it could not create its lane-local QA lock (`EPERM`). No
+native flow or screenshot was produced. Pinch/pan, VoiceOver, physical-device,
+and wider reader acceptance remain open; no backend/API or identity change was
+made.
