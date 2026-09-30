@@ -1676,6 +1676,10 @@ __tests__/components/canonicalArtifactCard.test.tsx` passed (2 suites, 32
 tests); `npm run typecheck`, targeted ESLint, `npm run qa:polish:scenarios`
 (31 registered IDs), `npm run docs:check`, and `git diff --check` passed. Jest
 printed a React `act(...)` warning from `VirtualizedList`, but the suites passed.
+The full app merge-scope run also passed at app `fd1353a7b`:
+`npm run verify:merge -- --base main` (1,287 suites, 9,100 tests, one
+snapshot). The runner force-exited one worker after the suites completed; no
+test failure was reported.
 Native visual acceptance was not run because the Mac UI was locked; these
 checks prove fixture/component behavior only, not native rendering or live
 projection behavior. No backend, API schema, or identity change was made.
