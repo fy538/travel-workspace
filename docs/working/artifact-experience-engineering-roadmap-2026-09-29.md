@@ -69,16 +69,22 @@ candidate/anchor only when active observation lineage matches both source ID
 and custody-bound content digest; the private read is owner-session scoped and
 rechecked on return. The focused artifact photo viewer now adds bounded
 pinch/double-tap zoom, panning, and assistive zoom actions to that exact-source
-inspection path, without disk-caching the original. Native gesture and screen
-reader acceptance remain unverified; the reader contract now includes a manual
-device checklist for resuming that acceptance. A further P2 increment now
-reuses the same photo zoom/viewer interaction in the private Intake source,
-received-original, and canonical artifact readers while each route retains its
-own current authorization and exact source. This is shared interaction code,
-not shared custody authority. The new Life continuity scenario and full
-app merge-scope suite pass; native gesture, VoiceOver, and screenshot
-acceptance remain open. Stable component identity across OCR/representation
-replacement, collections, and reconciliation remain open. This roadmap owns
+inspection path, without disk-caching the original. On the Vesper QA SE
+simulator (iOS 18.2), a direct simulator double-tap visibly changed the owner
+photo from fit to zoom and a second tap restored fit. The registered Maestro
+gesture attempt completed but produced byte-identical fit/zoom/pan/restored
+screenshots, so the automated flow does not prove the gestures; direct drag did
+not visibly establish panning. Pinch, reliable pan, VoiceOver and physical-device
+acceptance remain open; the reader contract records these limits. A further P2
+increment reuses the same photo zoom/viewer interaction in the private Intake
+source, received-original, and canonical artifact readers while each route
+retains its own current authorization and exact source. This is shared
+interaction code, not shared custody authority. The new Life continuity
+scenario and full app merge-scope suite pass. Native pan/pinch, VoiceOver,
+physical-device and full screenshot acceptance remain open. Direct simulator
+double-tap has only the bounded fixture evidence recorded below. Stable component identity across
+OCR/representation replacement, collections, and reconciliation remain open.
+This roadmap owns
 Strategy's package
 sequence and receipts. The program owns cross-lane boundaries, not a
 permission queue for ordinary implementation. The earlier
@@ -1535,9 +1541,20 @@ design-intent verdict is claimed.
 This closes the registered exact-original inspection/return native scenario,
 not the larger artifact-reader acceptance. The run used a fixture-bound
 calendar original and does not establish production persistence or live API
-readback. Photo zoom/pan gestures, VoiceOver traversal, a multi-family native
-matrix, real-world artifact usefulness, model quality, and the P3 discovery
-experience remain unverified/open. Continue with those narrower acceptance and
+readback. Photo panning/pinch, VoiceOver traversal, physical-device behavior, a
+multi-family native matrix, real-world artifact usefulness, model quality, and
+the P3 discovery experience remain unverified/open. Direct simulator input did
+verify double-tap fit → zoom → fit on the seeded owner-photo fixture. The
+subsequent registered Maestro run completed but the four gesture-state captures
+had identical SHA-256
+`242e12a3edaa8a4c5a96d9dabfcc34dd9db5ee86d2a2bbe144e71379c6057f8f`; its gesture
+commands are not acceptance evidence and were removed from that flow. A
+follow-up visual check exposed a viewport bug: the transformed clipping frame
+could expand over the fixed photo-viewer title and close control. The shared
+component now keeps the clipping viewport fixed and transforms only its inner
+photo layer; simulator retest confirms the controls stay stationary through
+fit → zoom → fit. Pan, pinch, VoiceOver, physical-device behavior, and broader
+acceptance remain open. Continue with those narrower acceptance and
 product-value gates before treating the artifact reader as broadly native-
 accepted or moving to an unscoped generalized dynamic-content implementation.
 
@@ -1550,7 +1567,22 @@ that same uncropped photo, and the source absent from Life after owner-authorize
 Undo. This is fixture-backed route/entry/exit evidence; Maestro did not exercise
 pinch, pan, double-tap, or VoiceOver. It does not prove live-source persistence,
 and it is not a broader Life-root design verdict. Photo gesture and assistive
-acceptance therefore remain open.
+acceptance therefore remain open. A September 30 attempt expanded the flow
+with coordinate double-tap and swipe commands, but the captured fit, zoom, pan
+and restored PNGs had identical SHA-256
+`242e12a3edaa8a4c5a96d9dabfcc34dd9db5ee86d2a2bbe144e71379c6057f8f`. Those
+automation commands are not evidence of visible interaction and were removed
+from the registered route-continuity flow. Separately, direct simulator input
+on the same seeded owner photo visibly toggled fit → zoom → fit. That supports
+only the double-tap path on this simulator/build; a direct CUA drag produced no
+visible pan, so pan remains unresolved rather than failed or passed. The
+simulator check also exposed that the animated transform was applied to the
+clipping viewport, allowing the image to overlap its fixed title/close header.
+The shared component now leaves that viewport fixed and clipped, with the
+transform on an inner image layer. A post-change simulator double-tap again
+showed fit → zoom → fit while the header stayed stationary and the image
+remained inside the viewport. A focused component-structure regression test
+guards that separation; simulator drag still did not establish panning.
 
 The bounded JavaScript follow-up verifies that the photo viewer's declared
 Zoom in and Zoom out accessibility actions dispatch through the existing
