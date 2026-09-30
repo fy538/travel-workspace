@@ -780,6 +780,11 @@ and returns correctly from related material. It remains useful without AI.
 - Define reusable family-level readers for appropriate inspection: an original
   photo, ticket details, a selected passage, and structured practical evidence.
   A single giant conditional ArtifactCard is not the abstraction.
+  **Delivered increment:** a passage's source-backed `excerpt` is now emitted
+  by the owner projection and shown in a restrained “as kept” reader when the
+  recognized descriptor and excerpt are both present. This does not select a
+  part inside a longer original or identify its author/work; dish and practical
+  records still use honest source-fact/original fallback.
 - Reuse a common original-inspection interaction across Intake, confirmed
   artifacts and received originals, retaining each owner's authorization adapter.
   Test dense print, zoom/pan, selected parts, supported text copying and dismissal
@@ -823,8 +828,8 @@ kept-to-recognized transition and inspect the same small-print original after
 Keep, confirmation and authorized receiving, including multiple large images.
 
 Retain reviewed original-first specimens across the portfolio: readable
-admission details, photograph inspection, a passage with its source context,
-and usable structured record details. They must preserve personal specificity
+admission details, photograph inspection, a passage with its supplied source
+context, and usable structured record details. They must preserve personal specificity
 and appropriate interaction rather than cosmetic variants of a generic information
 card. Design review can identify weaknesses and select a treatment; desirability
 to ordinary users remains a hypothesis until the human comparison.
@@ -1438,7 +1443,7 @@ coverage through the authenticated Intake route (`5dbc29353`, extended by
 
 | Boundary | Command | Result and limit |
 | --- | --- | --- |
-| P2 source-bound passage reader | App `8df9bf93e`; `npm test -- --runInBand --no-cache __tests__/components/canonicalArtifactCard.test.tsx`; `npm run typecheck`; `npx eslint --no-cache components/artifacts/ArtifactFamilyReader.tsx components/artifacts/PassageArtifactReader.tsx __tests__/components/canonicalArtifactCard.test.tsx`; app `npm run docs:check` after contract update | 21 component tests passed, including a recognized source-backed excerpt rendering as “PASSAGE · AS KEPT,” supplied place/source-note details, and generic fallback when the excerpt is absent; TypeScript, targeted ESLint, app documentation headers and links passed. App contract now states that no author, book, edition, or surrounding context is inferred. No API/schema change, live backend, native screenshot, or visual-preference claim. Registered device `--doctor` initially failed because Metro was not reachable on `:8081`; the isolated runtime attempt then stopped because backend startup requires `ANTHROPIC_API_KEY`, absent in this environment. Runtime was interrupted; no successful native capture is claimed. |
+| P2 source-bound passage reader | Backend `4b29a3125` and lineage assertion `48ca8c790`; `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/core/test_canonical_artifact_projection.py -q`; targeted `ruff check --no-cache …` and `ruff format --check --no-cache …`; app `8df9bf93e`; `npm test -- --runInBand --no-cache __tests__/components/canonicalArtifactCard.test.tsx`; `npm run typecheck`; targeted `npx eslint --no-cache …`; app contract `3c87bbef3`; app `npm run docs:check` | 23 backend projection tests and 21 app component tests passed. The backend now returns a source-backed `excerpt` fact and marks it family-relevant; the regression proves exact excerpt value and active observation source lineage. The app renders “PASSAGE · AS KEPT” only with a recognized descriptor and non-empty excerpt, shows supplied place/source-note facts, and falls back when the excerpt is missing. TypeScript, targeted lint/format, commit hooks and app docs checks passed. Generated wire shape is unchanged; no catalog/author/work inference, selected part within a longer original, live backend, native screenshot, or visual-preference claim. Registered device `--doctor` failed because Metro was not reachable on `:8081`; the isolated runtime attempt then stopped because backend startup requires `ANTHROPIC_API_KEY`, absent in this environment. The exact lane Postgres/Qdrant containers were stopped afterward without deleting their volumes. No successful native capture is claimed. |
 | P1 canonical artifact reader lifecycle | Backend commit `9c775cd03`; `DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_lifecycle_20260930_01 PYTHONPATH=. .venv/bin/python -m alembic upgrade head`; `TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_lifecycle_20260930_01 TEST_DATABASE_DISPOSABLE=1 TRAVEL_APP_ROOT=../travel-app SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/inbound/test_candidate_owner_lifecycle_postgres.py -q`; offline `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider -m 'not requires_postgres and not requires_api_keys and not requires_dogfood_wedge' tests/inbound/test_intake_semantics_contract.py tests/core/test_intake_anchor_originals.py tests/core/test_canonical_artifact_projection.py tests/api/test_artifact_projections.py tests/inbound/test_anchor_runtime.py -q`; `ruff check --no-cache tests/inbound/test_candidate_owner_lifecycle_postgres.py`; `ruff format --check --no-cache tests/inbound/test_candidate_owner_lifecycle_postgres.py` | Three Postgres lifecycle tests passed. The authenticated canonical artifact route proves persisted readback of a confirmed source-bound candidate, non-owner denial (404), candidate withdrawal (404), and 404 after actual `delete_submission`; source-loss restore remains fenced. The new database was migrated and dropped inside this lane's PostGIS service, then the service was returned to its prior stopped state; the lane's default database and volume were preserved. The 66-test offline source/reader suite, Ruff, formatting, and backend commit hooks passed. TestClient uses an identity dependency override; this is not deployed-service or native/mobile acceptance, and no schema/API contract changed. |
 
 Native acceptance, model comparisons, human preference and economic measurements
