@@ -421,6 +421,18 @@ surface scenario IDs passed (**31**). The native quiet-flow attempt did not
 produce screenshots, so this has no visual acceptance claim. This closes the
 long-Home-provenance-line refinement, not D2 full-scroll acceptance.
 
+**Additional current lane increment — 2026-09-30:** app commit `bde5eb165`
+labels a Home `life.open` bridge that still carries a legacy Trip reference as
+“Open trip details,” matching the exact Trip detail route selected by the
+existing navigation resolver. It no longer promises to open the Life root
+while sending the person to Trips. The capability, exact Trip reference and
+Home return context are unchanged. Home renderer and route-resolution suites
+passed **82/82**, app production typecheck and registered surface checks passed
+(**31 IDs**), and targeted lint had no errors with the existing Home-renderer
+max-lines warning. Native capture for this copy change was not completed; no
+visual verdict is claimed. This closes one false-root-label mismatch, not the
+remaining D2 receiving and full-scroll work.
+
 ### D3 Make practical help part of the same system
 
 **Outcome:** what is happening now changes the useful options and actions across
