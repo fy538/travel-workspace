@@ -445,6 +445,15 @@ warning. No native visual verdict is claimed for this copy/door correction.
 This closes a route-label consistency defect only; D2 receiving and full-scroll
 acceptance remain active.
 
+**Additional current lane increment — 2026-09-30:** app commit `0eb31d483`
+removes a false exactness claim from the Home action-receipt door. The current
+resource resolver opens the Life root for `action_receipt`; Home now says
+“Open in Life” rather than promising a receipt-specific reader that does not
+exist. The focused Home renderer suite passed **21/21**, app production
+typecheck passed, and targeted lint had no errors with the existing
+renderer-size warning. This is a truthful-door correction, not an exact
+receipt-reader implementation or D2 completion.
+
 ### D3 Make practical help part of the same system
 
 **Outcome:** what is happening now changes the useful options and actions across
