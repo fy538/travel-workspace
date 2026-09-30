@@ -1883,3 +1883,26 @@ does not establish live backend delivery, persisted production state, design
 reference parity, photo gestures, VoiceOver, physical-device behavior, or the
 broader artifact-family matrix. Those native/product acceptance items remain
 open.
+
+### September 30 registered artifact-reader family matrix
+
+App commit `eb5209447` expands the registered `canonical-artifact-reader`
+Maestro flow through the production reader route to include a source-backed
+book, a kept passage, a structured practical record, and a sparse work record
+that must remain on the generic source-fact fallback. The flow waits for the
+family-reader test IDs where relevant, so a screenshot alone cannot silently
+stand in for reader dispatch. The fixtures remain mock-only; this adds no
+catalog, backend, persistence, or product-capability claim. The existing
+calendar → exact original → return path is retained.
+
+Validation: app `npm run qa:polish:test` passed (including committed-verdict,
+surface-index, scenario, and design-gate checks); `git diff --check` passed;
+`npm run qa:polish -- canonical-artifact-reader --dry-run
+--flow=polish/canonical-artifact-reader` generated the expected seven-screenshot
+manifest without captures. The live capture was **not run**: `xcrun simctl list
+devices booted` returned `CoreSimulatorService connection became invalid`, so
+there was no available simulator target. The dry-run is registry evidence only,
+not native acceptance. This closes a coverage-definition gap, not the open P2
+native visual/interaction acceptance. Resume with the registered device flow
+on a working simulator, inspect the family screenshots, and judge each
+fallback/authority claim before marking any matrix state accepted.
