@@ -1986,3 +1986,22 @@ Backend commit `63ac861ef` contains this slice. On the same tree before commit:
   service check failed because this session cannot access the Docker socket;
   no database was started, provisioned or modified. This receipt does not claim
   the Postgres case passed.
+
+#### R7 verification repair — date-stable trip-context preview fixture (September 30)
+
+The prior offline merge gate exposed a stale fixed-date test fixture, not a
+production regression: its Oct 1–2 trip became live on Sep 30, and the
+production safety rule correctly refused an atomic edit. The fixture now
+places the same-duration shift 45 days in the future relative to the test
+clock and derives the itinerary block's time from that date. No production
+lifecycle behavior was changed.
+
+Backend commit `af05702ab` carries the test-only correction. The complete
+offline command, with both database-test variables explicitly unset, passed:
+**22,041 passed, 14 skipped, 53 xpassed, 0 failed** in 131.462 seconds. The
+14 database/provider skips remain outside this evidence. Measurement:
+`/tmp/vesper-adaptive-context-r2-tests/measurements.json`; log:
+`/tmp/vesper-adaptive-context-r2-tests/logs/date-stable-trip-context-merge-check-20260930T233820Z.log`.
+All commit hooks passed with Ruff cache disabled. R7 package acceptance remains
+open; this repairs one verification fixture and does not establish comparative
+product quality or operational acceptance.
