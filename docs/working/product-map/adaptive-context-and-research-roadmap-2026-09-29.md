@@ -1244,7 +1244,8 @@ live provider call, database, migration, app build, or consumer runtime was
 exercised. The source-binding result still does not prove semantic entailment.
 Remaining R1 acceptance includes a caller-independent typed disclosure boundary,
 purpose-specific lookup/discovery behavior, and supported-claim checks. R2's
-selected-original reader is also still outstanding.
+selected-original reader was still outstanding at this receipt's revision; the
+later implementation receipt below records subsequent progress.
 
 Second-pass offline checks at workspace `44f637e85`, backend `3c170d21f`
 and app `87eceee24`, on Python `3.13.0` / Darwin 25.5 arm64:
