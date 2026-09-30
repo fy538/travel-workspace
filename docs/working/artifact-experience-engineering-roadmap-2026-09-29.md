@@ -40,8 +40,16 @@ first assignment: P0 still needs reviewed identity/subject/collection decisions,
 component/context and edition references, the complete family/mode matrix and
 replay fixtures; P1 still needs cross-door recognizable identity, typed
 source/date edits, correction Undo and reconciliation; PC catalog mapping/use
-gates, other family readers, and native visual acceptance remain open. This
-roadmap owns Strategy's package
+gates, other family readers, and native visual acceptance remain open. A new
+wave also connects `inspect_source` to owner-scoped exact source references:
+the backend exposes only supported, unrevoked originals in the private owner
+projection; the app opens the exact submission/source/content revision, with
+an explicit chooser when more than one original is eligible. This extends the
+existing Intake reader rather than introducing another source service. The
+focused backend and app evidence is recorded in section 13. It does not
+complete P2: family-specific passage/practical readers, selected-part
+interaction and native visual acceptance remain unfinished. This roadmap owns
+Strategy's package
 sequence and receipts. The program owns cross-lane boundaries, not a
 permission queue for ordinary implementation. The earlier
 [strategy handoff](roadmap-proposals-for-codex-2026-09-28.md#9-focused-artifact-engineering-proposals)
@@ -1332,20 +1340,25 @@ Vesper is a design recommendation, not validation of Vesper's product advantage:
 ## 13 Document completion record
 
 This document records planning, code-backed owner mapping, and bounded local
-implementation receipts. The September 30 follow-on checkpoint starts from
+implementation receipts. The September 30 follow-on checkpoint started from
 workspace HEAD `61486071`, backend `d6730f6d6`, and app `d7401a2ec` in the
-coordinated `codex/artifact-foundation` worktree. After the replay test commit,
-the backend is `3cecd34f6`; the workspace and app remain unchanged. Focused
-evidence:
+coordinated `codex/artifact-foundation` worktree. Subsequent commits added
+backend correction-replay coverage (`3cecd34f6`), an owner-scoped exact-original
+projection (`0cbd4b6a7`), the app's exact inspect route (`14b40fea6`), and
+generated API snapshots (`f3b693890`). Focused evidence:
 
 | Boundary | Command | Result and limit |
 | --- | --- | --- |
 | Backend email admission | `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/inbound/test_email_forward_v2.py -q` | 17 passed at backend `d6730f6d6`; mock-based owner-boundary behavior, no DB/provider delivery evidence. Includes valid-PNG + scanner-gated-PDF whole-bundle rejection. |
 | Backend test quality | `ruff check --cache-dir /private/tmp/vesper-artifact-ruff tests/inbound/test_email_forward_v2.py` and `ruff format --check --cache-dir /private/tmp/vesper-artifact-ruff tests/inbound/test_email_forward_v2.py` | Both passed; backend commit hooks also passed Ruff, formatting, Vulture, and secret checks. |
 | Backend correction replay | `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/inbound/test_anchor_runtime.py tests/inbound/test_intake_anchor_projection.py tests/core/test_canonical_artifact_projection.py tests/api/test_artifact_projections.py -q` | 49 passed at backend `3cecd34f6`; replay selects the newest semantic correction while ignoring a confirmation audit row, is deterministic, and preserves original source lineage/hash as interpretation claims change. Fixture-level evidence only; no database concurrency or persisted replay proof. |
+| Backend exact-original projection | `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/core/test_canonical_artifact_projection.py tests/core/test_intake_anchor_originals.py tests/api/test_artifact_projections.py tests/inbound/test_anchor_runtime.py tests/inbound/test_intake_anchor_projection.py -q` | 59 passed at backend `0cbd4b6a7`; private owner projection includes up to 16 supported exact source/revision references, excludes them from Together, and withholds inspection for unsupported, revoked or unverified originals. Fixture/unit/API-route evidence; no disposable-Postgres readback or concurrency proof. |
+| App exact-original inspection | `npm test -- --runInBand __tests__/utils/canonicalArtifactActions.test.ts __tests__/screens/canonical-artifact-reader.test.tsx __tests__/components/canonicalArtifactCard.test.tsx __tests__/screens/intake-submission.test.tsx`; `npm run typecheck`; targeted `npx eslint …` | 65 passed; exact source ID and revision reach the existing Intake reader, with a chooser for multiple originals. Typecheck and targeted lint passed at app `14b40fea6`; screen mocks exercise routing, not native bytes, image zoom or device interaction. |
+| App registered QA inventory | `npm run qa:polish:scenarios`; `node scripts/polish-qa/run-polish-qa.mjs canonical-artifact-reader --doctor` | 31 scenario IDs validate. The surface doctor found no registered captures for `canonical-artifact-reader`; there is no native screenshot evidence for this increment. |
+| Generated API contract | `./scripts/sync-types.sh` | Offline export, app projection and generated TypeScript completed after adding `ArtifactOriginalReference`; the static fixture was updated before sync passed. Generated snapshot commit `f3b693890`. |
 | App reader fallbacks | `npm test -- --runInBand __tests__/components/canonicalArtifactCard.test.tsx` | 18 passed at app `d7401a2ec`, covering ticket/place/work readers and generic fallback for passage/dish/practical-record descriptors. |
 | App static/registered inventory | `npm run typecheck`; targeted `npm run lint -- __tests__/components/canonicalArtifactCard.test.tsx`; `npm run qa:polish:scenarios` | Passed; scenario inventory is 31 registered IDs. No screenshot was captured and this is not native visual acceptance. |
-| Workspace documentation | `make docs-check` | Passed before the receipt commit with workspace HEAD `61486071` plus this roadmap edit in the working tree; the receipt landed as workspace `9e2c4742`. Includes governance, inventory, spine, release-scope, status, links, compatibility, and Home-surface checks. |
+| Workspace documentation | `make docs-check` (after `make docs-status-sync`) | Passed on workspace `f3b693890` plus this roadmap and generated-current-state edits in the working tree. Includes governance, child governance, inventory, spine, canon, release, generated status, links, compatibility and Home-surface checks; the final receipt commit follows. |
 
 Native acceptance, model comparisons, human preference and economic measurements
 remain future evidence—not completed results. CoreSimulator was unavailable in
