@@ -2014,3 +2014,13 @@ typecheck`, targeted ESLint for the changed component/test, and `git diff
 CoreSimulatorService remains unavailable in this environment; this closes a
 JS geometry regression only, not native pan/pinch, VoiceOver or physical-device
 acceptance.
+
+### September 30 full app merge-scope verification
+
+After the photo-viewer bounds change, app command `npm run verify:merge --
+--base main` completed in full mode on `6dd9816f1`: 1,287 suites and 9,108
+tests passed, with one snapshot. The changed photo/artifact suites were included
+in that run. Existing asynchronous React test warnings appeared in unrelated
+suites, but the aggregate command exited successfully. This is broad app
+regression evidence, not native device acceptance or a backend integration
+claim.
