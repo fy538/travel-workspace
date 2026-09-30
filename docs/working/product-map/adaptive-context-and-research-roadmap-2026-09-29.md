@@ -32,7 +32,7 @@ Some pieces work for Places or Trips but are not general artifact capabilities.
 
 This is a **supporting plan, not an activated execution lane or another queue**.
 The [program roadmap](../vesper-program-roadmap.md) owns assignments. Its newer
-[delivery-lane version](/Users/feihuyan/travel-workspace--home-value-delivery/docs/working/vesper-program-roadmap.md)
+[delivery-lane version](../vesper-program-roadmap.md)
 was the execution reference inspected here. Existing capture/share work and
 the [Home package](../home-value-composition-execution-plan-2026-09-25.md) retain
 their owner. No provider, background posture, sharing policy, deployment or
@@ -61,10 +61,10 @@ The strategy roadmap changed during this investigation to add catalog anchoring
 and newer artifact design references. The inspected file's SHA-256 was
 `73aeec70d9a1ce830cedf7e0a60d4309a17fb36086374a36ea5550a59b1bc594`.
 Re-read it before admission rather than treating this snapshot as its latest
-word. Its local path is
-[Artifact experience engineering roadmap](/Users/feihuyan/travel-workspace--product-direction-2026-09-28/docs/working/artifact-experience-engineering-roadmap-2026-09-29.md).
-The absolute reference intentionally identifies an unlanded working document;
-replace it with a repository-relative reference when its owner lands it.
+word. The [Artifact experience engineering roadmap](../artifact-experience-engineering-roadmap-2026-09-29.md)
+was inspected in the product-direction worktree. It is now integrated into this
+repository; the relative link follows that integration without changing the
+dated evidence above.
 
 Three read-only investigators covered ingestion/retrieval/research,
 runtime/temporal/delivery, and memory/privacy/evaluation/mobile. The coordinator
