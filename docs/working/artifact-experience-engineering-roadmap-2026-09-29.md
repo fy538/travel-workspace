@@ -2101,3 +2101,34 @@ persistence, or user desirability. Photo pinch/pan/double-tap, VoiceOver
 activation/traversal, Dynamic Type, ticket/place/show/music/dish family
 coverage, and live-service readback remain open. The earlier registered dry-run
 receipt records the simulator outage before this subsequent successful run.
+
+### September 30 expanded native reader-family matrix
+
+App commit `05d81a9df` expands the production-route capture matrix to 14
+screenshots on the lane-assigned `Vesper QA SE` simulator (UDID
+`51A7A2C0-49CB-487E-A056-A771361EFA9B`, iOS 18.2): the tentative calendar
+artifact, exact `.ics` original, return to that artifact, and native reader
+states for book, transport ticket, admission ticket, place, film, show, music,
+kept passage, practical record, dish fallback, and sparse-work fallback. The
+final structured verdict and manifest are
+`travel-app/docs/surfaces/canonical-artifact-reader/verdicts/20260930T211642Z.json`
+and `.manifest.json`; it passes capture, correctness, visual, and doctrine
+intent for this bounded fixture matrix. The place fixture is explicitly
+`noticed`; the reader now leads with `Da Enzo`, omits the misleading
+experience-family eyebrow, and avoids repeating the place name as a fact.
+
+Validation on the final app commit: focused reader/portfolio tests passed (2
+suites, 44 tests); `npm run typecheck`, `npm run test:typecheck:contracts`,
+targeted ESLint, `npm run qa:polish:test` (74 committed verdicts),
+`npm run qa:polish:scenarios` (31 registered IDs), `npm run docs:check` (318
+Markdown files), and `git diff --check` passed. The full app merge-scope check
+passed: `npm run verify:merge -- --base main` (1,288 suites, 9,117 tests, one
+snapshot). The successful capture command targeted the lane-assigned simulator
+and produced 1/1 flow plus 13/13 extra screenshots. No authenticated service,
+persisted-production, or user-preference evidence is claimed. Dynamic Type,
+loading/error states, photo gestures, VoiceOver activation/traversal, and live
+service readback remain open. The committed verdict records two P2 observations:
+the text-only show face still reads as a restrained metadata panel, and the
+reader matrix does not yet demonstrate the context-dependent artifact value
+planned for a later slice. This completes family-rendering coverage, not the
+artifact experience roadmap or the contextual-discovery phase.
