@@ -127,9 +127,32 @@ a new test platform or blanket-delete test directories to meet a count target.
   third-party tests under local `.tmp` native-build checkouts. Jest now excludes
   that scratch tree from test/module/watch discovery while retaining product
   tests. Hosted validation remains required for the final candidate.
-- No live-model, disposable-DB, native visual, or hosted five-minute latency
-  claim follows from these local results. Required checks remain unchanged
-  until the new exact candidates pass remotely.
+- Hosted app candidate `677dc3781` passed both `Merge ready` (run 36658191461)
+  and all existing required checks. Its broad merge test job took 10m15s,
+  including setup: the under-five-minute target is **not demonstrated**.
+- Backend candidate `1c0b5da7e` passed static and offline checks, but the new
+  database job (run 36658333445) failed organizer membership and retained-source
+  restoration. The old database gate also failed retained-source tests.
+  A fresh explicitly disposable local database reproduced a worker-test race:
+  1 failed, 1,458 passed, 38 skipped, 22,042 deselected in 164.71s. A previously
+  registered background listener could claim an event before the awaited repair
+  sweep. Worker-path tests now isolate prompt delivery while retaining the real
+  journal, worker, consumers and owner fences. With the competing listener
+  deliberately registered before pytest, the full retained-source test file
+  plus charter invariants passed 26 tests in 2.20s. The organizer failure did
+  not reproduce; its cause remains unresolved, not certified fixed.
+- Default-stage hooks now run at commit only; explicitly declared pre-push
+  checks remain. App workspace checkout is narrowed to its single consumed
+  Card Catalog file. Latest local hook/checkout and worker-test changes still
+  require their own hosted candidate evidence.
+- Required-check replacement and disabling broad PR jobs were blocked by the
+  execution safety review. Neither was applied. Obtain explicit founder
+  approval for that policy cutover; promote only passing replacement gates,
+  preserve fast security/contracts/governance checks, and retain main/nightly
+  full regression. This is separate from removing mandatory second-person
+  approval, which is complete.
+- No live-model or native visual claim follows from these results. Workspace
+  private-child checkout and coordinated updated child pins remain unverified.
 
 GitHub Actions was disabled in workspace and backend at the September 7 audit.
 It has been re-enabled. Their main-branch protection had unrelated frontend
