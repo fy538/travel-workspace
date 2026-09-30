@@ -409,6 +409,18 @@ native visual acceptance remains **unverified**. This closes one Home
 continuation-clarity refinement, not full-scroll D2 acceptance. Continue with
 supported Home/Places supply and full-scroll behavior independently.
 
+**Additional current lane increment — 2026-09-30:** app commit `d06dc229f`
+keeps Home composition provenance to one visible line, so a long source label
+does not push its reading into report-like density. The complete source names
+and live/uncertain/stale qualification remain in the accessible label, and
+freshness remains separately visible; the existing source-inspection action is
+unchanged. Places and non-Home compositions keep their previous presentation.
+The composition-renderer and Home-root suites passed **46/46**, app production
+typecheck passed, targeted lint passed without new warnings, and registered
+surface scenario IDs passed (**31**). The native quiet-flow attempt did not
+produce screenshots, so this has no visual acceptance claim. This closes the
+long-Home-provenance-line refinement, not D2 full-scroll acceptance.
+
 ### D3 Make practical help part of the same system
 
 **Outcome:** what is happening now changes the useful options and actions across
