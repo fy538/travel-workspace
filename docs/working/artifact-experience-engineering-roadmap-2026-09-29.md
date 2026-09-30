@@ -1503,3 +1503,40 @@ load. This file owns Strategy's package progress under the program boundaries,
 not the other lanes' queues. On expiry, refresh unfinished work with an
 explicit reason, promote durable contracts or archive completed planning and
 research.
+
+### September 30 native reader recovery and bounded acceptance
+
+The earlier failed native attempt above is retained as historical evidence. The
+build blocker was resolved in the same coordinated lane: app commit
+`5c102849c` backports collision-safe UUID allocation for React Native's
+CocoaPods-generated Xcode project, with a regression that reproduces the
+SPM-project reload collision (Ruby/Xcodeproj: 2 tests, 6 assertions passed).
+After `pod install --deployment`, Xcode 26.5 could load the workspace and the
+checkout-matched development app rebuilt and installed on `Vesper QA SE` with
+`SENTRY_DISABLE_AUTO_UPLOAD=true npx expo run:ios --no-bundler --device "Vesper QA SE"`.
+This was a narrow patch to the pinned React Native version, not a dependency
+upgrade.
+
+At app `a611cba69`, the native `canonical-artifact-reader` scenario completed
+on simulator UDID `51A7A2C0-49CB-487E-A056-A771361EFA9B`: `VESPER_METRO_URL=http://127.0.0.1:64747 npm run qa:polish -- canonical-artifact-reader --device="Vesper QA SE" --flow=polish/canonical-artifact-reader` captured 1/1 scenario and 2/2 extras under `.maestro/runs/20260930T140955Z-canonical-artifact-reader`. Opened screenshots confirmed the source-inspection and return path, legible artifact hierarchy, non-overlapping metadata, and independently traversable title/facts/action. The UI/accessibility changes are in `a611cba69`; the app surface contract's corrected evidence boundary is in `28f701c54`.
+
+Focused reader tests passed (3 suites, 38 tests); targeted ESLint and app
+typecheck passed. `npm run verify:fast` passed, followed by
+`npm run verify:merge -- --base main` (1,286 suites, 9,094 tests, 1 snapshot).
+The structured native verdict at
+`travel-app/docs/surfaces/canonical-artifact-reader/verdicts/20260930T140955Z.json`
+is `pass` for this bounded fixture scenario, with two minor P2 observations:
+the `ENCOUNTER ATTENTION` kicker pair is taxonomy-forward, and the footer
+repeats the “Inspect source” action. `qa:polish:scenarios` passed with 31
+registered scenarios. The design-reference check is doctrine-only because this
+surface has no pinned design-reference manifest; no Claude-design comparison or
+design-intent verdict is claimed.
+
+This closes the registered exact-original inspection/return native scenario,
+not the larger artifact-reader acceptance. The run used a fixture-bound
+calendar original and does not establish production persistence or live API
+readback. Photo zoom/pan gestures, VoiceOver traversal, a multi-family native
+matrix, real-world artifact usefulness, model quality, and the P3 discovery
+experience remain unverified/open. Continue with those narrower acceptance and
+product-value gates before treating the artifact reader as broadly native-
+accepted or moving to an unscoped generalized dynamic-content implementation.
