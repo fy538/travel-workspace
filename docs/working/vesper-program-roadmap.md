@@ -272,8 +272,22 @@ transient profile/journal-read failure while the same Clerk lease remains
 current, preserving the incoming draft and preventing duplicate retry dispatch.
 Native/device and live-backend acceptance remain unverified.
 
+**Host Keep → exact original — September 30:** app commit `495955944` connects
+the in-app private Keep receipt to the existing owner-verified Intake/Life
+reader. “Open original” appears only when the lead source is currently eligible
+and has a stable content revision; navigation carries the submission, exact
+source ID/revision, and ephemeral Home/Places return token. The reader rechecks
+current ownership, custody, expiry and the requested revision, and the route
+never receives a storage reference. This closes the host-app original-open
+connection only: the native extension still has no host-app navigation, and
+signed-device/authenticated live readback remain unverified. Focused coverage
+passed **40/40** across the receipt, route and share-capture suites; production
+and test TypeScript checks and app docs checks passed. Targeted ESLint had zero
+errors and six existing warnings; native visual/device acceptance was not run.
+
 **Independent work when blocked:** in-app authenticated/native acceptance, email
-transport failure semantics, original-open integration and D2's existing-supply composition.
+transport failure semantics, remaining native original-open work, and D2's
+existing-supply composition.
 Do not block the whole lane on signing, an unavailable provider or an unapproved
 sharing policy. No Chat redesign or Life implementation belongs to D1.
 
