@@ -1432,3 +1432,44 @@ policy. No claim-support verifier, public-source retention, private-memory
 filter, paid-attempt reservation, selected-component flow, live provider
 call, database mutation or native consumer readback was exercised. R1 and
 R0–R7 remain open.
+
+#### Implementation receipt — privacy-safe research diagnostics (September 30)
+
+Backend commit `e62219445` removes raw query/local-target text, precise
+reverse-geocoding coordinates and provider exception text from the per-request
+logs in quick research, source gathering, Nominatim and Concierge web lookup.
+Logs retain bounded operation metadata (such as target/content type) and
+exception class. Focused regression tests inject private markers into query,
+location and provider-error values and assert that markers do not appear in
+captured Python logs. Feature docs explicitly scope this statement: separate
+batch catalog seeding and entity-mention extraction pipelines were not audited.
+
+Evidence on the lane tuple workspace `6a1a9af5`, backend `e62219445`, app
+`28717c7c`, Darwin 25.5 arm64:
+
+- Focused log-redaction tests and adjacent handlers: **54 passed**; Ruff check
+  and formatting check passed. Backend `MYPY_CACHE_DIR=/dev/null
+  RUFF_NO_CACHE=true make ci-static` passed with mypy reporting no issues in
+  1,891 source files.
+- The measured `make verify-changed` preflight used explicit `main` bases for
+  the workspace and both child repositories. Its first sandboxed run failed
+  on denied Expo/Ruff cache writes and four workspace tests' temporary socket
+  binds; that run is recorded but not counted. The rerun with approved local
+  cache/socket access passed (exit 0, 394.707 seconds): backend **21,988
+  passed, 14 skipped, 1 xfailed, 52 xpassed**; app **1,283 suites / 9,038
+  tests passed**; workspace scripts **117 passed**; API/docs/contracts checks
+  and all selected changed-file gates passed. Eight backend warnings were
+  emitted by local-Qdrant payload-index tests.
+- Both measured attempts, including exact repository tuples and logs, are
+  preserved in `/tmp/adaptive-research-roadmap-measurements.json`; the passing
+  log is `/tmp/adaptive-research-redaction-verify-changed-escalated-20260930-20260930T163247Z.log`.
+
+This reduces accidental disclosure through the reviewed Python logger paths;
+it does not control or certify Langfuse/model/tool traces, request-body
+retention, third-party provider logging, every research-adjacent pipeline, or
+the semantic projection of sensitive content into a public query. The typed
+request remains a caller contract. R1 still lacks the caller-independent
+selected-object path, source/claim support verification, purpose-specific
+stop criteria, chargeable-attempt accounting and whole-flow egress tests. No
+live provider, paid call, data write, app build, or native runtime was used.
+R0–R7 remain open.
