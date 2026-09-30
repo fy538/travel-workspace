@@ -1907,6 +1907,27 @@ or changed. Review the expand cue and pinch/pan on the next available registered
 photo-intake capture. This closes the old viewer inspection refinements in code,
 not the wider camera-custody, authenticated readback, or D1/D2 acceptance gaps.
 
+### Anywhere guide supply consolidation — 2026-09-30
+
+Backend `c32baddc9` removes Home's second direct read of the approved Anywhere
+starter guide. The canonical Places feed already owns selection and projects a
+previewable guide into its feed; Home now consumes that single producer through
+the existing contextual-Places adapter. During composition, the generic
+“Explore Places” door is suppressed only when a source-backed dossier reading
+for that exact Places context is present. If the guide is absent, the door
+remains. This removes both duplicate owner work and duplicate cold-start value
+without introducing another generator, route, or content inventory.
+
+`tests/root_projection/test_home_portfolio.py` proves the combined context/feed
+read admits one exact dossier in a Cold Home posture, retains its
+`source.inspect` evidence requirement and exact Places destination, and keeps
+the generic fallback when no guide qualifies. The complete Home portfolio test
+module passed **87/87**; focused Ruff and format checks passed, as did all
+backend pre-commit hooks after directing Ruff's temporary cache outside the
+checkout. No API or app contract changed. Native visual and authenticated
+owner-readback evidence were not part of this bounded correction; broader D2
+acceptance remains open.
+
 ### Published candidate — prior full coordinated gate
 
 The full coordinated gate passed before this docs rebaseline on workspace
