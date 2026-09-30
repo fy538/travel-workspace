@@ -454,6 +454,17 @@ typecheck passed, and targeted lint had no errors with the existing
 renderer-size warning. This is a truthful-door correction, not an exact
 receipt-reader implementation or D2 completion.
 
+**Additional current lane increment — 2026-09-30:** app commit `5bb78d2de`
+aligns a Home Person resource door with its actual destination. Older Person
+refs may carry `/you` as their canonical path, but Home's resource route opens
+that exact person's profile; the door now says “Open profile” and preserves the
+existing Home return token. The Home renderer and root-navigation suites passed
+**87/87**, app production typecheck passed, registered Home design references
+and scenario IDs passed, and targeted lint had no errors with the existing
+renderer-size warning. No native visual verdict is claimed for this copy and
+route-label correction. D2's broader receiving and full-scroll acceptance
+remain open.
+
 ### D3 Make practical help part of the same system
 
 **Outcome:** what is happening now changes the useful options and actions across
