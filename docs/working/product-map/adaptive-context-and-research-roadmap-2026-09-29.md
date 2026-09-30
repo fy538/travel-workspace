@@ -1394,3 +1394,41 @@ still does **not** prove remote bytes, the authenticated HTTP route against a
 running API, native presentation, bounded public acquisition, candidate
 selection, supported additional substance, shared execution control, or
 end-to-end user value. R0–R7 remain in progress.
+
+#### Implementation receipt — bounded public lookup request (September 30)
+
+Backend commit `0f7021b98` introduces the shared, extra-forbid
+`PublicResearchRequest` and routes the existing Concierge fact-lookup and
+destination-only trip-direction fallback through it. The contract separates
+public terms from local subject correlation, never appends local identity to
+provider terms, allows a public location only for candidate discovery, and
+bounds query length, result count and deadline. Invalid requests are rejected
+before provider dispatch. The specialized live-event path retains its
+canonical-place and approved-source policy.
+
+Evidence on the lane's Python 3.13.0 backend environment:
+
+- Focused public request, Concierge web-search and trip-direction, quick
+  research, bounded-result and source-metadata tests: **60 passed, 0 skipped**.
+- `MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true make ci-static`: passed on clean
+  backend commit `0f7021b98`; Ruff, import/structural gates and mypy passed,
+  including 1,891 source files. The measured receipt is in
+  `/tmp/vesper-adaptive-research-roadmap-checks/measurements.json` and the
+  adjacent `adaptive-public-research-ci-static-20260930T160106Z.log`.
+- `make merge-check BASE_REF=main`, rerun with
+  `PYTEST_ADDOPTS=-p no:cacheprovider`: **21,982 passed, 14 skipped, 1 xfailed,
+  52 xpassed, 0 failed** in 105.39 seconds. The first run reached test
+  completion but could not write pytest's cache in the managed worktree; it is
+  not counted. The measured rerun and log are in the same temporary directory
+  under `adaptive-public-research-merge-check-20260930T155547Z.log`.
+
+This is a **partial R1 boundary improvement**, not a caller-independent
+artifact research path. `public_query` is still a caller assertion: the shape
+does not semantically detect sensitive material embedded inside it. The
+retrieved hostile-text fixture proves this handler makes one provider call and
+does not feed the snippet back into a second call; it does not prove behavior
+of later model turns, OCR-derived queries, other callers or broader egress
+policy. No claim-support verifier, public-source retention, private-memory
+filter, paid-attempt reservation, selected-component flow, live provider
+call, database mutation or native consumer readback was exercised. R1 and
+R0–R7 remain open.
