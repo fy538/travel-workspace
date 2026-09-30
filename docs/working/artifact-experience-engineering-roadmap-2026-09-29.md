@@ -2132,3 +2132,52 @@ the text-only show face still reads as a restrained metadata panel, and the
 reader matrix does not yet demonstrate the context-dependent artifact value
 planned for a later slice. This completes family-rendering coverage, not the
 artifact experience roadmap or the contextual-discovery phase.
+
+### September 30 largest-text artifact-reader reflow
+
+App commit `c704fc997` adds content-driven reflow for the canonical artifact
+reader and its exact-source screen at the system's largest accessibility text
+sizes. At the shared `fontScale >= 1.35` threshold, fact rows stack labels and
+values, title/status/fact copy is no longer line-capped, ticket routes become
+vertical, and book/place/music/passage/practical faces relinquish fixed
+geometry. Redundant floating-reader and private-source titles are hidden at
+that size; the floating reader chrome becomes opaque so content cannot bleed
+behind the control. The implementation does not reduce the person's selected
+text size.
+
+The registered `polish/canonical-artifact-reader-accessibility` capture
+(`20260930T222931Z-canonical-artifact-reader`) contains ten fixture-backed iOS
+18.2 screenshots on Vesper QA SE at
+`accessibility-extra-extra-extra-large`, including source-action scrolling,
+opening the exact calendar original, returning to the same artifact, and the
+ticket/book/place/music/passage/practical family faces. Its structured `pass`
+verdict and manifest are
+`travel-app/docs/surfaces/canonical-artifact-reader/verdicts/20260930T222931Z.json`
+and `.manifest.json`. The capture occurred immediately before the app commit;
+the manifest therefore records parent HEAD `05d81a9df`. No reader UI source
+changed between capture and `c704fc997`; the later row-guard correction is
+test-only. This is native layout/scroll evidence for the captured fixture on
+one iOS simulator, not VoiceOver activation, Android/physical-device coverage,
+live-service readback, or user desirability. Two accepted P2 observations note
+the long first-viewport title and tall source action at maximum text size; both
+remain legible and reachable, and neither justifies capping user-selected text.
+
+Focused reader/source tests passed (3 suites, 82 tests), app TypeScript and test
+contract typechecks passed, targeted ESLint reported zero errors with two
+warnings, and `git diff --check` passed. The row-system ratchet initially
+classified the new static `ArtifactFactRow` as an interactive/list row; its
+existing `isOutOfScope` classifier now documents this exact static document
+fact-pair exception, with a test ensuring the general ratchet still applies to
+artifact reader components. The focused ratchet test passed (10 tests).
+
+`make verify-changed WORKSPACE_BASE_REF=main AGENT_BASE_REF=main
+APP_BASE_REF=main` passed across the coordinated lane. This included the full
+app suite (1,288 suites, 9,123 tests, one snapshot), backend static checks and
+full tests (21,993 passed, 14 skipped, 53 xpassed; two warnings), workspace
+tooling tests, and cross-repository API/compatibility/documentation contracts.
+After the app commit, `npm run qa:polish:scenarios` validated 31 registered
+IDs, `npm run qa:polish:test` validated 75 committed verdicts, and
+`npm run docs:check` passed for 327 app Markdown files. Pinch/pan, actual
+VoiceOver traversal/actions, loading/error states, physical-device/Android
+behavior, live-service readback, and value/desirability remain open; this
+closes only the largest-text iOS reflow slice, not P2 as a whole.
