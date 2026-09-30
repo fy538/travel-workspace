@@ -381,6 +381,19 @@ warning. A native screenshot of this precise owner-note state was not captured,
 so visual acceptance for that state remains unverified. This closes a known
 Home hierarchy defect without closing D2.
 
+**Additional current lane increment — 2026-09-30:** app commit `b2d52f5a3`
+uses one shared authored-note treatment across Home and Places. The same
+recipient-consented Place message is now legible as attributed, quoted Roman
+body text in the scoped Friends section, rather than muted mono metadata; the
+exact venue door and relationship-owner audience gate are preserved. The
+Places `PlacesSectionFeed` suite passed **52/52**, Home root screen suite passed
+**33/33**, app production typecheck and the registered polish-scenario check
+(**31 IDs**) passed. Targeted lint had no errors and retained the existing
+Home renderer max-lines warning. Native visual acceptance is unverified:
+`xcrun simctl list devices booted` could not connect to CoreSimulatorService, so
+no screenshot of either exact note state is claimed. This closes a cross-root
+receiving inconsistency, not D2.
+
 ### D3 Make practical help part of the same system
 
 **Outcome:** what is happening now changes the useful options and actions across

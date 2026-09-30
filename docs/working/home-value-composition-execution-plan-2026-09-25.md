@@ -132,7 +132,7 @@ already-fixed Planning crown or completed connections.
 | Cluster | Current implementation and remaining improvement |
 | --- | --- |
 | Obscured value and controls | Closed for the inspected Quiet/original cases in app `332e77523`: shared floating-nav inset reserves the readable viewport and continuous paper background in both readers; native standard/XXXL reading and original-return checks passed. Maximum accessibility sizes, Android and unrelated destinations are not certified. |
-| Reading and social hierarchy | Full-width comparison rows and the standard original-reader Door replace narrow fact boxes and the amber text-original button; targeted native review passed. App `af8a126af` shortens the Returned fixture introduction and shows the concrete journey; backend `539edb00d` bounds real owner previews. App `862934e2d` distinguishes a directly authored Place note from a composed article with a quoted Roman body treatment; its targeted component regression, typecheck and lint pass. A native capture of this exact note state remains unverified. Loaded images already open directly with no redundant button; do not redispatch that stale finding. |
+| Reading and social hierarchy | Full-width comparison rows and the standard original-reader Door replace narrow fact boxes and the amber text-original button; targeted native review passed. App `af8a126af` shortens the Returned fixture introduction and shows the concrete journey; backend `539edb00d` bounds real owner previews. App `862934e2d` distinguishes a directly authored Place note from a composed article with a quoted Roman body treatment; app `b2d52f5a3` uses that same shared treatment for the recipient-consented Place note in Places. Both focused surface suites and app typecheck pass. Native capture of these exact recipient-note states remains unverified because CoreSimulatorService is unavailable. Loaded images already open directly with no redundant button; do not redispatch that stale finding. |
 | Planning and continuation | Exact-context Chat closed in app `64961a9cf`; app `97e0d0ac9` names the compact row's actual continuation, removes the fixture's duplicate orientation sentence and preserves one tap target. Planning native passed. The optional route's visual weight and prepared-opening boilerplate remain minor refinements. |
 | Live, recovery and possibility | Backend `a8e87e64c` returns the current subject and independent agreement/provider facts; app `97e0d0ac9` uses productive sans and corrects ambiguous Live fixture language. Live standard/XXXL passed. App `af8a126af` makes recovery explicitly proposed/unconfirmed. Urgent remains MIXED: no owner-backed timing, cost or trade-off is provided to compare. Its passing private Chat continuation does not close that P1. Separate Occasion repetition and generic healthy-commitment continuation remain refinements. Do not merge distinct owners merely because their text matches. |
 | Sources and quiet endings | Routine “current” suffix omitted, live/stale/unknown retained, close simplified. App `97e0d0ac9` makes source inspection visually subordinate without shrinking its touch target; Cold native passed. Storage-description boilerplate is replaced by the concrete fixture journey and a real same-Occasion count/order. Long source labels, generic Life Doors, Cold orientation and provenance/door separation remain refinements. |
@@ -1834,17 +1834,19 @@ The coordinated gate still predates both local app patches.
 
 ### Current Home authored-note hierarchy increment — 2026-09-30
 
-App `862934e2d` renders the attributed Place contribution as the author's
-short quoted words in the Roman body role, rather than the article-heading role,
-and keeps its Place context and exact Place Door intact. The focused regression
-asserts both quote presentation and typography; its exact source text remains
-the backend-authored note. The complete Home root screen suite passed **33/33**;
-app production typecheck and registered scenario IDs (**31**) passed. Targeted
-ESLint had no errors and retained the existing
-`HomeRootV2UnitRenderer.tsx` max-lines warning. No native capture of this exact
-note state was run, so visual acceptance remains unverified. This closes the
-specific note-versus-article implementation gap, not the broader H1-A or D2
-acceptance.
+App `862934e2d` first renders the Home contribution as the author's short quoted
+words in the Roman body role, rather than the article-heading role. App
+`b2d52f5a3` extracts that as one shared note treatment and applies it to the
+same recipient-consented note in Places, above the exact venue continuation
+rather than as muted mono metadata. Sender, recipient scope and venue link are
+unchanged; the source text remains owner-authored. Places `PlacesSectionFeed`
+passed **52/52**, Home `HomeRootV2Screen.smoke` passed **33/33**, app production
+typecheck and registered scenario IDs (**31**) passed. Targeted ESLint had no
+errors and retained the existing `HomeRootV2UnitRenderer.tsx` max-lines warning.
+Native capture of the exact recipient-note states is unverified: the assigned
+simulator could not be queried because CoreSimulatorService was unavailable.
+This closes the note-versus-article treatment gap across both roots, not broader
+H1-A or D2 acceptance.
 
 ### Published candidate — prior full coordinated gate
 
