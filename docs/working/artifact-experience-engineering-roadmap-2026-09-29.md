@@ -375,6 +375,75 @@ wire models or permission to create a table for every row.
 | Prepared result | Exact generated output, input manifest, method version and current eligibility | Existing production/composition lifecycle |
 | Kept edition | Exact chosen expression, stable edition reference and governed availability | Explicit saved-composition persistence owner |
 
+#### P0 recommended identity seam — proposal for founder review
+
+The recommendation is a thin, user-owned **Thing identity** (`ThingRef`) that
+names what the person keeps, with original Sources, source-local recognition,
+world Subjects, selected Components, and generated/kept expressions remaining
+separate authorities. This is a proposed owner boundary, not authorization for
+a migration. It best satisfies the accepted ingestion rule—two copies of the
+same ticket resolve to one kept thing while retaining both Sources—without
+turning every downstream concept into a generic Artifact row.
+
+| Concept | Recommended owner/reference | Keep distinct from |
+| --- | --- | --- |
+| Original Source | Existing Intake/source-custody identity plus exact content revision and grants | Thing identity and extracted claims |
+| Kept Thing | Stable owner-scoped `ThingRef`; the durable consumer target for Collections, readers, sharing, and cross-door reconciliation | Source bytes, ExperienceAnchor occurrence semantics, world-subject identity, and generated prose |
+| Recognition | Existing submission-scoped candidate/observations, linked reversibly to a Thing when admitted or explicitly reconciled | Cross-submission identity: current `(submission_id, candidate_key)` is idempotency inside one submission, not the global identity |
+| World Subject | Existing Place identity for physical places; a bounded cultural-work subject reference for books/films/shows/music, with work and edition/release distinctions | A person's ticket, copy, note, dish, or separate attendance contribution |
+| Component | A Thing-owned component reference only when a selected part must survive; its typed selector remains bound to exact Source/content revision | Raw coordinates/offsets as identity, or a new universal media-annotation platform |
+| Experience / Occasion | Existing Experience Graph and operational owners; can relate Things and Subjects using supported evidence | A replacement identity for everything the person keeps |
+| Reader descriptor | Optional, versioned `ArtifactReadingDescriptor` used to choose a renderer | Stable identity, catalog resolution, attendance, or permission |
+| `ResourceRef` | Existing navigation/command address to an owner projection | The identity registry or data owner itself |
+
+This means **do not** expand the current place-like `EntityRef` into a universal
+personal Thing, and do not put source payloads, claims, collection membership,
+Subjects, or generated editions into a universal Artifact table. The existing
+EntityRef capability sets and persistence paths encode physical Place behavior;
+World Foundry promotion rebuilds Place projections. Reusing those tables for
+cultural works is a capability/owner migration, not a safe enum addition. On
+the other side, keeping only submission-local Intake candidates cannot satisfy
+cross-door identity or canonical Collection membership. A narrow Thing owner
+is the recommended middle boundary; its service/repository placement and exact
+minimum fields remain undecided.
+
+Before implementation, founder review should settle only these choices:
+
+1. Approve or reject a stable user-owned Thing identity distinct from
+   `ExperienceAnchor` and world Subject identity (recommendation: approve).
+2. Name its owning domain and require evidence-backed, reversible link/merge/
+   split operations; preserve independent Source custody and do not union grants
+   when two Things reconcile (recommendation: approve the behavior, then choose
+   the smallest owner after the producer/collection integration is mapped).
+3. Keep physical Place and cultural-work Subjects in separate capability
+   domains unless a full capability audit justifies a shared identity substrate
+   (recommendation: keep separate for the first implementation).
+4. Require a typed source-revision-bound component selector now, but create a
+   stable cross-representation Component identity only when a real consumer
+   must retain a selected part (recommendation: stage the latter behind that
+   acceptance case).
+
+The first acceptance fixture is decisive: importing one identical ticket from
+email and screenshot yields one `ThingRef` with two separately addressable
+Sources; revoking either Source removes only that Source's access and does not
+silently grant the surviving Source's permissions to the other. Two tickets
+for different screenings remain two Things while referring to one film Subject.
+Explicit merge/split preserves prior references or typed redirects and every
+original remains independently addressable. No identity migration should begin
+until this owner boundary is reviewed.
+
+Code basis for this proposal: `travel-agent/backend/core/models/entity_identity.py`
+and `backend/core/entity_types.py` define place-like `EntityRef` values and
+capability subsets; `backend/core/db/entity_identity.py` resolves namespaced
+external IDs only to those references. `backend/core/db/intake_semantics.py`
+keys candidate replay by submission and candidate key, while
+`backend/core/db/intake_anchors.py` projects confirmed candidates as
+`ExperienceAnchorProjection`. `backend/core/models/execution_contract.py`
+defines `ResourceRef` as a typed reopenable owner address, not a durable owner.
+`backend/world_foundry/persist.py` promotes accepted facts through entity and
+Place-content owners. These are implementation observations, not permission to
+reuse or migrate those schemas.
+
 ### Identity and selection
 
 Retry identity, byte identity, thing identity, subject identity and occurrence
