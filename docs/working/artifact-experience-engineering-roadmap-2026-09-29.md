@@ -1551,3 +1551,23 @@ Undo. This is fixture-backed route/entry/exit evidence; Maestro did not exercise
 pinch, pan, double-tap, or VoiceOver. It does not prove live-source persistence,
 and it is not a broader Life-root design verdict. Photo gesture and assistive
 acceptance therefore remain open.
+
+The bounded JavaScript follow-up verifies that the photo viewer's declared
+Zoom in and Zoom out accessibility actions dispatch through the existing
+bounded transform and return to fit. App commit `8914469b3` adds this focused
+component test. The focused reader/zoom test command passed (3 suites, 42
+tests), as did app typecheck and targeted ESLint. `npm run verify:fast` passed
+(lint: 0 errors, 169 existing warnings; typecheck, API boundaries, schema
+bridge, Home budgets, and test-typecheck contracts passed). The main-based
+merge gate passed against the same tree before the test-only commit:
+`npm run verify:merge -- --base main` (1,286 suites, 9,095 tests, 1 snapshot).
+These are callback-wiring and repository-gate results, not device VoiceOver
+activation or native gesture acceptance.
+
+During a separate simulator follow-up, opening the Vesper tab displayed a
+“Maximum update depth exceeded” error while its root remained in a loading
+state; the simulator accessibility tree then became unavailable. A subsequent
+CoreSimulator log query could not connect, so this observation has no diagnosed
+cause and is not attributed to the artifact reader. It prevented interactive
+VoiceOver/gesture follow-through and should be triaged independently of this
+roadmap slice; no Vesper/Home code was changed here.
