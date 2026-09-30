@@ -702,6 +702,30 @@ without restarting completed Home or capture connections.
 consumer, repair path and evidence boundary. Pending decisions name only the
 behavior they block. No universal new schema or duplicate scheduler is assumed.
 
+#### R0 representative evidence matrix (September 30)
+
+This is an owner/evidence baseline, not a claim that every row is already a
+connected research consumer. Named tests identify existing evidence sources;
+they are not claimed as executed by this receipt. It distinguishes selected
+identity from what the selected evidence is allowed to establish.
+
+| Scenario and exact selection | Owner and current consumer | Repair path | Evidence boundary and current proof |
+| --- | --- | --- | --- |
+| **Ticket / confirmation:** `submission_id + object_id`, selected Source ID and captured content hash/revision | Intake owns custody and exact original bytes; Life refind/open is the current consumer | Intake correction, expiry, deletion or revocation; re-read the selected revision, never substitute a newer one | A confirmation supports its recorded details, not that the trip or visit occurred. `tests/inbound/test_chat_keep_handoff_postgres.py`, `test_email_capture_postgres.py`, and `test_original_source_reader_postgres.py` cover custody, replay/owner denial and stale selection against disposable Postgres; hosted bytes and native display are separate evidence. |
+| **Venue / work anchor:** canonical type + ID, plus the selected source/owner revision when that owner exposes one | Place/Experience and entity identity owners; Places and governed lived-experience readers consume them | Correct the canonical identity or source binding through its owner; refresh operational facts from their provider owner | A matching title is not identity, a Place match does not resolve every non-place work, and an anchor does not prove a visit. `backend/places/FEATURE.md` and `backend/lived_experience/FEATURE.md` describe current read boundaries; a uniform cross-kind selected-work revision/reader is not yet evidenced. |
+| **Text passage:** Source ID + source revision/hash + page/frame/character locator in the selected representation | Intake owns the original; bounded normalizers/evidence locators and the authenticated original reader are current primitives | Invalidate the locator when its source representation changes; correction must select the new revision explicitly | A locator identifies evidence, not truth or permission to re-share it. `backend/inbound/normalizers.py`, `core/intake_evidence.py`, and the original-reader tests validate bounded locators and source identity; general stable component selection/refinding remains open. |
+| **Photograph:** Source ID + original content hash/revision; any region must carry its own bounded locator | Intake owns custody; Life's exact original reader is the current receiving seam | Recheck custody, expiry, scan state and revision; correct/remove the source or withhold the stale region | The original can be inspected, but a selected region, OCR corpus, or inferred occurrence is not implied. Image normalization is metadata-only; semantic pixel processing is separate. Original-reader tests do not prove region retrieval, OCR recall, or device presentation. |
+| **Practical record:** trip ID + receipt/expense or Commitment identity and current owner state | Expenses owns receipt OCR and settlement records; Plan/Commitment/provider owners own arrangements and operational truth | Use the owning dispute/correction/update flow and verify authoritative readback | OCR and a receipt are evidence, not a confirmed expense split, payment, booking, or occurrence. `tests/expenses/test_receipt_ocr.py` and expense lifecycle suites prove domain behavior, not research selection or cross-surface use. |
+| **Human contribution:** Occasion/contribution ID + contributor, exact Source revision, current membership/audience and purpose grant | Contribution/Occasion/Relationships owners; Life and social projections consume only admitted owner state | Contributor correction/withdrawal, grant or membership change; invalidate only dependent projections and re-read current authority | Display, AI use, retention and onward sharing are separate grants. `docs/systems/contribution-and-consequence.md` is the accepted contract; experience-graph and source-contribution suites cover portions, not a complete research-from-contribution journey. |
+| **Sparse history:** caller question + purpose/scope and an explicit typed `PublicResearchRequest`; no synthetic identity or historical source | Answer-only research currently has a provider-neutral bounded result and no connected native consumer | No durable personal repair by default; the requester can ask again or correct the current answer | This is T0 current-answer work, not permission to retain the question. `tests/research_agent/test_answer_only_research.py` proves one typed acquisition, bounded attribution and no dossier writer; no real app caller, live provider quality, or end-to-end disclosure grant is proven. |
+
+The matrix closes neither the R0 acceptance nor the external-disclosure policy.
+In particular, there is no single source/component version contract for every
+anchor family, no universal repair command, and no app-level cost/kill-switch
+admission for the new answer-only route. The route remains an internal backend
+capability; do not expose or schedule it as a new paid consumer until R1/R3
+admission and the product's disclosure boundary are connected.
+
 ### R1 Generalize bounded acquisition
 
 **Outcome:** an existing or focused consumer can request public lookup or
