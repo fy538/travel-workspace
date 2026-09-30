@@ -394,6 +394,21 @@ Home renderer max-lines warning. Native visual acceptance is unverified:
 no screenshot of either exact note state is claimed. This closes a cross-root
 receiving inconsistency, not D2.
 
+**Additional current lane increment — 2026-09-30:** app commit `c6e6ae49c`
+names Home's Life receiving doors by record family (“Open the reading in Life,”
+“Open the moment in Life,” “Open the record in Life,” and corresponding
+original/capture/attachment/receipt labels) instead of presenting one generic
+“Open in Life” action for every record. The existing canonical resource
+resolution, exact resource argument and Home return token remain unchanged; no
+backend, wire or authorization behavior changed. The focused Home root renderer
+and screen suites passed **50/50**, app production typecheck passed, registered
+design-reference and polish-scenario checks passed (**31 IDs**), and targeted
+lint had no errors with the existing renderer max-lines warning. The registered
+native Home quiet flow retried without producing screenshots and was stopped;
+native visual acceptance remains **unverified**. This closes one Home
+continuation-clarity refinement, not full-scroll D2 acceptance. Continue with
+supported Home/Places supply and full-scroll behavior independently.
+
 ### D3 Make practical help part of the same system
 
 **Outcome:** what is happening now changes the useful options and actions across

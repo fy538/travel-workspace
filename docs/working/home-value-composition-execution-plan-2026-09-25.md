@@ -1848,6 +1848,21 @@ simulator could not be queried because CoreSimulatorService was unavailable.
 This closes the note-versus-article treatment gap across both roots, not broader
 H1-A or D2 acceptance.
 
+### Exact Home-to-Life continuation labels — 2026-09-30
+
+App `c6e6ae49c` replaces the generic Home action “Open in Life” with a short
+label for the Life record family: record, original, reading, moment, capture,
+attachment, source, or receipt. The label follows the resource kind; the
+existing canonical resolver still controls the route and return token. It does
+not label plan/occasion/commitment doors as Life-owned when their resolved owner
+is elsewhere. The two focused Home root suites passed **50/50**, app production
+typecheck and registered design-reference/scenario checks passed (**31 scenario
+IDs**), and targeted lint had no errors with the existing Home-renderer
+max-lines warning. A registered native quiet-state run retried without
+producing a screenshot and was stopped; visual acceptance remains
+**unverified**. This closes a continuation-label refinement only, not exact
+Life-reader acceptance or full Home/Places D2 completion.
+
 ### Pre-Keep image-inspection refinement — 2026-09-30
 
 App `db27d6a05` adds a visible expand cue to selected-photo tiles and bounded
