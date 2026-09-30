@@ -304,6 +304,21 @@ change; D2 remains active. **Next:** capture the registered Places surface when
 the simulator is available, then continue the full-scroll and real-owner D2
 gaps without changing the compatibility workspace.
 
+**Additional current lane increment — 2026-09-30:** backend commit
+`0caed6e1a` and app commit `998afc80f` remove the redundant generic Occasion
+row only when the selected Home commitment is canonically linked to that
+Occasion. The distinct participant/social row remains visible and leads with
+the group context; copy-similar but unlinked owner objects remain independent.
+Backend focused composition/root-projection coverage passed **122 tests**;
+Home UI coverage passed **62 tests**, app typecheck and test-contract typecheck
+passed, Ruff and `make docs-check` passed. Targeted ESLint had no errors and
+retained one existing `HomeRootV2UnitRenderer.tsx` max-lines warning. Native
+visual acceptance remains **unverified**: Expo Metro started on the assigned
+lane port, but the polish doctor could not initialize CoreSimulatorService and
+could not create its run lock in the sandboxed worktree. No device screenshot
+or visual verdict is claimed. This closes only the linked-duplicate composition
+defect; D2 remains active.
+
 **Independent work when blocked:** use existing Source/Place/commitment/authorized
 social supply; finish root layout, navigation and failure treatment. Do not
 rewrite P2's reader or generate pretend enrichment to fill a design.
