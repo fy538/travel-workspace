@@ -45,3 +45,21 @@ def test_full_backend_suites_do_not_duplicate_their_marker_partitions():
     assert len(offline) == len(database) == 1
     assert 'not requires_postgres and not requires_api_keys and not requires_dogfood_wedge' in offline[0]
     assert '(requires_postgres or requires_dogfood_wedge) and not requires_api_keys' in database[0]
+
+
+@pytest.mark.parametrize("repo,broad,retained", [
+    ("travel-agent", ("test", "test-db"),
+     ("lint", "import-boundaries", "typecheck", "test-db-migrate", "dogfood-persona-gate", "eval-replay", "package-smoke")),
+    ("travel-app", ("test", "logic-qa"),
+     ("lint", "frontend-governance", "security", "visual-evidence", "typecheck", "contract-types", "qa-tooling", "design-gate")),
+])
+def test_broad_regression_moves_off_prs_without_disabling_fast_checks(repo, broad, retained):
+    workflow = yaml.load((ROOT / repo / ".github/workflows/ci.yml").read_text(), Loader=yaml.BaseLoader)
+    assert workflow["on"]["push"]["branches"] == ["main"]
+    assert workflow["on"]["schedule"]
+    assert "workflow_dispatch" in workflow["on"]
+    assert workflow["on"]["pull_request"]["branches"] == ["main"]
+    for job in broad:
+        assert workflow["jobs"][job]["if"] == "github.event_name != 'pull_request'"
+    for job in retained:
+        assert "if" not in workflow["jobs"][job], job

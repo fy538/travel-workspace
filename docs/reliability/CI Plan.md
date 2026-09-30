@@ -140,19 +140,40 @@ a new test platform or blanket-delete test directories to meet a count target.
   journal, worker, consumers and owner fences. With the competing listener
   deliberately registered before pytest, the full retained-source test file
   plus charter invariants passed 26 tests in 2.20s. The organizer failure did
-  not reproduce; its cause remains unresolved, not certified fixed.
+  not reproduce in that test-only run. Subsequent investigation reproduced it
+  in `check_migration_lifecycle.py`: its fixture inserted a Trip without its
+  organizer, and the new gate reused that database. The repaired fixture passed
+  the actual lifecycle through `notifenv04`, upgrade to head, and the real
+  `G3-organizer-is-member` check; 29 offline checker tests also passed. Backend
+  `9bc90e210` passed the complete hosted replacement gate in run 36661220951,
+  including static, offline and database checks. Backend protection now requires
+  `Merge ready` instead of `test` and `test-db`; migration, static, persona and
+  replay requirements remain, with strict updates enabled.
 - Default-stage hooks now run at commit only; explicitly declared pre-push
-  checks remain. App workspace checkout is narrowed to its single consumed
-  Card Catalog file. Latest local hook/checkout and worker-test changes still
-  require their own hosted candidate evidence.
-- Required-check replacement and disabling broad PR jobs were blocked by the
-  execution safety review. Neither was applied. Obtain explicit founder
-  approval for that policy cutover; promote only passing replacement gates,
+  checks remain. The initial narrowed app checkout missed the catalog's two
+  JSON contracts (3 failures in run 36659946555). Candidate `9be00edce` includes
+  `docs/contracts/` and verifies inputs before dependency installation. All nine
+  catalog tests passed against the exact pinned sparse checkout locally; its
+  hosted run 36660884875 passed. App protection now requires `Merge ready`
+  instead of `Test` and `Logic QA journeys`; its eight other required checks
+  and strict updates remain. The following workflow-only candidate moves
+  those two broad jobs to main/nightly/manual runs and needs its own final checks.
+- Required-check replacement and disabling broad PR jobs were initially
+  blocked by the execution safety review. The founder explicitly authorized
+  the cutover in this thread on September 29 (September 30 UTC). Both child
+  protection changes were applied only after the above passing hosted runs.
+  Promote only passing replacement gates,
   preserve fast security/contracts/governance checks, and retain main/nightly
   full regression. This is separate from removing mandatory second-person
   approval, which is complete.
 - No live-model or native visual claim follows from these results. Workspace
   private-child checkout and coordinated updated child pins remain unverified.
+- Both child CI workflows now exclude only their two broad regression jobs
+  from PR events, retaining main/nightly/manual execution and all fast PR jobs.
+  The focused workflow regression first failed on the duplicated-PR configuration
+  and then passed all 15 cases after cutover (measured 1.107s locally). This proves
+  workflow/aggregate behavior, not final hosted candidate success or merge latency.
+  Final workflow-only child commits still require hosted checks before landing.
 
 GitHub Actions was disabled in workspace and backend at the September 7 audit.
 It has been re-enabled. Their main-branch protection had unrelated frontend
@@ -162,8 +183,8 @@ review approval, administrator enforcement, and no force pushes/deletions.
 | Repository | Required GitHub Actions checks |
 | --- | --- |
 | workspace | `Contract and golden paths` |
-| backend | `lint`, `import-boundaries`, `typecheck`, `test`, `test-db-migrate`, `test-db`, `dogfood-persona-gate`, `eval-replay` |
-| frontend | `Lint`, `Frontend governance`, `Security audit`, `Visual evidence contracts`, `Type check`, `Test`, `API types freshness`, `Logic QA journeys`, `QA tooling contracts`, `Design alignment gate` (also emitted for documentation-only PRs) |
+| backend | `Merge ready`, `lint`, `import-boundaries`, `typecheck`, `test-db-migrate`, `dogfood-persona-gate`, `eval-replay` |
+| frontend | `Merge ready`, `Lint`, `Frontend governance`, `Security audit`, `Visual evidence contracts`, `Type check`, `API types freshness`, `QA tooling contracts`, `Design alignment gate` (also emitted for documentation-only PRs) |
 
 The new `package-smoke` job is implemented in this lane. Add it to required
 checks after publishing the workflow and verifying its emitted check name;
