@@ -1351,10 +1351,46 @@ Validation on the lane revisions:
   description is committed separately because the repositories have independent
   Git histories.
 
-This does **not** complete R2 or R6: the owner query is not yet proven against a
+At this receipt's revision, the owner query was not yet proven against a
 disposable Postgres instance, and mobile authenticated readback was not exercised
-against a running backend or native device. No migration, paid provider call,
-producer-to-candidate flow, useful-addition judgment, push, deployment or
-publication was performed. The original is available independently of generated
-content, but worthwhile additional substance remains the central acceptance
-question.
+against a running backend or native device. The following receipt adds the
+database proof, but neither receipt completes R2 or R6. No migration, paid
+provider call, producer-to-candidate flow, useful-addition judgment, push,
+deployment or publication was performed. The original is available
+independently of generated content, but worthwhile additional substance remains
+the central acceptance question.
+
+#### Implementation receipt — disposable Postgres owner-read acceptance (September 30)
+
+Backend commit `d28b74e0` adds real-database coverage for the selected
+revision-bound reader and documents the evidence boundary in
+`backend/inbound/FEATURE.md`. The tests exercise a valid retained inline-text
+read, an owner mismatch, a stale selected revision, and expired/revoked custody
+against the lane's isolated, migrated PostgreSQL service (`vesper-adaptive-context-research`,
+host port `64355`). They do not use remote object storage. Backend branch is
+`codex/adaptive-context-research`; the clean tested repository tuple was
+workspace `015798537`, backend `d28b74e0`, app `28717c7c`.
+
+The measured focused command completed **11 passed, 0 failed, 0 skipped** on
+macOS `25.5.0` arm64 using the backend virtual environment's Python `3.13.0`,
+with `TEST_DATABASE_DISPOSABLE=1` and an explicit local disposable database URL.
+The first restricted-shell attempt skipped both database tests because it could
+not access localhost; that was not treated as a pass. The successful measured
+rerun used approved access to this lane's disposable service. Measurement and
+full log are in `/tmp/vesper-adaptive-research-roadmap-checks/measurements.json`
+and the adjacent
+`adaptive-original-read-disposable-postgres-20260930T151420Z.log`.
+
+The full backend `ci-static` gate then completed with exit code `0` in `109.764`
+seconds (`MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true`); Ruff, architecture and
+structural gates passed, and uncached mypy reported no issues across 1,890
+source files. A prior cache-backed invocation returned a mypy internal error;
+the uncached full gate is the authoritative passing run. Its measurement and
+log are in the same temporary measurement directory, under
+`adaptive-original-read-static-20260930T151741Z.log`.
+
+This closes the real-Postgres evidence gap for the current original reader. It
+still does **not** prove remote bytes, the authenticated HTTP route against a
+running API, native presentation, bounded public acquisition, candidate
+selection, supported additional substance, shared execution control, or
+end-to-end user value. R0–R7 remain in progress.
