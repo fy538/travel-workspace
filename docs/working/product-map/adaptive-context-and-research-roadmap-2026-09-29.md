@@ -1214,6 +1214,38 @@ priority, ownership boundary or system checkpoint changes.
 
 ### Validation evidence
 
+#### Implementation receipt — search evidence fidelity (September 30)
+
+Backend commit `0f81463f5` on `codex/adaptive-context-research` closes one
+acquisition-fidelity defect within R1; it does **not** complete R1 or the first
+assignment. The Tavily projection now retains publication dates; search results
+are labeled `search_snippet` rather than fetched `page`; low-credibility
+compression preserves title/date; URL-backed snippets remain attributable while
+provider summaries remain non-citable. World Foundry keeps the source title and
+marks snippet observations as not fetched page evidence. No public API, provider
+enablement, persistence policy, or app behavior changed.
+
+Evidence on Python 3.13.0 / Darwin 25.5, with the canonical workspace virtualenv
+running against this lane's source tree:
+
+- Focused acquisition, bounded-result, World Foundry, compression and web-search
+  handler suite: **56 passed** (`-p no:cacheprovider`).
+- Research-package/caller regression set: **689 passed, 25 gated out**; gates
+  were `requires_postgres`, `requires_api_keys` and `requires_dogfood_wedge`.
+- Full offline `make merge-check BASE_REF=origin/main`: **21,964 passed, 14
+  skipped, 53 xpassed**. It ran with pytest cache disabled because this managed
+  lane does not permit writes to its default cache directory.
+- `make ci-static` passed, including Ruff, architecture/structural gates,
+  catalog runway and mypy over 1,889 source files. Ruff cache was disabled and
+  mypy cache redirected to avoid the worktree write restriction.
+
+The provider boundary was mocked; `include_raw_content=False` was asserted. No
+live provider call, database, migration, app build, or consumer runtime was
+exercised. The source-binding result still does not prove semantic entailment.
+Remaining R1 acceptance includes a caller-independent typed disclosure boundary,
+purpose-specific lookup/discovery behavior, and supported-claim checks. R2's
+selected-original reader is also still outstanding.
+
 Second-pass offline checks at workspace `44f637e85`, backend `3c170d21f`
 and app `87eceee24`, on Python `3.13.0` / Darwin 25.5 arm64:
 **24 passed, zero skipped**, across quick research, bounded-result conversion,
