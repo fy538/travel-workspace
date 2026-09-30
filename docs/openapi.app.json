@@ -39281,7 +39281,8 @@
           "revision": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "integer",
+                "minimum": 1.0
               },
               {
                 "type": "null"
@@ -89401,6 +89402,7 @@
               "did_not_go",
               "separate_from_occasion",
               "keep_occurrence_forget_interpretation",
+              "replace_time",
               "delete_derived"
             ],
             "title": "Action"
@@ -89416,6 +89418,42 @@
               }
             ],
             "title": "Note"
+          },
+          "command_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Command Id"
+          },
+          "expected_revision": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Revision"
+          },
+          "time_window": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TimeWindow"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "additionalProperties": false,
