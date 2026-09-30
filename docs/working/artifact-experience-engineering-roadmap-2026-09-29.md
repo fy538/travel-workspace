@@ -40,8 +40,9 @@ correction authority. This is the beginning of P0/P1/P2, not completion of the
 first assignment: P0 still needs reviewed identity/subject/collection decisions,
 component/context and edition references, the complete supported-door/mode
 matrix and lifecycle replay fixtures. A reusable first portfolio fixture set
-now spans books, films, shows, music, passage/dish/practical fallbacks, sparse
-recognition, and one bounded friend contribution. A first crosswalk now
+now spans books, films, shows, music, source-backed passage and practical
+readers, dish fallback, sparse recognition, and one bounded friend contribution.
+A first crosswalk now
 separates source admission, family-reader behavior, and audience authorization;
 door-to-family recognition remains unproven. P1 still needs cross-door
 recognizable identity, typed source/date edits, correction Undo and
@@ -53,9 +54,11 @@ projection; the app opens the exact submission/source/content revision, with
 an explicit chooser when more than one original is eligible. This extends the
 existing Intake reader rather than introducing another source service. The
 focused backend and app evidence is recorded in section 13. It does not
-complete P2: dish/practical readers, selected-part interaction and native
-visual acceptance remain unfinished. The passage treatment uses only the
-supplied excerpt and does not infer author/work identity. A subsequent P1
+complete P2: dish reader, selected-part interaction and native visual
+acceptance remain unfinished. The passage treatment uses only the supplied
+excerpt and does not infer author/work identity. The practical-record sheet
+shows only supplied facts and does not calculate receipt totals or payment
+state. A subsequent P1
 slice now links an exact eligible original back to its existing confirmed
 candidate/anchor only when active observation lineage matches both source ID
 and custody-bound content digest; the private read is owner-session scoped and
@@ -385,7 +388,7 @@ The first delivered reader-mode matrix is deliberately narrow:
 | Mode | Current behavior | Not implied |
 | --- | --- | --- |
 | Mine, confirmed `ExperienceAnchor`, recognized ticket/place/work with family-relevant source facts | Versioned descriptor may select the corresponding native reader; original-first fallback remains for missing facts, unknown types, or unsupported descriptor versions | Catalog match, validity, visit/attendance, external media, selected-part identity, or general input-format support |
-| Mine, sparse/unrecognized anchor or recognized passage/dish/practical record | A recognized passage selects a text-built treatment only when a non-empty source-backed `excerpt` fact exists; dish/practical and sparse passages use the source-fact/original fallback | A new family-specific schema, author/work identity, or generated interpretation |
+| Mine, sparse/unrecognized anchor or recognized passage/dish/practical record | Recognized passages require a non-empty source-backed `excerpt`; practical records require supplied identity/place/provider/time/status details. Dish, sparse records/passages and unrecognized anchors use the source-fact/original fallback. | Author/work identity, calculated receipt or payment claims, a new family-specific schema, or generated interpretation |
 | Together | Canonical artifact projection route rejects the request until graph-owned sharing authorization exists; private reader-family metadata is withheld | That an Occasion link or source-level sharing elsewhere grants this reader access |
 | Catalog lookup, selected-part reading, contextual discovery, exact saved edition | Not connected by this reader increment | Any provider rights, answer generation, durable retention, or permission to share generated material |
 
@@ -409,7 +412,8 @@ artifact can be shared.
 | Mine · place anchor | Source-backed place treatment when place/time facts qualify; otherwise source-fact/original fallback. | Resolved venue, visit claim, map, catalog details, or availability. |
 | Mine · book/film/show/music | Medium-specific text-built face when recognized with family facts; the submitted source remains reachable and no catalog art is assumed. | Work/edition identity resolution, licensed media, or a general subject page. |
 | Mine · passage | Text-built “as kept” treatment only with a recognized descriptor and non-empty source-backed excerpt; other supplied facts remain bounded details. | Author/book/edition identity, surrounding context, or generated interpretation. |
-| Mine · dish/practical record; sparse or unknown format | Generic source-fact/original reader, including when a descriptor is recognized but lacks the fields required for a designed reader. | A specialized reader, inferred meaning, or completion of missing facts. |
+| Mine · practical record | Neutral “as kept” sheet when a recognized descriptor and supplied identity/place/provider/time/status detail are present; otherwise generic source-fact/original fallback. | Totals, payment state, validity, or other calculated/inferred facts. |
+| Mine · dish; sparse or unknown format | Generic source-fact/original reader, including when a descriptor is recognized but lacks the fields required for a designed reader. | A specialized dish face, inferred meaning, or completion of missing facts. |
 | Together · canonical artifact | Not served by this private owner projection until the graph-owned sharing authorization path exists. Static shared fixtures test presentation/redaction only. | Production multiplayer artifact reading, membership authority, or publication. |
 | Selected component, catalog, contextual discovery, kept edition | No stable selected-part reference or artifact-bound prepared-result/saved-edition handoff in this reader. | OCR region identity, external provider rights, generated context, or silent persistence. |
 
@@ -784,6 +788,8 @@ and returns correctly from related material. It remains useful without AI.
   by the owner projection and shown in a restrained “as kept” reader when the
   recognized descriptor and excerpt are both present. This does not select a
   part inside a longer original or identify its author/work; dish and practical
+  records were subsequently given a source-only “as kept” sheet. It requires
+  supplied structured details and calculates no amount/payment state. Dish
   records still use honest source-fact/original fallback.
 - Reuse a common original-inspection interaction across Intake, confirmed
   artifacts and received originals, retaining each owner's authorization adapter.
@@ -1444,6 +1450,7 @@ coverage through the authenticated Intake route (`5dbc29353`, extended by
 | Boundary | Command | Result and limit |
 | --- | --- | --- |
 | P2 source-bound passage reader | Backend `4b29a3125` and lineage assertion `48ca8c790`; `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/core/test_canonical_artifact_projection.py -q`; targeted `ruff check --no-cache …` and `ruff format --check --no-cache …`; app `8df9bf93e`; `npm test -- --runInBand --no-cache __tests__/components/canonicalArtifactCard.test.tsx`; `npm run typecheck`; targeted `npx eslint --no-cache …`; app contract `3c87bbef3`; app `npm run docs:check` | 23 backend projection tests and 21 app component tests passed. The backend now returns a source-backed `excerpt` fact and marks it family-relevant; the regression proves exact excerpt value and active observation source lineage. The app renders “PASSAGE · AS KEPT” only with a recognized descriptor and non-empty excerpt, shows supplied place/source-note facts, and falls back when the excerpt is missing. TypeScript, targeted lint/format, commit hooks and app docs checks passed. Generated wire shape is unchanged; no catalog/author/work inference, selected part within a longer original, live backend, native screenshot, or visual-preference claim. Registered device `--doctor` failed because Metro was not reachable on `:8081`; the isolated runtime attempt then stopped because backend startup requires `ANTHROPIC_API_KEY`, absent in this environment. The exact lane Postgres/Qdrant containers were stopped afterward without deleting their volumes. No successful native capture is claimed. |
+| P2 source-only practical-record reader | App `cb82e8abe`; `npm test -- --runInBand --no-cache __tests__/components/canonicalArtifactCard.test.tsx`; `npm run typecheck`; `npx eslint --no-cache components/artifacts/ArtifactFamilyReader.tsx components/artifacts/PracticalRecordArtifactReader.tsx __tests__/components/canonicalArtifactCard.test.tsx`; app contract `04394b889`; `npm run docs:check` | 22 reader tests passed. A recognized practical-record descriptor uses a neutral structured sheet only when supplied identity/place/provider/time/status details exist; sparse cases stay generic. Tests prove source facts are shown and no total/payment assertion is introduced. TypeScript, targeted lint, app docs headers/links and hooks passed. No backend schema/API change, receipt arithmetic, live backend, native screenshot, or visual-preference claim. The assigned native capture remains blocked as described in the passage-reader attempt above. |
 | P1 canonical artifact reader lifecycle | Backend commit `9c775cd03`; `DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_lifecycle_20260930_01 PYTHONPATH=. .venv/bin/python -m alembic upgrade head`; `TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_lifecycle_20260930_01 TEST_DATABASE_DISPOSABLE=1 TRAVEL_APP_ROOT=../travel-app SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/inbound/test_candidate_owner_lifecycle_postgres.py -q`; offline `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider -m 'not requires_postgres and not requires_api_keys and not requires_dogfood_wedge' tests/inbound/test_intake_semantics_contract.py tests/core/test_intake_anchor_originals.py tests/core/test_canonical_artifact_projection.py tests/api/test_artifact_projections.py tests/inbound/test_anchor_runtime.py -q`; `ruff check --no-cache tests/inbound/test_candidate_owner_lifecycle_postgres.py`; `ruff format --check --no-cache tests/inbound/test_candidate_owner_lifecycle_postgres.py` | Three Postgres lifecycle tests passed. The authenticated canonical artifact route proves persisted readback of a confirmed source-bound candidate, non-owner denial (404), candidate withdrawal (404), and 404 after actual `delete_submission`; source-loss restore remains fenced. The new database was migrated and dropped inside this lane's PostGIS service, then the service was returned to its prior stopped state; the lane's default database and volume were preserved. The 66-test offline source/reader suite, Ruff, formatting, and backend commit hooks passed. TestClient uses an identity dependency override; this is not deployed-service or native/mobile acceptance, and no schema/API contract changed. |
 
 Native acceptance, model comparisons, human preference and economic measurements
