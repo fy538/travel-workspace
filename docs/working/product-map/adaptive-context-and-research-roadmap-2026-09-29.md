@@ -1599,3 +1599,44 @@ shared budget/reservation protocol, caller-independent disclosure, selected
 artifact retrieval, supported-claim checks, consumer readback, or any R0–R7
 package. There was no live provider request, database mutation, API/schema
 change, application change, deployment or publication.
+
+#### Implementation receipt — public source provenance and truncation metadata (September 30)
+
+Backend commit `bac36009373d51e65fa6d0362f244bfec4594b04` retains the
+provider and output-shaping provenance of the shared transient lookup result.
+The typed acquisition result identifies the current provider (`tavily`), and
+records whether its provider summary, each source title, or each source snippet
+was truncated to the existing output bounds. Both existing consumers—the
+factual `search_web` path and trip-direction public fallback—preserve these
+fields in their returned evidence payloads. This makes source provenance and
+lossy shaping visible at the consumer boundary without storing provider
+content or changing the lookup's existing privacy, timeout, or source-kind
+limits.
+
+Evidence on the clean lane tuple workspace
+`b80666a898ea366336f66cbe9caf8f0c208bd785`, backend
+`bac36009373d51e65fa6d0362f244bfec4594b04`, app
+`28717c7cfec07b2313fe0e0cdff4431444df8335` (Darwin 25.5 arm64, Python
+3.14.6):
+
+- Focused acquisition/request/consumer tests: **53 passed**.
+- `MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true make -C travel-agent
+  ci-static` passed in **101.366 seconds**, including Ruff and mypy with no
+  issues across 1,892 backend source files. The measured log is
+  `/tmp/vesper-adaptive-context-roadmap-checks/public-source-metadata-ci-static-20260930T183152Z.log`.
+- Workspace `make docs-check` passed against the feature documentation and
+  roadmap on workspace `b80666a898ea366336f6cbe9caf8f0c208bd785`.
+- Measured `PYTEST_ADDOPTS='-p no:cacheprovider' RUFF_NO_CACHE=true make -C
+  travel-agent merge-check BASE_REF=main` passed in **97.736 seconds**:
+  **22,003 passed, 14 skipped, 53 xpassed, 0 failed**. The complete log and
+  exact revision tuple are recorded in
+  `/tmp/vesper-adaptive-context-roadmap-checks/public-source-metadata-merge-check-20260930T183339Z.log`
+  and `/tmp/adaptive-research-roadmap-measurements.json`.
+- Backend commit hooks passed without exemptions or baseline changes.
+
+This is provenance for the bounded returned representation, not source-page
+fetch or verification, claim-entailment or relevance proof, semantic privacy
+classification, a durable cost/billing ledger, or proof that the returned
+content is useful. No new paid consumer, API/schema or app change, persistent
+research storage, live provider call, database mutation, native build/readback,
+deployment or publication was introduced. R0–R7 remain open.
