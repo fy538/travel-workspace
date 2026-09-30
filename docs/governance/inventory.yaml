@@ -13,6 +13,15 @@ dispositions:
 # Overrides win over rules. Rules deliberately cover stable folder conventions;
 # top-level and working documents are classified one by one below.
 rules:
+  - glob: "docs/working/memory-as-product-direction-research-2026-09-28.md"
+    disposition: keep_reference
+    rationale: "Dated six-question primary research and repository synthesis testing memory as a consumer-facing product surface; recommendations remain proposed and existing product, permission and roadmap owners retain authority."
+  - glob: "docs/working/product-direction-2026-09-28.md"
+    disposition: keep_reference
+    rationale: "Dated trace of the September 24–28 founder strategy thread; the September 27 and 28 decisions own the rulings, and unratified proposals stay proposals."
+  - glob: "docs/working/roadmap-proposals-for-codex-2026-09-28.md"
+    disposition: keep_reference
+    rationale: "Proposed program-roadmap changes for the Codex lane owner; the program roadmap remains the only dispatch queue."
   - glob: "docs/working/historical-branch-recovery-audit-2026-09-23.md"
     disposition: keep_reference
     rationale: "Dated, expiring cross-repository Git recovery inventory and proposed selective-port plan; current product, system and program authorities retain all implementation decisions."
