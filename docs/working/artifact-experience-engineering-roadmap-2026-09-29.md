@@ -34,12 +34,19 @@ source-backed place record (not a catalog venue page or visit claim),
 text-built book/film/show/music treatments (not catalog art or resolved-subject
 claims), and a passage treatment gated on an explicit source-backed excerpt.
 Backend projection/API and app reader tests pass. A code-backed pass
-now maps the existing owners and current reader modes below; founder review is
-still needed before choosing new durable identity, component, collection, or
-correction authority. This is the beginning of P0/P1/P2, not completion of the
-first assignment: P0 still needs reviewed identity/subject/collection decisions,
-component/context and edition references, the complete supported-door/mode
-matrix, selected-part representation fixtures and lifecycle replay fixtures.
+now maps the existing owners and current reader modes below. The accepted
+[Collections](../decisions/2026-09-28-collections-are-the-spine.md) and
+[Life](../decisions/2026-09-29-life-model-occasions-collections-and-sharing.md)
+decisions settle the consumer semantics:
+many-to-many membership, time-agnostic things, Remove versus Delete,
+whole-collection sharing, and Life's four readings. Founder review remains for
+the technical owner/reference model and new durable identity, subject,
+component, or correction authority; those are not reasons to reopen the
+accepted product semantics. This is the beginning of P0/P1/P2, not completion
+of the first assignment: P0 still needs reviewed identity/subject/owner
+mappings, component/context and edition references, the complete
+supported-door/mode matrix, selected-part representation fixtures and
+lifecycle replay fixtures.
 An isolated sparse-history example now covers one user observation plus one
 public source without the later personal evidence; it is a fixture/compiler
 boundary, not live-generation or desirability evidence. A reusable first
@@ -598,9 +605,12 @@ that allows reader, retrieval and maintenance work to proceed independently.
   lane boundaries. Consume Orchestration's existing capture path; do not take
   over its transport files when implementing identity or sharing semantics.
 - The September 30 code-backed map in section 3 now ties existing owners to
-  concrete types, routes, and mutation paths. Review the remaining thin
-  identity/reconciliation mapping and consumer collection owner; do not rename
-  editorial or derived Life organization into that owner by implication.
+  concrete types, routes, and mutation paths. Carry the accepted September
+  28 Collections and September 29 Life semantics into owner contracts; do not
+  reopen them while deciding their implementation. Review the remaining thin
+  identity/reconciliation mapping and where consumer collection persistence
+  belongs. The accepted Life organization projection and editorial guide
+  collections are not the consumer Collection owner by implication.
   Name the cultural-subject owner, stable local references, external mappings
   and work/edition distinctions before PC and P2 choose incompatible models.
   Review the physical capability assumptions and external ID namespaces in
@@ -1122,7 +1132,7 @@ checkpoint. Retire replaced adapters only after consumer/readback coverage.
 | Decision | Recommendation or current boundary | Blocks | Does not block |
 | --- | --- | --- | --- |
 | Thing reconciliation, components and cultural subjects | Approve a thin mapping, shared selectors and cultural owner in P0; review physical capabilities, external ID namespaces and typed readings | Incompatible identity/schema implementations | Original rendering against existing source references |
-| Consumer collection owner | Map accepted many-to-many behavior explicitly; do not reuse editorial guide tables by name | Durable collection writes and corresponding sharing | Single-object private reader and owner-linked discovery |
+| Consumer collection owner | Product semantics are accepted: user-owned collections, many-to-many membership, whole-collection visibility, and explicit Remove/Delete. Map the technical owner and stable member references; do not reuse editorial guide tables or the derived Life index by name. Vesper-initiated additions to shared collections remain a separate pending policy choice. | Durable collection writes and corresponding sharing | Single-object private reader and owner-linked discovery |
 | Kept edition after supporting withdrawal | Recommended default: withhold affected content, preserve only permitted metadata, offer a new independently supported version; exact policy unadopted | Shared derivative retention and partial salvage promises | Private originals and edition mechanics tested without disputed shared material |
 | Offline retained material | Adopt what can be cached, for how long and how reconnect handles loss; no instant remote revocation promise | Persistent shared offline caches and their user promise | Online reader, locally available independently eligible originals under existing rules |
 | Automatic preparation | Separate selection refresh from generation; define allowed triggers and budget owner | New proactive generation/background posture | Existing explicit requests, pure reads and cheap authorized selection |
