@@ -123,7 +123,7 @@ flags:
     status: active
     target_journey: P02,P05,P07
     cohort: development or explicit internal builds only; public release builds cannot activate it
-    kill_switch: Unset EXPO_PUBLIC_FOUR_ROOT_SHELL or set it false; the shipped Plans, Vesper, Places shell and hidden Atlas compatibility route return immediately.
+    kill_switch: Unset EXPO_PUBLIC_FOUR_ROOT_SHELL or set it false; Plans/Vesper labels and the legacy Home/Places renderers return. Life remains the permanent fourth root; Atlas stays a deep-link compatibility adapter, not a second tab.
     promotion_removal_question: >
       By 2026-10-07, has the complete native portfolio and a selected dedicated-tool
       visual system proven Home, Chat, Places, and Life as coherent roots, or should

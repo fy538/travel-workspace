@@ -616,6 +616,15 @@ contract and failure path; do not treat one synthetic ferry story as the product
 paths and disclose unsupported provider capabilities. Record the exact external
 gap without building a parallel operational subsystem or pretending completion.
 
+**Four-root rollout alignment — 2026-09-30:** app commit `14d6b49cc` removes the
+unused `lifeVisible` field from the Home compatibility-shell and product-system
+rollout projections. Life is already the permanent fourth tab; the shell flag
+changes Home/Places rendering and Plans/Vesper labels, not Life's visibility.
+The flag registry and Home contract now state that rollback behavior
+accurately. Focused shell/rollout tests passed **7/7**, app typecheck passed,
+and `make docs-check` passed. No tab behavior changed; this removes a misleading
+dead contract while preserving the existing Life root and rehearsal gates.
+
 ## 6 Autonomous execution and landing
 
 Each lane starts by reading its roadmap, the ownership section above, root and
