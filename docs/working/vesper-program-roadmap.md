@@ -331,17 +331,26 @@ or the existing anywhere-search mode when no supported scope is available; it
 does not ask for an upload, wait for travel, request location, or create a
 capture. Focused Places state tests passed **25/25** (including both scope
 cases), app typecheck and targeted ESLint passed, the registered scenario check
-passed (**31 IDs**), and `make docs-check` passed. Native screenshot acceptance
-remains **unverified**: the registered preflight and Metro bundle succeeded
-after correcting the simulator-reachable host, but the actual Maestro capture
-did not finish. A local iOS rebuild also failed because the generated Xcode
-project references `Pods-ShareExtension/expo-configure-project.sh` while the
-default Podfile has no `ShareExtension` target. No screenshot or visual verdict
-is claimed. This closes only the empty-state entrance defect; D2 remains active.
-**Next:** continue D2's real-supply/full-scroll implementation independently;
-repair the generated-project configuration as a separate QA-enablement task,
-then capture and assess the registered Places surface. Do not wait on that
-capture to keep implementing supported Home/Places behavior.
+passed (**31 IDs**), and `make docs-check` passed. Native validation then
+completed through the documented local development setup: the opt-in iOS
+prebuild generated the extension pod target, `pod install` succeeded, and the
+iPhone 16 Pro simulator build/install passed with Sentry source-map auto-upload
+disabled locally. The default capture-host-off project was restored and pods
+reinstalled afterward; release capture delivery remains disabled. The
+registered `places-workspace` capture produced **7/8** screenshots. The one
+failed flow completed its Places search/readback checks, then failed a
+`home-v2-screen` assertion immediately after a forced navigation to Plans; its
+failure snapshot showed the Plans surface onscreen, so the remaining evidence
+is a scenario timing/selector issue to investigate separately, not a Places
+failure. The cold screenshot showed ready Lisbon/Rome guides and therefore did
+not exercise this new zero-content CTA. The CTA itself is functionally covered
+by the two focused tests; no screenshot of that exact state is claimed. The
+external canonical design bundle was not supplied (`externalCanonVerified=0`),
+so no strict design-intent verdict is claimed. This closes only the empty-state
+entrance defect; D2 remains active. **Next:** continue D2's real-supply and
+full-scroll implementation independently; keep the Plans post-navigation
+capture issue bounded and do not wait on it to continue supported Home/Places
+work.
 
 ### D3 Make practical help part of the same system
 
