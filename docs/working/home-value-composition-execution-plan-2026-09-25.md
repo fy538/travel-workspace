@@ -616,19 +616,25 @@ three-photo library happy paths are evidenced, and the canonical reader can
 carry all 16 retained image sources in selection order. Authenticated
 per-image return is not yet proven.
 
-**Next implementation order:** (1) close the signed-device/authenticated
-per-image readback path for a multi-photo selection, preserving owner identity
-and exact source ordering (selection above two is now proven for three items);
-the roadmap's signing/provisioning mismatch is the prerequisite. (2) verify
-deliberate Chat Bring + Ask across its now-connected private entrances (the
-existing-thread photo path has bounded native mock acceptance;
-dock/private-create, failure and large-type acceptance remain) with unchanged
-conversation retention; (3) finish native OS/email adapters against that same
-contract; (4) extend Send/Share only through the named relationship/audience
-owner amendment. Keep broader audiences, friend-material AI use and the pending
-R1–R5 policies separate. Each door must preserve authored material, duplicate
-identity, failure/retry, exact owner return and correction. Refinding through
-ordinary Life and later value need explicit evidence, not just this receipt.
+**Next implementation and evidence order:** the in-app/native shared receipt
+now previews each retained image in source-ordinal order and opens the exact
+selected source/revision where host-app navigation is available (app
+`3d866cd03`). Its focused tests walk all 16 images, verify one selected-source
+read at a time, and refuse a revoked source. This closes the code/UI portion of
+multi-photo refinding, not signed-device or authenticated live-backend
+acceptance. Continue with the native OS/email adapters against the same custody
+contract rather than waiting on signing; keep the share-extension receipt
+in-place because Apple's supported extension URL-opening API does not cover
+the Share extension point. In parallel when setup is available, complete the
+signed-device/authenticated per-image readback. Then verify deliberate Chat
+Bring + Ask across its connected private entrances (existing-thread photo has
+bounded native mock acceptance; dock/private-create, failure and large-type
+acceptance remain) with unchanged conversation retention. Extend Send/Share
+only through the named relationship/audience owner amendment. Keep broader
+audiences, friend-material AI use and pending R1–R5 policies separate. Each
+door must preserve authored material, duplicate identity, failure/retry, exact
+owner return and correction. Refinding through ordinary Life and later value
+need explicit evidence, not just this receipt.
 
 **Verification:**
 

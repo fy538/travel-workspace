@@ -280,7 +280,9 @@ source ID/revision, and ephemeral Home/Places return token. The reader rechecks
 current ownership, custody, expiry and the requested revision, and the route
 never receives a storage reference. This closes the host-app original-open
 connection only: the native extension still has no host-app navigation, and
-signed-device/authenticated live readback remain unverified. Focused coverage
+signed-device/authenticated live readback remain unverified. Apple documents
+`NSExtensionContext.open` for Today and iMessage extensions, not the Share
+extension point ([Apple API](https://developer.apple.com/documentation/foundation/nsextensioncontext/open%28_%3Acompletionhandler%3A%29)); keep the extension receipt in-place rather than adding a private-API launch workaround. Focused coverage
 passed **40/40** across the receipt, route and share-capture suites; production
 and test TypeScript checks and app docs checks passed. Targeted ESLint had zero
 errors and six existing warnings; native visual/device acceptance was not run.
@@ -296,9 +298,25 @@ contract TypeScript checks passed, and targeted lint passed. This closes one
 unsupported file-preflight gap only; it does not establish every door's format
 coverage, email sender recovery, or signed-device acceptance.
 
-**Independent work when blocked:** in-app authenticated/native acceptance, email
-transport failure semantics, remaining native original-open work, and D2's
-existing-supply composition.
+**Multi-photo Keep receipt — September 30:** app commit `3d866cd03` replaces
+the immediate receipt's lead-photo-only preview with a sequential viewer over
+the selected images in Intake source-ordinal order. It requests only the
+currently selected original through the existing owner media reader; the host
+app's **Open original** carries that exact source and revision, and the share
+extension previews the same selection without claiming it can open Vesper.
+Focused receipt/session/native-host coverage passed **45/45**, including all
+16 supported images, one-at-a-time reads, exact selected-original routing,
+revoked-source refusal and owner-session fencing. Production/test TypeScript,
+surface docs and targeted lint passed (two existing test-mock warnings). A
+native visual capture was not run: Metro's lane port `53177` had a listener but
+did not answer its status endpoint, so the registered runner correctly stopped
+at preflight. Signed-device authenticated readback remains unverified; this is
+not an excuse to block subsequent code work.
+
+**Independent work when blocked:** in-app authenticated/native acceptance,
+email transport failure semantics and D2's existing-supply composition. The
+native share receipt stays in-extension; do not add unsupported host-launch
+workarounds.
 Do not block the whole lane on signing, an unavailable provider or an unapproved
 sharing policy. No Chat redesign or Life implementation belongs to D1.
 
