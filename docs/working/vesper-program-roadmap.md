@@ -285,6 +285,17 @@ passed **40/40** across the receipt, route and share-capture suites; production
 and test TypeScript checks and app docs checks passed. Targeted ESLint had zero
 errors and six existing warnings; native visual/device acceptance was not run.
 
+**Unsupported archive preflight — September 30:** app commits `89f60c55b` and
+`0b6a01d02` reject generic ZIP before creating custody, including common
+`application/zip`, `application/x-zip` and `application/x-zip-compressed`
+declarations when the OS omits a filename. In the shared composer, an
+unsupported archive remains visible for explicit removal; supported text can
+still be kept afterward. The backend remains the byte-level admission
+authority. Focused intake and draft suites passed **35/35**, app production and
+contract TypeScript checks passed, and targeted lint passed. This closes one
+unsupported file-preflight gap only; it does not establish every door's format
+coverage, email sender recovery, or signed-device acceptance.
+
 **Independent work when blocked:** in-app authenticated/native acceptance, email
 transport failure semantics, remaining native original-open work, and D2's
 existing-supply composition.
