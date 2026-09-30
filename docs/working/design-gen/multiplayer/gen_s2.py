@@ -1,6 +1,6 @@
 """11 · Audience, Keep, an ask, a link, withdraw. The rest of sharing: who a share goes to; keeping a friend's share for
 yourself; a status whose point is the answers; something from outside with a line on it; taking a share back and what
-goes with it. Reuses board 10's shapes. Founder direction, 2026-09-21: "let's do all 6"."""
+goes with it. Reuses board 01's shapes. Founder direction, 2026-09-21: "let's do all 6"."""
 from mp_kit2 import *
 from gen_merge import daycap
 from gen_p2_common import illo
@@ -39,15 +39,12 @@ def received_group():
 
 # ── 3 · keep ──
 def keep_tap():
+    """Sept 26 (§12.4): Keep is immediate and private; a receipt offers Add to a collection and Undo. No destination
+    question in front of saving."""
     inner = anchor_row('NEW YORK', 'SUNDAY 9:46 PM')
     inner += gut(share('Priya', '9:40 PM · TO THE SORRENTO FOUR', LULU, extra=place_card(), where='At Lulu&rsquo;s', kept=True), top=18)
-    inner += sheet(f'<div style="{SERIF} font-weight: 600; font-size: 19px; line-height: 24px;">Kept.</div>'
-        + f'<div style="margin-top: 8px;">{plain("In your Life, under Priya and under Lulu&rsquo;s. Priya isn&rsquo;t told.", INK2, 15, 21)}</div>'
-        + f'<div style="margin-top: 12px; min-height: 40px; border: 1px solid rgba(27,23,20,0.14); border-radius: 10px; padding: 10px 12px; color: {MUTE}; font-size: 14px;">A note for yourself, if you want one</div>'
-        + f'<div style="margin-top: 12px; display: flex; gap: 18px;">{door("Open in Life", GOLDD)}{door("Undo", MUTE)}</div>')
+    inner += gut(S.receipt('Kept, just for you', 'Add to a collection', 'Undo'), top=22)
     return phone2(inner, active='Home')
-
-# ── 4 · kept things, in Life ──
 def kept_row(letter, who, when, words, thing, kind):
     return (f'<div style="display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid rgba(27,23,20,0.07);">{thumb(kind, 48)}'
             f'<div style="flex: 1; min-width: 0;"><div style="font-size: 15px; line-height: 20px; color: {INK}; font-weight: 600;">{thing}</div>'
@@ -79,10 +76,7 @@ def ask_after():
 
 # ── 6 · a link ──
 def link_card():
-    return (f'<div style="{CARD_CSS} padding: 14px 16px; display: flex; gap: 12px; align-items: center;">{thumb("film", 56)}'
-            f'<div style="min-width: 0; flex: 1;"><div class="fn" style="margin-bottom: 4px;">LINK &middot; THE LANTERN&rsquo;S SITE</div>'
-            f'<div style="{SERIF} font-weight: 600; font-size: 16px; line-height: 21px;">This week: one film, through Sunday</div>'
-            f'<div style="font-size: 13px; line-height: 18px; color: {INK2}; margin-top: 2px;">Court Street &middot; 7:15 nightly</div></div></div>')
+    return S.link_line()
 def link_write():
     return S.composer('S', 'this is the cinema. one film a week and exactly one kind of cake', link_card(), where='Court Street', on=('where',))
 def link_received():
@@ -100,13 +94,11 @@ def withdraw():
     return phone2(inner, active='Home')
 def after_withdraw_places():
     inner = page_bar('PLACES')
-    inner += f'<div style="margin-top: 14px;">{plate("table", 140, tag="ILLUSTRATION &middot; NOT A PHOTOGRAPH").replace("margin: -16px -16px 12px -16px;", "margin: 0;")}</div>'
-    inner += page_title('Lulu&rsquo;s', 'Carroll Gardens &middot; Italian &middot; open till 11')
+    inner += page_title('Lulu&rsquo;s', 'Carroll Gardens &middot; Italian')
     inner += sect('From friends', top=24) + gut(plain('Nothing here now.', MUTE, 15, 21))
-    inner += sect('Kept') + gut(f'<div style="display: flex; gap: 12px; align-items: flex-start; padding: 12px 0;">{thumb("table", 48)}<div><div style="font-size: 15px; line-height: 20px; color: {INK}; font-weight: 600;">Lulu&rsquo;s, Carroll Gardens</div>'
-        + f'<div style="font-size: 14px; line-height: 20px; color: {MUTE}; margin-top: 2px;">Priya took her note back on Sept 30. You kept the place.</div></div></div>')
+    inner += sect('Kept') + gut(S.place_line('Lulu&rsquo;s', 'Carroll Gardens &middot; Italian', '',
+        f'<div style="font-size: 14px; line-height: 20px; color: {MUTE}; margin-top: 3px;">Priya took her note back on Sept 30. You kept the place.</div>'))
     return phone2(inner, active='Places')
-
 def cell(day, n, title, sub, ph, tags=()):
     return col(ph, (f'<div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 7px;">{"".join(tags)}</div>' if tags else '') + daycap(day, n, title, sub))
 def rowdiv(cells, top=8):
@@ -114,8 +106,8 @@ def rowdiv(cells, top=8):
 
 def build():
     r1 = rowdiv([cell('SUNDAY 9:40 PM', '1', 'Who it goes to', 'Tapping &ldquo;To&rdquo; opens the picker: friends, a group you named once, or one person. Last time&rsquo;s choice is already selected. A group is an audience, not a chat.', audience(), (P('AUDIENCE'), P('SENDER'))),
-                 cell('SUNDAY 9:44 PM', '2', 'Received, audience legible', 'The same share as board 10 D2, sent to a group. Nora sees who else got it, so she knows who a comment reaches.', received_group(), (P('AUDIENCE'), P('RECEIVER'))),
-                 cell('SUNDAY 9:46 PM', '3', 'Keep', 'For her, not for Priya. One tap; it goes under Priya and under Lulu&rsquo;s in her Life, with a note of her own if she wants one. Priya isn&rsquo;t told.', keep_tap(), (P('KEEP'), P('RECEIVER')))], top=0)
+                 cell('SUNDAY 9:44 PM', '2', 'Received, audience legible', 'The same share as board 01 D2, sent to a group. Nora sees who else got it, so she knows who a comment reaches.', received_group(), (P('AUDIENCE'), P('RECEIVER'))),
+                 cell('SUNDAY 9:46 PM', '3', 'Keep', 'One tap keeps it privately, under Priya and under Lulu&rsquo;s. A receipt offers Add to a collection and Undo. Priya isn&rsquo;t told.', keep_tap(), (P('KEEP'), P('RECEIVER')))], top=0)
     r2 = rowdiv([cell('LATER', '4', 'Kept things, in Life', 'Three friends&rsquo; shares she kept, each with whose it was and when. Each is also under the person and under the place. Keeping it changed nothing for them.', life_kept(), (P('KEEP'), P('LIFE'))),
                  cell('TUESDAY 8:20 AM', '5', 'An ask', 'A status whose point is the answers. Comments go to everyone by default, so the answers help the next person too.', ask_received(), (P('ASK'), P('RECEIVER'))),
                  cell('TUESDAY 6:40 PM', '6', 'What Nora sees', 'Two answers to everyone, one to her alone (the others don&rsquo;t see it), and her own comment closing it. No resolved flag: she says so.', ask_after(), (P('ASK'), P('SENDER')))])
@@ -143,20 +135,20 @@ def build():
         ('NOTIFICATIONS', 'Not drawn. Proposed: a status, a whereabouts, a place or a link never ping; an invitation does, and so does a comment on your own share or an answer to your ask.'),
     ]), w=620)
     import gen_s3 as E
-    r5 = rowdiv([cell('MONDAY 12:14 PM', '11', 'Passing it on', 'Nora quotes Priya&rsquo;s note into her chat with Jo, her sister. Same as any app: the card carries Priya&rsquo;s name and who it was for. No permission step.', E.forward(), (P('EDGES'), P('NORA'))),
-                 cell('MONDAY 12:14 PM', '12', 'By link, to someone without Vesper', 'The same share as a page: Nora&rsquo;s words, Priya&rsquo;s under them, the place, a reply field. Nothing to install; the reply reaches Nora as a comment.', E.by_link(), (P('EDGES'), P('NO APP')))])
+    r5 = rowdiv([cell('MONDAY 12:14 PM', '11', 'Passing it on', 'Nora sends her sister Jo the place, in her own words. The place travels freely; Priya&rsquo;s note stays with the people it was sent to.', E.forward(), (P('EDGES'), P('NORA'))),
+                 cell('MONDAY 12:14 PM', '12', 'By link, to someone without Vesper', 'The same as a page: Nora&rsquo;s words, the place, a reply field. Nothing to install; the reply reaches Nora.', E.by_link(), (P('EDGES'), P('NO APP')))])
     n4 = notes('THE EDGES, IN ONE LINE EACH', led([
-        ('PASSING ON', 'Quote it to someone, or forward it. The card keeps the author&rsquo;s name and original audience. If you don&rsquo;t want something to travel, don&rsquo;t post it.'),
+        ('PASSING ON', 'The place or link travels freely. A friend&rsquo;s own words and photographs stay within the audience they were sent to. No permission step; that boundary is the rule (decision, Sept 26).'),
         ('OUTSIDE VESPER', 'A link opens a page with the share and a reply field. Replies come back as comments. The sender is told &ldquo;by link&rdquo;, never whether it was opened.'),
         ('GROUPS OVER TIME', 'Someone added to a named group sees what is sent from then on. Someone removed keeps what they got and gets nothing new.'),
         ('WITHDRAWN', 'Taking a share back removes it everywhere it went. Nothing survives except what other people wrote themselves.'),
-    ]) + N('Formerly board 12, merged here on 2026-09-22. An earlier eight-frame permission flow for passing things on was cut on 2026-09-21 as over-complicated.'), w=560)
+    ]) + N('The edges were a board of their own until 2026-09-22. An earlier eight-frame permission flow for passing things on was cut on 2026-09-21 as over-complicated.'), w=560)
     body = r1 + r2 + r3 + r4 + r5 + '<div style="display: flex; gap: 46px; align-items: flex-start; margin-top: 34px; border-top: 1px solid rgba(27,23,20,0.12); flex-wrap: wrap;">' + n2 + n3 + n4 + '</div>'
-    html = (HEAD_VDL + f'<div style="width: {bw(3, (520, 620))}px; min-height: {hh("11", 5200)}px; background: #D8D1C5; box-sizing: border-box; padding: 30px 32px 36px 32px; {SANS} color: {INK}; display: flex; flex-direction: column;">'
-            + head('11 &middot; SHARING &middot; THE REST OF IT', 'Audience, Keep, an ask, a link, taking it back, and the edges',
-                   'Who a share goes to, and how the receiver knows. Keeping a friend&rsquo;s share for yourself. A status whose point is the answers. Something from outside with your words on top. And what goes with a share when you take it back. Same shapes as board 10. Drawn, not tested with anyone.')
+    html = (HEAD_VDL + f'<div style="width: {bw(3, (520, 620))}px; min-height: {hh("02", 5200)}px; background: #D8D1C5; box-sizing: border-box; padding: 30px 32px 36px 32px; {SANS} color: {INK}; display: flex; flex-direction: column;">'
+            + head('02 &middot; SHARING &middot; THE REST OF IT', 'Audience, Keep, an ask, a link, taking it back, and the edges',
+                   'Who a share goes to, and how the receiver knows. Keeping a friend&rsquo;s share for yourself. A status whose point is the answers. Something from outside with your words on top. And what goes with a share when you take it back. Same shapes as board 01. Drawn, not tested with anyone.')
             + body + f'<div class="fn" style="margin-top: 30px; line-height: 16px;">{FOOTX}</div></div>' + TAIL)
-    return write('11 - Audience Keep ask link withdraw', html)
+    return write('02 - Sharing the edges', html)
 
 if __name__ == '__main__':
     build()

@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product strategy / social design
 created: 2026-09-22
-last_verified: 2026-09-22
+last_verified: 2026-09-26
 expires: 2026-10-22
 why_new: A focused follow-up for the founder's current Multiplayer Shapes boards and personal/shared thread discussion is needed without modifying the long, uncommitted exploration brief owned in another worktree or the concurrent Life handoff.
 supersedes: []
@@ -14,24 +14,29 @@ source_of_truth_for: []
 
 ## 1. Use this handoff
 
-**Target:** `Downloads/vesper-multiplayer-shapes`, specifically current boards
-10–16. Revise this existing project; do not create another design project.
+**Target:** `Downloads/vesper-multiplayer-shapes`. The September 26 export uses
+boards **00–11**; the original September 22 assignment referred to boards 10–16.
+Use §12's current-board map when applying earlier instructions. Revise this
+existing project; do not create another design project.
 
 This is the focused follow-up to the September 22 founder discussion. It is
 design direction and a bounded exploration assignment, not a new storage model,
 shipping claim, retention agreement, or engineering roadmap.
 
-**Latest consolidation:** §3.1 records the founder's three interaction forms;
-§7.1 evaluates presence, shared activity and arrangements as supporting
-capabilities, not three more social destinations. Apply these within §9's
-existing compositions rather than starting a parallel assignment queue.
+**Updated September 26, 2026 — holistic tightening pass:** read §12 first for
+the latest review, ordered revisions and handback criteria. It tightens the
+existing §9 compositions rather than creating another assignment queue or
+declaring earlier unfinished work complete. §3.1 retains the three interaction
+forms; §7.1 retains awareness, shared activity and arrangements as supporting
+capabilities, not three more destinations. Recommendations below remain design
+proposals unless supported by a separately recorded founder decision or contract.
 
 The original project-specific handoff is the dated
 [Multiplayer product-shapes exploration brief](claude-design-multiplayer-product-shapes-exploration-2026-09-20.md).
 Its earlier delivered-board account is the
 [exploration response](multiplayer-shapes-exploration-response-2026-09-21.md).
 Those documents contain earlier work and unresolved assignments; they do not
-describe the complete current board 10–16 export. Do not mark their remaining
+describe the complete September 26 export. Do not mark their remaining
 work complete or discard it because this follow-up exists. The original brief
 was first written in an isolated worktree and is now preserved here so this
 packet can travel with the repository.
@@ -477,3 +482,214 @@ already resolved by an applicable current contract.
 Do not introduce a universal Thread table, general collaborative editor, new
 root, or repository-wide noun migration merely to match the design vocabulary.
 Those are separate engineering decisions requiring current-code investigation.
+
+## 12. September 26, 2026 — holistic tightening of the current export
+
+### 12.1 Review basis, routing and what to preserve
+
+Reviewed the current project's boards 00–11 against this handoff and the founder's
+recent discussion; rendered inspection included collections, gathering, receiving,
+keeping/correction and typography. This is a design review, not a usability study,
+implementation audit or revalidation of every research source in §10. The dated
+update does not imply those other forms of verification.
+
+| Current boards | Role in this pass | Earlier handoff reference |
+| --- | --- | --- |
+| 00 — Start here | Index, selected direction and unresolved choices | Update routing after revisions; captions alone do not establish adoption |
+| 01 — Sharing; 02 — Sharing the edges | Casual expression, audience, receiving and Keep | Sharing/broadcasting in §3.1 |
+| 03 — Receiving; 04 — Connecting | Home delivery, guest entry and relationship entry | Four-root continuity and low-effort receiving in §§6–7 |
+| 05 — The chat | Human conversation and optional assistance | Participant conversation in §3.1 |
+| 06 — Getting together | Conversation-led arrangements, optional polls, bounded presence and “With” | Earlier board 16 instructions in §8 |
+| 07 — Shared with Maya | Relationship context within Life | Earlier board 15 continuity instructions in §5 |
+| 08 — The collection; 09 — The collection over time; 10 — Around a collection | Personal/shared keeping, views, correction and later use | Existing five compositions in §9 |
+| 11 — Type | Comparable typography treatments | Visual refinement, not independent product scope |
+
+Preserve the progress already demonstrated: personal and shared collections use
+one family of experiences; a collection can begin with one item; miscellaneous
+material need not acquire a theme; By kind and Over time are lenses rather than
+separate copies; recommendation and visit can coexist; correction preserves
+independently valid material; polls are optional; explicit conditional commitment
+does not need redundant confirmation; a recipient can enjoy something and stop.
+
+The core direction remains **share casually, talk naturally, optionally keep or
+build something together, and let eligible material become useful again**. This
+is not a compulsory funnel. Some shares end in enjoyment; some collections remain
+private; some arrangements start without a collection.
+
+### 12.2 Tighten gathering without turning ambiguity into attendance
+
+Board 06's ordinary brunch path still asks the host to settle in conversation,
+confirm extracted details, inspect a settled-details screen, and separately ask
+people to come. Removing the ballot must also remove unnecessary administration.
+
+Revise the existing conversation in place. One compact prepared action beside it
+can show “Saturday, 12:30 at Hato” and “Send as the plan,” with the intended
+audience apparent. This is proposed copy, not a required label. Combine redundant
+host steps; do not combine independent participants' decisions. If explicit
+language already authorized the same bounded effect, do not ask again merely
+because the interface has extracted it into a structured object.
+
+Carry forward “count me in any time after 12” when the details fit that condition.
+Keep “could do 12:30” as availability unless the surrounding explicit response
+establishes commitment. Nobody is enrolled through silence, a reaction or a save.
+Show confirmed participants without publishing a list of people who have not
+answered. Remove “Dana hasn't said anything” from the social foreground; do not
+confuse avoiding a holdout display with falsely marking everyone confirmed.
+
+Keep “With” effects understandable, but avoid a whole Home state devoted to what
+a tagging confirmation did not do. Explore a compact receipt with inspectable
+scope and correction. Separate personal organization from publishing association
+and adding to a shared record; a permission boundary does not require repeated
+manual filing after an independently authorized personal record already exists.
+
+### 12.3 Make active collections inviting to contribute to
+
+Boards 08–09 establish Life continuity well, but “Our New York” reads more like a
+finished archive than something friends can casually build. Make a lightweight
+Add action apparent in the shared example, not only in the personal pasta example.
+Show one actual contribution: add a photo, link, place or sentence; see it in the
+collection; let a friend reply to that contribution. Do not require choosing an
+artifact type, writing a description, or deciding whether a sentence is a chat
+message versus a durable contribution before it can be useful.
+
+Keep the Life layout family. Do not require every collection to display Things,
+Drawer, Contact sheet, Conversation, People and Places as separate prominent
+sections merely because those data exist. Consolidate repetitive counts and
+sections when they obscure the material. An active collection should make the
+content and participation easy to find; an older one should make retrieval easy.
+Neither requires a new Active/Archived mode or another root.
+
+Keep date meanings intelligible in Over time: adding a restaurant on October 5
+and visiting it on October 12 are different events. A chronology of contributions
+must not silently read as the person's lived itinerary. Preserve future ideas
+alongside supported history without turning a place list into a completion meter.
+
+### 12.4 Resolve Keep once; preserve a simple sharing boundary
+
+Board 02 describes immediate private keeping; board 10 asks “Where does it go?”
+first. Recommended default: **Keep privately immediately, then optionally Add to
+a collection**, with a compact receipt and Undo. This applies to material eligible
+for private retention; receiving/display access alone does not authorize a copy.
+Do not place destination selection in front of the basic value of saving.
+
+An explicitly invoked “Add to Our New York” is a different, shared contribution:
+make that audience clear. The same control must not sometimes save privately and
+sometimes post to friends based only on inferred relevance.
+
+Whole-collection sharing is a promising simplification in the current design.
+Do not respond by adding per-item privacy matrices. When selective sharing is
+needed, explore selecting eligible material into a separate shared collection,
+leaving the private original and its unselected context private. This is the
+simpler expression of §9 composition 3, not a requirement to expose some entries
+and hide others inside one shared collection. Historical access, future additions
+and contributor rights still need a clear selected policy; board captions do not
+by themselves settle the open contract questions.
+
+### 12.5 Keep social quietness distinct from Home's overall value
+
+Board 03 says Home's own content is represented minimally. Preserve that scope:
+this is a social-delivery specimen, not a replacement Home composition. Narrow
+“Home never fills itself” and “does not fill the space with suggestions” to the
+actual intention: **do not manufacture social urgency or filler because friends
+have not posted**. A quiet social day can still offer an excellent possibility,
+useful practical help or a substantive connection from authorized context.
+
+Bound the social contribution without making the entire Home tiny. Nor should
+every directly addressed item automatically outrank every practical situation:
+an amusing photograph and an imminent material change need different treatment.
+Show at least one composed Home state beside the current Home project's value,
+not another independently designed Home doctrine.
+
+Separate expired relevance, available social history and personal keeping.
+“Yesterday's shares leave Home and live in Life” is too broad as a retention and
+composition rule. Eligible shared history may remain reachable under a person;
+it must not automatically become the recipient's kept collection, lived record,
+or indefinite independent copy. Avoid an unread backlog disguised as a Life
+archive. Content should leave prominence when relevance ends, not only at midnight.
+
+### 12.6 Let receiving and joining be worthwhile without contribution debt
+
+Preserve board 04's concrete entry through something a friend sent. Make the
+distinction between opening it, joining its shared context and becoming Friends
+understandable. Joining one collection should not silently subscribe someone to
+all future Friends broadcasts. Avoid sender-facing “opened your link” language
+unless an explicitly selected receipt policy supports it.
+
+The guest can currently read/reply while Add a place opens Vesper. Explore whether
+one small invited contribution can also work through the link. If an account/app
+is necessary, show the interruption honestly and preserve what they were doing.
+This is an unresolved guest-scope choice, not an instruction to bypass identity
+or audience controls. The invitation should deliver value before demanding setup,
+contacts access or matching effort.
+
+### 12.7 Remove obligation-signaling and self-congratulatory system copy
+
+Revise these actual specimen lines rather than merely restating “low pressure”:
+
+| Current expression | Recommended treatment |
+| --- | --- |
+| Nobody counted; Dana is in this and has added nothing | Show participants without contribution accounting; repair the inconsistent participant count too |
+| Three of hers, none of yours yet | Show the three places and an optional Add action; remove the comparison |
+| Dana hasn't said anything | Keep truthful participation without making nonresponse a public feature |
+| Quiet four months. Nothing asked anyone | Show material and useful dates; do not celebrate or diagnose inactivity |
+| Nothing here needs you | Let optionality be apparent from the interaction; omit reassurance that introduces a sense of duty |
+| Twice at the same door—the record noticed | Omit unless replaced by a concrete, worthwhile observation; do not narrate the system's act of noticing |
+
+Human words, useful facts and original contributions should lead. Move detailed
+policy explanations out of ordinary content, while retaining short audience cues
+and inspectable consequences where an action actually needs them.
+
+### 12.8 Demonstrate later value, not just successful storage
+
+Deepen board 10's existing later-use example rather than adding another feature
+family. Proposed fixture: **Jo is visiting with her parents; which of the places
+you and your friends kept would suit this Sunday?** Show a small useful result
+using eligible original recommendations, the stated need and any necessary
+current practical evidence. Preserve who said what; label simulated hours or
+availability as fixtures and distinguish unknowns from checked facts.
+
+The result should materially reduce work: a suitable short list or map, why the
+options fit this request, and an optional way to send selected results. No booking
+infrastructure, automatic invitation or generic generated essay is required.
+Contrast this with what scrolling the collection alone would provide. Relevance
+must not grant new AI-use or onward-sharing rights over a friend's material.
+
+Also preserve §9's practical continuation: one small moment during an actual
+shared activity, such as recovering the agreed meeting point or handling a changed
+detail through its existing owner. Do not stop at “the invitation was sent.” This
+and useful later retrieval show how social material connects to Vesper's broader
+capabilities, without putting an AI response underneath every human contribution.
+
+### 12.9 Visual refinement and bounded handback
+
+Preserve the editorial Life direction. The typography comparison is useful:
+Source Serif 4 is a provisional readability preference for dense rows; enlarged
+Garamond is also worth retaining as a comparison. Neither is a selected global
+font change. Inspect real phone-size reading, wrapping, contrast and enlarged text
+before promotion. Replace enough placeholder plates with representative permitted
+photos, screenshots and long contributions to test hierarchy under realistic
+content; tiny photographs are not a universal rule for every collection.
+
+Execute this as one tightening pass in the existing project:
+
+1. Compress board 06's ordinary gathering path and reconcile Keep across 02/10.
+2. Make contribution and reply apparent within the existing 08/09 compositions.
+3. Clarify receiving/connecting in 03/04 without replacing Home or Life authority.
+4. Deepen later use in 10 and retain the small shared-activity continuation.
+5. Apply the copy/visual corrections, then reconcile the index and board captions.
+
+Return one consolidated handback identifying changed boards, demonstrated paths,
+unexecuted earlier requirements and remaining decisions. Specifically retain open
+Life placement, Plan/Occasion linkage, group-conversation scope, historical access
+and contributor rights where no applicable decision has resolved them. The current
+export defers group chat; do not report §3.1's full participant-conversation scope
+as delivered or reintroduce it solely to satisfy a coverage count. Reconcile index
+claims of “accepted/ruled” with the footer's “nothing adopted” using actual decision
+provenance, not whichever caption sounds stronger.
+
+Acceptance: can a recipient enjoy without replying, a saver keep without filing,
+a friend add without administering, a host settle without repeating themselves,
+and a later user receive value beyond the stored material? Can all of that happen
+without inferring attendance, widening an audience, or treating quietness as a
+deficit? Static drawings establish the proposed path only; they do not establish
+usability, demand, implemented behavior or release readiness.

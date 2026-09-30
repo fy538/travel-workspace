@@ -95,3 +95,51 @@ Founder approved: board `14 - Ours` deleted (superseded by 15, 17, 18, 19); boar
 `mp_kit2.py` now ends with a "Life skin" that every generator picks up through the kit: Life 07's stylesheet injected into the board head, the taupe board (`#D8D1C5`), Life's board header (eye, Review pill, serif title, note), a gold mono caption and serif title above each frame with the explanatory note moved below it, rounded `.cphone` frames around every kit phone and link page, riso placeholders (Life's six motifs) replacing the old figure illustrations in `illo`/`thumb`, and tag pills pruned to the ones that add information (NO APP, PROPOSED). It patches `gen_generous`, `gen_merge` and `gen_p2_common` in place, so the change is one block. `over.mjs` renders small whole-board snapshots for a project-level look.
 
 To reproduce: copy `../social/hp/` to `hp/`, then run `python3 build_all.py` and `python3 copy_lint.py` from this folder. `out/` and the local `hp/` copy are ignored by Git. For overview screenshots, serve `out/` as a Claude Design project and run `over.mjs` with the serve base URL and quoted board names. Set `PLAYWRIGHT_CORE_MODULE` to a local `playwright-core` module path if it is not installed normally, `CHROME_EXECUTABLE` if the browser is not bundled, and `DESIGN_TOKEN` to the serve query string if required. Screenshots go to ignored `out/shots/`; never save a serve token in the repository.
+
+## 2026-09-23 — renumbered 00–11, archive deleted
+
+The Design project now holds twelve boards in reading order and nothing else except the shared files they load (Ticket, support.js, vdl.css, vdl-package.json, _ds/). `build_all.py` builds exactly these twelve.
+
+| New | Generator | Was |
+|---|---|---|
+| 00 Start here | gen_idx | new (index, rulings, open questions) |
+| 01 Sharing | gen_s1 | 10 |
+| 02 Sharing the edges | gen_s2 | 11 (+ the old 12) |
+| 03 Receiving | gen_s15 | 21 |
+| 04 Connecting | gen_s14 | 20 |
+| 05 The chat | gen_s4 | 13 |
+| 06 Getting together | gen_s8 | 16 |
+| 07 Shared with Maya | gen_s6 | 15 |
+| 08 The collection | gen_s12 | 18 |
+| 09 The collection over time | gen_s13 | 19 |
+| 10 Around a collection | gen_s9 | 17 |
+| 11 Type | gen_t1 | 22 |
+
+Cross-references inside the boards were renumbered; references to the Life project's board 07 now read "Life 07". The archive (old 00–06, A0, C1 and copy screenshots, D1–D10, E1–E8, retired components) and the unused template files (media/print-room-*.svg, _kit/board-kit.css) were deleted from the project. Their generators are still here and still write the OLD names (gen_00 writes an old "00 - Start here"), so do not run them into the same out/ as the current boards.
+
+## 2026-09-25 — board 12 · Cards, and where the helpers live
+
+`gen_cards.py` draws the place/link card four ways (now, house card, line, map). The generators import the shared board kit from `../social/hp/` (kit.py, gen_generous*.py, gen_merge.py, gen_p2_common.py); `mp_common.py` puts an `hp/` folder on the path, so copy `../social/hp/*.py` into `hp/` next to these files before building.
+
+## 2026-09-25 — the line replaces the card
+
+The founder picked board 12's B. `gen_s1.place_line()` / `link_line()` (with `good_line()` turning "good for" items into a sentence) are now the only way a shared place or link is drawn; `place_card()` and every `link_card()` return them. The old card survives as `place_card_v0` / `link_card_v0` (gen_s1, gen_s13) only for board 12's "before" row. The illustrated plates and "open till 11" were removed from the Places frames on 01 and 02.
+
+## 2026-09-25 — board 12 deleted
+
+Once the line was chosen, the founder asked for the comparison board to be removed. `gen_cards.py` stays here for the record but is no longer built; it still runs, because `place_card_v0` / `link_card_v0` were kept in gen_s1 and gen_s13 for it.
+
+## 2026-09-26 — the §12 tightening pass
+
+Applied handoff §12 across 00–06 and 08–10 (07 unchanged: its copy is Life 07's). New shared parts: `gen_s1.receipt()` (compact post-action receipt), `gen_s12.add_bar()` / `latest()` (an active shared collection), `gen_s9.fit()` (a place fitted to a request, with whose words, why, checked facts and unknowns). `mp_common.FOOTX` now separates founder direction (dated on 00) from adopted canon. The handback is §8 of `docs/working/multiplayer-threads-life-continuity-response-2026-09-22.md`.
+
+## 2026-09-26 — board 03 redrawn, and the visual pass
+
+- **03 · Receiving** now follows the Sept 5 social split (founder agreed Sept 26): Home carries what is sent to you, what has a time, the day's posts with no place (a small strip), and one "added N places → In Places" line; a new Places "From friends" frame holds place shares beside the place, in the friend's words.
+- **Boxed cards retired.** `gen_s1.CARD_CSS` is now two hairlines; the old paper box survives as `PAPER_CSS`, used only for real artifacts (the Sorrento menu; the ticket is its own component). Because the Design runtime drops `!important` from inline styles, `mp_common.write()` rewrites the old side padding to zero at build time.
+- **Captions** cut to about 25 words (max 29); reasoning moved to notes.
+- **Heights** re-measured for all twelve boards.
+
+## 2026-09-26 — decisions recorded
+
+The open questions were decided and recorded in `docs/decisions/2026-09-26-multiplayer-direction.md`. Boards updated to match: 00 lists them as DECIDED with a STILL TO DO list; 02's passing-on sends the place, not Priya's words; 06 gains the brunch's group chat (on by default for an occasion) and its notes move to a row of their own; 04, 05, 07, 08–10 and 11 notes and captions now state the decisions; the footer points to the decision record.

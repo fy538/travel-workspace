@@ -10,23 +10,19 @@ APP = tag('NO APP', OX, 'rgba(122,46,46,0.10)')
 
 # ── 1 · forwarding is just forwarding ──
 def forward():
+    """Sept 26 decision, item 8: the place travels; Priya's own words stay with the people she sent them to."""
     inner = avatar_for(bar('JO', 'MONDAY 12:14 PM'), 'N')
-    inner += gut(f'<div style="display: flex; justify-content: flex-end;"><div style="width: 310px; {CARD_CSS} padding: 14px 16px;">'
-        f'{status(60, author="Priya", meta="SUNDAY · TO THE SORRENTO FOUR", words=LULU)}<div style="margin-top: 8px;">{place_card()}</div></div></div>', top=18)
-    inner += gut(bubble('for mum and dad&rsquo;s anniversary. priya swears by upstairs'), top=10)
-    inner += gut(bubble_in('booked upstairs for the 12th. does priya want to come', 'Jo'), top=8)
+    inner += gut(f'<div style="display: flex; justify-content: flex-end;"><div style="width: 300px;">{S.place_line("Lulu&rsquo;s", "Carroll Gardens &middot; Italian")}</div></div>', top=18)
+    inner += gut(bubble('for mum and dad&rsquo;s anniversary. ask for upstairs'), top=10)
+    inner += gut(bubble_in('booked upstairs for the 12th. thank you', 'Jo'), top=8)
     inner += gut(chat_field('Message Jo'), top=16)
     return phone2(inner, active='Chat')
-
-# ── 2 · by link, to someone without Vesper ──
 def by_link():
     inner = f'<div style="padding: 20px 22px 0 22px;"><div class="fn" style="color: {MUTE}; letter-spacing: 1px;">FROM NORA</div></div>'
-    inner += gut(status(60, author='Nora', meta='12:14 PM · TO YOU', words='for mum and dad&rsquo;s anniversary. priya swears by upstairs'), top=14)
-    inner += gut(f'<div style="border-left: 2px solid rgba(27,23,20,0.10); padding-left: 12px;">{status(60, author="Priya", meta="SUNDAY · TO THE SORRENTO FOUR", words=LULU)}</div>', top=12)
-    inner += gut(place_card(), top=10)
+    inner += gut(status(60, author='Nora', meta='12:14 PM · TO YOU', words='for mum and dad&rsquo;s anniversary. ask for upstairs'), top=14)
+    inner += gut(S.place_line('Lulu&rsquo;s', 'Carroll Gardens &middot; Italian'), top=12)
     inner += gut(chat_field('Reply to Nora', ask=False), top=20)
     return webframe(inner)
-
 def cell(day, n, title, sub, ph, tags=()):
     return col(ph, (f'<div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 7px;">{"".join(tags)}</div>' if tags else '') + daycap(day, n, title, sub))
 def rowdiv(cells, top=8):

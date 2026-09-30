@@ -284,3 +284,65 @@ design states, not events in this world. PH-01 and PH-05 stay in the record. In 
 selection (04b.11) Nora can select them with her own; Share then counts and sends only her own two,
 and the preview names the one left out. Only a selection started from Share makes them untickable.
 Selecting or seeing a picture grants nothing. No ID is added here.
+
+## 11. Multiplayer Shapes fixtures — a labelled variant (September 26)
+
+Added with the [multiplayer direction decision](../../decisions/2026-09-26-multiplayer-direction.md).
+The Multiplayer Shapes project (`caf916f9`, boards 00–11) uses the cast above but
+draws a **later, account-holding variant** of it. These fixtures apply to that
+project only; the world in §§1–10 is unchanged and still wins for Life, Home and
+Social. Nothing here is a reviewed world fact.
+
+| Fixture | Where it appears | What it is |
+| --- | --- | --- |
+| **Jo** | 02, 08–10 | Nora's sister, visiting; on Sunday with her parents (board 10's later-use question) |
+| **Lulu's** | 01–03, 10 | Carroll Gardens, Italian; Priya's share, "good for a long dinner, with parents" |
+| **Hato** | 03, 04, 06, 08–10 | Cobble Hill, ramen; Maya's addition, "the broth is stupid good"; Saturday brunch at 12:30 |
+| **Ottavia** | 08, 09 | A bar, before a show; Nora's |
+| **The Lantern** | 01, 03, 08–10 | Court Street cinema, one film a week; Sam's link |
+| **The pier at low water** | 03, 08–10 | Nora's place, "for walking it off"; low water times are fixtures |
+| **Pacha, John Summit** | 01, 05, 06, 09 | Sam's "where I'll be" with a ticket, Friday Sept 26, on at 1:00 AM |
+| **Nights out** | 08, 09 | Nora and Sam: Four Tet (June 2025), Caribou (May), John Summit (Sept 26), Overmono (upcoming) |
+| **Getting pasta right** | 08–10 | Nora's private collection: three attempts, the open question, the Sorrento menu |
+| **Our New York** | 08–10 | A collection shared by Nora, Maya, Sam and Priya since June |
+
+**Divergences from §§1–10, named rather than merged:**
+
+- Sam has an account and shares to friends here; in the shared world he is a guest
+  without one.
+- Pasta night is Saturday, October 3 here (board 04); in the shared world it is
+  Saturday, September 19.
+- Dana posts from Marseille on board 03; in the shared world her status is from
+  Sorrento.
+- Photographs remain riso stand-ins; the §10 PH set is not used here.
+
+
+
+## 12. The Red Hook Saturday — one record for Home and Places (September 26)
+
+Home 14.3 opens this Saturday and Places 03.3 renders the same set; Home 19 and
+Places 08.10–08.13 and 10.B draw the same day on the water. Each project had been
+re-deriving the day from its own boards, and three drifts followed. The facts now
+live here. Home selects the supply; Places renders its world-facing reading;
+change a fact here first, then in both projects. All values are design fixtures.
+
+| Item | The record | Places | Home |
+| --- | --- | --- | --- |
+| The morning | Clear, 41° at 9:30 | 03.3 | 14.3 · **19 says 58° at 10:45**, which belongs to the withdrawn Red Hook set |
+| The flea | Under the bridge in Red Hook; Saturdays through October, 8 to 3; the bread stall sells out by ten | 03.3 | 14, 19 (six minutes from 19's visitor) |
+| The tide | Low water 2:40 to 5; high 8:40 | 01's day line, 03.3, 08.11 | 14 · **19.3 says low water until 5:10** |
+| The light | Sunset 6:25; dark 6:52 | 01's day line, 04.2 (moved from 7:04 on September 26) | 19 (dark 6:52) |
+| The Red Hook pier | The pier that floods before the street does: on the old creek bed, below the 1911 sill; two iron squares at the crossing are the pump intakes, dry at low water | 08.10–08.13 | **19.3 names it "the west pier" and draws its own page** (a flood line along granite curbs) |
+| The west pier | Sunset Park's pier, where the sunset is watched; the lawn and the film at 8:30 are nine minutes on | 01 | — |
+| The L | Home-only; not drawn in Places | — | 14 |
+| The Harbor Book, ch. 4 | The pumps under the park, and the sill | 03.3, 08.10–08.13 | 14, 19 |
+
+**For Home's owner (not changed by Places):** 19's morning temperature; 19.3's
+low-water end; 19.3's pier name, since "the west pier" is Sunset Park's; and
+19.3 itself, which Home captions "Places owns the page" but draws on its own.
+Opening Places' pier reading (08.11 at the pier, or 08.10 before it) would keep
+one page for one place.
+
+**Independent, not the pair:** Places' film on the lawn, greenmarket, pierogi
+table at the church hall and Harbor Print Room are its own examples on 01, 03.1
+and 08, and are not claimed by this record.

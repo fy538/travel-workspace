@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <link rel="stylesheet" href="_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css" />
+        <link rel="stylesheet" href="vdl.css" />
+        <style>
+          /* Ticket — a typed original that keeps its type (§17.3 R07). Anatomy from Life 04’s object
+             page and pass list and Home 09’s admission: notches, a perforation that is straight for
+             flights, rail and road and wavy for ferries, the mode glyph, route codes, the barcode
+             where the source has one, and the admission band. Styles live here, so a retrieved
+             ticket cannot lose them (the Life 05.9 defect). Densities: full, row, chip. */
+          .tk{position:relative;background:var(--vk-paper00);border-radius:12px;box-shadow:0 1px 2px color-mix(in srgb,var(--vk-ink00) 8%,transparent),0 6px 18px color-mix(in srgb,var(--vk-ink00) 6%,transparent)}
+          .tk-top{display:flex;justify-content:space-between;align-items:baseline;padding:16px 18px 0}
+          .tk-k{color:var(--vk-ink40);letter-spacing:1px}
+          .tk-d{color:var(--vk-ink80)}
+          .tk-route{display:grid;grid-template-columns:auto 1fr auto;align-items:center;column-gap:10px;padding:12px 18px 0}
+          .tk-code{color:var(--vk-ink00)}
+          .tk-glyph{color:var(--vk-ink60);display:flex}
+          .tk-names{display:flex;justify-content:space-between;padding:0 18px;color:var(--vk-ink60)}
+          .tk-fields{display:flex;flex-wrap:wrap;column-gap:22px;row-gap:8px;padding:12px 18px 16px}
+          .tk-fl{color:var(--vk-ink80);letter-spacing:1px}
+          .tk-fv{color:var(--vk-ink00);margin-top:2px}
+          .tk-perf{position:relative;height:6px;margin:0 12px}
+          .tk-perf.line{background:linear-gradient(90deg,var(--vk-ink80) 50%,transparent 50%) left center/6px 1px repeat-x}
+          .tk-perf.wave{background:var(--vk-ink80);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 6'%3E%3Cpath d='M0 3 Q3 0 6 3 T12 3' fill='none' stroke='black' stroke-width='1'/%3E%3C/svg%3E") left center/12px 6px repeat-x;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 6'%3E%3Cpath d='M0 3 Q3 0 6 3 T12 3' fill='none' stroke='black' stroke-width='1'/%3E%3C/svg%3E") left center/12px 6px repeat-x}
+          .tk-notch{position:absolute;top:-3px;width:12px;height:12px;border-radius:50%;background:var(--tk-ground,var(--vk-paper20));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--vk-ink00) 8%,transparent)}
+          .tk-notch.l{left:-18px}
+          .tk-notch.r{right:-18px}
+          .tk-foot{display:flex;justify-content:space-between;align-items:center;padding:14px 18px 16px}
+          .tk-status{color:var(--vk-ink40);letter-spacing:1px}
+          .tk-bar{width:92px;height:26px;background:var(--vk-ink00);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 92 26'%3E%3Cg%3E%3Crect x='0' width='2' height='26'/%3E%3Crect x='3' width='1' height='26'/%3E%3Crect x='5' width='1' height='26'/%3E%3Crect x='8' width='3' height='26'/%3E%3Crect x='12' width='1' height='26'/%3E%3Crect x='14' width='2' height='26'/%3E%3Crect x='18' width='1' height='26'/%3E%3Crect x='20' width='1' height='26'/%3E%3Crect x='23' width='3' height='26'/%3E%3Crect x='27' width='1' height='26'/%3E%3Crect x='30' width='2' height='26'/%3E%3Crect x='33' width='1' height='26'/%3E%3Crect x='35' width='1' height='26'/%3E%3Crect x='38' width='2' height='26'/%3E%3Crect x='41' width='3' height='26'/%3E%3Crect x='45' width='1' height='26'/%3E%3Crect x='47' width='1' height='26'/%3E%3Crect x='50' width='2' height='26'/%3E%3Crect x='54' width='1' height='26'/%3E%3Crect x='56' width='3' height='26'/%3E%3Crect x='60' width='1' height='26'/%3E%3Crect x='62' width='2' height='26'/%3E%3Crect x='66' width='1' height='26'/%3E%3Crect x='68' width='1' height='26'/%3E%3Crect x='71' width='3' height='26'/%3E%3Crect x='75' width='1' height='26'/%3E%3Crect x='78' width='2' height='26'/%3E%3Crect x='81' width='1' height='26'/%3E%3Crect x='83' width='1' height='26'/%3E%3Crect x='86' width='3' height='26'/%3E%3Crect x='90' width='2' height='26'/%3E%3C/g%3E%3C/svg%3E") no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 92 26'%3E%3Cg%3E%3Crect x='0' width='2' height='26'/%3E%3Crect x='3' width='1' height='26'/%3E%3Crect x='5' width='1' height='26'/%3E%3Crect x='8' width='3' height='26'/%3E%3Crect x='12' width='1' height='26'/%3E%3Crect x='14' width='2' height='26'/%3E%3Crect x='18' width='1' height='26'/%3E%3Crect x='20' width='1' height='26'/%3E%3Crect x='23' width='3' height='26'/%3E%3Crect x='27' width='1' height='26'/%3E%3Crect x='30' width='2' height='26'/%3E%3Crect x='33' width='1' height='26'/%3E%3Crect x='35' width='1' height='26'/%3E%3Crect x='38' width='2' height='26'/%3E%3Crect x='41' width='3' height='26'/%3E%3Crect x='45' width='1' height='26'/%3E%3Crect x='47' width='1' height='26'/%3E%3Crect x='50' width='2' height='26'/%3E%3Crect x='54' width='1' height='26'/%3E%3Crect x='56' width='3' height='26'/%3E%3Crect x='60' width='1' height='26'/%3E%3Crect x='62' width='2' height='26'/%3E%3Crect x='66' width='1' height='26'/%3E%3Crect x='68' width='1' height='26'/%3E%3Crect x='71' width='3' height='26'/%3E%3Crect x='75' width='1' height='26'/%3E%3Crect x='78' width='2' height='26'/%3E%3Crect x='81' width='1' height='26'/%3E%3Crect x='83' width='1' height='26'/%3E%3Crect x='86' width='3' height='26'/%3E%3Crect x='90' width='2' height='26'/%3E%3C/g%3E%3C/svg%3E") no-repeat}
+          /* admission (Home 09): chamfered corner, oxblood status, band; the reserved violet is replaced by ink */
+          .ta{clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%);overflow:hidden;border-radius:12px}
+          .ta-top{display:flex;justify-content:space-between;padding:14px 18px 0}
+          .ta-st{display:flex;gap:6px;align-items:center;padding:8px 18px 0;color:var(--vk-color-surface-oxblood);font-family:var(--vk-font-sans);font-size:11px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase}
+          .ta-st i{width:6px;height:6px;border-radius:50%;background:currentColor}
+          .ta-title{padding:4px 18px 0;font-family:var(--vk-font-serif);font-size:24px;line-height:28px;font-weight:600;color:var(--vk-ink00)}
+          .ta-sub{padding:2px 18px 0;color:var(--vk-ink60)}
+          .ta-band{display:flex;justify-content:space-between;padding:10px 18px;background:color-mix(in srgb,var(--vk-ink00) 5%,transparent);border-top:1px solid color-mix(in srgb,var(--vk-ink00) 8%,transparent)}
+          .ta-band .l{color:var(--vk-ink40);letter-spacing:2px}
+          .ta-band .r{color:var(--vk-color-surface-oxblood);letter-spacing:2px}
+          /* row: the stub row of Life 04's pass list */
+          .tr{position:relative;display:flex;align-items:stretch;min-height:58px;background:var(--vk-paper00);border-radius:8px;box-shadow:0 1px 2px color-mix(in srgb,var(--vk-ink00) 7%,transparent)}
+          .tr-main{flex:1 1 auto;min-width:0;display:flex;gap:12px;align-items:center;padding:10px 12px 10px 16px}
+          .tr-body{min-width:0;display:flex;flex-direction:column;gap:2px}
+          .tr-title{color:var(--vk-ink00);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+          .tr-sub{color:var(--vk-ink60);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+          .tr-stub{position:relative;flex:0 0 82px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--vk-ink40);letter-spacing:1px}
+          .tr-sep{position:absolute;left:0;top:6px;bottom:6px;width:6px;margin-left:-3px}
+          .tr-sep.line{background:linear-gradient(180deg,var(--vk-ink80) 50%,transparent 50%) center top/1px 6px repeat-y}
+          .tr-sep.wave{background:var(--vk-ink80);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 12'%3E%3Cpath d='M3 0 Q0 3 3 6 T3 12' fill='none' stroke='black' stroke-width='1'/%3E%3C/svg%3E") center top/6px 12px repeat-y;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 12'%3E%3Cpath d='M3 0 Q0 3 3 6 T3 12' fill='none' stroke='black' stroke-width='1'/%3E%3C/svg%3E") center top/6px 12px repeat-y}
+          .tr-n{position:absolute;left:-5px;width:10px;height:10px;border-radius:50%;background:var(--tk-ground,var(--vk-paper20))}
+          .tr-n.t{top:-5px}
+          .tr-n.b{bottom:-5px}
+          /* chip: the kept-object token */
+          .tc{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:13px;background:var(--vk-paper00);border:1px solid color-mix(in srgb,var(--vk-ink00) 12%,transparent);color:var(--vk-ink00)}
+          .tc .tk-glyph svg{width:12px;height:12px}
+        </style>
+      </helmet>
+      <div data-screen-label="Ticket">
+        <sc-if value="{{ isFull }}">
+          <div class="tk">
+            <div class="tk-top"><span class="tk-k vk-t-monoStampStrong">{{ kicker }}</span><span class="tk-d vk-t-monoStamp">{{ date }}</span></div>
+            <div class="tk-route">
+              <span class="tk-code vdl-t-routeCode">{{ fromCode }}</span>
+              <span class="tk-glyph">
+                <sc-if value="{{ isFlight }}"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M2.5 9.5 L17.5 3 L12 17.5 L9.5 11 Z M9.5 11 L17.5 3"></path></svg></sc-if>
+                <sc-if value="{{ isFerry }}"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 8 q2 -2 4 0 t4 0 t4 0 t4 0 M2 12.5 q2 -2 4 0 t4 0 t4 0 t4 0"></path></svg></sc-if>
+                <sc-if value="{{ isRail }}"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><rect x="5" y="3" width="10" height="11" rx="2"></rect><path d="M5 10h10M7.5 16.5l-1.5 1.5M12.5 16.5l1.5 1.5"></path></svg></sc-if>
+              </span>
+              <span class="tk-code vdl-t-routeCode">{{ toCode }}</span>
+            </div>
+            <div class="tk-names vk-t-caption"><span>{{ fromName }}</span><span>{{ toName }}</span></div>
+            <div class="tk-fields">
+              <sc-for list="{{ fields }}" as="f" hint-placeholder-count="4"><div><div class="tk-fl vk-t-monoStampStrong">{{ f.k }}</div><div class="tk-fv vk-t-monoValue">{{ f.v }}</div></div></sc-for>
+            </div>
+            <div class="{{ perfCls }}"><span class="tk-notch l"></span><span class="tk-notch r"></span></div>
+            <div class="tk-foot"><span class="tk-status vk-t-monoStampStrong">{{ status }}</span><sc-if value="{{ hasBarcode }}"><span class="tk-bar" role="img" aria-label="Barcode, as on the original"></span></sc-if></div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ isAdmission }}">
+          <div class="tk ta">
+            <div class="ta-top"><span class="tk-k vk-t-monoStampStrong">{{ kicker }}</span><span class="tk-d vdl-t-metaLine">{{ date }}</span></div>
+            <div class="ta-st"><i></i><span>{{ status }}</span></div>
+            <div class="ta-title">{{ title }}</div>
+            <div class="ta-sub vk-t-caption">{{ sub }}</div>
+            <div class="tk-fields">
+              <sc-for list="{{ fields }}" as="f" hint-placeholder-count="3"><div><div class="tk-fl vk-t-monoStampStrong">{{ f.k }}</div><div class="tk-fv vk-t-monoValue">{{ f.v }}</div></div></sc-for>
+            </div>
+            <div class="ta-band"><span class="l vk-t-monoStampStrong">{{ bandL }}</span><span class="r vk-t-monoStampStrong">{{ bandR }}</span></div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ isRow }}">
+          <div class="tr">
+            <div class="tr-main">
+              <span class="tk-glyph">
+                <sc-if value="{{ isFlight }}"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M2.5 9.5 L17.5 3 L12 17.5 L9.5 11 Z M9.5 11 L17.5 3"></path></svg></sc-if>
+                <sc-if value="{{ isFerry }}"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 8 q2 -2 4 0 t4 0 t4 0 t4 0 M2 12.5 q2 -2 4 0 t4 0 t4 0 t4 0"></path></svg></sc-if>
+                <sc-if value="{{ isRail }}"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="5" y="3" width="10" height="11" rx="2"></rect><path d="M5 10h10M7.5 16.5l-1.5 1.5M12.5 16.5l1.5 1.5"></path></svg></sc-if>
+                <sc-if value="{{ isAdmissionMode }}"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M3 17h14 M4 17V8l6-4 6 4v9 M8 17v-5h4v5"></path></svg></sc-if>
+              </span>
+              <div class="tr-body"><span class="tr-title vdl-t-placeStamp">{{ rowTitle }}</span><span class="tr-sub vk-t-caption">{{ rowDetail }}</span></div>
+            </div>
+            <div class="tr-stub vk-t-monoStampStrong"><span class="{{ sepCls }}"></span><span class="tr-n t"></span><span class="tr-n b"></span>{{ stub }}</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ isChip }}">
+          <span class="tc">
+            <span class="tk-glyph">
+              <sc-if value="{{ isFlight }}"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M2.5 9.5 L17.5 3 L12 17.5 L9.5 11 Z M9.5 11 L17.5 3"></path></svg></sc-if>
+              <sc-if value="{{ isFerry }}"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 8 q2 -2 4 0 t4 0 t4 0 t4 0 M2 12.5 q2 -2 4 0 t4 0 t4 0 t4 0"></path></svg></sc-if>
+              <sc-if value="{{ isAdmissionMode }}"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 17h14 M4 17V8l6-4 6 4v9 M8 17v-5h4v5"></path></svg></sc-if>
+            </span>
+            <span class="vk-t-monoStampStrong">{{ chip }}</span>
+          </span>
+        </sc-if>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{
+  "mode": { "editor": "enum", "options": ["flight", "ferry", "rail", "admission"], "default": "ferry" },
+  "density": { "editor": "enum", "options": ["full", "row", "chip"], "default": "full" },
+  "kicker": { "editor": "text", "default": "FERRY · ALILAURO" },
+  "date": { "editor": "text", "default": "AUG 19 2026" },
+  "fromCode": { "editor": "text", "default": "SOR" },
+  "fromName": { "editor": "text", "default": "Sorrento" },
+  "toCode": { "editor": "text", "default": "CAPRI" },
+  "toName": { "editor": "text", "default": "Marina Grande" },
+  "fields": { "editor": "text", "default": "SAIL=11:20;CROSSING=25 MIN;DECK=OPEN · AFT" },
+  "status": { "editor": "text", "default": "SAILED · AUG 19" },
+  "barcode": { "editor": "enum", "options": ["yes", "no"], "default": "yes" },
+  "title": { "editor": "text", "default": "" },
+  "sub": { "editor": "text", "default": "" },
+  "band": { "editor": "text", "default": "ADMIT ONE|TONIGHT" },
+  "rowTitle": { "editor": "text", "default": "SOR→CAPRI · ALILAURO" },
+  "rowDetail": { "editor": "text", "default": "In The coast · sailed" },
+  "stub": { "editor": "text", "default": "AUG 19" },
+  "chip": { "editor": "text", "default": "SOR→CAPRI" }
+}'>
+      class Component extends DCLogic {
+        renderVals() {
+          const p = this.props || {};
+          const mode = p.mode || 'ferry';
+          const density = p.density || 'full';
+          const fields = (p.fields || 'SAIL=11:20;CROSSING=25 MIN;DECK=OPEN · AFT').split(';').filter(Boolean).map((s) => { const i = s.indexOf('='); return { k: s.slice(0, i), v: s.slice(i + 1) }; });
+          const band = (p.band || 'ADMIT ONE|TONIGHT').split('|');
+          return {
+            isFull: density === 'full' && mode !== 'admission', isAdmission: density === 'full' && mode === 'admission',
+            isRow: density === 'row', isChip: density === 'chip',
+            isFlight: mode === 'flight', isFerry: mode === 'ferry', isRail: mode === 'rail', isAdmissionMode: mode === 'admission',
+            kicker: p.kicker || 'FERRY · ALILAURO', date: p.date || 'AUG 19 2026', fromCode: p.fromCode || 'SOR', fromName: p.fromName || 'Sorrento',
+            toCode: p.toCode || 'CAPRI', toName: p.toName || 'Marina Grande', fields, status: p.status || 'SAILED · AUG 19',
+            hasBarcode: (p.barcode || 'yes') === 'yes', perfCls: 'tk-perf ' + (mode === 'ferry' ? 'wave' : 'line'), sepCls: 'tr-sep ' + (mode === 'ferry' ? 'wave' : 'line'),
+            title: p.title || '', sub: p.sub || '', bandL: band[0] || '', bandR: band[1] || '',
+            rowTitle: p.rowTitle || 'SOR→CAPRI · ALILAURO', rowDetail: p.rowDetail || 'In The coast · sailed', stub: p.stub || 'AUG 19', chip: p.chip || 'SOR→CAPRI'
+          };
+        }
+      }
+    </script>
+  </body>
+</html>

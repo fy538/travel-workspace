@@ -1,4 +1,4 @@
-"""15 · Shared with Maya. The thread and Life's shared record are one object, drawn in Life's own grammar: Life board 07's
+"""15 · Shared with Maya. The thread and Life's shared record are one object, drawn in Life's own grammar: Life 07's
 stylesheet and panels are used verbatim (life/07.html, downloaded from Life e72a2fd2), and only what is new is changed:
 an Ours row and section, her note as a post rather than a quotation (decision 2), the chat as a conversation row, and
 Ours pages built from Life's section heads, rows and withdrawal wording. The Life project itself is not modified."""
@@ -145,31 +145,31 @@ def a_year():
 
 def build():
     cells = [
-        panel('People &middot; a note arrives', rest(), 'Life&rsquo;s People lens exactly as board 07 draws it, with one added row inside Maya&rsquo;s record: Ours, the things the two of you made on purpose.'),
-        panel('Chat &middot; the same person', chat_strip(), 'Chat stays a chat. Her name at the top of the conversation opens the same shared record; Life draws Chat as a strip, so it is drawn as one here.', True),
-        panel('Opened &middot; her note, Ours, the conversation', opened(), 'Board 07&rsquo;s record, three changes: her note as a post, not a quotation (decision 2); an Ours section after her note; the chat as a conversation row, opening in Chat.', True),
-        panel('Ours &middot; our places', our_places(), 'Ours as a page in Life&rsquo;s grammar: a kicker, a serif title, a map because it is a list of places, and each place in its adder&rsquo;s words. Been is green, with a date.', True),
+        panel('People &middot; a note arrives', rest(), 'Life&rsquo;s People lens exactly as Life 07 draws it, with one added row inside Maya&rsquo;s record: Ours, the things the two of you made on purpose.'),
+        panel('Chat &middot; the same person', chat_strip(), 'Chat stays a chat. Her name at the top opens the same shared record, drawn as a strip, as Life draws Chat.', True),
+        panel('Opened &middot; her note, Ours, the conversation', opened(), 'Life 07&rsquo;s record with three changes: her note as a post, an Ours section, and the chat as a row that opens Chat.', True),
+        panel('Ours &middot; our places', our_places(), 'Ours as a page in Life&rsquo;s grammar: a map, because it is places, each in its adder&rsquo;s words. Been is green, with a date.', True),
         panel('Ours &middot; been, offered from the record', our_places(offer=True), 'The record has an evening at Lulu&rsquo;s. The page says what it found and asks once. You answer; nothing is asserted about you.', True),
         panel('Ours &middot; when she stops sharing', our_places(left=True), 'Life&rsquo;s withdrawal wording: said once, where the missing thing would have been. Each entry is its adder&rsquo;s and left with her; yours are as they were (decision 1).', True),
         panel('A year on &middot; inside the record', a_year(), 'Life&rsquo;s &ldquo;this time, last year&rdquo;, inside the record, never pushed. Her newest note sits under it, as a post.', True),
     ]
     rows = '<div class="crow">' + ''.join(cells) + '</div>'
     def dec(n, t, body): return f'<div style="width:393px;"><div class="ccap">{n} &middot; {t}</div><div class="cn" style="padding-top:6px;">{body}</div><div class="cnote" style="padding-top:6px;">RULED &mdash; not yet &mdash;</div></div>'
-    decisions = ('<div class="csec"><div class="ceye">Four decisions, each with a recommendation</div><div class="crow">'
-        + dec('1', 'Ownership', 'Life keeps parallel accounts; the first Ours list drew one shared list. <b>Recommended:</b> Ours is one list made of entries; each entry is its adder&rsquo;s and leaves with them. The shared record stays parallel, as Life rules.')
-        + dec('2', 'Quote or post', 'Life 07 sets her note in serif italics with quotation marks. <b>Recommended:</b> a friend&rsquo;s note looks the same on Home and in Life: a post, as drawn here.')
-        + dec('3', 'One composer', 'Life 04c shares through the Social project&rsquo;s preview; board 10 drew its own composer. <b>Recommended:</b> one composer, board 10&rsquo;s.')
-        + dec('4', 'The ledger', 'Life avoids progress and streaks. <b>Recommended:</b> Ours counts only what happened (places, been, since) and asks nothing; nothing decays.')
+    decisions = ('<div class="csec"><div class="ceye">Four decisions, ruled September 26</div><div class="crow">'
+        + dec('1', 'Ownership', 'Life keeps parallel accounts; the first Ours list drew one shared list. <b>Ruled:</b> Ours is one list made of entries; each entry is its adder&rsquo;s and leaves with them. The shared record stays parallel, as Life rules.')
+        + dec('2', 'Quote or post', 'Life 07 sets her note in serif italics with quotation marks. <b>Ruled:</b> a friend&rsquo;s note looks the same on Home and in Life: a post, as drawn here.')
+        + dec('3', 'One composer', 'Life 04c shares through the Social project&rsquo;s preview; board 01 drew its own composer. <b>Ruled:</b> one composer, board 01&rsquo;s.')
+        + dec('4', 'The ledger', 'Life avoids progress and streaks. <b>Ruled:</b> Ours counts only what happened (places, been, since) and asks nothing; nothing decays.')
         + '</div></div>')
     notdrawn = ('<div class="csec"><div class="ceye">What stays as Life has it</div><div class="cn" style="padding-top:8px; max-width:1200px;">'
         'The record is named for the relationship, not the person: &ldquo;Shared with Maya&rdquo;, no portrait, no profile. Groups have no record of their own; what four people lived is in each person&rsquo;s shared record and in Life&rsquo;s occasions. '
-        'People met along the way get a row and nothing more. The Life project is unchanged; if these are ruled, its board 07 gains the Ours row and section and loses the quotation marks.</div></div>')
-    top = ('<div style="padding:0 0 10px 0;max-width:1060px"><div style="display:flex;align-items:center;gap:12px"><span class="ceye">15 &middot; Shared with Maya</span><span class="cpill rev">Review</span></div>'
+        'People met along the way get a row and nothing more. The Life project is unchanged; if these are ruled, Life 07 gains the Ours row and section and loses the quotation marks.</div></div>')
+    top = ('<div style="padding:0 0 10px 0;max-width:1060px"><div style="display:flex;align-items:center;gap:12px"><span class="ceye">07 &middot; Shared with Maya</span><span class="cpill rev">Review</span></div>'
            '<div class="ctitle" style="padding-top:8px">The thread and the shared record are one thing.</div>'
            '<div class="cq" style="padding-top:6px">What does the record hold once the two of you also make things together, and talk?</div>'
-           '<div class="cn" style="padding-top:8px;max-width:980px">Drawn in Life&rsquo;s own grammar: board 07&rsquo;s stylesheet and panels, used verbatim. What is new is an Ours section in the shared record, Ours as a page, the chat as a conversation row, and her note as a post. Drawn, not tested with anyone.</div></div>')
-    html = PREFIX + f'<div class="cb" style="width:1760px;padding:38px;min-height:{hh("15", 3400)}px">' + top + rows + decisions + notdrawn + '</div>' + SUFFIX
-    return write('15 - With Maya', html)
+           '<div class="cn" style="padding-top:8px;max-width:980px">Drawn in Life&rsquo;s own grammar: Life 07&rsquo;s stylesheet and panels, used verbatim. What is new is an Ours section in the shared record, Ours as a page, the chat as a conversation row, and her note as a post. Drawn, not tested with anyone.</div></div>')
+    html = PREFIX + f'<div class="cb" style="width:1760px;padding:38px;min-height:{hh("07", 3400)}px">' + top + rows + decisions + notdrawn + '</div>' + SUFFIX
+    return write('07 - Shared with Maya', html)
 
 if __name__ == '__main__':
     build()

@@ -1,0 +1,97 @@
+{
+ "note": "Read from the code on September 26. Most of what the rules need exists in some form. Three things do not: a timed record for flights, trains, ferries and admissions; a count of visits per city; and feeds that report disruptions.",
+ "rows": [
+  [
+   "<b>Home city</b>",
+   "Own city or another (02)",
+   "A home city on the profile (city, neighbourhood, how precise), set in the profile or by telling Chat. Never inferred.",
+   "People who never set it need a default (09)."
+  ],
+  [
+   "<b>Knowing a city</b>",
+   "Whether another city still counts as familiar",
+   "History per place, not per city: visits marked or inferred from location, completed trips and their destinations, Life entries with dates.",
+   "No count per city. It is one aggregate, not a new system."
+  ],
+  [
+   "<b>Where you are</b>",
+   "Place card; leave-by; reaching the stay",
+   "Foreground location with accuracy, kept as one last position. Fresh under 2 min, recent under 15, then stale. Permission state is known.",
+   "The city is resolved only for Chat. Home needs it resolved from the last position."
+  ],
+  [
+   "<b>Held things with times</b>",
+   "Which object, and its window (04)",
+   "Plan items with start and end times and a booking reference; stays with dates and an optional check-in time; plan time windows.",
+   "No timed record for flights, trains, ferries or admissions, so 21&rsquo;s pass and 20&rsquo;s admission cannot go live from data yet."
+  ],
+  [
+   "<b>What is current</b>",
+   "It is now (rule A)",
+   "The plan state already knows the next item, the window open now and the next change. Trips know active or imminent by date.",
+   "Home does not read the open window to draw a live object yet."
+  ],
+  [
+   "<b>Leave-by</b>",
+   "When anything you travel to turns dark",
+   "A leave-by notification computes a departure time from straight-line distance.",
+   "An estimate, not routing. Good enough to open a window."
+  ],
+  [
+   "<b>Offline</b>",
+   "The still state and its &ldquo;as of&rdquo;",
+   "The app keeps the profile, trips and the Home stack on the phone for up to 12 hours, and knows the network state.",
+   "Home shows no &ldquo;as of&rdquo;. The stay&rsquo;s door code is not in the saved set."
+  ],
+  [
+   "<b>Disruption</b>",
+   "Urgent (21.2)",
+   "Venue-closed swaps and weather rescue exist behind flags.",
+   "No transit, flight delay or gate feeds. Urgent stays drawn, not buildable."
+  ]
+ ],
+ "fam": [
+  [
+   "A",
+   "Home city only",
+   "Familiar means the home city on the profile; anywhere else gets a place card. Works today. Wrong for someone back in a city they know well."
+  ],
+  [
+   "B",
+   "Home city, plus history &middot; recommended",
+   "Also familiar: a city where Life holds several past visits or trips (three, say). Needs the one per-city count."
+  ],
+  [
+   "C",
+   "When no home city is set",
+   "Another city only when a trip names it as a destination, as with 19&rsquo;s visitor. Otherwise no place card. Held things still go live everywhere."
+  ]
+ ],
+ "qs": [
+  [
+   "Q1",
+   "The leads in 04",
+   "Reservations, gatherings and tickets turn dark 20 minutes before leave-by; flights at leave-by for the airport. Keep, or change?"
+  ],
+  [
+   "Q2",
+   "Familiarity",
+   "B, falling back to C when there is no home city (recommended), or A alone?"
+  ],
+  [
+   "Q3",
+   "Stale location",
+   "The place card steps down when the last position is older than 15 minutes, the code&rsquo;s own &ldquo;recent&rdquo;. Keep?"
+  ],
+  [
+   "Q4",
+   "Timed tickets",
+   "Build timed records for flights, trains, ferries and admissions before these can go live, or ship first with plan items and stays only?"
+  ],
+  [
+   "Q5",
+   "Owners",
+   "The place card belongs to Places, drawn on Home. The dark Ticket goes to the shared package as a variant. Agree?"
+  ]
+ ]
+}

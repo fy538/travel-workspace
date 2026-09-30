@@ -22,6 +22,9 @@ rules:
   - glob: "docs/working/roadmap-proposals-for-codex-2026-09-28.md"
     disposition: keep_reference
     rationale: "Proposed program-roadmap changes for the Codex lane owner; the program roadmap remains the only dispatch queue."
+  - glob: "docs/working/product-map/*.md"
+    disposition: keep_reference
+    rationale: "Dated, expiring orchestrator product map (Design Atlas, Build Map, supply, infra, decisions and gap map) used to measure progress and plan execution; product, system, design and program owners retain authority."
   - glob: "docs/working/historical-branch-recovery-audit-2026-09-23.md"
     disposition: keep_reference
     rationale: "Dated, expiring cross-repository Git recovery inventory and proposed selective-port plan; current product, system and program authorities retain all implementation decisions."

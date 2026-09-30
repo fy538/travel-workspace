@@ -1,5 +1,5 @@
 """13 · The chat. A private chat between two people, and nothing else. Vesper is optional: a door in the composer,
-and when used its reply is marked and both see it. When one of them changes something the two of them own (board 18),
+and when used its reply is marked and both see it. When one of them changes something the two of them own (board 08),
 a card says so. Redrawn 2026-09-21 after the founder separated the chat from the list."""
 from mp_kit2 import *
 from gen_merge import daycap
@@ -58,21 +58,21 @@ def rowdiv(cells, top=8):
 
 def build():
     r1 = rowdiv([cell('SEPT 26', '1', 'A chat', 'Two people. Sam&rsquo;s share quoted in, and they work it out themselves. The gold spark in the composer is Vesper; nobody touches it.', plain_chat(), (P('CHAT'),)),
-                 cell('SEPT 26', '2', 'Asked', 'Nora taps the gold spark in the composer. The question and the answer sit in the chat, marked, seen by both. It uses only what was said here and what each of them has let it use. Then it is gone again.', asked(), (P('CHAT'), P('VESPER, OPTIONAL'))),
-                 cell('OCT 5 → NOV 2', '3', 'A card when something of theirs changes', 'Maya added a place to the list they own (board 18). The chat says so in one line; tap to open it. Then the dog.', card_in_chat(), (P('CHAT'), P('OURS')))], top=0)
+                 cell('SEPT 26', '2', 'Asked', 'Nora taps the gold spark. The question and answer sit in the chat, marked and seen by both, using only what each has allowed.', asked(), (P('CHAT'), P('VESPER, OPTIONAL'))),
+                 cell('OCT 5 → NOV 2', '3', 'A card when something of theirs changes', 'Maya added a place to the list they own (board 08). The chat says so in one line; tap to open it. Then the dog.', card_in_chat(), (P('CHAT'), P('OURS')))], top=0)
     n = notes('THE CHAT, AND ONLY THE CHAT', led([
         ('WHAT IT IS', 'A private chat between two people. Bubbles, quotes, photos. It looks like every other chat because it should.'),
         ('VESPER', 'Optional. A door in the composer. When used, the question and the answer are in the chat, marked with who asked, and both see them. It knows what was said here, what was quoted in, and what each person has let it use for the other. It never speaks unasked.'),
-        ('WHAT IT IS NOT', 'Not where things are built. Nothing lives at the top of it. What the two of them own lives on its own page (board 18) and the chat only points at it.'),
-        ('OPEN', 'What each person has let Vesper use for the other, still. Whether a group chat of three or four gets the same door.'),
+        ('WHAT IT IS NOT', 'Not where things are built. Nothing lives at the top of it. What the two of them own lives on its own page (board 08) and the chat only points at it.'),
+        ('DECIDED', 'Occasions get a group chat, on by default (the Sept 26 decision; board 06). It has the same door: Vesper only when asked.'),
     ]) + N('The earlier version of this board put a plan, a list and a method at the top of the thread, formed on a Vesper prompt. Cut 2026-09-21: the list deserved its own page, and Vesper was too present.'), w=620)
     body = r1
-    html = (HEAD_VDL + f'<div style="width: 2010px; min-height: {hh("13", 1500)}px; background: #D8D1C5; box-sizing: border-box; padding: 30px 32px 36px 32px; {SANS} color: {INK}; display: flex; flex-direction: column;">'
-            + head('13 &middot; THE CHAT', 'A private chat, and Vesper only when asked',
+    html = (HEAD_VDL + f'<div style="width: 2010px; min-height: {hh("05", 1500)}px; background: #D8D1C5; box-sizing: border-box; padding: 30px 32px 36px 32px; {SANS} color: {INK}; display: flex; flex-direction: column;">'
+            + head('05 &middot; THE CHAT', 'A private chat, and Vesper only when asked',
                    'Nora and Maya. A chat like any other. Vesper is a door in the composer, not a presence. When something the two of them own changes, the chat says so in one line and points at it.')
             + '<div style="display: flex; gap: 46px; align-items: flex-start;">' + body + n + '</div>'
             + f'<div class="fn" style="margin-top: 30px; line-height: 16px;">{FOOTX}</div></div>' + TAIL)
-    return write('13 - The chat', html)
+    return write('05 - The chat', html)
 
 if __name__ == '__main__':
     build()
