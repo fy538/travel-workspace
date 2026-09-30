@@ -2024,3 +2024,29 @@ in that run. Existing asynchronous React test warnings appeared in unrelated
 suites, but the aggregate command exited successfully. This is broad app
 regression evidence, not native device acceptance or a backend integration
 claim.
+
+### September 30 expiry-aware cached reader facts
+
+App commit `bc71bf128` closes the mounted-reader gap for owner facts that carry
+`valid_until`. The backend already excludes expired facts when it serves a
+fresh projection, but a cached mobile projection could keep displaying one
+past its deadline. The existing expiry-tick hook now removes expired or
+malformed-deadline facts from the rendered projection immediately, then asks
+the owner for a fresh read; the canonical artifact query also opts into stale
+refetch when the app returns to the foreground. When no current family-specific
+facts remain, the projection no longer advertises a specialized family reading.
+Unrelated source-backed facts, the exact original, and independent owner
+actions remain available. The query cache is not mutated by the display filter.
+
+The new data-hook tests cover the exact deadline, suppression while refresh is
+still pending, family-reader fallback after its qualifying facts expire, and
+foreground refetch. The focused artifact reader set passed (3 suites, 47 tests),
+as did app typecheck, test-contract typecheck, targeted ESLint, and the polish-QA
+registry. The registered canonical-reader QA dry-run created no screenshots;
+`xcrun simctl list devices booted` still fails because CoreSimulatorService is
+unavailable. Thus no native visual or live-service claim is made. A full app
+merge-scope check on `bc71bf128` passed with
+`npm run verify:merge -- --base main`: 1,288 suites, 9,112 tests and one
+snapshot. Existing unrelated React/API diagnostic warnings appeared during the
+suite, but the aggregate command exited successfully. This is broad app
+regression evidence, not native device or authenticated live-service evidence.
