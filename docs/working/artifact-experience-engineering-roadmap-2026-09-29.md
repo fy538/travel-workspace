@@ -45,9 +45,12 @@ readers, dish fallback, sparse recognition, and one bounded friend contribution.
 A first crosswalk now
 separates source admission, family-reader behavior, and audience authorization;
 door-to-family recognition remains unproven. P1 still needs cross-door
-recognizable identity, typed source/date edits, correction Undo and
-reconciliation; PC catalog mapping/use
-gates, other family readers, and native visual acceptance remain open. A new
+recognizable identity, source-bound component continuity, correction Undo and
+cross-door reconciliation. The backend's revisioned time-replacement path now
+appears as a user-confirmed fact in the canonical artifact read with correction
+provenance; a native editor remains gated on timezone-authoring behavior. PC
+catalog mapping/use gates, other family readers, and native visual acceptance
+remain open. A new
 wave also connects `inspect_source` to owner-scoped exact source references:
 the backend exposes only supported, unrevoked originals in the private owner
 projection; the app opens the exact submission/source/content revision, with
