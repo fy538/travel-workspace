@@ -352,6 +352,23 @@ full-scroll implementation independently; keep the Plans post-navigation
 capture issue bounded and do not wait on it to continue supported Home/Places
 work.
 
+**Additional current lane increment — 2026-09-30:** backend commit
+`51d8f7334` and app commit `44f65c39a` carry the existing approved starter
+guide into the ranked Places feed when the user is in the `starter`/Anywhere
+posture and no scoped guide is available. It appears as “A guide to start
+with,” opens its exact dossier, and is omitted when the approved corpus has no
+display-ready guide. The app mock uses that same dossier rather than invented
+content; no new generator, endpoint, schema, permission path, or parallel
+content store was added. Backend feed tests passed **20/20**; focused app
+component/mock-feed tests passed **55/55**, app typecheck passed, and local
+pre-commit checks passed in both child repos. A registered cold-start iPhone
+capture completed **1/1** and opened the exact Lisbon guide; its screenshot is
+the initial starter-city viewport, so it does not independently establish the
+new section's below-fold visual placement. The external canonical design bundle
+was unavailable, so no strict design-intent verdict is claimed. This closes a
+real receiving gap in the starter feed, not D2 as a whole; continue with the
+next independently useful Home/Places slice rather than reopening planning.
+
 ### D3 Make practical help part of the same system
 
 **Outcome:** what is happening now changes the useful options and actions across
