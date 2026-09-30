@@ -323,6 +323,26 @@ defect; D2 remains active.
 social supply; finish root layout, navigation and failure treatment. Do not
 rewrite P2's reader or generate pretend enrichment to fill a design.
 
+**Additional current lane increment — 2026-09-30:** app commit `b233cb013`
+(`codex/home-value-delivery`; workspace baseline `eea30b6c`, backend
+`ea8515849`, app base `e8ad47537`) replaces the grounded-empty Places dead end
+with a direct **Search Places** entrance. It opens the current supported scope,
+or the existing anywhere-search mode when no supported scope is available; it
+does not ask for an upload, wait for travel, request location, or create a
+capture. Focused Places state tests passed **25/25** (including both scope
+cases), app typecheck and targeted ESLint passed, the registered scenario check
+passed (**31 IDs**), and `make docs-check` passed. Native screenshot acceptance
+remains **unverified**: the registered preflight and Metro bundle succeeded
+after correcting the simulator-reachable host, but the actual Maestro capture
+did not finish. A local iOS rebuild also failed because the generated Xcode
+project references `Pods-ShareExtension/expo-configure-project.sh` while the
+default Podfile has no `ShareExtension` target. No screenshot or visual verdict
+is claimed. This closes only the empty-state entrance defect; D2 remains active.
+**Next:** continue D2's real-supply/full-scroll implementation independently;
+repair the generated-project configuration as a separate QA-enablement task,
+then capture and assess the registered Places surface. Do not wait on that
+capture to keep implementing supported Home/Places behavior.
+
 ### D3 Make practical help part of the same system
 
 **Outcome:** what is happening now changes the useful options and actions across
