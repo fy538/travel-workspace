@@ -644,8 +644,13 @@ deadline outcomes. This is a partial R0/R1/R2/R6 result, not completion of any
 package: R0's complete scenario/owner matrix, R1's caller-independent disclosure
 and acquisition behavior, R2's supported candidate selection, R6's real
 consumer acceptance, and R7's matched-quality evidence remain open. R3/R4/R5
-requirements are being applied with the first producer; their shared runtime,
-longitudinal and assistance-adaptation outcomes remain for later work. Receipts
+requirements are being applied with the first producer. The commercial usage
+ledger now preserves dispatch uncertainty for existing voice-token actions;
+expired dispatched holds stay reserved until an authoritative outcome is
+resolved, while a retry that loses the dispatch fence cannot release the
+winner's reservation. This protects one existing commercial meter, but does
+not yet account for research-provider spend or complete R3. Shared execution,
+longitudinal change handling and assistance adaptation remain open. Receipts
 and exact limitations are in section 12.
 
 ### Minimum complete first increment
@@ -1754,3 +1759,94 @@ semantic entailment. There is no live provider/model evaluation, durable
 chargeable-attempt reservation, page fetch, new paid consumer, API/schema or
 app change, persistent research storage, database mutation, native readback,
 push, deployment or publication. R1 and R0–R7 remain open.
+
+#### Implementation receipt — dispatched reservation uncertainty (September 30)
+
+Backend commit `caae59dad21a4590572988068659d8ddf50d5264` adds explicit
+`dispatched` and `unknown` reservation states. An expired pre-dispatch hold
+cannot later cross the dispatch fence; ordinary expiry releases only `held`
+reservations. A dispatched action that outlives its lease moves to `unknown`
+without refunding its units, and a bounded internal listing exposes only the
+reservation and capability identifiers, actor/trip IDs, hashed idempotency key,
+units and timestamps. An authoritative `consumed` or `not_consumed` resolution
+settles the reservation; malformed outcomes and zero-unit `consumed` claims
+fail closed.
+
+The existing voice token and narration-handoff routes mark dispatch before
+signing, commit after constructing the response, and release as known unused
+only when the current request won the dispatch fence. Handoff preparation now
+precedes the short-lived reservation. The expiration worker releases
+pre-dispatch holds and moves expired dispatched actions to the unknown queue.
+This is a shared ledger-safety primitive exercised by the existing voice
+commercial capability; it does not create research spend accounting, enable a
+capability, change pilot cohorts or allocations, or implement automated
+reconciliation for unknown rows. R3 remains open.
+
+Evidence on workspace `fd05a0cb1ffce05b76ac773fee5c56404c33b8dc`, backend
+`caae59dad21a4590572988068659d8ddf50d5264`, app
+`28717c7cfec07b2313fe0e0cdff4431444df8335`, Darwin 25.5 arm64; focused
+backend tests used Python 3.13.0:
+
+- Focused voice-route and gateway cases: **34 passed**. Log output was returned
+  directly by pytest; the measured database/static/full-suite runs are recorded
+  in `/tmp/adaptive-research-roadmap-measurements.json`.
+- Against the lane's explicitly disposable `codex_usagelease_20260930`
+  PostgreSQL database on port `64355`, the reservation lifecycle suite passed:
+  **6 passed**. The migration downgraded to `irdelegationtypes01` and reapplied
+  to `usagelease01`; `alembic heads` reports exactly `usagelease01 (head)`.
+- `MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true make -C travel-agent ci-static`
+  passed in **103.078 seconds**. Log:
+  `/tmp/vesper-adaptive-context-r3-checks/r3-reservation-final2-ci-static-20260930T215428Z.log`.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' RUFF_NO_CACHE=true make -C
+  travel-agent merge-check BASE_REF=main` passed in **101.102 seconds**:
+  **22,031 passed, 14 skipped, 0 failed**. Log:
+  `/tmp/vesper-adaptive-context-r3-checks/r3-reservation-final2-merge-check-20260930T215615Z.log`.
+- Backend commit hooks passed without exemptions after selecting the repository
+  virtualenv so parity checks could import SQLAlchemy. One earlier hook attempt
+  identified a status-check false positive; the gateway now classifies quota
+  exhaustion by reservation identity/replay rather than comparing a synthetic
+  result to a database status value.
+
+The focused route tests mock LiveKit and prove dispatch ordering and retry
+cleanup; they do not prove a live token exchange or response delivery. The
+local API runtime did not become healthy because this checkout lacks
+`ANTHROPIC_API_KEY`; this is unverified runtime evidence, not a product-code
+pass. Unknown rows can be listed and resolved through internal ledger calls,
+but there is no operator-facing workflow or durable producer record that
+automatically establishes token delivery. No research acquisition is yet
+connected to this reservation lifecycle, and no provider billing or COGS
+accounting is claimed. This is a partial R3 safeguard; R0–R7 remain open.
+
+#### Cross-repository change-aware verification (September 30)
+
+The measured command was run from the coordinated lane root with the lane's
+workspace/backend/app bases set to `main`, `TEST_DATABASE_URL` and
+`TEST_DATABASE_DISPOSABLE` unset, Ruff caches disabled, mypy cache directed to
+`/dev/null`, and pytest cache disabled. The run used workspace
+`fd05a0cb1ffce05b76ac773fee5c56404c33b8dc`, backend
+`caae59dad21a4590572988068659d8ddf50d5264`, app
+`28717c7cfec07b2313fe0e0cdff4431444df8335`, Python 3.14.6 and Darwin 25.5
+arm64.
+
+- An unprivileged full `make verify-changed` run exited 2 because four
+  workspace runtime tests could not bind ephemeral localhost sockets. The
+  backend (22,031 passed, 14 skipped), app (9,038 passed), and other workspace
+  tests passed. The socket-dependent file passed separately with local socket
+  permission: **11 passed**.
+- The full change-aware command was repeated with local socket permission. The
+  backend merge suite passed (**22,031 passed, 14 skipped, 53 xpassed**); all
+  **117 workspace script tests** passed; cross-repository contract/API/docs
+  gates reported no failures. The app run passed **9,034 tests in 1,282 of
+  1,283 suites**, but a Jest worker running
+  `ChoosePlaceSheet.test.tsx` terminated with `SIGSEGV`, so the overall command
+  still exited 2. The affected suite passed independently in-band (**4
+  passed**).
+- The full measurement is recorded at
+  `/tmp/vesper-adaptive-context-r3-checks/measurements.json`; its log is
+  `/tmp/vesper-adaptive-context-r3-checks/adaptive-context-r3-full-verify-changed-after-socket-permission-20260930T221157Z.log`.
+
+These retries isolate the observed failures to restricted socket binding and
+one transient Jest worker crash, with the affected tests passing on focused
+reruns. However, `make verify-changed` has **not** produced one clean end-to-end
+exit-zero run on this lane; record the integrated gate as incomplete rather
+than converting separate passes into a whole-command pass.
