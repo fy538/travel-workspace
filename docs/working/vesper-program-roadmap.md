@@ -267,8 +267,10 @@ It preserves the existing Clerk-keyed extension journal (so pending local
 records remain discoverable), resolves the internal owner through authenticated
 `GET /api/me`, and validates Intake receipts against that UUID. Six focused
 Jest suites now pass **65/65**, including the external-to-internal owner mapping
-and fail-closed resolution path; native/device and live-backend acceptance
-remain unverified.
+and fail-closed resolution path. App `0ff582abf` adds an in-place retry after
+transient profile/journal-read failure while the same Clerk lease remains
+current, preserving the incoming draft and preventing duplicate retry dispatch.
+Native/device and live-backend acceptance remain unverified.
 
 **Independent work when blocked:** in-app authenticated/native acceptance, email
 transport failure semantics, original-open integration and D2's existing-supply composition.

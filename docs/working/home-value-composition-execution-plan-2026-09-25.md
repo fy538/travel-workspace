@@ -1968,8 +1968,13 @@ the host resolves Vesper's internal UUID from authenticated `GET /api/me`; the
 Intake service compares create/read/delete receipts against this backend owner
 without conflating it with the local journal key. Tests cover successful owner
 mapping and refusal to open the journal if that authenticated mapping fails.
-This repairs the code-level ID-domain mismatch; it does not establish an
-authenticated live-backend or signed-device pass.
+App `0ff582abf` adds an in-place retry when profile or journal reads fail
+transiently while the same Clerk lease remains current; the incoming draft and
+idempotency identity are preserved, and repeated taps cannot dispatch duplicate
+bootstrap reads. Tests cover owner mapping, fail-closed behavior, and retry to
+successful Keep. This repairs the code-level ID-domain mismatch and transient
+profile/journal recovery; it does not establish authenticated live-backend or
+signed-device acceptance, nor retry after an unavailable/expired Clerk session.
 
 ### Published candidate — prior full coordinated gate
 
