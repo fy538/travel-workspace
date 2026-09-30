@@ -61,12 +61,12 @@ implementation, consumer demand, or acceptance testing.
 ### Reading order and ownership
 
 1. [Multiplayer Product Strategy](../../travel-agent/docs/product/Multiplayer%20Product%20Strategy.md): durable social intent, private principals, shared agency, Handoff, Caucus, Mandate, Our Place, Repair, Convergence, Ritual, and Relay.
-2. [Current Social project handoff](/Users/feihuyan/travel-workspace/docs/working/claude-design-social-experience-project-handoff-2026-09-07.md): selected work and unfinished delivery obligations, including **Current coverage assignment — September 12** and the September 10 supplements.
-3. [Current Social design response](/Users/feihuyan/travel-workspace/docs/working/social-experience-design-response-2026-09-07.md): reported delivery through **§24, Board 09, sending, access and control — September 15**. Verify reports against actual canvases before declaring anything complete.
+2. [Current Social project handoff](claude-design-social-experience-project-handoff-2026-09-07.md): selected work and unfinished delivery obligations, including **Current coverage assignment — September 12** and the September 10 supplements.
+3. [Current Social design response](social-experience-design-response-2026-09-07.md): reported delivery through **§24, Board 09, sending, access and control — September 15**. Verify reports against actual canvases before declaring anything complete.
 4. [Multiplayer prominence exploration](claude-design-multiplayer-prominence-exploration-brief-2026-09-01.md): borrowed perspectives, everyday pair-first value, and cross-root social presence already in the strategy.
 5. [Four-root contract](../systems/four-root-loop-object-surface.md) and [Contribution and Consequence](../systems/contribution-and-consequence.md): placement, gesture, retention, audience, action, and correction boundaries.
-6. [Current shared fixture world](/Users/feihuyan/travel-workspace/docs/working/fixtures/shared-fixture-world-2026-09-07.md): use existing identities and evidence where appropriate, including C6/C7 and §8's actual value specimens; new examples below are proposed fixtures, not additions to anyone's actual history.
-7. [September 9 prepared-continuation decision](/Users/feihuyan/travel-workspace/docs/decisions/2026-09-09-select-design-convergence-and-prepared-continuations.md): the accepted, bounded prepared-message exception, not general permission for unsolicited outreach.
+6. [Current shared fixture world](fixtures/shared-fixture-world-2026-09-07.md): use existing identities and evidence where appropriate, including C6/C7 and §8's actual value specimens; new examples below are proposed fixtures, not additions to anyone's actual history.
+7. [September 9 prepared-continuation decision](../decisions/2026-09-09-select-design-convergence-and-prepared-continuations.md): the accepted, bounded prepared-message exception, not general permission for unsolicited outreach.
 
 **Source-version note, checked September 20:** the absolute links above deliberately
 target the current main-workspace working copies, which include uncommitted work.
@@ -778,7 +778,7 @@ non-duplicated presentation across the roots. Not every story visits every root.
 | Life | Stable people, occasions, entrusted material and continuity; not another present-tense social feed |
 
 Use the current main-workspace
-[Social brief §4](/Users/feihuyan/travel-workspace/docs/working/vesper-social-experience-design-brief-2026-09-07.md)
+[Social brief §4](vesper-social-experience-design-brief-2026-09-07.md)
 and its linked root authorities. If proposing a different placement, draw it as
 an explicit alternative with rationale; do not silently promote the weekend's
 Home-heavy composition into canon.
