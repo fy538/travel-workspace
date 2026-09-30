@@ -27,10 +27,12 @@ another assistant or a universal artifact service.
 **Execution status:** active in the Strategy lane's coordinated artifact
 worktree. The first implementation increment added a versioned, viewer-facing
 reading descriptor and native travel/admission ticket reader. A follow-on
-increment now exposes three existing owner-governed semantic corrections on
+increment exposed three existing owner-governed semantic corrections on
 eligible private artifacts, then refreshes the exact owner projection; the
-original source remains untouched. Backend projection/API and app reader tests
-pass. This is the beginning of P0/P1/P2, not completion of the first
+original source remains untouched. The next reader increment adds a
+source-backed place-record treatment, not a catalog venue page or visit claim.
+Backend projection/API and app reader tests pass. This is the beginning of
+P0/P1/P2, not completion of the first
 assignment: P0 still needs the identity/subject/collection owner map,
 component/context and edition references, the family/mode matrix and replay
 fixtures; P1 still needs recognizable identity, field-level source/date edits,
@@ -714,14 +716,15 @@ to ordinary users remains a hypothesis until the human comparison.
 but source access, route continuity, eligibility and data contracts can advance
 before final composition is frozen.
 
-**Implementation increment:** travel and admission ticket formats now have a
-typed dispatch path. Other reading formats still use the generic
-source-fact/original reader; ticket-family dispatch does not imply that PDF,
-Wallet, every email attachment or native visual acceptance is complete. The
-canonical reader also exposes the existing owner correction command for
-declared time, Occasion-separation and interpretation-hiding actions. It does
-not yet support editing a replacement value, source deletion/Undo or native
-visual acceptance.
+**Implementation increments:** travel and admission ticket formats have a
+typed dispatch path, and place records receive a compact source-backed place,
+neighborhood and time treatment without a map or resolved-venue claim. Other
+reading formats still use the generic source-fact/original reader; ticket
+dispatch does not imply that PDF, Wallet, every email attachment or native
+visual acceptance is complete. The canonical reader also exposes the existing
+owner correction command for declared time, Occasion-separation and
+interpretation-hiding actions. It does not yet support editing a replacement
+value, source deletion/Undo or native visual acceptance.
 
 ### P3 Contextual discovery and useful selection
 
