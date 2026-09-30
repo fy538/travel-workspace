@@ -79,6 +79,12 @@ focused backend and app evidence is recorded in section 13. It does not
 complete P2: selected-part interaction and native visual acceptance remain
 unfinished. Dish, recipe and scorecard readers intentionally follow the first
 designed families in section 1A; they are not prerequisites for this increment.
+The app now carries the immediate artifact parent and ephemeral root/Life
+context into exact-original inspection. Returning targets the artifact before
+the root token can complete, and a cold-linked artifact exits to its registered
+root when that in-memory context remains available. This closes route
+continuity, not native acceptance; the QA capture could not run in this
+environment.
 The passage treatment uses only the supplied
 excerpt and does not infer author/work identity. The practical-record sheet
 shows only supplied facts and does not calculate receipt totals or payment
@@ -1785,3 +1791,35 @@ override. The service was stopped afterward and its named volume preserved.
 Native/device acceptance was not run, so no live API or native UI behavior is
 claimed. P1 identity, component, collection and reconciliation work, and the
 timezone-gated replacement-time editor, remain open.
+
+### September 30 artifact-to-original return continuity
+
+App commit `18ad70bfa` preserves route ownership through exact-original
+inspection. The canonical artifact reader now passes its immediate artifact
+ID, exact source identity, ephemeral root token, and Life lens/group/record
+context into the existing Intake source reader. Its Back action targets that
+artifact as the semantic parent even if unrelated navigation history exists;
+the cold-link fallback rebuilds the artifact route with the same token/context.
+Leaving the artifact
+then follows its exact Life return or registered root when available, allowing
+the existing root tracker to complete restoration only after the artifact is
+left. Source custody revalidation and original authorization stay in their
+existing owners; no backend, API, durable identity, or source-custody behavior
+changed.
+
+Validation on app `18ad70bfa`: the focused screen command
+`npm test -- --runInBand --no-cache
+__tests__/screens/canonical-artifact-reader.test.tsx
+__tests__/screens/intake-submission.test.tsx` passed (2 suites, 48 tests);
+`npm run typecheck`, `npm run test:typecheck:contracts`, targeted ESLint,
+`npm run docs:check`, `npm run qa:polish:scenarios` (31 registered IDs), and
+`git diff --check` passed. One full merge run first lost an unrelated Discover
+test worker to SIGSEGV after 1,286 of 1,287 suites; that suite passed alone,
+and the full rerun passed: `npm run verify:merge -- --base
+87eceee24512d9086962eea5b844cef9d7bffbeb` (1,287 suites, 9,106 tests, one
+snapshot). Native QA was attempted with the lane-assigned Metro port and Vesper
+QA SE device, but CoreSimulatorService became unavailable and the runner could
+not create its lock directory (`EPERM`); no native flow or screenshot was
+produced. Thus navigation is verified at route/screen-test level only, not on
+device. Selected-part interaction, native visual/gesture acceptance, and the
+P0-gated identity/component/collection/reconciliation decisions remain open.
