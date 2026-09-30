@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product strategy
 created: 2026-09-28
-last_verified: 2026-09-28
+last_verified: 2026-09-29
 expires: 2026-10-28
 why_new: A bounded six-question research synthesis is needed to test the memory-as-consumer-surface direction against primary research, adjacent products and inspected implementation. The product-direction note preserves the chronological discussion; this companion owns the dated evidence and proposed research decisions, not another product canon or implementation queue.
 promotes_to: Existing Product Thesis, Product Model, Life, contribution and editorial owners after explicit decisions; implementation sequencing remains in the program roadmap.
@@ -11,12 +11,18 @@ supersedes: []
 source_of_truth_for: []
 ---
 
-# Memory as product: six-question direction review
+# Memory as product research
 
 Research date: September 28, 2026. Three parallel research agents covered
 collections/capture, connections/multiplayer, and architecture/commercial choice.
 The coordinating review reconciled their findings and checked selected sources
-and code directly. Recommendations below are proposals, not adopted policy.
+and code directly. September 29 follow-up research is consolidated in §14,
+and the September 28 artifact research in §15. Sections 16–18 consolidate the
+September 29 evening focused-artifact discussion, technical investigation and
+bounded decision-model research;
+the original repository snapshot remains dated September 28. Recommendations
+are proposals, not adopted policy. This document supports the existing strategy
+and owner docs; it is neither another canon nor an implementation queue.
 
 ## 1. Executive judgment
 
@@ -68,6 +74,11 @@ The accepted [documenting/composer decision](../decisions/2026-09-27-documenting
 and [multiplayer decision](../decisions/2026-09-26-multiplayer-direction.md)
 retain authority. Pending friction defaults, catalog mechanism R3, notification
 policy and friend-content use grants remain pending where their owners say so.
+
+The [September 29 record-value amendment](../decisions/2026-09-29-record-as-first-class-value.md)
+subsequently reconciles the first-class benefit with older by-product-only
+wording. It does not adopt this report's formation, correction or notification
+proposals. The snapshot and earlier verification below remain historical.
 
 ### Repository snapshot
 
@@ -645,11 +656,11 @@ available service and the decision each study must support.
 This report changes no product policy or runtime behavior. It identifies the
 following bounded reconciliation work rather than recommending another canon.
 
-1. **Product Thesis and Product Model:** deliberately reconcile first-class
-   visible memory with older language such as “not … memory collection” and
-   “Memory is substrate, not the endpoint” (Thesis lines 25–28 and 64–67).
-   Preserve their strong authority, plural-outcome and non-mandatory-loop rules.
-   Do not replace them silently through this working research.
+1. **Product Thesis and Product Model:** the September 29 local documentation
+   update reconciles first-class visible memory and the accepted collection
+   direction with the older substrate-only wording. It preserves authority,
+   plural outcomes and non-mandatory continuations. Landing this change across
+   lanes remains separate from editing it; this report does not amend policy.
 2. **Contribution and Life owners:** incorporate explicitly accepted September
    27–28 amendments where older entrance/Threads wording remains. Keep unruled
    friction presets, zero-touch type promotion, notification defaults and
@@ -667,7 +678,7 @@ following bounded reconciliation work rather than recommending another canon.
    AI organizers. A differentiated combination remains a hypothesis until
    people prefer the delivered experience.
 
-## 13. Closeout and promotion
+## 13. September 28 verification and promotion boundary
 
 Documentation verification in the recorded workspace lane:
 
@@ -684,8 +695,626 @@ attach newly collected evidence to the relevant package, and archive or renew
 this research with a concrete remaining question. The
 [program roadmap](vesper-program-roadmap.md) remains the implementation queue.
 
+## 14. September 29 collection experience follow-up
+
+This consolidates the Strategy thread's seven psychology questions, three
+collection investigations, and four unresolved application questions. The
+thread is `01a08d4e-3ee2-7d80-9add-a5179aaf3b8e`; the research discussions ran
+September 29, approximately 15:30–18:38 Eastern. They were desk research and
+repository/design-source reviews, not participant sessions or runtime tests.
+The central inference is that **value can deepen around existing material
+without requiring more capture or more generated content**. This is a product
+hypothesis to express and compare, not an established retention result.
+
+### Psychological implications
+
+| Question | Implication for Vesper | Boundary |
+| --- | --- | --- |
+| What makes it mine? | Preserve original material, deliberate arrangement and personal account separately. Optional naming or arrangement can be enjoyable. | Do not impose curation work to manufacture ownership or presume every useful collection is sentimental. |
+| What pays off immediately? | Recognizable custody, retrieval, enjoyment, understanding, human connection or a useful future option can each matter. | A successful upload receipt alone does not establish additional value over existing tools. |
+| Why return? | Instrumental retrieval, voluntary browsing, changed circumstances and another person's contribution are different motivations. | Research-assigned rediscovery is not spontaneous retention; episodic usefulness can be sufficient. |
+| How do possibilities remain light? | Keep an interesting future option without requiring adoption, scheduling or completion. | A kept possibility is not a Plan, overdue task, monitor or action mandate. |
+| What makes sharing enjoyable? | Unequal contributions can produce mutual value; receiving need not require reciprocation. | Count organizer work and persistence discomfort, not only recipient taps. Opens do not establish offline connection. |
+| What can AI add to meaning? | Preserve human authorship while offering inspectable connections and invited interpretations. | Source attribution must survive later return. AI prose must not become a remembered human statement. |
+| What happens when life changes? | Separate keeping, recommendation use, resurfacing, audience and deletion. | Silence is not dislike; bittersweet material is not automatically unwanted. Repair must reach dependent surfaces. |
+
+These implications extend the earlier review rather than replace existing
+memory, contribution and editorial contracts. Voluntary expressive work is
+legitimate; avoiding unsolicited interpretation does not require a purely
+forensic archive.
+
+### Evidence and limits
+
+- [Epistemic objects and curious collectors](https://doi.org/10.1016/j.jbusres.2026.116012)
+  (2026) examines active collectors of mundane objects, recruited through
+  Instagram, with 15 participants. The earlier research round read this as
+  evidence that objects can support developing knowledge and social exchange,
+  not just acquisition. Its selected enthusiast sample does not establish
+  demand among ordinary Vesper users. The publisher full text could not be
+  re-opened during this consolidation; retain that verification boundary.
+- [Tell Me Why You're Asking](https://people.cs.nycu.edu.tw/~armuro/pubs/su-et-al-2026-chi.pdf)
+  (CHI 2026) used interviews and design probes with 33 participants about
+  notification preferences. Participants wanted understandable effects and
+  distinctions between temporary situations and lasting preferences.
+  Applying this to collection correction is an inference, not a validated
+  collection UI or evidence for mandatory feedback prompts.
+- [The AI Memory Gap](https://hciaiprojects.uni-bayreuth.de/projects/the-ai-memory-gap)
+  (CHI 2026; preprint 2025) studied 184 participants in ideation/elaboration
+  tasks with delayed source attribution one week later. Mixed human–AI
+  workflows were especially vulnerable to attribution mistakes. It motivates
+  checking attribution on return; it does not measure autobiographical truth
+  or prove that a particular badge prevents confusion.
+- [Predictability and Accuracy in Adaptive User Interfaces](https://www.eecs.harvard.edu/~kgajos/papers/2008/kgajos-chi08-predictability.pdf)
+  (2008) compared adaptive toolbar treatments while retaining a static route.
+  Its constrained selection task is not a longitudinal study of personal
+  collections. A stable route alongside adaptive suggestions is a design
+  inference, not proof that all organization should freeze.
+
+Other supporting sources and counterarguments remain in §§3–9. The September
+29 discussions also considered small adaptive-interface studies and simulated
+personalization agents; neither warrants numerical formation thresholds,
+notification cadence, automatic standing preferences, or claims of proven
+consumer demand. No such defaults are adopted here.
+
+### Collection formation and navigation
+
+Similarity, relationship, membership and consequence answer different questions.
+The same original, the same occurrence, a shared subject, a practical purpose
+and an analogy must not be treated as interchangeable identity evidence.
+
+**Proposed formation criterion:** a noticed collection should offer a lasting
+benefit through returning, adding, arranging or sharing. Prefer useful existing
+membership or a visible relationship when a new container adds no benefit. Show
+enough of the proposed material to make the existing one-tap Keep meaningful;
+do not add a classification questionnaire. This refines the *noticed* path,
+not the accepted user-created path or an invented minimum item count. Catalog
+mechanism R3 remains unresolved.
+
+Navigation should support imperfect cues—person, time, place, image or purpose—
+without requiring the exact title or a Chat query. Three transitions need
+different handling:
+
+- **Change view:** list, map and time preserve the selected collection and scope.
+- **Follow a relationship:** open the related item with a recognizable way back.
+- **Change purpose:** carry useful context into asking, sharing or planning,
+  but resolve authority for that new purpose independently.
+
+An exact original can open directly; a surrounding object page supplies depth
+when useful. Do not require a dossier or a four-tab tour for every retrieval.
+Many-to-many membership is not a reason to expose a tag-management interface.
+
+### Enrichment is a choice rather than a ladder
+
+Compare the same material as: original; original with recognition context;
+attributed juxtaposition; sourced explanation; and practical continuation.
+These are alternatives, not mandatory stages. Familiar ingredients can produce
+a new relation, but an added paragraph can also make the result worse.
+
+Include both an original-only winner and a strong enrichment winner. For
+example, a friend's exact recipe can be complete; a sourced comparison can
+explain a cooking difference neither contributor supplied. Practical help may
+then be useful when hosting, without turning the original contribution into an
+unfinished task. Free browsing permits more digression than urgent retrieval.
+Use capable alternatives and assess attribution again after delay.
+
+### Four application decisions
+
+| Seam | Recommended treatment | Still unresolved |
+| --- | --- | --- |
+| Formation | Establish why a persistent collection is useful; distinguish relation from membership and membership from duplicate capture. | Ranking among useful candidates, coexistence of kind and personal collections, catalog mechanism. |
+| Correction | Keep a local correction effective locally; apply a wider rule only when the instruction or existing grant supports its scope. | The friction proposal's actual defaults and presentation, not whether a drag implies a universal preference. |
+| Home | Separate retained value, Home eligibility, prominence and interruption. Enjoyable voluntary browsing is a valid present purpose. | Concrete composition policy and notification defaults; no topic quotas or fixed content ratios follow. |
+| Stability | Preserve originals, attribution, identity, deliberate membership/exclusions, names/arrangement and return paths. Adapt presentation and useful links. | Tolerable avoidable churn and the treatment of proposed structural changes, to be tested on real collections. |
+
+“This belongs elsewhere” corrects the item. “Always put my golf scorecards
+here” can authorize a narrow ongoing organizing instruction without a second
+rule-building ritual. Neither licenses wider audiences, unrelated learning or
+external action. Distinguish a factual correction from grouping, timing,
+presentation or source-use feedback. Repeated repair of the same rejected
+relation is a failure; a person choosing a different view is not necessarily
+an automation failure.
+
+Home should consider the marginal benefit of the whole page. An evidence-rich
+trip does not acquire a corresponding share of future attention. Nor should
+“why now” reduce Home to urgent logistics: curiosity and enjoyable presence can
+earn space on an intentional visit. The in-app notifications destination
+established by the collections decision does not grant push permission.
+
+Stability does not protect false or withdrawn material. Correction, deletion
+and revocation outrank visual continuity. Prefer adding a relationship before
+merging structure, and a new view before replacing a deliberate arrangement;
+do not move material under someone while they are reading it. Measure avoidable
+disorientation, not total change.
+
+### Targeted design and engineering handoff
+
+Extend the three experiences in the direction note—one contribution, a small
+personal collection and a shared collection—with these comparable cases:
+
+1. Day 1 photograph, day 2 explanation, day 5 related evidence: improve the
+   relation without rewriting the original voice or unnecessarily moving it.
+2. The same photograph in two collections: preserve identity and return path;
+   removing one membership must not delete the original.
+3. Local regrouping versus an explicit ongoing instruction: demonstrate the
+   different future effects and repair scopes.
+4. A quiet ordinary week after a dense trip: useful Home without trip dominance,
+   a capture assignment or mandatory novelty.
+5. One contributor and a mostly receiving friend: mutual value, accurate
+   attribution on return, and no reply or contribution debt.
+6. A withdrawn source or corrected interpretation: affected views change,
+   independent material survives, and visual stability does not preserve error.
+
+Home and Life need these targeted comparisons; multiplayer needs the last two
+people/authority cases. Preserve outstanding design work instead of rewriting
+all handoffs. September 29 design inspection was source-level, not installed
+native acceptance: the local Life export lagged the C/I boards, and the Places
+export was unavailable, so Places conclusions used repository handoffs.
+
+The [roadmap proposal](roadmap-proposals-for-codex-2026-09-28.md) carries these
+implications to the execution owner. Existing memory correction, editorial
+admission and Life organizing research already answer much of the foundation;
+the missing work is applying them to this collection experience, not adding
+another universal memory service or reopening the product center. In particular:
+
+- [Memory preferences](../systems/memory-preference.md#assistance-preferences-and-scoped-correction)
+  already distinguish current requests, scoped corrections and ongoing preferences.
+- [Editorial admission](../../travel-agent/docs/product/Vesper%20Editorial%20and%20Content%20Canon.md#31-editorial-contribution-is-not-every-useful-unit)
+  already gives human originals a different test from generated additions.
+- [Life organizing research](life-organizing-intelligence-technical-research-2026-09-07.md)
+  already separates maintained relationships, presentation and avoidable churn.
+
+The focused canon alignment does not certify these contracts in current runtime.
+
+### September 29 documentation verification
+
+Checked local edits over workspace `530f0459`, backend `fdf789d06` and
+read-only mobile `23cff76f4`. The backend now has an isolated strategy worktree;
+the earlier read-only snapshot's symlink description is historical.
+
+- Workspace and backend `git diff --check`: passed.
+- Explicit metadata checks on the five edited/new workspace prose documents:
+  passed. Generated status was refreshed with `make docs-status-sync`.
+- `python3 scripts/measure_verification.py --label record-value-docs-final-2026-09-29 -- python3 scripts/check_docs.py --all`:
+  governance, child governance, inventory, spine, canon budgets, release,
+  generated status, compatibility and Home governance passed. Links failed on
+  the same 22 pre-existing targets outside this change. The measured run took
+  4.468 seconds; this is one execution, not a productivity comparison.
+- A focused relative-target check of all eight changed documents, including
+  Thesis and Model: 168 targets checked, none missing. It does not validate
+  external URLs or rendered layout.
+
+No runtime tests, deployment, commits or publication were performed for this
+documentation update. Research recommendations do not certify implementation.
+
+## 15. September 28 artifact research: an object worth keeping
+
+On September 28 the founder asked for artifacts to feel more special, even
+magical, and then for online research. Three parallel desk-research passes that
+evening covered consumer products, physical traditions of proof-of-presence and
+collecting, and academic work on cherished and digital possessions. §14 treats
+added value as enrichment: context, juxtaposition and explanation. This section
+covers a different axis: the kept object's own form, and how it changes over time.
+
+Labels: **[V]** the claim was read in fetched full text; **[V-abs]** checked
+against the abstract only; **[unverified]** from a snippet or secondary source.
+Product and tradition pages were fetched on September 28.
+
+### Evidence
+
+**A souvenir is evidence that something happened.**
+
+- In a survey of 3,231 travellers, a souvenir's core role was evidence of the
+  experience, ahead of memory and gift.
+  [Wilkins 2011](https://research-repository.griffith.edu.au/bitstreams/9304e0f3-43cd-5dfb-8942-edc5559dbbe1/download) [V]
+- Consumer research separates indexical authenticity, a factual link to the real
+  thing, from iconic authenticity, resemblance; each has its own cues and benefits.
+  [Grayson & Martinec 2004](https://doi.org/10.1086/422109) [V-abs]
+  Belief in physical contact, not mere association, drives the value of
+  celebrity objects.
+  [Newman, Diesendruck & Bloom 2011](https://minddevlab.yale.edu/sites/default/files/files/Celebrity%20Contagion%20and%20the%20Value%20of%20Objects%20Newmang_celebrity_contagion.pdf) [V]
+- Treasured traditions put place and date in a mark applied by the place, not
+  the collector:
+  - US National Park passport cancellations, since 1986
+    ([NPS](https://www.nps.gov/thingstodo/passport-stamp.htm));
+  - goshuin, where temple or shrine staff brush the date by hand
+    ([JNTO](https://www.japan.travel/en/blog/collecting-goshuin-shrine-and-temple-stamps/));
+  - the Camino credential, whose stamps the Pilgrim's Office reviews before
+    issuing a Compostela; 530,919 were issued in 2025
+    ([Pilgrim's Office](https://oficinadelperegrino.com/en/pilgrimage/the-compostela/),
+    [American Pilgrims](https://americanpilgrims.org/statistics/));
+  - Japan's manhole cards, collected in person only, with 1,311 designs by July
+    2026 ([Nippon.com](https://www.nippon.com/en/views/b06304/),
+    [guide](https://www.nihongo-hub.com/blog/manhole-cards-japan.html)).
+- Presence marks are disappearing. The EU Entry/Exit System replaces Schengen
+  passport stamps from October 12, 2025
+  ([Afar](https://www.afar.com/magazine/european-countries-to-stop-stamping-passports-in-2024)),
+  and paper stubs have given way to digital tickets
+  ([Global News](https://globalnews.ca/news/8071057/concert-tickets-disappear/)).
+  - Apple Wallet moves used passes to an expired list
+    ([Apple](https://support.apple.com/en-us/102544)). The sources reviewed
+    showed no after-the-event ticket state through iOS 27
+    ([PassKit](https://help.passkit.com/en/articles/16159179-apple-wallet-pass-design-changes-coming-in-ios-27));
+    that is an absence in those sources, not a confirmed product fact.
+  - Ticketmaster UK mails a paper souvenir ticket after the event
+    ([Ticketmaster](https://help.ticketmaster.co.uk/hc/en-us/articles/4420104387857-Souvenir-Tickets)),
+    and the NFL issued more than 500,000 digital commemorative tickets on
+    scan-in during the 2021 season
+    ([Ticketmaster](https://business.ticketmaster.com/press-release/national-football-league-to-expand-virtual-commemorative-ticket-nft-offerings-for-fans-during-upcoming-2022-season/)).
+- The counterexample is POAP's public attendance tokens. Free, publicly valuable
+  claims attracted bot farms and verification costs rose; new issuance stopped
+  on March 16, 2026, before an August wind-down.
+  [The Block](https://www.theblock.co/post/410482/proof-of-attendance-protocol-is-shutting-down-after-5-years)
+
+**Digital things feel less owned.**
+
+- People lost the sense of possessing digital things when they could not tell
+  what they had or where it lived. Odom and colleagues proposed one place for a
+  person's things and a visible life history for each object (§3). [V]
+- Sentimental objects gain value from uniqueness, patina and use; a digital copy
+  becomes a different object.
+  [Kirk & Sellen 2010](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/a10-kirk.pdf) [V]
+- Tourists paid a median $3 for a physical souvenir photo and $1 for a digital
+  one; the gap closed with perceived control and identity relevance.
+  [Atasoy & Morewedge 2018](https://doi.org/10.1093/jcr/ucx102) [V]
+  Touchscreens raised psychological ownership compared with a mouse.
+  [Brasel & Gips 2014](https://doi.org/10.1016/j.jcps.2013.10.003) [V-abs]
+- People valued what they built themselves 63% more in the original IKEA-effect
+  studies; a 2025 meta-analysis of 55 effects found d = 0.57.
+  [Norton, Mochon & Ariely 2012](https://www.hbs.edu/ris/Publication%20Files/norton%20mochon%20ariely_6f7b1134-06ef-4940-a2a5-ba1b3be7e47e.pdf) [V];
+  [Pelled et al. 2025](https://doi.org/10.1002/mar.70064) [V-abs]
+
+**Time adds value to ordinary records.**
+
+- People underpredicted their curiosity about rediscovering recorded ordinary
+  moments. Ordinary days felt more extraordinary three months later; a special
+  day did not. 27% chose to document, and 58% later chose to read what was
+  recorded. This is one study without independent replication.
+  [Zhang et al. 2014](https://www.hbs.edu/ris/Publication%20Files/Rediscovery_91a38887-12e7-4c5c-a60d-866c0e4a95c4.pdf) [V]
+- Slow resurfacing raised the perceived value of photo and music archives over
+  14–15 months in three-home deployments.
+  [Photobox 2014](https://www.dourish.com/classes/infx161f14/readings/Odom-DesigningForSlowness-CHI2014.pdf) [V];
+  [Olly 2019](https://doi.org/10.1145/3290605.3300264) [V-abs]
+
+**Sets pull, and can crowd out enjoyment.**
+
+- Coffee-card customers bought about 20% faster as the reward neared, then
+  slowed after it.
+  [Kivetz, Urminsky & Zheng 2006](https://home.uchicago.edu/ourminsky/Goal-Gradient_Illusionary_Goal_Progress.pdf) [V]
+  People completed arbitrary sets at a cost, even when told they were arbitrary.
+  [Barasz et al. 2017](https://doi.org/10.1037/xge0000337) [V]
+  Completing a 670-sticker World Cup album took about 4,832 stickers on average,
+  and the last 19 took about 483 packets.
+  [Irish Times](https://www.irishtimes.com/sport/soccer/2022/08/31/world-cup-stickers-panini/)
+- Measuring an activity increased how much people did it and reduced their
+  enjoyment. [Etkin 2016](https://doi.org/10.1093/jcr/ucv095) [V-abs]
+  Rewards contingent on completion undermined intrinsic motivation across 128
+  studies, a contested result.
+  [Deci, Koestner & Ryan 1999](https://doi.org/10.1037/0033-2909.125.6.627) [V-abs]
+  The Zeigarnik memory advantage did not hold in a 2025 meta-analysis, though
+  the tendency to resume unfinished tasks did.
+  [Ghibellini & Meier 2025](https://doi.org/10.1057/s41599-025-05000-w) [V]
+- Pokémon GO shows three states: caught in colour, seen as a silhouette, and
+  neither as a number only
+  ([Niantic](https://niantic.helpshift.com/hc/en/6-pokemon-go/faq/124-viewing-the-pokedex/)).
+  Swarm's sticker book showed silhouettes and mystery slots
+  ([Foursquare](https://foursquare.tumblr.com/post/96631279343/more-stickers-and-easier-check-ins-with-friends), undated).
+
+**Reveals and recaps.**
+
+- Pokémon TCG Pocket opens packs with a swipe-to-tear gesture and keeps its most
+  elaborate press-and-hold effect for its rarest cards. It earned about $200M in
+  its first month and drew criticism for gacha mechanics
+  ([DeNA](https://dena.com/intl/news/4743/),
+  [Game Rant](https://gamerant.com/pokemon-tcg-pocket-how-get-all-immersive-cards/),
+  [Wikipedia](https://en.wikipedia.org/wiki/Pok%C3%A9mon_Trading_Card_Game_Pocket)).
+- Flighty turns tracked flights into a passport-style lifetime record; it won an
+  Apple Design Award in 2023
+  ([Apple](https://developer.apple.com/news/?id=970ncww4),
+  [Flighty](https://flighty.com/passport)).
+- Spotify Wrapped 2025 reached 200M+ engaged users in 24 hours and 500M+ shares
+  on day one
+  ([Music Ally](https://musically.com/2025/12/05/spotify-wrapped-2025-attracted-over-200m-users-in-first-day/));
+  the 2024 edition's AI-generated podcast drew complaints that it lacked
+  personality
+  ([Today](https://www.today.com/popculture/music/spotify-wrapped-2024-controversy-rcna183189)).
+  Strava moved Year in Sport behind its subscription in December 2025, to a
+  largely negative reaction
+  ([road.cc](https://road.cc/content/news/strava-year-sport-now-only-subscribers-317425)).
+  Robinhood removed its confetti in 2021 after a regulator's gamification
+  complaint
+  ([InvestmentNews](https://www.investmentnews.com/fintech/robinhood-drops-the-confetti-but-advisers-arent-convinced/204828)).
+- Taking photos to share, rather than for oneself, reduced enjoyment.
+  [Barasch, Zauberman & Diehl 2018](https://doi.org/10.1093/jcr/ucx112) [V-abs]
+  Photographing whole objects impaired memory for them, and focusing on a detail
+  removed the impairment; a 2025 replication found screenshots worse than photos.
+  [Henkel 2014](https://doi.org/10.1177/0956797613504438) [V-abs];
+  [Lurie et al. 2025](https://pmc.ncbi.nlm.nih.gov/articles/PMC13332969/) [V]
+
+### Implications for the kept object
+
+These are proposals. They answer §14's "What makes it mine?" and "What pays off
+immediately?" with the object's form rather than added prose, and they follow
+the ingestion decision's item 7: the object changes, and Vesper does not
+narrate what it did.
+
+| Mechanism | What the person sees | Evidence | Boundary |
+| --- | --- | --- | --- |
+| Develops | At send, the raw capture becomes its recognized form: the scorecard typeset with totals, the booking a ticket. | September 27 item 12's send-time payoff; reveal precedents | Deterministic, never random; never generated imagery. |
+| Earned mark | A place-and-date mark appears only with evidence of occurrence: a photo's own time and place, a scanned pass, a receipt. A ticket becomes a stub after the event. | Souvenirs as evidence; presence traditions; the after-the-event gap | Private and untradeable, so there is nothing to gain by faking it. No evidence, no mark: contract §7's occurrence rule made visible. |
+| A back | Facts about the object in the person's life: visits, who was there, what was ordered last time, a personal best. | Per-object life history and patina; ownership through control and touch | Facts from the person's own record, not commentary. Attribution survives (§14, The AI Memory Gap). |
+| Firsts | A first visit, first round at a course or first time on a route carries its own mark. | Rookie cards; the strongest effect kept scarce | Rare by nature, never manufactured scarcity. |
+| Sets | Only where a published set exists (30 ballparks, 282 Munros, an author's novels) and the person already keeps that kind: been in full, saved as an outline, the rest as numbers. | Goal gradient; set completion; the three-state display | No badges, levels, streaks, pushed counts or leaderboards. Watch for the measurement effect. |
+| One personal touch | One optional expressive act, such as a score, a word or a pick, while filing stays automatic. | IKEA effect; §14's optional arrangement | Optional; never a prerequisite for value. |
+
+To scale with the open catalog, design one form per family (Admission, Visit,
+Result, Work, Collection item, Made by you, Recommendation, Receipt), not per
+type, and let each type fill its fields (September 27, R3). Build recaps from
+these objects rather than writing them as prose.
+
+### Limits
+
+The souvenir, ownership, effort and progress findings are established, and some
+are replicated or meta-analysed. The HCI studies are qualitative and small, and
+the rediscovery result is one study. No study tested these mechanics in a
+consumer app. Test them in dogfood by how often people flip to the back, revisit
+unprompted, print or send an object, not by storage growth or badge counts. No
+default, schema or catalog mechanism is adopted here.
+
 Bottom line: the evidence favors making the connected record tangible and useful,
 not expanding the list of agent capabilities. The largest uncertainty is no
 longer whether the philosophy can be stated coherently. It is whether ordinary
 contributions reliably become something a person prefers to have, return to,
 and sometimes share with others.
+
+## 16. September 29 focused artifact experience
+
+The evening Strategy discussion asked what would make people want the Vesper
+version of an ordinary contribution, beyond the benefit of filing it. The
+proposed answer is an appealing, recognizable object that can also be opened
+and explored. This is a refinement of the collection-centered direction, not
+a new product category or a claim that the experience is implemented.
+
+The chronology matters: collection formation, enrichment and navigation
+research led to §14; the founder then emphasized the artifact's own
+desirability, illustrated by a photographed movie ticket. Opening the focused
+object became an entrance to contextual value. Tomorrow, another location,
+new personal material or a friend's permitted contribution can make a
+different extension worthwhile without changing what was originally kept.
+The [direction note §1.4](product-direction-2026-09-28.md#14-september-29-focused-artifact-experience)
+owns the concise product synthesis.
+
+### Interaction evidence and its limits
+
+Direct manipulation research motivates keeping the selected object visible
+and making exploration understandable and reversible. Extending that pattern
+to AI explanations and connections is our design inference, not a finding
+tested by the original research. [Shneiderman, 1983](https://www.cs.umd.edu/~ben/papers/Shneiderman1983Direct.pdf).
+Human–AI interaction guidance supports contextual relevance alongside cautious
+adaptation; it does not establish Vesper's ideal layout or refresh cadence.
+[Amershi and colleagues, 2019](https://www.microsoft.com/en-us/research/wp-content/uploads/2019/01/Guidelines-for-Human-AI-Interaction-camera-ready.pdf).
+The digital-possession evidence in §15 supports examining personal and aesthetic
+value separately from task utility, not claiming that beauty proves retention.
+
+Proposed treatment: show the object immediately, supply something worth
+receiving when available, and name a few specific continuations. Do not replace
+the object with a generic subject page or require a Chat prompt to unlock value.
+An enlarged ticket, photograph, passage or scorecard may need different
+inspection behavior. Generated questions are optional controls, not the payoff.
+
+### Where contextual value can come from
+
+| Direction | Example to evaluate, not a claimed existing connection |
+| --- | --- |
+| Public world | A verified exhibition or restored screening makes an old ticket newly relevant. |
+| Recent personal material | A detail in yesterday's museum photograph connects to a passage opened today. |
+| Within a collection | Two dish encounters reveal a supported difference in technique. |
+| Across collections | A book passage illuminates an architectural detail in another collection. |
+| Other people | A permitted friend's account adds a distinct perspective, preserving their voice. |
+| Present possibility | Something kept becomes usable nearby or relevant to an upcoming gathering. |
+
+These are search directions, not mandatory sections. The relation must do
+something specific: explain, contrast, continue, recover, offer another
+perspective or open a possibility. Topic overlap alone is insufficient for a
+claimed insight. Enjoying an original or recovering an exact item needs no
+novelty justification, and a public fact must not become personal occurrence.
+
+The hypothesis is that objects can attract contribution through immediate
+appeal, usable affordances, enjoyable sharing and later development. It remains
+to be established with ordinary users and sparse records. Collection growth,
+generation volume and assigned refinding are not substitutes for preference.
+
+## 17. September 29 artifact engineering investigation
+
+Three parallel code investigations covered identity and data architecture,
+contextual discovery, and mobile delivery. A second pass examined eight
+lifecycle seams. The inspected implementation baseline was backend
+fdf789d06e8b889ac9882072e595e2d7cea02f21 and app
+23cff76f41fddc931a20db8b2016b131bb70d329; workspace main was 8a14d87d.
+Selected newer lane work was read, not treated as landed. These are dated
+inspection findings, not tests, device acceptance or live-model results.
+The strategy documents include uncommitted changes and are not evidence of
+runtime conformance.
+
+**Assessment:** reuse the foundation, but do not mistake existing primitives
+for a complete contextual artifact experience. Source custody, bounded
+generation, exact-result reads and native composition are useful. Broader
+consumer identity, collection ownership, discovery and focused interaction
+still require explicit integration.
+
+### Identity and temporal correction
+
+Keep source custody, consumer-facing thing identity, subject, occurrence,
+component, membership and interpretation distinct. A film differs from its
+screening; two admissions can appear in one photograph; two sources can
+represent one ticket; two visits to one place are not duplicates. The
+[Intake identity rule](../../travel-agent/backend/core/db/intake_v2.py)
+deliberately does not make a file hash the submission's retry identity.
+Reconciliation should preserve reversible links and independent contributors,
+not erase provenance. These responsibilities do not require seven new services.
+
+The accepted [Life model decision](../decisions/2026-09-29-life-model-occasions-collections-and-sharing.md)
+sets occasions versus spans and many-to-many collection direction. The
+inspected editorial collection model and derived Life groups are not already
+the required consumer collection owner. Preserve operational owners underneath
+the consumer experience; a ticket projection must not duplicate reservation
+authority.
+
+Distinguish event time, capture time, received/learned time, correction time and
+freshness. Late upload does not move an event, and a recheck deadline does not
+erase historical truth. The inspected [fact writer](../../travel-agent/backend/core/db/entity_facts.py)
+defaults validity end from freshness expiry, a seam to reassess for historical
+material. In [Intake corrections](../../travel-agent/backend/core/db/intake_semantics.py),
+wrong-time handling removes claims rather than taking a typed replacement;
+repeating the same correction action can reuse the earlier result. Reverify
+these paths at implementation HEAD and distinguish retrying one command from
+making a new legitimate correction.
+
+### Retrieval and substantive relationships
+
+The inspected [source opportunity selector](../../travel-agent/backend/root_projection/v2/source_contribution_opportunities.py)
+forms bounded, approved pairs; the [Atlas index](../../travel-agent/backend/core/vector/atlas.py)
+is not a representation of every original and collection relationship.
+Proposed discovery combines structured owner queries, keyword/semantic
+retrieval and limited explicit relationship expansion. Rank candidates
+separately for supported contribution; no ranker can recover an absent
+candidate. Self-RAG's distinction between relevance, support and usefulness
+is a useful technical precedent, not evidence of consumer delight.
+[Self-RAG](https://selfrag.github.io/).
+
+Give the existing context engine a selected-object entrance, including the
+originating collection, selected component, current purpose and eligible
+circumstances. Do not fabricate a Trip or conversational session. Keep
+Postgres authoritative and indexes derived; a graph-shaped experience alone
+does not establish a need for a new graph database.
+
+### Stable reading and contextual change
+
+Distinguish the artifact, the exact selected reading, and newly available
+context. Existing [exact-result serving](../../travel-agent/backend/root_projection/v2/source_contribution_serving.py)
+can reopen an identified result without today's reranking. It is useful
+scaffolding, not a complete user-owned saved-expression system. Apply the
+[artifact persistence contract](../systems/artifact-expression-and-composition.md#persistence-policy):
+frozen copy and refreshable/live sections remain separate; a new generation
+does not silently rewrite a kept edition.
+
+The inspected [mobile result reader](../../travel-app/components/source/SourceContributionResultScreen.tsx)
+computes expiry on result changes and renders candidates based on their
+presence. Its changed/expired heading tests do not establish suppression of
+stale payloads and actions. Recheck and harden the full behavior rather than
+carry this finding as a fixed defect after newer code lands. Stable reading
+must not preserve inaccessible or invalid material.
+
+### Latency and cost
+
+Separate immediate object reads, eligible prepared additions and requested
+depth. The [producer](../../travel-agent/backend/root_projection/v2/source_contribution_producer.py)
+has bounded evidence, tokens, attempts and time, but configured ceilings are
+not measured performance. Reuse extraction by source revision. Deduplicate
+concurrent work, reserve execution budgets, bound retries and background work,
+and measure prepared content never consumed. Caching lowers average spend;
+it is not a hard budget.
+
+Measure time to recognizable object and useful extension, including p50/p95,
+failures, cancellation and complete workload cost. Offline or provider failure
+should preserve independently available, eligible value without pretending
+stale practical state is current. The offline retention promise remains open.
+
+### Public world and refresh
+
+Refresh reusable public evidence by subject, then privately match it to
+authorized personal material. Do not continuously research every artifact.
+Separate content validity from selection freshness: an old explanation can
+remain true while a newly arrived source creates a better connection. Relevant
+inventory changes must invalidate negative selections as well as earlier
+positive ones. Ordinary serving already rediscovers candidates; a new cache
+must preserve that property rather than assume arrival detection is absent
+everywhere. Location changes selection context, not original identity.
+
+### Multiplayer and dependency repair
+
+Visibility is not permission for AI synthesis. Resolve eligible context before
+generation, retain dependency revisions for all supplied inputs rather than
+only displayed citations, and recheck authority before serving. Corrections
+and withdrawals must affect indexes, caches, generated results and pending
+actions while preserving independently supported material. The original
+delivery route's [post-download permission recheck](../../travel-agent/backend/api/routes/relationship_handoffs.py)
+is an existing race-protection pattern to extend, not proof of the whole path.
+
+Two seams remain unresolved: what leaves when one visible Occasion includes
+several people's contributions, and what remains of a deliberately kept
+explanation after supporting material is withdrawn. Do not invent a broader
+sharing grant or an irrevocable copy to settle them. Immediate remote
+revocation cannot be promised for bytes already available on an offline device.
+
+### Evaluation across the artifact lifecycle
+
+Extend the [editorial evaluator](../../travel-agent/tools/eval/judges/source_contribution_editorial.py)
+instead of creating a separate evaluation platform. Memory benchmarks provide
+useful cases for temporal reasoning, updates and abstention, not a measure of
+whether someone enjoys an artifact. [LongMemEval](https://arxiv.org/abs/2410.10813).
+Track retrieval misses, ranking mistakes, unsupported claims, repetition,
+timing, presentation, latency and repair separately. Imported content remains
+data, never instructions or a trusted personal preference after summarization.
+
+The [comparison portfolio in the handoff](roadmap-proposals-for-codex-2026-09-28.md#9-focused-artifact-engineering-proposals)
+exercises these seams across several artifact families. Human preference is
+separate from automated correctness, fixtures and native interaction evidence.
+Reuse machinery without imposing the current [Home producer's](../../travel-agent/backend/root_projection/v2/source_contribution_prompts.py)
+two-source synthesis and cross-root presentation requirements on originals,
+exact recollection or single-source explanation.
+
+## 18. September 29 bounded decision model research
+
+Jev by TypeSafe AI is a candidate for inexpensive semantic decisions around an
+artifact, not a replacement for its original, authority or author. Its
+System One framing concerns typed choices, scores and yes/no probabilities
+rather than prose generation. [Vendor concept documentation](https://docs.typesafe.ai/concepts/system-one).
+The general architecture hypothesis is more durable than this vendor choice:
+retrieve eligible candidates, judge narrowly, and spend deeper reasoning or
+generation where it improves the result.
+
+| Priority | Proposed judgment | Boundary |
+| --- | --- | --- |
+| First | Rank connections for explanation, contrast, perspective or application | Retrieve first; permit no worthwhile candidate; never grant eligibility. |
+| First | Compare repetition with a new mechanism, condition or application | Encountered is not known; begin as a ranking signal, not an automatic veto. |
+| Next | Route sufficient evidence, missing facts, contradictions or deeper work | Code owns budgets and stop conditions; the judge supplies no fresh facts. |
+| Later | Classify extracted material, candidate membership and supported medium | Preserve uncertainty, existing owners and reversible choices; do not invent a taxonomy or data to fill a format. |
+| Later | Reassess contextual relevance after meaningful change | No compulsory regeneration, all-pairs comparison or six calls per object. |
+
+The inspected [semantic interpreter](../../travel-agent/backend/inbound/semantic_interpreter.py),
+[known-to-person checks](../../travel-agent/backend/root_projection/v2/known_to_person.py)
+and [model registry](../../travel-agent/backend/core/model_registry.py) offer
+possible seams. A new provider needs a real adapter, telemetry and tested
+fallbacks; changing a model name is not integration. It must not become a
+second memory or generation service.
+
+Vendor facts checked September 29: Jev 1.13.0 accepts text only, with published
+input pricing of $0.042 per million tokens and free output. Ten thousand
+decisions at 2,000 total billed input tokens would therefore be $0.84 for that
+inference alone, excluding extraction, retrieval, generation and retries.
+Version aliases move; pin evaluated versions. English is its strongest
+documented language. No-training assurances are not zero-retention guarantees
+or permission to send private material. [Model specifications](https://docs.typesafe.ai/models).
+
+The vendor documents weaknesses with precise numbers/dates, multi-hop
+reasoning, distracting context and adversarial input. Keep calculations,
+time comparisons, authority and irreversible identity changes outside model
+judgment. Valid output structure does not imply a true decision.
+[Known limitations](https://docs.typesafe.ai/model-jaggedness/jev-1.13).
+Choice/Score confidence summarizes distribution concentration; it is not a
+measured probability of correctness for our workload. Thresholds must be
+evaluated by task and version, not transferred between output types.
+[Confidence documentation](https://docs.typesafe.ai/confidence).
+
+**Proposed evaluation, not adopted dependency:** shadow connection ranking and
+semantic repeat detection against current rules and an existing small model
+or reranker using the same authorized candidates. Include strong enrichment,
+original-only winners, paraphrases, new applications, absent good matches,
+multilingual material and malicious source text. Measure candidate recall
+separately from selection, false novelty, false suppression, abstention,
+calibration, p50/p95 and total cost. Low certainty should usually omit optional
+content or escalate internally, not create user review homework. Vendor
+[reranking examples](https://docs.typesafe.ai/cookbooks/rerank_typesafe) illustrate
+a pattern, not a demonstrated Vesper advantage. No Jev calls or comparative
+evaluations were executed in this research; model selection is not a
+prerequisite for the object and reader work.
