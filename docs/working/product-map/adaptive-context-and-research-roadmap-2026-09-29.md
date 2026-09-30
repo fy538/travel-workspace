@@ -1565,3 +1565,37 @@ remain unmeasured. It introduces no new paid consumer path, API/database schema,
 research persistence, app change or public candidate-discovery UI. No live
 provider call, database fixture, native build/readback, push or deployment was
 run. R0–R7 remain open.
+
+#### Implementation receipt — provider HTTP dispatch attempt bound (September 30)
+
+Backend commit `519536f78c67d2029879035bb099bae481160663` adds a regression
+through `acquire_public_research` and the installed `tavily-python` 0.8.0
+adapter. An injected `httpx.MockTransport` records and then fails the request;
+the test confirms exactly one HTTP `POST /search`, one tool-layer attempt, and
+one exception for that acquisition. This narrows the earlier uncertainty for
+the current SDK call path: no second HTTP dispatch occurred after the mocked
+connection failure. It does not establish provider-side retries, whether a
+failed request is billable, the provider's final usage settlement, or durable
+cross-process attempt accounting.
+
+Evidence on the clean lane tuple workspace `3a42b45460b2d2a682f95b2a10bb8d5edd03062e`,
+backend `519536f78c67d2029879035bb099bae481160663`, app
+`28717c7cfec07b2313fe0e0cdff4431444df8335`:
+
+- Focused acquisition/retry suite: **15 passed**; the new real-SDK/mock-transport
+  case passed independently within the acquisition module (**6 passed**).
+- `MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true make -C travel-agent ci-static`
+  passed; Ruff, architecture/structural gates and mypy across 1,892 backend
+  source files reported no issues.
+- Measured `make -C travel-agent merge-check BASE_REF=main` passed in **100.469
+  seconds**: **22,002 passed, 14 skipped, 53 xpassed, 0 failed**. The complete
+  log and measured revision tuple are recorded in
+  `/tmp/vesper-adaptive-context-roadmap-checks/tavily-http-attempt-merge-check-20260930T182303Z.log`
+  and `/tmp/adaptive-research-roadmap-measurements.json`.
+- The backend pre-commit gates passed without exemptions or baseline changes.
+
+This improves evidence for one existing lookup path; it does not complete the
+shared budget/reservation protocol, caller-independent disclosure, selected
+artifact retrieval, supported-claim checks, consumer readback, or any R0–R7
+package. There was no live provider request, database mutation, API/schema
+change, application change, deployment or publication.
