@@ -39246,6 +39246,11 @@
             "title": "Available",
             "default": false
           },
+          "undo_available": {
+            "type": "boolean",
+            "title": "Undo Available",
+            "default": false
+          },
           "paths": {
             "items": {
               "type": "string"
@@ -89403,6 +89408,7 @@
               "separate_from_occasion",
               "keep_occurrence_forget_interpretation",
               "replace_time",
+              "undo_correction",
               "delete_derived"
             ],
             "title": "Action"
