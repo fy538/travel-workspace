@@ -32,13 +32,16 @@ eligible private artifacts and then refreshes the exact owner projection; the
 original source remains untouched. Further reader increments add a
 source-backed place record (not a catalog venue page or visit claim) and
 text-built book/film/show/music treatments (not catalog art or resolved-subject
-claims). Backend projection/API and app reader tests pass. This is the beginning
-of P0/P1/P2, not completion of the first
-assignment: P0 still needs the identity/subject/collection owner map,
-component/context and edition references, the family/mode matrix and replay
-fixtures; P1 still needs recognizable identity, field-level source/date edits,
-Undo and reconciliation; PC catalog mapping/use gates, other family readers,
-and native visual acceptance remain open. This roadmap owns Strategy's package
+claims). Backend projection/API and app reader tests pass. A code-backed pass
+now maps the existing owners and current reader modes below; founder review is
+still needed before choosing new durable identity, component, collection, or
+correction authority. This is the beginning of P0/P1/P2, not completion of the
+first assignment: P0 still needs reviewed identity/subject/collection decisions,
+component/context and edition references, the complete family/mode matrix and
+replay fixtures; P1 still needs cross-door recognizable identity, typed
+source/date edits, correction Undo and reconciliation; PC catalog mapping/use
+gates, other family readers, and native visual acceptance remain open. This
+roadmap owns Strategy's package
 sequence and receipts. The program owns cross-lane boundaries, not a
 permission queue for ordinary implementation. The earlier
 [strategy handoff](roadmap-proposals-for-codex-2026-09-28.md#9-focused-artifact-engineering-proposals)
@@ -331,6 +334,38 @@ source grants; merging identity does not union permission. Reference migration
 must preserve old links through a reviewed alias or redirect, and reversible
 split must leave each original addressable.
 
+### Code-backed owner map and present reader boundary — September 30
+
+The following is an implementation inventory, not a decision to promote any
+projection into a new canonical owner.
+
+| Concern | Existing implementation and authority | What this establishes—and what it does not |
+| --- | --- | --- |
+| Source custody | Intake submissions, source objects, and retained-source lifecycle in `travel-agent/backend/core/db/intake_v2.py`; HTTP commands in `travel-agent/backend/api/routes/intake.py` | Source ownership and revocation exist. `DELETE /api/intake/submissions/{id}` revokes/scrubs the source; it is not a reversible artifact Undo. |
+| Confirmed thing/read target | Confirmed Intake candidates are projected by `travel-agent/backend/core/db/intake_anchors.py` as `ExperienceAnchorProjection`; `travel-agent/backend/api/routes/artifact_projections.py` reads them through `ResourceRef(kind="experience_anchor")` at `/you/memories/artifacts/{id}` | A stable target exists for this confirmed-anchor reader. The projection is a read adapter over Intake and Experience Graph, not independent durable artifact custody or a cross-door resolver for provisional submissions. |
+| Claims and correction | Intake observations/candidate revisions in `travel-agent/backend/core/db/intake_semantics.py`; source-bound projection in `travel-agent/backend/core/canonical_artifact_projection.py` | The reader exposes only three gated owner commands: `wrong_time`, `separate_from_occasion`, and `keep_occurrence_forget_interpretation`. The current request carries action/note, not a typed replacement value or expected revision. Its per-candidate/per-action observation key also does not support repeated same-kind corrections. |
+| Place and occurrence context | Physical `EntityRef` vocabulary in `travel-agent/backend/core/entity_types.py`; owner-scoped Experience Graph rows bridged by the artifact projection route | Place/time/Occasion/Plan context can be read from its existing owners. The place-like entity capability sets are not a cultural-work identity registry. |
+| Selected component | Intake observations and `evidence_locator` validation in `travel-agent/backend/core/intake_evidence.py` | Evidence may point back into a source, but this is not yet a stable part identity with a normalized source-revision-bound text/image selector. The current reader opens the whole source. |
+| Life organization | Derived groups and membership controls in `travel-agent/backend/life_projection/` and `travel-agent/backend/core/db/life_organization.py` | There is a source-backed organization/read path. This inventory does not equate that derived organization index with the accepted user-owned, many-to-many consumer Collection owner or its delete/removal semantics. |
+| Contextual selection and prepared additions | Strategy Technical's existing Source Contribution discovery, work, result, serving, and publication path (section 12) | There is a separate bounded candidate/result pipeline to consume. The artifact reader does not yet bind a selected target/component/context to that pipeline or claim prepared-result persistence as a kept edition. |
+| Kept edition | No kept-edition target or exact-snapshot action is exposed by the current canonical artifact projection/reader route | The current reader can reopen its original owner projection; it does not establish user-owned persistence of a generated explanation or a stable edition reference. P4 remains separate. |
+
+The first delivered reader-mode matrix is deliberately narrow:
+
+| Mode | Current behavior | Not implied |
+| --- | --- | --- |
+| Mine, confirmed `ExperienceAnchor`, recognized ticket/place/work with required source facts | Versioned descriptor may select the corresponding native reader; original-first fallback remains for missing facts, unknown types, or unsupported descriptor versions | Catalog match, validity, visit/attendance, external media, selected-part identity, or general input-format support |
+| Mine, sparse or unrecognized confirmed anchor | Existing source-fact reading/fallback | A new family-specific schema or generated interpretation |
+| Together | Canonical artifact projection route rejects the request until graph-owned sharing authorization exists; private reader-family metadata is withheld | That an Occasion link or source-level sharing elsewhere grants this reader access |
+| Catalog lookup, selected-part reading, contextual discovery, exact saved edition | Not connected by this reader increment | Any provider rights, answer generation, durable retention, or permission to share generated material |
+
+Descriptor support proves only the confirmed-reader route. Intake door and
+attachment acceptance remain governed by the intake format boundary; ticket
+support does not imply PDF, Wallet, HEIC conversion, multi-attachment partial
+success, or every email-bundle combination. The matrix still needs the actual
+supported doors/file representations, mixed-bundle rejection/readback fixtures,
+and sparse-history/lifecycle replay cases required by P0.
+
 ### Typed reading contract
 
 Experience semantics and reader formats are separate dimensions: existing
@@ -407,8 +442,9 @@ of a user-visible leak.
 
 Use one Strategy owner with bounded internal subagents only when authorized.
 The waves describe experience dependencies across the three assigned lanes,
-not calendar estimates or additional permanent lanes. Implementation is not
-started by this planning update; package status remains **proposed** until intake.
+not calendar estimates or additional permanent lanes. Execution is active in
+this coordinated Strategy lane; section 0 records landed slices, while each
+package's remaining gates stay open until their stated evidence exists.
 
 | Package | Outcome | Entry dependency | Primary responsibility |
 | --- | --- | --- | --- |
@@ -457,9 +493,10 @@ that allows reader, retrieval and maintenance work to proceed independently.
 - Recheck actual worktrees, runtime ownership, pending work and the program's
   lane boundaries. Consume Orchestration's existing capture path; do not take
   over its transport files when implementing identity or sharing semantics.
-- Map the responsibilities in section 3 to concrete existing types, services
-  and mutation paths. Decide the thin identity/reconciliation mapping and
-  consumer collection owner; do not rename editorial collections into it.
+- The September 30 code-backed map in section 3 now ties existing owners to
+  concrete types, routes, and mutation paths. Review the remaining thin
+  identity/reconciliation mapping and consumer collection owner; do not rename
+  editorial or derived Life organization into that owner by implication.
   Name the cultural-subject owner, stable local references, external mappings
   and work/edition distinctions before PC and P2 choose incompatible models.
   Review the physical capability assumptions and external ID namespaces in
