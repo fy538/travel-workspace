@@ -1975,3 +1975,18 @@ not native acceptance. This closes a coverage-definition gap, not the open P2
 native visual/interaction acceptance. Resume with the registered device flow
 on a working simulator, inspect the family screenshots, and judge each
 fallback/authority claim before marking any matrix state accepted.
+
+### September 30 source-to-reader contract verification
+
+On app `eb5209447`, the focused component and route tests
+`npm test -- --runInBand --no-cache
+__tests__/components/canonicalArtifactCard.test.tsx
+__tests__/screens/canonical-artifact-reader.test.tsx` passed (2 suites, 42
+tests). On backend `d3730a8c4`,
+`pytest -q -p no:cacheprovider tests/core/test_canonical_artifact_projection.py
+tests/inbound/test_anchor_runtime.py` passed (38 tests). The first pytest
+invocation ran the same tests but exited during cache writing because the
+managed worktree denies `.pytest_cache` writes; disabling that cache provider
+produced the clean result above. These tests prove projection/dispatch and
+route behavior at unit/component level, not simulator or authenticated live
+service behavior.
