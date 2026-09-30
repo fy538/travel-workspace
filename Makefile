@@ -7,6 +7,9 @@
 
 include dogfood.mk
 
+# Local checkouts use the backend venv; CI installs backend dependencies globally.
+BACKEND_PYTHON ?= $(if $(wildcard travel-agent/.venv/bin/python),travel-agent/.venv/bin/python,python3)
+
 .PHONY: bootstrap dev dev-backend m3-demo-backend sync-types typecheck doctor status help
 .PHONY: new-worktree land-worktree worktrees retire-worktree
 .PHONY: cross-repo-fixture-check
@@ -63,10 +66,10 @@ cross-repo-fixture-check: ## Compare actual mobile enums and dogfood snapshots w
 
 contract-check: cross-repo-fixture-check ## Verify full OpenAPI → app projection → generated types
 	@./scripts/contract-check.sh
-	@travel-agent/.venv/bin/python scripts/check_occasion_behavior_contract.py
+	@$(BACKEND_PYTHON) scripts/check_occasion_behavior_contract.py
 
 occasion-behavior-contract-check: ## Gate backend occasion semantics against mobile fixtures
-	@travel-agent/.venv/bin/python scripts/check_occasion_behavior_contract.py
+	@$(BACKEND_PYTHON) scripts/check_occasion_behavior_contract.py
 
 place-identity-check: ## Gate typed canonical identity across mobile API seams
 	@python3 ./scripts/check_place_identity_contract.py
