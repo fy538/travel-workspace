@@ -1828,3 +1828,26 @@ not create its lock directory (`EPERM`); no native flow or screenshot was
 produced. Thus navigation is verified at route/screen-test level only, not on
 device. Selected-part interaction, native visual/gesture acceptance, and the
 P0-gated identity/component/collection/reconciliation decisions remain open.
+
+### September 30 artifact reader copy polish
+
+App commit `6364cbf95` responds to the P2 findings in the September 30 native
+reader verdict: attention-family artifacts now lead with the title instead of
+the internal `ENCOUNTER · ATTENTION` taxonomy, and a live `Inspect source`
+action replaces—not repeats—the adjacent availability sentence. When the
+reader has no source-opening callback, the factual availability copy remains.
+No data contract or authorization behavior changed.
+
+The focused canonical artifact reader component suite passed (28 tests), along
+with app typecheck, test-contract typecheck, targeted ESLint, API-boundary,
+schema-bridge, surface-budget, docs and scenario-registry checks. The full app
+merge check passed on `main` (1,287 suites, 9,107 tests, one snapshot). The
+composite `npm run verify:fast` stopped at ESLint because the managed checkout
+denied a write to `.expo/cache/eslint`; the same lint completed with
+`npm run lint -- --no-cache` (0 errors; 169 existing warnings), and its later
+fast-gate constituents passed individually. `qa:design:check` confirmed this
+surface has no pinned design-reference manifest. With Metro correctly running
+on lane port 64747, the registered device doctor still could not capture:
+CoreSimulatorService was unavailable and the runner was denied its lock path
+under `.maestro/runs`. No refreshed native screenshot or visual verdict is
+claimed; the surface remains native-unverified for this copy change.
