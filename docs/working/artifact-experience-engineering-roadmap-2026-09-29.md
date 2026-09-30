@@ -1603,3 +1603,28 @@ CoreSimulator log query could not connect, so this observation has no diagnosed
 cause and is not attributed to the artifact reader. It prevented interactive
 VoiceOver/gesture follow-through and should be triaged independently of this
 roadmap slice; no Vesper/Home code was changed here.
+
+### September 30 photo viewport correction
+
+App commit `82353cccf` fixes the shared photo viewer geometry found above:
+`ZoomableOriginalPhoto` keeps its overflow-hidden viewport fixed and applies
+the animated transform only to the inner photo layer. The new component test
+guards that boundary. After hot reload on `Vesper QA SE` (iOS 18.2), direct
+simulator double-tap showed fit → zoom → fit while the title and close control
+stayed stationary and the enlarged photo remained clipped to the viewport.
+Direct CUA drag still did not visibly establish pan. A later attempt to invoke
+the image's accessibility increment action was blocked because the Mac UI was
+locked; this is not VoiceOver evidence. Pan, pinch, VoiceOver traversal,
+physical-device behavior, and a native recipient-reader capture remain open.
+
+Validation on the corrected app tree: the focused command
+`npm test -- --runInBand __tests__/components/zoomableOriginalPhoto.test.tsx __tests__/components/canonicalArtifactCard.test.tsx __tests__/utils/photoZoom.test.ts`
+passed (3 suites, 32 tests); `npm run typecheck`,
+`npm run test:typecheck:contracts`, `npm run qa:polish:scenarios`, targeted
+ESLint, `npm run docs:check`, `make docs-check`, and `git diff --check` passed.
+`npm run verify:merge -- --base main` passed (1,287 suites, 9,096 tests, one
+snapshot). The `npm run verify:fast` wrapper stopped at Expo ESLint because its
+managed-checkout cache write returned `EPERM`; equivalent cacheless full lint
+over `app`, `components`, and the new test passed with zero errors and 169
+warnings. App evidence was committed separately as `1e82b3e55`. No backend,
+live-service, VoiceOver, or physical-device evidence is implied.
