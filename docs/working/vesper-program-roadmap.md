@@ -316,6 +316,22 @@ did not answer its status endpoint, so the registered runner correctly stopped
 at preflight. Signed-device authenticated readback remains unverified; this is
 not an excuse to block subsequent code work.
 
+**Private audio Keep receipt — September 30:** app commit `911f1aa79` reuses
+the authenticated foreground audio player in both in-app private-receipt paths.
+Supported retained recordings appear in source order; playback is available
+only for the focused in-app route and releases on blur, app background,
+owner-session loss, removal, expiry, or unmount. Unsupported/missing originals
+remain non-playable, and the native Share Extension still does not gain audio
+playback or a broader input contract. No backend/API change was needed.
+Focused receipt, composer/session and source-reader/share-route coverage passed
+**112/112**; production/test TypeScript, surface docs, `git diff --check`, and
+targeted ESLint (zero errors; six existing warnings) passed. The component
+catalog check failed on the unrelated unregistered
+`components/ui/authored-note-quote.tsx`. Native visual QA stopped in preflight:
+CoreSimulatorService failed and the Maestro lock directory returned `EPERM`;
+real authenticated playback and device/visual acceptance therefore remain
+unverified.
+
 **Independent work when blocked:** in-app authenticated/native acceptance,
 email transport failure semantics and D2's existing-supply composition. The
 native share receipt stays in-extension; do not add unsupported host-launch
