@@ -81,10 +81,23 @@ def test_selects_executable_checker_test_for_referenced_document(
     assert not any(command.display.startswith("<run") for command in selection.commands)
 
 
-def test_high_risk_or_unknown_file_selects_full_gate() -> None:
-    selection = MODULE.select_commands(["travel-app/utils/api/schema.gen.ts"])
-    assert selection.fallback_to_verify
-    assert "schema.gen.ts" in selection.fallback_reason
+def test_shared_app_change_delegates_to_app_and_contracts_not_backend_suite() -> None:
+    selection = MODULE.select_commands(["travel-app/utils/api/schema.gen.ts"], base_refs={"app": "abc"})
+    assert not selection.fallback_to_verify
+    assert any("verify:merge" in command.argv for command in selection.commands)
+    assert any("contract-check" in command.argv for command in selection.commands)
+    assert not any(command.argv == ("make", "ci") for command in selection.commands)
+
+
+def test_unknown_workspace_input_runs_workspace_tests_and_contracts():
+    selection = MODULE.select_commands(["new-policy.json"])
+    assert any("scripts/tests/" in c.argv for c in selection.commands)
+    assert any("contract-check" in c.argv for c in selection.commands)
+
+
+def test_child_selection_rejects_missing_base():
+    with pytest.raises(MODULE.BaseRefError):
+        MODULE.select_commands(["travel-agent/backend/home/feed.py"])
 
 
 # ── Independent repository discovery ─────────────────────────────────────

@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Select and run a conservative verification path for three independent repos.
 
-This is a local accelerator, never a replacement for the full pre-push/merge
-gate. Each repository requires its own explicit base ref: a commit from one
+This is the bounded local merge preflight. GitHub's selected DB/integration
+checks and task-specific acceptance remain separate. Each repository requires
+its own explicit base ref: a commit from one
 repository is not meaningful in either of the other repositories.
 
 Usage:
@@ -27,18 +28,8 @@ WORKSPACE_ROOT = Path(__file__).resolve().parent.parent
 
 
 def _child_repo_root(name: str) -> Path:
-    """Locate a child repo from either a normal or root-worktree checkout."""
-
-    workspace_name = WORKSPACE_ROOT.name.split("--", maxsplit=1)[0]
-    candidates = (
-        WORKSPACE_ROOT / name,
-        WORKSPACE_ROOT.parent / name,
-        WORKSPACE_ROOT.parent / workspace_name / name,
-    )
-    for candidate in candidates:
-        if (candidate / ".git").exists():
-            return candidate
-    return candidates[0]
+    """Use only this coordinated lane; never borrow a canonical sibling."""
+    return WORKSPACE_ROOT / name
 
 
 @dataclass(frozen=True)
@@ -162,8 +153,9 @@ def select_commands(
     *,
     doc_texts: dict[str, str] | None = None,
     repositories: tuple[Repo, ...] | None = None,
+    base_refs: dict[str, str] | None = None,
 ) -> Selection:
-    """Select commands without running them. Unknown/high-risk stays full-gate."""
+    """Route each affected repo once; child selectors own broad fallbacks."""
 
     repos = repositories or default_repositories()
     by_key = {repo.key: repo for repo in repos}
@@ -172,56 +164,53 @@ def select_commands(
     app = by_key["app"]
     doc_texts = doc_texts or {}
 
-    if not files:
-        return Selection(
-            fallback_to_verify=True, fallback_reason="no changed files resolved"
-        )
-
-    classes = {path: classify_path(path) for path in files}
-    culprits = sorted(
-        path for path, kind in classes.items() if kind in {"high_risk", "unknown"}
-    )
-    if culprits:
-        return Selection(
-            fallback_to_verify=True,
-            fallback_reason=(
-                f"{len(culprits)} unrecognized-or-high-risk file(s): {', '.join(culprits[:5])}"
-                + (f" (+{len(culprits) - 5} more)" if len(culprits) > 5 else "")
-            ),
-        )
-
     selection = Selection()
-    frontend_files = sorted(
-        path for path, kind in classes.items() if kind == "frontend"
-    )
-    backend_files = sorted(path for path, kind in classes.items() if kind == "backend")
-    docs_files = sorted(path for path, kind in classes.items() if kind == "docs")
+    frontend_files = [p for p in files if p.startswith("travel-app/")]
+    backend_files = [p for p in files if p.startswith("travel-agent/")]
+    workspace_files = [p for p in files if not p.startswith(("travel-app/", "travel-agent/"))]
+    docs_files = [p for p in workspace_files if p.endswith(".md")]
+    base_refs = base_refs or {}
+    for key, paths in (("app", frontend_files), ("agent", backend_files)):
+        if paths and not base_refs.get(key):
+            raise BaseRefError(f"{key}: explicit base required for merge selection")
 
-    if frontend_files:
+    def prose_only(paths: list[str], prefix: str) -> bool:
+        relative = [p.removeprefix(prefix) for p in paths]
+        return all(p.endswith(".md") and (p.startswith("docs/") or p in {"README.md", "AGENTS.md", "CLAUDE.md"}) for p in relative)
+
+    if frontend_files and not prose_only(frontend_files, "travel-app/"):
         selection.add(
             ("npm", "run", "verify:fast"),
             app.root,
             f"{len(frontend_files)} frontend file(s) changed",
         )
-        related = tuple(path.removeprefix("travel-app/") for path in frontend_files)
         selection.add(
-            ("npx", "jest", "--findRelatedTests", *related),
+            ("npm", "run", "verify:merge", "--", "--base", base_refs["app"]),
             app.root,
-            "run tests related to changed frontend files",
+            "related tests + smoke + source-reading conventions; broad fallback when needed",
         )
-    if backend_files:
+    if backend_files and not prose_only(backend_files, "travel-agent/"):
         selection.add(
-            ("make", "ci"),
+            ("make", "ci-static"),
             agent.root,
-            f"{len(backend_files)} backend file(s) changed — no dependency-to-test mapper exists",
+            "backend static checks",
         )
+        python = str(agent.root / ".venv/bin/python") if (agent.root / ".venv/bin/python").exists() else "python3"
+        selection.add((python, "scripts/merge_scope.py", "--base", base_refs["agent"]), agent.root,
+                      "backend selected offline tests; selected database checks remain required in CI")
+    if any(not p.endswith(".md") for p in workspace_files):
+        selection.add(("python3", "-m", "pytest", "scripts/tests/", "-q"), workspace.root, "workspace tooling changes")
+    if (any(not p.endswith(".md") for p in workspace_files)
+            or any(p.startswith(("travel-agent/backend/api/", "travel-agent/backend/core/", "travel-app/utils/api/")) for p in files)):
+        selection.add(("make", "contract-check", "api-coverage-check", "compatibility-check", "card-arrival-check", "chat-card-types-check"), workspace.root,
+                      "cross-repository contracts, not a repeat of both child suites")
     if docs_files:
         selection.add(
             ("make", "docs-links-check", "docs-spine-check", "docs-canon-check"),
             workspace.root,
             f"{len(docs_files)} documentation file(s) changed",
         )
-        for doc_file in docs_files:
+        for doc_file in docs_files if not (frontend_files or backend_files or any(not p.endswith(".md") for p in workspace_files)) else []:
             for repo, test_path in referenced_checker_tests(
                 doc_texts.get(doc_file, ""), repos
             ):
@@ -264,7 +253,7 @@ def resolve_base_ref(repo: Repo, base_ref: str | None) -> str:
         raise BaseRefError(f"{repo.display_name}: not a Git repository at {repo.root}")
     try:
         out = _git(
-            repo, ["rev-parse", "--verify", f"{base_ref}^{{commit}}"], timeout=10
+            repo, ["rev-parse", "--verify", "--end-of-options", f"{base_ref}^{{commit}}"], timeout=10
         )
     except (subprocess.TimeoutExpired, FileNotFoundError, OSError) as exc:
         raise BaseRefError(
@@ -281,10 +270,10 @@ def changed_paths(repo: Repo, resolved_base_ref: str) -> list[str]:
     """Read committed, staged, unstaged, and untracked paths from one repo."""
 
     commands = (
-        ["diff", "--name-only", f"{resolved_base_ref}...HEAD"],
-        ["diff", "--cached", "--name-only"],
-        ["diff", "--name-only"],
-        ["ls-files", "--others", "--exclude-standard"],
+        ["diff", "--no-renames", "--name-only", "-z", f"{resolved_base_ref}...HEAD"],
+        ["diff", "--no-renames", "--cached", "--name-only", "-z"],
+        ["diff", "--no-renames", "--name-only", "-z"],
+        ["ls-files", "--others", "--exclude-standard", "-z"],
     )
     found: set[str] = set()
     for args in commands:
@@ -293,7 +282,7 @@ def changed_paths(repo: Repo, resolved_base_ref: str) -> list[str]:
             raise subprocess.CalledProcessError(
                 out.returncode, ["git", *args], out.stdout, out.stderr
             )
-        found.update(line.strip() for line in out.stdout.splitlines() if line.strip())
+        found.update(filter(None, out.stdout.split("\0")))
     return sorted(f"{repo.prefix}{path}" for path in found)
 
 
@@ -347,6 +336,7 @@ def main(argv: list[str]) -> int:
     parser.add_argument("--agent-base-ref")
     parser.add_argument("--app-base-ref")
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--workspace-only", action="store_true")
     args = parser.parse_args(argv)
 
     repositories = default_repositories()
@@ -356,16 +346,18 @@ def main(argv: list[str]) -> int:
         "app": args.app_base_ref,
     }
     try:
-        resolved, files = collect_changed_paths(base_refs, repositories)
+        selected_repositories = repositories[:1] if args.workspace_only else repositories
+        resolved, files = collect_changed_paths(base_refs, selected_repositories)
     except (BaseRefError, subprocess.CalledProcessError) as exc:
         print(f"verify-changed: {exc}", file=sys.stderr)
         return 2
 
     selection = select_commands(
-        files, doc_texts=read_doc_texts(files, repositories), repositories=repositories
+        files, doc_texts=read_doc_texts(files, repositories), repositories=repositories,
+        base_refs=resolved,
     )
     print("verify-changed: resolved bases")
-    for repo in repositories:
+    for repo in selected_repositories:
         print(f"  {repo.display_name}: {base_refs[repo.key]} -> {resolved[repo.key]}")
     print(f"verify-changed: {len(files)} changed file(s)")
     for path in files:

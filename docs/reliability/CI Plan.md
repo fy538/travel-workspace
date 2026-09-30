@@ -3,7 +3,7 @@ doc_type: runbook
 status: active
 owner: engineering
 created: 2026-09-07
-last_verified: 2026-09-07
+last_verified: 2026-09-29
 why_new: Describes the actual three-repository CI contract, immutable candidate identity, private checkout credentials, and enforcement checks.
 ---
 
@@ -14,6 +14,94 @@ Use one coordinated checkout: workspace at the job root, backend in
 repositories. Local worktrees use the same layout.
 
 ## Required checks and evidence
+
+### September 30 merge-latency cleanup — staged rollout
+
+**Target:** ordinary final-push-to-merge-readiness under five minutes. This is a
+latency objective, not a five-minute timeout that hides failures. Shared
+infrastructure, schema/authority changes and unmapped inputs may require broader
+checks. Measure queue/setup/execution separately; do not claim the target from
+test-count reduction or a mocked runner test.
+
+The new `Merge readiness` workflows emit `Merge ready` in each repository.
+They are initially additive: the existing required checks below remain in force
+until a real candidate verifies the replacement. Do not waive the known expired
+backend compatibility bridges, private-checkout credential failure, or a real
+product regression by changing required check names.
+
+Local commands now match the bounded selection policy:
+
+- Workspace: `make verify-changed WORKSPACE_BASE_REF=<ref> AGENT_BASE_REF=<ref>
+  APP_BASE_REF=<ref>`; all three bases are independent, explicit Git revisions.
+  `--workspace-only` is for the workspace's hosted job, not cross-repo delivery.
+- Backend: `make ci-static` plus `make merge-check BASE_REF=<ref>`.
+  `scripts/merge_scope.py --base <ref> --database` is the separate selected DB
+  run and requires an explicitly disposable database. Shared/unknown changes
+  expand to the full suite. Domain routing is a risk-based boundary, not proof
+  of a complete transitive dependency graph.
+- App: `npm run verify:fast` plus `npm run verify:merge -- --base <ref>`.
+  Related tests are combined with a critical smoke floor and source-reading
+  convention tests in one invocation. Unknown/deleted/shared configuration
+  expands to the full suite, without coverage instrumentation during merge.
+- `make verify`, backend `make ci`, and app `verify:full` remain available for
+  comprehensive regression, release checks and deliberate diagnosis. Do not
+  automatically repeat them after a bounded local preflight and again at every
+  intermediate push. Task-specific real-backend and visual acceptance remains.
+
+Offline and DB full-suite marker expressions form a disjoint, exhaustive
+partition of non-live tests: offline excludes both `requires_postgres` and
+`requires_dogfood_wedge`; DB includes either. Live-key tests remain separate.
+Tool contracts, privacy validators, concurrency proofs, storage faults, journey
+scenarios, invariants and Atlas tests remain covered by their owning partition;
+extra invocations solely for named logging are removed. Report groups from the
+same run rather than executing them again.
+
+Test retirement must name a current replacement guarantee or confirm that the
+behavior itself was retired. The removed photo-viewer source-location assertion
+is covered by `PhotoViewerSurface.test.tsx`, which exercises both reduced-motion
+states and dismissal. The private-original test still verifies exact URL,
+authorization header and disabled caching; its mock now follows the actual
+image-view import. No failing behavior is excused as test cleanup.
+
+**Cutover order (not yet a completed hosted rollout):**
+
+Local implementation evidence on September 29 (dirty candidate based on workspace
+`9c22f773`, backend `d01aa120`, app `c9fea932`): backend `ci-static` and app
+`verify:fast` passed (app lint retained 169 warnings, zero errors). Workspace
+selector/aggregate/measurement regression checks passed 51 tests; backend selector
+checks passed 13; app selector checks passed four. Three focused app suites passed
+18 tests. These are tooling and targeted-regression evidence, not full-suite or
+hosted merge certification. The measured workspace tooling command took 3.094s
+on local Darwin/arm64/Python 3.14.6; this does not establish hosted merge latency.
+The workspace aggregate tests require both new child workflows, so update its
+exact child pins after the child changes land before certifying the root candidate.
+
+1. Publish the new workflows; verify valid selection, intentional violations,
+   missing tooling/base, cancellation/failure handling, and actual candidate
+   job runs. Preserve exact child pins in the workspace checks.
+2. Fix private checkout credentials and existing regressions. Do not promote
+   failed or unrun gates. Keep fast security/API/governance checks required
+   until their coverage is explicitly incorporated into the new aggregate.
+3. Change GitHub protection only after the replacement check has reported:
+   replace broad `test`/`test-db`/`Test`/`Logic QA journeys` requirements with
+   the validated merge policy. Keep schema/authority and relevant integration
+   checks blocking for affected changes; do not confuse skipped with verified.
+4. Remove `pull_request` triggers from the old full-regression workflows only
+   after protection is updated. Retain main-push, nightly and manual execution;
+   keep deployment separately gated by appropriate exact-revision evidence.
+   A broken main regression is repaired promptly or reverted, not ignored.
+5. Measure representative docs-only, app, backend and contract changes with
+   `scripts/measure_verification.py` and hosted timing data. Review misses as
+   well as latency. Five-minute readiness is unproven until measured.
+
+For this solo-owner setup, retain PRs and status checks but remove mandatory
+second-person approval. Preserve no-force-push/no-deletion protections. The
+founder's consequential design/authority review and actual code review remain;
+an author cannot supply their own required GitHub approval.
+
+Cleanup scope stays bounded: retire duplicate execution first, then review
+high-maintenance source-string tests and obsolete behaviors. Do not introduce
+a new test platform or blanket-delete test directories to meet a count target.
 
 GitHub Actions was disabled in workspace and backend at the September 7 audit.
 It has been re-enabled. Their main-branch protection had unrelated frontend
@@ -153,8 +241,9 @@ be verified by a subsequent candidate run; this document does not certify it.
 
 ## Reproduce a failure
 
-- Run `make verify` for the coordinated gate; `make -C travel-agent ci` and
-  `npm --prefix travel-app run verify:pr` identify child failures.
+- Use the bounded commands above during iteration. Run `make verify`,
+  `make -C travel-agent ci`, or app `verify:full` deliberately when full
+  regression is needed, not as an automatic repeat after each small repair.
 - Cross-repository release/evidence Git reads clear hook-local repository
   selectors before reading a child's index or HEAD. A passing shell invocation
   alone does not prove the pre-push environment: exercise the hook as well.

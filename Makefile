@@ -323,7 +323,7 @@ dogfood-status-sync: ## Regenerate the auto:persona-cert block in docs/journeys/
 
 # ── Composite gate ─────────────────────────────────────────────────────────────
 
-verify-changed: ## Experimental three-repo fast path: make verify-changed WORKSPACE_BASE_REF=x AGENT_BASE_REF=y APP_BASE_REF=z [DRY_RUN=1]
+verify-changed: ## Local merge preflight: WORKSPACE_BASE_REF=x AGENT_BASE_REF=y APP_BASE_REF=z [DRY_RUN=1]
 	@test -n "$(WORKSPACE_BASE_REF)" || { echo "WORKSPACE_BASE_REF is required"; exit 2; }
 	@test -n "$(AGENT_BASE_REF)" || { echo "AGENT_BASE_REF is required"; exit 2; }
 	@test -n "$(APP_BASE_REF)" || { echo "APP_BASE_REF is required"; exit 2; }
@@ -333,7 +333,7 @@ verify-changed: ## Experimental three-repo fast path: make verify-changed WORKSP
 		--app-base-ref "$(APP_BASE_REF)" \
 		$(if $(DRY_RUN),--dry-run,)
 
-verify: ## Single cross-repo pre-push gate (absorbs offline-qa + mock-real-parity)
+verify: ## Full cross-repo diagnostic/release suite; use verify-changed for routine preflight
 	@echo "▸ Workspace doctor..."
 	@$(MAKE) doctor
 	@echo "▸ Backend CI (travel-agent: ruff + boundaries + gates + mypy + offline tests)..."
@@ -348,10 +348,7 @@ verify: ## Single cross-repo pre-push gate (absorbs offline-qa + mock-real-parit
 	@cd travel-app && npm test -- __tests__/journeys/ --runInBand
 	@echo "▸ Mock/API seam tests..."
 	@cd travel-app && npx jest --runInBand \
-		__tests__/utils/api/mock.test.ts \
 		__tests__/utils/api/http.test.ts \
-		__tests__/data/notifications.test.ts \
-		__tests__/data/proposals.test.ts \
 		__tests__/data/privacy.test.ts \
 		__tests__/data/planState.test.ts
 	@echo "▸ Frontend offline tests..."

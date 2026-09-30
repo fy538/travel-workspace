@@ -53,8 +53,11 @@ UI-specific models and reviewed adapters follow the app's schema-bridge policy.
 ## Verification and delivery
 
 Run focused checks during iteration and retain the relevant Task Intake contract,
-integration, behavioral and visual evidence. `make verify` remains the coordinated
-pre-push gate; `verify-changed` is experimental and does not replace it.
+integration, behavioral and visual evidence. Use `make verify-changed` with an
+explicit base for each repo as the local merge preflight. `make verify` remains
+the full cross-repo diagnostic/release suite, not a mandatory rerun on every
+push. Hosted required checks remain authoritative during the staged rollout in
+`docs/reliability/CI Plan.md`; a local subset cannot waive a failed hosted check.
 
 For setup or verification changes, prove the command in its intended environment:
 record checkout/tool versions, required services and packaged inputs. Distinguish
@@ -84,7 +87,7 @@ Follow `docs/governance/README.md` for documentation lifecycle and admission.
 - Stage explicit filenames; never `git add -A` or `git add .`. Preserve another
   session's edits and branches. Do not switch or fast-forward its checkout.
 - `scripts/land-worktree.sh <name>` requires clean, current lane branches and
-  runs `make verify` before any publishing. `--publish` pushes lane branches for
+  runs the change-aware merge preflight before publishing. `--publish` pushes lane branches for
   protected-main PR review. It does not push main or remove worktrees.
 - A worktree isolates files, not services. The lane's `.workspace-lane.json`
   records Compose project, Postgres/Qdrant/API/Expo ports and exclusive device.

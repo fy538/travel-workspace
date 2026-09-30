@@ -260,7 +260,11 @@ def land(args):
                 f"{repo}: integrate origin/main and refresh cross-repo pins before landing"
             )
     before = [git(r, "rev-parse", "HEAD").strip() for r in repos]
-    subprocess.run(["make", "verify"], cwd=lane, env=GIT_ENV, check=True)
+    subprocess.run(
+        ["make", "verify-changed", "WORKSPACE_BASE_REF=origin/main",
+         "AGENT_BASE_REF=origin/main", "APP_BASE_REF=origin/main"],
+        cwd=lane, env=GIT_ENV, check=True,
+    )
     for repo, revision in zip(repos, before):
         if (
             git(repo, "rev-parse", "HEAD").strip() != revision
