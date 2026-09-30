@@ -46,6 +46,10 @@ boundary, not live-generation or desirability evidence. A reusable first
 portfolio fixture set now spans books, films, shows, music, source-backed
 passage and practical readers, dish fallback, sparse recognition, and one
 bounded friend contribution.
+The connected-neighborhood reader now uses a matching projection-supplied
+source/provenance label or a type-level fallback rather than displaying
+resource identifiers; this is presentation-only and does not resolve subjects
+or change graph identity.
 A first crosswalk now
 separates source admission, family-reader behavior, and audience authorization;
 door-to-family recognition remains unproven. P1 still needs cross-door
@@ -1656,3 +1660,22 @@ and `git diff --check` passed. This is deterministic fixture/compiler evidence
 only; it does not establish a live generation path, research freshness, a
 user-facing native rendering, or preference/desirability. Selected-part
 representation remains open pending the P0 reference decision.
+
+### September 30 relationship-label safety
+
+App commit `fd1353a7b` prevents the optional connected-neighborhood reader
+from exposing internal `ResourceRef`/`EntityRef` IDs as user-facing text. It
+uses a matching projection-supplied source/provenance label when that value is
+not identifier-shaped; otherwise it renders a safe target-kind label. The
+underlying relation references and IDs remain unchanged, and a fallback does
+not claim subject resolution.
+
+Validation: `npm test -- --runInBand
+__tests__/utils/canonicalArtifactRelationships.test.ts
+__tests__/components/canonicalArtifactCard.test.tsx` passed (2 suites, 32
+tests); `npm run typecheck`, targeted ESLint, `npm run qa:polish:scenarios`
+(31 registered IDs), `npm run docs:check`, and `git diff --check` passed. Jest
+printed a React `act(...)` warning from `VirtualizedList`, but the suites passed.
+Native visual acceptance was not run because the Mac UI was locked; these
+checks prove fixture/component behavior only, not native rendering or live
+projection behavior. No backend, API schema, or identity change was made.
