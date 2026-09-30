@@ -24,10 +24,17 @@ retrieval, jobs and native readers. Add the missing identity, selected-part,
 collection, saved-edition and discovery contracts deliberately. Do not create
 another assistant or a universal artifact service.
 
-**Execution status:** scoped for the Strategy lane in the September 30
-[three-lane program](vesper-program-roadmap.md#2-three-lane-ownership); execution
-has not started merely by editing this plan. This roadmap owns Strategy's
-package sequence and receipts. The program owns cross-lane boundaries, not a
+**Execution status:** active in the Strategy lane's coordinated artifact
+worktree. The first implementation increment has added a versioned,
+viewer-facing reading descriptor to the existing artifact projection and a
+native travel/admission ticket reader, while leaving experience semantics and
+source/owner authority unchanged. Backend projection/API and app reader tests
+pass. This is the beginning of P0/P2, not completion of the first assignment:
+P0 still needs the identity/subject/collection owner map, component/context and
+edition references, the family/mode matrix and replay fixtures; P1 correction
+and reconciliation, PC catalog mapping/use gates, other family readers, and
+native visual acceptance remain open. This roadmap owns Strategy's package
+sequence and receipts. The program owns cross-lane boundaries, not a
 permission queue for ordinary implementation. The earlier
 [strategy handoff](roadmap-proposals-for-codex-2026-09-28.md#9-focused-artifact-engineering-proposals)
 is proposal provenance. Capture transport, signing and Home/Places delivery
@@ -323,12 +330,22 @@ split must leave each original addressable.
 
 Experience semantics and reader formats are separate dimensions: existing
 semantic families such as `attendance` and `attention` do not become the UI
-family enum for tickets, books or albums. Define a bounded, versioned adapter
-from eligible owner facts and source evidence to typed readings consumed by
-family renderers. Specify required/optional fields, uncertainty, units and
-timezones, and an original-preserving unknown-version fallback. A maintained
-registry is sufficient; no arbitrary model-authored schema or new UI framework
-is required. Backend wire models and generated app types remain authoritative.
+family enum for tickets, books or albums. The first runtime increment is the
+optional `ArtifactReadingDescriptor` on `CanonicalArtifactProjectionV1`,
+version `artifact-reading.v1`. A maintained backend registry maps known source
+artifact types to a bounded presentation family/format and reports whether
+family-relevant facts survived owner projection. The app dispatches known
+travel/admission tickets to a native ticket reader; unknown types, unsupported
+versions and recognized records without family facts retain the original-first
+source-fact reader. This descriptor does not resolve a cultural subject, imply
+ticket validity/attendance, or author UI geometry. It is an adapter milestone,
+not the complete typed-field contract. It is emitted only for the owner's Mine
+view; Together stays generic until the sharing owner explicitly authorizes the
+family metadata. P0 still needs to specify each reader's
+required/optional fields, uncertainty, units, timezones, selected components
+and unknown-version behavior. A maintained registry is sufficient; no
+arbitrary model-authored schema or new UI framework is required. Backend wire
+models and generated app types remain authoritative.
 
 ### Context and edition semantics
 
@@ -694,6 +711,11 @@ to ordinary users remains a hypothesis until the human comparison.
 **Design boundary:** exact density and aesthetic treatment need design review,
 but source access, route continuity, eligibility and data contracts can advance
 before final composition is frozen.
+
+**Implementation increment:** travel and admission ticket formats now have a
+typed dispatch path. Other reading formats still use the generic
+source-fact/original reader; ticket-family dispatch does not imply that PDF,
+Wallet, every email attachment or native visual acceptance is complete.
 
 ### P3 Contextual discovery and useful selection
 

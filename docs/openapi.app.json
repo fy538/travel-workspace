@@ -39520,6 +39520,64 @@
         ],
         "title": "ArtifactProvenance"
       },
+      "ArtifactReadingDescriptor": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "artifact-reading.v1",
+            "title": "Schema Version",
+            "default": "artifact-reading.v1"
+          },
+          "family": {
+            "type": "string",
+            "enum": [
+              "ticket",
+              "place",
+              "work",
+              "passage",
+              "dish",
+              "practical_record",
+              "generic"
+            ],
+            "title": "Family"
+          },
+          "format": {
+            "type": "string",
+            "enum": [
+              "transport_ticket",
+              "admission_ticket",
+              "venue_anchor",
+              "book",
+              "film",
+              "show",
+              "music",
+              "passage",
+              "dish",
+              "practical_record",
+              "generic"
+            ],
+            "title": "Format"
+          },
+          "recognized": {
+            "type": "boolean",
+            "title": "Recognized"
+          },
+          "has_family_facts": {
+            "type": "boolean",
+            "title": "Has Family Facts"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "family",
+          "format",
+          "recognized",
+          "has_family_facts"
+        ],
+        "title": "ArtifactReadingDescriptor",
+        "description": "Bounded presentation hint, separate from experience semantics.\n\nRecognition describes the source artifact's reading shape only. It is not\nproof that a catalog subject matched, a ticket is valid, or an attendance\nclaim is true."
+      },
       "ArtifactSection": {
         "properties": {
           "heading": {
@@ -45049,6 +45107,16 @@
           },
           "anchor": {
             "$ref": "#/components/schemas/ArtifactAnchorSummary"
+          },
+          "reading": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ArtifactReadingDescriptor"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "context": {
             "$ref": "#/components/schemas/ArtifactContextSummary"
