@@ -13,10 +13,17 @@ def tokenize(html):
         for k, r in TOK: v = re.sub(re.escape(k), r, v, flags=re.I)
         return f'style="{v}"'
     return re.sub(r'style="([^"]*)"', one, html)
+AMERICAN = [(r'\bbehaviour', 'behavior'), (r'\bBehaviour', 'Behavior'), (r'\bBEHAVIOUR', 'BEHAVIOR'), (r'\bneighbour', 'neighbor'), (r'\bNeighbour', 'Neighbor'), (r'\bNEIGHBOUR', 'NEIGHBOR'),
+            (r'\bgrey(s?)\b', r'gray\1'), (r'\bGrey(s?)\b', r'Gray\1'), (r'\bkilometres\b', 'kilometers'), (r'\bmetres\b', 'meters'), (r'\bharbour', 'harbor'), (r'\bcolour', 'color')]
+def american(html):
+    """The fixture world is New York, so its words are American, including text inherited from older source slices."""
+    for a, b in AMERICAN: html = re.sub(a, b, html)
+    return html
 def post(html):
     if 'vdl.css' not in html: html = html.replace('<helmet>', '<helmet>' + LINKS, 1)
     html = html.replace('class="fn" style="', 'class="vdl-t-metaLine" style="color: #B5AFA5; ')
-    return tokenize(html)
+    html = html.replace('PHOTOGRAPH PLATES ARE SLOTS', 'A PLACE WITHOUT A PHOTOGRAPH HAS NO PLATE')
+    return tokenize(american(html))
 if __name__ == '__main__':
     for g in ['gen07.py', 'gen08.py', 'gen09.py', 'gen10.py', 'renumber.py']:
         r = subprocess.run([sys.executable, g], capture_output=True, text=True)

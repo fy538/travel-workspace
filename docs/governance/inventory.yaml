@@ -379,7 +379,6 @@ overrides:
   docs/archive/home-value-composition-history-through-2026-09-27.md:
     disposition: archive
     rationale: Preserves the original Home assignment and detailed receipts while the active package holds only delivered paths, remaining work and latest evidence.
-
   docs/archive/complete-system-integration-history-through-2026-09-25.md:
     disposition: archive
     rationale: Preserves the original technical plan and scoped receipts; current dispatch belongs only to the program roadmap.
