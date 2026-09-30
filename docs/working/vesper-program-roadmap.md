@@ -487,6 +487,20 @@ This closes a cold-start receiving and empty-state clarity gap only; D2 remains
 active. Continue with existing-supply coverage and full-scroll/real-owner
 acceptance independently of the simulator blocker.
 
+**Follow-up correction — 2026-09-30:** backend commit `c32baddc9` removes the
+separate Home starter-guide query from that increment. The canonical Places
+feed already selects and carries the approved Anywhere guide; Home now consumes
+that owner once through its existing contextual-Places adapter. The generic
+“Explore Places” row is removed only when that same context has a source-backed
+dossier reading, and remains when it does not. The exact `source.inspect`
+evidence requirement and Places dossier destination remain intact. The
+combined Home portfolio regression passes as part of **87/87** tests in
+`test_home_portfolio.py`; Ruff, formatting, backend pre-commit hooks and
+`make docs-check` passed. This is a consolidation correction, not a second
+starter-content implementation; native and authenticated owner-readback
+acceptance remain unverified. Detailed evidence is in the [H1 execution
+plan](home-value-composition-execution-plan-2026-09-25.md).
+
 ### D3 Make practical help part of the same system
 
 **Outcome:** what is happening now changes the useful options and actions across
