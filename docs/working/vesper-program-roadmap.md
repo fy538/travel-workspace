@@ -369,6 +369,18 @@ was unavailable, so no strict design-intent verdict is claimed. This closes a
 real receiving gap in the starter feed, not D2 as a whole; continue with the
 next independently useful Home/Places slice rather than reopening planning.
 
+**Additional current lane increment — 2026-09-30:** app commit `862934e2d`
+distinguishes a friend-authored Place note from a composed editorial reading.
+The exact human-authored words now appear as a short quoted Roman body, with
+attribution, Place context and the precise Place Door preserved. It does not
+rewrite source text, alter audience/authorization, change feed admission or add
+a new content system. The full Home root screen suite passed **33/33**, app
+production typecheck and the 31 registered polish-scenario ID check passed;
+targeted lint had no errors and retained the existing renderer max-lines
+warning. A native screenshot of this precise owner-note state was not captured,
+so visual acceptance for that state remains unverified. This closes a known
+Home hierarchy defect without closing D2.
+
 ### D3 Make practical help part of the same system
 
 **Outcome:** what is happening now changes the useful options and actions across
