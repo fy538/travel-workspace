@@ -1848,6 +1848,24 @@ simulator could not be queried because CoreSimulatorService was unavailable.
 This closes the note-versus-article treatment gap across both roots, not broader
 H1-A or D2 acceptance.
 
+### Pre-Keep image-inspection refinement — 2026-09-30
+
+App `db27d6a05` adds a visible expand cue to selected-photo tiles and bounded
+pinch-to-zoom plus one-finger pan to the existing full-screen draft-original
+viewer. The transform uses the original's aspect-fit dimensions, caps at 4×,
+and exposes adjustable zoom-in, zoom-out, and reset actions; inspection does
+not keep, upload, or change the draft. Focused
+`__tests__/components/capture-composer.test.tsx` passed **11/11**, including
+zoom bounds and unchanged draft/no-submit behavior; app production typecheck,
+targeted ESLint, and the registered surface scenario-ID check (**31 IDs**)
+passed. No backend or wire contract changed. Native visual/multitouch review is
+**unverified**: the reserved simulator is booted, but Expo reported its assigned
+Metro port `53177` occupied while no status endpoint was reachable; a bounded
+fallback attempt on `53178` reported the same. No existing process was stopped
+or changed. Review the expand cue and pinch/pan on the next available registered
+photo-intake capture. This closes the old viewer inspection refinements in code,
+not the wider camera-custody, authenticated readback, or D1/D2 acceptance gaps.
+
 ### Published candidate — prior full coordinated gate
 
 The full coordinated gate passed before this docs rebaseline on workspace
