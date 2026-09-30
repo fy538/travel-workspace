@@ -359,12 +359,22 @@ The first delivered reader-mode matrix is deliberately narrow:
 | Together | Canonical artifact projection route rejects the request until graph-owned sharing authorization exists; private reader-family metadata is withheld | That an Occasion link or source-level sharing elsewhere grants this reader access |
 | Catalog lookup, selected-part reading, contextual discovery, exact saved edition | Not connected by this reader increment | Any provider rights, answer generation, durable retention, or permission to share generated material |
 
-Descriptor support proves only the confirmed-reader route. Intake door and
-attachment acceptance remain governed by the intake format boundary; ticket
-support does not imply PDF, Wallet, HEIC conversion, multi-attachment partial
-success, or every email-bundle combination. The matrix still needs the actual
-supported doors/file representations, mixed-bundle rejection/readback fixtures,
-and sparse-history/lifecycle replay cases required by P0.
+Descriptor support proves only the confirmed-reader route. It does not establish
+which source doors or representations reach that route. The current door and
+format boundary is:
+
+| Door or layer | Current path and admitted scope | Failure/evidence boundary |
+| --- | --- | --- |
+| App text and file capture | `travel-app/utils/intakeCaptureService.ts` and `travel-app/hooks/useCaptureDraftController.ts` submit inline text or 1–16 selected/captured sources through Intake v2. Origins include Chat, camera/photo library, and iOS/Android share capture. The app preflight rejects PDF, Apple Wallet (`.pkpass`), and HEIC/HEIF; the backend still validates actual bytes. | This is an app preflight plus owner upload/finalize contract, not a guarantee that every OS-shared representation can be decoded or semantically read. An unsupported item blocks the selected app bundle before its V2 submission. |
+| Forwarded email | The SendGrid route supplies message text plus numbered attachments to `travel-agent/backend/inbound/email_forward.py`. The current limit is 15 attachments and 8 MiB aggregate; every attachment is validated before the Intake row, private attachment upload, or raw archive is written. | Unsupported content rejects the whole email, including otherwise-valid text/siblings; there is no sender-facing failure notice. `tests/inbound/test_email_forward_v2.py::test_v2_email_rejects_valid_sibling_with_scanner_gated_attachment` now proves a valid PNG before a scanner-gated PDF creates no submission, archive, or uploaded bytes. It does not prove sender-visible delivery/readback. |
+| Backend byte admission and normalization | The active Intake v2 boundary supports server-decodable image, audio, text, and calendar sources. The normalizer registry includes JPEG/PNG/GIF/WebP, text/calendar, and audio metadata normalization; the audio normalizer still requires a separate transcription adapter. PDF and PKPass normalizers exist but V2 rejects them until the scanner lane is enabled; HEIC/HEIF is rejected. | A registered parser is not permission to admit a format; a MIME normalizer is not proof of semantic extraction or a family reader. PDF/Wallet support, HEIC conversion, mixed-bundle partial success, and every email combination remain unsupported. |
+
+The reader-mode matrix now has code-backed boundaries for its first app doors,
+including the all-or-nothing email case. P0 still needs sparse-history and
+source/claim/authority lifecycle replay fixtures, selected-part representation
+fixtures, and a clearer caller-visible rejection/receipt for unsupported email
+content. Exercise those against the owner routes; do not change Orchestration's
+transport or enable a scanner from this artifact lane.
 
 ### Typed reading contract
 
@@ -1321,9 +1331,23 @@ Vesper is a design recommendation, not validation of Vesper's product advantage:
 
 ## 13 Document completion record
 
-This document records planning and inspection evidence only. Runtime tests,
-native acceptance, model comparisons and economic measurements in the packages
-are required future work, not completed results. This file now owns Strategy's
-assigned package progress under the program boundaries, not the other lanes'
-queues. On expiry, its owner should refresh unfinished work with an explicit
-reason, promote durable contracts or archive completed planning and research.
+This document records planning, code-backed owner mapping, and bounded local
+implementation receipts. The September 30 checkpoint uses workspace HEAD
+`d98404d6`, backend `d6730f6d6`, and app `d7401a2ec` in the coordinated
+`codex/artifact-foundation` worktree; all three child/workspace repositories
+were clean immediately after their commits. Focused evidence:
+
+| Boundary | Command | Result and limit |
+| --- | --- | --- |
+| Backend email admission | `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/inbound/test_email_forward_v2.py -q` | 17 passed at backend `d6730f6d6`; mock-based owner-boundary behavior, no DB/provider delivery evidence. Includes valid-PNG + scanner-gated-PDF whole-bundle rejection. |
+| Backend test quality | `ruff check --cache-dir /private/tmp/vesper-artifact-ruff tests/inbound/test_email_forward_v2.py` and `ruff format --check --cache-dir /private/tmp/vesper-artifact-ruff tests/inbound/test_email_forward_v2.py` | Both passed; backend commit hooks also passed Ruff, formatting, Vulture, and secret checks. |
+| App reader fallbacks | `npm test -- --runInBand __tests__/components/canonicalArtifactCard.test.tsx` | 18 passed at app `d7401a2ec`, covering ticket/place/work readers and generic fallback for passage/dish/practical-record descriptors. |
+| App static/registered inventory | `npm run typecheck`; targeted `npm run lint -- __tests__/components/canonicalArtifactCard.test.tsx`; `npm run qa:polish:scenarios` | Passed; scenario inventory is 31 registered IDs. No screenshot was captured and this is not native visual acceptance. |
+| Workspace documentation | `make docs-check` | Passed on the current updated working tree based on workspace HEAD `d98404d6`; includes governance, inventory, spine, release-scope, status, links, compatibility, and Home-surface checks. |
+
+Native acceptance, model comparisons, human preference and economic measurements
+remain future evidence—not completed results. CoreSimulator was unavailable in
+the preceding native-reader pass. This file owns Strategy's package progress
+under the program boundaries, not the other lanes' queues. On expiry, refresh
+unfinished work with an explicit reason, promote durable contracts or archive
+completed planning and research.
