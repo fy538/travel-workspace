@@ -2072,3 +2072,32 @@ typecheck, test-contract typecheck, targeted ESLint, `npm run docs:check`,
 snapshot). No authenticated live-service or native-device test was run; this
 slice changes session-scoped data access rather than layout, and simulator
 availability remains a separate acceptance constraint.
+
+### September 30 native artifact-reader family matrix
+
+App commit `bf5f2deae` records the first completed registered simulator matrix
+for the artifact reader: calendar artifact, exact `.ics` original, return to
+the same artifact, source-backed book, kept passage, practical record, and
+sparse-work fallback (seven screenshots total). It ran on Vesper QA SE / iOS
+18.2 through the production reader route with deterministic mock fixtures. The
+calendar remains explicitly tentative; the source preview says no event is
+added to the device calendar; the sparse work stays unresolved; supplied
+passage and practical facts render without inferring surrounding meaning,
+payment, or validity. The committed structured verdict is
+`travel-app/docs/surfaces/canonical-artifact-reader/verdicts/20260930T204016Z.json`
+with its manifest snapshot. It passes the four capture/correctness/visual/intent
+gates against the surface contract and doctrine; no Claude Design reference is
+pinned for this reader.
+
+The initial run exposed a test-selector mismatch, not a rendering defect: the
+excerpt was visible in the screenshot, while the flow expected its bare text
+instead of the accessible label `Kept passage: …`. The registered assertion
+now checks that label, and the complete rerun captured 1/1 flow and 6/6 extra
+screenshots. `npm run qa:polish:test` passed, including 73 committed verdicts;
+`npm run qa:polish:scenarios` validated all 31 IDs; `npm run docs:check` passed
+for 312 app Markdown files; `git diff --check` passed. These captures prove
+fixture-backed native rendering/navigation, not authenticated API, production
+persistence, or user desirability. Photo pinch/pan/double-tap, VoiceOver
+activation/traversal, Dynamic Type, ticket/place/show/music/dish family
+coverage, and live-service readback remain open. The earlier registered dry-run
+receipt records the simulator outage before this subsequent successful run.
