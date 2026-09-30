@@ -1332,15 +1332,17 @@ Vesper is a design recommendation, not validation of Vesper's product advantage:
 ## 13 Document completion record
 
 This document records planning, code-backed owner mapping, and bounded local
-implementation receipts. The September 30 checkpoint uses workspace HEAD
-`d98404d6`, backend `d6730f6d6`, and app `d7401a2ec` in the coordinated
-`codex/artifact-foundation` worktree; all three child/workspace repositories
-were clean immediately after their commits. Focused evidence:
+implementation receipts. The September 30 follow-on checkpoint starts from
+workspace HEAD `61486071`, backend `d6730f6d6`, and app `d7401a2ec` in the
+coordinated `codex/artifact-foundation` worktree. After the replay test commit,
+the backend is `3cecd34f6`; the workspace and app remain unchanged. Focused
+evidence:
 
 | Boundary | Command | Result and limit |
 | --- | --- | --- |
 | Backend email admission | `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/inbound/test_email_forward_v2.py -q` | 17 passed at backend `d6730f6d6`; mock-based owner-boundary behavior, no DB/provider delivery evidence. Includes valid-PNG + scanner-gated-PDF whole-bundle rejection. |
 | Backend test quality | `ruff check --cache-dir /private/tmp/vesper-artifact-ruff tests/inbound/test_email_forward_v2.py` and `ruff format --check --cache-dir /private/tmp/vesper-artifact-ruff tests/inbound/test_email_forward_v2.py` | Both passed; backend commit hooks also passed Ruff, formatting, Vulture, and secret checks. |
+| Backend correction replay | `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/inbound/test_anchor_runtime.py tests/inbound/test_intake_anchor_projection.py tests/core/test_canonical_artifact_projection.py tests/api/test_artifact_projections.py -q` | 49 passed at backend `3cecd34f6`; replay selects the newest semantic correction while ignoring a confirmation audit row, is deterministic, and preserves original source lineage/hash as interpretation claims change. Fixture-level evidence only; no database concurrency or persisted replay proof. |
 | App reader fallbacks | `npm test -- --runInBand __tests__/components/canonicalArtifactCard.test.tsx` | 18 passed at app `d7401a2ec`, covering ticket/place/work readers and generic fallback for passage/dish/practical-record descriptors. |
 | App static/registered inventory | `npm run typecheck`; targeted `npm run lint -- __tests__/components/canonicalArtifactCard.test.tsx`; `npm run qa:polish:scenarios` | Passed; scenario inventory is 31 registered IDs. No screenshot was captured and this is not native visual acceptance. |
 | Workspace documentation | `make docs-check` | Passed on the current updated working tree based on workspace HEAD `d98404d6`; includes governance, inventory, spine, release-scope, status, links, compatibility, and Home-surface checks. |
