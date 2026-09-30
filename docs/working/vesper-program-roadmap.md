@@ -461,9 +461,13 @@ that exact person's profile; the door now says “Open profile” and preserves 
 existing Home return token. The Home renderer and root-navigation suites passed
 **87/87**, app production typecheck passed, registered Home design references
 and scenario IDs passed, and targeted lint had no errors with the existing
-renderer-size warning. No native visual verdict is claimed for this copy and
-route-label correction. D2's broader receiving and full-scroll acceptance
-remain open.
+renderer-size warning. App commit `0894cc819` also names the destination of a
+saved-place resource door as “Open saved places,” matching its actual
+Places-owned collection route and preserving the Home return token. After that
+change, the renderer and root-navigation suites passed **89/89**, app typecheck
+passed, and targeted lint had no errors with the existing renderer-size
+warning. No native visual verdict is claimed for these copy and route-label
+corrections. D2's broader receiving and full-scroll acceptance remain open.
 
 ### D3 Make practical help part of the same system
 
