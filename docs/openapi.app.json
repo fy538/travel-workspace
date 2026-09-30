@@ -39438,6 +39438,47 @@
         ],
         "title": "ArtifactMedia"
       },
+      "ArtifactOriginalReference": {
+        "properties": {
+          "submission_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Submission Id"
+          },
+          "source_object_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Source Object Id"
+          },
+          "revision": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Revision"
+          },
+          "ordinal": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Ordinal"
+          },
+          "media_type": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Media Type"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "submission_id",
+          "source_object_id",
+          "revision",
+          "ordinal",
+          "media_type"
+        ],
+        "title": "ArtifactOriginalReference",
+        "description": "An exact, owner-scoped original that the native reader can inspect."
+      },
       "ArtifactPhotoUploadResponse": {
         "properties": {
           "photo_id": {
@@ -39642,6 +39683,15 @@
             },
             "type": "array",
             "title": "Refs",
+            "default": []
+          },
+          "originals": {
+            "items": {
+              "$ref": "#/components/schemas/ArtifactOriginalReference"
+            },
+            "type": "array",
+            "maxItems": 16,
+            "title": "Originals",
             "default": []
           },
           "status": {
