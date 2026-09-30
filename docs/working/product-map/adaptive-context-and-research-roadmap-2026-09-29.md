@@ -1892,3 +1892,61 @@ Evidence on workspace `c7b1ca66005d51d0f433190c501961f0dc89227f`, backend
 - Workspace `make docs-check` passed at the recorded three-repository tuple;
   measurement log:
   `/tmp/vesper-adaptive-context-r3-checks/live-research-shadow-demand-docs-check-20260930T224226Z.log`.
+
+#### Implementation receipt — bounded live-research execution telemetry (September 30)
+
+The bounded Tavily acquisition and direct live-event paths now report a
+content-free execution event correlated to the preceding capability-demand
+decision by the same hashed tool-call fingerprint. The event contains the
+authenticated actor and optional trip, a coarse result category, the scoped
+tool invocation count, and a count of entries into Vesper's Tavily SDK call
+boundary. The latter is recorded immediately before `client.search`; it is
+distinct from entering a tool and from provider-internal HTTP retries. Deadline
+and caller cancellation are distinct outcomes, and cancellation still
+propagates to the caller.
+
+The event excludes query/result/error text and reports `provider_cost_state`
+as `unknown` after SDK dispatch and `not_dispatched` otherwise. This is
+operational shadow telemetry only: it is not durable, does not measure SDK
+internal retries, cannot determine the provider's billable outcome, creates no
+cost posting or quota reservation, and does not enable enforcement or change
+provider behavior. R3, including durable attempt accounting, reservation,
+reconciliation and bounded retry ownership, remains open.
+
+The verified backend source tree is committed as `62de19dab` on
+`codex/adaptive-context-research`. Verification measurements captured the
+backend parent `50203ff6640fe246a87b0e8b35dc9af6e41beb10` with this exact code
+tree dirty immediately before commit; all commit hooks then passed on
+`62de19dab`. The workspace was `4be9c4919df7cbcc4e31c19f55f340965d3feb59`
+during verification, and the app remained `28717c7cfec07b2313fe0e0cdff4431444df8335`.
+Environment: Darwin 25.5 arm64; focused backend tests used Python 3.13.0.
+
+- The focused service, public-acquisition, request-contract, bounded-result,
+  answer-only, quick-research, tool-retry, concierge and trip-direction tests
+  passed: **111 passed, 0 skipped**.
+- Ruff lint, Ruff format check and `git diff --check` passed for the changed
+  backend files.
+- Measured `make -C travel-agent ci-static` passed in **109.55 seconds**,
+  including Ruff, structural/architecture gates and mypy. Log:
+  `/tmp/vesper-adaptive-context-r3-checks/live-research-outcome-ci-static-retry-20260930T230506Z.log`.
+- Measured `make -C travel-agent merge-check BASE_REF=main` ran **22,035
+  passed, 14 skipped, 2 failed** in 109.2 seconds. The timing-sensitive
+  `test_multiple_tools_parallel` failed at 0.464s against its 0.18s bound but
+  passed in an isolated rerun. The remaining
+  `test_preview_marks_unprotected_same_duration_shift_atomically_applicable`
+  is date-sensitive: its October 1–2 fixture is considered live on September
+  30, so the unchanged trip-context code correctly reports `trip_is_live` and
+  rejects atomic apply, contrary to the fixture's expectation. I left this
+  unrelated test/behavior unchanged. Full log:
+  `/tmp/vesper-adaptive-context-r3-checks/live-research-outcome-merge-check-20260930T230703Z.log`.
+- The measurement records for both checks are in
+  `/tmp/vesper-adaptive-context-r3-checks/measurements.json`.
+- Workspace `make docs-check` passed after the receipt update in **6.478
+  seconds** at the recorded repo tuple. Log:
+  `/tmp/vesper-adaptive-context-r3-checks/live-research-outcome-docs-check-final-20260930T231043Z.log`.
+
+The merge gate is therefore not reported as passing. No API schema, client,
+provider enablement, product policy, quota allocation, provider-cost claim,
+deployment or publication changed. This is a narrow R3 observability slice;
+durable chargeable-attempt accounting, reservation, reconciliation and the
+first connected producer remain open. R0–R7 remain open.
