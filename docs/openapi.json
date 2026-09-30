@@ -19668,7 +19668,7 @@
           "intake"
         ],
         "summary": "Get Intake Source Object Media",
-        "description": "Stream one current owner-scoped Intake original.\n\nThe submission reader intentionally returns custody metadata, not a storage\nURL. This route is the matching permitted-media reader: it reuses the\nIntake owner/custody boundary, keeps the storage key server-side, and\nrefuses expired, revoked, deleted, or otherwise unverified originals.",
+        "description": "Stream one exact current owner-scoped Intake original.\n\nThe submission reader intentionally returns custody metadata, not a storage\nURL. A selected-original link can supply ``expected_revision`` so a stale\nselection cannot silently open a replacement. Callers without a selected\nrevision may omit it and read the current original through this owner\nboundary.",
         "operationId": "get_intake_source_object_media_api_intake_submissions__submission_id__objects__object_id__media_get",
         "parameters": [
           {
@@ -19689,6 +19689,25 @@
               "type": "string",
               "format": "uuid",
               "title": "Object Id"
+            }
+          },
+          {
+            "name": "expected_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 64,
+                  "maxLength": 64,
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Expected Revision"
             }
           },
           {

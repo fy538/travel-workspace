@@ -625,12 +625,23 @@ The implementation has measured cold/warm latency, end-to-end spend, waste,
 recovery and quality. Consumer desirability and release approval are separate
 evidence checkpoints, not consequences of checking every engineering box.
 
-## 6 Proposed implementation packages
+## 6 Implementation packages and execution state
 
-The packages are assigned to Strategy Technical by the program, but remain
-**proposed, not started** until execution intake. R0–R7 are local package
-identifiers, not additional standing lanes. Their artifact alignment records
-shared experience requirements, not a second implementation in Strategy.
+The packages are assigned to Strategy Technical by the program. R0–R7 are local
+package identifiers, not additional standing lanes. Their artifact alignment
+records shared experience requirements, not a second implementation in
+Strategy.
+
+**Execution is underway.** The canonical three-lane baseline is on workspace
+`main` at `7b02b2bfe5d36e53060eee5f9fee6f8b5fd4d399` and is integrated into this
+lane. The first exact-original read is implemented across the owner-scoped
+backend reader and its mobile callers. This is a partial R0/R1/R2/R6 result,
+not completion of any package: R0's complete scenario/owner matrix, R1's
+caller-independent disclosure and acquisition behavior, R2's supported
+candidate selection, R6's real consumer acceptance, and R7's matched-quality
+evidence remain open. R3/R4/R5 requirements are being applied with the first
+producer; their shared runtime, longitudinal and assistance-adaptation outcomes
+remain for later work. Receipts and exact limitations are in section 12.
 
 ### Minimum complete first increment
 
@@ -1196,15 +1207,16 @@ implementation. Recommendations elsewhere are our engineering inferences.
 
 ## 12 Document delivery and next handoff
 
-After the common baseline is prepared, execute **R0 plus the shared R1 boundary
-and an existing-original R2 adapter connected to R6 readback**, with the minimum
-R3/R4/R5 safeguards and R7 comparisons. Deliver one coherent assignment within
-this lane. Establish the general seam across several artifact fixtures while
-preserving native/capture progress. Publish usable additive contracts early;
+The common baseline is prepared and integrated into this lane. The current
+assignment is **R0 completion plus the shared R1 boundary and an existing-original
+R2 adapter connected to R6 readback**, with the minimum R3/R4/R5 safeguards and
+R7 comparisons. One exact-source read is already connected; continue the same
+assignment through several artifact families, supported acquisition, real
+owner readback and matched quality evidence. Publish additive contracts early;
 Strategy connects its reader and Orchestration its roots from landed revisions.
-Until then, use the actual existing supported consumer path, or report a bounded
-producer-only result and the specific consumer gap. Do not claim native
-acceptance from a fixture or wait for every design/policy decision.
+Until end-to-end evidence exists, report a bounded producer result and the exact
+consumer gap. Do not claim native acceptance from a fixture or wait for every
+design/policy decision.
 
 This document retains its research/audit rationale and owns Strategy Technical's
 package progress under the program's lane assignment. It does not rewrite the
@@ -1305,3 +1317,44 @@ the second pass; no product code or policy is changed.
 Beyond the 24 focused tests above, `make verify`, live-provider, database-race
 and native-device checks remain **unrun**. Defined tests and read-only reviewer
 agreement do not establish runtime acceptance.
+
+#### Implementation receipt — exact owner-read revision binding (September 30)
+
+The shared baseline commit is `7b02b2bfe5d36e53060eee5f9fee6f8b5fd4d399` on
+canonical workspace `main`; lane merge commit `5022c728` integrates it here.
+Backend commits `d1d1ff1c7` and `99f88c594` add an owner-scoped reader for the
+exact selected Intake original and correct the route contract to describe all
+callers. App commits `e02151cfb` and `28717c7cf` pass source revisions from Life
+Intake, private Capture receipts, audio/calendar previews and native capture
+readback, with generated route documentation aligned to the backend. The
+optional `expected_revision` remains backward-compatible for old callers; all
+current callers with a known revision send it. Bytes remain private/no-store,
+are not persisted by this read path, and are not sent to a provider.
+
+Validation on the lane revisions:
+
+- Backend Python 3.13 focused suite: **36 passed** across
+  `tests/inbound/test_original_source_reader.py` and
+  `tests/api/test_intake_route.py`. `RUFF_NO_CACHE=true make ci-static` passed
+  before the final docstring-only correction; subsequent commit hooks and
+  targeted Ruff checks passed. `make merge-check BASE_REF=main` reports change
+  scope; it is not itself a test execution.
+- App `npm run typecheck` passed; focused revision-binding suite **49 passed**.
+  `npm run verify:merge -- --base main` passed: **1,283 suites, 9,038 tests,
+  1 snapshot**. Its preceding run found three stale assertions; those were
+  corrected to assert hash forwarding, then the complete suite passed.
+- `./scripts/sync-types.sh` regenerated the full and app OpenAPI snapshots and
+  app schema types with no TypeScript errors. `make api-coverage-check` passed:
+  579 active, 15 dark, 0 unflagged and 62 retiring operations.
+- Workspace `make docs-check` passed after baseline integration. The full and
+  app OpenAPI snapshots are committed with this receipt; the generated app type
+  description is committed separately because the repositories have independent
+  Git histories.
+
+This does **not** complete R2 or R6: the owner query is not yet proven against a
+disposable Postgres instance, and mobile authenticated readback was not exercised
+against a running backend or native device. No migration, paid provider call,
+producer-to-candidate flow, useful-addition judgment, push, deployment or
+publication was performed. The original is available independently of generated
+content, but worthwhile additional substance remains the central acceptance
+question.
