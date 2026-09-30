@@ -287,6 +287,23 @@ output against the correct adopted reference/build/data source. Name unavailable
 supply and unsupported components; fixture parity alone does not establish
 backend delivery or recurring value.
 
+**Current lane increment — 2026-09-30:** app commit `d8e30d7c2`
+(`codex/home-value-delivery`; based on workspace `f6ebfacb`, backend
+`3c170d21`, app `87eceee`) applies the root contract's demoted Places
+standfirst to the four-root renderer only. Ordinary root browsing keeps the
+compact scope identity and begins with the admitted field; a cold start or an
+explicitly entered scope may retain the standfirst. Home-depth and the legacy
+workspace keep their prior behavior. Focused Places tests passed **32/32**,
+app typecheck passed, the registered scenario check passed (**31 IDs**), and
+the external Places design-reference hashes verified. Focused lint had no
+errors and one existing unused-`spacing` warning in `PlacesWorkspace.tsx`.
+Native capture remains **unverified**: CoreSimulatorService was unavailable
+(`xcrun simctl list devices booted` could not connect), so the showcase surface
+has not received a visual verdict. This closes only the scoped composition
+change; D2 remains active. **Next:** capture the registered Places surface when
+the simulator is available, then continue the full-scroll and real-owner D2
+gaps without changing the compatibility workspace.
+
 **Independent work when blocked:** use existing Source/Place/commitment/authorized
 social supply; finish root layout, navigation and failure treatment. Do not
 rewrite P2's reader or generate pretend enrichment to fill a design.
