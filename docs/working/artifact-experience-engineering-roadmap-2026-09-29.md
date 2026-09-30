@@ -1866,7 +1866,20 @@ denied a write to `.expo/cache/eslint`; the same lint completed with
 `npm run lint -- --no-cache` (0 errors; 169 existing warnings), and its later
 fast-gate constituents passed individually. `qa:design:check` confirmed this
 surface has no pinned design-reference manifest. With Metro correctly running
-on lane port 64747, the registered device doctor still could not capture:
-CoreSimulatorService was unavailable and the runner was denied its lock path
-under `.maestro/runs`. No refreshed native screenshot or visual verdict is
-claimed; the surface remains native-unverified for this copy change.
+on lane port 64747, the first registered device attempt exposed a capture
+setup error: the simulator was given a loopback Metro URL (`127.0.0.1`), which
+points back to the simulator rather than the Mac. Restarting Metro with LAN
+host mode and passing the reachable host URL allowed the registered scenario
+to complete on `Vesper QA SE` (iOS 18.2):
+`VESPER_METRO_URL=http://192.168.1.153:64747 npm run qa:polish --
+canonical-artifact-reader --device="Vesper QA SE"
+--flow=polish/canonical-artifact-reader` captured the artifact, exact original,
+and return state (1/1 scenario, 2/2 extras). The committed native verdict at
+`travel-app/docs/surfaces/canonical-artifact-reader/verdicts/20260930T191307Z.json`
+is `pass` for this bounded mock-fixture scenario. It confirms the private,
+tentative record, exact `.ics` event/location, explicit no-calendar-import
+message, and return to the same artifact/action after the copy polish. This
+does not establish live backend delivery, persisted production state, design
+reference parity, photo gestures, VoiceOver, physical-device behavior, or the
+broader artifact-family matrix. Those native/product acceptance items remain
+open.
