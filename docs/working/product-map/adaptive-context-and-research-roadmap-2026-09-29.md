@@ -635,9 +635,12 @@ Strategy.
 **Execution is underway.** The canonical three-lane baseline is on workspace
 `main` at `7b02b2bfe5d36e53060eee5f9fee6f8b5fd4d399` and is integrated into this
 lane. The first exact-original read is implemented across the owner-scoped
-backend reader and its mobile callers. This is a partial R0/R1/R2/R6 result,
-not completion of any package: R0's complete scenario/owner matrix, R1's
-caller-independent disclosure and acquisition behavior, R2's supported
+backend reader and its mobile callers. Quick bounded results also carry
+query-free, request-scoped BaseTool attempt/retry/error/cancellation counts;
+this is observability, not a budget reservation or billing record. This is a
+partial R0/R1/R2/R6 result, not completion of any package: R0's complete
+scenario/owner matrix, R1's caller-independent disclosure and acquisition
+behavior, R2's supported
 candidate selection, R6's real consumer acceptance, and R7's matched-quality
 evidence remain open. R3/R4/R5 requirements are being applied with the first
 producer; their shared runtime, longitudinal and assistance-adaptation outcomes
@@ -1473,3 +1476,44 @@ selected-object path, source/claim support verification, purpose-specific
 stop criteria, chargeable-attempt accounting and whole-flow egress tests. No
 live provider, paid call, data write, app build, or native runtime was used.
 R0–R7 remain open.
+
+#### Implementation receipt — bounded tool-attempt accounting (September 30)
+
+Backend commit `bf4df8368` adds an opt-in `BaseTool` attempt observer scoped to
+quick research. It counts calls through `_execute` (including the existing
+retry loop), retry and exception outcomes, cancellation after dispatch, and
+provider-returned error-shaped results. Parallel child tasks share the
+request-local accumulator. Only fixed tool class names and integer counts are
+carried into `BoundedResearchUsage`; query text, tool arguments and exception
+messages are not retained there. This improves operating evidence for R1/R3
+without changing provider behavior, profile limits, persistence or public API.
+
+Evidence on the committed lane tuple workspace `69aa089c`, backend
+`bf4df836`, app `28717c7c`, Darwin 25.5 arm64:
+
+- Focused BaseTool retry/cancellation, quick-research propagation, bounded
+  result and source-metadata tests: **27 passed**. Ruff and formatting checks
+  passed.
+- Measured `MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true make -C travel-agent
+  ci-static`: passed in 108.559 seconds; mypy reported no issues across 1,891
+  backend source files.
+- Measured `PYTEST_ADDOPTS='-p no:cacheprovider' RUFF_NO_CACHE=true make -C
+  travel-agent merge-check BASE_REF=main`: **21,995 passed, 14 skipped, 53
+  xpassed, 0 failed** in 110.498 seconds. One local-Qdrant warning was emitted.
+- An earlier parallel run failed one unrelated 20 ms timing assertion in
+  `tests/core/test_owner_reads.py`; the case passed alone and the complete
+  committed merge check then passed. Failed and passing attempts remain in the
+  measurement record at `/tmp/adaptive-research-roadmap-measurements.json`;
+  the passing log is
+  `/tmp/adaptive-research-tool-attempt-usage-merge-check-committed-20260930-20260930T171106Z.log`.
+
+The observer counts `BaseTool._execute` dispatch attempts, not HTTP subrequests
+made inside a tool, token/provider billing, or settlement; direct graph runs
+outside this explicit quick-research scope are not included. Cancellation does
+not prove the remote provider stopped or did not charge. Error-shaped provider
+responses are counted by presence/status only; raw error details are not
+preserved. This is not a finite R3 reservation or recovery protocol, and it
+does not establish semantically sufficient research, honest empty/partial
+classification, claim entailment, or consumer value. No live provider,
+disposable-DB race, database write, app build, authenticated native readback,
+push or deployment was exercised. R0–R7 remain open.
