@@ -565,6 +565,13 @@ not take the ferry” retains the ticket, invalidates the occurrence, recomputes
 journey and story projections, cancels dependent pending consequences, and
 preserves an independently sourced later hotel check-in.
 
+Undoing a private owner correction is itself a revision-fenced, append-only
+owner command. It targets only the latest effective correction and restores
+the preceding effective correction, or the unchanged source-derived
+interpretation when no earlier correction remains. It never edits or recreates
+the original Source, and downstream projections must replay the same effective
+correction history before claiming the Undo is complete.
+
 Deletion or correction must propagate through content-addressed or typed causal
 lineage. Hiding one card while leaving the same false claim in Home, Places,
 Life, a story, memory projection, or pending action is non-conforming.

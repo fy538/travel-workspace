@@ -60,10 +60,14 @@ or change graph identity.
 A first crosswalk now
 separates source admission, family-reader behavior, and audience authorization;
 door-to-family recognition remains unproven. P1 still needs cross-door
-recognizable identity, source-bound component continuity, correction Undo and
-cross-door reconciliation. The backend's revisioned time-replacement path now
-appears as a user-confirmed fact in the canonical artifact read with correction
-provenance; a native editor remains gated on timezone-authoring behavior. PC
+recognizable identity, source-bound component continuity, and cross-door
+reconciliation. Revision-bound correction Undo is now an append-only command
+that restores the preceding effective correction (or the unchanged
+source-derived interpretation) through the existing owner projection; source
+evidence is never rewritten. The backend's revisioned time-replacement path
+now appears as a user-confirmed fact in the canonical artifact read with
+correction provenance; a native editor remains gated on timezone-authoring
+behavior. PC
 catalog mapping/use gates, other family readers, and native visual acceptance
 remain open. A new
 wave also connects `inspect_source` to owner-scoped exact source references:
@@ -1740,3 +1744,44 @@ preflight because it could not create its lane-local QA lock (`EPERM`). No
 native flow or screenshot was produced. Pinch/pan, VoiceOver, physical-device,
 and wider reader acceptance remain open; no backend/API or identity change was
 made.
+
+### September 30 revision-bound correction Undo
+
+Backend `d3730a8c4` adds `undo_correction` to the existing authenticated Intake
+owner command. Undo requires a command ID and expected owner revision, appends a
+new correction-history observation naming the exact latest effective semantic
+correction, and replays the remaining correction history. It restores the
+preceding effective correction or the source-derived interpretation; it never
+edits or recreates the Source. The owner projection reports Undo only for an
+eligible Mine reading with an effective semantic correction. JSON
+`owner_revision` ordering, then creation time and observation ID, keeps anchor
+compilation and canonical projection selection deterministic across independent
+reads; legacy observations without that field sort after revisioned owner
+events. No database migration was needed.
+
+Workspace OpenAPI snapshots are committed at `7ff1eb2c`; app reader, fixture,
+generated TypeScript and contract are committed at `14693c6d0`. The native
+reader offers `Undo correction` only when Mine supplies the current revision
+and correction target, sends the existing owner command, and refetches the
+exact artifact projection. Together never receives the control. The app change
+does not add a second correction owner or mutate the original.
+
+Validation: the backend focused offline suite
+(`tests/inbound/test_anchor_runtime.py`,
+`tests/core/test_canonical_artifact_projection.py`,
+`tests/inbound/test_intake_semantics_contract.py`, and
+`tests/api/test_intake_route.py`) passed (83 tests); the three disposable-Postgres
+candidate-owner lifecycle tests passed, including correction sequence/Undo,
+retry deduplication, stale and changed-payload conflicts, concurrency, and
+Source-deletion blocking. `make ci-static` passed with lane cache directories
+under `/private/tmp`; mypy checked all 1,890 backend source files. The app
+`npm run verify:merge -- --base 87eceee24512d9086962eea5b844cef9d7bffbeb`
+passed (1,287 suites, 9,103 tests, one snapshot). App typecheck, test-contract
+typecheck, generated-type check, targeted ESLint, QA scenario registry (31 IDs),
+app docs check, workspace `make docs-check`, and `git diff --check` passed.
+Local API startup was not available because `ANTHROPIC_API_KEY` was absent;
+database coverage used the isolated Postgres service and TestClient identity
+override. The service was stopped afterward and its named volume preserved.
+Native/device acceptance was not run, so no live API or native UI behavior is
+claimed. P1 identity, component, collection and reconciliation work, and the
+timezone-gated replacement-time editor, remain open.
