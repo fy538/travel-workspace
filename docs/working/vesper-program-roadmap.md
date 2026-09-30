@@ -293,10 +293,13 @@ errors and six existing warnings; native visual/device acceptance was not run.
 declarations when the OS omits a filename. In the shared composer, an
 unsupported archive remains visible for explicit removal; supported text can
 still be kept afterward. The backend remains the byte-level admission
-authority. Focused intake and draft suites passed **35/35**, app production and
-contract TypeScript checks passed, and targeted lint passed. This closes one
-unsupported file-preflight gap only; it does not establish every door's format
-coverage, email sender recovery, or signed-device acceptance.
+authority. App `2d4aec6be` also translates its raw server-side ZIP refusal into
+the same actionable recovery guidance in the compatibility share route.
+Focused intake, receipt, extension-host and route suites passed **75/75**;
+production/test TypeScript, surface docs and targeted lint passed (six existing
+warnings). This closes one unsupported-file feedback gap only; it does not
+establish every door's format coverage, email sender recovery, or signed-device
+acceptance.
 
 **Multi-photo Keep receipt — September 30:** app commit `3d866cd03` replaces
 the immediate receipt's lead-photo-only preview with a sequential viewer over
