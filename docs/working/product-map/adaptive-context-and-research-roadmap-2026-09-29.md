@@ -649,9 +649,11 @@ ledger now preserves dispatch uncertainty for existing voice-token actions;
 expired dispatched holds stay reserved until an authoritative outcome is
 resolved, while a retry that loses the dispatch fence cannot release the
 winner's reservation. This protects one existing commercial meter, but does
-not yet account for research-provider spend or complete R3. Shared execution,
-longitudinal change handling and assistance adaptation remain open. Receipts
-and exact limitations are in section 12.
+not yet account for research-provider spend or complete R3. Authenticated
+interactive web lookup and trip-direction web fallback now emit content-free
+`ai.research.live` shadow demand decisions; these neither reserve nor gate the
+provider call. Shared execution, longitudinal change handling and assistance
+adaptation remain open. Receipts and exact limitations are in section 12.
 
 ### Minimum complete first increment
 
@@ -1850,3 +1852,43 @@ one transient Jest worker crash, with the affected tests passing on focused
 reruns. However, `make verify-changed` has **not** produced one clean end-to-end
 exit-zero run on this lane; record the integrated gate as incomplete rather
 than converting separate passes into a whole-command pass.
+
+#### Implementation receipt — live-research shadow demand (September 30)
+
+The interactive `search_web` path and the trip-direction public-web fallback
+now call the existing `observe_capability` service with the authenticated actor,
+optional trip, and tool-call ID supplied by the concierge dispatcher. The
+capability event records policy decision and hashed action correlation only;
+query text, preferences, and tool arguments are not passed to commercial
+telemetry. Trip-direction runs satisfied by the existing world model do not
+produce a live-research observation. No API contract or default access behavior
+changes, and no provider is newly enabled.
+
+This is Phase 1 demand telemetry only. It does not create a chargeable-attempt
+reservation, billable usage record, per-user/provider budget, dispatch fence,
+or outcome reconciliation. `ai.research.live` remains outside the enforcement-
+ready capability set; R3 and the first connected producer remain open.
+
+Evidence on workspace `c7b1ca66005d51d0f433190c501961f0dc89227f`, backend
+`50203ff66` and app `28717c7cfec07b2313fe0e0cdff4431444df8335`:
+
+- `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider -q -c
+  pyproject.toml tests/concierge/test_web_search_handler.py
+  tests/concierge/test_trip_direction_research.py`: **42 passed**.
+- `RUFF_NO_CACHE=true ruff check` and `ruff format --check` passed for the five
+  changed backend code/test files. The initial invocation without
+  `RUFF_NO_CACHE` could not write the managed checkout cache and is not counted
+  as a code failure.
+- `RUFF_NO_CACHE=true MYPY_CACHE_DIR=/dev/null make -C travel-agent ci-static`
+  passed in **108.109 seconds**, including Ruff, structural gates and mypy.
+  Log: `/tmp/vesper-adaptive-context-r3-checks/live-research-shadow-demand-ci-static-20260930T223522Z.log`.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' RUFF_NO_CACHE=true make -C travel-agent
+  merge-check BASE_REF=main` passed in **105.717 seconds**: **22,032 passed,
+  14 skipped, 0 failed**. Log:
+  `/tmp/vesper-adaptive-context-r3-checks/live-research-shadow-demand-merge-check-20260930T223721Z.log`.
+- Backend commit hooks passed without exemptions with `RUFF_NO_CACHE=true`.
+  The first attempt failed only because the Ruff hooks could not write their
+  default cache in this managed checkout; the uncached retry passed all hooks.
+- Workspace `make docs-check` passed at the recorded three-repository tuple;
+  measurement log:
+  `/tmp/vesper-adaptive-context-r3-checks/live-research-shadow-demand-docs-check-20260930T224226Z.log`.
