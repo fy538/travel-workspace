@@ -1683,3 +1683,50 @@ page fetch, candidate-discovery acceptance, durable chargeable-attempt ledger,
 consumer readback, API/schema or app change was exercised. Anthropic and Tavily
 keys were unavailable in this checkout, so live prompt evaluation is unrun.
 This does not complete R1 or the first R0/R1/R2/R6 increment. R0–R7 remain open.
+
+#### Implementation receipt — typed answer-only public acquisition (September 30)
+
+Backend commit `93512c4d87ea81347ce7338269ace5886aaa21b8` connects answer-only
+research to the shared `PublicResearchRequest` adapter. It requires a separate
+typed public request before provider dispatch, skips catalog lookup when no
+catalog identity applies, bypasses LLM-generated search planning, and permits
+one bounded acquisition with no reflection-driven follow-up. Candidate
+discovery requires an explicit public location. Source kind, provider summary,
+publication date and truncation metadata survive into transient synthesis;
+blank-snippet results are not treated as citable evidence. An answer is
+withheld unless at least one URL-bound source citation carries an exact quote
+present in that excerpt. Acquisition outcome and tool-level usage are returned
+in the bounded result. No dossier quality gate or domain writer runs. The
+flaky elapsed-time assertion in `tests/test_parallel_tools.py` was replaced in
+separate test commit `7d110cb28` with an explicit overlap assertion.
+
+Evidence on the clean lane tuple workspace `82e2c546f10e307d09f5a71391f2172ad01ad106`,
+backend `93512c4d87ea81347ce7338269ace5886aaa21b8`, app
+`28717c7cfec07b2313fe0e0cdff4431444df8335`, Darwin 25.5 arm64, Python 3.14.6:
+
+- Focused request/acquisition, answer-only, bounded-result, graph, quick-
+  research, source-metadata, and parallel-overlap tests: **72 passed, 0
+  skipped** in 4.033 seconds. Log:
+  `/tmp/vesper-adaptive-context-roadmap-checks/answer-only-r1-focused-committed-20260930T202647Z.log`.
+- `MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true make -C travel-agent ci-static`
+  passed in **100.327 seconds**; Ruff, architecture/structural gates and mypy
+  passed. Log:
+  `/tmp/vesper-adaptive-context-roadmap-checks/answer-only-r1-static-committed-20260930T202859Z.log`.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' RUFF_NO_CACHE=true make -C
+  travel-agent merge-check BASE_REF=main` passed in **101.36 seconds**:
+  **22,025 passed, 14 skipped, 1 xfailed, 52 xpassed, 0 failed**. Two local-
+  Qdrant payload-index warnings were emitted. Log:
+  `/tmp/vesper-adaptive-context-roadmap-checks/answer-only-r1-merge-check-committed-20260930T202709Z.log`.
+- Exact command/revision/environment records are appended to
+  `/tmp/adaptive-context-r1-measurements.json`. Backend commit hooks passed
+  without exemptions or baseline changes.
+
+This still does **not** provide a caller-independent privacy classifier or a
+selected-original product caller: the typed `public_query` is an explicit
+caller assertion that its contents are suitable for public disclosure. OCR,
+image-derived and adversarially synthesized disclosure cases are not covered
+by a whole-flow owner-backed boundary. Exact quote presence is provenance, not
+semantic entailment. There is no live provider/model evaluation, durable
+chargeable-attempt reservation, page fetch, new paid consumer, API/schema or
+app change, persistent research storage, database mutation, native readback,
+push, deployment or publication. R1 and R0–R7 remain open.
