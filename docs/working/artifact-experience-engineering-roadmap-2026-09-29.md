@@ -405,9 +405,35 @@ projection into a new canonical owner.
 | Claims and correction | Intake observations/candidate revisions in `travel-agent/backend/core/db/intake_semantics.py`; source-bound projection in `travel-agent/backend/core/canonical_artifact_projection.py` | The reader still exposes three gated owner commands: `wrong_time`, `separate_from_occasion`, and `keep_occurrence_forget_interpretation`. These now carry a stable command ID and expected numeric revision. The owner contract also accepts a typed `replace_time` correction and replays it through the canonical anchor owner, but the mobile reader does not yet expose a replacement editor: preserving or explicitly selecting the source time zone remains unresolved. |
 | Place and occurrence context | Physical `EntityRef` vocabulary in `travel-agent/backend/core/entity_types.py`; owner-scoped Experience Graph rows bridged by the artifact projection route | Place/time/Occasion/Plan context can be read from its existing owners. The place-like entity capability sets are not a cultural-work identity registry. |
 | Selected component | Intake observations and `evidence_locator` validation in `travel-agent/backend/core/intake_evidence.py` | Evidence may point back into a source, but this is not yet a stable part identity with a normalized source-revision-bound text/image selector. The current reader opens the whole source. |
-| Life organization | Derived groups and membership controls in `travel-agent/backend/life_projection/` and `travel-agent/backend/core/db/life_organization.py` | There is a source-backed organization/read path. This inventory does not equate that derived organization index with the accepted user-owned, many-to-many consumer Collection owner or its delete/removal semantics. |
+| Life organization | Rebuildable viewer-specific groups and membership controls in `travel-agent/backend/life_projection/organization.py`, `travel-agent/backend/core/db/_tables/life_organization.py`, and `travel-agent/backend/core/db/life_organization.py` | Groups, memberships and controls are keyed by `viewer_id` and `projection_version`; memberships record evidence-backed derived relations to owner records. Durable controls rename a derived group, detach one derived membership, or undo that control. They provide useful revision/CAS and reversible-control patterns, but do not create or own a user's canonical Collection or its shared audience. |
+| Existing editorial collections | Public `/api/collections` reads in `travel-agent/backend/api/routes/collections.py`, backed by editorial guide bundles in `travel-agent/backend/core/models/collections.py` and `travel-agent/backend/core/db/collections.py` | This is content for Discover, with typed editorial member entity references and published/draft state. Its API is not the accepted personal/shared Collection owner, and its member schema does not point to stable consumer Thing references. |
 | Contextual selection and prepared additions | Strategy Technical's existing Source Contribution discovery, work, result, serving, and publication path (section 12) | There is a separate bounded candidate/result pipeline to consume. The artifact reader does not yet bind a selected target/component/context to that pipeline or claim prepared-result persistence as a kept edition. |
 | Kept edition | No kept-edition target or exact-snapshot action is exposed by the current canonical artifact projection/reader route | The current reader can reopen its original owner projection; it does not establish user-owned persistence of a generated explanation or a stable edition reference. P4 remains separate. |
+
+#### Collection owner comparison — September 30
+
+The accepted consumer Collection semantics need one canonical, many-to-many
+owner whose membership points at stable kept-thing references and whose
+collection-level audience is shared as a whole. The existing Life organization
+tables are a derived, viewer-specific projection: they use `(viewer_id,
+projection_version, group_key)` identities, persist evidence and revisions for
+derived relations, and preserve per-viewer exclusions and control history. The
+materializer accepts owner/evidence-backed proposals and can supersede stale
+derived rows; it does not author the underlying thing or collection. Those
+revision, idempotency, detach and Undo mechanics are candidates to reuse behind
+the canonical owner, not proof that the projection itself is that owner.
+
+The existing editorial `collections` API is a separate domain: it exposes
+published public guide bundles with editorial metadata and a bounded set of
+catalog-entity member columns. It does not provide the accepted user-owned
+Collection, cross-member audience, or stable kept-thing membership contract.
+Accordingly, the safe mapping is to preserve both systems in their current
+roles and define the consumer Collection owner as a distinct canonical owner;
+Life may read/project that owner later. Do not migrate consumer writes into
+either existing model by renaming or widening its current projection. A durable
+implementation still depends on the P0 reviewed ThingRef/reconciliation
+boundary and the collection-owner contract; no schema or runtime behavior is
+changed by this mapping.
 
 The first delivered reader-mode matrix is deliberately narrow:
 
@@ -1132,7 +1158,7 @@ checkpoint. Retire replaced adapters only after consumer/readback coverage.
 | Decision | Recommendation or current boundary | Blocks | Does not block |
 | --- | --- | --- | --- |
 | Thing reconciliation, components and cultural subjects | Approve a thin mapping, shared selectors and cultural owner in P0; review physical capabilities, external ID namespaces and typed readings | Incompatible identity/schema implementations | Original rendering against existing source references |
-| Consumer collection owner | Product semantics are accepted: user-owned collections, many-to-many membership, whole-collection visibility, and explicit Remove/Delete. Map the technical owner and stable member references; do not reuse editorial guide tables or the derived Life index by name. Vesper-initiated additions to shared collections remain a separate pending policy choice. | Durable collection writes and corresponding sharing | Single-object private reader and owner-linked discovery |
+| Consumer collection owner | Product semantics are accepted: user-owned collections, many-to-many membership, whole-collection visibility, and explicit Remove/Delete. Code inspection confirms that the viewer-scoped derived Life organization and public editorial guide collections are different owners; preserve them as read/projection and editorial systems. Define a distinct canonical consumer Collection owner over the reviewed stable ThingRef boundary. Vesper-initiated additions to shared collections remain a separate pending policy choice. | Durable collection writes and corresponding sharing | Single-object private reader and owner-linked discovery |
 | Kept edition after supporting withdrawal | Recommended default: withhold affected content, preserve only permitted metadata, offer a new independently supported version; exact policy unadopted | Shared derivative retention and partial salvage promises | Private originals and edition mechanics tested without disputed shared material |
 | Offline retained material | Adopt what can be cached, for how long and how reconnect handles loss; no instant remote revocation promise | Persistent shared offline caches and their user promise | Online reader, locally available independently eligible originals under existing rules |
 | Automatic preparation | Separate selection refresh from generation; define allowed triggers and budget owner | New proactive generation/background posture | Existing explicit requests, pure reads and cheap authorized selection |
