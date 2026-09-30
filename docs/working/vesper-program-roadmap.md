@@ -56,6 +56,27 @@ owns supporting technical guidance, not another schedule.
 
 ## Inspected baseline and publication state
 
+### September 30 integration checkpoint (UTC)
+
+The backend Home follow-up and CI cleanup landed through PR #237 at
+`3c170d21fc0ca9231b956f2b9de7f9f195231768`; the app Home/capture implementation
+and CI cleanup landed through PR #202 at
+`87eceee24512d9086962eea5b844cef9d7bffbeb`. Both passed their required hosted
+checks. Workspace PR #37 now consolidates the committed local Places design
+work and the committed September 28 product-direction branch, while preserving
+the newer implementation history when their older roadmap versions conflicted.
+Its child lock names these exact merged revisions. This checkpoint supersedes
+the older publication-state observations below, not their bounded evidence.
+
+Uncommitted design/strategy drafts in the canonical workspace and the
+product-direction checkout remain owned by their sessions; they are not
+included merely because committed history was consolidated. Seven dependency
+upgrade PRs remain separate: their failed/stale checks and native/runtime
+compatibility need review rather than treating them as completed product work.
+The [CI plan](../reliability/CI%20Plan.md) owns the new required-check policy.
+
+### Prior dated publication observation
+
 The recovery work is merged on remote main; the subsequent Home package is
 published but **not merged**. Remote branch heads and all three PR states were
 rechecked on September 28; the table below is the published baseline, not a

@@ -173,7 +173,10 @@ a new test platform or blanket-delete test directories to meet a count target.
   The focused workflow regression first failed on the duplicated-PR configuration
   and then passed all 15 cases after cutover (measured 1.107s locally). This proves
   workflow/aggregate behavior, not final hosted candidate success or merge latency.
-  Final workflow-only child commits still require hosted checks before landing.
+  Final workflow-only child commits passed hosted checks and landed: backend
+  PR #237 at `3c170d21fc0ca9231b956f2b9de7f9f195231768`, app PR #202 at
+  `87eceee24512d9086962eea5b844cef9d7bffbeb`. The workspace now pins those
+  merged revisions; its own private-checkout and combined gate remain separate.
 
 GitHub Actions was disabled in workspace and backend at the September 7 audit.
 It has been re-enabled. Their main-branch protection had unrelated frontend
