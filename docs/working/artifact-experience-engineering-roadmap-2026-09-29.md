@@ -410,11 +410,14 @@ artifact can be shared.
 | Together · canonical artifact | Not served by this private owner projection until the graph-owned sharing authorization path exists. Static shared fixtures test presentation/redaction only. | Production multiplayer artifact reading, membership authority, or publication. |
 | Selected component, catalog, contextual discovery, kept edition | No stable selected-part reference or artifact-bound prepared-result/saved-edition handoff in this reader. | OCR region identity, external provider rights, generated context, or silent persistence. |
 
-The format-reader tests, owner-original checks, email bundle rejection, and
-private/Together fixtures give bounded evidence for these stated behaviors.
-This crosswalk does not prove that every door recognizes every family; that
-claim remains unsupported until cross-door identity and owner readback are
-implemented and tested.
+The format-reader tests, owner-original checks, email bundle rejection,
+private/Together fixtures, and September 30 disposable-Postgres artifact-route
+replay give bounded evidence for these stated behaviors. The route replay
+proves persisted owner readback, non-owner denial, withdrawal, and explicit
+submission deletion for one confirmed Intake candidate. This crosswalk does
+not prove that every door recognizes every family; that claim remains
+unsupported until cross-door identity and owner readback are implemented and
+tested.
 
 Descriptor support proves only the confirmed-reader route. It does not establish
 which source doors or representations reach that route. The current door and
@@ -427,11 +430,12 @@ format boundary is:
 | Backend byte admission and normalization | The active Intake v2 boundary supports server-decodable image, audio, text, and calendar sources. The normalizer registry includes JPEG/PNG/GIF/WebP, text/calendar, and audio metadata normalization; the audio normalizer still requires a separate transcription adapter. PDF and PKPass normalizers exist but V2 rejects them until the scanner lane is enabled; HEIC/HEIF is rejected. | A registered parser is not permission to admit a format; a MIME normalizer is not proof of semantic extraction or a family reader. PDF/Wallet support, HEIC conversion, mixed-bundle partial success, and every email combination remain unsupported. |
 
 The reader-mode matrix now has code-backed boundaries for its first app doors,
-including the all-or-nothing email case. P0 still needs sparse-history and
-source/claim/authority lifecycle replay fixtures, selected-part representation
-fixtures, and a clearer caller-visible rejection/receipt for unsupported email
-content. Exercise those against the owner routes; do not change Orchestration's
-transport or enable a scanner from this artifact lane.
+including the all-or-nothing email case and one database-backed confirmed-
+artifact lifecycle through the canonical reader route. P0 still needs
+sparse-history and selected-part representation fixtures, plus a clearer
+caller-visible rejection/receipt for unsupported email content. Exercise those
+against the owner routes; do not change Orchestration's transport or enable a
+scanner from this artifact lane.
 
 ### Typed reading contract
 
@@ -1403,7 +1407,8 @@ generated API snapshots (`f3b693890`), and a registered exact-original reader
 QA scenario (`f84ea3419`). The September 30 continuation added an app-side
 original-to-record link (`fa07c85c4`) and disposable-Postgres owner-readback
 coverage through the authenticated Intake route (`5dbc29353`, extended by
-`ac946ba0b`). Focused evidence:
+`ac946ba0b`), followed by canonical artifact-reader lifecycle coverage
+(`9c775cd03`). Focused evidence:
 
 | Boundary | Command | Result and limit |
 | --- | --- | --- |
@@ -1425,6 +1430,12 @@ coverage through the authenticated Intake route (`5dbc29353`, extended by
 | App reader fallbacks | `npm test -- --runInBand __tests__/components/canonicalArtifactCard.test.tsx` | 18 passed at app `d7401a2ec`, covering ticket/place/work readers and generic fallback for passage/dish/practical-record descriptors. |
 | App static/registered inventory | `npm run typecheck`; targeted `npm run lint -- __tests__/components/canonicalArtifactCard.test.tsx`; `npm run qa:polish:scenarios` | Passed; scenario inventory is 31 registered IDs. No screenshot was captured and this is not native visual acceptance. |
 | Workspace documentation | `make docs-check` (after `make docs-status-sync`) | Passed on workspace `f3b693890` plus this roadmap and generated-current-state edits in the working tree; both receipts landed together as workspace `ab0a3522`. Includes governance, child governance, inventory, spine, canon, release, generated status, links, compatibility and Home-surface checks. |
+
+### September 30 lifecycle extension
+
+| Boundary | Command | Result and limit |
+| --- | --- | --- |
+| P1 canonical artifact reader lifecycle | Backend commit `9c775cd03`; `DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_lifecycle_20260930_01 PYTHONPATH=. .venv/bin/python -m alembic upgrade head`; `TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_lifecycle_20260930_01 TEST_DATABASE_DISPOSABLE=1 TRAVEL_APP_ROOT=../travel-app SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/inbound/test_candidate_owner_lifecycle_postgres.py -q`; offline `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider -m 'not requires_postgres and not requires_api_keys and not requires_dogfood_wedge' tests/inbound/test_intake_semantics_contract.py tests/core/test_intake_anchor_originals.py tests/core/test_canonical_artifact_projection.py tests/api/test_artifact_projections.py tests/inbound/test_anchor_runtime.py -q`; `ruff check --no-cache tests/inbound/test_candidate_owner_lifecycle_postgres.py`; `ruff format --check --no-cache tests/inbound/test_candidate_owner_lifecycle_postgres.py` | Three Postgres lifecycle tests passed. The authenticated canonical artifact route proves persisted readback of a confirmed source-bound candidate, non-owner denial (404), candidate withdrawal (404), and 404 after actual `delete_submission`; source-loss restore remains fenced. The new database was migrated and dropped inside this lane's PostGIS service, then the service was returned to its prior stopped state; the lane's default database and volume were preserved. The 66-test offline source/reader suite, Ruff, formatting, and backend commit hooks passed. TestClient uses an identity dependency override; this is not deployed-service or native/mobile acceptance, and no schema/API contract changed. |
 
 Native acceptance, model comparisons, human preference and economic measurements
 remain future evidence—not completed results. On September 30 the assigned
