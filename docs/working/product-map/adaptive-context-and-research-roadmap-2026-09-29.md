@@ -452,7 +452,9 @@ Older workspace memory/contribution status paragraphs and worker budget prose
 conflict with newer implementation. Preserve their policy rationale, but have
 the owning package reconcile status text when adopting work. The September 26
 product-map percentages and production observations are dated evidence, not
-updated estimates supplied by this audit. No percentage complete is claimed.
+updated estimates supplied by this audit. No weighted percentage complete is
+claimed because R0–R7 have materially different scope and no weighted task
+ledger exists. The current package-closure count is recorded below.
 
 ## 4 Research conclusions translated into engineering choices
 
@@ -655,6 +657,13 @@ interactive web lookup and trip-direction web fallback now emit content-free
 provider call. Shared execution, longitudinal change handling and assistance
 adaptation remain open. Receipts and exact limitations are in section 12.
 
+**Status measure (September 30): 0/8 packages fully accepted (0% package
+closure).** This is not a claim of zero engineering progress: partial slices
+have shipped across R0/R1/R2/R3/R6/R7, but no package meets its complete
+acceptance definition. The roadmap does not support a defensible weighted
+“percent of effort executed” until its uneven package scopes are decomposed
+into weighted, verifiable acceptance items.
+
 ### Minimum complete first increment
 
 The rows below distinguish first-use correctness from later optimization. They
@@ -720,7 +729,7 @@ identity from what the selected evidence is allowed to establish.
 | --- | --- | --- | --- |
 | **Ticket / confirmation:** `submission_id + object_id`, selected Source ID and captured content hash/revision | Intake owns custody and exact original bytes; Life refind/open is the current consumer | Intake correction, expiry, deletion or revocation; re-read the selected revision, never substitute a newer one | A confirmation supports its recorded details, not that the trip or visit occurred. `tests/inbound/test_chat_keep_handoff_postgres.py`, `test_email_capture_postgres.py`, and `test_original_source_reader_postgres.py` cover custody, replay/owner denial and stale selection against disposable Postgres; hosted bytes and native display are separate evidence. |
 | **Venue / work anchor:** canonical type + ID, plus the selected source/owner revision when that owner exposes one | Place/Experience and entity identity owners; Places and governed lived-experience readers consume them | Correct the canonical identity or source binding through its owner; refresh operational facts from their provider owner | A matching title is not identity, a Place match does not resolve every non-place work, and an anchor does not prove a visit. `backend/places/FEATURE.md` and `backend/lived_experience/FEATURE.md` describe current read boundaries; a uniform cross-kind selected-work revision/reader is not yet evidenced. |
-| **Text passage:** Source ID + source revision/hash + page/frame/character locator in the selected representation | Intake owns the original; bounded normalizers/evidence locators and the authenticated original reader are current primitives | Invalidate the locator when its source representation changes; correction must select the new revision explicitly | A locator identifies evidence, not truth or permission to re-share it. `backend/inbound/normalizers.py`, `core/intake_evidence.py`, and the original-reader tests validate bounded locators and source identity; general stable component selection/refinding remains open. |
+| **Text passage:** Source ID + source revision/hash + page/frame/character locator in the selected representation | Intake owns the original; the owner-scoped reader now refinds bounded UTF-8 spans from exact `text/plain` sources, while evidence locators bind source and revision | Invalidate the locator when its source representation changes; correction must select the new revision explicitly | A locator identifies evidence, not truth or permission to re-share it. `backend/inbound/normalizers.py`, `core/intake_evidence.py`, and the selected-original reader validate the plain-text span case; PDF/page, OCR/region, normalized-representation selection and native consumer adoption remain open. |
 | **Photograph:** Source ID + original content hash/revision; any region must carry its own bounded locator | Intake owns custody; Life's exact original reader is the current receiving seam | Recheck custody, expiry, scan state and revision; correct/remove the source or withhold the stale region | The original can be inspected, but a selected region, OCR corpus, or inferred occurrence is not implied. Image normalization is metadata-only; semantic pixel processing is separate. Original-reader tests do not prove region retrieval, OCR recall, or device presentation. |
 | **Practical record:** trip ID + receipt/expense or Commitment identity and current owner state | Expenses owns receipt OCR and settlement records; Plan/Commitment/provider owners own arrangements and operational truth | Use the owning dispute/correction/update flow and verify authoritative readback | OCR and a receipt are evidence, not a confirmed expense split, payment, booking, or occurrence. `tests/expenses/test_receipt_ocr.py` and expense lifecycle suites prove domain behavior, not research selection or cross-surface use. |
 | **Human contribution:** Occasion/contribution ID + contributor, exact Source revision, current membership/audience and purpose grant | Contribution/Occasion/Relationships owners; Life and social projections consume only admitted owner state | Contributor correction/withdrawal, grant or membership change; invalidate only dependent projections and re-read current authority | Display, AI use, retention and onward sharing are separate grants. `docs/systems/contribution-and-consequence.md` is the accepted contract; experience-graph and source-contribution suites cover portions, not a complete research-from-contribution journey. |
@@ -1950,3 +1959,30 @@ provider enablement, product policy, quota allocation, provider-cost claim,
 deployment or publication changed. This is a narrow R3 observability slice;
 durable chargeable-attempt accounting, reservation, reconciliation and the
 first connected producer remain open. R0–R7 remain open.
+
+#### Implementation receipt — revision-bound plain-text component refind (September 30)
+
+Intake now exposes a backend-only adapter that refinds a bounded character
+span from the currently retained exact `text/plain` original. The locator must
+bind the selected Source ID and full source-content SHA-256; the adapter
+rechecks current owner/custody/revision through the existing exact-original
+reader, decodes strict UTF-8, caps spans at 20,000 characters, and rejects
+unsupported media, mixed coordinate systems, invalid encoding and ranges that
+no longer fit the selected source. Selected text is excluded from repr and is
+neither logged nor persisted. No API, generated type, mobile consumer, PDF/OCR
+support or normalized-excerpt claim was added. This is a partial R2 producer
+primitive; general component selection/refinding and R6 consumer acceptance
+remain open. The package-closure count remains 0/8.
+
+Backend commit `63ac861ef` contains this slice. On the same tree before commit:
+
+- Focused offline evidence and locator tests: **22 passed**. Ruff check,
+  format-check and `git diff --check` passed.
+- `make ci-static` passed in **109.379 seconds**, including architecture gates
+  and mypy. Measurement:
+  `/tmp/vesper-adaptive-context-r2-tests/measurements.json`; log:
+  `/tmp/vesper-adaptive-context-r2-tests/logs/selected-text-component-ci-static-20260930T232525Z.log`.
+- The disposable-Postgres assertion is **unverified**. The lane's read-only
+  service check failed because this session cannot access the Docker socket;
+  no database was started, provisioned or modified. This receipt does not claim
+  the Postgres case passed.
