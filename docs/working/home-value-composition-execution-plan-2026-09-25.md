@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: codex/home-value-delivery lane
 created: 2026-09-25
-last_verified: 2026-09-29
+last_verified: 2026-09-30
 expires: 2026-10-25
 why_new: Gives one complete Home implementation assignment after separating the program queue from historical receipts; existing design contracts define behavior but not this bounded delivery package.
 depends_on:
@@ -14,7 +14,25 @@ depends_on:
 
 # H1 — Complete Home value delivery on the recovered system
 
-## Status and intended outcome
+## Current disposition
+
+As of the September 30 [program rebaseline](vesper-program-roadmap.md), H1 is
+the implementation/evidence reference, **not a fourth execution queue**. Its
+backend and app work landed through PRs #237 and #202; the program records the
+workspace publication boundary. D1 owns remaining capture delivery, D2 owns
+Home/Places receiving and polish, and D3 owns practical integration/option
+quality. Artifact identity, focused readers, collections and Life move to the
+Strategy roadmap; shared context/research/runtime work moves to Strategy
+Technical. Do not dispatch overlapping assignments from older sections below.
+
+Detailed receipts remain valid only for their recorded revisions and scope.
+The full Home matrix remains MIXED; recurring real supply, authenticated
+all-door readback and signed native/provider paths are not certified by this
+rebaseline. Historical full-gate instructions below are not current merge policy:
+root AGENTS and the CI Plan now use change-aware local preflight with explicit
+bases and retain required hosted checks.
+
+## Historical status and intended outcome
 
 The core Home connections are implemented in the published, unmerged
 `codex/home-value-delivery` candidate. The reading and exact-context Chat H1-A

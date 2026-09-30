@@ -1,9 +1,9 @@
 ---
 doc_type: working
 status: active
-owner: founder / program roadmap owner / context and research engineering
+owner: founder / Strategy Technical lane
 created: 2026-09-29
-last_verified: 2026-09-29
+last_verified: 2026-09-30
 expires: 2026-10-13
 why_new: The artifact experience plan owns recognizable objects and readers, while the program owns dispatch. Neither should absorb this detailed cross-system code audit, nine-topic research synthesis, and proposed implementation dependencies for shared context, discovery, research, maintenance and evaluation.
 supersedes: []
@@ -30,13 +30,61 @@ path is **selected artifact or component → applicable context → worthwhile
 candidate → bounded acquisition → supported treatment → maintained receiving**.
 Some pieces work for Places or Trips but are not general artifact capabilities.
 
-This is a **supporting plan, not an activated execution lane or another queue**.
-The [program roadmap](../vesper-program-roadmap.md) owns assignments. Its newer
-[delivery-lane version](../vesper-program-roadmap.md)
-was the execution reference inspected here. Existing capture/share work and
-the [Home package](../home-value-composition-execution-plan-2026-09-25.md) retain
-their owner. No provider, background posture, sharing policy, deployment or
-release is enabled by this document.
+**Second-pass verdict:** keep this architecture, but deliver it in thinner
+connected increments. Current authority, evidence, spending and publication
+safeguards accompany the first producer; sophisticated indexing, archive-wide
+maintenance and learned personalization do not. Start with selected originals
+and existing owner reads, and let measured failures justify additional machinery.
+
+This is the **Strategy Technical execution roadmap** under the September 30
+[three-lane program](../vesper-program-roadmap.md#2-three-lane-ownership).
+Execution has not started merely by editing this plan. This lane owns its
+package sequence and receipts; the program owns cross-lane boundaries rather
+than a permission queue for ordinary implementation. Capture transport and
+Home/Places remain with Orchestration; artifact identity, focused readers,
+collections and Life remain with Strategy. No provider, background posture,
+sharing policy, deployment or release is enabled by this document.
+
+## 0 Strategy Technical lane execution boundary
+
+**First assignment:** R0, the shared R1 acquisition boundary and an existing-original
+R2 adapter, with the first-producer R3/R4/R5 safeguards and R7 comparisons.
+Deliver actual owner-callable request/result/readback behavior, not just schemas
+or another unconnected research harness. Use the existing supported consumer
+contract first; adopt new artifact/component identities when Strategy lands them.
+
+**Write ownership:** general context/evidence selection, public acquisition,
+evidence fidelity, prepared-result execution/reuse, budget/retry/publication
+controls, relevance maintenance and their evaluations. Extend existing workers,
+fetching, retrieval and generation infrastructure rather than creating another
+framework. Artifact P3 and shared P5 runtime requirements are implemented here,
+not independently in the Strategy lane.
+
+**Consumer boundary:** R6 owns backend result/readback contracts and conformance
+fixtures. Strategy owns the focused-reader/data facade, exact kept editions and
+Life; Orchestration owns Home/Places receiving and practical owner adapters.
+R6's native acceptance requirements below remain whole-experience requirements,
+not permission to edit those screens in parallel. Inspect their landed adapters
+and attach evidence; complete the producer-owned connection and name any missing
+consumer adoption without declaring end-to-end delivery complete.
+
+**Dependencies and useful fallback:** begin with current source identity,
+selected-original owner reads, evidence fidelity and bounded public-request
+mapping. New component/collection modes consume Strategy P0/P1; exact retained
+editions consume P4; unsupported modes remain disabled. A missing native reader
+does not block the producer path, and mocked receiving does not certify it.
+No cultural catalog store, durable artifact owner, notification policy or
+practical provider action is invented here to avoid a dependency.
+
+**Operating agreement:** start from the program's common three-repository tuple
+in a complete coordinated worktree. Keep one current assignment and its receipts
+here. At start and meaningful landing checkpoints, inspect landed dependencies;
+do not dispatch to other chats or modify their checkouts. Record the exact
+missing interface here and continue the independent work above. Follow the
+program's generated-file, migration, runtime and landing rules.
+
+The research, code findings and safety staging below remain intact. This pass
+assigns implementation ownership; it does not approve pending product policy.
 
 ## 1 Scope and evidence baseline
 
@@ -44,34 +92,36 @@ This is a cross-repository investigation of the value-delivery system, including
 its mobile consumers. It is not a line-by-line review of every product feature,
 an independent security certification, or an observation of deployed behavior.
 
-Inspection date is September 29 in New York; the final evidence snapshot was
-taken around September 30 at 03:10 UTC. Branches advanced during the inspection.
+Inspection date is September 29 in New York; the second-pass evidence snapshot
+was taken around September 30 at 03:42 UTC. Branches advanced during the inspection.
 The table records the later observed state rather than repeating an older
 claim that all local main checkouts lag implementation.
 
 | Repository or working material | Inspected state | Evidence boundary |
 | --- | --- | --- |
-| Canonical workspace | `8a14d87da8d4cab3cf86c59386c1fb3eafdc900d`, main | Extensive pre-existing uncommitted design/strategy work; preserved |
-| Delivery workspace | `1df49834`, `codex/home-value-delivery` | Newer program/H1 guidance and concurrent working changes; not copied wholesale |
+| Canonical workspace | `7a5d434eb6025e792c0e1dd930d7d295a46f5304`, main | Another session landed prior drafts, accepted Life decisions and the artifact roadmap; only this roadmap has current working changes. This task made no commit |
+| Delivery workspace | `7a5d434eb6025e792c0e1dd930d7d295a46f5304`, `codex/home-value-delivery` | Updated integration/program guidance; working changes and remote publication are separate evidence |
 | Backend main and delivery | `3c170d21fc0ca9231b956f2b9de7f9f195231768` | Clean at inspection; merge from `ffe147856` has no code diff, so reads at that earlier revision still apply |
 | App main and delivery | `87eceee24512d9086962eea5b844cef9d7bffbeb` | Clean at inspection; Expo `~55.0.31`, React Native `0.83.10`; no upgrade proposed |
-| Strategy workspace | `530f0459ea6e36e3822073f3546fbcd073380454` plus working changes | September 29 product amendments and artifact roadmap include uncommitted material; direction/planning evidence, not implementation |
+| Strategy workspace | `ab1155a5dabc1ce6dac2d09e2f5fe2844f407ea8` | Workspace decisions and artifact roadmap landed in canonical main; strategy-child Thesis/Model reconciliation still has working changes, not runtime implementation |
 
 The strategy roadmap changed during this investigation to add catalog anchoring
 and newer artifact design references. The inspected file's SHA-256 was
-`73aeec70d9a1ce830cedf7e0a60d4309a17fb36086374a36ea5550a59b1bc594`.
+`2c86ab91ce338f889b5174b043878f801e52ab7eb314bd218f299f4d2bd1b0fc`.
 Re-read it before admission rather than treating this snapshot as its latest
-word. The [Artifact experience engineering roadmap](../artifact-experience-engineering-roadmap-2026-09-29.md)
-was inspected in the product-direction worktree. It is now integrated into this
-repository; the relative link follows that integration without changing the
-dated evidence above.
+word. That hash is historical, not the latest draft. The September 30 program
+pass consolidates the completed Strategy refinements into the canonical
+[Artifact experience engineering roadmap](../artifact-experience-engineering-roadmap-2026-09-29.md)
+and adds lane boundaries; re-read the current file at execution intake.
 
 Three read-only investigators covered ingestion/retrieval/research,
 runtime/temporal/delivery, and memory/privacy/evaluation/mobile. The coordinator
 read authority documents, checked disputed paths and reconciled their findings.
-No product tests, live model calls, provider benchmarks, database races,
-simulator captures or production probes ran in this investigation. Test paths
-below identify **defined coverage**, not newly passing evidence. H1's previous
+The second pass adds fresh primary-source research and focused offline checks
+of the existing research/fetch/retry seams; exact outcomes are in section 12.
+No live model calls, provider benchmarks, database races, simulator captures or
+production probes ran. Other test paths below identify **defined coverage**,
+not newly passing evidence. H1's previous
 receipts remain evidence only for their recorded environments and revisions.
 
 ## 2 Product requirements and authority
@@ -81,10 +131,22 @@ and [collections decision](../../decisions/2026-09-28-collections-are-the-spine.
 alongside the [contribution contract](../../systems/contribution-and-consequence.md),
 not as though its older entry table overrides their explicit amendments.
 
-The latest strategy-lane Thesis/Model and September 29 record-value amendment
-make recognizing, keeping, enjoying and refinding independently complete value.
-Those current working changes must be reconciled by their owner when landed;
+The accepted [September 29 record-value amendment](../../decisions/2026-09-29-record-as-first-class-value.md)
+makes recognizing, keeping, enjoying and refinding independently complete value.
+The strategy-child Thesis/Model reconciliation is still working material;
 this roadmap does not declare all affected contracts updated.
+
+The accepted [September 29 Life model](../../decisions/2026-09-29-life-model-occasions-collections-and-sharing.md)
+also governs these adapters: occasions are things holding originals; spans such
+as trips are collections, not another nested consumer hierarchy. Life reads the
+record through Collections, Time, Places and People. A thing's back shows the
+viewer's own facts, but notes and replies in a shared collection are shared;
+there is no private annotation layer inside that collection. Leaving takes the
+member's things out while the rest remains. Connected-inbox finds stay private
+until the separately required policy clearance, and never enter shared
+collections automatically. These are accepted product requirements, not proof
+of implemented schemas. They do not retire operational Trip/domain authority
+or decide general automatic sharing, notification cadence or catalog mechanics.
 
 The engineering requirements are:
 
@@ -265,6 +327,24 @@ canonical public destination fields go to a fixed public search, while private
 preferences stay in private synthesis. Generalize this boundary, not the full
 private prompt.
 
+**Acquisition fidelity needs an explicit contract.** The actual
+`backend/core/tools/web_search.py:106` requests snippets with
+`include_raw_content=False`. Its result adapter keeps title, URL, content and
+score, while `source_converters.py:46` calls those attributable results `page`.
+That distinguishes them from a provider-written overview, but does not prove
+Vesper fetched the full page. The converter accepts publication metadata, yet
+the inspected tool projection drops it; `_compress_sources` in
+`agents/helpers.py:42` also omits title/publication metadata when rebuilding
+low-credibility excerpts. A converter-only metadata test is therefore not
+end-to-end preservation evidence.
+
+Reuse `backend/inbound/web_retrieval.py` safeguards for any new direct page-read
+adapter: public-address checking, pinned connection resolution, revalidated
+redirects, response bounds and representation hashes. This is a worker-oriented
+HTML fetcher, not an arbitrary browser or authenticated connector. Share reviewed
+primitives without reversing module ownership or blocking an async worker.
+Retrieval safety, permitted retention and semantic claim support remain separate.
+
 ### 3.6 Runtime and temporal execution
 
 Explicit Source production is already connected:
@@ -315,6 +395,22 @@ Budget controls differ by path: city seeding now uses an atomic Redis
 reservation (`research_jobs.py:447,542`); Places budget checks still count
 before calling and record afterward. The latter is not an atomic shared spend
 reservation. A universal daily cap is not established by either local example.
+
+Provider-level retry and circuit breaking already exist in
+`backend/core/tools/registry.py:58` and `web_search.py:23`. A single routed
+operation can include multiple provider calls and up to three local attempts
+per tool, before any workflow retry. These attempts need the same aggregate
+deadline/spend envelope; do not add another independent retry layer. The local
+backoff is deterministic, so outage bursts need a measured jitter/backpressure
+test if this path gains wider traffic. This is hardening, not a reason to
+replace the worker system.
+
+Trace spans and shared accounting already exist. Extend their correlation,
+not their raw-content collection: `quick_research.py:60` currently logs a query
+prefix. Generalizing callers requires checking logs and diagnostics as well as
+provider arguments, so private context cannot escape through observability.
+Opaque request/attempt/result identities and content-minimized reason codes
+should explain which stage failed; tracing is not a second evidence store.
 
 ### 3.7 Mobile receiving and notification ownership
 
@@ -379,6 +475,37 @@ better understood properties.
 
 The primary-source evidence and limitations are recorded in section 11.
 
+### What the second research pass changes
+
+Fresh research supports a **hybrid, progressively accessed context system**,
+not an index-everything rule or an always-browse agent. Anthropic's engineering
+account describes both lightweight references and the latency cost of runtime
+exploration; this supports comparing immediate selected-source reads against
+broader retrieval for each workload, not removing durable evidence.
+[Context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
+
+A-RAG provides a useful counterweight to an overly prescribed pipeline:
+keyword search, semantic search and bounded chunk reads let the model choose
+its next evidence request. Its multi-hop QA results justify an alternative
+baseline, not a universal architecture or consumer-latency guarantee. Keep
+authority and budgets deterministic while comparing model-directed exploration
+with a simpler fixed path. Retrieved-token savings are not total cost savings.
+[A-RAG](https://arxiv.org/html/2602.03442v1).
+
+Neither a better agent nor more context fixes every failure. SAGE's scientific
+retrieval benchmark motivates examining representation quality; Sufficient
+Context separates missing support from failure to use available support.
+Our inference is to label these failures separately before buying more
+reasoning, extraction or retrieval. No autonomous sufficiency judge is treated
+as an oracle. [SAGE](https://arxiv.org/abs/2602.05975),
+[Sufficient Context](https://arxiv.org/html/2411.06037v3).
+
+Multi-agent research remains conditional: Anthropic reports significant token
+overhead in its own research system, with the benefit concentrated in suitable
+parallel workloads. Use a capable single-model/tool-loop baseline; agent teams
+must beat it on Vesper's complete cost, latency and usefulness measures.
+[Multi-agent research engineering](https://www.anthropic.com/engineering/multi-agent-research-system).
+
 ## 5 Target architecture and final state
 
 ### Responsibilities to consolidate
@@ -406,6 +533,13 @@ Keep the Trip compiler's strong invariants. Extract genuinely shared evidence
 types/helpers only where needed; do not make every Trip field optional to
 pretend it is a universal context compiler.
 
+The conceptual path is not a mandatory linear sequence of model calls. An
+original may answer the job directly; eligible prepared evidence may suffice;
+a candidate may need one lookup; exploration may reveal a better candidate
+and revisit selection. Permit this bounded feedback without allowing the model
+to expand its authority, tools, budget or retention. A no-network result can
+be complete; a public question does not require private memory.
+
 ### Contract requirements
 
 Review the following semantics before parallel implementation. These are
@@ -424,6 +558,12 @@ table or service per row.
   exact excerpts or permitted locators, candidate versus supported claims,
   conflicts, gaps, coverage, stop reason and measured usage. Reuse/retention is
   opt-in under the owner, not implied by a URL.
+  Distinguish search excerpt, fetched representation, structured provider
+  observation and model summary. Preserve original publication time separately
+  from retrieval time, acquired representation identity and the actual support
+  passage. Compression is a model-facing view, not a replacement for the evidence
+  reference. Deduplicated URLs or copied reporting do not prove independent
+  corroboration. Exact support can still be wrong, stale or about another entity.
 - **Execution identity:** request equivalence, scope, recipe version, attempt
   and lease generation, budget reservation, subscribers, cancellation and
   publication pointer. Account for possible duplicate provider spend even if
@@ -487,19 +627,39 @@ evidence checkpoints, not consequences of checking every engineering box.
 
 ## 6 Proposed implementation packages
 
-All packages below are **proposed and unscheduled**. Identifiers are local to
-this supporting plan. The program owner can absorb their work into existing
-artifact packages rather than create additional standing lanes.
+The packages are assigned to Strategy Technical by the program, but remain
+**proposed, not started** until execution intake. R0–R7 are local package
+identifiers, not additional standing lanes. Their artifact alignment records
+shared experience requirements, not a second implementation in Strategy.
+
+### Minimum complete first increment
+
+The rows below distinguish first-use correctness from later optimization. They
+do not add packages or require a new shared platform before product work.
+
+| Concern | Required with the first connected producer | Conditional later expansion |
+| --- | --- | --- |
+| Context | Selected original/current owner reads, explicit purpose, current eligibility and request overrides | Broader passage/OCR indexes, contextual reranking, learned preferences |
+| Evidence | Acquisition type, preserved source metadata, supported claims and honest partial/failure states | Richer extraction and cross-corpus discovery when simpler access misses value |
+| Runtime | Finite attempts/deadline, applicable pre-dispatch budgets, publication fence and current readback | Cross-user acquisition reuse, fair queues and durable per-step checkpoints when warranted |
+| Change | Reject obsolete source/grant/result revisions; re-evaluate cheap current candidates when needed | Fine-grained dirty-scope tracking and archive-wide selective preparation |
+| Receiving | Original-first existing reader, connected useful result or honest no-addition/failure, exact return | Additional media/root treatments and separately authorized shared derivatives |
+| Evaluation | Same-input direct baseline, stage-level diagnosis, bounded operational evidence and usefulness review | Longitudinal learning and optimization after reliable exposure evidence |
+
+R3/R4/R5 baseline obligations apply in this first increment even though their
+broader packages appear later. R6 original receiving and existing authorized
+sharing need not wait for research or retained generated editions. This matches
+the artifact plan's newer P3/P5 staging instead of placing safety after value.
 
 | Package | Complete outcome | Existing artifact alignment | Dependencies |
 | --- | --- | --- | --- |
-| R0 | Current owner/contracts/evidence baseline admitted | P0 and PC source boundaries | Current program checkpoint |
+| R0 | Current owner/contracts/evidence baseline admitted | P0 and PC source boundaries | Common baseline and this lane's intake |
 | R1 | Caller-independent bounded public research with privacy and honest outcomes | P3 acquisition; PC remains separate | R0 |
 | R2 | Selected-object/component evidence retrieval and useful selection | P1/P2/P3 | R0; usable owner references; integrates R1 |
-| R3 | Accountable shared execution with concurrency, reservations and recovery | P5 runtime | R0/R1 contracts |
-| R4 | Selective change handling and exact-result continuity | P4/P5 | R2/R3; P4 owner for durable editions |
-| R5 | Situation-appropriate assistance preferences | P3 selection | R0/R2 contracts; existing admitted evidence |
-| R6 | Connected artifact/root/social receiving | P2/P6 | Early work uses existing results; full scope uses R1–R5 |
+| R3 | Accountable shared execution with concurrency, reservations and recovery | P5 runtime | Minimum controls with first paid/async R1/R2; broader sharing after contracts stabilize |
+| R4 | Selective change handling and exact-result continuity | P4/P5 | Validity/readback with first producer; broader maintenance uses R2/R3; kept editions use P4 |
+| R5 | Situation-appropriate assistance preferences | P3 selection | Current intent/eligible context with first R2; broader adaptation follows evidence |
+| R6 | Result/readback seam and consumer conformance; native adoption by owning lane | P2/P6 and Orchestration D2/D3 | Original receiving independently; generated modes depend on the specific R1–R5 capability and grant they use |
 | R7 | Comparative quality, lifecycle and operating acceptance | P0/P7 | Starts in R0 and accompanies every package |
 
 ### R0 Reconcile the actual baseline and contracts
@@ -517,6 +677,10 @@ without restarting completed Home or capture connections.
   practical records, permitted human contributions and sparse history.
 - Record current flags and known live-provider/device gaps, not just callable
   entry points or configured test names.
+- Name an accountable package owner and the exact first implementation files;
+  define its supported artifact/mode matrix, cost authorization, kill switch
+  and measurement envelope before live enablement. Keep this admission bounded
+  to the next assignment rather than reopening the entire ontology.
 
 **Acceptance:** each scenario has a real owner, exact inputs and revision,
 consumer, repair path and evidence boundary. Pending decisions name only the
@@ -536,6 +700,14 @@ bounded discovery without inventing a Place/Trip/conversation.
 - Separate candidate discovery from factual verification. Preserve source
   binding and add claim-support evidence/checks appropriate to consequence;
   never call URL matching semantic verification.
+- Preserve acquisition type and source metadata end to end, including the
+  provider tool and any compression. Read the original page only when its
+  additional context is needed; do not fetch every hit automatically. Enforce
+  source restrictions in adapters and reuse guarded retrieval. Failed fetching
+  must not silently upgrade a snippet to full-document verification.
+- Include query logs, tool traces and stored diagnostics in the disclosure
+  tests. Record bounded execution evidence without retaining private content
+  under an observability exception.
 - Preserve answer-only non-persistence semantics, but give lookup/discovery
   purpose-specific planning and stop criteria. Today the quick path still
   selects a dossier graph, and unknown target types default to site dimensions
@@ -578,8 +750,12 @@ artifact summary, without making every original expensive to ingest.
 - Add a selected-object adapter around current owner reads, not a fake Trip.
 - Reuse source locators and define stable component identity/revision semantics
   with P1. Start against existing original references while that contract grows.
-- Implement a baseline combining exact identifiers/relationships, literal
-  text and semantic passages. Group representations by underlying evidence.
+- Start with exact selected-source/component reads, existing literal search and
+  explicit relationships. Add indexed semantic passages when representative
+  archive workloads establish the need; a selected ticket must not wait for
+  an archive index. Preserve an honest bounded owner-read fallback if an index
+  is unavailable, without treating incomplete search as authoritative silence.
+  Group multiple representations by underlying evidence.
 - Hydrate current eligible originals or selected regions after recall; preserve
   surrounding context. Indexing cannot grant access or establish occurrence.
 - Allocate a bounded candidate set across useful relation directions, then
@@ -588,6 +764,10 @@ artifact summary, without making every original expensive to ingest.
   existing Home pair requirements and avoiding generic trivia.
 - Compare visual embeddings, richer extraction, reranking and original
   inspection as alternatives on the same corpus before adopting complexity.
+- Preserve Atlas's server-enforced user filtering in every retrieval branch.
+  For broader shared discovery, current owner/grant checks must precede content
+  entering a prompt or reranker, not merely precede UI display. Index payloads
+  are neither current access authority nor independent personal truth.
 
 **Acceptance:** passage/detail support sets are retrieved; same-title subjects
 and repeated visits stay distinct; a supported contrast and an original-only
@@ -614,6 +794,11 @@ without starving interactions or multiplying unbounded spend.
   where appropriate; do not generalize its policy automatically.
 - Protect interactive capacity and enforce per-user/provider limits across
   callers. Priority alone does not preempt a provider call already running.
+- Account for actual provider attempts, including existing tool/SDK/workflow
+  retries. Distinguish retryable overload from authorization, malformed-input,
+  unsupported-media and exhausted-budget failures. Share one remaining deadline
+  and retry envelope; use backoff/jitter without extending it. Test a provider
+  outage with concurrent callers and a recovery burst, not only isolated jobs.
 - Choose durable checkpointing for long/expensive work; short jobs may restart
   under a finite retry budget. Pin compatible recipe versions across resumption.
 - Exercise claim takeover and publication fencing, including general scheduled
@@ -642,6 +827,9 @@ stable originals and deliberately kept editions retain their identities.
 - Extend existing owner events/outboxes with bounded candidate-scope progress
   and complete influence manifests, including empty selections and novelty
   history. Advance index readiness only when preceding relevant work is resolved.
+- Before introducing a reusable negative/empty selection, define what changes
+  invalidate it. Until then, use bounded fresh owner selection at an authorized
+  interaction; deferring fine-grained invalidation must not freeze discovery.
 - Distinguish support validity from selection freshness and preparation.
   Coalesce changes, reselect cheaply and reuse equivalent eligible output.
 - Use field/purpose-sensitive public freshness, conditional refetch where
@@ -665,6 +853,8 @@ applies to the present request.
 
 - Select scoped evidence through existing memory/contribution owners, preserving
   current explicit overrides, attribution and correction dependencies.
+  This basic applicability boundary starts in R2; only richer treatment
+  adaptation waits for the later R5 checkpoint.
 - Distinguish current attention, session adjustment, standing preference and
   aggregate product learning. Do not promote opening/dwell/silence into identity.
 - Make applicability inspectable for evaluation with content-minimized reasons;
@@ -680,6 +870,12 @@ enough if usefulness or current-intent respect declines.
 
 ### R6 Connect receiving without inventing another product
 
+**Implementation split:** this lane supplies the backend result/readback seam,
+current eligibility/dependency behavior and consumer-conformance fixtures.
+The native changes described below belong to Strategy P2/P6 or Orchestration
+D2/D3. They are downstream acceptance requirements, not a second screen queue
+in this lane. A producer-only finish names the remaining consumer dependency.
+
 **Outcome:** the shared capability reaches the focused artifact and appropriate
 roots through their existing readers and owner-backed navigation.
 
@@ -692,7 +888,13 @@ roots through their existing readers and owner-backed navigation.
   failed acquisition and pending work. Read/poll never silently creates work.
 - Reuse exact-original recipient access and current relationship checks.
   Add synthesis only for the exact purposes actually granted; preserve separate
-  human perspectives and private viewer context.
+  human perspectives and viewer-owned facts. Do not turn viewer-specific facts
+  into a private notes layer within a shared collection.
+- Apply the accepted Life model through its collection owner, not a research
+  schema. Leaving/removal must invalidate access-dependent derived results
+  without deleting independently held originals or other members' material.
+  Preserve connected-inbox provenance through derivation; generic sharing
+  eligibility cannot bypass its private-only restriction.
 - Send eligible completion/change events to existing attention policy. Do not
   expose each research step, silent filing or every available result as a push.
 - Reuse current owner-backed practical facts; route changes/actions through
@@ -701,7 +903,9 @@ roots through their existing readers and owner-backed navigation.
 **Acceptance:** original-first inspection and useful addition on real owner
 readback; detour and exact return; receiving without reply or contribution;
 withdrawal and account-switch races; appropriately quiet completion; native
-accessibility and visible failure states. Broader shared/offline policies block
+accessibility and visible failure states; viewer-owned backs with shared notes;
+leaving with other members' material intact; no shared derivative bypass for
+private-only connected-inbox sources. Broader shared/offline policies block
 only their affected modes, not all private progress.
 
 ### R7 Establish quality and operating evidence throughout
@@ -713,9 +917,19 @@ and which part fails when the experience is weak.
   Support complete evidence sets and explicit empty/rejected outcomes.
 - Compare matched current-only, correct-history, irrelevant-history,
   outdated-history, corrected-history and manually selected evidence.
+- Compare direct selected-evidence synthesis, a simple retrieval path, and
+  bounded model-directed retrieval on the same corpus and provider snapshots
+  where feasible. Include all reasoning/tool/retry costs, not only retrieved
+  tokens. Record repeated runs and tail latency; a single attractive answer
+  does not choose the architecture.
 - Separate retrieval recall, selection quality, source support, applicability,
   permissions, human benefit and operating cost. Preserve historical truth
   while excluding obsolete facts from present judgment.
+- Diagnose acquisition/representation failure, retrieval miss, insufficient
+  support, misuse of sufficient support, stale applicability and receiving
+  failure separately. Preserve the denominator of eligible requests, including
+  failed and withheld results. A system that avoids every claim is not useful
+  merely because its shown claims are accurate.
 - Keep related histories in the same split and prevent future-evidence leakage.
   Counterbalance human comparisons; account for shared-collection spillovers.
 - Compare model and orchestration versions jointly. Remove planner/reflection/
@@ -730,30 +944,38 @@ benefit. Synthetic users and model judges do not certify those outcomes.
 
 ## 7 Sequence and parallel execution
 
-Do not schedule eight permanent lanes. Preserve one accountable package owner
-and use temporary workers when delegation is authorized.
+R0–R7 are packages inside Strategy Technical, not eight permanent lanes.
+Preserve one accountable owner for this lane and use bounded temporary workers
+only when delegation is authorized. Strategy and Orchestration execute their
+own roadmaps independently under the program's ownership agreement.
 
-1. **Admission checkpoint:** reconcile this plan with the newest program and
-   artifact PC/P0–P7 packages. Finish R0 and select exact interfaces and scope.
+1. **Intake checkpoint:** after the common baseline is prepared, read the newest
+   program boundaries and landed artifact PC/P0–P7 interfaces. Finish R0 and
+   select exact interfaces and scope; no separate orchestrator dispatch is needed.
    Existing capture/share work continues; signing and design polish do not
    block independent backend contracts or offline fixtures.
 2. **First engineering wave:** R1 bounded acquisition and the existing-original
-   portion of R2, with R7 fixtures/measurement alongside. This builds shared
-   capability across several artifact families, not a single demonstration
-   that defines the whole architecture.
-3. **Second wave:** R3 execution hardening and the richer R2 selection/consumer
-   connection. Keep R6's real receiving path involved so backend output does
-   not become an isolated report. Catalog PC proceeds under its own approved
-   provider/identity owner.
-4. **Third wave:** R4 selective maintenance and R5 applicability, then complete
-   the chosen private/shared R6 modes and R7 acceptance. Some work can overlap
-   once owner contracts are stable; exact saved editions depend on P4.
+   portion of R2 meet R6's existing reader, with R7 comparisons and the minimum
+   R3/R4/R5 safeguards above. This builds shared capability across several
+   artifact families, not one demonstration that defines the whole architecture.
+   Original-focused P1/P2 and eligible original sharing retain independent value
+   and do not become downstream of this research work.
+3. **Second wave:** expand R2 retrieval only for measured misses and R3 shared
+   execution only for observed concurrency/recovery needs. Continue connected
+   R6 receiving. Catalog PC proceeds under its own approved provider/identity
+   owner; no index or research service is its permission owner.
+4. **Third wave:** expand R4 selective maintenance and R5 assistance adaptation
+   where additions justify them, then complete the chosen generated/private/
+   shared R6 modes and R7 acceptance. Exact saved editions depend on P4.
+   An original-focused product scope need not implement all these optimizations
+   before its own exposure decision.
 
-Useful parallel assignments are evidence retrieval versus public acquisition,
-and later native receiving versus runtime hardening. Shared schemas, migrations,
-request/result semantics, reservations and generated API types have one owner.
-Independent evaluation fixtures may proceed throughout. Never let two workers
-change the same authority model without a named integrator.
+Useful internal parallel assignments are evidence retrieval versus public
+acquisition, and later lifecycle fixtures versus runtime implementation. Native
+receiving belongs to its consumer lane. Name one writer per semantic contract
+and migration; regenerate generated API files per the program's landing rule
+instead of treating them as independently authored models. Do not duplicate P0
+identity, P4 saved-edition storage or another lane's collection/social owner.
 
 Each assignment includes outcome, baseline revisions, file ownership, contracts,
 allowed effects, acceptance commands and escalation conditions. Carry diagnosis,
@@ -762,8 +984,11 @@ assignment. Check in at the first connected result, a consequential blocker and
 completion; ordinary debugging does not require founder relay.
 
 Integrate at a meaningful interface or complete outcome, not after every tiny
-commit. Do not leave finished work indefinitely on disconnected branches.
-Publishing/deployment and policy changes retain their separate authorization.
+commit. Consume landed dependencies at those checkpoints, without routine chat
+relay or copying uncommitted sibling code. Record missing interfaces in this
+roadmap and take independent work. Do not leave finished work indefinitely on
+disconnected branches. Publishing/deployment and policy changes retain their
+separate authorization.
 
 ### Reassessment checkpoints
 
@@ -771,6 +996,7 @@ Publishing/deployment and policy changes retain their separate authorization.
 | --- | --- | --- |
 | R0 contract review | Can the same boundaries support sparse artifacts, practical help and authorized shared originals? | Revise ownership before adding tables or generic optional fields |
 | First R1/R2/R6 connection | Is the addition substantive, and is the original still immediately useful? | Improve retrieval or treatment rather than merely generating longer prose |
+| Mechanism selection | Does the added index, loop or agent improve the same workload over the simpler baseline? | Remove or defer it if gains do not justify latency, spend and maintenance |
 | R3 load and recovery | Do reuse and preparation improve experienced latency at bounded cost? | Reduce prefetch, isolate capacity or change recovery granularity |
 | R4/R5 longitudinal replay | Does later evidence improve judgment without overwriting or overpersonalizing? | Change dependency scope/applicability before adding learning complexity |
 | Selected-scope receiving review | Does an ordinary person benefit without rich setup or equal social effort? | Adjust product treatment and supported scope before broader exposure |
@@ -820,7 +1046,7 @@ cases exist. Resolve current paths before execution.
   `test_original_refind_postgres.py`, Intake route/semantic-worker tests and
   `tests/api/test_original_delivery_content.py`.
 - Backend research: `tests/research_agent/test_quick_research.py`,
-  `test_disposition.py`, `test_source_result_metadata.py`,
+  `test_bounded_result.py`, `test_disposition.py`, `test_source_result_metadata.py`,
   `test_worker_wiring.py`, `test_research_queue.py`, plus privacy assertions in
   `tests/concierge/test_trip_direction_research.py`.
 - Source composition/execution: `tests/root_projection/test_source_contribution_*.py`,
@@ -833,6 +1059,9 @@ cases exist. Resolve current paths before execution.
   `tests/places/test_budget_postgres.py` and `test_refresh_queue.py` cover their
   current budget/refresh behavior, not proposed concurrent reservations or
   universally enforced post-call deadlines.
+- Acquisition/retries: `tests/inbound/test_web_retrieval.py` and
+  `tests/core/test_tool_retry.py`. Extend provider-tool-to-converter-to-compression
+  metadata coverage; current converter fixtures do not prove the complete path.
 - Memory: `tests/core/test_personal_memory_evidence.py`, preference subsystem
   tests and `tests/eval/test_memory_loop.py`.
 - Quality: `tools/eval/plugins/retrieval/runner.py`,
@@ -856,12 +1085,12 @@ Run focused offline checks during iteration. DB tests require explicit
 ambient database. Schema changes require the lane's `scripts/sync-types.sh`,
 reviewed full/app projections, generated app types and `make api-coverage-check`.
 
-Use the actual implementing checkout's backend `make ci-static` and
-`make merge-check BASE_REF=<explicit-base>`, and app `npm run verify:fast`
-and `npm run verify:merge -- --base <explicit-base>`. The workspace instructions
-retain coordinated `make verify` at delivery. Reconcile evolving CI policy
-through its owner; this plan neither waives required checks nor makes
-experimental `verify-changed` a replacement by declaration.
+Follow current root/child AGENTS and the [CI Plan](../../reliability/CI%20Plan.md).
+Use `make verify-changed WORKSPACE_BASE_REF=<base> AGENT_BASE_REF=<base> APP_BASE_REF=<base>`
+as local merge preflight in the actual coordinated lane. Full `make verify`
+is diagnostic/release coverage, not a mandatory rerun on every push. Required
+hosted checks remain authoritative. These instructions do not establish that
+any check was executed by this documentation pass.
 
 For visible changes, validate the registered reference/build/data source before
 native capture and structured review. Mock screenshots, synthetic DB/device
@@ -882,6 +1111,14 @@ the actual benefit and unwanted effort. Later natural use should assess
 refinding, enjoyable return, reduced re-explanation, corrections and recipient
 value—not merely daily opens or action conversion. No numerical latency/cost
 SLO is asserted until representative runs measure it.
+
+Before enabling a chosen workload, its owner must adopt explicit attempt,
+time and spend ceilings and an acceptable usefulness/latency envelope using
+those measurements. This is not permission to run unbounded experiments until
+the SLO is known. Record attempted, completed, rejected, unavailable and useful
+received results separately, with cold/warm cache conditions; report total cost
+per eligible request as well as per useful received result. Restrict new cache
+reuse to the authorized scope until cross-user equivalence is actually needed.
 
 ## 10 Migration consolidation and deferred work
 
@@ -916,9 +1153,10 @@ cost/authority boundary establish the need.
 
 ## 11 Research sources and limits
 
-Sources were investigated in the preceding parallel research round and checked
-against this implementation audit. Dates describe publications/updates, not
-Vesper implementation. Recommendations elsewhere are our engineering inferences.
+The first table records the preceding parallel research round; MIDR and PairPref
+were also reopened during this pass. The second table records fresh research
+used to challenge the plan. Dates describe publications/updates, not Vesper
+implementation. Recommendations elsewhere are our engineering inferences.
 
 | Source | Relevant finding and limit |
 | --- | --- |
@@ -943,22 +1181,70 @@ Vesper implementation. Recommendations elsewhere are our engineering inferences.
 | [WorldMemArena](https://arxiv.org/abs/2605.29341v2), revised June 1, 2026 | Storage, maintenance, retrieval and use must be evaluated separately. Constructed histories are not longitudinal consumer proof. |
 | [Agent evaluation guidance](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents), January 9, 2026 | Combine deterministic, model and human grading and calibrate against outcomes; guidance is not causal product evidence. |
 
+### Second pass primary sources
+
+| Source | Roadmap consequence and evidence limit |
+| --- | --- |
+| [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents), September 29, 2025 | Compare progressive access with precomputed retrieval; runtime exploration has latency costs. Engineering experience, not a Vesper workload result. |
+| [A-RAG](https://arxiv.org/html/2602.03442v1), February 3, 2026 | Test bounded model-directed search/read interfaces against a simple baseline. Multi-hop QA with model-based/exact-match grading; retrieved-token accounting does not establish total latency or cost. |
+| [SAGE](https://arxiv.org/abs/2602.05975), revised February 6, 2026 | Better reasoning does not remove retrieval/representation bottlenecks. Scientific literature corpus; metadata augmentation remains an experiment, not a required personal archive pass. |
+| [Sufficient Context](https://arxiv.org/html/2411.06037v3), revised April 23, 2025 | Separate missing evidence from failure to use it; evaluate useful coverage alongside abstention. QA models and autoraters, not a calibrated consumer sufficiency oracle. |
+| [Multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system), June 13, 2025 | Require whole-cost justification for teams versus a single tool-using model. Vendor-specific research workload, not a transferable performance multiplier. |
+| [OWASP SSRF prevention](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html), living guidance | Keep URL resolution/redirect and network safeguards when adding direct reads. The existing Intake fetcher provides reusable safeguards; this review does not certify every outbound path. |
+| [AWS timeouts retries and jitter](https://d1.awsstatic.com/builderslibrary/pdfs/timeouts-retries-and-backoff-with-jitter.pdf), 2019 | Count nested attempts and control retry bursts within a deadline. Distributed-systems guidance, not proof of current Vesper failure rates. |
+| [Qdrant multitenancy](https://qdrant.tech/documentation/tutorials/multiple-partitions/), living documentation | Preserve server-side tenant filtering while expanding representations. Index partitions are not the application's current purpose/grant authority. |
+
 ## 12 Document delivery and next handoff
 
-The next implementation assignment should be **R0 plus the shared R1 boundary
-and an existing-original R2 adapter**, admitted into artifact P0/P3 by the
-program owner. It should establish the general seam, its privacy/cost evidence
-and several artifact fixtures while preserving current native/capture progress.
-This is a recommendation for the next checkpoint, not an instruction sent to
-another lane and not a requirement to wait for every design or policy decision.
+After the common baseline is prepared, execute **R0 plus the shared R1 boundary
+and an existing-original R2 adapter connected to R6 readback**, with the minimum
+R3/R4/R5 safeguards and R7 comparisons. Deliver one coherent assignment within
+this lane. Establish the general seam across several artifact fixtures while
+preserving native/capture progress. Publish usable additive contracts early;
+Strategy connects its reader and Orchestration its roots from landed revisions.
+Until then, use the actual existing supported consumer path, or report a bounded
+producer-only result and the specific consumer gap. Do not claim native
+acceptance from a fixture or wait for every design/policy decision.
 
-The document lives alongside the product-map references under the existing
-`keep_reference` inventory rule. It does not replace the dated September 26
-maps, modify their findings, or change the active program queue. When admitted,
-move the detailed tasks into the appropriate owner/package and keep this as
-the research/audit rationale; do not maintain duplicate live status tables.
+This document retains its research/audit rationale and owns Strategy Technical's
+package progress under the program's lane assignment. It does not rewrite the
+dated September 26 maps or maintain copies of the other lanes' status tables.
+Update the current assignment here in place; the program changes only when a
+priority, ownership boundary or system checkpoint changes.
 
-**Documentation validation:**
+### Validation evidence
+
+Second-pass offline checks at workspace `44f637e85`, backend `3c170d21f`
+and app `87eceee24`, on Python `3.13.0` / Darwin 25.5 arm64:
+**24 passed, zero skipped**, across quick research, bounded-result conversion,
+source metadata, guarded HTML retrieval and tool retries. Models/search were
+off; no disposable DB was selected. These tests establish their mocked/pure
+boundaries, not general artifact quality, paid accounting or deployment.
+
+The measured command was run from the workspace root:
+
+```sh
+env -u TEST_DATABASE_URL -u TEST_DATABASE_DISPOSABLE \
+  AI_MODE=off WEB_SEARCH_MODE=off PYTHONPATH=travel-agent \
+  travel-agent/.venv/bin/python scripts/measure_verification.py \
+  --label adaptive-research-round2-unit-corrected --timeout 180 \
+  --log-dir /tmp/vesper-adaptive-research-roadmap-checks \
+  --append-to /tmp/vesper-adaptive-research-roadmap-checks/measurements.json \
+  -- travel-agent/.venv/bin/python -m pytest -q -c travel-agent/pyproject.toml \
+  -m 'not requires_postgres and not requires_api_keys and not requires_dogfood_wedge' \
+  travel-agent/tests/research_agent/test_quick_research.py \
+  travel-agent/tests/research_agent/test_bounded_result.py \
+  travel-agent/tests/research_agent/test_source_result_metadata.py \
+  travel-agent/tests/inbound/test_web_retrieval.py \
+  travel-agent/tests/core/test_tool_retry.py
+```
+
+The first measured invocation failed before test execution because the recorder
+runs its child command from the workspace root, not the caller's child checkout.
+Its missing `.venv/bin/python` error remains recorded; the corrected invocation
+uses workspace-relative paths. It is not counted as a test failure or a pass.
+
+Documentation validation from the first pass (second-pass rerun below):
 
 - `python3 scripts/check_doc_governance.py docs/working/product-map/adaptive-context-and-research-roadmap-2026-09-29.md`
   passed. The combined `python3 scripts/check_docs.py --governance --inventory --links`
@@ -966,8 +1252,8 @@ the research/audit rationale; do not maintain duplicate live status tables.
   other, unchanged documents. These are not fixed or waived by this task.
 - Targeted link validation using the repository's living-link parser passed
   for this roadmap and `docs/README.md`.
-- Scoped whitespace checks found no issue in the two files changed here.
-  The repository-wide diff check reports an unrelated existing extra blank
+- Scoped whitespace checks found no issue in the two files changed in that pass.
+  Its repository-wide diff check reported an unrelated existing extra blank
   line at EOF in `docs/working/multiplayer-threads-life-continuity-response-2026-09-22.md:148`;
   that concurrent work is preserved.
 - The measured combined-check receipt is at
@@ -975,6 +1261,14 @@ the research/audit rationale; do not maintain duplicate live status tables.
   the checkout tuple, environment, command and failed link-check status;
   the temporary receipt is not a permanent verification archive.
 
-Product tests, `make verify`, live-provider, database-race and native-device
-checks remain **unrun** in this documentation-only investigation. Defined tests
-and read-only reviewer agreement do not establish runtime acceptance.
+Second-pass documentation checks at workspace `7a5d434eb` passed the explicit
+file governance check, the combined `--governance --inventory --links` check
+(666 inventory files and 556 living Markdown files), and `git diff --check`.
+The previous unrelated link/whitespace failures disappeared after the concurrent
+owner's landing; this task did not fix or waive them. The measurement receipt
+above retains both failed and passing runs. Only this roadmap is modified by
+the second pass; no product code or policy is changed.
+
+Beyond the 24 focused tests above, `make verify`, live-provider, database-race
+and native-device checks remain **unrun**. Defined tests and read-only reviewer
+agreement do not establish runtime acceptance.
