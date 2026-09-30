@@ -433,6 +433,18 @@ max-lines warning. Native capture for this copy change was not completed; no
 visual verdict is claimed. This closes one false-root-label mismatch, not the
 remaining D2 receiving and full-scroll work.
 
+**Additional current lane increment — 2026-09-30:** app commits `3409399e1`
+and `d47a8be1c` extend the same Trip-door correction to direct Home resource
+doors. A legacy owner path now says “Open trip details,” and an otherwise
+allowlisted generic Trips path cannot be mistaken for a Home-root destination:
+the renderer follows the concrete `trip` owner and agrees with
+`hrefForRootResource`, which routes to Trip details. The Home renderer and
+route-resolution suites passed **84/84**, app production typecheck passed, and
+targeted lint had no errors; it retains the existing renderer max-lines
+warning. No native visual verdict is claimed for this copy/door correction.
+This closes a route-label consistency defect only; D2 receiving and full-scroll
+acceptance remain active.
+
 ### D3 Make practical help part of the same system
 
 **Outcome:** what is happening now changes the useful options and actions across
