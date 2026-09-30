@@ -2050,3 +2050,25 @@ merge-scope check on `bc71bf128` passed with
 snapshot. Existing unrelated React/API diagnostic warnings appeared during the
 suite, but the aggregate command exited successfully. This is broad app
 regression evidence, not native device or authenticated live-service evidence.
+
+### September 30 account-session-scoped artifact reads
+
+App commit `5d1a9a5b4` partitions canonical artifact projection queries by the
+authenticated session key and does not enable the owner read until the active
+session and profile are ready. The reader suppresses cached projection data
+while that owner context is unresolved; changing accounts selects a distinct
+cache key, so a late response from the previous account cannot become the
+current account's visible artifact. Intake correction success now invalidates
+the exact account-scoped projection key. This is a client cache/read boundary,
+not a replacement for backend authorization.
+
+The focused session/expiry suite passed (`canonicalArtifacts.test.tsx` and
+`queryKeys.test.ts`: 2 suites, 16 tests), including signed-out suppression,
+account-key separation, and the late-response account-switch race. App
+typecheck, test-contract typecheck, targeted ESLint, `npm run docs:check`,
+`npm run qa:parity` (6 suites, 185 tests), `npm run qa:polish:test`, and
+`git diff --check` passed. The full app merge check passed on this commit:
+`npm run verify:merge -- --base main` (1,288 suites, 9,114 tests, one
+snapshot). No authenticated live-service or native-device test was run; this
+slice changes session-scoped data access rather than layout, and simulator
+availability remains a separate acceptance constraint.
