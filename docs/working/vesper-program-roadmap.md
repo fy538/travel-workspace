@@ -924,6 +924,23 @@ readback is also **unverified**: CoreSimulatorService refused the device query.
 D2 remains active; next restore a configured lane API/device path for the exact
 owner journey, then continue ordinary/returned/live receiving coverage.
 
+**Configured Places recipient run — 2026-10-01:** the missing local API/device
+path was restored for a bounded rehearsal against the explicitly disposable
+`vesper_places_native_20261001` database, not the ambient development database.
+The real local API returned Maya's authored note in the recipient's Places
+feed; the V2 action carried the exact handoff ID and revision; selecting that
+revision returned exactly one owner line, while the next stale revision returned
+none. This is synthetic-recipient HTTP/Postgres evidence, not an authenticated
+production-owner or recurring-supply claim. The revised native flow reached the
+V2 social-comparison unit on the iPhone 16 Pro simulator but failed before
+acceptance. Its screenshot shows the same person's note and Place action
+rendered twice. The duplication's owning layer is not yet established; trace the
+feed-to-composition-to-render path and add a regression before treating this
+receiving slice as complete. The flow's authored-text assertion also needs to be
+made robust to the rendered/accessibility structure without weakening the
+content expectation. **Next:** fix and rerun this exact native receiving path,
+then continue ordinary/returned/live coverage; D2 remains active.
+
 ### Combined landing checkpoint — September 30
 
 The merged integration contains the Home/capture lane plus these completed
