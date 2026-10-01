@@ -649,14 +649,27 @@ different runner and setup from hosted CI, so they do not establish reduced
 hosted latency. The raw command measurements and logs remain under
 `/private/tmp/vesper-maestro-run/` for this working session.
 
-The full workspace regression command
-`PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -p no:cacheprovider -q scripts/tests`
-reported 134 passed and 5 environment failures: one checker could not import
-SQLAlchemy because this lane's backend dependencies were not installed, and
-four worktree-runtime tests could not bind local sockets in this execution
-environment. This is not a passing full suite. Hosted CI installs backend
-dependencies and runs the socket tests in its runner; that complete result
-remains required before the Package 3C acceptance claim.
+The initial
+`make verify-changed WORKSPACE_BASE_REF=4febe0d461a62d204ba4dee9eaad7813c7c1509c AGENT_BASE_REF=bd1a683b8656c3f4091e16abb64f57897fa7fc42 APP_BASE_REF=e7bdc660501eaa19234e6b45bda033658edaa2d4`
+run on workspace commit `37f2bea3e3da` with Python 3.14.6 reported 136 passed
+and 5 environment failures: one checker could not import SQLAlchemy because
+backend dependencies were absent, and four worktree-runtime tests could not
+bind local sockets in the sandbox. A rerun of the complete workspace scripts
+suite with Python 3.13.0 and local socket access,
+`PYTHONDONTWRITEBYTECODE=1 /opt/homebrew/bin/python3.13 -m pytest -p no:cacheprovider -q scripts/tests`,
+passed **141 tests in 16.48 seconds**. This resolves those suite failures for the
+rerun environment; it does not make the initial preflight a pass.
+
+The remaining selected checks were rerun with Python 3.13.0. Documentation
+links, spine and canon checks passed; API coverage, compatibility, card-arrival
+and chat-card-type checks passed. `make contract-check` validated the full
+OpenAPI snapshot and active mobile projection, then could not run the pinned
+`openapi-typescript` generator: `travel-app/node_modules` is absent and npm
+registry access is unavailable (`ENOTFOUND`). The cached npm data did not
+provide an offline executable. The generated-type comparison and schema-bridge
+check therefore remain unverified. There is no complete passing local
+`verify-changed` result yet. Hosted CI and the equivalent hosted latency
+comparison remain required before claiming Package 3C acceptance.
 
 **3A — App test determinism and execution, second in the queue.** At final
 candidate `21fdb724f`, the first hosted test job failed two unchanged tests;
