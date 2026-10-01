@@ -451,14 +451,25 @@ are recorded below.
 | Conditional | Package 4: native build reuse and other measured setup optimizations | Only if meaningful build/setup cost remains | Mobile and build owners |
 | Ongoing | Package 5: product-outcome acceptance | Stays with the three product lanes; tooling work must preserve it | Product users |
 
-**October 1 implementation receipt.** The coordinated `make verify-changed`
-passed on workspace `632c8ff`, backend `2c115ac`, and app `6b9d204`, against
-bases `4febe0d`, `bd1a683`, and `e7bdc66`. The app suite passed (1,289 suites,
-9,178 tests, one snapshot); lint reported 167 warnings and no errors. The
-backend suite passed (22,086 passed, 14 skipped, one xfailed, 52 xpassed, two
-warnings); workspace tests passed (119), and contract, API and documentation
-checks passed. These are local checks; current hosted PR check state has not
-been established.
+**October 1 implementation receipt (hosted checks refreshed at 08:54 UTC).**
+The coordinated `make verify-changed` passed on workspace `632c8ff`, backend
+`2c115ac`, and app `4c5caa9`, against bases `4febe0d`, `bd1a683`, and `e7bdc66`.
+The app suite passed (1,289 suites, 9,178 tests, one snapshot); lint reported 167
+warnings and no errors. The backend suite passed (22,086 passed, 14 skipped, one
+xfail, 52 xpassed, one warning); workspace tests passed (119), and contract,
+API and documentation checks passed.
+
+Hosted checks are now established for the four open implementation PRs. PR 38's
+required checks pass; its Maestro Cloud smoke is skipped because the service is
+not configured. Workspace PR 39's checks pass with the same smoke skip. App PR
+209's scope, fast/static, contract and full-test checks all pass. Backend PR
+239's checks also pass after one bounded retry of `package-smoke`: the first
+Docker build reached its 20-minute job timeout while downloading runtime
+dependencies, while the retry built the image and passed the operator-entrypoint
+import in 2m05s. Two earlier package-smoke runs took about two minutes. This
+sample supports a transient download slowdown, not a timeout or coverage change.
+PR 38 remains open and `origin/main` is still `4febe0d`; Package 3A stays gated
+on its landing.
 
 Four app/backend instruction documents were shortened and the workspace
 cross-repository instructions retained as the single shared owner. Across the
