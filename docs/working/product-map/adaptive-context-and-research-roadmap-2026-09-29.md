@@ -3728,3 +3728,38 @@ through its existing retrieval/interpreter calls; the selected-source route
 still rejects public research, so caller-independent disclosure, substantive
 public acquisition, matched usefulness, native receiving and R0–R7 package
 acceptance remain open.
+
+#### R1 implementation receipt — minimize live Places provider diagnostics (October 1)
+
+Backend commit `5cabc3b16` removes searched names/queries, exact coordinates,
+provider response bodies and exception text from Google Places/Foursquare
+failure diagnostics at both the provider and service layers. Errors continue to
+retain provider/operation, exception class and HTTP status; failure fallback
+behavior and outbound provider requests are unchanged. `backend/places/FEATURE.md`
+records this scope.
+
+Validation on the adaptive-context backend lane (Python 3.13.0):
+
+- `PYTEST_ADDOPTS='-p no:cacheprovider' .venv/bin/python3.13 -m pytest
+  tests/places/test_google_places_provider.py
+  tests/places/test_foursquare_provider.py tests/places/test_places_service.py
+  tests/places/test_search_nearby.py -q`: **46 passed**, including marker
+  checks for query, coordinates and provider exception/response content.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static`: passed,
+  including architecture checks and mypy across **1,900** source files.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main` passed
+  on the exact backend commit: **22,212 passed, 14 skipped, 53 xpassed**, with
+  two expected local-Qdrant payload-index warnings. `TEST_DATABASE_URL` and
+  `TEST_DATABASE_DISPOSABLE` were unset; the skipped DB-gated cases remain
+  unverified, and no live provider was called.
+- The commit hook's detect-secrets step could not rewrite the read-only
+  `.secrets.baseline` in this managed checkout. A no-network scan against a
+  temporary copy of the existing baseline found no new detections; the commit
+  was retried with only that hook skipped. All other commit hooks passed. The
+  tracked baseline was not modified.
+
+This is local diagnostic minimization, not authorization to send a selected
+personal source to a public provider. Caller-independent disclosure, public
+research from selected material, R3 public-attempt accounting, comparative
+usefulness, native receiving and R0–R7 package acceptance remain open.
