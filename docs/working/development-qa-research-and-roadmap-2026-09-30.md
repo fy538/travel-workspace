@@ -445,18 +445,18 @@ are recorded below.
 | 1 | Package 3C: workspace flow validation and early prerequisite checks | Published in workspace PR 38; local and first hosted checks pass. The current fetched `origin/main` is still `4febe0d`, so landing is pending. Hosted critical path was 6m13s versus 23m18s before; summed reported job runtime was 25m46s versus 23m18s (+10.6%), one sample. | All integrations |
 | 2 | Package 3A: deterministic and faster app tests with the same checks | Queued until Package 3C lands; diagnose observed intermittent failures before expanding concurrency | Every lane changing the app |
 | 3 | Package 3B: one execution owner per CI guarantee | Queued after mapping current required checks and their callers; deliver independently after 3A | All lanes |
-| 4 | Package 1: choose the right evidence and make targeted native QA reliable | Implementation published in app PR 209 and workspace PR 39; the app selector now accepts a full flow ID or its canonical slug only. Six focused tests and valid-slug dry-run wiring pass; real simulator capture remains unverified because the simulator could not reach the lane's Expo address. | Orchestration and Strategy |
+| 4 | Package 1: choose the right evidence and make targeted native QA reliable | Implementation published in app PR 209 and workspace PR 39; the app selector accepts a full flow ID or canonical slug only, and readiness failures no longer guess at a cause. Twelve focused tests and valid-slug dry-run wiring pass. Live simulator capture remains unverified because its loopback Expo URL is unreachable from the simulator. | Orchestration and Strategy |
 | 5 | Package 2: proportionate review and shorter task context | Targeted review and context-routing changes are published in PRs 39/209/239. The wrong-state replay remains unverified; native-review adoption needs Package 1. | All lanes, especially mobile work |
 | 6 | Package 6: retire completed working documentation | Queued; owner guidance is now established, but no archive migration has started | All lanes |
 | Conditional | Package 4: native build reuse and other measured setup optimizations | Only if meaningful build/setup cost remains | Mobile and build owners |
 | Ongoing | Package 5: product-outcome acceptance | Stays with the three product lanes; tooling work must preserve it | Product users |
 
 **October 1 implementation receipt.** The coordinated `make verify-changed`
-passed on workspace `632c8ff`, backend `2c115ac`, and app `997e0ff`, against
+passed on workspace `632c8ff`, backend `2c115ac`, and app `6b9d204`, against
 bases `4febe0d`, `bd1a683`, and `e7bdc66`. The app suite passed (1,289 suites,
 9,178 tests, one snapshot); lint reported 167 warnings and no errors. The
-backend suite passed (22,086 passed, 14 skipped, one xfailed, 52 xpassed, one
-warning); workspace tests passed (119), and contract, API and documentation
+backend suite passed (22,086 passed, 14 skipped, one xfailed, 52 xpassed, two
+warnings); workspace tests passed (119), and contract, API and documentation
 checks passed. These are local checks; current hosted PR check state has not
 been established.
 
@@ -468,23 +468,26 @@ shared artifact-reader large-text fix (`c704fc997`), and an Intake correction
 that crosses into the authority contract and backend owner. These checks show
 which contract and evidence path each task reaches; they do not measure time
 saved. The existing large-text verdict is carried from an ancestor revision and
-its PNGs are not tracked. On app revision `997e0ff`, exact-flow selection passed
-6/6 focused tests. The documented short slug completed a dry-run and selected
-only `polish/home-root-returned`; the partial suffix `returned` failed closed.
-The dry-run produced 0 screenshots. The Home/Places wrong-state screen replay
-therefore remains unverified.
+its PNGs are not tracked. On app revision `6b9d204`, exact-flow selection and
+failure classification passed 12 focused tests. The documented short slug
+completed a dry-run and selected only `polish/home-root-returned`; the partial
+suffix `returned` failed closed. The dry-run produced 0 screenshots. The
+Home/Places wrong-state screen replay therefore remains unverified.
 
 The native doctor passed on the assigned iPhone SE with Maestro 2.6.1, Java 17,
 Metro port `57436`, and installed app `com.fyan.vesper` version `1.0.0`, but this
 proves only bundle ID and marketing version. The selected
-`polish/home-root-returned` capture produced 0/1 images: Expo bound localhost,
-which the simulator could not reach. A LAN-bound Expo start was rejected by
-automatic approval review because local-network devices could reach the
-development server and source/config; no workaround was attempted. Native
-acceptance remains unverified until an approved simulator-reachable path yields
-a warmed capture.
-The later selector check on `997e0ff` was dry-run only and did not repeat
-native capture.
+`polish/home-root-returned` capture produced 0/1 product images. Its Maestro
+failure frame shows the iOS development-client error for
+`http://127.0.0.1:57436`; this confirms that the simulator could not reach
+Expo's loopback server. The prior runner message speculated about a missing
+internal route or stale build, so app PR 209 now leaves an unconfirmed
+readiness cause open and classifies explicit server errors as infrastructure.
+A LAN-bound Expo start was rejected by automatic approval review because
+local-network devices could reach the development server and source/config; no
+workaround was attempted. The later selector and classifier checks were
+non-native; they did not repeat capture. Native acceptance remains unverified
+until a safe simulator-reachable path yields a warmed capture.
 
 ### Efficiency lane setup
 
