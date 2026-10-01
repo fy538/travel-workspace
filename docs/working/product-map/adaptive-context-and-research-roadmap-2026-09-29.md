@@ -54,11 +54,16 @@ and R7 comparisons. Exact original/text-span reads, bounded acquisition, the
 selected-source work-item contract and its private result owner now exist. The
 work item captures exact Intake revision/span, consumer, private intent and a
 separately typed public request. The result owner binds viewer, source revision
-and optional span, treatment, dependency revisions and content digest; it
-revalidates Intake custody on store/read, physically removes results on source
-scrub, and enforces a 24-hour maximum with bounded hourly cleanup. These are
-backend contracts and persistence only: no owner-callable producer, producer
-route/job, provider activation or client readback is wired yet. Connect
+and optional span, treatment, dependency revisions and content digest. At
+store/read it now revalidates the selected source and every dependency against
+the same viewer's exact retained `text/plain` Intake originals, locking sources
+in stable ID order. Other dependency owners remain unsupported until their own
+exact readers are admitted. Source correction/scrub erases results that refer
+to a source either as the selected original or a dependency; a JSONB GIN index
+supports dependency invalidation. Results retain the 24-hour maximum and
+bounded hourly cleanup. These are backend contracts and persistence only: no
+owner-callable producer, producer route/job, provider activation or client
+readback is wired yet. Connect
 the contracts through the actual producer and exact readback path. The current
 Home/Places request is not an artifact request: do not adapt it as one.
 Use existing Source identity while Strategy owns broader thing/component
@@ -1392,12 +1397,12 @@ owner-scoped result model, table, migration `selresult01`, storage/readback
 helpers and source-scrub/retention hooks landed in backend commit `80452180e`;
 the research-owner status clarification followed in `580fd6b3b`.
 They bind viewer, exact source revision/span, consumer, intent, treatment,
-dependency revisions, digest and expiry. Reads and writes revalidate current
-Intake custody; source scrubs erase dependent results transactionally; a bounded
-hourly worker removes expired or no-longer-eligible rows. Database checks cover
-both an added composition and a content-free no-addition result. Simultaneous
-retries converge on one owner row. The exact acceptance receipts for this
-increment are:
+dependency revisions, digest and expiry. The October 1 follow-up below extends
+read/write validation and correction invalidation to every declared Intake
+dependency. A bounded hourly worker removes expired or no-longer-eligible rows.
+Database checks cover both an added composition and a content-free no-addition
+result. Simultaneous retries converge on one owner row. The exact acceptance
+receipts for the owner and dependency gate are:
 
 - `TEST_DATABASE_DISPOSABLE=1` with the lane's explicitly named, disposable
   Postgres target; `tests/core/test_selected_source_research_work.py`,
@@ -1414,7 +1419,8 @@ increment are:
   supplies that separate evidence.
 - `make docs-check`: passed on the `codex/adaptive-context-research` workspace
   lane (base `cf39e5d8`) after this roadmap receipt update.
-  `alembic heads` reports exactly `selresult01 (head)`.
+  `alembic heads` reported `selresult01 (head)` before the dependency-index
+  migration was added; the October 1 receipt below records the new head.
 
 These receipts establish the storage/readback seam only: they do not establish
 producer dispatch, public-query disclosure, research-specific budget
@@ -2201,3 +2207,44 @@ offline command, with both database-test variables explicitly unset, passed:
 All commit hooks passed with Ruff cache disabled. R7 package acceptance remains
 open; this repairs one verification fixture and does not establish comparative
 product quality or operational acceptance.
+
+#### Implementation receipt — exact dependency eligibility (October 1)
+
+Backend commit `5222e3b71` on `codex/adaptive-context-research` closes the
+selected-result dependency custody gap. Store and read now lock and revalidate
+the selected source plus every dependency as an exact, current, retained
+`text/plain` Intake original belonging to the same viewer. A dependency owned
+by another viewer, a changed revision, revoked custody or an unsupported
+dependency owner cannot support a result. Locks are acquired in stable source
+ID order. Source correction/scrub invalidation now removes rows that reference
+the source as either the selected source or a dependency; a GIN index supports
+the JSONB dependency membership check. The new migration is `selresult02`, the
+sole Alembic head. No non-Intake dependency owner is enabled by this adapter.
+
+Evidence on the committed backend tree:
+
+- With the explicitly disposable PostgreSQL database
+  `codex_selected_source_dependency_20261001`, the focused work, result-owner
+  and maintenance tests passed: **26 passed**. Coverage includes deletion on
+  read after a private dependency is revoked, transactional invalidation when
+  the dependency is scrubbed, and rejection of another viewer's dependency.
+  The disposable role and database were dropped after the test run.
+- `make ci-static` passed: Ruff, formatting, repository architecture/ratchet
+  gates, catalog runway and mypy across 1,896 source files. The final output
+  reported all gates green and no mypy issues.
+- `make merge-check BASE_REF=main` passed the complete offline suite:
+  **22,093 passed, 14 skipped, 1 xfailed, 52 xpassed**, with one expected
+  local-Qdrant payload-index warning. A few tests attempted unavailable
+  Hugging Face metadata requests but completed; no live provider acceptance is
+  claimed.
+- Commit hooks initially ran with the system Python and two SQLAlchemy-backed
+  parity checks could not import their dependency. Re-running the same hooks
+  with the lane virtualenv first on `PATH` passed all hooks. This is an
+  invocation-environment issue, not a bypassed check.
+
+The result owner is still not connected to an owner-callable producer. This
+receipt does not claim product usefulness, caller disclosure approval, research
+budget enforcement, live-provider permission or consumer readback. The next
+implementation increment is the producer-side assembly/selection path using
+these exact dependency fences, followed by authenticated invocation and exact
+readback. R0–R7 remain open.
