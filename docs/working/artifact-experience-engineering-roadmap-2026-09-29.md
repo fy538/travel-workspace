@@ -2714,3 +2714,41 @@ backend `ebe90232b4daa4a9c09a0780f1bffb9366176fa9`, and app
 | App fast gate | `npm run verify:fast` | Passed: native compatibility, icon generation check, lint (0 errors / 169 existing warnings), typecheck, API boundaries, schema bridge, Home budgets and contract typecheck. |
 | App merge scope | `npm run verify:merge -- --base 43c4b3b51cb933610745fc526335264b1af27680` | Passed: 98 suites / 725 tests over the two changed files and related smoke/convention tests. |
 | Cross-repo preflight | `WORKSPACE_BASE_REF=6570c29333641c3a261146472d0357dad633ec8b AGENT_BASE_REF=ebe90232b4daa4a9c09a0780f1bffb9366176fa9 APP_BASE_REF=43c4b3b51cb933610745fc526335264b1af27680 RUFF_CACHE_DIR=/private/tmp/vesper-artifact-foundation-ruff-cache PYTEST_ADDOPTS='-p no:cacheprovider' make verify-changed` | Exit 0 after the sandbox denied one initial ESLint cache write; rerunning the exact gate with the lane-local cache write permitted passed both `verify:fast` and the 98-suite merge scope. No API/schema/database/native-device boundary changed. |
+
+### October 1 repeatable Artifact Reader accessibility capture
+
+The ownership decision in section 0 remains in force: `codex/artifact-foundation`
+is the single accountable lane for this artifact-roadmap outcome, with
+workspace/backend/app ownership kept in their independent Git histories. No
+duplicate branch or worktree was opened. The app's assigned-simulator QA runner
+now applies a capture's declared `systemContentSize`, records it in the run
+manifest, and restores the simulator's previous setting. The artifact-reader
+accessibility flow also now asserts the source screen's actual `Original`
+heading instead of a stale test ID. App commit `be51135e3` contains these QA
+and operating-guidance corrections; it does not change product behavior. App
+commit `3aaceef88` adds the validated verdict/manifest snapshot and updates the
+reader contract with the exact evidence boundary and unresolved canon issue.
+
+The post-commit run used Vesper QA SE / iOS 18.2 at app revision `be51135e3`.
+It captured 14 standard artifact-reader screenshots and 10 screenshots at
+`accessibility-extra-extra-extra-large`, including the exact calendar original
+and return, the ticket's vertical route reflow, and scroll access to the source
+action. All captures are deterministic mock fixtures. The repeatable setting
+and actual source heading are now part of the evidence contract, rather than
+assumptions about simulator state.
+
+| Boundary | Exact verification | Result and limit |
+| --- | --- | --- |
+| QA harness | `npm run qa:polish:test` | Passed all constituent polish-QA checks, including the device-forwarding regression. This validates the harness, not the reader's live-service behavior. |
+| Native reader capture | `VESPER_METRO_URL=http://192.168.1.153:64747 npm run qa:surface -- canonical-artifact-reader --after --device="Vesper QA SE"` | Device doctor passed; both registered captures completed (14 standard screenshots, 10 maximum-text screenshots). Design-reference comparison was skipped because this doctrine-only surface has no comparison manifest. The fixture run does not prove live backend readback, persistence, or authenticated data. |
+| Structured review | `node scripts/polish-qa/verdict.mjs validate .maestro/runs/_pairs/canonical-artifact-reader/after`; `node scripts/polish-qa/verdict.mjs diff .maestro/runs/_pairs/canonical-artifact-reader/after` | Verdict validates as `mixed`. The diff reports three explicitly recorded pass-to-fail review changes (designLanguage, intent, overall); its exit 1 is the expected signal for those review regressions, not an unrecorded capture failure. The committed verdict and manifest are under the app's `docs/surfaces/canonical-artifact-reader/verdicts/` history. |
+
+The one P2 is a canon-alignment issue, not an instruction to recolor the app:
+the QA doctrine reserves gold for curator/editorial use, while `Design
+Language.md` also names gold as Vesper voice/kicker/attribution; artifact-family
+labels use the same gold token. No pinned surface reference resolves that
+boundary, so visual intent is not certified until the founder/design authority
+chooses or sharpens the rule. Layout, source authority, and all 17 behavioral
+assertions passed. VoiceOver activation, physical-device/Android behavior,
+gestures, user preference, loading/error states, and live-service acceptance
+remain open.
