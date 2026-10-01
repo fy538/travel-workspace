@@ -146,6 +146,66 @@
         }
       }
     },
+    "/api/artifact-projections/things/{thing_id}": {
+      "get": {
+        "tags": [
+          "artifact-projections"
+        ],
+        "summary": "Get Kept Thing Projection",
+        "description": "Resolve a stable owner ThingRef and its independently authorized originals.",
+        "operationId": "get_kept_thing_projection_api_artifact_projections_things__thing_id__get",
+        "parameters": [
+          {
+            "name": "thing_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Thing Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KeptThingProjectionV1"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/artifact-projections/intake/{anchor_id}/media/{source_id}": {
       "get": {
         "tags": [
@@ -68082,6 +68142,57 @@
         "type": "object",
         "title": "KeptBoardsResponse",
         "description": "The traveler's non-dismissed kept boards, newest first."
+      },
+      "KeptThingProjectionV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "kept-thing-projection.v1",
+            "title": "Schema Version",
+            "default": "kept-thing-projection.v1"
+          },
+          "resource": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "requested_thing_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Requested Thing Id"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Revision"
+          },
+          "resolution_alias_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "maxItems": 32,
+            "title": "Resolution Alias Ids",
+            "default": []
+          },
+          "originals": {
+            "items": {
+              "$ref": "#/components/schemas/ArtifactOriginalReference"
+            },
+            "type": "array",
+            "maxItems": 512,
+            "title": "Originals",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "resource",
+          "requested_thing_id",
+          "revision"
+        ],
+        "title": "KeptThingProjectionV1",
+        "description": "A stable Thing identity with only its currently readable original refs.\n\nThis read model does not copy source bytes, claims, catalog facts, or\nrecognition candidates. Each original must still be reopened through its\nexisting Intake owner and reauthorized at the point of use."
       },
       "LeadMedium": {
         "type": "string",
