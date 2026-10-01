@@ -114,6 +114,21 @@ Use existing custody and Technical's landed evidence adapters. Every format,
 catalog provider and artifact family need not finish before a supported slice
 lands; the native acceptance remainder runs alongside this work.
 
+**Execution ownership — October 1:** the Strategy artifact lane owns this
+outcome end to end in one coordinated workspace/backend/app worktree tuple; do
+not open a second lane for the same identity slice. The workspace repository
+owns this cross-repo roadmap, contract alignment and evidence receipt.
+`travel-agent` owns the persisted `ThingRef`, reconciliation commands,
+source-preserving authorization checks, and any backend read contract.
+`travel-app` remains at the merged baseline until that read contract is stable
+and a concrete native consumer is in scope; it must not invent a parallel
+client-side identity authority. Keep the three Git histories independent.
+Strategy Technical supplies reusable context/research primitives, while
+Orchestration owns capture transport and Home/Places delivery; neither lane
+owns the kept-Thing identity write. The artifact lane carries its slice through
+focused verification and landing, escalating only a changed authority boundary
+or a real cross-lane conflict.
+
 **Write ownership:** thing/component and cultural-subject identity, reconciliation,
 typed readings, focused reader internals, consumer collections and Life, approved
 catalog/media adapters, exact kept editions and original-sharing semantics.
