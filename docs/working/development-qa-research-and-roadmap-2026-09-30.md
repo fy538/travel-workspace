@@ -699,6 +699,44 @@ behavior and checkout depth semantics:
 [event reference](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows),
 [checkout history options](https://github.com/actions/checkout#fetch-all-history-for-all-tags-and-branches).
 
+**Package 3C hosted checkout trial (October 1).** Workspace PR 40 run
+36905253965 passed the reliability job, all four Maestro syntax shards and the
+required aggregate on workspace `91f991eaf13b168d65ff5796997574faee6b024e`.
+Each syntax shard asserted the same pinned child revision tuple and passed its
+partition. Compared with the full-history run 36897425346, combined child
+checkout time across the four syntax jobs fell from 744.538s to 51.194s
+(93.1%, or 11m33s less runner time); the slowest syntax job fell from 10m03s
+to 5m05s. This is a paired hosted CI measurement for those checkout steps, not
+an end-to-end or developer-productivity result.
+
+The passing run also exposed the remaining critical path: `workspace-checks`
+spent 345s checking out Travel Agent and 16s on Travel App, then finished in
+10m56s. Its full child history existed only so new-document governance could
+list two historical baseline trees. The next bounded trial checks out each
+pinned child at depth 1, then fetches its configured baseline commit with
+`--filter=blob:none --depth=1` before governance runs. The checker reads tree
+names from those commits and file contents only from the current checkout.
+The [checkout action supports shallow fetches](https://github.com/actions/checkout#fetch-all-history-for-all-tags-and-branches),
+and [Git's blobless filter](https://git-scm.com/docs/git-clone#Documentation/git-clone.txt---filterltfilter-specgt)
+omits historical file contents. A local shallow-clone reproduction passed the
+production governance checker on all 405 post-baseline documents while keeping
+the current HEAD shallow and unchanged. Hosted latency and exact baseline-fetch
+behavior remain unverified until this trial's required run completes.
+
+The measured local preflight for the shallow-baseline candidate completed in
+376.152s with exit 0. It used workspace `91f991eaf13b168d65ff5796997574faee6b024e`
+with the workflow, helper, tests and docs changes present; backend
+`05dcc9144a2cb997c5cf4bb75161f842c60e03e4`; and app
+`906c5d5a4719da504ddb492bf4e2fd85c8caabc2`. App passed 9,180 tests; backend
+passed 22,085 with 14 skipped, one expected failure, 52 expected passes and
+one warning; workspace passed 150 tests. The exact command, dirty flags and
+log path are recorded in `docs/reliability/test-loop-baseline.json`. This local
+preflight does not substitute for the hosted workflow run.
+The helper's focused contract suite then passed 38 tests, including malformed
+baseline SHAs, a successful blobless fetch that preserves both shallow HEADs,
+and an unavailable remote that fails closed without moving HEAD; that command
+and result are also recorded in the measurement file.
+
 An offline iOS JavaScript export with internal/mock flags completed in 25.4s,
 bundling 5,443 modules, 503 assets and a 23 MB Hermes bundle. This proves JS
 packaging only. The worktree has no generated iOS project, and `app.config.js`
@@ -1062,10 +1100,12 @@ binary, JS bundle, fixture and tool identities. Compare first-run success and
 end-to-end time with the existing path. Fall back to full native builds if
 compatibility is uncertain; this pilot does not change store-release builds.
 
-Reduced CI checkout inputs, a pinned uv installer using the current requirements
-locks, or one verified unused-code/dependency family are likewise conditional
-experiments. Pick one only after its remaining cost is established; no whole-repo
-build-system migration or automatic dead-code deletion is scheduled.
+The child-history trial above is a separate CI checkout experiment; keep its
+baseline-tree dependency explicit and fail closed if it cannot be fetched. A
+pinned uv installer using the current requirements locks, or one verified
+unused-code/dependency family are likewise conditional experiments. Pick one
+only after its remaining cost is established; no whole-repo build-system
+migration or automatic dead-code deletion is scheduled.
 
 ### Package 5 — Put quality effort into the product loop
 
@@ -1459,7 +1499,10 @@ repair batch's inexpensive checks before publishing another candidate. This is
 engineering cadence, not a narrower product vision or permission to split
 cross-repository invariants.
 
-Section 5 remains the only execution queue. Package 3C is merged; Package 3A's
+Section 5 remains the only execution queue. Package 3C's four-shard syntax
+trial passed hosted checks and measured lower syntax-shard checkout time;
+its main-job child-history optimization has a locally passing candidate and is
+awaiting hosted verification. Package 3A's
 hosted checks pass, and Package 3B's workflow consolidation is published in
 workspace, app and backend PRs. Package 4 now has one measured CI checkout
 experiment, limited to file-only syntax shards; the separate native build reuse
@@ -1467,10 +1510,11 @@ pilot remains conditional. One Package 6 archive migration passed documentation
 governance checks. Package 1 has a passing targeted native capture, while its
 broader Home/Places acceptance and Package 2's original wrong-state replay
 remain open. Native QA retains its separate product-quality purpose. The one
-paired CI run supports a reduction in syntax-shard checkout time; it does not
-establish a repeatable end-to-end CI or productivity gain. No new dashboard,
-parser, framework, standing agent fleet or broad test-deletion project is
-required.
+paired CI run supports a reduction in syntax-shard checkout time; the reliability
+job still took 10m56s with full child history, so the current trial targets that
+remaining cost. Neither result establishes a repeatable end-to-end CI or
+productivity gain. No new dashboard, parser, framework, standing agent fleet or
+broad test-deletion project is required.
 
 ### Reproducing the integration measurements
 

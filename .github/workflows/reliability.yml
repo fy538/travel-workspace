@@ -59,7 +59,7 @@ jobs:
         run: |
           test -n "$CHECKOUT_TOKEN" || { echo "::error::TRAVEL_WORKSPACE_CI_TOKEN must have read access to both private child repositories"; exit 1; }
 
-      # Child documentation governance reads baseline commit trees from history.
+      # Governance needs the current tree plus two historical doc trees only.
       - name: Check out Travel Agent
         uses: actions/checkout@v6
         with:
@@ -67,7 +67,7 @@ jobs:
           path: travel-agent
           ref: ${{ steps.child_refs.outputs.agent_ref }}
           token: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN }}
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Check out Travel App
         uses: actions/checkout@v6
@@ -76,10 +76,13 @@ jobs:
           path: travel-app
           ref: ${{ steps.child_refs.outputs.app_ref }}
           token: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN }}
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Assert actual checkouts equal candidate tuple
         run: python3 scripts/resolve_ci_tuple.py --assert-checkouts
+
+      - name: Fetch child documentation baseline trees
+        run: python3 scripts/fetch_child_doc_baselines.py
 
       - name: Upload candidate identity
         if: always()

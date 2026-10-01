@@ -10,7 +10,9 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 
 
-def assert_reliability_job_uses_pinned_children(job, *, child_fetch_depth):
+def assert_reliability_job_uses_pinned_children(
+    job, *, child_fetch_depth, fetch_doc_baselines=False
+):
     steps = job["steps"]
     checkouts = [
         (index, step["with"])
@@ -48,6 +50,18 @@ def assert_reliability_job_uses_pinned_children(job, *, child_fetch_depth):
         if step.get("run") == "python3 scripts/resolve_ci_tuple.py --assert-checkouts"
     )
     assert assertion_index > max(index for index, _ in child_checkouts.values())
+    if fetch_doc_baselines:
+        baseline_index = next(
+            index
+            for index, step in enumerate(steps)
+            if step.get("run") == "python3 scripts/fetch_child_doc_baselines.py"
+        )
+        governance_index = next(
+            index
+            for index, step in enumerate(steps)
+            if "docs-child-governance-check" in step.get("run", "")
+        )
+        assert assertion_index < baseline_index < governance_index
 
 
 @pytest.mark.parametrize("repo,command,delimiter", [
@@ -206,14 +220,16 @@ def test_reliability_required_check_rejects_an_unreadable_needs_context():
     assert "invalid NEEDS_JSON" in result.stderr
 
 
-def test_reliability_workspace_checks_keep_full_history_for_child_doc_baselines():
+def test_reliability_workspace_checks_fetch_only_child_doc_baseline_trees():
     workflow = yaml.load((ROOT / ".github/workflows/reliability.yml").read_text(), Loader=yaml.BaseLoader)
     job = workflow["jobs"]["workspace-checks"]
     assert any(
         step.get("run") == "make docs-spine-check docs-status-check docs-links-check docs-child-governance-check"
         for step in job["steps"]
     )
-    assert_reliability_job_uses_pinned_children(job, child_fetch_depth="0")
+    assert_reliability_job_uses_pinned_children(
+        job, child_fetch_depth="1", fetch_doc_baselines=True
+    )
 
 
 def test_reliability_syntax_matrix_runs_all_four_shards_with_shallow_pinned_children():

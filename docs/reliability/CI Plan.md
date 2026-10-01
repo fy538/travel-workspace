@@ -56,6 +56,25 @@ scenarios, invariants and Atlas tests remain covered by their owning partition;
 extra invocations solely for named logging are removed. Report groups from the
 same run rather than executing them again.
 
+### Cross-repository checkout history
+
+The reliability workflow keeps the workspace checkout at full history for its
+change-aware workspace checks. Pinned `travel-agent` and `travel-app` checkouts
+use depth 1; the four file-only Maestro syntax shards also use depth 1. The
+main reliability job then fetches the two configured child documentation
+baseline commits with `--no-tags --filter=blob:none --depth=1` before running
+child-document governance. That guard needs the historical trees to list old
+Markdown paths, while it reads document contents from the current pinned
+checkout. It does not need historical file blobs or intervening commits.
+
+`scripts/fetch_child_doc_baselines.py` validates the baseline registry, ensures
+the tree objects exist, preserves each pinned child HEAD, and fails the job on
+fetch or verification errors. Keep the exact candidate-tuple assertion before
+this step. If the registry adds another child or changes its baseline format,
+update the helper and its workflow tests together. A clean shallow-clone run of
+the production checker is the local proof; the hosted Reliability check remains
+the merge evidence for each workflow change.
+
 Test retirement must name a current replacement guarantee or confirm that the
 behavior itself was retired. The removed photo-viewer source-location assertion
 is covered by `PhotoViewerSurface.test.tsx`, which exercises both reduced-motion
