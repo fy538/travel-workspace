@@ -31,8 +31,9 @@ submission-backed Thing owner, evidence-backed reversible cross-submission
 aliases, an owner-scoped Thing read API, and an app reader that opens original
 Sources without transferring their permissions. Backend commit `cb7defc86` and
 app commit `eb515f055` are local lane commits, not merged to remote `main`. The
-workspace also owns the API snapshot/projection and this roadmap; those
-contract/documentation updates remain in progress. This closes the bounded
+workspace owns the generated API snapshot/projection and this roadmap; workspace
+commit `549cf42a` records those contracts and the evidence boundary. None of
+these follow-on commits is merged to remote `main`. This closes the bounded
 identity-and-read slice, not the wider P0/P1/PC/P2 acceptance.
 
 | Area | Implemented and evidenced | Remaining boundary |
