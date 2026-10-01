@@ -968,6 +968,28 @@ remain covered by focused component tests, not this native run. Continue
 ordinary/returned/live receiving coverage and substantive Home/Places work;
 D2 remains active.
 
+**Home addressed-note Keep and return — completed 2026-10-01:** app commit
+`1939e8d74` makes the Home real-social-send runner arm its exact fixture cleanup
+before provisioning, and its static contract now enforces that ordering. The
+native flow `home-exact-send-20261001-d9db593d-r1` passed **1/1** on iPhone 16
+Pro / iOS 18.2 against the same disposable local Postgres/API setup. Before
+launching the app, the runner confirmed the addressed `SEND_NOW` item was in
+the real Home V2 projection and its exact selected revision returned the
+authored owner line. In the UI, the user opened the exact Home destination,
+kept the line, and returned Home; afterward the runner confirmed the recipient
+owner state advanced to a newer `kept` revision, the exact note remained
+readable at that revision, the handled inbox unit was withdrawn from Home, and
+fixture cleanup removed the synthetic handoff. The run emitted non-blocking
+warnings for optional onboarding buttons absent from the already-prepared
+simulator; all product assertions passed. Static runner tests passed **6/6**,
+`bash -n` and `git diff --check` passed. This establishes a synthetic-recipient
+Home receiving/Keep/owner-read/withdrawal path, not ordinary-user supply,
+production-owner value, recurring delivery, or full D2 acceptance. The Home
+flow validates a native Keep journey; Places Keep/Leave-aside remain component-
+tested and were not part of the previous Places native exact-open/return run.
+Continue ordinary/returned/live receiving coverage and full-scroll assessment;
+D2 remains active.
+
 ### Combined landing checkpoint — September 30
 
 The merged integration contains the Home/capture lane plus these completed
