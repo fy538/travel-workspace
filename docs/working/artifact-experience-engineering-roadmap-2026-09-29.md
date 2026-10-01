@@ -580,30 +580,41 @@ research telemetry is not complete provider-spend enforcement. Technical's
 [execution state and receipts](product-map/adaptive-context-and-research-roadmap-2026-09-29.md#6-implementation-packages-and-execution-state)
 own those producer limits; this lane owns reader adoption and acceptance.
 
-#### Collection owner comparison — September 30
+#### Consumer Collection ownership decision — October 1
 
-The accepted consumer Collection semantics need one canonical, many-to-many
-owner whose membership points at stable kept-thing references and whose
-collection-level audience is shared as a whole. The existing Life organization
-tables are a derived, viewer-specific projection: they use `(viewer_id,
-projection_version, group_key)` identities, persist evidence and revisions for
-derived relations, and preserve per-viewer exclusions and control history. The
-materializer accepts owner/evidence-backed proposals and can supersede stale
-derived rows; it does not author the underlying thing or collection. Those
-revision, idempotency, detach and Undo mechanics are candidates to reuse behind
-the canonical owner, not proof that the projection itself is that owner.
+**Decision:** Strategy owns one bounded, canonical consumer-Collection domain
+in the existing backend/Postgres system. It is the source of truth for
+consumer-Collection identity and metadata, many-to-many membership by stable
+`ThingRef`, collection-level audience, and owner-authorized membership and
+lifecycle mutations under the accepted Collection decisions. Keep this a
+domain in the existing service, not a new microservice or a universal content
+store. It references kept Things; it does not copy Source payloads, take Source
+custody, or become the owner of Thing identity.
 
-The existing editorial `collections` API is a separate domain: it exposes
-published public guide bundles with editorial metadata and a bounded set of
-catalog-entity member columns. It does not provide the accepted user-owned
-Collection, cross-member audience, or stable kept-thing membership contract.
-Accordingly, the safe mapping is to preserve both systems in their current
-roles and define the consumer Collection owner as a distinct canonical owner;
-Life may read/project that owner later. Do not migrate consumer writes into
-either existing model by renaming or widening its current projection. A durable
-implementation still depends on the P0 reviewed ThingRef/reconciliation
-boundary and the collection-owner contract; no schema or runtime behavior is
-changed by this mapping.
+**Presentation and projection:** Life owns the Life surface and its read
+presentation/projection, not canonical Collection state. Home and Places may
+present Collection-backed value through Orchestration-owned compositions. Any
+mutation initiated from those roots must resolve back to the Strategy-owned
+Collection owner; a Life group or root projection is not a write-through
+authority. Strategy Technical supplies supported contextual results and
+readback, not a competing Collection owner.
+
+**Existing systems keep their present roles:** `life_organization` is a
+viewer-specific, evidence-backed derived grouping/projection with reversible
+local controls; it is not the canonical shared Collection owner. The public
+editorial `/api/collections` domain is Discover guide content with catalog
+entity members; it is not the user-owned Collection owner. Their revision,
+idempotency, detach, and Undo patterns may inform the new domain, but neither
+model is to be renamed, widened, or repurposed for consumer membership.
+
+**Implementation status and limits:** no consumer Collection schema, API, or
+runtime owner is implemented by this decision. The P6 Strategy package must
+define its owner contract and migration against the accepted stable Thing
+identity before adding writes. This ownership decision does not settle the
+pending policy on Vesper adding to shared Collections, notification batching
+or quiet hours, or the exact recipient-grant implementation. It also does not
+change the accepted rule that a shared Collection is visible as a whole to its
+members.
 
 The first delivered reader-mode matrix is deliberately narrow:
 
