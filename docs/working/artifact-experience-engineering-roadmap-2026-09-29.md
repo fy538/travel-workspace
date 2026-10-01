@@ -57,7 +57,11 @@ is merged or published. The detail continuation now pins to the first page's
 Collection revision, holds a shared owner-row lock while reading each bounded
 page, and returns a conflict for stale continuation. Backend commit
 `ebe90232b` and app commit `43c4b3b51` implement this read-consistency seam;
-neither is merged or published. Its cross-repo receipt is in section 13.
+neither is merged or published. The app now recovers from that exact stale-page
+conflict by resetting the active account's detail query and loading page one
+again; app commit `833a0bb38` adds the recovery. No stale offset is retried and
+other 409 errors do not trigger this reset. These commits are local and not
+merged or published. Cross-repo receipts are in section 13.
 
 | Area | Implemented and evidenced | Remaining boundary |
 | --- | --- | --- |
@@ -97,7 +101,7 @@ The `consumer_collection` path still has no native detail route; no Collections
 tab or row is exposed in the app. Its bounded detail reader now carries the
 first page's Collection revision into continuation requests, reads each page
 under a shared owner-row lock, and rejects stale continuations with a conflict
-that tells the caller to refresh from page one. This is read consistency
+that the app handles by restarting at page one. This is read consistency
 infrastructure only; it does not choose member labels, previews, or final
 screen composition. A useful member reader still needs a current-authority,
 bounded display composition before UI, not one request per member. The current
@@ -2688,3 +2692,25 @@ verification; the lane service and volume were preserved. This increment is
 not a UI member-composition decision: founder approval remains necessary for
 product meaning, labels and user-visible hierarchy, while routine pagination,
 cache invalidation and contract implementation remain lane-owned.
+
+### October 1 stale Collection continuation recovery
+
+The app data facade now recognizes only the Collection reader's explicit
+revision-change `409` (not every `409`) and resets that exact account- and
+Collection-scoped infinite query. TanStack then reloads page one and derives
+new continuation parameters from the returned revision. This closes the
+consumer-side half of the stale-page contract without a stale-offset retry or
+UI-specific recovery code. It does not add a Collection screen or solve the
+member-presentation boundary.
+
+App commit `833a0bb38` is local on `codex/artifact-foundation`. The exact
+cross-repo preflight bases were workspace `6570c29333641c3a261146472d0357dad633ec8b`,
+backend `ebe90232b4daa4a9c09a0780f1bffb9366176fa9`, and app
+`43c4b3b51cb933610745fc526335264b1af27680`; no backend or wire schema changed.
+
+| Boundary | Exact verification | Result and limit |
+| --- | --- | --- |
+| Stale continuation recovery | `npm exec jest -- --runInBand __tests__/data/consumerCollections.test.tsx` | 1 suite / 4 tests passed, including a persisted revision change and a restart at offset zero using the new revision. |
+| App fast gate | `npm run verify:fast` | Passed: native compatibility, icon generation check, lint (0 errors / 169 existing warnings), typecheck, API boundaries, schema bridge, Home budgets and contract typecheck. |
+| App merge scope | `npm run verify:merge -- --base 43c4b3b51cb933610745fc526335264b1af27680` | Passed: 98 suites / 725 tests over the two changed files and related smoke/convention tests. |
+| Cross-repo preflight | `WORKSPACE_BASE_REF=6570c29333641c3a261146472d0357dad633ec8b AGENT_BASE_REF=ebe90232b4daa4a9c09a0780f1bffb9366176fa9 APP_BASE_REF=43c4b3b51cb933610745fc526335264b1af27680 RUFF_CACHE_DIR=/private/tmp/vesper-artifact-foundation-ruff-cache PYTEST_ADDOPTS='-p no:cacheprovider' make verify-changed` | Exit 0 after the sandbox denied one initial ESLint cache write; rerunning the exact gate with the lane-local cache write permitted passed both `verify:fast` and the 98-suite merge scope. No API/schema/database/native-device boundary changed. |
