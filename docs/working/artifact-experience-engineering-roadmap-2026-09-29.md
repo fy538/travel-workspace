@@ -777,8 +777,12 @@ invented by a mock adapter. Open decisions name only the work they actually bloc
 **Deliver:** a kept contribution becomes an inspectable thing with stable
 identity and addressable originals, independent of its entry door.
 
-- Reuse Intake and its immediate private Keep/Undo path. Preserve provisional
-  extraction, source ordering, original access and unsupported-type fallback.
+- Reuse Intake and its immediate private Keep/Undo path as the only source-
+  retention trigger for Thing creation/attachment. Upload, extraction and
+  candidate confirmation are not substitutes for that owner-verified Keep;
+  Capture confirmation accepts interpretation, while Intake owns whether the
+  original remains retained. Preserve provisional extraction, source ordering,
+  original access and unsupported-type fallback.
 - Bridge kept-source and confirmed-artifact readers through a stable consumer
   open target. Recognition may improve a provisional reading without requiring
   candidate confirmation. Through confirmation, correction and candidate
