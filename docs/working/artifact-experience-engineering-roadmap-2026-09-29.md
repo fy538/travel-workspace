@@ -174,6 +174,18 @@ owns the kept-Thing identity write. The artifact lane carries its slice through
 focused verification and landing, escalating only a changed authority boundary
 or a real cross-lane conflict.
 
+**Product decision ownership — October 1:** the founder retains authority over
+unresolved user-facing composition choices, including what a Life Collection
+member view should make meaningful and how that value is presented. The
+artifact lane owns advancing the bounded, current-authority data contract and
+its implementation within the accepted Collection semantics; it must not
+mistake an API payload or the legacy Threads design reference for approval of
+the final member experience. Backend owns canonical Collection data and
+authorization, the app owns its presentation and interaction, and this
+workspace records the cross-repo contract and evidence. Escalate when a choice
+changes product meaning, privacy/audience behavior, or visible claims; routine
+contract, query, cache and verification work remains with the accountable lane.
+
 **Lane continuation and accountability — October 1:** continue this work in
 the existing `codex/artifact-foundation` coordinated tuple; do not create
 another branch or worktree merely to begin the next artifact package. This
