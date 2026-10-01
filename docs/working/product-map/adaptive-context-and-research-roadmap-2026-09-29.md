@@ -3024,6 +3024,46 @@ Validation on the final backend revision:
 No model/provider, live lookup, database mutation, native consumer, or consumer
 study ran for this increment. R0–R7 remain open.
 
+#### R2/R7 implementation receipt — retain failed and withheld comparison outcomes (October 1)
+
+Backend commit `a6a2d1ab6` extends the existing matched-treatment evaluation
+contract with four explicit outcomes: addition, clean no-addition, technical or
+research failure, and safety-withheld. Failed and withheld cases carry no
+generated text, mark remaining effort and relative value as unknown, and keep
+all value dimensions at insufficient evidence. The fixture validator now
+requires both outcomes. Its summary counts all four and computes the authored
+worthwhile-label rate over every fixture case, including no-addition, failed,
+and withheld outcomes. In the seven authored examples, that illustrative rate
+is 1/7; it is a structural denominator check, not evidence about model quality,
+users, or product value.
+
+The evaluator README and Research Agent feature contract now describe this
+boundary. Existing outputs, API/schema, provider behavior, policy, feature
+flags, native consumers, and app behavior are unchanged. No model/provider or
+live lookup ran, and this does not supply representative matched results,
+independent human usefulness review, or R2/R7 acceptance. Database-gated cases
+were skipped by the full offline preflight; no database acceptance is claimed.
+
+Validation on backend commit `a6a2d1ab6` (Python 3.13.0):
+
+- Focused selected-source treatment tests: **13 passed**.
+- Exact-file Ruff lint and format checks passed; JSON fixture syntax and
+  `git diff --check` passed.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static` passed,
+  including architectural/structural gates and mypy across **1,900** source
+  files.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main` passed:
+  **22,193 passed, 14 skipped, 53 xpassed**, with eight warnings including the
+  expected local-Qdrant payload-index warning. Skipped/database-gated cases
+  remain unverified.
+- Commit hooks passed, including Ruff, formatting, secret scanning, and
+  architecture ratchets.
+
+R2 still needs retrieval/selection quality and representative matched human
+usefulness evidence; R7 remains open for actual comparative quality and
+lifecycle/operating acceptance. R0–R7 remain open.
+
 #### R3 implementation receipt — external research caller inventory (October 1)
 
 A source audit of Tavily dispatch paths confirms that `ai.research.live` is not
