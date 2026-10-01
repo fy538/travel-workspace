@@ -1190,8 +1190,13 @@ cases exist. Resolve current paths before execution.
   current budget/refresh behavior, not proposed concurrent reservations or
   universally enforced post-call deadlines.
 - Acquisition/retries: `tests/inbound/test_web_retrieval.py` and
-  `tests/core/test_tool_retry.py`. Extend provider-tool-to-converter-to-compression
-  metadata coverage; current converter fixtures do not prove the complete path.
+  `tests/core/test_tool_retry.py`. The regression
+  `tests/research_agent/test_source_result_metadata.py::test_search_metadata_survives_tool_conversion_compression_and_bounded_result`
+  now covers the mocked `WebSearchTool` projection → source conversion →
+  compression → bounded-result chain. It manually composes the adapters with a
+  stub provider; it does not prove LangGraph wiring, live-provider behavior, or
+  the typed `acquire_public_research` selected-source path. Do not count this
+  isolated fidelity check as R1 acceptance.
 - Memory: `tests/core/test_personal_memory_evidence.py`, preference subsystem
   tests and `tests/eval/test_memory_loop.py`.
 - Quality: `tools/eval/plugins/retrieval/runner.py`,
@@ -1568,6 +1573,20 @@ Remaining R1 acceptance includes a caller-independent typed disclosure boundary,
 purpose-specific lookup/discovery behavior, and supported-claim checks. R2's
 selected-original reader was still outstanding at this receipt's revision; the
 later implementation receipt below records subsequent progress.
+
+#### Verification receipt — tool-to-bounded metadata path (October 1)
+
+The acquisition/retries checklist above was reconciled against the landed
+`test_search_metadata_survives_tool_conversion_compression_and_bounded_result`
+regression rather than duplicating coverage. Re-running that file in the
+adaptive-context lane with Python 3.13.0 / pytest 9.1.1 produced **3 passed**.
+The path uses a stub Tavily client, invokes the real `WebSearchTool._execute`,
+then calls the real converter, compression helper and bounded-result normalizer;
+it verifies publication date, search-snippet identity, bounded-content
+truncation, citation index alignment and `include_raw_content=False`. This
+closes the specific stale test-coverage note, not R1: it does not execute the
+LangGraph, `acquire_public_research`, selected-source disclosure projection,
+live provider, or semantic claim-support acceptance.
 
 Second-pass offline checks at workspace `44f637e85`, backend `3c170d21f`
 and app `87eceee24`, on Python `3.13.0` / Darwin 25.5 arm64:
