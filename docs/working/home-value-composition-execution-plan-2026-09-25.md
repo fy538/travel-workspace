@@ -2045,7 +2045,12 @@ and exact Place actions. No sharing or permission contract changes.
 The regression failed before the fix because `friend-3` was missing, then
 passed with the exact Place destination preserved. The full focused projection,
 Places runtime and social-sections tests passed **78/78**; the focused
-three-friend case passed **1/1**. Ruff check and format passed. Backend
+three-friend case passed **1/1**. Follow-up backend test commit `1a9f57b91`
+extends the case through candidate selection, `compile_places_v2`, and
+`compile_places_root_runtime_v1`: the plural unit contains Mara/Jon and the
+runtime workspace feed retains only Ari's exact friend card. This strengthens
+the bounded runtime integration proof; the broad offline suite below preceded
+that test-only refinement. Ruff check and format passed. Backend
 `make ci-static` passed with Ruff and mypy caches redirected to writable
 temporary storage (the initial default-cache mypy invocation crashed; rerunning
 with a clean temporary cache succeeded). `make merge-check BASE_REF=origin/main`

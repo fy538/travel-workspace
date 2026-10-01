@@ -1260,7 +1260,10 @@ exact two source-card IDs. Any additional eligible friend cards remain
 individual candidates with their existing recipient-scoped relationship read
 and exact Place actions. No new sharing, audience, consent or identity rule is
 introduced. The regression first failed because a third friend's candidate
-was absent, then passed with the corrected adapter.
+was absent, then passed with the corrected adapter. Follow-up backend test
+commit `1a9f57b91` extends the assertion through candidate selection,
+`compile_places_v2`, and `compile_places_root_runtime_v1`: the comparison holds
+Mara/Jon while the actual workspace feed retains Ari's exact card.
 
 Focused projection/runtime/social Places coverage passed **78/78**; the focused
 three-friend regression passed **1/1**. Ruff check/format and all backend
