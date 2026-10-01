@@ -3594,3 +3594,34 @@ Validation on the adaptive-context backend lane:
 This closes one temporal-integrity defect, not R0/R2 acceptance: exact source
 time, occurrence semantics, selection quality, supported-addition usefulness,
 native receiving and the broader R0–R7 package outcomes remain open.
+
+#### R1/R3 implementation receipt — redact image-search failure diagnostics (October 1)
+
+Backend commit `f660abaaf` changes the direct Tavily image-discovery adapter's
+failure diagnostic to include only the exception class. It no longer writes raw
+search wording or provider exception text/tracebacks to logs. The Media FEATURE
+contract records the rule, and a marker-based regression verifies that neither
+the query marker nor an exception-message marker appears in captured logs while
+the failure class remains observable. User-facing fallback behavior stays the
+same (`[]` on provider failure).
+
+Validation on the adaptive-context backend lane:
+
+- `./.venv/bin/python -m pytest -p no:cacheprovider
+  tests/media/test_tavily_search.py -q`: **14 passed**.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static`: passed,
+  including Ruff, formatting, architecture/structural gates and mypy across
+  **1,900** source files.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main` passed:
+  **22,196 passed, 14 skipped, 53 xpassed**, with one expected local-Qdrant
+  warning. Database-gated cases remain skipped by this offline check.
+- Commit hooks passed. No live-provider call, API/schema, commercial policy,
+  feature flag, cache-retention, app, deployment or publication behavior
+  changed.
+
+This closes a local-log exposure only. The image query is still passed to the
+provider under its existing caller authority, the in-process cache remains
+keyed by query, and this caller has no shared durable reservation or usage
+settlement. Its external disclosure and R3 workload-accounting boundaries
+remain open; R0–R7 remain open.
