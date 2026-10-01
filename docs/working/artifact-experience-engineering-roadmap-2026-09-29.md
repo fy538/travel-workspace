@@ -3130,3 +3130,29 @@ controls.
 | Software-keyboard acceptance | Opened `canonical-artifact-reader-replacement-time-editor-keyboard.png` from the full run and two focused reruns, `20261001T202156Z-canonical-artifact-reader` and `20261001T202335Z-canonical-artifact-reader` | The start-offset field is focused, but no software keyboard is visible in the assigned `Vesper QA SE` captures. A previous dedicated native run `20261001T153024Z` on `iPhone SE (3rd generation)` does show the keyboard; it remains evidence for that run only. Current-device cause is unresolved and the full portfolio must not be described as passing this assertion. |
 | Reconciliation visual review | Selected, connected and separated screenshots in the full run | Owner control, two retained originals, connection, and separation state are visible. The sticky translucent header overlaps underlying page headings in the selected and connected states; record this as a P2 component-fit finding in the pending structured visual review. |
 | Current acceptance boundary | Manifest, flow log and screenshot review | No authenticated backend persistence/readback, Android/physical-device, VoiceOver, or user-preference claim is established. The current full portfolio's structured visual verdict remains pending; preserve the keyboard discrepancy and header observation when judging it. |
+
+### October 1 focused reconciliation-label polish
+
+App commit `033bd608f` removes the internal `CONNECTION 01` ordinal from the
+owner-confirmed bundle-connection card. The dated evidence and direct accessible
+Separate action remain. A focused reader regression test protects the consumer
+copy from reintroducing the ordinal. This is presentation-only: it changes no
+identity, authorization, reconciliation, or source-retention semantics.
+
+The post-commit iOS 18.2 Vesper QA SE capture is run
+`20261001T203947Z-canonical-artifact-reader`, at app revision `033bd608f`. Its
+selected, connected, and separated states were visually inspected; the
+structured verdict is committed in app commit `827d26c8f` as
+`travel-app/docs/surfaces/canonical-artifact-reader/verdicts/20261001T203947Z.json`
+and its manifest snapshot. The verdict passes this focused interaction with
+two P2 follow-ups: underlying title text bleeds through the translucent sticky
+header, and the connected-bundle saved-date sentence is mechanically phrased.
+The capture is deterministic app mock state only, and it does not claim the
+route-entry first viewport.
+
+This focused receipt does not replace or upgrade the separate five-flow
+portfolio at app revision `3c2bf4b71`: its structured visual verdict remains
+pending, and its assigned-device editor capture still lacks the software
+keyboard. The reason for the ownership choice remains recorded in section 0;
+the UI/test/verdict work stayed in the existing coordinated
+`codex/artifact-foundation` tuple, with no duplicate lane or worktree.
