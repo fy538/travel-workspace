@@ -42,7 +42,13 @@ Local commands now match the bounded selection policy:
 - App: `npm run verify:fast` plus `npm run verify:merge -- --base <ref>`.
   Related tests are combined with a critical smoke floor and source-reading
   convention tests in one invocation. Unknown/deleted/shared configuration
-  expands to the full suite, without coverage instrumentation during merge.
+  expands to the full suite, without coverage instrumentation during merge. The
+  selector prints the related test paths before execution and gives a reason
+  when shared, deleted, global, or unmapped inputs require the full suite; an
+  empty related-test result also widens with an explicit explanation.
+- Backend: `scripts/merge_scope.py --plan` prints the selected test directories
+  and the reason for any full-suite fallback before tests run. Git/base failures
+  remain errors, never an empty passing selection.
 - `make verify`, backend `make ci`, and app `verify:full` remain available for
   comprehensive regression, release checks and deliberate diagnosis. Do not
   automatically repeat them after a bounded local preflight and again at every

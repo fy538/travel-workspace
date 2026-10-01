@@ -159,6 +159,30 @@ def test_collect_changed_paths_reads_committed_changes_from_each_repo(
     ]
 
 
+def test_final_candidate_retains_earlier_shared_app_change_after_local_edit(
+    tmp_path: Path,
+) -> None:
+    repos = _repositories(tmp_path)
+    bases = {repo.key: MODULE.resolve_base_ref(repo, "HEAD") for repo in repos}
+    app = repos[2]
+
+    shared = app.root / "utils/api/shared.ts"
+    shared.parent.mkdir(parents=True)
+    shared.write_text("export const shared = true;\n")
+    _git(app.root, "add", "utils/api/shared.ts")
+    _git(app.root, "commit", "-qm", "shared API change")
+    local = app.root / "components/example.tsx"
+    local.write_text("export const x = 2;\n")
+    _git(app.root, "add", "components/example.tsx")
+    _git(app.root, "commit", "-qm", "later local change")
+
+    resolved, files = MODULE.collect_changed_paths(bases, repos)
+    assert "travel-app/utils/api/shared.ts" in files
+    assert "travel-app/components/example.tsx" in files
+    selection = MODULE.select_commands(files, repositories=repos, base_refs=resolved)
+    assert any("verify:merge" in command.argv for command in selection.commands)
+
+
 def test_collect_changed_paths_reads_staged_unstaged_and_untracked_child_changes(
     tmp_path: Path,
 ) -> None:
