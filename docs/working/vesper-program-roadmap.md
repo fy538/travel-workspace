@@ -1106,6 +1106,35 @@ not prove API-backed owner data, the way-in card's destination tap, an external
 design-canon comparison, photo-byte custody, real-owner acceptance, or full
 Places/D2 parity. D2 remains active.
 
+**Home Outcome → exact Life record → Home — 2026-10-01:** the current
+workspace/backend/app tuple (`96fa6df8` / `8cd85fd55` / `c3c563602`) passed
+the existing `91-home-outcome-life-return` native flow on its assigned iPhone
+16 Pro / iOS 18.2. The run used a fresh, explicitly disposable, migration-to-
+head database (`vesper_home_return_20261001_01`), one synthetic `@eval.local`
+owner, the real local HTTP API, `SKIP_AUTH=true` for that owner only, and
+AI/search/background work disabled. Before app launch, the runner confirmed the
+exact private Outcome in Home v2 and the exact same Outcome and authored meaning
+in the owner's Life time read. On device it opened that exact Life record,
+returned, and found the same Home unit still visible. All three native captures
+were produced; the runner then verified that fixture cleanup withdrew the
+Outcome from both roots. The disposable database was removed after the API
+stopped. The runner contract passed **4/4**, `bash -n` and `git diff --check`
+passed. This proves one returned-state, cross-root owner-read/navigation/return
+path, not production authentication, a user's actual trip, recurring content,
+or full D2 acceptance.
+
+The screenshots also bound the next useful question: this deliberately sparse
+Outcome had no occurrence date or canonical Place binding, so Life correctly
+said “Date not recorded”; the page otherwise offered a generic “Explore Places”
+door. A direct Home read of the same fixture carried two non-retryable
+`moment.conditions_unavailable` degradations, rendered as “A partial read,”
+although the Outcome and Places door remained available. Do not infer the
+missing date or Place. The next returned-state pass should use genuinely
+available date/place/source evidence where the owners provide it, and decide
+whether this expected missing-context notice helps or makes a sparse Home feel
+broken. D2 remains active; exact opening and return alone are not meaningful
+returned-content acceptance.
+
 ### Combined landing checkpoint — September 30
 
 The merged integration contains the Home/capture lane plus these completed
