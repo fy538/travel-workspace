@@ -2588,3 +2588,37 @@ Validation for this increment, before commit:
   failure, but does not turn the integrated preflight into a passing result.
 - The app checkout has no changes. No provider, route, schema, native consumer
   or app behavior changed in this increment.
+
+#### R2 baseline acceptance cases — bounded text candidates (October 1)
+
+Added deterministic cases to the existing selected-source tests rather than
+creating a parallel evaluation framework. The covered distinctions are:
+
+| Case | Observed baseline behavior | What it proves / does not prove |
+| --- | --- | --- |
+| Repeated capture with the same title and content hash | Two exact source IDs from separate submissions remain distinct; nearest capture time outranks metadata page order | Subject/visit identity is not deduplicated by filename or bytes. It does not prove the two visits should be synthesized together |
+| Different text artifact filenames with the same explicit note | The two `text/plain` sources are eligible in deterministic capture-time order | The baseline can bridge text-backed source kinds when a user note matches. It does not inspect artifact contents or establish a useful connection |
+| Positive candidate from a truncated metadata page | The authenticated producer route can proceed with the exact positive refs while preserving `complete=False` | A partial positive scan is usable as a candidate set; an empty incomplete scan remains unavailable |
+
+Focused offline API/candidate tests passed: **22 passed**. These are contract and
+ordering checks, not a relevance-labeled corpus: no candidate precision/recall,
+semantic false-association rate, supported-addition quality or human-benefit
+score is claimed. Candidate generation remains metadata-only, same-viewer,
+text-only and bounded. This evidence does not justify semantic retrieval or a
+ranking model; it does justify the next R2 step: curate a small, versioned
+relevance set with true relations, same-title/repeat-visit distractors,
+cross-artifact text and empty/insufficient-support cases, then compare the
+existing exact-note/packet baseline with existing owner-linked retrieval
+without calling a live provider. Reject any metric that conflates candidate
+recall with final selection or user value.
+
+Validation for the acceptance-case increment, before commit:
+
+- `make ci-static` passed, including architecture gates and mypy across **1,900
+  source files**.
+- `make merge-check BASE_REF=main` passed: **22,145 passed, 14 skipped, 1
+  xfailed, 52 xpassed**. Two expected local-Qdrant payload-index warnings were
+  emitted; no live provider call occurred.
+- Workspace `make docs-check` passed; app remained unchanged. These narrower
+  checks are not a replacement for the earlier failed integrated preflight or
+  an end-to-end consumer acceptance.
