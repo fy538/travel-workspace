@@ -70,14 +70,18 @@ contracts through a dark-by-default, authenticated producer route and exact
 owner readback. One reserved, single-dispatch synthesis is allowed only when
 the feature gate and commercial allocation both admit it; the path does not
 perform public lookup, activate a provider, or have a reviewed native consumer.
-The server now derives at most two candidate dependencies from retained
-`text/plain` siblings in the selected source's same verified Intake submission,
-using bounded metadata and source-order proximity. This is not semantic or
-interest-aware retrieval: co-submission does not prove relevance, and other
-submissions are not searched. The candidate owner reads no source bodies, and
-Intake revalidates each exact dependency before model use. This is still
-plumbing, not yet the effortless product behavior. The current Home/Places
-request is not an artifact request: do not adapt it as one.
+The server now prefers up to two exact `text/plain` dependencies from other
+currently retained submissions by the same viewer when they carry the same
+explicit normalized user note; it then falls back to bounded same-packet
+siblings ordered by source position. The archive check reuses Life's existing
+metadata-only owner read, limited to its first 100 recent descriptors. A shared
+note or packet membership is only a candidate cue—not semantic or interest-aware
+relevance—and a truncated empty scan remains unavailable rather than
+authoritative silence. Candidate selection reads no source bodies; Intake
+revalidates every exact dependency before model use. This is a lexical retrieval
+baseline, not semantic/archive-wide retrieval or effortless product acceptance.
+The current Home/Places request is not an artifact request: do not adapt it as
+one.
 Use existing Source identity while Strategy owns broader thing/component
 identity. The scope, sequence and finish conditions are in
 [section 12](#12-document-delivery-and-next-handoff).
@@ -704,14 +708,14 @@ is in section 1. The first connected assignment remains active:
 
 | Area | Landed capability to reuse | Remaining connection or evidence |
 | --- | --- | --- |
-| Selected evidence | Owner/revision-bound original reads and mobile callers; bounded UTF-8 text-span selection; exact in-memory hydration; a dark authenticated producer and private exact-result GET; bounded discovery of up to two retained text siblings from the same verified Intake submission | Semantic/cross-submission retrieval and ranking, and general component or multimodal retrieval, remain open; co-submission is only a candidate relation, not relevance evidence |
+| Selected evidence | Owner/revision-bound original reads and mobile callers; bounded UTF-8 text-span selection; exact in-memory hydration; a dark authenticated producer and private exact-result GET; cross-submission exact-user-note candidates from the existing bounded Life metadata owner plus same-packet fallback | Semantic retrieval/ranking, archive coverage beyond the first 100 descriptors, general component or multimodal retrieval, and relevance evidence remain open; neither a shared note nor co-submission proves relevance |
 | Public acquisition | Shared typed single-attempt lookup; answer-only routing without dossier writes; source kind, dates, quotes and truncation metadata | Construct public requests from selected material under an actual disclosure boundary; select a substantive addition and verify claim support beyond quote presence |
 | Runtime | Existing Source workflow/publication controls; content-free demand and tool/SDK-attempt telemetry; selected-source producer has one real reservation/fence and one no-retry/no-failover model attempt | Real producer-to-ledger database acceptance, settlement/recovery evidence and any authorized live-provider run; telemetry and voice units are not research spend enforcement |
 | Receiving dependencies | Merged family readers, exact-source inspection, correction/Undo and return behavior; Home/Places receiving improvements; authenticated result API exists but is dark | Existing preparation requests remain root-bound; no native artifact consumer has adopted the dark result API |
 | Evaluation | Focused/offline checks, producer route tests, 13 earlier disposable-Postgres lifecycle/API tests and 2 new R2 candidate/readback tests; current change-aware backend preflight | Matched usefulness comparisons, semantic/archive-wide retrieval quality, authorized live-provider evidence and real consumer acceptance |
 
 R0's scope/owner admission, R1's disclosure and acquisition acceptance, R2's
-supported selection beyond the same-submission candidate heuristic, and R6/R7's connected evidence are unfinished. Minimum
+supported selection beyond exact-note and same-packet candidate cues, and R6/R7's connected evidence are unfinished. Minimum
 R3/R4/R5 controls accompany that producer; broad shared execution, longitudinal
 maintenance and assistance adaptation remain later work. No existing original
 reader or root connection needs to be rebuilt to start this assignment.
@@ -1342,15 +1346,17 @@ These are engineering coverage cases, not a narrower product thesis.
    representation Component identity is needed for the exact-original adapter.
 2. **Connect evidence and acquisition.** The dark backend producer now hydrates
    an exact retained original/span and up to two exact Intake dependencies
-   through Intake in memory under one combined 20,000-character limit. The
-   server derives dependencies from at most 100 retained text siblings in the
-   same verified Intake submission, ordered by proximity to the selected
-   source's ordinal. This is a bounded candidate heuristic, not semantic
-   retrieval or relevance evidence; a complete scan with no eligible sibling
-   preserves the content-free no-addition path, while an incomplete empty scan
-   returns unavailable. Exact owner, custody, revision and retention are
-   revalidated during Intake hydration. Cross-submission/archive retrieval and
-   semantic ranking remain R2 work. Honor current intent and use eligible
+   through Intake in memory under one combined 20,000-character limit. It first
+   checks the existing same-viewer Life metadata reader's bounded page (up to
+   100 recent descriptors) for other retained `text/plain` originals with the
+   same normalized user-entered note, then fills remaining slots from up to 100
+   retained text siblings in the selected source's verified Intake submission,
+   ordered by source-position proximity. These are explicit lexical/capture
+   cues, not semantic retrieval or relevance evidence. A complete empty scan
+   preserves the content-free no-addition path; an incomplete empty scan returns
+   unavailable. Exact owner, custody, revision and retention are revalidated
+   during Intake hydration. Semantic ranking and archive coverage beyond the
+   bounded page remain R2 work. Honor current intent and use eligible
    existing evidence where sufficient.
    Additions must be supported across the selected original and a dependency,
    while treating personal novelty as inapplicable without novelty history.
@@ -2538,3 +2544,47 @@ same-submission candidate heuristic, not semantic or archive-wide retrieval;
 it does not yet establish that an addition is useful. Broader R2 selection,
 R6 consumer acceptance, R7 comparison and the remaining R0–R7 requirements
 remain open.
+
+#### Implementation receipt — exact-note cross-submission candidates (October 1)
+
+The dark candidate adapter now consults the existing owner-scoped Life
+retained-original metadata read when the selected Intake submission has a
+non-empty user note. It checks at most the first 100 recent eligible source
+descriptors and prioritizes up to two `text/plain` originals from distinct
+submissions whose note matches exactly after case/whitespace normalization;
+it orders ties by capture-time distance but preserves separate source IDs even
+when hashes or titles match. It then uses the existing same-submission siblings
+as fallback within the shared context-character bound. The selected note is
+suppressed from value representations, never persisted in this pathway, never
+sent to a provider, and never returned by the candidate adapter. Both kinds of
+candidate remain hypotheses: no fuzzy phrase match, semantic rank, cross-user
+source, or public lookup was added. An incomplete empty metadata page remains
+incomplete; an exact positive candidate can still proceed as a bounded
+candidate set. Intake's exact owner read remains the final custody/revision
+gate. No schema migration or API/OpenAPI change is required.
+
+This is a deliberate R2 bridge through the existing Life source owner, not the
+final archive retrieval design. The immediate follow-up is to compare this
+literal baseline against representative same-title/repeated-visit and
+cross-artifact cases, then extend the existing retrieval/evaluation owners only
+where those cases show misses or false associations. The route remains dark
+until the R6 consumer and R7 usefulness evidence are accepted.
+
+Validation for this increment, before commit:
+
+- Focused offline selected-source tests: **61 passed**. Against the explicitly
+  disposable lane database `vesper_adaptive_context_test_20261001`, selected-
+  source route and original-reader PostgreSQL tests: **5 passed**.
+- Backend `make ci-static` and `make merge-check BASE_REF=main` passed;
+  the latter reported **22,143 passed, 14 skipped, 1 xfailed, 52 xpassed**.
+- Workspace documentation checks passed. The integrated
+  `make verify-changed WORKSPACE_BASE_REF=main AGENT_BASE_REF=main
+  APP_BASE_REF=main` completed backend and workspace checks, including **118
+  workspace tooling tests**, but exited nonzero because Jest reported a worker
+  SIGSEGV while starting `__tests__/utils/stayState.tz.test.ts`. The other
+  **1,288 app suites / 9,175 tests passed** in that run. Re-running that suite
+  alone with `npm test -- --runInBand __tests__/utils/stayState.tz.test.ts`
+  passed (**1 suite, 3 tests**). This supports a transient parallel-worker
+  failure, but does not turn the integrated preflight into a passing result.
+- The app checkout has no changes. No provider, route, schema, native consumer
+  or app behavior changed in this increment.
