@@ -3628,6 +3628,54 @@
       "removal_trigger": "Remove only when an equivalent owner-scoped media transport preserves revocation and private custody semantics.",
       "review_by": "2026-10-30"
     },
+    "GET /api/kept-things": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "listKeptThingIndex",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "kept-things",
+      "reason": "The owner needs a content-free index to deliberately choose a saved bundle for continuity reconciliation; source access remains a separate authorized read.",
+      "removal_trigger": "Remove only when an equivalent owner-scoped bundle index preserves identity and source-authorization boundaries.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/kept-things/aliases/{alias_id}/reverse": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "reverseKeptThingAlias",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "kept-things",
+      "reason": "An owner can separate one exact prior bundle connection without deleting Sources or rewriting saved references.",
+      "removal_trigger": "Remove only when an equivalent owner-authorized reversible separation command is shipped.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/kept-things/{thing_id}/reconciliations": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "mergeKeptThingBundles",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "kept-things",
+      "reason": "Only the owner may connect two saved bundles after supplying exact retained Source evidence, current revisions, and an explicit confirmation.",
+      "removal_trigger": "Remove only when an equivalent owner-authorized, evidence-bound, reversible continuity command is shipped.",
+      "review_by": "2026-10-30"
+    },
     "GET /api/intake/submissions/{submission_id}/interpretations": {
       "audience": "app",
       "consumers": [

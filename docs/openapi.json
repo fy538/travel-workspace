@@ -20313,6 +20313,220 @@
         }
       }
     },
+    "/api/kept-things": {
+      "get": {
+        "tags": [
+          "kept-things"
+        ],
+        "summary": "List Kept Things Endpoint",
+        "description": "List this owner's canonical saved bundles without exposing source contents.",
+        "operationId": "list_kept_things_endpoint_api_kept_things_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100000,
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KeptThingIndexV1"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/kept-things/{thing_id}/reconciliations": {
+      "post": {
+        "tags": [
+          "kept-things"
+        ],
+        "summary": "Merge Kept Thing Bundles Endpoint",
+        "description": "Join two saved bundles only after an explicit owner confirmation.",
+        "operationId": "merge_kept_thing_bundles_endpoint_api_kept_things__thing_id__reconciliations_post",
+        "parameters": [
+          {
+            "name": "thing_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Thing Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KeptThingMergeRequestV1"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KeptThingAliasReceiptV1"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/kept-things/aliases/{alias_id}/reverse": {
+      "post": {
+        "tags": [
+          "kept-things"
+        ],
+        "summary": "Reverse Kept Thing Bundle Link Endpoint",
+        "description": "Separate one exact prior connection without rewriting saved references.",
+        "operationId": "reverse_kept_thing_bundle_link_endpoint_api_kept_things_aliases__alias_id__reverse_post",
+        "parameters": [
+          {
+            "name": "alias_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Alias Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KeptThingReverseAliasRequestV1"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KeptThingAliasReceiptV1"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/admin/intake/dead-letters": {
       "get": {
         "tags": [
@@ -81793,6 +82007,215 @@
         "title": "KeptBoardsResponse",
         "description": "The traveler's non-dismissed kept boards, newest first."
       },
+      "KeptThingActiveAliasV1": {
+        "properties": {
+          "alias_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Alias Id"
+          },
+          "source_thing_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Source Thing Id"
+          },
+          "target_thing_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Target Thing Id"
+          },
+          "current_source_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Current Source Revision"
+          },
+          "current_target_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Current Target Revision"
+          },
+          "source_saved_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Source Saved At"
+          },
+          "target_saved_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Target Saved At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "alias_id",
+          "source_thing_id",
+          "target_thing_id",
+          "current_source_revision",
+          "current_target_revision",
+          "source_saved_at",
+          "target_saved_at"
+        ],
+        "title": "KeptThingActiveAliasV1",
+        "description": "One currently reversible, owner-confirmed bundle connection."
+      },
+      "KeptThingAliasReceiptV1": {
+        "properties": {
+          "alias_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Alias Id"
+          },
+          "source_thing_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Source Thing Id"
+          },
+          "target_thing_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Target Thing Id"
+          },
+          "source_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Source Revision"
+          },
+          "target_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Target Revision"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "reversed"
+            ],
+            "title": "Status"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "alias_id",
+          "source_thing_id",
+          "target_thing_id",
+          "source_revision",
+          "target_revision",
+          "status"
+        ],
+        "title": "KeptThingAliasReceiptV1"
+      },
+      "KeptThingIndexEntryV1": {
+        "properties": {
+          "resource": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "saved_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Saved At"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "resource",
+          "saved_at",
+          "revision"
+        ],
+        "title": "KeptThingIndexEntryV1",
+        "description": "Content-free owner index entry; source access is checked on detail read."
+      },
+      "KeptThingIndexV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "kept-thing-index.v1",
+            "title": "Schema Version",
+            "default": "kept-thing-index.v1"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/KeptThingIndexEntryV1"
+            },
+            "type": "array",
+            "maxItems": 100,
+            "title": "Items"
+          },
+          "next_offset": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Offset"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "title": "KeptThingIndexV1"
+      },
+      "KeptThingMergeRequestV1": {
+        "properties": {
+          "target_thing_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Target Thing Id"
+          },
+          "expected_source_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Source Revision"
+          },
+          "expected_target_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Target Revision"
+          },
+          "command_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Command Id"
+          },
+          "source_evidence": {
+            "$ref": "#/components/schemas/KeptThingSourceEvidenceV1"
+          },
+          "target_evidence": {
+            "$ref": "#/components/schemas/KeptThingSourceEvidenceV1"
+          },
+          "owner_confirmation": {
+            "type": "string",
+            "const": "keep_bundles_together",
+            "title": "Owner Confirmation"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "target_thing_id",
+          "expected_source_revision",
+          "expected_target_revision",
+          "command_id",
+          "source_evidence",
+          "target_evidence",
+          "owner_confirmation"
+        ],
+        "title": "KeptThingMergeRequestV1"
+      },
       "KeptThingProjectionV1": {
         "properties": {
           "schema_version": {
@@ -81824,6 +82247,15 @@
             "title": "Resolution Alias Ids",
             "default": []
           },
+          "active_aliases": {
+            "items": {
+              "$ref": "#/components/schemas/KeptThingActiveAliasV1"
+            },
+            "type": "array",
+            "maxItems": 512,
+            "title": "Active Aliases",
+            "default": []
+          },
           "originals": {
             "items": {
               "$ref": "#/components/schemas/ArtifactOriginalReference"
@@ -81843,6 +82275,67 @@
         ],
         "title": "KeptThingProjectionV1",
         "description": "A stable Thing identity with only its currently readable original refs.\n\nThis read model does not copy source bytes, claims, catalog facts, or\nrecognition candidates. Each original must still be reopened through its\nexisting Intake owner and reauthorized at the point of use."
+      },
+      "KeptThingReverseAliasRequestV1": {
+        "properties": {
+          "expected_source_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Source Revision"
+          },
+          "expected_target_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Target Revision"
+          },
+          "command_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Command Id"
+          },
+          "owner_confirmation": {
+            "type": "string",
+            "const": "separate_bundles",
+            "title": "Owner Confirmation"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "expected_source_revision",
+          "expected_target_revision",
+          "command_id",
+          "owner_confirmation"
+        ],
+        "title": "KeptThingReverseAliasRequestV1"
+      },
+      "KeptThingSourceEvidenceV1": {
+        "properties": {
+          "submission_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Submission Id"
+          },
+          "source_object_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Source Object Id"
+          },
+          "source_revision": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Source Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "submission_id",
+          "source_object_id",
+          "source_revision"
+        ],
+        "title": "KeptThingSourceEvidenceV1",
+        "description": "Exact retained Source reference used in an owner reconciliation command."
       },
       "LatencyDistribution": {
         "properties": {

@@ -30,20 +30,24 @@ adjacent-lane integration are merged into remote `main` at the tuple in section
 submission-backed Thing owner, evidence-backed reversible cross-submission
 aliases, an owner-scoped Thing read API, an app reader that opens original
 Sources without transferring their permissions, and the first ordinary
-candidate-to-bundle entry path. Backend commits `cb7defc86` and `f1ae16096`,
-and app commits `eb515f055` and `9a1c96292`, are local lane commits, not merged
-to remote `main`. Workspace commit `549cf42a` records the earlier generated API
-snapshot/projection and ownership boundary; no generated API contract changed
-in this latest bridge. The new entry preserves candidate/anchor occurrence
+candidate-to-bundle entry path. The owner-confirmed reconciliation transport
+and app controls are now implemented and locally verified. Backend commit
+`53d90e9eb` and app commit `38757f485`, like earlier lane commits `cb7defc86`,
+`f1ae16096`, `eb515f055`, and `9a1c96292`, are local and not merged to remote
+`main`. Workspace commit `549cf42a` records the earlier generated API
+snapshot/projection and ownership boundary. The current operation policy,
+OpenAPI snapshots, generated Current State and this roadmap now record the new
+reconciliation contract in the independent workspace repository. The new entry preserves candidate/anchor occurrence
 identity and opens a contribution bundle only for a verified private Keep with
 a currently available, unexpired retained Source. This closes the bounded
-candidate-to-bundle read path, not owner-confirmed reconciliation, Collection
-continuity, native acceptance, or wider P0/P1/PC/P2 acceptance.
+candidate-to-bundle read path and the first explicit bundle-reconciliation
+path. Collection continuity, native acceptance, and wider P0/P1/PC/P2
+acceptance remain open.
 
 | Area | Implemented and evidenced | Remaining boundary |
 | --- | --- | --- |
 | P0 contracts and portfolio | Accepted kept-thing identity direction; code-backed owner map, supported-door/mode crosswalk, versioned reading descriptor, family/fallback fixtures and sparse-history examples; initial Thing storage/migration design is implemented under P1 | Subject/Component and edition mappings, selected-part representation cases and broader lifecycle portfolio; fixtures are not live generation or desirability evidence |
-| P1 correction and continuity | Revision-bound corrections and append-only Undo; backend typed-time replacement; capture-to-reader and exact-source-to-confirmed-record links with source/digest checks; owner-scoped Thing row on verified private Keep; evidence-backed reversible cross-submission aliases; owner-scoped Thing API/native reader; candidate-to-bundle entry from a qualifying occurrence reader | Owner-facing merge/reversal transport and Collection continuity; native replacement-time editor still needs timezone-authoring behavior |
+| P1 correction and continuity | Revision-bound corrections and append-only Undo; backend typed-time replacement; capture-to-reader and exact-source-to-confirmed-record links with source/digest checks; owner-scoped Thing row on verified private Keep; evidence-backed reversible cross-submission aliases; owner-scoped Thing API/native reader; candidate-to-bundle entry from a qualifying occurrence reader; owner-confirmed reversible reconciliation transport and app controls, focused local tests passed | Collection continuity; native replacement-time editor still needs timezone-authoring behavior; no native acceptance for reconciliation yet |
 | P2 original-first readers | Ticket, source-backed place, text-built book/film/show/music, supplied passage and practical-record treatments; exact-original chooser/return; shared photo viewer | Catalog identity/art, selected-part UI and later dish/recipe/scorecard treatments; source facts do not establish attendance, author identity or payment state |
 | Reader lifetime | Account-session-scoped reads, expiry-aware displayed facts and foreground refresh, exact-source authorization and revision checks | Full source/audience/collection lifecycle replay and authenticated mobile-to-service acceptance |
 | Native acceptance | Fourteen family/source/return fixture screenshots; ten largest-text screenshots; Life source/photo-viewer/removal flow on iOS 18.2 | Reliable pinch/pan, actual VoiceOver traversal/actions, loading/error states, Android/physical devices and live-service readback; these captures do not establish user preference |
@@ -58,17 +62,18 @@ unchanged screenshots did not establish pan/pinch. Do not turn either result
 into a broader gesture, accessibility or live-service claim. The Home dock
 stability repair was a QA prerequisite, not another artifact feature.
 
-**Next assignment:** carry evidence-backed reconciliation through its first
-owner-confirmed app path. Reuse the existing backend merge/reversal commands;
-define authenticated transport and UI that show the evidence and expected
-revision, require an explicit confirmation, support exact retry and reversal,
-and never turn an inferred match into an automatic merge. Keep the candidate's
-occurrence identity and every Source's independent authorization intact. The
-candidate-to-bundle read path is now available from the existing occurrence
-reader; do not make Life or Collection a second identity owner. Keep reader QA
-bounded. Adopt Technical's landed primitives without building another research
-engine, and connect artifact-bound additions once their request/result and
-first-producer safeguards are ready.
+**Next assignment:** advance the next connected checkpoint in section 11: use
+Technical's supported artifact-target request/result contract in the focused
+reader for one useful eligible addition, while preserving original-only value
+and exact return. Owner-confirmed reconciliation is implemented and tested;
+the owner chooses whether bundles stay connected, and Vesper makes no claim
+that their contents are semantically the same object. Keep Source custody and
+authorization independent, with a direct reversible `Separate` action. Life
+and Collection remain consumers, not identity owners. Collection continuity,
+native acceptance, timezone-authoring for typed-time replacement, and wider
+P0/P1/PC/P2 outcomes remain explicit open work. Do not build another research
+engine: adopt Technical's landed interface and required first-producer
+safeguards.
 
 The accepted
 [Collections](../decisions/2026-09-28-collections-are-the-spine.md) and
@@ -120,13 +125,13 @@ Strategy Technical.
 
 **Current assignment:** continue section 11's P0/P1/PC/P2 artifact foundation
 from the merged reader/correction baseline. The content-free owner, reversible
-cross-source aliases, owner read API, native Thing reader, and candidate-to-
-bundle opening path are implemented in this lane. The next bounded slice is the
-first owner-confirmed reconciliation transport and app interaction, using the
-existing domain commands and their revision/evidence safeguards. Use existing
-custody and Technical's landed evidence adapters. Every format, catalog
-provider and artifact family need not finish before a supported slice lands;
-the native acceptance remainder runs alongside this work.
+cross-source aliases, owner read API, native Thing reader, candidate-to-bundle
+opening, and owner-confirmed reconciliation transport/app interaction are
+implemented in the local lane. The next bounded connected slice adopts
+Technical's supported artifact-target request/result in a focused reader.
+Use existing custody and Technical's landed evidence adapters. Every format,
+catalog provider and artifact family need not finish before a supported slice
+lands; the native acceptance remainder runs alongside this work.
 
 **Execution ownership — October 1:** the Strategy artifact lane owns this
 outcome end to end in one coordinated workspace/backend/app worktree tuple; do
@@ -1520,39 +1525,40 @@ anchors, and books, films, shows and music. P0 distinguishes their shared-contra
 coverage from supported first-delivery modes and honest fallbacks; every family
 and provider need not finish at once.
 
-### Current execution slice — updated October 1
+### Current execution slice — owner-controlled reconciliation, October 1
 
-**Outcome:** an owner can reach the stable saved-bundle identity from an
-occurrence-specific reader without changing candidate identity, conflating a
-contribution bundle with one semantic object, or weakening exact-Source
-permissions. The read-path portion is implemented; owner-confirmed
-reconciliation remains next.
+**Outcome:** an owner can connect two stable saved-bundle identities from an
+occurrence-specific reader without changing candidate identity, claiming the
+bundles are semantically the same object, or weakening exact-Source
+permissions. The user controls the connection; Vesper cannot infer or apply it.
 
-1. **Expose owner-confirmed reconciliation through authenticated transport.**
-   Reuse the backend's revisioned merge/reversal domain commands. Carry the
-   authenticated owner, evidence basis, command ID, expected revision,
-   idempotency and reversible history through an explicit write route. Keep
-   this transport distinct from the read endpoint; prove exact retry and stale
-   revision conflict behavior at the route and persisted-owner boundary.
-2. **Add a deliberate app interaction only where the owner can inspect the
-   proposed match.** Show the affected Things and supporting evidence before
-   confirmation; make merge an explicit owner choice and preserve a clear,
-   usable reversal path. Never auto-merge from model confidence, shared Subject
-   identity or byte similarity. Candidate/anchor IDs remain the route for
-   occurrence-specific experience; Life and Collection consume Thing
-   references without owning or copying identity.
-3. **Exercise same-object and distinct-occurrence cases together.** Verify two
-   eligible sources can resolve to one contribution identity where evidence
-   supports it, separate screenings remain separate, each original is
-   reauthorized independently, a mistaken merge can be reversed without
-   rewriting consumer references, and retries/concurrent stale writes do not
-   duplicate or erase history.
-4. **Continue reader acceptance independently.** Complete remaining
-   loading/error, reliable photo pan/pinch and actual VoiceOver cases when the
-   runtime is available. Retain Android/physical-device and authenticated
-   live-service readback as explicit boundaries. Reuse passed family and
-   large-text matrices; do not claim every reader state is accepted or repeat
-   captures without a concrete defect hypothesis.
+1. **Authenticated reconciliation transport — implemented and verified.** The
+   revision-bound route requires owner identity, current source/target
+   revisions, one exact currently retained Source from each bundle, a command
+   ID and explicit `keep_bundles_together` confirmation. Exact retry resolves
+   idempotently; a route test verifies a stale-revision conflict is returned as
+   409, while PostgreSQL tests cover persisted exact retry and command reuse.
+   Intake remains the authority for Source access.
+2. **Deliberate owner interaction — implemented and verified.** The app shows
+   eligible saved bundles, preselects one currently readable original from
+   each, allows inspection or changing the evidence, and asks for explicit
+   confirmation. It never merges from model confidence, shared Subject
+   identity or byte similarity. A target-source read failure is shown as an
+   error with retry and disables confirmation rather than looking empty.
+   `Separate` reverses the connection directly, without free-text rationale.
+   Candidate/anchor IDs remain occurrence-specific; Life and Collection
+   consume Thing references without owning or copying identity.
+3. **Persisted behavior — bounded local evidence.** Tests cover one
+   owner-confirmed connection and exact retry, distinct save identities,
+   independent Source revocation, and reversal that restores both original
+   references. They do not establish semantic sameness, concurrent merge
+   races, production authentication or cross-client acceptance.
+4. **Reader acceptance remains independent.** Loading/error component behavior
+   has focused tests. Reliable photo pan/pinch and actual VoiceOver cases remain
+   open until a device runtime is available. Retain Android/physical-device and
+   authenticated live-service readback as explicit boundaries; do not claim
+   every reader state is accepted or repeat captures without a concrete defect
+   hypothesis.
 
 **Next connected checkpoint:** adopt Technical's supported artifact-target
 request/result contract into the focused reader for a useful eligible addition,
@@ -2391,8 +2397,47 @@ legacy/unretained fallback.
 | App reader and action | `npm test -- --runInBand __tests__/screens/canonical-artifact-reader.test.tsx __tests__/screens/kept-thing-reader.test.tsx __tests__/utils/canonicalArtifactActions.test.ts __tests__/components/canonicalArtifactCard.test.tsx`; `npm run test:typecheck:contracts`; targeted `npm exec eslint -- --no-cache …`; `npm run docs:check` | Four suites / 62 tests passed; contract typecheck, changed-file ESLint and docs checks passed. Screen tests establish the conditional action and route/return behavior, not native rendering or live authorization. |
 | Native QA readiness | `npm run qa:polish:scenarios`; `npm run qa:design:check -- canonical-artifact-reader`; `node scripts/polish-qa/run-polish-qa.mjs canonical-artifact-reader --doctor` | 31 registered scenario IDs passed. Design-reference check returned success with a warning: the doctrine-only surface has no design-ref manifest. Doctor/preflight was blocked because Metro was not reachable on `:8081`; no screenshot, simulator, VoiceOver, or native visual acceptance is claimed. |
 
-This completes only candidate-to-bundle read integration. It adds no schema,
-write endpoint, automatic reconciliation, Collection membership, public sharing
-or new source-retention behavior. Owner-confirmed merge/reversal transport and
-UI, Collection continuity and native QA remain open. The backend/app commits
-are lane-local and are not merged to `main`.
+At this checkpoint, the increment completed only candidate-to-bundle read
+integration. It added no schema, write endpoint, automatic reconciliation,
+Collection membership, public sharing or new source-retention behavior.
+Owner-confirmed merge/reversal transport and UI, Collection continuity and
+native QA were still open then; the following receipt records the reconciliation
+implementation. The backend/app commits for this earlier increment were
+lane-local and not merged to `main`.
+
+### October 1 owner-confirmed bundle reconciliation
+
+This implements the already accepted
+[kept-Thing identity decision](../decisions/2026-09-30-kept-thing-identity.md);
+it does not create a new identity decision or assert that two bundles represent
+the same real-world object. One verified private Keep still creates one
+owner-scoped identity for that contribution bundle. When deciding whether two
+separately kept bundles should stay connected, the owner—not Vesper or a model—
+makes that choice after seeing currently readable originals from both. The app
+preselects one exact source from each bundle to reduce work and permits
+inspection or source substitution before confirmation. `Keep these bundles
+together` records a revision-bound, reversible owner connection; `Separate`
+undoes that connection without a free-text explanation. Stable bundle/source
+references survive. Intake retains Source custody and access decisions,
+`kept_things` owns Thing identity/reconciliation, the app owns presentation and
+navigation, and Life/Collections remain consumers. The connection does not
+combine permissions or prove semantic sameness.
+
+Backend commit `53d90e9eb` and app commit `38757f485` are committed on the
+coordinated local lane; neither is merged to `main`. Workspace API policy,
+OpenAPI snapshots, generated Current State, roadmap and reader contract are
+maintained in the independent workspace repository. No database migration was
+needed; the OpenAPI snapshots and generated app types changed for the new
+authenticated read/index and explicit merge/reversal operations.
+
+| Boundary | Command | Result and limit |
+| --- | --- | --- |
+| Persisted owner behavior | `DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_reconcile_20261001_01 PYTHONPATH=. .venv/bin/python -B -m alembic upgrade head`; `TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_reconcile_20261001_01 TEST_DATABASE_DISPOSABLE=1 PYTHONPATH=. .venv/bin/python -B -m pytest -p no:cacheprovider tests/inbound/test_kept_things_postgres.py tests/api/test_kept_things.py tests/api/test_artifact_projections.py -q`; `DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_reconcile_20261001_01 PYTHONPATH=. .venv/bin/python -B -m alembic check` | Fresh disposable DB migrated from empty; 25 tests passed; Alembic found no new upgrade operations. Proves owner scoping, exact-source checks, persisted owner-confirmed alias and retry, independent Source revocation, reversal and stable original references. Does not prove production authentication, semantic identity, concurrent merge races, or deployed service behavior. Exact test DB was dropped and the PostgreSQL container started for this run was stopped; the lane volume was preserved. |
+| Backend static/API coverage | `ruff check --no-cache backend/api/routes/kept_things.py backend/api/routes/artifact_projections.py backend/core/db/kept_things.py backend/core/models/kept_thing.py backend/api/router_registry.py tests/api/test_kept_things.py tests/api/test_artifact_projections.py`; `ruff format --check --no-cache` on those seven files; `make api-coverage-check` | Ruff and formatting passed; API coverage passed: 583 active, 15 dark (0 unflagged), 62 retiring operations. Targeted mypy terminated with an internal error in mypy 2.3.1; no mypy result is claimed. Backend commit hooks passed Ruff, formatting, Vulture, secret/key checks, import boundaries, route auth, and related policy checks. |
+| App and generated contracts | `npm run typecheck`; `npm run test:typecheck:contracts`; `npm run generate-api-types:check`; `npm run docs:check`; `npx jest --runInBand __tests__/utils/api/mock/experienceGraph.test.ts __tests__/screens/kept-thing-reader.test.tsx __tests__/screens/kept-thing-reconcile.test.tsx` | Typecheck, generated API check, app docs check passed; three suites / 12 tests passed, including explicit confirmation, reversal-capable reader action, exact-source navigation/return, mock parity, and target-source read failure/retry with confirmation blocked. These are local TypeScript/Jest checks, not native or live-service UI evidence. |
+| Workspace docs and native QA readiness | `make docs-check`; `npm run qa:polish:scenarios`; `npm run qa:design:check -- canonical-artifact-reader` | Workspace docs checks passed after refreshing the generated API counts; 31 scenario IDs passed. Design-ref check succeeded with its existing warning that the doctrine-only surface has no pinned design manifest. No simulator screenshot, VoiceOver, Android/physical-device, or authenticated mobile-to-service acceptance was run. |
+
+The owner-controlled reconciliation contract is now explicit in the canonical
+artifact-reader surface contract and this roadmap. Collection membership
+continuity, broader source/audience lifecycle replay, and native acceptance
+remain open; none is implied by this local implementation receipt.
