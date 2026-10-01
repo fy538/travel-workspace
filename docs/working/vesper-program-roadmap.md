@@ -79,6 +79,21 @@ coordination service or routine inter-chat messaging is required. This roadmap
 sets execution order and acceptance; it does not certify runtime readiness,
 product acceptance, or activate new product behavior.
 
+**Central integration ownership — October 1 founder request:** the central
+integration session owns conflict resolution, coordinated dependency pins,
+the combined merge preflight, publication and protected-main landing for the
+four execution lanes. Each lane still owns its implementation, focused tests
+and acceptance receipts; it hands over a clean, committed candidate with its
+remaining boundaries stated. This handoff changes integration responsibility,
+not product authority or the required checks. Integrate compatible candidates
+in dependency order rather than waiting for every roadmap to finish.
+Uncommitted work stays with its lane owner. The current coordinated integration
+checkout is `worktrees/central-integration-2026-10-01`, on
+`codex/central-integration-2026-10-01` in all three independent repositories.
+Its initial candidate combines the committed research, artifact, Orchestration
+and efficiency snapshots; landing status follows the actual PRs and exact
+verified revision tuple, not this ownership assignment.
+
 **Integration efficiency checkpoint — October 1:** review of the September 30
 landing found stronger checkout, database and required-check reliability, but
 did not demonstrate a faster end-to-end merge: first combined candidate to
