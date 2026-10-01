@@ -3763,3 +3763,41 @@ This is local diagnostic minimization, not authorization to send a selected
 personal source to a public provider. Caller-independent disclosure, public
 research from selected material, R3 public-attempt accounting, comparative
 usefulness, native receiving and R0–R7 package acceptance remain open.
+
+#### R1 implementation receipt — gate trace previews and exception details (October 1)
+
+Backend commit `98ef076b28bf291493f961ce530702ac013909a3` closes a content
+capture bypass in local traces and Langfuse parent spans. Local traces retain
+error class and structural status by default, but omit exception messages and
+tracebacks; LLM error details require both prompt and response capture, while
+tool error details follow the existing tool-I/O capture setting. System-prompt
+previews are now omitted unless prompt capture is explicitly enabled. Langfuse
+parent spans receive a content-free error-class status and close without the
+raw exception object unless `LANGFUSE_CAPTURE_USER_CONTENT=true`. The
+`core/FEATURE.md` contract now records the behavior. No model request, API
+contract, database schema, or app consumer changed.
+
+Validation on the adaptive-context backend lane (Python 3.13.0):
+
+- `PYTEST_ADDOPTS='-p no:cacheprovider' .venv/bin/python3.13 -m pytest
+  tests/core/test_tracing_tool_evidence.py
+  tests/core/test_langfuse_tracing.py -q`: **38 passed**, including marker
+  assertions for local LLM/tool/agent errors, prompt previews, Langfuse parent
+  span closure, and the explicit-capture path.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static`: passed;
+  Ruff and formatting passed, architecture/static gates passed, and mypy
+  reported no issues across **1,900** source files.
+- `env -u TEST_DATABASE_URL -u TEST_DATABASE_DISPOSABLE
+  PYTEST_ADDOPTS='-p no:cacheprovider' RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make merge-check BASE_REF=main`:
+  **22,216 passed, 14 skipped, 1 xfailed, 52 xpassed**, with two expected
+  local-Qdrant payload-index warnings. The 14 database-gated skips remain
+  unverified. A few unrelated fixture retries could not resolve Hugging Face
+  hosts in this network-restricted environment; they did not fail the suite.
+  No live model/provider acceptance was run.
+
+This is trace-content privacy hardening, not external-tracing governance or
+R1 caller-independent research acceptance. Approved public disclosure,
+substantive acquisition, comparative usefulness, native receiving and R0–R7
+package acceptance remain open.
