@@ -47,6 +47,25 @@ def test_full_backend_suites_do_not_duplicate_their_marker_partitions():
     assert '(requires_postgres or requires_dogfood_wedge) and not requires_api_keys' in database[0]
 
 
+def test_workspace_real_journeys_have_an_explicit_disposable_database():
+    workflow = yaml.load((ROOT / ".github/workflows/reliability.yml").read_text(), Loader=yaml.BaseLoader)
+    job = workflow["jobs"]["contract-and-golden-path"]
+    env = job["env"]
+    assert env["TEST_DATABASE_DISPOSABLE"] == "1"
+    assert env["TEST_DATABASE_URL"] == env["DATABASE_URL"]
+    assert "@localhost:5432/vesper" in env["TEST_DATABASE_URL"]
+    database = job["services"]["postgres"]
+    assert database["env"]["POSTGRES_DB"] == "vesper"
+    assert database["ports"] == ["5432:5432"]
+    steps = job["steps"]
+    migration = next(i for i, step in enumerate(steps)
+                     if step.get("run") == "PYTHONPATH=. alembic upgrade head")
+    journey = next(i for i, step in enumerate(steps)
+                   if step.get("run") == "make golden-path-qa")
+    assert migration < journey
+    assert steps[migration]["working-directory"] == "travel-agent"
+
+
 @pytest.mark.parametrize("repo,broad,retained", [
     ("travel-agent", ("test", "test-db"),
      ("lint", "import-boundaries", "typecheck", "test-db-migrate", "dogfood-persona-gate", "eval-replay", "package-smoke")),

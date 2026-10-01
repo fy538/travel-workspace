@@ -41,11 +41,13 @@ they do not declare their runtime migration complete. No new booking execution,
 automatic sharing, connected-inbox sharing, background-generation posture,
 notification policy or deployment is authorized by this roadmap.
 
-**Planning status:** the three lanes are scoped below, not started by this edit.
-First establish the common committed baseline in section 3. Then each lane can
-execute its own first assignment without waiting for the other two to finish.
+**Execution status — September 30:** all three lanes have implemented useful
+increments. The founder requested a combined landing of their recent work;
+integration is in progress in the existing `codex/home-value-delivery` lane.
+This is a landing checkpoint, not a claim that any entire roadmap is finished.
 No new coordination service, fourth integration lane or routine inter-chat
-messaging is required.
+messaging is required. After landing, owners can resume their remaining scoped
+assignments from the common baseline.
 
 ## 1 Inspected baseline and unfinished product work
 
@@ -663,6 +665,37 @@ and geometry, not real-owner supply or external design parity. The screenshot
 run was `20261001T001248Z-places-workspace` (UTC; local capture date
 2026-09-30). This closes a visible scroll-viewport defect only; D2 remains
 active. Continue with useful existing-supply coverage and full-scroll acceptance.
+
+### Combined landing checkpoint — September 30
+
+The integration candidate contains the Home/capture lane plus these completed
+source cuts, preserving each repository's history:
+
+| Source lane | Workspace | Backend | App |
+| --- | --- | --- | --- |
+| Artifact foundation | `0cef8241` | `d3730a8c4` | `5d56ef5ff` |
+| Adaptive context research | `861d4633` | `af05702ab` | `28717c7cf` |
+
+The previously uncommitted QA research draft is preserved at workspace
+`0a39e273`; it remains a proposal, not an automatic change to required checks.
+Product-direction refinements are preserved at workspace `3f8dd61f` and
+backend `27504f67e`. The founder approved the newer Thesis opening during this
+landing. The remaining Product Model conflict requires its separate wording
+decision before that merge can finish.
+
+Code conflict resolution retains both lanes' guarantees: owner access-state
+guards, exact original source/revision, root return, photo paging and private
+audio. Offline OpenAPI export, app projection and generated types agree with
+the combined code; API coverage passed. Follow-up repairs address an extension
+import boundary and obsolete test fixtures without removing safety assertions.
+See the [CI Plan](../reliability/CI%20Plan.md) for the measured failed first
+preflight and focused correction evidence. Publication, final combined checks
+and hosted merge status are not yet complete at this checkpoint.
+
+This landing does not certify full native/design parity, live-model output
+quality, every capture door, or recurring real-owner supply. Those remain the
+named implementation/acceptance gaps above; resume from them rather than
+reimplementing the now-combined foundations.
 
 ## 6 Autonomous execution and landing
 

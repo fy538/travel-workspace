@@ -3,7 +3,7 @@ doc_type: runbook
 status: active
 owner: engineering
 created: 2026-09-07
-last_verified: 2026-09-29
+last_verified: 2026-09-30
 why_new: Describes the actual three-repository CI contract, immutable candidate identity, private checkout credentials, and enforcement checks.
 ---
 
@@ -177,6 +177,31 @@ a new test platform or blanket-delete test directories to meet a count target.
   PR #237 at `3c170d21fc0ca9231b956f2b9de7f9f195231768`, app PR #202 at
   `87eceee24512d9086962eea5b844cef9d7bffbeb`. The workspace now pins those
   merged revisions; its own private-checkout and combined gate remain separate.
+
+### September 30 three-lane integration candidate
+
+The new candidate combines Home/capture, Artifact foundation and Adaptive
+context work without dropping the shared roadmap baseline. The first local
+`make verify-changed WORKSPACE_BASE_REF=origin/main AGENT_BASE_REF=origin/main
+APP_BASE_REF=origin/main` run took **412.754s** on the combined candidate
+(workspace `e711bb22`, backend `596f954d`, app `501e7701`). It failed: the app
+had eight test failures plus a component-size violation, and the backend had
+nine fixture/expectation failures. Do not carry that run as passing evidence.
+
+Integration corrections preserve revision-bound photo/audio reads, keep the
+shared capture receipt independent of full-app services, retain the Places
+component-size budget through a viewport hook, and update tests to follow the
+explicit location-search gesture and cold Home's source-backed opening.
+Focused follow-up passed 198 app tests and 136 backend tests; app typecheck and
+targeted lint passed (four existing warnings, no errors). Final combined and
+hosted checks remain separate requirements.
+
+Workspace PR #37's previous hosted run reached real journey tests without a
+disposable database and failed. Its workflow now declares disposable Postgres
+and Qdrant, explicit test opt-in, and migration before the journey scenarios.
+The workflow regression suite passes 16 cases locally. This verifies the
+configuration contract, **not** hosted database startup or journey success.
+No required check was removed, bypassed or reclassified as optional.
 
 GitHub Actions was disabled in workspace and backend at the September 7 audit.
 It has been re-enabled. Their main-branch protection had unrelated frontend
