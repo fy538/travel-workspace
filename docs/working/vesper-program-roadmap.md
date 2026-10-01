@@ -48,7 +48,10 @@ product acceptance are not. **D2 is now underway:** controlled native
 full-scroll compositions for Home and Places are recorded below. Orchestration's
 next primary assignment is to continue substantive Home/Places receiving work
 and representative ordinary/returned/live coverage, including working
-interactions and native polish. D1 capture gaps and D3 practical-help gaps
+interactions and native polish. The latest D2 increment lets one exact,
+revision-bound Place Source appear as a self-contained Places reading without
+requiring a second item; real-owner/API and device acceptance remain open.
+D1 capture gaps and D3 practical-help gaps
 remain open and can supply independent work when a D2 dependency is unavailable.
 
 Eng Efficiency owns the separate [efficiency improvement queue](development-qa-research-and-roadmap-2026-09-30.md#5-improvement-roadmap).
@@ -1275,6 +1278,30 @@ cache write in the read-only checkout; disabling only the cache plugin produced
 the passing rerun. This preserves one extra social perspective, not D2
 completion; continue with source-backed Place value and representative
 ordinary/returned/live coverage.
+
+**Single source-backed Place reading — 2026-10-01:** backend commit
+`c120985bc` lets a lone current Place Source appear as a self-contained
+`A reading` item in the existing Places root when the existing public-content
+and release gates admit it. The item retains the exact revisioned Source and
+canonical Place subject and remains inspectable through `source.inspect`; the
+existing app destination opens the exact Place and carries Places return
+context (covered by app test commit `a337c35cd`). A lone legacy dossier remains
+hidden from this reading section because its existing GUIDE card already
+represents it; multi-item fork/collection behavior is unchanged. No source,
+generator, endpoint, schema, access rule, or visual component was added.
+
+Backend focused feed, collection, and root-projection suites passed **93/93**
+with `.venv/bin/python -m pytest -p no:cacheprovider tests/places/test_sections_feed.py tests/places/test_collections.py tests/root_projection/test_v2_contracts.py -q`;
+Ruff check/format, backend pre-commit hooks, and `git diff --check` passed. The
+app exact Place Source routing suite passed **68/68** with
+`./node_modules/.bin/jest --runInBand --no-cache __tests__/utils/rootProjectionNavigation.test.ts`;
+the app commit contains the route regression, not runtime changes. The lane
+tuple was workspace `7410e08cb` before this receipt, backend `c120985bc`, and
+app `a337c35cd`. A live API owner read was not run, and native capture remains
+unverified because the assigned simulator/CoreSimulatorService was unavailable;
+no real-owner, visual-polish, external design-canon, recurring-supply, or full
+D2 acceptance is claimed. Continue with the next substantive supported
+Home/Places receiving gap and ordinary/returned/live coverage.
 
 ### Combined landing checkpoint — September 30
 
