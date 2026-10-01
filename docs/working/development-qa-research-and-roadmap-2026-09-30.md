@@ -13,12 +13,13 @@ source_of_truth_for: []
 # Faster development with trustworthy QA
 
 **Decision:** What should Vesper change about building, testing and reviewing work?
-**Research cutoff:** September 30, 2026. **Planning update:** September 30,
-following the founder's request to update this lane's roadmap. The implementation
-queue in [section 5](#5-improvement-roadmap) is the current plan for Eng Efficiency;
-its packages are unstarted. Existing runtime, required checks and acceptance
-obligations remain in force until their corresponding changes are implemented
-and validated. The program roadmap retains cross-lane ownership.
+**Research cutoff:** September 30, 2026. **Planning and execution update:**
+September 30, following the founder's request to update and execute this lane's
+roadmap. The implementation queue in [section 5](#5-improvement-roadmap) is the
+current plan for Eng Efficiency. Package 3C is published for review; the other
+packages remain queued or unstarted. Existing runtime, required checks and
+acceptance obligations remain in force until their corresponding changes are
+implemented and validated. The program roadmap retains cross-lane ownership.
 
 **Second research pass:** the [deeper evidence review](#second-research-pass-defect-detection-and-the-cost-of-review)
 adds recent mobile/GUI studies and industrial test-selection and mutation-testing
@@ -420,21 +421,23 @@ for this lane; package numbers remain stable references rather than execution
 order. The research sections explain the evidence, not additional queues.
 
 **Current state:** the integration landed with required checks passing. Package
-3C has a local implementation commit; its hosted latency comparison and landing
-remain pending. Other implementation packages are unstarted. The verified
+3C is implemented and published as [workspace PR 38](https://github.com/fy538/travel-workspace/pull/38).
+Its first hosted run passed, showing a shorter required-job critical path with a
+modest increase in summed runner time; PR review and landing remain pending.
+Other implementation packages are queued or unstarted. The verified
 remote-main baseline is workspace `4febe0d461a62d204ba4dee9eaad7813c7c1509c`,
 backend `bd1a683b8656c3f4091e16abb64f57897fa7fc42`, and
 app `e7bdc660501eaa19234e6b45bda033658edaa2d4`; see section 9 for PRs and
 tested child identities. Canonical workspace HEAD remained `0a39e27362a5`
 during the audit to preserve another lane's uncommitted roadmap edits. Do not
 confuse that checkout with the landed baseline or switch its owner out from
-under active work. The dedicated efficiency lane is prepared below; Package 3C
-is implemented there and awaits its hosted comparison.
+under active work. The dedicated efficiency lane and the Package 3C pull request
+are recorded below.
 
 | Order | Work | Status and dependency | First beneficiaries |
 | --- | --- | --- | --- |
 | 0 | Use the landed baseline and confirm tooling ownership | Complete on commit `cef7ac55`; isolated runtime ownership is recorded below | All lanes |
-| 1 | Package 3C: workspace flow validation and early prerequisite checks | Implemented locally; 408-flow partition, required aggregate, and local CLI checks pass; hosted latency comparison and landing remain pending | All integrations |
+| 1 | Package 3C: workspace flow validation and early prerequisite checks | Published in workspace PR 38; local and first hosted checks pass. Hosted required-job critical path was 6m13s versus 23m18s before; summed reported job runtime was 25m46s versus 23m18s (+10.6%). Review the speed/cost tradeoff before landing; one sample only. | All integrations |
 | 2 | Package 3A: deterministic and faster app tests with the same checks | Queued after Package 3C lands; diagnose observed intermittent failures before expanding concurrency | Every lane changing the app |
 | 3 | Package 3B: one execution owner per CI guarantee | Queued after mapping current required checks and their callers | All lanes |
 | 4 | Package 1: choose the right evidence and make targeted native QA reliable | Independent of CI work after baseline preparation; may proceed earlier when device access or product need favors it | Orchestration and Strategy |
@@ -469,8 +472,25 @@ The setup receipt was committed as `cef7ac55af49`; Package 3C is committed as
 `b1c174b7`. That slice owns the reliability workflow, workspace Maestro targets,
 the deterministic partition helper and their existing workflow tests. It
 preserves the required `Contract and golden paths` result name. CI behavior has
-not been exercised on the remote branch yet, and branch-protection settings
-were not changed.
+been exercised on the remote branch; branch-protection settings were not changed.
+
+**Hosted pilot receipt (September 30 local time; October 1 UTC).** The published
+workspace branch is [PR 38](https://github.com/fy538/travel-workspace/pull/38),
+at workspace commit `d298cafc2210b5e5052227a5263d28ff4e08554b`; the backend and
+app remained at their recorded base revisions. Reliability workflow run
+[36811769199](https://github.com/fy538/travel-workspace/actions/runs/36811769199)
+passed its full reliability job, all four Maestro syntax shards, and the
+`Contract and golden paths` aggregate. The job durations reported by GitHub
+were 6m07s for reliability, 4m12s / 4m57s / 5m05s / 5m19s for the syntax shards,
+and 6s for the aggregate. On those reported durations, the required-job
+critical path was approximately 6m13s, excluding queue time. Summed job runtime
+was 25m46s, about 2m28s (10.6%) above the prior 23m18s single required job. The
+critical path fell by about 17m05s (73.3%), while measured runner work increased.
+This is a favorable first sample for feedback speed with a real resource cost;
+it does not establish lower runner cost or stable percentiles. Keep the pilot
+visible for review and do not claim generalized efficiency until comparable
+future runs confirm it. PR review/landing and the separate Merge readiness
+workflow status are not established by this Reliability run receipt.
 
 ### Start and adoption checkpoints
 
