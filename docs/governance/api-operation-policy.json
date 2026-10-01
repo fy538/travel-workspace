@@ -3017,6 +3017,76 @@
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
       "review_by": "2026-10-07"
     },
+    "POST /api/consumer-collections": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "consumer-collections",
+      "reason": "Private owner-scoped Collection commands are implemented but remain outside the mobile contract until the Life reader is integrated and device-validated.",
+      "removal_trigger": "Activate with a reviewed Life consumer or remove the unused transport.",
+      "review_by": "2026-10-30"
+    },
+    "GET /api/consumer-collections": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "consumer-collections",
+      "reason": "Private owner-scoped Collection commands are implemented but remain outside the mobile contract until the Life reader is integrated and device-validated.",
+      "removal_trigger": "Activate with a reviewed Life consumer or remove the unused transport.",
+      "review_by": "2026-10-30"
+    },
+    "GET /api/consumer-collections/{collection_id}": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "consumer-collections",
+      "reason": "Private owner-scoped Collection commands are implemented but remain outside the mobile contract until the Life reader is integrated and device-validated.",
+      "removal_trigger": "Activate with a reviewed Life consumer or remove the unused transport.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/consumer-collections/{collection_id}/rename": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "consumer-collections",
+      "reason": "Private owner-scoped Collection commands are implemented but remain outside the mobile contract until the Life reader is integrated and device-validated.",
+      "removal_trigger": "Activate with a reviewed Life consumer or remove the unused transport.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/consumer-collections/{collection_id}/things/{thing_id}": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "consumer-collections",
+      "reason": "Private owner-scoped Collection commands are implemented but remain outside the mobile contract until the Life reader is integrated and device-validated.",
+      "removal_trigger": "Activate with a reviewed Life consumer or remove the unused transport.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/consumer-collections/{collection_id}/things/{thing_id}/remove": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "consumer-collections",
+      "reason": "Private owner-scoped Collection commands are implemented but remain outside the mobile contract until the Life reader is integrated and device-validated.",
+      "removal_trigger": "Activate with a reviewed Life consumer or remove the unused transport.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/consumer-collections/{collection_id}/delete": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "consumer-collections",
+      "reason": "Private owner-scoped Collection commands are implemented but remain outside the mobile contract until the Life reader is integrated and device-validated.",
+      "removal_trigger": "Activate with a reviewed Life consumer or remove the unused transport.",
+      "review_by": "2026-10-30"
+    },
     "POST /api/curator/photos": {
       "audience": "server",
       "consumers": [

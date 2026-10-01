@@ -41,18 +41,23 @@ reconciliation contract in the independent workspace repository. The new entry p
 identity and opens a contribution bundle only for a verified private Keep with
 a currently available, unexpired retained Source. This closes the bounded
 candidate-to-bundle read path and the first explicit bundle-reconciliation
-path. Collection continuity, native acceptance, and wider P0/P1/PC/P2
-acceptance remain open.
+path. A first private consumer-Collection backend slice is now implemented in
+the local artifact lane: canonical metadata, many-to-many kept-Thing references,
+owner-scoped reads and revision-bound create/rename/add/remove/soft-delete
+commands. Its operations are deliberately excluded from the mobile projection
+until a Life consumer is integrated and device-validated. Shared membership,
+audience/receiving, automated filing and native collection management remain
+open, along with broader P0/P1/PC/P2 acceptance.
 
 | Area | Implemented and evidenced | Remaining boundary |
 | --- | --- | --- |
 | P0 contracts and portfolio | Accepted kept-thing identity direction; code-backed owner map, supported-door/mode crosswalk, versioned reading descriptor, family/fallback fixtures and sparse-history examples; initial Thing storage/migration design is implemented under P1 | Subject/Component and edition mappings, selected-part representation cases and broader lifecycle portfolio; fixtures are not live generation or desirability evidence |
-| P1 correction and continuity | Revision-bound corrections and append-only Undo; backend typed-time replacement; capture-to-reader and exact-source-to-confirmed-record links with source/digest checks; owner-scoped Thing row on verified private Keep; evidence-backed reversible cross-submission aliases; owner-scoped Thing API/native reader; candidate-to-bundle entry from a qualifying occurrence reader; owner-confirmed reversible reconciliation transport and app controls, focused local tests passed | Collection continuity; native replacement-time editor still needs timezone-authoring behavior; no native acceptance for reconciliation yet |
+| P1 correction and continuity | Revision-bound corrections and append-only Undo; backend typed-time replacement; capture-to-reader and exact-source-to-confirmed-record links with source/digest checks; owner-scoped Thing row on verified private Keep; evidence-backed reversible cross-submission aliases; owner-scoped Thing API/native reader; candidate-to-bundle entry from a qualifying occurrence reader; owner-confirmed reversible reconciliation transport and app controls, focused local tests passed | Native replacement-time editor still needs timezone-authoring behavior; no native acceptance for reconciliation or collection management yet |
 | P2 original-first readers | Ticket, source-backed place, text-built book/film/show/music, supplied passage and practical-record treatments; exact-original chooser/return; shared photo viewer | Catalog identity/art, selected-part UI and later dish/recipe/scorecard treatments; source facts do not establish attendance, author identity or payment state |
 | Reader lifetime | Account-session-scoped reads, expiry-aware displayed facts and foreground refresh, exact-source authorization and revision checks | Full source/audience/collection lifecycle replay and authenticated mobile-to-service acceptance |
 | Native acceptance | Fourteen family/source/return fixture screenshots; ten largest-text screenshots; Life source/photo-viewer/removal flow on iOS 18.2 | Reliable pinch/pan, actual VoiceOver traversal/actions, loading/error states, Android/physical devices and live-service readback; these captures do not establish user preference |
 | Landed Technical dependencies | Exact-original revision binding and backend-only refinding of a bounded UTF-8 `text/plain` span; bounded public-acquisition primitives | No stable cross-representation Component identity, mobile selection API, artifact-bound discovery request or complete research-spend enforcement |
-| PC and later packages | House-design fallbacks and existing eligible original receiving remain usable | Approved catalog mappings/uses, consumer Collection owner, exact kept editions and connected contextual additions remain unfinished |
+| PC and later packages | House-design fallbacks and existing eligible original receiving remain usable; canonical private consumer-Collection backend owner and operations are implemented but not yet consumed by Life | Shared membership/audience/receiving, native Life management, approved catalog mappings/uses, exact kept editions and connected contextual additions remain unfinished |
 
 Section 13 retains the exact revisions, commands and limits of each receipt.
 Earlier simulator/build failures are historical attempts, not the current
@@ -607,14 +612,20 @@ entity members; it is not the user-owned Collection owner. Their revision,
 idempotency, detach, and Undo patterns may inform the new domain, but neither
 model is to be renamed, widened, or repurposed for consumer membership.
 
-**Implementation status and limits:** no consumer Collection schema, API, or
-runtime owner is implemented by this decision. The P6 Strategy package must
-define its owner contract and migration against the accepted stable Thing
-identity before adding writes. This ownership decision does not settle the
-pending policy on Vesper adding to shared Collections, notification batching
-or quiet hours, or the exact recipient-grant implementation. It also does not
-change the accepted rule that a shared Collection is visible as a whole to its
-members.
+**Implementation status and limits:** the artifact lane now implements the
+private canonical backend owner over stable kept Things: schema/migration,
+owner-scoped index/detail reads, and revision-bound create, rename, add, remove
+and soft-delete commands. Membership stores Thing references rather than Source
+payloads; adding a Thing is currently limited to its owner, and deleting a
+Collection preserves the Things. The API is authenticated but intentionally
+excluded from the mobile projection pending a Life consumer and device evidence.
+This is not shared-Collection support: other-owner contributions, recipient
+grants, whole-collection serving, leave/withdrawal repair, and sharing UI remain
+unimplemented. Automatic filing/default Collection behavior and Vesper-initiated
+shared additions remain unresolved. The implementation does not settle
+notification batching or quiet hours, or the exact recipient-grant implementation.
+It does not change the accepted rule that a shared Collection is visible as a
+whole to its members.
 
 The first delivered reader-mode matrix is deliberately narrow:
 
@@ -1277,8 +1288,10 @@ different roots without duplicating material or inventing a second social feed.
 
 **Staging:** preserve and extend eligible exact-original sharing and receiving
 as soon as the relevant P1/P2 and existing sharing contracts support it.
-Collection sharing additionally requires its membership and removal behavior.
-Neither waits for P3, P4 or broad P5. Generated-result circulation needs P3's
+The private owner-only Collection backend foundation exists; shared Collection
+serving additionally requires owner-to-owner membership, audience grants,
+recipient readback, removal/leave repair and native acceptance. Neither waits
+for P3, P4 or broad P5. Generated-result circulation needs P3's
 safeguards; retained or shared derivatives add P4/P5 and the applicable policy.
 Full cross-root acceptance is a later integration check, not permission to
 delay original receiving or duplicate its implementation in a new service.
@@ -1344,7 +1357,7 @@ checkpoint. Retire replaced adapters only after consumer/readback coverage.
 | --- | --- | --- | --- |
 | Kept Thing identity and reconciliation | Accepted September 30: a narrow stable kept-thing domain, separate from Sources, candidates, Subjects and generated editions, inside the existing backend. Initial submission-backed storage and migration are implemented; cross-source compatibility and reversible reconciliation remain. | Unsafe or unspecified migration/alias compatibility and downstream reads, not another approval of the identity direction | Existing readers and the delivered private-Keep identity writer |
 | Components and cultural subjects | Stable cross-representation Component identity and cultural-work schemas remain design recommendations; review physical capabilities, external ID namespaces and typed readings | Dependent component/catalog schema changes | Existing source-bound selectors and kept-thing identity work |
-| Consumer collection owner | Product semantics are accepted: user-owned collections, many-to-many membership, whole-collection visibility, and explicit Remove/Delete. Code inspection confirms that the viewer-scoped derived Life organization and public editorial guide collections are different owners; preserve them as read/projection and editorial systems. Define a distinct canonical consumer Collection owner over the reviewed stable ThingRef boundary. Vesper-initiated additions to shared collections remain a separate pending policy choice. | Durable collection writes and corresponding sharing | Single-object private reader and owner-linked discovery |
+| Consumer collection owner | Product semantics are accepted: user-owned collections, many-to-many membership, whole-collection visibility, and explicit Remove/Delete. The viewer-scoped derived Life organization and public editorial guide collections remain separate read/projection and editorial owners. A distinct canonical owner over stable kept-Thing references now has private backend schema and owner-only operations; Vesper-initiated additions to shared collections remain a separate pending policy choice. | Shared audience/receiving semantics and their recipient read/withdrawal repair; native Life integration | Implemented private Collection persistence and management API; single-object private reader and owner-linked discovery |
 | Kept edition after supporting withdrawal | Recommended default: withhold affected content, preserve only permitted metadata, offer a new independently supported version; exact policy unadopted | Shared derivative retention and partial salvage promises | Private originals and edition mechanics tested without disputed shared material |
 | Offline retained material | Adopt what can be cached, for how long and how reconnect handles loss; no instant remote revocation promise | Persistent shared offline caches and their user promise | Online reader, locally available independently eligible originals under existing rules |
 | Automatic preparation | Separate selection refresh from generation; define allowed triggers and budget owner | New proactive generation/background posture | Existing explicit requests, pure reads and cheap authorized selection |
@@ -2449,6 +2462,38 @@ authenticated read/index and explicit merge/reversal operations.
 | Workspace docs and native QA readiness | `make docs-check`; `npm run qa:polish:scenarios`; `npm run qa:design:check -- canonical-artifact-reader` | Workspace docs checks passed after refreshing the generated API counts; 31 scenario IDs passed. Design-ref check succeeded with its existing warning that the doctrine-only surface has no pinned design manifest. No simulator screenshot, VoiceOver, Android/physical-device, or authenticated mobile-to-service acceptance was run. |
 
 The owner-controlled reconciliation contract is now explicit in the canonical
-artifact-reader surface contract and this roadmap. Collection membership
-continuity, broader source/audience lifecycle replay, and native acceptance
-remain open; none is implied by this local implementation receipt.
+artifact-reader surface contract and this roadmap. Private canonical Collection
+membership now has backend persistence and owner commands; shared membership,
+audience/receiving, Life integration, broader source/audience lifecycle replay,
+and native acceptance remain open. None is implied by the reconciliation
+receipt above.
+
+### October 1 private consumer-Collection backend foundation
+
+This slice makes Strategy the canonical owner for user Collections over stable
+kept-Thing references in the existing Postgres service. It does not repurpose
+editorial `/api/collections` or viewer-specific derived `life_organization`,
+and adds no service. Collections own names, revisions, status and many-to-many
+membership; they do not copy Source payloads or take over Source permissions.
+Authenticated owner commands create, list, open, rename, add/remove the owner's
+kept Things, and soft-delete a Collection without deleting those Things.
+Commands are revision-bound and replay-safe; adds/removals require exact owner
+confirmation. Cross-owner membership, shared recipients, audience grants,
+whole-collection serving, auto-filing and Life UI are not implemented.
+
+Backend commit `4b419349b` is committed on the local `codex/artifact-foundation`
+lane. The workspace records the seven new backend operations in its canonical
+OpenAPI snapshot and marks them `retiring` in operation policy until a reviewed
+Life consumer and device evidence justify mobile activation. The active mobile
+projection and generated TypeScript remain unchanged; no app files were changed.
+
+| Boundary | Command | Result and limit |
+| --- | --- | --- |
+| Persisted owner lifecycle | `DATABASE_URL=postgresql://vesper:localdev@localhost:64743/consumer_collection_20261001_a7f3 ./.venv/bin/python -m alembic upgrade head`; `TEST_DATABASE_URL=postgresql://vesper:localdev@localhost:64743/consumer_collection_20261001_a7f3 TEST_DATABASE_DISPOSABLE=1 SKIP_AUTH=true PYTHONPATH=. ./.venv/bin/python -m pytest -p no:cacheprovider tests/api/test_consumer_collections.py tests/inbound/test_consumer_collections_postgres.py -q`; `DATABASE_URL=postgresql://vesper:localdev@localhost:64743/consumer_collection_20261001_a7f3 ./.venv/bin/python -m alembic check` | The dedicated disposable DB is at `consumercol01`; seven focused API/Postgres tests passed; Alembic found no schema drift. Covers private owner scope, stable Thing references, remove versus soft-delete, stale revisions, replay without resurrecting removed membership, and preserved Things after Collection deletion. No production auth, shared-recipient or deployed-service acceptance. |
+| Backend static/governance | `ruff check --no-cache` and `ruff format --check --no-cache` on the seven changed Python source/test files; `./.venv/bin/python scripts/check_alembic_single_head.py`; `make api-coverage-check` | Ruff and formatting passed; 1 Alembic head across 481 migrations; API coverage passed with 583 active, 15 dark, 0 unflagged, and 69 retiring operations. Commit hooks passed after running with the lane's `.venv` on PATH; static CI-parity guards including route auth and status-write safety passed. |
+| Cross-repo API contract | `./scripts/sync-types.sh` | Offline OpenAPI export and projection succeeded; generated types passed `tsc --noEmit`. Full backend snapshot added the seven endpoints. App projection remained 461 paths / 508 operations and generated app types were unchanged because the routes are not yet mobile consumers. No device or Life-screen acceptance. |
+
+The test database was created solely for this slice and dropped after
+verification; the artifact lane's Postgres service and volume remain available
+for the next implementation slice. This receipt is backend/database evidence
+only: the Collection root has not yet become a user-facing mobile experience.
