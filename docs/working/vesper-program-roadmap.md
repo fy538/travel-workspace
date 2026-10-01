@@ -61,6 +61,19 @@ coordination service or routine inter-chat messaging is required. This roadmap
 sets execution order and acceptance; it does not certify runtime readiness,
 product acceptance, or activate new product behavior.
 
+**Integration efficiency checkpoint — October 1:** review of the September 30
+landing found stronger checkout, database and required-check reliability, but
+did not demonstrate a faster end-to-end merge: first combined candidate to
+workspace merge was about 55 minutes, and the final merge turn took 73 minutes.
+Late candidate repairs and overlapping waits explain avoidable work, but the
+measurements do not support a quantified productivity gain. Keep the operating
+changes in section 6—complete inexpensive checks before publishing a stable
+candidate, use one bounded watcher, and land compatible independent slices
+without waiting for every lane. Eng Efficiency owns the measured tooling
+improvements; Orchestration continues D2 without adding a new integration gate.
+The detailed measurements and boundaries remain in the
+[completed integration review](development-qa-research-and-roadmap-2026-09-30.md#9-completed-integration-review).
+
 ## 1 Inspected baseline and unfinished product work
 
 <a id="inspected-baseline-and-publication-state"></a>
