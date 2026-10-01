@@ -24,101 +24,49 @@ retrieval, jobs and native readers. Add the missing identity, selected-part,
 collection, saved-edition and discovery contracts deliberately. Do not create
 another assistant or a universal artifact service.
 
-**Execution status:** active in the Strategy lane's coordinated artifact
-worktree. The first implementation increment added a versioned, viewer-facing
-reading descriptor and native travel/admission ticket reader. A follow-on
-increment exposed three existing owner-governed semantic corrections on
-eligible private artifacts and then refreshes the exact owner projection; the
-original source remains untouched. Further reader increments add a
-source-backed place record (not a catalog venue page or visit claim),
-text-built book/film/show/music treatments (not catalog art or resolved-subject
-claims), and a passage treatment gated on an explicit source-backed excerpt.
-Backend projection/API and app reader tests pass. A code-backed pass
-now maps the existing owners and current reader modes below. The accepted
+**Execution status — September 30 after landing:** the artifact-foundation
+increments and adjacent lanes' integration are merged into remote `main` in
+all three repositories. This lane is synchronized to the tuple in section 2.
+That closes baseline preparation, not P0/P1/PC/P2 or product acceptance.
+
+| Area | Implemented and evidenced | Remaining boundary |
+| --- | --- | --- |
+| P0 contracts and portfolio | Code-backed owner map, supported-door/mode crosswalk, versioned reading descriptor, family/fallback fixtures and sparse-history examples | Reviewed Thing/Subject/Component and edition mappings, selected-part representation cases and broader lifecycle portfolio; fixtures are not live generation or desirability evidence |
+| P1 correction and continuity | Revision-bound corrections and append-only Undo; backend typed-time replacement; capture-to-reader and exact-source-to-confirmed-record links with source/digest checks | Cross-submission identity, reversible reconciliation and collection continuity; native replacement-time editor still needs timezone-authoring behavior |
+| P2 original-first readers | Ticket, source-backed place, text-built book/film/show/music, supplied passage and practical-record treatments; exact-original chooser/return; shared photo viewer | Catalog identity/art, selected-part UI and later dish/recipe/scorecard treatments; source facts do not establish attendance, author identity or payment state |
+| Reader lifetime | Account-session-scoped reads, expiry-aware displayed facts and foreground refresh, exact-source authorization and revision checks | Full source/audience/collection lifecycle replay and authenticated mobile-to-service acceptance |
+| Native acceptance | Fourteen family/source/return fixture screenshots; ten largest-text screenshots; Life source/photo-viewer/removal flow on iOS 18.2 | Reliable pinch/pan, actual VoiceOver traversal/actions, loading/error states, Android/physical devices and live-service readback; these captures do not establish user preference |
+| Landed Technical dependencies | Exact-original revision binding and backend-only refinding of a bounded UTF-8 `text/plain` span; bounded public-acquisition primitives | No stable cross-representation Component identity, mobile selection API, artifact-bound discovery request or complete research-spend enforcement |
+| PC and later packages | House-design fallbacks and existing eligible original receiving remain usable | Approved catalog mappings/uses, consumer Collection owner, exact kept editions and connected contextual additions remain unfinished |
+
+Section 13 retains the exact revisions, commands and limits of each receipt.
+Earlier simulator/build failures are historical attempts, not the current
+status of the subsequently captured family and largest-text matrix. Direct
+simulator double-tap has bounded fixture evidence; the automated gesture run's
+unchanged screenshots did not establish pan/pinch. Do not turn either result
+into a broader gesture, accessibility or live-service claim. The Home dock
+stability repair was a QA prerequisite, not another artifact feature.
+
+**Next assignment:** resolve the kept-thing owner boundary in section 3, then,
+after that specific review, implement section 11's bounded cross-source
+identity slice. Keep the remaining reader checks bounded; do not substitute
+repeated polish for the missing identity foundation. Adopt Technical's landed
+primitives without building another research engine, and connect artifact-bound
+additions once their request/result and first-producer safeguards are ready.
+
+The accepted
 [Collections](../decisions/2026-09-28-collections-are-the-spine.md) and
 [Life](../decisions/2026-09-29-life-model-occasions-collections-and-sharing.md)
-decisions settle the consumer semantics:
-many-to-many membership, time-agnostic things, Remove versus Delete,
-whole-collection sharing, and Life's four readings. Founder review remains for
-the technical owner/reference model and new durable identity, subject,
-component, or correction authority; those are not reasons to reopen the
-accepted product semantics. This is the beginning of P0/P1/P2, not completion
-of the first assignment: P0 still needs reviewed identity/subject/owner
-mappings, selected-component/context/edition references, selected-part
-representation fixtures, and the broader lifecycle replay portfolio. The
-supported-door/mode crosswalk is now recorded in section 3, but its capture
-outcome is incomplete: the unsupported-email rejection is verified before
-writes, while a useful sender-facing receipt belongs to Orchestration's capture
-path. Section 13 records revisioned correction and Undo replay, not the full
-source, audience, expiry, and collection lifecycle portfolio.
-An isolated sparse-history example now covers one user observation plus one
-public source without the later personal evidence; it is a fixture/compiler
-boundary, not live-generation or desirability evidence. A reusable first
-portfolio fixture set now spans books, films, shows, music, source-backed
-passage and practical readers, dish fallback, sparse recognition, and one
-bounded friend contribution.
-The connected-neighborhood reader now uses a matching projection-supplied
-source/provenance label or a type-level fallback rather than displaying
-resource identifiers; this is presentation-only and does not resolve subjects
-or change graph identity.
-A first crosswalk now separates source admission, family-reader behavior, and
-audience authorization, including the all-or-nothing unsupported-email case;
-door-to-family recognition and sender-visible rejection remain unproven. The
-capture-lane receipt gap is separate from the P1 identity work. P1 still needs
-cross-door recognizable identity, source-bound component continuity, and
-cross-door reconciliation. Revision-bound correction Undo is now an append-only command
-that restores the preceding effective correction (or the unchanged
-source-derived interpretation) through the existing owner projection; source
-evidence is never rewritten. The backend's revisioned time-replacement path
-now appears as a user-confirmed fact in the canonical artifact read with
-correction provenance; a native editor remains gated on timezone-authoring
-behavior. PC
-catalog mapping/use gates, other family readers, and native visual acceptance
-remain open. A new
-wave also connects `inspect_source` to owner-scoped exact source references:
-the backend exposes only supported, unrevoked originals in the private owner
-projection; the app opens the exact submission/source/content revision, with
-an explicit chooser when more than one original is eligible. This extends the
-existing Intake reader rather than introducing another source service. The
-focused backend and app evidence is recorded in section 13. It does not
-complete P2: selected-part interaction and native visual acceptance remain
-unfinished. Dish, recipe and scorecard readers intentionally follow the first
-designed families in section 1A; they are not prerequisites for this increment.
-The app now carries the immediate artifact parent and ephemeral root/Life
-context into exact-original inspection. Returning targets the artifact before
-the root token can complete, and a cold-linked artifact exits to its registered
-root when that in-memory context remains available. This closes route
-continuity, not native acceptance; the QA capture could not run in this
-environment.
-The passage treatment uses only the supplied
-excerpt and does not infer author/work identity. The practical-record sheet
-shows only supplied facts and does not calculate receipt totals or payment
-state. A subsequent P1
-slice now links an exact eligible original back to its existing confirmed
-candidate/anchor only when active observation lineage matches both source ID
-and custody-bound content digest; the private read is owner-session scoped and
-rechecked on return. The focused artifact photo viewer now adds bounded
-pinch/double-tap zoom, panning, and assistive zoom actions to that exact-source
-inspection path, without disk-caching the original. On the Vesper QA SE
-simulator (iOS 18.2), a direct simulator double-tap visibly changed the owner
-photo from fit to zoom and a second tap restored fit. The registered Maestro
-gesture attempt completed but produced byte-identical fit/zoom/pan/restored
-screenshots, so the automated flow does not prove the gestures; direct drag did
-not visibly establish panning. Pinch, reliable pan, VoiceOver and physical-device
-acceptance remain open; the reader contract records these limits. A further P2
-increment reuses the same photo zoom/viewer interaction in the private Intake
-source, received-original, and canonical artifact readers while each route
-retains its own current authorization and exact source. This is shared
-interaction code, not shared custody authority. The new Life continuity
-scenario and full app merge-scope suite pass. Native pan/pinch, VoiceOver,
-physical-device and full screenshot acceptance remain open. Direct simulator
-double-tap has only the bounded fixture evidence recorded below. Stable component identity across
-OCR/representation replacement, collections, and reconciliation remain open.
-This roadmap owns
-Strategy's package
-sequence and receipts. The program owns cross-lane boundaries, not a
-permission queue for ordinary implementation. The earlier
-[strategy handoff](roadmap-proposals-for-codex-2026-09-28.md#9-focused-artifact-engineering-proposals)
+decisions settle many-to-many membership, time-agnostic things, Remove versus
+Delete, whole-collection sharing and Life's four readings. Review of the new
+technical identity/owner boundary does not reopen those product semantics.
+Updating this roadmap does not approve a migration or new product policy.
+Door-to-family recognition and sender-visible unsupported-email rejection
+remain separate capture acceptance work owned by Orchestration.
+
+This roadmap owns Strategy's package sequence and receipts. The program owns
+cross-lane boundaries, not a permission queue for ordinary implementation. The
+earlier [strategy handoff](roadmap-proposals-for-codex-2026-09-28.md#9-focused-artifact-engineering-proposals)
 is proposal provenance. Capture transport, signing and Home/Places delivery
 remain with Orchestration; shared context/research/runtime work remains with
 Strategy Technical.
@@ -152,11 +100,12 @@ Strategy Technical.
 
 ## 0 Strategy lane execution boundary
 
-**First assignment:** section 11's P0/P1/PC/P2 artifact foundation. Map the thin
-shared references and typed reading contract early, then deliver recognizable
-original-first readers and correction/identity continuity. Use already supported
-custody paths; every format, catalog provider and artifact family need not finish
-before a supported slice lands.
+**Current assignment:** continue section 11's P0/P1/PC/P2 artifact foundation
+from the merged reader/correction baseline. Next resolve the proposed kept-thing
+owner boundary, then implement bounded cross-source identity after review.
+Use existing custody and Technical's landed evidence adapters. Every format,
+catalog provider and artifact family need not finish before a supported slice
+lands; the native acceptance remainder runs alongside this work.
 
 **Write ownership:** thing/component and cultural-subject identity, reconciliation,
 typed readings, focused reader internals, consumer collections and Life, approved
@@ -315,6 +264,26 @@ page) and S1–S2 (sharing and receiving) draw the surrounding pages.
   practical-record cases.
 
 ## 2 Evidence baseline and current foundation
+
+### Current merged execution baseline
+
+September 30 Git verification established that all artifact-foundation commits
+are ancestors of remote `main`. Rebasing this lane advanced all three branches
+to these exact revisions, with clean trees and no remaining ahead/behind delta:
+
+| Repository | Merged execution revision |
+| --- | --- |
+| Workspace | `4febe0d461a62d204ba4dee9eaad7813c7c1509c` |
+| Backend | `bd1a683b8656c3f4091e16abb64f57897fa7fc42` |
+| App | `e7bdc660501eaa19234e6b45bda033658edaa2d4` |
+
+This is the starting tuple for the next slice, not a new runtime test receipt.
+Section 13 preserves earlier acceptance at its recorded revisions; the
+[program baseline](vesper-program-roadmap.md#inspected-baseline-and-publication-state)
+records the landing and immutable CI-pin distinction. Recheck status at intake;
+another checkout's local `main` or uncommitted work is not this lane's baseline.
+
+### Historical investigation baseline
 
 The detailed September 29 inspections used the active delivery checkout
 `travel-workspace--home-value-delivery`, not the older canonical main checkout:
@@ -488,7 +457,7 @@ projection into a new canonical owner.
 | Confirmed thing/read target | Confirmed Intake candidates are projected by `travel-agent/backend/core/db/intake_anchors.py` as `ExperienceAnchorProjection`; `travel-agent/backend/api/routes/artifact_projections.py` reads them through `ResourceRef(kind="experience_anchor")` at `/you/memories/artifacts/{id}`. Candidate rows retain a UUID across replay/status changes and use `(submission_id, candidate_key)` as their idempotent key. | The same row ID becomes the confirmed reader target, but identity is submission-local: a separate submission has a separate candidate, and no cross-door/cross-submission reconciliation is provided. This is not independent durable artifact custody. |
 | Claims and correction | Intake observations/candidate revisions in `travel-agent/backend/core/db/intake_semantics.py`; source-bound projection in `travel-agent/backend/core/canonical_artifact_projection.py` | The reader still exposes three gated owner commands: `wrong_time`, `separate_from_occasion`, and `keep_occurrence_forget_interpretation`. These now carry a stable command ID and expected numeric revision. The owner contract also accepts a typed `replace_time` correction and replays it through the canonical anchor owner, but the mobile reader does not yet expose a replacement editor: preserving or explicitly selecting the source time zone remains unresolved. |
 | Place and occurrence context | Physical `EntityRef` vocabulary in `travel-agent/backend/core/entity_types.py`; owner-scoped Experience Graph rows bridged by the artifact projection route | Place/time/Occasion/Plan context can be read from its existing owners. The place-like entity capability sets are not a cultural-work identity registry. |
-| Selected component | Intake observations and `evidence_locator` validation in `travel-agent/backend/core/intake_evidence.py` | Evidence may point back into a source, but this is not yet a stable part identity with a normalized source-revision-bound text/image selector. The current reader opens the whole source. |
+| Selected component | Intake observations and `evidence_locator` validation in `travel-agent/backend/core/intake_evidence.py`; Technical's `read_selected_text_component_for_owner` in `travel-agent/backend/inbound/original_source_reader.py` (backend `63ac861ef`) | A backend-only adapter now refinds strict UTF-8 `text/plain` character spans against the selected Source ID and full source digest, with current custody checks and a 20,000-character cap. It is not stable cross-representation Component identity, PDF/OCR/image selection, or a mobile selection API. The current artifact reader still opens the whole source. |
 | Life organization | Rebuildable viewer-specific groups and membership controls in `travel-agent/backend/life_projection/organization.py`, `travel-agent/backend/core/db/_tables/life_organization.py`, and `travel-agent/backend/core/db/life_organization.py` | Groups, memberships and controls are keyed by `viewer_id` and `projection_version`; memberships record evidence-backed derived relations to owner records. Durable controls rename a derived group, detach one derived membership, or undo that control. They provide useful revision/CAS and reversible-control patterns, but do not create or own a user's canonical Collection or its shared audience. |
 | Existing editorial collections | Public `/api/collections` reads in `travel-agent/backend/api/routes/collections.py`, backed by editorial guide bundles in `travel-agent/backend/core/models/collections.py` and `travel-agent/backend/core/db/collections.py` | This is content for Discover, with typed editorial member entity references and published/draft state. Its API is not the accepted personal/shared Collection owner, and its member schema does not point to stable consumer Thing references. |
 | Contextual selection and prepared additions | Strategy Technical's existing Source Contribution discovery, work, result, serving, and publication path (section 12); mobile adapters in `travel-app/hooks/` and request/read routes in `travel-agent/backend/api/routes/agent_workflows.py` | The producer/result path is reusable, but current app integration is Home/Places-rooted, not artifact-bound. See the request-boundary note below. |
@@ -512,6 +481,16 @@ that target/revision/component contract before P3 adds an artifact adapter; do
 not pass a submission-local `experience_anchor` through `context_ref` or label
 a root-wide result as artifact-specific value. Exact kept-edition persistence
 remains the separate P4 owner.
+
+The merged Technical increments provide exact-original revision binding,
+bounded public acquisition and the plain-text refind primitive above. Reuse
+those owners; their presence does not extend this Home/Places request contract.
+The first artifact-bound adapter needs an explicitly supported selected target,
+revision, optional component and eligible result/readback contract from
+Technical, plus current-authority and first-producer spend safeguards. Current
+research telemetry is not complete provider-spend enforcement. Technical's
+[execution state and receipts](product-map/adaptive-context-and-research-roadmap-2026-09-29.md#6-implementation-packages-and-execution-state)
+own those producer limits; this lane owns reader adoption and acceptance.
 
 #### Collection owner comparison — September 30
 
@@ -1443,18 +1422,64 @@ lanes' queues and checkouts untouched.
 
 ## 11 Recommended first assignment
 
-After the common baseline is prepared, execute **P0 plus the necessary P1
-foundation, PC catalog anchoring for the first families, and P2 reader
-integration** as this lane's artifact-foundation assignment. Existing custody
+Continue **P0 plus the necessary P1 foundation, PC catalog anchoring for the
+first families, and P2 reader integration** from the merged baseline in section
+2. The original-first reader and correction increments are landed; do not
+restart baseline preparation or treat the whole assignment as complete. Existing custody
 is its input; raw capture transport remains Orchestration's work.
 The first families are those already designed (section 1A): tickets, venue
 anchors, and books, films, shows and music. P0 distinguishes their shared-contract
 coverage from supported first-delivery modes and honest fallbacks; every family
 and provider need not finish at once.
 
+### Next execution slice
+
+**Outcome:** the same kept thing can retain independently addressable Sources
+across submissions, without confusing a world Subject with the person's Thing
+or granting one Source another's permissions.
+
+1. **Resolve the P0 owner decision.** Review section 3's proposed `ThingRef`,
+   the smallest owning domain, existing-candidate/reference compatibility and
+   reversible reconciliation boundary. Map the producer and Collection consumers
+   before choosing minimum fields. Keep physical Place and cultural-work
+   capabilities distinct. Record the decision before migrations or new durable
+   identity writes; this roadmap update is not that approval.
+2. **Implement the adopted P1 boundary through existing custody.** Preserve
+   submission-local recognition and each original's Source/content revision.
+   Add only the identity and links needed for the supported case, with
+   evidence-backed reconciliation, retry safety and reversible merge/split.
+   Preserve old reader references through the reviewed alias/redirect behavior.
+   Do not build a universal Artifact store, general catalog or complete
+   Collection service as a prerequisite.
+3. **Accept the bounded behavior.** Two supported inputs representing the same
+   ticket resolve to one Thing with two originals; two different screenings
+   remain different Things. Revoking either Source removes only its access and
+   never transfers grants. Correction, merge/split, retries and reopening retain
+   the intended identity and separately addressable evidence. Use persisted-owner
+   and route checks plus a native reopen/return case. An email/screenshot fixture
+   proves reconciliation only at its exercised boundary, not external email
+   delivery or OCR accuracy.
+4. **Keep reader acceptance bounded and available independently.** Complete the
+   remaining loading/error, reliable photo pan/pinch and actual VoiceOver cases
+   when the runtime is available. Retain Android/physical-device and authenticated
+   service readback as explicit remaining boundaries. Reuse the passed family
+   and large-text matrices as regression evidence; do not claim every reader
+   state is accepted or spend the next wave repeating the same fixture captures.
+
+**Next connected checkpoint:** adopt Technical's supported artifact-target
+request/result contract into the focused reader for a useful eligible addition,
+while preserving immediate original-only value and exact return. Existing
+Source-based reads and contract mapping can advance before the Thing migration;
+do not invent the producer API in a screen or make all P1/PC/P2 completion a
+prerequisite. Broader P3 generation waits for its required authority, lineage,
+publication and spend boundaries, not for unrelated final visual polish.
+
+### Foundation completion criteria
+
 For a fast first release:
 
-- Deliver ordinary source/date correction and Undo with the P1 foundation.
+- Preserve landed revision-bound corrections and Undo; finish remaining
+  source/date authoring only with explicit timezone behavior and its acceptance.
 - Adopt Technical's thin P3 capability once its landed interfaces and eligible
   owner reads are stable. Connect its useful additions to P2 early; do not build
   another producer while waiting.
