@@ -1607,9 +1607,8 @@ reported. Re-running as
 `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main` passed the
 full offline scope: **22,159 passed, 14 skipped, 1 xfailed, 52 xpassed**, with
 one expected local-Qdrant payload-index warning. Workspace `make docs-check`
-also passed after the first documentation reconciliation; it must be rerun for
-this receipt update. No live provider, database, app, deployment, or public
-lookup was exercised.
+passed again after this receipt update. No live provider, database, app,
+deployment, or public lookup was exercised.
 
 Second-pass offline checks at workspace `44f637e85`, backend `3c170d21f`
 and app `87eceee24`, on Python `3.13.0` / Darwin 25.5 arm64:
