@@ -915,8 +915,9 @@ forwarding suite passed **7/7**. On a fresh migration-to-head disposable
 PostgreSQL database, `test_entity_people_lines_recheck_pair_membership_and_revoke`
 passed **1/1**, covering exact current-revision selection, mismatched-revision
 absence, membership removal and revocation; a read-only cleanup check found
-zero test users or venues afterward. This verifies the database owner-read
-boundary, not a running HTTP API. `make dev-backend` did not become healthy in
+zero test users or venues afterward, and the temporary 37 MB database was then
+removed. This verifies the database owner-read boundary, not a running HTTP API.
+`make dev-backend` did not become healthy in
 default mode (missing local `ANTHROPIC_API_KEY`); the explicit no-provider
 retry then stopped because `DEFAULT_DEV_USER_ID` is unset. Native exact-owner
 readback is also **unverified**: CoreSimulatorService refused the device query.
