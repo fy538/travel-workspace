@@ -2004,6 +2004,20 @@ stopped at preflight because Metro was not running on either default `:8081`
 or this lane's assigned `:53177`. No native screenshot, live authenticated
 device readback, or visual verdict was produced; those remain unverified.
 
+### Places authored-note door deduplication — October 1
+
+As a D2 follow-on, app `641ebbbbb7df694334de84ff7d54cf80868c51a2`
+preserves the exact Place action on an attributed friend note while removing
+only an identical represented-Place door from a co-present Places lead or
+browse unit. Matching is exact and requires the Place to be represented by
+each unit; absent notes and non-matching targets keep their ordinary doors.
+Exposure identity/layout and owner authority remain unchanged. The focused
+Places field, root-screen and section-feed suites passed **74/74**; app and
+contract typechecks, targeted ESLint, scenario-ID validation and diff checks
+passed. Native capture is unverified because CoreSimulatorService failed during
+the registered QA run. This is one bounded Places composition repair, not H1-A
+or D2 completion; the program roadmap records its detailed evidence boundary.
+
 ### Published candidate — prior full coordinated gate
 
 The full coordinated gate passed before this docs rebaseline on workspace
