@@ -1358,6 +1358,24 @@ This closes a precise receiving-copy gap, not meaningful returned-content
 acceptance or D2 as a whole; continue with available owner-provided Place/source
 evidence and ordinary/returned/live coverage.
 
+**Home ordinary/returned/live posture captures — October 1:** after app commit
+`31c673c95`, the registered `polish/home-root-available` and
+`polish/home-root-live` flows each captured **1/1** on the lane-assigned iPhone
+16 Pro / iOS 18.2 (UDID
+`AF31B886-E837-4962-834A-5CBAD5C306DB`, Maestro 2.6.1). Their manifests confirm
+mock mode: the Available persona is `ready`, and Live is `carmen`; neither read
+the backend. Both screenshots were visually inspected. Available retains the
+prepared Saturday route, week shape and a separate Place reading; the route's
+opening-only destination correctly stays “Open in Places.” Live elevates the
+agreed Saturday dinner and keeps the two-person Occasion row subordinate. The
+Returned flow above also passed and was inspected. Together these are selected
+native mock posture captures, not a full seven-posture, full-scroll, real-owner,
+recurrence, or release portfolio; the reference manifest remains reference-only
+(`externalCanonVerified=0`). They add confidence that the ordinary, returned
+and live compositions coexist on the same root without proving their backing
+data or complete visual parity. D2 still needs substantive eligible Place value,
+exact owner readback, full-scroll quality and the remaining posture coverage.
+
 ### Combined landing checkpoint — September 30
 
 The merged integration contains the Home/capture lane plus these completed
