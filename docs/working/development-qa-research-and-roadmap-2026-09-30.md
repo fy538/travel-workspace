@@ -125,6 +125,14 @@ PR, acceptance in progress**: its review rules and targeted tooling are updated,
 but the shared-reader large-text clipping and Home/Places wrong-state defects
 have not yet been replayed. No positive result is claimed for either replay.
 
+**Package 3 — iteration and candidate selection:** selector transparency is in
+progress on the same lane. App plans now expose why a full suite is required and
+print related test paths before running Jest; backend plans expose selected test
+directories and full-suite fallback reasons. Workspace, app and backend routing
+tests pass (12, 7 and 15 tests respectively), including cumulative shared-change
+coverage after a later local edit. The complete coordinated gate for these new
+selector changes is still pending. No latency improvement is claimed.
+
 ## 1. What the repository and traces establish
 
 ### Scope and limits
