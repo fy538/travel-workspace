@@ -16,7 +16,8 @@ source_of_truth_for: []
 **Research cutoff:** September 30, 2026. **Planning and execution update:**
 October 1, following the founder's request to execute this lane's roadmap. The
 implementation queue in [section 5](#5-improvement-roadmap) is the current plan
-for Eng Efficiency. Package 3C is published but has not landed in `origin/main`;
+for Eng Efficiency. Package 3C landed in `origin/main` as `bc69d6d0` (PR 38);
+Package 3A has a locally verified candidate and awaits its hosted checks.
 Packages 1 and 2 have implementation and task-context changes published in
 [workspace PR 39](https://github.com/fy538/travel-workspace/pull/39),
 [app PR 209](https://github.com/fy538/travel-app/pull/209), and
@@ -425,28 +426,31 @@ workspace ownership boundaries. This section is the single implementation queue
 for this lane; package numbers remain stable references rather than execution
 order. The research sections explain the evidence, not additional queues.
 
-**Current state:** the integration landed with required checks passing. Package
-3C is implemented and published as [workspace PR 38](https://github.com/fy538/travel-workspace/pull/38).
-Its first three hosted runs passed, each showing a much shorter required-job
-critical path than the 23m18s serial baseline, with increased summed runner time.
-At 09:15 UTC on October 1, PR 38 was open and mergeable, with all required
-checks passed and no review decision recorded; landing was not established.
-Other implementation packages are queued or unstarted. The verified
-remote-main baseline is workspace `4febe0d461a62d204ba4dee9eaad7813c7c1509c`,
-backend `bd1a683b8656c3f4091e16abb64f57897fa7fc42`, and
-app `e7bdc660501eaa19234e6b45bda033658edaa2d4`; see section 9 for PRs and
-tested child identities. Canonical workspace HEAD remained `0a39e27362a5`
-during the audit to preserve another lane's uncommitted roadmap edits. Do not
-confuse that checkout with the landed baseline or switch its owner out from
-under active work. The dedicated efficiency lane and the Package 3C pull request
-are recorded below.
+**Current state:** Package 3C landed as workspace commit
+`bc69d6d03eeb069eb8705953463b4ddc8a808e6d` (PR 38). Its first three hosted
+runs passed, each showing a much shorter required-job critical path than the
+23m18s serial baseline, with increased summed runner time. Package 3A is
+implemented in the dedicated efficiency lane and has passed the focused,
+repeated, selected-merge and full app-coverage checks described below; its
+hosted checks are the next acceptance boundary. Packages 1 and 2 have
+implementation and task-context changes published in
+[workspace PR 39](https://github.com/fy538/travel-workspace/pull/39),
+[app PR 209](https://github.com/fy538/travel-app/pull/209), and
+[backend PR 239](https://github.com/fy538/travel-agent/pull/239). Package 1's
+real native capture and Package 2's Home/Places wrong-state replay remain
+unverified, so neither package is acceptance-complete. Existing runtime,
+required checks and acceptance obligations remain in force. The current
+remote-main baseline is workspace `bc69d6d03eeb069eb8705953463b4ddc8a808e6d`,
+backend `bd1a683b8656c3f4091e16abb64f57897fa7fc42`, and app
+`e7bdc660501eaa19234e6b45bda033658edaa2d4`. The program roadmap retains
+cross-lane ownership.
 
 | Order | Work | Status and dependency | First beneficiaries |
 | --- | --- | --- | --- |
 | 0 | Use the landed baseline and confirm tooling ownership | Complete on commit `cef7ac55`; isolated runtime ownership is recorded below | All lanes |
-| 1 | Package 3C: workspace flow validation and early prerequisite checks | Published in workspace PR 38; local checks and three hosted runs pass. At 09:15 UTC, the PR was open and mergeable; `origin/main` was `4febe0d`. Hosted critical paths ranged 5m46s–7m38s versus 23m18s; summed job runtimes ranged 25m28s–31m26s versus 23m18s (+9.3%–34.9%). | All integrations |
-| 2 | Package 3A: deterministic and faster app tests with the same checks | Queued until Package 3C lands; diagnose observed intermittent failures before expanding concurrency | Every lane changing the app |
-| 3 | Package 3B: one execution owner per CI guarantee | Queued after mapping current required checks and their callers; deliver independently after 3A | All lanes |
+| 1 | Package 3C: workspace flow validation and early prerequisite checks | Merged as `bc69d6d` (PR 38); three hosted runs passed. Critical paths ranged 5m46s–7m38s versus 23m18s; summed job runtimes ranged 25m28s–31m26s versus 23m18s (+9.3%–34.9%). | All integrations |
+| 2 | Package 3A: deterministic and faster app tests with the same checks | Candidate implemented; focused, repeated Place, selected-merge and full coverage checks pass locally. Publish and require hosted checks before acceptance. Local 4-worker selection was faster on the same 754-test/99-suite inventory; hosted Node 20 and runner-time effects remain unverified. | Every lane changing the app |
+| 3 | Package 3B: one execution owner per CI guarantee | Next after 3A hosted validation; first map required checks and all callers, then consolidate without reducing guarantees | All lanes |
 | 4 | Package 1: choose the right evidence and make targeted native QA reliable | Implementation published in app PR 209 and workspace PR 39; the app selector accepts a full flow ID or canonical slug only, and readiness failures now inspect Maestro's failed-command hierarchy for explicit causes. Twenty focused tests and the broader polish QA suite pass. Aligning Expo's advertised host allowed Metro to bundle the app; capture then exposed a Worklets JavaScript/native mismatch (`0.7.4` vs `0.11.3`). Maestro's hierarchy omits that message, so this run remains an unverified native capture with 0/1 product images. | Orchestration and Strategy |
 | 5 | Package 2: proportionate review and shorter task context | Targeted review and context-routing changes are published in PRs 39/209/239. The wrong-state replay remains unverified; native-review adoption needs Package 1. | All lanes, especially mobile work |
 | 6 | Package 6: retire completed working documentation | Queued; owner guidance is now established, but no archive migration has started | All lanes |
@@ -488,8 +492,47 @@ also passed: reliability took 7m31s, syntax shards took 4m58s, 5m32s, 6m50s and
 6m28s, and the aggregate took 7s. Its critical path was about 7m38s and summed
 job runtime 31m26s, or 67.2% less critical-path time and 34.9% more runner time
 than the serial baseline. All three runs validate the full flow inventory; the
-spread shows material hosted variability. Package 3A remains gated on Package
-3C landing.
+spread shows material hosted variability. At that time Package 3A was gated on
+Package 3C landing; PR 38 has since merged as `bc69d6d`.
+
+**Package 3A local receipt (October 1; hosted evidence pending).** The candidate
+is based on workspace `b95e2e0040033c2f58f5a60bebc7f1bcf487678e` (merged with
+`origin/main` at `bc69d6d`), backend `bd1a683b8656c3f4091e16abb64f57897fa7fc42`,
+and app `e7bdc660501eaa19234e6b45bda033658edaa2d4`. Focused Invite and Place
+tests passed 34/34; the complete Place-home file passed ten runs at 17/17 each.
+The selected app merge path retained 99 suites and 754 tests in both the
+two-worker and four-worker trials. Measurement-wrapper wall times were 14.458s
+and 14.509s at two workers, and 8.521s and 7.655s at four; the medians were
+14.484s and 8.088s. The candidate selector's bounded CPU-derived budget ran the
+same selection at 7.959s. These trials ran locally on macOS 25.5/arm64 with
+Node 24.13.0, npm 11.6.2 and 14 reported CPUs. The app `node_modules` link
+pointed to the active native-QA lane, whose `package-lock.json` had the same
+SHA-256 as this lane; hosted Node 20 and runner resource costs remain untested.
+
+The full coverage command
+`npm --prefix travel-app test -- --ci --coverage --coverageDirectory=/private/tmp/vesper-eng-eff-measurement/eng-eff-3a-coverage-report --coverageReporters=text --coverageReporters=lcov`
+exited 0 after 160.614s and passed 1,289 suites, 9,180 tests and one snapshot;
+the report was successfully written outside the shared checkout. Jest still
+reported a worker that failed to exit gracefully and was force-exited. Preserve
+that cleanup warning as open diagnosis. The earlier attempt that wrote coverage
+inside the checkout also passed the tests but emitted an `EPERM` report-write
+error; it is not the clean coverage evidence. The 160.614s figure is a local
+wall measurement, not a hosted comparison or a speed claim.
+
+The repository preflight then passed on workspace `b95e2e0`, backend
+`bd1a683`, and app `e7bdc66`, against workspace base `bc69d6d` and the two
+unchanged child bases. `make verify-changed WORKSPACE_BASE_REF=origin/main
+AGENT_BASE_REF=origin/main APP_BASE_REF=origin/main` completed in 127.567s;
+the change-aware app selector deliberately chose its full fallback because
+the selector itself changed. It passed the same 1,289 app suites and 9,180
+tests, Expo lint (167 existing warnings, no errors), 557 living-document link
+checks, the ten-entry documentation spine, and the canon word budget. The
+first preflight attempt exited 2 because the managed worktree denied creation
+of Expo's ignored `.expo/cache/eslint`; rerunning with that routine cache
+directory writable passed. The measured run used the lane's Python 3.13
+environment on macOS 25.5/arm64. Database-backed hosted requirements and the
+Node 20 runner remain outside this local result. Measurement record and full
+log: `/private/tmp/vesper-eng-eff-measurement/eng-eff-package-3a-verify-changed-cache-write-20261001T140905Z.log`.
 
 Four app/backend instruction documents were shortened and the workspace
 cross-repository instructions retained as the single shared owner. Across the
@@ -790,27 +833,42 @@ the retry passed 1,289 suites and 9,178 tests in 434.846s of Jest execution.
 The earlier 401.584s run at `6b3066aa5aa1` is a separate candidate, not proof of
 a speed trend.
 
-Diagnose `invite-landing.smoke.test.tsx` and `place-home.smoke.test.tsx` first.
-The invite test waits for a heading before pressing a button that remains disabled
-until stored participation state loads. A controlled reproduction on October 1
-delayed `AsyncStorage.getItem` by 500 ms; the test failed with zero submission
-calls because it pressed before the radio became enabled. This identifies a test
-readiness race, not evidence that a user can submit through the disabled control.
-The next repair should wait for the radio's enabled state before pressing, then
-cover immediate, delayed and rejected storage while retaining the submission
-assertion. The Place-reader timeout cause remains unresolved: the first full-suite
-attempt timed out while waiting for the initial exact reading, the retry passed,
-and one isolated run passed. Repair demonstrated async readiness, timer or
-cleanup behavior; do not broadly raise timeouts, weaken assertions or treat
-passing on retry as a fix.
+The invite readiness race is repaired in the current candidate. Its shared-plan
+test now waits for the RSVP control to become enabled and covers immediate,
+delayed and rejected `AsyncStorage` reads while keeping the exact submission
+assertion. This follows a controlled 500ms delayed-read reproduction that
+previously pressed while the control was disabled and observed zero submission
+calls; that demonstrated a test readiness race, not a user-visible bypass.
 
-Then benchmark aggregated asset assertions and a lightweight setup for
-source/asset-only convention tests. Keep the same checks and selected inventory.
-Trial two CI shards for broad candidates if needed, each with a suitable worker
-budget. Require every expected shard and prove that their union equals the
-original selection. Compare total latency, setup/queue time and runner-minutes;
-do not promise a twofold speedup. The scoped path's blanket convention family
-deserves later impact-mapping review, not an immediate removal.
+The Place-reader timeout was traced to the test harness. That describe uses fake
+timers while TanStack Query publishes the resolved query through a timer-backed
+notification. The test now flushes the zero-delay notification inside `act`
+before its existing reader assertion. The timeout and product assertion remain
+unchanged. Ten consecutive runs of the full Place-home test file passed 17/17.
+This bounds the observed issue on this machine; it does not prove there are no
+other intermittent failures.
+
+The same selected merge inventory (99 suites, 754 tests) passed with both two
+and four Jest workers. On the local 14-CPU Mac, the four-worker runs took 8.521s
+and 7.655s by the measurement wrapper, versus 14.458s and 14.509s at two workers;
+the measured medians are 8.088s and 14.484s respectively. The selector now
+chooses a bounded worker budget from available parallelism (two to four), and
+the actual selector candidate passed the same inventory in 7.959s. This is a
+local result only; Node 20 hosted timing and runner-minute effects remain open.
+
+After these fixes, the full app coverage command with its report directed to a
+writable temporary directory passed 1,289 suites and all 9,180 tests locally in
+160.614s. Jest printed one open-handle/worker cleanup warning; the command
+exited successfully and wrote its report. An earlier run reported the same test
+pass in 106.802s but failed to write its coverage report inside this checkout,
+so it is not clean coverage evidence. A preceding no-cache full run on the
+pre-fix candidate failed only the Place initial-reading timeout (1,288 suites
+passed, one failed; 9,179 of 9,180 tests passed), so its 361.159s duration is
+not a comparable timing sample. Asset aggregation and a lightweight convention
+setup were tested and discarded because they were slower or failed to retain
+exact assertions. Keep the current setup unless a comparable full run
+demonstrates a benefit. The scoped path's blanket convention family still
+merits later impact mapping; do not remove it without preserved coverage.
 
 **3B — Verification ownership, third in the queue.** Map overlapping calls from
 `verify:fast`, regular PR CI and merge readiness, then give each guarantee one
@@ -1262,12 +1320,13 @@ repair batch's inexpensive checks before publishing another candidate. This is
 engineering cadence, not a narrower product vision or permission to split
 cross-repository invariants.
 
-Section 5 remains the only execution queue. Package 3C is implemented and
-published; confirm it lands before starting its dependent Package 3A. Package 1
-and the documentation portion of Package 2 have advanced independently, while
-their stated native acceptance remains open. Native QA retains its separate
-product-quality purpose. No new dashboard, parser, framework, standing agent
-fleet or broad test-deletion project is required.
+Section 5 remains the only execution queue. Package 3C is merged. Package 3A's
+repository preflight passed on the current local candidate; its hosted checks
+are the remaining acceptance boundary. Package 3B follows hosted confirmation
+of 3A. Package 1 and the documentation portion of Package 2 have advanced
+independently, while their stated native acceptance remains open. Native QA
+retains its separate product-quality purpose. No new dashboard, parser,
+framework, standing agent fleet or broad test-deletion project is required.
 
 ### Reproducing the integration measurements
 
