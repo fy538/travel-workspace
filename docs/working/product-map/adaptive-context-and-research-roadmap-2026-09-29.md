@@ -3690,7 +3690,41 @@ Validation on the adaptive-context backend lane (Python 3.13.0):
   `/private/tmp` passed all hooks, including secret scanning and architecture
   ratchets.
 - No API/schema, model, query, provider, release-policy, runtime-feature,
-  consumer, deployment or publication behavior changed. No live provider or
-  database was used. R1 privacy coverage is improved for these two batch paths;
-  public disclosure authorization and R3 accounting remain open; R0–R7 remain
-  open.
+consumer, deployment or publication behavior changed. No live provider or
+database was used. R1 privacy coverage is improved for these two batch paths;
+public disclosure authorization and R3 accounting remain open; R0–R7 remain
+open.
+
+#### R1 implementation receipt — minimize interactive search diagnostics (October 1)
+
+Backend commit `f2f123b0c` removes the raw search phrase, exception message and
+malformed model response from two interactive diagnostic paths. Concierge
+semantic activity-search failure logs now retain only the exception class and
+continue returning structured-filter results. Search interpretation failures
+likewise log only the exception class or a generic response-shape label. The
+bounded interpreter cache remains keyed by the exact query; no cache-retention
+or provider-disclosure policy is implied. The Concierge and Search FEATURE
+contracts record these precise boundaries.
+
+Validation on the adaptive-context backend lane (Python 3.13.0):
+
+- `PYTEST_ADDOPTS='-p no:cacheprovider' .venv/bin/python3.13 -m pytest
+  tests/test_search_interpretation.py
+  tests/concierge/test_search_filter_forwarding.py -q`: **40 passed**,
+  including marker assertions for query, exception and malformed response
+  content.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static`: passed;
+  Ruff, formatting, architecture/structural checks, catalog runway and mypy
+  across **1,900** source files passed. Commit hooks passed.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main` passed
+  its full offline backend scope: **22,201 passed, 14 skipped, 1 xfailed, 52
+  xpassed**, with two expected local-Qdrant payload-index warnings. The
+  disposable-Postgres cases among the skips remain unverified by this offline
+  check; no live provider was called.
+
+This improves local diagnostic minimization only. Search still sends content
+through its existing retrieval/interpreter calls; the selected-source route
+still rejects public research, so caller-independent disclosure, substantive
+public acquisition, matched usefulness, native receiving and R0–R7 package
+acceptance remain open.
