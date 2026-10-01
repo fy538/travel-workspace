@@ -92,20 +92,35 @@ passed for `home-root` / `polish/home-root-returned` and created a separate
 scaffold without replacing the before/after pair. Focused CLI, failure-policy
 and preflight suites pass (13 tests total).
 
-The required real capture is **blocked/unverified**: this lane has no exclusive
-device assigned (`device: null`) and its Expo port `57436` did not answer. The
-checked capture stopped before touching a simulator or output pair, with both
-conditions diagnosed. The two visible simulators were reserved by other active
-lanes at the last coordination check. No positive native capture or installed
-app identity check is claimed. After installing the locked app dependencies in
-the isolated lane, the complete `qa:polish:test` target passed, including the
-existing suite and the new focused tests. On October 1, `make verify-changed`
-passed against workspace base `4febe0d`, backend base `bd1a683`, and app base
-`e7bdc66`: app fast checks, selected merge tests and workspace links/spine/canon
-checks all passed. The first sandboxed attempt could not write the ignored Expo
-lint cache and exposed one stale retry-count contract expectation. The rerun
-used only the lane's ignored cache write access, and the corrected contract now
-passes.
+The first acceptance check was blocked because the lane had no assigned device
+and Metro was stopped. Follow-up on October 1 reserved and booted the previously
+unassigned iPhone SE (3rd generation), UDID
+`E5200CAA-0A20-4D67-B5C6-A418603A5FEC`. The QA doctor then passed on the exact
+lane device: Maestro 2.6.1, Java 17, Metro port `57436`, and installed app
+`com.fyan.vesper` version `1.0.0` matched. The check confirms bundle ID and
+marketing version only; it does not check a native fingerprint.
+
+The selected `polish/home-root-returned` capture still produced **0/1** images.
+Expo bound the host's localhost address, while the simulator needs a host
+address it can reach. Passing a bracketed IPv6 literal reached Metro's health
+endpoint but aborted the app inside React Native's WebSocket setup. Passing
+`http://localhost:57436` opened the dev client, whose error screen showed it
+trying `127.0.0.1:57436` inside the simulator. The lane's isolated targeted
+receipt recorded the failure and preserved the shared before/after pair. A
+LAN-bound Expo start was rejected by automatic approval review because other
+local-network devices could reach the development server and source/config.
+No workaround was attempted. Native acceptance remains **blocked/unverified**
+pending an approved simulator-reachable server path; neither failure is a Home
+product verdict.
+
+After installing the locked app dependencies in the isolated lane, the complete
+`qa:polish:test` target passed, including the existing suite and the new focused
+tests. On October 1, `make verify-changed` passed against workspace base
+`4febe0d`, backend base `bd1a683`, and app base `e7bdc66`: app fast checks,
+selected merge tests and workspace links/spine/canon checks all passed. The
+first sandboxed attempt could not write the ignored Expo lint cache and exposed
+one stale retry-count contract expectation. The rerun used only the lane's
+ignored cache write access, and the corrected contract now passes.
 
 Package 1's implementation is in app [PR #209](https://github.com/fy538/travel-app/pull/209).
 Package 2's targeted-capture isolation, exact-input judgment carry, and
@@ -127,11 +142,16 @@ fresh hosted status read still fails with a GitHub API connection error, so
 hosted checks remain unverified.
 
 Package 1 is **implementation-complete for this PR, acceptance-unverified**: do
-not mark it complete until an exclusive simulator and its lane Expo server are
-available and a warmed native capture passes. Package 2 is **implementation in
-PR, acceptance in progress**: its review rules and targeted tooling are updated,
-but the shared-reader large-text clipping and Home/Places wrong-state defects
-have not yet been replayed. No positive result is claimed for either replay.
+not mark it complete until a simulator-reachable lane Expo server produces a
+warmed native capture. Package 2 is **implementation in PR, acceptance in
+progress**. The observed shared-reader large-text defect was found in the trace
+and fixed in `travel-app` commit `c704fc997`. The committed verdict
+`20260930T222931Z` records four passing largest-text/source-return assertions
+against app revision `05d81a9df`, an ancestor of this lane head; the reader code
+has not changed since that capture. The referenced PNG files are not tracked in
+Git, so this is a carried verdict rather than a fresh pixel review. The
+Home/Places wrong-state replay remains unverified; the failed returned-state
+attempt above never reached Home and is not evidence for that defect.
 
 **Package 3 — iteration and candidate selection:** selector transparency passed
 the coordinated gate above. App plans expose full-suite reasons and print
@@ -971,6 +991,35 @@ Start by mapping these cases to the existing
 [authority evals](../../travel-agent/eval/consequence_authority/), plus existing
 journey and native fixtures. Add only missing cases. Keep deterministic fixture
 rendering distinct from live-model quality and real-backend persistence.
+
+The first mapping confirms that these tools measure different layers:
+
+| Product outcome | Current evidence owner | What the current evidence establishes and what remains open |
+|---|---|---|
+| Preserve and reopen an exact original | App [Canonical Artifact Reader](../../travel-app/docs/surfaces/canonical-artifact-reader/contract.md), especially J11.B06 and registered source-open flows | The committed September 30 carried verdict records source open/return and largest-text assertions passing on fixture data. Native photo gestures, VoiceOver activation, and live owner-source readback are separate evidence. |
+| Keep a useful collection and find it again | Workspace [Journey 11](../journeys/11-atlas-candidate-to-memory-control.md), especially J11.B03/J11.B05; backend P04 | J11 names keep/shelf/return and hide/restore paths. The current product-proof status matrix still shows no promoted P04 contract, database, or AI-eval receipts, so branch descriptions and test anchors do not establish current product-proof completion. |
+| Share to the intended people without leaking private context | Backend consequence-authority corpus and multiplayer snapshots; P01–P04/P06 privacy tasks | The authority harness covers 80 cases and 21 state snapshots; the product-proof grader checks forbidden shared text. Offline tests validate those harnesses, not live model decisions or recipient experience. P05 thin-participant handoff remains explicitly dark. |
+| Correct an interpretation while retaining its source | Backend P03 correction task; Journey J11.B04/J27; app reader correction contract | P03 checks correction/reconciliation effects; J27 owns the source-preservation outcome. The proof task's current evidence reference does not itself bind the unchanged source revision, so adapters must not claim this outcome from a correction effect alone. |
+| Give useful research with sources and honest uncertainty | Backend P02 provenance/freshness tasks, P04 uncertainty task, five [artifact-quality fixtures](../../travel-agent/eval/artifact_quality/), and workspace P08 contract | P02 is spatial/operational grounding, not a general cited-research proof. P08 specifies sourced interpretation, unknowns, privacy, and human outcome but remains dark; do not report it as shipped acceptance or activate it from this QA lane. |
+
+On October 1, the offline backend harness tests passed on Python 3.13.0 and
+backend revision `cbe7ff908`: `PYTHONDONTWRITEBYTECODE=1 ./.venv/bin/python
+-m pytest -p no:cacheprovider tests/eval/test_product_proof_eval.py
+tests/eval/test_consequence_authority.py tests/atlas/test_artifact_quality_eval.py
+-q` → **36 passed**. These tests exercise graders, schemas, fixtures, and mock
+composition only; they do not execute an agent, call a model, prove persistence,
+or promote product-proof receipts. The first invocation ran the same 36 tests
+but exited with a pytest-cache write error, so only the cache-disabled rerun is
+counted as passed.
+
+The product-proof task bank contains 24 cases across P01–P04 and P06. P05 and
+P08 are dark in the canonical proof spine; keep them visible as future gaps and
+do not add tasks that imply their surfaces are available. The actionable gap
+for active proof owners is to bind correction evidence to an unchanged source
+revision and to reconcile J11 branch claims with the currently empty promoted
+P-level receipt matrix. Package 5 remains **mapping in progress** until those
+owners decide which missing checks belong in existing active proofs and record
+revision-bound product evidence.
 
 **Acceptance:** a model/prompt change can be compared with the previous version
 for usefulness, grounding, latency and cost while hard authority checks remain
