@@ -87,12 +87,11 @@ and acceptance receipts; it hands over a clean, committed candidate with its
 remaining boundaries stated. This handoff changes integration responsibility,
 not product authority or the required checks. Integrate compatible candidates
 in dependency order rather than waiting for every roadmap to finish.
-Uncommitted work stays with its lane owner. The current coordinated integration
-checkout is `worktrees/central-integration-2026-10-01`, on
-`codex/central-integration-2026-10-01` in all three independent repositories.
-Its initial candidate combines the committed research, artifact, Orchestration
-and efficiency snapshots; landing status follows the actual PRs and exact
-verified revision tuple, not this ownership assignment.
+Uncommitted work stays with its lane owner. The coordinated October 1
+integration checkout was retired after landing, with recovery snapshots kept.
+It is historical provenance, not a checkout to resume. Central integration
+uses a bounded compatible candidate when the next handoff is ready; the four
+execution owners retain their existing lanes.
 
 **Central integration landing receipt — October 1:** the compatible committed
 research, artifact, Orchestration and efficiency snapshots now share backend
@@ -100,9 +99,12 @@ research, artifact, Orchestration and efficiency snapshots now share backend
 `0a1fdf224aaf59ca713eec5eba79a34321f038a9` and app
 [PR #212](https://github.com/fy538/travel-app/pull/212) at
 `acf5bd837fe3725b00d9744727f513a601fb2498`. Required hosted checks passed
-without bypass. The workspace candidate pins that landed pair; its own
-protected-main landing still requires the coordinated contract/golden-path
-check. Integration repaired the backend migration join and research-to-Home
+without bypass. Workspace [PR #41](https://github.com/fy538/travel-workspace/pull/41)
+landed that exact pair at `7018d055c6635b0edb5726612375c03f2c785520`,
+with its required contract/golden-path check passing. The subsequent
+roadmap-only [PR #42](https://github.com/fy538/travel-workspace/pull/42)
+landed at `0b6dfe093c06559827dc23648c51b8329cb9665e`; child pins stayed
+unchanged. Integration repaired the backend migration join and research-to-Home
 novelty handoff, and aligned app source sizes, API consumer locations and new
 route/header ownership. Existing size limits and visual acceptance were not
 relaxed. Local combined regression and subsequent app/contract preflights are
@@ -125,13 +127,63 @@ improvements; Orchestration continues D2 without adding a new integration gate.
 The detailed measurements and boundaries remain in the
 [completed integration review](development-qa-research-and-roadmap-2026-09-30.md#9-completed-integration-review).
 
+### Next activation round — October 1 reconciliation
+
+The current chat names are **Artifact**, **Adaptive Context**, **Orchestration**
+and **Eng Efficiency**. Strategy and Strategy Technical below retain their
+historical domain names; they are not two additional execution chats. Activate
+one bounded assignment in each existing lane, not the whole remaining roadmap.
+This planning update does not dispatch a chat or activate a product feature.
+
+| Lane | Next bounded assignment | Finish and handoff |
+| --- | --- | --- |
+| Artifact | P1 correction/readback acceptance through the real app transport and backend, starting with explicit-offset replacement-time Save/refetch/Undo. Preserve current original access and exact revision/retry behavior. | Persisted correction and Undo, unchanged original, stale/wrong-owner denial and session-safe readback have separate receipts. Name actual auth/device boundaries; mock or auth-bypassed runs cannot close them. Hand over a committed slice or the exact external blocker. |
+| Adaptive Context | R2/R7 final-selection and supported-addition evaluation using the existing candidate and pairwise-treatment fixtures and producer. | Separate candidate recall, selected support, claim support, incremental substance and direct-original versus assisted usefulness. Include repeats, distractors, no-addition, failed/withheld cases and all eligible attempts. Provider-free replay proves the evaluated boundary; genuine model/user value and paid activation remain separate gates. |
+| Orchestration | D2 one real-backend supported input → source-backed root value → exact reader → restored root, using an already admitted input such as in-app text. | Persisted owner/source identity, exact open/return and stale/revoked/error behavior pass at their owning layers; affected native state is checked on the assigned device. Record authenticated versus synthetic/auth-bypassed evidence explicitly. No new final screen hierarchy is required. |
+| Eng Efficiency | Close the remaining bounded Package 6 owner-reference inconsistencies, then select and retire one Package 7 family with proven replacement and maintenance burden. | Record callers, entrypoints, required safeguards and replacement before removal. Preserve ongoing design infrastructure. Measure tracing/rework or verification cost through the existing pilot; file/test counts alone do not prove a gain. |
+
+These assignments can run in parallel: Artifact owns reader/correction and
+Collection contracts, Adaptive Context owns research selection/producer/evals,
+Orchestration owns capture and Home/Places callers/projections, and Eng
+Efficiency owns its bounded legacy/tooling slice. A needed cross-owner change
+is an explicit interface dependency, not permission to edit the other owner's
+files. Generated contracts and dependency pins land as a compatible set through
+central integration. Use the lane's recorded runtime and exclusive device;
+serialize only competing native device/build work.
+
+**Start from accepted main, not the old integration turn.** The canonical
+inspection tuple is workspace `0b6dfe093c06559827dc23648c51b8329cb9665e`,
+backend `0a1fdf224aaf59ca713eec5eba79a34321f038a9`, app
+`acf5bd837fe3725b00d9744727f513a601fb2498`. All four retained owner checkouts
+still have earlier heads. Their owners refresh their own three-repository
+bases at intake and preserve dirty drafts; this reconciliation does not move
+those checkouts. The Eng Efficiency roadmap draft and Orchestration's app-test
+comment remain owner work. Reuse landed code rather than replaying it as new
+implementation or repeating the interrupted broad integration checks.
+
+**Design-decision dependency:** the retained product-direction checkout has
+uncommitted decision records named
+`2026-09-30-life-joining-collecting-and-learning.md` and
+`2026-10-01-intake-share-card-send-and-forwarding.md`, marked accepted by their
+owner. They are not in this inspected main baseline. The records amend joining,
+automatic collection filling/learning, shared leaving, save-on-share, Send,
+forwarded email and Scan. Reconcile the founder rulings and affected canonical
+contracts in that owner before implementing dependent behavior. In particular,
+the joining record requires a contribution-contract amendment before automatic
+Occurrence joins ship. Do not extend connected-inbox assumptions, redesign the
+share card, infer automatic joins from kept-bundle reconciliation, or invent
+Collection member presentation in this round. Existing private custody,
+explicit correction, manual membership, original readers and provider-free
+research evaluation can proceed while those records and design are finalized.
+
 ## 1 Inspected baseline and unfinished product work
 
 <a id="inspected-baseline-and-publication-state"></a>
 
-The completed September 30 landing provides this shared main baseline. Preserve
-the distinction between merged implementation, local checkout state and product
-acceptance:
+The current accepted tuple is recorded in the activation checkpoint above.
+The following September 30 table is historical landing evidence, not the next
+assignment base. Preserve the distinction between merged implementation, local
+checkout state and product acceptance:
 
 | Repository | Landed main revision | Meaning |
 | --- | --- | --- |
@@ -139,10 +191,12 @@ acceptance:
 | Backend | `bd1a683b8656c3f4091e16abb64f57897fa7fc42` | Combined product-lane changes and integration repairs; [PR #238](https://github.com/fy538/travel-agent/pull/238) |
 | App | `e7bdc660501eaa19234e6b45bda033658edaa2d4` | Combined capture, reader, Home/Places and integration repairs; [PR #208](https://github.com/fy538/travel-app/pull/208) |
 
-The workspace lock records tested backend `33a000e97ed4` and app `21fdb724ff71`.
-Their trees are identical to the corresponding main merge commits above. Keep
-those immutable candidate pins; do not repin just to replace them with
-identical-tree merge commits. Required checks passed without bypass, including
+At that September 30 checkpoint, the workspace lock recorded tested backend
+`33a000e97ed4` and app `21fdb724ff71`.
+Their trees are identical to the corresponding main merge commits above. Those
+were immutable candidate pins for that landing; the October 1 integration has
+since replaced them with its newly verified child pair. Required checks passed
+without bypass, including
 private child checkout and disposable-database journeys. The [completed
 integration review](development-qa-research-and-roadmap-2026-09-30.md#9-completed-integration-review)
 records timing, retries and evidence limits. New changes need applicable checks;
@@ -253,7 +307,8 @@ readback and consumer-conformance evidence, not its own mobile redesign.
 thread keeps the cross-lane product context, clarifies priorities and ownership,
 and reviews evidence at system checkpoints. The three execution lanes each own
 their bounded outcome through implementation, focused verification, commits
-and safe landing; owners coordinate directly on ordinary technical details.
+and clean committed handoff; central integration owns protected-main landing
+under the founder assignment above.
 Escalate here for a consequential cross-lane conflict or a product/authority
 choice, not for routine progress reports or every implementation obstacle.
 Founder review remains reserved for decisions that change product meaning,
@@ -311,7 +366,7 @@ Shared roadmap reconciliation and combined landing are complete. Before the
 next implementation slice, check only the current lane and its actual
 dependencies:
 
-1. Confirm the landed tuple in section 1 and any newer required dependency.
+1. Confirm the current accepted tuple above and any newer required dependency.
    Preserve subsequent drafts. Do not reopen PR #37 or repeat shared planning;
    local canonical main is not assumed to equal remote main.
 2. Inspect `make worktrees`, branches, HEADs and dirty files in all three repos.
@@ -378,7 +433,8 @@ representative families, not a decision to narrow Vesper to one behavior loop.
 ## 5 Orchestration execution plan
 
 **Current order:** D0's shared-baseline work is complete; D2 is the next primary
-delivery assignment. D1 and D3 remain open for gaps needed by that experience
+delivery assignment. The activation checkpoint above bounds this round to one
+connected receiving slice. D1 and D3 remain open for gaps needed by that experience
 and independent work when an exact D2 dependency is blocked. A signing, device,
 provider or unimplemented producer dependency blocks only its affected path.
 The dated implementation receipts below preserve evidence; their historical

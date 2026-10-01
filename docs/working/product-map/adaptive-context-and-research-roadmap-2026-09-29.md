@@ -48,7 +48,25 @@ sharing policy, deployment or release is enabled by this document.
 
 ## 0 Strategy Technical lane execution boundary
 
-**Current assignment:** selected original → supported addition → exact readback.
+**Current assignment:** R2/R7 final-selection and supported-addition evaluation
+within selected original → supported addition → exact readback. The backend
+producer and exact-result API are landed; building that connection again is not
+the next task. Extend the existing retrieval and pairwise-treatment evaluation
+through the landed producer rather than adding a separate evaluation framework.
+
+For a bounded versioned case set, distinguish candidate recall, final selected
+support, semantic claim support, added substance and direct-original versus
+assisted usefulness. Reuse sparse-history, repeated-known-connection,
+distractor, justified no-addition, failed/withheld and changed-access cases.
+Count all eligible attempts and remaining user effort, not only returned
+successes. Deterministic/provider-free replay can establish selection and
+admission behavior at its stated boundary; authored labels are not human
+preference evidence and constructed outputs are not live-model quality.
+If no authorized recorded outputs or finite live evaluation are available,
+hand over the evaluated replay plus that exact missing evidence. Do not turn
+this into automatic production allocation, a new retrieval index, public
+lookup, native screen work or personal-novelty claims.
+
 Complete the first R0/R1/R2/R6 connection with the minimum R3/R4/R5 safeguards
 and R7 comparisons. Exact original/text-span reads, bounded acquisition, the
 selected-source work-item contract and private result owner now exist, and an
@@ -149,16 +167,20 @@ an independent security certification, or an observation of deployed behavior.
 
 ### Current merged baseline
 
-The September 30 combined landing includes this lane's previous work and the
-artifact and Home/Places increments. A fresh remote fetch and ancestry check
-confirmed every previous lane tip is in `origin/main`. This lane's three clean
-checkouts were rebased to the following tuple without replaying unique commits:
+The October 1 central integration includes the committed producer, result,
+candidate-retrieval and accounting increments, alongside artifact and
+Home/Places dependencies. Required hosted checks passed. The canonical tuple
+inspected for the next intake is:
 
-| Repository | Merged revision | Previous lane tip included |
-| --- | --- | --- |
-| Workspace | `4febe0d461a62d204ba4dee9eaad7813c7c1509c` | `861d4633` |
-| Backend | `bd1a683b8656c3f4091e16abb64f57897fa7fc42` | `af05702ab` |
-| App | `e7bdc660501eaa19234e6b45bda033658edaa2d4` | `28717c7cf` |
+| Repository | Accepted main revision |
+| --- | --- |
+| Workspace | `0b6dfe093c06559827dc23648c51b8329cb9665e` — PRs #41/#42 |
+| Backend | `0a1fdf224aaf59ca713eec5eba79a34321f038a9` — PR #241 |
+| App | `acf5bd837fe3725b00d9744727f513a601fb2498` — PR #212 |
+
+The retained Adaptive Context lane still has earlier heads. Its owner refreshes
+that coordinated tuple at intake; this documentation change does not move it
+or certify a current runtime. Preserve the exact dated receipts below.
 
 This is the next assignment's starting tuple, not a moving claim about main.
 The [program landing checkpoint](../vesper-program-roadmap.md#combined-landing-checkpoint--september-30)
@@ -721,7 +743,8 @@ records shared experience requirements, not a second implementation in
 Strategy.
 
 **Execution is underway; the prior increments are merged.** The current tuple
-is in section 1. The first connected assignment remains active:
+is in section 1. The overall connection remains open; the next bounded
+assignment is the selection/support evaluation in section 0:
 
 | Area | Landed capability to reuse | Remaining connection or evidence |
 | --- | --- | --- |
@@ -1388,8 +1411,10 @@ implementation. Recommendations elsewhere are our engineering inferences.
 
 ### Current assignment and supported scope
 
-**Selected original → supported addition → exact readback** is the remaining
-first assignment, starting from section 1's merged tuple. It connects R0/R1/R2
+**R2/R7 selection and supported-addition evaluation** is the next bounded
+assignment in section 0, starting from section 1's accepted tuple.
+**Selected original → supported addition → exact readback** remains the overall
+connection outcome; its backend path is already implemented. It connects R0/R1/R2
 to R6 with minimum R3/R4/R5 controls and R7 comparisons. The finish is an
 owner-callable, source-bound producer/result path, not another isolated helper.
 Original access remains independently useful and never waits for research.
@@ -1403,6 +1428,11 @@ PDF parsing, photo-region reasoning, shared-source AI use or new media admission
 These are engineering coverage cases, not a narrower product thesis.
 
 ### Implementation sequence
+
+The current round evaluates the remaining selection/support/usefulness gap.
+The implemented interface, owner hydration, ledger and readback steps below are
+reuse inputs, not instructions to reconstruct them. Artifact owns future native
+consumer adoption and Orchestration owns root receiving.
 
 1. **Admit the selected-source interface.** Implemented at the contract, owner
    and backend route level: work items and results bind an explicit source
