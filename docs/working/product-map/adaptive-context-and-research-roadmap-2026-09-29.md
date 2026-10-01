@@ -51,19 +51,20 @@ sharing policy, deployment or release is enabled by this document.
 **Current assignment:** selected original → supported addition → exact readback.
 Complete the first R0/R1/R2/R6 connection with the minimum R3/R4/R5 safeguards
 and R7 comparisons. Exact original/text-span reads, bounded acquisition, the
-selected-source work-item contract and its private result owner now exist. The
-work item captures exact Intake revision/span, consumer, private intent and a
-separately typed public request. The result owner binds viewer, source revision
-and optional span, treatment, dependency revisions and content digest. At
-store/read it now revalidates the selected source and every dependency against
-the same viewer's exact retained `text/plain` Intake originals, locking sources
-in stable ID order. Other dependency owners remain unsupported until their own
-exact readers are admitted. Source correction/scrub erases results that refer
-to a source either as the selected original or a dependency; a JSONB GIN index
-supports dependency invalidation. Results retain the 24-hour maximum and
-bounded hourly cleanup. These are backend contracts and persistence only: no
-owner-callable producer, producer route/job, provider activation or client
-readback is wired yet. Connect
+selected-source work-item contract and private result owner now exist, and an
+in-memory adapter hydrates exact retained whole text or a bounded text span
+through Intake. The work item captures exact Intake revision/span, consumer,
+private intent and a separately typed public request. The result owner binds
+viewer, source revision and optional span, treatment, dependency revisions and
+content digest. At store/read it now revalidates the selected source and every
+dependency against the same viewer's exact retained `text/plain` Intake
+originals, locking sources in stable ID order. Other dependency owners remain
+unsupported until their own exact readers are admitted. Source correction/scrub
+erases results that refer to a source either as the selected original or a
+dependency; a JSONB GIN index supports dependency invalidation. Results retain
+the 24-hour maximum and bounded hourly cleanup. These are backend contracts
+and persistence only: no owner-callable producer, producer route/job, provider
+activation or client readback is wired yet. Connect
 the contracts through the actual producer and exact readback path. The current
 Home/Places request is not an artifact request: do not adapt it as one.
 Use existing Source identity while Strategy owns broader thing/component
@@ -687,7 +688,7 @@ is in section 1. The first connected assignment remains active:
 
 | Area | Landed capability to reuse | Remaining connection or evidence |
 | --- | --- | --- |
-| Selected evidence | Owner/revision-bound original reads and mobile callers; backend-only bounded UTF-8 text-span selection | The text-span adapter has no research consumer; general component and multimodal retrieval remain open |
+| Selected evidence | Owner/revision-bound original reads and mobile callers; bounded UTF-8 text-span selection; an in-memory research adapter now hydrates exact whole text or a selected span | The research producer is not connected; general component and multimodal retrieval remain open |
 | Public acquisition | Shared typed single-attempt lookup; answer-only routing without dossier writes; source kind, dates, quotes and truncation metadata | Construct public requests from selected material under an actual disclosure boundary; select a substantive addition and verify claim support beyond quote presence |
 | Runtime | Existing Source workflow/publication controls; content-free demand and tool/SDK-attempt telemetry; dispatch-uncertainty handling for the voice commercial meter | Research-specific pre-dispatch resource reservation, settlement/recovery and the selected-source producer connection; telemetry and voice units are not research spend enforcement |
 | Receiving dependencies | Merged family readers, exact-source inspection, correction/Undo and return behavior; Home/Places receiving improvements | Existing preparation requests remain root-bound; define artifact/source-target request and result conformance before native adoption by its owner |
@@ -699,7 +700,7 @@ R3/R4/R5 controls accompany that producer; broad shared execution, longitudinal
 maintenance and assistance adaptation remain later work. No existing original
 reader or root connection needs to be rebuilt to start this assignment.
 
-**Status measure (September 30): 0/8 packages fully accepted (0% package
+**Status measure (October 1): 0/8 packages fully accepted (0% package
 closure).** This is not a claim of zero engineering progress: partial slices
 have shipped across R0/R1/R2/R3/R6/R7, but no package meets its complete
 acceptance definition. The roadmap does not support a defensible weighted
@@ -1312,17 +1313,19 @@ These are engineering coverage cases, not a narrower product thesis.
 
 ### Implementation sequence
 
-1. **Admit the selected-source interface.** Extend the existing request/result
-   machinery with an explicit source reference, representation revision, optional
-   supported selector, authenticated viewer, purpose, current instruction and
-   eligible consumer.
+1. **Admit the selected-source interface.** Implemented at the contract and
+   owner level: work items and results bind an explicit source reference,
+   revision, optional supported selector, viewer, purpose and consumer. The
+   actual producer must still receive authenticated authority rather than trust
+   serialized work-item identity.
    Map the result owner, lifetime, correction dependencies, applicable budget and
    kill switch. Review the additive contract before consumer work: the current
    Home/Places `context_ref` accepts only `places_context` and cannot stand in for
    an artifact target. No invented Trip, new Thing owner or durable cross-
    representation Component identity is needed for the exact-original adapter.
-2. **Connect evidence and acquisition.** Hydrate the selected original/span
-   through its owner, honor current intent, and use eligible existing evidence
+2. **Connect evidence and acquisition.** A backend-only adapter now hydrates
+   an exact retained original/span through Intake in memory. Connect it to the
+   producer; honor current intent and use eligible existing evidence
    where sufficient. For a missing public fact or named discovery purpose,
    construct the minimal `PublicResearchRequest` through a reviewed public-field
    projection. Private source text, identifiers and instructions must not become
@@ -2248,3 +2251,41 @@ budget enforcement, live-provider permission or consumer readback. The next
 implementation increment is the producer-side assembly/selection path using
 these exact dependency fences, followed by authenticated invocation and exact
 readback. R0–R7 remain open.
+
+#### Implementation receipt — selected-source context hydration (October 1)
+
+Backend commit `b8bd1c0cf` connects the selected-source work item to Intake's
+current exact owner reads through
+`backend/research_agent/selected_source_context.py`. It hydrates either the
+whole retained `text/plain` original (up to 20,000 characters) or the exact
+bounded UTF-8 span, checks the authenticated viewer independently of the
+serialized work item, expiry, source revision, component coordinates and
+content digest, and keeps source text in memory only with `repr` suppression.
+It invokes neither an LLM nor a public provider and writes no result. This is
+the first evidence-hydration adapter, not the selected-source producer.
+
+Evidence on the committed backend tree:
+
+- Focused offline hydration and original-reader tests passed: **21 passed**.
+- Against an explicitly disposable PostgreSQL target, the original-reader
+  lifecycle and selected-result owner tests passed: **12 passed**. This includes
+  hydration of an exact original and selected span through the database-backed
+  Intake owner; it does not prove remote object-store reads or an HTTP/mobile
+  round trip.
+- `make ci-static` passed all repository gates and mypy across 1,897 source
+  files. Ruff caches were redirected to `/private/tmp` for the managed-worktree
+  permission boundary.
+- `make merge-check BASE_REF=main` passed: **22,101 passed, 14 skipped, 53
+  xpassed** and one local-Qdrant payload-index warning. Optional Hugging Face
+  metadata requests retried without network access but did not fail tests; no
+  live-provider behavior is claimed.
+- The first commit-hook attempt could not write Ruff's default cache within the
+  managed worktree. Re-running with the lane virtualenv first on `PATH` and
+  `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-context-research-ruff-cache`
+  passed all hooks without exemptions.
+
+The next assignment is to connect this adapter, bounded public acquisition,
+selected-result storage and exact readback through an authenticated producer
+boundary. Owner hydration alone does not satisfy R0/R1/R2/R6 acceptance; no
+provider activation, useful-addition claim, consumer adoption or package
+closure is asserted.
