@@ -2373,3 +2373,36 @@ Evidence on the current backend tree:
   model call, source text persistence, client readback or consumer acceptance is
   claimed. The producer and authenticated end-to-end path remain open; R0–R7
   remain open.
+
+#### Implementation receipt — composition admission without inferred personal novelty (October 1)
+
+Backend commit `1735c6ad6` fixes a producer-blocking composition rule: the shared
+compiler had required every editorial lead to assert `NEW_TO_PERSON`, even when
+the selected-source work item had no novelty-history owner. A Vesper-authored
+`SYNTHESIS` may now be admitted with `NOT_APPLICABLE` novelty only when it has
+`SUPPORTED` or `VERIFIED` confidence and declares a minimum of two distinct
+supporting exact Source references. The selected-source result owner enforces
+the same minimum. A single-source paraphrase and duplicate aliases are rejected;
+the Home/Places root compiler still retains its stronger owner-specific known-
+claim policy. This is structural support admission, not independent factual
+verification or proof that the synthesis is useful.
+
+Evidence on the current backend tree:
+
+- Focused semantic-composition, root projection, selected-source work and result
+  contract tests: **40 passed**.
+- `make ci-static` passed (Ruff, formatting, architecture/ratchet gates,
+  catalog runway and mypy across 1,897 source files); caches were directed to
+  `/private/tmp` for the managed-worktree permission boundary.
+- Against the explicitly disposable lane database
+  `vesper_adaptive_context_test_20261001`, **12 PostgreSQL lifecycle tests
+  passed** across `test_selected_source_research_results_postgres.py` and
+  `test_original_source_reader_postgres.py` after migration `selresult03`.
+- A fresh `make merge-check BASE_REF=main` on backend commit `1735c6ad6` passed:
+  **22,110 passed, 14 skipped, 1 xfailed, 52 xpassed** in 100.29 seconds.
+  Two expected local-Qdrant payload-index warnings were emitted. Optional
+  Hugging Face metadata requests retried without network access but did not
+  fail the suite; this is not live-provider acceptance.
+- Workspace commit `34d8cece` had a clean tree before this receipt. No route,
+  mobile consumer, live provider call, or end-to-end user-value acceptance is
+  claimed. R0–R7 and the connected producer/readback assignment remain open.
