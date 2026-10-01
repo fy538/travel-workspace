@@ -107,10 +107,23 @@ lint cache and exposed one stale retry-count contract expectation. The rerun
 used only the lane's ignored cache write access, and the corrected contract now
 passes.
 
-Package 1 should not be marked complete until an exclusive simulator and its
-lane Expo server are available and a warmed native capture passes. Package 2's
-review simplification remains the next planned package; its product acceptance
-has not changed.
+The Package 1 implementation is in app [PR #209](https://github.com/fy538/travel-app/pull/209).
+Package 2's targeted-capture isolation, exact-input judgment carry, and
+proportional review guidance are implemented in that same PR. The workspace
+coordination and roadmap receipt are in [PR #39](https://github.com/fy538/travel-workspace/pull/39).
+The coordinated `make verify-changed` passed against workspace base `4febe0d`,
+backend base `bd1a683`, and app base `e7bdc66`; app fast checks, selected merge
+tests, and workspace documentation checks passed. One earlier composite attempt
+hit a transient Jest worker crash; the affected isolated suite and subsequent
+full coordinated run passed. A fresh hosted status read is unavailable because
+the GitHub API connection failed, so hosted checks are unverified.
+
+Package 1 is **implementation-complete for this PR, acceptance-unverified**: do
+not mark it complete until an exclusive simulator and its lane Expo server are
+available and a warmed native capture passes. Package 2 is **implementation in
+PR, acceptance in progress**: its review rules and targeted tooling are updated,
+but the shared-reader large-text clipping and Home/Places wrong-state defects
+have not yet been replayed. No positive result is claimed for either replay.
 
 ## 1. What the repository and traces establish
 
