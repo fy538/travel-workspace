@@ -50,7 +50,8 @@ next primary assignment is to continue substantive Home/Places receiving work
 and representative ordinary/returned/live coverage, including working
 interactions and native polish. The latest D2 increment lets one exact,
 revision-bound Place Source appear as a self-contained Places reading without
-requiring a second item; real-owner/API and device acceptance remain open.
+requiring a second item, and gives an exact Place-bound Home destination a
+specific door label; real-owner/API and full D2 acceptance remain open.
 D1 capture gaps and D3 practical-help gaps
 remain open and can supply independent work when a D2 dependency is unavailable.
 
@@ -1329,6 +1330,33 @@ assigned simulator/CoreSimulatorService was unavailable; no real-owner,
 visual-polish, external design-canon, recurring-supply, or full D2 acceptance
 is claimed. Continue with the next substantive supported Home/Places receiving
 gap and ordinary/returned/live coverage.
+
+**Exact Place door for returned Home value — October 1:** app commit
+`31c673c95` gives a `places.open_entity` door the label “See this place” only
+when the destination carries a nonempty canonical ref of an existing routable
+Place kind (`place`, `venue`, `site`, `accommodation`, or `experience`). A
+broader Places context or reading remains “Open in Places”; the client does not
+invent a Place name or occurrence date from an opaque ref or an Outcome's
+creation time. The Home surface contract records this rule. The returned-Outcome
+regression verifies the exact Place-plus-Outcome destination is preserved when
+opened; the existing cold-context case verifies that a context/dossier-only
+destination keeps its broader label.
+
+The two focused Home suites passed **58/58** with
+`npm test -- --runInBand --no-cache --runTestsByPath __tests__/components/HomeRootV2Screen.smoke.test.tsx __tests__/utils/homeRootV2Renderer.test.ts`;
+`npm run typecheck`, `npm run test:typecheck:contracts`, targeted ESLint, and
+`git diff --check` passed. ESLint reported zero errors and the existing
+1400-line renderer `max-lines` warning. Registered scenario validation covered
+**31 IDs**, and the Home reference check passed structurally (`1` manifest,
+`2` pairs, `externalCanonVerified=0`). The registered Returned Home native
+capture passed **1/1** on the lane-assigned iPhone 16 Pro (Maestro 2.6.1), and
+its top/close screenshots were inspected. That capture's synthetic returned
+fixture does not contain an accepted Place-bound Outcome, so it is general Home
+surface evidence, not native proof of the new exact-ref label or destination.
+No authenticated API/owner read or external design-canon verdict was produced.
+This closes a precise receiving-copy gap, not meaningful returned-content
+acceptance or D2 as a whole; continue with available owner-provided Place/source
+evidence and ordinary/returned/live coverage.
 
 ### Combined landing checkpoint — September 30
 
