@@ -843,12 +843,20 @@ bounded discovery without inventing a Place/Trip/conversation.
   tests. Record bounded execution evidence without retaining private content
   under an observability exception.
 - Preserve answer-only non-persistence semantics, but give lookup/discovery
-  purpose-specific planning and stop criteria. Today the quick path still
-  selects a dossier graph, and unknown target types default to site dimensions
-  in `backend/research_agent/agents/deep_research.py:400`; `answer_only` does not
-  remove those assumptions. Do not invent an entity or seek irrelevant dossier
-  completeness. Preserve the legacy path for its authorized callers. Adopt
-  the disposition mapper through an actual owner caller, not an unused layer.
+  purpose-specific planning and stop criteria. The current graph bypasses the
+  catalog lookup for untyped answer-only requests, accepts at most one
+  caller-supplied typed public request without planner-generated provider
+  queries, avoids dossier-profile selection, reflects against the caller's
+  question rather than fallback site dimensions, and terminates before the
+  dossier quality gate and writers. Preserve the legacy path for its authorized
+  callers; do not invent an entity or seek irrelevant dossier completeness.
+  The Experience owner now applies the disposition mapper to a valid
+  answer-only handoff and returns `current_answer` without source retention.
+  This owner-return test is not a production public-research caller. R1 still
+  needs caller-independent disclosure from a selected object, public
+  fact-lookup and bounded-discovery acceptance, claim-support checks, and a
+  connected user disclosure boundary; the selected-source route still rejects
+  public lookup. No live provider or reusable-result owner is admitted here.
 - Own a small observable effort policy here, with R3 enforcing its resource
   allocation. Distinguish difficulty, urgency and consequence; choose existing
   evidence, targeted acquisition or bounded discovery. Stop when evidence
@@ -3850,3 +3858,43 @@ This improves bounded exact-note candidate reach and truthful incompleteness,
 not semantic retrieval or usefulness. R2 still needs representative selection
 and supported-addition review; matched usefulness and native receiving remain
 open, as do R0–R7 package acceptance.
+
+#### R1 implementation receipt — Experience answer disposition (October 1)
+
+Backend owner `research_experience` now applies the existing disposition mapper
+to a valid `answer_only` bounded result. It returns `current_answer`, correlates
+to the selected Experience row, and keeps `retain_source=false`; it never enters
+the legacy Experience brief/dossier writer. A missing handoff gets no inferred
+disposition; a malformed one preserves the current answer, omits the
+disposition, and logs no content. This adopts the mapper at an owner handoff
+without treating the canonical subject reference as a retention grant.
+
+The prior R1 paragraph claiming the quick graph still used dossier defaults
+was stale: current code bypasses catalog lookup for untyped answer-only requests,
+uses only a caller-supplied typed public request (at most one lookup, no
+replanning), avoids dossier profile and site-dimension fallback, and terminates
+before quality gate and domain writers. Those graph properties are covered by
+`tests/research_agent/test_answer_only_research.py`; the new owner mapping and
+malformed-handoff behavior are covered by
+`tests/research_agent/test_experience_research.py`. No provider, database, API
+schema, mobile surface or product disclosure behavior changed.
+
+Validation on the adaptive-context backend lane (Python 3.13.0):
+
+- Focused answer-only, disposition, quick-research and Experience owner tests:
+  **50 passed**.
+- `make ci-static` passed: Ruff check/format, architecture and structural gates,
+  and mypy across **1,900** backend source files.
+- The first `make merge-check BASE_REF=main` run found one unrelated,
+  timing-sensitive owner-read timeout assertion. The exact test passed alone;
+  a complete rerun passed **22,218 passed, 14 skipped, 53 xpassed**, with two
+  expected local-Qdrant warnings. Database-gated skips remain unverified; no
+  live provider was called.
+- The assumed direct Ruff executable path was unavailable; the repository static
+  gate supplied the successful Ruff/format verification. No API/schema,
+  migration, generated type, app, database or deployment change was made.
+
+This closes only mapper adoption at one existing internal owner-return
+boundary. It does not provide a production typed-public-request caller,
+caller-independent selected-object disclosure, claim entailment verification,
+live-provider quality, comparative usefulness, or R1/R0–R7 acceptance.
