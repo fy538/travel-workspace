@@ -43,7 +43,7 @@ notification policy or deployment is authorized by this roadmap.
 
 **Execution status — September 30:** all three lanes have implemented useful
 increments. The founder requested a combined landing of their recent work;
-integration is in progress in the existing `codex/home-value-delivery` lane.
+integration is published from the existing `codex/home-value-delivery` lane.
 This is a landing checkpoint, not a claim that any entire roadmap is finished.
 No new coordination service, fourth integration lane or routine inter-chat
 messaging is required. After landing, owners can resume their remaining scoped
@@ -63,12 +63,14 @@ acceptance:
 | Backend main | `3c170d21fc0ca9231b956f2b9de7f9f195231768` | Home/capture follow-up and CI changes merged through PR #237 |
 | App main | `87eceee24512d9086962eea5b844cef9d7bffbeb` | Home/capture follow-up and CI changes merged through PR #202 |
 
-Workspace [PR #37](https://github.com/fy538/travel-workspace/pull/37) was still
-open at the preceding publication check. The fresh GitHub request during this
-rebaseline could not connect; its current status is **unverified**, not assumed
-merged. Recheck it before choosing the launch baseline. Do not rerun old
-credential repairs or reopen already merged child packages merely because
-historical receipts describe those blockers.
+The table records the pre-integration baseline, not the final landing tuple.
+The combined workspace [PR #37](https://github.com/fy538/travel-workspace/pull/37),
+backend [PR #238](https://github.com/fy538/travel-agent/pull/238), and app
+[PR #208](https://github.com/fy538/travel-app/pull/208) carry this checkpoint.
+Their live merge state and `docs/child-repos.ci-lock.json` identify the shared
+execution baseline. Private checkout and the workspace database-backed gate
+now have successful hosted evidence; do not reopen those old blockers from
+historical receipts. Child repairs still need their exact-revision hosted gates.
 
 The latest completed Strategy roadmap draft was inspected in its existing
 product-direction checkout; the latest Technical draft was in the canonical
@@ -690,8 +692,11 @@ the combined code; API coverage passed. Follow-up repairs address an extension
 import boundary and obsolete test fixtures without removing safety assertions.
 See the [CI Plan](../reliability/CI%20Plan.md) for the measured preflights and
 focused correction evidence, including the final 720-test app delta and
-22,081-test backend offline result. Local corrections are complete; publication
-and hosted merge status are not yet complete at this checkpoint.
+22,081-test backend offline result. The first published workspace candidate
+passed its complete required gate, including real-database journeys. Child
+hosted checks prompted bounded fixture, shared-design ownership and dependency
+repairs; the lock file names their final candidate heads. The three linked PRs
+are the final publication/merge record, not these earlier preflight results.
 
 This landing does not certify full native/design parity, live-model output
 quality, every capture door, or recurring real-owner supply. Those remain the

@@ -226,7 +226,50 @@ passed `make docs-canon-check docs-links-check docs-spine-check` with Thesis +
 Model at 5,097 words. The pre-push commercial architecture header was also
 reverified against its current owner contract, separating July draft pricing
 rationale from current product policy. No runtime code changed after the above
-app/backend checks. Hosted publication and merge are still pending here.
+app/backend checks. That was the local pre-publication checkpoint, not the
+final merge result.
+
+The published workspace candidate `6e6ddd20`, pinned to backend `6a1e4b249`
+and app `6b3066aa5`, passed `Contract and golden paths` in
+[run 36802699036](https://github.com/fy538/travel-workspace/actions/runs/36802699036).
+The job took **23m07s** including setup; Maestro semantic validation accounted
+for most of that time. It passed 173 mock-journey tests and the real-database
+J02/J05/J06 wedge (six backend scenarios plus 25 frontend checks). This proves
+the disposable services and immutable private checkouts work; it does not meet
+the five-minute latency objective or certify native visuals.
+
+The child PR checks found additional integration drift, now repaired in
+backend `33a000e97` and app `21fdb724f`: source retraction is asserted across
+Home chrome **and** content; test fixtures carry current contract fields;
+artifact reader containers use the existing flat-object primitive; the human
+quotation component and direct photo-gesture owners are registered; generated
+design status is current; vulnerable transitive brace-expansion versions are
+patched without changing Expo or granting audit exceptions. No required check,
+test, or budget was removed or relaxed. App production typecheck, design,
+governance and security checks passed locally; the full-test typecheck ratchet
+is 390 errors against its unchanged 406-error ceiling; that is legacy debt,
+not a passing full-test typecheck.
+Focused app repairs passed 238 tests in **12.661s**, measured by
+`scripts/measure_verification.py` (`merge-card-composition-repairs`); the final
+typed Places fixture and artifact component pair passed 57 tests. The backend
+Home helper/composition follow-up passed 88 tests with
+`pytest tests/integration/test_public_place_content_home_http_pg.py::test_home_source_assertions_cover_chrome_and_content tests/root_projection/test_home_portfolio.py -q -p no:cacheprovider`.
+These focused checks do not substitute for the child PR database/full-suite
+jobs or the workspace check against the updated exact child pins.
+
+Backend PR #238 subsequently passed every required hosted check and merged as
+`bd1a683b8`. At candidate `33a000e97`, the hosted offline partition reported
+22,076 passed, 20 skipped and 53 unexpected passes; the database partition
+reported 1,466 passed and 38 skipped. Separate canonical-itinerary posture
+checks passed 444 and 376 cases. Existing skip/quarantine policy was retained;
+these counts do not certify live-provider or native-device behavior.
+
+The authoritative final landing status is workspace
+[PR #37](https://github.com/fy538/travel-workspace/pull/37), backend
+[PR #238](https://github.com/fy538/travel-agent/pull/238), and app
+[PR #208](https://github.com/fy538/travel-app/pull/208). Retain the tested child
+commits in `docs/child-repos.ci-lock.json` when they become ancestors of main;
+repinning solely to identical-tree merge commits adds no product evidence.
 
 GitHub Actions was disabled in workspace and backend at the September 7 audit.
 It has been re-enabled. Their main-branch protection had unrelated frontend
