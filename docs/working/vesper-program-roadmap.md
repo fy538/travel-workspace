@@ -60,11 +60,11 @@ exact Place, return with the notice still present, then clear the notice while
 the underlying Save remains. Production-user/authenticated-content, provider
 freshness, recurring supply and full D2 acceptance remain open. A new Home-only
 projection keeps the source-backed steps of one public Place reading while
-omitting its process narration; renderer tests pass. Its native negative-copy
-assertion is not yet verified: the latest guarded rehearsal stopped before
-Maestro because the default QA account's accumulated Home feed did not admit
-the two-reading fixture. Preserve that account and rerun against a controlled
-sparse synthetic recipient.
+omitting its process paragraph and grouping basis; renderer tests pass. Its
+native negative-copy assertion is not yet verified: the latest guarded
+rehearsal stopped before Maestro because the default QA account's accumulated
+Home feed did not admit the two-reading fixture. Preserve that account and
+rerun against a controlled sparse synthetic recipient.
 D1 capture gaps and D3 practical-help gaps
 remain open and can supply independent work when a D2 dependency is unavailable.
 
@@ -742,27 +742,27 @@ acceptance remain unverified. Detailed evidence is in the [H1 execution
 plan](home-value-composition-execution-plan-2026-09-25.md).
 
 **Home public Place-reading compact projection — 2026-10-01:** app commits
-`42d1495ce` and `9fc1e4874` hide the grouping/process paragraph only for Home's
-`home-public-content-sequence-v1` composition. The reading title, both
-source-backed steps, provenance/basis, and exact Place door remain; the deeper
-Places projection keeps its explanatory text. The focused renderer suite passed
-**14/14**, app typecheck, targeted ESLint, and the registered polish scenario
-check (**31 IDs**) passed. The Home design check passed its local manifest/pair
-validation, but reported `externalCanonVerified=0`, so no external design-parity
-verdict is claimed. The `89-home-full-scroll` flow now explicitly asserts that
-the grouping paragraph is absent; its static contract passed **3/3** and
-Maestro structure validation passed (**408 flows, 8 configs, 408 unique names,
-10 package references**). The earlier full-scroll pass completed **20/20**
-commands on the pre-change baseline; its screenshot at
-`/tmp/home-full-scroll-original.png` visibly includes the paragraph and is not
-post-commit acceptance. The first older attempt also failed on stale “A place
-from Maya” copy. A guarded rerun after this change stopped before Maestro:
-existing QA-profile material prevented the public two-reading composition from
-being admitted. Its run-scoped fixture cleanup was armed and no cleanup warning
-was emitted. Do not clear or repurpose that QA account; the next native check
-needs a controlled sparse synthetic recipient. Thus the new Home projection is
-unit/static verified, but its native visual effect remains **unverified**; this
-does not close full-scroll visual acceptance or D2.
+`42d1495ce`, `9fc1e4874`, and `1628a0269` hide the grouping/process paragraph
+and the basis that repeats how readings were grouped, only for Home's
+`home-public-content-sequence-v1` composition. Its title and both source-backed
+steps remain; the deeper Places projection retains the full explanation and
+basis. The focused renderer suite passed **14/14**, app typecheck, targeted
+ESLint, and the registered polish scenario check (**31 IDs**) passed. The Home
+design check passed local manifest/pair validation but reported
+`externalCanonVerified=0`, so no external design-parity verdict is claimed. The
+`89-home-full-scroll` flow now explicitly asserts that both process-only lines
+are absent; its static contract passed **3/3** and Maestro structure validation
+passed (**408 flows, 8 configs, 408 unique names, 10 package references**). The
+earlier full-scroll pass completed **20/20** commands on the pre-change
+baseline; its screenshot at `/tmp/home-full-scroll-original.png` visibly
+includes both lines and is not post-commit acceptance. A guarded rerun after
+the first negative assertion stopped before Maestro: existing QA-profile
+material prevented the public two-reading composition from being admitted. Its
+run-scoped fixture cleanup was armed and no cleanup warning was emitted. Do not
+clear or repurpose that QA account; the next native check needs a controlled
+sparse synthetic recipient. Thus the new Home projection is unit/static
+verified, but its native visual effect remains **unverified**; this does not
+close full-scroll visual acceptance or D2.
 
 ### D3 Make practical help part of the same system
 
