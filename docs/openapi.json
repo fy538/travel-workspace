@@ -33669,7 +33669,7 @@
           "root-projections"
         ],
         "summary": "Get Life Root Projection V1",
-        "description": "Return the compact root preview over the canonical Life corpus.",
+        "description": "Return a compact Life reading composed over its current owner records.",
         "operationId": "get_life_root_projection_v1_api_root_projections_v1_life_get",
         "parameters": [
           {
@@ -33677,7 +33677,7 @@
             "in": "query",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/LifeLens",
+              "$ref": "#/components/schemas/LifeRootLens",
               "default": "time"
             }
           },
@@ -83552,7 +83552,6 @@
             },
             "type": "array",
             "maxItems": 16,
-            "minItems": 1,
             "title": "Source Refs"
           },
           "grant_refs": {
@@ -83602,7 +83601,7 @@
           "source_refs"
         ],
         "title": "LifeEntry",
-        "description": "One bounded, source-backed door on a Life lens page."
+        "description": "One bounded, owner- or source-backed door on a Life root reading."
       },
       "LifeLens": {
         "type": "string",
@@ -83612,7 +83611,8 @@
           "people",
           "threads"
         ],
-        "title": "LifeLens"
+        "title": "LifeLens",
+        "description": "Lenses over the canonical Life corpus used by depth readers."
       },
       "LifeOrganizationGroupPageV1": {
         "properties": {
@@ -83905,7 +83905,6 @@
             },
             "type": "array",
             "maxItems": 16,
-            "minItems": 1,
             "title": "Source Refs"
           },
           "grant_refs": {
@@ -84324,6 +84323,18 @@
         ],
         "title": "LifeReturnOperation"
       },
+      "LifeRootLens": {
+        "type": "string",
+        "enum": [
+          "time",
+          "places",
+          "people",
+          "threads",
+          "collections"
+        ],
+        "title": "LifeRootLens",
+        "description": "Root readings, including owner-native Collections outside the corpus."
+      },
       "LifeRootProjectionV1": {
         "properties": {
           "schema_version": {
@@ -84359,7 +84370,7 @@
             "$ref": "#/components/schemas/ResourceRef"
           },
           "active_lens": {
-            "$ref": "#/components/schemas/LifeLens"
+            "$ref": "#/components/schemas/LifeRootLens"
           },
           "delivery_state": {
             "$ref": "#/components/schemas/LifeDeliveryState"
@@ -84369,7 +84380,7 @@
               "$ref": "#/components/schemas/LifeSection"
             },
             "type": "array",
-            "maxItems": 4,
+            "maxItems": 5,
             "title": "Sections"
           },
           "featured_return": {
@@ -84434,7 +84445,7 @@
       "LifeSection": {
         "properties": {
           "lens": {
-            "$ref": "#/components/schemas/LifeLens"
+            "$ref": "#/components/schemas/LifeRootLens"
           },
           "label": {
             "type": "string",

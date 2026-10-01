@@ -45,10 +45,15 @@ path. A first private consumer-Collection backend slice is now implemented in
 the local artifact lane: canonical metadata, many-to-many kept-Thing references,
 owner-scoped reads and revision-bound create/rename/add/remove/soft-delete
 commands. The operations are now in the generated mobile projection and have
-typed API, mock-parity, and session-scoped paginated data-facade coverage. They
-are not yet consumed by Life presentation or device-validated. Shared membership,
+typed API, mock-parity, and session-scoped paginated data-facade coverage. The
+backend now also serves a bounded, owner-authorized Collections root reading
+through the Life projection contract; it returns Collection metadata and exact
+owner total, not member Thing content. Collections are not yet consumed by the
+native Life presentation or device-validated. Shared membership,
 audience/receiving, automated filing and native collection management remain
-open, along with broader P0/P1/PC/P2 acceptance.
+open, along with broader P0/P1/PC/P2 acceptance. The root-read implementation
+is committed locally as backend `3f67aa32c` and app `4532fd497`; neither commit
+is merged or published. Its cross-repo receipt is in section 13.
 
 | Area | Implemented and evidenced | Remaining boundary |
 | --- | --- | --- |
@@ -58,7 +63,7 @@ open, along with broader P0/P1/PC/P2 acceptance.
 | Reader lifetime | Account-session-scoped reads, expiry-aware displayed facts and foreground refresh, exact-source authorization and revision checks | Full source/audience/collection lifecycle replay and authenticated mobile-to-service acceptance |
 | Native acceptance | Fourteen family/source/return fixture screenshots; ten largest-text screenshots; Life source/photo-viewer/removal flow on iOS 18.2 | Reliable pinch/pan, actual VoiceOver traversal/actions, loading/error states, Android/physical devices and live-service readback; these captures do not establish user preference |
 | Landed Technical dependencies | Exact-original revision binding and backend-only refinding of a bounded UTF-8 `text/plain` span; bounded public-acquisition primitives | No stable cross-representation Component identity, mobile selection API, artifact-bound discovery request or complete research-spend enforcement |
-| PC and later packages | House-design fallbacks and existing eligible original receiving remain usable; canonical private consumer-Collection owner, generated mobile contract/client, and session-scoped paginated data facade are implemented. The accepted Collections reading is reconciled in the workspace experience contract; the app contract explicitly records the runtime gap. | Shared membership/audience/receiving, native Life Collections reading and device acceptance, authorized Thing display composition, approved catalog mappings/uses, exact kept editions and connected contextual additions remain unfinished |
+| PC and later packages | House-design fallbacks and existing eligible original receiving remain usable; canonical private consumer-Collection owner, generated mobile contract/client, session-scoped paginated data facade, and bounded owner-backed Life Collections root API are implemented. The accepted Collections reading remains the product target. | Shared membership/audience/receiving, native Life Collections lens/detail route and device acceptance, authorized Thing display composition, approved catalog mappings/uses, exact kept editions and connected contextual additions remain unfinished |
 
 Section 13 retains the exact revisions, commands and limits of each receipt.
 Earlier simulator/build failures are historical attempts, not the current
@@ -79,17 +84,18 @@ returns authorized original references, not user-facing Thing titles or
 summaries. Define a bounded, owner-authorized Life composition over these
 existing owners before building member UI; do not copy Source content/claims,
 invent labels, or create an N+1 read pattern. Keep Strategy as the Collection
-owner and Life as presentation/projection owner. The code inspection found two
-concrete gates: the `consumer_collection` path is broadly allowlisted but has no
-native detail route yet, and the Life row contract requires a Source ref even
-though a Collection index row is directly backed by its canonical Collection
-owner. Do not fake provenance to make those rows compile. A bounded root index
-can use Collection-owner name/count summaries and exact total count without
-hydrating every Thing; a useful member reader still needs a current-authority,
-bounded display composition before UI, not one request per member. The current
-Life design reference is legacy Threads evidence, so it does not certify the
-Collections composition. Owner-confirmed reconciliation is implemented and
-reversible; it does not claim semantic sameness. Collection continuity, native
+owner and Life as presentation/projection owner. The first read-side gate is
+now implemented: root and corpus lenses are separate contracts, and the
+Collections root index reads only the authenticated owner's bounded canonical
+Collection name/count summaries plus exact total in one owner query. Collection
+rows carry the canonical owner reference and do not fabricate Source lineage.
+The `consumer_collection` path still has no native detail route; no Collections
+tab or row is exposed in the app. A useful member reader still needs a
+current-authority, bounded display composition before UI, not one request per
+member. The current Life design reference is legacy Threads evidence, so it
+does not certify the Collections composition. Owner-confirmed reconciliation
+is implemented and reversible; it does not claim semantic sameness. Collection
+continuity, native
 acceptance, timezone-authoring for typed-time replacement, and wider
 P0/P1/PC/P2 outcomes remain open. Do not build a second research engine; adopt
 Technical's landed interface and first-producer safeguards.
@@ -2571,8 +2577,58 @@ Collection metadata and stable member `ThingRef`s; the Thing projection
 supplies currently authorized original references, but neither supplies a
 user-facing Thing title/summary. Life may own a read composition, but must
 resolve presentation through current Thing/Source authority rather than
-copying claims or inventing a semantic label. The next Life-facing implementation
-therefore needs that bounded composition contract and its authorization,
-pagination and stale-cache behavior before a Collection member UI is credible.
-`make docs-check` passed after the contract changes. No API, model, screen,
-navigation, native screenshot or device acceptance changed in this increment.
+copying claims or inventing a semantic label. The next Life-facing member
+implementation therefore needs that bounded composition contract and its
+authorization, pagination and stale-cache behavior before a Collection member
+UI is credible. `make docs-check` passed after the contract changes. No API,
+model, screen, navigation, native screenshot or device acceptance changed in
+this increment.
+
+### October 1 owner-backed Life Collections root read
+
+Backend `LifeRootLens` now separates root readings from the existing four-value
+`LifeLens` used by the complete corpus, record and organization readers. The
+Life root endpoint accepts Collections and reads the authenticated owner's
+canonical Collection rows through one bounded query. It returns at most eight
+owner summaries, each with its exact Collection revision and current member
+count, plus exact total count; it does not hydrate Things or make an N+1 call.
+The Collection's own ResourceRef is the authority and destination, so the root
+does not invent Source provenance. An empty Collection root remains genuinely
+empty. Existing Time/Places/People/Threads corpus behavior is unchanged.
+
+The workspace Life contract, roadmap and Current State record this increment.
+Backend commit `3f67aa32c` adds the owner-backed root read; app commit
+`4532fd497` mirrors the root/corpus lens split and deliberately keeps
+Collections out of native controls until a real detail route and member
+composition exist. Both commits remain local to `codex/artifact-foundation`,
+not merged or published. The app preflight also exposed existing raw-touchable
+and ambient-date-locale violations in the reconciliation reader; the app
+commit adopts the existing `Tap` primitive and pins the locale, with the full
+app suite passing afterward. The generated OpenAPI snapshots and app types
+are synchronized. Focused backend unit/API tests passed (65); the owner-scoped Collection/Postgres
+integration tests passed (3) against a temporary, non-volume disposable
+PostGIS database; the container was removed. App typecheck passed; five
+focused Life/root-mock Jest suites passed (56 tests); backend Ruff check/format,
+API coverage, and workspace `make docs-check` passed.
+
+The final change-aware cross-repo preflight also passed against the explicit
+starting revisions recorded in the command below. It ran the complete app
+suite (1,292 suites / 9,198 tests), backend suite (22,104 passed, 14 skipped,
+53 xpassed), 118 contract tests, full backend static checks, OpenAPI snapshot
+and app-projection checks, generated-type parity, schema bridge, API coverage
+(590 active, 15 dark, 0 unflagged, 62 retiring), and documentation links/spine/
+canon checks. Jest reported one worker that did not exit gracefully and had
+to be force-exited after the passing suite; this is a test teardown warning,
+not a failed suite. An earlier full preflight had one intermittent
+`consumerCollections.test.tsx` failure; its isolated rerun and this full run
+passed. The cause of that earlier failure was not established.
+
+| Boundary | Exact verification | Result and limit |
+| --- | --- | --- |
+| Cross-repo preflight | `WORKSPACE_BASE_REF=1132952be2106483dde0eebdc5f0bc4a7a9828af AGENT_BASE_REF=4b419349bc4410e92f62a2c35815d814a434afa5 APP_BASE_REF=fd62ded2d0a0a492e9758af1bd77ac8759b6f1e2 RUFF_CACHE_DIR=/private/tmp/vesper-artifact-foundation-ruff-cache PYTEST_ADDOPTS='-p no:cacheprovider' make verify-changed` | Exit 0. Covers local code, contracts, OpenAPI, generated types and documentation at those exact lane bases. Does not establish native Collections UI, visual/device acceptance, deployed auth, or production-service behavior. |
+
+This is backend/API foundation evidence, not a native Collections experience,
+member reader, visual, device, or production-service acceptance. The next
+independent Life slice is the bounded current-authority member composition
+contract; do not expose a dead-end Collections row or implement member UI
+before that contract and the corresponding design are ready.

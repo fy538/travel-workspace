@@ -49,6 +49,13 @@ Time. Once the person has collections to browse, it opens to Collections; after
 that, it resumes the last selected reading. Places is the map. “Everything
 kept” remains a custody path, not a fifth reading.
 
+The backend now has a bounded Collections root projection over the canonical
+private Collection owner: it returns Collection name/count summaries and exact
+owner total without copying member Things into the Life corpus. This is an
+owner-backed read foundation, not yet a native Life lens. The app still exposes
+the legacy Time, Places, Threads, and People controls until the Collections
+route, authorized member composition, and design are ready together.
+
 ## The production root at rest
 
 Every lens uses the same finite anatomy:
