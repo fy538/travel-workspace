@@ -18,8 +18,10 @@ October 1, following the founder's request to execute this lane's roadmap. The
 implementation queue in [section 5](#5-improvement-roadmap) is the current plan
 for Eng Efficiency. Package 3C landed in `origin/main` as `bc69d6d0` (PR 38);
 Package 3A passed its hosted checks on workspace PR 40 and app PR 210. Package
-3B has a completed required-check overlap map; workflow consolidation is still
-pending review of a safe implementation that preserves every gate.
+3B has a completed required-check overlap map and a local workflow
+consolidation. Hosted verification remains pending. The implementation
+preserves every gate and required status name, and workspace Merge ready now
+plans selected checks before installing optional child dependencies.
 Packages 1 and 2 have implementation and task-context changes published in
 [workspace PR 39](https://github.com/fy538/travel-workspace/pull/39),
 [app PR 209](https://github.com/fy538/travel-app/pull/209), and
@@ -453,7 +455,7 @@ cross-lane ownership.
 | 0 | Use the landed baseline and confirm tooling ownership | Complete on commit `cef7ac55`; isolated runtime ownership is recorded below | All lanes |
 | 1 | Package 3C: workspace flow validation and early prerequisite checks | Merged as `bc69d6d` (PR 38); three hosted runs passed. Critical paths ranged 5m46s–7m38s versus 23m18s; summed job runtimes ranged 25m28s–31m26s versus 23m18s (+9.3%–34.9%). | All integrations |
 | 2 | Package 3A: deterministic and faster app tests with the same checks | Hosted checks passed on workspace PR 40 and app PR 210. The app selected-test check passed in 9m36s; local repeated Place, full-coverage, and selected-merge evidence is recorded below. Runner-time improvement over a comparable Node 20 baseline remains unmeasured. | Every lane changing the app |
-| 3 | Package 3B: one execution owner per CI guarantee | Required-check and caller map completed. Exact app/backend overlaps are recorded below; the proposed consolidation was rejected by automatic review over guarantee-preservation risk, so workflows and required check names remain unchanged pending a safe reviewed implementation. | All lanes |
+| 3 | Package 3B: one execution owner per CI guarantee | Local implementation routes app fast checks through their existing required owners, retains only unique backend static checks in Merge ready, gives migration lifecycle/drift/parity/rollback one required owner, and plans workspace dependencies before installation. Workflow contract tests pass. Candidate hosted validation and complete-run measurement remain. | All lanes |
 | 4 | Package 1: choose the right evidence and make targeted native QA reliable | Implementation published in app PR 209 and workspace PR 39; the app selector accepts a full flow ID or canonical slug only, and readiness failures now inspect Maestro's failed-command hierarchy for explicit causes. Twenty focused tests and the broader polish QA suite pass. Aligning Expo's advertised host allowed Metro to bundle the app; capture then exposed a Worklets JavaScript/native mismatch (`0.7.4` vs `0.11.3`). Maestro's hierarchy omits that message, so this run remains an unverified native capture with 0/1 product images. | Orchestration and Strategy |
 | 5 | Package 2: proportionate review and shorter task context | Targeted review and context-routing changes are published in PRs 39/209/239. The wrong-state replay remains unverified; native-review adoption needs Package 1. | All lanes, especially mobile work |
 | 6 | Package 6: retire completed working documentation | One bounded migration completed: the superseded V2 report now lives in the dated archive, its three live references and inventory entry were repaired, and all documentation governance checks passed. | All lanes |
@@ -604,24 +606,44 @@ sockets. The same preflight passed when rerun with those normal local test
 permissions enabled. Full log:
 `/private/tmp/vesper-efficiency-package6-preflight-20261001.log`.
 
-**Package 3B owner map (October 1; audit complete, implementation pending).**
-The required check names remain those in the [CI runbook](../reliability/CI%20Plan.md).
-On app PRs, `Merge ready` static currently calls `verify:fast`, which repeats
-Expo lint and API/schema checks owned by required `Lint`, type checks owned by
-required `Type check`, and the Home surface budget owned by `Frontend
-governance`. Icon integrity and the merge-scope selector test are distinct
-checks. On backend PRs, `Merge ready` static calls `make ci-static`, repeating
-Ruff, import analysis, route-shadowing, and mypy work owned by required `lint`,
-`import-boundaries`, and `typecheck`; structural gates and the world-catalog
-runway are additional guarantees. For database-affecting changes, the selected
-`Merge ready` database job repeats migration lifecycle, schema drift, parity,
-and rollback validation owned by required `test-db-migrate`; applying migrations
-in its isolated database remains necessary for selected runtime tests, and the
-selected DB suite plus itinerary canonical certification are distinct. In the
-workspace, `Merge ready` runs a change-aware workspace preflight while required
-`Contract and golden paths` owns the full cross-repository integration suite;
-the exact overlapping commands and fail-fast/resource tradeoff still need a
-candidate measurement. No workflow or check name changed in this audit.
+**Package 3B owner map and implementation (October 1).** The required check
+names remain those in the [CI runbook](../reliability/CI%20Plan.md), and no
+branch-protection setting changed. App `Merge ready` static now runs the unique
+merge-scope selector contract only. Required `Lint`, `Frontend governance`, and
+`Type check` continue to own the fast lint/native/API/schema, icon-integrity,
+Home-budget, and TypeScript contracts. The icon check is in required `Lint`;
+selected unit tests and the `Merge ready` aggregate remain unchanged.
+
+Backend `Merge ready` static now runs only the broad-exception ratchet and
+world-catalog runway, the two checks without an equivalent required PR owner.
+Ruff/format, import and route analysis, and mypy stay in required `lint`,
+`import-boundaries`, and `typecheck`; all structural checks, including route
+shadowing, remain in their existing required owners. The selected database job
+still applies migrations to prepare its isolated runtime suite, loads fixtures,
+runs change-selected DB tests and itinerary canonical certification. Migration
+lifecycle, schema drift, CHECK constraints, event/entity parity and supported
+rollback now execute once in required `test-db-migrate`.
+
+Workspace `Merge ready` now resolves the change-aware workspace plan before
+dependency installation. Its plan names whether selected commands need backend
+or app dependencies; documentation-only work installs neither, workspace test
+and contract paths request the dependencies they use, and selected child paths
+request their own. Both child checkouts and exact-revision assertions remain.
+The actual current PR diff selects workspace tooling and cross-repository
+contracts, so it still needs both dependency sets. Synthetic selection tests
+show a prose-only workspace change needs neither. The root `Merge ready` remains
+an additive early-feedback path alongside required `Contract and golden paths`;
+the overlap's fail-fast benefit versus extra runner time has not been measured.
+
+Local evidence: workspace workflow and selector tests passed 46 cases; app
+selector tests passed 5 cases, its new workflow-ownership tests passed, and
+`npm run brand:icons:check` passed. Backend ownership tests pass in the repo's
+development environment; `make merge-ready-static` passed the broad-exception
+ratchet at 1,190/1,190 and validated five season plus four Here catalog entries.
+An earlier attempt forced the system Python and could not import SQLAlchemy;
+rerunning with the lane's `.venv` passed. Hosted candidate results remain
+required. No latency or runner-time improvement is claimed until that candidate
+is measured.
 
 An offline iOS JavaScript export with internal/mock flags completed in 25.4s,
 bundling 5,443 modules, 503 assets and a 23 MB Hermes bundle. This proves JS

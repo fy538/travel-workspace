@@ -282,6 +282,39 @@ review approval, administrator enforcement, and no force pushes/deletions.
 | backend | `Merge ready`, `lint`, `import-boundaries`, `typecheck`, `test-db-migrate`, `dogfood-persona-gate`, `eval-replay` |
 | frontend | `Merge ready`, `Lint`, `Frontend governance`, `Security audit`, `Visual evidence contracts`, `Type check`, `API types freshness`, `QA tooling contracts`, `Design alignment gate` (also emitted for documentation-only PRs) |
 
+### October 1 duplicate-execution consolidation
+
+This change keeps every required check name and branch-protection setting above.
+It removes repeated work inside the additive `Merge ready` jobs while preserving
+distinct selection and runtime evidence:
+
+- App `Merge ready` static keeps the merge-scope selector contract. Required
+  `Lint`, `Frontend governance`, and `Type check` own the fast checks already
+  present in regular PR CI; icon integrity is included in `Lint` so its coverage
+  remains required.
+- Backend `Merge ready` static keeps the broad-exception ratchet and the
+  Vesper world-catalog runway, which have no equivalent required PR owner.
+  Ruff/format remain in `lint`, import/route checks remain in
+  `import-boundaries`, and mypy remains in `typecheck`. The selected DB job
+  retains migration setup, fixtures, selected runtime tests and canonical
+  itinerary certification. Migration lifecycle, drift, parity and supported
+  rollback run in required `test-db-migrate` only.
+- Workspace `Merge ready` plans its workspace-only selection before installing
+  optional child dependencies. The plan requests backend and/or app dependency
+  sets only when selected commands need them. Exact child revisions are still
+  checked out and asserted. Required `Contract and golden paths` remains the
+  full cross-repository integration owner; the additive workspace preflight's
+  fail-fast benefit versus runner-time cost is not yet measured.
+
+Workflow ownership regression tests run inside each repository's existing
+required CI owner: workspace dependency planning is checked in workspace
+reliability, app ownership in required `Lint`, and backend ownership in required
+`import-boundaries`. They assert that selectors, unique checks, protected
+owners, selected DB evidence and existing aggregate names remain intact. Local
+checks do not establish the hosted workflow result or a latency improvement.
+Existing required checks remain authoritative until hosted candidate evidence
+is available.
+
 The workspace `Contract and golden paths` check remains the required aggregate.
 It waits for both the full workspace reliability suite and every required Maestro
 syntax shard, and fails when either dependency fails, is cancelled, skipped, or

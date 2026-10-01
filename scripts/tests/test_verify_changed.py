@@ -95,6 +95,38 @@ def test_unknown_workspace_input_runs_workspace_tests_and_contracts():
     assert any("contract-check" in c.argv for c in selection.commands)
 
 
+def test_dependency_plan_skips_child_installs_for_workspace_docs(
+    tmp_path: Path,
+) -> None:
+    repos = _repositories(tmp_path)
+    selection = MODULE.select_commands(
+        ["docs/working/note.md"],
+        doc_texts={
+            "docs/working/note.md": "A prose-only note with no checker references."
+        },
+        repositories=repos,
+    )
+    assert MODULE.required_dependency_repositories(selection, repos) == []
+
+
+def test_dependency_plan_matches_selected_child_and_cross_repo_checks(
+    tmp_path: Path,
+) -> None:
+    repos = _repositories(tmp_path)
+    backend = MODULE.select_commands(
+        ["travel-agent/backend/example.py"],
+        repositories=repos,
+        base_refs={"agent": "HEAD"},
+    )
+    assert MODULE.required_dependency_repositories(backend, repos) == ["travel-agent"]
+
+    workspace = MODULE.select_commands(["new-policy.json"], repositories=repos)
+    assert MODULE.required_dependency_repositories(workspace, repos) == [
+        "travel-agent",
+        "travel-app",
+    ]
+
+
 def test_child_selection_rejects_missing_base():
     with pytest.raises(MODULE.BaseRefError):
         MODULE.select_commands(["travel-agent/backend/home/feed.py"])

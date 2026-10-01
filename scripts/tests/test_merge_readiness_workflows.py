@@ -47,6 +47,41 @@ def test_full_backend_suites_do_not_duplicate_their_marker_partitions():
     assert '(requires_postgres or requires_dogfood_wedge) and not requires_api_keys' in database[0]
 
 
+def test_workspace_merge_readiness_plans_before_conditional_installs():
+    workflow = yaml.load(
+        (ROOT / ".github/workflows/merge-ready.yml").read_text(), Loader=yaml.BaseLoader
+    )
+    steps = workflow["jobs"]["ready"]["steps"]
+    plan = next(i for i, step in enumerate(steps) if step.get("id") == "plan")
+    python_setup = next(
+        i
+        for i, step in enumerate(steps)
+        if step.get("uses", "").startswith("actions/setup-python")
+    )
+    node_setup = next(
+        i
+        for i, step in enumerate(steps)
+        if step.get("uses", "").startswith("actions/setup-node")
+    )
+    verify = next(
+        i
+        for i, step in enumerate(steps)
+        if step.get("run", "").startswith(
+            "python3 scripts/verify_changed.py --workspace-only"
+        )
+    )
+    assert plan < python_setup < verify
+    assert plan < node_setup < verify
+    assert "--dry-run --plan-json" in steps[plan]["run"]
+    assert steps[python_setup]["if"] == "steps.plan.outputs.travel_agent == 'true'"
+    assert steps[node_setup]["if"] == "steps.plan.outputs.travel_app == 'true'"
+    for step in steps:
+        if step.get("run", "").startswith("pip install -r travel-agent/"):
+            assert step["if"] == "steps.plan.outputs.travel_agent == 'true'"
+        if step.get("run", "").startswith("npm ci --prefix travel-app"):
+            assert step["if"] == "steps.plan.outputs.travel_app == 'true'"
+
+
 def test_workspace_real_journeys_have_an_explicit_disposable_database():
     workflow = yaml.load((ROOT / ".github/workflows/reliability.yml").read_text(), Loader=yaml.BaseLoader)
     job = workflow["jobs"]["workspace-checks"]
