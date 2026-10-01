@@ -47960,7 +47960,8 @@
           "named_person",
           "shared_state",
           "provider",
-          "public_source"
+          "public_source",
+          "unknown"
         ],
         "title": "CompositionSourceAuthor"
       },
@@ -47969,6 +47970,7 @@
         "enum": [
           "human_note",
           "human_contribution",
+          "retained_original",
           "visit_evidence",
           "plan_state",
           "provider_state",

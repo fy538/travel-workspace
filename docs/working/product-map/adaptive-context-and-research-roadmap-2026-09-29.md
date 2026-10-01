@@ -65,11 +65,15 @@ without asserting personal novelty until a novelty-history owner is admitted.
 Source correction/scrub
 erases results that refer to a source either as the selected original or a
 dependency; a JSONB GIN index supports dependency invalidation. Results retain
-the 24-hour maximum and bounded hourly cleanup. These are backend contracts
-and persistence only: no owner-callable producer, producer route/job, provider
-activation or client readback is wired yet. Connect
-the contracts through the actual producer and exact readback path. The current
-Home/Places request is not an artifact request: do not adapt it as one.
+the 24-hour maximum and bounded hourly cleanup. The backend now connects these
+contracts through a dark-by-default, authenticated producer route and exact
+owner readback. One reserved, single-dispatch synthesis is allowed only when
+the feature gate and commercial allocation both admit it; the path does not
+perform public lookup, activate a provider, or have a reviewed native consumer.
+The request currently accepts at most two exact same-viewer dependency refs
+from its caller; it does not find or rank those connections itself. That is
+plumbing, not yet the effortless product behavior. The current Home/Places
+request is not an artifact request: do not adapt it as one.
 Use existing Source identity while Strategy owns broader thing/component
 identity. The scope, sequence and finish conditions are in
 [section 12](#12-document-delivery-and-next-handoff).
@@ -86,14 +90,19 @@ fixtures. Strategy owns the focused-reader/data facade, exact kept editions and
 Life; Orchestration owns Home/Places receiving and practical owner adapters.
 R6's native acceptance requirements below remain whole-experience requirements,
 not permission to edit those screens in parallel. Inspect their landed adapters
-and attach evidence; complete the producer-owned connection and name any missing
-consumer adoption without declaring end-to-end delivery complete.
+and attach evidence; the producer-owned connection exists, but automatic
+candidate selection, comparative usefulness and native consumer adoption
+remain open. Do not declare end-to-end delivery complete.
 
 **Dependencies and useful fallback:** begin with current source identity,
 selected-original owner reads, evidence fidelity and bounded public-request
-mapping. New component/collection modes consume Strategy P0/P1; exact retained
-editions consume P4; unsupported modes remain disabled. A missing native reader
-does not block the producer path, and mocked receiving does not certify it.
+mapping. The next R2 increment must find eligible related evidence through
+existing owner/retrieval seams rather than asking the person to nominate the
+connection; if no eligible support is found, the correct result is original-only
+or a content-free no-addition. New component/collection modes consume Strategy
+P0/P1; exact retained editions consume P4; unsupported modes remain disabled.
+A missing native reader does not block backend work, and mocked receiving does
+not certify consumer adoption.
 No cultural catalog store, durable artifact owner, notification policy or
 practical provider action is invented here to avoid a dependency.
 
@@ -691,11 +700,11 @@ is in section 1. The first connected assignment remains active:
 
 | Area | Landed capability to reuse | Remaining connection or evidence |
 | --- | --- | --- |
-| Selected evidence | Owner/revision-bound original reads and mobile callers; bounded UTF-8 text-span selection; an in-memory research adapter now hydrates exact whole text or a selected span | The research producer is not connected; general component and multimodal retrieval remain open |
+| Selected evidence | Owner/revision-bound original reads and mobile callers; bounded UTF-8 text-span selection; exact in-memory hydration; a dark authenticated producer and private exact-result GET | Server-side related-evidence retrieval/ranking is not connected; caller-supplied refs are only a testable adapter boundary; general component and multimodal retrieval remain open |
 | Public acquisition | Shared typed single-attempt lookup; answer-only routing without dossier writes; source kind, dates, quotes and truncation metadata | Construct public requests from selected material under an actual disclosure boundary; select a substantive addition and verify claim support beyond quote presence |
-| Runtime | Existing Source workflow/publication controls; content-free demand and tool/SDK-attempt telemetry; dispatch-uncertainty handling for the voice commercial meter | Research-specific pre-dispatch resource reservation, settlement/recovery and the selected-source producer connection; telemetry and voice units are not research spend enforcement |
-| Receiving dependencies | Merged family readers, exact-source inspection, correction/Undo and return behavior; Home/Places receiving improvements | Existing preparation requests remain root-bound; define artifact/source-target request and result conformance before native adoption by its owner |
-| Evaluation | Focused/offline checks and bounded database/native receipts at their recorded revisions | Matched usefulness comparisons, selected-producer lifecycle races, authorized live-provider evidence and real consumer acceptance |
+| Runtime | Existing Source workflow/publication controls; content-free demand and tool/SDK-attempt telemetry; selected-source producer has one real reservation/fence and one no-retry/no-failover model attempt | Real producer-to-ledger database acceptance, settlement/recovery evidence and any authorized live-provider run; telemetry and voice units are not research spend enforcement |
+| Receiving dependencies | Merged family readers, exact-source inspection, correction/Undo and return behavior; Home/Places receiving improvements; authenticated result API exists but is dark | Existing preparation requests remain root-bound; no native artifact consumer has adopted the dark result API |
+| Evaluation | Focused/offline checks, producer route tests, 13 disposable-Postgres lifecycle/API tests and current change-aware backend preflight | Matched usefulness comparisons, automatic retrieval quality, authorized live-provider evidence and real consumer acceptance |
 
 R0's scope/owner admission, R1's disclosure and acquisition acceptance, R2's
 supported selection, and R6/R7's connected evidence are unfinished. Minimum
@@ -717,7 +726,7 @@ do not add packages or require a new shared platform before product work.
 
 | Concern | Required with the first connected producer | Conditional later expansion |
 | --- | --- | --- |
-| Context | Selected original/current owner reads, explicit purpose, current eligibility and request overrides | Broader passage/OCR indexes, contextual reranking, learned preferences |
+| Context | Selected original/current owner reads, explicit purpose and eligibility; server-side bounded retrieval of eligible support without asking the person to supply the connection | Broader passage/OCR indexes, contextual reranking, learned preferences |
 | Evidence | Acquisition type, preserved source metadata, supported claims and honest partial/failure states | Richer extraction and cross-corpus discovery when simpler access misses value |
 | Runtime | Finite attempts/deadline, applicable pre-dispatch budgets, publication fence and current readback | Cross-user acquisition reuse, fair queues and durable per-step checkpoints when warranted |
 | Change | Reject obsolete source/grant/result revisions; re-evaluate cheap current candidates when needed | Fine-grained dirty-scope tracking and archive-wide selective preparation |
@@ -1316,23 +1325,28 @@ These are engineering coverage cases, not a narrower product thesis.
 
 ### Implementation sequence
 
-1. **Admit the selected-source interface.** Implemented at the contract and
-   owner level: work items and results bind an explicit source reference,
-   revision, optional supported selector, viewer, purpose and consumer. The
-   actual producer must still receive authenticated authority rather than trust
-   serialized work-item identity.
+1. **Admit the selected-source interface.** Implemented at the contract, owner
+   and backend route level: work items and results bind an explicit source
+   reference, revision, optional supported selector, viewer, purpose and
+   consumer. The authenticated POST derives viewer authority from the current
+   user, and exact GET revalidates owner/source/dependency state. Both operations
+   remain dark with no native consumer; this is not provider activation.
    Map the result owner, lifetime, correction dependencies, applicable budget and
    kill switch. Review the additive contract before consumer work: the current
    Home/Places `context_ref` accepts only `places_context` and cannot stand in for
    an artifact target. No invented Trip, new Thing owner or durable cross-
    representation Component identity is needed for the exact-original adapter.
-2. **Connect evidence and acquisition.** A backend-only adapter now hydrates
-   an exact retained original/span and up to two bound Intake dependencies
-   through Intake in memory under one combined 20,000-character limit. Connect
-   it to the producer; honor current intent and use eligible existing evidence
-   where sufficient. Additions must be supported across the selected original
-   and a dependency, while treating personal novelty as inapplicable without
-   novelty history. For a missing public fact or named discovery purpose,
+2. **Connect evidence and acquisition.** The dark backend producer now hydrates
+   an exact retained original/span and up to two exact Intake dependencies
+   through Intake in memory under one combined 20,000-character limit. Today
+   those dependency refs are supplied by the caller; the next R2 implementation
+   must retrieve and rank eligible same-viewer candidates through existing
+   owners, not turn the person's knowledge of their archive into setup work.
+   Honor current intent and use eligible existing evidence where sufficient.
+   Additions must be supported across the selected original and a dependency,
+   while treating personal novelty as inapplicable without novelty history.
+   Public research is currently rejected by this route. For a missing public
+   fact or named discovery purpose,
    construct the minimal `PublicResearchRequest` through a reviewed public-field
    projection. Private source text, identifiers and instructions must not become
    search terms by assertion. If safe public terms cannot be established, finish
@@ -1341,7 +1355,11 @@ These are engineering coverage cases, not a narrower product thesis.
    than inventing a location. Verify provider arguments and diagnostics with
    adversarial source fixtures; a typed string or regex is not a semantic privacy
    guarantee.
-3. **Select and publish a useful result.** Reuse the research and production
+3. **Select and publish a useful result.** Current composition admission is
+   structural: it requires at least two supporting exact sources, but does not
+   prove entailment, additional substance or usefulness. Add a matched direct-
+   source versus research-assisted human comparison before accepting this
+   behavior. Reuse the research and production
    owners with a focused treatment policy; preserve Home's existing pair rules.
    Separate candidate, support, novelty and relevance judgments. Revalidate
    source/grant revisions before use, publication and readback. Distinguish a
@@ -1355,8 +1373,9 @@ These are engineering coverage cases, not a narrower product thesis.
    enablement. Provider-free implementation can proceed; no new paid path is
    enabled by this plan. Broader fairness, cross-user coalescing and predictive
    preparation stay conditional on measured need.
-5. **Deliver readback and comparative evidence.** Bind the result to the selected
-   source/span, dependency revisions and originating consumer. Ordinary read,
+5. **Deliver readback and comparative evidence.** The exact owner-bound result
+   is now written and readable through the authenticated dark API, bound to the
+   selected source/span, dependency revisions and originating consumer. Ordinary read,
    polling and reopen do not submit work. Exercise the callable owner path and
    real-database lifecycle separately from fixtures; compare direct-source
    treatment with research-assisted treatment on matched inputs. Publish the
@@ -1431,11 +1450,11 @@ receipts for the owner and dependency gate are:
   `alembic heads` reported `selresult01 (head)` before the dependency-index
   migration was added; the October 1 receipt below records the new head.
 
-These receipts establish the storage/readback seam only: they do not establish
-producer dispatch, public-query disclosure, research-specific budget
-enforcement, live-provider permission or any consumer acceptance. The producer
-must still write and read through this owner before the assignment can pass its
-end-to-end finish condition.
+Those dated receipts established only the storage/readback seam on their
+recorded revisions. The October 1 producer receipt below records the later
+authenticated producer and exact readback connection; neither set establishes
+public-query disclosure, semantic usefulness, live-provider permission or any
+native consumer acceptance.
 
 This is a storage/readback seam, not a new Thing or durable artifact owner.
 The result remains an expiring, owner-private recomputable projection; it does
@@ -2251,12 +2270,11 @@ Evidence on the committed backend tree:
   with the lane virtualenv first on `PATH` passed all hooks. This is an
   invocation-environment issue, not a bypassed check.
 
-The result owner is still not connected to an owner-callable producer. This
-receipt does not claim product usefulness, caller disclosure approval, research
-budget enforcement, live-provider permission or consumer readback. The next
-implementation increment is the producer-side assembly/selection path using
-these exact dependency fences, followed by authenticated invocation and exact
-readback. R0–R7 remain open.
+At this receipt's backend revision, the result owner was not connected to an
+owner-callable producer. This historical receipt does not claim product
+usefulness, caller disclosure approval, research budget enforcement,
+live-provider permission or consumer readback. The later October 1 receipt below
+records producer/API delivery; R0–R7 remain open.
 
 #### Implementation receipt — selected-source context hydration (October 1)
 
@@ -2325,6 +2343,60 @@ but remains process-local input; it is not persisted in a new table or exposed
 to the public-acquisition request. The first connected producer, authenticated
 invocation, exact stored result readback and all end-to-end usefulness evidence
 remain open. R0–R7 remain open.
+
+#### Implementation receipt — authenticated selected-source producer and exact readback (October 1)
+
+Backend commit `78479beef` connects exact retained-source hydration and bounded
+same-viewer dependencies to a dark-by-default authenticated producer and exact
+owner readback at `/api/research/selected-source`. The POST derives viewer
+authority from authentication; the GET revalidates current owner, source and
+dependency state. A content-free no-addition result avoids provider dispatch
+when no dependencies are admitted. Synthesis is private and ephemeral, requires
+explicit save to persist, and uses one structured model attempt only when both
+the server gate and a real commercial reservation admit it. Retry and failover
+are disabled, dispatch uncertainty holds the reservation, and this work did not
+activate a provider. The operations remain dark because there is no reviewed
+native artifact consumer.
+
+The current request accepts up to two exact same-viewer dependency refs from its
+caller. It does not retrieve/rank related evidence, make a public query, prove
+factual entailment, establish personal novelty, or show that the result is more
+useful than direct source access. It is connected plumbing, not yet the promised
+effortless product behavior.
+
+Evidence on the committed revisions:
+
+- Focused offline selected-source/producer/commercial tests: **63 passed**.
+- Disposable PostgreSQL lifecycle/API/Intake tests against the explicitly named
+  lane database `vesper_adaptive_context_test_20261001`: **13 passed**; migration
+  head `selresult03`.
+- Backend `make ci-static` passed; `make merge-check BASE_REF=main` passed:
+  **22,137 passed, 14 skipped, 53 xpassed, 0 failed**. The initial xdist
+  collection exposed unstable dynamic datetime parameters; those tests were
+  made deterministic and the full preflight passed on the corrected revision.
+- `make api-coverage-check`, API contract audit (**579 active, 17 dark, 0
+  unflagged, 62 retiring**), app projection check (**457 paths, 504 operations,
+  1,353 schemas**), flag registry check (**107 flags; no overdue/unregistered
+  flags**), `./scripts/sync-types.sh`, and app `tsc --noEmit` passed. Generated
+  enum changes are limited to `unknown` source authorship and
+  `retained_original` source kind.
+- Backend commit hooks and app commit hooks passed. App commit
+  `e2b51bcf3` contains only generated source-provenance types; workspace remains
+  uncommitted pending its documentation checks and commit.
+- The integrated `make verify-changed WORKSPACE_BASE_REF=main
+  AGENT_BASE_REF=main APP_BASE_REF=main` preflight passed on these revisions:
+  **1,289 app suites / 9,178 tests, 22,137 backend tests, and 118 workspace
+  tooling tests**, plus cross-repo API, projection, compatibility and docs
+  checks. It exited 0. The first sandboxed attempt was not used as evidence
+  because tool-cache writes and four loopback-dependent workspace tests were
+  denied; the elevated rerun completed successfully.
+
+No live-provider call, native consumer acceptance, matched human usefulness
+comparison, server-side related-evidence retrieval, or public research is
+claimed. The next implementation increment is R2 retrieval/ranking through
+existing same-viewer source/relationship owners, followed by direct-source vs
+research-assisted usefulness evaluation. Keep the route dark until the owning
+consumer and its acceptance evidence exist; R0–R7 are not package-complete.
 
 #### Implementation receipt — identity-bound selected-source dependencies (October 1)
 
