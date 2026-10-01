@@ -3898,3 +3898,29 @@ This closes only mapper adoption at one existing internal owner-return
 boundary. It does not provide a production typed-public-request caller,
 caller-independent selected-object disclosure, claim entailment verification,
 live-provider quality, comparative usefulness, or R1/R0–R7 acceptance.
+
+#### R3 acceptance receipt — pinned Tavily SDK failure multiplicity (October 1)
+
+Backend commit `2c2ec8862` extends the shared public-acquisition regression to
+verify that `tavily-python==0.8.0` produces exactly one HTTP `POST /search` for
+both a connection failure and a retryable HTTP 503. The tool adapter uses
+`execute_once`, bypassing the backend's own retry loop; this test verifies that
+the pinned SDK does not add a hidden retry for those failure classes. The test
+now also closes its externally supplied HTTP client after the assertion.
+
+Validation on the adaptive-context backend lane (Python 3.13.0):
+
+- `tests/core/test_public_research_acquisition.py`: **11 passed**, including
+  both one-request failure cases.
+- `make ci-static` passed, including Ruff/format, architecture gates and mypy
+  across **1,900** backend files.
+- `make merge-check BASE_REF=main` passed: **22,219 passed, 14 skipped, 53
+  xpassed**, with two expected local-Qdrant warnings. Database-gated skips
+  remain unverified; no live provider was called.
+- Commit hooks passed. No provider query, payment/reservation, release policy,
+  API/schema, application or deployment behavior changed.
+
+This bounds and tests HTTP request multiplicity for two failure classes under
+the currently pinned SDK. It does not prove Tavily's billable accounting for a
+successful result, its internal server-side work, provider charge units, or
+durable reservation/settlement. R3 and R0–R7 package acceptance remain open.
