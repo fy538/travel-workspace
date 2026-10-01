@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / product / design / architecture
 created: 2026-09-01
-last_verified: 2026-09-01
+last_verified: 2026-10-01
 why_new: Distills the Life design lab and behavior rulings into one compact build-facing v1 experience contract. The lab remains evidence; this document owns the coherent product cut.
 source_of_truth_for:
   - life-v1-root-experience
@@ -33,17 +33,35 @@ the record more useful later, without giving the person filing work?”**
 
 ## The one corpus and its four lenses
 
-Life has one corpus viewed through four first-class lenses:
+Life has one corpus viewed through four first-class readings:
 
+- **Collections** — spans across occasions, such as a trip, a theme, a kind,
+  or a season. A collection organizes things; it is not itself one occasion.
 - **Time** — periods, journeys, occasions, and episodes in sequence.
 - **Places** — the person's history with places and place clusters.
-- **Threads** — supported lines of attention that cross more than one isolated
-  moment; never projects that demand completion.
 - **People** — viewer-relative shared records, not dossiers about people or
   inferred intimacy rankings.
 
 Changing a lens changes the exploration, not the underlying object. The same
 object identity, authority, lineage, and correction state follows everywhere.
+On a new account or a record with no established collections, Life opens to
+Time. Once the person has collections to browse, it opens to Collections; after
+that, it resumes the last selected reading. Places is the map. “Everything
+kept” remains a custody path, not a fifth reading.
+
+The backend now has a bounded Collections root projection over the canonical
+private Collection owner: it returns Collection name/count summaries and exact
+owner total without copying member Things into the Life corpus. This is an
+owner-backed read foundation, not yet a native Life lens. The app still exposes
+the legacy Time, Places, Threads, and People controls until the Collections
+route, authorized member composition, and design are ready together.
+
+The owner-only Collection detail reader keeps paginated membership on one
+Collection revision. The first page supplies the revision; a continuation from
+an older revision returns a conflict and must restart at page one rather than
+silently combine pages from different Collection states. This protects the
+read boundary only: it does not yet provide a user-facing member composition,
+Thing labels, or a native Collections route.
 
 ## The production root at rest
 
@@ -155,7 +173,7 @@ supports several distinct ways back in.
 
 ### Ordinary
 
-Recent local periods, a few people or places, perhaps one thread, and no need
+Recent local periods, a few people or places, perhaps one collection, and no need
 for travel spectacle. The same grammar holds.
 
 ### Zero-record
@@ -200,7 +218,9 @@ empty module remains.
 Ship in v1:
 
 - Dedicated Life root replacing the legacy Atlas presentation behind a flag.
-- Time lens first, with the four-lens contract and navigation structure intact.
+- Time first for a new or collection-sparse record; Collections once there are
+  collections to browse, then resume the last selected reading. Keep the four
+  reading contract and navigation structure intact.
 - Canonical dossiers for the object kinds actually rendered.
 - Everything kept custody path.
 - Deterministic search/refinding with honest capability limits.

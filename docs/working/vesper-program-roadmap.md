@@ -3,7 +3,7 @@ doc_type: current_status
 status: active
 owner: founder / Orchestration lane
 created: 2026-09-07
-last_verified: 2026-09-30
+last_verified: 2026-10-01
 why_new: Owns the existing program's lane boundaries and the Orchestration execution plan; specialist roadmaps own their own packages and receipts.
 supersedes:
   - single-lane dispatch and current assignments in earlier versions of this roadmap
@@ -42,19 +42,73 @@ automatic sharing, connected-inbox sharing, background-generation posture,
 notification policy or deployment is authorized by this roadmap.
 
 **Execution status — September 30:** all three lanes have implemented useful
-increments. The founder requested a combined landing of their recent work;
-integration is published from the existing `codex/home-value-delivery` lane.
-This is a landing checkpoint, not a claim that any entire roadmap is finished.
+increments. The combined checkpoint from `codex/home-value-delivery` is merged
+into remote `main` in all three repositories at the tuple below. This is a
+completed landing checkpoint, not a claim that any entire roadmap is finished.
 No new coordination service, fourth integration lane or routine inter-chat
-messaging is required. After landing, owners can resume their remaining scoped
-assignments from the common baseline.
+messaging is required. Owners can resume their remaining scoped assignments
+after synchronizing their own coordinated checkout to the common baseline.
+Strategy's artifact-foundation lane has completed that synchronization.
 
 ## 1 Inspected baseline and unfinished product work
 
 <a id="inspected-baseline-and-publication-state"></a>
 
-September 30 inspection distinguishes implementation from publication and
-acceptance:
+### Merged execution baseline
+
+September 30 Git verification confirms the combined landing and all prior
+artifact-foundation commits in remote `main`:
+
+| Repository | Merged revision | Landing |
+| --- | --- | --- |
+| Workspace | `4febe0d461a62d204ba4dee9eaad7813c7c1509c` | [PR #37](https://github.com/fy538/travel-workspace/pull/37) |
+| Backend | `bd1a683b8656c3f4091e16abb64f57897fa7fc42` | [PR #238](https://github.com/fy538/travel-agent/pull/238) |
+| App | `e7bdc660501eaa19234e6b45bda033658edaa2d4` | [PR #208](https://github.com/fy538/travel-app/pull/208) |
+
+Strategy's coordinated artifact-foundation branches were rebased to this tuple
+and verified clean, with zero ahead/behind delta and all prior tips retained in
+ancestry. This does not assert that every other checkout has synchronized or
+that runtime, native or hosted checks were rerun on these merge commits.
+
+**Ownership decision — October 1:** continue the artifact roadmap in the
+existing `codex/artifact-foundation` coordinated workspace/backend/app tuple;
+do not open a duplicate branch or worktree for this same outcome. This tuple
+owns its artifact slices through focused verification, review and safe landing,
+while each repository keeps its independent Git history. The follow-on heads
+recorded at this checkpoint were workspace `b1fd4ad6`, backend `ebe90232b`, and
+app `3aaceef88`; subsequent implementation is receipted in the artifact
+roadmap below. These follow-on commits remain local and are not merged or
+published. The [artifact roadmap](artifact-experience-engineering-roadmap-2026-09-29.md#0-strategy-lane-execution-boundary)
+owns the detailed package sequence and file-level responsibilities. Strategy
+Technical remains the owner of its producer contract; Strategy adopts it only
+after it is landed and verified, and continues independent artifact work in
+the meantime. Founder review remains required for choices that change product
+meaning, authority, privacy, or visible claims.
+
+**Ownership clarification — October 1:** “Strategy owns” names product/domain
+authority; it does not mean Strategy authors every layer or that the current
+execution lane takes over adjacent domains. The existing artifact-foundation
+tuple is accountable for this roadmap outcome across its coordinated checkouts.
+Within it, the backend owns canonical artifact/Collection persistence and
+owner-scoped authorization, while the app owns presentation, navigation and
+query behavior. Strategy Technical owns the reusable producer request/result
+contract and shared research/runtime; Orchestration owns capture transport and
+Home/Places delivery. For the current bounded Thing-projection work, the
+artifact lane owns the cross-repo read contract and its reconciliation/consumer
+integration; this is not a separate Life-screen or Orchestration assignment.
+No duplicate lane is needed. Escalate only for a product/authority choice, a
+changed privacy or visible-claim boundary, or an actual cross-lane conflict.
+
+`docs/child-repos.ci-lock.json` still pins backend `33a000e97` and app
+`21fdb724f`, the integrated child tips. Both are ancestors of, and have identical
+source trees to, the child merge revisions above; the pins are not missing
+product changes. Leave this immutable CI input unchanged for this docs-only
+update. A new implementation slice must recheck the tuple and relevant gates.
+
+### Historical pre-integration inspection
+
+The following September 30 observations preceded the combined landing; they
+are provenance, not the next execution baseline:
 
 | Repository | Observed revision | Meaning |
 | --- | --- | --- |
@@ -63,28 +117,23 @@ acceptance:
 | Backend main | `3c170d21fc0ca9231b956f2b9de7f9f195231768` | Home/capture follow-up and CI changes merged through PR #237 |
 | App main | `87eceee24512d9086962eea5b844cef9d7bffbeb` | Home/capture follow-up and CI changes merged through PR #202 |
 
-The table records the pre-integration baseline, not the final landing tuple.
-The combined workspace [PR #37](https://github.com/fy538/travel-workspace/pull/37),
-backend [PR #238](https://github.com/fy538/travel-agent/pull/238), and app
-[PR #208](https://github.com/fy538/travel-app/pull/208) carry this checkpoint.
-Their live merge state and `docs/child-repos.ci-lock.json` identify the shared
-execution baseline. Private checkout and the workspace database-backed gate
-now have successful hosted evidence; do not reopen those old blockers from
-historical receipts. Child repairs still need their exact-revision hosted gates.
+The earlier landing pass recorded successful hosted evidence for private
+checkout and the workspace database-backed gate. Retain those receipts at
+their exact revisions; merge ancestry does not certify other checks or waive
+required hosted gates.
 
-The latest completed Strategy roadmap draft was inspected in its existing
-product-direction checkout; the latest Technical draft was in the canonical
-workspace. This rebaseline consolidates those roadmap contents here without
-changing the source Strategy checkout. Reconcile their pending documentation
-changes once before branching, rather than launching lanes from different
-draft generations. Strategy-child Thesis/Model edits remain separate owned work.
+The combined landing consolidated the Strategy and Technical roadmap drafts
+and the subsequent approved product-canon reconciliation. Do not restart that
+completed reconciliation from this historical table. Preserve any newer
+uncommitted work in other checkouts; it is not automatically part of this
+baseline or authorized for adoption.
 
 | Area | Implemented foundation | Remaining work and owner |
 | --- | --- | --- |
 | Capture | Shared private composer, native extension host, retry/session custody, supported email attachment intake, original access | Supported-door delivery, failure/retry clarity and authenticated handoff: Orchestration D1 |
 | Home | Source discovery/request/worker/readback connections, contextual continuation, current commitment facts, native hierarchy improvements | Useful recurring supply, complete receiving, full-scroll quality and recovery options: D2/D3 |
-| Artifacts and Life | Source custody, original readers, owner references, Life projections and original receiving | Stable thing/component identity, typed family readers, catalog anchors, consumer collections and accepted Life model: Strategy |
-| Context and research | Existing retrieval, bounded research pieces, jobs, generation infrastructure and publication fences | General selected-object capability, evidence fidelity, correct reuse and bounded maintenance: Strategy Technical |
+| Artifacts and Life | Source custody, typed family/fallback readers, exact originals and return, correction/Undo, session/expiry guards, bounded native fixture matrices, Life projections and original receiving | Reviewed stable Thing/Component identity and cross-source reconciliation, catalog anchors, consumer collections, selected-part/contextual reading and remaining acceptance: Strategy |
+| Context and research | Existing retrieval, exact-original revision checks, backend plain-text component refind, bounded public acquisition, jobs and publication fences | Artifact-target request/result integration, broader evidence selection, correct reuse, research-spend enforcement and bounded maintenance: Strategy Technical |
 | Places and practical help | Situated projections, entity pages, current place facts and owner-backed actions | Consume richer results coherently; useful current options and exact return: D2/D3 |
 
 These are code/evidence boundaries, not design-completion percentages.
@@ -110,6 +159,17 @@ selection and prepared-result validity, consuming P4 when retention is required.
 P6 is split: Strategy owns collections, original sharing/receiving and Life;
 Orchestration owns their Home/Places placements. Technical R6 provides result
 readback and consumer-conformance evidence, not its own mobile redesign.
+
+**Program coordination is not a fourth implementation lane.** This strategy
+thread keeps the cross-lane product context, clarifies priorities and ownership,
+and reviews evidence at system checkpoints. The three execution lanes each own
+their bounded outcome through implementation, focused verification, commits
+and safe landing; owners coordinate directly on ordinary technical details.
+Escalate here for a consequential cross-lane conflict or a product/authority
+choice, not for routine progress reports or every implementation obstacle.
+Founder review remains reserved for decisions that change product meaning,
+privacy, authority or visible claims. Coordination must not duplicate an
+execution lane's implementation or become an approval queue.
 
 ### Code boundaries and shared files
 
@@ -147,13 +207,16 @@ do not rename or rewrite another lane's already landed migration.
 
 ## 3 Prepare the common baseline once
 
-Before implementation starts:
+The common landing is complete at section 1's tuple, and Strategy has
+synchronized its three-repository artifact lane. Keep the following checklist
+for lane intake; do not repeat the shared landing merely because a new slice
+starts. Runtime readiness and another lane's synchronization require their own
+checks.
 
-1. Preserve and reconcile the three latest roadmap drafts, accepted decisions
-   and relevant pending owner-contract edits. Resolve workspace PR #37's actual
-   state and the delivery-only link repair; do not assume local main equals
-   remote main. Commit/land the intended shared starting tuple under the current
-   publication authority.
+1. Start from the merged roadmap/decision baseline in section 1. Check whether
+   upstream advanced and review relevant new owner-contract changes deliberately;
+   do not assume a local `main` checkout or another session's dirty draft equals
+   the shared baseline. Any new publication retains its separate authority.
 2. Inspect `make worktrees`, branches, HEADs and dirty files in all three repos.
    Reuse suitable free coordinated lanes. Do not repurpose a read-only inventory
    checkout or another session's unfinished checkout by assumption.
@@ -214,10 +277,12 @@ representative families, not a decision to narrow Vesper to one behavior loop.
 
 ### D0 Rebaseline and prepare execution
 
-**Current task:** reconcile these roadmaps, ownership, evidence and start order.
-**Finish:** the three documents agree; each lane has a first assignment,
-exclusions, dependency fallback and acceptance boundary. Execution preparation
-in section 3 remains a separate step until actually performed.
+**Status:** shared roadmap reconciliation and combined landing are complete at
+section 1's tuple. Strategy's three-repository synchronization is also verified.
+The three roadmaps retain their own assignments, exclusions, dependency
+fallbacks and acceptance boundaries. Other lanes confirm their own checkout
+and runtime preparation under section 3; this receipt does not certify those
+environments or close D1–D3 or either specialist roadmap.
 
 Do not turn D0 into another architecture inventory or recurring acceptance-only
 lane. The existing system and unfinished product work are sufficiently concrete
