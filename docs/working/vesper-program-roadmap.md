@@ -990,6 +990,29 @@ tested and were not part of the previous Places native exact-open/return run.
 Continue ordinary/returned/live receiving coverage and full-scroll assessment;
 D2 remains active.
 
+**Home text-original delivery and return — completed 2026-10-01:** app commit
+`31c20cd80` fixes two defects in the native original-delivery runner: empty
+optional-array expansion failed under `set -u` before the text fixture could be
+created, and cleanup was armed only after follow-up fixture parsing. Text and
+photo provisioning now take explicit argument paths, and cleanup is armed as
+soon as the fixture sender is known. The runner's focused contract passed
+**4/4**; `bash -n` and `git diff --check` passed. Native flow
+`home-original-text-20261001-d9db593d-r3` passed **1/1** on iPhone 16 Pro /
+iOS 18.2 against the disposable local API/database. It confirmed the original
+delivery in the real Home V2 projection, opened the exact owner-authorized
+material, returned to the same Home item, confirmed the delivery remained
+active, and verified fixture cleanup removed it from both the owner list and
+Home projection. This is synthetic-recipient local API/Postgres/native evidence,
+not production sharing or recurring ordinary-user supply.
+
+The photo variant remains **unverified**: this lane currently has no configured
+loopback S3-compatible endpoint or `vesper-qa-*` bucket. Its fixture requires
+private object storage and refuses to write to an external endpoint, so it was
+not run and no photo fixture was created. Do not interpret the passing text
+original as photo delivery or byte-custody proof. Continue D2 on independent
+supported Home/Places value; handle local private-object-store acceptance as a
+separate explicit runtime dependency.
+
 ### Combined landing checkpoint — September 30
 
 The merged integration contains the Home/capture lane plus these completed
