@@ -2964,3 +2964,56 @@ Validation on the backend candidate:
   app behavior changed.
 
 R0–R7 remain open.
+
+#### R2 implementation receipt — matched-treatment review scaffold (October 1)
+
+Committed backend revision `58d25c1b0` adds
+`tools/eval/judges/selected_source_treatment.py` inside the existing evaluation
+package. Each comparison holds intent and the selected/related originals fixed,
+then pairs a direct treatment with a research-assisted addition or explicit
+no-addition. It separates cross-source support, additional substance over the
+direct baseline, intent relevance, human usefulness, and effort remaining with
+the person. Passing judgments must cite their relevant inputs; a case cannot
+call the assisted result better unless all four value dimensions pass and
+remaining effort is none or light. Its A/B prompt can counterbalance order but
+does not call a model or turn judgment into a release rule.
+
+The five checked-in examples cover a grounded weekend idea, an unsupported
+pasta-cause explanation, repetition of the Colosseum/film connection, an
+effort-shifting checklist, and no addition when there is no related evidence.
+Exactly one illustrative authored example clears the rubric. These labels and
+outputs are not human-reviewed, were not produced by the live model, contain no
+participant data, and are not consumer evidence. The scaffold makes the
+roadmap's intended comparison executable; it does not complete the comparison.
+
+The backend `tools/eval/README.md` and Research Agent `FEATURE.md` document the
+scope. No producer admission, API, schema, provider, policy, feature flag,
+native consumer, or app behavior changed. Actual R2 acceptance still requires
+representative matched results, independent review of support and added value,
+and evidence that a useful result leaves little work for the person. Keep
+no-addition, failure, and withheld outcomes in the denominator; do not promote
+from this fixture or judge agreement alone.
+
+Validation on the final backend revision:
+
+- Focused selected-source tests, including the current candidate-relevance
+  fixture: **44 passed** with
+  `./.venv/bin/python -m pytest -p no:cacheprovider
+  tests/research_agent/test_selected_source_*.py
+  tests/eval/test_selected_source_treatment.py -q`.
+- Ruff check and format check passed for the new evaluator and tests.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static` passed,
+  including architecture gates and mypy across **1,900** source files.
+- Final `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main`
+  passed: **22,165 passed, 14 skipped, 53 xpassed**, with one expected local
+  Qdrant payload-index warning. The skipped/database-gated tests were not
+  executed by this offline preflight. An earlier full attempt had one existing
+  `test_sync_executor_with_multiple_tools` timing miss (99.8 ms vs. 90 ms); it
+  passed alone, a subsequent full attempt passed, and the final revision's
+  full check passed again.
+- Backend commit hooks passed. Workspace documentation validation is recorded
+  in the workspace commit following this receipt.
+
+No model/provider, live lookup, database mutation, native consumer, or consumer
+study ran for this increment. R0–R7 remain open.
