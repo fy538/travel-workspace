@@ -51,11 +51,14 @@ sharing policy, deployment or release is enabled by this document.
 **Current assignment:** selected original → supported addition → exact readback.
 Complete the first R0/R1/R2/R6 connection with the minimum R3/R4/R5 safeguards
 and R7 comparisons. Exact original/text-span reads and bounded acquisition have
-landed; connect them through an actual owner-callable producer and result path.
-The current Home/Places request is not an artifact request: review an additive
-selected-source/revision contract before adapting it. Use existing Source
-identity while Strategy owns broader thing/component identity. The scope,
-sequence and finish conditions are in [section 12](#12-document-delivery-and-next-handoff).
+landed. A backend selected-source work-item contract now captures the exact
+Intake revision, supported text representation/span, private intent and
+separately typed public request; it has no route, worker or result storage yet.
+Connect it through an actual owner-callable producer and result path. The
+current Home/Places request is not an artifact request: do not adapt it as one.
+Use existing Source identity while Strategy owns broader thing/component
+identity. The scope, sequence and finish conditions are in
+[section 12](#12-document-delivery-and-next-handoff).
 
 **Write ownership:** general context/evidence selection, public acquisition,
 evidence fidelity, prepared-result execution/reuse, budget/retry/publication
@@ -1374,6 +1377,19 @@ it with a result owner whose expiry and source-correction behavior are real,
 not just fields in the response. Reuse the generic workflow for bounded job
 identity and fencing only if this lifecycle can be enforced without broadening
 or weakening another owner's retention policy.
+
+The first admission model now lives in
+`travel-agent/backend/core/models/selected_source_research.py` at backend commit
+`51c5e0a27`. It validates an exact `intake_source` hash, a `text/plain` span of
+at most 20,000 characters, one of the private assistance intents, a maximum
+24-hour work window and a separate optional `PublicResearchRequest`. Its
+focused tests establish retry identity, source-revision/span/intent/query
+separation and rejection of original text in the work item. This is interface
+evidence only: it does not establish the public-query disclosure boundary,
+owner access at runtime, a producer, persistence/readback, budget enforcement,
+or any live provider permission. The exact result-owner contract and its
+expiry/invalidation path are the next implementation increment; no API or
+consumer is exposed yet.
 
 This is a storage/readback seam, not a new Thing or durable artifact owner.
 The result remains an expiring, owner-private recomputable projection; it does
