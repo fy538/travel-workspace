@@ -1557,6 +1557,26 @@ projection dismissal—not production-provider freshness, production auth,
 external design-canon parity, venue-detail opening, or D2 as a whole. Continue
 the broader ordinary/returned/live and substantive Place-value work.
 
+**Places native state capture and contract alignment — 2026-10-01:** app
+commit `6a1a23ab4` updates the Places surface contract and registered capture
+expectation to match the accepted four-root composition from app commit
+`d8e30d7c2`: an automatic trip/place context begins with its first admitted
+field; the extra Vesper standfirst remains for starter or explicitly entered
+scope. `TZ=UTC npx jest --runInBand
+__tests__/components/places/PlacesWorkspaceState.test.tsx` passed **25/25**;
+`npm run qa:polish:scenarios` validated **31** IDs; the external design check
+verified **1** manifest and **6** reference pairs. The registered command
+`HOME_SURFACES_CANON_DIR=/Users/feihuyan/Downloads/vesper-home-surfaces
+VESPER_METRO_URL=http://127.0.0.1:53177 npm run qa:surface -- places-workspace
+--after` captured **9/9** mock personas and **4/4** extra screenshots on the
+lane-assigned iPhone 16 Pro; the default flow needed one retry, then passed.
+The run used app revision `1a3165c03`; no backend owner data or fixtures were
+changed. Capture and comparison sheets were generated, but the structured
+visual verdict remains pending, so this is not a full design-canon pass or
+real-owner/full-scroll acceptance. The stale standfirst expectation found in
+the capture is now aligned; D2 remains active. Continue substantive Place value
+and owner-backed receiving when a synthetic recipient is configured.
+
 **Saved reopening notice → exact Place → independent dismissal — implemented
 and natively exercised 2026-10-01:** backend commit `f583a054b` adds an optional
 typed venue read destination to the Places card contract and emits it for a
