@@ -82,7 +82,9 @@ semantics, and registers a native Save/refetch/Undo scenario; app commit
 round-trip only against synthetic mock state, not backend persistence, deployed
 authentication, or a live service. The mock-parity checkpoint below is closed
 within that bounded scope; the next connected checkpoint remains Technical's
-landed artifact-target request/result contract. Exact commands and evidence
+artifact-target request/result contract, which is on a separate unmerged
+branch and is not available to this lane. Do not consume it until it is landed
+and its contract verified. Exact commands and evidence
 limits are in section 13.
 
 | Area | Implemented and evidenced | Remaining boundary |
@@ -186,11 +188,14 @@ Strategy Technical.
 from the merged reader/correction baseline. The content-free owner, reversible
 cross-source aliases, owner read API, native Thing reader, candidate-to-bundle
 opening, and owner-confirmed reconciliation transport/app interaction are
-implemented in the local lane. The next bounded connected slice adopts
-Technical's supported artifact-target request/result in a focused reader.
-Use existing custody and Technical's landed evidence adapters. Every format,
-catalog provider and artifact family need not finish before a supported slice
-lands; the native acceptance remainder runs alongside this work.
+implemented in the local lane. The next connected P3 slice adopts Technical's
+supported artifact-target request/result in a focused reader after that producer
+is landed and its contract is verified. It is currently on a separate unmerged
+branch; do not cherry-pick or consume it here. Continue independent P0/P1/PC/P2
+and original-focused P6 work where existing owner and authority contracts are
+complete. Every format, catalog provider and artifact family need not finish
+before a supported slice lands; native acceptance work runs alongside
+implementation.
 
 The October 1 batch-read increment now resolves up to 50 owner-authorized
 Thing projections in bounded set-based reads, and reconciliation requests its
@@ -231,12 +236,12 @@ workspace records the cross-repo contract and evidence. Escalate when a choice
 changes product meaning, privacy/audience behavior, or visible claims; routine
 contract, query, cache and verification work remains with the accountable lane.
 
-**Lane continuation and accountability — October 1:** continue this work in
-the existing `codex/artifact-foundation` coordinated tuple; do not create
-another branch or worktree merely to begin the next artifact package. This
-tuple is the single accountable execution lane for the artifact-roadmap
-outcome: it carries its bounded slices through implementation, cross-repo
-verification, review, commits and safe landing. “Single lane” does not collapse
+**Ownership decision — October 1:** keep the artifact-roadmap outcome in the
+existing `codex/artifact-foundation` coordinated tuple; do not create another
+branch or worktree merely to begin its next package. This tuple is the single
+accountable execution lane for the outcome and carries each bounded slice
+through implementation, cross-repo verification, review, commits and safe
+landing. “Single lane” does not collapse
 the three repositories into one history or transfer ownership of their layers;
 each repository's changes are committed in that repository, under the
 ownership split above. Open a separate lane only for a genuinely independent
@@ -249,21 +254,20 @@ requires a new product/authority decision, changes the agreed ownership
 boundary, or encounters a real cross-lane conflict; ordinary implementation
 and verification obstacles stay with the accountable lane.
 
-**P1 replacement-time editor ownership — October 1:** finish the remaining
-owner-facing replacement-time editor and its correction/Undo readback in that
-same coordinated lane; do not open a second branch or hand it to a separate
-mobile lane. `travel-agent` owns which revision-bound correction is authorized,
-its persistence/replay semantics and canonical readback. `travel-app` owns the
+**P1 replacement-time editor ownership — completed October 1:** this bounded
+slice is implemented in the existing coordinated lane; no second branch is
+needed. `travel-agent` owns which revision-bound correction is authorized, its
+persistence/replay semantics and canonical readback. `travel-app` owns the
 owner-only editor, interaction and validation, command/retry behavior, Undo
 affordance, and refresh of the canonical reader. The workspace owns this
 roadmap receipt and any cross-repo contract synchronization; generated API
-snapshots and app types continue through the documented sync flow. The editor
-does not depend on Strategy Technical's unlanded artifact-target producer.
-Timezone authoring remains unresolved: the lane must not infer a zone from the
-device or place, alter an explicitly supplied offset, or present an unverified
-time as corrected. Any different user-visible timezone policy remains a
-founder decision and requires matching tests/native acceptance before this
-slice is called complete.
+snapshots and app types continue through the documented sync flow. The app's
+native Save/refetch/Undo evidence is synthetic mock state only; authenticated
+live app/backend readback remains unproven. Time authoring remains
+explicit-offset only: the lane must not infer a zone from the device or place,
+alter an explicitly supplied offset, or present an unverified time as
+corrected. This slice does not depend on Strategy Technical's unlanded
+artifact-target producer.
 
 **Write ownership:** thing/component and cultural-subject identity, reconciliation,
 typed readings, focused reader internals, consumer collections and Life, approved
@@ -658,7 +662,7 @@ projection into a new canonical owner.
 | --- | --- | --- |
 | Source custody | Intake submissions, source objects, and retained-source lifecycle in `travel-agent/backend/core/db/intake_v2.py`; HTTP commands in `travel-agent/backend/api/routes/intake.py` | Source ownership and revocation exist. `DELETE /api/intake/submissions/{id}` revokes/scrubs the source; it is not a reversible artifact Undo. |
 | Kept Thing identity | `travel-agent/backend/core/db/_tables/kept_things.py`, `travel-agent/backend/core/db/kept_things.py`, Alembic revisions `keptthing01`/`keptthing02`, and `travel-agent/backend/api/routes/artifact_projections.py`; app consumer in `travel-app/data/keptThings.ts` | Verified private Keeps create an idempotent content-free owner Thing. Evidence-backed, revisioned aliases now have authenticated merge/reversal routes and deliberate app controls; the ordinary candidate-to-bundle entry is connected. Every original is separately reauthorized; aliasing does not copy grants or claim semantic sameness. The reader still exposes originals, not a composed Thing title/summary. |
-| Private consumer Collection | `travel-agent/backend/core/db/consumer_collections.py`, `travel-agent/backend/core/models/consumer_collection.py`, its authenticated route and `travel-app/data/consumerCollections.ts` | A private canonical Collection owns many-to-many stable ThingRefs. Index/detail and revision-bound lifecycle commands are consumed through generated types and session-scoped queries. Detail pagination carries the first page revision and rejects stale continuation. It returns membership/Thing refs, not an authorized member presentation; there is no native Life Collection detail or batched artifact composition. Shared membership and receiving remain unimplemented. |
+| Private consumer Collection | `travel-agent/backend/core/db/consumer_collections.py`, `travel-agent/backend/core/models/consumer_collection.py`, its authenticated route and `travel-app/data/consumerCollections.ts` | A private canonical Collection owns many-to-many stable ThingRefs. Index/detail and revision-bound lifecycle commands are consumed through generated types and session-scoped queries. Detail pagination carries the first page revision and rejects stale continuation. The app pairs each page with one bounded owner-authorized Thing batch, preserving membership order and identity; this is data composition, not an authorized member presentation. There is no native Life Collection detail. Shared membership and receiving remain unimplemented. |
 | Confirmed thing/read target | Confirmed Intake candidates are projected by `travel-agent/backend/core/db/intake_anchors.py` as `ExperienceAnchorProjection`; the existing route remains `ResourceRef(kind="experience_anchor")` at `/you/memories/artifacts/{id}`. The stable kept-Thing route is `GET /api/artifact-projections/things/{thing_id}` and the app reader is `/you/memories/things/[id]`. | Candidate rows retain UUIDs across replay/status changes and use `(submission_id, candidate_key)` as their idempotent key. Existing IDs still open the candidate-backed reader; they are not automatically redirected or migrated to Thing. The current normal entry path can now open the Thing identity from an eligible candidate; the identities remain distinct and separately addressable. |
 | Claims and correction | Intake observations/candidate revisions in `travel-agent/backend/core/db/intake_semantics.py`; source-bound projection in `travel-agent/backend/core/canonical_artifact_projection.py` | The owner reader exposes gated `wrong_time`, `separate_from_occasion`, `keep_occurrence_forget_interpretation`, and (when an explicit private target/revision is present) `replace_time`. The replacement editor preserves each aware instant's wall-clock date/time and explicit UTC offset, does not infer from device/place, binds Save and Undo to the current numeric revision, and refreshes the artifact after a successful command. Backend persistence and projection replay are already covered separately. Native keyboard/cancel and synthetic-mock Save/refetch/Undo evidence are recorded; authenticated live app/backend readback remains unproven. The form also has recorded UX follow-ups for raw UTC-offset entry and start/end place context. |
 | Place and occurrence context | Physical `EntityRef` vocabulary in `travel-agent/backend/core/entity_types.py`; owner-scoped Experience Graph rows bridged by the artifact projection route | Place/time/Occasion/Plan context can be read from its existing owners. The place-like entity capability sets are not a cultural-work identity registry. |
@@ -1025,8 +1029,10 @@ identity and addressable originals, independent of its entry door.
   different commands at one revision now prove a single winner and stale loser;
   concurrent retries of one command prove one persisted effect. Sequential
   owner corrections now traverse the authenticated Intake route and verify the
-  canonical artifact readback. The mobile replacement-time editor/Undo path
-  remains open. These corrections do not depend on generated editions.
+  canonical artifact readback. The mobile replacement-time editor and Undo are
+  implemented; its registered native Save/refetch/Undo exercise is synthetic
+  mock state, while authenticated live app/backend readback remains open. These
+  corrections do not depend on generated editions.
 - Separate event/valid time, received time and freshness. The entity-fact
   writer now derives `valid_to` only from an explicit asserted end; freshness
   `expires_at` remains separate and current selectors still enforce it. Its
@@ -1235,10 +1241,15 @@ neighborhood and time treatment without a map or resolved-venue claim; and
 book/film/show/music records use text-built medium-specific house forms without
 catalog or generated art. Other reading formats still use the generic
 source-fact/original reader; this does not imply that PDF, Wallet, every email
-attachment or native visual acceptance is complete. The canonical reader also
-exposes the existing owner correction command for declared time,
-Occasion-separation and interpretation-hiding actions. It does not yet support
-editing a replacement value, source deletion/Undo or native visual acceptance.
+attachment or complete native acceptance is available. The canonical reader
+exposes owner correction for time, Occasion separation and interpretation
+hiding, plus the replacement-time editor and Undo. That replacement-time path
+has a registered native mock-state Save/refetch/Undo flow, not authenticated
+live-service readback. Source deletion remains with Intake/Source custody;
+deleting a Source is not a reversible correction or a promise that revoked
+material can be restored. Reliable photo pinch/pan, actual VoiceOver
+traversal/actions, loading/error coverage, Android/physical-device behavior and
+wider native acceptance remain open.
 
 ### P3 Contextual discovery and useful selection
 
