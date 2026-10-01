@@ -119,10 +119,11 @@ outcome end to end in one coordinated workspace/backend/app worktree tuple; do
 not open a second lane for the same identity slice. The workspace repository
 owns this cross-repo roadmap, contract alignment and evidence receipt.
 `travel-agent` owns the persisted `ThingRef`, reconciliation commands,
-source-preserving authorization checks, and any backend read contract.
-`travel-app` remains at the merged baseline until that read contract is stable
-and a concrete native consumer is in scope; it must not invent a parallel
-client-side identity authority. Keep the three Git histories independent.
+source-preserving authorization checks, and the backend read contract.
+`travel-app` consumes that stable contract through generated API types and a
+native reader; it owns presentation, navigation and query-cache behavior, but
+must not invent a parallel identity, reconciliation or source-authorization
+authority. Keep the three Git histories independent.
 Strategy Technical supplies reusable context/research primitives, while
 Orchestration owns capture transport and Home/Places delivery; neither lane
 owns the kept-Thing identity write. The artifact lane carries its slice through
