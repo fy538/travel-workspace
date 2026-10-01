@@ -14,26 +14,33 @@ source_of_truth_for: []
 
 **Decision:** What should Vesper change about building, testing and reviewing work?
 **Research cutoff:** September 30, 2026. **Planning and execution update:**
-October 1, following the founder's request to execute this lane's roadmap. The
-implementation queue in [section 5](#5-improvement-roadmap) is the current plan
-for Eng Efficiency. Package 3C landed in `origin/main` as `bc69d6d0` (PR 38);
-Package 3A passed its hosted checks on workspace PR 40 and app PR 210. Package
-3B is implemented across PRs 40, 210 and 240. Workspace and app hosted checks
-pass, and backend PR 240 passed its hosted rerun (scope completed in 14 seconds).
-The earlier run's `Merge ready` failure closed because its two-minute scope job
-cancelled a full-history checkout; the candidate now fetches the pull request
-merge ref and its base parent, allows five minutes, and preserves full history
-for manual dispatch. Local focused and full checks pass.
-Packages 1 and 2 have implementation and task-context changes published in
-[workspace PR 39](https://github.com/fy538/travel-workspace/pull/39),
-[app PR 209](https://github.com/fy538/travel-app/pull/209), and
-[backend PR 239](https://github.com/fy538/travel-agent/pull/239). Package 1's
-`home-root-returned` native capture now passes 1/1 after setting its documented
-shell flags. Package 2's original Home/Places wrong-state replay remains
-unverified. Workspace PR 39 has been rebased onto PR 38 and hosted checks are
-running; its app and backend companions have green required checks.
-Existing runtime, required checks and acceptance obligations remain in force.
-The program roadmap retains cross-lane ownership.
+October 1, following the founder's request to refocus this lane after central
+integration and Git cleanup. [Section 5](#5-improvement-roadmap) remains the
+single execution queue. Begin with conflicting operating assumptions and one
+verified obsolete implementation family, while measuring delivery friction.
+Keep the existing native QA and same-coverage test improvements; unfinished
+infrastructure awaiting product design is not an obsolete-code candidate.
+
+The accepted baseline is workspace `7018d055c6635b0edb5726612375c03f2c785520`,
+backend `0a1fdf224aaf59ca713eec5eba79a34321f038a9`, and app
+`acf5bd837fe3725b00d9744727f513a601fb2498`, landed through central integration
+[workspace PR 41](https://github.com/fy538/travel-workspace/pull/41),
+[backend PR 241](https://github.com/fy538/travel-agent/pull/241), and
+[app PR 212](https://github.com/fy538/travel-app/pull/212). Workspace PR 40's
+changes are included and it is now merged. App PRs 209/210/211 and backend
+PRs 239/240 are merged. The final sharding trial
+[run 36931263750](https://github.com/fy538/travel-app/actions/runs/36931263750)
+passed after stabilization; its earlier failed baseline remains evidence, and
+no repeatable speedup or default sharding adoption is claimed. Package 1 has
+one passing targeted native capture; Package 2's original Home/Places
+wrong-state replay remains unverified.
+
+Git cleanup retired six completed lanes (17 checkouts), 15 local branches and
+seven remote branches. The four execution lanes and product-direction checkout
+remain. All canonical main checkouts are current and clean. Uncommitted owner
+work, five experiment measurements and ignored evidence were preserved in
+local recovery snapshots, not silently promoted to main or product acceptance.
+An updated roadmap does not prove that obsolete assumptions have been removed.
 
 **Second research pass:** the [deeper evidence review](#second-research-pass-defect-detection-and-the-cost-of-review)
 adds recent mobile/GUI studies and industrial test-selection and mutation-testing
@@ -81,6 +88,10 @@ or the elegance of one generated answer. Model upgrades should be assessed
 against those outcomes and a separate quality sample.
 
 ## Execution status — October 1, 2026
+
+The following records describe earlier checkpoints on that date. Their pending
+PR states are historical; the accepted baseline and current queue above and in
+section 5 supersede them. Keep their failure and acceptance evidence intact.
 
 **Package 3C — CI sharding and early checks:** workspace [PR #38](https://github.com/fy538/travel-workspace/pull/38)
 merged as `bc69d6d03eeb069eb8705953463b4ddc8a808e6d`. Three hosted runs validated
@@ -568,47 +579,34 @@ workspace ownership boundaries. This section is the single implementation queue
 for this lane; package numbers remain stable references rather than execution
 order. The research sections explain the evidence, not additional queues.
 
-**Current state:** Package 3C landed as workspace commit
-`bc69d6d03eeb069eb8705953463b4ddc8a808e6d` (PR 38). Its first three hosted
-runs passed, each showing a much shorter required-job critical path than the
-23m18s serial baseline, with increased summed runner time. Package 3A is
-implemented in the dedicated efficiency lane and has passed focused, repeated,
-selected-merge, full app-coverage and hosted PR checks described below.
-The separate app-test sharding trial in [app PR 211](https://github.com/fy538/travel-app/pull/211)
-preserved the complete selected test inventory across two green shards, but its
-single-run baseline failed one Place lifecycle test at the five-second Jest
-timeout. That run is not a valid speed comparison; the trial has not established
-that sharding improves feedback time.
-Package 3B's workflow consolidation is implemented on the dedicated lane.
-Workspace PR 40, app PR 210 and backend PR 240 have green required checks.
-Backend run 36894505540 passed after the scoped checkout fix; the selector job
-completed in 14 seconds. Package 1's targeted native capture passes, and its
-reproducible launch setup is documented in app PR 209. Package 2's original
-Home/Places wrong-state replay remains unverified. Packages 1 and 2 have
-implementation and task-context changes published in
-[workspace PR 39](https://github.com/fy538/travel-workspace/pull/39),
-[app PR 209](https://github.com/fy538/travel-app/pull/209), and
-[backend PR 239](https://github.com/fy538/travel-agent/pull/239). Package 1's
-native capture is one passing flow, not a full surface matrix; Package 2 remains
-open. Workspace PR 39 has been rebased onto PR 38 and its required hosted checks
-pass; its app and backend companion PRs have green required checks.
-Existing runtime, required checks and acceptance obligations remain in force. The current
-remote-main baseline is workspace `bc69d6d03eeb069eb8705953463b4ddc8a808e6d`,
-backend `bd1a683b8656c3f4091e16abb64f57897fa7fc42`, and app
-`e7bdc660501eaa19234e6b45bda033658edaa2d4`. The program roadmap retains
-cross-lane ownership.
+**Current state:** the dated implementation and failure receipts below remain
+historical evidence. Packages 3A/3B/3C and targeted native-QA tooling have landed
+in the accepted tuple above. Existing gains have their stated sample limits;
+there is no measured overall engineering productivity gain. Central integration
+owns compatible handoff review, shared conflicts, dependency pins and landing;
+Eng Efficiency owns its implementations, focused evidence and adoption receipts.
+Do not start a new integration or cleanup queue alongside this section.
 
 | Order | Work | Status and dependency | First beneficiaries |
 | --- | --- | --- | --- |
-| 0 | Use the landed baseline and confirm tooling ownership | Complete on commit `cef7ac55`; isolated runtime ownership is recorded below | All lanes |
-| 1 | Package 3C: workspace flow validation and early prerequisite checks | Merged as `bc69d6d` (PR 38); three hosted runs passed. Critical paths ranged 5m46s–7m38s versus 23m18s; summed job runtimes ranged 25m28s–31m26s versus 23m18s (+9.3%–34.9%). | All integrations |
-| 2 | Package 3A: deterministic and faster app tests with the same checks | Existing hosted checks passed on workspace PR 40 and app PR 210. The separate sharding experiment in app PR 211 preserved all 1,289 test files across two green shards, but its 8m36s full baseline failed one Place lifecycle test at the five-second timeout. The comparison is invalid and no speedup is established; obtain a passing same-runner baseline before considering adoption. Local repeated Place, full-coverage, and selected-merge evidence is recorded below. | Every lane changing the app |
-| 3 | Package 3B: one execution owner per CI guarantee | Workflow consolidation is published in PRs 40/210/240. All required checks pass. Backend run 36894505540 passed after the pull-request checkout was bounded to the merge ref plus base, manual dispatch retained full history, and the scope timeout increased to five minutes; scope completed in 14 seconds. Focused contract, full offline suite and backend static checks pass locally. Comparable hosted full-run latency and runner-time measurement remain. | All lanes |
-| 4 | Package 1: choose the right evidence and make targeted native QA reliable | Implementation is published in app PR 209 and workspace PR 39. The app selector accepts a full flow ID or canonical slug only, and readiness failures inspect Maestro's failed-command hierarchy. With the documented shell flags and IPv4 localhost binding, the `home-root-returned` flow captured two reviewed Home states and passed 1/1. An earlier missing-flags attempt displayed the legacy Plans shell and failed the `home-v2-screen` assertion, correctly catching setup error. Workspace PR 39 passed its required Merge ready, Reliability and four syntax-shard checks in run [36896953575](https://github.com/fy538/travel-workspace/actions/runs/36896953575); its Maestro Cloud smoke remains skipped because the service is unconfigured. The full Home/Places wrong-state replay remains unverified. | Orchestration and Strategy |
-| 5 | Package 2: proportionate review and shorter task context | Targeted review and context-routing changes are published in PRs 39/209/239. The original Home/Places wrong-state replay remains unverified; native-review adoption needs broader Package 1 evidence. | All lanes, especially mobile work |
-| 6 | Package 6: retire completed working documentation | Three bounded migrations completed: the superseded V2 report, expired August product-loop/QA synthesis, and expired visual-polish synthesis moved to the dated archive with their live references and inventory records repaired. Documentation governance checks passed. | All lanes |
-| Conditional | Package 4: native build reuse and other measured setup optimizations | CI checkout optimizations are implemented in PR 40: syntax shards retain shallow pinned children, and `workspace-checks` fetches only the two filtered historical documentation baseline trees. A hosted pair reduced the main Reliability job from 10m56s to 5m30s, with child checkout plus baseline fetch falling from 361s to 11s. This is one before/after sample; it does not establish stable end-to-end latency. Native build reuse remains conditional and unselected. See the [CI runbook](../reliability/CI%20Plan.md) for scope and evidence boundaries. | Mobile and build owners |
-| Ongoing | Package 5: product-outcome acceptance | Stays with the three product lanes; tooling work must preserve it | Product users |
+| 1 — next | Package 6: reconcile obsolete operating assumptions and active documentation | Resolve contradictory merge ownership and stale pending/landed instructions in existing owners. Then retire a bounded set of superseded working documents, preserving unique rationale and fixing incoming links. Three earlier archive migrations are complete. | All lanes |
+| 2 | Package 7: retire one verified obsolete code, API or dependency family | New bounded queue item. Establish current consumers, replacement behavior and retirement authority before selecting the first family. The 62 retiring API operations are candidates, not 62 approved deletions. | Lanes repeatedly touching compatibility paths |
+| 3 | Package 3A/3B/3C: reduce measured feedback and integration cost | Implementations landed. Use the existing ten-change pilot to choose the next demonstrated bottleneck: flaky retries, repeated setup/check execution or broad-test fallback. Default app sharding stays unchanged; the passed experiment alone does not justify adoption. | All integrations |
+| 4 | Package 1: reliable targeted native QA | One targeted Home capture passed; broader Home/Places wrong-state replay remains open. Work independently when the assigned device is available. | Orchestration and Strategy |
+| 5 | Package 2: proportionate review and shorter task context | Tooling landed; changed review scope still requires clean cases and known-defect detection, including the unresolved replay. | All lanes, especially mobile work |
+| Conditional | Package 4: build reuse and measured setup optimizations | Existing checkout improvements are landed with limited before/after evidence. Native reuse requires a measured remaining setup bottleneck and safe environment identity. | Mobile and build owners |
+| Ongoing | Package 5: product-outcome acceptance | Remains with product lanes. Cleanup preserves their infrastructure, authority and acceptance requirements while design continues. | Product users |
+
+**Next owned assignment:** reconcile Package 6's operating instructions against
+the accepted tuple and central integration ownership, starting with this roadmap
+and the program's merge/handoff rules. The current planning change resolves
+those two entry points; inventory affected owner references before claiming the
+wider reconciliation complete. Then select one Package 7 family with evidence
+of actual maintenance burden and no unresolved current consumer. Record its
+owner, callers, replacement, applicable checks and expected benefit here before
+editing implementation. Land and measure that small slice before selecting
+another. Unresolved use or product authority stays unresolved; move to a
+verified independent candidate rather than guessing.
 
 **October 1 Package 4 local preflight receipt.** The corrected checkout scope
 passed `make verify-changed` in 320.740 seconds against workspace base
@@ -991,9 +989,9 @@ together and publish one stable candidate. Run focused feedback while editing;
 keep final coverage based on the whole integration diff. Avoid successive tiny
 pushes that cancel jobs before they report. Independent lanes need not wait for
 each other, but changes sharing a contract must land as a coherent compatible
-set. Pin the final child candidates once their inexpensive checks are clean;
-coordinate their remaining checks with workspace validation. Do not repin solely
-to identical-tree merge commits.
+set. Central integration lands child candidates after their applicable required
+checks pass, then records the accepted immutable tuple for workspace validation.
+Do not repin solely to identical-tree merge commits.
 
 Use one bounded watcher per active verification set and consolidate failure
 diagnosis rather than repeatedly reopening unchanged logs. Keep product-required
@@ -1348,8 +1346,14 @@ score” substitutes for those separate outcomes.
 
 ### Package 6 — Retire completed working documentation
 
-**Queue:** sixth. **Delivery owner:** Eng Efficiency within workspace documentation
+**Queue:** first in the post-integration sequence. **Delivery owner:** Eng Efficiency within workspace documentation
 governance; product owners retain their current contracts and unresolved choices.
+
+First reconcile conflicting instructions in the affected owner documents: the
+central landing responsibility, actual accepted revision tuple, completed
+versus pending work, and obsolete setup or product assumptions. Preserve each
+rule's rationale and distinguish genuinely unresolved decisions. Do not shorten
+instructions by dropping non-obvious safety or authority invariants.
 
 Choose a bounded set of completed or superseded working plans whose current
 owners already preserve their durable decisions. Use the existing expiry and
@@ -1363,7 +1367,8 @@ historical evidence explicitly discoverable. Expiry alone never authorizes delet
 and their current owner links. Follow the existing lifecycle rather than adding
 another permanent report or required cleanup gate.
 
-**Acceptance:** current tasks reach one active owner for each migrated topic,
+**Acceptance:** affected operating rules agree on ownership and current state;
+current tasks reach one active owner for each migrated topic,
 historical rationale remains accessible, and link/inventory checks pass. Record
 the removed live navigation/read burden; do not claim faster compilation or
 smaller Git history from moving Markdown files.
@@ -1434,6 +1439,41 @@ The initial sandboxed invocation could not write local caches; rerunning with
 normal worktree cache access passed. Hosted database and required action checks
 remain authoritative.
 
+### Package 7 — Retire verified obsolete implementation families
+
+**Queue:** second. **Delivery owner:** Eng Efficiency proposes and implements
+bounded engineering retirement within existing app/backend/workspace owners;
+product owners retain unresolved design and authority choices.
+
+Start with one family that repeatedly adds tracing, adaptation, duplicated tests
+or compatibility work. Trace source callers, Expo route/config entrypoints,
+server/non-mobile consumers and applicable operation-registry removal criteria.
+A grep miss, unused-code report, retiring label or incomplete product UI is not
+proof of disuse. Infrastructure for the ongoing product design remains in scope
+for delivery and must not be removed merely because presentation is withheld.
+
+For that family, pair implementation and test disposition. The nine backend
+concierge tests skipped for the retired Step 7 behavior are investigation
+candidates: establish current replacement coverage before removal. Quarantined
+or intermittent tests require separate diagnosis; repair meaningful safeguards
+rather than deleting them to obtain a green result. Preserve contracts that
+still govern current behavior.
+
+Retire verified dead compatibility adapters, operations and dependencies in a
+small coherent slice. Update the existing lifecycle registry and owner docs,
+regenerate API projections/types if wire contracts change, and run required
+coverage and focused behavioral checks. Do not hand-edit generated types,
+rewrite old database migrations or mass-delete all retiring endpoints. Required
+merge checks remain authoritative.
+
+**Acceptance:** no current caller or required behavior is lost; the old and
+replacement paths have explicit dispositions; contracts and relevant valid,
+violating and failure cases pass. Record the tracing/rework or verification
+burden removed in existing receipts and compare similar subsequent tasks.
+Removed files, fewer lines and fewer tests are secondary inventory measures,
+not proof of engineering efficiency. Stop expanding the slice when the family
+is resolved; continue with the next measured bottleneck.
+
 ## 6. How to tell whether this helped
 
 Use [measure_verification.py](../../scripts/measure_verification.py) and existing
@@ -1447,6 +1487,11 @@ repair/review time, repeat checks and material defects found. Treat this as a
 diagnostic pilot, not a statistically powered productivity experiment. Compare
 similar changes, report sample sizes and spread, and retain failed runs. Do not
 sum overlapping concurrent durations as human time lost.
+
+For assumption retirement, also record obsolete-owner detours, compatibility
+paths touched and avoidable rework on comparable changes. Preserve failed runs
+and actual acceptance scope; use the existing receipts rather than a new gate
+or scorecard.
 
 Track first-attempt native setup success, time to first useful native result,
 ordinary merge-readiness time, review false alarms, and later regressions/rework.
@@ -1479,8 +1524,9 @@ changed baselines, or add another standing judge layer before measuring need.
 
 The founder-requested planning update consolidates the implementation queue in
 [section 5](#5-improvement-roadmap). It does not itself waive current checks,
-change product policy, amend the [program roadmap](vesper-program-roadmap.md),
-start implementation or dispatch messages to its owners.
+change product policy or dispatch messages to its owners. The accompanying
+[program roadmap](vesper-program-roadmap.md) clarification reconciles its merge
+rule with the already accepted central integration ownership.
 Adopted operational changes should update their existing owner documents; close
 or archive this research note by October 30.
 
@@ -1765,24 +1811,15 @@ repair batch's inexpensive checks before publishing another candidate. This is
 engineering cadence, not a narrower product vision or permission to split
 cross-repository invariants.
 
-Section 5 remains the only execution queue. Package 3C's four-shard syntax
-trial passed hosted checks and measured lower syntax-shard checkout time;
-its main-job child-history optimization passed local and hosted verification on
-one candidate. Package 3A's existing checks pass on workspace PR 40 and app PR
-210; the separate PR 211 sharding comparison failed its full-run baseline and
-remains unproven. Package 3B's workflow consolidation is published in
-workspace, app and backend PRs. Package 3C now has measured checkout reductions
-for syntax shards and the main reliability job, each supported by one hosted
-comparison. The separate native build reuse pilot remains conditional. One
-Package 6 archive migration passed documentation
-governance checks. Package 1 has a passing targeted native capture, while its
-broader Home/Places acceptance and Package 2's original wrong-state replay
-remain open. Native QA retains its separate product-quality purpose. The paired
-syntax run supports lower shard checkout time, and one further hosted pair shows
-the reliability job falling from 10m56s to 5m30s after the baseline-only fetch.
-Neither result establishes a repeatable end-to-end CI or productivity gain. No
-new dashboard, parser, framework, standing agent fleet or broad test-deletion
-project is required.
+Section 5 remains the only execution queue. The October 1 planning update
+supersedes this review's earlier ordering: first reconcile operating assumptions,
+then retire one verified obsolete implementation family, while continuing the
+existing ten-change measurement pilot and unresolved native QA. Package numbers
+remain stable references. Landed tooling and earlier receipts retain their exact
+boundaries; Git cleanup and successful tests do not establish an overall speed
+gain. The sharding experiment is merged and passed its final run, while default
+adoption remains conditional on comparable elapsed and runner-time evidence.
+No new dashboard, standing agent fleet or broad test-deletion project is needed.
 
 ### Reproducing the integration measurements
 
