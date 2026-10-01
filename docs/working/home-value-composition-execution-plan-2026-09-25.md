@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: codex/home-value-delivery lane
 created: 2026-09-25
-last_verified: 2026-09-30
+last_verified: 2026-10-01
 expires: 2026-10-25
 why_new: Gives one complete Home implementation assignment after separating the program queue from historical receipts; existing design contracts define behavior but not this bounded delivery package.
 depends_on:
@@ -508,7 +508,7 @@ literal original, not an invented personal interpretation. All changes remain lo
 | --- | --- | --- |
 | OS share | Generated `ios/ShareExtension/ShareViewController.swift` → `components/sharing/ShareIntentHandler.tsx` → common private composer and Intake Source custody | Text/link/file shares now enter an account-bound draft through an opaque navigation key and wait for explicit Keep; all originals/captions and retry identity survive the handoff. Single audio stays on compatibility. The extension still redirects to the host; in-place authenticated delivery, durable recovery and native completion remain. |
 | Camera/photos | App `hooks/useCaptureDraft.ts` → existing `data/inboundItems.ts` upload; entity capture shares MIME handling through `utils/intakePhoto.ts` | New in-app composer stages camera/library images and a note before explicit Keep, bounded to 16 and supported formats. Native iOS Photos-library paths cover one- and two-image selection, editable drafts/removal, and picker cancellation without losing an existing draft; all reach mock private Keep, lead-original readback and same-owner Undo. The common photo-library door uses the system picker without broad Photos access; Camera requests permission only after an explicit tap. App `d8a133677` preserves the draft after denial, offers retry when `canAskAgain` is true, and offers Settings only when retry is unavailable. App `de02ae042` gives truthful camera-specific recovery when native capture cannot launch; the pinned simulator's unavailable-source state retains the draft and allows Photos fallback through Keep/Undo. Successful Camera shutter/custody, retryable native OS prompting, selections above two, individual readback for every image, other roots, live authenticated readback, accessibility sizing, and entity/Chat convergence remain open. |
-| Global add | Shared app `components/inbound/capture-entry.tsx` → `/share-capture?compose=1` → `capture-composer.tsx` | Home v2, compatibility, loading and recoverable error states now retain the same private capture entrance; focused component tests verify the route remains available when both Home reads fail. Places, Life and Chat normal-root headers already expose the shared entrance. Large type and all root-state visual acceptance remain open; ordinary root captures do not prove loading/error composition quality. |
+| Global add | Shared app `components/inbound/capture-entry.tsx` → `/share-capture?compose=1` → `capture-composer.tsx` | Home v2, compatibility, loading and recoverable error states retain the private capture entrance; when the current authenticated iOS owner/session has an unresolved journal attempt, Home changes that same header control to **Resume Keep**, reopening the existing composer and key without showing private content. Places, Life and Chat keep the ordinary shared entrance. Focused tests cover the recovery route, account/session changes and fail-closed reads. Large type and native visual acceptance remain open; ordinary root captures do not prove loading/error composition quality. |
 | Chat attachment | Existing private threads, Chat landing dock (legacy Vesper Home), and private/private-trip create use `private-capture-composer.tsx` → common Intake custody → answer-only pending Chat turn with exact source refs; pre-thread entry shares `usePrivateCaptureChatEntry` | Visible Keep/Ask only, current-owner Open/Undo, stable source/turn/room retries and contextual handoff are local. Photo Library now opens the OS-mediated picker directly without broad Photos access or a separate rationale; only the selected image enters the removable draft, while Camera retains its own permission. The registered existing-thread native mock flow covers library photo selection, Ask only, Keep, exact-image receipt, Undo and offline draft. Dock/private-create, keyboard/failure/large-type evidence remains. Group rooms and carried references do not silently opt in. |
 | Existing-object Keep/Send | App `hooks/useSaveEntity.ts` owns place saves; `data/relationshipPlaceHandoffs.ts` owns addressed, place-bound pair delivery; selected originals retain Source ownership | Route authored sharing through the common component while keeping bookmark and Source ownership distinct. The current place-required, single-recipient handoff is not the accepted general person/group/Friends schema. |
 | Email | Backend `backend/api/routes/inbound_email.py` and `backend/inbound/email_forward.py`: authenticated alias/webhook, flag-gated v2 inline intake and provider archive binding | New message text and supported attachment bytes receive private Keep, Source-to-Life handoff, metadata refinding and existing receipt/Undo without interpretation review. Historical retries preserve their policy. Provider envelopes are excluded from human original counts. Life now has a bounded read-only `.ics` original preview through the existing owner-scoped source-media route; parser/data/screen tests cover time-zone labeling, attendee omission, size limits and provider-archive exclusion. Native visual capture and live authenticated mobile readback remain unverified. Real SendGrid delivery and per-message failure/recovery also remain unverified. Unsupported attachment types still reject the whole email. |
@@ -1981,6 +1981,28 @@ bootstrap reads. Tests cover owner mapping, fail-closed behavior, and retry to
 successful Keep. This repairs the code-level ID-domain mismatch and transient
 profile/journal recovery; it does not establish authenticated live-backend or
 signed-device acceptance, nor retry after an unavailable/expired Clerk session.
+
+### Home private Keep resume cue — October 1
+
+App `053cdcac5` connects the existing protected in-app capture journal to
+Home's existing root-add control. Only an exact-current-session journal read
+with at least one attempt replaces **Keep text or photos** with a quiet
+**Resume Keep** action. The action opens the common composer; that existing
+composer rehydrates and resumes the oldest attempt using its original payload
+and idempotency key. Home never renders the draft text, source names, or media,
+and a failed journal read or changed owner/session leaves the ordinary add
+control in place. This adds no Home unit, backend read, new retention rule, or
+second custody path; Places and other roots retain their current shared add
+behavior.
+
+Focused app coverage passed **74/74** across five suites: `capture-entry`,
+`capture-composer`, `HomeRootExperience`, and the Home v1/v2 screen suites. The
+production TypeScript check and test-contract TypeScript check passed; targeted
+lint had zero warnings/errors; the registered Home scenario and surface-index
+checks passed (31 scenarios; 47 surfaces). The native `home-root` QA doctor
+stopped at preflight because Metro was not running on either default `:8081`
+or this lane's assigned `:53177`. No native screenshot, live authenticated
+device readback, or visual verdict was produced; those remain unverified.
 
 ### Published candidate — prior full coordinated gate
 

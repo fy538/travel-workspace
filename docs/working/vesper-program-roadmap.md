@@ -393,6 +393,18 @@ no live SendGrid delivery, disposable-DB path, sender notice, owner-visible
 failure receipt, or permanent-failure recovery is established. Unsupported
 bundles remain all-or-nothing.
 
+**Home private-Keep recovery door — October 1:** app commit `053cdcac5` adds a
+quiet **Resume Keep** action to Home's existing capture header only when the
+current authenticated iOS owner/session has a recoverable attempt in the
+existing protected journal. It opens the same composer and recovers the same
+idempotency key; no source preview, new Home unit, backend endpoint, or second
+custody owner was added. Five focused app suites passed **74/74**; production
+and test TypeScript checks, targeted lint, and Home scenario/surface registry
+checks passed. Native Home visual acceptance is **unverified**: the QA doctor
+could not reach Metro on the default port or the lane's assigned port `53177`.
+This closes the code-level Home resume affordance only, not signed-device or
+authenticated live-readback acceptance.
+
 **Independent work when blocked:** in-app authenticated/native acceptance and
 D2's existing-supply composition. Email's internal retry classification now
 has code/test evidence; provider delivery and owner-visible email failure or
