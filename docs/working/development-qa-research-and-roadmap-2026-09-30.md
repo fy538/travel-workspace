@@ -465,11 +465,23 @@ cross-lane ownership.
 | 1 | Package 3C: workspace flow validation and early prerequisite checks | Merged as `bc69d6d` (PR 38); three hosted runs passed. Critical paths ranged 5m46s–7m38s versus 23m18s; summed job runtimes ranged 25m28s–31m26s versus 23m18s (+9.3%–34.9%). | All integrations |
 | 2 | Package 3A: deterministic and faster app tests with the same checks | Hosted checks passed on workspace PR 40 and app PR 210. The app selected-test check passed in 9m36s; local repeated Place, full-coverage, and selected-merge evidence is recorded below. Runner-time improvement over a comparable Node 20 baseline remains unmeasured. | Every lane changing the app |
 | 3 | Package 3B: one execution owner per CI guarantee | Workflow consolidation is published in PRs 40/210/240. All required checks pass. Backend run 36894505540 passed after the pull-request checkout was bounded to the merge ref plus base, manual dispatch retained full history, and the scope timeout increased to five minutes; scope completed in 14 seconds. Focused contract, full offline suite and backend static checks pass locally. Comparable hosted full-run latency and runner-time measurement remain. | All lanes |
-| 4 | Package 1: choose the right evidence and make targeted native QA reliable | Implementation is published in app PR 209 and workspace PR 39. The app selector accepts a full flow ID or canonical slug only, and readiness failures inspect Maestro's failed-command hierarchy. With the documented shell flags and IPv4 localhost binding, the `home-root-returned` flow captured two reviewed Home states and passed 1/1. An earlier missing-flags attempt displayed the legacy Plans shell and failed the `home-v2-screen` assertion, correctly catching setup error. The full Home/Places wrong-state replay remains unverified. Workspace PR 39 has been rebased onto PR 38 and hosted checks are rerunning. | Orchestration and Strategy |
+| 4 | Package 1: choose the right evidence and make targeted native QA reliable | Implementation is published in app PR 209 and workspace PR 39. The app selector accepts a full flow ID or canonical slug only, and readiness failures inspect Maestro's failed-command hierarchy. With the documented shell flags and IPv4 localhost binding, the `home-root-returned` flow captured two reviewed Home states and passed 1/1. An earlier missing-flags attempt displayed the legacy Plans shell and failed the `home-v2-screen` assertion, correctly catching setup error. Workspace PR 39 passed its required Merge ready, Reliability and four syntax-shard checks in run [36896953575](https://github.com/fy538/travel-workspace/actions/runs/36896953575); its Maestro Cloud smoke remains skipped because the service is unconfigured. The full Home/Places wrong-state replay remains unverified. | Orchestration and Strategy |
 | 5 | Package 2: proportionate review and shorter task context | Targeted review and context-routing changes are published in PRs 39/209/239. The original Home/Places wrong-state replay remains unverified; native-review adoption needs broader Package 1 evidence. | All lanes, especially mobile work |
 | 6 | Package 6: retire completed working documentation | One bounded migration completed: the superseded V2 report now lives in the dated archive, its three live references and inventory entry were repaired, and all documentation governance checks passed. | All lanes |
-| Conditional | Package 4: native build reuse and other measured setup optimizations | Only if meaningful build/setup cost remains | Mobile and build owners |
+| Conditional | Package 4: native build reuse and other measured setup optimizations | A cost-backed experiment is now selected: depth-1 child checkouts in the four Maestro syntax shards. On the same child revisions, combined child checkout time fell from 744.538s to 51.194s across the matrix (93.1% less cumulative runner time); the slowest syntax job fell from 10m03s to 5m27s. The first hosted candidate also made the baseline-dependent workspace checkouts shallow and failed with `fatal: not a tree object`; the final scope keeps full history in `workspace-checks` and uses depth 1 only for syntax shards. See the [CI runbook](../reliability/CI%20Plan.md) for run links and evidence limits. Native build reuse remains conditional and unselected. | Mobile and build owners |
 | Ongoing | Package 5: product-outcome acceptance | Stays with the three product lanes; tooling work must preserve it | Product users |
+
+**October 1 Package 4 local preflight receipt.** The corrected checkout scope
+passed `make verify-changed` in 320.740 seconds against workspace base
+`bc69d6d`, backend base `bd1a683`, and app base `e7bdc66`. The workspace was at
+`3d224590` with the corrected workflow and regression test in its working tree;
+backend and app were `05dcc914` and `906c5d5`. The run passed all 9,180 app
+tests, 22,085 backend tests (14 skipped, 53 xpassed, one warning), 145 workspace
+tooling tests, and the selected contract, API and documentation checks. The
+[verification baseline](../reliability/test-loop-baseline.json) records the
+command, full revisions, environment and log path. The hosted syntax-shard
+pilot passed all four exact-checkout assertions and syntax partitions. The
+required Reliability workflow continues to own end-to-end validation.
 
 **October 1 implementation receipt (local checks at 08:54 UTC; hosted evidence through 09:15 UTC).**
 The coordinated `make verify-changed` passed on workspace `632c8ff`, backend
@@ -1447,15 +1459,18 @@ repair batch's inexpensive checks before publishing another candidate. This is
 engineering cadence, not a narrower product vision or permission to split
 cross-repository invariants.
 
-Section 5 remains the only execution queue. Package 3C is merged, Package 3A's
-hosted checks passed, and Package 3B's workflow consolidation is implemented
-and under review; its backend hosted retry remains open. One Package 6 archive
-migration passed documentation governance checks. Package 1 has a passing
-targeted native capture, while its broader Home/Places acceptance and Package 2's
-original wrong-state replay remain open. Native QA retains its separate
-product-quality purpose. No stable speedup is claimed from one local
-cross-repository measurement. No new dashboard, parser, framework, standing
-agent fleet or broad test-deletion project is required.
+Section 5 remains the only execution queue. Package 3C is merged; Package 3A's
+hosted checks pass, and Package 3B's workflow consolidation is published in
+workspace, app and backend PRs. Package 4 now has one measured CI checkout
+experiment, limited to file-only syntax shards; the separate native build reuse
+pilot remains conditional. One Package 6 archive migration passed documentation
+governance checks. Package 1 has a passing targeted native capture, while its
+broader Home/Places acceptance and Package 2's original wrong-state replay
+remain open. Native QA retains its separate product-quality purpose. The one
+paired CI run supports a reduction in syntax-shard checkout time; it does not
+establish a repeatable end-to-end CI or productivity gain. No new dashboard,
+parser, framework, standing agent fleet or broad test-deletion project is
+required.
 
 ### Reproducing the integration measurements
 

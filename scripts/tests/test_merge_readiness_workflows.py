@@ -10,7 +10,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 
 
-def assert_reliability_job_uses_shallow_pinned_children(job):
+def assert_reliability_job_uses_pinned_children(job, *, child_fetch_depth):
     steps = job["steps"]
     checkouts = [
         (index, step["with"])
@@ -40,7 +40,7 @@ def assert_reliability_job_uses_shallow_pinned_children(job):
         assert checkout["repository"] == f"${{{{ github.repository_owner }}}}/{name}"
         assert checkout["ref"] == expected_ref
         assert checkout["token"] == "${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN }}"
-        assert checkout["fetch-depth"] == "1"
+        assert checkout["fetch-depth"] == child_fetch_depth
 
     assertion_index = next(
         index
@@ -206,9 +206,14 @@ def test_reliability_required_check_rejects_an_unreadable_needs_context():
     assert "invalid NEEDS_JSON" in result.stderr
 
 
-def test_reliability_workspace_checks_keep_full_workspace_and_shallow_pinned_children():
+def test_reliability_workspace_checks_keep_full_history_for_child_doc_baselines():
     workflow = yaml.load((ROOT / ".github/workflows/reliability.yml").read_text(), Loader=yaml.BaseLoader)
-    assert_reliability_job_uses_shallow_pinned_children(workflow["jobs"]["workspace-checks"])
+    job = workflow["jobs"]["workspace-checks"]
+    assert any(
+        step.get("run") == "make docs-spine-check docs-status-check docs-links-check docs-child-governance-check"
+        for step in job["steps"]
+    )
+    assert_reliability_job_uses_pinned_children(job, child_fetch_depth="0")
 
 
 def test_reliability_syntax_matrix_runs_all_four_shards_with_shallow_pinned_children():
@@ -218,7 +223,7 @@ def test_reliability_syntax_matrix_runs_all_four_shards_with_shallow_pinned_chil
     assert job["strategy"]["max-parallel"] == "4"
     assert job["strategy"]["matrix"]["shard"] == ["0", "1", "2", "3"]
     steps = job["steps"]
-    assert_reliability_job_uses_shallow_pinned_children(job)
+    assert_reliability_job_uses_pinned_children(job, child_fetch_depth="1")
     cli = next(step for step in steps if step.get("name") == "Install pinned Maestro CLI")
     assert cli["env"]["MAESTRO_VERSION"] == "2.6.1"
     validation = next(step for step in steps if step.get("name") == "Validate this required syntax partition")
