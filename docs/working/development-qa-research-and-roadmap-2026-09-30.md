@@ -16,15 +16,21 @@ source_of_truth_for: []
 **Research cutoff:** September 30, 2026. **Planning and execution update:**
 October 1, following the founder's request to execute this lane's roadmap. The
 implementation queue in [section 5](#5-improvement-roadmap) is the current plan
-for Eng Efficiency. Package 3C is published but has not landed in `origin/main`;
+for Eng Efficiency. Package 3C landed in `origin/main` as `bc69d6d0` (PR 38).
+Package 3B's workflow consolidation is under review in PRs 40, 210 and 240.
 Packages 1 and 2 have implementation and task-context changes published in
 [workspace PR 39](https://github.com/fy538/travel-workspace/pull/39),
 [app PR 209](https://github.com/fy538/travel-app/pull/209), and
-[backend PR 239](https://github.com/fy538/travel-agent/pull/239). Package 1's
-real native capture and Package 2's Home/Places wrong-state replay remain
-unverified, so neither package is acceptance-complete. Existing runtime,
-required checks and acceptance obligations remain in force. The program roadmap
-retains cross-lane ownership.
+[backend PR 239](https://github.com/fy538/travel-agent/pull/239). The targeted
+`home-root-returned` native capture passes; Package 2's original Home/Places
+wrong-state replay remains unverified.
+
+Package 5's first proof-to-outcome map is also in progress. Its P03 correction
+grader now requires a named source with matching before/after revisions, but
+this remains synthetic harness evidence: no live adapter or promoted
+product-proof receipt exists, and the current photo source record does not expose
+a content revision. Existing runtime, required checks and acceptance obligations
+remain in force. The program roadmap retains cross-lane ownership.
 
 **Second research pass:** the [deeper evidence review](#second-research-pass-defect-detection-and-the-cost-of-review)
 adds recent mobile/GUI studies and industrial test-selection and mutation-testing
@@ -70,6 +76,140 @@ accessible, a collection remains coherent and an audience receives exactly what
 was shared. Those durable outcomes matter more than the number of screenshots
 or the elegance of one generated answer. Model upgrades should be assessed
 against those outcomes and a separate quality sample.
+
+## Execution status — October 1, 2026
+
+**Package 3C — CI sharding and early checks:** workspace [PR #38](https://github.com/fy538/travel-workspace/pull/38)
+merged as `bc69d6d03eeb069eb8705953463b4ddc8a808e6d`. Three hosted runs validated
+the complete 408-flow syntax inventory. Required-check critical paths ranged
+from 5m46s to 7m38s, versus 23m18s on the serial baseline; summed runner time
+rose by 9.3% to 34.9%. The Maestro Cloud PR smoke remains skipped because the
+service is not configured. The samples support faster feedback with higher
+runner use, not a stable percentile or lower resource cost.
+
+**Package 1 — targeted native QA:** implementation is published in app PR #209
+and workspace PR #39. Exact-flow selection, device/port binding, readiness
+diagnostics and one shared retry budget passed the focused and broader QA
+checks. The first real capture attempt used the wrong shell configuration,
+showed the legacy Plans screen and failed the `home-v2-screen` assertion before
+capturing product images. The assertion correctly caught an environment error.
+
+The corrected run used the assigned iPhone SE (3rd generation), UDID
+`E5200CAA-0A20-4D67-B5C6-A418603A5FEC`, Maestro 2.6.1, Java 17, Metro port
+`57436`, and installed app `com.fyan.vesper` version `1.0.0`. Expo was bound to
+IPv4 localhost with `NODE_OPTIONS=--dns-result-order=ipv4first`; the documented
+mock/auth, four-root, projection, Places/Life and internal-build flags were set.
+`HOME_SURFACES_CANON_DIR=/Users/feihuyan/Downloads/vesper-home-surfaces npm run qa:surface -- home-root --flow=polish/home-root-returned --after`
+passed 1/1 and captured `home-root-returned-top.png` and
+`home-root-returned-close.png`. This is one reviewed Home return-state capture;
+it does not prove persistence, permissions or the separate Home/Places
+wrong-state replay, which remains unverified.
+
+**Package 3B — CI execution ownership:** the corrected backend workflow is
+published in PR #240. Its first run failed closed after the two-minute scope job
+cancelled a full-history checkout; the current run's scope checkout and
+selection passed in 14 seconds. At the latest status read, the selected offline
+tests and database checks passed, as did the `Merge ready` aggregate. Run
+[36894505540](https://github.com/fy538/travel-agent/actions/runs/36894505540)
+is fully green, and PR #240 is clean and mergeable. Workspace PR #40 and app PR
+#210 also have green required checks. The full local engineering-efficiency
+preflight passed in 287.010 seconds; this is one candidate measurement, not a
+hosted speedup claim.
+
+After installing the locked app dependencies in the isolated lane, the complete
+`qa:polish:test` target passed, including the existing suite and the new focused
+tests. On October 1, `make verify-changed` passed against workspace base
+`4febe0d`, backend base `bd1a683`, and app base `e7bdc66`: app fast checks,
+selected merge tests and workspace links/spine/canon checks all passed. The
+first sandboxed attempt could not write the ignored Expo lint cache and exposed
+one stale retry-count contract expectation. The rerun used only the lane's
+ignored cache write access, and the corrected contract now passes.
+
+Package 1's implementation is in app [PR #209](https://github.com/fy538/travel-app/pull/209).
+Package 2's targeted-capture isolation, exact-input judgment carry, and
+proportional review guidance are implemented in that PR. Workspace tracking is
+in [PR #39](https://github.com/fy538/travel-workspace/pull/39), and backend
+selector transparency is in [PR #239](https://github.com/fy538/travel-agent/pull/239).
+
+The earlier coordinated `make verify-changed` passed for workspace base
+`4febe0d461a62d204ba4dee9eaad7813c7c1509c`, backend base
+`bd1a683b8656c3f4091e16abb64f57897fa7fc42`, and app base
+`e7bdc660501eaa19234e6b45bda033658edaa2d4`. App fast checks passed; the full
+app suite passed (1,289 suites, 9,178 tests, one snapshot). Backend static
+checks passed; the offline suite passed (22,084 passed, 14 skipped, 1 expected
+failure, 52 expected passes). Workspace tests passed (119), followed by contract
+and documentation checks. The first publisher attempts exposed a missing
+lane-local Python 3.13 dependency environment; installing the committed
+`requirements-dev.txt` in `.venv` allowed the final coordinated run to pass. A
+fresh rebase onto the merged PR #38 base also passed the local coordinated
+preflight; its hosted rerun is pending publication.
+
+**Post-rebase PR #39 preflight (October 1).** The measured command
+`make verify-changed WORKSPACE_BASE_REF=bc69d6d03eeb069eb8705953463b4ddc8a808e6 AGENT_BASE_REF=bd1a683b8656c3f4091e16abb64f57897fa7fc42 APP_BASE_REF=e7bdc660501eaa19234e6b45bda033658edaa2d4`
+passed in 415.124 seconds on workspace `b0a50dc3197c7fc49a9768ba93aef68532615549`,
+backend `2c115ac72edcd490c7cc6a80b8f0a480baf73cdc`, and app
+`49e8379047176100ff13d8b1245b7abd06d97a65`, all clean. Jest passed 1,289
+suites, 9,178 tests and one snapshot; one worker required forced exit. Backend
+passed 22,086 tests with 14 skipped, 53 expected passes and one warning.
+Workspace tests passed 142 cases; contract and documentation checks passed.
+The log is
+`/private/tmp/vesper-pr39-post-rebase-logs/native-qa-pr39-post-rebase-20261001T165646Z.log`.
+The local offline run does not replace hosted disposable-database checks.
+
+Package 1 has **one passing targeted native capture** on the assigned simulator;
+the wider setup-failure matrix and other surfaces are outside this capture.
+Package 2 is **implementation in PR, acceptance in progress**. The observed
+shared-reader large-text defect was found in the trace
+and fixed in `travel-app` commit `c704fc997`. The committed verdict
+`20260930T222931Z` records four passing largest-text/source-return assertions
+against app revision `05d81a9df`, an ancestor of this lane head; the reader code
+has not changed since that capture. The referenced PNG files are not tracked in
+Git, so this is a carried verdict rather than a fresh pixel review. The
+Home/Places wrong-state replay remains unverified; the initial wrong-shell
+attempt never reached the intended Home state and is not evidence for that
+defect. The later successful capture validates one Home presentation only.
+
+The October 1 task-context pass shortened four app/backend owner and intake
+documents while retaining the workspace guidance as the single cross-repository
+owner. Across the five instruction docs considered, the current word count is
+4,641 versus 5,043 at this lane's base (402 fewer, 8.0%). Routing exercises
+followed a bounded Home returned-state copy/layout change from the app owner
+instructions through the local-change evidence row to the
+[Home Root contract](../../travel-app/docs/surfaces/home-root/contract.md)
+and `polish/home-root-returned` flow; no full-surface recapture is implied. The
+shared artifact-reader typography fix (`c704fc997`) routes through the shared
+reader/accessibility evidence row, its
+[contract](../../travel-app/docs/surfaces/canonical-artifact-reader/contract.md),
+representative family tests, and the registered large-text capture set. An
+Intake correction or audience change routes through the
+[contribution-and-consequence contract](../systems/contribution-and-consequence.md),
+backend risk label, and [Inbound owner feature](../../travel-agent/backend/inbound/FEATURE.md),
+with negative/readback integration evidence at that boundary and screenshots
+only if presentation changes. These are task-routing checks against real
+contracts and changes, not elapsed-time measurements.
+Package 2 remains in progress: its Home/Places wrong-state replay is unverified.
+The fresh native evidence now covers one Home return-state flow only.
+
+Package 5's P03-03 grader now requires the exact
+`trip_photo:private-late-set-photo` evidence reference and matching non-empty
+before/after source revisions. Missing, malformed, or changed revision evidence
+fails closed. Backend commit `681c518c8` adds this check and valid, missing,
+malformed, and changed-revision cases. The measured focused command
+`PYTHONDONTWRITEBYTECODE=1 ./.venv/bin/python -m pytest -p no:cacheprovider
+tests/eval/test_product_proof_eval.py tests/eval/test_consequence_authority.py
+tests/atlas/test_artifact_quality_eval.py -q` passed **38 tests** on Python
+3.13.0 in 4.269 seconds; the recorder ran on host Python 3.14.6. This is a
+single harness measurement, not a productivity comparison. Ruff check and format
+check passed. The grader still consumes adapter-supplied trace fields; the tests
+do not prove that a live adapter reads the canonical source owner or that an
+original's content stayed unchanged.
+
+**Package 3 — iteration and candidate selection:** selector transparency passed
+the coordinated gate above. App plans expose full-suite reasons and print
+related test paths before running Jest; backend plans expose selected test
+directories and broad-fallback reasons. Workspace, app and backend routing tests
+passed (12, 7 and 15 tests respectively), including cumulative shared-change
+coverage after a later local edit. No latency improvement is claimed.
 
 ## 1. What the repository and traces establish
 
@@ -425,35 +565,36 @@ workspace ownership boundaries. This section is the single implementation queue
 for this lane; package numbers remain stable references rather than execution
 order. The research sections explain the evidence, not additional queues.
 
-**Current state:** the integration landed with required checks passing. Package
-3C is implemented and published as [workspace PR 38](https://github.com/fy538/travel-workspace/pull/38).
-Its first three hosted runs passed, each showing a much shorter required-job
-critical path than the 23m18s serial baseline, with increased summed runner time.
-At 09:15 UTC on October 1, PR 38 was open and mergeable, with all required
-checks passed and no review decision recorded; landing was not established.
-Other implementation packages are queued or unstarted. The verified
-remote-main baseline is workspace `4febe0d461a62d204ba4dee9eaad7813c7c1509c`,
-backend `bd1a683b8656c3f4091e16abb64f57897fa7fc42`, and
-app `e7bdc660501eaa19234e6b45bda033658edaa2d4`; see section 9 for PRs and
-tested child identities. Canonical workspace HEAD remained `0a39e27362a5`
-during the audit to preserve another lane's uncommitted roadmap edits. Do not
-confuse that checkout with the landed baseline or switch its owner out from
-under active work. The dedicated efficiency lane and the Package 3C pull request
-are recorded below.
+**Current state:** Package 3C merged as workspace commit `bc69d6d03eeb069eb8705953463b4ddc8a808e6d` (PR 38),
+with three hosted runs validating the complete Maestro flow inventory. Package
+3A's implementation checks pass on workspace PR 40 and app PR 210; comparative
+runner-time improvement remains unmeasured. Package 3B's workflow changes are
+also in PRs 40/210/240. Backend PR 240's original scope checkout timed out under
+the two-minute job limit. Its corrected run completed scope in 14 seconds; the
+selected offline and database jobs and `Merge ready` aggregate now pass; PR 240
+is clean and mergeable. Package 1 has one passing targeted native capture;
+Package 2's original Home/Places wrong-state replay remains unverified.
+Workspace PR 39 is rebased onto the landed PR 38 base and its post-rebase local
+preflight passed; hosted checks will rerun after the branch update. The PR 39
+app and backend companion branches have passed hosted checks. The current main-base
+tuple is workspace `bc69d6d03eeb069eb8705953463b4ddc8a808e6d`, backend
+`bd1a683b8656c3f4091e16abb64f57897fa7fc42`, and app
+`e7bdc660501eaa19234e6b45bda033658edaa2d4`; see section 9 for tested child
+identities.
 
 | Order | Work | Status and dependency | First beneficiaries |
 | --- | --- | --- | --- |
 | 0 | Use the landed baseline and confirm tooling ownership | Complete on commit `cef7ac55`; isolated runtime ownership is recorded below | All lanes |
-| 1 | Package 3C: workspace flow validation and early prerequisite checks | Published in workspace PR 38; local checks and three hosted runs pass. At 09:15 UTC, the PR was open and mergeable; `origin/main` was `4febe0d`. Hosted critical paths ranged 5m46s–7m38s versus 23m18s; summed job runtimes ranged 25m28s–31m26s versus 23m18s (+9.3%–34.9%). | All integrations |
-| 2 | Package 3A: deterministic and faster app tests with the same checks | Queued until Package 3C lands; diagnose observed intermittent failures before expanding concurrency | Every lane changing the app |
-| 3 | Package 3B: one execution owner per CI guarantee | Queued after mapping current required checks and their callers; deliver independently after 3A | All lanes |
-| 4 | Package 1: choose the right evidence and make targeted native QA reliable | Implementation published in app PR 209 and workspace PR 39; the app selector accepts a full flow ID or canonical slug only, and readiness failures now inspect Maestro's failed-command hierarchy for explicit causes. Twenty focused tests and the broader polish QA suite pass. Aligning Expo's advertised host allowed Metro to bundle the app; capture then exposed a Worklets JavaScript/native mismatch (`0.7.4` vs `0.11.3`). Maestro's hierarchy omits that message, so this run remains an unverified native capture with 0/1 product images. | Orchestration and Strategy |
-| 5 | Package 2: proportionate review and shorter task context | Targeted review and context-routing changes are published in PRs 39/209/239. The wrong-state replay remains unverified; native-review adoption needs Package 1. | All lanes, especially mobile work |
+| 1 | Package 3C: workspace flow validation and early prerequisite checks | Merged as `bc69d6d` (PR 38); three hosted runs validated all 408 flows. Critical paths ranged 5m46s–7m38s versus 23m18s, while summed runner time rose 9.3%–34.9%. | All integrations |
+| 2 | Package 3A: deterministic and faster app tests with the same checks | Hosted checks pass on workspace PR 40 and app PR 210; the 1,289-suite app run passed. Comparable hosted runner-time evidence remains open. | Every lane changing the app |
+| 3 | Package 3B: one execution owner per CI guarantee | Implemented in PRs 40/210/240. All backend hosted checks now pass on PR 240, including the 14s scope job, selected tests, database and aggregate. The local candidate preflight passed in 287.010s; this is not a hosted speed comparison. | All lanes |
+| 4 | Package 1: choose the right evidence and make targeted native QA reliable | App PR 209 and workspace PR 39 carry exact-flow selection, setup diagnostics and retry handling. The documented setup produced two reviewed images and passed `polish/home-root-returned` 1/1 on the assigned iPhone SE. This is one visual journey, not a persistence check or full surface matrix. PR 39's post-rebase local preflight passed; hosted checks will rerun after publication. | Orchestration and Strategy |
+| 5 | Package 2: proportionate review and shorter task context | Targeted review/context changes are in PRs 39/209/239. The original Home/Places wrong-state replay remains unverified; the passing Home return capture does not establish that replay. | All lanes, especially mobile work |
 | 6 | Package 6: retire completed working documentation | Queued; owner guidance is now established, but no archive migration has started | All lanes |
 | Conditional | Package 4: native build reuse and other measured setup optimizations | Only if meaningful build/setup cost remains | Mobile and build owners |
 | Ongoing | Package 5: product-outcome acceptance | Stays with the three product lanes; tooling work must preserve it | Product users |
 
-**October 1 implementation receipt (local checks at 08:54 UTC; hosted evidence through 09:15 UTC).**
+**Historical October 1 implementation receipt (local checks at 08:54 UTC; hosted evidence through 09:15 UTC, before PR 38 merged).**
 The coordinated `make verify-changed` passed on workspace `632c8ff`, backend
 `2c115ac`, and app `4c5caa9`, against bases `4febe0d`, `bd1a683`, and `e7bdc66`.
 The app suite passed (1,289 suites, 9,178 tests, one snapshot); lint reported 167
@@ -488,8 +629,8 @@ also passed: reliability took 7m31s, syntax shards took 4m58s, 5m32s, 6m50s and
 6m28s, and the aggregate took 7s. Its critical path was about 7m38s and summed
 job runtime 31m26s, or 67.2% less critical-path time and 34.9% more runner time
 than the serial baseline. All three runs validate the full flow inventory; the
-spread shows material hosted variability. Package 3A remains gated on Package
-3C landing.
+spread shows material hosted variability. Package 3C has since landed as
+`bc69d6d`; Package 3A's PR #40 and #210 hosted checks now pass.
 
 Four app/backend instruction documents were shortened and the workspace
 cross-repository instructions retained as the single shared owner. Across the
@@ -519,16 +660,18 @@ and marketing version match, but its native module is stale. A rebuild was not
 available because `RNMAPBOX_MAPS_DOWNLOAD_TOKEN` is unset and no existing
 installable app bundle was found. Maestro's failure hierarchy does not expose
 the Worklets message; the runner therefore still reports generic app-readiness
-for that frame and allows its one bounded retry. The capture remains
-unverified, with 0/1 product images. The new failure-frame reader does classify
-the earlier explicit Metro URL as infrastructure and retains the exact URL;
-unit tests also cover Worklets diagnosis when the message is present in the
-failure diagnostics. No claim of live capture success is made.
+for that historical frame and allows its one bounded retry. That attempt
+remains a recorded 0/1 diagnostic run, not the current capture verdict. The new
+failure-frame reader does classify the earlier explicit Metro URL as
+infrastructure and retains the exact URL; unit tests also cover Worklets
+diagnosis when the message is present in failure diagnostics.
 A LAN-bound Expo start was rejected by automatic approval review because
 local-network devices could reach the development server and source/config; no
 workaround was attempted. The later selector and classifier checks were
-non-native; they did not repeat capture. Native acceptance remains unverified
-until a safe simulator-reachable path yields a warmed capture.
+non-native; they did not repeat capture. A later localhost-only run with the
+documented flags passed the selected Home return-state capture; see the current
+execution receipt above. Package 2's separate Home/Places wrong-state replay
+remains unverified.
 
 An offline iOS JavaScript export with internal/mock flags completed in 25.4s,
 bundling 5,443 modules, 503 assets and a 23 MB Hermes bundle. This proves JS
@@ -641,7 +784,8 @@ selection flags explicitly; reject unknown flags rather than silently widening
 the run. Make preflight identify simulator, permission, Metro and native-version
 failures before capturing. Use one shared retry budget across wrapper and runner:
 after a repeated identical infrastructure failure, retain diagnostics and repair
-that cause before another attempt. The result remains blocked/unverified.
+that cause before another attempt. Any unresolved repeated infrastructure
+failure remains blocked/unverified rather than receiving a product pass.
 
 **Existing targets:** app [Task Intake](../../travel-app/docs/Task%20Intake.md)
 and [surface index](../../travel-app/docs/surfaces/README.md), plus
@@ -902,6 +1046,45 @@ Start by mapping these cases to the existing
 [authority evals](../../travel-agent/eval/consequence_authority/), plus existing
 journey and native fixtures. Add only missing cases. Keep deterministic fixture
 rendering distinct from live-model quality and real-backend persistence.
+
+The first mapping confirms that these tools measure different layers:
+
+| Product outcome | Current evidence owner | What the current evidence establishes and what remains open |
+|---|---|---|
+| Preserve and reopen an exact original | App [Canonical Artifact Reader](../../travel-app/docs/surfaces/canonical-artifact-reader/contract.md), especially J11.B06 and registered source-open flows | The committed September 30 carried verdict records source open/return and largest-text assertions passing on fixture data. Native photo gestures, VoiceOver activation, and live owner-source readback are separate evidence. |
+| Keep a useful collection and find it again | Workspace [Journey 11](../journeys/11-atlas-candidate-to-memory-control.md), especially J11.B03/J11.B05; backend P04 | J11 names keep/shelf/return and hide/restore paths. The current product-proof status matrix still shows no promoted P04 contract, database, or AI-eval receipts, so branch descriptions and test anchors do not establish current product-proof completion. |
+| Share to the intended people without leaking private context | Backend consequence-authority corpus and multiplayer snapshots; P01–P04/P06 privacy tasks | The authority harness covers 80 cases and 21 state snapshots; the product-proof grader checks forbidden shared text. Offline tests validate those harnesses, not live model decisions or recipient experience. P05 thin-participant handoff remains explicitly dark. |
+| Correct an interpretation while retaining its source | Backend P03 correction task; Journey J11.B04/J27; app reader correction contract | P03-03 now requires a named photo source plus equal before/after revisions; synthetic grader tests fail closed on missing or changed values. This does not establish owner-backed revision readback: the current `trip_photos` row exposes `photo_record` and occurrence evidence exposes `source_ref`, but neither defines a content revision. No live adapter or promoted receipt exists. J27 remains the source-preservation journey owner. |
+| Give useful research with sources and honest uncertainty | Backend P02 provenance/freshness tasks, P04 uncertainty task, five [artifact-quality fixtures](../../travel-agent/eval/artifact_quality/), and workspace P08 contract | P02 is spatial/operational grounding, not a general cited-research proof. P08 specifies sourced interpretation, unknowns, privacy, and human outcome but remains dark; do not report it as shipped acceptance or activate it from this QA lane. |
+
+The original October 1 offline backend harness run passed on Python 3.13.0 and
+backend revision `cbe7ff908`: `PYTHONDONTWRITEBYTECODE=1 ./.venv/bin/python
+-m pytest -p no:cacheprovider tests/eval/test_product_proof_eval.py
+tests/eval/test_consequence_authority.py tests/atlas/test_artifact_quality_eval.py
+-q` → **36 passed**. These tests exercise graders, schemas, fixtures, and mock
+composition only; they do not execute an agent, call a model, prove persistence,
+or promote product-proof receipts. Its first invocation exited with a pytest-cache
+write error, so only the cache-disabled rerun is counted as passed. After the P03
+grader change, the same command passed **38 tests** on backend revision
+`681c518c8` (parent `cbe7ff908`); this is the current focused harness result.
+
+`make journey-registry-check` passed structurally (28 journeys, 82 branches, 8
+proof definitions, 4 governed runners); `make journey-evidence-report` reported
+no journey evidence receipts. Neither check certifies product behavior. No
+`TEST_DATABASE_URL` is configured and Docker access is unavailable in this
+lane, so database and live-source evidence remain unrun.
+
+The product-proof task bank contains 24 cases across P01–P04 and P06. P05 and
+P08 are dark in the canonical proof spine; keep them visible as future gaps and
+do not add tasks that imply their surfaces are available. The P03 task now
+expresses the unchanged-revision invariant, but its adapter and source-owner
+boundary remain undefined: `trip_photos` has no explicit content revision, and
+the grader's synthetic records do not bind revisions to owner readback. The
+other actionable gap is to reconcile J11 branch claims with the currently empty
+promoted P-level receipt matrix. Package 5 remains **mapping in progress** until
+active owners establish the real source revision and readback, decide which
+missing checks belong in existing proofs, and record revision-bound product
+evidence.
 
 **Acceptance:** a model/prompt change can be compared with the previous version
 for usefulness, grounding, latency and cost while hard authority checks remain
@@ -1262,12 +1445,13 @@ repair batch's inexpensive checks before publishing another candidate. This is
 engineering cadence, not a narrower product vision or permission to split
 cross-repository invariants.
 
-Section 5 remains the only execution queue. Package 3C is implemented and
-published; confirm it lands before starting its dependent Package 3A. Package 1
-and the documentation portion of Package 2 have advanced independently, while
-their stated native acceptance remains open. Native QA retains its separate
-product-quality purpose. No new dashboard, parser, framework, standing agent
-fleet or broad test-deletion project is required.
+Section 5 remains the only execution queue. Package 3C is merged, Package 3A's
+hosted checks pass, and Package 3B's hosted checks pass on PRs 40, 210 and 240.
+Package 1 has one passing targeted native capture; its broader surface coverage
+and Package 2's Home/Places wrong-state replay remain open. The rebased workspace
+PR 39 has passed its local preflight and needs its hosted rerun. Native QA
+retains its separate product-quality purpose. No new dashboard, parser,
+framework, standing agent fleet or broad test-deletion project is required.
 
 ### Reproducing the integration measurements
 
