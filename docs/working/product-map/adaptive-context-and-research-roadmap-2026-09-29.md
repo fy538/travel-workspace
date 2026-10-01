@@ -70,16 +70,18 @@ contracts through a dark-by-default, authenticated producer route and exact
 owner readback. One reserved, single-dispatch synthesis is allowed only when
 the feature gate and commercial allocation both admit it; the path does not
 perform public lookup, activate a provider, or have a reviewed native consumer.
-The server now prefers up to two exact `text/plain` dependencies from other
-currently retained submissions by the same viewer when they carry the same
-explicit normalized user note; it then falls back to bounded same-packet
-siblings ordered by source position. The archive check reuses Life's existing
-metadata-only owner read, limited to its first 100 recent descriptors. A shared
-note or packet membership is only a candidate cue—not semantic or interest-aware
-relevance—and a truncated empty scan remains unavailable rather than
-authoritative silence. Candidate selection reads no source bodies; Intake
-revalidates every exact dependency before model use. This is a lexical retrieval
-baseline, not semantic/archive-wide retrieval or effortless product acceptance.
+The server now prioritizes up to two exact `text/plain` dependencies explicitly
+associated with the selected source's currently resolved, owner-visible subject,
+then same-note sources from Life's first 100 recent descriptors, then bounded
+same-packet siblings ordered by source position. Subject, note and packet
+membership are candidate cues—not semantic, occurrence or interest-aware
+relevance. Legacy/noncanonical subject pointers can yield false negatives, and
+a truncated empty scan remains unavailable rather than authoritative silence.
+Candidate selection reads no source bodies; Intake revalidates every exact
+dependency before model use. The versioned synthetic fixture below compares
+candidate retrieval against the exact-note/packet baseline; it does not establish
+final selection, supported-addition quality or user value. This is not
+semantic/archive-wide retrieval or product acceptance.
 The current Home/Places request is not an artifact request: do not adapt it as
 one.
 Use existing Source identity while Strategy owns broader thing/component
@@ -98,16 +100,18 @@ fixtures. Strategy owns the focused-reader/data facade, exact kept editions and
 Life; Orchestration owns Home/Places receiving and practical owner adapters.
 R6's native acceptance requirements below remain whole-experience requirements,
 not permission to edit those screens in parallel. Inspect their landed adapters
-and attach evidence; the producer-owned connection exists, but automatic
-candidate selection, comparative usefulness and native consumer adoption
-remain open. Do not declare end-to-end delivery complete.
+and attach evidence; the producer-owned connection exists, but relevance-ranked
+selection, comparative usefulness and native consumer adoption remain open. Do
+not declare end-to-end delivery complete.
 
 **Dependencies and useful fallback:** begin with current source identity,
 selected-original owner reads, evidence fidelity and bounded public-request
-mapping. The next R2 increment must find eligible related evidence through
-existing owner/retrieval seams rather than asking the person to nominate the
+mapping. R2 now finds bounded eligible candidates through existing explicit
+subject, note and packet seams rather than asking the person to nominate the
 connection; if no eligible support is found, the correct result is original-only
-or a content-free no-addition. New component/collection modes consume Strategy
+or a content-free no-addition. The next R2 gate is separate evidence for
+candidate recall, final selection/support, and matched direct-source versus
+research-assisted usefulness. New component/collection modes consume Strategy
 P0/P1; exact retained editions consume P4; unsupported modes remain disabled.
 A missing native reader does not block backend work, and mocked receiving does
 not certify consumer adoption.
@@ -708,7 +712,7 @@ is in section 1. The first connected assignment remains active:
 
 | Area | Landed capability to reuse | Remaining connection or evidence |
 | --- | --- | --- |
-| Selected evidence | Owner/revision-bound original reads and mobile callers; bounded UTF-8 text-span selection; exact in-memory hydration; a dark authenticated producer and private exact-result GET; cross-submission exact-user-note candidates from the existing bounded Life metadata owner plus same-packet fallback | Semantic retrieval/ranking, archive coverage beyond the first 100 descriptors, general component or multimodal retrieval, and relevance evidence remain open; neither a shared note nor co-submission proves relevance |
+| Selected evidence | Owner/revision-bound original reads and mobile callers; bounded UTF-8 text-span selection; exact in-memory hydration; a dark authenticated producer and private exact-result GET; bounded explicit-subject, exact-user-note and same-packet candidates; versioned retrieval-only known-answer fixture | Semantic retrieval/ranking, archive coverage beyond the first 100 descriptors, general component or multimodal retrieval, final-selection evidence and human usefulness remain open; none of the candidate cues proves relevance |
 | Public acquisition | Shared typed single-attempt lookup; answer-only routing without dossier writes; source kind, dates, quotes and truncation metadata | Construct public requests from selected material under an actual disclosure boundary; select a substantive addition and verify claim support beyond quote presence |
 | Runtime | Existing Source workflow/publication controls; content-free demand and tool/SDK-attempt telemetry; selected-source producer has one real reservation/fence and one no-retry/no-failover model attempt | Real producer-to-ledger database acceptance, settlement/recovery evidence and any authorized live-provider run; telemetry and voice units are not research spend enforcement |
 | Receiving dependencies | Merged family readers, exact-source inspection, correction/Undo and return behavior; Home/Places receiving improvements; authenticated result API exists but is dark | Existing preparation requests remain root-bound; no native artifact consumer has adopted the dark result API |
@@ -2676,3 +2680,52 @@ distractors, cross-artifact text, and complete-empty/insufficient-support.
 Use it to distinguish candidate recall from producer selection and supported
 addition quality; do not report synthetic fixture scores as consumer evidence.
 R0–R7 remain open.
+
+#### R2 implementation receipt — versioned candidate relevance fixture (October 1)
+
+Added tests/research_agent/fixtures/selected_source_relevance_v1.json and an
+offline replay test. Six constructed cases cover an explicit-subject positive
+competing with note/packet distractors, same-title repeated captures with
+different source IDs and identical hashes, cross-artifact text under the same
+explicit subject, an exact-note false association, a complete empty scan, and
+an incomplete empty owner-linked scan. The replay runs the current candidate
+selector twice against identical bounded metadata: with the owner-linked
+subject relation and with that relation disabled to represent the exact-note /
+same-packet cue baseline.
+
+Fixture-only counts: the baseline returned 0 of 3 annotated support sources,
+alongside 3 annotated distractors in 3 candidates; the owner-linked variant
+returned all 3 annotated supports, alongside 3 distractors in 6 candidates.
+The baseline considered all six cases complete; the owner-linked variant
+preserved the incomplete-empty distinction (5 complete, 1 incomplete). These
+are authored synthetic case labels and fixed-budget retrieval counts, not
+representative-distribution estimates, model-selection results, semantic
+false-association rates, supported-addition quality, or consumer evidence.
+No source body is stored in the fixture and no provider is called. In
+particular, candidate recall is not final selection; whether a produced
+addition is supported, additional, relevant, or worthwhile remains untested by
+this fixture.
+
+Validation:
+
+- Focused offline retrieval and producer tests: **26 passed**.
+- Ruff check and format checks passed for the new replay test; fixture JSON
+  parsed; git diff --check passed.
+- Backend make ci-static passed with Ruff, architecture gates and mypy across
+  **1,900 source files**. The managed checkout required Ruff and mypy caches to
+  be redirected to /private/tmp.
+- make merge-check BASE_REF=main passed: **22,156 passed, 14 skipped, 1
+  xfailed, 52 xpassed**; one expected local-Qdrant payload-index warning. The
+  run used PYTEST_ADDOPTS=-p no:cacheprovider because this managed checkout
+  disallows writing pytest cache files. Skipped/database-gated cases are not
+  disposable-Postgres evidence. No contract, schema, mobile consumer, provider
+  activation, or product surface changed.
+
+The next R2 implementation/acceptance work is the roadmap's separate
+**select-and-publish** gate: compare matched direct-source and
+research-assisted treatments, then review candidate relevance, actual
+cross-source support, additional substance and human usefulness independently.
+Existing structural producer tests do not satisfy that gate. Keep the research
+route dark until its supported-result and applicable cost/authorization
+evidence is adequate; do not add semantic/archive-wide retrieval based only on
+this constructed fixture. R0–R7 remain open.
