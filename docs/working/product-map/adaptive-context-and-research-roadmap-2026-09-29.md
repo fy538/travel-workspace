@@ -723,7 +723,7 @@ is in section 1. The first connected assignment remains active:
 | Public acquisition | Shared typed single-attempt lookup; answer-only routing without dossier writes; source kind, dates, quotes and truncation metadata | Construct public requests from selected material under an actual disclosure boundary; select a substantive addition and verify claim support beyond quote presence |
 | Runtime | Existing Source workflow/publication controls; content-free demand and tool/SDK-attempt telemetry; selected-source producer has one real reservation/fence and one no-retry/no-failover model attempt; provider-free Postgres now proves its test-policy reserve/settle/reopen lifecycle | Production capability boundary and allocation remain unapproved; public research callers still share a shadow-only capability; live-provider, shared chargeable-attempt coverage, concurrency, fairness and recovery behavior remain open |
 | Receiving dependencies | Merged family readers, exact-source inspection, correction/Undo and return behavior; Home/Places receiving improvements; authenticated result API exists but is dark | Existing preparation requests remain root-bound; no native artifact consumer has adopted the dark result API |
-| Evaluation | Focused/offline checks, producer route tests, disposable-Postgres owner/readback, ledger lifecycle and selected-source/dependency revocation publication races, R2 candidate fixture, exact-excerpt admission tests, backend static/offline gates, app regression and workspace docs checks | Matched usefulness comparisons, semantic/archive-wide retrieval quality, authorized live-provider evidence and real consumer acceptance |
+| Evaluation | Focused/offline checks, producer route tests, disposable-Postgres owner/readback, ledger lifecycle, source-revocation publication/readback races, late-candidate reselection after an empty result, R2 candidate fixture, exact-excerpt admission tests, backend static/offline gates, app regression and workspace docs checks | Matched usefulness comparisons, semantic/archive-wide retrieval quality, authorized live-provider evidence and real consumer acceptance |
 
 R0's scope/owner admission, R1's disclosure and acquisition acceptance, R2's
 supported selection beyond exact-note and same-packet candidate cues, and R6/R7's connected evidence are unfinished. Minimum
@@ -1774,29 +1774,35 @@ Validation:
 
 R0–R7 remain open.
 
-#### R4 follow-up receipt — revocation during generation and exact readback (October 1)
+#### R4 follow-up receipt — late arrival, revocation and exact readback (October 1)
 
-Extended the provider-free disposable-Postgres acceptance across generation and
-readback. If either the selected original or a supporting dependency is revoked
-after the model returns, the producer rejects publication after the result
+Extended the provider-free disposable-Postgres acceptance across late arrival,
+generation and readback. A complete empty selection first produces a
+content-free no-addition without a model call or reservation. When a separately
+captured source with the exact user note arrives, the same explicit request
+reselects it, gets a different work identity, and can produce a supported
+addition under the test-only reservation; both exact results reopen without a
+second model call. If either the selected original or a supporting dependency
+is revoked after the model returns, publication is rejected after the result
 owner revalidates current Intake authority. Because a response was received,
 the test-policy reservation is committed; no result row is written. If a
 previously published result's selected original is later revoked, the
 authenticated exact GET returns a private no-store 404 and erases the stale
-row without invoking the model again. This proves these selected-source
-revocation paths, not semantic correctness or broader correction, arrival,
-expiry, account-change, cancellation or mounted-consumer behavior.
+row without invoking the model again. This proves these bounded on-demand
+reselection/revocation paths, not semantic usefulness, ambient triggers,
+notifications, late historical uploads, index lag, expiry, account change,
+cancellation or mounted-consumer behavior.
 
-Validation on backend commit `6db6713a5` (including the generation-race test
-from `2c80e35f9`):
+Validation on backend commit `4e259a7bf` (including the revocation tests from
+`2c80e35f9` and `6db6713a5`):
 
 - The isolated lane runtime health check passed; the exact disposable database
   was `vesper_adaptive_context_test_20261001`.
-- The selected-source Postgres acceptance file passed: **8 passed**. It covers
-  both source-revocation races through the real producer, Intake hydration,
-  result owner and commercial ledger, plus exact authenticated readback after
-  revocation; only model dispatch is stubbed under the injected test-only
-  policy.
+- The selected-source Postgres acceptance file passed: **9 passed**. The late
+  arrival case exercises the authenticated API, candidate owner, producer,
+  result owner and real ledger; revocation cases use the real producer and
+  owner revalidation. Model dispatch alone is stubbed under the injected
+  test-only policy.
 - `ruff check` and `ruff format --check` passed for the changed test file.
 - `make ci-static` passed, including Ruff and mypy across **1,900 source files**.
 - `make merge-check BASE_REF=main` passed: **22,158 passed, 14 skipped,
@@ -1806,8 +1812,8 @@ from `2c80e35f9`):
 - Backend commit hooks passed. No production behavior, API/OpenAPI, schema,
   released policy, runtime cohort, provider activation, or app behavior changed.
 
-R4 remains open for its wider correction, late-arrival/selection invalidation,
-expiry, account-change and consumer acceptance set. R0–R7 remain open.
+R4 remains open for wider correction, late historical upload, index lag, expiry,
+account-change and consumer acceptance. R0–R7 remain open.
 
 #### Implementation receipt — privacy-safe research diagnostics (September 30)
 
