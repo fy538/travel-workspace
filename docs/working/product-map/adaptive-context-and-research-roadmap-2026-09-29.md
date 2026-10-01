@@ -1364,20 +1364,26 @@ These are engineering coverage cases, not a narrower product thesis.
    Home/Places `context_ref` accepts only `places_context` and cannot stand in for
    an artifact target. No invented Trip, new Thing owner or durable cross-
    representation Component identity is needed for the exact-original adapter.
-2. **Connect evidence and acquisition.** The dark backend producer now hydrates
+2. **Connect evidence and acquisition.** The dark backend producer hydrates
    an exact retained original/span and up to two exact Intake dependencies
-   through Intake in memory under one combined 20,000-character limit. It first
-   checks the existing same-viewer Life metadata reader's bounded page (up to
-   100 recent descriptors) for other retained `text/plain` originals with the
-   same normalized user-entered note, then fills remaining slots from up to 100
-   retained text siblings in the selected source's verified Intake submission,
-   ordered by source-position proximity. These are explicit lexical/capture
-   cues, not semantic retrieval or relevance evidence. A complete empty scan
-   preserves the content-free no-addition path; an incomplete empty scan returns
-   unavailable. Exact owner, custody, revision and retention are revalidated
-   during Intake hydration. Semantic ranking and archive coverage beyond the
-   bounded page remain R2 work. Honor current intent and use eligible
-   existing evidence where sufficient.
+   through Intake in memory under one combined 20,000-character limit.
+   Candidate order is: up to 100 other retained `text/plain` sources explicitly
+   attached to the selected source's current canonical, owner-visible subject;
+   then exact normalized-note matches from an Intake query filtered by owner,
+   current custody/retention and text eligibility before its 100-row result
+   limit; then siblings from the selected source's verified Intake packet
+   ordered by source position. Note matches are restricted to a conservative
+   UTF-8 byte ceiling derived from the remaining character budget. When byte
+   metadata cannot prove a possible multibyte match fits, the result remains
+   incomplete rather than treating it as absent. More than 100 exact-note
+   matches also keeps the scan incomplete. Candidate relations are lexical or
+   capture cues, not semantic retrieval or relevance evidence; no candidate
+   body is read during discovery. A complete empty scan preserves the
+   content-free no-addition path; an incomplete empty scan returns unavailable.
+   Exact owner, custody, revision and retention are revalidated during Intake
+   hydration. Archive-scale query cost and semantic ranking remain open R2
+   work. Honor current intent and use eligible existing evidence where
+   sufficient.
    Additions must be supported across the selected original and a dependency,
    while treating personal novelty as inapplicable without novelty history.
    Public research is currently rejected by this route. For a missing public
