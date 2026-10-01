@@ -12,7 +12,7 @@ source_of_truth_for:
   - interaction-kernel-lab-v2-1-execution-record
 depends_on:
   - docs/working/claude-design-code-interaction-kernel-lab-v2-1-integrity-fix-handoff-2026-09-01.md
-  - docs/working/claude-design-interaction-kernel-lab-v2-execution-report-2026-08-31.md
+  - docs/archive/2026-09/claude-design-interaction-kernel-lab-v2-execution-report-2026-08-31.md
 ---
 
 # Interaction Kernel Lab V2.1 — Execution Report

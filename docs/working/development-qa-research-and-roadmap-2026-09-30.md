@@ -17,7 +17,9 @@ source_of_truth_for: []
 October 1, following the founder's request to execute this lane's roadmap. The
 implementation queue in [section 5](#5-improvement-roadmap) is the current plan
 for Eng Efficiency. Package 3C landed in `origin/main` as `bc69d6d0` (PR 38);
-Package 3A has a locally verified candidate and awaits its hosted checks.
+Package 3A passed its hosted checks on workspace PR 40 and app PR 210. Package
+3B has a completed required-check overlap map; workflow consolidation is still
+pending review of a safe implementation that preserves every gate.
 Packages 1 and 2 have implementation and task-context changes published in
 [workspace PR 39](https://github.com/fy538/travel-workspace/pull/39),
 [app PR 209](https://github.com/fy538/travel-app/pull/209), and
@@ -430,9 +432,10 @@ order. The research sections explain the evidence, not additional queues.
 `bc69d6d03eeb069eb8705953463b4ddc8a808e6d` (PR 38). Its first three hosted
 runs passed, each showing a much shorter required-job critical path than the
 23m18s serial baseline, with increased summed runner time. Package 3A is
-implemented in the dedicated efficiency lane and has passed the focused,
-repeated, selected-merge and full app-coverage checks described below; its
-hosted checks are the next acceptance boundary. Packages 1 and 2 have
+implemented in the dedicated efficiency lane and has passed focused, repeated,
+selected-merge, full app-coverage and hosted PR checks described below.
+Package 3B's check-owner map is complete, but no workflow behavior has changed.
+Packages 1 and 2 have
 implementation and task-context changes published in
 [workspace PR 39](https://github.com/fy538/travel-workspace/pull/39),
 [app PR 209](https://github.com/fy538/travel-app/pull/209), and
@@ -449,11 +452,11 @@ cross-lane ownership.
 | --- | --- | --- | --- |
 | 0 | Use the landed baseline and confirm tooling ownership | Complete on commit `cef7ac55`; isolated runtime ownership is recorded below | All lanes |
 | 1 | Package 3C: workspace flow validation and early prerequisite checks | Merged as `bc69d6d` (PR 38); three hosted runs passed. Critical paths ranged 5m46s–7m38s versus 23m18s; summed job runtimes ranged 25m28s–31m26s versus 23m18s (+9.3%–34.9%). | All integrations |
-| 2 | Package 3A: deterministic and faster app tests with the same checks | Candidate implemented; focused, repeated Place, selected-merge and full coverage checks pass locally. Publish and require hosted checks before acceptance. Local 4-worker selection was faster on the same 754-test/99-suite inventory; hosted Node 20 and runner-time effects remain unverified. | Every lane changing the app |
-| 3 | Package 3B: one execution owner per CI guarantee | Next after 3A hosted validation; first map required checks and all callers, then consolidate without reducing guarantees | All lanes |
+| 2 | Package 3A: deterministic and faster app tests with the same checks | Hosted checks passed on workspace PR 40 and app PR 210. The app selected-test check passed in 9m36s; local repeated Place, full-coverage, and selected-merge evidence is recorded below. Runner-time improvement over a comparable Node 20 baseline remains unmeasured. | Every lane changing the app |
+| 3 | Package 3B: one execution owner per CI guarantee | Required-check and caller map completed. Exact app/backend overlaps are recorded below; the proposed consolidation was rejected by automatic review over guarantee-preservation risk, so workflows and required check names remain unchanged pending a safe reviewed implementation. | All lanes |
 | 4 | Package 1: choose the right evidence and make targeted native QA reliable | Implementation published in app PR 209 and workspace PR 39; the app selector accepts a full flow ID or canonical slug only, and readiness failures now inspect Maestro's failed-command hierarchy for explicit causes. Twenty focused tests and the broader polish QA suite pass. Aligning Expo's advertised host allowed Metro to bundle the app; capture then exposed a Worklets JavaScript/native mismatch (`0.7.4` vs `0.11.3`). Maestro's hierarchy omits that message, so this run remains an unverified native capture with 0/1 product images. | Orchestration and Strategy |
 | 5 | Package 2: proportionate review and shorter task context | Targeted review and context-routing changes are published in PRs 39/209/239. The wrong-state replay remains unverified; native-review adoption needs Package 1. | All lanes, especially mobile work |
-| 6 | Package 6: retire completed working documentation | Queued; owner guidance is now established, but no archive migration has started | All lanes |
+| 6 | Package 6: retire completed working documentation | One bounded migration completed: the superseded V2 report now lives in the dated archive, its three live references and inventory entry were repaired, and all documentation governance checks passed. | All lanes |
 | Conditional | Package 4: native build reuse and other measured setup optimizations | Only if meaningful build/setup cost remains | Mobile and build owners |
 | Ongoing | Package 5: product-outcome acceptance | Stays with the three product lanes; tooling work must preserve it | Product users |
 
@@ -572,6 +575,53 @@ local-network devices could reach the development server and source/config; no
 workaround was attempted. The later selector and classifier checks were
 non-native; they did not repeat capture. Native acceptance remains unverified
 until a safe simulator-reachable path yields a warmed capture.
+
+**Package 3A hosted receipt (October 1, 14:29 UTC).** Workspace PR
+[40](https://github.com/fy538/travel-workspace/pull/40) passed Merge ready,
+Reliability, `Contract and golden paths`, and all four Maestro syntax shards;
+the required aggregate took 7m08s and the shards took 7m01s, 5m04s, 5m24s, and
+5m42s. App PR [210](https://github.com/fy538/travel-app/pull/210) passed Merge
+ready scope, static, and selected tests, plus the existing required Lint,
+Frontend governance, Security audit, Visual evidence contracts, Type check, API
+types freshness, QA tooling contracts, and Design alignment gate. Its selected
+test job passed in 9m36s. The broad main/nightly Test and Logic QA jobs were
+skipped on the PR by their configured conditions. Workspace Maestro Cloud PR
+smoke was skipped because that service is not configured. This establishes the
+candidate's hosted checks; it is not a comparison of hosted test speed or total
+runner cost.
+
+The final local change-aware preflight also passed on workspace `a04ffaf0`
+(docs staged in the working tree), backend `bd1a683b`, and app `321fb1cb`, with
+explicit bases `bc69d6d0`, `bd1a683b`, and `e7bdc660`. Its selector correctly
+fell back to all app tests because the merge-scope selector itself changed:
+1,289 suites, 9,180 tests and one snapshot passed. App lint reported 167
+existing warnings and no errors; workspace tooling passed 141 tests in 17.83s;
+contract, API, compatibility, living-document link, spine, canon and inventory
+checks passed. The first sandboxed attempt is retained as a failed run: Expo
+could not write its ignored cache, one Jest worker segfaulted (1,288/1,289
+suites passed), and four workspace fixtures could not bind ephemeral localhost
+sockets. The same preflight passed when rerun with those normal local test
+permissions enabled. Full log:
+`/private/tmp/vesper-efficiency-package6-preflight-20261001.log`.
+
+**Package 3B owner map (October 1; audit complete, implementation pending).**
+The required check names remain those in the [CI runbook](../reliability/CI%20Plan.md).
+On app PRs, `Merge ready` static currently calls `verify:fast`, which repeats
+Expo lint and API/schema checks owned by required `Lint`, type checks owned by
+required `Type check`, and the Home surface budget owned by `Frontend
+governance`. Icon integrity and the merge-scope selector test are distinct
+checks. On backend PRs, `Merge ready` static calls `make ci-static`, repeating
+Ruff, import analysis, route-shadowing, and mypy work owned by required `lint`,
+`import-boundaries`, and `typecheck`; structural gates and the world-catalog
+runway are additional guarantees. For database-affecting changes, the selected
+`Merge ready` database job repeats migration lifecycle, schema drift, parity,
+and rollback validation owned by required `test-db-migrate`; applying migrations
+in its isolated database remains necessary for selected runtime tests, and the
+selected DB suite plus itinerary canonical certification are distinct. In the
+workspace, `Merge ready` runs a change-aware workspace preflight while required
+`Contract and golden paths` owns the full cross-repository integration suite;
+the exact overlapping commands and fail-fast/resource tradeoff still need a
+candidate measurement. No workflow or check name changed in this audit.
 
 An offline iOS JavaScript export with internal/mock flags completed in 25.4s,
 bundling 5,443 modules, 503 assets and a 23 MB Hermes bundle. This proves JS
@@ -989,6 +1039,19 @@ historical rationale remains accessible, and link/inventory checks pass. Record
 the removed live navigation/read burden; do not claim faster compilation or
 smaller Git history from moving Markdown files.
 
+**October 1 receipt:** moved the already archived Interaction Kernel Lab V2
+execution report from `docs/working/` to
+[`docs/archive/2026-09/claude-design-interaction-kernel-lab-v2-execution-report-2026-08-31.md`](../archive/2026-09/claude-design-interaction-kernel-lab-v2-execution-report-2026-08-31.md).
+Updated both V2.1 provenance records and the controlled-comparison handoff,
+preserved the full report and archival rationale, and changed its inventory
+disposition to `archive`. Verification passed: 556 living Markdown links, 667
+inventory entries with zero transitional dispositions, all ten spine entries,
+and the canon word budget. This removes one archived report from the living
+working-document set; it does not shrink Git history or establish faster builds.
+The candidate-wide `make verify-changed` preflight and inventory check passed
+after the move; the initial sandbox permission failures and successful rerun
+are recorded in the Package 3A receipt above.
+
 ## 6. How to tell whether this helped
 
 Use [measure_verification.py](../../scripts/measure_verification.py) and existing
@@ -1320,13 +1383,15 @@ repair batch's inexpensive checks before publishing another candidate. This is
 engineering cadence, not a narrower product vision or permission to split
 cross-repository invariants.
 
-Section 5 remains the only execution queue. Package 3C is merged. Package 3A's
-repository preflight passed on the current local candidate; its hosted checks
-are the remaining acceptance boundary. Package 3B follows hosted confirmation
-of 3A. Package 1 and the documentation portion of Package 2 have advanced
-independently, while their stated native acceptance remains open. Native QA
-retains its separate product-quality purpose. No new dashboard, parser,
-framework, standing agent fleet or broad test-deletion project is required.
+Section 5 remains the only execution queue. Package 3C is merged, Package 3A's
+hosted checks passed, and one Package 6 archive migration passed documentation
+governance checks. Package 3B remains the next engineering-efficiency action;
+its owner map is documented, but workflow changes need a safe reviewed diff
+that retains every distinct gate and required status. Package 1 and the
+documentation portion of Package 2 have advanced independently, while their
+stated native acceptance remains open. Native QA retains its separate
+product-quality purpose. No new dashboard, parser, framework, standing agent
+fleet or broad test-deletion project is required.
 
 ### Reproducing the integration measurements
 

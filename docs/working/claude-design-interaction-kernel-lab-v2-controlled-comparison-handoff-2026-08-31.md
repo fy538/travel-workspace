@@ -1234,9 +1234,10 @@ rather than expanding the A2/B2/D2 matrix.
 
 ### Pass 7 — report
 
-Create:
-
-`docs/working/claude-design-interaction-kernel-lab-v2-execution-report-2026-08-31.md`
+The report was created at the time as
+`docs/working/claude-design-interaction-kernel-lab-v2-execution-report-2026-08-31.md`.
+It is now preserved at
+[`docs/archive/2026-09/claude-design-interaction-kernel-lab-v2-execution-report-2026-08-31.md`](../archive/2026-09/claude-design-interaction-kernel-lab-v2-execution-report-2026-08-31.md).
 
 Clearly separate:
 

@@ -573,8 +573,8 @@ overrides:
     disposition: keep_reference
     rationale: Controlled-comparison research handoff for direct, language, and hybrid treatments; it does not settle the interaction model.
 
-  docs/working/claude-design-interaction-kernel-lab-v2-execution-report-2026-08-31.md:
-    disposition: keep_reference
+  docs/archive/2026-09/claude-design-interaction-kernel-lab-v2-execution-report-2026-08-31.md:
+    disposition: archive
     rationale: Superseded V2 execution evidence retained to explain the semantic-integrity failure and the need for the V2.1 correction.
 
   docs/working/form-chat-hybrid-comparative-interaction-research-2026-08-31.md:
