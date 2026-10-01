@@ -1074,6 +1074,19 @@ was no authenticated device readback or visual capture. This closes one
 connected-media social receiving gap, not real-owner photo acceptance, full
 scroll/design parity or D2 completion.
 
+**Place-note photo exact open and Places return — implemented 2026-10-01:**
+app commit `17cc42d03` adds `original_delivery` to the root resource router,
+using the existing exact-resource resolver to open the Relationships-owned
+recipient reader rather than trusting the backend owner path. The Places hook
+registers only the selected original ref and active note unit, carries the
+ephemeral root-return token, and records the open interaction. Route, hook and
+original-reader tests passed **93/93**; app typecheck, test-contract typecheck,
+focused ESLint (**0 errors**), registered scenario validation (**31 IDs**) and
+`git diff --check` passed. Native/authenticated owner readback remains
+**unverified** because this lane's API/Expo services were unavailable; this
+closes the no-op tap path, not photo-byte custody, real-owner acceptance,
+full-scroll parity or D2 completion.
+
 ### Combined landing checkpoint — September 30
 
 The merged integration contains the Home/capture lane plus these completed
