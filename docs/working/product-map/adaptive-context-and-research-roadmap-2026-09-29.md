@@ -3626,6 +3626,46 @@ keyed by query, and this caller has no shared durable reservation or usage
 settlement. Its external disclosure and R3 workload-accounting boundaries
 remain open; R0–R7 remain open.
 
+#### R1 implementation receipt — redact entity-mention planning logs (October 1)
+
+Backend commit `a1aacde59` removes raw query text from the entity-mention
+planning INFO log, complementing `f9223875f`'s failure-path redaction. The
+destination-grounding and entity-mention pipelines now omit both query content
+and provider exception details from the covered planning/failure logs. The
+Research Agent FEATURE contract describes this exact scope. User-visible
+fallbacks, provider arguments and dispatch are unchanged; this is log
+minimization, not external-disclosure authorization.
+
+Validation on the adaptive-context backend lane (Python 3.13.0):
+
+- `PYTEST_ADDOPTS='-p no:cacheprovider' .venv/bin/python3.13 -m pytest
+  tests/research_agent/test_seed_destination.py
+  tests/research_agent/test_extract_mentions.py -q`: **41 passed**.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static`: passed;
+  Ruff, formatting, architecture/structural checks, catalog runway and mypy
+  across **1,900** source files passed. Commit hooks passed on the same
+  temporary cache configuration.
+- The broad offline `make merge-check BASE_REF=main` remained non-green with
+  **22,196 passed, 14 skipped, 53 xpassed, and one setup error** in the
+  unchanged `tests/core/db/test_itinerary_v2_schema.py::test_operation_root_contains_normalized_contract_and_attribution`
+  (`RuntimeError: dictionary changed size during iteration`). That exact case
+  passed alone (**1 passed**); this isolated rerun does not erase the composite
+  failure.
+- Coordinated `make verify-changed` also did not complete cleanly: app ESLint
+  could not write its `.expo/cache` file in the restricted environment, and
+  workspace loopback-socket tests were denied permission. The workspace runtime
+  suite passed when rerun in its intended local-network environment (**11
+  passed**). The original backend failure in this combined run was this change's
+  regression test catching the planning-log leak; after the fix, the focused
+  suite above passes. App test and API-contract results are not substituted for
+  the failed combined preflight.
+
+No API/schema, policy, feature flag, app behavior, deployment, publication,
+database or live-provider call changed. This closes a narrow diagnostic leak,
+not R1's caller-independent disclosure boundary or R3 accounting; R0–R7 remain
+open.
+
 #### R1 implementation receipt — redact batch search failure diagnostics (October 1)
 
 Backend commit `f9223875f` removes raw query text and exception details from
