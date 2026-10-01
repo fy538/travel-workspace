@@ -3343,3 +3343,42 @@ provider billing, cross-user fairness, overload behavior, operational
 reconciliation, or released-policy readiness. No live provider/model call,
 policy allocation, API/schema, feature flag, app, deployment, or publication
 changed. R3 and R0–R7 remain open.
+
+#### R1 implementation receipt — structured live-event request at shared acquisition boundary (October 1)
+
+Backend commit `cbcf131df` advances `PublicResearchRequest` to v2. The shared
+acquisition contract now accepts live-event category, canonical public
+location, and ordered date bounds as separate typed fields; it rejects a
+free-form event query, categories outside the existing six-category
+projection, reversed dates, and windows longer than the existing 31-day limit.
+It renders the same provider phrase as before, and the Concierge's approved
+domain filter and event-page/schema verifier are unchanged. Event fields are
+rejected for other research purposes. Fact lookup and candidate discovery keep
+their existing public-query behavior.
+
+This closes a structural gap between the already-typed Concierge request and
+the shared one-attempt acquisition seam; it does not authorize any new terms
+or caller. The exact canonical-place/category/date terms already used by the
+live-event path are unchanged. The separate Lookup Agent projection remains
+unapproved, and this work adds no provider or model dispatch, budget allocation,
+commercial reservation, feature flag, deployment, app consumer, or production
+activation.
+
+Validation on the adaptive-context backend branch at `cbcf131df` (Python 3.13):
+
+- Focused public-request/acquisition, Concierge live-event, selected-source
+  work identity, answer-only and bounded-result tests: **122 passed**.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static`: passed;
+  Ruff, formatting, architectural and structural gates passed, with mypy
+  reporting no issues across **1,900** source files.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main`:
+  **22,185 passed, 14 skipped, 1 xfailed, 52 xpassed**, one expected local
+  Qdrant payload-index warning. The offline preflight does not establish
+  database-gated acceptance; the skipped cases remain unverified here.
+- Backend commit hooks passed, including Ruff, import/architecture ratchets and
+  secret detection. No OpenAPI/generated-type change was produced.
+
+R1 is not complete: the general caller-independent disclosure boundary,
+Lookup Agent admission, complete chargeable-attempt accounting, supported
+claim verification, and live-provider evidence remain open. R0–R7 remain open.
