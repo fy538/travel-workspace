@@ -70,6 +70,13 @@ contracts through a dark-by-default, authenticated producer route and exact
 owner readback. One reserved, single-dispatch synthesis is allowed only when
 the feature gate and commercial allocation both admit it; the path does not
 perform public lookup, activate a provider, or have a reviewed native consumer.
+Provider-free PostgreSQL acceptance now exercises this producer through the
+real gateway and ledger under an injected test-only allocation. This does not
+make the production route allocatable: `ai.research.live` remains outside the
+environment enforcement-ready set and shipped policies grant it no units;
+public web-search paths sharing that capability still only emit shadow demand
+observations. Keep R3 open and do not enable the shared capability globally
+until its capability boundary and chargeable-call coverage are coherent.
 The server now prioritizes up to two exact `text/plain` dependencies explicitly
 associated with the selected source's currently resolved, owner-visible subject,
 then same-note sources from Life's first 100 recent descriptors, then bounded
@@ -712,11 +719,11 @@ is in section 1. The first connected assignment remains active:
 
 | Area | Landed capability to reuse | Remaining connection or evidence |
 | --- | --- | --- |
-| Selected evidence | Owner/revision-bound original reads and mobile callers; bounded UTF-8 text-span selection; exact in-memory hydration; a dark authenticated producer and private exact-result GET; bounded explicit-subject, exact-user-note and same-packet candidates; versioned retrieval-only known-answer fixture | Semantic retrieval/ranking, archive coverage beyond the first 100 descriptors, general component or multimodal retrieval, final-selection evidence and human usefulness remain open; none of the candidate cues proves relevance |
+| Selected evidence | Owner/revision-bound original reads and mobile callers; bounded UTF-8 text-span selection; exact in-memory hydration; a dark authenticated producer and private exact-result GET; bounded explicit-subject, exact-user-note and same-packet candidates; versioned retrieval-only known-answer fixture; exact quoted excerpts are checked against hydrated text before an addition is admitted | Semantic retrieval/ranking, archive coverage beyond the first 100 descriptors, general component or multimodal retrieval, semantic entailment, final-selection evidence and human usefulness remain open; neither candidate cues nor quote presence proves relevance |
 | Public acquisition | Shared typed single-attempt lookup; answer-only routing without dossier writes; source kind, dates, quotes and truncation metadata | Construct public requests from selected material under an actual disclosure boundary; select a substantive addition and verify claim support beyond quote presence |
-| Runtime | Existing Source workflow/publication controls; content-free demand and tool/SDK-attempt telemetry; selected-source producer has one real reservation/fence and one no-retry/no-failover model attempt | Real producer-to-ledger database acceptance, settlement/recovery evidence and any authorized live-provider run; telemetry and voice units are not research spend enforcement |
+| Runtime | Existing Source workflow/publication controls; content-free demand and tool/SDK-attempt telemetry; selected-source producer has one real reservation/fence and one no-retry/no-failover model attempt; provider-free Postgres now proves its test-policy reserve/settle/reopen lifecycle | Production capability boundary and allocation remain unapproved; public research callers still share a shadow-only capability; live-provider, shared chargeable-attempt coverage, concurrency, fairness and recovery behavior remain open |
 | Receiving dependencies | Merged family readers, exact-source inspection, correction/Undo and return behavior; Home/Places receiving improvements; authenticated result API exists but is dark | Existing preparation requests remain root-bound; no native artifact consumer has adopted the dark result API |
-| Evaluation | Focused/offline checks, producer route tests, 13 earlier disposable-Postgres lifecycle/API tests and 2 new R2 candidate/readback tests; current change-aware backend preflight | Matched usefulness comparisons, semantic/archive-wide retrieval quality, authorized live-provider evidence and real consumer acceptance |
+| Evaluation | Focused/offline checks, producer route tests, disposable-Postgres owner/readback and ledger lifecycle, R2 candidate fixture, exact-excerpt admission tests, backend static/offline gates, app regression and workspace docs checks | Matched usefulness comparisons, semantic/archive-wide retrieval quality, authorized live-provider evidence and real consumer acceptance |
 
 R0's scope/owner admission, R1's disclosure and acquisition acceptance, R2's
 supported selection beyond exact-note and same-packet candidate cues, and R6/R7's connected evidence are unfinished. Minimum
@@ -1389,14 +1396,23 @@ These are engineering coverage cases, not a narrower product thesis.
    dispatch and retain unknown outcomes after ambiguous completion. Apply this
    to the actual research/synthesis caller, not merely the voice meter or a
    telemetry field. Record the finite allocation and authorization before live
-   enablement. Provider-free implementation can proceed; no new paid path is
-   enabled by this plan. Broader fairness, cross-user coalescing and predictive
+   enablement. Provider-free disposable-Postgres acceptance now proves reserve,
+   dispatch, settlement, exact-result reopen and held ambiguous failure for the
+   selected-source producer using an injected one-unit test policy. This proves
+   the code path, not deployable policy: the production parser rejects
+   `ai.research.live` as not enforcement-ready and released policies provide no
+   allocation for this producer. Public web lookup still only observes that
+   shared capability, so R3 remains open pending a safe shared capability
+   boundary and a reviewed finite allocation/authorization. No provider or paid
+   path is enabled. Broader fairness, cross-user coalescing and predictive
    preparation stay conditional on measured need.
 5. **Deliver readback and comparative evidence.** The exact owner-bound result
    is now written and readable through the authenticated dark API, bound to the
-   selected source/span, dependency revisions and originating consumer. Ordinary read,
-   polling and reopen do not submit work. Exercise the callable owner path and
-   real-database lifecycle separately from fixtures; compare direct-source
+   selected source/span, dependency revisions and originating consumer. Ordinary
+   read, polling and reopen do not submit work. Producer execution and exact
+   result reopen are now exercised against real Postgres with provider dispatch
+   stubbed and test-only commercial policy; the route-level test still mocks
+   settlement and no native consumer is adopted. Compare direct-source
    treatment with research-assisted treatment on matched inputs. Publish the
    additive interface for the native owners to adopt and record their remaining
    acceptance explicitly.
@@ -2729,3 +2745,102 @@ Existing structural producer tests do not satisfy that gate. Keep the research
 route dark until its supported-result and applicable cost/authorization
 evidence is adequate; do not add semantic/archive-wide retrieval based only on
 this constructed fixture. R0–R7 remain open.
+
+#### R3 implementation receipt — selected-source gateway and ledger acceptance (October 1)
+
+Added two provider-free, disposable-Postgres acceptance tests in
+`travel-agent/tests/api/test_selected_source_research_postgres.py`. They call
+the real selected-source producer, real Intake source hydration, commercial
+gateway and usage-ledger functions while replacing only the structured model
+dispatch with a local stub. The tests inject a one-unit/day `ai.research.live`
+policy and actor cohort in process; they do not change `ENFORCEMENT_READY`, a
+released benefit set, an environment cohort or any live model/provider setting.
+
+- Successful execution records real `reserve → dispatch → commit` postings,
+  leaves the one-unit bucket conserved at `(allocated, available, held,
+  consumed) = (1, 0, 0, 1)`, stores and reopens the exact owner-bound result,
+  and proves reopening causes no second reservation or model invocation.
+- A simulated ambiguous post-dispatch timeout leaves the reservation
+  `dispatched` with its unit held and unconsumed. Repeating the same work
+  identity becomes `in_progress`; the model stub is invoked only once. The
+  existing commercial-ledger recovery test separately verifies expiry to
+  `unknown`, conservation, and explicit authoritative resolution; it does not
+  operate on the producer test's reservation.
+
+Evidence boundary: the gateway/ledger lifecycle works when an authorized
+allocation is supplied, but the production runtime cannot currently supply it
+for this action. `CommercialAccessConfig.from_env()` deliberately excludes
+`ai.research.live` from enforcement readiness; released policies allocate no
+units for selected-source synthesis; and ordinary public-search callers with
+the same capability remain shadow-only. This test does not establish a live
+allocation, product pricing, public-search spend control, provider behavior,
+human evaluation, or native receiving. Keep R3 open; before any enablement,
+resolve the capability boundary and chargeable-call coverage rather than
+loosening the shared allowlist opportunistically.
+
+Validation on backend commit `df349ebf1` (Python 3.13.0):
+
+- Complete selected-source disposable-Postgres file: **5 passed**.
+- Existing expired-dispatch ledger recovery case on the same explicitly named
+  disposable lane DB `vesper_adaptive_context_test_20261001`: **1 passed**.
+- Focused offline selected-source producer/candidate/relevance and commercial
+  gateway tests: **42 passed**.
+- `make ci-static` passed, including architecture gates and mypy across
+  **1,900 source files**.
+- `make merge-check BASE_REF=main` passed: **22,156 passed, 14 skipped, 1
+  xfailed, 52 xpassed**, with two expected local-Qdrant payload-index warnings.
+- Backend commit hooks passed. No schema, API/OpenAPI, app, runtime cohort,
+  released commercial policy or provider activation changed.
+
+R0–R7 remain open.
+
+#### R2 implementation receipt — exact evidence excerpt admission (October 1)
+
+The selected-source producer's internal output contract now requires an
+addition to provide one short exact excerpt from the selected original and one
+for every dependency it declares as supporting the claim. Before composition
+construction or result storage, the producer checks each excerpt against the
+current owner-hydrated text. Missing, invented or wrongly indexed excerpts
+fail admission; a complete no-addition still carries no generated text or
+excerpt. The excerpts remain in process and are not copied into the private
+composition or API result. Because a response has already returned, its
+reservation is settled even when its content fails this admission check.
+
+This is a provenance floor, not a semantic entailment or usefulness judge:
+real text can be irrelevant to the claim, the selected relation can be
+repetitive, and user-supplied connections are not tracked. The R2
+select-and-publish gate remains open for matched direct-source versus
+research-assisted comparisons, explicit support/relevance review, and human
+usefulness evidence. R1 public research remains unsupported by this producer;
+there is no provider or native consumer activation.
+
+Validation on the backend candidate:
+
+- Ruff check and format check passed for the producer, focused unit tests and
+  disposable-Postgres acceptance file.
+- Focused selected-source producer tests: **11 passed**.
+- Selected-source API/ledger Postgres acceptance file: **5 passed** against
+  the explicit disposable database vesper_adaptive_context_test_20261001.
+  This includes authenticated production/readback and real ledger dispatch/
+  settlement under test-only policy, with the model call stubbed; excerpts
+  were checked against current originals and absent from the API response.
+- Backend make ci-static passed after the change, including architecture gates
+  and mypy across **1,900 source files**. Backend make merge-check BASE_REF=main
+  passed: **22,158 passed, 14 skipped, 53 xpassed**, with one expected local
+  Qdrant payload-index warning. The test set included the changed offline
+  producer tests; the separately recorded disposable-Postgres tests are not
+  inferred from this offline count.
+- Workspace tooling suite under default sandbox: **118 passed, 4 failed**;
+  all four failures were loopback ephemeral-port binds denied by the sandbox
+  in worktree runtime tests. Rerunning those exact cases with local networking
+  permission passed: **4 passed**. No workspace-tooling code changed.
+- App npm run verify:fast: passed (167 existing lint warnings, zero lint
+  errors); the earlier Expo cache denial was environmental. Existing app
+  verify:merge evidence remains 1,289 suites / 9,178 tests passed.
+- Backend implementation and feature-authority changes are committed as
+  f3b18d687 (feat: verify selected-source evidence excerpts); commit hooks
+  passed. Workspace make docs-check passed after this receipt update. No
+  OpenAPI, database schema, released policy, feature flag, native consumer,
+  provider or app behavior changed.
+
+R0–R7 remain open.
