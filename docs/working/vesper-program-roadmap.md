@@ -1664,8 +1664,10 @@ queue. Earlier program wording is preserved in
 [the pre-rebaseline version](https://github.com/fy538/travel-workspace/blob/73d9679409793f337be120bf9d6e39e27c966677/docs/working/vesper-program-roadmap.md)
 and the [September 27 archive](../archive/vesper-program-roadmap-history-through-2026-09-27.md).
 The [integration roadmap](complete-system-integration-roadmap-2026-09-05.md)
-is technical reference, not another schedule. This update changes planning and
-ownership only; it is not new runtime, device, provider or consumer evidence.
+is technical reference, not another schedule. The original rebaseline changed
+planning and ownership only. Subsequent dated implementation receipts record
+only the runtime, device, provider or consumer evidence they specifically
+describe; they do not substitute for the open acceptance boundaries above.
 
 ## Historical link compatibility
 
