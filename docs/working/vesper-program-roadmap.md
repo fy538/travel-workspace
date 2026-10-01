@@ -796,6 +796,19 @@ review inspectable without adding a new journey, test matrix or design canon.
 It does not close D2's real-owner, recurring-supply or external design-reference
 gaps.
 
+**Follow-up safety correction — 2026-10-01:** app commit `1a3165c03` makes
+`run-home-full-scroll.sh` require both the configured account ID and an
+`@eval.local` email before it can provision any Home/Places fixtures. The
+runner's focused contract tests passed **3/3**, `bash -n` passed,
+`npm run qa:polish:scenarios` validated **31** IDs,
+`npm run maestro:metadata:check` verified **408** flows, and `git diff --check`
+passed. A runtime negative check against the lane's current local
+account returned the synthetic-recipient rejection before fixture provisioning;
+no account data or fixtures were changed. The assigned simulator and local
+services are now available, but a fresh full-scroll run still requires a
+configured synthetic recipient. No screenshot or new visual verdict was
+produced. D2 remains active.
+
 ### D3 Make practical help part of the same system
 
 **Outcome:** what is happening now changes the useful options and actions across
