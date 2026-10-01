@@ -907,11 +907,13 @@ snapshot and app projection; the existing selected-handoff reader consumes the
 typed destination. Focused backend Places/root-projection tests passed **59/59**
 with Ruff format/check; the app's focused navigation/reader suites passed
 **106/106**, typecheck passed, and docs checks passed for 9 headers and 480
-links. Offline schema synchronization succeeded. Real-backend cheap-mode and
-native exact-owner readback are **unverified**: the lane API at port 53176 was
-not listening, so no API/database or device claim is made. D2 remains active;
-next verify this revision-bound target against a running lane-local API and
-owner read, then continue ordinary/returned/live receiving coverage.
+links. Offline schema synchronization and `make api-coverage-check` passed
+(**579 active, 15 dark, 0 unflagged, 62 retiring operations**). Real-backend
+cheap-mode and native exact-owner readback are **unverified**: the lane API at
+port 53176 was not listening, so no API/database or device claim is made. D2
+remains active; next verify this revision-bound target against a running
+lane-local API and owner read, then continue ordinary/returned/live receiving
+coverage.
 
 ### Combined landing checkpoint — September 30
 
