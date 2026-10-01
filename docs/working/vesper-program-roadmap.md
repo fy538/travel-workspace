@@ -376,10 +376,29 @@ CoreSimulatorService failed and the Maestro lock directory returned `EPERM`;
 real authenticated playback and device/visual acceptance therefore remain
 unverified.
 
-**Independent work when blocked:** in-app authenticated/native acceptance,
-email transport failure semantics and D2's existing-supply composition. The
-native share receipt stays in-extension; do not add unsupported host-launch
-workarounds.
+**Email custody failure classification — October 1:** backend commit
+`ed96555df` separates permanent content rejection from an impossible mismatch
+between the accepted email attachment manifest and persisted Intake source
+receipts. Unsupported/conflicting content keeps the existing `202 dropped`
+behavior; a missing or inconsistent persisted attachment receipt is logged
+without exposing details and returns a generic `503` so SendGrid can retry.
+This preserves the message idempotency key and changes no capture, identity, or
+retention contract. The backend feature doc records the provider boundary.
+`tests/inbound/test_email_forward_v2.py`,
+`tests/api/test_inbound_email_failure_semantics.py`, and
+`tests/api/test_inbound_email_attachment_parsing.py` passed **23/23** with
+`PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider -q`; targeted
+Ruff check/format and the normal pre-commit hooks passed. The tests use mocks;
+no live SendGrid delivery, disposable-DB path, sender notice, owner-visible
+failure receipt, or permanent-failure recovery is established. Unsupported
+bundles remain all-or-nothing.
+
+**Independent work when blocked:** in-app authenticated/native acceptance and
+D2's existing-supply composition. Email's internal retry classification now
+has code/test evidence; provider delivery and owner-visible email failure or
+recovery remain open. Do not add partial admission, sender notices, or a new
+failure ledger without its owner/contract decision. The native share receipt
+stays in-extension; do not add unsupported host-launch workarounds.
 Do not block the whole lane on signing, an unavailable provider or an unapproved
 sharing policy. No Chat redesign or Life implementation belongs to D1.
 
