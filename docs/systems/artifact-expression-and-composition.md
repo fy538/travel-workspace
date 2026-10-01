@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: product / cross-repo architecture / frontend
 created: 2026-08-29
-last_verified: 2026-09-01
+last_verified: 2026-09-30
 why_new: Defines how Artifacts and canonical truth become generated compositions, instruments, direct state expressions, or saved compositions without creating a universal generated-output owner or server-authored UI language.
 source_of_truth_for: [artifact-composition-boundary, composition-lifecycle, agent-composition-boundary, cross-root-composition-projection]
 ---
@@ -205,7 +205,7 @@ and return target; it never carries client geometry or grants action authority.
 
 | Lane | Present role | Doctrine |
 | --- | --- | --- |
-| `CanonicalArtifactProjectionV1` | Legacy-named viewer-safe semantic read model over an Intake anchor | Preserve as a read spine; align its naming and expand owner adapters deliberately, not into a visual DSL |
+| `CanonicalArtifactProjectionV1` | Legacy-named viewer-safe semantic read model over an Intake anchor, with an optional versioned `ArtifactReadingDescriptor` | Preserve as a read spine; its bounded reading family/format hint may select a client-owned renderer, while semantic claims and geometry remain separately owned; do not grow it into a visual DSL |
 | `CardBlueprintV1` / `ComposedChatCard` | Constrained Chat delivery grammar | Keep Chat-specific; do not universalize across roots |
 | Adaptive composition lab | Native treatment and environment fixture lab | Migrate to orthogonal expression dimensions; retain old treatment keys only as compatibility adapters |
 | `CompositionBriefV0` fixture compiler | Claim-local Source admission, novelty, medium coherence, authority, audience, and lifecycle compilation for A01–A06 | Keep as the broad fixture oracle and saved-lifecycle laboratory |

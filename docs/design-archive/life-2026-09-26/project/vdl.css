@@ -1,0 +1,158 @@
+/* Vesper Design Language — Stage 1 composition layer (vdl.css)
+ * PROPOSED FOR REVIEW, NOT CANON. Workbench c13ae951. vdl-stage1 0.3 (consolidation package, §19).
+ * Built only on the Production Kernel's styles.css (travel-app@e2e792913 tokens:80d0648dd300).
+ * The composition sections add geometry only. The "Proposed roles" section at the end names
+ * the mapping gaps the fidelity pass found: values the selected designs use that the kernel's
+ * closed role set lacks. 06 Shared Package reviews each against existing roles. */
+:root { --vdl-version: "vdl-stage1 0.3 on travel-app@e2e792913 tokens:80d0648dd300"; }
+
+/* Phone shell and page ---------------------------------------------------- */
+.vdl-phone { width: 393px; flex: 0 0 auto; background: var(--vk-paper20); color: var(--vk-ink00); font-family: var(--vk-font-sans); border-radius: var(--vk-radius-chromeDock); box-shadow: var(--vk-shadow-lg); overflow: hidden; position: relative; }
+.vdl-status { height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 0 var(--vk-page-rootContentInset); }
+.vdl-page { padding: 0 var(--vk-page-rootContentInset) var(--vk-spacing-xxxl); }
+.vdl-back { display: flex; align-items: center; gap: var(--vk-spacing-md); height: var(--vk-header-rowHeight); padding: 0 var(--vk-header-edgeInset); }
+
+/* Root orientation: place stamp, world-read mast, condition sub ------------ */
+.vdl-orient { padding-top: var(--vk-page-rootVoiceTopGap); display: flex; flex-direction: column; gap: var(--vk-spacing-md); }
+.vdl-orient-row { display: flex; justify-content: space-between; align-items: baseline; }
+
+/* Sections: sentence-case heading, then content ---------------------------- */
+.vdl-section { margin-top: var(--vk-rhythm-section-family-betweenSections); }
+.vdl-section.tight { margin-top: var(--vk-rhythm-section-standard-betweenSections); }
+.vdl-section-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--vk-rhythm-section-family-headingToContent); }
+.vdl-stack > * + * { margin-top: var(--vk-spacing-md); }
+.vdl-stack.loose > * + * { margin-top: var(--vk-spacing-lg); }
+
+/* Rows: one subject, useful detail, hairline between ----------------------- */
+.vdl-rows { border-top: 0.5px solid var(--vk-borderHairline); }
+.vdl-row { display: flex; gap: 13px; align-items: flex-start; padding-block: var(--vk-spacing-lgl); border-bottom: 0.5px solid var(--vk-borderHairline); }
+.vdl-row-lead { flex: 0 0 auto; min-width: 20px; }
+.vdl-row-lead.time { width: 44px; }
+.vdl-row-body { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.vdl-num { flex: 0 0 22px; height: 22px; border-radius: 9999px; background: var(--vk-ink00); color: var(--vk-paper00); display: flex; align-items: center; justify-content: center; }
+
+/* Door: navigation line with the one trailing arrow (Door.tsx) -------------- */
+.vdl-door { display: inline-flex; align-items: center; gap: var(--vk-spacing-xs); color: var(--vk-color-surface-goldDeep); text-decoration: none; }
+.vdl-door::after { content: ""; width: 13px; height: 13px; flex: 0 0 13px; background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='48' d='M268 112l144 144-144 144M392 256H100'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='48' d='M268 112l144 144-144 144M392 256H100'/%3E%3C/svg%3E") center / contain no-repeat; }
+.vdl-doors { display: flex; flex-direction: column; gap: var(--vk-spacing-lg); }
+.vdl-doors.inline { flex-direction: row; flex-wrap: wrap; column-gap: var(--vk-spacing-xl); }
+/* Contextual actions (Entity 14 R2): the same Door construction with R2's 13/600, purpose
+   action in umber and the rest muted. Replaces typed arrows without changing the look. */
+.vdl-door.act { font-family: var(--vk-font-sans); font-size: 13px; font-weight: 600; color: var(--vk-color-action-primary); }
+.vdl-door.act.muted { color: var(--vk-ink60); }
+.vdl-door.act.sm { font-size: 12.5px; }
+.vdl-door.act::after { width: 12px; height: 12px; flex-basis: 12px; }
+
+/* Attribution: who, to whom, when ------------------------------------------ */
+.vdl-attr { display: flex; align-items: center; gap: var(--vk-spacing-md); }
+.vdl-avatar { width: var(--vk-layout-avatarRow); height: var(--vk-layout-avatarRow); flex: 0 0 auto; border-radius: 9999px; background: var(--vk-color-surface-sageDeep); color: var(--vk-color-white); display: flex; align-items: center; justify-content: center; }
+.vdl-avatar.sm { width: var(--vk-layout-avatarFacepile); height: var(--vk-layout-avatarFacepile); }
+.vdl-avatar.sand { background: var(--vk-gold80); }
+.vdl-avatar.slate { background: var(--vk-color-surface-planningInkSoft); }
+.vdl-avatar.ink { background: var(--vk-ink00); }
+.vdl-attr-meta { display: flex; flex-direction: column; gap: 1px; }
+/* Source and person marks inside a reading (R2): numbered chip after the claim, a person's
+   initial after their words; SourceList below resolves both. */
+.vdl-srcmark { display: inline-block; min-width: 14px; height: 14px; padding: 0 4px; margin-left: 4px; border-radius: 4px; background: color-mix(in srgb, var(--vk-ink00) 7%, transparent); color: var(--vk-ink60); font-family: var(--vk-font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.3px; line-height: 14px; text-align: center; vertical-align: 2px; font-style: normal; }
+.vdl-personmark { display: inline-flex; width: 15px; height: 15px; margin-left: 4px; border-radius: 9999px; background: var(--vk-ink00); color: var(--vk-paper00); font-family: var(--vk-font-sans); font-size: 10px; font-weight: 700; font-style: normal; align-items: center; justify-content: center; vertical-align: -2px; }
+.vdl-personmark.umber { background: var(--vk-color-action-primary); }
+
+/* Facts, stamps and figures ------------------------------------------------ */
+.vdl-facts { display: flex; flex-wrap: wrap; column-gap: var(--vk-spacing-lg); row-gap: var(--vk-spacing-xs); }
+.vdl-figures { display: grid; grid-template-columns: 1fr 1fr; gap: var(--vk-spacing-lg); border-top: 0.5px solid var(--vk-borderHairline); padding-top: var(--vk-spacing-mdl); }
+.vdl-steps { counter-reset: vdl-step; display: flex; flex-direction: column; gap: var(--vk-spacing-md); }
+.vdl-step { display: flex; gap: var(--vk-spacing-lg); align-items: baseline; }
+.vdl-step-n { flex: 0 0 16px; color: var(--vk-color-surface-goldDeep); }
+
+/* Media: placeholders only, never invented imagery ------------------------- */
+.vdl-media { border-radius: var(--vk-card-radius-md); background: repeating-linear-gradient(135deg, var(--vk-paper30) 0 6px, var(--vk-paper10) 6px 12px); display: flex; align-items: flex-end; padding: var(--vk-spacing-md) var(--vk-spacing-mdl); min-height: 96px; }
+.vdl-media.tall { min-height: 180px; }
+.vdl-map { border-radius: var(--vk-radius-card); background: var(--vk-paper30); position: relative; min-height: 180px; overflow: hidden; }
+.vdl-map-pin { position: absolute; width: 20px; height: 20px; border-radius: 9999px; background: var(--vk-ink00); color: var(--vk-paper00); display: flex; align-items: center; justify-content: center; }
+
+/* Shelf: two-up browse objects --------------------------------------------- */
+.vdl-shelf { display: grid; grid-template-columns: 1fr 1fr; gap: var(--vk-spacing-lg); row-gap: var(--vk-spacing-xl); }
+.vdl-shelf-item { display: flex; flex-direction: column; gap: var(--vk-spacing-xs); min-width: 0; }
+
+/* Controls: kernel Button geometry, choice set, field ---------------------- */
+.vdl-btn { min-height: var(--vk-a11y-minTouchTarget); padding: 0 var(--vk-spacing-xxl); border-radius: var(--vk-radius-action); display: inline-flex; align-items: center; justify-content: center; gap: var(--vk-spacing-md); border: 0.5px solid transparent; background: transparent; position: relative; }
+.vdl-btn.primary { background: var(--vk-color-action-primary); color: var(--vk-color-white); }
+.vdl-btn.secondary { border-color: var(--vk-color-border-medium); }
+.vdl-btn.busy { opacity: 0.72; }
+/* Selected silhouettes kept (§17.4 item 4): a pill may be drawn at 40 while its hit area stays 44. */
+.vdl-btn.pill { border-radius: 9999px; min-height: 40px; padding: 0 var(--vk-spacing-xl); }
+.vdl-btn.pill::before { content: ""; position: absolute; inset: -2px 0; }
+.vdl-btn.r16 { border-radius: 16px; }
+.vdl-choices { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: var(--vk-spacing-md); }
+.vdl-choices .vdl-btn { padding: 0 var(--vk-spacing-md); }
+.vdl-field { min-height: 46px; border: 0.5px solid var(--vk-borderHairline); border-radius: var(--vk-radius-field); background: var(--vk-color-surface-cardWarm); padding: var(--vk-spacing-lg) var(--vk-spacing-lgl); }
+.vdl-field.pill { border-radius: 22px; display: flex; align-items: center; padding: 0 var(--vk-spacing-lgl); }
+.vdl-field.focused { border: 1px solid var(--vk-ink00); }
+.vdl-recipient { display: inline-flex; align-items: center; gap: var(--vk-spacing-sm); padding: 4px 10px 4px 4px; border-radius: var(--vk-radius-chip); background: var(--vk-color-tint-action); }
+
+/* Sheet: overlay recipe with one size mode per purpose --------------------- */
+.vdl-scrim { background: var(--vk-color-tint-overlay); padding-top: 120px; }
+.vdl-sheet { background: var(--vk-paper00); border-radius: var(--vk-radius-input) var(--vk-radius-input) 0 0; box-shadow: var(--vk-shadow-sheet); padding: var(--vk-spacing-md) var(--vk-rhythm-sheet-contentInset) var(--vk-rhythm-sheet-actionsToSafeArea); }
+.vdl-sheet-handle { width: 36px; height: 4px; border-radius: 2px; background: var(--vk-color-tint-actionHeavy); margin: 0 auto var(--vk-rhythm-sheet-handleToTitle); }
+.vdl-sheet-head { margin-bottom: var(--vk-rhythm-sheet-titleToContent); }
+.vdl-sheet-actions { margin-top: var(--vk-rhythm-sheet-contentToActions); display: flex; flex-direction: column; gap: var(--vk-spacing-md); }
+
+/* Result and recovery: StateNotice tones, region-local --------------------- */
+.vdl-notice { display: flex; gap: var(--vk-spacing-md); align-items: flex-start; padding: var(--vk-state-space-noticePadY) var(--vk-state-space-noticePadX); border-radius: var(--vk-state-radius-notice); border: 0.5px solid var(--vk-state-color-hairline); background: var(--vk-state-color-surfaceSoft); color: var(--vk-state-color-mute); }
+.vdl-notice.amber { background: var(--vk-state-color-amberSurface); border-color: color-mix(in srgb, var(--vk-state-color-amber) 25%, transparent); color: var(--vk-state-color-amber); }
+.vdl-notice.oxblood { background: var(--vk-state-color-oxbloodSurface); border-color: color-mix(in srgb, var(--vk-state-color-oxblood) 22%, transparent); color: var(--vk-state-color-oxblood); }
+.vdl-notice.sage { background: var(--vk-state-color-sageSurface); border-color: color-mix(in srgb, var(--vk-state-color-sage) 22%, transparent); color: var(--vk-state-color-sage); }
+.vdl-dot { width: 6px; height: 6px; border-radius: 3px; background: currentColor; flex: 0 0 6px; margin-top: 7px; }
+
+/* Typed original: ticket anatomy (source-specific, not a universal card) ---- */
+.vdl-ticket { display: flex; flex-direction: column; gap: var(--vk-spacing-mdl); }
+.vdl-ticket-route { display: grid; grid-template-columns: 1fr auto 1fr; align-items: end; gap: var(--vk-spacing-md); }
+.vdl-ticket-route > :last-child { text-align: right; }
+.vdl-ticket-perf { border-top: 1px dashed var(--vk-color-border-medium); }
+.vdl-ticket-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--vk-spacing-md); }
+
+/* Tab bar ------------------------------------------------------------------ */
+.vdl-tabbar { display: flex; justify-content: space-around; align-items: center; height: var(--vk-layout-tabBarHeight); border-top: 0.5px solid var(--vk-borderHairline); background: var(--vk-paper20); }
+.vdl-tabbar .on { color: var(--vk-ink00); }
+.vdl-tabbar .off { color: var(--vk-ink60); }
+
+/* Board furniture (annotation around frames, not product UI) --------------- */
+.vdl-board { background: var(--vk-paper10); min-height: 100vh; padding: 48px 40px 96px; font-family: var(--vk-font-sans); color: var(--vk-ink00); }
+.vdl-lane { display: flex; gap: 40px; align-items: flex-start; overflow-x: auto; padding: 8px 4px 24px; }
+.vdl-cell { display: flex; flex-direction: column; gap: var(--vk-spacing-md); flex: 0 0 auto; }
+.vdl-tag { align-self: flex-start; padding: 2px 8px; border-radius: var(--vk-radius-md); background: var(--vk-color-tint-gold); color: var(--vk-gold80); }
+.vdl-tag.orig { background: var(--vk-color-tint-action); color: var(--vk-ink40); }
+.vdl-note { max-width: 393px; }
+.vdl-rule { border-top: 0.5px solid var(--vk-borderHairline); margin: 40px 0 24px; }
+.vdl-table { border-collapse: collapse; width: 100%; }
+.vdl-table td, .vdl-table th { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 0.5px solid var(--vk-borderHairlineSoft); }
+.vdl-scroll { overflow-x: auto; }
+.vdl-diff td:first-child { white-space: nowrap; }
+
+/* Proposed roles and tokens — named mapping gaps (§17.1, reviewed on 06) ---------
+ * Each keeps an exact value the selected designs use that the kernel lacks. PROPOSED, NOT
+ * CANON. Owners: constants/textVariants.ts for roles, constants/colors.ts for tokens; nothing
+ * here edits the generated kernel CSS. 06 marks each: propose permanent, owner call, or keep
+ * component-local. */
+:root {
+  --vdl-map-water: #BFD6DA;      /* Places 01.1 harbor · component-local */
+  --vdl-map-waterDeep: #9DBFC6;  /* Places 01.1 channel · component-local */
+  --vdl-map-road: #D9D0BC;       /* Places 01.1 streets · component-local */
+  --vdl-media-hatch: #B9AD98;    /* Entity 14 photo placeholder ground · component-local */
+}
+.vdl-t-sectionHeading { font-family: var(--vk-font-sans); font-size: 13px; line-height: normal; font-weight: 600; }   /* Sept 5 ruling · propose permanent */
+.vdl-t-metaLine { font-family: var(--vk-font-mono); font-size: 10px; line-height: normal; font-weight: 400; letter-spacing: 0.8px; text-wrap: balance; } /* Sept 5 metadata line · propose permanent. text-wrap is web rendering only: a stamp that wraps breaks evenly instead of leaving one word (polish, 2026-09-10) */
+.vdl-t-placeStamp { font-family: var(--vk-font-mono); font-size: 11px; line-height: normal; font-weight: 700; letter-spacing: 1.15px; } /* owner call */
+.vdl-t-supportLine { font-family: var(--vk-font-sans); font-size: 12.5px; line-height: normal; font-weight: 400; } /* propose permanent */
+.vdl-t-unitTitle { font-family: var(--vk-font-serif); font-size: 17px; line-height: 22px; font-weight: 500; } /* Sept 5 content title · propose permanent */
+.vdl-t-excerpt { font-family: var(--vk-font-serif); font-size: 18px; line-height: 25px; font-weight: 400; } /* propose permanent */
+.vdl-t-readerOriginal { font-family: var(--vk-font-serif); font-size: 22px; line-height: 30px; font-weight: 400; } /* component-local: OriginalReader full */
+.vdl-t-placeReading { font-family: var(--vk-font-serif); font-size: 16.5px; line-height: 24px; font-weight: 400; } /* owner call */
+.vdl-t-placeName { font-family: var(--vk-font-serif); font-size: 16px; line-height: 20px; font-weight: 600; } /* owner call: serifTitle at 600 */
+.vdl-t-recordTitle { font-family: var(--vk-font-serif); font-size: 15.5px; line-height: normal; font-weight: 600; } /* component-local: Life rows */
+.vdl-t-stepNumeral { font-family: var(--vk-font-serif); font-size: 18px; line-height: normal; font-weight: 600; } /* component-local: Home method */
+.vdl-t-routeCode { font-family: var(--vk-font-serif); font-size: 32px; line-height: 34px; font-weight: 600; } /* component-local: Ticket */
+.vdl-t-factValue { font-family: var(--vk-font-sans); font-size: 17px; line-height: 22px; font-weight: 600; letter-spacing: -0.3px; } /* component-local: FactPair */
+

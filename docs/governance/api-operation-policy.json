@@ -2038,7 +2038,7 @@
       "owner": "root-projection",
       "reason": "Feature-gated v2 Home projection contract for typed migration and parity evaluation; the internal shadow reader is not a serving cutover until the v2 renderer and bounded producer evidence are ready.",
       "removal_trigger": "Remove the route if v2 projection parity or the Home migration is abandoned; promote the reader only after device-verified renderer parity.",
-      "review_by": "2026-09-28"
+      "review_by": "2026-10-07"
     },
     "GET /api/root-projections/v2/places": {
       "audience": "app",
@@ -2054,7 +2054,7 @@
       "owner": "root-projection",
       "reason": "Feature-gated v2 Places projection contract for typed migration and parity evaluation; the internal shadow reader is not a serving cutover until the v2 renderer and bounded producer evidence are ready.",
       "removal_trigger": "Remove the route if v2 projection parity or the Places migration is abandoned; promote the reader only after device-verified renderer parity.",
-      "review_by": "2026-09-28"
+      "review_by": "2026-10-07"
     },
     "GET /api/root-projections/v2/places/runtime": {
       "audience": "app",
@@ -3634,7 +3634,7 @@
         {
           "kind": "app_source",
           "name": "getIntakeInterpretations",
-          "source": "travel-app/utils/api/httpIntakeEndpoints.ts"
+          "source": "travel-app/utils/api/httpIntakeCustodyEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3650,7 +3650,7 @@
         {
           "kind": "app_source",
           "name": "resolveIntakeCandidate",
-          "source": "travel-app/utils/api/httpIntakeEndpoints.ts"
+          "source": "travel-app/utils/api/httpIntakeCustodyEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3706,7 +3706,7 @@
         {
           "kind": "app_source",
           "name": "getIntakeSubmission",
-          "source": "travel-app/utils/api/httpIntakeEndpoints.ts"
+          "source": "travel-app/utils/api/httpIntakeCustodyEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3722,7 +3722,7 @@
         {
           "kind": "app_source",
           "name": "getIntakeSubmissionLifecycle",
-          "source": "travel-app/utils/api/httpIntakeEndpoints.ts"
+          "source": "travel-app/utils/api/httpIntakeCustodyEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3737,14 +3737,14 @@
       "consumers": [
         {
           "kind": "app_url",
-          "name": "intakeSourceObjectMediaUrl",
-          "source": "travel-app/utils/intakeSourceMedia.ts"
+          "name": "intakeSourceObjectMediaPath",
+          "source": "travel-app/utils/intakeSourceMediaPath.ts"
         }
       ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "intake",
-      "reason": "The owner-scoped original reader streams verified source bytes without exposing private storage keys.",
+      "reason": "The owner-scoped original reader streams verified source bytes without exposing private storage keys. The route path is shared by the app data adapter and the isolated native host; each host supplies its own current-owner authorization.",
       "removal_trigger": "Remove only when an equivalent owner-scoped media reader preserves current custody checks.",
       "review_by": "2026-10-30"
     },
@@ -3754,7 +3754,7 @@
         {
           "kind": "app_source",
           "name": "deleteIntakeSubmission",
-          "source": "travel-app/utils/api/httpIntakeEndpoints.ts"
+          "source": "travel-app/utils/api/httpIntakeCustodyEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3770,7 +3770,7 @@
         {
           "kind": "app_source",
           "name": "createIntakeSubmission",
-          "source": "travel-app/utils/api/httpIntakeEndpoints.ts"
+          "source": "travel-app/utils/api/httpIntakeCustodyEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3786,7 +3786,7 @@
         {
           "kind": "app_source",
           "name": "finalizeIntakeSubmission",
-          "source": "travel-app/utils/api/httpIntakeEndpoints.ts"
+          "source": "travel-app/utils/api/httpIntakeCustodyEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3802,7 +3802,7 @@
         {
           "kind": "app_source",
           "name": "uploadIntakeSourceObject",
-          "source": "travel-app/utils/api/httpIntakeEndpoints.ts"
+          "source": "travel-app/utils/api/httpIntakeCustodyEndpoints.ts"
         }
       ],
       "feature_flag": null,

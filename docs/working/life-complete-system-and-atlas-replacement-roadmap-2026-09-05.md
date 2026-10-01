@@ -20,6 +20,12 @@ supersedes:
 
 # Life complete system and Atlas replacement roadmap
 
+> September 25 execution clarification: this is supporting Life design,
+> replacement rationale and dated evidence. The [program roadmap](vesper-program-roadmap.md)
+> alone activates assignments. The baseline and queues below are historical;
+> recheck their gaps against current code before selecting a bounded package.
+> This clarification does not certify a new Life implementation baseline.
+
 ## Current execution baseline — September 21
 
 **Post-reliability rebaseline — September 8:** the first organizer

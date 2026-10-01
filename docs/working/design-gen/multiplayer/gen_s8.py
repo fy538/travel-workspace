@@ -1,7 +1,7 @@
 """16 · Getting together, and saying who you were with. Rewritten 2026-09-22 for the threads/Life-continuity handoff:
 voting is demoted to an optional instrument (§8.1, §8.5), gathering is conversation-led (§8.3), availability is never
 attendance (§8.4), and "With" is split into three separate things (§8.7). Presence is a bounded expression that goes
-stale (§7.1). Home/Chat frames use the sharing kit; the Life frame uses Life's grammar (board 15)."""
+stale (§7.1). Home/Chat frames use the sharing kit; the Life frame uses Life's grammar (board 07)."""
 import re
 from mp_kit2 import *
 from gen_merge import daycap
@@ -48,10 +48,13 @@ def a_maya():
                       + f'<div style="margin-top: 14px; display: flex; gap: 8px;">{btn("Yes, I was there")}{btn("Leave my name off", False)}</div>'), top=20)
     return phone2(inner, active='Home')
 def a_after():
+    """Sept 26 (§12.2): a compact receipt under the post itself, with its scope and a correction; the shared record is a
+    separate, optional door, not a screen explaining what did not happen."""
     inner = avatar_for(anchor_row('NEW YORK', 'SATURDAY 11:22 AM'), 'M')
-    inner += gut(card(f'{kick("YOUR NAME IS ON NORA&rsquo;S POST")}{ser("Her friends can see you were there.", 18, 23)}'
-                      + f'<div style="margin-top: 8px;">{body("Nothing has gone into what the two of you share.")}</div>'
-                      + f'<div style="margin-top: 14px; display: flex; gap: 18px; align-items: center;">{door("Keep the night in what we share", GOLDD)}{door("Take my name off", MUTE)}</div>'), top=20)
+    inner += gut(status(80, 'Nora', 'SATURDAY 10:52 AM · TO FRIENDS', PACHA) + with_line('Maya')
+                 + f'<div style="margin-top: 12px;">{photo_grid(3, 96, "PHOTO &middot; NORA")}</div>', top=20)
+    inner += gut(S.receipt('Your name is on it, for Nora&rsquo;s friends', 'Undo'), top=14)
+    inner += gut(door('Also keep the night in Shared with Nora', GOLDD), top=10)
     return phone2(inner, active='Home')
 def a_sam():
     inner = avatar_for(anchor_row('NEW YORK', 'SATURDAY 11:40 AM'), 'S')
@@ -65,33 +68,24 @@ def a_life():
     inner += L6.row1(L6.G('M1.8 8.6 L13.2 3.4 L9.8 8.2 L11.4 12 L9.6 12.4 L7.4 9.2 L3.6 10.4 Z'), 'Nice &rarr; Rome &middot; the two of you', 'AUG 14&ndash;27')
     inner += L6.row1(L6.FORK, 'Dinner in Brooklyn', 'AUG 29')
     inner += L6.door('All thirteen episodes')
-    inner += L6.voice('Your account of the time shared &mdash; hers stays hers.')
     return L6.phone(inner)
 
 # ── B · an opening, replies, settling ──
 def b_open():
     inner = avatar_for(anchor_row('NEW YORK', 'THURSDAY 7:06 PM'), 'M')
-    inner += gut(share('Nora', '7:02 PM · TO THE SORRENTO FOUR', OPEN, extra=place_card(good=('Late brunch',)).replace('Lulu&rsquo;s', 'Hato').replace('Carroll Gardens &middot; Italian &middot; open till 11', 'Cobble Hill &middot; ramen &middot; from Our New York')), top=20)
+    inner += gut(share('Nora', '7:02 PM · TO THE SORRENTO FOUR', OPEN, extra=place_card(good=('Late brunch',), name='Hato', where='Cobble Hill &middot; ramen &middot; from Our New York')), top=20)
     inner += gut(chat_field('Reply to everyone', ask=False), top=14)
     return phone2(inner, active='Home')
 def b_replies():
+    """Sept 26 (§12.2): the host's steps collapse into one prepared action beside the conversation. Settling and asking
+    are one send; each person still answers for themselves."""
     inner = avatar_for(anchor_row('NEW YORK', 'THURSDAY 9:12 PM'), 'N')
     inner += gut(post('You', '7:02 PM · TO THE SORRENTO FOUR', OPEN, '', None, me='N'), top=20)
-    inner += gut(reply('Maya', '7:14 PM', 'yes, after noon') + reply('Priya', '8:02 PM', 'could do 12:30')
+    inner += gut(reply('Maya', '7:14 PM', 'yes, after noon') + reply('Priya', '8:02 PM', 'count me in any time after 12')
                  + reply('You', '9:10 PM', 'perfect, 12:30 then'), top=12)
-    inner += gut(card(f'{kick("FROM WHAT YOU ALL SAID")}{ser("Saturday, 12:30 at Hato", 17, 22)}'
-                      + f'<div style="margin-top: 8px;">{body("Yours to settle. Nobody is counted as coming.")}</div>'
-                      + f'<div style="margin-top: 12px; display: flex; gap: 8px;">{btn("Make these the details")}{btn("Not yet", False)}</div>'), top=16)
-    return phone2(inner, active='Home')
-def b_settled():
-    inner = avatar_for(anchor_row('NEW YORK', 'THURSDAY 9:14 PM'), 'N')
-    inner += gut(card(f'{kick("SATURDAY &middot; SETTLED BY YOU")}{ser("Brunch at Hato")}'
-                      + f'<div style="margin-top: 6px;">{body("12:30 &middot; Cobble Hill")}</div>'
-                      + f'<div style="margin-top: 12px; border-top: 1px solid rgba(27,23,20,0.08); padding-top: 10px;">'
-                      + f'<div style="font-size: 14px; line-height: 21px; color: {INK2};">Priya &middot; <span style="color: {MUTE};">could do 12:30</span><br>Maya &middot; <span style="color: {MUTE};">yes, after noon</span><br>Dana &middot; <span style="color: {MUTE};">hasn&rsquo;t said anything</span></div></div>'
-                      + f'<div style="margin-top: 12px;">{body("What people said is not who is coming.", MUTE, 13, 18)}</div>'
-                      + f'<div style="margin-top: 12px; display: flex; gap: 8px;">{btn("Ask them to come")}{btn("Leave it", False)}</div>'), top=20)
-    inner += gut(f'<div style="margin-top: 4px;">{door("Back to the conversation", MUTE)}</div>', top=8)
+    inner += gut(card(f'<div style="display: flex; align-items: baseline; gap: 10px;">{ser("Saturday, 12:30 at Hato", 17, 22)}</div>'
+                      + f'<div class="fn" style="margin-top: 4px;">TO THE SORRENTO FOUR</div>'
+                      + f'<div style="margin-top: 12px; display: flex; gap: 8px; align-items: center;">{btn("Send as the plan")}{door("Edit", MUTE)}</div>'), top=14)
     return phone2(inner, active='Home')
 def b_invite():
     g = card(f'{kick("GATHERING &middot; SATURDAY")}{ser("Brunch at Hato")}'
@@ -104,24 +98,36 @@ def b_invite():
 def b_conditional():
     g = card(f'{kick("GATHERING &middot; SATURDAY")}{ser("Brunch at Hato")}'
              + f'<div style="margin-top: 6px;">{body("12:30 &middot; Cobble Hill")}</div>'
-             + f'<div style="margin-top: 12px; display: flex; align-items: center; gap: 8px;">{facepile(["N","P"], 20, -6)}<span style="font-size: 13px; color: {INK2};">Nora, you are in</span></div>'
-             + f'<div style="margin-top: 10px;">{body("You said count me in any time after 12, and 12:30 is inside that. You are not asked again.", GREEN, 13, 19)}</div>'
+             + f'<div style="margin-top: 12px; display: flex; align-items: center; gap: 8px;">{facepile(["N","P"], 20, -6)}<span style="font-size: 13px; color: {INK2};">Nora and you are in</span></div>'
+             + f'<div style="margin-top: 10px;">{body("In &middot; you said any time after 12", GREEN, 13, 19)}</div>'
              + f'<div style="margin-top: 12px;">{btn("Change that", False)}</div>')
     inner = avatar_for(anchor_row('NEW YORK', 'THURSDAY 9:16 PM'), 'P')
     inner += gut(share('Nora', '9:15 PM · TO THE SORRENTO FOUR', 'saturday 12:30 at hato. come if you can', extra=g), top=20)
     return phone2(inner, active='Home')
 def b_quiet():
-    inner = avatar_for(anchor_row('NEW YORK', 'SATURDAY 12:20 PM'), 'N')
+    """Sept 26 (§12.2, §12.8): on the day. Only who is in; nobody's silence is shown. A detail changes through the person
+    who holds it (Priya has the table), and the plan carries it; one prepared message if you are late."""
+    inner = avatar_for(anchor_row('NEW YORK', 'SATURDAY 12:20 PM'), 'M')
     inner += gut(card(f'{kick("TODAY &middot; 12:30")}{ser("Brunch at Hato")}'
-                      + f'<div style="margin-top: 6px;">{body("Cobble Hill &middot; Priya has the table, upstairs")}</div>'
-                      + f'<div style="margin-top: 12px; border-top: 1px solid rgba(27,23,20,0.08); padding-top: 10px;">'
-                      + line('Priya &middot; <span style="color: #6E6862;">in, from 12:30</span>', mark='dot', color=GREEN)
-                      + line('Maya &middot; <span style="color: #6E6862;">in</span>', mark='dot', color=GREEN)
-                      + line('Dana &middot; <span style="color: #6E6862;">hasn&rsquo;t said</span>', mark='none', muted=True, last=True) + '</div>'), top=20)
-    inner += gut(body('Nobody is reminded, and Dana&rsquo;s row stays as it is.', MUTE, 13, 18), top=10)
+                      + f'<div style="margin-top: 6px;">{body("Cobble Hill")}</div>'
+                      + f'<div style="margin-top: 12px; border-top: 1px solid rgba(27,23,20,0.08); padding-top: 10px; display: flex; gap: 10px; align-items: flex-start;">'
+                      + f'{_g(PIN_P, GOLDD, 15)}<div><div style="font-size: 14.5px; line-height: 20px; color: {INK};">Upstairs, the back table</div>'
+                      + f'<div class="fn" style="margin-top: 2px;">FROM PRIYA &middot; 12:14 PM &middot; SHE HAS THE TABLE</div></div></div>'
+                      + f'<div style="margin-top: 12px; display: flex; align-items: center; gap: 8px;">{facepile(["N","P","M"], 20, -6)}<span style="font-size: 13px; color: {INK2};">Nora, Priya and you are in</span></div>'
+                      + f'<div style="margin-top: 12px;">{door("Running late? Tell them", GOLDD)}</div>'), top=20)
     return phone2(inner, active='Home')
-
-# ── C · the optional instrument ──
+def b_chat():
+    """Sept 26 decision, item 13: sending the plan opens the occasion's group chat, on by default, for everyone invited.
+    The plan sits at the top; Vesper only when asked (the gold spark in the composer)."""
+    inner = bar('BRUNCH AT HATO', 'SATURDAY 12:02 PM')
+    inner += gut(f'<div style="{S.CARD_CSS} padding: 11px 0;"><div class="fn">THE PLAN</div>'
+                 f'<div style="font-size: 14.5px; line-height: 20px; color: {INK}; margin-top: 3px;">Saturday 12:30 &middot; Hato, upstairs</div>'
+                 f'<div style="font-size: 13px; line-height: 18px; color: {MUTE}; margin-top: 2px;">Nora, Priya and Maya are in</div></div>', top=14)
+    inner += gut(bubble_in('grabbing the table upstairs', 'Priya'), top=14)
+    inner += gut(bubble_in('ten minutes late. order me the buns', 'Maya'), top=8)
+    inner += gut(bubble('on it'), top=8)
+    inner += gut(chat_field('Message the brunch'), top=16)
+    return phone2(inner, active='Chat')
 def c_tool():
     rows = ''
     for t, who in (('Thu 18th', ('M', 'P')), ('Fri 19th', ('M', 'P', 'D', 'S')), ('Sat 20th', ('D',))):
@@ -161,40 +167,42 @@ def build():
     sA = sechead('A', 'Saying who you were with', 'Three separate things, kept separate: whether she was there, whether her name shows on your post, and whether the night goes into what the two of you share. One answer from her settles the first two; the third stays her choice, later.')
     rA = rowdiv([cell('SATURDAY 10:52 AM', 'A1', 'Written, with Maya', 'The people icon names who you were with. It asks her; it does not publish her name or file anything.', a_write(), (P('WITH'), P('SENDER'))),
                  cell('SATURDAY 11:20 AM', 'A2', 'Maya is asked, once', 'Two answers, and both are complete: yes I was there, or leave my name off. No inbox, no third question.', a_maya(), (P('WITH'), P('NAMED'))),
-                 cell('SATURDAY 11:22 AM', 'A3', 'What her yes did, and did not do', 'Her name is on Nora&rsquo;s post. Nothing has gone into their shared record. Keeping the night there is a separate door she may never use.', a_after(), (P('WITH'), P('NAMED'))),
+                 cell('SATURDAY 11:22 AM', 'A3', 'A receipt, not a screen', 'Her yes leaves one line under the post, with an undo. Keeping the night in what they share is a separate door.', a_after(), (P('WITH'), P('NAMED'))),
                  cell('SATURDAY 11:40 AM', 'A4', 'What Sam sees', 'A line under the words. Nobody is pinned to a photograph, and Sam is told nothing about records.', a_sam(), (P('WITH'), P('RECEIVER')))], top=16)
     rA2 = rowdiv([cell('MAYA&rsquo;S LIFE', 'A5', 'Only because she kept it', 'If she taps the third door, the night joins the record she shares with Nora, marked as hers to keep. If she never does, this row never appears.', a_life(), (P('WITH'), LIFE))])
-    sB = sechead('B', 'Getting together, without a ballot', 'An opening, ordinary replies, and the person who suggested it settling the details. Availability is never attendance: what people said sits beside the plan, and everyone is still asked.')
+    sB = sechead('B', 'Getting together, without a ballot', 'An opening, ordinary replies, and one prepared action beside the conversation: send it as the plan. Availability is never attendance: each person still answers for themselves, unless they already said an explicit yes that fits.')
     rB = rowdiv([cell('THURSDAY 7:06 PM', 'B1', 'An opening', 'Not an invitation. Maya can reply, enjoy it, or leave it alone. No attendance machinery appears because a place is attached.', b_open(), (P('OPENING'), P('RECEIVER'))),
-                 cell('THURSDAY 9:12 PM', 'B2', 'Ordinary replies, then she settles', 'Three replies and a time emerges. Vesper offers the details it heard; Nora decides. It counts nobody, and declares no winner.', b_replies(), (P('SETTLING'), P('AUTHOR'))),
-                 cell('THURSDAY 9:14 PM', 'B3', 'The details, beside what was said', 'Settled by Nora. Each person&rsquo;s words are kept as words: could do 12:30, yes after noon, nothing from Dana. Asking them to come is a separate step.', b_settled(), (P('SETTLING'), P('AUTHOR'))),
-                 cell('THURSDAY 9:16 PM', 'B4', 'Maya is asked anyway', 'She said &ldquo;yes, after noon&rdquo;, which is availability. Her words are shown, and she still answers for herself.', b_invite(), (P('ATTENDANCE'), P('RECEIVER')))], top=16)
-    rB2 = rowdiv([cell('THURSDAY 9:16 PM', 'B5', 'Priya said count me in', 'An explicit conditional commitment. 12:30 is inside what she said, so she is in and is not asked again. A change outside her condition would ask her.', b_conditional(), (P('ATTENDANCE'), P('RECEIVER'))),
-                 cell('SATURDAY 12:20 PM', 'B6', 'On the day', 'The settled details, and who said what. Dana never answered: no badge, no reminder, no story about her.', b_quiet(), (P('ARRANGEMENT'), P('AUTHOR'))),
-                 cell('MONDAY 8:40 AM', 'C1', 'The optional instrument', 'Six people, three evenings, asked for. It reports who is free and stops there; Nora still settles and still asks.', c_tool(), (P('OPTIONAL POLL'), P('AUTHOR'))),
-                 cell('SATURDAY &rarr; TUESDAY', 'D1', 'A bounded expression, later stale', 'Written by Nora for one weekend. On Tuesday it reads as last weekend&rsquo;s, not as a standing invitation. Priya&rsquo;s runs until noon.', d_stale(), (P('PRESENCE'), P('RECEIVER')))])
+                 cell('THURSDAY 9:12 PM', 'B2', 'Replies, and one send', 'A time emerges from three replies. One prepared action beside them sends it as the plan: settling and asking in one step.', b_replies(), (P('SETTLING'), P('AUTHOR'))),
+                 cell('THURSDAY 9:16 PM', 'B4', 'Maya is asked anyway', 'She said &ldquo;yes, after noon&rdquo;, which is availability, so she answers for herself. Her words are shown.', b_invite(), (P('ATTENDANCE'), P('RECEIVER')))], top=16)
+    rB2 = rowdiv([cell('THURSDAY 9:16 PM', 'B5', 'Priya said count me in', '&ldquo;Count me in any time after 12&rdquo; is a yes with a condition. 12:30 fits, so she is in; a change outside it would ask again.', b_conditional(), (P('ATTENDANCE'), P('RECEIVER'))),
+                 cell('SATURDAY 12:20 PM', 'B6', 'On the day', 'Only who is in. Priya, who has the table, says where it is, and the plan carries it to everyone. One prepared message if you are running late.', b_quiet(), (P('ARRANGEMENT'), P('MAYA'))),
+                 cell('SATURDAY 12:02 PM', 'B7', 'The brunch&rsquo;s chat', 'Sending the plan opens a chat for everyone invited, on by default. The plan sits at the top; Vesper answers only when asked.', b_chat(), (P('GROUP CHAT'), P('OCCASION'))),
+                 cell('MONDAY 8:40 AM', 'C1', 'The optional instrument', 'Six people, three evenings, asked for. It reports who is free and stops there; Nora still settles and still asks.', c_tool(), (P('OPTIONAL POLL'), P('AUTHOR')))])
     rD = rowdiv([cell('SATURDAY 9:02 AM', 'D0', 'Writing it', 'A sentence with an end on it. No location that keeps running, nobody&rsquo;s availability inferred, nothing tracked.', d_now(), (P('PRESENCE'), P('SENDER'))),
-                 notes('WHAT CHANGED, AND WHY', led([
-                     ('VOTING DEMOTED', 'The earlier version of this board opened with options to tick and turned &ldquo;Saturday works&rdquo; into &ldquo;you&rsquo;re in&rdquo;. Both are gone. Gathering is an opening, replies, and the author settling.'),
-                     ('AVAILABILITY IS NOT ATTENDANCE', 'What people said is kept as words beside the plan. Everyone is asked. The one exception is an explicit conditional commitment, and only while the details stay inside it.'),
+                 cell('SATURDAY &rarr; TUESDAY', 'D1', 'A bounded expression, later stale', 'Written by Nora for one weekend. On Tuesday it reads as last weekend&rsquo;s, not as a standing invitation. Priya&rsquo;s runs until noon.', d_stale(), (P('PRESENCE'), P('RECEIVER')))])
+    rN = ('<div style="display: flex; gap: 46px; align-items: flex-start; margin-top: 34px; border-top: 1px solid rgba(27,23,20,0.12);">' +
+          notes('WHAT CHANGED, AND WHY', led([
+                     ('VOTING DEMOTED', 'Gathering is an opening, replies, and the host sending it as the plan. Sept 26: the details screen and the separate ask are gone; one send does both.'),
+                     ('AVAILABILITY IS NOT ATTENDANCE', 'Everyone answers for themselves. The one exception is an explicit yes with a condition, while the details stay inside it. Only people who are in are shown; nobody&rsquo;s silence is.'),
                      ('THE POLL SURVIVES, SMALLER', 'Asked for, by a host with several people and several dates. It reports who is free: no winner, no silence as consent, nobody enrolled.'),
-                     ('WITH, SPLIT IN THREE', 'Being there, her name showing, and the night entering their shared record are three things. One answer settles two; the third is a door she may never use.'),
+                     ('WITH, SPLIT IN THREE', 'Being there, her name showing, and the night entering their shared record are three things. Her yes leaves a receipt with an undo; the third is a door she may never use.'),
                      ('PRESENCE IS A SENTENCE', 'Bounded, written, and stale afterwards. No always-on location, last seen, or inferred openness to company.'),
-                 ]), w=560),
-                 notes('OPEN, AND CONFLICTS', led([
-                     ('CONFLICT &middot; OLDER BOARD', 'Board 16&rsquo;s first version (Sept 21) made pickers automatically in. Superseded here, not by a founder ruling on the underlying question.'),
-                     ('CONFLICT &middot; CHARTER', 'The group/social charter still carries voting-first and trip-room rulings. Recorded, not resolved here.'),
-                     ('GROUP CHAT', 'Still out (Sept 21). Replies here are a conversation on one share, not a room. A thread-level conversation is drawn on board 17.'),
-                     ('WITH, REMAINING', 'Naming someone without an account, and naming a group, are not drawn.'),
+                 ]), w=560)
+          + notes('DECIDED, AND STILL OPEN', led([
+                     ('CONFLICT &middot; OLDER BOARD', 'Board 06&rsquo;s first version (Sept 21) made pickers automatically in. Superseded here, not by a founder ruling on the underlying question.'),
+                     ('CHARTER', 'The group/social charter&rsquo;s voting-first rule is amended by the Sept 26 decision: a poll is something a host asks for.'),
+                     ('GROUP CHAT', 'Every occasion has one, on by default (Sept 26 decision). Before a plan is sent, replies on the opening are the conversation.'),
+                     ('WITH, DECIDED', 'Someone without an account is a plain name. A group cannot be tagged; people are named.'),
                      ('THE THIRD DOOR', 'Whether keeping the night in a shared record needs Nora&rsquo;s agreement too is unresolved; drawn as Maya&rsquo;s alone.'),
-                 ]), w=520)])
-    bodyhtml = sA + rA + rA2 + sB + rB + rB2 + sechead('D', 'Being around, for a while', 'A bounded sentence about where you are, which stops being current.') + rD
-    html = (HEAD16 + f'<div style="width: 1860px; min-height: {hh("16", 4800)}px; background: #D8D1C5; box-sizing: border-box; padding: 30px 32px 36px 32px; {SANS} color: {INK}; display: flex; flex-direction: column;">'
-            + head('16 &middot; GETTING TOGETHER, AND SAYING WHO YOU WERE WITH', 'Conversation-led, with the ballot demoted',
+                 ]), w=520)
+          + '</div>')
+    bodyhtml = sA + rA + rA2 + sB + rB + rB2 + sechead('D', 'Being around, for a while', 'A bounded sentence about where you are, which stops being current.') + rD + rN
+    html = (HEAD16 + f'<div style="width: 1860px; min-height: {hh("06", 4800)}px; background: #D8D1C5; box-sizing: border-box; padding: 30px 32px 36px 32px; {SANS} color: {INK}; display: flex; flex-direction: column;">'
+            + head('06 &middot; GETTING TOGETHER, AND SAYING WHO YOU WERE WITH', 'Conversation-led, with the ballot demoted',
                    'Rewritten for the September 22 handoff. An opening, replies, and the author settling; availability kept distinct from attendance; the poll kept as an optional instrument a host asks for. &ldquo;With&rdquo; split into three separate things. '
                    'A bounded expression of being around, which goes stale. Drawn, not tested with anyone.')
             + bodyhtml + f'<div class="fn" style="margin-top: 30px; line-height: 16px;">{FOOTX}</div></div>' + TAIL)
-    return write('16 - Getting together and with', html)
+    return write('06 - Getting together', html)
 
 if __name__ == '__main__':
     build()

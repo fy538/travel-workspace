@@ -13,6 +13,24 @@ dispositions:
 # Overrides win over rules. Rules deliberately cover stable folder conventions;
 # top-level and working documents are classified one by one below.
 rules:
+  - glob: "docs/working/development-qa-research-and-roadmap-2026-09-30.md"
+    disposition: keep_reference
+    rationale: "Dated three-session QA trace audit and primary-source research with a bounded improvement proposal; existing Task Intake, surface contracts, CI runbook and program owners retain authority."
+  - glob: "docs/working/artifact-experience-engineering-roadmap-2026-09-29.md"
+    disposition: keep_reference
+    rationale: "Strategy lane's bounded artifact implementation plan and research, assigned by the September 30 program; owns its package details and receipts while the program owns lane boundaries and accepted contracts retain product authority."
+  - glob: "docs/working/memory-as-product-direction-research-2026-09-28.md"
+    disposition: keep_reference
+    rationale: "Dated six-question primary research and repository synthesis testing memory as a consumer-facing product surface; recommendations remain proposed and existing product, permission and roadmap owners retain authority."
+  - glob: "docs/working/product-direction-2026-09-28.md"
+    disposition: keep_reference
+    rationale: "Dated trace of the September 24–28 founder strategy thread; the September 27 and 28 decisions own the rulings, and unratified proposals stay proposals."
+  - glob: "docs/working/roadmap-proposals-for-codex-2026-09-28.md"
+    disposition: keep_reference
+    rationale: "Proposed program-roadmap changes for the Codex lane owner; the program roadmap remains the only dispatch queue."
+  - glob: "docs/working/product-map/*.md"
+    disposition: keep_reference
+    rationale: "Dated, expiring orchestrator product map (Design Atlas, Build Map, supply, infra, decisions and gap map) used to measure progress and plan execution; product, system, design and program owners retain authority."
   - glob: "docs/working/historical-branch-recovery-audit-2026-09-23.md"
     disposition: keep_reference
     rationale: "Dated, expiring cross-repository Git recovery inventory and proposed selective-port plan; current product, system and program authorities retain all implementation decisions."
@@ -364,9 +382,32 @@ rules:
 
 
 overrides:
+  docs/working/product-map/adaptive-context-and-research-roadmap-2026-09-29.md:
+    disposition: keep_reference
+    rationale: Strategy Technical lane's bounded implementation plan and code/research audit; owns its assigned context/research packages under program boundaries, not a competing artifact or surface owner.
+
   docs/working/vesper-program-roadmap.md:
     disposition: keep_authoritative
-    rationale: Compact current cross-lane priority, assignment and dependency map extracted from the Integration roadmap; lane plans retain implementation detail and product, permissions, generated status and release authorities remain unchanged.
+    rationale: Current three-lane ownership and checkpoint map plus Orchestration execution plan; assigned Strategy and Technical roadmaps own their package details while product, permissions and release authorities remain unchanged.
+
+  docs/archive/vesper-program-roadmap-history-through-2026-09-25.md:
+    disposition: archive
+    rationale: Preserves dated program assignments and receipts intact after the September 25 rebaseline; not current execution authority.
+
+  docs/archive/vesper-program-roadmap-history-through-2026-09-27.md:
+    disposition: archive
+    rationale: Preserves the September 25–27 program body before replacing stale status with the published Home candidate and accepted capture/share direction.
+
+  docs/archive/home-value-composition-history-through-2026-09-27.md:
+    disposition: archive
+    rationale: Preserves the original Home assignment and detailed receipts while the active package holds only delivered paths, remaining work and latest evidence.
+  docs/archive/complete-system-integration-history-through-2026-09-25.md:
+    disposition: archive
+    rationale: Preserves the original technical plan and scoped receipts; current dispatch belongs only to the program roadmap.
+
+  docs/working/home-value-composition-execution-plan-2026-09-25.md:
+    disposition: keep_reference
+    rationale: H1 implementation and evidence reference; the September 30 program distributes remaining work across three lanes, so this is not a fourth active queue.
 
   docs/working/vesper-v1-supported-offer-2026-09-07.md:
     disposition: keep_reference
@@ -437,8 +478,8 @@ overrides:
     rationale: Active Life replacement engineering sequence and bounded implementation receipts; accepted experience and owner contracts retain product authority.
 
   docs/working/complete-system-integration-roadmap-2026-09-05.md:
-    disposition: keep_authoritative
-    rationale: Shared-system technical sequencing and landing plan with code-backed packages and scoped evidence; the Vesper program roadmap now owns cross-lane priorities and allocation, while product canon and release approvals retain authority.
+    disposition: keep_reference
+    rationale: Shared-system integration obligations and historical links retained as supporting guidance, not a competing execution queue.
 
   docs/working/home-connected-experience-plan-2026-09-04.md:
     disposition: keep_reference

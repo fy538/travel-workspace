@@ -1,0 +1,240 @@
+{
+ "schema_version": 1,
+ "captured_at": "2026-09-26T22:14:00Z",
+ "project": "Vesper — Life, the current product",
+ "project_id": "e72a2fd2-799f-4c3d-861a-d5acaac1cdaf",
+ "purpose": "Dated local reference snapshot of the live Life companion project, not production acceptance",
+ "provenance": "Top-level boards and components: byte sizes checked against the live project listing after the September 26 push. Subfolders (_ds, before-shared-package, fixtures): identical to the September 11 snapshot. The project thumbnail is omitted.",
+ "files": [
+  {
+   "path": "project/00 - Start here.dc.html",
+   "bytes": 16178,
+   "sha256": "efc213f5110c7c0399bf77c40cafb86462ef414eaa9edd3073b1193b817ac3f1"
+  },
+  {
+   "path": "project/01 - My life, four ways.dc.html",
+   "bytes": 78379,
+   "sha256": "c07647787e26811acfb1ccdca47468bbed9264e43f749e69467359325b2f224d"
+  },
+  {
+   "path": "project/02 - An ordinary beginning.dc.html",
+   "bytes": 100100,
+   "sha256": "12f1c9c12151bac7dc7f37024516d85e0d7dd8e55cb617a4121a95370b344dc3"
+  },
+  {
+   "path": "project/03 - Open something in my life.dc.html",
+   "bytes": 74618,
+   "sha256": "199bd9f2bd3502f55691c668f3afebe0f44fb52f38c5a4ad624de8c4a0e5bdc8"
+  },
+  {
+   "path": "project/03b - Inside a record.dc.html",
+   "bytes": 119640,
+   "sha256": "d5ead9990448858d944d52bc99af4aaa5633b1be62590ce44d07649551e4b970"
+  },
+  {
+   "path": "project/04 - My original things.dc.html",
+   "bytes": 88199,
+   "sha256": "15de573cc7c348e68867ff5cb8058cf73b27f5c238253652d6a75c505c12f56d"
+  },
+  {
+   "path": "project/04b - Ordinary photographs.dc.html",
+   "bytes": 164839,
+   "sha256": "59dd9b367b7c6969e3b8aa4676af1e25c0f74c645d18f8334180f8a1b0039467"
+  },
+  {
+   "path": "project/04c - One photo path.dc.html",
+   "bytes": 179149,
+   "sha256": "d6932593146de5153df6e426ee6e88be28fccef8acd720efd5f1494edb3d7091"
+  },
+  {
+   "path": "project/05 - Find it again.dc.html",
+   "bytes": 102048,
+   "sha256": "be44d5b94af66ef6e7cd64d997a3361405388b332309480836b0cf15251f7c02"
+  },
+  {
+   "path": "project/06 - Give once, get value back.dc.html",
+   "bytes": 41776,
+   "sha256": "b3ce8009f1412ca2e8341b120d15b0f59b492e097c9c37f088aa188ae744df01"
+  },
+  {
+   "path": "project/07 - The people in my life.dc.html",
+   "bytes": 81644,
+   "sha256": "c859888eaa08935770c27b78145823e1c161497405efc68a62155348768ebfa2"
+  },
+  {
+   "path": "project/08 - The actual source.dc.html",
+   "bytes": 62472,
+   "sha256": "413c1e286f8df0468a4fc7568dbec39c05060896c92c40d97f82e56770c2ad6f"
+  },
+  {
+   "path": "project/09 - Finishing a local action.dc.html",
+   "bytes": 75847,
+   "sha256": "367048f67f0e17fd3676e92b48cb64ef02f43faab85c90536fe330f254f3f4b7"
+  },
+  {
+   "path": "project/D0 - Decisions to rule.dc.html",
+   "bytes": 26298,
+   "sha256": "0f283101c8181324b60968b906419d4770899769ea893a5219590d27f7289473"
+  },
+  {
+   "path": "project/Notice.dc.html",
+   "bytes": 2531,
+   "sha256": "4fe7351b0782544354cca2d9daa26cf84ad73530778ec684723c1986203cf699"
+  },
+  {
+   "path": "project/OriginalReader.dc.html",
+   "bytes": 11643,
+   "sha256": "2c6c47967b5044d6a91717ef51f44721fcd5d0289e081bb647b44030a04262a0"
+  },
+  {
+   "path": "project/P1 - What I keep ahead of me.dc.html",
+   "bytes": 44156,
+   "sha256": "572a47545ae1db53d1d012da0a4f6fa9bed91d1c88dc8c6dfd167c32cc873a08"
+  },
+  {
+   "path": "project/P2 - Life changes without management.dc.html",
+   "bytes": 66902,
+   "sha256": "8baa8890cf7d4b7304f4d3aa70f071e1f167ca0c711462f3a721a7e231824812"
+  },
+  {
+   "path": "project/P3 - Something I deliberately saved.dc.html",
+   "bytes": 39283,
+   "sha256": "7a116a29db4be3104dd9f8650bf98dff1b00f90771039e41996d2ec1538e0276"
+  },
+  {
+   "path": "project/P4 - A map inside a record.dc.html",
+   "bytes": 55321,
+   "sha256": "948ef8721088b7d1aecdf108e195956cc515ac74b58da00bff566c0c287be9ab"
+  },
+  {
+   "path": "project/R0 - Reference.dc.html",
+   "bytes": 46810,
+   "sha256": "9292b08acd36c53eb52b146c40891b37e53fe48b010724e90023d5c0bd0f04ab"
+  },
+  {
+   "path": "project/Ticket.dc.html",
+   "bytes": 17327,
+   "sha256": "7d9e2135c05fd122730f40eb02ca8623f38b7f774de40e298acc9b417926d452"
+  },
+  {
+   "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_adherence.oxlintrc.json",
+   "bytes": 549,
+   "sha256": "0200757596e677c8285210778a3ba068daa1d85862e466e7937b4d782227906c"
+  },
+  {
+   "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_bundle.js",
+   "bytes": 342,
+   "sha256": "86435e1efe0a3acc86facbb4ae473b690d5eda48f451ab8b5a0dc89967be06b7"
+  },
+  {
+   "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/_ds_manifest.json",
+   "bytes": 628,
+   "sha256": "56d8d0383d4a0d60b8d9c0f59375827730b66e2bb0e69aeb982bd5b98f2367c4"
+  },
+  {
+   "path": "project/_ds/vesper-production-kernel-fc85e38a-72e6-4b40-98a7-fb447dd94529/styles.css",
+   "bytes": 29657,
+   "sha256": "a843ca5ba6fe7595ff05c629ed88be8f3051e073a51cda4500e18ee5910d7f6c"
+  },
+  {
+   "path": "project/before-shared-package/00 - Start here.dc.html",
+   "bytes": 13258,
+   "sha256": "e36e69971f7346263633aa97519a7c1aa0846e5b7b336a5ff04ab8dd74b08840"
+  },
+  {
+   "path": "project/before-shared-package/01 - My life, four ways.dc.html",
+   "bytes": 78474,
+   "sha256": "6c2468b3a3afb30be73e79b45f17ce383b69b7e3c1c841387b9e82ac5248ac94"
+  },
+  {
+   "path": "project/before-shared-package/02 - An ordinary beginning.dc.html",
+   "bytes": 99586,
+   "sha256": "ff317c028eedf154ec1c79372b90484398a33e707ec5e763d50f72b38ab072af"
+  },
+  {
+   "path": "project/before-shared-package/03 - Open something in my life.dc.html",
+   "bytes": 76220,
+   "sha256": "ca61ca02b2f3b7aba7210f586f1b0d4e784621209179adfff898a970bfed6c3f"
+  },
+  {
+   "path": "project/before-shared-package/03b - Inside a record.dc.html",
+   "bytes": 126581,
+   "sha256": "c6b7ac187d326677f6a37a3652f2bda379912c3f59d1947cc48b91b0330dbd8d"
+  },
+  {
+   "path": "project/before-shared-package/04 - My original things.dc.html",
+   "bytes": 98472,
+   "sha256": "a294b7c6234a9c9fcd8a0c2edad5982599d7fdc87be5400ac11c47fd05d1f993"
+  },
+  {
+   "path": "project/before-shared-package/05 - Find it again.dc.html",
+   "bytes": 108411,
+   "sha256": "3876a21605605338f3da5b410c800ba5fe3be644a2a3e87a0cb18a8935fd14e3"
+  },
+  {
+   "path": "project/before-shared-package/06 - Give once, get value back.dc.html",
+   "bytes": 42033,
+   "sha256": "4d75297a270f08893aa9714541da8f7ff103a858eec4518c83d6d2f3d5868f49"
+  },
+  {
+   "path": "project/before-shared-package/07 - The people in my life.dc.html",
+   "bytes": 82243,
+   "sha256": "f5afd8419c11b12dbb92e67f011815f88e191b4a685eae7befb97496c67a5a96"
+  },
+  {
+   "path": "project/before-shared-package/P1 - What I keep ahead of me.dc.html",
+   "bytes": 44058,
+   "sha256": "487ae5c936a8a058dba3ad7d127d78dd4bf7d32d053d704701de254765be9a69"
+  },
+  {
+   "path": "project/before-shared-package/P2 - Life changes without management.dc.html",
+   "bytes": 66581,
+   "sha256": "b6b390bcfd2d366f57afdce20bae0b906671cac1abadbda51d8ca30173c81ffe"
+  },
+  {
+   "path": "project/before-shared-package/P3 - Something I deliberately saved.dc.html",
+   "bytes": 38831,
+   "sha256": "ea675aa67ab1784c53c4aab2815331cea66c3443736c717665010900190194fc"
+  },
+  {
+   "path": "project/before-shared-package/P4 - A map inside a record.dc.html",
+   "bytes": 54777,
+   "sha256": "8f17a4b86ab26dae9884d671367f3d67a4b0e2149e8994471f0e7855c77a943c"
+  },
+  {
+   "path": "project/before-shared-package/R0 - Reference.dc.html",
+   "bytes": 50447,
+   "sha256": "fb2abda5ffadb8d22169231a309478d2c148014cecac4536c82c6760f5604c23"
+  },
+  {
+   "path": "project/before-shared-package/support.js",
+   "bytes": 69150,
+   "sha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe"
+  },
+  {
+   "path": "project/fixtures/life-composition-fixtures-v0.1.json",
+   "bytes": 39206,
+   "sha256": "fa23bef38de07c9a7838e4ab594a5fe7c1c9885476d1a90e1e94f8879d226218"
+  },
+  {
+   "path": "project/fixtures/life-composition-fixtures-v0.2.json",
+   "bytes": 20194,
+   "sha256": "93b6eae2f143f7b3c67762e7595d8de102498f8aa7d6b8549d01ef7d5ba41ed9"
+  },
+  {
+   "path": "project/support.js",
+   "bytes": 69150,
+   "sha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe"
+  },
+  {
+   "path": "project/vdl-consumed.json",
+   "bytes": 2888,
+   "sha256": "1833e5c7a14e2bc65dc13124c032870c2387f117f780971f39c7fb2b1a0e1927"
+  },
+  {
+   "path": "project/vdl.css",
+   "bytes": 16055,
+   "sha256": "7b6fa1d3dfccc92c59be1193cd68cdb032845a54c0316540e3ab58fe0b968515"
+  }
+ ]
+}

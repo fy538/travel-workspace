@@ -264,5 +264,175 @@
         "wall_time_seconds": 7.48
       }
     }
+  },
+  {
+    "schema_version": 1,
+    "label": "home-value-multiphoto-docs",
+    "command": [
+      "make",
+      "docs-check"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "2bed1fb8e4d07bcca5ee0edb832afcf1f058c7b8",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "e8448f75dda2a750428ce9b9a6afd93d93d940dc",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "33791bc0096eb34ef49a3f0c292a7f65c6404b57",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 7.579,
+    "log_path": "docs/reliability/runs/home-value-multiphoto-docs-20260928T203130Z.log",
+    "test_counts": null
+  },
+  {
+    "schema_version": 1,
+    "label": "home-value-multiphoto-docs-final",
+    "command": [
+      "make",
+      "docs-check"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "2bed1fb8e4d07bcca5ee0edb832afcf1f058c7b8",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "e8448f75dda2a750428ce9b9a6afd93d93d940dc",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "33791bc0096eb34ef49a3f0c292a7f65c6404b57",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 7.687,
+    "log_path": "docs/reliability/runs/home-value-multiphoto-docs-final-20260928T203154Z.log",
+    "test_counts": null
+  },
+  {
+    "schema_version": 1,
+    "label": "photo-cancel-roadmap-docs",
+    "command": [
+      "make",
+      "docs-check"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "dce05c70dd7f3a0c165de3b452a71e511907e2b0",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "e8448f75dda2a750428ce9b9a6afd93d93d940dc",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "8fce18ca13a516bb01d827878aae5eced63bf016",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 10.114,
+    "log_path": "docs/reliability/runs/photo-cancel-roadmap-docs-20260928T203835Z.log",
+    "test_counts": null
+  },
+  {
+    "schema_version": 1,
+    "label": "photo-draft-final-docs-check",
+    "command": [
+      "make",
+      "docs-check"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "b930e5099ec5d918002174749f48441c36e4d0f1",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "e8448f75dda2a750428ce9b9a6afd93d93d940dc",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "325648dbb94c39ed48fc595b43810ea0e2facc27",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 7.066,
+    "log_path": "docs/reliability/runs/photo-draft-final-docs-check-20260928T221512Z.log",
+    "test_counts": null
+  },
+  {
+    "schema_version": 1,
+    "label": "photo-draft-compact-final-docs-check",
+    "command": [
+      "make",
+      "docs-check"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "b930e5099ec5d918002174749f48441c36e4d0f1",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "e8448f75dda2a750428ce9b9a6afd93d93d940dc",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "a5fc8ae003f0464df5b532ea4690290f3ff47210",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 7.756,
+    "log_path": "docs/reliability/runs/photo-draft-compact-final-docs-check-20260928T222558Z.log",
+    "test_counts": null
   }
 ]

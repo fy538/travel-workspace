@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / engineering
 created: 2026-05-01
-last_verified: 2026-09-07
+last_verified: 2026-09-30
 why_new: Promote the existing workspace index into the canonical documentation entry point.
 supersedes: []
 source_of_truth_for: [workspace-docs-navigation]
@@ -20,7 +20,7 @@ and a bounded milestone are not interchangeable.
 |---|---|---|
 | **What product are we building?** | [Product Thesis](../travel-agent/docs/product/Product%20Thesis.md) → [Product Model](../travel-agent/docs/product/Product%20Model.md) → [accepted consumer strategy](decisions/2026-09-06-reconcile-consumer-strategy.md) | understanding direction and boundaries |
 | **What matters next across the whole product?** | [Vesper program roadmap](working/vesper-program-roadmap.md) — current priorities, accountable tasks, dependencies and system checkpoint | coordinating independent lanes without reconstructing task history |
-| **How do we implement and integrate it?** | [Complete-system integration roadmap](working/complete-system-integration-roadmap-2026-09-05.md) and the program's linked lane plans | shared technical sequencing, scoped implementation and landing under existing contracts |
+| **Which lane implements it?** | [Orchestration](working/vesper-program-roadmap.md#5-orchestration-execution-plan): capture/Home/Places/practical integration; [Strategy](working/artifact-experience-engineering-roadmap-2026-09-29.md): artifacts/readers/collections/Life; [Strategy Technical](working/product-map/adaptive-context-and-research-roadmap-2026-09-29.md): context/research/preparation | execute one owned outcome in its coordinated worktree; H1 and the integration roadmap are supporting references |
 | **What must the M1 demo establish?** | [M1 — Plan Repair](release/m1-plan-repair.md) | executing or certifying that bounded operational-alpha milestone |
 | **What evidence supports completion?** | Current owner/package receipts for local progress; [`evidence-attestations.json`](journeys/evidence-attestations.json) for promoted journey evidence | distinguishing implementation progress from certification |
 | **What must I not break?** | [V1 scope](release/v1-scope.md) for dark surfaces · [Journey Status](journeys/STATUS.md) for the regression floor | shipping work |
@@ -44,15 +44,27 @@ Three things follow from that table and are worth stating once:
 - **Lighting a flag outside its declared `gate:` is a scope change**, not a
   config change.
 
-The program roadmap owns cross-lane coordination; Integration owns shared
-technical execution and landing; lane plans own their current implementation
-queues and receipts. These working plans do not replace product, permissions,
-generated current-state signals or release authorities. Read the relevant owner
-contract before changing it. Older Integration assignment tables are historical;
-use the program's dated baseline and verify Git before starting work.
+The September 30 program assigns three autonomous implementation lanes with
+one active coherent assignment per lane. The program owns their boundaries and
+Orchestration's queue; Strategy and Strategy Technical own their respective
+package details and receipts. Each executes in a complete coordinated worktree
+against landed dependencies, without routine inter-chat dispatch. The Home H1
+package and integration roadmap preserve supporting detail and evidence, not
+additional queues. These plans do not replace product, permissions, generated
+current-state signals or release authorities. Read the relevant owner contract
+and verify Git before work; the roadmap assignment itself does not start work.
 
 ## Current strategy review
 
+- [Accepted September 27 core loop and one composer](decisions/2026-09-27-documenting-core-loop-and-one-composer.md):
+  documenting for oneself or others through one horizontal capture/share
+  capability; immediate Keep with Undo and a specific share-plus-question
+  amendment. Its R1–R5 recommendations remain pending, and owner/runtime
+  propagation is scheduled separately in the program.
+- [Accepted September 26 multiplayer direction](decisions/2026-09-26-multiplayer-direction.md):
+  lightweight authored sharing, explicit audiences, Home/Places placement,
+  occasion conversation and whole collections. The new audience schema and
+  named use-grant amendment are not implemented merely by recording direction.
 - [Accepted September 7 refinement](decisions/2026-09-06-reconcile-consumer-strategy.md#5-september-7-refinement-complete-benefits-selective-context-and-voluntary-choice):
   complete benefits, selective context and voluntary choice; no new retention
   agreement, price or launch readiness follows.
@@ -99,6 +111,10 @@ this spine may be useful, but it must not silently become a competing source of 
 
 ## Supporting layers
 
+- [Adaptive context and research roadmap](working/product-map/adaptive-context-and-research-roadmap-2026-09-29.md):
+  September 29 cross-repository audit and research-backed implementation packages
+  for artifact retrieval, bounded public research, selective refresh, assistance
+  and receiving. Proposed work only; the program retains the dispatch queue.
 - [Content-to-native quality consolidation plan](working/content-to-native-quality-consolidation-plan-2026-09-15.md):
   proposed shared-pattern/content implementation packages with current-app polish
   as a required outcome; scheduling stays with the program roadmap.

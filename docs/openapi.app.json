@@ -13461,7 +13461,7 @@
           "intake"
         ],
         "summary": "Get Intake Source Object Media",
-        "description": "Stream one current owner-scoped Intake original.\n\nThe submission reader intentionally returns custody metadata, not a storage\nURL. This route is the matching permitted-media reader: it reuses the\nIntake owner/custody boundary, keeps the storage key server-side, and\nrefuses expired, revoked, deleted, or otherwise unverified originals.",
+        "description": "Stream one exact current owner-scoped Intake original.\n\nThe submission reader intentionally returns custody metadata, not a storage\nURL. A selected-original link can supply ``expected_revision`` so a stale\nselection cannot silently open a replacement. Callers without a selected\nrevision may omit it and read the current original through this owner\nboundary.",
         "operationId": "get_intake_source_object_media_api_intake_submissions__submission_id__objects__object_id__media_get",
         "parameters": [
           {
@@ -13482,6 +13482,25 @@
               "type": "string",
               "format": "uuid",
               "title": "Object Id"
+            }
+          },
+          {
+            "name": "expected_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 64,
+                  "maxLength": 64,
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Expected Revision"
             }
           },
           {
@@ -39246,6 +39265,11 @@
             "title": "Available",
             "default": false
           },
+          "undo_available": {
+            "type": "boolean",
+            "title": "Undo Available",
+            "default": false
+          },
           "paths": {
             "items": {
               "type": "string"
@@ -39254,10 +39278,35 @@
             "title": "Paths",
             "default": []
           },
-          "revision": {
+          "actions": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "wrong_time",
+                "separate_from_occasion",
+                "keep_occurrence_forget_interpretation"
+              ]
+            },
+            "type": "array",
+            "title": "Actions",
+            "default": []
+          },
+          "target_submission_id": {
             "anyOf": [
               {
                 "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Submission Id"
+          },
+          "revision": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
               },
               {
                 "type": "null"
@@ -39414,6 +39463,47 @@
         ],
         "title": "ArtifactMedia"
       },
+      "ArtifactOriginalReference": {
+        "properties": {
+          "submission_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Submission Id"
+          },
+          "source_object_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Source Object Id"
+          },
+          "revision": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Revision"
+          },
+          "ordinal": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Ordinal"
+          },
+          "media_type": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Media Type"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "submission_id",
+          "source_object_id",
+          "revision",
+          "ordinal",
+          "media_type"
+        ],
+        "title": "ArtifactOriginalReference",
+        "description": "An exact, owner-scoped original that the native reader can inspect."
+      },
       "ArtifactPhotoUploadResponse": {
         "properties": {
           "photo_id": {
@@ -39520,6 +39610,64 @@
         ],
         "title": "ArtifactProvenance"
       },
+      "ArtifactReadingDescriptor": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "artifact-reading.v1",
+            "title": "Schema Version",
+            "default": "artifact-reading.v1"
+          },
+          "family": {
+            "type": "string",
+            "enum": [
+              "ticket",
+              "place",
+              "work",
+              "passage",
+              "dish",
+              "practical_record",
+              "generic"
+            ],
+            "title": "Family"
+          },
+          "format": {
+            "type": "string",
+            "enum": [
+              "transport_ticket",
+              "admission_ticket",
+              "venue_anchor",
+              "book",
+              "film",
+              "show",
+              "music",
+              "passage",
+              "dish",
+              "practical_record",
+              "generic"
+            ],
+            "title": "Format"
+          },
+          "recognized": {
+            "type": "boolean",
+            "title": "Recognized"
+          },
+          "has_family_facts": {
+            "type": "boolean",
+            "title": "Has Family Facts"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "family",
+          "format",
+          "recognized",
+          "has_family_facts"
+        ],
+        "title": "ArtifactReadingDescriptor",
+        "description": "Bounded presentation hint, separate from experience semantics.\n\nRecognition describes the source artifact's reading shape only. It is not\nproof that a catalog subject matched, a ticket is valid, or an attendance\nclaim is true."
+      },
       "ArtifactSection": {
         "properties": {
           "heading": {
@@ -39560,6 +39708,15 @@
             },
             "type": "array",
             "title": "Refs",
+            "default": []
+          },
+          "originals": {
+            "items": {
+              "$ref": "#/components/schemas/ArtifactOriginalReference"
+            },
+            "type": "array",
+            "maxItems": 16,
+            "title": "Originals",
             "default": []
           },
           "status": {
@@ -45050,6 +45207,16 @@
           "anchor": {
             "$ref": "#/components/schemas/ArtifactAnchorSummary"
           },
+          "reading": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ArtifactReadingDescriptor"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "context": {
             "$ref": "#/components/schemas/ArtifactContextSummary"
           },
@@ -45067,7 +45234,7 @@
               "$ref": "#/components/schemas/ArtifactMedia"
             },
             "type": "array",
-            "maxItems": 8,
+            "maxItems": 16,
             "title": "Media",
             "default": []
           },
@@ -89259,6 +89426,8 @@
               "did_not_go",
               "separate_from_occasion",
               "keep_occurrence_forget_interpretation",
+              "replace_time",
+              "undo_correction",
               "delete_derived"
             ],
             "title": "Action"
@@ -89274,6 +89443,42 @@
               }
             ],
             "title": "Note"
+          },
+          "command_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Command Id"
+          },
+          "expected_revision": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Revision"
+          },
+          "time_window": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TimeWindow"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "additionalProperties": false,

@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / product / architecture / engineering
 created: 2026-08-29
-last_verified: 2026-09-09
+last_verified: 2026-09-28
 why_new: Defines one cross-repository boundary from human contribution through immediate value, retention, consequence, projection, receipt, and causal repair across Chat, Intake, Occasions, Home, Places, and Life.
 supersedes: []
 source_of_truth_for:
@@ -77,8 +77,9 @@ human job from language, invoked UI, channel, and current context.
 | **Decide / Act** | Apply the named consequence through its canonical owner when authority and reversibility permit |
 | **Correct / Release** | Supersede or remove the named relation and invalidate its dependent state |
 
-One turn may contain several gestures. “What does this ticket say?” is normally
-Ask with a supporting Source. “This is the ferry I used—add it to my August
+One turn may contain several gestures. “What does this ticket say?” is Ask
+with a supporting Source; a deliberate composer share also adds Bring under
+§3.2. “This is the ferry I used—add it to my August
 journey” combines Point, Bring, and Keep, but the explicit occurrence claim
 still belongs to the person rather than to the ticket.
 
@@ -151,9 +152,10 @@ Use language and the invoked affordance together:
 
 | Entry | Default |
 | --- | --- |
-| Source accompanying a question | **Ask:** transient Source processing, no new durable claim |
+| Source accompanying a question outside deliberate composer sharing, or explicit **Ask only** | **Ask:** transient Source processing, no new durable claim |
+| Deliberate composer share carrying a question | **Bring + Ask:** keep the Source privately with Undo; answer under existing conversation retention |
 | Source deliberately sent alone in Chat | **Point/Bring:** private reversible Source custody after immediate value |
-| Share sheet, forwarded message, or explicit Add affordance | **Bring:** private Source custody plus literal extraction; provisional interpretation |
+| Share sheet, forwarded message, or explicit Add affordance | **Bring:** immediate private Source custody with Undo; literal extraction and provisional interpretation do not block completion |
 | “Keep this” or explicit authored claim | **Keep:** admit only the named Source or claim |
 | Ambiguous pasted item inside an active conversation | T0 unless retention is the invoked job or later language makes it clear |
 
@@ -161,6 +163,13 @@ No classification prompt precedes useful interpretation. A private T1 write
 leaves a compact scope plus Correct/Undo. If plausible interpretations would
 change Occurrence, audience, affected-person standing, public consequence, or
 external action, prepare privately and use T2.
+
+The [September 27 composer decision](../decisions/2026-09-27-documenting-core-loop-and-one-composer.md)
+amends only deliberate sharing with a question, not casual-question continuity.
+Chat attachments must expose their keep state and one-tap **Ask only** before
+that default changes in runtime. An incoming context reference alone is not a
+new Keep. Private capture finishes on verified retained custody, independently
+of semantic processing; original retention is not candidate confirmation.
 
 ### 3.3 Expiry follows lifecycle before elapsed time
 
@@ -521,7 +530,8 @@ notification delivery and silence cannot resolve changed participation.
 
 Apply T1 without prior approval only when all are true:
 
-1. the gesture is deliberate rather than merely a Source attached to an Ask;
+1. the gesture is deliberate, including the accepted composer Bring + Ask,
+   rather than merely a context reference attached to an Ask;
 2. actor, Source, private owner, and intended scope are clear;
 3. retained state is the Source, an authored observation, or a bounded
    source-local interpretation;
@@ -555,6 +565,13 @@ not take the ferry” retains the ticket, invalidates the occurrence, recomputes
 journey and story projections, cancels dependent pending consequences, and
 preserves an independently sourced later hotel check-in.
 
+Undoing a private owner correction is itself a revision-fenced, append-only
+owner command. It targets only the latest effective correction and restores
+the preceding effective correction, or the unchanged source-derived
+interpretation when no earlier correction remains. It never edits or recreates
+the original Source, and downstream projections must replay the same effective
+correction history before claiming the Undo is complete.
+
 Deletion or correction must propagate through content-addressed or typed causal
 lineage. Hiding one card while leaving the same false claim in Home, Places,
 Life, a story, memory projection, or pending action is non-conforming.
@@ -563,6 +580,7 @@ Life, a story, memory projection, or pending action is non-conforming.
 
 | Surface | Contribution responsibility | Must not become |
 | --- | --- | --- |
+| **Horizontal composer** | Shared capture/share contract across OS share, camera/photos, global add, Chat attachments, existing-object Keep/Send and email; just-me default, explicit wider audience, immediate Keep with Undo | A new universal artifact owner, review-first intake, or automatic audience expansion |
 | **Chat** | Lowest-friction Ask/Point/Bring/Correct entry; immediate value; private preparation; compact receipts | A mandatory workflow, generic memory intake, or owner of all truth |
 | **Home** | Current-life projection of admitted value and justified consequences | A request feed, recap report, or hidden-inference display |
 | **Places** | Place-relative truth, relationship, horizon, practical state, and governed contribution | A save repository, review directory, or private-memory owner |
@@ -639,8 +657,20 @@ erases source, truth type, scope, expiry, disagreement, or correction.
   contribution gate.
 - ordinary conversation does not expose a complete continuity-read/no-write
   posture equivalent to the contract's T0 promise.
-- share capture currently leads with candidate review—“keep, correct, or
-  remove”—before the target first-turn contribution proves value.
+- verified retained share capture now finishes privately with Done/Undo before
+  optional candidate review. Resolved private Chat threads, the Chat landing
+  dock and private/private-trip create expose Keep/Ask only for newly selected
+  photos and use the same custody owner with separate answer-only question
+  admission. Pre-thread adapters retain source/context/turn/room retry identity
+  and carry current-owner receipt access into the target. Native acceptance,
+  the common composer across all six doors and wider-audience schema
+  remain incomplete; see the active capture/share package.
+- new forwarded-email originals now use the same verified private Bring
+  retention, receipt and Life handoff. Old replay retains its original policy;
+  expiry/deletion cannot rearchive released bytes. Provider envelopes are
+  custody-only, not additional visible artifacts. Local HTTP/Postgres and
+  mobile behavioral checks cover this seam; external delivery, attachment
+  bytes, scheduled projection and native acceptance remain separate evidence.
 - causal correction across every Home, Places, Life, story, memory, social, and
   pending-action consumer is not certified.
 

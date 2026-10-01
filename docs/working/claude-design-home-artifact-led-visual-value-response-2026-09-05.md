@@ -1123,3 +1123,204 @@ Only board 18 changed.
 
 **Evidence.** 15 phones and 71 stand-ins render with no page errors, no spill, no sideways scroll; restamped to the
 measured height. Static frames only.
+
+## 28. September 23 — Live Home: three connected studies (boards 19, 20, 21)
+
+Three new boards in the existing project; 00 carries their rows. No settled component was rebuilt. The shared
+`InviteCard` was copied byte-identical from the workbench (0.4.1) for one guest view and recorded in
+`vdl-consumed.json`. Generator: `design-gen/home/gen_live.py`.
+
+**19 · A new city, with no plan.** A visitor whose account holds only the city (sparse context), Saturday by the water, on
+Home 14's supply (the flea until three, the pier at low water from 2:40, the pumps chapter).
+- *Selected:* 19.1, two openings with practical fit plus one reading, against 19.2, the same evidence as a timed
+  afternoon with a start button (not chosen).
+- *Path:* 19.1 → the pier in Places (19.3) → Back to the same position.
+- *Wrong inference:* "only here an hour" said in Chat (19.4). The afternoon opening and its dependent sub-line leave;
+  the flea gains directions (19.5). Nothing records a dislike; the correction is for today only.
+- *Distributed cases:* no location (19.6: distances go, nothing asks); 19.1 at 1.3× (19.7); a healthy hour after lunch
+  with nothing to resolve (19.8).
+
+**20 · An evening together.** Pasta night from the shared ledger (§1, §9.3).
+- *One shared decision:* Nora hosts; Maya asks about eight; Sam leaves by nine. "Move to eight" is a shared change and
+  Nora's call; Maya coming at eight is her own. Seven stays, with one applied Notice (20.1 → 20.2).
+- *A friend who contributes once:* Dana's tip and photograph from Sorrento help the cooking. She holds nothing else.
+- *Three views of one occasion:* host with arrival times in people's own words (20.3); Maya's own Home as late joiner,
+  with the address and buzzer first (20.4); Sam's guest link through the shared InviteCard, which Social owns (20.5).
+  Unknown arrival is never lateness; nobody's location is shown.
+- *Together:* the page has nothing to do (20.6). Afterward is 18 K, not redrawn.
+- *Show variation (Persona A, The Hall):* the meeting point moves when the bar is full; Nadia's page says only "Waiting
+  to reach Alex" (pending Notice, no read marker) (20.7); it reaches Alex en route (20.8); then the way home (20.9).
+
+**21 · A travel day.** TAP 214 to Lisbon, reusing 08's flight ladder and 12's stale patterns.
+- *Preparation:* Live and still broad, with one accepted responsibility: gate and delay changes, "You asked · ends at
+  boarding" (21.1).
+- *The rush:* the suite's only Urgent frame, one recovery and one action, the rest folded to a row (21.2), also at 1.3×
+  (21.8).
+- *Waiting:* the pass compacts at the gate and breadth returns: Maya's note, a chapter, an open Saturday (21.3). The
+  contract already allows this (Live is not attention protection), so it doesn't rely on 08's proposed Rule B.
+- *Changed intention:* "skip Sintra for me" changes Nadia's part only. Maya and Alex keep the day and her ticket is left
+  for her (21.4, 21.5).
+- *Landing offline, item by item:* address, door code and the written way from the tram work; walking directions say
+  they need a connection; the friends' flight shows when it was last true; her note waits to send; palace tickets open
+  in the provider's app (21.6).
+- *Arrival:* the flight card retires to Life; an open Saturday with two optional openings (21.7).
+
+**Across the suite.** Facts, optional openings and accepted responsibilities are drawn differently: rows of state;
+alternatives joined by OR with their practical fit; a responsibility says who asked and when it ends. There is no
+countdown, recap, rating or mark-done. Each study ends in a state where the phone can go away.
+
+**Exercised versus pictured.** All static frames: composition intent only. Nothing here exercises delivery, provider
+feeds, offline storage, return position or native behavior.
+
+**Open questions (unchanged from the brief).** How people read optional windows against commitments; how much arrival
+information friends want; whether correction feels effortless; what the gate-change responsibility can honestly
+promise; which offline capabilities can be delivered.
+
+**Owners.** Plans owns arrangements and participation; Social owns guest links and delivery state; Places owns the pier
+destination; the airline, transit and ticket providers own their feeds; engineering owns offline storage.
+
+**September 21 residuals.** Not closed by these boards. The approved photo set still doesn't exist (ledger §10), and
+18's pictured draft and scroll retention remain unverified.
+
+**Evidence.** Each board renders with its shared components mounted (reader, Notice, InviteCard), no page errors, no
+text spilling any phone, no sideways scroll; each is stamped at its measured height. Fixture places attached to real
+streets are bracketed.
+
+## 29. September 23 — making live visible (boards 22, 23; 19–21 rebuilt)
+
+The founder found 19 and 20 aesthetically off, and asked that the user know something is live "more visually,
+instead of just a regular card".
+
+**How it was chosen.**
+- **Board 22** compared a live instrument card, a dark band and a live field.
+- The dark band won, but the founder didn't want a timeline every time, and pointed to the ticket.
+- The band holding each situation's own object read as "strange": the object sat inside a dark box.
+- **Selected, lane D:** the object itself goes live, with no container.
+- **Board 23** compared five trays under the object and chose the coupon (T2), then seven colourways; ink / cream was
+  selected.
+
+**The selected grammar**
+- **While live, the situation's own object is the crown, drawn dark:**
+  - the map where you are;
+  - the evening's table, where a filled seat is the host and dashed seats are the times people gave;
+  - the admission ticket;
+  - the boarding pass;
+  - the stay.
+- **A torn stub carries the state:** a green pulse when live, oxblood when urgent, a still grey dot when saved but
+  offline.
+- **A cream coupon tears off below it.** It holds one to four things that help around this moment, each with its fit,
+  and appears only when something fits.
+- **Before and after the live window,** the same object is ordinary cream (the shared Ticket), or appears as a used row.
+- **Without the evidence for "here now"** (no location), nothing is drawn live.
+
+**What changed on 19–21.**
+- **19:** 19.1, 19.5, 19.7 and 19.8 lead with the live map; the coupon offers the flea's pierogi table and a bench on
+  the way to the pier. After "only here an hour" the pier leaves the map. 19.6 has no location, so no live map.
+- **20:** the host at 7:25, Maya at 7:40 and the dinner at 8:40 lead with the live table; the 8:40 frame has no coupon,
+  because nothing fits mid-dinner. The show and Alex lead with the live admission ticket, whose coupon holds Maya's
+  noodle bar and the way home. After the show the ticket returns as a used cream row.
+- **21:**
+  - the morning pass is cream (today, not yet live);
+  - the rush is the oxblood pass with no coupon;
+  - the gate is the live pass with a "before boarding" coupon;
+  - landing offline is the stay, with a still dot and a "needs a connection" coupon;
+  - arrival has no live object.
+
+**Components.** The shared `Ticket` was copied byte-identical (09-23) for the cream and used states and recorded in
+`vdl-consumed.json`. The dark live object is drawn locally and recorded there as a requested Ticket variant (a live
+state: dark stock, pulsing stub, optional coupon) for the shared owner to review. It is not a Home fork of the
+component.
+
+**Evidence.** All five boards render with no page errors, no text spilling any phone and no sideways scroll, and each is
+stamped at its measured height. The pulse animates in the browser. The airport noodle counter is an invented fixture,
+labelled outside the phone; the stay's street is bracketed. Static frames only.
+
+## 30. September 26 — where you are (board 24; 19 rebuilt)
+
+**Why.** The founder asked whether 19's live map made sense, and pointed out that a new city is not one situation:
+the city can be familiar or unfamiliar, and there may or may not be a plan. Board 24 draws the four combinations.
+
+| | No plan | A plan |
+|---|---|---|
+| **Familiar city** | 24.1: nothing is live. An ordinary Home; tonight's reservation is a cream row until its window. | 24.2: the plan's own object goes live about 20 minutes before leaving (the Lilia reservation). The coupon has the walk and Maya's tip. |
+| **Unfamiliar city** | 24.4: where you are. The live object is a **place card**: the neighbourhood, what it is, today's facts that end, plus a coupon of what is in reach and a row for the way back. No map. | 24.3: the next held thing. The ferry ticket is live; the coupon answers the stranger's questions about it. The rest of the day is plain rows. |
+
+**19 rebuilt as the unfamiliar, no-plan study** (24.4). The flows are unchanged: the timed-afternoon comparison, the
+Places page, "only here an hour", no location, larger text, the quiet hour.
+- **19.1 / 19.7:** the Red Hook place card (FLEA UNTIL 3 · LOW WATER 2:40 · DARK 6:52, stub HERE NOW). The IN REACH
+  coupon has the flea (6 min · until 3) and the pier (9 min · from 2:40). Below it: the way back, then Worth reading.
+- **19.5:** after the correction, low water leaves the card and the pier leaves the coupon. The read says "The flea is
+  six minutes away."
+- **19.6:** no location means no place card. The page is plain openings, and nothing asks for permission.
+- **19.8:** at 1:15 the card is the same and has no coupon, because nothing new is in reach. The read moves on to low water.
+- Maps stay in Places. The live map is gone from Home.
+
+**Index.** 00 now lists 24, and 19's description is updated. The index root had been stamped at 2650px against
+3436px of content; it is now stamped at its measured height.
+
+**Evidence.** Board 19 renders with 8 phones, no page errors, no spill and no sideways scroll, stamped at its measured
+height. Every place fact is a design fixture, labelled outside the phone.
+
+## 31. September 26 — 20 and 21 checked against the four situations (board 24)
+
+**20, an evening together: no change.** Every frame already follows 24. Pasta night is cream at 3:10 and 3:14, before
+it matters. The table goes live once the evening starts (7:25 host, 7:40 Maya on her way with an ON YOUR WAY coupon)
+and stays live with no coupon during dinner. The show's admission goes live before the meet and carries AFTER THE SHOW.
+At 10:52 it is a used cream row, and nothing goes live on the way home, because it is Nadia's own city with nothing
+booked (24.1).
+
+**21, a travel day: two fixes.**
+- **21.7 arrival** was the unfamiliar, no-plan case (Lisbon, nothing booked Saturday) with no live object. It now gets
+  the place card from 19 and 24.4. Kicker WHERE YOU ARE · LISBON; the card is titled "Around the stay", so no
+  neighbourhood is invented. Fields: VIEWPOINT BEFORE 1 · MARKET UNTIL 2. The IN REACH coupon holds the viewpoint
+  (10 min uphill) and the market (14 min · until 2). A row for the way back to the stay says the door code is on the
+  phone. In motion and the week strip are unchanged.
+- **21.5** reused the gate frame's "BEFORE BOARDING · 45 MIN" beside a stub reading 33 MIN. It now reads 33 MIN.
+- Board 21 had been stamped 100px short of its content, so its bottom was clipped. It is now stamped at its measured
+  4174px.
+
+The other frames in 21 already fit: 21.1 is cream (familiar city, plan not yet live), 21.2 urgent, 21.3/21.5 live
+pass (next held thing), 21.6 the stay live-but-still offline (unfamiliar, plan: next held thing).
+
+**Evidence.** Board 21 renders with 8 phones, no page errors, no spill and no sideways scroll, stamped at its measured
+height. Board 20 was re-rendered as it stands: 9 phones, no errors, height matched.
+
+## 32. September 26 — R5, the live rules (reference, proposed)
+
+A new reference board, **R5 - Reference - Live Rules**, writes down the rules that 19–21 and 24 imply, so a new case is
+decided from a rule rather than a drawing. It is marked proposed, not canon. Generator: `design-gen/home/gen_rules.py`;
+evidence rows and questions live in `rules_evidence.json`.
+
+1. **The rule.** One object is live when it is now, it is held (or, away from home with nothing held, it is where you
+   are), and the evidence is on the phone. Otherwise Home is ordinary.
+2. **Four situations.** Own or another city, crossed with nothing held or something held.
+3. **One object's day.** Cream (held) → live → urgent → still (offline) → used. Each step has one trigger.
+4. **Windows.** Per object kind: before, turns dark, stays dark through, stops, coupon heading. Leave-by is the
+   start time minus the way there; the leads are proposed defaults.
+5. **One at a time.** Urgent, then the held thing in its window (sooner start wins), then the place card, otherwise
+   nothing. Other people's plans are never live on your Home. Drawn: a place card handing over to a reservation.
+6. **The coupon.** Only under a live object; every item states its fit; one to four items, people's words first; the
+   heading names the window; nothing mid-activity; never an empty coupon.
+7. **Never live.** Suggestions, anything missing its evidence, your own city with nothing held, other people's plans,
+   ticking timers, requests.
+8. **Evidence in code today** (read 09-26, `travel-agent/backend` and `travel-app`):
+   - home city is a profile field, set explicitly and never inferred;
+   - familiarity exists per place, but there is no count per city;
+   - location is one last position with freshness (live under 2 min, recent under 15) and a known permission state;
+     the city is resolved only for Chat;
+   - plan items and stays have times; flights, trains, ferries and admissions have no timed record;
+   - the plan-state rail already knows the open window;
+   - leave-by exists as a straight-line estimate;
+   - offline persistence lasts 12 hours, with no "as of" on Home;
+   - no transit, flight delay or gate feeds.
+9. **For the founder.** Familiarity options: A, home city only; B, home city plus Life history (recommended); C, with
+   no home city, another city only when a trip names it. Q1 the leads; Q2 familiarity; Q3 stale location at 15 min;
+   Q4 build timed tickets first, or ship with plan items and stays only; Q5 owners (place card → Places, dark Ticket →
+   shared package).
+
+**Consequence worth flagging.** The pass in 21 and the admission in 20 cannot go live from data today. Neither can
+the urgent frame in 21.2, since there is no disruption feed. The first buildable version is plan items, stays and
+the place card.
+
+**Index.** R5 is added and the index is re-stamped at its measured height. **Evidence:** R5 renders with no page
+errors, no overflow, at its measured 5772px.

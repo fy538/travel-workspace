@@ -33,22 +33,33 @@ def monday():
     inner += section('From friends') + gut(mini('P', 'Priya', 'bread&rsquo;s out of the oven if anyone&rsquo;s near', '7:52 AM', last=True))
     return phone2(inner, active='Home')
 
+def doorway(names, n):
+    """Home's one line about place shares: who added places, and a door to Places. The shares themselves live there."""
+    return (f'<div style="display: flex; align-items: center; gap: 10px; padding: 12px 0; border-top: 1px solid rgba(27,23,20,0.10); border-bottom: 1px solid rgba(27,23,20,0.10);">'
+            f'{_g(S.PIN_P, MUTE, 16)}<span style="font-size: 14.5px; color: {INK}; flex: 1;">{names} added {n} places</span>'
+            f'<span style="font-size: 14px; font-weight: 600; color: {GOLDD};">In Places &rarr;</span></div>')
+def chips(active, items=('Near you', 'Saved', 'From friends')):
+    c = lambda t: (f'<span style="height: 30px; border-radius: 15px; display: inline-flex; align-items: center; padding: 0 13px; font-size: 13.5px; font-weight: 600; '
+                   f'color: {INK if t == active else MUTE}; border: {"1.3px solid " + INK if t == active else "1px solid rgba(27,23,20,0.14)"}; background: {CARD if t == active else "transparent"};">{t}</span>')
+    return '<div style="display: flex; gap: 6px;">' + ''.join(c(t) for t in items) + '</div>'
+def friend_place(name, where, who, said, when):
+    return S.place_line(name, where, f'<b style="font-weight: 600;">{who}</b> {said}', f'<div class="fn" style="margin-top: 4px;">{when}</div>')
+
 # ── Tuesday: eleven things overnight ──
 def tuesday():
+    """Sept 26: Home carries what is addressed to you, the day's posts with no place in a small strip, and one line about
+    place shares. The place shares themselves are in Places (the Sept 5 social split)."""
     inner = home('TUESDAY 7:40 AM', 'Rain from eleven.', 'Tuesday &middot; 58&deg;')
     inner += section('To you') + gut(share('Maya', 'LAST NIGHT · TO YOU', 'saw a dog that looked exactly like sam', extra=S.photo_thumb(120, 'PHOTO &middot; MAYA')))
     inner += section('From friends') + gut(
-        mini('S', 'Sam', 'this is the cinema. one film a week and exactly one kind of cake', '11:40 PM', more='AND 2 MORE FROM SAM', thumbk='film')
-        + mini('P', 'Priya', 'the upstairs room at lulu&rsquo;s is the reason to go', '9:40 PM', thumbk='table')
-        + mini('D', 'Dana', 'calanques. 7am. nobody', '1:04 AM &middot; MARSEILLE', thumbk='pier', last=True))
-    inner += gut(door('Six more from friends', MUTE), top=4)
+        mini('D', 'Dana', 'calanques. 7am. nobody', '1:04 AM &middot; MARSEILLE', thumbk='pier')
+        + mini('S', 'Sam', 'the new four tet record is actually good', '11:40 PM', last=True))
+    inner += gut(doorway('Priya and Sam', 2), top=10)
     return phone2(inner, active='Home')
-
-# ── Friday: things with a time ──
 def friday():
     inner = home('FRIDAY 6:30 PM', 'Clear tonight.', 'Friday &middot; 64&deg;')
     inner += section('Tonight') + gut(share('Sam', '6:12 PM · TO FRIENDS', 'pacha tonight. john summit. on at 1', extra=S.ticket_row(), where='Lower East Side'))
-    inner += section('This weekend') + gut(mini('N', 'You', 'brunch at hato, saturday 12:30', 'SETTLED', more='PRIYA AND MAYA ARE IN &middot; DANA HASN&rsquo;T SAID', last=True))
+    inner += section('This weekend') + gut(mini('N', 'You', 'brunch at hato, saturday 12:30', 'SETTLED', more='PRIYA AND MAYA ARE IN', last=True))
     inner += section('From friends') + gut(mini('M', 'Maya', 'finally finished it. it split. i am not ok', '5:02 PM', thumbk='noodles', last=True))
     return phone2(inner, active='Home')
 
@@ -61,25 +72,34 @@ def saturday():
 
 # ── Sunday: nothing new ──
 def sunday():
-    inner = home('SUNDAY 10:20 AM', 'A slow Sunday.', 'Sunday &middot; 60&deg; &middot; nothing on today')
+    """Sept 26 (§12.5): quiet from friends, not an empty Home. Home's own value carries on (drawn minimally, as the Home
+    project owns it); nothing social is manufactured to fill the gap."""
+    inner = home('SUNDAY 10:20 AM', 'Clear until five.', 'Sunday &middot; 60&deg; &middot; nothing on today')
+    inner += section('This afternoon') + gut(f'<div style="{CARD_CSS} padding: 12px 14px; display: flex; gap: 12px; align-items: center;">{thumb("pier", 44)}<div><div style="{SERIF} font-weight: 600; font-size: 17px; line-height: 21px;">Low water at the pier, 2:40</div><div style="font-size: 13px; line-height: 18px; color: {MUTE}; margin-top: 2px;">Ten minutes&rsquo; walk &middot; your place, for walking it off</div></div></div>')
     inner += section('From friends') + gut(plain('Nothing new since yesterday.', MUTE, 15, 21))
-    inner += section('From your life') + gut(f'<div style="{CARD_CSS} padding: 12px 14px; display: flex; gap: 12px; align-items: center;">{thumb("pier", 44)}<div><div class="fn">A YEAR AGO TODAY</div><div style="{SERIF} font-weight: 600; font-size: 17px; margin-top: 2px;">The pier at low water, with Maya</div></div></div>')
     return phone2(inner, active='Home')
-
-# ── the week, in Life ──
 def week_life():
-    inner = L6.head('PEOPLE &middot; THIS WEEK', 'From friends', 'Fourteen things &mdash; all of them still here.')
-    inner += L6.sec('MAYA', '3', 26) + K.thing(0, 'the dog that looked like sam', 'MON') + K.thing(3, 'it split. i am not ok', 'FRI')
-    inner += L6.sec('SAM', '4') + K.thing(1, 'the cinema &middot; one film a week', 'MON') + L6.row1(L6.GLASS, 'Pacha, John Summit', 'FRI')
-    inner += L6.sec('PRIYA', '4') + K.thing(5, 'the upstairs room at lulu&rsquo;s', 'MON')
-    inner += L6.door('Everyone, this week')
-    inner += L6.voice('What you did not open is here, not piling up on Home.')
+    """Sept 26 (§12.5): not a backlog. Under one person in Life People: what Maya shared with you is reachable while she
+    leaves it up. It is not your kept collection, not your record, and nothing is counted as unseen."""
+    inner = L6.head('PEOPLE &middot; MAYA', 'Maya', 'Friends since 2019.')
+    inner += L6.sec('SHARED WITH YOU LATELY', '', 26) + K.thing(0, 'the dog that looked like sam', 'MON') + K.thing(3, 'it split. i am not ok', 'FRI')
+    inner += L6.sec('YOU KEPT', '1') + K.thing(1, 'Hato &middot; the broth is stupid good', 'OCT 5')
+    inner += L6.door('Shared with Maya')
     return L6.phone(inner)
-
-# ── seeing less of someone ──
+def places_friends():
+    """Sept 26: where place shares live (the Sept 5 social split): Places, a From friends view, each place beside its
+    friend's words on a small map."""
+    inner = S.page_bar('PLACES')
+    inner += gut(chips('From friends'), top=14)
+    inner += f'<div style="margin: 14px 22px 0 22px; border-radius: 10px; overflow: hidden; border: 1px solid rgba(27,23,20,0.12);">{S.paper_map(130, ((0.30, 0.56), (0.52, 0.38), (0.72, 0.62)), 349)}</div>'
+    inner += section('This week', top=22) + gut(
+        friend_place('Lulu&rsquo;s', 'Carroll Gardens', 'Priya', 'good for a long dinner, with parents', 'PRIYA &middot; MONDAY')
+        + friend_place('The Lantern', 'Court Street', 'Sam', 'one film a week and exactly one kind of cake', 'SAM &middot; MONDAY'))
+    inner += section('Earlier', top=22) + gut(friend_place('Hato', 'Cobble Hill', 'Maya', 'the broth is stupid good', 'MAYA &middot; OCT 5'))
+    return phone2(inner, active='Places')
 def see_less():
     inner = home('TUESDAY 7:42 AM', 'Rain from eleven.', 'Tuesday &middot; 58&deg;')
-    inner += section('From friends') + gut(mini('S', 'Sam', 'this is the cinema. one film a week and exactly one kind of cake', '11:40 PM', more='AND 2 MORE FROM SAM', thumbk='film', last=True))
+    inner += section('From friends') + gut(mini('S', 'Sam', 'the new four tet record is actually good', '11:40 PM', more='AND 2 MORE FROM SAM', last=True))
     inner += sheet(f'<div style="{SERIF} font-weight: 600; font-size: 19px; line-height: 24px;">See less from Sam</div>'
                    + f'<div style="margin-top: 8px;">{plain("His shares stop coming to Home for a while. They are still under Sam in Life, and anything he sends to you alone still comes. Sam isn&rsquo;t told.", INK2, 15, 21)}</div>'
                    + f'<div style="margin-top: 14px; display: flex; gap: 8px;">{btn("For a week")}{btn("Until I change it", False)}</div>')
@@ -91,33 +111,37 @@ def rowdiv(cells, top=8):
     return f'<div style="display: flex; gap: 46px; align-items: flex-start; margin-top: {top}px;">' + ''.join(cells) + '</div>'
 
 def build():
-    r1 = rowdiv([cell('MONDAY', '1', 'One thing', 'Home&rsquo;s own line about the day, then one friend. That is a whole morning.', monday(), (P('HOME'),)),
-                 cell('TUESDAY', '2', 'Eleven things overnight', 'What Maya sent you alone comes first, at full size. Everything sent to everyone is below, compact, one row per person: Sam&rsquo;s three fold into one. Six more are a door, not a scroll.', tuesday(), (P('HOME'), P('BUSY'))),
-                 cell('FRIDAY', '3', 'Things with a time', 'Tonight and This weekend sit above everything else because they will not be true tomorrow. Brunch shows who said what, never who is behind.', friday(), (P('HOME'), P('TIME-BOUND'))),
-                 cell('SATURDAY NOON', '4', 'They leave on time', 'The market post went at noon, as Priya said. Sam&rsquo;s night went when it was over. Today is the brunch.', saturday(), (P('HOME'), P('EXPIRY')))], top=16)
-    r2 = rowdiv([cell('SUNDAY', '5', 'A quiet day', 'Nothing new from friends, and Home says so in one grey line. It does not fill the space with suggestions or old posts. One return from Life, a year ago today.', sunday(), (P('HOME'), P('QUIET'))),
-                 cell('ANY TIME', '6', 'Where missed things go', 'Nothing piles up on Home. What you did not open is in Life, under each person, for the week. Drawn in Life&rsquo;s grammar.', week_life(), (P('LIFE'), LIFE)),
-                 cell('TUESDAY', '7', 'Seeing less of someone', 'Private and temporary. His shares go quiet on Home; what he sends to you alone still comes, and he is not told.', see_less(), (P('HOME'), P('PRIVATE')))])
+    r1 = rowdiv([cell('MONDAY', '1', 'One thing', 'Home&rsquo;s line about the day, then one friend&rsquo;s post with no place. That is a whole morning.', monday(), (P('HOME'),)),
+                 cell('TUESDAY', '2', 'A busy morning', 'What Maya sent you alone comes first. The day&rsquo;s posts with no place sit in a small strip. Priya&rsquo;s and Sam&rsquo;s places are one line pointing to Places.', tuesday(), (P('HOME'), P('BUSY'))),
+                 cell('FRIDAY', '3', 'Things with a time', 'Tonight and this weekend sit above everything else because they will not be true tomorrow.', friday(), (P('HOME'), P('TIME-BOUND'))),
+                 cell('SATURDAY NOON', '4', 'They leave on time', 'Sam&rsquo;s night went when it was over. Today is the brunch.', saturday(), (P('HOME'), P('EXPIRY')))], top=16)
+    r2 = rowdiv([cell('SUNDAY', '5', 'Quiet from friends', 'One grey line, and nothing made up to fill it. Home&rsquo;s own afternoon carries on.', sunday(), (P('HOME'), P('QUIET'))),
+                 cell('TUESDAY', '6', 'Places, from friends', 'Where a place share lives: beside the place, in the friend&rsquo;s words, on a small map. Useful with two friends, and again weeks later.', places_friends(), (P('PLACES'), P('FROM FRIENDS'))),
+                 cell('ANY TIME', '7', 'Still reachable, under the person', 'What Maya shared stays under Maya while she leaves it up. Not kept for you, and nothing counted as unseen.', week_life(), (P('LIFE'), LIFE)),
+                 cell('TUESDAY', '8', 'Seeing less of someone', 'Private and temporary. What he sends to you alone still comes, and he is not told.', see_less(), (P('HOME'), P('PRIVATE')))])
     n1 = notes('HOW HOME ORDERS WHAT ARRIVES', led([
-                     ('1 &middot; TO YOU', 'Anything sent to you alone, or asking you something, first and at full size.'),
+                     ('1 &middot; TO YOU', 'Sent to you alone, or asking you something, before anything sent to everyone. Not automatically above a practical change: a funny photo and a moved table are treated differently.'),
                      ('2 &middot; WITH A TIME', 'Tonight, today, this weekend. Above everything else, and gone when the time has passed.'),
-                     ('3 &middot; FROM FRIENDS', 'Everything sent to everyone. Compact rows, one per person, newest first, three or four at most; the rest behind one door.'),
+                     ('3 &middot; FROM FRIENDS, TODAY', 'Posts with no place, sent to everyone: a small strip, the day they arrive, three or four at most.'),
+                     ('4 &middot; PLACES, NOT HOME', 'A share about a place lives in Places, beside the place, in the friend&rsquo;s words. Home shows one line pointing there.'),
                      ('NO COUNTS', 'No unread numbers, no badges, no &ldquo;you missed&rdquo;. Nothing turns red.'),
-                     ('NOTHING PILES UP', 'Yesterday&rsquo;s shares leave Home and live in Life under each person. Home is today, not a backlog.'),
-                     ('QUIET IS FINE', 'A day with nothing new says so. Home never fills itself.'),
+                     ('NOTHING PILES UP', 'A share leaves Home when its relevance ends: its time passes, or it is simply old news. It stays reachable under the person while they leave it up. It is never copied into your Life unless you keep it.'),
+                     ('NO MADE-UP URGENCY', 'When friends have not posted, nothing social is manufactured to fill the gap. Home&rsquo;s own value carries on.'),
                  ]), w=600)
     n2 = notes('OPEN', led([
         ('HOW MANY', 'Three or four compact rows is a guess. The right cap depends on how many friends people have here, which nobody knows yet.'),
-        ('NOTIFICATIONS', 'Board 11&rsquo;s proposal stands: statuses, whereabouts, places and links never ping; invitations, comments on your own share and answers to your ask do.'),
-        ('HOME&rsquo;S OWN CONTENT', 'The day line and the Life return are Home&rsquo;s existing work (the Home project). Drawn minimally here, only to show friends sitting beside it rather than taking over.'),
+        ('NOTIFICATIONS', 'Board 02&rsquo;s proposal stands: statuses, whereabouts, places and links never ping; invitations, comments on your own share and answers to your ask do.'),
+        ('WHY THIS SPLIT', 'It follows the Sept 5 social split, reaffirmed by the Sept 26 decision, and the code already follows it. The earlier version of this board put place shares on Home.'),
+        ('WHAT WOULD CHANGE IT', 'If, in real use, place shares in Places go unseen and senders hear nothing back, Home needs to carry more.'),
+        ('HOME&rsquo;S OWN CONTENT', 'This board is a specimen of social delivery, not a Home composition. The day line and the afternoon are Home&rsquo;s own work (the Home project), drawn minimally to show friends sitting beside it.'),
     ]), w=620)
     bodyhtml = r1 + r2 + '<div style="display: flex; gap: 46px; align-items: flex-start; margin-top: 34px; border-top: 1px solid rgba(27,23,20,0.12);">' + n1 + n2 + '</div>'
-    html = (HEAD21 + f'<div style="width: 1860px; min-height: {hh("21", 3000)}px; background: #D8D1C5; box-sizing: border-box; padding: 30px 32px 36px 32px; {SANS} color: {INK}; display: flex; flex-direction: column;">'
-            + head('21 &middot; RECEIVING', 'Home over an ordinary week',
-                   'What a dozen friends sharing looks like from Nora&rsquo;s Home, Monday to Sunday. What was sent to you first; what has a time next, gone when it passes; everything else compact, grouped by person, capped. '
-                   'Nothing is counted, nothing piles up, and a quiet day stays quiet. Drawn, not tested with anyone.')
+    html = (HEAD21 + f'<div style="width: 1860px; min-height: {hh("03", 3000)}px; background: #D8D1C5; box-sizing: border-box; padding: 30px 32px 36px 32px; {SANS} color: {INK}; display: flex; flex-direction: column;">'
+            + head('03 &middot; RECEIVING', 'Where friends&rsquo; shares arrive',
+                   'An ordinary week of a dozen friends sharing. Home carries what is sent to you, what has a time, and the day&rsquo;s posts with no place; a share about a place lives in Places, beside it, with one line on Home pointing there. '
+                   'Nothing is counted, nothing piles up, and a quiet day from friends adds no filler. Drawn, not tested with anyone.')
             + bodyhtml + f'<div class="fn" style="margin-top: 30px; line-height: 16px;">{FOOTX}</div></div>' + TAIL)
-    return write('21 - Receiving', html)
+    return write('03 - Receiving', html)
 
 if __name__ == '__main__':
     build()

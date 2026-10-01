@@ -728,3 +728,63 @@ The review doc's current assignment is still the September 12 coverage assignmen
 **Published state checked.** Before this pass, the served board 10 was captured and inspected: all thirteen original frames, the chooser, the marker ring and the 1.3× frame render with the runtime resolving them. The earlier truncation of the local working copy never reached the project.
 
 **Not claimed.** Narrow and larger-text readings are drawn, not tested on devices. Selection, scope and scroll continuity across a real provider handoff remain native verification.
+
+## 43. Copy pass and photo or nothing (September 26)
+
+Founder-approved follow-up to a review of Places against rulings that arrived after the September 11–21 passes. Two changes to every board, plus two cleanups. No composition, instrument or interaction changed. The pre-pass boards are kept in the project under `before-copy-pass/`, with their own copies of the runtime, stylesheets and shared components so they render as they did.
+
+**Why.** The September 20–21 voice ruling (recorded against the Multiplayer project, with the Voice Canon's object-first rule and Editorial Canon §13.3) says the phone renders the object and never narrates the product: explanations addressed to the reviewer stay outside the phone, and mono lines carry facts and sources. Places was written before that ruling. Entity's accepted imagery ruling is a photograph or nothing, and the founder withdrew Places' representative photographs on September 7, so a place without a photograph has no plate.
+
+**Measured with the Multiplayer copy lint, adapted to Places' markup** (boards 00–04 and 08–10; 07 has no phone frames).
+
+| Measure | Before | After |
+|---|---|---|
+| Lines that narrate the product | 5 | 1, the deliberately mistaken frame 03.7 |
+| Mono lines stating what a source did not do | 3 | 0 |
+| Product lines left uncontracted | 25 | 8, all in the Harbor Book's own prose or the mistaken frame |
+| In-phone words | 17,666 | 16,609 |
+| Mono lines carrying a time, day, price, distance, frequency or source | not measured | 545 of 646 |
+
+The mono share of in-phone words stays about a fifth. That is expected: in Places the mono lane is mostly the facts under each place name (hours, prices, walking times), which the rule allows. What left were lines like "The scope and the question are two chips · either comes off on its own", "Asks Vesper, not the workshop · Maya is not a recipient", "Prepared, not sent · you send it", "a proposal, not a change" and "Nothing is invented to fill the gap, and nothing asks you to". Each board's notes now carry them under **Decided, not displayed** (02, 03, 08, 10).
+
+**Rewritten, by board.**
+
+- **01, 09, 10.** "From Maya's share, kept · not yet arranged with her" becomes "Kept from Maya's share · an idea so far"; the arrangement state in ordinary words.
+- **02.** Maya's Tuesday share read "The pier at sunset · kept, with Maya", which broke the September 8 rule that it's "with Maya" only after she answers; it now reads "Sunset Park". Sam's note was dated "not this Saturday"; it's "last Saturday". The practical chain says "Draft to Maya and Alex", "Seats not posted yet", and the sent readback quotes the question; the door to check again and the separate Move dinner door carry what the old lines explained.
+- **03.** 03.8 opens on the fact, "The stairs were your father's. Today stays level.", and names Sunday as the last day for the rooms upstairs. The unavailable field dates its facts ("as of Thursday") instead of saying nothing is invented. 03.9's record says "from your plans".
+- **04.** The kept possibility reads "Kept from Maya's share", not "Kept, with Maya".
+- **08.** The context line reads "From Maya's share · an idea for Saturday". Trace lines no longer say "not yet visited" or that a keeping stays in the record; a trace with no visit simply has none.
+- **10.** Seven explanatory mono lines are gone. The provider handoff says "Opens Maps at Van Brunt Street. The route stays in Maps." 10.A5 had contradicted itself, saying nothing was quiet at six and then naming a quiet walk; it now leads with "At six on a Friday, only the bench walk is quiet."
+
+**Photo or nothing.** The shared photo fixtures (PH-01 to PH-07) are personal pictures, none of a Places place, so no plate is replaced by a photograph. Page frames on 02, 03, 04 and 08 now open on their sentence and register; the field's shelf is text tiles; a reading without its own image opens on its title. The board footer now reads "A place without a photograph has no plate". The shared photo set could still be used later if a real picture of a Places place is approved.
+
+**Cleanups.** American spelling throughout, including words inherited from older source slices (harbor, color, behavior, kilometers, meters, neighbor, gray); the build now applies it to every board, and none remain. The retired two-curve day charts and the helper only they used left `instruments.py` for `archive/generators/instruments_retired.py`, with the two generators and two tests that still called them; the Stage 2 brief had flagged their approximated sun and tide curves. 01's notes no longer describe the retired chart.
+
+**Not changed.** The instruments, maps and compositions; people's words; the Harbor Book's quoted prose; captions outside the phones, which still explain decisions to the reviewer. The Stage 2 instrument migration waits for its selection checkpoint, and the shared place collection from the September 22 multiplayer brief is not assigned to Places.
+
+**Verification.** All eleven boards rebuilt from the generators, measured from the document and pushed. The lint was run before and after. Four changed frames were rendered and read locally; the local render drops the shared stylesheet's number discs and mono fonts, which the published boards resolve.
+
+## 44. The shared Saturday, and a current decision record (September 26)
+
+Follow-up to a review of Places against Home's September 23–26 live boards. Three things changed; no composition, instrument or interaction did.
+
+**Correction to the review that prompted this.** The review listed three Home/Places conflicts. On checking Home's generator, two were overstated. Home also calls the flea "under the bridge", so that phrase and Home 19's Red Hook location can both be true; it was under-specified, not contradictory. Places has drawn the Red Hook pier as a page, in 08.10–08.13. The light was a real conflict. Home's earlier pierogi-at-the-flea wording is no longer on its boards.
+
+**The Saturday, written once.** The shared fixture ledger (`docs/working/fixtures/shared-fixture-world-2026-09-07.md`) now carries §12, *The Red Hook Saturday*, appended after a §11 that another session added the same day. The ledger file is left uncommitted because that session's §11 is uncommitted; the record below duplicates it here so it survives either way.
+
+| Item | The record | Places | Home |
+|---|---|---|---|
+| The morning | Clear, 41° at 9:30 | 03.3 | 14.3; 19 says 58° at 10:45 (Home to fix) |
+| The flea | Under the bridge in Red Hook; Saturdays through October, 8 to 3; the bread stall sells out by ten | 03.3, now naming Red Hook | 14, 19 |
+| The tide | Low water 2:40 to 5; high 8:40 | 01's day line, 03.3, 08.11 | 14; 19.3 says until 5:10 (Home to fix) |
+| The light | Sunset 6:25; dark 6:52 | 01's day line, 04.2, 07; moved from 7:04 | 19 (dark 6:52) |
+| The Red Hook pier | Floods before the street does: on the old creek bed, below the 1911 sill; the iron squares at the crossing are the pump intakes | 08.10–08.13 | 19.3 names it "the west pier" and draws its own page (Home to fix) |
+| The west pier | Sunset Park's, where the sunset is watched; the lawn and the film are nine minutes on | 01 | — |
+
+Places moved on the one real conflict: the sunset is 6:25, before Home's "dark 6:52", which also suits an October Saturday. Home's items are listed in the ledger for Home's owner; Home's boards were not edited.
+
+**Board 05, rebuilt as the current record.** The September 8 board was titled "proposed, not accepted", still described stand-in drawings and a From friends row that no longer exist, and didn't mention the September 9 decision. The new 05 has four tables: nine decided items, each with where it's drawn and where it was decided; six rules still proposed; five questions waiting on the founder; and what Places needs from the shared workbench and from Home. The old board is in `before-copy-pass/`. Generator: `gen05.py`, built by `renumber.py`.
+
+**Index.** "Where things stand" now names every board through 10, the accepted decision, the shared package, the voice and photograph rules, and the ledger record. The reading order is 01, 08, 10, 02, 03.
+
+**Verification.** All eleven boards rebuilt, measured and pushed. No "7:04" remains on any board; the new 05 was rendered and read.

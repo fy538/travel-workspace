@@ -7,8 +7,11 @@
 
 include dogfood.mk
 
+# Local checkouts use the backend venv; CI installs backend dependencies globally.
+BACKEND_PYTHON ?= $(if $(wildcard travel-agent/.venv/bin/python),travel-agent/.venv/bin/python,python3)
+
 .PHONY: bootstrap dev dev-backend m3-demo-backend sync-types typecheck doctor status help
-.PHONY: new-worktree land-worktree worktrees
+.PHONY: new-worktree land-worktree worktrees retire-worktree
 .PHONY: cross-repo-fixture-check
 .PHONY: contract-check occasion-behavior-contract-check place-identity-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate entity-health mock-slug-parity surface-contraction-check
 .PHONY: certify-fast certify-logic certify-corpus certify-visual certify-visual-cloud certify-live maestro-flow-check journey-registry-check journey-registry-verify-passes journey-evidence-report dogfood-status corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-journey-live-api qa-persona dogfood-status-sync
@@ -44,18 +47,17 @@ doctor: ## Validate workspace layout and key local tooling
 
 # ── Concurrent agent lanes ──────────────────────────────────────────────────────
 
-new-worktree: ## Create an isolated worktree lane in both repos: make new-worktree NAME=my-feature
+new-worktree: ## Create an isolated workspace and child-repo lane: make new-worktree NAME=my-feature
 	@./scripts/new-worktree.sh $(NAME)
 
 land-worktree: ## Verify a clean, current coordinated lane; does not merge main or remove worktrees: make land-worktree NAME=my-feature
 	@./scripts/land-worktree.sh $(NAME)
 
-worktrees: ## List active worktree lanes for both child repos
-	@echo "== Travel Agent =="
-	@cd travel-agent && git worktree list
-	@echo ""
-	@echo "== Travel App =="
-	@cd travel-app && git worktree list
+worktrees: ## Show coordinated lanes, owners, and local Git status
+	@python3 scripts/worktree_lane.py status
+
+retire-worktree: ## Preview safe cleanup of a merged lane: make retire-worktree NAME=my-feature
+	@python3 scripts/worktree_lane.py retire $(NAME)
 
 # ── Reliability ───────────────────────────────────────────────────────────────
 
@@ -64,10 +66,10 @@ cross-repo-fixture-check: ## Compare actual mobile enums and dogfood snapshots w
 
 contract-check: cross-repo-fixture-check ## Verify full OpenAPI → app projection → generated types
 	@./scripts/contract-check.sh
-	@travel-agent/.venv/bin/python scripts/check_occasion_behavior_contract.py
+	@$(BACKEND_PYTHON) scripts/check_occasion_behavior_contract.py
 
 occasion-behavior-contract-check: ## Gate backend occasion semantics against mobile fixtures
-	@travel-agent/.venv/bin/python scripts/check_occasion_behavior_contract.py
+	@$(BACKEND_PYTHON) scripts/check_occasion_behavior_contract.py
 
 place-identity-check: ## Gate typed canonical identity across mobile API seams
 	@python3 ./scripts/check_place_identity_contract.py
@@ -324,7 +326,7 @@ dogfood-status-sync: ## Regenerate the auto:persona-cert block in docs/journeys/
 
 # ── Composite gate ─────────────────────────────────────────────────────────────
 
-verify-changed: ## Experimental three-repo fast path: make verify-changed WORKSPACE_BASE_REF=x AGENT_BASE_REF=y APP_BASE_REF=z [DRY_RUN=1]
+verify-changed: ## Local merge preflight: WORKSPACE_BASE_REF=x AGENT_BASE_REF=y APP_BASE_REF=z [DRY_RUN=1]
 	@test -n "$(WORKSPACE_BASE_REF)" || { echo "WORKSPACE_BASE_REF is required"; exit 2; }
 	@test -n "$(AGENT_BASE_REF)" || { echo "AGENT_BASE_REF is required"; exit 2; }
 	@test -n "$(APP_BASE_REF)" || { echo "APP_BASE_REF is required"; exit 2; }
@@ -334,7 +336,7 @@ verify-changed: ## Experimental three-repo fast path: make verify-changed WORKSP
 		--app-base-ref "$(APP_BASE_REF)" \
 		$(if $(DRY_RUN),--dry-run,)
 
-verify: ## Single cross-repo pre-push gate (absorbs offline-qa + mock-real-parity)
+verify: ## Full cross-repo diagnostic/release suite; use verify-changed for routine preflight
 	@echo "▸ Workspace doctor..."
 	@$(MAKE) doctor
 	@echo "▸ Backend CI (travel-agent: ruff + boundaries + gates + mypy + offline tests)..."
@@ -349,10 +351,7 @@ verify: ## Single cross-repo pre-push gate (absorbs offline-qa + mock-real-parit
 	@cd travel-app && npm test -- __tests__/journeys/ --runInBand
 	@echo "▸ Mock/API seam tests..."
 	@cd travel-app && npx jest --runInBand \
-		__tests__/utils/api/mock.test.ts \
 		__tests__/utils/api/http.test.ts \
-		__tests__/data/notifications.test.ts \
-		__tests__/data/proposals.test.ts \
 		__tests__/data/privacy.test.ts \
 		__tests__/data/planState.test.ts
 	@echo "▸ Frontend offline tests..."

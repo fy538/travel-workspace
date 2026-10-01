@@ -3,13 +3,230 @@ doc_type: working
 status: active
 owner: founder / Home design
 created: 2026-09-08
-last_verified: 2026-09-12
-expires: 2026-09-22
+last_verified: 2026-09-23
+expires: 2026-10-08
 why_new: Founder requested a standalone Home review for design handoff; a separate dated critique preserves the concurrently edited design-agent response and separates reviewer recommendations from implementation claims.
 supersedes: []
 ---
 
 # Home — design review and recommended revision
+
+## Research and additive assignment — September 23: Live Home
+
+**Current routing:** extend the existing **Vesper Home** Claude Design project
+with connected live-experience studies. Find the corresponding project through
+design sync; the inspected Downloads export is evidence, not a dependency the
+receiving agent must have. Keep the selected visual language, four roots and
+useful components. Do not create a separate Live project or reopen the whole
+Home composition. The September 21 photo/content/return residuals below remain
+open where unsupported; reconcile donor coverage before repeating work.
+
+**Design thesis: help someone inhabit their situation, not turn their situation
+into a workflow.** Live can mean exploring a new city, gathering for dinner,
+enjoying an occasion, preparing for a show, waiting comfortably or catching a
+flight. Location, participation, current purpose and urgency are different facts.
+Neither a live object nor location permission alone establishes an emergency,
+an itinerary, a sharing mandate or a desire for continuous assistance.
+
+This section records research-informed recommendations and a design assignment,
+not new release scope, adopted monitoring/retention policy or implementation
+certification. `last_verified` dates this bounded research reconciliation; older
+export and implementation observations retain their original evidence dates.
+
+### Existing foundation and authority
+
+Existing source-inspected donors already cover meaningful live material:
+
+- **03 · Persona B:** Sorrento trip-day composition and tomorrow's ferry.
+- **08 · Seam with Life:** departure, disruption, competing priority and waiting
+  window comparisons; preserve selected versus proposed labels.
+- **08c · The Trip Day:** day/pass continuity and the later departure change.
+- **R1 · Home Posture Matrix:** reference, not authority over newer contracts.
+- **17 / 18:** receiving, return and ordinary-photo behavior to reuse, not repeat.
+
+The gap is not absence of live cards. It is the continuous experience through
+healthy ordinary moments, changing intentions, social participation, errors and
+degraded conditions. These donors do not by themselves establish that coverage.
+
+Read the [Home contract](../../travel-app/docs/surfaces/home-root/contract.md),
+[Personal Experience Loop](../../travel-agent/docs/product/Personal%20Experience%20Loop.md),
+[Surfacing Strategy](../../travel-agent/docs/product/Surfacing%20Strategy.md),
+[Multiplayer Product Strategy](../../travel-agent/docs/product/Multiplayer%20Product%20Strategy.md)
+and [Contribution and Consequence](../systems/contribution-and-consequence.md).
+The current Home contract distinguishes healthy **Live** from **Urgent**:
+healthy commitments retain optional breadth; urgency can justify temporary
+attention protection. Do not promote an older constrained Rome fixture into a
+universal rule that suppresses possibilities whenever a trip is active.
+
+### Research findings and design translation
+
+**1. Spontaneity and wanted structure.** Thirteen studies in *The Calendar
+Mindset* found that precise leisure scheduling could make activities feel
+work-like and reduce enjoyment; rough scheduling avoided that effect. Scheduling
+could also improve follow-through. A separate eight-study paper found that time
+before a scheduled task could feel shorter and discourage feasible activities.
+These findings caution against unnecessary appointment treatment and countdowns,
+not against genuine commitments. A newer eight-week study found conditional
+benefits of leisure planning, especially with higher psychological-need
+satisfaction; self-report and attrition limit generalization. Do not diagnose
+users' needs or conclude that everyone wants spontaneity. [R1–R3]
+
+Translate into four treatments: exact commitments retain their times; useful
+windows explain practical fit; possibilities remain optional; absent intent
+does not become a generated agenda. Compare a credible nearby opening with a
+timed itinerary using the same evidence. Offload verification and preparation,
+not the person's choice. Preserve requested planning. Do not fill every gap,
+turn a suggestion into a pending decision, or permanently count down to dinner.
+Abundant possibilities and low obligation can coexist.
+
+**2. Coordination before continuous location sharing.** A 20-person, 21-day
+field study found that travel-time sharing between close contacts supported
+coordination and reported reassurance. It was small and qualitative, not proof
+that estimates universally beat maps; its time-away calculation was not evidence
+that someone was actually en route. Apple's Check In is a current precedent for
+bounded, purpose-specific sharing, not an efficacy study or a service Vesper is
+authorized to reproduce. [R4–R5]
+
+Lead with the useful social question: agreed meeting point, explicitly shared
+arrival estimate, joining later, or a suggestion that works for the participants.
+Separate authored ETA, calculated travel time and confirmed travel state. A host,
+an arrived guest and a late joiner share an occasion but need different Home
+emphasis. Include a person who contributes once or uses an existing messaging
+channel without maintaining status or sharing location. Unknown arrival is not
+lateness or disengagement. Exact live location remains a distinct, bounded choice;
+membership, invitation and location access do not authorize it.
+
+Do not make multiplayer only logistical. A friend's original, a nearby discovery
+or a useful contribution can be the complete reward. During a good dinner, no
+intervention may be needed. Show a shared meeting-point change reaching an en-route
+participant without pretending pending delivery is received or accepted. Avoid
+read-receipt pressure, demands for reciprocal contribution and safety guarantees.
+
+**3. Graceful disagreement and recovery.** Human–AI interaction guidance treats
+invocation, dismissal, correction, scoped service under uncertainty and accessible
+explanations as distinct requirements. Explanation alone does not repair a wrong
+interpretation. These are evaluated design guidelines, not proof that a particular
+Vesper control works. [R6]
+
+Show three different scopes: “passing through” corrects the current situation;
+“not joining” changes personal participation through its owner; “move dinner”
+proposes or authorizes a shared arrangement change. Hiding a card does not cancel
+a commitment. “Not now” does not create a permanent dislike. A nearby restaurant
+does not establish dining, and tomorrow's flight does not establish tonight's
+purpose. Allow contextual correction or natural Chat language; no situation
+confirmation wizard or routine explanation prompt. Show the relevant result
+changing and the mistaken dependent cue disappearing. Do not redraw navigation,
+jump the user's scroll or change another person's agreement as a side effect.
+The existing contribution contract owns causal repair across surfaces.
+
+**4. Memory that removes work.** A survey of 280 respondents and seven-day diary
+study of 20 people found reminder needs beyond simple time/location triggers,
+including social context. An August 2026 laboratory experiment with 320 students
+found that experienced reliable reminders could reduce conscious intention
+maintenance; unexpected withdrawal then impaired retrieval. This is bounded lab
+evidence, not proof of travel-app outcomes or permission for ambient memory. [R7–R8]
+
+Keep three benefits legible: ready access to entrusted material; a contextually
+useful connection; and an explicitly accepted reminder/monitoring responsibility.
+“Available on Home” is not “I will notify you.” A relevant saved recommendation
+does not automatically earn interruption. A commitment to remind needs an honest
+service boundary and failure behavior. Examples use already-authorized material;
+they do not adopt unresolved casual-question retention policy.
+
+The successful outcome is less checking and mental rehearsal, not more reminders.
+Retire suggestions when the opportunity ends and completed practical support
+when no unresolved consequence remains. Keep records findable without a Home
+backlog. Do not require mark-done, reflection or rating for every experience;
+absence of response does not establish completion either.
+
+**5. Offline and physical use are functional design.** Flighty explicitly labels
+offline estimates from last-received data. Google Maps documents limits on
+offline routing, including unavailable walking/cycling/transit directions.
+Ticketmaster's supported app/wallet access is distinct from screenshots of its
+refreshing credentials. These are provider-specific capabilities, not guarantees
+that Vesper currently integrates them. Apple recommends 44 × 44 pt touch targets.
+[R9–R12]
+
+Design degradation per item, not a whole-page online/offline switch: retained
+addresses and instructions remain usable; cached operational facts show age;
+unavailable live estimates lose their current-certainty claim; pending social
+contributions remain pending; valid admission opens through its supported owner.
+Do not recreate a dynamic credential from an image or promise fresh routes from
+cached maps. Preserve unrelated content when one item fails. Make critical labels
+and actions legible at larger text sizes and usable one-handed; do not carry an
+entrance or departure instruction only in tiny low-contrast metadata. Maintain
+the shared visual language rather than inventing a separate utilitarian theme.
+
+### Three connected studies in the existing Home project
+
+Use the same underlying evidence across comparable treatments. Choose final canvas
+names from the current project index rather than assuming the next number is free.
+These are a portfolio of connected experiences, not a single-loop launch gate.
+
+| Study | Moments to compose | Question the sequence must answer |
+|---|---|---|
+| **New city, no formal plan** | Ordinary open; interesting grounded opening; opened value and return; changed intent or “passing through”; a healthy uneventful interval | Can Vesper provide immediate orientation, discovery or understanding without scheduling the person or requiring rich history? |
+| **An evening together** | Before; gathering; together; afterward; host/guest/late-joiner views of the same occasion | Can shared contributions and practical care make the evening better without continuous tracking or participation homework? Include a dinner and a bounded rave/show variation. |
+| **A travel day** | Preparation; genuine rush; comfortable waiting; weak connectivity; arrival | Does the same Home increase practical focus when needed and restore breadth when pressure passes, without becoming a permanent travel dashboard? |
+
+For each study provide:
+
+1. Full-scroll compositions at meaningful changes, not only crown-card swaps.
+   Preserve Home's generosity in healthy situations; explain any suppression.
+2. Entry → received value → exact destination/action → return or clean exit.
+   Use existing Places, Life, Chat, Plans and Entity owners; no duplicate subsystem.
+3. At least one wrong inference or changed intention, a real-world change, and
+   a healthy period with nothing to resolve. Distribute offline, larger-text,
+   no-location and social delivery cases across the suite rather than multiplying
+   every combination. Include a sparse-context person, not only the rich trip fixture.
+4. Clear separation of facts, optional suggestions and accepted responsibilities.
+   Show what remains findable when foreground relevance ends. No mandatory recap.
+5. A short selection rationale: value received, effort left with the person,
+   contribution that earned prominence, donor reuse and unresolved dependency.
+
+The purpose is not to maximize screen time, completed suggestions or daily use.
+Evaluate whether help is useful and welcome, choices remain open, corrections
+recover coherently and the person can put the phone away without unfinished
+product homework. Static frames establish composition intent only; scripted
+transitions and native/provider behavior require their own evidence.
+
+### Handback, scope and open questions
+
+Return selected frame references, one concise comparison per study, reused donor
+paths, what was actually exercised, and unresolved owner/service dependencies.
+Consolidate obvious aesthetic drift; do not optimize or rebuild settled components
+solely to make these studies look new. Reconcile the September 21 residuals rather
+than declaring them closed because new canvases exist.
+
+Keep these questions visible: how users comprehend optional windows versus
+commitments; how much social arrival information they want; whether correction
+feels effortless; what reminder promise the supported service can actually make;
+and which offline capabilities can be delivered. Research narrows the questions
+but does not settle them by analogy. No new background tracking, push policy,
+booking infrastructure, automatic enrollment, general memory grant, product shell
+or engineering execution is authorized by this design handoff. Existing engineering
+can proceed under its own roadmap; these studies are not a blanket blocker.
+
+### Research references and evidence limits
+
+- **R1:** [The Calendar Mindset — Tonietto and Malkoc, 2016](https://www.business.rutgers.edu/sites/default/files/documents/tonietto-the-calendar-mindset.pdf).
+- **R2:** [When an Hour Feels Shorter — Tonietto, Malkoc and Nowlis, 2018](https://www.business.rutgers.edu/sites/default/files/documents/tonietto-when-an-hour-feels-shorter.pdf).
+- **R3:** [Leisure planning and psychological needs — published December 2025](https://link.springer.com/article/10.1007/s12144-025-08664-4).
+- **R4:** [Reducing the Stress of Coordination — Bentley, Chen and Holz, CHI 2015](https://www.christianholz.net/2015-chi15-bentley_chen_holz-reducing_the_stress_of_coordination_sharing_travel_time_information_between_contacts_on_mobile_phones.pdf).
+- **R5:** [Apple Check In](https://support.apple.com/en-ie/guide/iphone/iphc143bb7e9/ios).
+- **R6:** [Guidelines for Human–AI Interaction — Microsoft Research, 2019](https://www.microsoft.com/en-us/research/blog/guidelines-for-human-ai-interaction-design/).
+- **R7:** [How to Remember What to Remember — Brewer, Morris and Lindley, 2017](https://cs.stanford.edu/~merrie/papers/memory_imwut2017.pdf).
+- **R8:** [Let it go: How trusted reminders alter intention maintenance — Dupre and Ball, August 2026](https://link.springer.com/article/10.3758/s13423-026-02985-6).
+- **R9:** [Flighty offline behavior](https://flighty.com/help/offline-mode).
+- **R10:** [Google Maps offline capabilities](https://support.google.com/maps/answer/6291838?hl=en).
+- **R11:** [Ticketmaster mobile-ticket access](https://www.ticketmaster.com/mobile-tickets).
+- **R12:** [Apple UI design guidance](https://developer.apple.com/design/tips/).
+
+Sources were reviewed September 23, 2026. Studies, design guidance and provider
+precedents are different evidence classes. The Vesper treatments above are design
+inferences, not experimentally validated outcomes. This round reconciled research
+and existing source-inspected design coverage; it did not freshly render every
+canvas, run the native app or certify current backend behavior.
 
 ## Export review — September 21: integrate photos without shrinking Home
 
@@ -1150,8 +1367,9 @@ validation, a native acceptance gate or a requirement to prove one narrow loop.
 
 Close this review by recording founder decisions in the existing design response
 and, where a durable rule changes, the appropriate owner contract/decision.
-Archive or refresh this review by September 22 rather than maintaining another
-permanent source of truth.
+The September 23 research addition refreshes this working review through October 8;
+close, promote or archive it by then rather than maintaining another permanent
+source of truth. Older observations remain dated evidence, not current certification.
 
 ## Sources and investigation limits
 

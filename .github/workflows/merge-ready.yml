@@ -1,0 +1,61 @@
+name: Merge readiness
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      base:
+        description: Explicit comparison ref
+        default: origin/main
+        required: true
+permissions:
+  contents: read
+concurrency:
+  group: merge-ready-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  ready:
+    name: Merge ready
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      BASE_SHA: ${{ github.event.pull_request.base.sha || inputs.base }}
+      TZ: UTC
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Resolve exact child revisions
+        id: refs
+        run: python3 scripts/resolve_ci_tuple.py
+      - name: Require private checkout credential
+        env:
+          CHECKOUT_TOKEN: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN }}
+        run: test -n "$CHECKOUT_TOKEN" || { echo 'Missing private child checkout credential'; exit 1; }
+      - uses: actions/checkout@v6
+        with:
+          repository: ${{ github.repository_owner }}/travel-agent
+          path: travel-agent
+          ref: ${{ steps.refs.outputs.agent_ref }}
+          token: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN }}
+      - uses: actions/checkout@v6
+        with:
+          repository: ${{ github.repository_owner }}/travel-app
+          path: travel-app
+          ref: ${{ steps.refs.outputs.app_ref }}
+          token: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN }}
+      - run: python3 scripts/resolve_ci_tuple.py --assert-checkouts
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: travel-agent/requirements-dev.txt
+      - run: pip install -r travel-agent/requirements-dev.txt
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: travel-app/package-lock.json
+      - run: npm ci --prefix travel-app
+      - run: git diff --check "$BASE_SHA"...HEAD
+      - run: python3 scripts/verify_changed.py --workspace-only --workspace-base-ref "$BASE_SHA"

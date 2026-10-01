@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create a coordinated workspace with real child checkouts; prepare before publish."""
+"""Create, inspect, publish and safely retire coordinated workspace lanes."""
 
 from __future__ import annotations
 
@@ -52,6 +52,95 @@ def free_ports(count):
     finally:
         for s in sockets:
             s.close()
+
+
+def worktrees(repo):
+    """Return Git's registered paths, including detached and unmanaged trees."""
+    entries = []
+    for block in git(repo, "worktree", "list", "--porcelain").split("\n\n"):
+        fields = dict(
+            line.split(" ", 1) if " " in line else (line, True)
+            for line in block.splitlines()
+            if line
+        )
+        if "worktree" in fields:
+            entries.append(fields)
+    return entries
+
+
+def lane_repos(lane):
+    return [
+        ("workspace", lane, ROOT),
+        ("travel-agent", lane / "travel-agent", ROOT / "travel-agent"),
+        ("travel-app", lane / "travel-app", ROOT / "travel-app"),
+    ]
+
+
+def status(_args):
+    seen = set()
+    for entry in worktrees(repository(ROOT)):
+        lane = Path(entry["worktree"])
+        if lane.resolve() == ROOT.resolve():
+            continue
+        seen.add(lane.resolve())
+        manifest_path = lane / ".workspace-lane.json"
+        if not manifest_path.is_file():
+            print(f"Unmanaged worktree: {lane} ({entry.get('branch', 'detached')})")
+            continue
+        try:
+            manifest = json.loads(manifest_path.read_text())
+        except (OSError, json.JSONDecodeError) as exc:
+            print(f"Lane with unreadable manifest: {lane}: {exc}")
+            continue
+        print(f"Lane: {lane}")
+        print(f"  owner: {manifest.get('owner') or 'unspecified'}")
+        print(f"  outcome: {manifest.get('outcome') or 'unspecified'}")
+        for name, path, source in lane_repos(lane):
+            try:
+                repository(path)
+                registered = any(
+                    Path(item["worktree"]).resolve() == path.resolve()
+                    for item in worktrees(repository(source))
+                )
+                head = git(path, "rev-parse", "--short", "HEAD").strip()
+                dirty = bool(git(path, "status", "--porcelain").strip())
+                branch = git(path, "branch", "--show-current").strip() or "detached"
+                remote = f"refs/remotes/origin/{branch}"
+                published = subprocess.run(
+                    [
+                        "git", "-C", str(path), "show-ref", "--verify",
+                        "--quiet", remote,
+                    ],
+                    env=GIT_ENV,
+                    check=False,
+                ).returncode == 0
+                merged = subprocess.run(
+                    [
+                        "git", "-C", str(path), "merge-base", "--is-ancestor",
+                        "HEAD", "refs/remotes/origin/main",
+                    ],
+                    env=GIT_ENV,
+                    check=False,
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                ).returncode == 0
+                print(
+                    f"  {name}: {head} {branch}, "
+                    f"{'dirty' if dirty else 'clean'}, "
+                    f"{'remote branch seen locally' if published else 'no local remote ref'}, "
+                    f"{'merged in cached origin/main' if merged else 'not known merged'}, "
+                    f"{'registered' if registered else 'not registered'}"
+                )
+            except (ValueError, OSError, subprocess.CalledProcessError) as exc:
+                print(f"  {name}: unavailable ({exc})")
+        print("  Remote PR and merge status: not checked")
+    for name in ("travel-agent", "travel-app"):
+        source = repository(ROOT / name)
+        for entry in worktrees(source):
+            path = Path(entry["worktree"]).resolve()
+            if path == source.resolve() or path.parent in seen:
+                continue
+            print(f"Unpaired {name} worktree: {path} ({entry.get('branch', 'detached')})")
 
 
 def create(args):
@@ -111,6 +200,8 @@ def create(args):
         "schema_version": 1,
         "branch": branch,
         "bases": bases,
+        "owner": getattr(args, "owner", None),
+        "outcome": getattr(args, "outcome", None),
         "runtime": {
             "ownership": "isolated",
             "compose_project": "vesper-" + args.name.lower(),
@@ -169,7 +260,11 @@ def land(args):
                 f"{repo}: integrate origin/main and refresh cross-repo pins before landing"
             )
     before = [git(r, "rev-parse", "HEAD").strip() for r in repos]
-    subprocess.run(["make", "verify"], cwd=lane, env=GIT_ENV, check=True)
+    subprocess.run(
+        ["make", "verify-changed", "WORKSPACE_BASE_REF=origin/main",
+         "AGENT_BASE_REF=origin/main", "APP_BASE_REF=origin/main"],
+        cwd=lane, env=GIT_ENV, check=True,
+    )
     for repo, revision in zip(repos, before):
         if (
             git(repo, "rev-parse", "HEAD").strip() != revision
@@ -200,28 +295,120 @@ def land(args):
     )
 
 
+def retire(args):
+    """Remove only a fully merged, clean coordinated lane; preview by default."""
+    lane = (
+        Path(args.directory).resolve()
+        if args.directory
+        else ROOT.parent / f"{ROOT.name}--{args.name}"
+    )
+    if lane == ROOT.resolve() or not lane.is_dir():
+        raise ValueError(f"Expected an existing noncanonical lane: {lane}")
+    manifest = json.loads((lane / ".workspace-lane.json").read_text())
+    expected = args.prefix + args.name
+    if manifest.get("branch") != expected:
+        raise ValueError("Lane manifest branch does not match the requested branch")
+
+    checked = []
+    for name, path, source in lane_repos(lane):
+        repository(path)
+        source = repository(source)
+        if not any(
+            Path(item["worktree"]).resolve() == path.resolve()
+            for item in worktrees(source)
+        ):
+            raise ValueError(f"{name}: lane is not a registered worktree")
+        if git(path, "branch", "--show-current").strip() != expected:
+            raise ValueError(f"{name}: expected branch {expected}")
+        if git(path, "status", "--porcelain", "--untracked-files=all").strip():
+            raise ValueError(f"{name}: tracked or untracked changes need review")
+        ignored = [
+            item
+            for item in git(
+                path, "ls-files", "--others", "--ignored",
+                "--exclude-standard", "--directory", "-z",
+            ).split("\0")
+            if item
+            and not (
+                name == "workspace"
+                and item in {".workspace-lane.json", "travel-agent/", "travel-app/"}
+            )
+        ]
+        if ignored:
+            raise ValueError(f"{name}: ignored files need review: {ignored[:8]}")
+        git(path, "fetch", "--quiet", "origin", "main", capture=False)
+        tip = git(path, "rev-parse", "HEAD").strip()
+        remote_tip = git(
+            path, "ls-remote", "--heads", "origin", f"refs/heads/{expected}"
+        ).strip()
+        if remote_tip and remote_tip.split()[0] != tip:
+            raise ValueError(f"{name}: remote branch has moved beyond local {tip}")
+        if subprocess.run(
+            [
+                "git", "-C", str(path), "merge-base", "--is-ancestor",
+                tip, "refs/remotes/origin/main",
+            ],
+            env=GIT_ENV,
+            check=False,
+        ).returncode:
+            raise ValueError(f"{name}: {tip} is not merged into origin/main")
+        checked.append((name, path, source, tip))
+
+    print(f"Eligible for retirement: {lane}")
+    for name, _, _, tip in checked:
+        print(f"  {name}: {tip} is merged into fetched origin/main")
+    if not args.apply:
+        print("Dry run only. Stop this lane's runtime, then use --apply --runtime-stopped.")
+        return
+    if not args.runtime_stopped:
+        raise ValueError("Confirm the lane runtime is stopped with --runtime-stopped")
+    # Recheck all trees before the first removal. Partial cleanup can be resumed
+    # manually; this command never force-removes a checkout or a branch.
+    for name, path, _, tip in checked:
+        if git(path, "rev-parse", "HEAD").strip() != tip:
+            raise ValueError(f"{name}: branch tip changed after review")
+        if git(path, "status", "--porcelain", "--untracked-files=all").strip():
+            raise ValueError(f"{name}: tree changed after review")
+    for name, path, source, tip in reversed(checked):
+        git(source, "worktree", "remove", str(path), capture=False)
+        git(source, "update-ref", "-d", f"refs/heads/{expected}", tip, capture=False)
+        print(f"Retired {name}: {path}")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("action", choices=["create", "land"])
-    parser.add_argument("name")
+    parser.add_argument("action", choices=["create", "land", "status", "retire"])
+    parser.add_argument("name", nargs="?")
     parser.add_argument("--prefix", default="codex/")
     parser.add_argument(
         "--base",
         help="Explicit base used in each repository; default records each current HEAD",
     )
     parser.add_argument("--directory", help="Coordinated workspace destination")
+    parser.add_argument("--owner", help="Person or task responsible for landing this lane")
+    parser.add_argument("--outcome", help="Bounded result this lane will deliver")
     parser.add_argument(
         "--publish",
         action="store_true",
         help="After verification, publish branches for protected-main review",
     )
+    parser.add_argument(
+        "--apply", action="store_true", help="Retire after all safety checks"
+    )
+    parser.add_argument(
+        "--runtime-stopped", action="store_true",
+        help="Acknowledge the lane's services and device session are stopped",
+    )
     args = parser.parse_args()
-    if not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,50}", args.name):
+    if args.action != "status" and not args.name:
+        parser.error("name is required for create, land and retire")
+    if args.name and not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,50}", args.name):
         parser.error(
             "name must use lowercase letters, digits, and hyphens (max 51 characters)"
         )
     try:
-        (create if args.action == "create" else land)(args)
+        actions = {"create": create, "land": land, "status": status, "retire": retire}
+        actions[args.action](args)
     except (ValueError, OSError, KeyError, subprocess.CalledProcessError) as exc:
         print(f"Lane operation incomplete: {exc}", file=sys.stderr)
         return 1
