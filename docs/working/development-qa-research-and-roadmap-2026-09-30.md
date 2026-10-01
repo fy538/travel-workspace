@@ -654,22 +654,18 @@ The initial
 run on workspace commit `37f2bea3e3da` with Python 3.14.6 reported 136 passed
 and 5 environment failures: one checker could not import SQLAlchemy because
 backend dependencies were absent, and four worktree-runtime tests could not
-bind local sockets in the sandbox. A rerun of the complete workspace scripts
-suite with Python 3.13.0 and local socket access,
-`PYTHONDONTWRITEBYTECODE=1 /opt/homebrew/bin/python3.13 -m pytest -p no:cacheprovider -q scripts/tests`,
-passed **141 tests in 16.48 seconds**. This resolves those suite failures for the
-rerun environment; it does not make the initial preflight a pass.
-
-The remaining selected checks were rerun with Python 3.13.0. Documentation
-links, spine and canon checks passed; API coverage, compatibility, card-arrival
-and chat-card-type checks passed. `make contract-check` validated the full
-OpenAPI snapshot and active mobile projection, then could not run the pinned
-`openapi-typescript` generator: `travel-app/node_modules` is absent and npm
-registry access is unavailable (`ENOTFOUND`). The cached npm data did not
-provide an offline executable. The generated-type comparison and schema-bridge
-check therefore remain unverified. There is no complete passing local
-`verify-changed` result yet. Hosted CI and the equivalent hosted latency
-comparison remain required before claiming Package 3C acceptance.
+bind local sockets in the sandbox. The final
+`make verify-changed WORKSPACE_BASE_REF=4febe0d461a62d204ba4dee9eaad7813c7c1509c AGENT_BASE_REF=bd1a683b8656c3f4091e16abb64f57897fa7fc42 APP_BASE_REF=e7bdc660501eaa19234e6b45bda033658edaa2d4`
+run on workspace commit `b55ff407d612`, with Python 3.13.0, Node 24.13.0 and
+local socket access, exited 0. All 141 workspace tests passed in 16.13 seconds.
+The full OpenAPI snapshot and mobile projection, generated schema equality,
+10×2 place-identity seams, 376-type schema bridge, API audit, compatibility,
+card-arrival, chat-card-type, and selected documentation checks passed. The
+contract run used temporary ignored links to the cached locked tools
+`openapi-typescript` 7.13.0 and TypeScript 5.9.3 because the app dependency tree
+was absent; the links were removed after the run. The app test suite was not
+selected because the app had no changed files. Hosted CI and the equivalent
+hosted latency comparison remain required before claiming Package 3C acceptance.
 
 **3A — App test determinism and execution, second in the queue.** At final
 candidate `21fdb724f`, the first hosted test job failed two unchanged tests;
