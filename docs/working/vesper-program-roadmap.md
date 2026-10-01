@@ -924,26 +924,49 @@ readback is also **unverified**: CoreSimulatorService refused the device query.
 D2 remains active; next restore a configured lane API/device path for the exact
 owner journey, then continue ordinary/returned/live receiving coverage.
 
-**Configured Places recipient run — 2026-10-01:** the missing local API/device
-path was restored for a bounded rehearsal against the explicitly disposable
-`vesper_places_native_20261001` database, not the ambient development database.
-The real local API returned Maya's authored note in the recipient's Places
-feed; the V2 action carried the exact handoff ID and revision; selecting that
-revision returned exactly one owner line, while the next stale revision returned
-none. This is synthetic-recipient HTTP/Postgres evidence, not an authenticated
-production-owner or recurring-supply claim. The revised native flow reached the
-V2 social-comparison unit on the iPhone 16 Pro simulator but failed before
-acceptance. Its screenshot shows two identical “Maya” perspectives and Place
-actions. However, this run followed an earlier manually provisioned fixture
-that remained in the same disposable database; each fixture creates a distinct
-sender but uses the display name “Maya.” The screenshot is therefore confounded
-by multiple rehearsal senders and does not establish a product duplication bug.
-Clean the exact stale fixture and rerun with one active fixture before tracing
-or changing the feed/composition/render path. The authored-text assertion also
-failed even though the screenshot visibly contains the expected words; make the
-selector robust to the rendered/accessibility structure without weakening the
-content expectation. **Next:** isolate and rerun this native receiving path,
-then continue ordinary/returned/live coverage; D2 remains active.
+**Configured Places recipient run — completed 2026-10-01:** the bounded
+rehearsal uses the explicitly disposable `vesper_places_native_20261001`
+database, not the ambient development database. Backend commit `d9db593d1`
+adds the exact `place_handoff` ID/revision and context to the V2 social card's
+represented/source refs, satisfying the return-scope invariant. Focused backend
+Places runtime tests passed **17/17**; Ruff format/check and `git diff --check`
+passed. App commit `3e0832b24` routes the authored Place note's native card
+action through its exact V2 destination. Focused Places feed tests passed
+**53/53**, typecheck passed, the runner contract passed **4/4**, shell syntax
+passed, Maestro validation passed **408 flows / 8 configs / 10 package refs**,
+and metadata validation passed **408 flows**.
+Commands included `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.
+.venv/bin/python -m pytest -p no:cacheprovider -q --tb=short
+tests/root_projection/test_places_runtime.py`,
+`CI=1 npx jest --runInBand --no-cache
+__tests__/components/places/PlacesSectionFeed.test.tsx`, `npm run typecheck`,
+`node --test scripts/maestro/places-real-social-pull.test.mjs`,
+`python3 scripts/validate-maestro-flows.py --app-dir travel-app`, and
+`make docs-check`.
+
+Before simulator interaction, the runner confirmed the real local API returned
+Maya's authored note in the recipient's Places feed; the V2 action carried the
+exact handoff ID and revision; that selected current revision returned exactly
+one owner line, while the next stale revision returned none. The native flow
+`places-exact-handoff-20261001-d9db593d-r4` then passed **1/1** on iPhone 16 Pro
+/ iOS 18.2: it opened the exact note from Places, showed the authored words in
+the selected-line sheet, closed the sheet, verified the underlying Venue and
+inline line, returned to the same Places unit, and verified the note there.
+The runner confirmed its one synthetic fixture was cleaned up. An earlier r3
+attempt reached the correct Venue and note but asserted the underlying Venue
+root while the modal note sheet owned the accessibility tree; moving that
+assertion until after closing the sheet resolved the test without changing app
+behavior. An earlier duplicate-looking screenshot was confounded by multiple
+rehearsal senders named Maya and is not evidence of a product duplication defect.
+The two handoff feature flags were enabled only on the local rehearsal API;
+repository defaults and product rollout posture are unchanged.
+
+This proves a synthetic-recipient HTTP/Postgres and native exact-open/return
+path, not authenticated production-owner value, recurring supply, or D2 as a
+whole. The revised native flow focuses on exact opening/return; Keep/Leave-aside
+remain covered by focused component tests, not this native run. Continue
+ordinary/returned/live receiving coverage and substantive Home/Places work;
+D2 remains active.
 
 ### Combined landing checkpoint — September 30
 
