@@ -1135,6 +1135,41 @@ whether this expected missing-context notice helps or makes a sparse Home feel
 broken. D2 remains active; exact opening and return alone are not meaningful
 returned-content acceptance.
 
+**Home friend note + current Place opening — 2026-10-01:** app commit
+`b97263894` corrects the existing real-owner runner to distinguish the
+standalone addressed-note copy from the server-composed Home human-opening
+copy. The old assertion required the venue name in the note anchor and the
+friend-only basis even when the joined composition correctly moved the venue
+name into the Place basis. This changes acceptance diagnostics, not product
+runtime behavior.
+
+The pre-run tuple was workspace/backend/app `8b72bdfc` / `8cd85fd55` /
+`c3c563602`. On an iPhone 16 Pro / iOS 18.2, the `run-home-real-joined-opening`
+journey used a fresh migration-to-head disposable database
+(`vesper_home_join_20261001_01`), one synthetic `@eval.local` recipient, the
+real local HTTP API, and the API's explicitly selected default-off
+`ADDRESSED_PLACE_HANDOFFS_ENABLED` and `RELATIONSHIP_UUID_HANDOFFS_ENABLED`
+flags. Auth bypass was scoped to that synthetic owner; AI, search and
+background work stayed disabled. Home returned one joined unit at the exact
+venue with Maya's unchanged note. The exact owner read succeeded; on device the
+recipient opened the note, chose Keep, opened the venue, returned to Home and
+the handled inbox unit disappeared. The Home context, sender, handoff and venue
+fixtures were cleaned; the API stopped; the disposable database was confirmed
+connection-free and dropped. The runner's focused contract passed **6/6**,
+`bash -n` and `git diff --check` passed. Optional onboarding controls were
+absent as expected.
+
+This is substantive low-effort social receiving and an offline Place door, not
+proof of production auth, an actual friend's account or recurring supply. The
+composed basis was only `Vesper Social Pull Café · New York City`: the path
+adds exact social context and a place, but no new source-backed fact about that
+place. The screenshots also contain internal development/query-health
+overlays, so they verify the interaction but are not a final visual-polish
+verdict. Next D2 work should add substantive Place value only where the same
+canonical entity has eligible source evidence, then continue returned-state
+coverage using owner-provided facts; do not infer a visit date from Outcome
+creation time or make the friend note depend on a generated supplement.
+
 ### Combined landing checkpoint — September 30
 
 The merged integration contains the Home/capture lane plus these completed
