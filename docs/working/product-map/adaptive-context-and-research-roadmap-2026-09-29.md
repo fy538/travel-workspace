@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Strategy Technical lane
 created: 2026-09-29
-last_verified: 2026-09-30
+last_verified: 2026-10-01
 expires: 2026-10-13
 why_new: The artifact experience plan owns recognizable objects and readers, while the program owns dispatch. Neither should absorb this detailed cross-system code audit, nine-topic research synthesis, and proposed implementation dependencies for shared context, discovery, research, maintenance and evaluation.
 supersedes: []
@@ -50,12 +50,17 @@ sharing policy, deployment or release is enabled by this document.
 
 **Current assignment:** selected original → supported addition → exact readback.
 Complete the first R0/R1/R2/R6 connection with the minimum R3/R4/R5 safeguards
-and R7 comparisons. Exact original/text-span reads and bounded acquisition have
-landed. A backend selected-source work-item contract now captures the exact
-Intake revision, supported text representation/span, private intent and
-separately typed public request; it has no route, worker or result storage yet.
-Connect it through an actual owner-callable producer and result path. The
-current Home/Places request is not an artifact request: do not adapt it as one.
+and R7 comparisons. Exact original/text-span reads, bounded acquisition, the
+selected-source work-item contract and its private result owner now exist. The
+work item captures exact Intake revision/span, consumer, private intent and a
+separately typed public request. The result owner binds viewer, source revision
+and optional span, treatment, dependency revisions and content digest; it
+revalidates Intake custody on store/read, physically removes results on source
+scrub, and enforces a 24-hour maximum with bounded hourly cleanup. These are
+backend contracts and persistence only: no owner-callable producer, producer
+route/job, provider activation or client readback is wired yet. Connect
+the contracts through the actual producer and exact readback path. The current
+Home/Places request is not an artifact request: do not adapt it as one.
 Use existing Source identity while Strategy owns broader thing/component
 identity. The scope, sequence and finish conditions are in
 [section 12](#12-document-delivery-and-next-handoff).
@@ -1372,24 +1377,50 @@ remove its stored contents on that TTL. The selected-source producer therefore
 needs an owner/readback contract that binds viewer, exact Source revision,
 optional text-span identity, treatment version, dependency revisions, result
 digest and an explicit expiry; content must not enter workflow events or
-diagnostics. Any implementation that uses existing workflow fencing must pair
-it with a result owner whose expiry and source-correction behavior are real,
-not just fields in the response. Reuse the generic workflow for bounded job
-identity and fencing only if this lifecycle can be enforced without broadening
-or weakening another owner's retention policy.
+diagnostics. This contract is now implemented in the dedicated selected-source
+result owner below. It does not reuse generic workflow result payload storage;
+any later workflow fencing must continue to pair with this owner so expiry and
+source-correction behavior remain real, without broadening or weakening another
+owner's retention policy.
 
-The first admission model now lives in
+The admission model lives in
 `travel-agent/backend/core/models/selected_source_research.py` at backend commit
 `51c5e0a27`. It validates an exact `intake_source` hash, a `text/plain` span of
 at most 20,000 characters, one of the private assistance intents, a maximum
-24-hour work window and a separate optional `PublicResearchRequest`. Its
-focused tests establish retry identity, source-revision/span/intent/query
-separation and rejection of original text in the work item. This is interface
-evidence only: it does not establish the public-query disclosure boundary,
-owner access at runtime, a producer, persistence/readback, budget enforcement,
-or any live provider permission. The exact result-owner contract and its
-expiry/invalidation path are the next implementation increment; no API or
-consumer is exposed yet.
+24-hour work window and a separate optional `PublicResearchRequest`. The
+owner-scoped result model, table, migration `selresult01`, storage/readback
+helpers and source-scrub/retention hooks landed in backend commit `80452180e`;
+the research-owner status clarification followed in `580fd6b3b`.
+They bind viewer, exact source revision/span, consumer, intent, treatment,
+dependency revisions, digest and expiry. Reads and writes revalidate current
+Intake custody; source scrubs erase dependent results transactionally; a bounded
+hourly worker removes expired or no-longer-eligible rows. Database checks cover
+both an added composition and a content-free no-addition result. Simultaneous
+retries converge on one owner row. The exact acceptance receipts for this
+increment are:
+
+- `TEST_DATABASE_DISPOSABLE=1` with the lane's explicitly named, disposable
+  Postgres target; `tests/core/test_selected_source_research_work.py`,
+  `tests/core/test_selected_source_research_results_postgres.py` and
+  `tests/workers/test_maintenance_jobs.py`: **23 passed**. This covers
+  wrong-owner reads, custody revocation, source deletion, sequential and
+  concurrent idempotency, expiry, cleanup bounds and no-addition readback.
+- `make ci-static`: passed on backend `80452180e` (Ruff, import/structure gates,
+  catalog runway and mypy; caches redirected to the system temporary directory
+  because the managed lane disallows cache writes in the checkout).
+- `make merge-check BASE_REF=main`: passed on backend `80452180e`; offline
+  change-aware scope reported **22,093 passed, 14 skipped, 1 xfailed and 52
+  xpassed**. This is not DB acceptance; the focused disposable-DB suite above
+  supplies that separate evidence.
+- `make docs-check`: passed on the `codex/adaptive-context-research` workspace
+  lane (base `cf39e5d8`) after this roadmap receipt update.
+  `alembic heads` reports exactly `selresult01 (head)`.
+
+These receipts establish the storage/readback seam only: they do not establish
+producer dispatch, public-query disclosure, research-specific budget
+enforcement, live-provider permission or any consumer acceptance. The producer
+must still write and read through this owner before the assignment can pass its
+end-to-end finish condition.
 
 This is a storage/readback seam, not a new Thing or durable artifact owner.
 The result remains an expiring, owner-private recomputable projection; it does
