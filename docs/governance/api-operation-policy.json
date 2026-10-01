@@ -3043,7 +3043,7 @@
         {
           "kind": "app_url",
           "name": "createConsumerCollection",
-          "source": "travel-app/utils/api/http.ts"
+          "source": "travel-app/utils/api/httpArtifactEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3059,7 +3059,7 @@
         {
           "kind": "app_url",
           "name": "listConsumerCollections",
-          "source": "travel-app/utils/api/http.ts"
+          "source": "travel-app/utils/api/httpArtifactEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3075,7 +3075,7 @@
         {
           "kind": "app_url",
           "name": "getConsumerCollection",
-          "source": "travel-app/utils/api/http.ts"
+          "source": "travel-app/utils/api/httpArtifactEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3091,7 +3091,7 @@
         {
           "kind": "app_url",
           "name": "renameConsumerCollection",
-          "source": "travel-app/utils/api/http.ts"
+          "source": "travel-app/utils/api/httpArtifactEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3107,7 +3107,7 @@
         {
           "kind": "app_url",
           "name": "addKeptThingToCollection",
-          "source": "travel-app/utils/api/http.ts"
+          "source": "travel-app/utils/api/httpArtifactEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3123,7 +3123,7 @@
         {
           "kind": "app_url",
           "name": "removeKeptThingFromCollection",
-          "source": "travel-app/utils/api/http.ts"
+          "source": "travel-app/utils/api/httpArtifactEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3139,7 +3139,7 @@
         {
           "kind": "app_url",
           "name": "deleteConsumerCollection",
-          "source": "travel-app/utils/api/http.ts"
+          "source": "travel-app/utils/api/httpArtifactEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3766,7 +3766,7 @@
         {
           "kind": "app_url",
           "name": "listKeptThingIndex",
-          "source": "travel-app/utils/api/http.ts"
+          "source": "travel-app/utils/api/httpArtifactEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3782,7 +3782,7 @@
         {
           "kind": "app_url",
           "name": "reverseKeptThingAlias",
-          "source": "travel-app/utils/api/http.ts"
+          "source": "travel-app/utils/api/httpArtifactEndpoints.ts"
         }
       ],
       "feature_flag": null,
@@ -3798,7 +3798,7 @@
         {
           "kind": "app_url",
           "name": "mergeKeptThingBundles",
-          "source": "travel-app/utils/api/http.ts"
+          "source": "travel-app/utils/api/httpArtifactEndpoints.ts"
         }
       ],
       "feature_flag": null,
