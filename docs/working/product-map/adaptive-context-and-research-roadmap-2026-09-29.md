@@ -1191,12 +1191,12 @@ cases exist. Resolve current paths before execution.
   universally enforced post-call deadlines.
 - Acquisition/retries: `tests/inbound/test_web_retrieval.py` and
   `tests/core/test_tool_retry.py`. The regression
-  `tests/research_agent/test_source_result_metadata.py::test_search_metadata_survives_tool_conversion_compression_and_bounded_result`
-  now covers the mocked `WebSearchTool` projection → source conversion →
-  compression → bounded-result chain. It manually composes the adapters with a
-  stub provider; it does not prove LangGraph wiring, live-provider behavior, or
-  the typed `acquire_public_research` selected-source path. Do not count this
-  isolated fidelity check as R1 acceptance.
+  `tests/research_agent/test_source_result_metadata.py` covers both the legacy
+  and typed mocked `WebSearchTool` → acquisition/conversion → compression →
+  bounded-result chains. These tests manually compose adapters around a stub
+  provider; they do not prove LangGraph wiring, live-provider behavior, or the
+  selected-source disclosure projection. Do not count this isolated fidelity
+  coverage as R1 acceptance.
 - Memory: `tests/core/test_personal_memory_evidence.py`, preference subsystem
   tests and `tests/eval/test_memory_loop.py`.
 - Quality: `tools/eval/plugins/retrieval/runner.py`,
@@ -1587,6 +1587,29 @@ truncation, citation index alignment and `include_raw_content=False`. This
 closes the specific stale test-coverage note, not R1: it does not execute the
 LangGraph, `acquire_public_research`, selected-source disclosure projection,
 live provider, or semantic claim-support acceptance.
+
+Backend commit `d1992ca62` adds a separate typed-path regression. It runs the
+real one-attempt `acquire_public_research` wrapper with a stub Tavily SDK,
+converts `PublicResearchResult` into transient sources, applies the existing
+compression helper, and normalizes the bounded result. The test verifies
+provider-summary and title/snippet truncation, publication date, evidence kind,
+the one-attempt usage projection, and exclusion of local subject identity from
+provider arguments. The selected-source route still does not admit public
+research, and neither regression proves the disclosure policy or consumer
+benefit. Both test modules passed **13 tests** together on the lane tuple before
+that backend commit.
+
+On backend `d1992ca62`, `make ci-static` passed, including Ruff/format and mypy
+with no issues in 1,900 source files. The first `make merge-check BASE_REF=main`
+run reached 100% tests but exited during pytest's final cache write because this
+managed worktree cannot write `.pytest_cache`; no assertion failure was
+reported. Re-running as
+`PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main` passed the
+full offline scope: **22,159 passed, 14 skipped, 1 xfailed, 52 xpassed**, with
+one expected local-Qdrant payload-index warning. Workspace `make docs-check`
+also passed after the first documentation reconciliation; it must be rerun for
+this receipt update. No live provider, database, app, deployment, or public
+lookup was exercised.
 
 Second-pass offline checks at workspace `44f637e85`, backend `3c170d21f`
 and app `87eceee24`, on Python `3.13.0` / Darwin 25.5 arm64:
