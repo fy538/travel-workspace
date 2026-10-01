@@ -819,6 +819,23 @@ full-scroll above, this verifies one bounded cross-family composition in each
 root; D2 still needs broader ordinary/returned/live coverage and substantive
 receiving gaps.
 
+**Exact Place-handoff photo composition — 2026-10-01:** backend commit
+`f46ed5adc` carries an original delivery's exact `handoff_id` into Home as
+presentation context only; app commit `365db6d7b` pairs one
+image original with one directly addressed Place note only when both name that
+exact handoff in the same Home region. Text originals, duplicate/ambiguous
+matches and unrelated notes remain separate. Both units retain their own live
+owner read, exposure boundary, action/return identity and unavailable state, so
+an unavailable original does not hide the note or its Place door. The app's
+Home screen and pairing suites passed **37/37**, `npm run typecheck` passed,
+targeted ESLint had **0 errors** (the existing renderer max-lines warning
+remains), and backend coverage passed **4/4** targeted cases (**84** deselected);
+Ruff and `git diff --check` passed. Native linked-photo/API acceptance is
+**unverified**: this lane's API did not become healthy at `/health` under
+`make dev-backend` (startup reported its missing local `ANTHROPIC_API_KEY`),
+so no device or real-owner readback claim is made. D2 remains active; this is a
+bounded social receiving composition, not full Home/Places or D2 completion.
+
 ### Combined landing checkpoint — September 30
 
 The merged integration contains the Home/capture lane plus these completed
