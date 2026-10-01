@@ -781,6 +781,21 @@ collection. This closes only the compact-copy native assertion, not D2
 full-scroll, production-owner/auth, recurring-supply or external design-canon
 acceptance.
 
+**Home full-scroll inspection checkpoints — 2026-10-01:** app commit
+`67ff1c8f8` extends the existing `89-home-full-scroll` journey with named
+viewport captures for the opening, addressed friend contribution, source-backed
+Place reading, and recipient-authorized original. The existing assertions,
+fixture scope and owner-return behavior are unchanged. The flow's two-document
+YAML parsed successfully, `npm run qa:polish:scenarios` validated all **31**
+registered IDs, `npm run maestro:metadata:check` verified all **408** flows,
+and `git diff --check` passed. A new native capture was not run: the assigned
+simulator check failed because CoreSimulatorService refused its connection.
+Therefore no new screenshot or visual verdict exists yet; rerun this same flow
+when that service is available. This makes the already-required full-scroll
+review inspectable without adding a new journey, test matrix or design canon.
+It does not close D2's real-owner, recurring-supply or external design-reference
+gaps.
+
 ### D3 Make practical help part of the same system
 
 **Outcome:** what is happening now changes the useful options and actions across
