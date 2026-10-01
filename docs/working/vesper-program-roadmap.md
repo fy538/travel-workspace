@@ -875,6 +875,27 @@ typecheck and ESLint passed, scenario validation covered 31 IDs, and the QA
 registry tests passed 5/5. This adds a useful receiving-path capture, not a D2
 completion or a reason to change lane order.
 
+**Places authored-note exact open and return — 2026-10-01:** app commits
+`de210c532`, `d466ef6fa`, and `27010a7d7` make same-capability actions
+unit-addressable, include exact destination refs in the internal presentation's
+return scope, and humanize a slug-shaped Place fallback. The committed native
+run `20261001T072134Z-places-workspace` passed on iPhone 16 Pro / Maestro 2.6.1
+with the internal four-root/Places V2 gates and mock API: **1/1 flow, 4/4 extra
+captures**. The flow opens the note's exact Red Hook Place, confirms the
+human-readable name, backs out, and verifies Maya's note remains in the same
+Places context. Focused Places/root-projection suites passed **37/37**, Place
+home smoke passed **18/18**, typecheck passed, and focused ESLint had **0
+errors** (one existing max-lines warning in the Place screen). The native run
+first exposed an unrepresented destination-ref invariant and then a raw-slug
+label; both were corrected before this passing capture. This is internal mock
+behavior only: the destination resolves to the honest cold Place state because
+the fixture has no real Place-owned depth. Real-owner supply/readback, enriched
+Place value, release acceptance, and external-canon visual parity remain open;
+the August bundle still lacks a matching authored-note specimen and the
+structured external-canon verdict path still lacks required `canonRefs`. D2
+remains active; this verifies exact opening and return, not complete Home/Places
+receiving or D2 completion.
+
 ### Combined landing checkpoint — September 30
 
 The merged integration contains the Home/capture lane plus these completed
