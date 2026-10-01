@@ -58,7 +58,7 @@ open, along with broader P0/P1/PC/P2 acceptance.
 | Reader lifetime | Account-session-scoped reads, expiry-aware displayed facts and foreground refresh, exact-source authorization and revision checks | Full source/audience/collection lifecycle replay and authenticated mobile-to-service acceptance |
 | Native acceptance | Fourteen family/source/return fixture screenshots; ten largest-text screenshots; Life source/photo-viewer/removal flow on iOS 18.2 | Reliable pinch/pan, actual VoiceOver traversal/actions, loading/error states, Android/physical devices and live-service readback; these captures do not establish user preference |
 | Landed Technical dependencies | Exact-original revision binding and backend-only refinding of a bounded UTF-8 `text/plain` span; bounded public-acquisition primitives | No stable cross-representation Component identity, mobile selection API, artifact-bound discovery request or complete research-spend enforcement |
-| PC and later packages | House-design fallbacks and existing eligible original receiving remain usable; canonical private consumer-Collection owner, generated mobile contract/client, and session-scoped paginated data facade are implemented but not yet consumed by Life | Shared membership/audience/receiving, native Life presentation and device acceptance, approved catalog mappings/uses, exact kept editions and connected contextual additions remain unfinished |
+| PC and later packages | House-design fallbacks and existing eligible original receiving remain usable; canonical private consumer-Collection owner, generated mobile contract/client, and session-scoped paginated data facade are implemented. The accepted Collections reading is reconciled in the workspace experience contract; the app contract explicitly records the runtime gap. | Shared membership/audience/receiving, native Life Collections reading and device acceptance, authorized Thing display composition, approved catalog mappings/uses, exact kept editions and connected contextual additions remain unfinished |
 
 Section 13 retains the exact revisions, commands and limits of each receipt.
 Earlier simulator/build failures are historical attempts, not the current
@@ -68,18 +68,22 @@ unchanged screenshots did not establish pan/pinch. Do not turn either result
 into a broader gesture, accessibility or live-service claim. The Home dock
 stability repair was a QA prerequisite, not another artifact feature.
 
-**Next assignment:** advance the next connected checkpoint in section 11: use
-Technical's supported artifact-target request/result contract in the focused
-reader for one useful eligible addition, while preserving original-only value
-and exact return. Owner-confirmed reconciliation is implemented and tested;
-the owner chooses whether bundles stay connected, and Vesper makes no claim
-that their contents are semantically the same object. Keep Source custody and
-authorization independent, with a direct reversible `Separate` action. Life
-and Collection remain consumers, not identity owners. Collection continuity,
-native acceptance, timezone-authoring for typed-time replacement, and wider
-P0/P1/PC/P2 outcomes remain explicit open work. Do not build another research
-engine: adopt Technical's landed interface and required first-producer
-safeguards.
+**Next assignment:** preserve the next connected checkpoint in section 11:
+adopt Technical's supported artifact-target request/result contract in the
+focused reader for one useful eligible addition, with original-only value and
+exact return. That producer contract is not landed in the inspected
+`origin/main`; do not consume its unmerged branch. Continue the independent
+Life/Collection read-side foundation in this lane: the private Collection API
+returns canonical metadata and member `ThingRef`s, while the Thing projection
+returns authorized original references, not user-facing Thing titles or
+summaries. Define a bounded, owner-authorized Life composition over these
+existing owners before building member UI; do not copy Source content/claims,
+invent labels, or create an N+1 read pattern. Keep Strategy as the Collection
+owner and Life as presentation/projection owner. Owner-confirmed reconciliation
+is implemented and reversible; it does not claim semantic sameness. Collection
+continuity, native acceptance, timezone-authoring for typed-time replacement,
+and wider P0/P1/PC/P2 outcomes remain open. Do not build a second research
+engine; adopt Technical's landed interface and first-producer safeguards.
 
 The accepted
 [Collections](../decisions/2026-09-28-collections-are-the-spine.md) and
@@ -2534,3 +2538,26 @@ operations. App documentation checks passed for headers and links (330
 Markdown files). These checks establish API/data-facade behavior and mock/real
 selection boundaries; they do not establish a rendered Life experience or
 device/service acceptance.
+
+### October 1 Life Collections contract reconciliation
+
+The accepted September 29 Life decision replaces the Threads reading with
+Collections and sets the entry rule: Time for a new or collection-sparse
+record, Collections once collections exist, then resume the last selected
+reading. Workspace commit `9a49c480` updates the canonical Life experience
+contract to this target. App commit `fd62ded2d` keeps the native contract
+truthful by distinguishing the accepted target from the current Time/Places/
+Threads/People runtime and by marking its exported design as legacy evidence,
+not approval for the Collections composition. These are contract updates, not
+runtime or visual implementation.
+
+The read-side seam is now explicit: Consumer Collection detail supplies
+Collection metadata and stable member `ThingRef`s; the Thing projection
+supplies currently authorized original references, but neither supplies a
+user-facing Thing title/summary. Life may own a read composition, but must
+resolve presentation through current Thing/Source authority rather than
+copying claims or inventing a semantic label. The next Life-facing implementation
+therefore needs that bounded composition contract and its authorization,
+pagination and stale-cache behavior before a Collection member UI is credible.
+`make docs-check` passed after the contract changes. No API, model, screen,
+navigation, native screenshot or device acceptance changed in this increment.
