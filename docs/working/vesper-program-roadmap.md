@@ -52,8 +52,10 @@ interactions and native polish. The latest D2 increment lets one exact,
 revision-bound Place Source appear as a self-contained Places reading without
 requiring a second item, gives an exact Place-bound Home destination a specific
 door label, and verifies a returned Home reading's exact Place/source route and
-Home return token in the connected app path; real-owner/API and full D2
-acceptance remain open.
+Home return token in the connected app path. A local synthetic-owner API/native
+rehearsal now also verifies a two-Source Home reading through exact Place
+opening and Home return. Production authentication/content, recurring supply
+and full D2 acceptance remain open.
 D1 capture gaps and D3 practical-help gaps
 remain open and can supply independent work when a D2 dependency is unavailable.
 
@@ -1393,7 +1395,31 @@ recurrence, or release portfolio; the reference manifest remains reference-only
 (`externalCanonVerified=0`). They add confidence that the ordinary, returned
 and live compositions coexist on the same root without proving their backing
 data or complete visual parity. D2 still needs substantive eligible Place value,
-exact owner readback, full-scroll quality and the remaining posture coverage.
+broader production-owner/auth coverage, full-scroll quality and the remaining
+posture coverage.
+
+**Home public Place reading → exact Place → Home return — 2026-10-01:** the
+current lane tuple was workspace `c9fa9bfa`, backend `a20da1929`, app
+`fb53bd591`. On the lane's isolated Compose database (`vesper`, port `53173`),
+local API (`53176`), existing Metro (`53177`) and assigned iPhone 16 Pro / iOS
+18.2, the documented `scripts/maestro/run-home-public-reading-sequence.sh`
+passed with one existing synthetic local owner, `AI_MODE=off`,
+`WEB_SEARCH_MODE=off`, `SKIP_AUTH=true`, and background work disabled. The
+run ID was `home-public-sequence-exact-owner-20261001-1220`; Maestro logs are at
+`/tmp/vesper-home-public-sequence/.maestro/tests/2026-10-01_121738/`. The
+run-scoped fixture supplied two accepted Place Source revisions. The API
+selected their exact Home composition; Maestro verified both authored
+interpretations, opened the exact venue, returned to Home, and found the same
+Home unit still present. The runner removed the fixture and restored the
+owner's previous Home location; post-cleanup API readback no longer contained
+the fixture venue. Health and `/api/me` owner checks passed. During the fixture,
+the Home projection reported non-retryable moment-condition omissions and
+Place-owned current-condition gaps; Home suppressed the optional moment
+omissions while retaining the Place-owner notice, consistent with the current
+contract/tests. This is local owner-backed flow with synthetic sources and
+development auth—not production auth, recurring editorial supply,
+external-provider freshness, or full D2 acceptance. The post-return screen was
+inspected, but not compared against an external design canon.
 
 ### Combined landing checkpoint — September 30
 
