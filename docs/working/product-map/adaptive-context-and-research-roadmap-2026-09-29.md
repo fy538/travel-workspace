@@ -3557,3 +3557,40 @@ Validation on the adaptive-context lane:
   recall or relevance, semantic ranking, addition support, usefulness, or a
   production route. The test-only change made no API/schema, provider, policy,
   feature-flag, app, deployment, or publication changes. R0–R7 remain open.
+
+#### R0/R2 correctness receipt — keep source chronology unknown until verified (October 1)
+
+Backend commit `99f38d827` removes a misleading temporal projection from the
+selected-source producer. `work_item.represented_at` is the time Vesper began
+this synthesis; the Intake owner read does not establish when the facts in each
+original apply. The producer therefore leaves `CompositionSourceV1.represented_at`
+unset rather than assigning the request time to the selected original and every
+dependency. Result generation time remains represented by the result owner.
+The Research Agent FEATURE contract records this boundary, and the focused
+producer regression asserts that no source-manifest item claims a represented
+time. This does not add temporal owner metadata or establish event/occurrence
+time; those remain unknown until a source owner admits a field with those
+semantics.
+
+Validation on the adaptive-context backend lane:
+
+- `./.venv/bin/python -m pytest -p no:cacheprovider
+  tests/research_agent/test_selected_source_producer.py -q`: **11 passed**.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static`: passed,
+  including Ruff, formatting, architecture/structural gates and mypy across
+  **1,900** source files.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main` did
+  **not** pass: **22,193 passed, 14 skipped, 53 xpassed**, with one timing
+  threshold miss (`test_sync_executor_with_multiple_tools`, 92.4 ms vs. 90 ms)
+  and two setup/teardown errors reporting `RuntimeError: dictionary changed size
+  during iteration`. The exact three affected tests passed in isolation (**3
+  passed**). The composite result remains failed; the isolated rerun does not
+  erase it.
+- Commit hooks passed. No database acceptance was needed for this in-memory
+  manifest correction, and no OpenAPI, schema, commercial policy, feature flag,
+  provider, app, deployment or publication changed.
+
+This closes one temporal-integrity defect, not R0/R2 acceptance: exact source
+time, occurrence semantics, selection quality, supported-addition usefulness,
+native receiving and the broader R0–R7 package outcomes remain open.
