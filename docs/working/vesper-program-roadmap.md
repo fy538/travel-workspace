@@ -1395,8 +1395,8 @@ recurrence, or release portfolio; the reference manifest remains reference-only
 (`externalCanonVerified=0`). They add confidence that the ordinary, returned
 and live compositions coexist on the same root without proving their backing
 data or complete visual parity. D2 still needs substantive eligible Place value,
-broader production-owner/auth coverage, full-scroll quality and the remaining
-posture coverage.
+broader production-owner/auth coverage, more full-scroll quality evidence and
+the remaining posture coverage.
 
 **Home public Place reading → exact Place → Home return — 2026-10-01:** the
 current lane tuple was workspace `c9fa9bfa`, backend `a20da1929`, app
@@ -1420,6 +1420,26 @@ contract/tests. This is local owner-backed flow with synthetic sources and
 development auth—not production auth, recurring editorial supply,
 external-provider freshness, or full D2 acceptance. The post-return screen was
 inspected, but not compared against an external design canon.
+
+**Home full scroll across friend, Place reading and original — 2026-10-01:**
+the full local owner-backed flow passed on the same isolated lane database and
+iPhone 16 Pro / iOS 18.2. Workspace was `2094f89a`, backend `a20da1929`, and
+app source `fb53bd591`; app commit `58ea85d77` updates the existing Maestro
+flow. The first run found that the exact social unit and authored note were
+present but the flow still expected retired copy (“A place from Maya”). The
+captured hierarchy showed the current author treatment, private audience, and
+“See this place” door. The flow now asserts the exact authored words, private
+scope and Place door. Rerun ID `home-full-scroll-owner-20261001-1231` passed
+`89-home-full-scroll`: the API-projected Home composition contained the
+recipient-consented friend note, two exact accepted Place readings and an
+individually authorized original (“The corner table”); native checks found
+each in the full scroll. The runner verified its run-scoped fixtures were
+withdrawn after cleanup. Maestro logs are at
+`/tmp/vesper-home-full-scroll/.maestro/tests/2026-10-01_122831/`; a final
+simulator viewport was visually inspected at
+`/tmp/home-full-scroll-original.png`. This is one synthetic local owner with
+development auth and source fixtures—not production owner/auth parity,
+recurring content, all-posture coverage or full external design-canon parity.
 
 ### Combined landing checkpoint — September 30
 
