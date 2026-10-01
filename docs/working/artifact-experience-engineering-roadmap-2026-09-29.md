@@ -75,17 +75,18 @@ Collection member data composition: each revision-pinned membership page is
 paired with one bounded batch of owner-authorized Thing projections. It
 preserves membership order and identity and carries authorized original
 references only; it does not invent member titles or build a Life detail
-screen. App commit `de36dcd86` now gives the dedicated synthetic replacement-
-time fixture revision-bound in-memory mock correction/readback and Undo
-semantics, and registers a native Save/refetch/Undo scenario; app commit
-`51d275d11` records its validated iOS 18.2 verdict. The native run proves the
-round-trip only against synthetic mock state, not backend persistence, deployed
-authentication, or a live service. The mock-parity checkpoint below is closed
-within that bounded scope; the next connected checkpoint remains Technical's
-artifact-target request/result contract, which is on a separate unmerged
-branch and is not available to this lane. Do not consume it until it is landed
-and its contract verified. Exact commands and evidence
-limits are in section 13.
+screen. App commit `de36dcd86` gives the dedicated synthetic replacement-time
+fixture revision-bound in-memory mock correction/readback and Undo semantics
+and registers a native Save/refetch/Undo scenario. App commit `51d275d11` is
+the implementation revision used for the October 1 iOS 18.2 capture; evidence
+commit `0a166e950` records the expanded four-flow verdict. The native run
+proves the round-trip only against synthetic mock state, not backend
+persistence, deployed authentication, or a live service. The mock-parity
+checkpoint below is closed within that bounded scope; the next connected
+checkpoint remains Technical's artifact-target request/result contract, which
+is on a separate unmerged branch and is not available to this lane. Do not
+consume it until it is landed and its contract verified. Exact commands and
+evidence limits are in section 13.
 
 | Area | Implemented and evidenced | Remaining boundary |
 | --- | --- | --- |
@@ -93,7 +94,7 @@ limits are in section 13.
 | P1 correction and continuity | Revision-bound corrections and append-only Undo; backend typed-time replacement; native owner-only replacement-time editor with separate explicit start/end offsets and revision-bound Save/Undo; capture-to-reader and exact-source-to-confirmed-record links with source/digest checks; owner-scoped Thing row on verified private Keep; evidence-backed reversible cross-submission aliases; owner-scoped Thing API/native reader; candidate-to-bundle entry from a qualifying occurrence reader; owner-confirmed reversible reconciliation transport/app controls; Postgres coverage for concurrent merge/reversal retries and competing merge directions | Synthetic mock-mode Save/refetch/Undo now has registered native iOS 18.2 evidence, including readable dated time-range projection. Authenticated app-to-backend persistence/readback remains open; raw UTC-offset entry and absent start/end place labels remain UX follow-ups. No native acceptance for reconciliation or collection management yet; wider migration/rollback and lifecycle acceptance remain separate |
 | P2 original-first readers | Ticket, source-backed place, text-built book/film/show/music, supplied passage and practical-record treatments; exact-original chooser/return; shared photo viewer | Catalog identity/art, selected-part UI and later dish/recipe/scorecard treatments; source facts do not establish attendance, author identity or payment state |
 | Reader lifetime | Account-session-scoped reads, expiry-aware displayed facts and foreground refresh, exact-source authorization and revision checks | Full source/audience/collection lifecycle replay and authenticated mobile-to-service acceptance |
-| Native acceptance | Fourteen family/source/return fixture screenshots; ten largest-text screenshots; Life source/photo-viewer/removal flow on iOS 18.2; replacement-time editor keyboard-open, validation, dismissal and cancel flow; synthetic mock Save/refetch/Undo flow on iOS 18.2 (October 1, each one scenario with validated verdicts) | Live authenticated save/refetch/Undo is not proven. Reliable pinch/pan, actual VoiceOver traversal/actions, loading/error states, Android/physical devices and user preference remain open |
+| Native acceptance | October 1 iOS 18.2 Vesper QA SE reader portfolio: 30 screenshots across four registered flows (14 standard reader/source/return, 10 largest-text, 4 replacement-time editor/keyboard, 2 synthetic mock Save/Undo), with a validated `mixed` verdict | Synthetic fixtures/mock state only; live authenticated save/refetch/Undo is not proven. Reliable pinch/pan, actual VoiceOver traversal/actions, loading/error states, Android/physical devices and user preference remain open |
 | Landed Technical dependencies | Exact-original revision binding and backend-only refinding of a bounded UTF-8 `text/plain` span; bounded public-acquisition primitives | No stable cross-representation Component identity, mobile selection API, artifact-bound discovery request or complete research-spend enforcement |
 | PC and later packages | House-design fallbacks and existing eligible original receiving remain usable; canonical private consumer-Collection owner, generated mobile contract/client, session-scoped paginated data facade with revision-bound continuation, bounded owner-backed Life Collections root API, batch owner-authorized Thing projection, and app-side Collection-page-to-Thing batch composition are implemented. The accepted Collections reading remains the product target. | Shared membership/audience/receiving, native Life Collections lens/detail route and device acceptance, founder-approved member labels/previews/hierarchy, approved catalog mappings/uses, exact kept editions and connected contextual additions remain unfinished |
 
@@ -3008,3 +3009,26 @@ with no TypeScript errors.
 | Native keyboard, validation and return capture | `env SENTRY_DISABLE_AUTO_UPLOAD=true npm run ios -- --device "iPhone SE (3rd generation)" --port 64747`; `env VESPER_METRO_URL=http://192.168.1.153:64747 node scripts/polish-qa/run-polish-qa.mjs canonical-artifact-reader --flow=polish/canonical-artifact-replacement-time-editor --device="iPhone SE (3rd generation)"`; verdict validate/commit for `.maestro/runs/20261001T153024Z-canonical-artifact-reader` | Native iOS 18.2 build succeeded with 0 errors/4 warnings; Sentry auto-upload was disabled. The fresh registered flow, captured after finalizing its acceptance wording, shows the software keyboard with the focused start offset and helper visible, presses Enter, scrolls to Save/Cancel, then cancels and returns to the same synthetic artifact (1/1). Separately, on-screen key entry of `-04:00` surfaced “The end time must be after the start time” and disabled Save; Cancel left the original time unchanged. The validated verdict and matching manifest snapshot are `travel-app/docs/surfaces/canonical-artifact-reader/verdicts/20261001T153024Z.json` and `.manifest.json`. Evidence is limited to synthetic native form/validation behavior; no correction was submitted and no service persistence/readback/Undo or production authentication is established. |
 | Contract regeneration and registry | `./scripts/sync-types.sh`; `make api-coverage-check`; `npm run qa:polish:scenarios`; `npm run qa:design:check -- canonical-artifact-reader` | Sync and typecheck passed; API audit passed (591 active, 15 dark, 0 unflagged, 62 retiring); all 31 polish scenario IDs passed. Design check remains doctrine-only with no pinned design-reference manifest. |
 | Cross-repo change-aware preflight | `env -u DRY_RUN WORKSPACE_BASE_REF=7e007e46 AGENT_BASE_REF=10c5877d8 APP_BASE_REF=b94a50ccf RUFF_CACHE_DIR=/private/tmp/vesper-artifact-foundation-ruff-cache PYTEST_ADDOPTS='-p no:cacheprovider' make verify-changed`; `make docs-check` | Passed. App `verify:fast` had 0 lint errors / 167 warnings; app merge scope passed 1,293 suites / 9,216 tests / 1 snapshot. Backend static checks and mypy passed; selected backend tests passed (22,112 passed, 14 skipped, 1 xfailed, 52 xpassed, 8 warnings); 118 workspace script tests passed. Cross-repo contract, API coverage, compatibility, links/spine/canon and full workspace doc-governance checks passed. This is local preflight, not hosted CI. At this preflight the native Save/refetch/Undo mock round-trip had not yet run; the later mock-only proof is recorded above. Authenticated live mobile/API readback, deployed service, production credentials, Android/physical device and user preference remain unproven. |
+
+### October 1 expanded canonical artifact reader portfolio
+
+The October 1 iOS 18.2 Vesper QA SE run expands the prior single-flow mock
+Save/Undo receipt to the full reader portfolio. It captured 30 screenshots
+across four registered flows: 14 standard family/source/return captures, 10
+captures at `accessibility-extra-extra-extra-large`, four replacement-time
+editor/keyboard captures, and two synthetic Save/Undo captures. All four flows
+and their Maestro assertions completed. The run used app implementation
+revision `51d275d11`; app evidence commit `0a166e950622dafb221250f1a1a62b83cdf690d7`
+updates the stable verdict and manifest.
+
+| Boundary | Exact verification | Result and limit |
+| --- | --- | --- |
+| Registered scenario set | `npm run qa:polish:scenarios` | Passed; 31 scenario IDs registered. |
+| Native portfolio capture | `VESPER_METRO_URL=http://127.0.0.1:64747 npm run qa:polish -- canonical-artifact-reader --after --device="Vesper QA SE"` | Four of four flows captured on iOS 18.2. The screenshots cover the standard reader families/fallbacks, exact calendar source and return, largest-text reflow/source access, keyboard/editor reachability, and mock correction readback/Undo. Deterministic fixtures and in-memory mock state only; no authenticated service readback or persistence. |
+| Structured verdict | `npm run qa:verdict:validate -- .maestro/runs/_pairs/canonical-artifact-reader/after`; `npm run qa:verdict:diff -- .maestro/runs/_pairs/canonical-artifact-reader/after`; `npm run qa:verdict:committed` | Validation passed; the committed-verdict check passed for 79 receipts. The verdict is `mixed`: capture, correctness and visual gates pass, while intent fails on two reader captures because artifact-family gold labels conflict with the currently assigned gold role in QA doctrine. The diff exits 1 for the explicitly recorded scope-expanded overall change (`pass` to `mixed`); it is not evidence of an app-code regression. |
+| Review follow-ups and unproven scope | Screenshot review and flow logs in `.maestro/runs/_pairs/canonical-artifact-reader/after` | P2 clarity observations include duplicated tentative status, technical raw UTC offsets, and absent endpoint-place labels. The gold-role finding is a canon question, not an instruction to recolor. VoiceOver activation, pinch/pan, loading/error states, Android/physical-device behavior, user preference, and authenticated live-service correction/readback remain unproven. |
+
+The expanded evidence does not close the native acceptance package. The
+reader's fixture-backed rendering and registered flows are better evidenced;
+resolution of design authority and the unproven native/service boundaries
+remain separate work.
