@@ -427,11 +427,10 @@ order. The research sections explain the evidence, not additional queues.
 
 **Current state:** the integration landed with required checks passing. Package
 3C is implemented and published as [workspace PR 38](https://github.com/fy538/travel-workspace/pull/38).
-Its first two hosted runs passed, each showing a much shorter required-job
-critical path with a modest increase in summed runner time. The last successfully
-queried PR state was open at 08:54 UTC on October 1; landing was not established.
-The latest run passed at 09:03 UTC, but a fresh PR-state lookup was unavailable
-because GitHub's API could not be reached.
+Its first three hosted runs passed, each showing a much shorter required-job
+critical path than the 23m18s serial baseline, with increased summed runner time.
+At 09:15 UTC on October 1, PR 38 was open and mergeable, with all required
+checks passed and no review decision recorded; landing was not established.
 Other implementation packages are queued or unstarted. The verified
 remote-main baseline is workspace `4febe0d461a62d204ba4dee9eaad7813c7c1509c`,
 backend `bd1a683b8656c3f4091e16abb64f57897fa7fc42`, and
@@ -445,7 +444,7 @@ are recorded below.
 | Order | Work | Status and dependency | First beneficiaries |
 | --- | --- | --- | --- |
 | 0 | Use the landed baseline and confirm tooling ownership | Complete on commit `cef7ac55`; isolated runtime ownership is recorded below | All lanes |
-| 1 | Package 3C: workspace flow validation and early prerequisite checks | Published in workspace PR 38; local checks and two hosted runs pass. At the last successful PR-state query, `origin/main` was `4febe0d` and the PR was open. Hosted critical paths were 6m13s and 5m46s versus 23m18s before; summed job runtimes were 25m46s and 25m28s versus 23m18s (+10.6% and +9.3%). | All integrations |
+| 1 | Package 3C: workspace flow validation and early prerequisite checks | Published in workspace PR 38; local checks and three hosted runs pass. At 09:15 UTC, the PR was open and mergeable; `origin/main` was `4febe0d`. Hosted critical paths ranged 5m46s–7m38s versus 23m18s; summed job runtimes ranged 25m28s–31m26s versus 23m18s (+9.3%–34.9%). | All integrations |
 | 2 | Package 3A: deterministic and faster app tests with the same checks | Queued until Package 3C lands; diagnose observed intermittent failures before expanding concurrency | Every lane changing the app |
 | 3 | Package 3B: one execution owner per CI guarantee | Queued after mapping current required checks and their callers; deliver independently after 3A | All lanes |
 | 4 | Package 1: choose the right evidence and make targeted native QA reliable | Implementation published in app PR 209 and workspace PR 39; the app selector accepts a full flow ID or canonical slug only, and readiness failures now inspect Maestro's failed-command hierarchy for explicit causes. Twenty focused tests and the broader polish QA suite pass. Aligning Expo's advertised host allowed Metro to bundle the app; capture then exposed a Worklets JavaScript/native mismatch (`0.7.4` vs `0.11.3`). Maestro's hierarchy omits that message, so this run remains an unverified native capture with 0/1 product images. | Orchestration and Strategy |
@@ -454,7 +453,7 @@ are recorded below.
 | Conditional | Package 4: native build reuse and other measured setup optimizations | Only if meaningful build/setup cost remains | Mobile and build owners |
 | Ongoing | Package 5: product-outcome acceptance | Stays with the three product lanes; tooling work must preserve it | Product users |
 
-**October 1 implementation receipt (local checks at 08:54 UTC; hosted evidence through 09:03 UTC).**
+**October 1 implementation receipt (local checks at 08:54 UTC; hosted evidence through 09:15 UTC).**
 The coordinated `make verify-changed` passed on workspace `632c8ff`, backend
 `2c115ac`, and app `4c5caa9`, against bases `4febe0d`, `bd1a683`, and `e7bdc66`.
 The app suite passed (1,289 suites, 9,178 tests, one snapshot); lint reported 167
@@ -471,9 +470,10 @@ Docker build reached its 20-minute job timeout while downloading runtime
 dependencies, while the retry built the image and passed the operator-entrypoint
 import in 2m05s. Two earlier package-smoke runs took about two minutes. This
 sample supports a transient download slowdown, not a timeout or coverage change.
-The last successful PR-state query at 08:54 UTC found PR 38 open and
-`origin/main` at `4febe0d`; a 09:03 UTC GitHub API refresh failed to connect, so
-no newer merge state is claimed. The latest workflow run,
+The latest query at 09:15 UTC found PR 38 open and mergeable, with all required
+checks passed, `origin/main` at `4febe0d`, and no review decision recorded. The
+Maestro Cloud PR smoke remains skipped because the service is not configured.
+The second hosted run,
 [36839535177](https://github.com/fy538/travel-workspace/actions/runs/36839535177),
 passed reliability checks in 4m51s, the four Maestro syntax shards in 4m50s,
 4m49s, 5m12s and 5m38s, and the required aggregate in 8s. The resulting
@@ -481,9 +481,15 @@ critical path was about 5m46s; summed job runtime was 25m28s. Compared with the
 23m18s serial baseline, this second sample shortened the critical path by about
 75.2% while using 9.3% more runner time. The first sample shortened it by 73.3%
 while using 10.6% more runner time. Both runs preserve the full flow inventory;
-these two hosted samples establish faster feedback with a modest runner-time
-cost, not a stable percentile or a claim of lower resource use. Package 3A
-remains gated on Package 3C landing.
+these two hosted samples established faster feedback with a modest runner-time
+cost, not a stable percentile or a claim of lower resource use. The third run,
+[36840575936](https://github.com/fy538/travel-workspace/actions/runs/36840575936),
+also passed: reliability took 7m31s, syntax shards took 4m58s, 5m32s, 6m50s and
+6m28s, and the aggregate took 7s. Its critical path was about 7m38s and summed
+job runtime 31m26s, or 67.2% less critical-path time and 34.9% more runner time
+than the serial baseline. All three runs validate the full flow inventory; the
+spread shows material hosted variability. Package 3A remains gated on Package
+3C landing.
 
 Four app/backend instruction documents were shortened and the workspace
 cross-repository instructions retained as the single shared owner. Across the
