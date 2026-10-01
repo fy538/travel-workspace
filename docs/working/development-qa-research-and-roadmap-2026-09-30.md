@@ -23,9 +23,13 @@ Packages 1 and 2 have implementation and task-context changes published in
 [app PR 209](https://github.com/fy538/travel-app/pull/209), and
 [backend PR 239](https://github.com/fy538/travel-agent/pull/239). The targeted
 `home-root-returned` native capture passes; Package 2's original Home/Places
-wrong-state replay remains unverified. Existing runtime, required checks and
-acceptance obligations remain in force. The program roadmap retains cross-lane
-ownership.
+wrong-state replay remains unverified.
+Package 5's first proof-to-outcome map is also in progress. Its P03 correction
+grader now requires a named source with matching before/after revisions, but
+this remains synthetic harness evidence: no live adapter or promoted
+product-proof receipt exists, and the current photo source record does not expose
+a content revision. Existing runtime, required checks and acceptance obligations
+remain in force. The program roadmap retains cross-lane ownership.
 
 **Second research pass:** the [deeper evidence review](#second-research-pass-defect-detection-and-the-cost-of-review)
 adds recent mobile/GUI studies and industrial test-selection and mutation-testing
@@ -152,6 +156,20 @@ has not changed since that capture. The referenced PNG files are not tracked in
 Git, so this is a carried verdict rather than a fresh pixel review. The
 Home/Places wrong-state replay remains unverified; the failed returned-state
 attempt above never reached Home and is not evidence for that defect.
+
+Package 5's P03-03 grader now requires the exact
+`trip_photo:private-late-set-photo` evidence reference and matching non-empty
+before/after source revisions. Missing, malformed, or changed revision evidence
+fails closed. Backend commit `681c518c8` adds this check and valid, missing,
+malformed, and changed-revision cases. The measured focused command
+`PYTHONDONTWRITEBYTECODE=1 ./.venv/bin/python -m pytest -p no:cacheprovider
+tests/eval/test_product_proof_eval.py tests/eval/test_consequence_authority.py
+tests/atlas/test_artifact_quality_eval.py -q` passed **38 tests** on Python
+3.13.0 in 4.269 seconds; the recorder ran on host Python 3.14.6. This is a
+single harness measurement, not a productivity comparison. Ruff check and format
+check passed. The grader still consumes adapter-supplied trace fields; the tests
+do not prove that a live adapter reads the canonical source owner or that an
+original's content stayed unchanged.
 
 **Package 3 — iteration and candidate selection:** selector transparency passed
 the coordinated gate above. App plans expose full-suite reasons and print
@@ -999,27 +1017,37 @@ The first mapping confirms that these tools measure different layers:
 | Preserve and reopen an exact original | App [Canonical Artifact Reader](../../travel-app/docs/surfaces/canonical-artifact-reader/contract.md), especially J11.B06 and registered source-open flows | The committed September 30 carried verdict records source open/return and largest-text assertions passing on fixture data. Native photo gestures, VoiceOver activation, and live owner-source readback are separate evidence. |
 | Keep a useful collection and find it again | Workspace [Journey 11](../journeys/11-atlas-candidate-to-memory-control.md), especially J11.B03/J11.B05; backend P04 | J11 names keep/shelf/return and hide/restore paths. The current product-proof status matrix still shows no promoted P04 contract, database, or AI-eval receipts, so branch descriptions and test anchors do not establish current product-proof completion. |
 | Share to the intended people without leaking private context | Backend consequence-authority corpus and multiplayer snapshots; P01–P04/P06 privacy tasks | The authority harness covers 80 cases and 21 state snapshots; the product-proof grader checks forbidden shared text. Offline tests validate those harnesses, not live model decisions or recipient experience. P05 thin-participant handoff remains explicitly dark. |
-| Correct an interpretation while retaining its source | Backend P03 correction task; Journey J11.B04/J27; app reader correction contract | P03 checks correction/reconciliation effects; J27 owns the source-preservation outcome. The proof task's current evidence reference does not itself bind the unchanged source revision, so adapters must not claim this outcome from a correction effect alone. |
+| Correct an interpretation while retaining its source | Backend P03 correction task; Journey J11.B04/J27; app reader correction contract | P03-03 now requires a named photo source plus equal before/after revisions; synthetic grader tests fail closed on missing or changed values. This does not establish owner-backed revision readback: the current `trip_photos` row exposes `photo_record` and occurrence evidence exposes `source_ref`, but neither defines a content revision. No live adapter or promoted receipt exists. J27 remains the source-preservation journey owner. |
 | Give useful research with sources and honest uncertainty | Backend P02 provenance/freshness tasks, P04 uncertainty task, five [artifact-quality fixtures](../../travel-agent/eval/artifact_quality/), and workspace P08 contract | P02 is spatial/operational grounding, not a general cited-research proof. P08 specifies sourced interpretation, unknowns, privacy, and human outcome but remains dark; do not report it as shipped acceptance or activate it from this QA lane. |
 
-On October 1, the offline backend harness tests passed on Python 3.13.0 and
+The original October 1 offline backend harness run passed on Python 3.13.0 and
 backend revision `cbe7ff908`: `PYTHONDONTWRITEBYTECODE=1 ./.venv/bin/python
 -m pytest -p no:cacheprovider tests/eval/test_product_proof_eval.py
 tests/eval/test_consequence_authority.py tests/atlas/test_artifact_quality_eval.py
 -q` → **36 passed**. These tests exercise graders, schemas, fixtures, and mock
 composition only; they do not execute an agent, call a model, prove persistence,
-or promote product-proof receipts. The first invocation ran the same 36 tests
-but exited with a pytest-cache write error, so only the cache-disabled rerun is
-counted as passed.
+or promote product-proof receipts. Its first invocation exited with a pytest-cache
+write error, so only the cache-disabled rerun is counted as passed. After the P03
+grader change, the same command passed **38 tests** on backend revision
+`681c518c8` (parent `cbe7ff908`); this is the current focused harness result.
+
+`make journey-registry-check` passed structurally (28 journeys, 82 branches, 8
+proof definitions, 4 governed runners); `make journey-evidence-report` reported
+no journey evidence receipts. Neither check certifies product behavior. No
+`TEST_DATABASE_URL` is configured and Docker access is unavailable in this
+lane, so database and live-source evidence remain unrun.
 
 The product-proof task bank contains 24 cases across P01–P04 and P06. P05 and
 P08 are dark in the canonical proof spine; keep them visible as future gaps and
-do not add tasks that imply their surfaces are available. The actionable gap
-for active proof owners is to bind correction evidence to an unchanged source
-revision and to reconcile J11 branch claims with the currently empty promoted
-P-level receipt matrix. Package 5 remains **mapping in progress** until those
-owners decide which missing checks belong in existing active proofs and record
-revision-bound product evidence.
+do not add tasks that imply their surfaces are available. The P03 task now
+expresses the unchanged-revision invariant, but its adapter and source-owner
+boundary remain undefined: `trip_photos` has no explicit content revision, and
+the grader's synthetic records do not bind revisions to owner readback. The
+other actionable gap is to reconcile J11 branch claims with the currently empty
+promoted P-level receipt matrix. Package 5 remains **mapping in progress** until
+active owners establish the real source revision and readback, decide which
+missing checks belong in existing proofs, and record revision-bound product
+evidence.
 
 **Acceptance:** a model/prompt change can be compared with the previous version
 for usefulness, grounding, latency and cost while hard authority checks remain
