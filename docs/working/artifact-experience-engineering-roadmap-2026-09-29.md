@@ -80,10 +80,10 @@ screen. Cross-repo receipts are in section 13.
 | Area | Implemented and evidenced | Remaining boundary |
 | --- | --- | --- |
 | P0 contracts and portfolio | Accepted kept-thing identity direction; code-backed owner map, supported-door/mode crosswalk, versioned reading descriptor, family/fallback fixtures and sparse-history examples; initial Thing storage/migration design is implemented under P1 | Subject/Component and edition mappings, selected-part representation cases and broader lifecycle portfolio; fixtures are not live generation or desirability evidence |
-| P1 correction and continuity | Revision-bound corrections and append-only Undo; backend typed-time replacement; capture-to-reader and exact-source-to-confirmed-record links with source/digest checks; owner-scoped Thing row on verified private Keep; evidence-backed reversible cross-submission aliases; owner-scoped Thing API/native reader; candidate-to-bundle entry from a qualifying occurrence reader; owner-confirmed reversible reconciliation transport/app controls; Postgres coverage for concurrent merge/reversal retries and competing merge directions | Native replacement-time editor still needs timezone-authoring behavior; no native acceptance for reconciliation or collection management yet; wider migration/rollback and lifecycle acceptance remain separate |
+| P1 correction and continuity | Revision-bound corrections and append-only Undo; backend typed-time replacement; native owner-only replacement-time editor with separate explicit start/end offsets and revision-bound Save/Undo; capture-to-reader and exact-source-to-confirmed-record links with source/digest checks; owner-scoped Thing row on verified private Keep; evidence-backed reversible cross-submission aliases; owner-scoped Thing API/native reader; candidate-to-bundle entry from a qualifying occurrence reader; owner-confirmed reversible reconciliation transport/app controls; Postgres coverage for concurrent merge/reversal retries and competing merge directions | Replacement editor has a scoped iOS form capture, but software-keyboard behavior and native save/refetch/Undo readback are not proven; raw UTC-offset entry and absent start/end place labels are documented UX follow-ups. No native acceptance for reconciliation or collection management yet; wider migration/rollback and lifecycle acceptance remain separate |
 | P2 original-first readers | Ticket, source-backed place, text-built book/film/show/music, supplied passage and practical-record treatments; exact-original chooser/return; shared photo viewer | Catalog identity/art, selected-part UI and later dish/recipe/scorecard treatments; source facts do not establish attendance, author identity or payment state |
 | Reader lifetime | Account-session-scoped reads, expiry-aware displayed facts and foreground refresh, exact-source authorization and revision checks | Full source/audience/collection lifecycle replay and authenticated mobile-to-service acceptance |
-| Native acceptance | Fourteen family/source/return fixture screenshots; ten largest-text screenshots; Life source/photo-viewer/removal flow on iOS 18.2 | Reliable pinch/pan, actual VoiceOver traversal/actions, loading/error states, Android/physical devices and live-service readback; these captures do not establish user preference |
+| Native acceptance | Fourteen family/source/return fixture screenshots; ten largest-text screenshots; Life source/photo-viewer/removal flow on iOS 18.2; replacement-time editor form capture on iOS 18.2 (October 1, one scenario, validated verdict) | The current simulator did not expose its software keyboard; editor save/refetch/Undo has not been exercised natively. Reliable pinch/pan, actual VoiceOver traversal/actions, loading/error states, Android/physical devices and live-service readback remain open; captures do not establish user preference |
 | Landed Technical dependencies | Exact-original revision binding and backend-only refinding of a bounded UTF-8 `text/plain` span; bounded public-acquisition primitives | No stable cross-representation Component identity, mobile selection API, artifact-bound discovery request or complete research-spend enforcement |
 | PC and later packages | House-design fallbacks and existing eligible original receiving remain usable; canonical private consumer-Collection owner, generated mobile contract/client, session-scoped paginated data facade with revision-bound continuation, bounded owner-backed Life Collections root API, batch owner-authorized Thing projection, and app-side Collection-page-to-Thing batch composition are implemented. The accepted Collections reading remains the product target. | Shared membership/audience/receiving, native Life Collections lens/detail route and device acceptance, founder-approved member labels/previews/hierarchy, approved catalog mappings/uses, exact kept editions and connected contextual additions remain unfinished |
 
@@ -652,7 +652,7 @@ projection into a new canonical owner.
 | Kept Thing identity | `travel-agent/backend/core/db/_tables/kept_things.py`, `travel-agent/backend/core/db/kept_things.py`, Alembic revisions `keptthing01`/`keptthing02`, and `travel-agent/backend/api/routes/artifact_projections.py`; app consumer in `travel-app/data/keptThings.ts` | Verified private Keeps create an idempotent content-free owner Thing. Evidence-backed, revisioned aliases now have authenticated merge/reversal routes and deliberate app controls; the ordinary candidate-to-bundle entry is connected. Every original is separately reauthorized; aliasing does not copy grants or claim semantic sameness. The reader still exposes originals, not a composed Thing title/summary. |
 | Private consumer Collection | `travel-agent/backend/core/db/consumer_collections.py`, `travel-agent/backend/core/models/consumer_collection.py`, its authenticated route and `travel-app/data/consumerCollections.ts` | A private canonical Collection owns many-to-many stable ThingRefs. Index/detail and revision-bound lifecycle commands are consumed through generated types and session-scoped queries. Detail pagination carries the first page revision and rejects stale continuation. It returns membership/Thing refs, not an authorized member presentation; there is no native Life Collection detail or batched artifact composition. Shared membership and receiving remain unimplemented. |
 | Confirmed thing/read target | Confirmed Intake candidates are projected by `travel-agent/backend/core/db/intake_anchors.py` as `ExperienceAnchorProjection`; the existing route remains `ResourceRef(kind="experience_anchor")` at `/you/memories/artifacts/{id}`. The stable kept-Thing route is `GET /api/artifact-projections/things/{thing_id}` and the app reader is `/you/memories/things/[id]`. | Candidate rows retain UUIDs across replay/status changes and use `(submission_id, candidate_key)` as their idempotent key. Existing IDs still open the candidate-backed reader; they are not automatically redirected or migrated to Thing. The current normal entry path can now open the Thing identity from an eligible candidate; the identities remain distinct and separately addressable. |
-| Claims and correction | Intake observations/candidate revisions in `travel-agent/backend/core/db/intake_semantics.py`; source-bound projection in `travel-agent/backend/core/canonical_artifact_projection.py` | The reader still exposes three gated owner commands: `wrong_time`, `separate_from_occasion`, and `keep_occurrence_forget_interpretation`. These now carry a stable command ID and expected numeric revision. The owner contract also accepts a typed `replace_time` correction and replays it through the canonical anchor owner, but the mobile reader does not yet expose a replacement editor: preserving or explicitly selecting the source time zone remains unresolved. |
+| Claims and correction | Intake observations/candidate revisions in `travel-agent/backend/core/db/intake_semantics.py`; source-bound projection in `travel-agent/backend/core/canonical_artifact_projection.py` | The owner reader exposes gated `wrong_time`, `separate_from_occasion`, `keep_occurrence_forget_interpretation`, and (when an explicit private target/revision is present) `replace_time`. The replacement editor preserves each aware instant's wall-clock date/time and explicit UTC offset, does not infer from device/place, binds Save and Undo to the current numeric revision, and refreshes the artifact after a successful command. Backend persistence and projection replay are already covered separately. The remaining native proof is software-keyboard usability and end-to-end save/refetch/Undo on device; the form also has recorded UX follow-ups for raw UTC-offset entry and start/end place context. |
 | Place and occurrence context | Physical `EntityRef` vocabulary in `travel-agent/backend/core/entity_types.py`; owner-scoped Experience Graph rows bridged by the artifact projection route | Place/time/Occasion/Plan context can be read from its existing owners. The place-like entity capability sets are not a cultural-work identity registry. |
 | Selected component | Intake observations and `evidence_locator` validation in `travel-agent/backend/core/intake_evidence.py`; Technical's `read_selected_text_component_for_owner` in `travel-agent/backend/inbound/original_source_reader.py` (backend `63ac861ef`) | A backend-only adapter now refinds strict UTF-8 `text/plain` character spans against the selected Source ID and full source digest, with current custody checks and a 20,000-character cap. It is not stable cross-representation Component identity, PDF/OCR/image selection, or a mobile selection API. The current artifact reader still opens the whole source. |
 | Life organization | Rebuildable viewer-specific groups and membership controls in `travel-agent/backend/life_projection/organization.py`, `travel-agent/backend/core/db/_tables/life_organization.py`, and `travel-agent/backend/core/db/life_organization.py` | Groups, memberships and controls are keyed by `viewer_id` and `projection_version`; memberships record evidence-backed derived relations to owner records. Durable controls rename a derived group, detach one derived membership, or undo that control. They provide useful revision/CAS and reversible-control patterns, but do not create or own a user's canonical Collection or its shared audience. |
@@ -1655,7 +1655,7 @@ anchors, and books, films, shows and music. P0 distinguishes their shared-contra
 coverage from supported first-delivery modes and honest fallbacks; every family
 and provider need not finish at once.
 
-### Current execution slice — owner-controlled reconciliation, October 1
+### Completed connected slice — owner-controlled reconciliation, October 1
 
 **Outcome:** an owner can connect two stable saved-bundle identities from an
 occurrence-specific reader without changing candidate identity, claiming the
@@ -1692,6 +1692,43 @@ permissions. The user controls the connection; Vesper cannot infer or apply it.
    every reader state is accepted or repeat captures without a concrete defect
    hypothesis.
 
+### Current execution slice — owner replacement-time editor, October 1
+
+**Outcome:** an owner can explicitly correct an artifact's private event-time
+interpretation from the canonical reader without changing the submitted
+original or guessing the event timezone from the device's current location.
+
+1. **Backend authority — already implemented and separately verified.** The
+   typed `replace_time` command is revision-bound, idempotent for an exact
+   retry, replayed through the canonical anchor and reversible through the
+   existing owner correction/Undo contract. The October 1 backend increment
+   exposes its action only when the projection has an explicit private target
+   and current revision; no database migration was needed.
+2. **Native owner editor — implemented.** `Mine` exposes `Replace the time` only
+   for that explicit correction target. The sheet edits separate start/end
+   calendar date, wall-clock time and numeric UTC offset; it preserves the
+   captured offsets, uses UTC only as the neutral picker coordinate, does not
+   derive a timezone, and explains that the original remains untouched. Save
+   binds the current revision and payload-specific command identity, keeps the
+   draft after failure, refetches the artifact on success, and exposes existing
+   owner-only Undo when the refreshed projection allows it.
+3. **Focused proof — passed with a bounded native claim.** Four app test suites
+   (51 tests) and the app typecheck passed; targeted ESLint had no warnings or
+   errors. The backend projection suite (27 tests), Ruff check/format and
+   workspace contract audit passed. On iOS 18.2 `Vesper QA SE`, the dedicated
+   registered flow captured the editor start, independent end-offset and
+   focused-field/Save states (1/1); the structured verdict validated as
+   `pass`. The fixture is synthetic and the flow cancels without submission.
+4. **Not established:** this simulator had a hardware-keyboard configuration
+   that suppressed the software keyboard. Its capture therefore does not prove
+   keyboard avoidance or typing behavior. It also does not submit a correction,
+   exercise native backend readback/Undo, prove deployed authentication, or
+   represent user preference. The verdict records two minor UX follow-ups:
+   raw UTC notation is technical for ordinary owners, and Start/End lack
+   associated place labels when the artifact contains distinct event locations.
+   These should inform the next focused editor refinement, without weakening
+   the rule that Vesper never silently infers the event timezone.
+
 **Next connected checkpoint:** adopt Technical's supported artifact-target
 request/result contract into the focused reader for a useful eligible addition,
 while preserving immediate original-only value and exact return. Existing
@@ -1704,8 +1741,10 @@ publication and spend boundaries, not for unrelated final visual polish.
 
 For a fast first release:
 
-- Preserve landed revision-bound corrections and Undo; finish remaining
-  source/date authoring only with explicit timezone behavior and its acceptance.
+- Preserve landed revision-bound corrections and Undo. The mobile
+  replacement-time editor now has bounded iOS presentation evidence; close its
+  software-keyboard and native save/refetch/Undo acceptance without inferring
+  event timezone or overstating the synthetic capture.
 - Adopt Technical's thin P3 capability once its landed interfaces and eligible
   owner reads are stable. Connect its useful additions to P2 early; do not build
   another producer while waiting.
@@ -2890,3 +2929,26 @@ independent; this receipt does not merge or publish any lane.
 | App merge scope | `npm run verify:merge -- --base eb14a00fa4750c2bba524753ad16376d3094d3a0` | Passed: 616 suites / 4,951 tests. Jest reported one worker teardown warning and forced exit after the passing run; it is recorded as a teardown warning, not a failed suite. |
 | Backend contract regression | `TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/collection_members_20261001_01 TEST_DATABASE_DISPOSABLE=1 SKIP_AUTH=true PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. .venv/bin/python -B -m pytest -p no:cacheprovider tests/api/test_consumer_collections.py tests/api/test_artifact_projections.py tests/inbound/test_kept_things_postgres.py -q` (from `travel-agent/`) | 33 tests passed against the exact disposable lane database after a full migration from empty; Alembic check reported no model drift. The exact database was dropped after verification. This rechecks the existing backend contracts used by the app composition; no backend code changed in this slice. |
 | Cross-repo change-aware preflight | `WORKSPACE_BASE_REF=53909466f00b695bf66dde9604b97534169453aa AGENT_BASE_REF=10c5877d8b14663e40d3a6a508b8f40a7fd8dcb1 APP_BASE_REF=eb14a00fa4750c2bba524753ad16376d3094d3a0 RUFF_CACHE_DIR=/private/tmp/vesper-artifact-foundation-ruff-cache PYTEST_ADDOPTS='-p no:cacheprovider' make verify-changed` | The first sandboxed attempt stopped at an Expo ESLint-cache permission error; with the lane cache write allowed, `verify:fast` passed (0 lint errors / 167 warnings), the scoped merge suite passed (616 suites / 4,951 tests), and docs links/spine/canon checks passed. Native Life detail rendering, actual member labels/previews, VoiceOver/device acceptance, authenticated mobile-to-service readback and production-service behavior remain outside this data-facade verification. |
+
+### October 1 owner replacement-time editor
+
+Backend commit `11fe148fe` and app commit `fac17ba97` add the private,
+revision-bound `replace_time` affordance and native owner editor. The backend
+projection offers the action only with an explicit private target and current
+revision. The app preserves each captured aware instant's wall-clock date/time
+and UTC offset, uses UTC only as a neutral picker coordinate, does not infer an
+event zone, retains the draft after a failed write, binds exact retry identity
+to the correction payload, refetches after success, and offers existing
+revision-bound Undo only when authorized by the refreshed private projection.
+No API/database migration was needed. OpenAPI snapshot, mobile projection and
+generated app types were regenerated offline; the cross-repo sync completed
+with no TypeScript errors.
+
+| Boundary | Exact verification | Result and limit |
+| --- | --- | --- |
+| Backend projection | `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/core/test_canonical_artifact_projection.py -q` (from `travel-agent/`) | 27 tests passed. The replacement action's explicit owner target/revision gate and projection shape are fixture/projection evidence, not deployed-service evidence. |
+| Backend lint/format | `/opt/homebrew/bin/ruff check --no-cache backend/core/canonical_artifact_projection.py backend/core/models/canonical_artifact.py backend/inbound/anchor_compiler.py tests/core/test_canonical_artifact_projection.py`; `/opt/homebrew/bin/ruff format --check --no-cache` on the same files | Both passed. Backend commit hooks also passed Ruff, formatting, Vulture, secret/prefix and repository architecture checks. |
+| App behavior | `npm exec jest -- --runInBand __tests__/utils/canonicalArtifactTime.test.ts __tests__/utils/canonicalArtifactActions.test.ts __tests__/screens/canonical-artifact-reader.test.tsx __tests__/utils/api/mockIntakeV2.test.ts`; `npm run typecheck -- --pretty false`; targeted `npx eslint --no-cache` over the editor, reader, fixtures, helpers and focused tests | Four suites / 51 tests passed; TypeScript passed; targeted ESLint reported no warnings/errors. Tests cover explicit-offset preservation, date/time validation, neutral picker coordinate, action privacy, payload-bound idempotency/retry, draft retention, revision use, success receipt/refetch and owner-only Undo. Mock/service boundaries remain. |
+| Native editor capture | `VESPER_METRO_URL=http://192.168.1.153:64747 node scripts/polish-qa/run-polish-qa.mjs canonical-artifact-reader --flow=polish/canonical-artifact-replacement-time-editor --device="Vesper QA SE"`; verdict validate/commit for `.maestro/runs/20261001T141548Z-canonical-artifact-reader` | iOS 18.2 simulator captured 1/1 scenario: start, distinct `+02:00`/`+01:00` end fields, focused offset, reachable Save/Cancel and cancellation back to the artifact. Structured verdict is `pass` with two P2 usability observations in `travel-app/docs/surfaces/canonical-artifact-reader/verdicts/20261001T141548Z.json`. The simulator suppressed its software keyboard; this does not prove typing/keyboard avoidance or submit a correction. The synthetic fixture is not persisted backend state. |
+| Contract regeneration and registry | `./scripts/sync-types.sh`; `make api-coverage-check`; `npm run qa:polish:scenarios`; `npm run qa:design:check -- canonical-artifact-reader` | Sync and typecheck passed; API audit passed (591 active, 15 dark, 0 unflagged, 62 retiring); all 31 polish scenario IDs passed. Design check remains doctrine-only with no pinned design-reference manifest. |
+| Cross-repo change-aware preflight | `env -u DRY_RUN WORKSPACE_BASE_REF=7e007e46 AGENT_BASE_REF=10c5877d8 APP_BASE_REF=b94a50ccf RUFF_CACHE_DIR=/private/tmp/vesper-artifact-foundation-ruff-cache PYTEST_ADDOPTS='-p no:cacheprovider' make verify-changed`; `make docs-check` | Passed. App `verify:fast` had 0 lint errors / 167 warnings; app merge scope passed 1,293 suites / 9,216 tests / 1 snapshot. Backend static checks and mypy passed; selected backend tests passed (22,112 passed, 14 skipped, 1 xfailed, 52 xpassed, 8 warnings); 118 workspace script tests passed. Cross-repo contract, API coverage, compatibility, links/spine/canon and full workspace doc-governance checks passed. This is local preflight, not hosted CI. Native keyboard-enabled authoring and native Save → canonical refetch → Undo remain open; no authenticated live mobile/API session, deployed service, production credentials, Android/physical device, user preference, or native correction-persistence proof is claimed. |

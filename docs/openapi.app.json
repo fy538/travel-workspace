@@ -40148,6 +40148,7 @@
               "type": "string",
               "enum": [
                 "wrong_time",
+                "replace_time",
                 "separate_from_occasion",
                 "keep_occurrence_forget_interpretation"
               ]
