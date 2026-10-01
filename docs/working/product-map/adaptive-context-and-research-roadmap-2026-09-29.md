@@ -3505,3 +3505,26 @@ This closes only the first-page retrieval limit for the exact-note cue. Semantic
 retrieval/ranking, archive coverage beyond the bound, final selection/support,
 matched usefulness, native consumer adoption and R0–R7 package acceptance
 remain open.
+
+#### Coordinated change-preflight receipt (October 1)
+
+The coordinated lane command
+`make verify-changed WORKSPACE_BASE_REF=main AGENT_BASE_REF=main APP_BASE_REF=main`
+ran against workspace `c861ed5d`, backend `2e5545ac7`, and app `e2b51bcf3`,
+using main bases `0a39e273`, `bd1a683b`, and `e7bdc660`. It returned nonzero
+because the full backend test run had one failure in the unchanged
+`tests/core/test_background_regen_gate.py::test_env_markers_default_on[production-APP_ENV]`
+case (`RuntimeError: dictionary changed size during iteration`). The exact
+case passed alone (**1 passed**). A second full backend merge check passed:
+**22,195 passed, 14 skipped, 1 xfailed, 52 xpassed**, with two expected local
+Qdrant warnings. It ran in the offline environment; database-gated cases
+remain skipped, and existing Hugging Face checks retried after DNS failures.
+
+The same coordinated run's app merge-scope suite passed (**118 passed**), API
+snapshot/projection/type checks passed, and workspace docs checks passed
+(557 living Markdown links, 10 spine entries, canon budget within limit).
+Because the combined command itself returned nonzero, this is not recorded as
+a clean combined preflight. The isolated rerun supports a transient/concurrent
+test failure; no unrelated test or runtime code was changed to mask it. No
+provider, production allocation, native consumer, deployment, or publication
+was enabled. R0–R7 remain open.
