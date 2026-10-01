@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Eng Efficiency
 created: 2026-09-30
-last_verified: 2026-09-30
+last_verified: 2026-10-01
 expires: 2026-10-30
 why_new: Combines the September 30 trace audit and engineering research with this lane's improvement sequence; the September 7 instruction audit is historical, the native-quality plan owns product presentation, and the CI runbook describes adopted operations rather than pending work.
 supersedes: []
@@ -13,12 +13,18 @@ source_of_truth_for: []
 # Faster development with trustworthy QA
 
 **Decision:** What should Vesper change about building, testing and reviewing work?
-**Research cutoff:** September 30, 2026. **Planning update:** September 30,
-following the founder's request to update this lane's roadmap. The implementation
-queue in [section 5](#5-improvement-roadmap) is the current plan for Eng Efficiency;
-its packages are unstarted. Existing runtime, required checks and acceptance
-obligations remain in force until their corresponding changes are implemented
-and validated. The program roadmap retains cross-lane ownership.
+**Research cutoff:** September 30, 2026. **Planning and execution update:**
+October 1, following the founder's request to execute this lane's roadmap. The
+implementation queue in [section 5](#5-improvement-roadmap) is the current plan
+for Eng Efficiency. Package 3C is published but has not landed in `origin/main`;
+Packages 1 and 2 have implementation and task-context changes published in
+[workspace PR 39](https://github.com/fy538/travel-workspace/pull/39),
+[app PR 209](https://github.com/fy538/travel-app/pull/209), and
+[backend PR 239](https://github.com/fy538/travel-agent/pull/239). Package 1's
+real native capture and Package 2's Home/Places wrong-state replay remain
+unverified, so neither package is acceptance-complete. Existing runtime,
+required checks and acceptance obligations remain in force. The program roadmap
+retains cross-lane ownership.
 
 **Second research pass:** the [deeper evidence review](#second-research-pass-defect-detection-and-the-cost-of-review)
 adds recent mobile/GUI studies and industrial test-selection and mutation-testing
@@ -419,27 +425,162 @@ workspace ownership boundaries. This section is the single implementation queue
 for this lane; package numbers remain stable references rather than execution
 order. The research sections explain the evidence, not additional queues.
 
-**Current state:** the integration landed with required checks passing; the
-efficiency implementation packages remain unstarted. The verified remote-main
-baseline is workspace `4febe0d461a62d204ba4dee9eaad7813c7c1509c`,
+**Current state:** the integration landed with required checks passing. Package
+3C is implemented and published as [workspace PR 38](https://github.com/fy538/travel-workspace/pull/38).
+Its first three hosted runs passed, each showing a much shorter required-job
+critical path than the 23m18s serial baseline, with increased summed runner time.
+At 09:15 UTC on October 1, PR 38 was open and mergeable, with all required
+checks passed and no review decision recorded; landing was not established.
+Other implementation packages are queued or unstarted. The verified
+remote-main baseline is workspace `4febe0d461a62d204ba4dee9eaad7813c7c1509c`,
 backend `bd1a683b8656c3f4091e16abb64f57897fa7fc42`, and
 app `e7bdc660501eaa19234e6b45bda033658edaa2d4`; see section 9 for PRs and
 tested child identities. Canonical workspace HEAD remained `0a39e27362a5`
 during the audit to preserve another lane's uncommitted roadmap edits. Do not
 confuse that checkout with the landed baseline or switch its owner out from
-under active work. Tooling-lane ownership still needs fresh confirmation.
+under active work. The dedicated efficiency lane and the Package 3C pull request
+are recorded below.
 
 | Order | Work | Status and dependency | First beneficiaries |
 | --- | --- | --- | --- |
-| 0 | Use the landed baseline and confirm tooling ownership | Merge receipt verified; select the owned checkout and shared-file scope before implementation | All lanes |
-| 1 | Package 3C: workspace flow validation and early prerequisite checks | First queued delivery; no device or native-build dependency | All integrations |
-| 2 | Package 3A: deterministic and faster app tests with the same checks | Queued; diagnose observed intermittent failures before expanding concurrency | Every lane changing the app |
-| 3 | Package 3B: one execution owner per CI guarantee | Queued after mapping current required checks and their callers | All lanes |
-| 4 | Package 1: choose the right evidence and make targeted native QA reliable | Independent of CI work after baseline preparation; may proceed earlier when device access or product need favors it | Orchestration and Strategy |
-| 5 | Package 2: proportionate review and shorter task context | Native-review adoption needs Package 1; documentation reconciliation is independent | All lanes, especially mobile work |
-| 6 | Package 6: retire completed working documentation | Independent after current owner documents are established | All lanes |
+| 0 | Use the landed baseline and confirm tooling ownership | Complete on commit `cef7ac55`; isolated runtime ownership is recorded below | All lanes |
+| 1 | Package 3C: workspace flow validation and early prerequisite checks | Published in workspace PR 38; local checks and three hosted runs pass. At 09:15 UTC, the PR was open and mergeable; `origin/main` was `4febe0d`. Hosted critical paths ranged 5m46s–7m38s versus 23m18s; summed job runtimes ranged 25m28s–31m26s versus 23m18s (+9.3%–34.9%). | All integrations |
+| 2 | Package 3A: deterministic and faster app tests with the same checks | Queued until Package 3C lands; diagnose observed intermittent failures before expanding concurrency | Every lane changing the app |
+| 3 | Package 3B: one execution owner per CI guarantee | Queued after mapping current required checks and their callers; deliver independently after 3A | All lanes |
+| 4 | Package 1: choose the right evidence and make targeted native QA reliable | Implementation published in app PR 209 and workspace PR 39; the app selector accepts a full flow ID or canonical slug only, and readiness failures now inspect Maestro's failed-command hierarchy for explicit causes. Twenty focused tests and the broader polish QA suite pass. Aligning Expo's advertised host allowed Metro to bundle the app; capture then exposed a Worklets JavaScript/native mismatch (`0.7.4` vs `0.11.3`). Maestro's hierarchy omits that message, so this run remains an unverified native capture with 0/1 product images. | Orchestration and Strategy |
+| 5 | Package 2: proportionate review and shorter task context | Targeted review and context-routing changes are published in PRs 39/209/239. The wrong-state replay remains unverified; native-review adoption needs Package 1. | All lanes, especially mobile work |
+| 6 | Package 6: retire completed working documentation | Queued; owner guidance is now established, but no archive migration has started | All lanes |
 | Conditional | Package 4: native build reuse and other measured setup optimizations | Only if meaningful build/setup cost remains | Mobile and build owners |
 | Ongoing | Package 5: product-outcome acceptance | Stays with the three product lanes; tooling work must preserve it | Product users |
+
+**October 1 implementation receipt (local checks at 08:54 UTC; hosted evidence through 09:15 UTC).**
+The coordinated `make verify-changed` passed on workspace `632c8ff`, backend
+`2c115ac`, and app `4c5caa9`, against bases `4febe0d`, `bd1a683`, and `e7bdc66`.
+The app suite passed (1,289 suites, 9,178 tests, one snapshot); lint reported 167
+warnings and no errors. The backend suite passed (22,086 passed, 14 skipped, one
+xfail, 52 xpassed, one warning); workspace tests passed (119), and contract,
+API and documentation checks passed.
+
+Hosted checks are now established for the four open implementation PRs. PR 38's
+required checks pass; its Maestro Cloud smoke is skipped because the service is
+not configured. Workspace PR 39's checks pass with the same smoke skip. App PR
+209's scope, fast/static, contract and full-test checks all pass. Backend PR
+239's checks also pass after one bounded retry of `package-smoke`: the first
+Docker build reached its 20-minute job timeout while downloading runtime
+dependencies, while the retry built the image and passed the operator-entrypoint
+import in 2m05s. Two earlier package-smoke runs took about two minutes. This
+sample supports a transient download slowdown, not a timeout or coverage change.
+The latest query at 09:15 UTC found PR 38 open and mergeable, with all required
+checks passed, `origin/main` at `4febe0d`, and no review decision recorded. The
+Maestro Cloud PR smoke remains skipped because the service is not configured.
+The second hosted run,
+[36839535177](https://github.com/fy538/travel-workspace/actions/runs/36839535177),
+passed reliability checks in 4m51s, the four Maestro syntax shards in 4m50s,
+4m49s, 5m12s and 5m38s, and the required aggregate in 8s. The resulting
+critical path was about 5m46s; summed job runtime was 25m28s. Compared with the
+23m18s serial baseline, this second sample shortened the critical path by about
+75.2% while using 9.3% more runner time. The first sample shortened it by 73.3%
+while using 10.6% more runner time. Both runs preserve the full flow inventory;
+these two hosted samples established faster feedback with a modest runner-time
+cost, not a stable percentile or a claim of lower resource use. The third run,
+[36840575936](https://github.com/fy538/travel-workspace/actions/runs/36840575936),
+also passed: reliability took 7m31s, syntax shards took 4m58s, 5m32s, 6m50s and
+6m28s, and the aggregate took 7s. Its critical path was about 7m38s and summed
+job runtime 31m26s, or 67.2% less critical-path time and 34.9% more runner time
+than the serial baseline. All three runs validate the full flow inventory; the
+spread shows material hosted variability. Package 3A remains gated on Package
+3C landing.
+
+Four app/backend instruction documents were shortened and the workspace
+cross-repository instructions retained as the single shared owner. Across the
+five instruction documents considered, the word count fell from 5,043 to 4,641
+(402 fewer, 8.0%). Routing checks used a bounded Home returned-state edit, the
+shared artifact-reader large-text fix (`c704fc997`), and an Intake correction
+that crosses into the authority contract and backend owner. These checks show
+which contract and evidence path each task reaches; they do not measure time
+saved. The existing large-text verdict is carried from an ancestor revision and
+its PNGs are not tracked. On app revision `6b9d204`, exact-flow selection and
+failure classification passed 12 focused tests. The documented short slug
+completed a dry-run and selected only `polish/home-root-returned`; the partial
+suffix `returned` failed closed. The dry-run produced 0 screenshots. The
+Home/Places wrong-state screen replay therefore remains unverified.
+
+The native doctor passed on the assigned iPhone SE with Maestro 2.6.1, Java 17,
+Metro port `57436`, and installed app `com.fyan.vesper` version `1.0.0`, but this
+proves only bundle ID and marketing version. The first selected
+`polish/home-root-returned` capture produced 0/1 product images. Its Maestro
+failure frame shows the iOS development-client error for
+`http://127.0.0.1:57436`; Metro was bound to IPv6 loopback (`::1`) while Expo
+advertised IPv4 loopback. Setting `REACT_NATIVE_PACKAGER_HOSTNAME=localhost`
+aligned the advertised hostname with Metro's bind address, and the next run
+successfully bundled 5,348 modules. The app then displayed a Worklets runtime
+error: JavaScript `0.7.4` versus native `0.11.3`. The installed app's bundle ID
+and marketing version match, but its native module is stale. A rebuild was not
+available because `RNMAPBOX_MAPS_DOWNLOAD_TOKEN` is unset and no existing
+installable app bundle was found. Maestro's failure hierarchy does not expose
+the Worklets message; the runner therefore still reports generic app-readiness
+for that frame and allows its one bounded retry. The capture remains
+unverified, with 0/1 product images. The new failure-frame reader does classify
+the earlier explicit Metro URL as infrastructure and retains the exact URL;
+unit tests also cover Worklets diagnosis when the message is present in the
+failure diagnostics. No claim of live capture success is made.
+A LAN-bound Expo start was rejected by automatic approval review because
+local-network devices could reach the development server and source/config; no
+workaround was attempted. The later selector and classifier checks were
+non-native; they did not repeat capture. Native acceptance remains unverified
+until a safe simulator-reachable path yields a warmed capture.
+
+An offline iOS JavaScript export with internal/mock flags completed in 25.4s,
+bundling 5,443 modules, 503 assets and a 23 MB Hermes bundle. This proves JS
+packaging only. The worktree has no generated iOS project, and `app.config.js`
+reports `RNMAPBOX_MAPS_DOWNLOAD_TOKEN` unset; no native build or capture was
+attempted from this export.
+
+### Efficiency lane setup
+
+Eng Efficiency owns `codex/engineering-efficiency` in all three independent
+repositories in the coordinated `engineering-efficiency` worktree. The lane was
+created with `scripts/new-worktree.sh
+engineering-efficiency --base origin/main` from the exact landed workspace,
+backend and app revisions recorded above. The owner is Codex thread
+`01a0f2f0-0917-71b0-a150-030d05b2f680`; `.workspace-lane.json` records the bases,
+owner and delivery outcome.
+
+The revised roadmap was copied from Orchestration's uncommitted draft at
+`travel-workspace--home-value-delivery`, retaining its integration measurements
+and our screenshot-purpose guidance. Both source checkouts and their drafts
+were preserved. This lane's copy is the working plan for efficiency execution;
+Orchestration continues to own the program roadmap.
+
+Runtime inspection reports Compose project `vesper-engineering-efficiency`,
+Postgres port `63924`, Qdrant ports `63925`/`63926`, API port `63927` and Expo
+port `63928`. No services were started and no device is assigned. These ports
+must be rechecked at startup. Dependency installation and product/native tests
+remain unrun; they are not prerequisites for this branch-and-document setup.
+
+The setup receipt was committed as `cef7ac55af49`; Package 3C is committed as
+`b1c174b7`. That slice owns the reliability workflow, workspace Maestro targets,
+the deterministic partition helper and their existing workflow tests. It
+preserves the required `Contract and golden paths` result name. CI behavior has
+been exercised on the remote branch; branch-protection settings were not changed.
+
+**Hosted pilot receipt (September 30 local time; October 1 UTC).** The published
+workspace branch is [PR 38](https://github.com/fy538/travel-workspace/pull/38),
+at workspace commit `d298cafc2210b5e5052227a5263d28ff4e08554b`; the backend and
+app remained at their recorded base revisions. Reliability workflow run
+[36811769199](https://github.com/fy538/travel-workspace/actions/runs/36811769199)
+passed its full reliability job, all four Maestro syntax shards, and the
+`Contract and golden paths` aggregate. The job durations reported by GitHub
+were 6m07s for reliability, 4m12s / 4m57s / 5m05s / 5m19s for the syntax shards,
+and 6s for the aggregate. On those reported durations, the required-job
+critical path was approximately 6m13s, excluding queue time. Summed job runtime
+was 25m46s, about 2m28s (10.6%) above the prior 23m18s single required job. The
+critical path fell by about 17m05s (73.3%), while measured runner work increased.
+This is a favorable first sample for feedback speed with a real resource cost;
+it does not establish lower runner cost or stable percentiles. Keep the pilot
+visible for review and do not claim generalized efficiency until comparable
+future runs confirm it. PR review/landing and the separate Merge readiness
+workflow status are not established by this Reliability run receipt.
 
 ### Start and adoption checkpoints
 
@@ -597,6 +738,52 @@ long validation. Measure complete hosted latency and runner-minutes on equivalen
 inputs, retaining the serial route if the pilot is not better. Do not narrow
 flow coverage or bulk-delete flows to meet a time target.
 
+**Local implementation receipt (October 1; hosted comparison pending).** Commit
+`b1c174b7` splits the prior workspace job into the existing required aggregate,
+the full reliability suite, and four isolated Maestro syntax jobs. The inventory
+helper matches the former recursive shell selection exactly, including `.yaml`,
+`.yml`, and the existing config exclusion. Every partition uses the full sibling
+checkout; CLI calls stay serial inside a shard. A missing or empty shard, missing
+CLI, failed/cancelled/skipped job, or absent aggregate input cannot pass the
+tested local boundary.
+
+The focused command
+`PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -p no:cacheprovider -q scripts/tests/test_partition_maestro_flows.py scripts/tests/test_merge_readiness_workflows.py`
+passed 39 tests. `make docs-check`, `make maestro-flow-inventory-check`,
+`make journey-registry-check`, and the moved flag, compatibility, card-arrival,
+chat-card-type and API coverage checks passed. Maestro CLI 2.6.1 passed all 408
+flows: four concurrent isolated local runs each returned 102 successful syntax
+results. On macOS 25.5 arm64, the slowest shard took 187.552 seconds; summed
+shard command time was 747.119 seconds. These are local measurements with a
+different runner and setup from hosted CI, so they do not establish reduced
+hosted latency. The raw command measurements and logs remain under
+`/private/tmp/vesper-maestro-run/` for this working session.
+
+The initial
+`make verify-changed WORKSPACE_BASE_REF=4febe0d461a62d204ba4dee9eaad7813c7c1509c AGENT_BASE_REF=bd1a683b8656c3f4091e16abb64f57897fa7fc42 APP_BASE_REF=e7bdc660501eaa19234e6b45bda033658edaa2d4`
+run on workspace commit `37f2bea3e3da` with Python 3.14.6 reported 136 passed
+and 5 environment failures: one checker could not import SQLAlchemy because
+backend dependencies were absent, and four worktree-runtime tests could not
+bind local sockets in the sandbox. The final
+`make verify-changed WORKSPACE_BASE_REF=4febe0d461a62d204ba4dee9eaad7813c7c1509c AGENT_BASE_REF=bd1a683b8656c3f4091e16abb64f57897fa7fc42 APP_BASE_REF=e7bdc660501eaa19234e6b45bda033658edaa2d4`
+run on workspace commit `b55ff407d612`, with Python 3.13.0, Node 24.13.0 and
+local socket access, exited 0. All 141 workspace tests passed in 16.13 seconds.
+The full OpenAPI snapshot and mobile projection, generated schema equality,
+10×2 place-identity seams, 376-type schema bridge, API audit, compatibility,
+card-arrival, chat-card-type, and selected documentation checks passed. The
+contract run used temporary ignored links to the cached locked tools
+`openapi-typescript` 7.13.0 and TypeScript 5.9.3 because the app dependency tree
+was absent; the links were removed after the run. The app test suite was not
+selected because the app had no changed files. Hosted CI and the equivalent
+hosted latency comparison remain required before claiming Package 3C acceptance.
+
+The repository-defined no-publish landing gate,
+`make land-worktree NAME=engineering-efficiency`, also passed from the canonical
+workspace on candidate `b9d0bc35e999`. It fetched all three live `origin/main`
+refs, confirmed they still equal the recorded base tuple, and reran the complete
+change-aware preflight successfully. The gate did not publish the lane or run
+hosted CI; the local candidate is ready for review and publication.
+
 **3A — App test determinism and execution, second in the queue.** At final
 candidate `21fdb724f`, the first hosted test job failed two unchanged tests;
 the retry passed 1,289 suites and 9,178 tests in 434.846s of Jest execution.
@@ -605,10 +792,17 @@ a speed trend.
 
 Diagnose `invite-landing.smoke.test.tsx` and `place-home.smoke.test.tsx` first.
 The invite test waits for a heading before pressing a button that remains disabled
-until stored participation state loads: readiness is a concrete hypothesis to
-verify. The Place-reader timeout cause is unresolved. Repair async readiness,
-timer or cleanup behavior when demonstrated; do not broadly raise timeouts,
-weaken assertions or treat passing on retry as a fix.
+until stored participation state loads. A controlled reproduction on October 1
+delayed `AsyncStorage.getItem` by 500 ms; the test failed with zero submission
+calls because it pressed before the radio became enabled. This identifies a test
+readiness race, not evidence that a user can submit through the disabled control.
+The next repair should wait for the radio's enabled state before pressing, then
+cover immediate, delayed and rejected storage while retaining the submission
+assertion. The Place-reader timeout cause remains unresolved: the first full-suite
+attempt timed out while waiting for the initial exact reading, the retry passed,
+and one isolated run passed. Repair demonstrated async readiness, timer or
+cleanup behavior; do not broadly raise timeouts, weaken assertions or treat
+passing on retry as a fix.
 
 Then benchmark aggregated asset assertions and a lightweight setup for
 source/asset-only convention tests. Keep the same checks and selected inventory.
@@ -1068,10 +1262,12 @@ repair batch's inexpensive checks before publishing another candidate. This is
 engineering cadence, not a narrower product vision or permission to split
 cross-repository invariants.
 
-Section 5 remains the only execution queue. Start Package 3C after fresh tooling
-ownership checks; do not wait for a device or new design. Native QA retains its
-separate product-quality purpose. No new dashboard, parser, framework, standing
-agent fleet or broad test-deletion project is required.
+Section 5 remains the only execution queue. Package 3C is implemented and
+published; confirm it lands before starting its dependent Package 3A. Package 1
+and the documentation portion of Package 2 have advanced independently, while
+their stated native acceptance remains open. Native QA retains its separate
+product-quality purpose. No new dashboard, parser, framework, standing agent
+fleet or broad test-deletion project is required.
 
 ### Reproducing the integration measurements
 
