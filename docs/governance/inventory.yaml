@@ -13,6 +13,9 @@ dispositions:
 # Overrides win over rules. Rules deliberately cover stable folder conventions;
 # top-level and working documents are classified one by one below.
 rules:
+  - glob: "docs/working/development-qa-research-and-roadmap-2026-09-30.md"
+    disposition: keep_reference
+    rationale: "Dated three-session QA trace audit and primary-source research with a bounded improvement proposal; existing Task Intake, surface contracts, CI runbook and program owners retain authority."
   - glob: "docs/working/artifact-experience-engineering-roadmap-2026-09-29.md"
     disposition: keep_reference
     rationale: "Strategy lane's bounded artifact implementation plan and research, assigned by the September 30 program; owns its package details and receipts while the program owns lane boundaries and accepted contracts retain product authority."
