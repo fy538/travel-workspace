@@ -4201,9 +4201,13 @@ Validation on the adaptive-context backend lane (Python 3.13.0; pinned
   local-Qdrant payload-index warnings. Database-gated skips remain unverified;
   Hugging Face DNS retries were emitted by existing offline tests but did not
   fail the suite.
-- Commit hooks passed. No API/OpenAPI, database, migration, mobile, product
-  policy, provider activation, live provider, deployment, or release change was
-  made.
+- Commit hooks passed. The credit instrumentation itself does not change the
+  API. The required offline `sync-types.sh` check also found and synchronized the
+  previously missing `ai.research.synthesize` capability enum across the full
+  snapshot (`e22b5022`), app projection, and generated app types (`5e53aeb9`);
+  generated-type `tsc --noEmit` passed. No endpoint, database, migration,
+  user-facing mobile behavior, product policy, provider activation, live
+  provider, deployment, or release change was made.
 
 This closes only content-free capture and propagation of the provider's own
 reported credit units for existing `WebSearchTool` callers. It does not resolve
