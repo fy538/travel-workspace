@@ -3,7 +3,7 @@ doc_type: current_status
 status: active
 owner: founder / Orchestration lane
 created: 2026-09-07
-last_verified: 2026-09-30
+last_verified: 2026-10-01
 why_new: Owns the existing program's lane boundaries and the Orchestration execution plan; specialist roadmaps own their own packages and receipts.
 supersedes:
   - single-lane dispatch and current assignments in earlier versions of this roadmap
@@ -69,6 +69,20 @@ Strategy's coordinated artifact-foundation branches were rebased to this tuple
 and verified clean, with zero ahead/behind delta and all prior tips retained in
 ancestry. This does not assert that every other checkout has synchronized or
 that runtime, native or hosted checks were rerun on these merge commits.
+
+**Ownership decision — October 1:** continue the artifact roadmap in the
+existing `codex/artifact-foundation` coordinated workspace/backend/app tuple;
+do not open a duplicate branch or worktree for this same outcome. This tuple
+owns its artifact slices through focused verification, review and safe landing,
+while each repository keeps its independent Git history. The current follow-on
+heads are workspace `b1fd4ad6`, backend `ebe90232b`, and app `3aaceef88`; all
+three checkouts are clean, but these follow-on commits are local and not merged
+or published. The [artifact roadmap](artifact-experience-engineering-roadmap-2026-09-29.md#0-strategy-lane-execution-boundary)
+owns the detailed package sequence and file-level responsibilities. Strategy
+Technical remains the owner of its producer contract; Strategy adopts it only
+after it is landed and verified, and continues independent artifact work in
+the meantime. Founder review remains required for choices that change product
+meaning, authority, privacy, or visible claims.
 
 `docs/child-repos.ci-lock.json` still pins backend `33a000e97` and app
 `21fdb724f`, the integrated child tips. Both are ancestors of, and have identical
