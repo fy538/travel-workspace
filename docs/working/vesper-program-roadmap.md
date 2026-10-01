@@ -1047,6 +1047,33 @@ because CoreSimulatorService was unavailable; the reference set is still
 reference-only and has no external-canon verdict. This corrects a real
 hierarchy mismatch, not full design parity or D2 acceptance.
 
+**Place-note original-photo receiving — implemented 2026-10-01:** backend commit
+`8cd85fd55` optionally reads current recipient-owned original deliveries only
+when the Places feed already contains a revision-bound, recipient-consented
+direct note. The read uses the existing bounded optional Places producer and
+is collected with value preparation in the normal composer paths;
+unavailability omits only the photo. The adapter joins by
+the exact handoff ID and requires the same sender and recipient, active/current
+delivery, an allowed image MIME type and unexpired effective read. It adds the
+original and grant refs to that existing authored note—no inferred join by
+person, venue or time, new endpoint, audience grant or OpenAPI change. App commit
+`9dc90bc6a` renders that exact image in the Places note using a shared,
+revalidating original preview also reused by Home. Before rendering bytes it
+checks the current owner-read revision and handoff ID; opening uses the exact
+original resource through Places' existing return-token path. The authored
+words and Place action remain when the optional read is absent, mismatched,
+expired or unavailable, and Places does not repeat sender attribution above
+the same note. Backend Places runtime tests passed **19/19**, Ruff/format and
+`git diff --check` passed. The app's Places exact-reference and original-reader
+suites passed **35/35**, app typecheck and test-contract typecheck passed,
+registered scenario validation passed (**31 IDs**), and targeted ESLint had
+**0 errors** (the existing Home and Places renderer max-lines warnings remain).
+Native/API acceptance is **unverified**: although simulators were booted, this
+lane's assigned API and Expo ports (53176/53177) were not listening, so there
+was no authenticated device readback or visual capture. This closes one
+connected-media social receiving gap, not real-owner photo acceptance, full
+scroll/design parity or D2 completion.
+
 ### Combined landing checkpoint — September 30
 
 The merged integration contains the Home/capture lane plus these completed
