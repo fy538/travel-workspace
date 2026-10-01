@@ -31,7 +31,7 @@ That closes baseline preparation, not P0/P1/PC/P2 or product acceptance.
 
 | Area | Implemented and evidenced | Remaining boundary |
 | --- | --- | --- |
-| P0 contracts and portfolio | Code-backed owner map, supported-door/mode crosswalk, versioned reading descriptor, family/fallback fixtures and sparse-history examples | Reviewed Thing/Subject/Component and edition mappings, selected-part representation cases and broader lifecycle portfolio; fixtures are not live generation or desirability evidence |
+| P0 contracts and portfolio | Accepted kept-thing identity direction; code-backed owner map, supported-door/mode crosswalk, versioned reading descriptor, family/fallback fixtures and sparse-history examples | Exact Thing storage/migration design, Subject/Component and edition mappings, selected-part representation cases and broader lifecycle portfolio; fixtures are not live generation or desirability evidence |
 | P1 correction and continuity | Revision-bound corrections and append-only Undo; backend typed-time replacement; capture-to-reader and exact-source-to-confirmed-record links with source/digest checks | Cross-submission identity, reversible reconciliation and collection continuity; native replacement-time editor still needs timezone-authoring behavior |
 | P2 original-first readers | Ticket, source-backed place, text-built book/film/show/music, supplied passage and practical-record treatments; exact-original chooser/return; shared photo viewer | Catalog identity/art, selected-part UI and later dish/recipe/scorecard treatments; source facts do not establish attendance, author identity or payment state |
 | Reader lifetime | Account-session-scoped reads, expiry-aware displayed facts and foreground refresh, exact-source authorization and revision checks | Full source/audience/collection lifecycle replay and authenticated mobile-to-service acceptance |
@@ -47,9 +47,9 @@ unchanged screenshots did not establish pan/pinch. Do not turn either result
 into a broader gesture, accessibility or live-service claim. The Home dock
 stability repair was a QA prerequisite, not another artifact feature.
 
-**Next assignment:** resolve the kept-thing owner boundary in section 3, then,
-after that specific review, implement section 11's bounded cross-source
-identity slice. Keep the remaining reader checks bounded; do not substitute
+**Next assignment:** design the storage and migration details for the accepted
+kept-thing identity boundary in section 3, then implement section 11's bounded
+cross-source identity slice. Keep the remaining reader checks bounded; do not substitute
 repeated polish for the missing identity foundation. Adopt Technical's landed
 primitives without building another research engine, and connect artifact-bound
 additions once their request/result and first-producer safeguards are ready.
@@ -58,9 +58,11 @@ The accepted
 [Collections](../decisions/2026-09-28-collections-are-the-spine.md) and
 [Life](../decisions/2026-09-29-life-model-occasions-collections-and-sharing.md)
 decisions settle many-to-many membership, time-agnostic things, Remove versus
-Delete, whole-collection sharing and Life's four readings. Review of the new
-technical identity/owner boundary does not reopen those product semantics.
-Updating this roadmap does not approve a migration or new product policy.
+Delete, whole-collection sharing and Life's four readings. The
+[September 30 kept-thing identity decision](../decisions/2026-09-30-kept-thing-identity.md)
+now settles the narrow consumer identity boundary without reopening those
+product semantics. It does not claim an implemented migration or adopt broader
+retention, sharing or catalog policy.
 Door-to-family recognition and sender-visible unsupported-email rejection
 remain separate capture acceptance work owned by Orchestration.
 
@@ -101,8 +103,8 @@ Strategy Technical.
 ## 0 Strategy lane execution boundary
 
 **Current assignment:** continue section 11's P0/P1/PC/P2 artifact foundation
-from the merged reader/correction baseline. Next resolve the proposed kept-thing
-owner boundary, then implement bounded cross-source identity after review.
+from the merged reader/correction baseline. Next design the accepted kept-thing
+owner's storage/compatibility boundary, then implement bounded cross-source identity.
 Use existing custody and Technical's landed evidence adapters. Every format,
 catalog provider and artifact family need not finish before a supported slice
 lands; the native acceptance remainder runs alongside this work.
@@ -329,13 +331,15 @@ read during research is a defined check, not a passing result.
 
 ## 3 Shared architecture contract
 
-The following are proposed mappings to resolve in package P0. They are not new
-wire models or permission to create a table for every row.
+The following responsibilities guide package P0. The kept-thing identity
+direction is accepted by the September 30 decision below; exact schemas and
+the remaining mappings still need design. These are not shipped wire models
+or an instruction to create a table for every row.
 
 | Responsibility | Minimum distinction | Owning boundary |
 | --- | --- | --- |
 | Original | Source ID, content/custody revision, author, received time and permitted uses | Intake and Source custody |
-| Recognizable thing | Stable owner reference, provisional/corrected fields, reversible representation links | Existing domain owner plus a reviewed thin reconciliation mapping where needed |
+| Recognizable thing | Stable owner reference and reversible source/recognition links; fields read from their existing authorities | Accepted narrow kept-thing domain within the existing backend; exact storage placement remains design work |
 | Selected component | Stable component ID and source-revision-bound locator | Source/Intake evidence adapter, shared with composition and readers |
 | Subject | Film, book, dish or Place identity | Entity/domain owner; not an occasion or attendance claim |
 | Occasion and occurrence | A bounded occasion, original contributions, separately supported event claims | Experience Graph and existing operational owners |
@@ -344,23 +348,29 @@ wire models or permission to create a table for every row.
 | Prepared result | Exact generated output, input manifest, method version and current eligibility | Existing production/composition lifecycle |
 | Kept edition | Exact chosen expression, stable edition reference and governed availability | Explicit saved-composition persistence owner |
 
-#### P0 recommended identity seam — proposal for founder review
+#### P0 accepted kept thing identity boundary
 
-The recommendation is a thin, user-owned **Thing identity** (`ThingRef`) that
+The accepted [September 30 decision](../decisions/2026-09-30-kept-thing-identity.md)
+establishes a thin, user-owned **Thing identity** (`ThingRef`) that
 names what the person keeps, with original Sources, source-local recognition,
 world Subjects, selected Components, and generated/kept expressions remaining
-separate authorities. This is a proposed owner boundary, not authorization for
-a migration. It best satisfies the accepted ingestion rule—two copies of the
+separate authorities. This is a narrow domain inside the existing backend,
+not a new microservice or a completed migration. It satisfies the accepted
+ingestion rule—two copies of the
 same ticket resolve to one kept thing while retaining both Sources—without
 turning every downstream concept into a generic Artifact row.
 
-| Concept | Recommended owner/reference | Keep distinct from |
+The table separates the accepted identity responsibilities from remaining
+implementation recommendations: cultural-work schemas and stable Component
+ownership are not approved merely by accepting the kept-thing boundary.
+
+| Concept | Owner/reference boundary | Keep distinct from |
 | --- | --- | --- |
 | Original Source | Existing Intake/source-custody identity plus exact content revision and grants | Thing identity and extracted claims |
 | Kept Thing | Stable owner-scoped `ThingRef`; the durable consumer target for Collections, readers, sharing, and cross-door reconciliation | Source bytes, ExperienceAnchor occurrence semantics, world-subject identity, and generated prose |
 | Recognition | Existing submission-scoped candidate/observations, linked reversibly to a Thing when admitted or explicitly reconciled | Cross-submission identity: current `(submission_id, candidate_key)` is idempotency inside one submission, not the global identity |
-| World Subject | Existing Place identity for physical places; a bounded cultural-work subject reference for books/films/shows/music, with work and edition/release distinctions | A person's ticket, copy, note, dish, or separate attendance contribution |
-| Component | A Thing-owned component reference only when a selected part must survive; its typed selector remains bound to exact Source/content revision | Raw coordinates/offsets as identity, or a new universal media-annotation platform |
+| World Subject | Existing Place identity for physical places; a bounded cultural-work subject reference with work/edition distinctions remains the recommended design, not a selected schema | A person's ticket, copy, note, dish, or separate attendance contribution |
+| Component | Proposed: a Thing-associated stable component reference only when a selected part must survive; its typed selector remains bound to exact Source/content revision | Raw coordinates/offsets as identity, or a new universal media-annotation platform |
 | Experience / Occasion | Existing Experience Graph and operational owners; can relate Things and Subjects using supported evidence | A replacement identity for everything the person keeps |
 | Reader descriptor | Optional, versioned `ArtifactReadingDescriptor` used to choose a renderer | Stable identity, catalog resolution, attendance, or permission |
 | `ResourceRef` | Existing navigation/command address to an owner projection | The identity registry or data owner itself |
@@ -373,24 +383,28 @@ World Foundry promotion rebuilds Place projections. Reusing those tables for
 cultural works is a capability/owner migration, not a safe enum addition. On
 the other side, keeping only submission-local Intake candidates cannot satisfy
 cross-door identity or canonical Collection membership. A narrow Thing owner
-is the recommended middle boundary; its service/repository placement and exact
-minimum fields remain undecided.
+is the accepted middle boundary; its backend module/repository placement and
+exact minimum fields remain to design. Capture still owns candidate truth
+under the September 8 lifecycle decision; a candidate is not silently migrated
+or reclassified by this approval.
 
-Before implementation, founder review should settle only these choices:
+Before the implementation slice lands:
 
-1. Approve or reject a stable user-owned Thing identity distinct from
-   `ExperienceAnchor` and world Subject identity (recommendation: approve).
-2. Name its owning domain and require evidence-backed, reversible link/merge/
-   split operations; preserve independent Source custody and do not union grants
-   when two Things reconcile (recommendation: approve the behavior, then choose
-   the smallest owner after the producer/collection integration is mapped).
-3. Keep physical Place and cultural-work Subjects in separate capability
-   domains unless a full capability audit justifies a shared identity substrate
-   (recommendation: keep separate for the first implementation).
-4. Require a typed source-revision-bound component selector now, but create a
-   stable cross-representation Component identity only when a real consumer
-   must retain a selected part (recommendation: stage the latter behind that
-   acceptance case).
+1. Map producer, reader and Collection consumers and choose the smallest
+   storage/command/revision contract for the accepted kept-thing identity.
+2. Specify evidence-backed reversible link/merge/split, old-reference
+   compatibility, retries/concurrency, migration and rollback. Preserve
+   independent Source custody; never union grants when Things reconcile.
+3. Keep cultural-work schema/capability changes explicit; they are not an enum
+   addition to the existing physical Place owner. That separate design remains
+   open and must not block source-backed kept-item identity unnecessarily.
+4. Reuse the landed source-revision-bound text selection adapter. Stable
+   cross-representation Component identity still needs a concrete retaining
+   consumer and its own design; do not build a universal annotation platform.
+
+These are implementation design obligations, not another founder approval gate
+for the same kept-thing direction. Escalate changes that would alter the accepted
+authority boundary; keep unrelated policy decisions separate.
 
 The first acceptance fixture is decisive: importing one identical ticket from
 email and screenshot yields one `ThingRef` with two separately addressable
@@ -398,10 +412,10 @@ Sources; revoking either Source removes only that Source's access and does not
 silently grant the surviving Source's permissions to the other. Two tickets
 for different screenings remain two Things while referring to one film Subject.
 Explicit merge/split preserves prior references or typed redirects and every
-original remains independently addressable. No identity migration should begin
-until this owner boundary is reviewed.
+original remains independently addressable. The owner direction is accepted;
+storage, compatibility and migration design must still support these cases.
 
-Code basis for this proposal: `travel-agent/backend/core/models/entity_identity.py`
+Code basis for this boundary: `travel-agent/backend/core/models/entity_identity.py`
 and `backend/core/entity_types.py` define place-like `EntityRef` values and
 capability subsets; `backend/core/db/entity_identity.py` resolves namespaced
 external IDs only to those references. `backend/core/db/intake_semantics.py`
@@ -1239,7 +1253,8 @@ checkpoint. Retire replaced adapters only after consumer/readback coverage.
 
 | Decision | Recommendation or current boundary | Blocks | Does not block |
 | --- | --- | --- | --- |
-| Thing reconciliation, components and cultural subjects | Approve a thin mapping, shared selectors and cultural owner in P0; review physical capabilities, external ID namespaces and typed readings | Incompatible identity/schema implementations | Original rendering against existing source references |
+| Kept Thing identity and reconciliation | Accepted September 30: a narrow stable kept-thing domain, separate from Sources, candidates, Subjects and generated editions, inside the existing backend. Specify storage, compatibility and reversible reconciliation under that direction. | Unsafe or unspecified migration mechanics, not another approval of the identity direction | Existing readers and bounded implementation design |
+| Components and cultural subjects | Stable cross-representation Component identity and cultural-work schemas remain design recommendations; review physical capabilities, external ID namespaces and typed readings | Dependent component/catalog schema changes | Existing source-bound selectors and kept-thing identity work |
 | Consumer collection owner | Product semantics are accepted: user-owned collections, many-to-many membership, whole-collection visibility, and explicit Remove/Delete. Code inspection confirms that the viewer-scoped derived Life organization and public editorial guide collections are different owners; preserve them as read/projection and editorial systems. Define a distinct canonical consumer Collection owner over the reviewed stable ThingRef boundary. Vesper-initiated additions to shared collections remain a separate pending policy choice. | Durable collection writes and corresponding sharing | Single-object private reader and owner-linked discovery |
 | Kept edition after supporting withdrawal | Recommended default: withhold affected content, preserve only permitted metadata, offer a new independently supported version; exact policy unadopted | Shared derivative retention and partial salvage promises | Private originals and edition mechanics tested without disputed shared material |
 | Offline retained material | Adopt what can be cached, for how long and how reconnect handles loss; no instant remote revocation promise | Persistent shared offline caches and their user promise | Online reader, locally available independently eligible originals under existing rules |
@@ -1438,12 +1453,13 @@ and provider need not finish at once.
 across submissions, without confusing a world Subject with the person's Thing
 or granting one Source another's permissions.
 
-1. **Resolve the P0 owner decision.** Review section 3's proposed `ThingRef`,
-   the smallest owning domain, existing-candidate/reference compatibility and
-   reversible reconciliation boundary. Map the producer and Collection consumers
-   before choosing minimum fields. Keep physical Place and cultural-work
-   capabilities distinct. Record the decision before migrations or new durable
-   identity writes; this roadmap update is not that approval.
+1. **Design the accepted P0 owner boundary.** Use the September 30 `ThingRef`
+   decision; choose the smallest backend storage/module boundary and specify
+   existing-candidate/reference compatibility, revisions and reversible
+   reconciliation. Map producer and Collection consumers before choosing minimum
+   fields. Review migration/rollback against the acceptance cases below without
+   reopening the approved kept-thing direction. Cultural-work and stable
+   Component schemas remain separate design work.
 2. **Implement the adopted P1 boundary through existing custody.** Preserve
    submission-local recognition and each original's Source/content revision.
    Add only the identity and links needed for the supported case, with
