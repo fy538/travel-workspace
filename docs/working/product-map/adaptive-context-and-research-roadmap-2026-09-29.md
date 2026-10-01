@@ -897,7 +897,10 @@ artifact summary, without making every original expensive to ingest.
   archive workloads establish the need; a selected ticket must not wait for
   an archive index. Preserve an honest bounded owner-read fallback if an index
   is unavailable, without treating incomplete search as authoritative silence.
-  Group multiple representations by underlying evidence.
+  Group alternate representations only when admitted source identity/revision
+  and locator establish they derive from the same evidence. Do not join distinct
+  source references across submissions by equal content hash alone: equal bytes
+  prove neither one occurrence nor independent corroboration.
 - Hydrate current eligible originals or selected regions after recall; preserve
   surrounding context. Indexing cannot grant access or establish occurrence.
 - Allocate a bounded candidate set across useful relation directions, then
@@ -3924,3 +3927,21 @@ This bounds and tests HTTP request multiplicity for two failure classes under
 the currently pinned SDK. It does not prove Tavily's billable accounting for a
 successful result, its internal server-side work, provider charge units, or
 durable reservation/settlement. R3 and R0–R7 package acceptance remain open.
+
+#### R2 contract clarification — source identity versus byte equality (October 1)
+
+Fresh review confirmed that exact-note cross-submission candidates preserve
+distinct Intake Source IDs even when their content hashes match. This is
+intentional: identical bytes do not establish that captures are one occurrence
+or that they are independent corroboration. Same-packet duplicate suppression
+remains a separate cue-specific rule. The R2 requirement to group alternate
+representations therefore uses admitted source identity/revision and a locator,
+not a content-hash join across distinct Source references.
+
+The existing regressions
+`test_exact_user_note_finds_cross_submission_sources_without_collapsing_visits`
+and `test_explicit_subject_candidates_precede_note_matches_without_duplicate_sources`
+passed (**2 passed**). No candidate behavior changed; this receipt aligns the
+workspace acceptance wording with the existing owner-bound identity contract.
+Broader semantic grouping, support quality, selection usefulness and R2/R0–R7
+package acceptance remain open.
