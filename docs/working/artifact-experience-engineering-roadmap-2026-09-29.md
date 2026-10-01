@@ -3032,3 +3032,37 @@ The expanded evidence does not close the native acceptance package. The
 reader's fixture-backed rendering and registered flows are better evidenced;
 resolution of design authority and the unproven native/service boundaries
 remain separate work.
+
+### October 1 recipient-original reader continuity
+
+The existing Home original card already identifies its sender, the explicit
+recipient boundary, and the time the original was shared. Opening it used to
+drop that full attribution in the Life-owned detail reader, which showed only
+the sender. App commit `5bc3fe752` now derives the same recipient-safe line from
+the selected current-authorized delivery and carries it into the exact-original
+reader. The reader remains read-only: it neither turns opening into a reply,
+retained copy, nor wider audience. Home and Life surface contracts now state the
+cross-root continuity requirement. If sender or received time is unavailable,
+the existing sender-only fallback remains; no timestamp is inferred from the
+original's capture time.
+
+The deterministic Home fixture was moved to May 30, 2026, before the registered
+June 3 mock clock; a focused assertion prevents this "shared Saturday" receipt
+from becoming future-dated. No backend/API schema, owner, or authorization
+changed. App evidence commit `ed0cf8d1a` replaces the pre-commit screenshot
+receipt with the repeat captured against app revision `5bc3fe752`.
+
+| Boundary | Exact verification | Result and limit |
+| --- | --- | --- |
+| Recipient attribution and fixture | `npx jest --runInBand --no-cache __tests__/screens/original-delivery.test.tsx __tests__/utils/api/homeOriginalDelivery.mock.test.ts` | 2 suites / 26 tests passed, covering attributed detail rendering through success and transient material failure, plus the non-future fixture timestamp. |
+| App fast gate | `npm run verify:fast` | Passed on app revision `5bc3fe752`: native compatibility, icon check, typecheck, API boundaries, schema bridge (376 facade exports / 1,373 generated models), Home budgets and contract typecheck. Lint had 0 errors and 167 existing warnings. |
+| Registered native flow | `env VESPER_METRO_URL=http://127.0.0.1:64748 npm run qa:polish -- home-root --flow=polish/home-root-social-original --device='Vesper QA SE'` | Run `20261001T182244Z-home-root` captured 1/1 flow and 2/2 extra screenshots on Vesper QA SE / iOS 18.2, with manifest `gitSha` `5bc3fe752`; flow log confirms mock readiness (`home-original-recipient`, fixed clock `1780502400000`). Home displays Maya + **TO YOU** + received time, opens her exact words, and returns to the same Home context without a reply task. This is deterministic mock/native evidence, not authenticated relationship-service readback or real-recipient preference. |
+| Structured visual review | `npm run qa:verdict:validate -- .maestro/runs/20261001T182244Z-home-root`; `npm run qa:verdict:diff -- .maestro/runs/20261001T182244Z-home-root`; `npm run qa:verdict:committed` | Validated `pass`, with two retained P2 observations: the note is below a longer geology reading in this scrolled capture, and the reader's compact `SHARED SAT, 4:25 PM` stamp omits month/day. Both registered design refs were opened; generated first-viewport comparison pairs have no matching screenshot in this component-interaction flow, so the verdict explicitly does not certify Home 03's note-first root opening. The receipt is recorded in `travel-app/docs/surfaces/home-root/verdicts/20261001T182244Z.json` and its manifest snapshot. |
+| App changed-scope merge suite | `npm run verify:merge -- --base 0a166e950622dafb221250f1a1a62b83cdf690d7` | Jest completed 1,293 suites / 9,222 tests / 1 snapshot, all passed. This is local app evidence; the cross-repository `make verify-changed` checkpoint is recorded after this workspace receipt. |
+
+The received-original flow advances the original-focused P6 slice only. It does
+not settle Home's return-state ordering (Orchestration owns that placement),
+recipient grants or withdrawal beyond the current Relationships authority,
+Life Collection presentation, shared collection membership, or live-service
+acceptance. The next independent artifact work can continue under section 0;
+this flow adds no dependency on the unmerged Technical P3 producer.
