@@ -38,20 +38,24 @@ and existing owner reads, and let measured failures justify additional machinery
 
 This is the **Strategy Technical execution roadmap** under the September 30
 [three-lane program](../vesper-program-roadmap.md#2-three-lane-ownership).
-Execution has not started merely by editing this plan. This lane owns its
-package sequence and receipts; the program owns cross-lane boundaries rather
-than a permission queue for ordinary implementation. Capture transport and
+The first implementation increments are merged; the connected assignment below
+remains unfinished. This lane owns its package sequence and receipts; the
+program owns cross-lane boundaries rather than a permission queue for ordinary
+implementation. Capture transport and
 Home/Places remain with Orchestration; artifact identity, focused readers,
 collections and Life remain with Strategy. No provider, background posture,
 sharing policy, deployment or release is enabled by this document.
 
 ## 0 Strategy Technical lane execution boundary
 
-**First assignment:** R0, the shared R1 acquisition boundary and an existing-original
-R2 adapter, with the first-producer R3/R4/R5 safeguards and R7 comparisons.
-Deliver actual owner-callable request/result/readback behavior, not just schemas
-or another unconnected research harness. Use the existing supported consumer
-contract first; adopt new artifact/component identities when Strategy lands them.
+**Current assignment:** selected original → supported addition → exact readback.
+Complete the first R0/R1/R2/R6 connection with the minimum R3/R4/R5 safeguards
+and R7 comparisons. Exact original/text-span reads and bounded acquisition have
+landed; connect them through an actual owner-callable producer and result path.
+The current Home/Places request is not an artifact request: review an additive
+selected-source/revision contract before adapting it. Use existing Source
+identity while Strategy owns broader thing/component identity. The scope,
+sequence and finish conditions are in [section 12](#12-document-delivery-and-next-handoff).
 
 **Write ownership:** general context/evidence selection, public acquisition,
 evidence fidelity, prepared-result execution/reuse, budget/retry/publication
@@ -92,8 +96,31 @@ This is a cross-repository investigation of the value-delivery system, including
 its mobile consumers. It is not a line-by-line review of every product feature,
 an independent security certification, or an observation of deployed behavior.
 
-Inspection date is September 29 in New York; the second-pass evidence snapshot
-was taken around September 30 at 03:42 UTC. Branches advanced during the inspection.
+### Current merged baseline
+
+The September 30 combined landing includes this lane's previous work and the
+artifact and Home/Places increments. A fresh remote fetch and ancestry check
+confirmed every previous lane tip is in `origin/main`. This lane's three clean
+checkouts were rebased to the following tuple without replaying unique commits:
+
+| Repository | Merged revision | Previous lane tip included |
+| --- | --- | --- |
+| Workspace | `4febe0d461a62d204ba4dee9eaad7813c7c1509c` | `861d4633` |
+| Backend | `bd1a683b8656c3f4091e16abb64f57897fa7fc42` | `af05702ab` |
+| App | `e7bdc660501eaa19234e6b45bda033658edaa2d4` | `28717c7cf` |
+
+This is the next assignment's starting tuple, not a moving claim about main.
+The [program landing checkpoint](../vesper-program-roadmap.md#combined-landing-checkpoint--september-30)
+and CI Plan retain the combined verification evidence. This rebaseline checked
+Git and current interfaces; it did not rerun runtime or live-provider acceptance.
+Section 6 summarizes the present implementation; section 12 names the remaining
+connection. The original audit and implementation receipts below preserve their
+dated boundaries rather than implying that every historical gap is still open.
+
+### Historical investigation baseline
+
+The initial inspection date is September 29 in New York; the second-pass
+evidence snapshot was taken around September 30 at 03:42 UTC. Branches advanced during the inspection.
 The table records the later observed state rather than repeating an older
 claim that all local main checkouts lag implementation.
 
@@ -133,8 +160,9 @@ not as though its older entry table overrides their explicit amendments.
 
 The accepted [September 29 record-value amendment](../../decisions/2026-09-29-record-as-first-class-value.md)
 makes recognizing, keeping, enjoying and refinding independently complete value.
-The strategy-child Thesis/Model reconciliation is still working material;
-this roadmap does not declare all affected contracts updated.
+The founder-approved Thesis/Model reconciliation is now included in the merged
+backend baseline. Its accepted direction does not establish runtime completion
+of every affected contract.
 
 The accepted [September 29 Life model](../../decisions/2026-09-29-life-model-occasions-collections-and-sharing.md)
 also governs these adapters: occasions are things holding originals; spans such
@@ -186,6 +214,12 @@ other existing owners retain truth. The backend editorial `collections` table
 is not a consumer collection owner merely because the names match.
 
 ## 3 Current system and concrete gaps
+
+This section preserves the pre-implementation audit at the historical tuple in
+section 1. Subsequent receipts address parts of it, including exact original
+reads, snippet provenance, answer-only routing, diagnostic redaction and attempt
+telemetry. Use section 6 and the current code for execution status; do not
+redispatch those repairs from this dated inventory.
 
 Backend references beginning `backend/`, `tests/` or `tools/` are relative to
 `travel-agent/`; abbreviated implementation paths such as `concierge/` or
@@ -577,12 +611,13 @@ table or service per row.
   discovery, rejected proposal, provider failure, revoked evidence and expired
   practical facts. Use existing state models where possible.
 
-The proposed clarification to artifact P3 is: bounded public research may
+The aligned R1/P3 planning scope is: bounded public research may
 **resolve a specified uncertainty or discover candidates for a named purpose**,
 anchored to the selected object and circumstances, within explicit limits.
-Verify claims before presenting an addition. The existing line restricting
-research to a named missing fact is too narrow if applied to all discovery.
-This document proposes that change; it does not edit the other owner's plan.
+Candidate discovery need not know the answer in advance; verification must still
+support each presented claim. The artifact P3 wording now carries the same
+scope. This clarifies the engineering assignment, not permission to enable a
+new paid consumer, ambient research, unapproved catalog use or broader disclosure.
 
 ### Public storage is selective rather than absent
 
@@ -634,28 +669,22 @@ package identifiers, not additional standing lanes. Their artifact alignment
 records shared experience requirements, not a second implementation in
 Strategy.
 
-**Execution is underway.** The canonical three-lane baseline is on workspace
-`main` at `7b02b2bfe5d36e53060eee5f9fee6f8b5fd4d399` and is integrated into this
-lane. The first exact-original read is implemented across the owner-scoped
-backend reader and its mobile callers. Quick bounded results also carry
-query-free, request-scoped BaseTool attempt/retry/error/cancellation counts;
-this is observability, not a budget reservation or billing record. Existing
-factual lookup and trip-direction fallback now share a typed, one-tool-attempt
-public acquisition adapter with distinct empty, unavailable, failed and
-deadline outcomes. This is a partial R0/R1/R2/R6 result, not completion of any
-package: R0's complete scenario/owner matrix, R1's caller-independent disclosure
-and acquisition behavior, R2's supported candidate selection, R6's real
-consumer acceptance, and R7's matched-quality evidence remain open. R3/R4/R5
-requirements are being applied with the first producer. The commercial usage
-ledger now preserves dispatch uncertainty for existing voice-token actions;
-expired dispatched holds stay reserved until an authoritative outcome is
-resolved, while a retry that loses the dispatch fence cannot release the
-winner's reservation. This protects one existing commercial meter, but does
-not yet account for research-provider spend or complete R3. Authenticated
-interactive web lookup and trip-direction web fallback now emit content-free
-`ai.research.live` shadow demand decisions; these neither reserve nor gate the
-provider call. Shared execution, longitudinal change handling and assistance
-adaptation remain open. Receipts and exact limitations are in section 12.
+**Execution is underway; the prior increments are merged.** The current tuple
+is in section 1. The first connected assignment remains active:
+
+| Area | Landed capability to reuse | Remaining connection or evidence |
+| --- | --- | --- |
+| Selected evidence | Owner/revision-bound original reads and mobile callers; backend-only bounded UTF-8 text-span selection | The text-span adapter has no research consumer; general component and multimodal retrieval remain open |
+| Public acquisition | Shared typed single-attempt lookup; answer-only routing without dossier writes; source kind, dates, quotes and truncation metadata | Construct public requests from selected material under an actual disclosure boundary; select a substantive addition and verify claim support beyond quote presence |
+| Runtime | Existing Source workflow/publication controls; content-free demand and tool/SDK-attempt telemetry; dispatch-uncertainty handling for the voice commercial meter | Research-specific pre-dispatch resource reservation, settlement/recovery and the selected-source producer connection; telemetry and voice units are not research spend enforcement |
+| Receiving dependencies | Merged family readers, exact-source inspection, correction/Undo and return behavior; Home/Places receiving improvements | Existing preparation requests remain root-bound; define artifact/source-target request and result conformance before native adoption by its owner |
+| Evaluation | Focused/offline checks and bounded database/native receipts at their recorded revisions | Matched usefulness comparisons, selected-producer lifecycle races, authorized live-provider evidence and real consumer acceptance |
+
+R0's scope/owner admission, R1's disclosure and acquisition acceptance, R2's
+supported selection, and R6/R7's connected evidence are unfinished. Minimum
+R3/R4/R5 controls accompany that producer; broad shared execution, longitudinal
+maintenance and assistance adaptation remain later work. No existing original
+reader or root connection needs to be rebuilt to start this assignment.
 
 **Status measure (September 30): 0/8 packages fully accepted (0% package
 closure).** This is not a claim of zero engineering progress: partial slices
@@ -1062,7 +1091,7 @@ separate authorization.
 | Decision | Recommended posture | Blocks only |
 | --- | --- | --- |
 | Selected component and artifact identity | Reuse Source revision/locator and P1 mapping; no fake Trip or universal artifact table | Incompatible identity/schema implementations |
-| Focused discovery versus named-fact-only research | Admit both bounded request kinds, with purpose, evidence and limits | New discovery policy; existing exact fact lookups remain usable |
+| Lookup and candidate discovery admission | R1/P3 planning now includes both bounded purposes; specify the selected caller's public-field projection, evidence requirements and finite limits | New live/paid caller or disclosure behavior without its applicable admission; provider-free implementation and existing approved lookups can proceed |
 | Catalog sources and display/caching rights | Select per medium through PC; use approved fields and house fallbacks | Real catalog art/facts from unapproved suppliers |
 | Automatic preparation | Separate cheap reconsideration from paid generation; permit only named adopted triggers | New ambient generation, not explicit research or pure reads |
 | Shared synthesis and saved derivatives | Apply current grants; do not infer synthesis from display or invent survival after withdrawal | Affected shared AI/retained derivative modes |
@@ -1252,16 +1281,105 @@ implementation. Recommendations elsewhere are our engineering inferences.
 
 ## 12 Document delivery and next handoff
 
-The common baseline is prepared and integrated into this lane. The current
-assignment is **R0 completion plus the shared R1 boundary and an existing-original
-R2 adapter connected to R6 readback**, with the minimum R3/R4/R5 safeguards and
-R7 comparisons. One exact-source read is already connected; continue the same
-assignment through several artifact families, supported acquisition, real
-owner readback and matched quality evidence. Publish additive contracts early;
-Strategy connects its reader and Orchestration its roots from landed revisions.
-Until end-to-end evidence exists, report a bounded producer result and the exact
-consumer gap. Do not claim native acceptance from a fixture or wait for every
-design/policy decision.
+### Current assignment and supported scope
+
+**Selected original → supported addition → exact readback** is the remaining
+first assignment, starting from section 1's merged tuple. It connects R0/R1/R2
+to R6 with minimum R3/R4/R5 controls and R7 comparisons. The finish is an
+owner-callable, source-bound producer/result path, not another isolated helper.
+Original access remains independently useful and never waits for research.
+
+Start with private, currently retained `text/plain` originals and their exact
+bounded text spans: a passage and a text-backed ticket/confirmation exercise
+different purposes through the same contract. Also cover sparse history,
+already-stated connections and justified no-addition. Other supported originals
+retain their existing readers; this increment does not claim ticket-image OCR,
+PDF parsing, photo-region reasoning, shared-source AI use or new media admission.
+These are engineering coverage cases, not a narrower product thesis.
+
+### Implementation sequence
+
+1. **Admit the selected-source interface.** Extend the existing request/result
+   machinery with an explicit source reference, representation revision, optional
+   supported selector, authenticated viewer, purpose, current instruction and
+   eligible consumer.
+   Map the result owner, lifetime, correction dependencies, applicable budget and
+   kill switch. Review the additive contract before consumer work: the current
+   Home/Places `context_ref` accepts only `places_context` and cannot stand in for
+   an artifact target. No invented Trip, new Thing owner or durable cross-
+   representation Component identity is needed for the exact-original adapter.
+2. **Connect evidence and acquisition.** Hydrate the selected original/span
+   through its owner, honor current intent, and use eligible existing evidence
+   where sufficient. For a missing public fact or named discovery purpose,
+   construct the minimal `PublicResearchRequest` through a reviewed public-field
+   projection. Private source text, identifiers and instructions must not become
+   search terms by assertion. If safe public terms cannot be established, finish
+   without public acquisition. The current discovery adapter requires an explicit
+   public location; honor that bound, and review any nonspatial extension rather
+   than inventing a location. Verify provider arguments and diagnostics with
+   adversarial source fixtures; a typed string or regex is not a semantic privacy
+   guarantee.
+3. **Select and publish a useful result.** Reuse the research and production
+   owners with a focused treatment policy; preserve Home's existing pair rules.
+   Separate candidate, support, novelty and relevance judgments. Revalidate
+   source/grant revisions before use, publication and readback. Distinguish a
+   worthwhile addition, original-only, incomplete discovery, failed acquisition
+   and unavailable evidence. Exact quotes establish provenance, not entailment.
+4. **Enforce the first producer's resource envelope.** Bound all chargeable
+   model/tool attempts, retries and elapsed time; reserve resources before
+   dispatch and retain unknown outcomes after ambiguous completion. Apply this
+   to the actual research/synthesis caller, not merely the voice meter or a
+   telemetry field. Record the finite allocation and authorization before live
+   enablement. Provider-free implementation can proceed; no new paid path is
+   enabled by this plan. Broader fairness, cross-user coalescing and predictive
+   preparation stay conditional on measured need.
+5. **Deliver readback and comparative evidence.** Bind the result to the selected
+   source/span, dependency revisions and originating consumer. Ordinary read,
+   polling and reopen do not submit work. Exercise the callable owner path and
+   real-database lifecycle separately from fixtures; compare direct-source
+   treatment with research-assisted treatment on matched inputs. Publish the
+   additive interface for the native owners to adopt and record their remaining
+   acceptance explicitly.
+
+The initial code seams are `backend/inbound/original_source_reader.py`,
+`backend/core/models/public_research.py`, `backend/core/public_research.py`,
+`backend/research_agent/agents/quick_research.py` and its bounded-result pipeline,
+plus the existing Source request/workflow/publication owners under
+`backend/api/routes/agent_workflows.py`, `backend/root_projection/v2/` and
+`backend/core/db/source_contributions.py`. These paths are candidates for a
+bounded adapter, not authorization to rewrite each subsystem. Follow current
+import/owner boundaries. Add no new scheduler, world store or parallel generator.
+
+### Finish conditions and dependencies
+
+- A selected revision reaches a real producer and exact owner readback with a
+  supported additional proposition or useful contrast; source-only and no-history
+  cases remain complete, and prior user-supplied connections are not repeated as
+  discoveries. Keep usefulness judgment separate from citation/contract validity.
+- A stale/revoked source, wrong owner, expired result, cancellation and duplicate
+  request produce the correct outcome. Unchanged readback causes zero new
+  generation; selected-span changes cannot reuse incompatible output. Record
+  all eligible attempts, including withheld/failed results and uncertain cost.
+- Focused tests, disposable-DB races, API/type compatibility where changed,
+  matched quality evaluation and any authorized live run have separate measured
+  receipts. This documentation revision runs none of those product acceptances.
+  Use section 9's checks and exact-base merge preflight when implementing.
+- Strategy owns focused-reader adoption and broader P0 identity decisions;
+  Orchestration owns Home/Places placement and root return. A backend finish names
+  missing consumer adoption and does not claim native delivery. No screen edits
+  or routine dispatch to other chats follow from this assignment.
+- Result readback follows its existing owner's retention rules. It is not a
+  permanent kept edition. Any new stable citation/reference, Keep, sharing or
+  other adopted retention trigger requires the appropriate P4 minimum snapshot
+  and dependency contract; otherwise that behavior remains unavailable. Do not
+  use ephemeral labeling to bypass it or silently retain an Ask.
+
+Reassess at interface admission and the first connected result. Resolve only
+the product/authority choice required by that behavior. Broader Thing/Collection
+ownership, catalog licensing, shared derivatives and ambient/push policy remain
+with their owners; they do not block private selected-original engineering.
+Passage indexes, learned preferences and archive-wide refresh need a measured
+failure of this simpler path before becoming the next assignment.
 
 This document retains its research/audit rationale and owns Strategy Technical's
 package progress under the program's lane assignment. It does not rewrite the
