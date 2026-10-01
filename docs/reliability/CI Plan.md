@@ -3,7 +3,7 @@ doc_type: runbook
 status: active
 owner: engineering
 created: 2026-09-07
-last_verified: 2026-09-29
+last_verified: 2026-09-30
 why_new: Describes the actual three-repository CI contract, immutable candidate identity, private checkout credentials, and enforcement checks.
 ---
 
@@ -178,6 +178,99 @@ a new test platform or blanket-delete test directories to meet a count target.
   `87eceee24512d9086962eea5b844cef9d7bffbeb`. The workspace now pins those
   merged revisions; its own private-checkout and combined gate remain separate.
 
+### September 30 three-lane integration candidate
+
+The new candidate combines Home/capture, Artifact foundation and Adaptive
+context work without dropping the shared roadmap baseline. The first local
+`make verify-changed WORKSPACE_BASE_REF=origin/main AGENT_BASE_REF=origin/main
+APP_BASE_REF=origin/main` run took **412.754s** on the combined candidate
+(workspace `e711bb22`, backend `596f954d`, app `501e7701`). It failed: the app
+had eight test failures plus a component-size violation, and the backend had
+nine fixture/expectation failures. Do not carry that run as passing evidence.
+
+Integration corrections preserve revision-bound photo/audio reads, keep the
+shared capture receipt independent of full-app services, retain the Places
+component-size budget through a viewport hook, and update tests to follow the
+explicit location-search gesture and cold Home's source-backed opening.
+Focused follow-up passed 198 app tests and 136 backend tests; app typecheck and
+targeted lint passed (four existing warnings, no errors). Final combined and
+hosted checks remain separate requirements.
+
+Workspace PR #37's previous hosted run reached real journey tests without a
+disposable database and failed. Its workflow now declares disposable Postgres
+and Qdrant, explicit test opt-in, and migration before the journey scenarios.
+The workflow regression suite passes 16 cases locally. This verifies the
+configuration contract, **not** hosted database startup or journey success.
+No required check was removed, bypassed or reclassified as optional.
+
+The next coordinated run (workspace `ed34684e`, backend `bc2dfc462`, app
+`49f51cfbd`) took **381.083s**. Backend static and offline checks passed:
+22,081 passed, 14 skipped, one expected failure and 52 unexpected passes under
+the existing `tests/flaky_order_baseline.txt` quarantine. Workspace tooling
+passed 118 tests; contract, API coverage, documentation links and spine checks
+passed. The merged Thesis/Model exceeded their existing word budgets; redundant
+prose was tightened without changing the approved opening or authority boundaries.
+App static checks passed, but its broad test run was not clean: 1,287 suites
+passed, the memory-hook worker crashed with SIGSEGV, and two source-location
+assertions in `rootHeaderContract.test.ts` failed after the viewport extraction.
+Those assertions now inspect both the consumer and the extracted hook. The
+corrected header suite and unchanged memory-hook suite passed all 45 tests in
+an isolated run (1.838s). This is composite local evidence, not a clean broad
+rerun or hosted certification. Final delta verification uses these exact
+per-repository bases; hosted gates still evaluate the complete PR diff.
+
+The final app delta passed static checks and 720 tests across 97 suites.
+Workspace tooling again passed 118 tests, with contracts/API coverage passing.
+The remaining local failure was the canon word budget; its focused repair
+passed `make docs-canon-check docs-links-check docs-spine-check` with Thesis +
+Model at 5,097 words. The pre-push commercial architecture header was also
+reverified against its current owner contract, separating July draft pricing
+rationale from current product policy. No runtime code changed after the above
+app/backend checks. That was the local pre-publication checkpoint, not the
+final merge result.
+
+The published workspace candidate `6e6ddd20`, pinned to backend `6a1e4b249`
+and app `6b3066aa5`, passed `Contract and golden paths` in
+[run 36802699036](https://github.com/fy538/travel-workspace/actions/runs/36802699036).
+The job took **23m07s** including setup; Maestro semantic validation accounted
+for most of that time. It passed 173 mock-journey tests and the real-database
+J02/J05/J06 wedge (six backend scenarios plus 25 frontend checks). This proves
+the disposable services and immutable private checkouts work; it does not meet
+the five-minute latency objective or certify native visuals.
+
+The child PR checks found additional integration drift, now repaired in
+backend `33a000e97` and app `21fdb724f`: source retraction is asserted across
+Home chrome **and** content; test fixtures carry current contract fields;
+artifact reader containers use the existing flat-object primitive; the human
+quotation component and direct photo-gesture owners are registered; generated
+design status is current; vulnerable transitive brace-expansion versions are
+patched without changing Expo or granting audit exceptions. No required check,
+test, or budget was removed or relaxed. App production typecheck, design,
+governance and security checks passed locally; the full-test typecheck ratchet
+is 390 errors against its unchanged 406-error ceiling; that is legacy debt,
+not a passing full-test typecheck.
+Focused app repairs passed 238 tests in **12.661s**, measured by
+`scripts/measure_verification.py` (`merge-card-composition-repairs`); the final
+typed Places fixture and artifact component pair passed 57 tests. The backend
+Home helper/composition follow-up passed 88 tests with
+`pytest tests/integration/test_public_place_content_home_http_pg.py::test_home_source_assertions_cover_chrome_and_content tests/root_projection/test_home_portfolio.py -q -p no:cacheprovider`.
+These focused checks do not substitute for the child PR database/full-suite
+jobs or the workspace check against the updated exact child pins.
+
+Backend PR #238 subsequently passed every required hosted check and merged as
+`bd1a683b8`. At candidate `33a000e97`, the hosted offline partition reported
+22,076 passed, 20 skipped and 53 unexpected passes; the database partition
+reported 1,466 passed and 38 skipped. Separate canonical-itinerary posture
+checks passed 444 and 376 cases. Existing skip/quarantine policy was retained;
+these counts do not certify live-provider or native-device behavior.
+
+The authoritative final landing status is workspace
+[PR #37](https://github.com/fy538/travel-workspace/pull/37), backend
+[PR #238](https://github.com/fy538/travel-agent/pull/238), and app
+[PR #208](https://github.com/fy538/travel-app/pull/208). Retain the tested child
+commits in `docs/child-repos.ci-lock.json` when they become ancestors of main;
+repinning solely to identical-tree merge commits adds no product evidence.
+
 GitHub Actions was disabled in workspace and backend at the September 7 audit.
 It has been re-enabled. Their main-branch protection had unrelated frontend
 check names; those names have been replaced while preserving strict updates,
@@ -188,6 +281,24 @@ review approval, administrator enforcement, and no force pushes/deletions.
 | workspace | `Contract and golden paths` |
 | backend | `Merge ready`, `lint`, `import-boundaries`, `typecheck`, `test-db-migrate`, `dogfood-persona-gate`, `eval-replay` |
 | frontend | `Merge ready`, `Lint`, `Frontend governance`, `Security audit`, `Visual evidence contracts`, `Type check`, `API types freshness`, `QA tooling contracts`, `Design alignment gate` (also emitted for documentation-only PRs) |
+
+The workspace `Contract and golden paths` check remains the required aggregate.
+It waits for both the full workspace reliability suite and every required Maestro
+syntax shard, and fails when either dependency fails, is cancelled, skipped, or
+missing. The four isolated syntax jobs each receive the complete candidate
+workspace and child checkouts, then validate their deterministic portion of the
+same flow inventory with the pinned Maestro CLI. Disable matrix fail-fast so a
+single syntax failure does not cancel the remaining diagnostic shards. The
+workflow tests pin the complete four-shard definition; each shard fails if its
+assigned inventory is empty. No branch-protection check name or policy changes.
+
+The workspace suite checks Qdrant's
+[`/readyz` endpoint](https://qdrant.tech/documentation/ops-monitoring/monitoring/#kubernetes-health-endpoints)
+before installing dependencies so an unavailable journey service surfaces early. Credential,
+candidate-tuple and PostgreSQL service-health checks also precede package
+installation. The full Maestro flow inventory and Python-backed registry/document
+checks run before `npm ci`; the Node metadata check follows the install because
+it uses the app's packages.
 
 The new `package-smoke` job is implemented in this lane. Add it to required
 checks after publishing the workflow and verifying its emitted check name;

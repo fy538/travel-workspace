@@ -132,10 +132,10 @@ already-fixed Planning crown or completed connections.
 | Cluster | Current implementation and remaining improvement |
 | --- | --- |
 | Obscured value and controls | Closed for the inspected Quiet/original cases in app `332e77523`: shared floating-nav inset reserves the readable viewport and continuous paper background in both readers; native standard/XXXL reading and original-return checks passed. Maximum accessibility sizes, Android and unrelated destinations are not certified. |
-| Reading and social hierarchy | Full-width comparison rows and the standard original-reader Door replace narrow fact boxes and the amber text-original button; targeted native review passed. App `af8a126af` shortens the Returned fixture introduction and shows the concrete journey; backend `539edb00d` bounds real owner previews. Note-versus-article hierarchy remains open. Loaded images already open directly with no redundant button; do not redispatch that stale finding. |
+| Reading and social hierarchy | Full-width comparison rows and the standard original-reader Door replace narrow fact boxes and the amber text-original button; targeted native review passed. App `af8a126af` shortens the Returned fixture introduction and shows the concrete journey; backend `539edb00d` bounds real owner previews. App `862934e2d` distinguishes a directly authored Place note from a composed article with a quoted Roman body treatment; app `b2d52f5a3` uses that same shared treatment for the recipient-consented Place note in Places. Both focused surface suites and app typecheck pass. Native capture of these exact recipient-note states remains unverified because CoreSimulatorService is unavailable. Loaded images already open directly with no redundant button; do not redispatch that stale finding. |
 | Planning and continuation | Exact-context Chat closed in app `64961a9cf`; app `97e0d0ac9` names the compact row's actual continuation, removes the fixture's duplicate orientation sentence and preserves one tap target. Planning native passed. The optional route's visual weight and prepared-opening boilerplate remain minor refinements. |
 | Live, recovery and possibility | Backend `a8e87e64c` returns the current subject and independent agreement/provider facts; app `97e0d0ac9` uses productive sans and corrects ambiguous Live fixture language. Live standard/XXXL passed. App `af8a126af` makes recovery explicitly proposed/unconfirmed. Urgent remains MIXED: no owner-backed timing, cost or trade-off is provided to compare. Its passing private Chat continuation does not close that P1. Separate Occasion repetition and generic healthy-commitment continuation remain refinements. Do not merge distinct owners merely because their text matches. |
-| Sources and quiet endings | Routine “current” suffix omitted, live/stale/unknown retained, close simplified. App `97e0d0ac9` makes source inspection visually subordinate without shrinking its touch target; Cold native passed. Storage-description boilerplate is replaced by the concrete fixture journey and a real same-Occasion count/order. Long source labels, generic Life Doors, Cold orientation and provenance/door separation remain refinements. |
+| Sources and quiet endings | Routine “current” suffix omitted, live/stale/unknown retained, close simplified. App `97e0d0ac9` makes source inspection visually subordinate without shrinking its touch target; Cold native passed. Storage-description boilerplate is replaced by the concrete fixture journey and a real same-Occasion count/order. App `c6e6ae49c` names exact Life record doors, `d06dc229f` bounds Home provenance to one visible line while retaining full accessible names and freshness, and `bde5eb165`, `3409399e1`, and `d47a8be1c` make Trip-owned doors honestly say “Open trip details” whether the legacy Trip ref arrives as a `life.open` bridge, a direct source door, or a generic allowlisted Trips path. App `0eb31d483` avoids implying an exact receipt reader when the current receipt route opens the Life root; `5bb78d2de` names the actual Person profile destination even for older `/you` refs; `0894cc819` names the actual Places saved collection for an `entity_save` resource. The recipient-safe “TO YOU” stamp is already implemented by app `66e2c3c02` from the current authorized delivery read and covered by the attribution formatter test; do not redispatch it as an open issue. Cold orientation and full native provenance/door hierarchy remain refinements. |
 
 The full [September 27 matrix](../../travel-app/docs/surfaces/home-root/verdicts/20260927T180109Z.json)
 was MIXED with one P1 and 23 P2 findings. The
@@ -155,9 +155,9 @@ The reading, exact-context Chat, practical-state/action and bounded-preview
 checkpoints are complete locally. H1-A remains incomplete as product acceptance,
 with the specific Urgent P1 and hierarchy refinements above. Capture/share work
 may proceed under the program without converting those residuals into a green
-Home verdict. The original's visible
-share stamp also lacks a “to you” cue despite exact single-recipient delivery;
-if amended, use that existing owner fact rather than infer a wider audience.
+Home verdict. The original's visible share stamp already says “TO YOU” based on
+its exact single-recipient owner read; retain that boundary and do not infer a
+wider audience.
 
 **Recovery follow-up boundary:** current `ProjectedCommitment` carries subject,
 status, coordination/provider states and optional time. The Home adapter emits
@@ -616,19 +616,25 @@ three-photo library happy paths are evidenced, and the canonical reader can
 carry all 16 retained image sources in selection order. Authenticated
 per-image return is not yet proven.
 
-**Next implementation order:** (1) close the signed-device/authenticated
-per-image readback path for a multi-photo selection, preserving owner identity
-and exact source ordering (selection above two is now proven for three items);
-the roadmap's signing/provisioning mismatch is the prerequisite. (2) verify
-deliberate Chat Bring + Ask across its now-connected private entrances (the
-existing-thread photo path has bounded native mock acceptance;
-dock/private-create, failure and large-type acceptance remain) with unchanged
-conversation retention; (3) finish native OS/email adapters against that same
-contract; (4) extend Send/Share only through the named relationship/audience
-owner amendment. Keep broader audiences, friend-material AI use and the pending
-R1–R5 policies separate. Each door must preserve authored material, duplicate
-identity, failure/retry, exact owner return and correction. Refinding through
-ordinary Life and later value need explicit evidence, not just this receipt.
+**Next implementation and evidence order:** the in-app/native shared receipt
+now previews each retained image in source-ordinal order and opens the exact
+selected source/revision where host-app navigation is available (app
+`3d866cd03`). Its focused tests walk all 16 images, verify one selected-source
+read at a time, and refuse a revoked source. This closes the code/UI portion of
+multi-photo refinding, not signed-device or authenticated live-backend
+acceptance. Continue with the native OS/email adapters against the same custody
+contract rather than waiting on signing; keep the share-extension receipt
+in-place because Apple's supported extension URL-opening API does not cover
+the Share extension point. In parallel when setup is available, complete the
+signed-device/authenticated per-image readback. Then verify deliberate Chat
+Bring + Ask across its connected private entrances (existing-thread photo has
+bounded native mock acceptance; dock/private-create, failure and large-type
+acceptance remain) with unchanged conversation retention. Extend Send/Share
+only through the named relationship/audience owner amendment. Keep broader
+audiences, friend-material AI use and pending R1–R5 policies separate. Each
+door must preserve authored material, duplicate identity, failure/retry, exact
+owner return and correction. Refinding through ordinary Life and later value
+need explicit evidence, not just this receipt.
 
 **Verification:**
 
@@ -1831,6 +1837,150 @@ Exact commands and measurement records remain in this file at workspace
 `docs/reliability/runs/home-reading-polish-reviewed-20260928T063743Z.log` and
 `docs/reliability/runs/home-reading-verify-pr-reviewed-20260928T063825Z.log`.
 The coordinated gate still predates both local app patches.
+
+### Current Home authored-note hierarchy increment — 2026-09-30
+
+App `862934e2d` first renders the Home contribution as the author's short quoted
+words in the Roman body role, rather than the article-heading role. App
+`b2d52f5a3` extracts that as one shared note treatment and applies it to the
+same recipient-consented note in Places, above the exact venue continuation
+rather than as muted mono metadata. Sender, recipient scope and venue link are
+unchanged; the source text remains owner-authored. Places `PlacesSectionFeed`
+passed **52/52**, Home `HomeRootV2Screen.smoke` passed **33/33**, app production
+typecheck and registered scenario IDs (**31**) passed. Targeted ESLint had no
+errors and retained the existing `HomeRootV2UnitRenderer.tsx` max-lines warning.
+Native capture of the exact recipient-note states is unverified: the assigned
+simulator could not be queried because CoreSimulatorService was unavailable.
+This closes the note-versus-article treatment gap across both roots, not broader
+H1-A or D2 acceptance.
+
+### Exact Home-to-Life continuation labels — 2026-09-30
+
+App `c6e6ae49c` replaces the generic Home action “Open in Life” with a short
+label for the Life record family: record, original, reading, moment, capture,
+attachment, source, or receipt. The label follows the resource kind; the
+existing canonical resolver still controls the route and return token. It does
+not label plan/occasion/commitment doors as Life-owned when their resolved owner
+is elsewhere. The two focused Home root suites passed **50/50**, app production
+typecheck and registered design-reference/scenario checks passed (**31 scenario
+IDs**), and targeted lint had no errors with the existing Home-renderer
+max-lines warning. A registered native quiet-state run retried without
+producing a screenshot and was stopped; visual acceptance remains
+**unverified**. This closes a continuation-label refinement only, not exact
+Life-reader acceptance or full Home/Places D2 completion.
+
+### Home provenance density — 2026-09-30
+
+App `d06dc229f` limits only the Home presentation's visible source-provenance
+line to one tail-ellipsized row. Full source names and freshness qualification
+remain in the grouped accessibility label; stale/unknown/live status stays
+separately visible. The existing source-inspection action, source audience
+filter, and Places' fuller provenance rendering are unchanged. Focused
+composition-renderer and Home-root suites passed **46/46**, app production
+typecheck and targeted lint passed, and the registered surface scenario-ID
+check passed (**31 IDs**). Native full-scroll visual acceptance remains
+unverified because the registered quiet flow produced no screenshots. This
+closes the long-Home-provenance-line refinement, not Home/Places acceptance.
+
+### Truthful Home label for the Trip-owned Life bridge — 2026-09-30
+
+App `bde5eb165` changes only the label for a `life.open` destination containing
+a Trip ref to “Open trip details.” Inspection confirmed the current resolver
+opens the exact legacy Trip detail route until Plan/Life migration is complete;
+calling it “Open in Life” overstated the current receiving surface. Route
+ownership, exact Trip identity, navigation and Home return context do not
+change. Home renderer and root-projection route suites passed **82/82**, app
+production typecheck and registered surface checks passed (**31 IDs**), and
+targeted lint had no errors with the existing Home-renderer max-lines warning.
+No native visual verdict was captured. This closes a route-label truth defect,
+not the Life-owned exact-reader or Home/Places acceptance gaps.
+
+### Pre-Keep image-inspection refinement — 2026-09-30
+
+App `db27d6a05` adds a visible expand cue to selected-photo tiles and bounded
+pinch-to-zoom plus one-finger pan to the existing full-screen draft-original
+viewer. The transform uses the original's aspect-fit dimensions, caps at 4×,
+and exposes adjustable zoom-in, zoom-out, and reset actions; inspection does
+not keep, upload, or change the draft. Focused
+`__tests__/components/capture-composer.test.tsx` passed **11/11**, including
+zoom bounds and unchanged draft/no-submit behavior; app production typecheck,
+targeted ESLint, and the registered surface scenario-ID check (**31 IDs**)
+passed. No backend or wire contract changed. Native visual/multitouch review is
+**unverified**: the reserved simulator is booted, but Expo reported its assigned
+Metro port `53177` occupied while no status endpoint was reachable; a bounded
+fallback attempt on `53178` reported the same. No existing process was stopped
+or changed. Review the expand cue and pinch/pan on the next available registered
+photo-intake capture. This closes the old viewer inspection refinements in code,
+not the wider camera-custody, authenticated readback, or D1/D2 acceptance gaps.
+
+### Anywhere guide supply consolidation — 2026-09-30
+
+Backend `c32baddc9` removes Home's second direct read of the approved Anywhere
+starter guide. The canonical Places feed already owns selection and projects a
+previewable guide into its feed; Home now consumes that single producer through
+the existing contextual-Places adapter. During composition, the generic
+“Explore Places” door is suppressed only when a source-backed dossier reading
+for that exact Places context is present. If the guide is absent, the door
+remains. This removes both duplicate owner work and duplicate cold-start value
+without introducing another generator, route, or content inventory.
+
+`tests/root_projection/test_home_portfolio.py` proves the combined context/feed
+read admits one exact dossier in a Cold Home posture, retains its
+`source.inspect` evidence requirement and exact Places destination, and keeps
+the generic fallback when no guide qualifies. The complete Home portfolio test
+module passed **87/87**; focused Ruff and format checks passed, as did all
+backend pre-commit hooks after directing Ruff's temporary cache outside the
+checkout. No API or app contract changed. Native visual and authenticated
+owner-readback evidence were not part of this bounded correction; broader D2
+acceptance remains open.
+
+### In-app private Keep recovery after reopening — 2026-09-30
+
+App `1f041a30a` extends the existing protected capture journal to ordinary
+iOS in-app text/photo Keeps. Before the existing Intake v2 submission starts,
+the app copies selected original bytes and the exact text, source channel and
+idempotency key into app-private `Application Support` storage with complete
+file protection and backup exclusion. Image-picker source URLs are accepted
+only from the app cache; the store rejects paths outside that root and
+symlink escapes. This stays separate from the extension's App Group journal and
+does not reinterpret provider-owned OS-share handoffs.
+
+The durable owner is the hydrated backend user UUID plus the actual Clerk
+session ID (also used as the stable session-generation fence). When the person
+reopens the common composer in that same session, it finds the oldest pending
+record and resumes the identical payload/key; no new capture or server identity
+is created. A terminal receipt is cleared only after current-owner readback.
+Changing account or Clerk session cannot reopen the old record. The code does
+not auto-launch the composer or add a separate Home recovery card; recovery
+starts when the person next opens the existing common composer entry.
+
+Focused evidence: `npm --prefix travel-app run typecheck` and
+`npm --prefix travel-app run test:typecheck:contracts` passed; the four affected
+Jest suites passed **51/51**; after the follow-on owner-mapping fix, six focused
+Jest suites pass **65/65**; `capture-journal:test` passed all **9** Foundation
+harness scenarios, including app-cache copy, outside-cache rejection and
+symlink escape rejection; the changed TypeScript files passed targeted ESLint.
+`CaptureAttemptJournalModule.swift` passed Swift syntax parsing. This is not an
+iOS app/extension build, simulator/real-device process-restart run, file
+protection acceptance on device, or authenticated live-backend readback. Those
+remain required before claiming native in-app recovery acceptance. Android,
+seeded OS-share recovery, and the extension's separate retry/session flow remain
+outside this slice.
+
+The follow-on native-host correction is app `bc1b54fac`. The extension journal
+continues using its existing Clerk subject as local owner identity so any
+previously prepared record remains discoverable. Before accessing that journal,
+the host resolves Vesper's internal UUID from authenticated `GET /api/me`; the
+Intake service compares create/read/delete receipts against this backend owner
+without conflating it with the local journal key. Tests cover successful owner
+mapping and refusal to open the journal if that authenticated mapping fails.
+App `0ff582abf` adds an in-place retry when profile or journal reads fail
+transiently while the same Clerk lease remains current; the incoming draft and
+idempotency identity are preserved, and repeated taps cannot dispatch duplicate
+bootstrap reads. Tests cover owner mapping, fail-closed behavior, and retry to
+successful Keep. This repairs the code-level ID-domain mismatch and transient
+profile/journal recovery; it does not establish authenticated live-backend or
+signed-device acceptance, nor retry after an unavailable/expired Clerk session.
 
 ### Published candidate — prior full coordinated gate
 

@@ -21,10 +21,28 @@ permissions:
   contents: read
 
 jobs:
-  contract-and-golden-path:
-    name: Contract and golden paths
+  workspace-checks:
+    name: Reliability checks
     runs-on: ubuntu-latest
     timeout-minutes: 25
+    env:
+      DATABASE_URL: postgresql://vesper:localdev@localhost:5432/vesper # pragma: allowlist secret
+      TEST_DATABASE_URL: postgresql://vesper:localdev@localhost:5432/vesper # pragma: allowlist secret
+      TEST_DATABASE_DISPOSABLE: '1'
+    services:
+      postgres:
+        image: postgis/postgis:15-3.3
+        env:
+          POSTGRES_DB: vesper
+          POSTGRES_USER: vesper
+          POSTGRES_PASSWORD: localdev # pragma: allowlist secret
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U vesper" --health-interval 5s
+          --health-timeout 5s --health-retries 10
+      qdrant:
+        image: qdrant/qdrant:v1.17.1
+        ports: ['6333:6333']
     steps:
       - name: Check out workspace
         uses: actions/checkout@v6
@@ -70,6 +88,18 @@ jobs:
           path: candidate-tuple.json
           if-no-files-found: error
 
+      - name: Require Qdrant readiness
+        run: |
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:6333/readyz > /dev/null; then
+              echo "Qdrant is ready for journey checks"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "::error::Qdrant did not become ready before dependency installation"
+          exit 1
+
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
@@ -91,22 +121,8 @@ jobs:
       - name: Workspace reliability tooling regression tests
         run: python -m pytest scripts/tests/ -q
 
-      - name: Set up Java for Maestro
-        uses: actions/setup-java@v5
-        with:
-          distribution: temurin
-          java-version: "21"
-
-      - name: Install frontend dependencies
-        run: npm ci
-        working-directory: travel-app
-
-      - name: Install pinned Maestro CLI
-        env:
-          MAESTRO_VERSION: 2.6.1
-        run: |
-          curl -fsSL "https://get.maestro.mobile.dev" | bash
-          echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
+      - name: Maestro flow inventory validation
+        run: make maestro-flow-inventory-check
 
       - name: OpenAPI snapshot freshness
         # Regenerate the snapshot offline from the backend models and fail
@@ -126,53 +142,6 @@ jobs:
           fi
           echo "✓ OpenAPI snapshot matches the backend models"
         working-directory: travel-agent
-
-      - name: Contract check
-        run: make contract-check
-
-      - name: Journey mock-walk (tier 1)
-        run: npm test -- __tests__/journeys/ --runInBand
-        working-directory: travel-app
-
-      - name: Maestro flow validation
-        # Hermetic governance plus Maestro's own semantic parser. Device
-        # execution remains in the macOS and Cloud workflows.
-        env:
-          MAESTRO_REQUIRE_CLI: "1"
-        run: make maestro-flow-check
-
-      - name: M-1 surface contraction guard
-        # Product dispositions are checked against the executable surface,
-        # canonical-entry, route-owner, and generated-route registries.
-        run: npm run --silent surface:contraction:check
-        working-directory: travel-app
-
-      - name: Compatibility and card-arrival contract guards
-        run: make compatibility-check card-arrival-check chat-card-types-check
-
-      - name: Journey-list drift guard
-        # Pure file-glob (no DB): fails if scenarios.mjs and tests/scenarios/
-        # test_j*.py have drifted, so a new BE journey can't silently fall out
-        # of the qa:logic runner. Both child repos are checked out as siblings,
-        # so the runner resolves ../travel-agent.
-        run: npm run qa:logic:check-drift
-        working-directory: travel-app
-
-      - name: Journey-set registry guard
-        # Pure file-parse (no DB): journeys.yaml ↔ docs ↔ README ↔ persona-cert
-        # must agree on the journey SET, so a journey added to one definition
-        # registry but forgotten in another fails CI. Reports (non-fatally) the
-        # contract/logic fidelity gap for the holistic-extension journeys.
-        run: make journey-registry-check
-
-      - name: Flag registry guard
-        # Pure file-parse (no DB): fails if any `active` flag in
-        # docs/flags/registry.yaml is past its review/removal date. This is
-        # the enforcement floor for flag hygiene — the local pre-commit hook
-        # (workspace .pre-commit-config.yaml, pre-push stage) catches this
-        # first, but a skipped hook or an un-configured clone must not let a
-        # stale dark flag go unnoticed indefinitely.
-        run: make flag-registry-check
 
       - name: New-document governance guard
         # Phase 1 is intentionally non-retroactive: only Markdown files added
@@ -208,7 +177,59 @@ jobs:
         # the individual checks above remain the authoritative failures.
         run: make m0-reachability-report | tee m0-reachability-report.txt
 
+      - name: Journey-set registry guard
+        # Pure file-parse (no DB): journeys.yaml ↔ docs ↔ README ↔ persona-cert
+        # must agree on the journey SET, so a journey added to one definition
+        # registry but forgotten in another fails CI. Reports (non-fatally) the
+        # contract/logic fidelity gap for the holistic-extension journeys.
+        run: make journey-registry-check
+
+      - name: Flag registry guard
+        # Pure file-parse (no DB): fails if any `active` flag in
+        # docs/flags/registry.yaml is past its review/removal date. This is
+        # the enforcement floor for flag hygiene — the local pre-commit hook
+        # (workspace .pre-commit-config.yaml, pre-push stage) catches this
+        # first, but a skipped hook or an un-configured clone must not let a
+        # stale dark flag go unnoticed indefinitely.
+        run: make flag-registry-check
+
+      - name: Compatibility and card-arrival contract guards
+        run: make compatibility-check card-arrival-check chat-card-types-check
+
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: travel-app
+
+      - name: Contract check
+        run: make contract-check
+
+      - name: Journey mock-walk (tier 1)
+        run: npm test -- __tests__/journeys/ --runInBand
+        working-directory: travel-app
+
+      - name: Maestro flow metadata validation
+        run: make maestro-flow-metadata-check
+
+      - name: M-1 surface contraction guard
+        # Product dispositions are checked against the executable surface,
+        # canonical-entry, route-owner, and generated-route registries.
+        run: npm run --silent surface:contraction:check
+        working-directory: travel-app
+
+      - name: Journey-list drift guard
+        # Pure file-glob (no DB): fails if scenarios.mjs and tests/scenarios/
+        # test_j*.py have drifted, so a new BE journey can't silently fall out
+        # of the qa:logic runner. Both child repos are checked out as siblings,
+        # so the runner resolves ../travel-agent.
+        run: npm run qa:logic:check-drift
+        working-directory: travel-app
+
+      - name: Prepare disposable journey database
+        run: PYTHONPATH=. alembic upgrade head
+        working-directory: travel-agent
+
       - name: Golden path QA
+        # These scenarios exercise real persistence, not the offline partition.
         run: make golden-path-qa
 
       - name: Reliability gate
@@ -227,3 +248,101 @@ jobs:
             reliability-report.txt
             m0-reachability-report.txt
           retention-days: 14
+
+  maestro-flow-validation:
+    name: Maestro syntax shard ${{ matrix.shard }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        shard: [0, 1, 2, 3]
+    steps:
+      - name: Check out workspace
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Resolve and record immutable candidate tuple
+        id: child_refs
+        run: python3 scripts/resolve_ci_tuple.py
+
+      - name: Require private checkout credentials
+        env:
+          CHECKOUT_TOKEN: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN }}
+        run: |
+          test -n "$CHECKOUT_TOKEN" || { echo "::error::TRAVEL_WORKSPACE_CI_TOKEN must have read access to both private child repositories"; exit 1; }
+
+      - name: Check out Travel Agent
+        uses: actions/checkout@v6
+        with:
+          repository: ${{ github.repository_owner }}/travel-agent
+          path: travel-agent
+          ref: ${{ steps.child_refs.outputs.agent_ref }}
+          token: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN }}
+          fetch-depth: 0
+
+      - name: Check out Travel App
+        uses: actions/checkout@v6
+        with:
+          repository: ${{ github.repository_owner }}/travel-app
+          path: travel-app
+          ref: ${{ steps.child_refs.outputs.app_ref }}
+          token: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN }}
+          fetch-depth: 0
+
+      - name: Assert actual checkouts equal candidate tuple
+        run: python3 scripts/resolve_ci_tuple.py --assert-checkouts
+
+      - name: Upload candidate identity
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: candidate-tuple-maestro-${{ matrix.shard }}
+          path: candidate-tuple.json
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Set up Java for Maestro
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Install pinned Maestro CLI
+        env:
+          MAESTRO_VERSION: 2.6.1
+        run: |
+          curl -fsSL "https://get.maestro.mobile.dev" | bash
+          echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
+
+      - name: Validate this required syntax partition
+        working-directory: travel-app
+        run: |
+          set -euo pipefail
+          python3 ../scripts/partition_maestro_flows.py \
+            --app-dir . --shard '${{ matrix.shard }}' \
+            --shards '${{ strategy.job-total }}' --nul-delimited \
+            | xargs -0 -n 1 maestro check-syntax
+
+  contract-and-golden-path:
+    name: Contract and golden paths
+    if: always()
+    needs: [workspace-checks, maestro-flow-validation]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out workspace
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Require workspace checks and every Maestro syntax shard
+        env:
+          NEEDS_JSON: ${{ toJSON(needs) }}
+        run: python3 scripts/require_successful_jobs.py workspace-checks maestro-flow-validation

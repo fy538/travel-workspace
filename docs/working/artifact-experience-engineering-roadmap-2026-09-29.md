@@ -24,10 +24,99 @@ retrieval, jobs and native readers. Add the missing identity, selected-part,
 collection, saved-edition and discovery contracts deliberately. Do not create
 another assistant or a universal artifact service.
 
-**Execution status:** scoped for the Strategy lane in the September 30
-[three-lane program](vesper-program-roadmap.md#2-three-lane-ownership); execution
-has not started merely by editing this plan. This roadmap owns Strategy's
-package sequence and receipts. The program owns cross-lane boundaries, not a
+**Execution status:** active in the Strategy lane's coordinated artifact
+worktree. The first implementation increment added a versioned, viewer-facing
+reading descriptor and native travel/admission ticket reader. A follow-on
+increment exposed three existing owner-governed semantic corrections on
+eligible private artifacts and then refreshes the exact owner projection; the
+original source remains untouched. Further reader increments add a
+source-backed place record (not a catalog venue page or visit claim),
+text-built book/film/show/music treatments (not catalog art or resolved-subject
+claims), and a passage treatment gated on an explicit source-backed excerpt.
+Backend projection/API and app reader tests pass. A code-backed pass
+now maps the existing owners and current reader modes below. The accepted
+[Collections](../decisions/2026-09-28-collections-are-the-spine.md) and
+[Life](../decisions/2026-09-29-life-model-occasions-collections-and-sharing.md)
+decisions settle the consumer semantics:
+many-to-many membership, time-agnostic things, Remove versus Delete,
+whole-collection sharing, and Life's four readings. Founder review remains for
+the technical owner/reference model and new durable identity, subject,
+component, or correction authority; those are not reasons to reopen the
+accepted product semantics. This is the beginning of P0/P1/P2, not completion
+of the first assignment: P0 still needs reviewed identity/subject/owner
+mappings, selected-component/context/edition references, selected-part
+representation fixtures, and the broader lifecycle replay portfolio. The
+supported-door/mode crosswalk is now recorded in section 3, but its capture
+outcome is incomplete: the unsupported-email rejection is verified before
+writes, while a useful sender-facing receipt belongs to Orchestration's capture
+path. Section 13 records revisioned correction and Undo replay, not the full
+source, audience, expiry, and collection lifecycle portfolio.
+An isolated sparse-history example now covers one user observation plus one
+public source without the later personal evidence; it is a fixture/compiler
+boundary, not live-generation or desirability evidence. A reusable first
+portfolio fixture set now spans books, films, shows, music, source-backed
+passage and practical readers, dish fallback, sparse recognition, and one
+bounded friend contribution.
+The connected-neighborhood reader now uses a matching projection-supplied
+source/provenance label or a type-level fallback rather than displaying
+resource identifiers; this is presentation-only and does not resolve subjects
+or change graph identity.
+A first crosswalk now separates source admission, family-reader behavior, and
+audience authorization, including the all-or-nothing unsupported-email case;
+door-to-family recognition and sender-visible rejection remain unproven. The
+capture-lane receipt gap is separate from the P1 identity work. P1 still needs
+cross-door recognizable identity, source-bound component continuity, and
+cross-door reconciliation. Revision-bound correction Undo is now an append-only command
+that restores the preceding effective correction (or the unchanged
+source-derived interpretation) through the existing owner projection; source
+evidence is never rewritten. The backend's revisioned time-replacement path
+now appears as a user-confirmed fact in the canonical artifact read with
+correction provenance; a native editor remains gated on timezone-authoring
+behavior. PC
+catalog mapping/use gates, other family readers, and native visual acceptance
+remain open. A new
+wave also connects `inspect_source` to owner-scoped exact source references:
+the backend exposes only supported, unrevoked originals in the private owner
+projection; the app opens the exact submission/source/content revision, with
+an explicit chooser when more than one original is eligible. This extends the
+existing Intake reader rather than introducing another source service. The
+focused backend and app evidence is recorded in section 13. It does not
+complete P2: selected-part interaction and native visual acceptance remain
+unfinished. Dish, recipe and scorecard readers intentionally follow the first
+designed families in section 1A; they are not prerequisites for this increment.
+The app now carries the immediate artifact parent and ephemeral root/Life
+context into exact-original inspection. Returning targets the artifact before
+the root token can complete, and a cold-linked artifact exits to its registered
+root when that in-memory context remains available. This closes route
+continuity, not native acceptance; the QA capture could not run in this
+environment.
+The passage treatment uses only the supplied
+excerpt and does not infer author/work identity. The practical-record sheet
+shows only supplied facts and does not calculate receipt totals or payment
+state. A subsequent P1
+slice now links an exact eligible original back to its existing confirmed
+candidate/anchor only when active observation lineage matches both source ID
+and custody-bound content digest; the private read is owner-session scoped and
+rechecked on return. The focused artifact photo viewer now adds bounded
+pinch/double-tap zoom, panning, and assistive zoom actions to that exact-source
+inspection path, without disk-caching the original. On the Vesper QA SE
+simulator (iOS 18.2), a direct simulator double-tap visibly changed the owner
+photo from fit to zoom and a second tap restored fit. The registered Maestro
+gesture attempt completed but produced byte-identical fit/zoom/pan/restored
+screenshots, so the automated flow does not prove the gestures; direct drag did
+not visibly establish panning. Pinch, reliable pan, VoiceOver and physical-device
+acceptance remain open; the reader contract records these limits. A further P2
+increment reuses the same photo zoom/viewer interaction in the private Intake
+source, received-original, and canonical artifact readers while each route
+retains its own current authorization and exact source. This is shared
+interaction code, not shared custody authority. The new Life continuity
+scenario and full app merge-scope suite pass. Native pan/pinch, VoiceOver,
+physical-device and full screenshot acceptance remain open. Direct simulator
+double-tap has only the bounded fixture evidence recorded below. Stable component identity across
+OCR/representation replacement, collections, and reconciliation remain open.
+This roadmap owns
+Strategy's package
+sequence and receipts. The program owns cross-lane boundaries, not a
 permission queue for ordinary implementation. The earlier
 [strategy handoff](roadmap-proposals-for-codex-2026-09-28.md#9-focused-artifact-engineering-proposals)
 is proposal provenance. Capture transport, signing and Home/Places delivery
@@ -286,6 +375,75 @@ wire models or permission to create a table for every row.
 | Prepared result | Exact generated output, input manifest, method version and current eligibility | Existing production/composition lifecycle |
 | Kept edition | Exact chosen expression, stable edition reference and governed availability | Explicit saved-composition persistence owner |
 
+#### P0 recommended identity seam — proposal for founder review
+
+The recommendation is a thin, user-owned **Thing identity** (`ThingRef`) that
+names what the person keeps, with original Sources, source-local recognition,
+world Subjects, selected Components, and generated/kept expressions remaining
+separate authorities. This is a proposed owner boundary, not authorization for
+a migration. It best satisfies the accepted ingestion rule—two copies of the
+same ticket resolve to one kept thing while retaining both Sources—without
+turning every downstream concept into a generic Artifact row.
+
+| Concept | Recommended owner/reference | Keep distinct from |
+| --- | --- | --- |
+| Original Source | Existing Intake/source-custody identity plus exact content revision and grants | Thing identity and extracted claims |
+| Kept Thing | Stable owner-scoped `ThingRef`; the durable consumer target for Collections, readers, sharing, and cross-door reconciliation | Source bytes, ExperienceAnchor occurrence semantics, world-subject identity, and generated prose |
+| Recognition | Existing submission-scoped candidate/observations, linked reversibly to a Thing when admitted or explicitly reconciled | Cross-submission identity: current `(submission_id, candidate_key)` is idempotency inside one submission, not the global identity |
+| World Subject | Existing Place identity for physical places; a bounded cultural-work subject reference for books/films/shows/music, with work and edition/release distinctions | A person's ticket, copy, note, dish, or separate attendance contribution |
+| Component | A Thing-owned component reference only when a selected part must survive; its typed selector remains bound to exact Source/content revision | Raw coordinates/offsets as identity, or a new universal media-annotation platform |
+| Experience / Occasion | Existing Experience Graph and operational owners; can relate Things and Subjects using supported evidence | A replacement identity for everything the person keeps |
+| Reader descriptor | Optional, versioned `ArtifactReadingDescriptor` used to choose a renderer | Stable identity, catalog resolution, attendance, or permission |
+| `ResourceRef` | Existing navigation/command address to an owner projection | The identity registry or data owner itself |
+
+This means **do not** expand the current place-like `EntityRef` into a universal
+personal Thing, and do not put source payloads, claims, collection membership,
+Subjects, or generated editions into a universal Artifact table. The existing
+EntityRef capability sets and persistence paths encode physical Place behavior;
+World Foundry promotion rebuilds Place projections. Reusing those tables for
+cultural works is a capability/owner migration, not a safe enum addition. On
+the other side, keeping only submission-local Intake candidates cannot satisfy
+cross-door identity or canonical Collection membership. A narrow Thing owner
+is the recommended middle boundary; its service/repository placement and exact
+minimum fields remain undecided.
+
+Before implementation, founder review should settle only these choices:
+
+1. Approve or reject a stable user-owned Thing identity distinct from
+   `ExperienceAnchor` and world Subject identity (recommendation: approve).
+2. Name its owning domain and require evidence-backed, reversible link/merge/
+   split operations; preserve independent Source custody and do not union grants
+   when two Things reconcile (recommendation: approve the behavior, then choose
+   the smallest owner after the producer/collection integration is mapped).
+3. Keep physical Place and cultural-work Subjects in separate capability
+   domains unless a full capability audit justifies a shared identity substrate
+   (recommendation: keep separate for the first implementation).
+4. Require a typed source-revision-bound component selector now, but create a
+   stable cross-representation Component identity only when a real consumer
+   must retain a selected part (recommendation: stage the latter behind that
+   acceptance case).
+
+The first acceptance fixture is decisive: importing one identical ticket from
+email and screenshot yields one `ThingRef` with two separately addressable
+Sources; revoking either Source removes only that Source's access and does not
+silently grant the surviving Source's permissions to the other. Two tickets
+for different screenings remain two Things while referring to one film Subject.
+Explicit merge/split preserves prior references or typed redirects and every
+original remains independently addressable. No identity migration should begin
+until this owner boundary is reviewed.
+
+Code basis for this proposal: `travel-agent/backend/core/models/entity_identity.py`
+and `backend/core/entity_types.py` define place-like `EntityRef` values and
+capability subsets; `backend/core/db/entity_identity.py` resolves namespaced
+external IDs only to those references. `backend/core/db/intake_semantics.py`
+keys candidate replay by submission and candidate key, while
+`backend/core/db/intake_anchors.py` projects confirmed candidates as
+`ExperienceAnchorProjection`. `backend/core/models/execution_contract.py`
+defines `ResourceRef` as a typed reopenable owner address, not a durable owner.
+`backend/world_foundry/persist.py` promotes accepted facts through entity and
+Place-content owners. These are implementation observations, not permission to
+reuse or migrate those schemas.
+
 ### Identity and selection
 
 Retry identity, byte identity, thing identity, subject identity and occurrence
@@ -319,16 +477,155 @@ source grants; merging identity does not union permission. Reference migration
 must preserve old links through a reviewed alias or redirect, and reversible
 split must leave each original addressable.
 
+### Code-backed owner map and present reader boundary — September 30
+
+The following is an implementation inventory, not a decision to promote any
+projection into a new canonical owner.
+
+| Concern | Existing implementation and authority | What this establishes—and what it does not |
+| --- | --- | --- |
+| Source custody | Intake submissions, source objects, and retained-source lifecycle in `travel-agent/backend/core/db/intake_v2.py`; HTTP commands in `travel-agent/backend/api/routes/intake.py` | Source ownership and revocation exist. `DELETE /api/intake/submissions/{id}` revokes/scrubs the source; it is not a reversible artifact Undo. |
+| Confirmed thing/read target | Confirmed Intake candidates are projected by `travel-agent/backend/core/db/intake_anchors.py` as `ExperienceAnchorProjection`; `travel-agent/backend/api/routes/artifact_projections.py` reads them through `ResourceRef(kind="experience_anchor")` at `/you/memories/artifacts/{id}`. Candidate rows retain a UUID across replay/status changes and use `(submission_id, candidate_key)` as their idempotent key. | The same row ID becomes the confirmed reader target, but identity is submission-local: a separate submission has a separate candidate, and no cross-door/cross-submission reconciliation is provided. This is not independent durable artifact custody. |
+| Claims and correction | Intake observations/candidate revisions in `travel-agent/backend/core/db/intake_semantics.py`; source-bound projection in `travel-agent/backend/core/canonical_artifact_projection.py` | The reader still exposes three gated owner commands: `wrong_time`, `separate_from_occasion`, and `keep_occurrence_forget_interpretation`. These now carry a stable command ID and expected numeric revision. The owner contract also accepts a typed `replace_time` correction and replays it through the canonical anchor owner, but the mobile reader does not yet expose a replacement editor: preserving or explicitly selecting the source time zone remains unresolved. |
+| Place and occurrence context | Physical `EntityRef` vocabulary in `travel-agent/backend/core/entity_types.py`; owner-scoped Experience Graph rows bridged by the artifact projection route | Place/time/Occasion/Plan context can be read from its existing owners. The place-like entity capability sets are not a cultural-work identity registry. |
+| Selected component | Intake observations and `evidence_locator` validation in `travel-agent/backend/core/intake_evidence.py` | Evidence may point back into a source, but this is not yet a stable part identity with a normalized source-revision-bound text/image selector. The current reader opens the whole source. |
+| Life organization | Rebuildable viewer-specific groups and membership controls in `travel-agent/backend/life_projection/organization.py`, `travel-agent/backend/core/db/_tables/life_organization.py`, and `travel-agent/backend/core/db/life_organization.py` | Groups, memberships and controls are keyed by `viewer_id` and `projection_version`; memberships record evidence-backed derived relations to owner records. Durable controls rename a derived group, detach one derived membership, or undo that control. They provide useful revision/CAS and reversible-control patterns, but do not create or own a user's canonical Collection or its shared audience. |
+| Existing editorial collections | Public `/api/collections` reads in `travel-agent/backend/api/routes/collections.py`, backed by editorial guide bundles in `travel-agent/backend/core/models/collections.py` and `travel-agent/backend/core/db/collections.py` | This is content for Discover, with typed editorial member entity references and published/draft state. Its API is not the accepted personal/shared Collection owner, and its member schema does not point to stable consumer Thing references. |
+| Contextual selection and prepared additions | Strategy Technical's existing Source Contribution discovery, work, result, serving, and publication path (section 12); mobile adapters in `travel-app/hooks/` and request/read routes in `travel-agent/backend/api/routes/agent_workflows.py` | The producer/result path is reusable, but current app integration is Home/Places-rooted, not artifact-bound. See the request-boundary note below. |
+| Kept edition | No kept-edition target or exact-snapshot action is exposed by the current canonical artifact projection/reader route | The current reader can reopen its original owner projection; it does not establish user-owned persistence of a generated explanation or a stable edition reference. P4 remains separate. |
+
+#### Artifact-specific discovery request boundary — September 30
+
+The Source Contribution producer and exact-result reader already exist; the
+missing piece is not another research provider. The app's
+`SourceContributionRoot` in
+`travel-app/hooks/useSourceContributionResult.ts` is limited to
+`home | places`; `useSubmitSourceContributionRequest.ts` and
+`useRootSourceInspection.ts` submit and consume root jobs. The backend
+contract in `travel-agent/backend/api/routes/agent_workflows.py` likewise
+accepts only Home/Places in `allowed_roots` and requires any `context_ref` to be a
+`places_context`. The request names subject/source/context refs and
+`represented_at`, but has no selected artifact target, target revision, or
+component locator. Consequently the current artifact reader cannot ask for and
+reopen a prepared result bound to the exact item being viewed. P0 must settle
+that target/revision/component contract before P3 adds an artifact adapter; do
+not pass a submission-local `experience_anchor` through `context_ref` or label
+a root-wide result as artifact-specific value. Exact kept-edition persistence
+remains the separate P4 owner.
+
+#### Collection owner comparison — September 30
+
+The accepted consumer Collection semantics need one canonical, many-to-many
+owner whose membership points at stable kept-thing references and whose
+collection-level audience is shared as a whole. The existing Life organization
+tables are a derived, viewer-specific projection: they use `(viewer_id,
+projection_version, group_key)` identities, persist evidence and revisions for
+derived relations, and preserve per-viewer exclusions and control history. The
+materializer accepts owner/evidence-backed proposals and can supersede stale
+derived rows; it does not author the underlying thing or collection. Those
+revision, idempotency, detach and Undo mechanics are candidates to reuse behind
+the canonical owner, not proof that the projection itself is that owner.
+
+The existing editorial `collections` API is a separate domain: it exposes
+published public guide bundles with editorial metadata and a bounded set of
+catalog-entity member columns. It does not provide the accepted user-owned
+Collection, cross-member audience, or stable kept-thing membership contract.
+Accordingly, the safe mapping is to preserve both systems in their current
+roles and define the consumer Collection owner as a distinct canonical owner;
+Life may read/project that owner later. Do not migrate consumer writes into
+either existing model by renaming or widening its current projection. A durable
+implementation still depends on the P0 reviewed ThingRef/reconciliation
+boundary and the collection-owner contract; no schema or runtime behavior is
+changed by this mapping.
+
+The first delivered reader-mode matrix is deliberately narrow:
+
+| Mode | Current behavior | Not implied |
+| --- | --- | --- |
+| Mine, confirmed `ExperienceAnchor`, recognized ticket/place/work with family-relevant source facts | Versioned descriptor may select the corresponding native reader; original-first fallback remains for missing facts, unknown types, or unsupported descriptor versions | Catalog match, validity, visit/attendance, external media, selected-part identity, or general input-format support |
+| Mine, sparse/unrecognized anchor or recognized passage/dish/practical record | Recognized passages require a non-empty source-backed `excerpt`; practical records require supplied identity/place/provider/time/status details. Dish, sparse records/passages and unrecognized anchors use the source-fact/original fallback. | Author/work identity, calculated receipt or payment claims, a new family-specific schema, or generated interpretation |
+| Together | Canonical artifact projection route rejects the request until graph-owned sharing authorization exists; private reader-family metadata is withheld | That an Occasion link or source-level sharing elsewhere grants this reader access |
+| Catalog lookup, selected-part reading, contextual discovery, exact saved edition | Not connected by this reader increment | Any provider rights, answer generation, durable retention, or permission to share generated material |
+
+### Supported source and artifact-mode crosswalk — September 30
+
+Admission, interpretation, reader mode, and audience are separate gates. An
+Intake submission reaching verified custody does not prove that its contents
+were understood as an artifact, that a family reader is available, or that the
+artifact can be shared.
+
+| Door or representation | Custody and reader evidence | Limit that remains |
+| --- | --- | --- |
+| App text, camera/photo library, and OS share capture | Intake v2 accepts inline text and supported selected/captured sources. Exact image, text, audio, and calendar representations have owner-reader coverage in the app; image inspection uses the shared zoom surface. | This proves supported bytes and the source reader, not that every source yields a recognized artifact family. App preflight and backend byte validation reject PDF, Apple Wallet (`.pkpass`), and HEIC/HEIF today. |
+| Forwarded email | Subject/body enters as private inline text; numbered admitted attachments reuse Intake custody. `tests/inbound/test_email_forward_v2.py::test_v2_email_rejects_valid_sibling_with_scanner_gated_attachment` proves the entire unsupported bundle is rejected before Intake state or uploaded bytes are created. | All-or-nothing at 15 files / 8 MiB aggregate, within the 10 MB webhook cap; no sender-facing failure notice. No external mail delivery or sender readback is proven. |
+| Explicit original delivery | A specific received original is inspectable only while the selected delivery is active, unexpired, and currently authorized for that recipient. The image reader uses that exact authorized URI/token and resets when eligibility changes. | This is not Together access to the sender's canonical artifact, its other sources, or collections. No grant is inferred from a shared Occasion or fixture. |
+| PDF, PKPass, HEIC/HEIF, or unsupported audio representation | No admitted Intake-v2 source reader is promised for rejected bytes. | A registered normalizer, upstream file picker, or ticket-like appearance does not override the scanner/decoder gate. |
+
+| Artifact reader mode | Current app behavior | Not connected / not implied |
+| --- | --- | --- |
+| Mine · transport/admission ticket | Versioned ticket reader only when the owner projection has a supported descriptor and family facts; otherwise source-fact/original fallback. | Valid ticket, attendance, catalog identity, stable selected admission, or PDF/Wallet support. |
+| Mine · place anchor | Source-backed place treatment when place/time facts qualify; otherwise source-fact/original fallback. | Resolved venue, visit claim, map, catalog details, or availability. |
+| Mine · book/film/show/music | Medium-specific text-built face when recognized with family facts; the submitted source remains reachable and no catalog art is assumed. | Work/edition identity resolution, licensed media, or a general subject page. |
+| Mine · passage | Text-built “as kept” treatment only with a recognized descriptor and non-empty source-backed excerpt; other supplied facts remain bounded details. | Author/book/edition identity, surrounding context, or generated interpretation. |
+| Mine · practical record | Neutral “as kept” sheet when a recognized descriptor and supplied identity/place/provider/time/status detail are present; otherwise generic source-fact/original fallback. | Totals, payment state, validity, or other calculated/inferred facts. |
+| Mine · dish; sparse or unknown format | Generic source-fact/original reader, including when a descriptor is recognized but lacks the fields required for a designed reader. | A specialized dish face, inferred meaning, or completion of missing facts. |
+| Together · canonical artifact | Not served by this private owner projection until the graph-owned sharing authorization path exists. Static shared fixtures test presentation/redaction only. | Production multiplayer artifact reading, membership authority, or publication. |
+| Selected component, catalog, contextual discovery, kept edition | No stable selected-part reference or artifact-bound prepared-result/saved-edition handoff in this reader. | OCR region identity, external provider rights, generated context, or silent persistence. |
+
+The format-reader tests, owner-original checks, email bundle rejection,
+private/Together fixtures, and September 30 disposable-Postgres artifact-route
+replay give bounded evidence for these stated behaviors. The route replay
+proves persisted owner readback, non-owner denial, withdrawal, and explicit
+submission deletion for one confirmed Intake candidate. This crosswalk does
+not prove that every door recognizes every family; that claim remains
+unsupported until cross-door identity and owner readback are implemented and
+tested.
+
+Descriptor support proves only the confirmed-reader route. It does not establish
+which source doors or representations reach that route. The current door and
+format boundary is:
+
+| Door or layer | Current path and admitted scope | Failure/evidence boundary |
+| --- | --- | --- |
+| App text and file capture | `travel-app/utils/intakeCaptureService.ts` and `travel-app/hooks/useCaptureDraftController.ts` submit inline text or 1–16 selected/captured sources through Intake v2. Origins include Chat, camera/photo library, and iOS/Android share capture. The app preflight rejects PDF, Apple Wallet (`.pkpass`), and HEIC/HEIF; the backend still validates actual bytes. | This is an app preflight plus owner upload/finalize contract, not a guarantee that every OS-shared representation can be decoded or semantically read. An unsupported item blocks the selected app bundle before its V2 submission. |
+| Forwarded email | The SendGrid route supplies message text plus numbered attachments to `travel-agent/backend/inbound/email_forward.py`. The current limit is 15 attachments and 8 MiB aggregate; every attachment is validated before the Intake row, private attachment upload, or raw archive is written. | Unsupported content rejects the whole email, including otherwise-valid text/siblings; there is no sender-facing failure notice. `tests/inbound/test_email_forward_v2.py::test_v2_email_rejects_valid_sibling_with_scanner_gated_attachment` now proves a valid PNG before a scanner-gated PDF creates no submission, archive, or uploaded bytes. It does not prove sender-visible delivery/readback. |
+| Backend byte admission and normalization | The active Intake v2 boundary supports server-decodable image, audio, text, and calendar sources. The normalizer registry includes JPEG/PNG/GIF/WebP, text/calendar, and audio metadata normalization; the audio normalizer still requires a separate transcription adapter. PDF and PKPass normalizers exist but V2 rejects them until the scanner lane is enabled; HEIC/HEIF is rejected. | A registered parser is not permission to admit a format; a MIME normalizer is not proof of semantic extraction or a family reader. PDF/Wallet support, HEIC conversion, mixed-bundle partial success, and every email combination remain unsupported. |
+
+The reader-mode matrix now has code-backed boundaries for its first app doors,
+including the all-or-nothing email case and one database-backed confirmed-
+artifact lifecycle through the canonical reader route. A separate sparse-
+history fixture in `travel-app/constants/mocks/artifactPortfolioFixtures.ts`
+admits a private Sorrento opening from only one viewer observation and one
+public research source. Its test retains the observation and sourced geology,
+and excludes the later lift/ferry movement synthesis because those personal
+sources are absent. This proves the existing composition compiler accepts that
+bounded shape; it does not prove live model generation, current-source
+verification, successful native rendering, or human desirability. P0 still
+needs selected-part representation fixtures and a clearer caller-visible
+rejection/receipt for unsupported email content. Exercise those against the
+owner routes; do not change Orchestration's transport or enable a scanner from
+this artifact lane.
+
 ### Typed reading contract
 
 Experience semantics and reader formats are separate dimensions: existing
 semantic families such as `attendance` and `attention` do not become the UI
-family enum for tickets, books or albums. Define a bounded, versioned adapter
-from eligible owner facts and source evidence to typed readings consumed by
-family renderers. Specify required/optional fields, uncertainty, units and
-timezones, and an original-preserving unknown-version fallback. A maintained
-registry is sufficient; no arbitrary model-authored schema or new UI framework
-is required. Backend wire models and generated app types remain authoritative.
+family enum for tickets, books or albums. The first runtime increment is the
+optional `ArtifactReadingDescriptor` on `CanonicalArtifactProjectionV1`,
+version `artifact-reading.v1`. A maintained backend registry maps known source
+artifact types to a bounded presentation family/format and reports whether
+family-relevant facts survived owner projection. The app dispatches known
+travel/admission tickets to a native ticket reader; unknown types, unsupported
+versions and recognized records without family facts retain the original-first
+source-fact reader. This descriptor does not resolve a cultural subject, imply
+ticket validity/attendance, or author UI geometry. It is an adapter milestone,
+not the complete typed-field contract. It is emitted only for the owner's Mine
+view; Together stays generic until the sharing owner explicitly authorizes the
+family metadata. P0 still needs to specify each reader's
+required/optional fields, uncertainty, units, timezones, selected components
+and unknown-version behavior. A maintained registry is sufficient; no
+arbitrary model-authored schema or new UI framework is required. Backend wire
+models and generated app types remain authoritative.
 
 ### Context and edition semantics
 
@@ -385,8 +682,9 @@ of a user-visible leak.
 
 Use one Strategy owner with bounded internal subagents only when authorized.
 The waves describe experience dependencies across the three assigned lanes,
-not calendar estimates or additional permanent lanes. Implementation is not
-started by this planning update; package status remains **proposed** until intake.
+not calendar estimates or additional permanent lanes. Execution is active in
+this coordinated Strategy lane; section 0 records landed slices, while each
+package's remaining gates stay open until their stated evidence exists.
 
 | Package | Outcome | Entry dependency | Primary responsibility |
 | --- | --- | --- | --- |
@@ -435,9 +733,13 @@ that allows reader, retrieval and maintenance work to proceed independently.
 - Recheck actual worktrees, runtime ownership, pending work and the program's
   lane boundaries. Consume Orchestration's existing capture path; do not take
   over its transport files when implementing identity or sharing semantics.
-- Map the responsibilities in section 3 to concrete existing types, services
-  and mutation paths. Decide the thin identity/reconciliation mapping and
-  consumer collection owner; do not rename editorial collections into it.
+- The September 30 code-backed map in section 3 now ties existing owners to
+  concrete types, routes, and mutation paths. Carry the accepted September
+  28 Collections and September 29 Life semantics into owner contracts; do not
+  reopen them while deciding their implementation. Review the remaining thin
+  identity/reconciliation mapping and where consumer collection persistence
+  belongs. The accepted Life organization projection and editorial guide
+  collections are not the consumer Collection owner by implication.
   Name the cultural-subject owner, stable local references, external mappings
   and work/edition distinctions before PC and P2 choose incompatible models.
   Review the physical capability assumptions and external ID namespaces in
@@ -492,6 +794,11 @@ identity and addressable originals, independent of its entry door.
   custody/owner identities and a thin resolver.
   Source revocation still removes access. Do not create duplicate durable
   artifacts merely to switch readers.
+  **Delivered boundary:** an eligible original now links back to its existing
+  confirmed candidate/anchor only when active evidence names the exact source
+  object and custody-bound content digest. The private interpretation read is
+  owner-session scoped and rechecked on return. This does not establish durable
+  component identity across OCR or representation replacement.
 - Add source-bound components for multiple admissions or passages. Preserve
   originals through OCR correction, representation replacement and partial
   extraction failure. Never synthesize unreadable details to fill a template.
@@ -499,12 +806,25 @@ identity and addressable originals, independent of its entry door.
   reason, supporting identifiers and reversible links. Ambiguous cases remain
   separate until evidence supports convergence; do not ask for classification
   before providing the original's value.
-- Repair successive original-record corrections as distinct commands with
+  - Repair successive original-record corrections as distinct commands with
   expected revisions. Reassess the inspected candidate/action idempotency
-  coupling and wrong-time clearing path; support typed replacements through
-  the proper owner. These corrections do not depend on generated editions.
-- Separate event/valid time, received time and freshness. Recheck the fact
-  writer's validity-end default before reusing it for historical artifact data.
+  coupling. The revisioned time path now replaces source-extracted time claims
+  in both compiler and owner-scoped artifact reads, with the correction record
+  as provenance; a later `wrong_time` correction removes that time from the
+  canonical artifact projection. The persisted lifecycle test now also exercises
+  all four revisioned semantic correction actions in sequence, including exact
+  retry, changed-payload conflict, stale-revision conflict, latest-correction
+  readback, and preservation of the original extracted observation. Concurrent
+  different commands at one revision now prove a single winner and stale loser;
+  concurrent retries of one command prove one persisted effect. Sequential
+  owner corrections now traverse the authenticated Intake route and verify the
+  canonical artifact readback. The mobile replacement-time editor/Undo path
+  remains open. These corrections do not depend on generated editions.
+- Separate event/valid time, received time and freshness. The entity-fact
+  writer now derives `valid_to` only from an explicit asserted end; freshness
+  `expires_at` remains separate and current selectors still enforce it. Its
+  `valid_from` convenience default remains `observed_at` for current-state
+  claims, so historical producers must provide event-time bounds explicitly.
   Preserve captured facts and their provenance when current subject facts change.
 - Establish consumer collection membership through its chosen owner, including
   explicit removal/exclusions, many-to-many membership and deletion semantics.
@@ -642,6 +962,13 @@ and returns correctly from related material. It remains useful without AI.
 - Define reusable family-level readers for appropriate inspection: an original
   photo, ticket details, a selected passage, and structured practical evidence.
   A single giant conditional ArtifactCard is not the abstraction.
+  **Delivered increment:** a passage's source-backed `excerpt` is now emitted
+  by the owner projection and shown in a restrained “as kept” reader when the
+  recognized descriptor and excerpt are both present. This does not select a
+  part inside a longer original or identify its author/work; dish and practical
+  records were subsequently given a source-only “as kept” sheet. It requires
+  supplied structured details and calculates no amount/payment state. Dish
+  records still use honest source-fact/original fallback.
 - Reuse a common original-inspection interaction across Intake, confirmed
   artifacts and received originals, retaining each owner's authorization adapter.
   Test dense print, zoom/pan, selected parts, supported text copying and dismissal
@@ -685,8 +1012,8 @@ kept-to-recognized transition and inspect the same small-print original after
 Keep, confirmation and authorized receiving, including multiple large images.
 
 Retain reviewed original-first specimens across the portfolio: readable
-admission details, photograph inspection, a passage with its source context,
-and usable structured record details. They must preserve personal specificity
+admission details, photograph inspection, a passage with its supplied source
+context, and usable structured record details. They must preserve personal specificity
 and appropriate interaction rather than cosmetic variants of a generic information
 card. Design review can identify weaknesses and select a treatment; desirability
 to ordinary users remains a hypothesis until the human comparison.
@@ -694,6 +1021,17 @@ to ordinary users remains a hypothesis until the human comparison.
 **Design boundary:** exact density and aesthetic treatment need design review,
 but source access, route continuity, eligibility and data contracts can advance
 before final composition is frozen.
+
+**Implementation increments:** travel and admission ticket formats have a
+typed dispatch path; place records receive a compact source-backed place,
+neighborhood and time treatment without a map or resolved-venue claim; and
+book/film/show/music records use text-built medium-specific house forms without
+catalog or generated art. Other reading formats still use the generic
+source-fact/original reader; this does not imply that PDF, Wallet, every email
+attachment or native visual acceptance is complete. The canonical reader also
+exposes the existing owner correction command for declared time,
+Occasion-separation and interpretation-hiding actions. It does not yet support
+editing a replacement value, source deletion/Undo or native visual acceptance.
 
 ### P3 Contextual discovery and useful selection
 
@@ -923,7 +1261,7 @@ checkpoint. Retire replaced adapters only after consumer/readback coverage.
 | Decision | Recommendation or current boundary | Blocks | Does not block |
 | --- | --- | --- | --- |
 | Thing reconciliation, components and cultural subjects | Approve a thin mapping, shared selectors and cultural owner in P0; review physical capabilities, external ID namespaces and typed readings | Incompatible identity/schema implementations | Original rendering against existing source references |
-| Consumer collection owner | Map accepted many-to-many behavior explicitly; do not reuse editorial guide tables by name | Durable collection writes and corresponding sharing | Single-object private reader and owner-linked discovery |
+| Consumer collection owner | Product semantics are accepted: user-owned collections, many-to-many membership, whole-collection visibility, and explicit Remove/Delete. Code inspection confirms that the viewer-scoped derived Life organization and public editorial guide collections are different owners; preserve them as read/projection and editorial systems. Define a distinct canonical consumer Collection owner over the reviewed stable ThingRef boundary. Vesper-initiated additions to shared collections remain a separate pending policy choice. | Durable collection writes and corresponding sharing | Single-object private reader and owner-linked discovery |
 | Kept edition after supporting withdrawal | Recommended default: withhold affected content, preserve only permitted metadata, offer a new independently supported version; exact policy unadopted | Shared derivative retention and partial salvage promises | Private originals and edition mechanics tested without disputed shared material |
 | Offline retained material | Adopt what can be cached, for how long and how reconnect handles loss; no instant remote revocation promise | Persistent shared offline caches and their user promise | Online reader, locally available independently eligible originals under existing rules |
 | Automatic preparation | Separate selection refresh from generation; define allowed triggers and budget owner | New proactive generation/background posture | Existing explicit requests, pure reads and cheap authorized selection |
@@ -1251,9 +1589,618 @@ Vesper is a design recommendation, not validation of Vesper's product advantage:
 
 ## 13 Document completion record
 
-This document records planning and inspection evidence only. Runtime tests,
-native acceptance, model comparisons and economic measurements in the packages
-are required future work, not completed results. This file now owns Strategy's
-assigned package progress under the program boundaries, not the other lanes'
-queues. On expiry, its owner should refresh unfinished work with an explicit
-reason, promote durable contracts or archive completed planning and research.
+This document records planning, code-backed owner mapping, and bounded local
+implementation receipts. The September 30 follow-on checkpoint started from
+workspace HEAD `61486071`, backend `d6730f6d6`, and app `d7401a2ec` in the
+coordinated `codex/artifact-foundation` worktree. Subsequent commits added
+backend correction-replay coverage (`3cecd34f6`), an owner-scoped exact-original
+projection (`0cbd4b6a7`), the app's exact inspect route (`14b40fea6`), and
+generated API snapshots (`f3b693890`), and a registered exact-original reader
+QA scenario (`f84ea3419`). The September 30 continuation added an app-side
+original-to-record link (`fa07c85c4`) and disposable-Postgres owner-readback
+coverage through the authenticated Intake route (`5dbc29353`, extended by
+`ac946ba0b`), followed by canonical artifact-reader lifecycle coverage
+(`9c775cd03`). Focused evidence:
+
+| Boundary | Command | Result and limit |
+| --- | --- | --- |
+| Backend email admission | `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/inbound/test_email_forward_v2.py -q` | 17 passed at backend `d6730f6d6`; mock-based owner-boundary behavior, no DB/provider delivery evidence. Includes valid-PNG + scanner-gated-PDF whole-bundle rejection. |
+| Backend test quality | `ruff check --cache-dir /private/tmp/vesper-artifact-ruff tests/inbound/test_email_forward_v2.py` and `ruff format --check --cache-dir /private/tmp/vesper-artifact-ruff tests/inbound/test_email_forward_v2.py` | Both passed; backend commit hooks also passed Ruff, formatting, Vulture, and secret checks. |
+| Backend correction replay | `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/inbound/test_anchor_runtime.py tests/inbound/test_intake_anchor_projection.py tests/core/test_canonical_artifact_projection.py tests/api/test_artifact_projections.py -q` | 49 passed at backend `3cecd34f6`; replay selects the newest semantic correction while ignoring a confirmation audit row, is deterministic, and preserves original source lineage/hash as interpretation claims change. Fixture-level evidence only; no database concurrency or persisted replay proof. |
+| P1 successive typed-time correction foundation | Backend `df3fa9ec8`; app `9aee57049` (implementation `804e9ede1`). `ruff check --no-cache …` and `ruff format --check --no-cache …`; focused backend suite (`tests/inbound/test_intake_semantics_contract.py`, `tests/inbound/test_anchor_runtime.py`, `tests/core/test_canonical_artifact_projection.py`, `tests/api/test_intake_route.py`, `tests/inbound/test_candidate_owner_lifecycle_postgres.py`, excluding guarded DB/API-key/dogfood markers); disposable-Postgres case `test_revisioned_time_corrections_apply_successively_and_dedupe_exact_retry`; app `npx tsc --noEmit --pretty false`, `npm run test:typecheck:contracts`; targeted reader/action Jest tests; `./scripts/sync-types.sh` and `npm run generate-api-types:check` | Backend lint/format passed; 78 focused offline tests passed (2 deselected); the explicitly disposable lane-Postgres case passed, proving two successive typed replacements, exact retry deduplication, stale-revision and changed-payload conflicts, separate persisted corrections, and unchanged original evidence. OpenAPI snapshot, app projection and generated types synced offline and generation check passed; app typecheck, test contract typecheck, and 18 targeted tests passed. The UI regression proves the same command ID is reused after an ambiguous failure. Existing reader corrections now submit command ID + current numeric revision. No live API or native UI proof. This completes only the command/owner foundation: no mobile replacement-time editor is exposed until time-zone authoring can preserve the original zone or require an explicit choice; other P1 identity, component, collection and reconciliation work remains open. |
+| P1 post-keep artifact handoff | App `debc65b1c`; `npm test -- --runInBand __tests__/screens/share-capture-intake-v2.test.tsx`; `npx tsc --noEmit --pretty false`; `npm run test:typecheck:contracts` | 28 screen tests passed; the new case proves “Open artifact” is available only after the owner keeps an interpretation and routes the candidate/anchor ID into the existing canonical reader while “Forget” and “Done” remain. This is mocked navigation, not a live API or native simulator result. It closes the immediate capture-to-reader door only; the reverse original-to-record link was still open at this checkpoint and is covered by the following receipt. Stable source/component identity remains open P1 work. |
+| P1 original-to-record continuity | App `da5c6b8fa` plus lineage hardening `fa07c85c4`; `npm test -- --runInBand __tests__/utils/intakeArtifactContinuity.test.ts __tests__/screens/intake-submission.test.tsx __tests__/data/intake-source-removal-lifetime.test.tsx __tests__/data/intakeReadAuthority.test.tsx __tests__/utils/queryKeys.test.ts`; `npm run typecheck`; `npm run test:typecheck:contracts`; targeted `npx eslint …`; `npm run qa:polish:scenarios`; `npm run qa:design:check -- canonical-artifact-reader`; `npm run qa:polish -- canonical-artifact-reader --doctor` | 65 tests passed; typecheck, test-contract typecheck, scenario IDs (31), design-ref check, and whitespace checks passed. The link uses confirmed candidate/anchor identity only when active observation lineage matches the exact submission, source ID, and custody-bound digest, with owner-session scoped interpretation cache, entry/return revalidation, withdrawal/revocation/expiry guards, and no duplicate artifact. Targeted ESLint had zero errors; the existing original-reader max-lines warning remains (850 baseline code lines; 889 after this change). No live API evidence. Design-ref check is doctrine-only with no pinned design reference. Native QA preflight was blocked because Metro was not reachable on `:8081`; no screenshot or native visual acceptance. |
+| P1 exact original-to-record backend readback | Backend `5dbc29353`, extended by route-level coverage `ac946ba0b`; `TEST_DATABASE_DISPOSABLE=1` against a newly created lane-local disposable DB; `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/inbound/test_candidate_owner_lifecycle_postgres.py -q`; offline `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/inbound/test_intake_semantics_contract.py -q`; `ruff check --no-cache tests/inbound/test_candidate_owner_lifecycle_postgres.py`; `ruff format --check --no-cache tests/inbound/test_candidate_owner_lifecycle_postgres.py` | Both Postgres lifecycle tests passed and 17 offline semantic-contract tests passed. The DB-backed authenticated-route assertion proves the actual `GET /api/intake/submissions/{id}/interpretations` response returns the confirmed active observation with its exact source ID, source-content digest and custody receipt; another owner receives 404, and withdrawal is reflected in the same route’s readback. Ruff and formatting passed, as did backend commit hooks. The task-specific database was dropped and only the Postgres service started for this run was stopped; the lane’s default database and volume were preserved. This is real route + persisted-DB evidence with a test dependency override for identity, not deployed-service or native/mobile acceptance; no schema or API contract changed. |
+| Backend exact-original projection | `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/core/test_canonical_artifact_projection.py tests/core/test_intake_anchor_originals.py tests/api/test_artifact_projections.py tests/inbound/test_anchor_runtime.py tests/inbound/test_intake_anchor_projection.py -q` | 59 passed at backend `0cbd4b6a7`; private owner projection includes up to 16 supported exact source/revision references, excludes them from Together, and withholds inspection for unsupported, revoked or unverified originals. Fixture/unit/API-route evidence; no disposable-Postgres readback or concurrency proof. |
+| App exact-original inspection | `npm test -- --runInBand __tests__/utils/canonicalArtifactActions.test.ts __tests__/screens/canonical-artifact-reader.test.tsx __tests__/components/canonicalArtifactCard.test.tsx __tests__/screens/intake-submission.test.tsx`; `npm run typecheck`; targeted `npx eslint …` | 65 passed; exact source ID and revision reach the existing Intake reader, with a chooser for multiple originals. Typecheck and targeted lint passed at app `14b40fea6`; screen mocks exercise routing, not native bytes, image zoom or device interaction. |
+| P2 exact-original photo inspection | App `c4b287de0`, transform-test follow-up `1da37e6c2`; manual QA fallback `72a4b8f41`; `npx jest --runInBand __tests__/utils/artifactPhotoZoom.test.ts __tests__/components/canonicalArtifactCard.test.tsx __tests__/components/photo-intake/PhotoViewerSurface.test.tsx`; `npm run typecheck`; `npm run test:typecheck:contracts`; targeted `npx eslint …`; `npm run size-budgets`; `npm run qa:polish:scenarios`; `npm run qa:design:check -- canonical-artifact-reader`; `VESPER_METRO_URL=http://127.0.0.1:64747 npm run qa:polish -- canonical-artifact-reader --doctor`; `npm run docs:check` | 26 focused tests passed; typecheck, test-contract typecheck, targeted lint, size budget, 31 scenario IDs, docs checks and whitespace check passed. The exact selected private original supports pinch zoom, bounded pan, double-tap zoom and screen-reader zoom actions; geometry and gesture-transition tests cover fit, stationary/moving focal points, bounds and recentering. It remains memory-only (`cachePolicy="none"`). Design refs are doctrine-only. The lane-configured QA attempt was blocked before capture: CoreSimulator was unavailable, then the runner could not create its temporary lock directory in the managed checkout (`EPERM`). The reader contract now defines a manual device/VoiceOver checklist, but that checklist was not run; physical gesture, screen-reader and screenshot acceptance remain open. |
+| P2 shared exact-photo inspection across Life readers | App `cde109f78`; `npx jest --runInBand __tests__/utils/photoZoom.test.ts __tests__/components/canonicalArtifactCard.test.tsx __tests__/components/photo-intake/PhotoViewerSurface.test.tsx __tests__/screens/intake-submission.test.tsx __tests__/screens/original-delivery.test.tsx`; `npx jest --runInBand __tests__/screens/original-sender.test.tsx __tests__/screens/intake-submission.test.tsx __tests__/screens/original-delivery.test.tsx`; `npm run verify:merge -- --base main`; `npm run qa:polish:test`; `npm run typecheck`; `npm run test:typecheck:contracts`; `npm run qa:polish:scenarios`; `npm run docs:check`; `npm run size-budgets`; `npm run api-boundaries`; `npm run schema-bridge`; `npm run home-surface-budgets`; cacheless `npx eslint --no-cache app components` | Focused reader tests passed (77), then 55 sender/intake/recipient tests passed after updating the existing sender screen's mock for the newly consumed interpretation-poll hook. Full merge scope passed: 1,285 suites, 9,075 tests, 1 snapshot. The polish harness, typechecks, docs, size, API-boundary, schema-bridge, Home budget, polish scenario-ID checks and `git diff --check` passed. Direct cacheless ESLint passed with 0 errors and 169 warnings; the `verify:fast` Expo lint wrapper could not write `.expo/cache/eslint` (`EPERM`). The Life native doctor and dry-run did not reach capture because CoreSimulator was unavailable and the runner could not create its temporary lock/screenshot paths (`EPERM`). The shared zoom component now serves the same exact image source in private Intake, current received-original authorization, and canonical artifact readers; loss of custody/authorization, image failure, delivery change or expiry closes/resets the viewer. No original bytes are disk-cached. No device gesture, VoiceOver, or screenshot acceptance is claimed. |
+| P0 first artifact-family fixture portfolio | App `c154e5826`; `npx jest --runInBand __tests__/components/canonicalArtifactCard.test.tsx __tests__/utils/canonicalArtifactPortfolio.test.ts __tests__/utils/canonicalArtifactActions.test.ts __tests__/utils/canonicalArtifactRenderProfile.test.ts __tests__/utils/canonicalArtifactRelationships.test.ts`; `npm run typecheck`; `npm run test:typecheck:contracts`; targeted `npx eslint --no-cache constants/mocks/canonicalArtifactFixtures.ts __tests__/components/canonicalArtifactCard.test.tsx __tests__/utils/canonicalArtifactPortfolio.test.ts`; `npm run verify:merge -- --base main` | Focused portfolio/render/action tests passed: 5 suites, 47 tests; both TypeScript checks and targeted lint passed. Full app merge scope passed: 1,286 suites, 9,089 tests, 1 snapshot. Reusable development/test specimens now cover all four designed work formats plus passage, dish and practical-record fallbacks, a sparse recognized film, and a bounded friend contribution. Tests verify renderer fallback, no catalog/generated art assumption, private-to-Together fixture redaction and no private-original access in the friend fixture. These are static mock projections only: they do not prove backend reader coverage, actual sharing authorization/publication, catalog identity, or persisted owner behavior. |
+| P0 supported source and artifact-mode crosswalk | Backend `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider -m "not requires_postgres and not requires_api_keys and not requires_dogfood_wedge" tests/inbound/test_intake_semantics_contract.py tests/core/test_intake_anchor_originals.py tests/core/test_canonical_artifact_projection.py tests/inbound/test_anchor_runtime.py tests/inbound/test_intake_v2_replay_identity.py tests/inbound/test_email_forward_v2.py -q`; app `npx jest --runInBand __tests__/screens/intake-submission.test.tsx __tests__/utils/intakeSourceOriginal.test.ts __tests__/utils/api/mockIntakeV2.test.ts __tests__/utils/api/captureIntakeApi.test.ts __tests__/screens/original-delivery.test.tsx __tests__/utils/canonicalArtifactPortfolio.test.ts`; workspace `make docs-check` | 79 backend offline tests and 100 app tests across 6 suites passed; workspace documentation checks passed with the crosswalk. Tests cover source custody/admission, supported original representations, private original projection, supported reader/fallback modes, fixture redaction, recipient authorization, and fail-closed email attachment rejection. These are bounded unit/route/mock checks; no external email delivery, production file decoder, cross-door identity reconciliation, production Together artifact authorization, or disposable-Postgres run is claimed. |
+| App registered QA and native attempt | `npm run qa:polish:scenarios`; `npm run qa:polish:surfaces`; `npm run qa:polish:test`; `VESPER_METRO_URL=http://192.168.1.153:64747 npm run qa:polish -- canonical-artifact-reader --device='Vesper QA SE' --flow=polish/canonical-artifact-reader` | Scenario/surface registries passed (31/47); the harness suite passed. App `f84ea3419` registers an exact calendar-original open/return flow with a fixture bound to the existing mock source and Together redaction. The native attempt reached the assigned iOS 18.2 simulator but stopped at the runner's readiness gate: its installed dev app crashed with Reanimated/Worklets JS/native mismatch (0.7.4 vs 0.11.3). `npx expo run:ios --device 51A7A2C0-49CB-487E-A056-A771361EFA9B --no-bundler --no-build-cache` could not produce a replacement: Xcode 26.5 failed to load the generated CocoaPods project containing the RaTeX Swift-package product (`_setSavedArchiveVersion` selector error), followed by missing module-map errors. Only the redbox was captured; no product screenshots exist. Native visual acceptance remains pending. |
+| Generated API contract | `./scripts/sync-types.sh` | Offline export, app projection and generated TypeScript completed after adding `ArtifactOriginalReference` and revisioned typed correction fields; the static fixture was updated before sync passed. Generated snapshot commit `f3b693890` predates the September 30 correction contract update in this lane. |
+| App reader fallbacks | `npm test -- --runInBand __tests__/components/canonicalArtifactCard.test.tsx` | 18 passed at app `d7401a2ec`, covering ticket/place/work readers and generic fallback for passage/dish/practical-record descriptors. |
+| App static/registered inventory | `npm run typecheck`; targeted `npm run lint -- __tests__/components/canonicalArtifactCard.test.tsx`; `npm run qa:polish:scenarios` | Passed; scenario inventory is 31 registered IDs. No screenshot was captured and this is not native visual acceptance. |
+| Workspace documentation | `make docs-check` (after `make docs-status-sync`) | Passed on workspace `f3b693890` plus this roadmap and generated-current-state edits in the working tree; both receipts landed together as workspace `ab0a3522`. Includes governance, child governance, inventory, spine, canon, release, generated status, links, compatibility and Home-surface checks. |
+
+### September 30 lifecycle extension
+
+| Boundary | Command | Result and limit |
+| --- | --- | --- |
+| P2 source-bound passage reader | Backend `4b29a3125` and lineage assertion `48ca8c790`; `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/core/test_canonical_artifact_projection.py -q`; targeted `ruff check --no-cache …` and `ruff format --check --no-cache …`; app `8df9bf93e`; `npm test -- --runInBand --no-cache __tests__/components/canonicalArtifactCard.test.tsx`; `npm run typecheck`; targeted `npx eslint --no-cache …`; app contract `3c87bbef3`; app `npm run docs:check` | 23 backend projection tests and 21 app component tests passed. The backend now returns a source-backed `excerpt` fact and marks it family-relevant; the regression proves exact excerpt value and active observation source lineage. The app renders “PASSAGE · AS KEPT” only with a recognized descriptor and non-empty excerpt, shows supplied place/source-note facts, and falls back when the excerpt is missing. TypeScript, targeted lint/format, commit hooks and app docs checks passed. Generated wire shape is unchanged; no catalog/author/work inference, selected part within a longer original, live backend, native screenshot, or visual-preference claim. A standalone Metro server did start on the assigned lane port, but registered `--doctor` still stopped before capture: CoreSimulatorService was unavailable and the harness could not create its run lock under the managed checkout (`EPERM`). A full `dev.sh` attempt also could not start the API because `ANTHROPIC_API_KEY` is absent; the exact lane Postgres/Qdrant containers were stopped afterward without deleting their volumes. No successful native capture is claimed. |
+| P2 source-only practical-record reader | App `cb82e8abe`; `npm test -- --runInBand --no-cache __tests__/components/canonicalArtifactCard.test.tsx`; `npm run typecheck`; `npm run test:typecheck:contracts`; `npm run generate-api-types:check`; `npx eslint --no-cache components/artifacts/ArtifactFamilyReader.tsx components/artifacts/PracticalRecordArtifactReader.tsx __tests__/components/canonicalArtifactCard.test.tsx`; app contract `04394b889`; `npm run docs:check` | 22 reader tests passed. A recognized practical-record descriptor uses a neutral structured sheet only when supplied identity/place/provider/time/status details exist; sparse cases stay generic. Tests prove source facts are shown and no total/payment assertion is introduced. TypeScript, test-contract typecheck, generated API snapshot check, targeted lint, app docs headers/links and hooks passed. No backend schema/API change, receipt arithmetic, live backend, native screenshot, or visual-preference claim. Native acceptance is blocked by CoreSimulatorService and managed-checkout lock-path failures recorded in the passage-reader row above. |
+| Backend source/reader regression after P2 changes | `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider -m 'not requires_postgres and not requires_api_keys and not requires_dogfood_wedge' tests/inbound/test_intake_semantics_contract.py tests/core/test_intake_anchor_originals.py tests/core/test_canonical_artifact_projection.py tests/api/test_artifact_projections.py tests/inbound/test_anchor_runtime.py -q` | 67 offline tests passed at backend `48ca8c790`; covers Intake semantics, exact-original projection, canonical reader family facts, API projection and anchor replay. No database, API key, or dogfood evidence. |
+| P1 canonical artifact reader lifecycle | Backend commit `9c775cd03`; `DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_lifecycle_20260930_01 PYTHONPATH=. .venv/bin/python -m alembic upgrade head`; `TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_lifecycle_20260930_01 TEST_DATABASE_DISPOSABLE=1 TRAVEL_APP_ROOT=../travel-app SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/inbound/test_candidate_owner_lifecycle_postgres.py -q`; offline `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider -m 'not requires_postgres and not requires_api_keys and not requires_dogfood_wedge' tests/inbound/test_intake_semantics_contract.py tests/core/test_intake_anchor_originals.py tests/core/test_canonical_artifact_projection.py tests/api/test_artifact_projections.py tests/inbound/test_anchor_runtime.py -q`; `ruff check --no-cache tests/inbound/test_candidate_owner_lifecycle_postgres.py`; `ruff format --check --no-cache tests/inbound/test_candidate_owner_lifecycle_postgres.py` | Three Postgres lifecycle tests passed. The authenticated canonical artifact route proves persisted readback of a confirmed source-bound candidate, non-owner denial (404), candidate withdrawal (404), and 404 after actual `delete_submission`; source-loss restore remains fenced. The new database was migrated and dropped inside this lane's PostGIS service, then the service was returned to its prior stopped state; the lane's default database and volume were preserved. The 66-test offline source/reader suite, Ruff, formatting, and backend commit hooks passed. TestClient uses an identity dependency override; this is not deployed-service or native/mobile acceptance, and no schema/API contract changed. |
+| P1 validity and freshness separation | Backend `cfdbae9da`; `DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_validity_20260930_01 PYTHONPATH=. .venv/bin/python -m alembic upgrade head`; `TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_validity_20260930_01 TEST_DATABASE_DISPOSABLE=1 TRAVEL_APP_ROOT=../travel-app SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/db/test_entity_facts.py tests/db/test_place_projections.py tests/places/test_status_evidence.py -q`; targeted Ruff check/format; `RUFF_CACHE_DIR=/private/tmp/vesper-artifact-ruff PYTEST_ADDOPTS='-p no:cacheprovider' TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_validity_20260930_01 TEST_DATABASE_DISPOSABLE=1 TRAVEL_APP_ROOT=../travel-app SKIP_AUTH=true make merge-check BASE_REF=origin/main` | 15 PostgreSQL tests passed against the newly created lane-local disposable database. A claim with an expired freshness deadline remains in history with no inferred `valid_to` and is excluded from current selection; an explicitly bounded historical claim remains selectable only inside its validity interval. Place projections still exclude stale evidence. No API or database schema changed. Backend commit hooks passed. The full merge check remains red: 21,962 passed, 14 failed, 14 skipped, 1 xfailed, 52 xpassed, with 2 collection errors. The failures are in `tests/core/vector/` CLI suites (not changed by this slice); collection errors in `tests/scripts/test_audit_prompt_tokens.py` require unavailable network access to fetch tokenizer data. Root causes of the vector failures were not established here. This full-suite result does not negate the focused fact/projection tests, but broader backend verification remains open. |
+| P1 corrected time in canonical artifact readback | Backend `555f52ac7`; `TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_validity_20260930_01 TEST_DATABASE_DISPOSABLE=1 TRAVEL_APP_ROOT=../travel-app SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/inbound/test_candidate_owner_lifecycle_postgres.py -q`; offline `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/inbound/test_anchor_runtime.py tests/inbound/test_intake_anchor_projection.py tests/inbound/test_intake_semantics_contract.py tests/core/test_canonical_artifact_projection.py -q`; targeted Ruff check/format; targeted mypy | Three Postgres lifecycle tests and 64 offline reader/semantic tests passed. A revisioned owner time replacement now supersedes source-extracted time facts in the persisted anchor and canonical artifact projection, is represented as a user-confirmed fact with a non-degraded correction-observation reference, and is removed when a later `wrong_time` command is applied. Exact retry preserves the revision. Ruff, format, targeted mypy and backend commit hooks passed. No API or database schema changed. |
+| P1 semantic correction replay breadth | Backend test commits `25a7ac228`, `f74516894`, and `81812dca5`; lane-local Postgres on `64743`; fresh disposable DB `artifact_route_corrections_20260930_01`. `DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_route_corrections_20260930_01 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. .venv/bin/python -m alembic upgrade head`; `DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_route_corrections_20260930_01 TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_route_corrections_20260930_01 TEST_DATABASE_DISPOSABLE=1 TRAVEL_APP_ROOT=../travel-app SKIP_AUTH=true PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/inbound/test_candidate_owner_lifecycle_postgres.py -q`; `/opt/homebrew/bin/ruff check --no-cache tests/inbound/test_candidate_owner_lifecycle_postgres.py`; `/opt/homebrew/bin/ruff format --check --no-cache tests/inbound/test_candidate_owner_lifecycle_postgres.py` | All 3 candidate-owner lifecycle tests passed. Sequential `replace_time`, `wrong_time`, `separate_from_occasion`, and `keep_occurrence_forget_interpretation` commands now run through the Intake HTTP route; each is verified against persisted revisions and the canonical artifact projection. Exact retries preserve revision, changed payload under the same command ID and stale expected revisions return 409, the latest correction is selected, hiding interpretation clears projected facts, and original extracted evidence remains unchanged. Two different commands racing at one revision produced one write and one stale-revision conflict; simultaneous retries of one command returned the same revision and persisted one effect. Ruff and formatting passed; commit hooks passed Ruff, formatting, Vulture, secret and key-prefix checks. TestClient uses a dependency override for owner identity; this is route/DB evidence, not deployed authentication or service evidence. No API/schema changed. The exact disposable database was dropped and lane Postgres returned to stopped; the named volume was preserved. Native acceptance and mobile replacement-time editor/user-facing Undo remain open. |
+
+The September 30 practical-reader review at app `70707614c` found and fixed a
+content-loss edge case: a distinct supplied `identity` was being hidden when a
+separate `title` already served as the artifact heading. The new regression
+passed with 23 focused reader tests; `npm run typecheck`,
+`npm run test:typecheck:contracts`, targeted ESLint, and
+`npm run verify:merge -- --base main` passed (1,286 suites, 9,092 tests, 1
+snapshot). This is mock/component and app-suite evidence, not live API or native
+visual acceptance.
+
+Native acceptance, model comparisons, human preference and economic measurements
+remain future evidence—not completed results. On September 30 the assigned
+`Vesper QA SE` simulator was available, but the installed development binary
+crashed before the product route: the JS bundle used `react-native-worklets`
+`0.7.4` while that binary contained native Worklets `0.11.3`. The registered
+`canonical-artifact-reader` flow therefore captured 0/1 scenarios and no
+screenshots. A lockfile-pinned `pod install --deployment` completed without
+changing tracked files, but rebuilding with Xcode 26.5 (build `17F42`) still
+failed: Xcode reported the generated `Pods.xcodeproj` damaged while decoding
+`XCSwiftPackageProductDependency` (`_setSavedArchiveVersion` selector missing),
+then Swift compilation could not import `Expo`. CocoaPods was `1.16.2`; the
+checked-out app locks `react-native-worklets` `0.7.4`. This is an environment /
+generated-project build blocker, not reader-flow acceptance or evidence of a
+reader defect. No native visual judgment is claimed; resume capture only with a
+working, checkout-matched dev build and a Pods project the selected Xcode can
+load. This file owns Strategy's package progress under the program boundaries,
+not the other lanes' queues. On expiry, refresh unfinished work with an
+explicit reason, promote durable contracts or archive completed planning and
+research.
+
+### September 30 native reader recovery and bounded acceptance
+
+The earlier failed native attempt above is retained as historical evidence. The
+build blocker was resolved in the same coordinated lane: app commit
+`5c102849c` backports collision-safe UUID allocation for React Native's
+CocoaPods-generated Xcode project, with a regression that reproduces the
+SPM-project reload collision (Ruby/Xcodeproj: 2 tests, 6 assertions passed).
+After `pod install --deployment`, Xcode 26.5 could load the workspace and the
+checkout-matched development app rebuilt and installed on `Vesper QA SE` with
+`SENTRY_DISABLE_AUTO_UPLOAD=true npx expo run:ios --no-bundler --device "Vesper QA SE"`.
+This was a narrow patch to the pinned React Native version, not a dependency
+upgrade.
+
+At app `a611cba69`, the native `canonical-artifact-reader` scenario completed
+on simulator UDID `51A7A2C0-49CB-487E-A056-A771361EFA9B`: `VESPER_METRO_URL=http://127.0.0.1:64747 npm run qa:polish -- canonical-artifact-reader --device="Vesper QA SE" --flow=polish/canonical-artifact-reader` captured 1/1 scenario and 2/2 extras under `.maestro/runs/20260930T140955Z-canonical-artifact-reader`. Opened screenshots confirmed the source-inspection and return path, legible artifact hierarchy, non-overlapping metadata, and independently traversable title/facts/action. The UI/accessibility changes are in `a611cba69`; the app surface contract's corrected evidence boundary is in `28f701c54`.
+
+Focused reader tests passed (3 suites, 38 tests); targeted ESLint and app
+typecheck passed. `npm run verify:fast` passed, followed by
+`npm run verify:merge -- --base main` (1,286 suites, 9,094 tests, 1 snapshot).
+The structured native verdict at
+`travel-app/docs/surfaces/canonical-artifact-reader/verdicts/20260930T140955Z.json`
+is `pass` for this bounded fixture scenario, with two minor P2 observations:
+the `ENCOUNTER ATTENTION` kicker pair is taxonomy-forward, and the footer
+repeats the “Inspect source” action. `qa:polish:scenarios` passed with 31
+registered scenarios. The design-reference check is doctrine-only because this
+surface has no pinned design-reference manifest; no Claude-design comparison or
+design-intent verdict is claimed.
+
+This closes the registered exact-original inspection/return native scenario,
+not the larger artifact-reader acceptance. The run used a fixture-bound
+calendar original and does not establish production persistence or live API
+readback. Photo panning/pinch, VoiceOver traversal, physical-device behavior, a
+multi-family native matrix, real-world artifact usefulness, model quality, and
+the P3 discovery experience remain unverified/open. Direct simulator input did
+verify double-tap fit → zoom → fit on the seeded owner-photo fixture. The
+subsequent registered Maestro run completed but the four gesture-state captures
+had identical SHA-256
+`242e12a3edaa8a4c5a96d9dabfcc34dd9db5ee86d2a2bbe144e71379c6057f8f`; its gesture
+commands are not acceptance evidence and were removed from that flow. A
+follow-up visual check exposed a viewport bug: the transformed clipping frame
+could expand over the fixed photo-viewer title and close control. The shared
+component now keeps the clipping viewport fixed and transforms only its inner
+photo layer; simulator retest confirms the controls stay stationary through
+fit → zoom → fit. Pan, pinch, VoiceOver, physical-device behavior, and broader
+acceptance remain open. Continue with those narrower acceptance and
+product-value gates before treating the artifact reader as broadly native-
+accepted or moving to an unscoped generalized dynamic-content implementation.
+
+The adjacent registered Life continuity flow was also run after this recovery:
+`VESPER_METRO_URL=http://127.0.0.1:64747 npm run qa:polish -- life-root --device="Vesper QA SE" --flow=polish/life-intake-source-continuity`
+captured 1/1 scenario and 3/3 extras in
+`.maestro/runs/20260930T142555Z-life-root`. Reviewed screenshots show the exact
+mock owner-held photo from the Life source row, the focused viewer displaying
+that same uncropped photo, and the source absent from Life after owner-authorized
+Undo. This is fixture-backed route/entry/exit evidence; Maestro did not exercise
+pinch, pan, double-tap, or VoiceOver. It does not prove live-source persistence,
+and it is not a broader Life-root design verdict. Photo gesture and assistive
+acceptance therefore remain open. A September 30 attempt expanded the flow
+with coordinate double-tap and swipe commands, but the captured fit, zoom, pan
+and restored PNGs had identical SHA-256
+`242e12a3edaa8a4c5a96d9dabfcc34dd9db5ee86d2a2bbe144e71379c6057f8f`. Those
+automation commands are not evidence of visible interaction and were removed
+from the registered route-continuity flow. Separately, direct simulator input
+on the same seeded owner photo visibly toggled fit → zoom → fit. That supports
+only the double-tap path on this simulator/build; a direct CUA drag produced no
+visible pan, so pan remains unresolved rather than failed or passed. The
+simulator check also exposed that the animated transform was applied to the
+clipping viewport, allowing the image to overlap its fixed title/close header.
+The shared component now leaves that viewport fixed and clipped, with the
+transform on an inner image layer. A post-change simulator double-tap again
+showed fit → zoom → fit while the header stayed stationary and the image
+remained inside the viewport. A focused component-structure regression test
+guards that separation; simulator drag still did not establish panning.
+
+The bounded JavaScript follow-up verifies that the photo viewer's declared
+Zoom in and Zoom out accessibility actions dispatch through the existing
+bounded transform and return to fit. App commit `8914469b3` adds this focused
+component test. The focused reader/zoom test command passed (3 suites, 42
+tests), as did app typecheck and targeted ESLint. `npm run verify:fast` passed
+(lint: 0 errors, 169 existing warnings; typecheck, API boundaries, schema
+bridge, Home budgets, and test-typecheck contracts passed). The main-based
+merge gate passed against the same tree before the test-only commit:
+`npm run verify:merge -- --base main` (1,286 suites, 9,095 tests, 1 snapshot).
+These are callback-wiring and repository-gate results, not device VoiceOver
+activation or native gesture acceptance.
+
+During a separate simulator follow-up, opening the Vesper tab displayed a
+“Maximum update depth exceeded” error while its root remained in a loading
+state; the simulator accessibility tree then became unavailable. A subsequent
+CoreSimulator log query could not connect, so this observation has no diagnosed
+cause and is not attributed to the artifact reader. It prevented interactive
+VoiceOver/gesture follow-through and should be triaged independently of this
+roadmap slice; no Vesper/Home code was changed here.
+
+### September 30 photo viewport correction
+
+App commit `82353cccf` fixes the shared photo viewer geometry found above:
+`ZoomableOriginalPhoto` keeps its overflow-hidden viewport fixed and applies
+the animated transform only to the inner photo layer. The new component test
+guards that boundary. After hot reload on `Vesper QA SE` (iOS 18.2), direct
+simulator double-tap showed fit → zoom → fit while the title and close control
+stayed stationary and the enlarged photo remained clipped to the viewport.
+Direct CUA drag still did not visibly establish pan. A later attempt to invoke
+the image's accessibility increment action was blocked because the Mac UI was
+locked; this is not VoiceOver evidence. Pan, pinch, VoiceOver traversal,
+physical-device behavior, and a native recipient-reader capture remain open.
+
+Validation on the corrected app tree: the focused command
+`npm test -- --runInBand __tests__/components/zoomableOriginalPhoto.test.tsx __tests__/components/canonicalArtifactCard.test.tsx __tests__/utils/photoZoom.test.ts`
+passed (3 suites, 32 tests); `npm run typecheck`,
+`npm run test:typecheck:contracts`, `npm run qa:polish:scenarios`, targeted
+ESLint, `npm run docs:check`, `make docs-check`, and `git diff --check` passed.
+`npm run verify:merge -- --base main` passed (1,287 suites, 9,096 tests, one
+snapshot). The `npm run verify:fast` wrapper stopped at Expo ESLint because its
+managed-checkout cache write returned `EPERM`; equivalent cacheless full lint
+over `app`, `components`, and the new test passed with zero errors and 169
+warnings. App evidence was committed separately as `1e82b3e55`. No backend,
+live-service, VoiceOver, or physical-device evidence is implied.
+
+### September 30 sparse-history composition fixture
+
+App commit `b212de7fa` adds a separate sparse-context variant of the Sorrento
+opening without changing the six-entry executable portfolio. It contains only
+the person's cliff observation and one cited public geology source; the
+existing lift and ferry evidence, and the synthesis that depends on them, are
+absent. The focused test confirms the compiler admits the two-source brief,
+preserves the source authors, excludes the unsupported movement claim, and
+leaves owner state unchanged under its ephemeral lifecycle.
+
+Validation: `npm test -- --runInBand __tests__/utils/artifactPortfolio.test.ts`
+(1 suite, 9 tests), targeted ESLint on the fixture and test, `npm run typecheck`,
+and `git diff --check` passed. This is deterministic fixture/compiler evidence
+only; it does not establish a live generation path, research freshness, a
+user-facing native rendering, or preference/desirability. Selected-part
+representation remains open pending the P0 reference decision.
+
+### September 30 relationship-label safety
+
+App commit `fd1353a7b` prevents the optional connected-neighborhood reader
+from exposing internal `ResourceRef`/`EntityRef` IDs as user-facing text. It
+uses a matching projection-supplied source/provenance label when that value is
+not identifier-shaped; otherwise it renders a safe target-kind label. The
+underlying relation references and IDs remain unchanged, and a fallback does
+not claim subject resolution.
+
+Validation: `npm test -- --runInBand
+__tests__/utils/canonicalArtifactRelationships.test.ts
+__tests__/components/canonicalArtifactCard.test.tsx` passed (2 suites, 32
+tests); `npm run typecheck`, targeted ESLint, `npm run qa:polish:scenarios`
+(31 registered IDs), `npm run docs:check`, and `git diff --check` passed. Jest
+printed a React `act(...)` warning from `VirtualizedList`, but the suites passed.
+The full app merge-scope run also passed at app `fd1353a7b`:
+`npm run verify:merge -- --base main` (1,287 suites, 9,100 tests, one
+snapshot). The runner force-exited one worker after the suites completed; no
+test failure was reported.
+Native visual acceptance was not run because the Mac UI was locked; these
+checks prove fixture/component behavior only, not native rendering or live
+projection behavior. No backend, API schema, or identity change was made.
+
+### September 30 photo-selection zoom reset regression
+
+App commit `5b6a4e2c7` adds a regression proving that after the first original
+is zoomed, selecting the next original begins from fit rather than carrying
+over the previous photo's transform. The production reader already remounts
+the zoom surface using the selected source identity; this test protects that
+P2 contract without changing runtime behavior.
+
+Validation on app `5b6a4e2c7`: `npm test -- --runInBand --no-cache
+__tests__/components/canonicalArtifactCard.test.tsx` passed (1 suite, 27
+tests), targeted ESLint passed, `npm run typecheck` passed, and
+`npm run verify:merge -- --base main` passed (1,287 suites, 9,101 tests, one
+snapshot). The focused Jest run printed the existing asynchronous
+`VirtualizedList` `act(...)` warning; the suite passed. The 31 registered QA
+scenario IDs validated. A native QA retry was unavailable: CoreSimulatorService
+returned a connection error, and the runner's doctor stopped before device
+preflight because it could not create its lane-local QA lock (`EPERM`). No
+native flow or screenshot was produced. Pinch/pan, VoiceOver, physical-device,
+and wider reader acceptance remain open; no backend/API or identity change was
+made.
+
+### September 30 revision-bound correction Undo
+
+Backend `d3730a8c4` adds `undo_correction` to the existing authenticated Intake
+owner command. Undo requires a command ID and expected owner revision, appends a
+new correction-history observation naming the exact latest effective semantic
+correction, and replays the remaining correction history. It restores the
+preceding effective correction or the source-derived interpretation; it never
+edits or recreates the Source. The owner projection reports Undo only for an
+eligible Mine reading with an effective semantic correction. JSON
+`owner_revision` ordering, then creation time and observation ID, keeps anchor
+compilation and canonical projection selection deterministic across independent
+reads; legacy observations without that field sort after revisioned owner
+events. No database migration was needed.
+
+Workspace OpenAPI snapshots are committed at `7ff1eb2c`; app reader, fixture,
+generated TypeScript and contract are committed at `14693c6d0`. The native
+reader offers `Undo correction` only when Mine supplies the current revision
+and correction target, sends the existing owner command, and refetches the
+exact artifact projection. Together never receives the control. The app change
+does not add a second correction owner or mutate the original.
+
+Validation: the backend focused offline suite
+(`tests/inbound/test_anchor_runtime.py`,
+`tests/core/test_canonical_artifact_projection.py`,
+`tests/inbound/test_intake_semantics_contract.py`, and
+`tests/api/test_intake_route.py`) passed (83 tests); the three disposable-Postgres
+candidate-owner lifecycle tests passed, including correction sequence/Undo,
+retry deduplication, stale and changed-payload conflicts, concurrency, and
+Source-deletion blocking. `make ci-static` passed with lane cache directories
+under `/private/tmp`; mypy checked all 1,890 backend source files. The app
+`npm run verify:merge -- --base 87eceee24512d9086962eea5b844cef9d7bffbeb`
+passed (1,287 suites, 9,103 tests, one snapshot). App typecheck, test-contract
+typecheck, generated-type check, targeted ESLint, QA scenario registry (31 IDs),
+app docs check, workspace `make docs-check`, and `git diff --check` passed.
+Local API startup was not available because `ANTHROPIC_API_KEY` was absent;
+database coverage used the isolated Postgres service and TestClient identity
+override. The service was stopped afterward and its named volume preserved.
+Native/device acceptance was not run, so no live API or native UI behavior is
+claimed. P1 identity, component, collection and reconciliation work, and the
+timezone-gated replacement-time editor, remain open.
+
+### September 30 artifact-to-original return continuity
+
+App commit `18ad70bfa` preserves route ownership through exact-original
+inspection. The canonical artifact reader now passes its immediate artifact
+ID, exact source identity, ephemeral root token, and Life lens/group/record
+context into the existing Intake source reader. Its Back action targets that
+artifact as the semantic parent even if unrelated navigation history exists;
+the cold-link fallback rebuilds the artifact route with the same token/context.
+Leaving the artifact
+then follows its exact Life return or registered root when available, allowing
+the existing root tracker to complete restoration only after the artifact is
+left. Source custody revalidation and original authorization stay in their
+existing owners; no backend, API, durable identity, or source-custody behavior
+changed.
+
+Validation on app `18ad70bfa`: the focused screen command
+`npm test -- --runInBand --no-cache
+__tests__/screens/canonical-artifact-reader.test.tsx
+__tests__/screens/intake-submission.test.tsx` passed (2 suites, 48 tests);
+`npm run typecheck`, `npm run test:typecheck:contracts`, targeted ESLint,
+`npm run docs:check`, `npm run qa:polish:scenarios` (31 registered IDs), and
+`git diff --check` passed. One full merge run first lost an unrelated Discover
+test worker to SIGSEGV after 1,286 of 1,287 suites; that suite passed alone,
+and the full rerun passed: `npm run verify:merge -- --base
+87eceee24512d9086962eea5b844cef9d7bffbeb` (1,287 suites, 9,106 tests, one
+snapshot). Native QA was attempted with the lane-assigned Metro port and Vesper
+QA SE device, but CoreSimulatorService became unavailable and the runner could
+not create its lock directory (`EPERM`); no native flow or screenshot was
+produced. Thus navigation is verified at route/screen-test level only, not on
+device. Selected-part interaction, native visual/gesture acceptance, and the
+P0-gated identity/component/collection/reconciliation decisions remain open.
+
+### September 30 artifact reader copy polish
+
+App commit `6364cbf95` responds to the P2 findings in the September 30 native
+reader verdict: attention-family artifacts now lead with the title instead of
+the internal `ENCOUNTER · ATTENTION` taxonomy, and a live `Inspect source`
+action replaces—not repeats—the adjacent availability sentence. When the
+reader has no source-opening callback, the factual availability copy remains.
+No data contract or authorization behavior changed.
+
+The focused canonical artifact reader component suite passed (28 tests), along
+with app typecheck, test-contract typecheck, targeted ESLint, API-boundary,
+schema-bridge, surface-budget, docs and scenario-registry checks. The full app
+merge check passed on `main` (1,287 suites, 9,107 tests, one snapshot). The
+composite `npm run verify:fast` stopped at ESLint because the managed checkout
+denied a write to `.expo/cache/eslint`; the same lint completed with
+`npm run lint -- --no-cache` (0 errors; 169 existing warnings), and its later
+fast-gate constituents passed individually. `qa:design:check` confirmed this
+surface has no pinned design-reference manifest. With Metro correctly running
+on lane port 64747, the first registered device attempt exposed a capture
+setup error: the simulator was given a loopback Metro URL (`127.0.0.1`), which
+points back to the simulator rather than the Mac. Restarting Metro with LAN
+host mode and passing the reachable host URL allowed the registered scenario
+to complete on `Vesper QA SE` (iOS 18.2):
+`VESPER_METRO_URL=http://192.168.1.153:64747 npm run qa:polish --
+canonical-artifact-reader --device="Vesper QA SE"
+--flow=polish/canonical-artifact-reader` captured the artifact, exact original,
+and return state (1/1 scenario, 2/2 extras). The committed native verdict at
+`travel-app/docs/surfaces/canonical-artifact-reader/verdicts/20260930T191307Z.json`
+is `pass` for this bounded mock-fixture scenario. It confirms the private,
+tentative record, exact `.ics` event/location, explicit no-calendar-import
+message, and return to the same artifact/action after the copy polish. This
+does not establish live backend delivery, persisted production state, design
+reference parity, photo gestures, VoiceOver, physical-device behavior, or the
+broader artifact-family matrix. Those native/product acceptance items remain
+open.
+
+### September 30 registered artifact-reader family matrix
+
+App commit `eb5209447` expands the registered `canonical-artifact-reader`
+Maestro flow through the production reader route to include a source-backed
+book, a kept passage, a structured practical record, and a sparse work record
+that must remain on the generic source-fact fallback. The flow waits for the
+family-reader test IDs where relevant, so a screenshot alone cannot silently
+stand in for reader dispatch. The fixtures remain mock-only; this adds no
+catalog, backend, persistence, or product-capability claim. The existing
+calendar → exact original → return path is retained.
+
+Validation: app `npm run qa:polish:test` passed (including committed-verdict,
+surface-index, scenario, and design-gate checks); `git diff --check` passed;
+`npm run qa:polish -- canonical-artifact-reader --dry-run
+--flow=polish/canonical-artifact-reader` generated the expected seven-screenshot
+manifest without captures. The live capture was **not run**: `xcrun simctl list
+devices booted` returned `CoreSimulatorService connection became invalid`, so
+there was no available simulator target. The dry-run is registry evidence only,
+not native acceptance. This closes a coverage-definition gap, not the open P2
+native visual/interaction acceptance. Resume with the registered device flow
+on a working simulator, inspect the family screenshots, and judge each
+fallback/authority claim before marking any matrix state accepted.
+
+### September 30 source-to-reader contract verification
+
+On app `eb5209447`, the focused component and route tests
+`npm test -- --runInBand --no-cache
+__tests__/components/canonicalArtifactCard.test.tsx
+__tests__/screens/canonical-artifact-reader.test.tsx` passed (2 suites, 42
+tests). On backend `d3730a8c4`,
+`pytest -q -p no:cacheprovider tests/core/test_canonical_artifact_projection.py
+tests/inbound/test_anchor_runtime.py` passed (38 tests). The first pytest
+invocation ran the same tests but exited during cache writing because the
+managed worktree denies `.pytest_cache` writes; disabling that cache provider
+produced the clean result above. These tests prove projection/dispatch and
+route behavior at unit/component level, not simulator or authenticated live
+service behavior.
+
+### September 30 photo-reader bounds after layout change
+
+App commit `6dd9816f1` closes a P2 transform edge case in the shared
+`ZoomableOriginalPhoto`: after viewport layout or decoded source dimensions
+change, the current scale/translation is re-clamped against the new contained
+image bounds. This prevents stale pan offsets from exposing blank space after
+rotation, window/safe-area resizing, or a source-size update. Returning to fit
+still recenters. Intake, received-original Life, and canonical-artifact viewers
+all inherit the shared behavior; their source custody and authorization owners
+remain independent.
+
+Validation on app `6dd9816f1`: the focused component and route command
+`npm test -- --runInBand --no-cache
+__tests__/components/canonicalArtifactCard.test.tsx
+__tests__/components/zoomableOriginalPhoto.test.tsx
+__tests__/screens/canonical-artifact-reader.test.tsx` passed (3 suites, 44
+tests). The added regression changes from portrait to landscape bounds and
+asserts the corrected transform is used by the next zoom action. `npm run
+typecheck`, targeted ESLint for the changed component/test, and `git diff
+--check` passed. Native capture/gesture acceptance was not re-run because
+CoreSimulatorService remains unavailable in this environment; this closes a
+JS geometry regression only, not native pan/pinch, VoiceOver or physical-device
+acceptance.
+
+### September 30 full app merge-scope verification
+
+After the photo-viewer bounds change, app command `npm run verify:merge --
+--base main` completed in full mode on `6dd9816f1`: 1,287 suites and 9,108
+tests passed, with one snapshot. The changed photo/artifact suites were included
+in that run. Existing asynchronous React test warnings appeared in unrelated
+suites, but the aggregate command exited successfully. This is broad app
+regression evidence, not native device acceptance or a backend integration
+claim.
+
+### September 30 expiry-aware cached reader facts
+
+App commit `bc71bf128` closes the mounted-reader gap for owner facts that carry
+`valid_until`. The backend already excludes expired facts when it serves a
+fresh projection, but a cached mobile projection could keep displaying one
+past its deadline. The existing expiry-tick hook now removes expired or
+malformed-deadline facts from the rendered projection immediately, then asks
+the owner for a fresh read; the canonical artifact query also opts into stale
+refetch when the app returns to the foreground. When no current family-specific
+facts remain, the projection no longer advertises a specialized family reading.
+Unrelated source-backed facts, the exact original, and independent owner
+actions remain available. The query cache is not mutated by the display filter.
+
+The new data-hook tests cover the exact deadline, suppression while refresh is
+still pending, family-reader fallback after its qualifying facts expire, and
+foreground refetch. The focused artifact reader set passed (3 suites, 47 tests),
+as did app typecheck, test-contract typecheck, targeted ESLint, and the polish-QA
+registry. The registered canonical-reader QA dry-run created no screenshots;
+`xcrun simctl list devices booted` still fails because CoreSimulatorService is
+unavailable. Thus no native visual or live-service claim is made. A full app
+merge-scope check on `bc71bf128` passed with
+`npm run verify:merge -- --base main`: 1,288 suites, 9,112 tests and one
+snapshot. Existing unrelated React/API diagnostic warnings appeared during the
+suite, but the aggregate command exited successfully. This is broad app
+regression evidence, not native device or authenticated live-service evidence.
+
+### September 30 account-session-scoped artifact reads
+
+App commit `5d1a9a5b4` partitions canonical artifact projection queries by the
+authenticated session key and does not enable the owner read until the active
+session and profile are ready. The reader suppresses cached projection data
+while that owner context is unresolved; changing accounts selects a distinct
+cache key, so a late response from the previous account cannot become the
+current account's visible artifact. Intake correction success now invalidates
+the exact account-scoped projection key. This is a client cache/read boundary,
+not a replacement for backend authorization.
+
+The focused session/expiry suite passed (`canonicalArtifacts.test.tsx` and
+`queryKeys.test.ts`: 2 suites, 16 tests), including signed-out suppression,
+account-key separation, and the late-response account-switch race. App
+typecheck, test-contract typecheck, targeted ESLint, `npm run docs:check`,
+`npm run qa:parity` (6 suites, 185 tests), `npm run qa:polish:test`, and
+`git diff --check` passed. The full app merge check passed on this commit:
+`npm run verify:merge -- --base main` (1,288 suites, 9,114 tests, one
+snapshot). No authenticated live-service or native-device test was run; this
+slice changes session-scoped data access rather than layout, and simulator
+availability remains a separate acceptance constraint.
+
+### September 30 native artifact-reader family matrix
+
+App commit `bf5f2deae` records the first completed registered simulator matrix
+for the artifact reader: calendar artifact, exact `.ics` original, return to
+the same artifact, source-backed book, kept passage, practical record, and
+sparse-work fallback (seven screenshots total). It ran on Vesper QA SE / iOS
+18.2 through the production reader route with deterministic mock fixtures. The
+calendar remains explicitly tentative; the source preview says no event is
+added to the device calendar; the sparse work stays unresolved; supplied
+passage and practical facts render without inferring surrounding meaning,
+payment, or validity. The committed structured verdict is
+`travel-app/docs/surfaces/canonical-artifact-reader/verdicts/20260930T204016Z.json`
+with its manifest snapshot. It passes the four capture/correctness/visual/intent
+gates against the surface contract and doctrine; no Claude Design reference is
+pinned for this reader.
+
+The initial run exposed a test-selector mismatch, not a rendering defect: the
+excerpt was visible in the screenshot, while the flow expected its bare text
+instead of the accessible label `Kept passage: …`. The registered assertion
+now checks that label, and the complete rerun captured 1/1 flow and 6/6 extra
+screenshots. `npm run qa:polish:test` passed, including 73 committed verdicts;
+`npm run qa:polish:scenarios` validated all 31 IDs; `npm run docs:check` passed
+for 312 app Markdown files; `git diff --check` passed. These captures prove
+fixture-backed native rendering/navigation, not authenticated API, production
+persistence, or user desirability. Photo pinch/pan/double-tap, VoiceOver
+activation/traversal, Dynamic Type, ticket/place/show/music/dish family
+coverage, and live-service readback remain open. The earlier registered dry-run
+receipt records the simulator outage before this subsequent successful run.
+
+### September 30 expanded native reader-family matrix
+
+App commit `05d81a9df` expands the production-route capture matrix to 14
+screenshots on the lane-assigned `Vesper QA SE` simulator (UDID
+`51A7A2C0-49CB-487E-A056-A771361EFA9B`, iOS 18.2): the tentative calendar
+artifact, exact `.ics` original, return to that artifact, and native reader
+states for book, transport ticket, admission ticket, place, film, show, music,
+kept passage, practical record, dish fallback, and sparse-work fallback. The
+final structured verdict and manifest are
+`travel-app/docs/surfaces/canonical-artifact-reader/verdicts/20260930T211642Z.json`
+and `.manifest.json`; it passes capture, correctness, visual, and doctrine
+intent for this bounded fixture matrix. The place fixture is explicitly
+`noticed`; the reader now leads with `Da Enzo`, omits the misleading
+experience-family eyebrow, and avoids repeating the place name as a fact.
+
+Validation on the final app commit: focused reader/portfolio tests passed (2
+suites, 44 tests); `npm run typecheck`, `npm run test:typecheck:contracts`,
+targeted ESLint, `npm run qa:polish:test` (74 committed verdicts),
+`npm run qa:polish:scenarios` (31 registered IDs), `npm run docs:check` (318
+Markdown files), and `git diff --check` passed. The full app merge-scope check
+passed: `npm run verify:merge -- --base main` (1,288 suites, 9,117 tests, one
+snapshot). The successful capture command targeted the lane-assigned simulator
+and produced 1/1 flow plus 13/13 extra screenshots. No authenticated service,
+persisted-production, or user-preference evidence is claimed. Dynamic Type,
+loading/error states, photo gestures, VoiceOver activation/traversal, and live
+service readback remain open. The committed verdict records two P2 observations:
+the text-only show face still reads as a restrained metadata panel, and the
+reader matrix does not yet demonstrate the context-dependent artifact value
+planned for a later slice. This completes family-rendering coverage, not the
+artifact experience roadmap or the contextual-discovery phase.
+
+### September 30 largest-text artifact-reader reflow
+
+App commit `c704fc997` adds content-driven reflow for the canonical artifact
+reader and its exact-source screen at the system's largest accessibility text
+sizes. At the shared `fontScale >= 1.35` threshold, fact rows stack labels and
+values, title/status/fact copy is no longer line-capped, ticket routes become
+vertical, and book/place/music/passage/practical faces relinquish fixed
+geometry. Redundant floating-reader and private-source titles are hidden at
+that size; the floating reader chrome becomes opaque so content cannot bleed
+behind the control. The implementation does not reduce the person's selected
+text size.
+
+The registered `polish/canonical-artifact-reader-accessibility` capture
+(`20260930T222931Z-canonical-artifact-reader`) contains ten fixture-backed iOS
+18.2 screenshots on Vesper QA SE at
+`accessibility-extra-extra-extra-large`, including source-action scrolling,
+opening the exact calendar original, returning to the same artifact, and the
+ticket/book/place/music/passage/practical family faces. Its structured `pass`
+verdict and manifest are
+`travel-app/docs/surfaces/canonical-artifact-reader/verdicts/20260930T222931Z.json`
+and `.manifest.json`. The capture occurred immediately before the app commit;
+the manifest therefore records parent HEAD `05d81a9df`. No reader UI source
+changed between capture and `c704fc997`; the later row-guard correction is
+test-only. This is native layout/scroll evidence for the captured fixture on
+one iOS simulator, not VoiceOver activation, Android/physical-device coverage,
+live-service readback, or user desirability. Two accepted P2 observations note
+the long first-viewport title and tall source action at maximum text size; both
+remain legible and reachable, and neither justifies capping user-selected text.
+
+Focused reader/source tests passed (3 suites, 82 tests), app TypeScript and test
+contract typechecks passed, targeted ESLint reported zero errors with two
+warnings, and `git diff --check` passed. The row-system ratchet initially
+classified the new static `ArtifactFactRow` as an interactive/list row; its
+existing `isOutOfScope` classifier now documents this exact static document
+fact-pair exception, with a test ensuring the general ratchet still applies to
+artifact reader components. The focused ratchet test passed (10 tests).
+
+`make verify-changed WORKSPACE_BASE_REF=main AGENT_BASE_REF=main
+APP_BASE_REF=main` passed across the coordinated lane. This included the full
+app suite (1,288 suites, 9,123 tests, one snapshot), backend static checks and
+full tests (21,993 passed, 14 skipped, 53 xpassed; two warnings), workspace
+tooling tests, and cross-repository API/compatibility/documentation contracts.
+After the app commit, `npm run qa:polish:scenarios` validated 31 registered
+IDs, `npm run qa:polish:test` validated 75 committed verdicts, and
+`npm run docs:check` passed for 327 app Markdown files. Pinch/pan, actual
+VoiceOver traversal/actions, loading/error states, physical-device/Android
+behavior, live-service readback, and value/desirability remain open; this
+closes only the largest-text iOS reflow slice, not P2 as a whole.
+
+### September 30 Home dock stability prerequisite
+
+App commit `5d56ef5ff` stabilizes the private-capture handler registered by the
+Vesper Home dock. The Home hook had passed a newly allocated capture-entry
+object on every render; that recreated the dock accessory and fed registration
+updates back through `NavChromeContext`. The app now memoizes the navigation
+adapter and entry, with a regression test that equivalent Home renders retain
+the same capture handler. This was an adjacent defect surfaced while preparing
+native artifact QA; it is not an artifact feature increment or a Home visual
+acceptance claim.
+
+Focused evidence: the Home capture/private-capture/dock suites passed (3 suites,
+23 tests); the Home smoke suite passed (18 tests); `npm run typecheck`, targeted
+ESLint and `git diff --check` passed. On the assigned Vesper QA SE simulator,
+the registered `polish/life-intake-source-continuity` flow completed (1/1
+scenario, 3/3 extras) and proved the fixture-backed source → exact-photo viewer
+→ source → removal path. That flow does not exercise photo gestures, VoiceOver,
+or the Home surface's design. `npm run verify:merge -- --base main` passed on
+app commit `5d56ef5ff` (1,288 suites, 9,124 tests, one snapshot); the runner
+reported one worker forced exit after the suite completed, with no failed
+tests. Native photo pan/pinch and assistive-action acceptance therefore remain
+open as recorded above.
