@@ -16,15 +16,16 @@ source_of_truth_for: []
 **Research cutoff:** September 30, 2026. **Planning and execution update:**
 October 1, following the founder's request to execute this lane's roadmap. The
 implementation queue in [section 5](#5-improvement-roadmap) is the current plan
-for Eng Efficiency. Package 3C is published but has not landed in `origin/main`;
+for Eng Efficiency. Package 3C landed in `origin/main` as `bc69d6d0` (PR 38).
+Package 3B's workflow consolidation is under review in PRs 40, 210 and 240.
 Packages 1 and 2 have implementation and task-context changes published in
 [workspace PR 39](https://github.com/fy538/travel-workspace/pull/39),
 [app PR 209](https://github.com/fy538/travel-app/pull/209), and
-[backend PR 239](https://github.com/fy538/travel-agent/pull/239). Package 1's
-real native capture and Package 2's Home/Places wrong-state replay remain
-unverified, so neither package is acceptance-complete. Existing runtime,
-required checks and acceptance obligations remain in force. The program roadmap
-retains cross-lane ownership.
+[backend PR 239](https://github.com/fy538/travel-agent/pull/239). The targeted
+`home-root-returned` native capture passes; Package 2's original Home/Places
+wrong-state replay remains unverified. Existing runtime, required checks and
+acceptance obligations remain in force. The program roadmap retains cross-lane
+ownership.
 
 **Second research pass:** the [deeper evidence review](#second-research-pass-defect-detection-and-the-cost-of-review)
 adds recent mobile/GUI studies and industrial test-selection and mutation-testing
@@ -70,6 +71,46 @@ accessible, a collection remains coherent and an audience receives exactly what
 was shared. Those durable outcomes matter more than the number of screenshots
 or the elegance of one generated answer. Model upgrades should be assessed
 against those outcomes and a separate quality sample.
+
+## Execution status — October 1, 2026
+
+**Package 3C — CI sharding and early checks:** workspace [PR #38](https://github.com/fy538/travel-workspace/pull/38)
+contains the implementation and an evidence receipt. Hosted Reliability run
+`36811769199` passed for code commit `d298caf`; the subsequent docs-only PR head
+is `051f06e`. A fresh status read failed with `error connecting to
+api.github.com`, so the latest PR head's checks are currently unverified. The
+current GitHub CLI credential is also invalid, preventing an authenticated
+status read. Local focused checks on the receipt revision passed (`39 passed`).
+Do not treat the older green run as validation of the later head.
+
+**Package 1 — native QA readiness:** implementation is underway on the isolated
+`codex/native-qa-readiness` lane. It forwards exact flow selection, binds the
+runner to the lane's assigned simulator and Expo port, checks installed bundle
+and app version plus output access before capture, records failure stages and
+diagnostic logs, and caps runner retries at one. The wrapper's targeted dry run
+passed for `home-root` / `polish/home-root-returned` and created a separate
+scaffold without replacing the before/after pair. Focused CLI, failure-policy
+and preflight suites pass (13 tests total).
+
+The required real capture is **blocked/unverified**: this lane has no exclusive
+device assigned (`device: null`) and its Expo port `57436` did not answer. The
+checked capture stopped before touching a simulator or output pair, with both
+conditions diagnosed. The two visible simulators were reserved by other active
+lanes at the last coordination check. No positive native capture or installed
+app identity check is claimed. After installing the locked app dependencies in
+the isolated lane, the complete `qa:polish:test` target passed, including the
+existing suite and the new focused tests. On October 1, `make verify-changed`
+passed against workspace base `4febe0d`, backend base `bd1a683`, and app base
+`e7bdc66`: app fast checks, selected merge tests and workspace links/spine/canon
+checks all passed. The first sandboxed attempt could not write the ignored Expo
+lint cache and exposed one stale retry-count contract expectation. The rerun
+used only the lane's ignored cache write access, and the corrected contract now
+passes.
+
+Package 1 should not be marked complete until an exclusive simulator and its
+lane Expo server are available and a warmed native capture passes. Package 2's
+review simplification remains the next planned package; its product acceptance
+has not changed.
 
 ## 1. What the repository and traces establish
 
