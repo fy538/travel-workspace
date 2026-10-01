@@ -849,6 +849,32 @@ renderer max-lines warning, and registered scenario validation passed (**31
 IDs**). Native visual and real-owner readback evidence were not run for this
 increment. This closes one authored-note receiving gap only; D2 remains active.
 
+**Home-origin Places authored-note capture — 2026-10-01:** app commit
+`41a5f7587` registers the direct-note mock composition as a named native QA
+scenario. On iPhone 16 Pro / Maestro 2.6.1, the targeted flow
+`20261001T065104Z-places-workspace` captured all three screenshots: the
+Home-origin Places lead, field continuation, and Maya's exact authored words
+with the exact Red Hook door. The screen visibly asks for no reply. This used
+the internal four-root/Places V2 gates and mock API; it demonstrates native
+rendering of the authored-note path, not a real-owner readback or release
+acceptance. The external August design bundle's registered hashes verified,
+but it has no paired authored-note specimen: the generated comparison sheets
+had no matching app screenshot, and structured-verdict validation blocks a
+commit because the `external-canon` run path does not populate the required
+`canonRefs`. Therefore no design-parity verdict is claimed. The first broad
+matrix run under default Expo gates was 7/8; its only failure expected Home V2
+while those gates were disabled. The corrected targeted flow passed 1/1 with
+two extra captures; the complete matrix has not been rerun with the internal
+flags. Visual inspection also shows the same `Open Red Hook` door on the field
+immediately before and beneath Maya's note; retain exact destination ownership
+but consider consolidating that repeated action in a future polish pass. The
+internal simulator emitted 4.9–5.6 s cold-launch breadcrumbs against its 2.5 s
+budget, while settled layout was 146–148 ms against 3 s; this Metro/mock run is
+not a production performance baseline. Focused Places tests passed 27/27, app
+typecheck and ESLint passed, scenario validation covered 31 IDs, and the QA
+registry tests passed 5/5. This adds a useful receiving-path capture, not a D2
+completion or a reason to change lane order.
+
 ### Combined landing checkpoint — September 30
 
 The merged integration contains the Home/capture lane plus these completed
