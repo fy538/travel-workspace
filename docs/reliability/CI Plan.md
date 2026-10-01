@@ -282,6 +282,24 @@ review approval, administrator enforcement, and no force pushes/deletions.
 | backend | `Merge ready`, `lint`, `import-boundaries`, `typecheck`, `test-db-migrate`, `dogfood-persona-gate`, `eval-replay` |
 | frontend | `Merge ready`, `Lint`, `Frontend governance`, `Security audit`, `Visual evidence contracts`, `Type check`, `API types freshness`, `QA tooling contracts`, `Design alignment gate` (also emitted for documentation-only PRs) |
 
+The workspace `Contract and golden paths` check remains the required aggregate.
+It waits for both the full workspace reliability suite and every required Maestro
+syntax shard, and fails when either dependency fails, is cancelled, skipped, or
+missing. The four isolated syntax jobs each receive the complete candidate
+workspace and child checkouts, then validate their deterministic portion of the
+same flow inventory with the pinned Maestro CLI. Disable matrix fail-fast so a
+single syntax failure does not cancel the remaining diagnostic shards. The
+workflow tests pin the complete four-shard definition; each shard fails if its
+assigned inventory is empty. No branch-protection check name or policy changes.
+
+The workspace suite checks Qdrant's
+[`/readyz` endpoint](https://qdrant.tech/documentation/ops-monitoring/monitoring/#kubernetes-health-endpoints)
+before installing dependencies so an unavailable journey service surfaces early. Credential,
+candidate-tuple and PostgreSQL service-health checks also precede package
+installation. The full Maestro flow inventory and Python-backed registry/document
+checks run before `npm ci`; the Node metadata check follows the install because
+it uses the app's packages.
+
 The new `package-smoke` job is implemented in this lane. Add it to required
 checks after publishing the workflow and verifying its emitted check name;
 requiring it before a remote workflow can emit it would block unrelated PRs.
