@@ -1135,6 +1135,33 @@ whether this expected missing-context notice helps or makes a sparse Home feel
 broken. D2 remains active; exact opening and return alone are not meaningful
 returned-content acceptance.
 
+**Expected optional Home conditions omission — 2026-10-01:** decision: do not
+show Home's generic partial-read notice for a non-retryable
+`moment.conditions_unavailable` degradation. The structural week-shape accepts
+missing current conditions, the omission has no useful action for the person,
+and the generic notice made an otherwise valid sparse Home look broken. This
+is a Home presentation rule only: the owner degradation remains in the API
+projection; retryable moment failures, other owner degradations, and
+Place-specific `current_conditions_unavailable` remain visible. The Home root
+implementation, component coverage, and Home surface contract were updated.
+
+Evidence: focused `HomeRootV2Screen.smoke.test.tsx` passed 34/34; TypeScript
+typecheck passed; registered polish scenarios passed 31/31; native polish
+doctor passed on the assigned iPhone 16 Pro / iOS 18.2 (Maestro 2.6.1, Java
+17); Home design-reference check passed (`manifests=1`, `pairs=2`,
+`externalCanonVerified=0`). A separate native capture against the real local
+Home API showed the exact sparse state with two non-retryable
+`moment.conditions_unavailable` degradations and no generic “A partial read”
+banner (`/tmp/vesper-home-conditions-omission-20261001/.maestro/tests/2026-10-01_083815/screenshot-⚠️-1790858318640-(vesper-home-conditions-omission-20261001.yaml).png`).
+The existing Home Outcome → Life → Home owner-return rehearsal also passed,
+including fixture withdrawal checks. Evidence was produced against one
+synthetic owner in disposable database
+`vesper_home_partial_notice_20261001_01`; its API was stopped and that database
+was dropped after verification. This does not verify production auth, editorial
+quality, external design-canon parity, or full D2 returned-content acceptance.
+The next pass remains focused on truthful date/Place/source evidence and the
+generic “Explore Places” dead-end; do not infer missing context.
+
 **Home friend note + current Place opening — 2026-10-01:** app commit
 `b97263894` corrects the existing real-owner runner to distinguish the
 standalone addressed-note copy from the server-composed Home human-opening
