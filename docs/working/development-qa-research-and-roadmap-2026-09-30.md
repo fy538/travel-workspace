@@ -489,6 +489,12 @@ workaround was attempted. The later selector and classifier checks were
 non-native; they did not repeat capture. Native acceptance remains unverified
 until a safe simulator-reachable path yields a warmed capture.
 
+An offline iOS JavaScript export with internal/mock flags completed in 25.4s,
+bundling 5,443 modules, 503 assets and a 23 MB Hermes bundle. This proves JS
+packaging only. The worktree has no generated iOS project, and `app.config.js`
+reports `RNMAPBOX_MAPS_DOWNLOAD_TOKEN` unset; no native build or capture was
+attempted from this export.
+
 ### Efficiency lane setup
 
 Eng Efficiency owns `codex/engineering-efficiency` in all three independent
