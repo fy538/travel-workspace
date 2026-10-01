@@ -26,20 +26,24 @@ another assistant or a universal artifact service.
 
 **Execution status — October 1:** the artifact-foundation baseline and
 adjacent-lane integration are merged into remote `main` at the tuple in section
-2. The `codex/artifact-foundation` lane has since implemented the initial
+2. The `codex/artifact-foundation` lane has implemented the initial
 submission-backed Thing owner, evidence-backed reversible cross-submission
-aliases, an owner-scoped Thing read API, and an app reader that opens original
-Sources without transferring their permissions. Backend commit `cb7defc86` and
-app commit `eb515f055` are local lane commits, not merged to remote `main`. The
-workspace owns the generated API snapshot/projection and this roadmap; workspace
-commit `549cf42a` records those contracts and the evidence boundary. None of
-these follow-on commits is merged to remote `main`. This closes the bounded
-identity-and-read slice, not the wider P0/P1/PC/P2 acceptance.
+aliases, an owner-scoped Thing read API, an app reader that opens original
+Sources without transferring their permissions, and the first ordinary
+candidate-to-bundle entry path. Backend commits `cb7defc86` and `f1ae16096`,
+and app commits `eb515f055` and `9a1c96292`, are local lane commits, not merged
+to remote `main`. Workspace commit `549cf42a` records the earlier generated API
+snapshot/projection and ownership boundary; no generated API contract changed
+in this latest bridge. The new entry preserves candidate/anchor occurrence
+identity and opens a contribution bundle only for a verified private Keep with
+a currently available, unexpired retained Source. This closes the bounded
+candidate-to-bundle read path, not owner-confirmed reconciliation, Collection
+continuity, native acceptance, or wider P0/P1/PC/P2 acceptance.
 
 | Area | Implemented and evidenced | Remaining boundary |
 | --- | --- | --- |
 | P0 contracts and portfolio | Accepted kept-thing identity direction; code-backed owner map, supported-door/mode crosswalk, versioned reading descriptor, family/fallback fixtures and sparse-history examples; initial Thing storage/migration design is implemented under P1 | Subject/Component and edition mappings, selected-part representation cases and broader lifecycle portfolio; fixtures are not live generation or desirability evidence |
-| P1 correction and continuity | Revision-bound corrections and append-only Undo; backend typed-time replacement; capture-to-reader and exact-source-to-confirmed-record links with source/digest checks; owner-scoped Thing row on verified private Keep; evidence-backed reversible cross-submission aliases; owner-scoped Thing API and native reader | Reachable integration from existing candidate/source paths, owner-facing merge/reversal transport and Collection continuity; native replacement-time editor still needs timezone-authoring behavior |
+| P1 correction and continuity | Revision-bound corrections and append-only Undo; backend typed-time replacement; capture-to-reader and exact-source-to-confirmed-record links with source/digest checks; owner-scoped Thing row on verified private Keep; evidence-backed reversible cross-submission aliases; owner-scoped Thing API/native reader; candidate-to-bundle entry from a qualifying occurrence reader | Owner-facing merge/reversal transport and Collection continuity; native replacement-time editor still needs timezone-authoring behavior |
 | P2 original-first readers | Ticket, source-backed place, text-built book/film/show/music, supplied passage and practical-record treatments; exact-original chooser/return; shared photo viewer | Catalog identity/art, selected-part UI and later dish/recipe/scorecard treatments; source facts do not establish attendance, author identity or payment state |
 | Reader lifetime | Account-session-scoped reads, expiry-aware displayed facts and foreground refresh, exact-source authorization and revision checks | Full source/audience/collection lifecycle replay and authenticated mobile-to-service acceptance |
 | Native acceptance | Fourteen family/source/return fixture screenshots; ten largest-text screenshots; Life source/photo-viewer/removal flow on iOS 18.2 | Reliable pinch/pan, actual VoiceOver traversal/actions, loading/error states, Android/physical devices and live-service readback; these captures do not establish user preference |
@@ -54,16 +58,17 @@ unchanged screenshots did not establish pan/pinch. Do not turn either result
 into a broader gesture, accessibility or live-service claim. The Home dock
 stability repair was a QA prerequisite, not another artifact feature.
 
-**Next assignment:** integrate the stable Thing read target with existing
-submission-backed candidate/source entry points. Preserve existing candidate
-IDs and occurrence semantics, resolve only through owner-scoped aliases, and
-reauthorize every original Source independently. Add a normal in-app opening
-path before widening the identity to Life/Collection consumers. The current
-merge/reversal operations are backend domain commands, not HTTP write routes or
-user-facing controls; keep that boundary explicit while defining the first
-owner-confirmed interaction. Keep reader QA bounded. Adopt Technical's landed
-primitives without building another research engine, and connect artifact-bound
-additions once their request/result and first-producer safeguards are ready.
+**Next assignment:** carry evidence-backed reconciliation through its first
+owner-confirmed app path. Reuse the existing backend merge/reversal commands;
+define authenticated transport and UI that show the evidence and expected
+revision, require an explicit confirmation, support exact retry and reversal,
+and never turn an inferred match into an automatic merge. Keep the candidate's
+occurrence identity and every Source's independent authorization intact. The
+candidate-to-bundle read path is now available from the existing occurrence
+reader; do not make Life or Collection a second identity owner. Keep reader QA
+bounded. Adopt Technical's landed primitives without building another research
+engine, and connect artifact-bound additions once their request/result and
+first-producer safeguards are ready.
 
 The accepted
 [Collections](../decisions/2026-09-28-collections-are-the-spine.md) and
@@ -115,14 +120,13 @@ Strategy Technical.
 
 **Current assignment:** continue section 11's P0/P1/PC/P2 artifact foundation
 from the merged reader/correction baseline. The content-free owner, reversible
-cross-source aliases, owner read API and native Thing reader are implemented in
-this lane. Next connect the stable read target to existing candidate/source
-entry points without changing their occurrence semantics or widening Source
-permissions; then establish the first normal in-app opening and owner-confirmed
-reconciliation path. Use existing custody and Technical's landed evidence
-adapters. Every format, catalog provider and artifact family need not finish
-before a supported slice lands; the native acceptance remainder runs alongside
-this work.
+cross-source aliases, owner read API, native Thing reader, and candidate-to-
+bundle opening path are implemented in this lane. The next bounded slice is the
+first owner-confirmed reconciliation transport and app interaction, using the
+existing domain commands and their revision/evidence safeguards. Use existing
+custody and Technical's landed evidence adapters. Every format, catalog
+provider and artifact family need not finish before a supported slice lands;
+the native acceptance remainder runs alongside this work.
 
 **Execution ownership — October 1:** the Strategy artifact lane owns this
 outcome end to end in one coordinated workspace/backend/app worktree tuple; do
@@ -1516,40 +1520,39 @@ anchors, and books, films, shows and music. P0 distinguishes their shared-contra
 coverage from supported first-delivery modes and honest fallbacks; every family
 and provider need not finish at once.
 
-### Next execution slice
+### Current execution slice — updated October 1
 
-**Outcome:** ordinary kept-item entry points reach a stable owner-scoped Thing
-without changing occurrence semantics, reviving a parallel identity, or
-weakening exact-Source permissions.
+**Outcome:** an owner can reach the stable saved-bundle identity from an
+occurrence-specific reader without changing candidate identity, conflating a
+contribution bundle with one semantic object, or weakening exact-Source
+permissions. The read-path portion is implemented; owner-confirmed
+reconciliation remains next.
 
-1. **Bridge current candidate/source paths to Thing identity.** Add the narrow
-   owner read reference needed for a verified retained submission to open its
-   Thing, while retaining existing candidate IDs and `ExperienceAnchor`
-   behavior for occurrence-specific surfaces. Resolve aliases only within the
-   authenticated owner's scope; do not silently rewrite candidate identity or
-   infer that two different attendances are one Thing. Preserve source and
-   content revisions at the reader boundary.
-2. **Make the reader reachable through a normal product path.** Connect one
-   existing kept-item entry/return path to the native Thing route and prove
-   cold open, refresh, exact-original selection, source revocation and return
-   navigation. The direct Thing route and screen tests are not evidence that a
-   user can discover or open the reader through the app today. Keep Life and
-   Collection ownership with their existing owners; publish the stable target
-   rather than moving their data or rebuilding their surfaces.
-3. **Close the owner-confirmed command boundary before inviting reconciliation.**
-   The backend has revisioned merge/reversal domain commands, but no HTTP write
-   route or app control. If the next surface exposes these actions, carry owner
-   confirmation, evidence basis, command ID, expected revision, idempotency,
-   and reversible history through the authenticated route; never turn an
-   inferred match into an automatic merge. Keep this transport separate from
-   the read endpoint and do not present automatic matching as complete.
-4. **Keep reader acceptance bounded and available independently.** Complete the
-   remaining loading/error, reliable photo pan/pinch and actual VoiceOver cases
-   when the runtime is available. Retain Android/physical-device and
-   authenticated live-service readback as explicit remaining boundaries. Reuse
-   the passed family and large-text matrices as regression evidence; do not
-   claim every reader state is accepted or repeat captures without a concrete
-   defect hypothesis.
+1. **Expose owner-confirmed reconciliation through authenticated transport.**
+   Reuse the backend's revisioned merge/reversal domain commands. Carry the
+   authenticated owner, evidence basis, command ID, expected revision,
+   idempotency and reversible history through an explicit write route. Keep
+   this transport distinct from the read endpoint; prove exact retry and stale
+   revision conflict behavior at the route and persisted-owner boundary.
+2. **Add a deliberate app interaction only where the owner can inspect the
+   proposed match.** Show the affected Things and supporting evidence before
+   confirmation; make merge an explicit owner choice and preserve a clear,
+   usable reversal path. Never auto-merge from model confidence, shared Subject
+   identity or byte similarity. Candidate/anchor IDs remain the route for
+   occurrence-specific experience; Life and Collection consume Thing
+   references without owning or copying identity.
+3. **Exercise same-object and distinct-occurrence cases together.** Verify two
+   eligible sources can resolve to one contribution identity where evidence
+   supports it, separate screenings remain separate, each original is
+   reauthorized independently, a mistaken merge can be reversed without
+   rewriting consumer references, and retries/concurrent stale writes do not
+   duplicate or erase history.
+4. **Continue reader acceptance independently.** Complete remaining
+   loading/error, reliable photo pan/pinch and actual VoiceOver cases when the
+   runtime is available. Retain Android/physical-device and authenticated
+   live-service readback as explicit boundaries. Reuse passed family and
+   large-text matrices; do not claim every reader state is accepted or repeat
+   captures without a concrete defect hypothesis.
 
 **Next connected checkpoint:** adopt Technical's supported artifact-target
 request/result contract into the focused reader for a useful eligible addition,
@@ -2356,9 +2359,40 @@ snapshot update.
 
 The assigned simulator was unavailable (`CoreSimulatorService` failure), so
 there is no native screenshot, VoiceOver, Android, physical-device, or
-authenticated live-service acceptance for this new route. Current tests prove
-route/screen behavior and exact-source return only. Next: bridge normal retained
-candidate/source entry points to Thing IDs without rewriting occurrence
-identity, expose an ordinary app entry path, and keep the owner-confirmed write
-boundary explicit before adding reconciliation controls. Collection and Life
-remain consumers, not identity owners.
+authenticated live-service acceptance for the initial Thing route. The
+following candidate-to-bundle entry integration is separately recorded below.
+Collection and Life remain consumers, not identity owners.
+
+### October 1 candidate-to-bundle entry integration
+
+This implementation records the ownership decision in product behavior without
+changing the accepted identity model. Strategy continues to own the outcome
+end-to-end. Backend owns the persisted Thing reference, source-eligibility check,
+owner-scoped projection and action contract; the app owns the separate button,
+navigation and bundle-reader language. The workspace owns this cross-repo
+roadmap and evidence receipt. No repository copies identity or source
+authorization from another owner.
+
+Backend commit `f1ae16096` links a candidate to the Thing for its verified
+private-Keep submission only when its supporting Source is available, content
+is available, private source retention is active and unexpired. The projection
+preserves the candidate/anchor ID and exposes a distinct `Open saved bundle`
+action; it does not claim that the submission's multiple sources or candidates
+are one semantic object. Existing primary occurrence actions remain in place.
+App commit `9a1c96292` opens that bundle separately and describes it as kept
+together originals, not as a single semantic item. The existing source-to-
+candidate path remains unchanged; each original is still authorized separately
+when the user opens it. The app surface contract defines the exact return and
+legacy/unretained fallback.
+
+| Boundary | Command | Result and limit |
+| --- | --- | --- |
+| Backend projection | `PYTHONPATH=. .venv/bin/python -B -m pytest -p no:cacheprovider tests/api/test_artifact_projections.py tests/core/test_canonical_artifact_projection.py -q`; targeted Ruff check and format check on the four changed Python files | 37 tests passed; Ruff check and formatting passed. Covers eligible and missing Thing references, derived-only/expired retention exclusion, stable Thing path, action ordering and preserved primary action. No live-service or database acceptance was added in this increment. |
+| App reader and action | `npm test -- --runInBand __tests__/screens/canonical-artifact-reader.test.tsx __tests__/screens/kept-thing-reader.test.tsx __tests__/utils/canonicalArtifactActions.test.ts __tests__/components/canonicalArtifactCard.test.tsx`; `npm run test:typecheck:contracts`; targeted `npm exec eslint -- --no-cache …`; `npm run docs:check` | Four suites / 62 tests passed; contract typecheck, changed-file ESLint and docs checks passed. Screen tests establish the conditional action and route/return behavior, not native rendering or live authorization. |
+| Native QA readiness | `npm run qa:polish:scenarios`; `npm run qa:design:check -- canonical-artifact-reader`; `node scripts/polish-qa/run-polish-qa.mjs canonical-artifact-reader --doctor` | 31 registered scenario IDs passed. Design-reference check returned success with a warning: the doctrine-only surface has no design-ref manifest. Doctor/preflight was blocked because Metro was not reachable on `:8081`; no screenshot, simulator, VoiceOver, or native visual acceptance is claimed. |
+
+This completes only candidate-to-bundle read integration. It adds no schema,
+write endpoint, automatic reconciliation, Collection membership, public sharing
+or new source-retention behavior. Owner-confirmed merge/reversal transport and
+UI, Collection continuity and native QA remain open. The backend/app commits
+are lane-local and are not merged to `main`.
