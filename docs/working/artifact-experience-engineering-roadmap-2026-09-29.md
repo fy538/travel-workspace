@@ -617,15 +617,16 @@ private canonical backend owner over stable kept Things: schema/migration,
 owner-scoped index/detail reads, and revision-bound create, rename, add, remove
 and soft-delete commands. Membership stores Thing references rather than Source
 payloads; adding a Thing is currently limited to its owner, and deleting a
-Collection preserves the Things. The API is authenticated but intentionally
-excluded from the mobile projection pending a Life consumer and device evidence.
-This is not shared-Collection support: other-owner contributions, recipient
-grants, whole-collection serving, leave/withdrawal repair, and sharing UI remain
-unimplemented. Automatic filing/default Collection behavior and Vesper-initiated
-shared additions remain unresolved. The implementation does not settle
-notification batching or quiet hours, or the exact recipient-grant implementation.
-It does not change the accepted rule that a shared Collection is visible as a
-whole to its members.
+Collection preserves the Things. The authenticated operations are included in
+the generated mobile contract, with typed app HTTP/API methods and mock parity
+covered by focused lifecycle tests. React Query data hooks, Life presentation,
+and device acceptance remain unfinished. This is not shared-Collection support:
+other-owner contributions, recipient grants, whole-collection serving,
+leave/withdrawal repair, and sharing UI remain unimplemented. Automatic
+filing/default Collection behavior and Vesper-initiated shared additions remain
+unresolved. The implementation does not settle notification batching or quiet
+hours, or the exact recipient-grant implementation. It does not change the
+accepted rule that a shared Collection is visible as a whole to its members.
 
 The first delivered reader-mode matrix is deliberately narrow:
 

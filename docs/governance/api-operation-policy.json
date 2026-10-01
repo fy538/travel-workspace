@@ -3019,73 +3019,115 @@
     },
     "POST /api/consumer-collections": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "createConsumerCollection",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": null,
-      "lifecycle": "retiring",
+      "lifecycle": "active",
       "owner": "consumer-collections",
-      "reason": "Private owner-scoped Collection commands are implemented but remain outside the mobile contract until the Life reader is integrated and device-validated.",
-      "removal_trigger": "Activate with a reviewed Life consumer or remove the unused transport.",
-      "review_by": "2026-10-30"
+      "reason": "The typed app transport owns authenticated requests for user-owned private Collections; the Life presentation remains a separate unfinished surface.",
+      "removal_trigger": "Replace only with an equivalent owner-authorized private Collection transport.",
+      "review_by": null
     },
     "GET /api/consumer-collections": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "listConsumerCollections",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": null,
-      "lifecycle": "retiring",
+      "lifecycle": "active",
       "owner": "consumer-collections",
-      "reason": "Private owner-scoped Collection commands are implemented but remain outside the mobile contract until the Life reader is integrated and device-validated.",
-      "removal_trigger": "Activate with a reviewed Life consumer or remove the unused transport.",
-      "review_by": "2026-10-30"
+      "reason": "The typed app transport owns authenticated requests for user-owned private Collections; the Life presentation remains a separate unfinished surface.",
+      "removal_trigger": "Replace only with an equivalent owner-authorized private Collection transport.",
+      "review_by": null
     },
     "GET /api/consumer-collections/{collection_id}": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "getConsumerCollection",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": null,
-      "lifecycle": "retiring",
+      "lifecycle": "active",
       "owner": "consumer-collections",
-      "reason": "Private owner-scoped Collection commands are implemented but remain outside the mobile contract until the Life reader is integrated and device-validated.",
-      "removal_trigger": "Activate with a reviewed Life consumer or remove the unused transport.",
-      "review_by": "2026-10-30"
+      "reason": "The typed app transport owns authenticated requests for user-owned private Collections; the Life presentation remains a separate unfinished surface.",
+      "removal_trigger": "Replace only with an equivalent owner-authorized private Collection transport.",
+      "review_by": null
     },
     "POST /api/consumer-collections/{collection_id}/rename": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "renameConsumerCollection",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": null,
-      "lifecycle": "retiring",
+      "lifecycle": "active",
       "owner": "consumer-collections",
-      "reason": "Private owner-scoped Collection commands are implemented but remain outside the mobile contract until the Life reader is integrated and device-validated.",
-      "removal_trigger": "Activate with a reviewed Life consumer or remove the unused transport.",
-      "review_by": "2026-10-30"
+      "reason": "The typed app transport owns authenticated requests for user-owned private Collections; the Life presentation remains a separate unfinished surface.",
+      "removal_trigger": "Replace only with an equivalent owner-authorized private Collection transport.",
+      "review_by": null
     },
     "POST /api/consumer-collections/{collection_id}/things/{thing_id}": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "addKeptThingToCollection",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": null,
-      "lifecycle": "retiring",
+      "lifecycle": "active",
       "owner": "consumer-collections",
-      "reason": "Private owner-scoped Collection commands are implemented but remain outside the mobile contract until the Life reader is integrated and device-validated.",
-      "removal_trigger": "Activate with a reviewed Life consumer or remove the unused transport.",
-      "review_by": "2026-10-30"
+      "reason": "The typed app transport owns authenticated requests for user-owned private Collections; the Life presentation remains a separate unfinished surface.",
+      "removal_trigger": "Replace only with an equivalent owner-authorized private Collection transport.",
+      "review_by": null
     },
     "POST /api/consumer-collections/{collection_id}/things/{thing_id}/remove": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "removeKeptThingFromCollection",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": null,
-      "lifecycle": "retiring",
+      "lifecycle": "active",
       "owner": "consumer-collections",
-      "reason": "Private owner-scoped Collection commands are implemented but remain outside the mobile contract until the Life reader is integrated and device-validated.",
-      "removal_trigger": "Activate with a reviewed Life consumer or remove the unused transport.",
-      "review_by": "2026-10-30"
+      "reason": "The typed app transport owns authenticated requests for user-owned private Collections; the Life presentation remains a separate unfinished surface.",
+      "removal_trigger": "Replace only with an equivalent owner-authorized private Collection transport.",
+      "review_by": null
     },
     "POST /api/consumer-collections/{collection_id}/delete": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "deleteConsumerCollection",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": null,
-      "lifecycle": "retiring",
+      "lifecycle": "active",
       "owner": "consumer-collections",
-      "reason": "Private owner-scoped Collection commands are implemented but remain outside the mobile contract until the Life reader is integrated and device-validated.",
-      "removal_trigger": "Activate with a reviewed Life consumer or remove the unused transport.",
-      "review_by": "2026-10-30"
+      "reason": "The typed app transport owns authenticated requests for user-owned private Collections; the Life presentation remains a separate unfinished surface.",
+      "removal_trigger": "Replace only with an equivalent owner-authorized private Collection transport.",
+      "review_by": null
     },
     "POST /api/curator/photos": {
       "audience": "server",
