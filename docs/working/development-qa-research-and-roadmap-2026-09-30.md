@@ -792,10 +792,17 @@ a speed trend.
 
 Diagnose `invite-landing.smoke.test.tsx` and `place-home.smoke.test.tsx` first.
 The invite test waits for a heading before pressing a button that remains disabled
-until stored participation state loads: readiness is a concrete hypothesis to
-verify. The Place-reader timeout cause is unresolved. Repair async readiness,
-timer or cleanup behavior when demonstrated; do not broadly raise timeouts,
-weaken assertions or treat passing on retry as a fix.
+until stored participation state loads. A controlled reproduction on October 1
+delayed `AsyncStorage.getItem` by 500 ms; the test failed with zero submission
+calls because it pressed before the radio became enabled. This identifies a test
+readiness race, not evidence that a user can submit through the disabled control.
+The next repair should wait for the radio's enabled state before pressing, then
+cover immediate, delayed and rejected storage while retaining the submission
+assertion. The Place-reader timeout cause remains unresolved: the first full-suite
+attempt timed out while waiting for the initial exact reading, the retry passed,
+and one isolated run passed. Repair demonstrated async readiness, timer or
+cleanup behavior; do not broadly raise timeouts, weaken assertions or treat
+passing on retry as a fix.
 
 Then benchmark aggregated asset assertions and a lightweight setup for
 source/asset-only convention tests. Keep the same checks and selected inventory.
