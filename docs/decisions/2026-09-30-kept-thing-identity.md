@@ -68,12 +68,12 @@ Occasion truth. There is no new competing Occasion hierarchy.
 
 0. Materialize or attach a `ThingRef` only through the existing owner-verified
    private Keep/retention path. A submitted source, extracted candidate, or
-   successful candidate confirmation alone is not a Keep. Intake's custody and
-   retention decision remains authoritative for whether originals may persist;
-   Capture's confirmation remains authoritative for whether an interpretation
-   is accepted. A confirmed candidate may enrich/link to a Thing only while its
-   supporting source is currently eligible. Do not let either decision imply
-   the other.
+   candidate confirmation alone does not grant raw-source retention. Even where
+   the UI says “Keep this interpretation,” Capture's command accepts the
+   interpretation; Intake's separate custody/retention decision still governs
+   whether its original may persist. A confirmed candidate may enrich/link to a
+   Thing only while its supporting source is currently eligible. Do not let
+   either owner decision imply the other.
 1. Two sources for the same ticket may support one kept Thing, with both
    originals independently addressable. Two tickets for different screenings
    remain distinct Things even when they reference the same film Subject.
@@ -115,11 +115,11 @@ remain in the artifact roadmap.
 
 The entry trigger is deliberately narrower than artifact recognition: use the
 existing private Keep receipt as the source-retention boundary, then resolve an
-eligible interpretation to the stable Thing identity without making
-candidate-confirmation the retention grant. The source-only state remains
-immediately inspectable while recognition is incomplete. The roadmap owns the
-exact transaction/API shape and how later confirmed candidates converge on
-that identity.
+eligible interpretation to the stable Thing identity without treating
+candidate confirmation as the source-retention grant. The source-only state
+remains immediately inspectable while recognition is incomplete. The roadmap
+owns the exact transaction/API shape and how later confirmed candidates
+converge on that identity.
 
 This record changes no code, schema, deployed flag or audience grant. It does
 not authorize global deduplication, autonomous sharing, broader retention,
