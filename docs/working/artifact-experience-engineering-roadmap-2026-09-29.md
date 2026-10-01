@@ -241,6 +241,22 @@ requires a new product/authority decision, changes the agreed ownership
 boundary, or encounters a real cross-lane conflict; ordinary implementation
 and verification obstacles stay with the accountable lane.
 
+**P1 replacement-time editor ownership — October 1:** finish the remaining
+owner-facing replacement-time editor and its correction/Undo readback in that
+same coordinated lane; do not open a second branch or hand it to a separate
+mobile lane. `travel-agent` owns which revision-bound correction is authorized,
+its persistence/replay semantics and canonical readback. `travel-app` owns the
+owner-only editor, interaction and validation, command/retry behavior, Undo
+affordance, and refresh of the canonical reader. The workspace owns this
+roadmap receipt and any cross-repo contract synchronization; generated API
+snapshots and app types continue through the documented sync flow. The editor
+does not depend on Strategy Technical's unlanded artifact-target producer.
+Timezone authoring remains unresolved: the lane must not infer a zone from the
+device or place, alter an explicitly supplied offset, or present an unverified
+time as corrected. Any different user-visible timezone policy remains a
+founder decision and requires matching tests/native acceptance before this
+slice is called complete.
+
 **Write ownership:** thing/component and cultural-subject identity, reconciliation,
 typed readings, focused reader internals, consumer collections and Life, approved
 catalog/media adapters, exact kept editions and original-sharing semantics.
