@@ -904,10 +904,12 @@ summaries are unchanged; a legacy row without a revision retains its ordinary
 Place door but does not invent an exact owner-read target. App commit
 `5b04067f5` regenerates the optional response type from the synced full OpenAPI
 snapshot and app projection; the existing selected-handoff reader consumes the
-typed destination. Focused backend Places/root-projection tests passed **59/59**
-with Ruff format/check; the app's focused navigation/reader suites passed
-**106/106**, typecheck passed, and docs checks passed for 9 headers and 480
-links. Offline schema synchronization and `make api-coverage-check` passed
+typed destination. Backend commit `e3299cad0` extends the producer test through
+the V2 adapter, asserting that the actual generated action retains the exact
+handoff ID and revision. Focused backend Places/root-projection tests passed
+**59/59** with Ruff format/check; the app's focused navigation/reader suites
+passed **106/106**, typecheck passed, and docs checks passed for 9 headers and
+480 links. Offline schema synchronization and `make api-coverage-check` passed
 (**579 active, 15 dark, 0 unflagged, 62 retiring operations**). Real-backend
 cheap-mode and native exact-owner readback are **unverified**: the lane API at
 port 53176 was not listening, so no API/database or device claim is made. D2
