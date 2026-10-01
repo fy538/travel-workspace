@@ -1789,9 +1789,12 @@ of its selected outcome. Ordinary debugging does not need an orchestrator reply.
   and repair them together. Publish a stable candidate rather than successive
   tiny pushes that cancel checks before they report. Keep the final preflight
   scoped to the whole integration diff, not just the last repair commit.
-- Each owner lands its own slice; Orchestration is not a required manual relay
-  for ordinary merges. Serialize actual landings onto shared main, recheck the
-  current base and affected compatibility, and follow the existing lane/CI policy.
+- Each lane owns its implementation, focused verification and a clean committed
+  handoff. Under the October 1 founder assignment, central integration owns
+  conflict resolution, shared dependency pins, candidate verification and
+  protected-main landing. Product lanes continue independent work after handoff;
+  do not wait for every roadmap to finish. Serialize actual landings, recheck
+  the current base and compatibility, and preserve the existing lane/CI policy.
   Land required child changes and then the workspace's matching contract/lock
   tuple. Never advance another session's checkout or overwrite its lock blindly.
 - Use one bounded watcher for the active verification set and inspect failures
