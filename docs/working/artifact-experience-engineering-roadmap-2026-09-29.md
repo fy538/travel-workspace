@@ -67,12 +67,15 @@ current-source authorization reads; app commit `eb14a00fa` switches
 reconciliation to fetch its source and selected target together. This remains
 read infrastructure: it returns original-source references, not user-facing
 member labels or a finished Life composition. These commits are local and not
-merged or published. Cross-repo receipts are in section 13.
+merged or published. Most recently, backend commit `10c5877d8` adds real
+Postgres acceptance for simultaneous exact-command merge/reversal retries and
+opposite-direction merge races; it changes tests only, not runtime behavior.
+Cross-repo receipts are in section 13.
 
 | Area | Implemented and evidenced | Remaining boundary |
 | --- | --- | --- |
 | P0 contracts and portfolio | Accepted kept-thing identity direction; code-backed owner map, supported-door/mode crosswalk, versioned reading descriptor, family/fallback fixtures and sparse-history examples; initial Thing storage/migration design is implemented under P1 | Subject/Component and edition mappings, selected-part representation cases and broader lifecycle portfolio; fixtures are not live generation or desirability evidence |
-| P1 correction and continuity | Revision-bound corrections and append-only Undo; backend typed-time replacement; capture-to-reader and exact-source-to-confirmed-record links with source/digest checks; owner-scoped Thing row on verified private Keep; evidence-backed reversible cross-submission aliases; owner-scoped Thing API/native reader; candidate-to-bundle entry from a qualifying occurrence reader; owner-confirmed reversible reconciliation transport and app controls, focused local tests passed | Native replacement-time editor still needs timezone-authoring behavior; no native acceptance for reconciliation or collection management yet |
+| P1 correction and continuity | Revision-bound corrections and append-only Undo; backend typed-time replacement; capture-to-reader and exact-source-to-confirmed-record links with source/digest checks; owner-scoped Thing row on verified private Keep; evidence-backed reversible cross-submission aliases; owner-scoped Thing API/native reader; candidate-to-bundle entry from a qualifying occurrence reader; owner-confirmed reversible reconciliation transport/app controls; Postgres coverage for concurrent merge/reversal retries and competing merge directions | Native replacement-time editor still needs timezone-authoring behavior; no native acceptance for reconciliation or collection management yet; wider migration/rollback and lifecycle acceptance remain separate |
 | P2 original-first readers | Ticket, source-backed place, text-built book/film/show/music, supplied passage and practical-record treatments; exact-original chooser/return; shared photo viewer | Catalog identity/art, selected-part UI and later dish/recipe/scorecard treatments; source facts do not establish attendance, author identity or payment state |
 | Reader lifetime | Account-session-scoped reads, expiry-aware displayed facts and foreground refresh, exact-source authorization and revision checks | Full source/audience/collection lifecycle replay and authenticated mobile-to-service acceptance |
 | Native acceptance | Fourteen family/source/return fixture screenshots; ten largest-text screenshots; Life source/photo-viewer/removal flow on iOS 18.2 | Reliable pinch/pan, actual VoiceOver traversal/actions, loading/error states, Android/physical devices and live-service readback; these captures do not establish user preference |
@@ -2805,3 +2808,22 @@ authority, privacy/audience behavior, or visible claims.
 | App reader | `npm exec jest -- --runInBand __tests__/screens/kept-thing-reconcile.test.tsx __tests__/utils/api/mock/experienceGraph.test.ts`; `npm run typecheck -- --pretty false` | Two suites / seven tests passed; typecheck passed. `verify:fast` later reported zero lint errors and 167 existing warnings. No Collection screen or device acceptance. |
 | Workspace docs | `make docs-check` | Passed after synchronizing generated API counts in Current State. |
 | Cross-repo change-aware preflight | `WORKSPACE_BASE_REF=f6efac21e77d8802a816e5a457bb2ef03647439c AGENT_BASE_REF=ebe90232b4daa4a9c09a0780f1bffb9366176fa9 APP_BASE_REF=3aaceef880ff6b8ffaf2859c06aaa3d92d7a96c9 RUFF_CACHE_DIR=/private/tmp/vesper-artifact-foundation-ruff-cache PYTEST_ADDOPTS='-p no:cacheprovider' TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_batch_20261001_02 TEST_DATABASE_DISPOSABLE=1 SKIP_AUTH=true make verify-changed` | Exit 0. App: 1,292 suites / 9,200 tests. Backend: 22,110 passed, 14 skipped, 53 xpassed. Workspace scripts: 118 passed; static, OpenAPI/projection/generated-type parity, API coverage, schema bridge, and docs links/spine/canon passed. An earlier full attempt had one isolated worker SIGSEGV in unrelated `PlacesEntityOpening`; its isolated rerun and the final full suite passed; cause was not established. No device, live-auth or production-service acceptance. |
+
+### October 1 concurrent owner-confirmed reconciliation acceptance
+
+The earlier persisted reconciliation receipt explicitly left concurrent merge
+races unproven. Backend commit `10c5877d8b14663e40d3a6a508b8f40a7fd8dcb1`
+adds three independent-connection Postgres cases: the same exact merge command
+submitted concurrently creates one active alias and one revision transition;
+opposite-direction merges at the same starting revisions have one winner and a
+stale-revision loser without an alias cycle; and concurrent exact reversal
+retries reverse one alias once while restoring both original ThingRefs. These
+tests exercise the existing canonical lock order, revision checks, command
+idempotency and reversible alias owner. No runtime code, schema, API or product
+behavior changed.
+
+| Boundary | Exact verification | Result and limit |
+| --- | --- | --- |
+| Fresh-database readiness | `docker exec vesper-artifact-foundation-postgres-1 createdb -U vesper thing_races_20261001_01`; `DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/thing_races_20261001_01 PYTHONPATH=. .venv/bin/python -B -m alembic upgrade head`; `DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/thing_races_20261001_01 PYTHONPATH=. .venv/bin/python -B -m alembic check` | Disposable DB migrated from an empty schema; Alembic reported no new upgrade operations. The named database was dropped after verification; the lane service and volume were preserved. |
+| Owner reconciliation lifecycle | `TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/thing_races_20261001_01 TEST_DATABASE_DISPOSABLE=1 SKIP_AUTH=true PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. .venv/bin/python -B -m pytest -p no:cacheprovider tests/inbound/test_kept_things_postgres.py -q` (from `travel-agent/`) | 12 tests passed, including all three new barrier-synchronized concurrency cases against real PostgreSQL. This establishes repository transaction behavior in the isolated lane DB, not production database settings or fleet-level deployed behavior. |
+| Change-aware preflight | `WORKSPACE_BASE_REF=bb5e20e700c5ab393eb3d045c8290d13a8290871 AGENT_BASE_REF=2e2ee4d6aa8b79bc71976b7946369d3bb72f2f74 APP_BASE_REF=eb14a00fa4750c2bba524753ad16376d3094d3a0 RUFF_CACHE_DIR=/private/tmp/vesper-artifact-foundation-ruff-cache PYTEST_ADDOPTS='-p no:cacheprovider' TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/thing_races_20261001_01 TEST_DATABASE_DISPOSABLE=1 SKIP_AUTH=true make verify-changed` | Exit 0. Backend static checks, route/import guards and mypy passed; selected merge scope passed 82 tests, including the changed Postgres file. Workspace and app had no changed files relative to these bases. No API/schema/app, native, authenticated-device or production-service behavior changed. |
