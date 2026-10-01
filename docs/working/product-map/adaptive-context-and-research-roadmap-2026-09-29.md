@@ -76,10 +76,12 @@ make the production route allocatable. Private selected-source synthesis now
 uses its own global, user-billed `ai.research.synthesize` capability; the key
 is absent from all released benefit rules and remains outside the environment
 enforcement-ready set. Public web-search paths remain on the separate
-`ai.research.live` key and only emit shadow demand observations. Neither
-capability has production allocation or activation. Keep R3 open until the
-private capability receives approved finite allocation/recovery controls and
-public chargeable callers have their own complete accounting boundary.
+`ai.research.live` key and emit shadow demand/execution observations; valid
+Tavily-reported credits are now retained as provider units, while monetary cost
+and settlement remain unknown. Neither capability has production allocation
+or activation. Keep R3 open until the private capability receives approved
+finite allocation/recovery controls and public chargeable callers have their
+own complete accounting boundary.
 The server now prioritizes up to two exact `text/plain` dependencies explicitly
 associated with the selected source's currently resolved, owner-visible subject,
 then same-note sources from an owner/custody/text-filtered query capped at 100
@@ -4165,3 +4167,46 @@ This closes the bounded "new candidate after empty selection" acceptance for
 the explicit-request producer. It does not establish automatic freshness,
 archive-wide recall, novelty-history repair, or full R4 acceptance; R0–R7
 remain open.
+
+#### R3 implementation receipt — provider-reported Tavily credits (October 1)
+
+Backend commit `7424493fc` requests Tavily's `include_usage` response field and
+records only a valid nonnegative integer `usage.credits` in the active
+content-free tool-usage scope. Missing, malformed, negative, boolean, timeout,
+and failed-response usage remains unknown; reported zero is distinct from
+unknown. The normalized/model-facing search result does not receive provider
+credit metadata. The signal is carried into Concierge execution telemetry,
+Lookup Agent usage logs, and batch brief-generation statistics. Commercial
+telemetry continues to report `provider_cost_state=unknown`: Tavily credits are
+provider-native units, not USD cost, a durable attempt ledger, reservation, or
+settlement. This does not change capability access, budgets, benefit policy,
+provider activation, or retry behavior.
+
+Validation on the adaptive-context backend lane (Python 3.13.0; pinned
+`tavily-python==0.8.0`):
+
+- The focused provider/telemetry set passed: **125 passed** across
+  `test_tool_retry.py`, `test_public_research_acquisition.py`, commercial
+  service, Concierge web-search, Lookup Agent handlers, and brief generation.
+  MockTransport exercised the real SDK request, verified `include_usage=true`,
+  and covered positive/zero, absent, malformed, connection-failure and HTTP-503
+  cases without calling Tavily.
+- `MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true make ci-static` passed; Ruff,
+  formatting, architecture/structural gates, and mypy across **1,900** backend
+  files all passed.
+- `env -u TEST_DATABASE_URL -u TEST_DATABASE_DISPOSABLE
+  PYTEST_ADDOPTS='-p no:cacheprovider' MYPY_CACHE_DIR=/dev/null
+  RUFF_NO_CACHE=true make merge-check BASE_REF=main` passed:
+  **22,240 passed, 14 skipped, 1 xfailed, 52 xpassed**, with two expected
+  local-Qdrant payload-index warnings. Database-gated skips remain unverified;
+  Hugging Face DNS retries were emitted by existing offline tests but did not
+  fail the suite.
+- Commit hooks passed. No API/OpenAPI, database, migration, mobile, product
+  policy, provider activation, live provider, deployment, or release change was
+  made.
+
+This closes only content-free capture and propagation of the provider's own
+reported credit units for existing `WebSearchTool` callers. It does not resolve
+the public callers' missing finite allocation/recovery policy or durable
+reservation and settlement, prove independent Tavily invoicing, convert credits
+to monetary cost, or complete R3 or R0–R7.
