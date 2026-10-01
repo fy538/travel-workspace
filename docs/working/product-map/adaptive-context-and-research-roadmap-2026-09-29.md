@@ -725,7 +725,7 @@ is in section 1. The first connected assignment remains active:
 
 | Area | Landed capability to reuse | Remaining connection or evidence |
 | --- | --- | --- |
-| Selected evidence | Owner/revision-bound original reads and mobile callers; bounded UTF-8 text-span selection; exact in-memory hydration; a dark authenticated producer and private exact-result GET; bounded explicit-subject, owner-filtered exact-note discovery capped at 100 matching metadata rows, and same-packet candidates; versioned retrieval-only known-answer fixture; real-Postgres acceptance verifies an older match beyond 500 unrelated descriptors and incomplete state beyond the 100-match cap; unit regressions cover uncertain multibyte byte counts across subject/note/packet cues; exact quoted excerpts are checked against hydrated text before an addition is admitted | Archive-scale query cost beyond the result cap has not been benchmarked; semantic retrieval/ranking, general component or multimodal retrieval, semantic entailment, final-selection evidence and human usefulness remain open; neither candidate cues nor quote presence proves relevance |
+| Selected evidence | Owner/revision-bound original reads and mobile callers; bounded UTF-8 text-span selection; exact in-memory hydration; a dark authenticated producer and private exact-result GET; bounded explicit-subject, owner-filtered exact-note discovery capped at 100 matching metadata rows, and same-packet candidates; versioned retrieval-only known-answer fixture; real-Postgres acceptance verifies an older match beyond 500 unrelated descriptors and incomplete state beyond the 100-match cap; unit regressions cover uncertain multibyte byte counts across subject/note/packet cues; exact quoted excerpts are checked against hydrated text before an addition is admitted; local synthetic PostgreSQL 15.4 server medians for the production exact-note query were 3.9/37.8/237.9/771.6 ms at 1k/10k/100k/500k owner submissions | The synthetic benchmark is not a user archive distribution, multi-tenant latency SLO or application-latency proof; its 500k owner was 82% of the fixture table. A privacy-acceptable query/index tradeoff remains undecided; semantic retrieval/ranking, general component or multimodal retrieval, semantic entailment, final-selection evidence and human usefulness remain open; neither candidate cues nor quote presence proves relevance |
 | Public acquisition | Shared typed single-attempt lookup; answer-only routing without dossier writes; source kind, dates, quotes and truncation metadata; an adversarial returned-snippet regression verifies one explicit provider query and terminal answer-only flow despite hostile text in the result | Construct public requests from selected material under an actual disclosure boundary; select a substantive addition and verify claim support beyond quote presence |
 | Runtime | Existing Source workflow/publication controls; content-free demand and tool/SDK-attempt telemetry; selected-source producer has one real reservation/fence and one no-retry/no-failover model attempt; provider-free Postgres now proves its test-policy reserve/settle/reopen lifecycle; private synthesis and public live research now have separate capability keys | The private synthesis key has no released policy or enforcement readiness; public research remains shadow-only; finite approved allocation, live-provider, shared chargeable-attempt coverage, concurrency, fairness and recovery behavior remain open |
 | Receiving dependencies | Merged family readers, exact-source inspection, correction/Undo and return behavior; Home/Places receiving improvements; authenticated result API exists but is dark | Existing preparation requests remain root-bound; no native artifact consumer has adopted the dark result API |
@@ -1432,9 +1432,12 @@ These are engineering coverage cases, not a narrower product thesis.
    body is read during discovery. A complete empty scan preserves the
    content-free no-addition path; an incomplete empty scan returns unavailable.
    Exact owner, custody, revision and retention are revalidated during Intake
-   hydration. Archive-scale query cost and semantic ranking remain open R2
-   work. Honor current intent and use eligible existing evidence where
-   sufficient.
+   hydration. A synthetic local PostgreSQL benchmark now measures the exact-
+   note query from 1k through 500k per-owner submissions, but representative
+   archive distributions, application latency and an acceptable privacy/query-
+   performance tradeoff remain open R2 work. Do not add a note-derived index
+   from this synthetic result alone. Semantic ranking also remains open. Honor
+   current intent and use eligible existing evidence where sufficient.
    Additions must be supported across the selected original and a dependency,
    while treating personal novelty as inapplicable without novelty history.
    Public research is currently rejected by this route. For a missing public
@@ -4214,3 +4217,81 @@ reported credit units for existing `WebSearchTool` callers. It does not resolve
 the public callers' missing finite allocation/recovery policy or durable
 reservation and settlement, prove independent Tavily invoicing, convert credits
 to monetary cost, or complete R3 or R0–R7.
+
+#### R2 measurement receipt — synthetic exact-note archive query cost (October 1)
+
+Added `travel-agent/scripts/benchmark_selected_source_archive_scale.py`, a
+loopback-only diagnostic that captures the SQL emitted by the production
+`read_same_note_retained_text_sources` owner and runs PostgreSQL
+`EXPLAIN (ANALYZE, BUFFERS, FORMAT JSON)` against that exact statement. The
+runner requires `TEST_DATABASE_DISPOSABLE=1`, a database name prefixed
+`vesper_selected_source_benchmark_`, and an empty migrated database; it seeds
+only synthetic user and Intake metadata, then deletes those owners and their
+cascaded rows. It does not create or drop databases, and it never reads or
+stores real source bodies.
+
+On this lane's isolated PostgreSQL 15.4 service, four synthetic owners held
+1,000, 10,000, 100,000 and 500,000 submissions (611,000 total). Every 500th
+submission had an exact normalized-note match. After two warm-ups, seven
+server-side measured runs produced these medians / maxima:
+
+| Synthetic submissions for queried owner | Expected exact matches | SQL rows fetched before custody checks | Server execution median / max |
+| ---: | ---: | ---: | ---: |
+| 1,000 | 2 | 2 | 3.936 / 4.214 ms |
+| 10,000 | 20 | 20 | 37.839 / 39.415 ms |
+| 100,000 | 200 | 101 | 237.933 / 311.524 ms |
+| 500,000 | 1,000 | 101 | 771.633 / 976.494 ms |
+
+The SQL query returns at most 101 matching metadata rows so the owner can mark a
+result incomplete when the 100-match limit is exceeded. These are database rows
+before Python-side custody-receipt validation, not admitted dependencies. Its
+normalized-note predicate has no matching index, so the query still inspects
+that owner's submission metadata before applying the match limit. Plans used
+the owner index through 100,000 submissions, then a sequential scan at 500,000 because
+that one owner represented 82% of this small fixture table. This plan change is
+fixture-specific. The numbers are local synthetic database execution times,
+not real user archive distributions, full backend/application latency,
+production concurrency, a user-facing SLO, or evidence that 500,000 items is a
+plausible single-user archive. They do establish that exact-note discovery's
+database cost grows materially with owner archive size even when only 101 rows
+are returned.
+
+Validation and cleanup:
+
+- Ruff check and format check passed; targeted mypy passed for the benchmark
+  script. The CLI help path passed. The script rejected both a missing
+  disposable-database marker and a URL pointing at the lane's ordinary `vesper`
+  database before attempting a connection. The focused R2 candidate and
+  versioned-fixture tests passed: **22 passed**.
+- Backend `make ci-static` passed, including structural/architecture gates and
+  mypy across **1,900 source files**. Workspace `make docs-check` passed all
+  governance, inventory, spine, canon, release, status, link, compatibility,
+  and Home-surface checks.
+- The first full offline `make merge-check BASE_REF=main` run failed only
+  `tests/api/test_plan_assistance.py::test_private_deadline_cancels_inference_and_returns_terminal_504[request]`
+  under two-worker scheduling. Both parametrized cases passed when rerun
+  serially. A complete two-worker rerun passed: **22,240 passed, 14 skipped,
+  53 xpassed**. The 14 database/provider-gated skips remain unverified in that
+  offline suite; two expected local-Qdrant payload-index warnings were emitted.
+- `TEST_DATABASE_URL` named the newly created
+  `vesper_selected_source_benchmark_20261001` database on lane port `64355`,
+  with `TEST_DATABASE_DISPOSABLE=1`; migrations reached `selresult03`.
+- After the run, PostgreSQL reported zero users, submissions, source objects,
+  and active connections for the benchmark database. That exact empty database
+  was then dropped; the isolated Postgres service and Compose volume were left
+  intact. The pre-existing Qdrant service was not changed.
+- No provider or model was called; no production query/index, schema, API,
+  result behavior, allocation, mobile consumer, deployment, or release changed.
+- Backend implementation/owner-doc are committed as
+  `travel-agent` commit `9212d1351` on the existing
+  `codex/adaptive-context-research` lane; this workspace receipt is committed
+  separately below.
+
+This closes the missing *synthetic database query-cost measurement*, not R2's
+archive-scale retrieval design. Do not add a plaintext or normalized-note index
+from this evidence alone. The next decision needs representative per-owner
+archive-size assumptions and an explicit privacy/performance bar; then compare
+the current exact-note baseline with any proposed privacy-preserving lookup on
+the same workload. Semantic ranking, supported-addition quality, final
+selection, independent human usefulness review and complete R2 acceptance
+remain open; R0–R7 are not complete.
