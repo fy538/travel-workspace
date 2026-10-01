@@ -23,7 +23,7 @@ depends_on:
 ## Direction and current assignment
 
 Build the complete product on the connected system already implemented.
-The next execution model is **three autonomous implementation lanes in three
+The execution model remains **three autonomous product lanes in three
 coordinated worktrees**, each containing the workspace and both independent
 children. This file owns the boundaries between them and the work of
 **Orchestration**, not a queue through which every other lane must ask permission.
@@ -41,50 +41,59 @@ they do not declare their runtime migration complete. No new booking execution,
 automatic sharing, connected-inbox sharing, background-generation posture,
 notification policy or deployment is authorized by this roadmap.
 
-**Execution status — September 30:** all three lanes have implemented useful
-increments. The founder requested a combined landing of their recent work;
-integration is published from the existing `codex/home-value-delivery` lane.
-This is a landing checkpoint, not a claim that any entire roadmap is finished.
-No new coordination service, fourth integration lane or routine inter-chat
-messaging is required. After landing, owners can resume their remaining scoped
-assignments from the common baseline.
+**Execution status — September 30, after landing:** the combined work from all
+three lanes is merged in the workspace and both children, with required hosted
+checks passing. D0's shared planning and landing checkpoint is complete; runtime
+readiness and product acceptance are not. **Orchestration's next primary
+assignment is D2: complete Home/Places receiving experiences from the landed
+owners, including working interactions and native polish.** D1 capture gaps and
+D3 practical-help gaps remain open and can supply independent work when a D2
+dependency is unavailable.
+
+Eng Efficiency owns the separate [efficiency improvement queue](development-qa-research-and-roadmap-2026-09-30.md#5-improvement-roadmap).
+It supports product delivery; it is not a fourth product or integration queue,
+and its completion is not a prerequisite for independent D2 work. No new
+coordination service or routine inter-chat messaging is required. This roadmap
+update schedules the next work; it does not start implementation or activate
+new product behavior.
 
 ## 1 Inspected baseline and unfinished product work
 
 <a id="inspected-baseline-and-publication-state"></a>
 
-September 30 inspection distinguishes implementation from publication and
+The completed September 30 landing provides this shared main baseline. Preserve
+the distinction between merged implementation, local checkout state and product
 acceptance:
 
-| Repository | Observed revision | Meaning |
+| Repository | Landed main revision | Meaning |
 | --- | --- | --- |
-| Canonical workspace | `7a5d434eb6025e792c0e1dd930d7d295a46f5304` | Includes prior consolidated decisions and roadmaps; current roadmap drafts are additional working changes |
-| Existing delivery workspace | `73d9679409793f337be120bf9d6e39e27c966677` | Includes the subsequent integrated documentation-link repair |
-| Backend main | `3c170d21fc0ca9231b956f2b9de7f9f195231768` | Home/capture follow-up and CI changes merged through PR #237 |
-| App main | `87eceee24512d9086962eea5b844cef9d7bffbeb` | Home/capture follow-up and CI changes merged through PR #202 |
+| Workspace | `4febe0d461a62d204ba4dee9eaad7813c7c1509c` | Combined landing, approved canon refinements, contracts and final child candidate pins; [PR #37](https://github.com/fy538/travel-workspace/pull/37) |
+| Backend | `bd1a683b8656c3f4091e16abb64f57897fa7fc42` | Combined product-lane changes and integration repairs; [PR #238](https://github.com/fy538/travel-agent/pull/238) |
+| App | `e7bdc660501eaa19234e6b45bda033658edaa2d4` | Combined capture, reader, Home/Places and integration repairs; [PR #208](https://github.com/fy538/travel-app/pull/208) |
 
-The table records the pre-integration baseline, not the final landing tuple.
-The combined workspace [PR #37](https://github.com/fy538/travel-workspace/pull/37),
-backend [PR #238](https://github.com/fy538/travel-agent/pull/238), and app
-[PR #208](https://github.com/fy538/travel-app/pull/208) carry this checkpoint.
-Their live merge state and `docs/child-repos.ci-lock.json` identify the shared
-execution baseline. Private checkout and the workspace database-backed gate
-now have successful hosted evidence; do not reopen those old blockers from
-historical receipts. Child repairs still need their exact-revision hosted gates.
+The workspace lock records tested backend `33a000e97ed4` and app `21fdb724ff71`.
+Their trees are identical to the corresponding main merge commits above. Keep
+those immutable candidate pins; do not repin just to replace them with
+identical-tree merge commits. Required checks passed without bypass, including
+private child checkout and disposable-database journeys. The [completed
+integration review](development-qa-research-and-roadmap-2026-09-30.md#9-completed-integration-review)
+records timing, retries and evidence limits. New changes need applicable checks;
+the completed landing is not a reason to repeat its broad suites.
 
-The latest completed Strategy roadmap draft was inspected in its existing
-product-direction checkout; the latest Technical draft was in the canonical
-workspace. This rebaseline consolidates those roadmap contents here without
-changing the source Strategy checkout. Reconcile their pending documentation
-changes once before branching, rather than launching lanes from different
-draft generations. Strategy-child Thesis/Model edits remain separate owned work.
+At this rebaseline, the canonical workspace checkout still sits at `0a39e273`
+with Eng Efficiency's uncommitted draft; do not advance or overwrite that
+checkout. This lane's workspace is at the landed baseline, and its clean child
+checkouts still use the tested candidate commits. Align only the lane's own
+checkouts with landed dependencies at implementation intake. Approved Thesis
+and Product Model refinements are included in the landing, not outstanding
+canon conflicts. Subsequent owner drafts remain separate from this baseline.
 
 | Area | Implemented foundation | Remaining work and owner |
 | --- | --- | --- |
 | Capture | Shared private composer, native extension host, retry/session custody, supported email attachment intake, original access | Supported-door delivery, failure/retry clarity and authenticated handoff: Orchestration D1 |
 | Home | Source discovery/request/worker/readback connections, contextual continuation, current commitment facts, native hierarchy improvements | Useful recurring supply, complete receiving, full-scroll quality and recovery options: D2/D3 |
-| Artifacts and Life | Source custody, original readers, owner references, Life projections and original receiving | Stable thing/component identity, typed family readers, catalog anchors, consumer collections and accepted Life model: Strategy |
-| Context and research | Existing retrieval, bounded research pieces, jobs, generation infrastructure and publication fences | General selected-object capability, evidence fidelity, correct reuse and bounded maintenance: Strategy Technical |
+| Artifacts and Life | Source custody, original readers, revisioned reading descriptors, initial family readers/corrections, Life projections and original receiving | Complete thing/component identity, reader portfolio, catalog anchors, consumer collections and accepted Life model: Strategy; consume landed reader modes without declaring P0–P7 complete |
+| Context and research | Revision-bound original reads, bounded public acquisition and initial attempt accounting, alongside existing jobs and publication fences | Complete selected-object capability, supported additions, shared cost/reuse/maintenance and real-consumer quality evidence: Strategy Technical; its R0–R7 packages remain partially implemented |
 | Places and practical help | Situated projections, entity pages, current place facts and owner-backed actions | Consume richer results coherently; useful current options and exact return: D2/D3 |
 
 These are code/evidence boundaries, not design-completion percentages.
@@ -110,6 +119,15 @@ selection and prepared-result validity, consuming P4 when retention is required.
 P6 is split: Strategy owns collections, original sharing/receiving and Life;
 Orchestration owns their Home/Places placements. Technical R6 provides result
 readback and consumer-conformance evidence, not its own mobile redesign.
+
+**Supporting engineering work:** Eng Efficiency owns the linked improvement
+queue, including workspace validation, app-test determinism/speed, duplicate
+checks and targeted native QA reliability. Before changing shared tooling, its
+owner records the bounded files and dependencies in that roadmap under the
+shared-file rule below. Product lanes consume landed improvements and retain
+their product acceptance duties; they do not duplicate the tooling queue or
+wait for all of it. This does not assign another lane's checkout or authorize
+concurrent writes to the same tooling.
 
 ### Code boundaries and shared files
 
@@ -145,15 +163,17 @@ models. Separate domain migrations may proceed independently. The later landing
 owner reconciles migration heads/order and validates the combined migration;
 do not rename or rewrite another lane's already landed migration.
 
-## 3 Prepare the common baseline once
+<a id="3-prepare-the-common-baseline-once"></a>
 
-Before implementation starts:
+## 3 Resume from the landed baseline
 
-1. Preserve and reconcile the three latest roadmap drafts, accepted decisions
-   and relevant pending owner-contract edits. Resolve workspace PR #37's actual
-   state and the delivery-only link repair; do not assume local main equals
-   remote main. Commit/land the intended shared starting tuple under the current
-   publication authority.
+Shared roadmap reconciliation and combined landing are complete. Before the
+next implementation slice, check only the current lane and its actual
+dependencies:
+
+1. Confirm the landed tuple in section 1 and any newer required dependency.
+   Preserve subsequent drafts. Do not reopen PR #37 or repeat shared planning;
+   local canonical main is not assumed to equal remote main.
 2. Inspect `make worktrees`, branches, HEADs and dirty files in all three repos.
    Reuse suitable free coordinated lanes. Do not repurpose a read-only inventory
    checkout or another session's unfinished checkout by assumption.
@@ -162,18 +182,21 @@ Before implementation starts:
    app worktree is not sufficient: verify its own `travel-agent/` and
    `travel-app/` checkouts, matching intended bases, before any cross-repo command.
    Keep three independent Git histories; no submodules or canonical-child fallback.
-4. Record the same starting workspace/backend/app SHA tuple in each lane's
-   existing assignment. Select a descriptive `codex/` branch per lane. Reuse the
-   worktree for follow-on packages rather than retaining a new branch per helper.
+4. Record the actual workspace/backend/app starting tuple in the lane's existing
+   assignment, with the required landed interfaces. Owners may advance
+   independently; identical HEADs across all lanes are not an ongoing gate.
+   Retain the descriptive `codex/` branch and reuse its worktree for follow-on
+   packages rather than retaining a new branch per helper.
 5. Check each lane's runtime manifest and `scripts/dev.sh --print-runtime`.
    Use isolated API/Expo ports, Compose projects, disposable test databases and
    caches. Reserve distinct simulator/device instances where capacity permits;
    otherwise only the device-dependent check waits. Do not restart another lane's
    services or repoint its app to a different backend.
 
-After this one-time setup, lanes are autonomous. Each keeps current progress
-in its own roadmap, not in all three. This file changes when priority or ownership
-changes, not whenever another lane passes a test.
+These checks do not claim that every lane's runtime is already ready. Lanes
+remain autonomous; each keeps current progress in its own roadmap, not in all
+three. This file changes when priority or ownership changes, not whenever
+another lane passes a test.
 
 ## 4 Interfaces and dependency order
 
@@ -187,20 +210,22 @@ services or an instruction to invent new wire schemas before inspecting owners.
 | Strategy P4/P6 | Exact retained-edition behavior and collection/audience operations, when adopted and implemented | Keep original-only and existing eligible receiving; disable unsupported retention/shared derivatives |
 | Orchestration D2/D3 | Root caller context and return behavior; invocation of existing practical owner commands and current facts | Other lanes preserve existing navigation/actions; do not emulate a provider result or successful mutation |
 
-**First parallel wave:**
+**Post-landing continuation:**
 
-- Strategy maps P0 early, then delivers the P1/PC/P2 foundation with original-first
-  value and honest catalog fallbacks.
-- Technical starts R0/R1 and an existing-original R2 path with first-producer
-  safeguards. It can improve evidence fidelity and public-acquisition boundaries
-  before new artifact identities land.
-- Orchestration starts D1 against existing custody and proceeds with independent
-  Home/Places improvements. It does not wait for catalog licensing, a new reader
-  or broad research infrastructure.
+- Strategy continues its Artifact roadmap from the landed descriptor, reader
+  and correction increments. Its owner chooses the remaining P0/P1/PC/P2 and
+  later package work; consumers do not assume those packages are complete.
+- Technical continues its Adaptive Context roadmap from the landed
+  revision-bound reads, bounded acquisition and accounting increments. Supported
+  additions, shared execution, maintenance and quality gaps remain owned there.
+- Orchestration prioritizes D2 using the supported original/current-owner supply
+  and any eligible prepared results actually available in the landed code. It
+  does not wait for catalog licensing, every reader family or broad research
+  completion; D1 and D3 retain their independent fallback work.
 
-Land the small additive P0/interface portion once ready; do not hold shared
-interfaces until every family renderer is complete. Consumers adopt **landed
-revisions**, not copied uncommitted code or a sibling branch that may change
+Land further small additive interfaces once ready; do not hold them until every
+family renderer is complete. Consumers adopt **landed revisions**, not copied
+uncommitted code or a sibling branch that may change
 under them. Typed fixtures can unblock presentation and adapter work but do not
 prove the producer connection. Recheck owner state at receipt, publication and
 readback where the existing contract requires it.
@@ -212,16 +237,25 @@ representative families, not a decision to narrow Vesper to one behavior loop.
 
 ## 5 Orchestration execution plan
 
+**Current order:** D0's shared-baseline work is complete; D2 is the next primary
+delivery assignment. D1 and D3 remain open for gaps needed by that experience
+and independent work when an exact D2 dependency is blocked. A signing, device,
+provider or unimplemented producer dependency blocks only its affected path.
+The dated implementation receipts below preserve evidence; their historical
+“Next” notes do not override this current order or reopen closed defects.
+
 ### D0 Rebaseline and prepare execution
 
-**Current task:** reconcile these roadmaps, ownership, evidence and start order.
-**Finish:** the three documents agree; each lane has a first assignment,
-exclusions, dependency fallback and acceptance boundary. Execution preparation
-in section 3 remains a separate step until actually performed.
+**Status: complete for shared planning and landing.** The combined main tuple
+includes the three roadmap baselines, accepted canon refinements and integrated
+product work. Ownership, dependency fallbacks and acceptance boundaries remain
+defined here and in the specialist roadmaps. This does not certify every
+checkout/runtime, native capture door, provider path or full product experience;
+section 3 owns the short lane-specific intake before resuming implementation.
 
 Do not turn D0 into another architecture inventory or recurring acceptance-only
-lane. The existing system and unfinished product work are sufficiently concrete
-to begin bounded implementation after baseline preparation.
+lane. Resume the named unfinished product work rather than repeating the
+completed integration or waiting for the efficiency program.
 
 ### D1 Finish supported capture delivery
 
@@ -344,6 +378,39 @@ Do not block the whole lane on signing, an unavailable provider or an unapproved
 sharing policy. No Chat redesign or Life implementation belongs to D1.
 
 ### D2 Make Home and Places complete receiving surfaces
+
+**Next primary assignment, not yet executed by this rebaseline:** turn the
+landed supply and reader capabilities into complete, useful Home/Places sections
+and interactions. Work in the existing root/projection owners; reuse Strategy's
+readers and Technical's results without taking over their implementations.
+
+1. At intake, map the adopted Home/Places sections to their current producer,
+   mobile row, action and return path. Use the existing H1 coverage/receipts and
+   registered design references; record only the next slice's concrete missing
+   connections here, not a new repository-wide inventory. Separate available
+   original/current-owner value from absent or unaccepted generated supply.
+2. Implement a coherent receiving slice through producer read, root composition,
+   exact object/component opening and restored root position. Include useful
+   sparse/empty and changed-access/error behavior. Prefer substantive missing
+   sections and interactions over another sequence of label-only corrections.
+   Preserve the distinct Home and Places roles and eligible human authorship.
+3. Finish that slice's hierarchy, density, imagery, touch and scrolling against
+   the adopted references. Retain focused behavior checks, authenticated owner
+   readback where available, and targeted native evidence for visible changes.
+   Review the full scroll when composition changes, not only the crown. If a
+   device/provider is unavailable, report that acceptance gap and continue
+   independent supported implementation; fixtures are not live delivery proof.
+4. Land the complete useful increment under the existing publication authority,
+   record its remaining gaps here, then take the next D2 section or D1/D3
+   dependency. Reassess product value and owner reuse at that outcome boundary,
+   not after each small fix. Do not accumulate every D2 state before any landing.
+
+**Slice finish:** the selected supported value is reachable, worth opening and
+correctly returned from, with the changed behavior and native treatment checked
+at their stated boundaries. D2 as a whole still requires the representative
+portfolio and full-scroll acceptance below. No prepared-result coverage,
+recurring supply or design-completion percentage follows merely from merging
+the other lanes' foundations.
 
 **Outcome:** both roots deliver substantial, navigable value from current
 authorized supply, with the polish of the adopted design references.
@@ -670,7 +737,7 @@ active. Continue with useful existing-supply coverage and full-scroll acceptance
 
 ### Combined landing checkpoint — September 30
 
-The integration candidate contains the Home/capture lane plus these completed
+The merged integration contains the Home/capture lane plus these completed
 source cuts, preserving each repository's history:
 
 | Source lane | Workspace | Backend | App |
@@ -695,8 +762,10 @@ focused correction evidence, including the final 720-test app delta and
 22,081-test backend offline result. The first published workspace candidate
 passed its complete required gate, including real-database journeys. Child
 hosted checks prompted bounded fixture, shared-design ownership and dependency
-repairs; the lock file names their final candidate heads. The three linked PRs
-are the final publication/merge record, not these earlier preflight results.
+repairs; the lock file names their final candidate heads. All three PRs are now
+merged with required checks passing. Section 1 records the final main tuple;
+the linked integration review retains the final hosted timings and retry limits.
+Earlier preflights do not substitute for that final publication record.
 
 This landing does not certify full native/design parity, live-model output
 quality, every capture door, or recurring real-owner supply. Those remain the
@@ -711,9 +780,9 @@ diagnosis, implementation, focused verification, review corrections and delivery
 of its selected outcome. Ordinary debugging does not need an orchestrator reply.
 
 - Keep **one active coherent assignment per lane**, with bounded internal
-  subagents only when delegation is authorized and writes are disjoint. Three
-  lanes is a capacity limit, not a reason to invent work or run three native
-  builds simultaneously.
+  subagents only when delegation is authorized and writes are disjoint. The
+  three product lanes and bounded supporting efficiency work do not justify
+  inventing more work or running several native builds simultaneously.
 - The owner updates only its own roadmap's current assignment: exact base tuple,
   owned files/interfaces, finished behavior, remaining gaps and next action.
   Use existing PRs and receipts; no new daily report files or duplicate trackers.
@@ -728,11 +797,21 @@ of its selected outcome. Ordinary debugging does not need an orchestrator reply.
   part proceeds. Do not merge every tiny commit, but do not keep completed work
   for weeks until all three roadmaps finish. If a dependency cannot land, name
   the specific blocker and stop adding dependent branch-only work.
+- Before publishing a complete slice, collect the inexpensive check failures
+  and repair them together. Publish a stable candidate rather than successive
+  tiny pushes that cancel checks before they report. Keep the final preflight
+  scoped to the whole integration diff, not just the last repair commit.
 - Each owner lands its own slice; Orchestration is not a required manual relay
   for ordinary merges. Serialize actual landings onto shared main, recheck the
   current base and affected compatibility, and follow the existing lane/CI policy.
   Land required child changes and then the workspace's matching contract/lock
   tuple. Never advance another session's checkout or overwrite its lock blindly.
+- Use one bounded watcher for the active verification set and inspect failures
+  together. On an unchanged candidate, rerun only failed eligible jobs where
+  supported; an unchanged retry passing does not prove an intermittent defect
+  repaired. A changed revision needs its own applicable checks. Independent
+  slices need not wait for unrelated lanes, while shared contracts must land as
+  a compatible set. Do not create another monitoring or approval layer.
 - Publishing, merging and deployment use their actual authorization. Passing a
   local subset does not waive required hosted checks. A complete worktree can be
   reused after landing; retiring it follows the existing recovery-safe lifecycle.
@@ -752,6 +831,13 @@ persona, data source and reference before capture. Disposable DB tests require
 explicit opt-in. Keep exact commands, revisions and passed/failed/blocked/unrun/
 stale boundaries; use existing measurement tooling. Never claim a five-minute
 merge guarantee from this workflow or erase tests just to meet a slogan.
+
+The [efficiency roadmap](development-qa-research-and-roadmap-2026-09-30.md#5-improvement-roadmap)
+owns optimization order, timing targets and measurements. Product lanes adopt
+changes only after they land with their detection guarantees demonstrated;
+proposed sharding or review simplification does not change required checks.
+This lane remains accountable for substantive value, working actions and native
+polish. Faster integration supports those outcomes; it does not replace them.
 
 ## 7 Reassessment and scope control
 
