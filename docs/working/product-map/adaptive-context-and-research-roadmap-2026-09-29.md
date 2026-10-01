@@ -2351,10 +2351,14 @@ source-contribution policy, which has its own known-claim evidence, is unchanged
 Evidence on the current backend tree:
 
 - Focused offline work-item, hydration, and owner-contract tests: **23 passed**;
-  **9 PostgreSQL lifecycle cases were deselected**, not passed. A disposable DB
-  is not configured in this lane (`TEST_DATABASE_URL` unset), so persistence
-  and invalidation coverage for these changed work-item semantics must be rerun
-  against a named disposable target before that boundary is accepted.
+  nine PostgreSQL lifecycle cases were deselected in that offline invocation.
+  Separately, the isolated lane Postgres service (`vesper-adaptive-context-
+  research`, host port 64355) was used to create the named disposable database
+  `vesper_adaptive_context_test_20261001`. After applying migrations through
+  `selresult03`, **12 PostgreSQL tests passed** across
+  `test_selected_source_research_results_postgres.py` and
+  `test_original_source_reader_postgres.py`, including custody, revision,
+  dependency invalidation, and result readback boundaries.
 - Tests cover dependency revisions changing work identity, canonicalizing
   dependency order, rejecting self/duplicate/unsupported dependencies, exact
   same-viewer hydration, hidden text representations, the combined character
@@ -2364,6 +2368,7 @@ Evidence on the current backend tree:
   `make merge-check BASE_REF=main` passed: **22,106 passed, 14 skipped, 53
   xpassed**. One expected local-Qdrant warning was emitted; network metadata
   retries did not fail the suite.
+- `make docs-check` passed after updating the workspace receipt.
 - No endpoint, OpenAPI schema, generated mobile type, provider activation,
   model call, source text persistence, client readback or consumer acceptance is
   claimed. The producer and authenticated end-to-end path remain open; R0–R7
