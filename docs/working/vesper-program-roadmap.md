@@ -625,6 +625,29 @@ accurately. Focused shell/rollout tests passed **7/7**, app typecheck passed,
 and `make docs-check` passed. No tab behavior changed; this removes a misleading
 dead contract while preserving the existing Life root and rehearsal gates.
 
+**Original-receiving access-state correction — 2026-09-30:** app commit
+`c2faa2ea5` gives the owner-read hook an explicit `loading` / `available` /
+`unavailable` state and makes Home plus the exact-original reader honor it.
+While identity is unresolved, previously cached sender, caption, and bytes stay
+hidden and no original door is offered; a disabled capability, signed-out
+owner, or missing delivery now resolves to an unavailable state instead of a
+Home card that can say “Opening original…” indefinitely. Current authorized
+reads retain the existing recipient-safe attribution, exact-original reader,
+and return behavior. This is an access/lifecycle fallback correction only; it
+does not widen original media types or add backend behavior. The focused screen
+suite passed **21/21**, `npm run typecheck` passed, and targeted ESLint had no
+errors (the existing Home renderer max-lines warning remains). The registered
+`polish/home-root-social-original` Maestro flow passed **1/1** with three
+screenshots on the lane's `Vesper QA SE` simulator after enabling the internal
+relationship flag; the UI was inspected for the attributed Home note, exact
+reader, and restored Home position. This is internal mock-fixture/device
+evidence—not real-owner backend readback, external-design parity, or release
+acceptance. The initial sandboxed simulator attempt was blocked by CoreSimulator
+and QA-lock permissions; the permitted local-device retry completed. This
+closes one receiving-state defect, not D2. **Next:** continue functional
+Home/Places completion against existing owner-backed supply and full-scroll
+acceptance; do not reopen this access-state slice absent new evidence.
+
 ## 6 Autonomous execution and landing
 
 Each lane starts by reading its roadmap, the ownership section above, root and
