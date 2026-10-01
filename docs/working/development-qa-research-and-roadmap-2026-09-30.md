@@ -720,8 +720,21 @@ The [checkout action supports shallow fetches](https://github.com/actions/checko
 and [Git's blobless filter](https://git-scm.com/docs/git-clone#Documentation/git-clone.txt---filterltfilter-specgt)
 omits historical file contents. A local shallow-clone reproduction passed the
 production governance checker on all 405 post-baseline documents while keeping
-the current HEAD shallow and unchanged. Hosted latency and exact baseline-fetch
-behavior remain unverified until this trial's required run completes.
+the current HEAD shallow and unchanged.
+
+**Baseline-only history hosted receipt (October 1).** The follow-up on PR 40,
+workspace `ddef43ff7c2464bb17e54138b8fd6b06c825d4e0`, passed Reliability run
+[36908354919](https://github.com/fy538/travel-workspace/actions/runs/36908354919),
+all four syntax shards and the required aggregate. The child checkout and
+baseline fetch steps in `workspace-checks` took 11s combined (Agent 5s, App
+5s, historical-tree fetch 1s), compared with 361s for the two full-history
+checkouts in run 36905253965. The Reliability job fell from 10m56s to 5m30s
+in this paired comparison. The historical tree fetch and child-document
+governance passed on the pinned candidate. This is one before/after hosted
+pair, so repeatability and broader end-to-end improvement remain unproven.
+The Maestro Cloud PR smoke was skipped because that service is unconfigured;
+the separate configuration check passed. This provides no native-device visual
+QA evidence.
 
 The measured local preflight for the shallow-baseline candidate completed in
 376.152s with exit 0. It used workspace `91f991eaf13b168d65ff5796997574faee6b024e`
@@ -1501,20 +1514,21 @@ cross-repository invariants.
 
 Section 5 remains the only execution queue. Package 3C's four-shard syntax
 trial passed hosted checks and measured lower syntax-shard checkout time;
-its main-job child-history optimization has a locally passing candidate and is
-awaiting hosted verification. Package 3A's
+its main-job child-history optimization passed local and hosted verification on
+one candidate. Package 3A's
 hosted checks pass, and Package 3B's workflow consolidation is published in
-workspace, app and backend PRs. Package 4 now has one measured CI checkout
-experiment, limited to file-only syntax shards; the separate native build reuse
-pilot remains conditional. One Package 6 archive migration passed documentation
+workspace, app and backend PRs. Package 3C now has measured checkout reductions
+for syntax shards and the main reliability job, each supported by one hosted
+comparison. The separate native build reuse pilot remains conditional. One
+Package 6 archive migration passed documentation
 governance checks. Package 1 has a passing targeted native capture, while its
 broader Home/Places acceptance and Package 2's original wrong-state replay
-remain open. Native QA retains its separate product-quality purpose. The one
-paired CI run supports a reduction in syntax-shard checkout time; the reliability
-job still took 10m56s with full child history, so the current trial targets that
-remaining cost. Neither result establishes a repeatable end-to-end CI or
-productivity gain. No new dashboard, parser, framework, standing agent fleet or
-broad test-deletion project is required.
+remain open. Native QA retains its separate product-quality purpose. The paired
+syntax run supports lower shard checkout time, and one further hosted pair shows
+the reliability job falling from 10m56s to 5m30s after the baseline-only fetch.
+Neither result establishes a repeatable end-to-end CI or productivity gain. No
+new dashboard, parser, framework, standing agent fleet or broad test-deletion
+project is required.
 
 ### Reproducing the integration measurements
 
