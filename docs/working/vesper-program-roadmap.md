@@ -160,6 +160,17 @@ P6 is split: Strategy owns collections, original sharing/receiving and Life;
 Orchestration owns their Home/Places placements. Technical R6 provides result
 readback and consumer-conformance evidence, not its own mobile redesign.
 
+**Program coordination is not a fourth implementation lane.** This strategy
+thread keeps the cross-lane product context, clarifies priorities and ownership,
+and reviews evidence at system checkpoints. The three execution lanes each own
+their bounded outcome through implementation, focused verification, commits
+and safe landing; owners coordinate directly on ordinary technical details.
+Escalate here for a consequential cross-lane conflict or a product/authority
+choice, not for routine progress reports or every implementation obstacle.
+Founder review remains reserved for decisions that change product meaning,
+privacy, authority or visible claims. Coordination must not duplicate an
+execution lane's implementation or become an approval queue.
+
 ### Code boundaries and shared files
 
 Choose exact files at each lane's intake from these existing owner areas.
