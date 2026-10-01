@@ -2622,3 +2622,57 @@ Validation for the acceptance-case increment, before commit:
 - Workspace `make docs-check` passed; app remained unchanged. These narrower
   checks are not a replacement for the earlier failed integrated preflight or
   an end-to-end consumer acceptance.
+
+#### Implementation receipt — explicit subject-linked selected-source candidates (October 1)
+
+R2 now has an owner-bound cross-submission relation in addition to the
+exact-note and same-packet cues. The selected Intake submission's explicit
+`subject_entity_ref` is resolved to its current canonical entity and visibility
+is checked for that owner. The Intake metadata reader then returns up to 100
+nearest-in-time, currently retained, verified, clean `text/plain` sources from
+other submissions whose stored pointer names that exact canonical entity. It
+reads no candidate body or note. Exact subject candidates are prioritized,
+then exact user-note matches, then same-submission packet siblings, within the
+existing two-dependency and 20,000-character limits. Exact source bodies still
+pass through the existing Intake hydration and custody/revision checks before
+provider use.
+
+This is a candidate relation only: a shared entity pointer says what the user
+associated with each capture, not that the sources describe one visit, event,
+or claim. Distinct source IDs remain distinct even when their content hashes
+match. The current query intentionally favors false negatives over inferred
+identity: noncanonical legacy pointers, sources without an explicit pointer,
+non-text artifacts and unresolved private entities do not enter this bridge.
+It does not establish that a connection is useful or novel, and does not
+resolve the exact-note cue's remaining false-positive risk.
+
+The existing `source_contribution_discovery` path was reviewed but not treated
+as a selected-source retrieval API: it assembles situation- and root-scoped
+Home/Places opportunities around current subjects; it does not take one
+selected Intake Source as its query or provide the exact reverse relation
+needed here. The change therefore extends the current Intake metadata owner
+rather than coupling this route to root ranking/grouping semantics.
+
+Validation on the committed backend candidate before this receipt:
+
+- Focused offline selected-source API/candidate tests: **24 passed**.
+- The disposable-Postgres regression passed (**1 passed**) against the named
+  lane database `vesper_adaptive_context_test_20261001` on the lane's isolated
+  PostgreSQL port. It exercised explicit same-subject discovery, two separate
+  same-owner source IDs with identical content hashes, and exclusion of a
+  closer-in-time other-owner source.
+- Ruff lint and format checks passed for the six changed backend/test files.
+- Backend `make ci-static` passed, including architecture gates and mypy across
+  **1,900 source files**. Backend `make merge-check BASE_REF=main` passed the
+  offline suite: **22,147 passed, 14 skipped, 53 xpassed** with two expected
+  local-Qdrant warnings. Database-marked cases were not part of that offline
+  run; the focused disposable-Postgres regression above is separate evidence.
+- No schema migration, API/OpenAPI, app, provider, or product-surface change.
+  The feature remains dark and has no consumer usefulness acceptance.
+
+The next R2 step remains a small versioned known-answer relevance fixture:
+explicit same-subject positives, repeated-visit identity, exact-note
+distractors, cross-artifact text, and complete-empty/insufficient-support.
+Use it to distinguish candidate recall from producer selection and supported
+addition quality; do not report synthetic fixture scores as consumer evidence.
+R0–R7 remain open.
