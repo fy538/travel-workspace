@@ -157,6 +157,27 @@ Git, so this is a carried verdict rather than a fresh pixel review. The
 Home/Places wrong-state replay remains unverified; the failed returned-state
 attempt above never reached Home and is not evidence for that defect.
 
+The October 1 task-context pass shortened four app/backend owner and intake
+documents while retaining the workspace guidance as the single cross-repository
+owner. Across the five instruction docs considered, the current word count is
+4,641 versus 5,043 at this lane's base (402 fewer, 8.0%). Routing exercises
+followed a bounded Home returned-state copy/layout change from the app owner
+instructions through the local-change evidence row to the
+[Home Root contract](../../travel-app/docs/surfaces/home-root/contract.md)
+and `polish/home-root-returned` flow; no full-surface recapture is implied. The
+shared artifact-reader typography fix (`c704fc997`) routes through the shared
+reader/accessibility evidence row, its
+[contract](../../travel-app/docs/surfaces/canonical-artifact-reader/contract.md),
+representative family tests, and the registered large-text capture set. An
+Intake correction or audience change routes through the
+[contribution-and-consequence contract](../systems/contribution-and-consequence.md),
+backend risk label, and [Inbound owner feature](../../travel-agent/backend/inbound/FEATURE.md),
+with negative/readback integration evidence at that boundary and screenshots
+only if presentation changes. These are task-routing checks against real
+contracts and changes, not elapsed-time measurements.
+Package 2 remains in progress: the Home/Places wrong-state replay and fresh
+native evidence are still unverified.
+
 Package 5's P03-03 grader now requires the exact
 `trip_photo:private-late-set-photo` evidence reference and matching non-empty
 before/after source revisions. Missing, malformed, or changed revision evidence
