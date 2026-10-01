@@ -75,15 +75,23 @@ Collection member data composition: each revision-pinned membership page is
 paired with one bounded batch of owner-authorized Thing projections. It
 preserves membership order and identity and carries authorized original
 references only; it does not invent member titles or build a Life detail
-screen. Cross-repo receipts are in section 13.
+screen. App commit `de36dcd86` now gives the dedicated synthetic replacement-
+time fixture revision-bound in-memory mock correction/readback and Undo
+semantics, and registers a native Save/refetch/Undo scenario; app commit
+`51d275d11` records its validated iOS 18.2 verdict. The native run proves the
+round-trip only against synthetic mock state, not backend persistence, deployed
+authentication, or a live service. The mock-parity checkpoint below is closed
+within that bounded scope; the next connected checkpoint remains Technical's
+landed artifact-target request/result contract. Exact commands and evidence
+limits are in section 13.
 
 | Area | Implemented and evidenced | Remaining boundary |
 | --- | --- | --- |
 | P0 contracts and portfolio | Accepted kept-thing identity direction; code-backed owner map, supported-door/mode crosswalk, versioned reading descriptor, family/fallback fixtures and sparse-history examples; initial Thing storage/migration design is implemented under P1 | Subject/Component and edition mappings, selected-part representation cases and broader lifecycle portfolio; fixtures are not live generation or desirability evidence |
-| P1 correction and continuity | Revision-bound corrections and append-only Undo; backend typed-time replacement; native owner-only replacement-time editor with separate explicit start/end offsets and revision-bound Save/Undo; capture-to-reader and exact-source-to-confirmed-record links with source/digest checks; owner-scoped Thing row on verified private Keep; evidence-backed reversible cross-submission aliases; owner-scoped Thing API/native reader; candidate-to-bundle entry from a qualifying occurrence reader; owner-confirmed reversible reconciliation transport/app controls; Postgres coverage for concurrent merge/reversal retries and competing merge directions | Replacement editor has bounded native keyboard-visible form, validation, and cancel evidence. Native save/refetch/Undo readback is not proven; raw UTC-offset entry and absent start/end place labels are documented UX follow-ups. No native acceptance for reconciliation or collection management yet; wider migration/rollback and lifecycle acceptance remain separate |
+| P1 correction and continuity | Revision-bound corrections and append-only Undo; backend typed-time replacement; native owner-only replacement-time editor with separate explicit start/end offsets and revision-bound Save/Undo; capture-to-reader and exact-source-to-confirmed-record links with source/digest checks; owner-scoped Thing row on verified private Keep; evidence-backed reversible cross-submission aliases; owner-scoped Thing API/native reader; candidate-to-bundle entry from a qualifying occurrence reader; owner-confirmed reversible reconciliation transport/app controls; Postgres coverage for concurrent merge/reversal retries and competing merge directions | Synthetic mock-mode Save/refetch/Undo now has registered native iOS 18.2 evidence, including readable dated time-range projection. Authenticated app-to-backend persistence/readback remains open; raw UTC-offset entry and absent start/end place labels remain UX follow-ups. No native acceptance for reconciliation or collection management yet; wider migration/rollback and lifecycle acceptance remain separate |
 | P2 original-first readers | Ticket, source-backed place, text-built book/film/show/music, supplied passage and practical-record treatments; exact-original chooser/return; shared photo viewer | Catalog identity/art, selected-part UI and later dish/recipe/scorecard treatments; source facts do not establish attendance, author identity or payment state |
 | Reader lifetime | Account-session-scoped reads, expiry-aware displayed facts and foreground refresh, exact-source authorization and revision checks | Full source/audience/collection lifecycle replay and authenticated mobile-to-service acceptance |
-| Native acceptance | Fourteen family/source/return fixture screenshots; ten largest-text screenshots; Life source/photo-viewer/removal flow on iOS 18.2; replacement-time editor keyboard-open, validation, dismissal and cancel flow on iOS 18.2 (October 1, one scenario, validated verdict) | Editor save/refetch/Undo has not been exercised natively. Reliable pinch/pan, actual VoiceOver traversal/actions, loading/error states, Android/physical devices and live-service readback remain open; captures do not establish user preference |
+| Native acceptance | Fourteen family/source/return fixture screenshots; ten largest-text screenshots; Life source/photo-viewer/removal flow on iOS 18.2; replacement-time editor keyboard-open, validation, dismissal and cancel flow; synthetic mock Save/refetch/Undo flow on iOS 18.2 (October 1, each one scenario with validated verdicts) | Live authenticated save/refetch/Undo is not proven. Reliable pinch/pan, actual VoiceOver traversal/actions, loading/error states, Android/physical devices and user preference remain open |
 | Landed Technical dependencies | Exact-original revision binding and backend-only refinding of a bounded UTF-8 `text/plain` span; bounded public-acquisition primitives | No stable cross-representation Component identity, mobile selection API, artifact-bound discovery request or complete research-spend enforcement |
 | PC and later packages | House-design fallbacks and existing eligible original receiving remain usable; canonical private consumer-Collection owner, generated mobile contract/client, session-scoped paginated data facade with revision-bound continuation, bounded owner-backed Life Collections root API, batch owner-authorized Thing projection, and app-side Collection-page-to-Thing batch composition are implemented. The accepted Collections reading remains the product target. | Shared membership/audience/receiving, native Life Collections lens/detail route and device acceptance, founder-approved member labels/previews/hierarchy, approved catalog mappings/uses, exact kept editions and connected contextual additions remain unfinished |
 
@@ -652,7 +660,7 @@ projection into a new canonical owner.
 | Kept Thing identity | `travel-agent/backend/core/db/_tables/kept_things.py`, `travel-agent/backend/core/db/kept_things.py`, Alembic revisions `keptthing01`/`keptthing02`, and `travel-agent/backend/api/routes/artifact_projections.py`; app consumer in `travel-app/data/keptThings.ts` | Verified private Keeps create an idempotent content-free owner Thing. Evidence-backed, revisioned aliases now have authenticated merge/reversal routes and deliberate app controls; the ordinary candidate-to-bundle entry is connected. Every original is separately reauthorized; aliasing does not copy grants or claim semantic sameness. The reader still exposes originals, not a composed Thing title/summary. |
 | Private consumer Collection | `travel-agent/backend/core/db/consumer_collections.py`, `travel-agent/backend/core/models/consumer_collection.py`, its authenticated route and `travel-app/data/consumerCollections.ts` | A private canonical Collection owns many-to-many stable ThingRefs. Index/detail and revision-bound lifecycle commands are consumed through generated types and session-scoped queries. Detail pagination carries the first page revision and rejects stale continuation. It returns membership/Thing refs, not an authorized member presentation; there is no native Life Collection detail or batched artifact composition. Shared membership and receiving remain unimplemented. |
 | Confirmed thing/read target | Confirmed Intake candidates are projected by `travel-agent/backend/core/db/intake_anchors.py` as `ExperienceAnchorProjection`; the existing route remains `ResourceRef(kind="experience_anchor")` at `/you/memories/artifacts/{id}`. The stable kept-Thing route is `GET /api/artifact-projections/things/{thing_id}` and the app reader is `/you/memories/things/[id]`. | Candidate rows retain UUIDs across replay/status changes and use `(submission_id, candidate_key)` as their idempotent key. Existing IDs still open the candidate-backed reader; they are not automatically redirected or migrated to Thing. The current normal entry path can now open the Thing identity from an eligible candidate; the identities remain distinct and separately addressable. |
-| Claims and correction | Intake observations/candidate revisions in `travel-agent/backend/core/db/intake_semantics.py`; source-bound projection in `travel-agent/backend/core/canonical_artifact_projection.py` | The owner reader exposes gated `wrong_time`, `separate_from_occasion`, `keep_occurrence_forget_interpretation`, and (when an explicit private target/revision is present) `replace_time`. The replacement editor preserves each aware instant's wall-clock date/time and explicit UTC offset, does not infer from device/place, binds Save and Undo to the current numeric revision, and refreshes the artifact after a successful command. Backend persistence and projection replay are already covered separately. The remaining native proof is software-keyboard usability and end-to-end save/refetch/Undo on device; the form also has recorded UX follow-ups for raw UTC-offset entry and start/end place context. |
+| Claims and correction | Intake observations/candidate revisions in `travel-agent/backend/core/db/intake_semantics.py`; source-bound projection in `travel-agent/backend/core/canonical_artifact_projection.py` | The owner reader exposes gated `wrong_time`, `separate_from_occasion`, `keep_occurrence_forget_interpretation`, and (when an explicit private target/revision is present) `replace_time`. The replacement editor preserves each aware instant's wall-clock date/time and explicit UTC offset, does not infer from device/place, binds Save and Undo to the current numeric revision, and refreshes the artifact after a successful command. Backend persistence and projection replay are already covered separately. Native keyboard/cancel and synthetic-mock Save/refetch/Undo evidence are recorded; authenticated live app/backend readback remains unproven. The form also has recorded UX follow-ups for raw UTC-offset entry and start/end place context. |
 | Place and occurrence context | Physical `EntityRef` vocabulary in `travel-agent/backend/core/entity_types.py`; owner-scoped Experience Graph rows bridged by the artifact projection route | Place/time/Occasion/Plan context can be read from its existing owners. The place-like entity capability sets are not a cultural-work identity registry. |
 | Selected component | Intake observations and `evidence_locator` validation in `travel-agent/backend/core/intake_evidence.py`; Technical's `read_selected_text_component_for_owner` in `travel-agent/backend/inbound/original_source_reader.py` (backend `63ac861ef`) | A backend-only adapter now refinds strict UTF-8 `text/plain` character spans against the selected Source ID and full source digest, with current custody checks and a 20,000-character cap. It is not stable cross-representation Component identity, PDF/OCR/image selection, or a mobile selection API. The current artifact reader still opens the whole source. |
 | Life organization | Rebuildable viewer-specific groups and membership controls in `travel-agent/backend/life_projection/organization.py`, `travel-agent/backend/core/db/_tables/life_organization.py`, and `travel-agent/backend/core/db/life_organization.py` | Groups, memberships and controls are keyed by `viewer_id` and `projection_version`; memberships record evidence-backed derived relations to owner records. Durable controls rename a derived group, detach one derived membership, or undo that control. They provide useful revision/CAS and reversible-control patterns, but do not create or own a user's canonical Collection or its shared audience. |
@@ -1727,46 +1735,39 @@ original or guessing the event timezone from the device's current location.
    `-04:00` with on-screen keys; because that makes the end precede the start,
    the editor showed its validation message and disabled Save, and Cancel
    returned to the unchanged artifact.
-4. **Not established:** no correction was submitted; native backend
-   save/refetch/Undo readback, deployed authentication, Android/physical-device
-   behavior, or user preference is not proven. The verdict retains two minor
-   UX follow-ups: raw UTC notation is technical for ordinary owners, and
-   Start/End lack associated place labels when the artifact contains distinct
-   event locations. Address those without weakening the rule that Vesper never
-   silently infers the event timezone.
+4. **Boundary of this keyboard/validation/cancel capture:** no correction was
+   submitted in this scenario; backend readback, deployed authentication,
+   Android/physical-device behavior, or user preference was not proven by this
+   capture. The later mock-mode round-trip below is a separate synthetic-state
+   proof, not service persistence. The verdict retains two minor UX follow-ups:
+   raw UTC notation is technical for ordinary owners, and Start/End lack
+   associated place labels when the artifact contains distinct event locations.
+   Address those without weakening the rule that Vesper never silently infers
+   the event timezone.
 
-#### Mock-mode correction parity checkpoint
+#### Mock-mode correction parity checkpoint — completed October 1
 
-Before using the replacement-time editor for a native Save/refetch/Undo
-exercise, make the dedicated synthetic QA artifact behave coherently through
-the app's mock data path. Current code inspection indicates a gap: the editor
-fixture (`qa-replacement-time-editor`) does not have a corresponding mock
-Intake candidate, mock `replace_time` is handled as generic confirmation,
-`undo_correction` has no correction-specific mock behavior, and the canonical
-artifact mock read remains the unchanged static fixture. A mock-mode Save could
-therefore fail to resolve the fixture or appear to succeed without changing the
-subsequent artifact read. This is an app-mock limitation, not evidence of a
-backend contract defect.
+The dedicated synthetic QA artifact (`qa-replacement-time-editor`) now has an
+in-memory, revision-bound correction projection behind the existing app
+API/data seam. Save updates the effective event time without rewriting the
+original submitted evidence; a fresh canonical-artifact read shows the
+replacement and owner-only Undo; Undo restores the prior effective time,
+including across successive corrections. Exact retries are idempotent, stale
+revisions conflict, invalid explicit offsets are rejected, and resetting mock
+state restores the original fixture. An unrelated mock candidate retains its
+existing behavior. No backend schema, OpenAPI, generated wire types,
+real-service behavior, or ordinary mock candidate was changed.
 
-**Intended behavior:** only the synthetic owner QA fixture gets an in-memory,
-revision-bound correction projection. Save updates its effective event time
-without rewriting the original submitted evidence; a fresh canonical-artifact
-read shows the replacement and owner-only Undo; Undo restores the original
-effective time. Exact retries are idempotent, stale revisions conflict, and
-resetting mock state restores the original fixture. Keep this adapter behind
-the existing app API/data seam: do not change backend schema, OpenAPI, generated
-wire types, real-service behavior, or ordinary mock candidates to make the
-fixture pass.
-
-**Owner and acceptance:** the app mock adapter owns this bounded parity work.
-First add focused tests for the fixture's initial read, replacement/readback,
-exact retry, stale-revision rejection, Undo/readback, and state reset; also
-prove an unrelated mock candidate retains its existing behavior. Then add a
-separate registered native mock-mode Save/refetch/Undo scenario, leaving the
-already accepted keyboard/validation/cancel capture intact. The native claim
-must explicitly remain synthetic mock-state evidence—not backend persistence,
-deployed authentication, or service readback. No user preference or product
-policy decision is implied.
+Focused tests cover initial direct-save resolution, replacement/readback,
+exact retry, stale-revision rejection, invalid input, successive corrections,
+Undo/readback and reset. A separate registered native iOS 18.2 mock-mode
+Save/refetch/Undo scenario passed while the existing keyboard/validation/cancel
+capture remains intact. The native evidence is explicitly synthetic mock-state
+evidence—not backend persistence, deployed authentication, or service
+readback. The displayed time-window projection now preserves both dates and
+explicit offsets across a day boundary; this improves legibility but does not
+resolve the recorded UTC-notation or start/end place-label UX follow-ups. No
+user preference or product-policy decision is implied.
 
 **Next connected checkpoint:** adopt Technical's supported artifact-target
 request/result contract into the focused reader for a useful eligible addition,
@@ -1782,8 +1783,9 @@ For a fast first release:
 
 - Preserve landed revision-bound corrections and Undo. The mobile
   replacement-time editor has bounded native keyboard, validation and cancel
-  evidence. Close its native save/refetch/Undo acceptance without inferring
-  event timezone or overstating the synthetic capture.
+  evidence, plus a native synthetic-mock Save/refetch/Undo round-trip. The
+  authenticated live app/backend persistence and readback acceptance remains
+  open; do not infer an event timezone or overstate the synthetic capture.
 - Adopt Technical's thin P3 capability once its landed interfaces and eligible
   owner reads are stable. Connect its useful additions to P2 early; do not build
   another producer while waiting.
@@ -1929,7 +1931,9 @@ QA scenario (`f84ea3419`). The September 30 continuation added an app-side
 original-to-record link (`fa07c85c4`) and disposable-Postgres owner-readback
 coverage through the authenticated Intake route (`5dbc29353`, extended by
 `ac946ba0b`), followed by canonical artifact-reader lifecycle coverage
-(`9c775cd03`). Focused evidence:
+(`9c775cd03`). The October 1 continuation added app mock correction parity
+(`de36dcd86`) and committed the registered native verdict/manifest
+(`51d275d11`). Focused evidence:
 
 | Boundary | Command | Result and limit |
 | --- | --- | --- |
@@ -2988,7 +2992,8 @@ with no TypeScript errors.
 | Backend projection | `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/core/test_canonical_artifact_projection.py -q` (from `travel-agent/`) | 27 tests passed. The replacement action's explicit owner target/revision gate and projection shape are fixture/projection evidence, not deployed-service evidence. |
 | Backend lint/format | `/opt/homebrew/bin/ruff check --no-cache backend/core/canonical_artifact_projection.py backend/core/models/canonical_artifact.py backend/inbound/anchor_compiler.py tests/core/test_canonical_artifact_projection.py`; `/opt/homebrew/bin/ruff format --check --no-cache` on the same files | Both passed. Backend commit hooks also passed Ruff, formatting, Vulture, secret/prefix and repository architecture checks. |
 | App behavior | `npm exec jest -- --runInBand __tests__/utils/canonicalArtifactTime.test.ts __tests__/utils/canonicalArtifactActions.test.ts __tests__/screens/canonical-artifact-reader.test.tsx __tests__/utils/api/mockIntakeV2.test.ts`; `npm run typecheck -- --pretty false`; targeted `npx eslint --no-cache` over the editor, reader, fixtures, helpers and focused tests | Four suites / 51 tests passed; TypeScript passed; targeted ESLint reported no warnings/errors. Tests cover explicit-offset preservation, date/time validation, neutral picker coordinate, action privacy, payload-bound idempotency/retry, draft retention, revision use, success receipt/refetch and owner-only Undo. Mock/service boundaries remain. |
+| App mock correction parity and native Save/Undo | App `de36dcd86`; `npm test -- --runInBand __tests__/utils/api/mockIntakeV2.test.ts __tests__/utils/canonicalArtifactView.test.ts`; `npm run typecheck -- --pretty false`; `npm run verify:merge -- --base e7bdc660501eaa19234e6b45bda033658edaa2d4`; `env VESPER_METRO_URL=http://192.168.1.153:64747 node scripts/polish-qa/run-polish-qa.mjs canonical-artifact-reader --flow=polish/canonical-artifact-replacement-time-save-undo --device='Vesper QA SE'`; verdict and manifest committed as app `51d275d11` | Focused mock/reader tests passed (25); typecheck, changed-file ESLint, `docs:check` (349 Markdown links), `qa:polish:scenarios` (31), `qa:design:check -- canonical-artifact-reader`, verdict validation/committed checks and `qa:polish:test` passed. `verify:merge` passed 1,293 suites / 9,222 tests / 1 snapshot. Registered run `20261001T163935Z-canonical-artifact-reader` passed 1/1 on iOS 18.2 (`Vesper QA SE`), with the app implementation at `de36dcd86`; the screenshot shows the corrected dated time range and Undo, and the Undo view restores source-derived Starts/Ends. This is synthetic in-memory mock state only: it does not establish backend persistence, authenticated live-service readback, or production behavior. |
 | Historical native editor capture | `VESPER_METRO_URL=http://192.168.1.153:64747 node scripts/polish-qa/run-polish-qa.mjs canonical-artifact-reader --flow=polish/canonical-artifact-replacement-time-editor --device="Vesper QA SE"`; verdict validate/commit for `.maestro/runs/20261001T141548Z-canonical-artifact-reader` | iOS 18.2 simulator captured 1/1 scenario: start, distinct `+02:00`/`+01:00` end fields, focused offset, reachable Save/Cancel and cancellation. Its keyboard configuration suppressed the software keyboard; it remains form-presentation evidence only. Its structured `pass` and two P2 usability observations are retained historically in `travel-app/docs/surfaces/canonical-artifact-reader/verdicts/20261001T141548Z.json`; do not use it to claim keyboard behavior. |
 | Native keyboard, validation and return capture | `env SENTRY_DISABLE_AUTO_UPLOAD=true npm run ios -- --device "iPhone SE (3rd generation)" --port 64747`; `env VESPER_METRO_URL=http://192.168.1.153:64747 node scripts/polish-qa/run-polish-qa.mjs canonical-artifact-reader --flow=polish/canonical-artifact-replacement-time-editor --device="iPhone SE (3rd generation)"`; verdict validate/commit for `.maestro/runs/20261001T153024Z-canonical-artifact-reader` | Native iOS 18.2 build succeeded with 0 errors/4 warnings; Sentry auto-upload was disabled. The fresh registered flow, captured after finalizing its acceptance wording, shows the software keyboard with the focused start offset and helper visible, presses Enter, scrolls to Save/Cancel, then cancels and returns to the same synthetic artifact (1/1). Separately, on-screen key entry of `-04:00` surfaced “The end time must be after the start time” and disabled Save; Cancel left the original time unchanged. The validated verdict and matching manifest snapshot are `travel-app/docs/surfaces/canonical-artifact-reader/verdicts/20261001T153024Z.json` and `.manifest.json`. Evidence is limited to synthetic native form/validation behavior; no correction was submitted and no service persistence/readback/Undo or production authentication is established. |
 | Contract regeneration and registry | `./scripts/sync-types.sh`; `make api-coverage-check`; `npm run qa:polish:scenarios`; `npm run qa:design:check -- canonical-artifact-reader` | Sync and typecheck passed; API audit passed (591 active, 15 dark, 0 unflagged, 62 retiring); all 31 polish scenario IDs passed. Design check remains doctrine-only with no pinned design-reference manifest. |
-| Cross-repo change-aware preflight | `env -u DRY_RUN WORKSPACE_BASE_REF=7e007e46 AGENT_BASE_REF=10c5877d8 APP_BASE_REF=b94a50ccf RUFF_CACHE_DIR=/private/tmp/vesper-artifact-foundation-ruff-cache PYTEST_ADDOPTS='-p no:cacheprovider' make verify-changed`; `make docs-check` | Passed. App `verify:fast` had 0 lint errors / 167 warnings; app merge scope passed 1,293 suites / 9,216 tests / 1 snapshot. Backend static checks and mypy passed; selected backend tests passed (22,112 passed, 14 skipped, 1 xfailed, 52 xpassed, 8 warnings); 118 workspace script tests passed. Cross-repo contract, API coverage, compatibility, links/spine/canon and full workspace doc-governance checks passed. This is local preflight, not hosted CI. Native Save → canonical refetch → Undo remains open; no authenticated live mobile/API session, deployed service, production credentials, Android/physical device, user preference, or native correction-persistence proof is claimed. |
+| Cross-repo change-aware preflight | `env -u DRY_RUN WORKSPACE_BASE_REF=7e007e46 AGENT_BASE_REF=10c5877d8 APP_BASE_REF=b94a50ccf RUFF_CACHE_DIR=/private/tmp/vesper-artifact-foundation-ruff-cache PYTEST_ADDOPTS='-p no:cacheprovider' make verify-changed`; `make docs-check` | Passed. App `verify:fast` had 0 lint errors / 167 warnings; app merge scope passed 1,293 suites / 9,216 tests / 1 snapshot. Backend static checks and mypy passed; selected backend tests passed (22,112 passed, 14 skipped, 1 xfailed, 52 xpassed, 8 warnings); 118 workspace script tests passed. Cross-repo contract, API coverage, compatibility, links/spine/canon and full workspace doc-governance checks passed. This is local preflight, not hosted CI. At this preflight the native Save/refetch/Undo mock round-trip had not yet run; the later mock-only proof is recorded above. Authenticated live mobile/API readback, deployed service, production credentials, Android/physical device and user preference remain unproven. |
