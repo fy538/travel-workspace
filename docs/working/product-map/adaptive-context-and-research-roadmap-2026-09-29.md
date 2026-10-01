@@ -1774,32 +1774,35 @@ Validation:
 
 R0–R7 remain open.
 
-#### R4 follow-up receipt — selected-source revocation during publication (October 1)
+#### R4 follow-up receipt — revocation during generation and exact readback (October 1)
 
-Extended the provider-free disposable-Postgres publication-race acceptance to
-cover revocation of either input after the model has returned: the exact
-selected original or its supporting dependency. In both cases the producer
-rejects publication after the real result owner revalidates current Intake
-authority. Since the model response was already received, the test-policy
-reservation is committed; no selected-source result row is written. This
-proves publication fencing for these two revocation cases, not semantic
-correctness or broader correction, arrival, expiry, account-change, cancellation
-or mounted-consumer behavior.
+Extended the provider-free disposable-Postgres acceptance across generation and
+readback. If either the selected original or a supporting dependency is revoked
+after the model returns, the producer rejects publication after the result
+owner revalidates current Intake authority. Because a response was received,
+the test-policy reservation is committed; no result row is written. If a
+previously published result's selected original is later revoked, the
+authenticated exact GET returns a private no-store 404 and erases the stale
+row without invoking the model again. This proves these selected-source
+revocation paths, not semantic correctness or broader correction, arrival,
+expiry, account-change, cancellation or mounted-consumer behavior.
 
-Validation on backend commit `2c80e35f9`:
+Validation on backend commit `6db6713a5` (including the generation-race test
+from `2c80e35f9`):
 
 - The isolated lane runtime health check passed; the exact disposable database
   was `vesper_adaptive_context_test_20261001`.
-- The selected-source Postgres acceptance file passed: **8 passed**. Both
-  selected-original and supporting-dependency revocation cases ran against the
-  real producer, Intake hydration, result owner and commercial ledger, with
-  only the model dispatch stubbed under the injected test-only policy.
+- The selected-source Postgres acceptance file passed: **8 passed**. It covers
+  both source-revocation races through the real producer, Intake hydration,
+  result owner and commercial ledger, plus exact authenticated readback after
+  revocation; only model dispatch is stubbed under the injected test-only
+  policy.
 - `ruff check` and `ruff format --check` passed for the changed test file.
 - `make ci-static` passed, including Ruff and mypy across **1,900 source files**.
 - `make merge-check BASE_REF=main` passed: **22,158 passed, 14 skipped,
-  53 xpassed**, with two expected local-Qdrant payload-index warnings. This is
-  the offline/change-aware suite; the separately recorded Postgres run provides
-  the database acceptance evidence.
+  1 xfailed, 52 xpassed**, with two expected local-Qdrant payload-index
+  warnings. This is the offline/change-aware suite; the separately recorded
+  Postgres run provides the database acceptance evidence.
 - Backend commit hooks passed. No production behavior, API/OpenAPI, schema,
   released policy, runtime cohort, provider activation, or app behavior changed.
 
