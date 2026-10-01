@@ -203,6 +203,20 @@ The workflow regression suite passes 16 cases locally. This verifies the
 configuration contract, **not** hosted database startup or journey success.
 No required check was removed, bypassed or reclassified as optional.
 
+The next coordinated run (workspace `ed34684e`, backend `bc2dfc462`, app
+`49f51cfbd`) took **381.083s**. Backend static and offline checks passed:
+22,081 passed, 14 skipped, one expected failure and 52 unexpected passes under
+the existing `tests/flaky_order_baseline.txt` quarantine. Workspace tooling
+passed 118 tests; contract, API coverage and documentation checks passed.
+App static checks passed, but its broad test run was not clean: 1,287 suites
+passed, the memory-hook worker crashed with SIGSEGV, and two source-location
+assertions in `rootHeaderContract.test.ts` failed after the viewport extraction.
+Those assertions now inspect both the consumer and the extracted hook. The
+corrected header suite and unchanged memory-hook suite passed all 45 tests in
+an isolated run (1.838s). This is composite local evidence, not a clean broad
+rerun or hosted certification. Final delta verification uses these exact
+per-repository bases; hosted gates still evaluate the complete PR diff.
+
 GitHub Actions was disabled in workspace and backend at the September 7 audit.
 It has been re-enabled. Their main-branch protection had unrelated frontend
 check names; those names have been replaced while preserving strict updates,
