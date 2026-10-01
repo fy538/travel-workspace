@@ -3090,3 +3090,54 @@ Validation on final backend commit `cd8d050d9` (Python 3.13.0):
 No provider/model call, cache-retention change, API/schema change, commercial
 policy, capability flag, native consumer, deployment or publication changed.
 R0–R7 remain open.
+
+#### R3 implementation receipt — entity research queue drain and lease audit (October 1)
+
+The entity `research_queue` is a separate legacy/catalog enrichment workflow,
+not the selected-source producer or a shared dispatch owner.
+
+- The authenticated object-page request route is gated by
+  `ENTITY_RESEARCH_REQUESTS_ENABLED` plus an explicit user-ID or email-suffix
+  allowlist. It can enqueue one verified catalog venue/site/accommodation
+  request, but does not dispatch it. The flag defaults off when absent.
+- The planning DB provider also enqueues venue/site work when a detail read
+  finds no dossier. That call has no request-feature-flag check and is
+  non-blocking; it only writes a pending queue row.
+- The only in-repository drain entry is the manually invoked
+  `scripts/process_research_queue.py` CLI, which calls
+  `backend.research_agent.tasks.process_research_queue`. The processor is not
+  registered in `audio_jobs.WorkerSettings.functions` or its `cron_jobs`.
+  `fly.toml` starts that Arq worker for other durable work but defines no
+  research-queue command or schedule. Thus the repository's declared runtime
+  has no automatic drain for this queue. This source/config audit cannot rule
+  out an external scheduler not represented in the repository; no deployment
+  state or database queue contents were inspected.
+- Claiming uses a global PostgreSQL advisory lock, a default four-row shared
+  processing cap and a processing timeout (default 3,600 seconds). On a later
+  claim call, rows older than the timeout are reset to pending and attempts
+  increment on re-claim. The processor has no lease heartbeat. Its completion
+  helper updates by row ID only: it does not compare a claim generation,
+  expected status or attempt number. The queue seam therefore does not prove
+  that an expired worker is fenced from later queue-state writes. Because the
+  research graph can persist dossier/brief effects before queue completion,
+  those effects also need an owner-level stale-writer audit before this queue
+  can be safely reused as a managed worker. No stale-worker race was executed.
+
+This closes the code/deployment inventory portion of R3, not the operating
+design. Do not register the processor in Arq, add a cron, or run its deep
+research CLI as part of this lane: the path lacks a demonstrated shared
+reservation boundary and claim/publication fencing, and its batch workload
+must not inherit the selected-source producer's test-only commercial policy.
+Keep the queue separate from the selected-source capability. Any future reuse
+requires an owner decision on whether planner-triggered enqueue remains
+desirable, explicit background-work budget/retry/deadline policy, and fencing
+that covers both queue state and research artifact publication. An external
+scheduler or provider billing state remains unverified.
+
+Validation was a read-only source/config audit at backend revision
+`cd8d050d9`: inspected the API and planner enqueue call sites, queue claim and
+update helpers, processor/CLI, `WorkerSettings`, `fly.toml`, and the existing
+unit-test references. No provider call, database read/mutation, deployment
+inspection, runtime change, or test execution occurred. This is inventory
+evidence only; it does not satisfy R3 load/recovery acceptance. R0–R7 remain
+open.
