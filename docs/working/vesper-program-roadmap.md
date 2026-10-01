@@ -1129,11 +1129,11 @@ said “Date not recorded”; the page otherwise offered a generic “Explore Pl
 door. A direct Home read of the same fixture carried two non-retryable
 `moment.conditions_unavailable` degradations, rendered as “A partial read,”
 although the Outcome and Places door remained available. Do not infer the
-missing date or Place. The next returned-state pass should use genuinely
-available date/place/source evidence where the owners provide it, and decide
-whether this expected missing-context notice helps or makes a sparse Home feel
-broken. D2 remains active; exact opening and return alone are not meaningful
-returned-content acceptance.
+missing date or Place. The conditions-notice question is resolved in the
+following receipt; the next returned-state pass should use genuinely available
+date/place/source evidence where the owners provide it and assess whether the
+generic Places door can become a useful exact destination. D2 remains active;
+exact opening and return alone are not meaningful returned-content acceptance.
 
 **Expected optional Home conditions omission — 2026-10-01:** decision: do not
 show Home's generic partial-read notice for a non-retryable
