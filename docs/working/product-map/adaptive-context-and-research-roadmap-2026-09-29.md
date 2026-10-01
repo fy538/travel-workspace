@@ -937,11 +937,11 @@ incomplete status when byte-only metadata cannot establish whether a same-subjec
 or same-packet UTF-8 original fits the remaining character budget, matching the
 existing exact-note behavior without reading candidate bodies during discovery.
 The focused unit tests cover this uncertainty and the route's existing incomplete-
-empty behavior; the isolated disposable database was not available for a new
-same-subject or packet-body integration run in this environment. A disposable-
-Postgres regression now covers two distinct Place identities with the same title;
-it is authored but unexecuted here, so same-title identity acceptance remains
-open pending that database run.
+empty behavior. A disposable-Postgres regression now verifies that two distinct
+Place identities with the same title do not cross-link their source candidates;
+the full current-module result and its evidence boundary are recorded in section
+12. This closes that identity regression only, not semantic ranking, support
+quality or matched usefulness.
 
 ### R3 Share execution and account for its cost
 
@@ -4111,3 +4111,30 @@ second reservation around the unreachable answer-only path. Any enforcement
 change still needs a reviewed finite-allocation and failure/recovery policy
 before an active user-facing path is gated or charged. R3 and R0–R7 remain
 open.
+
+#### R2 acceptance receipt — same-title Place identity (October 1)
+
+Backend commit `e35746b83` adds a disposable-Postgres regression proving that
+two canonical Place rows with the same display title remain distinct during
+selected-source candidate retrieval. It attaches separate retained text
+sources to each Place ID and verifies that selecting one Place admits only its
+own source as a dependency. This tests identity isolation at the real metadata
+query and Intake-backed source path, not relevance or semantic equivalence.
+
+Validation on the `codex/adaptive-context-research` lane:
+
+- The complete provider-free
+  `tests/api/test_selected_source_research_postgres.py` module passed:
+  **15 passed** against the lane's isolated Postgres service on port `64355`.
+- A fresh database named
+  `vesper_adaptive_context_test_20261001_r3_same_title` was confirmed absent,
+  created solely for this run, migrated through `selresult03`, and used with
+  `TEST_DATABASE_DISPOSABLE=1`. After the test, it had zero connections and was
+  dropped. No ambient development or production database was used.
+- No provider/model call, API/schema change, application behavior or deployment
+  was involved. The whole-module pass verifies these Postgres cases at this
+  revision; it does not replace the broader static/merge gates.
+
+This closes the same-title identity regression only. R2 still needs supported
+addition quality, representative matched human usefulness review and prior-
+connection repetition evidence; R0–R7 remain open.
