@@ -1463,6 +1463,23 @@ production authentication, recurring editorial supply, external design-canon
 parity, or D2 as a whole; no visual verdict was produced. Continue substantive
 eligible Place value and representative ordinary/returned/live coverage.
 
+**Places reopened Save → neutral dismissal → Save retained — 2026-10-01:** app
+commit `2b2daf493` pins the saved-reopen rehearsal to the lane's booted assigned
+simulator before fixture creation and passes that UDID to Maestro. Four focused
+runner-contract tests passed with
+`node --test scripts/maestro/places-saved-reopen.test.mjs`; shell syntax and
+`git diff --check` passed. Run ID
+`places-saved-reopen-owner-20261001-1300` passed
+`84-places-saved-reopen` on iPhone 16 Pro / iOS 18.2 against the isolated local
+API/database. With the authored local closed-to-operating history, the Places
+feed displayed the exact saved venue's `OPEN AGAIN` notice. The native flow
+cleared that notice and remained in Places; the runner verified the notice was
+absent, the original venue Save still existed at its owner endpoint, and the
+fixture was removed. This proves a synthetic local fact and Save survive
+projection dismissal—not production-provider freshness, production auth,
+external design-canon parity, venue-detail opening, or D2 as a whole. Continue
+the broader ordinary/returned/live and substantive Place-value work.
+
 ### Combined landing checkpoint — September 30
 
 The merged integration contains the Home/capture lane plus these completed
