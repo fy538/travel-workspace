@@ -876,5 +876,95 @@
     },
     "evidence_boundary": "Local coordinated regression only. Database/API-key/dogfood tests excluded. Existing exact backend quarantine baseline preserved. First run failed Node24 worker and sandbox loopback fixtures; final uses Node20.20.2 and loopback fixture permission.",
     "node_version": "20.20.2"
+  },
+  {
+    "schema_version": 1,
+    "label": "central-app-governance-repair-preflight",
+    "command": [
+      "make",
+      "verify-changed",
+      "WORKSPACE_BASE_REF=b92dd955b168f94557a52c26c918473f2c12c992",
+      "AGENT_BASE_REF=0a1fdf224aaf59ca713eec5eba79a34321f038a9",
+      "APP_BASE_REF=65cbef84554959cc52c4aade541e568ce181a7ee"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "95b7cb910690ce242495e4d9773ec78672cc2a06",
+        "dirty": false
+      },
+      "travel-agent": {
+        "commit": "0a1fdf224aaf59ca713eec5eba79a34321f038a9",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "143664e6e2d98a1131a6274cf66990862dae0529",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.13.0",
+      "cpu_count": 14
+    },
+    "exit_code": 2,
+    "timed_out": false,
+    "wall_time_seconds": 131.441,
+    "log_path": "/private/tmp/vesper-central-integration-logs/central-app-governance-repair-preflight-20261001T223126Z.log",
+    "test_counts": {
+      "framework": "jest",
+      "collected": 9266,
+      "passed": 9266,
+      "failed": 0,
+      "skipped": 0
+    },
+    "node_version": "20.20.2",
+    "evidence_boundary": "App source extraction regression and workspace contracts. Backend unchanged and broad suite not repeated. First repair run passed 1296 suites / 9266 tests but failed stale API consumer registry; final registry and header ownership repair passes. Visual/product acceptance is not promoted."
+  },
+  {
+    "schema_version": 1,
+    "label": "central-final-app-ownership-preflight",
+    "command": [
+      "make",
+      "verify-changed",
+      "WORKSPACE_BASE_REF=95b7cb910690ce242495e4d9773ec78672cc2a06",
+      "AGENT_BASE_REF=0a1fdf224aaf59ca713eec5eba79a34321f038a9",
+      "APP_BASE_REF=143664e6e2d98a1131a6274cf66990862dae0529"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "b72e4439aa5c24711aea024d43b2c2e8e5d7c4af",
+        "dirty": false
+      },
+      "travel-agent": {
+        "commit": "0a1fdf224aaf59ca713eec5eba79a34321f038a9",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "7e30348efb04996be481dd9b6adda0f8fa15ec74",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.13.0",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 140.642,
+    "log_path": "/private/tmp/vesper-central-integration-logs/central-final-app-ownership-preflight-20261001T223548Z.log",
+    "test_counts": {
+      "framework": "jest",
+      "collected": 9266,
+      "passed": 9266,
+      "failed": 0,
+      "skipped": 0
+    },
+    "node_version": "20.20.2",
+    "evidence_boundary": "App source extraction regression and workspace contracts. Backend unchanged and broad suite not repeated. First repair run passed 1296 suites / 9266 tests but failed stale API consumer registry; final registry and header ownership repair passes. Visual/product acceptance is not promoted."
   }
 ]

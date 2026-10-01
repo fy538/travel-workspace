@@ -94,6 +94,24 @@ Its initial candidate combines the committed research, artifact, Orchestration
 and efficiency snapshots; landing status follows the actual PRs and exact
 verified revision tuple, not this ownership assignment.
 
+**Central integration landing receipt — October 1:** the compatible committed
+research, artifact, Orchestration and efficiency snapshots now share backend
+[PR #241](https://github.com/fy538/travel-agent/pull/241) at
+`0a1fdf224aaf59ca713eec5eba79a34321f038a9` and app
+[PR #212](https://github.com/fy538/travel-app/pull/212) at
+`acf5bd837fe3725b00d9744727f513a601fb2498`. Required hosted checks passed
+without bypass. The workspace candidate pins that landed pair; its own
+protected-main landing still requires the coordinated contract/golden-path
+check. Integration repaired the backend migration join and research-to-Home
+novelty handoff, and aligned app source sizes, API consumer locations and new
+route/header ownership. Existing size limits and visual acceptance were not
+relaxed. Local combined regression and subsequent app/contract preflights are
+recorded in `docs/reliability/test-loop-baseline.json`, including failed
+attempts. Uncommitted lane edits, research activation, Collections presentation,
+current-device visual judgment, authenticated correction readback and full
+product acceptance remain outside this landing. No overall engineering speed
+improvement is inferred from these checks alone.
+
 **Integration efficiency checkpoint — October 1:** review of the September 30
 landing found stronger checkout, database and required-check reliability, but
 did not demonstrate a faster end-to-end merge: first combined candidate to
