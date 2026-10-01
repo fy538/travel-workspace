@@ -1125,10 +1125,6 @@ overrides:
     disposition: keep_reference
     rationale: Active, expiring cross-repo execution plan that reconciles the August pivot audits and verified code/evidence gaps into ordered trust, convergence, proof-loop, and certification work; canonical product, release, journey, and system documents remain authoritative.
 
-  docs/working/product-loop-coherence-maestro-and-environment-strategy-2026-08-12.md:
-    disposition: keep_reference
-    rationale: Expiring synthesis of the product-loop, onboarding, Maestro, judgment-calibration, and test-environment discussion; product canon, reliability contracts, executable evidence, and generated status retain authority.
-
   docs/working/onboarding-and-entry-point-product-investigation-2026-08-12.md:
     disposition: keep_reference
     rationale: Expiring onboarding and acquisition-entry investigation after the August product pivot; product canon, surface contracts, code, and generated current state retain authority.

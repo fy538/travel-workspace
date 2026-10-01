@@ -8,7 +8,7 @@ why_new: Focused synthesis of the August 13 discussion about why functional eval
 promotes_to: a frontend visual-certification contract and a small canonical visual-checkpoint registry if the proposed pilot proves useful
 supersedes: []
 related:
-  - product-loop-coherence-maestro-and-environment-strategy-2026-08-12.md
+  - ../archive/2026-10/product-loop-coherence-maestro-and-environment-strategy-2026-08-12.md
   - ../../travel-app/docs/Frontend Engineering Loop.md
   - ../../travel-app/docs/Design Workflow.md
   - ../../travel-app/docs/research/Product-Quality AI Design QA Loop.md
@@ -913,7 +913,7 @@ accepted evidence and reusable learning
 
 ## 21. Existing internal documents
 
-- [Product-loop coherence, Maestro, and environment strategy](product-loop-coherence-maestro-and-environment-strategy-2026-08-12.md)
+- [Product-loop coherence, Maestro, and environment strategy](../archive/2026-10/product-loop-coherence-maestro-and-environment-strategy-2026-08-12.md)
   contains the broader product-loop, current Maestro-estate, evidence, and
   environment analysis.
 - [Frontend Engineering Loop](../../travel-app/docs/Frontend%20Engineering%20Loop.md)
