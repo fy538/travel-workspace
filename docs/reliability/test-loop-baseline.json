@@ -434,5 +434,48 @@
     "wall_time_seconds": 7.756,
     "log_path": "docs/reliability/runs/photo-draft-compact-final-docs-check-20260928T222558Z.log",
     "test_counts": null
+  },
+  {
+    "schema_version": 1,
+    "label": "engineering-efficiency-3b-full-preflight",
+    "command": [
+      "make",
+      "verify-changed",
+      "WORKSPACE_BASE_REF=bc69d6d03eeb069eb8705953463b4ddc8a808e6d",
+      "AGENT_BASE_REF=bd1a683b8656c3f4091e16abb64f57897fa7fc42",
+      "APP_BASE_REF=e7bdc660501eaa19234e6b45bda033658edaa2d4"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "eed6d60989da1127099c8801d4da52f09ed52104",
+        "dirty": false
+      },
+      "travel-agent": {
+        "commit": "a81e5321b81e45eb8458cf762231c209f0e64004",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "906c5d5a4719da504ddb492bf4e2fd85c8caabc2",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 327.114,
+    "log_path": "/private/tmp/vesper-efficiency-3b-preflight-logs/engineering-efficiency-3b-full-preflight-20261001T161419Z.log",
+    "test_counts": {
+      "framework": "jest",
+      "collected": 9180,
+      "passed": 9180,
+      "failed": 0,
+      "skipped": 0
+    }
   }
 ]
