@@ -60,11 +60,11 @@ exact Place, return with the notice still present, then clear the notice while
 the underlying Save remains. Production-user/authenticated-content, provider
 freshness, recurring supply and full D2 acceptance remain open. A new Home-only
 projection keeps the source-backed steps of one public Place reading while
-omitting its process paragraph and grouping basis; renderer tests pass. Its
-native negative-copy assertion is not yet verified: the latest guarded
-rehearsal stopped before Maestro because the default QA account's accumulated
-Home feed did not admit the two-reading fixture. Preserve that account and
-rerun against a controlled sparse synthetic recipient.
+omitting its process paragraph and grouping basis; renderer and controlled
+native full-scroll assertions pass. The run uses a disposable synthetic
+recipient and isolated local API/database; it does not establish production
+auth, recurring supply, provider freshness or design-canon parity. Preserve the
+default QA account.
 D1 capture gaps and D3 practical-help gaps
 remain open and can supply independent work when a D2 dependency is unavailable.
 
@@ -759,10 +759,27 @@ includes both lines and is not post-commit acceptance. A guarded rerun after
 the first negative assertion stopped before Maestro: existing QA-profile
 material prevented the public two-reading composition from being admitted. Its
 run-scoped fixture cleanup was armed and no cleanup warning was emitted. Do not
-clear or repurpose that QA account; the next native check needs a controlled
-sparse synthetic recipient. Thus the new Home projection is unit/static
-verified, but its native visual effect remains **unverified**; this does not
-close full-scroll visual acceptance or D2.
+clear or repurpose that QA account.
+
+**Controlled compact-copy native acceptance — 2026-10-01:** run
+`home-compact-copy-sparse-postchange-20261001T1845Z` passed `89-home-full-scroll`
+on iPhone 16 Pro / iOS 18.2 against the lane's local database and temporary
+development-auth API, using a controlled sparse synthetic recipient. The flow
+verified the friend item, exact two-source public Place reading, both
+source-backed steps, exact original, and the absence of the process paragraph
+and grouping-basis copy. Screenshot capture passed. The runner's three
+run-scoped fixtures were absent after cleanup. Removing the disposable
+recipient exposed that `/api/me` had created its default Vesper conversation;
+the fixture cleanup now removes only conversations owned by a marker-verified
+disposable account before deleting it. The focused fixture and Places contract
+tests passed **17/17**; Ruff check and format passed. `make ci-static` passed
+after pointing Ruff and mypy caches to `/tmp` (the initial default mypy cache
+could not be created outside this worktree). `make merge-check BASE_REF=main`
+passed the full offline suite: **22,099 passed, 14 skipped, 53 xpassed**, with
+two local-Qdrant warnings. The preflight did not run its optional DB-marked
+collection. This closes only the compact-copy native assertion, not D2
+full-scroll, production-owner/auth, recurring-supply or external design-canon
+acceptance.
 
 ### D3 Make practical help part of the same system
 
