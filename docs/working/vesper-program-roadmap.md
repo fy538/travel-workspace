@@ -1295,13 +1295,21 @@ with `.venv/bin/python -m pytest -p no:cacheprovider tests/places/test_sections_
 Ruff check/format, backend pre-commit hooks, and `git diff --check` passed. The
 app exact Place Source routing suite passed **68/68** with
 `./node_modules/.bin/jest --runInBand --no-cache __tests__/utils/rootProjectionNavigation.test.ts`;
-the app commit contains the route regression, not runtime changes. The lane
-tuple was workspace `7410e08cb` before this receipt, backend `c120985bc`, and
-app `a337c35cd`. A live API owner read was not run, and native capture remains
-unverified because the assigned simulator/CoreSimulatorService was unavailable;
-no real-owner, visual-polish, external design-canon, recurring-supply, or full
-D2 acceptance is claimed. Continue with the next substantive supported
-Home/Places receiving gap and ordinary/returned/live coverage.
+app commit `a337c35cd` adds the route-helper regression. Follow-up app commit
+`8c94759c8` adds a rendered-feed interaction regression: tapping the lone card
+opens its exact Place with the Source ID/revision and preserves Places context
+and the return token. The full Places feed component suite passed **54/54**;
+`npm run typecheck`, `npm run test:typecheck:contracts`, registered polish
+scenario validation (**31 IDs**), targeted ESLint, and `git diff --check` also
+passed. Both app commits contain tests only, not runtime changes. The starting
+tuple was workspace `7410e08cb`, backend `1a9f57b91`, app `3ebde88e`; resulting
+child HEADs are backend `c120985bc` and app `8c94759c8` (with the first roadmap
+receipt at workspace `34fdd44e`). A live API owner read was not run, and native
+capture remains unverified because the assigned simulator/CoreSimulatorService
+was unavailable; no real-owner, visual-polish, external design-canon,
+recurring-supply, or full D2 acceptance is claimed. Continue with the next
+substantive supported Home/Places receiving gap and ordinary/returned/live
+coverage.
 
 ### Combined landing checkpoint — September 30
 
