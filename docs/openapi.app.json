@@ -77682,6 +77682,16 @@
               }
             ]
           },
+          "open_destination": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesCardOpenDestination"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "place": {
             "anyOf": [
               {
@@ -77896,6 +77906,27 @@
           "area"
         ],
         "title": "PlacesCardKind"
+      },
+      "PlacesCardOpenDestination": {
+        "properties": {
+          "target": {
+            "type": "string",
+            "const": "venue",
+            "title": "Target"
+          },
+          "venue_id": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Venue Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "target",
+          "venue_id"
+        ],
+        "title": "PlacesCardOpenDestination",
+        "description": "Explicit canonical object a Places card may open without a mutation."
       },
       "PlacesCardTreatmentBindingV1": {
         "properties": {
