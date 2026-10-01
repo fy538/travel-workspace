@@ -3,7 +3,7 @@ doc_type: current_status
 status: active
 owner: founder / Orchestration lane
 created: 2026-09-07
-last_verified: 2026-09-30
+last_verified: 2026-10-01
 why_new: Owns the existing program's lane boundaries and the Orchestration execution plan; specialist roadmaps own their own packages and receipts.
 supersedes:
   - single-lane dispatch and current assignments in earlier versions of this roadmap
@@ -748,13 +748,33 @@ passed end to end: both accepted source readings appeared together in Home,
 the exact Place opened, Back restored the same Home card, and the fixture
 cleanup check passed. `bash -n` and `git diff --check` passed for the runner
 changes. This is real-local source/owner-read and return evidence, not release
-acceptance or proof of the combined full-scroll portfolio. The combined
-three-family full-scroll rehearsal still does not admit the public composition
-alongside its other fixtures (observed 10 candidates, 8 admitted); this does
-not yet distinguish a fixture/persona interaction from a Home-selection issue.
-Keep admission policy unchanged until that is isolated. D2 remains active;
-next, establish a suitable controlled full-scroll acceptance profile and
-continue other independent Home/Places implementation slices.
+acceptance or proof of the combined full-scroll portfolio. The initial combined
+three-family rehearsal against the shared accumulated QA recipient did not admit
+the public composition alongside the other fixtures (10 candidates, 8 admitted);
+that profile was not a controlled sparse baseline, so the result did not isolate
+an admission-policy issue. The controlled sparse-profile follow-up below resolves
+that uncertainty for this representative composition; keep admission policy
+unchanged and continue broader D2 acceptance.
+
+**Controlled Home full-scroll — 2026-10-01:** app commit `a83dfca6a`
+(`codex/home-value-delivery`) fixes the rehearsal's smart-quoted authored-note
+assertion and ensures cleanup deletes a fixture-created original sender without
+deleting a reused sender. Against a newly provisioned synthetic recipient on
+the isolated lane API/database, the canonical Home projection admitted all
+three families together: an addressed social note, a two-reading public Place
+composition, and an individually delivered original. The native
+`89-home-full-scroll.yaml` flow passed on iPhone 16 Pro / iOS 18.2
+(`home-full-scroll-sparse-20261001T0012Z-native`): Home launched, each exact
+unit and key text assertions appeared through scrolling, and fixture cleanup
+completed with a post-cleanup projection check. The shared-account failure was
+therefore profile contamination, not evidence that selection policy should
+change. This is synthetic-fixture evidence through the real local API and native
+client, not ordinary-user supply, recurrence, release acceptance, or a visual
+parity verdict against registered design references. The temporary sparse
+recipient and bootstrap delivery were removed afterward; the reused sender was
+preserved. D2 remains active; next, continue representative
+ordinary/returned/live coverage and substantive Home/Places receiving work
+without changing admission policy.
 
 ### Combined landing checkpoint — September 30
 
