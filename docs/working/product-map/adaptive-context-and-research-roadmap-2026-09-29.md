@@ -3033,7 +3033,7 @@ checks unexpectedly.
 | Concierge factual lookup and trip-direction fallback | Both use `core.public_research.acquire_public_research`; one typed public request, one tool-layer attempt and a bounded deadline | Content-free demand/execution observations only; no durable public-call reservation or shared chargeable-attempt settlement |
 | Concierge live-event discovery | Shared `core.public_research.acquire_public_research` adapter with a typed location/category/date request, fixed approved-domain filter, then a separate event-page verifier | One adapter attempt, bounded timeout and content-free observations; no durable reservation or billing settlement |
 | Concierge place-angle web augmentation | `WebSearchTool.execute` in `concierge/tool_handlers/search.py`, combining canonical place name and user query | Not routed through the typed acquisition adapter or public-research execution observation; normal tool retry path remains in effect |
-| Lookup-agent web enrichment | `WebSearchTool.execute` in `lookup_agent/handlers.py`, combining the requested phrase and city | Separate lookup flow; no common acquisition/reservation path. Query-bearing logs and exception details were removed in backend commit `4c3199ccf`; this does not review the public projection or add spend control |
+| Lookup-agent web enrichment | `WebSearchTool.execute` in `lookup_agent/handlers.py`, combining model-derived query terms and TripContext city across hours, ratings, search, events, details, dietary and price | Separate lookup flow; no common acquisition/reservation path. Query-bearing logs and exception details were removed in backend commit `4c3199ccf`; this does not review the public projection or add spend control. A typed migration must first admit its exact externally disclosed fields |
 | Image candidate discovery | Direct Tavily SDK call in `media/sources/tavily_search.py`, with image mode and in-memory result cache | Governed by the web-search mode and pipeline no-op checks, but not represented as a content-research attempt or shared reservation |
 | Mention extraction | Direct Tavily SDK call in `research_agent/tasks/extract_mentions.py` for each planned query | Batch job path with its own task counters; no shared user-facing capability reservation |
 | Destination and brief generation | `WebSearchTool` in the destination-seeding and brief-generation tasks | Background enrichment with pipeline/task ownership; does not use the user-facing public acquisition adapter |
@@ -3207,3 +3207,24 @@ not erase the composite-run failure. No cache files were deleted or permission
 changes made. The Expo cache-path limitation is local-environment evidence, not
 a roadmap implementation item; a normal writable developer checkout/CI should
 still run the canonical composite gate before merge.
+
+#### R1 disclosure gate — Lookup Agent factual web fallbacks (October 1)
+
+Current code in `backend/lookup_agent/handlers.py` calls the retrying
+`WebSearchTool.execute` path for hours, ratings, dietary and price, constructing
+provider terms from model-derived venue/search terms plus `TripContext.city`.
+The same helper also serves open-ended search, events and details. This remains
+legacy behavior: it bypasses the shared typed acquisition adapter and durable
+cost reservation, despite content-free error logging.
+
+A proposed migration would have replaced only the four fact fallbacks with a
+one-attempt `PublicResearchRequest` built from a resolved canonical entity
+label, a fixed fact facet and the existing trip city, while refusing to search
+when no canonical entity resolved. No implementation or provider call occurred.
+The exact canonical-place/trip-city projection to Tavily is not explicitly
+admitted by the current disclosure authority, so it remains a founder decision.
+Do not route the same fields through an alternate helper or describe the typed
+boundary as authorization. Once admitted, the first acceptance should verify
+exact provider arguments with a fake tool, exclude user/classifier text, prove
+no dispatch for unresolved entities, and preserve the legacy search/events/
+details paths until their own public-field projections are reviewed.
