@@ -109,9 +109,12 @@ wrong-state replay, which remains unverified.
 published in PR #240. Its first run failed closed after the two-minute scope job
 cancelled a full-history checkout; the current run's scope checkout and
 selection passed in 14 seconds. At the latest status read, the selected offline
-tests and database checks were still running. Workspace PR #40 and app PR #210
-have green required checks. The full local three-repository preflight passed in
-287.010 seconds; this is one candidate measurement, not a hosted speedup claim.
+tests and database checks passed, as did the `Merge ready` aggregate. Run
+[36894505540](https://github.com/fy538/travel-agent/actions/runs/36894505540)
+is fully green, and PR #240 is clean and mergeable. Workspace PR #40 and app PR
+#210 also have green required checks. The full local engineering-efficiency
+preflight passed in 287.010 seconds; this is one candidate measurement, not a
+hosted speedup claim.
 
 After installing the locked app dependencies in the isolated lane, the complete
 `qa:polish:test` target passed, including the existing suite and the new focused
@@ -138,8 +141,20 @@ failure, 52 expected passes). Workspace tests passed (119), followed by contract
 and documentation checks. The first publisher attempts exposed a missing
 lane-local Python 3.13 dependency environment; installing the committed
 `requirements-dev.txt` in `.venv` allowed the final coordinated run to pass. A
-fresh rebase onto the merged PR #38 base now requires new local and hosted
-checks for PR #39.
+fresh rebase onto the merged PR #38 base also passed the local coordinated
+preflight; its hosted rerun is pending publication.
+
+**Post-rebase PR #39 preflight (October 1).** The measured command
+`make verify-changed WORKSPACE_BASE_REF=bc69d6d03eeb069eb8705953463b4ddc8a808e6 AGENT_BASE_REF=bd1a683b8656c3f4091e16abb64f57897fa7fc42 APP_BASE_REF=e7bdc660501eaa19234e6b45bda033658edaa2d4`
+passed in 415.124 seconds on workspace `b0a50dc3197c7fc49a9768ba93aef68532615549`,
+backend `2c115ac72edcd490c7cc6a80b8f0a480baf73cdc`, and app
+`49e8379047176100ff13d8b1245b7abd06d97a65`, all clean. Jest passed 1,289
+suites, 9,178 tests and one snapshot; one worker required forced exit. Backend
+passed 22,086 tests with 14 skipped, 53 expected passes and one warning.
+Workspace tests passed 142 cases; contract and documentation checks passed.
+The log is
+`/private/tmp/vesper-pr39-post-rebase-logs/native-qa-pr39-post-rebase-20261001T165646Z.log`.
+The local offline run does not replace hosted disposable-database checks.
 
 Package 1 has **one passing targeted native capture** on the assigned simulator;
 the wider setup-failure matrix and other surfaces are outside this capture.
@@ -556,11 +571,12 @@ with three hosted runs validating the complete Maestro flow inventory. Package
 runner-time improvement remains unmeasured. Package 3B's workflow changes are
 also in PRs 40/210/240. Backend PR 240's original scope checkout timed out under
 the two-minute job limit. Its corrected run completed scope in 14 seconds; the
-selected offline and database jobs were still in progress at the latest read.
-Package 1 has one passing targeted native capture; Package 2's original
-Home/Places wrong-state replay remains unverified. Workspace PR 39 is rebased
-onto the landed PR 38 base and its new checks are pending. The PR 39 app and
-backend companion branches have passed hosted checks. The current main-base
+selected offline and database jobs and `Merge ready` aggregate now pass; PR 240
+is clean and mergeable. Package 1 has one passing targeted native capture;
+Package 2's original Home/Places wrong-state replay remains unverified.
+Workspace PR 39 is rebased onto the landed PR 38 base and its post-rebase local
+preflight passed; hosted checks will rerun after the branch update. The PR 39
+app and backend companion branches have passed hosted checks. The current main-base
 tuple is workspace `bc69d6d03eeb069eb8705953463b4ddc8a808e6d`, backend
 `bd1a683b8656c3f4091e16abb64f57897fa7fc42`, and app
 `e7bdc660501eaa19234e6b45bda033658edaa2d4`; see section 9 for tested child
@@ -571,8 +587,8 @@ identities.
 | 0 | Use the landed baseline and confirm tooling ownership | Complete on commit `cef7ac55`; isolated runtime ownership is recorded below | All lanes |
 | 1 | Package 3C: workspace flow validation and early prerequisite checks | Merged as `bc69d6d` (PR 38); three hosted runs validated all 408 flows. Critical paths ranged 5m46s–7m38s versus 23m18s, while summed runner time rose 9.3%–34.9%. | All integrations |
 | 2 | Package 3A: deterministic and faster app tests with the same checks | Hosted checks pass on workspace PR 40 and app PR 210; the 1,289-suite app run passed. Comparable hosted runner-time evidence remains open. | Every lane changing the app |
-| 3 | Package 3B: one execution owner per CI guarantee | Implemented in PRs 40/210/240. Backend scope now passes in 14s after the full-history checkout timed out under the prior 2m limit; selected tests and database checks remain in progress on run 36894505540. The local candidate preflight passed in 287.010s; no hosted speedup claim. | All lanes |
-| 4 | Package 1: choose the right evidence and make targeted native QA reliable | App PR 209 and workspace PR 39 carry exact-flow selection, setup diagnostics and retry handling. The documented setup produced two reviewed images and passed `polish/home-root-returned` 1/1 on the assigned iPhone SE. This is one visual journey, not a persistence check or full surface matrix. PR 39's rebased workspace checks are pending. | Orchestration and Strategy |
+| 3 | Package 3B: one execution owner per CI guarantee | Implemented in PRs 40/210/240. All backend hosted checks now pass on PR 240, including the 14s scope job, selected tests, database and aggregate. The local candidate preflight passed in 287.010s; this is not a hosted speed comparison. | All lanes |
+| 4 | Package 1: choose the right evidence and make targeted native QA reliable | App PR 209 and workspace PR 39 carry exact-flow selection, setup diagnostics and retry handling. The documented setup produced two reviewed images and passed `polish/home-root-returned` 1/1 on the assigned iPhone SE. This is one visual journey, not a persistence check or full surface matrix. PR 39's post-rebase local preflight passed; hosted checks will rerun after publication. | Orchestration and Strategy |
 | 5 | Package 2: proportionate review and shorter task context | Targeted review/context changes are in PRs 39/209/239. The original Home/Places wrong-state replay remains unverified; the passing Home return capture does not establish that replay. | All lanes, especially mobile work |
 | 6 | Package 6: retire completed working documentation | Queued; owner guidance is now established, but no archive migration has started | All lanes |
 | Conditional | Package 4: native build reuse and other measured setup optimizations | Only if meaningful build/setup cost remains | Mobile and build owners |
@@ -1430,12 +1446,12 @@ engineering cadence, not a narrower product vision or permission to split
 cross-repository invariants.
 
 Section 5 remains the only execution queue. Package 3C is merged, Package 3A's
-hosted checks pass, and Package 3B is under hosted verification after its scope
-checkout fix. Package 1 has one passing targeted native capture; its broader
-surface coverage and Package 2's Home/Places wrong-state replay remain open.
-Native QA retains its separate product-quality purpose. No new dashboard,
-parser, framework, standing agent fleet or broad test-deletion project is
-required.
+hosted checks pass, and Package 3B's hosted checks pass on PRs 40, 210 and 240.
+Package 1 has one passing targeted native capture; its broader surface coverage
+and Package 2's Home/Places wrong-state replay remain open. The rebased workspace
+PR 39 has passed its local preflight and needs its hosted rerun. Native QA
+retains its separate product-quality purpose. No new dashboard, parser,
+framework, standing agent fleet or broad test-deletion project is required.
 
 ### Reproducing the integration measurements
 
