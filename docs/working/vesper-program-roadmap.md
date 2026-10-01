@@ -41,21 +41,22 @@ they do not declare their runtime migration complete. No new booking execution,
 automatic sharing, connected-inbox sharing, background-generation posture,
 notification policy or deployment is authorized by this roadmap.
 
-**Execution status — September 30, after landing:** the combined work from all
-three lanes is merged in the workspace and both children, with required hosted
-checks passing. D0's shared planning and landing checkpoint is complete; runtime
-readiness and product acceptance are not. **Orchestration's next primary
-assignment is D2: complete Home/Places receiving experiences from the landed
-owners, including working interactions and native polish.** D1 capture gaps and
-D3 practical-help gaps remain open and can supply independent work when a D2
-dependency is unavailable.
+**Execution status — October 1:** the combined work from all three lanes is
+merged in the workspace and both children, with required hosted checks passing.
+D0's shared planning and landing checkpoint is complete; runtime readiness and
+product acceptance are not. **D2 is now underway:** controlled native
+full-scroll compositions for Home and Places are recorded below. Orchestration's
+next primary assignment is to continue substantive Home/Places receiving work
+and representative ordinary/returned/live coverage, including working
+interactions and native polish. D1 capture gaps and D3 practical-help gaps
+remain open and can supply independent work when a D2 dependency is unavailable.
 
 Eng Efficiency owns the separate [efficiency improvement queue](development-qa-research-and-roadmap-2026-09-30.md#5-improvement-roadmap).
 It supports product delivery; it is not a fourth product or integration queue,
 and its completion is not a prerequisite for independent D2 work. No new
 coordination service or routine inter-chat messaging is required. This roadmap
-update schedules the next work; it does not start implementation or activate
-new product behavior.
+sets execution order and acceptance; it does not certify runtime readiness,
+product acceptance, or activate new product behavior.
 
 ## 1 Inspected baseline and unfinished product work
 
@@ -384,9 +385,12 @@ sharing policy. No Chat redesign or Life implementation belongs to D1.
 
 ### D2 Make Home and Places complete receiving surfaces
 
-**Next primary assignment, not yet executed by this rebaseline:** turn the
-landed supply and reader capabilities into complete, useful Home/Places sections
-and interactions. Work in the existing root/projection owners; reuse Strategy's
+**Active primary assignment:** continue turning the landed supply and reader
+capabilities into complete, useful Home/Places sections and interactions. The
+controlled Home and Places full-scroll compositions are a baseline, not the
+finish line: they use synthetic recipients and do not establish ordinary-user
+supply, recurrence, release acceptance, or visual parity with every adopted
+reference. Work in the existing root/projection owners; reuse Strategy's
 readers and Technical's results without taking over their implementations.
 
 1. At intake, map the adopted Home/Places sections to their current producer,
