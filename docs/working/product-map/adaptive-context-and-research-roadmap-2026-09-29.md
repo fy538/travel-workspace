@@ -2289,3 +2289,33 @@ selected-result storage and exact readback through an authenticated producer
 boundary. Owner hydration alone does not satisfy R0/R1/R2/R6 acceptance; no
 provider activation, useful-addition claim, consumer adoption or package
 closure is asserted.
+
+#### Implementation receipt — private intent in selected-source work item (October 1)
+
+Backend commit `717b8e148` adds an optional, whitespace-normalized private
+instruction to the selected-source work item, bounded to 1,200 characters and
+excluded from model representations. The instruction participates in stable
+work identity so a retry cannot reuse output produced under a different
+instruction. It remains separate from the typed public research request; the
+constructor does not project private wording into public query terms. No route,
+provider call, database schema, client surface, result generation or disclosure
+policy changed. This closes an input-contract gap for the producer, not the
+producer itself.
+
+Evidence on the committed backend tree:
+
+- Focused work-item contract tests: **11 passed**; Ruff check, format-check and
+  `git diff --check` passed.
+- `make ci-static` passed in this slice before the full preflight; the completed
+  `make merge-check BASE_REF=main` passed: **22,102 passed, 14 skipped, 53
+  xpassed**, with two expected local-Qdrant payload-index warnings. Optional
+  network metadata retries did not fail tests; no live-provider evidence is
+  claimed.
+- Backend commit hooks passed on commit `717b8e148` with the lane's Ruff cache
+  redirected to `/private/tmp`; no exemptions were used.
+
+The bounded private instruction is now available to an owner-callable producer,
+but remains process-local input; it is not persisted in a new table or exposed
+to the public-acquisition request. The first connected producer, authenticated
+invocation, exact stored result readback and all end-to-end usefulness evidence
+remain open. R0–R7 remain open.
