@@ -938,7 +938,10 @@ or same-packet UTF-8 original fits the remaining character budget, matching the
 existing exact-note behavior without reading candidate bodies during discovery.
 The focused unit tests cover this uncertainty and the route's existing incomplete-
 empty behavior; the isolated disposable database was not available for a new
-same-subject or packet-body integration run in this environment.
+same-subject or packet-body integration run in this environment. A disposable-
+Postgres regression now covers two distinct Place identities with the same title;
+it is authored but unexecuted here, so same-title identity acceptance remains
+open pending that database run.
 
 ### R3 Share execution and account for its cost
 
