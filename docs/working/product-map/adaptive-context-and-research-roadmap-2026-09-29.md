@@ -2524,6 +2524,13 @@ Evidence on the committed backend revision:
   app-projection check, API contract audit (**579 active, 17 dark, 0
   unflagged, 62 retiring**) and flag-registry check (**107 registered flags,
   none overdue/unregistered**) passed.
+- Integrated `make verify-changed WORKSPACE_BASE_REF=main
+  AGENT_BASE_REF=main APP_BASE_REF=main` exited 0 on workspace `1d661f07`,
+  backend `e709ace50`, and app `e2b51bcf3`: **1,289 app suites / 9,178 tests,
+  22,141 backend tests passed (14 skipped, 53 xpassed), and 118 workspace
+  tooling tests passed**, followed by contract, OpenAPI, schema-bridge, docs,
+  and compatibility checks. App lint reported 167 warnings and no errors; Jest
+  noted one worker required forced shutdown, but all suites passed.
 
 The feature remains dark: no provider was called or enabled, no native consumer
 adopted the result, and no matched human usefulness comparison ran. This is a
