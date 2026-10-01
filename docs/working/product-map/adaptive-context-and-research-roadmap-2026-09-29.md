@@ -1350,6 +1350,37 @@ plus the existing Source request/workflow/publication owners under
 bounded adapter, not authorization to rewrite each subsystem. Follow current
 import/owner boundaries. Add no new scheduler, world store or parallel generator.
 
+#### Execution intake: selected-result ownership
+
+The exact-source adapter must not be routed through the existing root Source
+workflow. At the September 30 execution baseline, `SourceContributionWorkItemV1`
+rejects roots outside Home/Places, its canonical executor resolves only a
+Places context, and its exact result reader requires a root and root-composition
+readback. Those constraints preserve root semantics and are not missing
+generalization to remove as part of this assignment. Its short-lived
+`root_source_contributions` storage is keyed by a root source-group and
+situation, so it is not an exact selected-source result owner either.
+
+The domain-neutral `agent_workflows.result_json` is also not an adequate result
+owner by itself: it can contain personal request/result payloads, while the
+current terminal-workflow cleanup uses one global retention window (30 days by
+default) and runs nightly. Hiding a result after a shorter API TTL would not
+remove its stored contents on that TTL. The selected-source producer therefore
+needs an owner/readback contract that binds viewer, exact Source revision,
+optional text-span identity, treatment version, dependency revisions, result
+digest and an explicit expiry; content must not enter workflow events or
+diagnostics. Any implementation that uses existing workflow fencing must pair
+it with a result owner whose expiry and source-correction behavior are real,
+not just fields in the response. Reuse the generic workflow for bounded job
+identity and fencing only if this lifecycle can be enforced without broadening
+or weakening another owner's retention policy.
+
+This is a storage/readback seam, not a new Thing or durable artifact owner.
+The result remains an expiring, owner-private recomputable projection; it does
+not imply Keep, sharing, or cross-surface publication. Original-only and
+unavailable outcomes need no result row. A separate deployment, provider, or
+background generation posture is not admitted here.
+
 ### Finish conditions and dependencies
 
 - A selected revision reaches a real producer and exact owner readback with a
