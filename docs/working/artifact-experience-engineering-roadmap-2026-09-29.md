@@ -1735,6 +1735,39 @@ original or guessing the event timezone from the device's current location.
    event locations. Address those without weakening the rule that Vesper never
    silently infers the event timezone.
 
+#### Mock-mode correction parity checkpoint
+
+Before using the replacement-time editor for a native Save/refetch/Undo
+exercise, make the dedicated synthetic QA artifact behave coherently through
+the app's mock data path. Current code inspection indicates a gap: the editor
+fixture (`qa-replacement-time-editor`) does not have a corresponding mock
+Intake candidate, mock `replace_time` is handled as generic confirmation,
+`undo_correction` has no correction-specific mock behavior, and the canonical
+artifact mock read remains the unchanged static fixture. A mock-mode Save could
+therefore fail to resolve the fixture or appear to succeed without changing the
+subsequent artifact read. This is an app-mock limitation, not evidence of a
+backend contract defect.
+
+**Intended behavior:** only the synthetic owner QA fixture gets an in-memory,
+revision-bound correction projection. Save updates its effective event time
+without rewriting the original submitted evidence; a fresh canonical-artifact
+read shows the replacement and owner-only Undo; Undo restores the original
+effective time. Exact retries are idempotent, stale revisions conflict, and
+resetting mock state restores the original fixture. Keep this adapter behind
+the existing app API/data seam: do not change backend schema, OpenAPI, generated
+wire types, real-service behavior, or ordinary mock candidates to make the
+fixture pass.
+
+**Owner and acceptance:** the app mock adapter owns this bounded parity work.
+First add focused tests for the fixture's initial read, replacement/readback,
+exact retry, stale-revision rejection, Undo/readback, and state reset; also
+prove an unrelated mock candidate retains its existing behavior. Then add a
+separate registered native mock-mode Save/refetch/Undo scenario, leaving the
+already accepted keyboard/validation/cancel capture intact. The native claim
+must explicitly remain synthetic mock-state evidence—not backend persistence,
+deployed authentication, or service readback. No user preference or product
+policy decision is implied.
+
 **Next connected checkpoint:** adopt Technical's supported artifact-target
 request/result contract into the focused reader for a useful eligible addition,
 while preserving immediate original-only value and exact return. Existing
