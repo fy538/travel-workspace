@@ -146,6 +146,71 @@
         }
       }
     },
+    "/api/artifact-projections/things/batch": {
+      "get": {
+        "tags": [
+          "artifact-projections"
+        ],
+        "summary": "Get Kept Thing Projection Batch",
+        "description": "Resolve one bounded page of stable ThingRefs without per-member reads.",
+        "operationId": "get_kept_thing_projection_batch_api_artifact_projections_things_batch_get",
+        "parameters": [
+          {
+            "name": "thing_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "minItems": 1,
+              "maxItems": 50,
+              "title": "Thing Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KeptThingProjectionBatchV1"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/artifact-projections/things/{thing_id}": {
       "get": {
         "tags": [
@@ -69456,6 +69521,32 @@
           "owner_confirmation"
         ],
         "title": "KeptThingMergeRequestV1"
+      },
+      "KeptThingProjectionBatchV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "kept-thing-projection-batch.v1",
+            "title": "Schema Version",
+            "default": "kept-thing-projection-batch.v1"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/KeptThingProjectionV1"
+            },
+            "type": "array",
+            "maxItems": 50,
+            "minItems": 1,
+            "title": "Items"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "title": "KeptThingProjectionBatchV1",
+        "description": "Bounded owner-authorized Thing projections for a group of ThingRefs."
       },
       "KeptThingProjectionV1": {
         "properties": {

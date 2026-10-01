@@ -74,15 +74,30 @@ that runtime, native or hosted checks were rerun on these merge commits.
 existing `codex/artifact-foundation` coordinated workspace/backend/app tuple;
 do not open a duplicate branch or worktree for this same outcome. This tuple
 owns its artifact slices through focused verification, review and safe landing,
-while each repository keeps its independent Git history. The current follow-on
-heads are workspace `b1fd4ad6`, backend `ebe90232b`, and app `3aaceef88`; all
-three checkouts are clean, but these follow-on commits are local and not merged
-or published. The [artifact roadmap](artifact-experience-engineering-roadmap-2026-09-29.md#0-strategy-lane-execution-boundary)
+while each repository keeps its independent Git history. The follow-on heads
+recorded at this checkpoint were workspace `b1fd4ad6`, backend `ebe90232b`, and
+app `3aaceef88`; subsequent implementation is receipted in the artifact
+roadmap below. These follow-on commits remain local and are not merged or
+published. The [artifact roadmap](artifact-experience-engineering-roadmap-2026-09-29.md#0-strategy-lane-execution-boundary)
 owns the detailed package sequence and file-level responsibilities. Strategy
 Technical remains the owner of its producer contract; Strategy adopts it only
 after it is landed and verified, and continues independent artifact work in
 the meantime. Founder review remains required for choices that change product
 meaning, authority, privacy, or visible claims.
+
+**Ownership clarification — October 1:** “Strategy owns” names product/domain
+authority; it does not mean Strategy authors every layer or that the current
+execution lane takes over adjacent domains. The existing artifact-foundation
+tuple is accountable for this roadmap outcome across its coordinated checkouts.
+Within it, the backend owns canonical artifact/Collection persistence and
+owner-scoped authorization, while the app owns presentation, navigation and
+query behavior. Strategy Technical owns the reusable producer request/result
+contract and shared research/runtime; Orchestration owns capture transport and
+Home/Places delivery. For the current bounded Thing-projection work, the
+artifact lane owns the cross-repo read contract and its reconciliation/consumer
+integration; this is not a separate Life-screen or Orchestration assignment.
+No duplicate lane is needed. Escalate only for a product/authority choice, a
+changed privacy or visible-claim boundary, or an actual cross-lane conflict.
 
 `docs/child-repos.ci-lock.json` still pins backend `33a000e97` and app
 `21fdb724f`, the integrated child tips. Both are ancestors of, and have identical

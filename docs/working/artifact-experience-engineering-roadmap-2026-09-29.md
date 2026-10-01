@@ -61,6 +61,12 @@ neither is merged or published. The app now recovers from that exact stale-page
 conflict by resetting the active account's detail query and loading page one
 again; app commit `833a0bb38` adds the recovery. No stale offset is retried and
 other 409 errors do not trigger this reset. These commits are local and not
+merged or published. Most recently, backend commit `2e2ee4d6a` adds a bounded
+owner-authorized Thing-projection batch (maximum 50) with set-based alias and
+current-source authorization reads; app commit `eb14a00fa` switches
+reconciliation to fetch its source and selected target together. This remains
+read infrastructure: it returns original-source references, not user-facing
+member labels or a finished Life composition. These commits are local and not
 merged or published. Cross-repo receipts are in section 13.
 
 | Area | Implemented and evidenced | Remaining boundary |
@@ -71,7 +77,7 @@ merged or published. Cross-repo receipts are in section 13.
 | Reader lifetime | Account-session-scoped reads, expiry-aware displayed facts and foreground refresh, exact-source authorization and revision checks | Full source/audience/collection lifecycle replay and authenticated mobile-to-service acceptance |
 | Native acceptance | Fourteen family/source/return fixture screenshots; ten largest-text screenshots; Life source/photo-viewer/removal flow on iOS 18.2 | Reliable pinch/pan, actual VoiceOver traversal/actions, loading/error states, Android/physical devices and live-service readback; these captures do not establish user preference |
 | Landed Technical dependencies | Exact-original revision binding and backend-only refinding of a bounded UTF-8 `text/plain` span; bounded public-acquisition primitives | No stable cross-representation Component identity, mobile selection API, artifact-bound discovery request or complete research-spend enforcement |
-| PC and later packages | House-design fallbacks and existing eligible original receiving remain usable; canonical private consumer-Collection owner, generated mobile contract/client, session-scoped paginated data facade with revision-bound continuation, and bounded owner-backed Life Collections root API are implemented. The accepted Collections reading remains the product target. | Shared membership/audience/receiving, native Life Collections lens/detail route and device acceptance, authorized Thing display composition, approved catalog mappings/uses, exact kept editions and connected contextual additions remain unfinished |
+| PC and later packages | House-design fallbacks and existing eligible original receiving remain usable; canonical private consumer-Collection owner, generated mobile contract/client, session-scoped paginated data facade with revision-bound continuation, bounded owner-backed Life Collections root API and batch owner-authorized Thing projection are implemented. The accepted Collections reading remains the product target. | Shared membership/audience/receiving, native Life Collections lens/detail route and device acceptance, authorized Thing display composition (the batch primitive returns original-source references, not member titles/summaries), approved catalog mappings/uses, exact kept editions and connected contextual additions remain unfinished |
 
 Section 13 retains the exact revisions, commands and limits of each receipt.
 Earlier simulator/build failures are historical attempts, not the current
@@ -171,6 +177,14 @@ Technical's supported artifact-target request/result in a focused reader.
 Use existing custody and Technical's landed evidence adapters. Every format,
 catalog provider and artifact family need not finish before a supported slice
 lands; the native acceptance remainder runs alongside this work.
+
+The October 1 batch-read increment now resolves up to 50 owner-authorized
+Thing projections in bounded set-based reads, and reconciliation requests its
+source and selected target together. This removes per-Thing network reads for
+that flow and provides a reusable member-read primitive; it does not yet return
+user-facing member titles/summaries or define the Life Collection composition.
+The member-display contract remains a prerequisite to exposing a Collection
+detail experience.
 
 **Execution ownership — October 1:** the Strategy artifact lane owns this
 outcome end to end in one coordinated workspace/backend/app worktree tuple; do
@@ -2752,3 +2766,42 @@ chooses or sharpens the rule. Layout, source authority, and all 17 behavioral
 assertions passed. VoiceOver activation, physical-device/Android behavior,
 gestures, user preference, loading/error states, and live-service acceptance
 remain open.
+
+### October 1 bounded owner-authorized Thing projection batch
+
+The backend now serves up to 50 unique owner `ThingRef`s in one bounded batch
+request. It resolves active aliases in sets, reads each canonical Thing/group
+and its retained-source references without a per-Thing query pattern, then
+reauthorizes the retained Sources against the owner's current Intake authority.
+The existing single-Thing projection delegates to the same reader with a
+one-item batch, preserving one authorization/projection path. The reconciliation
+screen now requests its source and selected target together. This is a useful
+read primitive for future Collection composition, but is not that composition:
+the result still carries authorized original references rather than user-facing
+Thing titles/summaries, and no Life Collection detail UI is added.
+
+Backend commit `2e2ee4d6aa8b79bc71976b7946369d3bb72f2f74` and app commit
+`eb14a00fa4750c2bba524753ad16376d3094d3a0` are local on
+`codex/artifact-foundation`. Workspace commit `f6efac21` is the pre-receipt
+base; this workspace change synchronizes the full/app OpenAPI snapshots and
+Current State and records the clarified ownership decision. The three histories
+remain independent; none of these follow-on changes is merged or published.
+
+Ownership is explicit: Strategy is the product/domain owner for artifact and
+Collection semantics; the existing coordinated artifact-foundation tuple is
+the single accountable execution lane for this roadmap outcome. Within that
+tuple, backend owns canonical persistence and owner-scoped authorization, app
+owns presentation/navigation/cache behavior, Strategy Technical owns its
+reusable producer request/result and research runtime, and Orchestration owns
+capture transport plus Home/Places delivery. This batch projection belongs to
+the artifact lane; it is not a new Life-screen or Orchestration assignment.
+Founder review remains reserved for choices that change product meaning,
+authority, privacy/audience behavior, or visible claims.
+
+| Boundary | Exact verification | Result and limit |
+| --- | --- | --- |
+| Backend owner read (from `travel-agent/`) | `TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_batch_20261001_02 TEST_DATABASE_DISPOSABLE=1 SKIP_AUTH=true PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. .venv/bin/python -B -m pytest -p no:cacheprovider tests/api/test_artifact_projections.py tests/inbound/test_original_source_reader.py tests/inbound/test_kept_things_postgres.py -q` | 38 tests passed against an isolated disposable PostgreSQL database. Covers bounded batch validation, owner scoping, alias resolution, current-source reauthorization, single-reader parity and app-facing route behavior. The exact database was dropped after verification; the lane service and volume were preserved. |
+| Backend static and API contract | `make ci-static`; `./scripts/sync-types.sh`; `make api-coverage-check` | Static checks passed, including mypy (1,902 source files). Offline snapshot, app projection and generated types synchronized; typecheck passed. API coverage: 591 active, 15 dark (0 unflagged), 62 retiring. |
+| App reader | `npm exec jest -- --runInBand __tests__/screens/kept-thing-reconcile.test.tsx __tests__/utils/api/mock/experienceGraph.test.ts`; `npm run typecheck -- --pretty false` | Two suites / seven tests passed; typecheck passed. `verify:fast` later reported zero lint errors and 167 existing warnings. No Collection screen or device acceptance. |
+| Workspace docs | `make docs-check` | Passed after synchronizing generated API counts in Current State. |
+| Cross-repo change-aware preflight | `WORKSPACE_BASE_REF=f6efac21e77d8802a816e5a457bb2ef03647439c AGENT_BASE_REF=ebe90232b4daa4a9c09a0780f1bffb9366176fa9 APP_BASE_REF=3aaceef880ff6b8ffaf2859c06aaa3d92d7a96c9 RUFF_CACHE_DIR=/private/tmp/vesper-artifact-foundation-ruff-cache PYTEST_ADDOPTS='-p no:cacheprovider' TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_batch_20261001_02 TEST_DATABASE_DISPOSABLE=1 SKIP_AUTH=true make verify-changed` | Exit 0. App: 1,292 suites / 9,200 tests. Backend: 22,110 passed, 14 skipped, 53 xpassed. Workspace scripts: 118 passed; static, OpenAPI/projection/generated-type parity, API coverage, schema bridge, and docs links/spine/canon passed. An earlier full attempt had one isolated worker SIGSEGV in unrelated `PlacesEntityOpening`; its isolated rerun and the final full suite passed; cause was not established. No device, live-auth or production-service acceptance. |
