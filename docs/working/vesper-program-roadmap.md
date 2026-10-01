@@ -680,8 +680,8 @@ The previously uncommitted QA research draft is preserved at workspace
 `0a39e273`; it remains a proposal, not an automatic change to required checks.
 Product-direction refinements are preserved at workspace `3f8dd61f` and
 backend `27504f67e`. The founder approved the newer Thesis opening during this
-landing. The remaining Product Model conflict requires its separate wording
-decision before that merge can finish.
+landing and approved preserving the Product Model's current authority and
+Opening definitions while incorporating Collection and record-value additions.
 
 Code conflict resolution retains both lanes' guarantees: owner access-state
 guards, exact original source/revision, root return, photo paging and private
