@@ -667,6 +667,13 @@ was absent; the links were removed after the run. The app test suite was not
 selected because the app had no changed files. Hosted CI and the equivalent
 hosted latency comparison remain required before claiming Package 3C acceptance.
 
+The repository-defined no-publish landing gate,
+`make land-worktree NAME=engineering-efficiency`, also passed from the canonical
+workspace on candidate `b9d0bc35e999`. It fetched all three live `origin/main`
+refs, confirmed they still equal the recorded base tuple, and reran the complete
+change-aware preflight successfully. The gate did not publish the lane or run
+hosted CI; the local candidate is ready for review and publication.
+
 **3A — App test determinism and execution, second in the queue.** At final
 candidate `21fdb724f`, the first hosted test job failed two unchanged tests;
 the retry passed 1,289 suites and 9,178 tests in 434.846s of Jest execution.
