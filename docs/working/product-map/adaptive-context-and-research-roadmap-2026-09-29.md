@@ -452,7 +452,9 @@ Older workspace memory/contribution status paragraphs and worker budget prose
 conflict with newer implementation. Preserve their policy rationale, but have
 the owning package reconcile status text when adopting work. The September 26
 product-map percentages and production observations are dated evidence, not
-updated estimates supplied by this audit. No percentage complete is claimed.
+updated estimates supplied by this audit. No weighted percentage complete is
+claimed because R0–R7 have materially different scope and no weighted task
+ledger exists. The current package-closure count is recorded below.
 
 ## 4 Research conclusions translated into engineering choices
 
@@ -625,12 +627,42 @@ The implementation has measured cold/warm latency, end-to-end spend, waste,
 recovery and quality. Consumer desirability and release approval are separate
 evidence checkpoints, not consequences of checking every engineering box.
 
-## 6 Proposed implementation packages
+## 6 Implementation packages and execution state
 
-The packages are assigned to Strategy Technical by the program, but remain
-**proposed, not started** until execution intake. R0–R7 are local package
-identifiers, not additional standing lanes. Their artifact alignment records
-shared experience requirements, not a second implementation in Strategy.
+The packages are assigned to Strategy Technical by the program. R0–R7 are local
+package identifiers, not additional standing lanes. Their artifact alignment
+records shared experience requirements, not a second implementation in
+Strategy.
+
+**Execution is underway.** The canonical three-lane baseline is on workspace
+`main` at `7b02b2bfe5d36e53060eee5f9fee6f8b5fd4d399` and is integrated into this
+lane. The first exact-original read is implemented across the owner-scoped
+backend reader and its mobile callers. Quick bounded results also carry
+query-free, request-scoped BaseTool attempt/retry/error/cancellation counts;
+this is observability, not a budget reservation or billing record. Existing
+factual lookup and trip-direction fallback now share a typed, one-tool-attempt
+public acquisition adapter with distinct empty, unavailable, failed and
+deadline outcomes. This is a partial R0/R1/R2/R6 result, not completion of any
+package: R0's complete scenario/owner matrix, R1's caller-independent disclosure
+and acquisition behavior, R2's supported candidate selection, R6's real
+consumer acceptance, and R7's matched-quality evidence remain open. R3/R4/R5
+requirements are being applied with the first producer. The commercial usage
+ledger now preserves dispatch uncertainty for existing voice-token actions;
+expired dispatched holds stay reserved until an authoritative outcome is
+resolved, while a retry that loses the dispatch fence cannot release the
+winner's reservation. This protects one existing commercial meter, but does
+not yet account for research-provider spend or complete R3. Authenticated
+interactive web lookup and trip-direction web fallback now emit content-free
+`ai.research.live` shadow demand decisions; these neither reserve nor gate the
+provider call. Shared execution, longitudinal change handling and assistance
+adaptation remain open. Receipts and exact limitations are in section 12.
+
+**Status measure (September 30): 0/8 packages fully accepted (0% package
+closure).** This is not a claim of zero engineering progress: partial slices
+have shipped across R0/R1/R2/R3/R6/R7, but no package meets its complete
+acceptance definition. The roadmap does not support a defensible weighted
+“percent of effort executed” until its uneven package scopes are decomposed
+into weighted, verifiable acceptance items.
 
 ### Minimum complete first increment
 
@@ -685,6 +717,30 @@ without restarting completed Home or capture connections.
 **Acceptance:** each scenario has a real owner, exact inputs and revision,
 consumer, repair path and evidence boundary. Pending decisions name only the
 behavior they block. No universal new schema or duplicate scheduler is assumed.
+
+#### R0 representative evidence matrix (September 30)
+
+This is an owner/evidence baseline, not a claim that every row is already a
+connected research consumer. Named tests identify existing evidence sources;
+they are not claimed as executed by this receipt. It distinguishes selected
+identity from what the selected evidence is allowed to establish.
+
+| Scenario and exact selection | Owner and current consumer | Repair path | Evidence boundary and current proof |
+| --- | --- | --- | --- |
+| **Ticket / confirmation:** `submission_id + object_id`, selected Source ID and captured content hash/revision | Intake owns custody and exact original bytes; Life refind/open is the current consumer | Intake correction, expiry, deletion or revocation; re-read the selected revision, never substitute a newer one | A confirmation supports its recorded details, not that the trip or visit occurred. `tests/inbound/test_chat_keep_handoff_postgres.py`, `test_email_capture_postgres.py`, and `test_original_source_reader_postgres.py` cover custody, replay/owner denial and stale selection against disposable Postgres; hosted bytes and native display are separate evidence. |
+| **Venue / work anchor:** canonical type + ID, plus the selected source/owner revision when that owner exposes one | Place/Experience and entity identity owners; Places and governed lived-experience readers consume them | Correct the canonical identity or source binding through its owner; refresh operational facts from their provider owner | A matching title is not identity, a Place match does not resolve every non-place work, and an anchor does not prove a visit. `backend/places/FEATURE.md` and `backend/lived_experience/FEATURE.md` describe current read boundaries; a uniform cross-kind selected-work revision/reader is not yet evidenced. |
+| **Text passage:** Source ID + source revision/hash + page/frame/character locator in the selected representation | Intake owns the original; the owner-scoped reader now refinds bounded UTF-8 spans from exact `text/plain` sources, while evidence locators bind source and revision | Invalidate the locator when its source representation changes; correction must select the new revision explicitly | A locator identifies evidence, not truth or permission to re-share it. `backend/inbound/normalizers.py`, `core/intake_evidence.py`, and the selected-original reader validate the plain-text span case; PDF/page, OCR/region, normalized-representation selection and native consumer adoption remain open. |
+| **Photograph:** Source ID + original content hash/revision; any region must carry its own bounded locator | Intake owns custody; Life's exact original reader is the current receiving seam | Recheck custody, expiry, scan state and revision; correct/remove the source or withhold the stale region | The original can be inspected, but a selected region, OCR corpus, or inferred occurrence is not implied. Image normalization is metadata-only; semantic pixel processing is separate. Original-reader tests do not prove region retrieval, OCR recall, or device presentation. |
+| **Practical record:** trip ID + receipt/expense or Commitment identity and current owner state | Expenses owns receipt OCR and settlement records; Plan/Commitment/provider owners own arrangements and operational truth | Use the owning dispute/correction/update flow and verify authoritative readback | OCR and a receipt are evidence, not a confirmed expense split, payment, booking, or occurrence. `tests/expenses/test_receipt_ocr.py` and expense lifecycle suites prove domain behavior, not research selection or cross-surface use. |
+| **Human contribution:** Occasion/contribution ID + contributor, exact Source revision, current membership/audience and purpose grant | Contribution/Occasion/Relationships owners; Life and social projections consume only admitted owner state | Contributor correction/withdrawal, grant or membership change; invalidate only dependent projections and re-read current authority | Display, AI use, retention and onward sharing are separate grants. `docs/systems/contribution-and-consequence.md` is the accepted contract; experience-graph and source-contribution suites cover portions, not a complete research-from-contribution journey. |
+| **Sparse history:** caller question + purpose/scope and an explicit typed `PublicResearchRequest`; no synthetic identity or historical source | Answer-only research currently has a provider-neutral bounded result and no connected native consumer | No durable personal repair by default; the requester can ask again or correct the current answer | This is T0 current-answer work, not permission to retain the question. `tests/research_agent/test_answer_only_research.py` proves one typed acquisition, bounded attribution and no dossier writer; no real app caller, live provider quality, or end-to-end disclosure grant is proven. |
+
+The matrix closes neither the R0 acceptance nor the external-disclosure policy.
+In particular, there is no single source/component version contract for every
+anchor family, no universal repair command, and no app-level cost/kill-switch
+admission for the new answer-only route. The route remains an internal backend
+capability; do not expose or schedule it as a new paid consumer until R1/R3
+admission and the product's disclosure boundary are connected.
 
 ### R1 Generalize bounded acquisition
 
@@ -1196,15 +1252,16 @@ implementation. Recommendations elsewhere are our engineering inferences.
 
 ## 12 Document delivery and next handoff
 
-After the common baseline is prepared, execute **R0 plus the shared R1 boundary
-and an existing-original R2 adapter connected to R6 readback**, with the minimum
-R3/R4/R5 safeguards and R7 comparisons. Deliver one coherent assignment within
-this lane. Establish the general seam across several artifact fixtures while
-preserving native/capture progress. Publish usable additive contracts early;
+The common baseline is prepared and integrated into this lane. The current
+assignment is **R0 completion plus the shared R1 boundary and an existing-original
+R2 adapter connected to R6 readback**, with the minimum R3/R4/R5 safeguards and
+R7 comparisons. One exact-source read is already connected; continue the same
+assignment through several artifact families, supported acquisition, real
+owner readback and matched quality evidence. Publish additive contracts early;
 Strategy connects its reader and Orchestration its roots from landed revisions.
-Until then, use the actual existing supported consumer path, or report a bounded
-producer-only result and the specific consumer gap. Do not claim native
-acceptance from a fixture or wait for every design/policy decision.
+Until end-to-end evidence exists, report a bounded producer result and the exact
+consumer gap. Do not claim native acceptance from a fixture or wait for every
+design/policy decision.
 
 This document retains its research/audit rationale and owns Strategy Technical's
 package progress under the program's lane assignment. It does not rewrite the
@@ -1213,6 +1270,39 @@ Update the current assignment here in place; the program changes only when a
 priority, ownership boundary or system checkpoint changes.
 
 ### Validation evidence
+
+#### Implementation receipt — search evidence fidelity (September 30)
+
+Backend commit `0f81463f5` on `codex/adaptive-context-research` closes one
+acquisition-fidelity defect within R1; it does **not** complete R1 or the first
+assignment. The Tavily projection now retains publication dates; search results
+are labeled `search_snippet` rather than fetched `page`; low-credibility
+compression preserves title/date; URL-backed snippets remain attributable while
+provider summaries remain non-citable. World Foundry keeps the source title and
+marks snippet observations as not fetched page evidence. No public API, provider
+enablement, persistence policy, or app behavior changed.
+
+Evidence on Python 3.13.0 / Darwin 25.5, with the canonical workspace virtualenv
+running against this lane's source tree:
+
+- Focused acquisition, bounded-result, World Foundry, compression and web-search
+  handler suite: **56 passed** (`-p no:cacheprovider`).
+- Research-package/caller regression set: **689 passed, 25 gated out**; gates
+  were `requires_postgres`, `requires_api_keys` and `requires_dogfood_wedge`.
+- Full offline `make merge-check BASE_REF=origin/main`: **21,964 passed, 14
+  skipped, 53 xpassed**. It ran with pytest cache disabled because this managed
+  lane does not permit writes to its default cache directory.
+- `make ci-static` passed, including Ruff, architecture/structural gates,
+  catalog runway and mypy over 1,889 source files. Ruff cache was disabled and
+  mypy cache redirected to avoid the worktree write restriction.
+
+The provider boundary was mocked; `include_raw_content=False` was asserted. No
+live provider call, database, migration, app build, or consumer runtime was
+exercised. The source-binding result still does not prove semantic entailment.
+Remaining R1 acceptance includes a caller-independent typed disclosure boundary,
+purpose-specific lookup/discovery behavior, and supported-claim checks. R2's
+selected-original reader was still outstanding at this receipt's revision; the
+later implementation receipt below records subsequent progress.
 
 Second-pass offline checks at workspace `44f637e85`, backend `3c170d21f`
 and app `87eceee24`, on Python `3.13.0` / Darwin 25.5 arm64:
@@ -1272,3 +1362,646 @@ the second pass; no product code or policy is changed.
 Beyond the 24 focused tests above, `make verify`, live-provider, database-race
 and native-device checks remain **unrun**. Defined tests and read-only reviewer
 agreement do not establish runtime acceptance.
+
+#### Implementation receipt — exact owner-read revision binding (September 30)
+
+The shared baseline commit is `7b02b2bfe5d36e53060eee5f9fee6f8b5fd4d399` on
+canonical workspace `main`; lane merge commit `5022c728` integrates it here.
+Backend commits `d1d1ff1c7` and `99f88c594` add an owner-scoped reader for the
+exact selected Intake original and correct the route contract to describe all
+callers. App commits `e02151cfb` and `28717c7cf` pass source revisions from Life
+Intake, private Capture receipts, audio/calendar previews and native capture
+readback, with generated route documentation aligned to the backend. The
+optional `expected_revision` remains backward-compatible for old callers; all
+current callers with a known revision send it. Bytes remain private/no-store,
+are not persisted by this read path, and are not sent to a provider.
+
+Validation on the lane revisions:
+
+- Backend Python 3.13 focused suite: **36 passed** across
+  `tests/inbound/test_original_source_reader.py` and
+  `tests/api/test_intake_route.py`. `RUFF_NO_CACHE=true make ci-static` passed
+  before the final docstring-only correction; subsequent commit hooks and
+  targeted Ruff checks passed. `make merge-check BASE_REF=main` reports change
+  scope; it is not itself a test execution.
+- App `npm run typecheck` passed; focused revision-binding suite **49 passed**.
+  `npm run verify:merge -- --base main` passed: **1,283 suites, 9,038 tests,
+  1 snapshot**. Its preceding run found three stale assertions; those were
+  corrected to assert hash forwarding, then the complete suite passed.
+- `./scripts/sync-types.sh` regenerated the full and app OpenAPI snapshots and
+  app schema types with no TypeScript errors. `make api-coverage-check` passed:
+  579 active, 15 dark, 0 unflagged and 62 retiring operations.
+- Workspace `make docs-check` passed after baseline integration. The full and
+  app OpenAPI snapshots are committed with this receipt; the generated app type
+  description is committed separately because the repositories have independent
+  Git histories.
+
+At this receipt's revision, the owner query was not yet proven against a
+disposable Postgres instance, and mobile authenticated readback was not exercised
+against a running backend or native device. The following receipt adds the
+database proof, but neither receipt completes R2 or R6. No migration, paid
+provider call, producer-to-candidate flow, useful-addition judgment, push,
+deployment or publication was performed. The original is available
+independently of generated content, but worthwhile additional substance remains
+the central acceptance question.
+
+#### Implementation receipt — disposable Postgres owner-read acceptance (September 30)
+
+Backend commit `d28b74e0` adds real-database coverage for the selected
+revision-bound reader and documents the evidence boundary in
+`backend/inbound/FEATURE.md`. The tests exercise a valid retained inline-text
+read, an owner mismatch, a stale selected revision, and expired/revoked custody
+against the lane's isolated, migrated PostgreSQL service (`vesper-adaptive-context-research`,
+host port `64355`). They do not use remote object storage. Backend branch is
+`codex/adaptive-context-research`; the clean tested repository tuple was
+workspace `015798537`, backend `d28b74e0`, app `28717c7c`.
+
+The measured focused command completed **11 passed, 0 failed, 0 skipped** on
+macOS `25.5.0` arm64 using the backend virtual environment's Python `3.13.0`,
+with `TEST_DATABASE_DISPOSABLE=1` and an explicit local disposable database URL.
+The first restricted-shell attempt skipped both database tests because it could
+not access localhost; that was not treated as a pass. The successful measured
+rerun used approved access to this lane's disposable service. Measurement and
+full log are in `/tmp/vesper-adaptive-research-roadmap-checks/measurements.json`
+and the adjacent
+`adaptive-original-read-disposable-postgres-20260930T151420Z.log`.
+
+The full backend `ci-static` gate then completed with exit code `0` in `109.764`
+seconds (`MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true`); Ruff, architecture and
+structural gates passed, and uncached mypy reported no issues across 1,890
+source files. A prior cache-backed invocation returned a mypy internal error;
+the uncached full gate is the authoritative passing run. Its measurement and
+log are in the same temporary measurement directory, under
+`adaptive-original-read-static-20260930T151741Z.log`.
+
+This closes the real-Postgres evidence gap for the current original reader. It
+still does **not** prove remote bytes, the authenticated HTTP route against a
+running API, native presentation, bounded public acquisition, candidate
+selection, supported additional substance, shared execution control, or
+end-to-end user value. R0–R7 remain in progress.
+
+#### Implementation receipt — bounded public lookup request (September 30)
+
+Backend commit `0f7021b98` introduces the shared, extra-forbid
+`PublicResearchRequest` and routes the existing Concierge fact-lookup and
+destination-only trip-direction fallback through it. The contract separates
+public terms from local subject correlation, never appends local identity to
+provider terms, allows a public location only for candidate discovery, and
+bounds query length, result count and deadline. Invalid requests are rejected
+before provider dispatch. The specialized live-event path retains its
+canonical-place and approved-source policy.
+
+Evidence on the lane's Python 3.13.0 backend environment:
+
+- Focused public request, Concierge web-search and trip-direction, quick
+  research, bounded-result and source-metadata tests: **60 passed, 0 skipped**.
+- `MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true make ci-static`: passed on clean
+  backend commit `0f7021b98`; Ruff, import/structural gates and mypy passed,
+  including 1,891 source files. The measured receipt is in
+  `/tmp/vesper-adaptive-research-roadmap-checks/measurements.json` and the
+  adjacent `adaptive-public-research-ci-static-20260930T160106Z.log`.
+- `make merge-check BASE_REF=main`, rerun with
+  `PYTEST_ADDOPTS=-p no:cacheprovider`: **21,982 passed, 14 skipped, 1 xfailed,
+  52 xpassed, 0 failed** in 105.39 seconds. The first run reached test
+  completion but could not write pytest's cache in the managed worktree; it is
+  not counted. The measured rerun and log are in the same temporary directory
+  under `adaptive-public-research-merge-check-20260930T155547Z.log`.
+
+This is a **partial R1 boundary improvement**, not a caller-independent
+artifact research path. `public_query` is still a caller assertion: the shape
+does not semantically detect sensitive material embedded inside it. The
+retrieved hostile-text fixture proves this handler makes one provider call and
+does not feed the snippet back into a second call; it does not prove behavior
+of later model turns, OCR-derived queries, other callers or broader egress
+policy. No claim-support verifier, public-source retention, private-memory
+filter, paid-attempt reservation, selected-component flow, live provider
+call, database mutation or native consumer readback was exercised. R1 and
+R0–R7 remain open.
+
+#### Implementation receipt — privacy-safe research diagnostics (September 30)
+
+Backend commit `e62219445` removes raw query/local-target text, precise
+reverse-geocoding coordinates and provider exception text from the per-request
+logs in quick research, source gathering, Nominatim and Concierge web lookup.
+Logs retain bounded operation metadata (such as target/content type) and
+exception class. Focused regression tests inject private markers into query,
+location and provider-error values and assert that markers do not appear in
+captured Python logs. Feature docs explicitly scope this statement: separate
+batch catalog seeding and entity-mention extraction pipelines were not audited.
+
+Evidence on the lane tuple workspace `6a1a9af5`, backend `e62219445`, app
+`28717c7c`, Darwin 25.5 arm64:
+
+- Focused log-redaction tests and adjacent handlers: **54 passed**; Ruff check
+  and formatting check passed. Backend `MYPY_CACHE_DIR=/dev/null
+  RUFF_NO_CACHE=true make ci-static` passed with mypy reporting no issues in
+  1,891 source files.
+- The measured `make verify-changed` preflight used explicit `main` bases for
+  the workspace and both child repositories. Its first sandboxed run failed
+  on denied Expo/Ruff cache writes and four workspace tests' temporary socket
+  binds; that run is recorded but not counted. The rerun with approved local
+  cache/socket access passed (exit 0, 394.707 seconds): backend **21,988
+  passed, 14 skipped, 1 xfailed, 52 xpassed**; app **1,283 suites / 9,038
+  tests passed**; workspace scripts **117 passed**; API/docs/contracts checks
+  and all selected changed-file gates passed. Eight backend warnings were
+  emitted by local-Qdrant payload-index tests.
+- Both measured attempts, including exact repository tuples and logs, are
+  preserved in `/tmp/adaptive-research-roadmap-measurements.json`; the passing
+  log is `/tmp/adaptive-research-redaction-verify-changed-escalated-20260930-20260930T163247Z.log`.
+
+This reduces accidental disclosure through the reviewed Python logger paths;
+it does not control or certify Langfuse/model/tool traces, request-body
+retention, third-party provider logging, every research-adjacent pipeline, or
+the semantic projection of sensitive content into a public query. The typed
+request remains a caller contract. R1 still lacks the caller-independent
+selected-object path, source/claim support verification, purpose-specific
+stop criteria, chargeable-attempt accounting and whole-flow egress tests. No
+live provider, paid call, data write, app build, or native runtime was used.
+R0–R7 remain open.
+
+#### Implementation receipt — bounded tool-attempt accounting (September 30)
+
+Backend commit `bf4df8368` adds an opt-in `BaseTool` attempt observer scoped to
+quick research. It counts calls through `_execute` (including the existing
+retry loop), retry and exception outcomes, cancellation after dispatch, and
+provider-returned error-shaped results. Parallel child tasks share the
+request-local accumulator. Only fixed tool class names and integer counts are
+carried into `BoundedResearchUsage`; query text, tool arguments and exception
+messages are not retained there. This improves operating evidence for R1/R3
+without changing provider behavior, profile limits, persistence or public API.
+
+Evidence on the committed lane tuple workspace `69aa089c`, backend
+`bf4df836`, app `28717c7c`, Darwin 25.5 arm64:
+
+- Focused BaseTool retry/cancellation, quick-research propagation, bounded
+  result and source-metadata tests: **27 passed**. Ruff and formatting checks
+  passed.
+- Measured `MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true make -C travel-agent
+  ci-static`: passed in 108.559 seconds; mypy reported no issues across 1,891
+  backend source files.
+- Measured `PYTEST_ADDOPTS='-p no:cacheprovider' RUFF_NO_CACHE=true make -C
+  travel-agent merge-check BASE_REF=main`: **21,995 passed, 14 skipped, 53
+  xpassed, 0 failed** in 110.498 seconds. One local-Qdrant warning was emitted.
+- An earlier parallel run failed one unrelated 20 ms timing assertion in
+  `tests/core/test_owner_reads.py`; the case passed alone and the complete
+  committed merge check then passed. Failed and passing attempts remain in the
+  measurement record at `/tmp/adaptive-research-roadmap-measurements.json`;
+  the passing log is
+  `/tmp/adaptive-research-tool-attempt-usage-merge-check-committed-20260930-20260930T171106Z.log`.
+
+The observer counts `BaseTool._execute` dispatch attempts, not HTTP subrequests
+made inside a tool, token/provider billing, or settlement; direct graph runs
+outside this explicit quick-research scope are not included. Cancellation does
+not prove the remote provider stopped or did not charge. Error-shaped provider
+responses are counted by presence/status only; raw error details are not
+preserved. This is not a finite R3 reservation or recovery protocol, and it
+does not establish semantically sufficient research, honest empty/partial
+classification, claim entailment, or consumer value. No live provider,
+disposable-DB race, database write, app build, authenticated native readback,
+push or deployment was exercised. R0–R7 remain open.
+
+#### Implementation receipt — shared bounded public acquisition (September 30)
+
+Backend commit `e94bf253c6e26a75939e618ef26fdd92380a50b6` routes the existing
+factual `search_web` path and trip-direction public fallback through
+`core.public_research.acquire_public_research`. It returns a typed transient
+result with explicit success/no-results/unavailable/failure/deadline outcomes,
+URL-validated HTTP(S) search snippets, preserved titles/publication dates and a
+separate non-citable provider summary. Local subject identity is not included
+in the result or sent as provider query text. Provider errors are reduced to
+fixed codes; query and exception text are not logged. The selected lookup uses
+one `BaseTool.execute_once` call, bounded by the request deadline and result
+limit, without the default tool retry loop. The specialized live-event path
+remains separate and retains its own source verification.
+
+Evidence on the committed tuple workspace `467e4cae`, backend
+`e94bf253c6e26a75939e618ef26fdd92380a50b6`, app `28717c7c`, Darwin 25.5 arm64,
+Python 3.14.6:
+
+- Focused acquisition, retry, Concierge lookup/trip-direction, quick-research,
+  bounded-result and source-metadata tests: **79 passed** with the backend
+  virtual-environment interpreter.
+- Measured `MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true make -C travel-agent
+  ci-static`: passed in **100.533 seconds**; mypy reported no issues across
+  1,892 backend source files. The broad-exception and status-dead-gate ratchets
+  passed without baseline changes.
+- Measured `PYTEST_ADDOPTS='-p no:cacheprovider' RUFF_NO_CACHE=true make -C
+  travel-agent merge-check BASE_REF=main`: **22,001 passed, 14 skipped, 0
+  failed** in **101.747 seconds**.
+- Measurements and complete logs are in
+  `/tmp/adaptive-research-roadmap-measurements.json` and
+  `/tmp/vesper-adaptive-research-roadmap-checks/` (`bounded-public-acquisition-*`).
+- Initial commit hooks rejected a credential-shaped test URL and then caught
+  research outcome comparisons as database lifecycle status gates. The fixture
+  and code were corrected; no hook exemption or baseline update was made.
+
+This completes only a **shared existing-caller acquisition adapter**. It does
+not admit arbitrary selected artifacts or unresolved subjects from a consumer,
+classify private information mislabelled as `public_query`, fetch/verify source
+pages, prove claim entailment, or persist a durable attempt/billing ledger.
+The reported attempt is one call to the tool's `_execute` layer; any retry or
+multiple HTTP requests inside the provider SDK and final billing settlement
+remain unmeasured. It introduces no new paid consumer path, API/database schema,
+research persistence, app change or public candidate-discovery UI. No live
+provider call, database fixture, native build/readback, push or deployment was
+run. R0–R7 remain open.
+
+#### Implementation receipt — provider HTTP dispatch attempt bound (September 30)
+
+Backend commit `519536f78c67d2029879035bb099bae481160663` adds a regression
+through `acquire_public_research` and the installed `tavily-python` 0.8.0
+adapter. An injected `httpx.MockTransport` records and then fails the request;
+the test confirms exactly one HTTP `POST /search`, one tool-layer attempt, and
+one exception for that acquisition. This narrows the earlier uncertainty for
+the current SDK call path: no second HTTP dispatch occurred after the mocked
+connection failure. It does not establish provider-side retries, whether a
+failed request is billable, the provider's final usage settlement, or durable
+cross-process attempt accounting.
+
+Evidence on the clean lane tuple workspace `3a42b45460b2d2a682f95b2a10bb8d5edd03062e`,
+backend `519536f78c67d2029879035bb099bae481160663`, app
+`28717c7cfec07b2313fe0e0cdff4431444df8335`:
+
+- Focused acquisition/retry suite: **15 passed**; the new real-SDK/mock-transport
+  case passed independently within the acquisition module (**6 passed**).
+- `MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true make -C travel-agent ci-static`
+  passed; Ruff, architecture/structural gates and mypy across 1,892 backend
+  source files reported no issues.
+- Measured `make -C travel-agent merge-check BASE_REF=main` passed in **100.469
+  seconds**: **22,002 passed, 14 skipped, 53 xpassed, 0 failed**. The complete
+  log and measured revision tuple are recorded in
+  `/tmp/vesper-adaptive-context-roadmap-checks/tavily-http-attempt-merge-check-20260930T182303Z.log`
+  and `/tmp/adaptive-research-roadmap-measurements.json`.
+- The backend pre-commit gates passed without exemptions or baseline changes.
+
+This improves evidence for one existing lookup path; it does not complete the
+shared budget/reservation protocol, caller-independent disclosure, selected
+artifact retrieval, supported-claim checks, consumer readback, or any R0–R7
+package. There was no live provider request, database mutation, API/schema
+change, application change, deployment or publication.
+
+#### Implementation receipt — public source provenance and truncation metadata (September 30)
+
+Backend commit `bac36009373d51e65fa6d0362f244bfec4594b04` retains the
+provider and output-shaping provenance of the shared transient lookup result.
+The typed acquisition result identifies the current provider (`tavily`), and
+records whether its provider summary, each source title, or each source snippet
+was truncated to the existing output bounds. Both existing consumers—the
+factual `search_web` path and trip-direction public fallback—preserve these
+fields in their returned evidence payloads. This makes source provenance and
+lossy shaping visible at the consumer boundary without storing provider
+content or changing the lookup's existing privacy, timeout, or source-kind
+limits.
+
+Evidence on the clean lane tuple workspace
+`b80666a898ea366336f66cbe9caf8f0c208bd785`, backend
+`bac36009373d51e65fa6d0362f244bfec4594b04`, app
+`28717c7cfec07b2313fe0e0cdff4431444df8335` (Darwin 25.5 arm64, Python
+3.14.6):
+
+- Focused acquisition/request/consumer tests: **53 passed**.
+- `MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true make -C travel-agent
+  ci-static` passed in **101.366 seconds**, including Ruff and mypy with no
+  issues across 1,892 backend source files. The measured log is
+  `/tmp/vesper-adaptive-context-roadmap-checks/public-source-metadata-ci-static-20260930T183152Z.log`.
+- Workspace `make docs-check` passed against the feature documentation and
+  roadmap on workspace `b80666a898ea366336f6cbe9caf8f0c208bd785`.
+- Measured `PYTEST_ADDOPTS='-p no:cacheprovider' RUFF_NO_CACHE=true make -C
+  travel-agent merge-check BASE_REF=main` passed in **97.736 seconds**:
+  **22,003 passed, 14 skipped, 53 xpassed, 0 failed**. The complete log and
+  exact revision tuple are recorded in
+  `/tmp/vesper-adaptive-context-roadmap-checks/public-source-metadata-merge-check-20260930T183339Z.log`
+  and `/tmp/adaptive-research-roadmap-measurements.json`.
+- Backend commit hooks passed without exemptions or baseline changes.
+
+This is provenance for the bounded returned representation, not source-page
+fetch or verification, claim-entailment or relevance proof, semantic privacy
+classification, a durable cost/billing ledger, or proof that the returned
+content is useful. No new paid consumer, API/schema or app change, persistent
+research storage, live provider call, database mutation, native build/readback,
+deployment or publication was introduced. R0–R7 remain open.
+
+#### Implementation receipt — caller-scoped answer-only research (September 30)
+
+Backend commit `89073b56a55760622e5287887c5aee430a99d41c` separates
+`completion_mode="answer_only"` from the dossier-oriented planning,
+reflection, synthesis, tool-profile and quality-gate route. The caller's
+question, purpose, scope and requested evidence now shape planning and
+reflection even when a recognized catalog target contributes existing
+coverage; a complete old dossier no longer suppresses a new caller question.
+Unknown target types bypass catalog lookup. Answer-only research stops before
+the dossier quality gate and all domain writers. It returns a bounded
+`answer` only when there is URL-backed page/search-snippet material and at
+least one citation resolves to that gathered evidence; otherwise it abstains
+and preserves an unresolved gap. Completion diagnostics log target type, not
+the internal target slug. Legacy completion remains on its prior dossier path.
+
+Evidence on the clean tuple workspace `89ce7035de4ed7480fb02254968083363bf3153e`,
+backend `89073b56a55760622e5287887c5aee430a99d41c`, app
+`28717c7cfec07b2313fe0e0cdff4431444df8335`, Darwin 25.5 arm64; focused tests
+used the backend virtual environment's Python 3.13.0:
+
+- Measured focused answer-only, content-pipeline, bounded-result,
+  quick-research and experience-research tests: **72 passed, 0 skipped**.
+- Measured `MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true make -C travel-agent
+  ci-static`: passed in **102.829 seconds**; Ruff, architecture/structural
+  gates and mypy passed. Log:
+  `/tmp/vesper-adaptive-context-roadmap-checks/answer-only-final-ci-static-20260930T193053Z.log`.
+- Measured `PYTEST_ADDOPTS='-p no:cacheprovider' RUFF_NO_CACHE=true make -C
+  travel-agent merge-check BASE_REF=main`: **22,014 passed, 14 skipped, 0
+  failed** in **103.189 seconds**. Log:
+  `/tmp/vesper-adaptive-context-roadmap-checks/answer-only-final-merge-check-20260930T193245Z.log`.
+- Measurements, including exact revisions and a corrected focused-test
+  invocation, are recorded in `/tmp/adaptive-research-roadmap-measurements.json`.
+  Backend commit hooks passed without exemptions or baseline changes.
+
+This improves answer-only task framing and prevents uncited/unattributable
+answers from escaping, but source-index binding is not semantic claim
+entailment. Caller-supplied public terms remain a trust boundary; no
+caller-independent privacy classifier, live model-quality evaluation, direct
+page fetch, candidate-discovery acceptance, durable chargeable-attempt ledger,
+consumer readback, API/schema or app change was exercised. Anthropic and Tavily
+keys were unavailable in this checkout, so live prompt evaluation is unrun.
+This does not complete R1 or the first R0/R1/R2/R6 increment. R0–R7 remain open.
+
+#### Implementation receipt — typed answer-only public acquisition (September 30)
+
+Backend commit `93512c4d87ea81347ce7338269ace5886aaa21b8` connects answer-only
+research to the shared `PublicResearchRequest` adapter. It requires a separate
+typed public request before provider dispatch, skips catalog lookup when no
+catalog identity applies, bypasses LLM-generated search planning, and permits
+one bounded acquisition with no reflection-driven follow-up. Candidate
+discovery requires an explicit public location. Source kind, provider summary,
+publication date and truncation metadata survive into transient synthesis;
+blank-snippet results are not treated as citable evidence. An answer is
+withheld unless at least one URL-bound source citation carries an exact quote
+present in that excerpt. Acquisition outcome and tool-level usage are returned
+in the bounded result. No dossier quality gate or domain writer runs. The
+flaky elapsed-time assertion in `tests/test_parallel_tools.py` was replaced in
+separate test commit `7d110cb28` with an explicit overlap assertion.
+
+Evidence on the clean lane tuple workspace `82e2c546f10e307d09f5a71391f2172ad01ad106`,
+backend `93512c4d87ea81347ce7338269ace5886aaa21b8`, app
+`28717c7cfec07b2313fe0e0cdff4431444df8335`, Darwin 25.5 arm64, Python 3.14.6:
+
+- Focused request/acquisition, answer-only, bounded-result, graph, quick-
+  research, source-metadata, and parallel-overlap tests: **72 passed, 0
+  skipped** in 4.033 seconds. Log:
+  `/tmp/vesper-adaptive-context-roadmap-checks/answer-only-r1-focused-committed-20260930T202647Z.log`.
+- `MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true make -C travel-agent ci-static`
+  passed in **100.327 seconds**; Ruff, architecture/structural gates and mypy
+  passed. Log:
+  `/tmp/vesper-adaptive-context-roadmap-checks/answer-only-r1-static-committed-20260930T202859Z.log`.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' RUFF_NO_CACHE=true make -C
+  travel-agent merge-check BASE_REF=main` passed in **101.36 seconds**:
+  **22,025 passed, 14 skipped, 1 xfailed, 52 xpassed, 0 failed**. Two local-
+  Qdrant payload-index warnings were emitted. Log:
+  `/tmp/vesper-adaptive-context-roadmap-checks/answer-only-r1-merge-check-committed-20260930T202709Z.log`.
+- Exact command/revision/environment records are appended to
+  `/tmp/adaptive-context-r1-measurements.json`. Backend commit hooks passed
+  without exemptions or baseline changes.
+
+This still does **not** provide a caller-independent privacy classifier or a
+selected-original product caller: the typed `public_query` is an explicit
+caller assertion that its contents are suitable for public disclosure. OCR,
+image-derived and adversarially synthesized disclosure cases are not covered
+by a whole-flow owner-backed boundary. Exact quote presence is provenance, not
+semantic entailment. There is no live provider/model evaluation, durable
+chargeable-attempt reservation, page fetch, new paid consumer, API/schema or
+app change, persistent research storage, database mutation, native readback,
+push, deployment or publication. R1 and R0–R7 remain open.
+
+#### Implementation receipt — dispatched reservation uncertainty (September 30)
+
+Backend commit `caae59dad21a4590572988068659d8ddf50d5264` adds explicit
+`dispatched` and `unknown` reservation states. An expired pre-dispatch hold
+cannot later cross the dispatch fence; ordinary expiry releases only `held`
+reservations. A dispatched action that outlives its lease moves to `unknown`
+without refunding its units, and a bounded internal listing exposes only the
+reservation and capability identifiers, actor/trip IDs, hashed idempotency key,
+units and timestamps. An authoritative `consumed` or `not_consumed` resolution
+settles the reservation; malformed outcomes and zero-unit `consumed` claims
+fail closed.
+
+The existing voice token and narration-handoff routes mark dispatch before
+signing, commit after constructing the response, and release as known unused
+only when the current request won the dispatch fence. Handoff preparation now
+precedes the short-lived reservation. The expiration worker releases
+pre-dispatch holds and moves expired dispatched actions to the unknown queue.
+This is a shared ledger-safety primitive exercised by the existing voice
+commercial capability; it does not create research spend accounting, enable a
+capability, change pilot cohorts or allocations, or implement automated
+reconciliation for unknown rows. R3 remains open.
+
+Evidence on workspace `fd05a0cb1ffce05b76ac773fee5c56404c33b8dc`, backend
+`caae59dad21a4590572988068659d8ddf50d5264`, app
+`28717c7cfec07b2313fe0e0cdff4431444df8335`, Darwin 25.5 arm64; focused
+backend tests used Python 3.13.0:
+
+- Focused voice-route and gateway cases: **34 passed**. Log output was returned
+  directly by pytest; the measured database/static/full-suite runs are recorded
+  in `/tmp/adaptive-research-roadmap-measurements.json`.
+- Against the lane's explicitly disposable `codex_usagelease_20260930`
+  PostgreSQL database on port `64355`, the reservation lifecycle suite passed:
+  **6 passed**. The migration downgraded to `irdelegationtypes01` and reapplied
+  to `usagelease01`; `alembic heads` reports exactly `usagelease01 (head)`.
+- `MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true make -C travel-agent ci-static`
+  passed in **103.078 seconds**. Log:
+  `/tmp/vesper-adaptive-context-r3-checks/r3-reservation-final2-ci-static-20260930T215428Z.log`.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' RUFF_NO_CACHE=true make -C
+  travel-agent merge-check BASE_REF=main` passed in **101.102 seconds**:
+  **22,031 passed, 14 skipped, 0 failed**. Log:
+  `/tmp/vesper-adaptive-context-r3-checks/r3-reservation-final2-merge-check-20260930T215615Z.log`.
+- Backend commit hooks passed without exemptions after selecting the repository
+  virtualenv so parity checks could import SQLAlchemy. One earlier hook attempt
+  identified a status-check false positive; the gateway now classifies quota
+  exhaustion by reservation identity/replay rather than comparing a synthetic
+  result to a database status value.
+
+The focused route tests mock LiveKit and prove dispatch ordering and retry
+cleanup; they do not prove a live token exchange or response delivery. The
+local API runtime did not become healthy because this checkout lacks
+`ANTHROPIC_API_KEY`; this is unverified runtime evidence, not a product-code
+pass. Unknown rows can be listed and resolved through internal ledger calls,
+but there is no operator-facing workflow or durable producer record that
+automatically establishes token delivery. No research acquisition is yet
+connected to this reservation lifecycle, and no provider billing or COGS
+accounting is claimed. This is a partial R3 safeguard; R0–R7 remain open.
+
+#### Cross-repository change-aware verification (September 30)
+
+The measured command was run from the coordinated lane root with the lane's
+workspace/backend/app bases set to `main`, `TEST_DATABASE_URL` and
+`TEST_DATABASE_DISPOSABLE` unset, Ruff caches disabled, mypy cache directed to
+`/dev/null`, and pytest cache disabled. The run used workspace
+`fd05a0cb1ffce05b76ac773fee5c56404c33b8dc`, backend
+`caae59dad21a4590572988068659d8ddf50d5264`, app
+`28717c7cfec07b2313fe0e0cdff4431444df8335`, Python 3.14.6 and Darwin 25.5
+arm64.
+
+- An unprivileged full `make verify-changed` run exited 2 because four
+  workspace runtime tests could not bind ephemeral localhost sockets. The
+  backend (22,031 passed, 14 skipped), app (9,038 passed), and other workspace
+  tests passed. The socket-dependent file passed separately with local socket
+  permission: **11 passed**.
+- The full change-aware command was repeated with local socket permission. The
+  backend merge suite passed (**22,031 passed, 14 skipped, 53 xpassed**); all
+  **117 workspace script tests** passed; cross-repository contract/API/docs
+  gates reported no failures. The app run passed **9,034 tests in 1,282 of
+  1,283 suites**, but a Jest worker running
+  `ChoosePlaceSheet.test.tsx` terminated with `SIGSEGV`, so the overall command
+  still exited 2. The affected suite passed independently in-band (**4
+  passed**).
+- The full measurement is recorded at
+  `/tmp/vesper-adaptive-context-r3-checks/measurements.json`; its log is
+  `/tmp/vesper-adaptive-context-r3-checks/adaptive-context-r3-full-verify-changed-after-socket-permission-20260930T221157Z.log`.
+
+These retries isolate the observed failures to restricted socket binding and
+one transient Jest worker crash, with the affected tests passing on focused
+reruns. However, `make verify-changed` has **not** produced one clean end-to-end
+exit-zero run on this lane; record the integrated gate as incomplete rather
+than converting separate passes into a whole-command pass.
+
+#### Implementation receipt — live-research shadow demand (September 30)
+
+The interactive `search_web` path and the trip-direction public-web fallback
+now call the existing `observe_capability` service with the authenticated actor,
+optional trip, and tool-call ID supplied by the concierge dispatcher. The
+capability event records policy decision and hashed action correlation only;
+query text, preferences, and tool arguments are not passed to commercial
+telemetry. Trip-direction runs satisfied by the existing world model do not
+produce a live-research observation. No API contract or default access behavior
+changes, and no provider is newly enabled.
+
+This is Phase 1 demand telemetry only. It does not create a chargeable-attempt
+reservation, billable usage record, per-user/provider budget, dispatch fence,
+or outcome reconciliation. `ai.research.live` remains outside the enforcement-
+ready capability set; R3 and the first connected producer remain open.
+
+Evidence on workspace `c7b1ca66005d51d0f433190c501961f0dc89227f`, backend
+`50203ff66` and app `28717c7cfec07b2313fe0e0cdff4431444df8335`:
+
+- `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider -q -c
+  pyproject.toml tests/concierge/test_web_search_handler.py
+  tests/concierge/test_trip_direction_research.py`: **42 passed**.
+- `RUFF_NO_CACHE=true ruff check` and `ruff format --check` passed for the five
+  changed backend code/test files. The initial invocation without
+  `RUFF_NO_CACHE` could not write the managed checkout cache and is not counted
+  as a code failure.
+- `RUFF_NO_CACHE=true MYPY_CACHE_DIR=/dev/null make -C travel-agent ci-static`
+  passed in **108.109 seconds**, including Ruff, structural gates and mypy.
+  Log: `/tmp/vesper-adaptive-context-r3-checks/live-research-shadow-demand-ci-static-20260930T223522Z.log`.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' RUFF_NO_CACHE=true make -C travel-agent
+  merge-check BASE_REF=main` passed in **105.717 seconds**: **22,032 passed,
+  14 skipped, 0 failed**. Log:
+  `/tmp/vesper-adaptive-context-r3-checks/live-research-shadow-demand-merge-check-20260930T223721Z.log`.
+- Backend commit hooks passed without exemptions with `RUFF_NO_CACHE=true`.
+  The first attempt failed only because the Ruff hooks could not write their
+  default cache in this managed checkout; the uncached retry passed all hooks.
+- Workspace `make docs-check` passed at the recorded three-repository tuple;
+  measurement log:
+  `/tmp/vesper-adaptive-context-r3-checks/live-research-shadow-demand-docs-check-20260930T224226Z.log`.
+
+#### Implementation receipt — bounded live-research execution telemetry (September 30)
+
+The bounded Tavily acquisition and direct live-event paths now report a
+content-free execution event correlated to the preceding capability-demand
+decision by the same hashed tool-call fingerprint. The event contains the
+authenticated actor and optional trip, a coarse result category, the scoped
+tool invocation count, and a count of entries into Vesper's Tavily SDK call
+boundary. The latter is recorded immediately before `client.search`; it is
+distinct from entering a tool and from provider-internal HTTP retries. Deadline
+and caller cancellation are distinct outcomes, and cancellation still
+propagates to the caller.
+
+The event excludes query/result/error text and reports `provider_cost_state`
+as `unknown` after SDK dispatch and `not_dispatched` otherwise. This is
+operational shadow telemetry only: it is not durable, does not measure SDK
+internal retries, cannot determine the provider's billable outcome, creates no
+cost posting or quota reservation, and does not enable enforcement or change
+provider behavior. R3, including durable attempt accounting, reservation,
+reconciliation and bounded retry ownership, remains open.
+
+The verified backend source tree is committed as `62de19dab` on
+`codex/adaptive-context-research`. Verification measurements captured the
+backend parent `50203ff6640fe246a87b0e8b35dc9af6e41beb10` with this exact code
+tree dirty immediately before commit; all commit hooks then passed on
+`62de19dab`. The workspace was `4be9c4919df7cbcc4e31c19f55f340965d3feb59`
+during verification, and the app remained `28717c7cfec07b2313fe0e0cdff4431444df8335`.
+Environment: Darwin 25.5 arm64; focused backend tests used Python 3.13.0.
+
+- The focused service, public-acquisition, request-contract, bounded-result,
+  answer-only, quick-research, tool-retry, concierge and trip-direction tests
+  passed: **111 passed, 0 skipped**.
+- Ruff lint, Ruff format check and `git diff --check` passed for the changed
+  backend files.
+- Measured `make -C travel-agent ci-static` passed in **109.55 seconds**,
+  including Ruff, structural/architecture gates and mypy. Log:
+  `/tmp/vesper-adaptive-context-r3-checks/live-research-outcome-ci-static-retry-20260930T230506Z.log`.
+- Measured `make -C travel-agent merge-check BASE_REF=main` ran **22,035
+  passed, 14 skipped, 2 failed** in 109.2 seconds. The timing-sensitive
+  `test_multiple_tools_parallel` failed at 0.464s against its 0.18s bound but
+  passed in an isolated rerun. The remaining
+  `test_preview_marks_unprotected_same_duration_shift_atomically_applicable`
+  is date-sensitive: its October 1–2 fixture is considered live on September
+  30, so the unchanged trip-context code correctly reports `trip_is_live` and
+  rejects atomic apply, contrary to the fixture's expectation. I left this
+  unrelated test/behavior unchanged. Full log:
+  `/tmp/vesper-adaptive-context-r3-checks/live-research-outcome-merge-check-20260930T230703Z.log`.
+- The measurement records for both checks are in
+  `/tmp/vesper-adaptive-context-r3-checks/measurements.json`.
+- Workspace `make docs-check` passed after the receipt update in **6.478
+  seconds** at the recorded repo tuple. Log:
+  `/tmp/vesper-adaptive-context-r3-checks/live-research-outcome-docs-check-final-20260930T231043Z.log`.
+
+The merge gate is therefore not reported as passing. No API schema, client,
+provider enablement, product policy, quota allocation, provider-cost claim,
+deployment or publication changed. This is a narrow R3 observability slice;
+durable chargeable-attempt accounting, reservation, reconciliation and the
+first connected producer remain open. R0–R7 remain open.
+
+#### Implementation receipt — revision-bound plain-text component refind (September 30)
+
+Intake now exposes a backend-only adapter that refinds a bounded character
+span from the currently retained exact `text/plain` original. The locator must
+bind the selected Source ID and full source-content SHA-256; the adapter
+rechecks current owner/custody/revision through the existing exact-original
+reader, decodes strict UTF-8, caps spans at 20,000 characters, and rejects
+unsupported media, mixed coordinate systems, invalid encoding and ranges that
+no longer fit the selected source. Selected text is excluded from repr and is
+neither logged nor persisted. No API, generated type, mobile consumer, PDF/OCR
+support or normalized-excerpt claim was added. This is a partial R2 producer
+primitive; general component selection/refinding and R6 consumer acceptance
+remain open. The package-closure count remains 0/8.
+
+Backend commit `63ac861ef` contains this slice. On the same tree before commit:
+
+- Focused offline evidence and locator tests: **22 passed**. Ruff check,
+  format-check and `git diff --check` passed.
+- `make ci-static` passed in **109.379 seconds**, including architecture gates
+  and mypy. Measurement:
+  `/tmp/vesper-adaptive-context-r2-tests/measurements.json`; log:
+  `/tmp/vesper-adaptive-context-r2-tests/logs/selected-text-component-ci-static-20260930T232525Z.log`.
+- The disposable-Postgres assertion is **unverified**. The lane's read-only
+  service check failed because this session cannot access the Docker socket;
+  no database was started, provisioned or modified. This receipt does not claim
+  the Postgres case passed.
+
+#### R7 verification repair — date-stable trip-context preview fixture (September 30)
+
+The prior offline merge gate exposed a stale fixed-date test fixture, not a
+production regression: its Oct 1–2 trip became live on Sep 30, and the
+production safety rule correctly refused an atomic edit. The fixture now
+places the same-duration shift 45 days in the future relative to the test
+clock and derives the itinerary block's time from that date. No production
+lifecycle behavior was changed.
+
+Backend commit `af05702ab` carries the test-only correction. The complete
+offline command, with both database-test variables explicitly unset, passed:
+**22,041 passed, 14 skipped, 53 xpassed, 0 failed** in 131.462 seconds. The
+14 database/provider skips remain outside this evidence. Measurement:
+`/tmp/vesper-adaptive-context-r2-tests/measurements.json`; log:
+`/tmp/vesper-adaptive-context-r2-tests/logs/date-stable-trip-context-merge-check-20260930T233820Z.log`.
+All commit hooks passed with Ruff cache disabled. R7 package acceptance remains
+open; this repairs one verification fixture and does not establish comparative
+product quality or operational acceptance.
