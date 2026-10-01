@@ -3992,3 +3992,39 @@ This is a bounded prompt improvement inside R2, not completion of the
 prior-user-connection acceptance. R2 still needs representative matched model
 outputs and independent human review, plus a supported owner handoff for prior
 insights not present in `private_instruction`. R0–R7 remain open.
+
+#### R2 evaluation receipt — explicit user-known context in matched review (October 1)
+
+Backend commit `1b172b473953af6a1e3e7966ff559be09042d7b4` extends the
+selected-source treatment fixture and anonymous A/B review packet with a
+separate optional `known_user_context`. The Colosseum/film regression now states
+that the user already made that connection. Review instructions distinguish
+that prior knowledge from source evidence and require repeated or closely
+paraphrased output to fail incremental-substance review. The fixture validator
+also rejects using user-known context as factual support. This makes a future
+human comparison test the relevant failure directly; the authored fixture
+labels remain illustrative and are not behavior or acceptance evidence.
+
+Validation on Darwin `25.5.0` arm64 / Python `3.13.0`:
+
+- Producer and matched-treatment tests: **27 passed**; targeted Ruff and format
+  checks passed.
+- `MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true make ci-static` passed; Ruff,
+  architecture/structural gates and mypy reported no issues across **1,900**
+  backend source files.
+- The first full `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check
+  BASE_REF=main` run had one unrelated timing assertion failure in
+  `tests/test_parallel_tools.py::TestExecuteToolsParallelSync::test_multiple_tools_parallel`
+  (0.60s observed against its 0.18s threshold). The isolated test passed
+  (**1 passed**). The full rerun passed: **22,222 passed, 14 skipped, 53
+  xpassed**, with two expected local-Qdrant warnings. An existing model-cache
+  test emitted a network warning; it did not fail the run. Skipped database and
+  provider acceptance remain unverified.
+- No live model output, human participant review, consumer runtime, database
+  race, API/schema, migration, application or deployment behavior was exercised.
+
+This advances the evaluation contract only. R2 acceptance still requires
+representative matched outputs, independent human assessment of support and
+usefulness, and a real caller that supplies known insights from the relevant
+interaction. It does not grant access to conversation history or assert
+archive-wide deduplication. R0–R7 remain open.
