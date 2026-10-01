@@ -3017,3 +3017,75 @@ Validation on the final backend revision:
 
 No model/provider, live lookup, database mutation, native consumer, or consumer
 study ran for this increment. R0–R7 remain open.
+
+#### R3 implementation receipt — external research caller inventory (October 1)
+
+A source audit of Tavily dispatch paths confirms that `ai.research.live` is not
+yet a coherent shared spend boundary. It spans distinct user-facing lookups,
+content enrichment, batch corpus jobs, image discovery, and operational
+probes. They have different authority, retry, result-retention and scheduling
+owners; treating every SDK call as one user capability would couple unrelated
+work and could make a future enforcement switch affect seed jobs or health
+checks unexpectedly.
+
+| Caller family | Current dispatch boundary | Current controls and remaining gap |
+| --- | --- | --- |
+| Concierge factual lookup and trip-direction fallback | Both use `core.public_research.acquire_public_research`; one typed public request, one tool-layer attempt and a bounded deadline | Content-free demand/execution observations only; no durable public-call reservation or shared chargeable-attempt settlement |
+| Concierge live-event discovery | Direct `WebSearchTool.execute_once` with a typed location/category/date window and approved-domain filter; event verification remains separate | Has shadow observations and bounded timeout, but bypasses the common acquisition adapter and has no durable reservation |
+| Concierge place-angle web augmentation | `WebSearchTool.execute` in `concierge/tool_handlers/search.py`, combining canonical place name and user query | Not routed through the typed acquisition adapter or public-research execution observation; normal tool retry path remains in effect |
+| Lookup-agent web enrichment | `WebSearchTool.execute` in `lookup_agent/handlers.py`, combining the requested phrase and city | Separate lookup flow; no common acquisition/reservation path. Query-bearing logs and exception details were removed in backend commit `4c3199ccf`; this does not review the public projection or add spend control |
+| Image candidate discovery | Direct Tavily SDK call in `media/sources/tavily_search.py`, with image mode and in-memory result cache | Governed by the web-search mode and pipeline no-op checks, but not represented as a content-research attempt or shared reservation |
+| Mention extraction | Direct Tavily SDK call in `research_agent/tasks/extract_mentions.py` for each planned query | Batch job path with its own task counters; no shared user-facing capability reservation |
+| Destination and brief generation | `WebSearchTool` in the destination-seeding and brief-generation tasks | Background enrichment with pipeline/task ownership; does not use the user-facing public acquisition adapter |
+| API health and provider canary | `/health` uses `WebSearchTool._execute`; provider-canary worker calls Tavily SDK directly | Operational probes have intentionally different mode behavior; they need an explicit operational cost allowance, not a user's research entitlement |
+
+This inventory is code evidence, not a cost measurement: no live provider call
+or provider billing record was inspected. It identifies the next R3 boundary
+decision precisely. Before enforcement readiness, split at least (a)
+user-authorized interactive research, (b) scheduled/background content work,
+(c) media candidate discovery, and (d) operator probes, then assign each one a
+finite budget, retry owner, stable invocation identity and ambiguous-outcome
+policy. Do not flip the global allowlist or assume one entitlement should
+cover these workloads. The selected-source producer's test-only reservation
+acceptance remains separate evidence and does not account for any Tavily call.
+
+Validation was a read-only callsite audit (`rg` plus inspection of each
+dispatch owner); no source behavior changed. R3 remains open, and no provider,
+feature flag, capability allowlist, released allocation or product policy was
+changed. R0–R7 remain open.
+
+#### R1/R3 implementation receipt — lookup diagnostic content minimization (October 1)
+
+Backend commit `4c3199ccf` removes raw lookup queries, classifier output,
+place-name query text and exception messages from Lookup Agent logs. Failures
+retain a bounded operation name and exception class; success logs retain only
+the query type, score/latency and result source needed for diagnosis. Regression
+tests inject a unique query marker into classifier, web, and Places failures
+and assert it is absent from captured logs. User-visible fallback behavior is
+unchanged.
+
+This closes an observable local-log exposure only. It does not change the
+existing Qdrant lookup cache, which still stores query/answer payloads; does
+not establish that raw lookup wording is appropriate for Tavily; and does not
+route Lookup Agent through the typed public-request adapter, shared spend
+reservation, or reviewed disclosure boundary. Those remain separate R1/R3
+work.
+
+Validation on backend commit `4c3199ccf` (Python 3.13.0):
+
+- Focused Lookup Agent classifier, handler, synthesizer, cache and agent tests:
+  **66 passed**.
+- Ruff lint and format checks passed; `git diff --check` passed.
+- `make ci-static` passed, including the repository architecture gates and
+  mypy across **1,900** backend source files.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main` passed:
+  **22,170 passed, 14 skipped, 53 xpassed**, with one expected local-Qdrant
+  payload-index warning. Database-marked tests were skipped by this offline
+  preflight; no disposable database was used.
+- Backend commit hooks passed. Two earlier hook attempts rejected the test
+  marker's initial secret-like name; it was renamed without adding an
+  exemption, and the final complete hook run passed.
+
+No provider/model call, cache-retention change, API/schema change, commercial
+policy, capability flag, native consumer, deployment or publication changed.
+R0–R7 remain open.
