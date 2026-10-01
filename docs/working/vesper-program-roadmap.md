@@ -50,8 +50,10 @@ next primary assignment is to continue substantive Home/Places receiving work
 and representative ordinary/returned/live coverage, including working
 interactions and native polish. The latest D2 increment lets one exact,
 revision-bound Place Source appear as a self-contained Places reading without
-requiring a second item, and gives an exact Place-bound Home destination a
-specific door label; real-owner/API and full D2 acceptance remain open.
+requiring a second item, gives an exact Place-bound Home destination a specific
+door label, and verifies a returned Home reading's exact Place/source route and
+Home return token in the connected app path; real-owner/API and full D2
+acceptance remain open.
 D1 capture gaps and D3 practical-help gaps
 remain open and can supply independent work when a D2 dependency is unavailable.
 
@@ -1357,6 +1359,23 @@ No authenticated API/owner read or external design-canon verdict was produced.
 This closes a precise receiving-copy gap, not meaningful returned-content
 acceptance or D2 as a whole; continue with available owner-provided Place/source
 evidence and ordinary/returned/live coverage.
+
+**Returned Home → exact Place reading — October 1:** app commit `fb53bd591`
+adds a connected Home experience regression for a returned reading whose
+destination carries a canonical Place, exact `place_content_primitive` revision,
+and resolved Places context. Pressing the Home door routes to that Place's
+selected-reading view with the exact source revision and a Home return token;
+the open interaction is recorded. The test suite also isolates the unrelated
+global capture-entry control, whose application-session provider is outside this
+navigation contract.
+
+The focused `HomeRootExperience.connected.test.tsx` suite passed **11/11**;
+`npm run typecheck`, `npm run test:typecheck:contracts`, targeted ESLint, and
+`git diff --check` passed. This is connected component/router evidence using a
+synthetic returned envelope. It does not prove a native exact-reading open,
+actual restored scroll position, authenticated owner data, or source-content
+availability. D2 remains active; retain the remaining owner and full-scroll
+acceptance gaps.
 
 **Home ordinary/returned/live posture captures — October 1:** after app commit
 `31c673c95`, the registered `polish/home-root-available` and
