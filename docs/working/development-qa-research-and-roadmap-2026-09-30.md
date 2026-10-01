@@ -440,6 +440,11 @@ runs passed, each showing a much shorter required-job critical path than the
 23m18s serial baseline, with increased summed runner time. Package 3A is
 implemented in the dedicated efficiency lane and has passed focused, repeated,
 selected-merge, full app-coverage and hosted PR checks described below.
+The separate app-test sharding trial in [app PR 211](https://github.com/fy538/travel-app/pull/211)
+preserved the complete selected test inventory across two green shards, but its
+single-run baseline failed one Place lifecycle test at the five-second Jest
+timeout. That run is not a valid speed comparison; the trial has not established
+that sharding improves feedback time.
 Package 3B's workflow consolidation is implemented on the dedicated lane.
 Workspace PR 40, app PR 210 and backend PR 240 have green required checks.
 Backend run 36894505540 passed after the scoped checkout fix; the selector job
@@ -451,8 +456,8 @@ implementation and task-context changes published in
 [app PR 209](https://github.com/fy538/travel-app/pull/209), and
 [backend PR 239](https://github.com/fy538/travel-agent/pull/239). Package 1's
 native capture is one passing flow, not a full surface matrix; Package 2 remains
-open. Workspace PR 39 has been rebased onto PR 38 and its hosted checks are
-rerunning; its app and backend companion PRs have green required checks.
+open. Workspace PR 39 has been rebased onto PR 38 and its required hosted checks
+pass; its app and backend companion PRs have green required checks.
 Existing runtime, required checks and acceptance obligations remain in force. The current
 remote-main baseline is workspace `bc69d6d03eeb069eb8705953463b4ddc8a808e6d`,
 backend `bd1a683b8656c3f4091e16abb64f57897fa7fc42`, and app
@@ -463,7 +468,7 @@ cross-lane ownership.
 | --- | --- | --- | --- |
 | 0 | Use the landed baseline and confirm tooling ownership | Complete on commit `cef7ac55`; isolated runtime ownership is recorded below | All lanes |
 | 1 | Package 3C: workspace flow validation and early prerequisite checks | Merged as `bc69d6d` (PR 38); three hosted runs passed. Critical paths ranged 5m46s–7m38s versus 23m18s; summed job runtimes ranged 25m28s–31m26s versus 23m18s (+9.3%–34.9%). | All integrations |
-| 2 | Package 3A: deterministic and faster app tests with the same checks | Hosted checks passed on workspace PR 40 and app PR 210. The app selected-test check passed in 9m36s; local repeated Place, full-coverage, and selected-merge evidence is recorded below. Runner-time improvement over a comparable Node 20 baseline remains unmeasured. | Every lane changing the app |
+| 2 | Package 3A: deterministic and faster app tests with the same checks | Existing hosted checks passed on workspace PR 40 and app PR 210. The separate sharding experiment in app PR 211 preserved all 1,289 test files across two green shards, but its 8m36s full baseline failed one Place lifecycle test at the five-second timeout. The comparison is invalid and no speedup is established; obtain a passing same-runner baseline before considering adoption. Local repeated Place, full-coverage, and selected-merge evidence is recorded below. | Every lane changing the app |
 | 3 | Package 3B: one execution owner per CI guarantee | Workflow consolidation is published in PRs 40/210/240. All required checks pass. Backend run 36894505540 passed after the pull-request checkout was bounded to the merge ref plus base, manual dispatch retained full history, and the scope timeout increased to five minutes; scope completed in 14 seconds. Focused contract, full offline suite and backend static checks pass locally. Comparable hosted full-run latency and runner-time measurement remain. | All lanes |
 | 4 | Package 1: choose the right evidence and make targeted native QA reliable | Implementation is published in app PR 209 and workspace PR 39. The app selector accepts a full flow ID or canonical slug only, and readiness failures inspect Maestro's failed-command hierarchy. With the documented shell flags and IPv4 localhost binding, the `home-root-returned` flow captured two reviewed Home states and passed 1/1. An earlier missing-flags attempt displayed the legacy Plans shell and failed the `home-v2-screen` assertion, correctly catching setup error. Workspace PR 39 passed its required Merge ready, Reliability and four syntax-shard checks in run [36896953575](https://github.com/fy538/travel-workspace/actions/runs/36896953575); its Maestro Cloud smoke remains skipped because the service is unconfigured. The full Home/Places wrong-state replay remains unverified. | Orchestration and Strategy |
 | 5 | Package 2: proportionate review and shorter task context | Targeted review and context-routing changes are published in PRs 39/209/239. The original Home/Places wrong-state replay remains unverified; native-review adoption needs broader Package 1 evidence. | All lanes, especially mobile work |
@@ -613,6 +618,27 @@ skipped on the PR by their configured conditions. Workspace Maestro Cloud PR
 smoke was skipped because that service is not configured. This establishes the
 candidate's hosted checks; it is not a comparison of hosted test speed or total
 runner cost.
+
+**Package 3A sharding experiment receipt (October 1).** App PR
+[211](https://github.com/fy538/travel-app/pull/211) adds a non-required pilot
+that compares the existing two-worker full Jest run with two isolated shards.
+Its first hosted attempt failed because the jobs lacked the pinned workspace
+catalog inputs; the workflow was corrected to use the same immutable workspace
+checkout as app merge readiness. On corrected run `36922474210`, both shards
+passed: shard 1 ran 645 suites and 4,439 tests in 255.748 seconds, and shard 2
+ran 644 suites and 4,739 tests in 282.763 seconds. The union check confirmed all
+1,289 current test files exactly once. The full baseline ran for 8m36s before
+`__tests__/screens/place-home.smoke.test.tsx` failed its
+`Place exact reading mounted lifecycle` case at Jest's five-second timeout;
+1,288 suites and 9,177 tests passed, with one test failing. That case passed in
+shard 2 and in one isolated local file rerun (17/17 tests; file completed in
+5.386 seconds). These isolated passes do not establish stability under the
+full-suite load. Treat the hosted comparison as invalid, retain the original
+full-suite required check and all 1,289 files, and make no sharding speed claim.
+A comparable successful hosted baseline is still needed before deciding whether
+the optional experiment is useful. The rerun could not be requested in this
+session because the GitHub API was unreachable; the failed evidence remains
+visible rather than being converted into a pass.
 
 The final local change-aware preflight also passed on workspace `a04ffaf0`
 (docs staged in the working tree), backend `bd1a683b`, and app `321fb1cb`, with
@@ -1568,8 +1594,9 @@ cross-repository invariants.
 Section 5 remains the only execution queue. Package 3C's four-shard syntax
 trial passed hosted checks and measured lower syntax-shard checkout time;
 its main-job child-history optimization passed local and hosted verification on
-one candidate. Package 3A's
-hosted checks pass, and Package 3B's workflow consolidation is published in
+one candidate. Package 3A's existing checks pass on workspace PR 40 and app PR
+210; the separate PR 211 sharding comparison failed its full-run baseline and
+remains unproven. Package 3B's workflow consolidation is published in
 workspace, app and backend PRs. Package 3C now has measured checkout reductions
 for syntax shards and the main reliability job, each supported by one hosted
 comparison. The separate native build reuse pilot remains conditional. One
