@@ -1441,6 +1441,28 @@ simulator viewport was visually inspected at
 development auth and source fixtures—not production owner/auth parity,
 recurring content, all-posture coverage or full external design-canon parity.
 
+**Places public reading → exact reader → Places return — 2026-10-01:** app
+commit `27127fe5c` pins the existing real-Postgres rehearsal to the lane's
+declared, booted simulator before creating fixtures and passes that exact UDID
+to Maestro. Its four focused runner-contract tests passed with
+`node --test scripts/maestro/places-public-reading.test.mjs`; shell syntax and
+`git diff --check` passed. Run ID
+`places-reading-exact-return-owner-20261001-1250` passed
+`76-places-public-reading` on the assigned iPhone 16 Pro / iOS 18.2, against
+the isolated `vesper` database, local API `:53176`, and lane Metro `:53177`.
+The API used only local Place-reading gates with development auth and
+background work off; no production worker, paid model, or external provider
+was enabled. The flow read the accepted fixture Source from the canonical
+Places collection, opened that exact reading, asserted its authored claim and
+interpretation, returned to the scoped Places root with the same card visible,
+then verified that the fixture no longer appeared after cleanup. Maestro logs
+are at
+`/tmp/vesper-places-public-reading/.maestro/tests/2026-10-01_124924/`.
+This verifies one synthetic local reading's exact open/return and cleanup, not
+production authentication, recurring editorial supply, external design-canon
+parity, or D2 as a whole; no visual verdict was produced. Continue substantive
+eligible Place value and representative ordinary/returned/live coverage.
+
 ### Combined landing checkpoint — September 30
 
 The merged integration contains the Home/capture lane plus these completed
