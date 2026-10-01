@@ -997,10 +997,6 @@ overrides:
     disposition: keep_reference
     rationale: Active expiring research and implementation receipt for the native design workbench; vendor findings are a dated snapshot and durable rules live elsewhere.
 
-  docs/working/visual-polish-evaluation-and-design-workflow-2026-08-13.md:
-    disposition: keep_reference
-    rationale: Active expiring visual-quality workflow synthesis; it is not product canon and proposed gates require promotion into canonical frontend contracts or runbooks.
-
   docs/working/thesis-migration-register-2026-08-21.md:
     disposition: keep_reference
     rationale: Active cross-repository migration audit and decision docket for the August lived-world thesis; canonical product, release, journey, and system documents retain authority.

@@ -12,7 +12,7 @@ supersedes: []
 related:
   - native-design-gallery-research-and-direction-2026-08-14.md
   - home-kit-galleries-plan-2026-08-15.md
-  - visual-polish-evaluation-and-design-workflow-2026-08-13.md
+  - ../archive/2026-10/visual-polish-evaluation-and-design-workflow-2026-08-13.md
   - ../../travel-app/docs/Frontend Engineering Loop.md
   - ../../travel-app/docs/design-consolidation/Plan.md
   - ../release/m1-plan-repair.md

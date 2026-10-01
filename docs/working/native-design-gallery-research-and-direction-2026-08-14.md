@@ -11,7 +11,7 @@ supersedes: []
 related:
   - native-design-gallery-founder-pain-2026-08-15.md
   - home-kit-galleries-plan-2026-08-15.md
-  - visual-polish-evaluation-and-design-workflow-2026-08-13.md
+  - ../archive/2026-10/visual-polish-evaluation-and-design-workflow-2026-08-13.md
   - ../archive/2026-10/product-loop-coherence-maestro-and-environment-strategy-2026-08-12.md
   - ../../travel-app/docs/Frontend Engineering Loop.md
   - ../../travel-app/docs/Design Workflow.md

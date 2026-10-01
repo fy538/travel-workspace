@@ -467,7 +467,7 @@ cross-lane ownership.
 | 3 | Package 3B: one execution owner per CI guarantee | Workflow consolidation is published in PRs 40/210/240. All required checks pass. Backend run 36894505540 passed after the pull-request checkout was bounded to the merge ref plus base, manual dispatch retained full history, and the scope timeout increased to five minutes; scope completed in 14 seconds. Focused contract, full offline suite and backend static checks pass locally. Comparable hosted full-run latency and runner-time measurement remain. | All lanes |
 | 4 | Package 1: choose the right evidence and make targeted native QA reliable | Implementation is published in app PR 209 and workspace PR 39. The app selector accepts a full flow ID or canonical slug only, and readiness failures inspect Maestro's failed-command hierarchy. With the documented shell flags and IPv4 localhost binding, the `home-root-returned` flow captured two reviewed Home states and passed 1/1. An earlier missing-flags attempt displayed the legacy Plans shell and failed the `home-v2-screen` assertion, correctly catching setup error. Workspace PR 39 passed its required Merge ready, Reliability and four syntax-shard checks in run [36896953575](https://github.com/fy538/travel-workspace/actions/runs/36896953575); its Maestro Cloud smoke remains skipped because the service is unconfigured. The full Home/Places wrong-state replay remains unverified. | Orchestration and Strategy |
 | 5 | Package 2: proportionate review and shorter task context | Targeted review and context-routing changes are published in PRs 39/209/239. The original Home/Places wrong-state replay remains unverified; native-review adoption needs broader Package 1 evidence. | All lanes, especially mobile work |
-| 6 | Package 6: retire completed working documentation | Two bounded migrations completed: the superseded V2 report moved with three links and its inventory entry repaired; the expired August product-loop/QA synthesis moved with eight inbound links and its stale inventory override removed. Documentation governance checks passed. | All lanes |
+| 6 | Package 6: retire completed working documentation | Three bounded migrations completed: the superseded V2 report, expired August product-loop/QA synthesis, and expired visual-polish synthesis moved to the dated archive with their live references and inventory records repaired. Documentation governance checks passed. | All lanes |
 | Conditional | Package 4: native build reuse and other measured setup optimizations | CI checkout optimizations are implemented in PR 40: syntax shards retain shallow pinned children, and `workspace-checks` fetches only the two filtered historical documentation baseline trees. A hosted pair reduced the main Reliability job from 10m56s to 5m30s, with child checkout plus baseline fetch falling from 361s to 11s. This is one before/after sample; it does not establish stable end-to-end latency. Native build reuse remains conditional and unselected. See the [CI runbook](../reliability/CI%20Plan.md) for scope and evidence boundaries. | Mobile and build owners |
 | Ongoing | Package 5: product-outcome acceptance | Stays with the three product lanes; tooling work must preserve it | Product users |
 
@@ -1204,6 +1204,35 @@ warnings and no errors; Jest force-exited one worker. The hosted database and
 required action checks remain authoritative. This removes one expired synthesis
 from living working docs; it does not claim a faster build or smaller Git
 history.
+
+**October 1 third Package 6 receipt.** The August 13 visual-polish and
+screenshot-QA synthesis expired September 12. Current app Task Intake owns
+frontend validation scope, the Frontend Engineering Loop owns screenshot-QA
+operations, and Design Workflow owns the design handoff; the September QA
+roadmap now specifies proportionate screenshot selection and AI review limits.
+The September 15 content-to-native plan explicitly treats the August note as
+historical research with expired execution assumptions. Its nine open choices
+and full research history remain preserved at
+[`docs/archive/2026-10/visual-polish-evaluation-and-design-workflow-2026-08-13.md`](../archive/2026-10/visual-polish-evaluation-and-design-workflow-2026-08-13.md);
+no proposed gate, checkpoint quota, Figma pilot, or evaluator threshold is
+adopted by the move. Four inbound references in four working documents now
+point to the archive, including one stale absolute path converted to a
+repository-relative path. The stale inventory override was removed and the
+source's relative links were adjusted for its archive location.
+The explicit-base `make verify-changed WORKSPACE_BASE_REF=origin/main
+AGENT_BASE_REF=origin/main APP_BASE_REF=origin/main` preflight exited 0 against
+workspace base `bc69d6d03eeb069eb8705953463b4ddc8a808e6d`, backend base
+`bd1a683b8656c3f4091e16abb64f57897fa7fc42`, and app base
+`e7bdc660501eaa19234e6b45bda033658edaa2d4`, on workspace `ef048c47c6791a10a81f0e5f9cec2007c6ffe359` with this docs change, backend
+`05dcc9144a2cb997c5cf4bb75161f842c60e03e4`, and app
+`906c5d5a4719da504ddb492bf4e2fd85c8caabc2`. App verification passed with
+1,289 suites, 9,180 tests and one snapshot; lint reported 167 warnings and no
+errors, and Jest force-exited one worker. Backend static checks and 22,085 tests
+passed (14 skipped, one xfailed, 52 xpassed, one warning); workspace tooling
+passed 151 tests. Contract, API, compatibility and documentation checks passed.
+The initial sandboxed invocation could not write local caches; rerunning with
+normal worktree cache access passed. Hosted database and required action checks
+remain authoritative.
 
 ## 6. How to tell whether this helped
 
