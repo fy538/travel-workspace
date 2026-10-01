@@ -520,5 +520,48 @@
       "failed": 0,
       "skipped": 0
     }
+  },
+  {
+    "schema_version": 1,
+    "label": "reliability-shallow-child-checkout-preflight",
+    "command": [
+      "make",
+      "verify-changed",
+      "WORKSPACE_BASE_REF=bc69d6d03eeb069eb8705953463b4ddc8a808e6d",
+      "AGENT_BASE_REF=bd1a683b8656c3f4091e16abb64f57897fa7fc42",
+      "APP_BASE_REF=e7bdc660501eaa19234e6b45bda033658edaa2d4"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "06d8359eb08c4dd91a201afab21ea75884b1cbd6",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "05dcc9144a2cb997c5cf4bb75161f842c60e03e4",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "906c5d5a4719da504ddb492bf4e2fd85c8caabc2",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 421.252,
+    "log_path": "docs/reliability/runs/reliability-shallow-child-checkout-preflight-20261001T175006Z.log",
+    "test_counts": {
+      "framework": "jest",
+      "collected": 9180,
+      "passed": 9180,
+      "failed": 0,
+      "skipped": 0
+    }
   }
 ]
