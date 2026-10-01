@@ -159,17 +159,23 @@ owns the kept-Thing identity write. The artifact lane carries its slice through
 focused verification and landing, escalating only a changed authority boundary
 or a real cross-lane conflict.
 
-**Lane continuation decision — October 1:** continue this work in the existing
-`codex/artifact-foundation` coordinated tuple; do not create another branch or
-worktree merely to begin the next artifact package. This lane owns the
-artifact-roadmap outcome through its focused verification and landing, while
-the three repositories retain independent Git histories and layer ownership
-as stated above. Open a separate lane only for a genuinely independent outcome
-with explicit file/runtime ownership, not for another step in this same
+**Lane continuation and accountability — October 1:** continue this work in
+the existing `codex/artifact-foundation` coordinated tuple; do not create
+another branch or worktree merely to begin the next artifact package. This
+tuple is the single accountable execution lane for the artifact-roadmap
+outcome: it carries its bounded slices through implementation, cross-repo
+verification, review, commits and safe landing. “Single lane” does not collapse
+the three repositories into one history or transfer ownership of their layers;
+each repository's changes are committed in that repository, under the
+ownership split above. Open a separate lane only for a genuinely independent
+outcome with explicit file/runtime ownership, not for another step in this same
 artifact sequence. Technical's selected-source producer remains a dependency
 owned by its lane; do not consume its unmerged branch as if it were part of
 this tuple. Continue independent artifact work here, and adopt that producer
-after it is landed and its contract is verified.
+after it is landed and its contract is verified. Escalate only when the work
+requires a new product/authority decision, changes the agreed ownership
+boundary, or encounters a real cross-lane conflict; ordinary implementation
+and verification obstacles stay with the accountable lane.
 
 **Write ownership:** thing/component and cultural-subject identity, reconciliation,
 typed readings, focused reader internals, consumer collections and Life, approved
