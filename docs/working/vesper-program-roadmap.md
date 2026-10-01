@@ -440,6 +440,21 @@ portfolio and full-scroll acceptance below. No prepared-result coverage,
 recurring supply or design-completion percentage follows merely from merging
 the other lanes' foundations.
 
+**Known Home value dependency — source-marked city notice:** the accepted Home
+union includes `horizon_world_fact_row`, but the current backend has no producer
+for it and the Home client has no renderer. Its authority is deliberately
+narrow: a city-scoped notice with a date, hour, or service consequence inside
+the person's window, visibly marked by its source; it is not a standing
+section and must never be inferred from a location trace. This differs from a
+multi-Source editorial connection, which already enters Home as
+`horizon_editorial_passage`. The Home/Places lane should consume this unit only
+after the bounded-public-acquisition owner supplies an exact, licensed,
+freshness-aware source read. Do not add a competing fetcher/generator or render
+an illustrative fixture as live value. Consumer work then needs the typed
+source-bearing row, current-window admission, source inspection, expiry or
+withdrawal behavior, and an exact Home return check. This dependency does not
+block independent D2 receiving and polish work.
+
 **Outcome:** both roots deliver substantial, navigable value from current
 authorized supply, with the polish of the adopted design references.
 
