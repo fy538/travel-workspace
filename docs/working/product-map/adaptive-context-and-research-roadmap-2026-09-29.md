@@ -3625,3 +3625,32 @@ provider under its existing caller authority, the in-process cache remains
 keyed by query, and this caller has no shared durable reservation or usage
 settlement. Its external disclosure and R3 workload-accounting boundaries
 remain open; R0–R7 remain open.
+
+#### R1 implementation receipt — redact batch search failure diagnostics (October 1)
+
+Backend commit `f9223875f` removes raw query text and exception details from
+failure logs in destination grounding and entity-mention extraction. Each
+pipeline retains its existing empty-result fallback and now logs only the
+exception class. Marker-based regressions verify that provider exception text
+and query content do not appear in captured logs. The Research Agent FEATURE
+contract narrows its earlier caveat to these covered pipelines; this is not a
+claim about every research-adjacent batch task.
+
+Validation on the adaptive-context backend lane (Python 3.13.0):
+
+- `PYTEST_ADDOPTS='-p no:cacheprovider' .venv/bin/python3.13 -m pytest
+  tests/research_agent/test_seed_destination.py
+  tests/research_agent/test_extract_mentions.py -q`: **41 passed**.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static`: passed,
+  including Ruff, formatting, architecture/structural gates and mypy across
+  **1,900 source files**.
+- Commit hooks initially could not write Ruff's default cache under the
+  managed worktree. Retrying with the same cache directories under
+  `/private/tmp` passed all hooks, including secret scanning and architecture
+  ratchets.
+- No API/schema, model, query, provider, release-policy, runtime-feature,
+  consumer, deployment or publication behavior changed. No live provider or
+  database was used. R1 privacy coverage is improved for these two batch paths;
+  public disclosure authorization and R3 accounting remain open; R0–R7 remain
+  open.
