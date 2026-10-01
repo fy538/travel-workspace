@@ -70,7 +70,12 @@ member labels or a finished Life composition. These commits are local and not
 merged or published. Most recently, backend commit `10c5877d8` adds real
 Postgres acceptance for simultaneous exact-command merge/reversal retries and
 opposite-direction merge races; it changes tests only, not runtime behavior.
-Cross-repo receipts are in section 13.
+Most recently, app commit `b94a50ccf` adds a session-scoped, paginated Life
+Collection member data composition: each revision-pinned membership page is
+paired with one bounded batch of owner-authorized Thing projections. It
+preserves membership order and identity and carries authorized original
+references only; it does not invent member titles or build a Life detail
+screen. Cross-repo receipts are in section 13.
 
 | Area | Implemented and evidenced | Remaining boundary |
 | --- | --- | --- |
@@ -80,7 +85,7 @@ Cross-repo receipts are in section 13.
 | Reader lifetime | Account-session-scoped reads, expiry-aware displayed facts and foreground refresh, exact-source authorization and revision checks | Full source/audience/collection lifecycle replay and authenticated mobile-to-service acceptance |
 | Native acceptance | Fourteen family/source/return fixture screenshots; ten largest-text screenshots; Life source/photo-viewer/removal flow on iOS 18.2 | Reliable pinch/pan, actual VoiceOver traversal/actions, loading/error states, Android/physical devices and live-service readback; these captures do not establish user preference |
 | Landed Technical dependencies | Exact-original revision binding and backend-only refinding of a bounded UTF-8 `text/plain` span; bounded public-acquisition primitives | No stable cross-representation Component identity, mobile selection API, artifact-bound discovery request or complete research-spend enforcement |
-| PC and later packages | House-design fallbacks and existing eligible original receiving remain usable; canonical private consumer-Collection owner, generated mobile contract/client, session-scoped paginated data facade with revision-bound continuation, bounded owner-backed Life Collections root API and batch owner-authorized Thing projection are implemented. The accepted Collections reading remains the product target. | Shared membership/audience/receiving, native Life Collections lens/detail route and device acceptance, authorized Thing display composition (the batch primitive returns original-source references, not member titles/summaries), approved catalog mappings/uses, exact kept editions and connected contextual additions remain unfinished |
+| PC and later packages | House-design fallbacks and existing eligible original receiving remain usable; canonical private consumer-Collection owner, generated mobile contract/client, session-scoped paginated data facade with revision-bound continuation, bounded owner-backed Life Collections root API, batch owner-authorized Thing projection, and app-side Collection-page-to-Thing batch composition are implemented. The accepted Collections reading remains the product target. | Shared membership/audience/receiving, native Life Collections lens/detail route and device acceptance, founder-approved member labels/previews/hierarchy, approved catalog mappings/uses, exact kept editions and connected contextual additions remain unfinished |
 
 Section 13 retains the exact revisions, commands and limits of each receipt.
 Earlier simulator/build failures are historical attempts, not the current
@@ -94,15 +99,16 @@ stability repair was a QA prerequisite, not another artifact feature.
 adopt Technical's supported artifact-target request/result contract in the
 focused reader for one useful eligible addition, with original-only value and
 exact return. That producer contract is not landed in the inspected
-`origin/main`; do not consume its unmerged branch. Continue the independent
-Life/Collection read-side foundation in this lane: the private Collection API
-returns canonical metadata and member `ThingRef`s, while the Thing projection
-returns authorized original references, not user-facing Thing titles or
-summaries. Define a bounded, owner-authorized Life composition over these
-existing owners before building member UI; do not copy Source content/claims,
-invent labels, or create an N+1 read pattern. Keep Strategy as the Collection
-owner and Life as presentation/projection owner. The first read-side gate is
-now implemented: root and corpus lenses are separate contracts, and the
+`origin/main`; do not consume its unmerged branch. The bounded Life/Collection
+data composition is now implemented in the app data facade: it reads canonical
+Collection membership at its pinned revision and resolves each page through
+one current owner-authorized Thing batch, preserving the exact
+membership/Thing association without copying Source content or claims. Do not
+add member labels, previews, hierarchy or a native detail route until the
+founder-approved display contract exists; the current design reference is
+legacy Threads evidence and does not certify that composition. Keep Strategy
+as the Collection owner and Life as presentation/projection owner. The first
+read-side gate is implemented: root and corpus lenses are separate contracts, and the
 Collections root index reads only the authenticated owner's bounded canonical
 Collection name/count summaries plus exact total in one owner query. Collection
 rows carry the canonical owner reference and do not fabricate Source lineage.
@@ -110,12 +116,9 @@ The `consumer_collection` path still has no native detail route; no Collections
 tab or row is exposed in the app. Its bounded detail reader now carries the
 first page's Collection revision into continuation requests, reads each page
 under a shared owner-row lock, and rejects stale continuations with a conflict
-that the app handles by restarting at page one. This is read consistency
-infrastructure only; it does not choose member labels, previews, or final
-screen composition. A useful member reader still needs a current-authority,
-bounded display composition before UI, not one request per member. The current
-Life design reference is legacy Threads evidence, so it does not certify the
-Collections composition.
+that the app handles by restarting at page one. The new composition is a data
+contract, not a user-facing member display or approval of final screen
+hierarchy.
 Owner-confirmed reconciliation
 is implemented and reversible; it does not claim semantic sameness. Collection
 continuity, native
@@ -185,9 +188,12 @@ The October 1 batch-read increment now resolves up to 50 owner-authorized
 Thing projections in bounded set-based reads, and reconciliation requests its
 source and selected target together. This removes per-Thing network reads for
 that flow and provides a reusable member-read primitive; it does not yet return
-user-facing member titles/summaries or define the Life Collection composition.
-The member-display contract remains a prerequisite to exposing a Collection
-detail experience.
+user-facing member titles or summaries. App commit `b94a50ccf` now composes
+each revision-pinned Collection page with one such batch and preserves member
+order and identity without an N+1 pattern. This closes the read-side
+data-composition gate, but does not decide labels, summaries, previews or final
+Life member presentation. The founder-approved member-display contract
+remains a prerequisite to exposing a Collection detail experience.
 
 **Execution ownership — October 1:** the Strategy artifact lane owns this
 outcome end to end in one coordinated workspace/backend/app worktree tuple; do
@@ -1659,8 +1665,10 @@ permissions. The user controls the connection; Vesper cannot infer or apply it.
 3. **Persisted behavior — bounded local evidence.** Tests cover one
    owner-confirmed connection and exact retry, distinct save identities,
    independent Source revocation, and reversal that restores both original
-   references. They do not establish semantic sameness, concurrent merge
-   races, production authentication or cross-client acceptance.
+   references. Separate Postgres concurrency acceptance now covers concurrent
+   exact merge/reversal retries and competing opposite-direction merges; see
+   section 13. These tests do not establish semantic sameness, production
+   authentication or cross-client acceptance.
 4. **Reader acceptance remains independent.** Loading/error component behavior
    has focused tests. Reliable photo pan/pinch and actual VoiceOver cases remain
    open until a device runtime is available. Retain Android/physical-device and
@@ -2827,3 +2835,42 @@ behavior changed.
 | Fresh-database readiness | `docker exec vesper-artifact-foundation-postgres-1 createdb -U vesper thing_races_20261001_01`; `DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/thing_races_20261001_01 PYTHONPATH=. .venv/bin/python -B -m alembic upgrade head`; `DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/thing_races_20261001_01 PYTHONPATH=. .venv/bin/python -B -m alembic check` | Disposable DB migrated from an empty schema; Alembic reported no new upgrade operations. The named database was dropped after verification; the lane service and volume were preserved. |
 | Owner reconciliation lifecycle | `TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/thing_races_20261001_01 TEST_DATABASE_DISPOSABLE=1 SKIP_AUTH=true PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. .venv/bin/python -B -m pytest -p no:cacheprovider tests/inbound/test_kept_things_postgres.py -q` (from `travel-agent/`) | 12 tests passed, including all three new barrier-synchronized concurrency cases against real PostgreSQL. This establishes repository transaction behavior in the isolated lane DB, not production database settings or fleet-level deployed behavior. |
 | Change-aware preflight | `WORKSPACE_BASE_REF=bb5e20e700c5ab393eb3d045c8290d13a8290871 AGENT_BASE_REF=2e2ee4d6aa8b79bc71976b7946369d3bb72f2f74 APP_BASE_REF=eb14a00fa4750c2bba524753ad16376d3094d3a0 RUFF_CACHE_DIR=/private/tmp/vesper-artifact-foundation-ruff-cache PYTEST_ADDOPTS='-p no:cacheprovider' TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/thing_races_20261001_01 TEST_DATABASE_DISPOSABLE=1 SKIP_AUTH=true make verify-changed` | Exit 0. Backend static checks, route/import guards and mypy passed; selected merge scope passed 82 tests, including the changed Postgres file. Workspace and app had no changed files relative to these bases. No API/schema/app, native, authenticated-device or production-service behavior changed. |
+
+### October 1 bounded Life Collection member data composition
+
+The app data facade now composes a canonical Collection membership page with
+one bounded batch of current owner-authorized Thing projections. It is
+session-scoped, paginated, pins continuation to the Collection revision,
+preserves each membership's Thing identity and ordering, and fails closed if a
+projection is missing, duplicated or unexpected. Empty pages skip the batch.
+Collection writes invalidate only the current account's member-page cache.
+The reader carries authorized original references only: it does not copy
+Source content, synthesize claims, or infer titles, previews or hierarchy.
+This completes data composition for the current read contract, not a native
+Life Collection detail screen or approval of the member presentation.
+
+Ownership remains the one-lane decision in section 0: Strategy owns the
+artifact/Collection outcome and this coordinated lane carries it across the
+independent workspace/backend/app repositories. Backend remains authority for
+canonical Collection membership, Thing identity and current-source
+authorization; the app owns the page-to-projection join, pagination/cache
+behavior and eventual presentation; workspace owns the shared roadmap,
+contract alignment and evidence. Founder approval is still required for
+user-facing member labels, previews, grouping/hierarchy or claims that change
+product meaning. No separate Life implementation lane is needed for this data
+composition, and no Collection UI is exposed by it.
+
+App commit `b94a50ccf2b37a777048de067cba0cd09b5dcd8f` is local on
+`codex/artifact-foundation`; it follows app base `eb14a00fa4750c2bba524753ad16376d3094d3a0`.
+No backend API, OpenAPI snapshot, generated type or database change was
+required. Workspace base before this receipt is `53909466f00b695bf66dde9604b97534169453aa`;
+backend stayed at `10c5877d8b14663e40d3a6a508b8f40a7fd8dcb1`. Histories remain
+independent; this receipt does not merge or publish any lane.
+
+| Boundary | Exact verification | Result and limit |
+| --- | --- | --- |
+| App focused composition | `npm exec jest -- --runInBand __tests__/data/consumerCollections.test.tsx` | 1 suite / 9 tests passed: bounded batch composition, ordering, empty page, account/session isolation, missing projection failure, stale-revision page-one recovery, and scoped mutation invalidation. |
+| App data/API parity | `npm exec jest -- --runInBand __tests__/data/consumerCollections.test.tsx __tests__/utils/api/http.test.ts __tests__/utils/api/mock/experienceGraph.test.ts` | 3 suites / 114 tests passed, including the HTTP batched query shape and stateful mock member-to-projection behavior. Targeted ESLint had 0 errors and 3 existing `import/first` warnings in `http.test.ts`; no warning was suppressed. |
+| App merge scope | `npm run verify:merge -- --base eb14a00fa4750c2bba524753ad16376d3094d3a0` | Passed: 616 suites / 4,951 tests. Jest reported one worker teardown warning and forced exit after the passing run; it is recorded as a teardown warning, not a failed suite. |
+| Backend contract regression | `TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/collection_members_20261001_01 TEST_DATABASE_DISPOSABLE=1 SKIP_AUTH=true PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. .venv/bin/python -B -m pytest -p no:cacheprovider tests/api/test_consumer_collections.py tests/api/test_artifact_projections.py tests/inbound/test_kept_things_postgres.py -q` (from `travel-agent/`) | 33 tests passed against the exact disposable lane database after a full migration from empty; Alembic check reported no model drift. The exact database was dropped after verification. This rechecks the existing backend contracts used by the app composition; no backend code changed in this slice. |
+| Cross-repo change-aware preflight | `WORKSPACE_BASE_REF=53909466f00b695bf66dde9604b97534169453aa AGENT_BASE_REF=10c5877d8b14663e40d3a6a508b8f40a7fd8dcb1 APP_BASE_REF=eb14a00fa4750c2bba524753ad16376d3094d3a0 RUFF_CACHE_DIR=/private/tmp/vesper-artifact-foundation-ruff-cache PYTEST_ADDOPTS='-p no:cacheprovider' make verify-changed` | The first sandboxed attempt stopped at an Expo ESLint-cache permission error; with the lane cache write allowed, `verify:fast` passed (0 lint errors / 167 warnings), the scoped merge suite passed (616 suites / 4,951 tests), and docs links/spine/canon checks passed. Native Life detail rendering, actual member labels/previews, VoiceOver/device acceptance, authenticated mobile-to-service readback and production-service behavior remain outside this data-facade verification. |
