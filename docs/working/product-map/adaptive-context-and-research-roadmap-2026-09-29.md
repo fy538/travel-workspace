@@ -2802,9 +2802,12 @@ for every dependency it declares as supporting the claim. Before composition
 construction or result storage, the producer checks each excerpt against the
 current owner-hydrated text. Missing, invented or wrongly indexed excerpts
 fail admission; a complete no-addition still carries no generated text or
-excerpt. The excerpts remain in process and are not copied into the private
-composition or API result. Because a response has already returned, its
-reservation is settled even when its content fails this admission check.
+excerpt. A provider-free Postgres acceptance also covers a model-declared
+no-addition despite eligible candidates: it settles one unit, persists only
+the reason, and exact reopen makes no new provider dispatch. The excerpts
+remain in process and are not copied into the private composition or API
+result. Because a response has already returned, its reservation is settled
+even when its content fails this admission check.
 
 This is a provenance floor, not a semantic entailment or usefulness judge:
 real text can be irrelevant to the claim, the selected relation can be
@@ -2819,11 +2822,13 @@ Validation on the backend candidate:
 - Ruff check and format check passed for the producer, focused unit tests and
   disposable-Postgres acceptance file.
 - Focused selected-source producer tests: **11 passed**.
-- Selected-source API/ledger Postgres acceptance file: **5 passed** against
+- Selected-source API/ledger Postgres acceptance file: **6 passed** against
   the explicit disposable database vesper_adaptive_context_test_20261001.
   This includes authenticated production/readback and real ledger dispatch/
   settlement under test-only policy, with the model call stubbed; excerpts
-  were checked against current originals and absent from the API response.
+  were checked against current originals and absent from the API response, and
+  the no-addition case stores only a content-free reason and reopens without
+  another reservation.
 - Backend make ci-static passed after the change, including architecture gates
   and mypy across **1,900 source files**. Backend make merge-check BASE_REF=main
   passed: **22,158 passed, 14 skipped, 53 xpassed**, with one expected local
@@ -2838,9 +2843,10 @@ Validation on the backend candidate:
   errors); the earlier Expo cache denial was environmental. Existing app
   verify:merge evidence remains 1,289 suites / 9,178 tests passed.
 - Backend implementation and feature-authority changes are committed as
-  f3b18d687 (feat: verify selected-source evidence excerpts); commit hooks
-  passed. Workspace make docs-check passed after this receipt update. No
-  OpenAPI, database schema, released policy, feature flag, native consumer,
-  provider or app behavior changed.
+  f3b18d687 (feat: verify selected-source evidence excerpts); the additional
+  Postgres no-addition acceptance is committed as f7968225b. Hooks passed for
+  both. Workspace make docs-check passed after this receipt update. No OpenAPI,
+  database schema, released policy, feature flag, native consumer, provider or
+  app behavior changed.
 
 R0–R7 remain open.
