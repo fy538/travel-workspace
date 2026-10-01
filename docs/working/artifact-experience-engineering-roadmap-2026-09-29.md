@@ -415,6 +415,20 @@ Explicit merge/split preserves prior references or typed redirects and every
 original remains independently addressable. The owner direction is accepted;
 storage, compatibility and migration design must still support these cases.
 
+**P1 initial identity grain:** the verified private Keep submission is the
+idempotent origin and grouping boundary for one `ThingRef` contribution bundle.
+This preserves the user's deliberate grouping before extraction; it does not
+claim every source in the envelope is one semantic item. Keep the row
+content-free and resolve eligible Sources and Capture candidates from their
+current owners. Different submissions remain separate until evidenced,
+revisioned reconciliation; reversible aliases preserve old references through
+merge/split. Place this owner in the existing backend/Postgres system, in a
+narrow `kept_things` SQLAlchemy Core table/repository, and create it in the
+Intake transaction that establishes private retention. Do not reuse EntityRef,
+ExperienceAnchor, the graph projection or editorial Collections as the Thing
+owner. This is the selected P1 implementation design; exact migration, API,
+alias command and downstream compatibility still need code-level acceptance.
+
 Code basis for this boundary: `travel-agent/backend/core/models/entity_identity.py`
 and `backend/core/entity_types.py` define place-like `EntityRef` values and
 capability subsets; `backend/core/db/entity_identity.py` resolves namespaced

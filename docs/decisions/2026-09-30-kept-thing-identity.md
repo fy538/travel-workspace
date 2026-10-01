@@ -121,6 +121,27 @@ remains immediately inspectable while recognition is incomplete. The roadmap
 owns the exact transaction/API shape and how later confirmed candidates
 converge on that identity.
 
+For implementation, use the verified retained submission as the initial
+idempotency and grouping boundary: one private Keep submission materializes one
+owner-scoped Thing identity for the contribution bundle. This preserves the
+person's deliberate grouping before recognition and gives retries a stable
+origin. A Thing may include multiple independently addressable sources; it is
+not a promise that those sources describe one semantic object. Later
+evidence-backed reconciliation may merge identities across submissions, and
+an evidenced split may separate distinct items without deleting the original
+references. Do not infer components from byte equality or create one Thing per
+extracted claim.
+
+Implement persistence as a narrow `kept_things` owner in the existing
+Postgres/backend system: SQLAlchemy Core table definitions under
+`backend/core/db/_tables/`, an owner repository under `backend/core/db/`, and an
+Alembic migration. The identity row contains only owner, stable ID, origin
+submission, revision/lifecycle and timestamps. Readable sources and candidate
+references are resolved through their existing owners at request time. Merge
+aliases are owner-scoped, revisioned and idempotent; a split reverses the
+recorded alias rather than rewriting consumer references. This is the selected
+first-delivery design, not a claim that the schema or migration has shipped.
+
 This record changes no code, schema, deployed flag or audience grant. It does
 not authorize global deduplication, autonomous sharing, broader retention,
 remote publication or a repository-wide identity rewrite.
