@@ -110171,15 +110171,6 @@
               }
             ]
           },
-          "dependency_refs": {
-            "items": {
-              "$ref": "#/components/schemas/ResourceRef"
-            },
-            "type": "array",
-            "maxItems": 2,
-            "title": "Dependency Refs",
-            "default": []
-          },
           "consumer": {
             "$ref": "#/components/schemas/SelectedSourceResearchConsumer"
           },

@@ -70,8 +70,12 @@ contracts through a dark-by-default, authenticated producer route and exact
 owner readback. One reserved, single-dispatch synthesis is allowed only when
 the feature gate and commercial allocation both admit it; the path does not
 perform public lookup, activate a provider, or have a reviewed native consumer.
-The request currently accepts at most two exact same-viewer dependency refs
-from its caller; it does not find or rank those connections itself. That is
+The server now derives at most two candidate dependencies from retained
+`text/plain` siblings in the selected source's same verified Intake submission,
+using bounded metadata and source-order proximity. This is not semantic or
+interest-aware retrieval: co-submission does not prove relevance, and other
+submissions are not searched. The candidate owner reads no source bodies, and
+Intake revalidates each exact dependency before model use. This is still
 plumbing, not yet the effortless product behavior. The current Home/Places
 request is not an artifact request: do not adapt it as one.
 Use existing Source identity while Strategy owns broader thing/component
@@ -700,14 +704,14 @@ is in section 1. The first connected assignment remains active:
 
 | Area | Landed capability to reuse | Remaining connection or evidence |
 | --- | --- | --- |
-| Selected evidence | Owner/revision-bound original reads and mobile callers; bounded UTF-8 text-span selection; exact in-memory hydration; a dark authenticated producer and private exact-result GET | Server-side related-evidence retrieval/ranking is not connected; caller-supplied refs are only a testable adapter boundary; general component and multimodal retrieval remain open |
+| Selected evidence | Owner/revision-bound original reads and mobile callers; bounded UTF-8 text-span selection; exact in-memory hydration; a dark authenticated producer and private exact-result GET; bounded discovery of up to two retained text siblings from the same verified Intake submission | Semantic/cross-submission retrieval and ranking, and general component or multimodal retrieval, remain open; co-submission is only a candidate relation, not relevance evidence |
 | Public acquisition | Shared typed single-attempt lookup; answer-only routing without dossier writes; source kind, dates, quotes and truncation metadata | Construct public requests from selected material under an actual disclosure boundary; select a substantive addition and verify claim support beyond quote presence |
 | Runtime | Existing Source workflow/publication controls; content-free demand and tool/SDK-attempt telemetry; selected-source producer has one real reservation/fence and one no-retry/no-failover model attempt | Real producer-to-ledger database acceptance, settlement/recovery evidence and any authorized live-provider run; telemetry and voice units are not research spend enforcement |
 | Receiving dependencies | Merged family readers, exact-source inspection, correction/Undo and return behavior; Home/Places receiving improvements; authenticated result API exists but is dark | Existing preparation requests remain root-bound; no native artifact consumer has adopted the dark result API |
-| Evaluation | Focused/offline checks, producer route tests, 13 disposable-Postgres lifecycle/API tests and current change-aware backend preflight | Matched usefulness comparisons, automatic retrieval quality, authorized live-provider evidence and real consumer acceptance |
+| Evaluation | Focused/offline checks, producer route tests, 13 earlier disposable-Postgres lifecycle/API tests and 2 new R2 candidate/readback tests; current change-aware backend preflight | Matched usefulness comparisons, semantic/archive-wide retrieval quality, authorized live-provider evidence and real consumer acceptance |
 
 R0's scope/owner admission, R1's disclosure and acquisition acceptance, R2's
-supported selection, and R6/R7's connected evidence are unfinished. Minimum
+supported selection beyond the same-submission candidate heuristic, and R6/R7's connected evidence are unfinished. Minimum
 R3/R4/R5 controls accompany that producer; broad shared execution, longitudinal
 maintenance and assistance adaptation remain later work. No existing original
 reader or root connection needs to be rebuilt to start this assignment.
@@ -1338,11 +1342,16 @@ These are engineering coverage cases, not a narrower product thesis.
    representation Component identity is needed for the exact-original adapter.
 2. **Connect evidence and acquisition.** The dark backend producer now hydrates
    an exact retained original/span and up to two exact Intake dependencies
-   through Intake in memory under one combined 20,000-character limit. Today
-   those dependency refs are supplied by the caller; the next R2 implementation
-   must retrieve and rank eligible same-viewer candidates through existing
-   owners, not turn the person's knowledge of their archive into setup work.
-   Honor current intent and use eligible existing evidence where sufficient.
+   through Intake in memory under one combined 20,000-character limit. The
+   server derives dependencies from at most 100 retained text siblings in the
+   same verified Intake submission, ordered by proximity to the selected
+   source's ordinal. This is a bounded candidate heuristic, not semantic
+   retrieval or relevance evidence; a complete scan with no eligible sibling
+   preserves the content-free no-addition path, while an incomplete empty scan
+   returns unavailable. Exact owner, custody, revision and retention are
+   revalidated during Intake hydration. Cross-submission/archive retrieval and
+   semantic ranking remain R2 work. Honor current intent and use eligible
+   existing evidence where sufficient.
    Additions must be supported across the selected original and a dependency,
    while treating personal novelty as inapplicable without novelty history.
    Public research is currently rejected by this route. For a missing public
@@ -2477,4 +2486,48 @@ Evidence on the current backend tree:
   fail the suite; this is not live-provider acceptance.
 - Workspace commit `34d8cece` had a clean tree before this receipt. No route,
   mobile consumer, live provider call, or end-to-end user-value acceptance is
-  claimed. R0–R7 and the connected producer/readback assignment remain open.
+claimed. R0–R7 and the connected producer/readback assignment remain open.
+
+#### Implementation receipt — same-submission selected-source candidates (October 1)
+
+Backend commit `e709ace50` removes dependency selection from the client request.
+The authenticated selected-source route now asks the existing Intake owner for
+metadata-only siblings of the exact selected source, limited to the same
+verified, currently retained submission and `text/plain` originals. It chooses
+at most two distinct content hashes in deterministic source-ordinal proximity
+order, using byte counts as a conservative combined 20,000-character budget.
+The relation means only “captured in this same packet”; it does not claim
+semantic relevance. The route rejects caller-supplied `dependency_refs`, and
+the selected source plus each chosen dependency is re-read through Intake's
+exact owner adapter before synthesis, which rechecks viewer, custody, revision,
+retention, MIME, scan and byte integrity. The blocking lookup and exact-result
+GET use the bounded owner-read executor. An incomplete empty metadata scan
+returns a content-free unavailable response rather than a false authoritative
+no-result. No migration was needed.
+
+Evidence on the committed backend revision:
+
+- Focused selected-source route, candidate, context, producer and work-item
+  suite: **51 passed** offline. Against the explicitly disposable lane database
+  `vesper_adaptive_context_test_20261001`, the selected-source PostgreSQL route
+  and owner-scoping tests passed: **2 passed**.
+- `make ci-static` passed after the bounded-executor correction, including Ruff,
+  formatter, architecture/ratchet checks and mypy across **1,900 source files**.
+- `make merge-check BASE_REF=main` exited 0 on the final backend state:
+  **22,141 passed, 14 skipped, 1 xfailed, 52 xpassed**. PostgreSQL-only cases
+  not opted into the named disposable database were skipped in that broad run;
+  the 2 required R2 database tests ran separately as recorded above.
+- `./scripts/sync-types.sh` removed only the request's obsolete optional
+  `dependency_refs` field from `docs/openapi.json`. The active app projection
+  remained at **457 paths, 504 operations and 1,353 schemas**; generated app
+  types had no diff, and `tsc --noEmit` passed. `make api-coverage-check`,
+  app-projection check, API contract audit (**579 active, 17 dark, 0
+  unflagged, 62 retiring**) and flag-registry check (**107 registered flags,
+  none overdue/unregistered**) passed.
+
+The feature remains dark: no provider was called or enabled, no native consumer
+adopted the result, and no matched human usefulness comparison ran. This is a
+same-submission candidate heuristic, not semantic or archive-wide retrieval;
+it does not yet establish that an addition is useful. Broader R2 selection,
+R6 consumer acceptance, R7 comparison and the remaining R0–R7 requirements
+remain open.
