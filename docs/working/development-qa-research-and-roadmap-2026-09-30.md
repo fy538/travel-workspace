@@ -445,7 +445,7 @@ are recorded below.
 | 1 | Package 3C: workspace flow validation and early prerequisite checks | Published in workspace PR 38; local and first hosted checks pass. The current fetched `origin/main` is still `4febe0d`, so landing is pending. Hosted critical path was 6m13s versus 23m18s before; summed reported job runtime was 25m46s versus 23m18s (+10.6%), one sample. | All integrations |
 | 2 | Package 3A: deterministic and faster app tests with the same checks | Queued until Package 3C lands; diagnose observed intermittent failures before expanding concurrency | Every lane changing the app |
 | 3 | Package 3B: one execution owner per CI guarantee | Queued after mapping current required checks and their callers; deliver independently after 3A | All lanes |
-| 4 | Package 1: choose the right evidence and make targeted native QA reliable | Implementation published in app PR 209 and workspace PR 39; the app selector accepts a full flow ID or canonical slug only, and readiness failures no longer guess at a cause. Twelve focused tests and valid-slug dry-run wiring pass. Live simulator capture remains unverified because its loopback Expo URL is unreachable from the simulator. | Orchestration and Strategy |
+| 4 | Package 1: choose the right evidence and make targeted native QA reliable | Implementation published in app PR 209 and workspace PR 39; the app selector accepts a full flow ID or canonical slug only, and readiness failures now inspect Maestro's failed-command hierarchy for explicit causes. Twenty focused tests and the broader polish QA suite pass. Aligning Expo's advertised host allowed Metro to bundle the app; capture then exposed a Worklets JavaScript/native mismatch (`0.7.4` vs `0.11.3`). Maestro's hierarchy omits that message, so this run remains an unverified native capture with 0/1 product images. | Orchestration and Strategy |
 | 5 | Package 2: proportionate review and shorter task context | Targeted review and context-routing changes are published in PRs 39/209/239. The wrong-state replay remains unverified; native-review adoption needs Package 1. | All lanes, especially mobile work |
 | 6 | Package 6: retire completed working documentation | Queued; owner guidance is now established, but no archive migration has started | All lanes |
 | Conditional | Package 4: native build reuse and other measured setup optimizations | Only if meaningful build/setup cost remains | Mobile and build owners |
@@ -476,13 +476,23 @@ Home/Places wrong-state screen replay therefore remains unverified.
 
 The native doctor passed on the assigned iPhone SE with Maestro 2.6.1, Java 17,
 Metro port `57436`, and installed app `com.fyan.vesper` version `1.0.0`, but this
-proves only bundle ID and marketing version. The selected
+proves only bundle ID and marketing version. The first selected
 `polish/home-root-returned` capture produced 0/1 product images. Its Maestro
 failure frame shows the iOS development-client error for
-`http://127.0.0.1:57436`; this confirms that the simulator could not reach
-Expo's loopback server. The prior runner message speculated about a missing
-internal route or stale build, so app PR 209 now leaves an unconfirmed
-readiness cause open and classifies explicit server errors as infrastructure.
+`http://127.0.0.1:57436`; Metro was bound to IPv6 loopback (`::1`) while Expo
+advertised IPv4 loopback. Setting `REACT_NATIVE_PACKAGER_HOSTNAME=localhost`
+aligned the advertised hostname with Metro's bind address, and the next run
+successfully bundled 5,348 modules. The app then displayed a Worklets runtime
+error: JavaScript `0.7.4` versus native `0.11.3`. The installed app's bundle ID
+and marketing version match, but its native module is stale. A rebuild was not
+available because `RNMAPBOX_MAPS_DOWNLOAD_TOKEN` is unset and no existing
+installable app bundle was found. Maestro's failure hierarchy does not expose
+the Worklets message; the runner therefore still reports generic app-readiness
+for that frame and allows its one bounded retry. The capture remains
+unverified, with 0/1 product images. The new failure-frame reader does classify
+the earlier explicit Metro URL as infrastructure and retains the exact URL;
+unit tests also cover Worklets diagnosis when the message is present in the
+failure diagnostics. No claim of live capture success is made.
 A LAN-bound Expo start was rejected by automatic approval review because
 local-network devices could reach the development server and source/config; no
 workaround was attempted. The later selector and classifier checks were
