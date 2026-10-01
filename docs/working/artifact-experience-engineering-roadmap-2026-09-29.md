@@ -88,13 +88,22 @@ is on a separate unmerged branch and is not available to this lane. Do not
 consume it until it is landed and its contract verified. Exact commands and
 evidence limits are in section 13.
 
+Most recently, app commit `3c2bf4b71` aligned mock and live owner-Thing reads
+with the same API-backed query path, added session/readback coverage, assigned
+source ordinals from the visible bundle order, and registered the native
+owner-confirmed reconciliation flow. Focused app checks passed before commit.
+The current-revision five-flow capture is recorded in section 13; it is not yet
+a fully accepted portfolio because the assigned `Vesper QA SE` screenshot for
+the replacement-time keyboard state shows a focused field but no software
+keyboard. Do not infer that missing state from the earlier iPhone SE capture.
+
 | Area | Implemented and evidenced | Remaining boundary |
 | --- | --- | --- |
 | P0 contracts and portfolio | Accepted kept-thing identity direction; code-backed owner map, supported-door/mode crosswalk, versioned reading descriptor, family/fallback fixtures and sparse-history examples; initial Thing storage/migration design is implemented under P1 | Subject/Component and edition mappings, selected-part representation cases and broader lifecycle portfolio; fixtures are not live generation or desirability evidence |
-| P1 correction and continuity | Revision-bound corrections and append-only Undo; backend typed-time replacement; native owner-only replacement-time editor with separate explicit start/end offsets and revision-bound Save/Undo; capture-to-reader and exact-source-to-confirmed-record links with source/digest checks; owner-scoped Thing row on verified private Keep; evidence-backed reversible cross-submission aliases; owner-scoped Thing API/native reader; candidate-to-bundle entry from a qualifying occurrence reader; owner-confirmed reversible reconciliation transport/app controls; Postgres coverage for concurrent merge/reversal retries and competing merge directions | Synthetic mock-mode Save/refetch/Undo now has registered native iOS 18.2 evidence, including readable dated time-range projection. Authenticated app-to-backend persistence/readback remains open; raw UTC-offset entry and absent start/end place labels remain UX follow-ups. No native acceptance for reconciliation or collection management yet; wider migration/rollback and lifecycle acceptance remain separate |
+| P1 correction and continuity | Revision-bound corrections and append-only Undo; backend typed-time replacement; native owner-only replacement-time editor with separate explicit start/end offsets and revision-bound Save/Undo; capture-to-reader and exact-source-to-confirmed-record links with source/digest checks; owner-scoped Thing row on verified private Keep; evidence-backed reversible cross-submission aliases; owner-scoped Thing API/native reader; candidate-to-bundle entry from a qualifying occurrence reader; owner-confirmed reversible reconciliation transport/app controls; Postgres coverage for concurrent merge/reversal retries and competing merge directions | Synthetic mock-mode Save/refetch/Undo has registered native iOS 18.2 evidence. The five-flow current-revision portfolio includes reconciliation capture, but its structured visual verdict is still pending. The current assigned-device keyboard screenshot does not show the software keyboard, so that assertion is not accepted from this portfolio. Authenticated app-to-backend persistence/readback remains open; raw UTC-offset entry and absent start/end place labels remain UX follow-ups; wider migration/rollback and lifecycle acceptance remain separate |
 | P2 original-first readers | Ticket, source-backed place, text-built book/film/show/music, supplied passage and practical-record treatments; exact-original chooser/return; shared photo viewer | Catalog identity/art, selected-part UI and later dish/recipe/scorecard treatments; source facts do not establish attendance, author identity or payment state |
 | Reader lifetime | Account-session-scoped reads, expiry-aware displayed facts and foreground refresh, exact-source authorization and revision checks | Full source/audience/collection lifecycle replay and authenticated mobile-to-service acceptance |
-| Native acceptance | October 1 iOS 18.2 Vesper QA SE portfolio: 33 screenshots across five registered flows (14 standard reader/source/return, 10 largest-text, 4 replacement-time editor/keyboard, 2 synthetic mock Save/Undo, 3 Home received-original/reader/return), with validated verdicts | Synthetic fixtures/mock state only; live authenticated save/refetch/Undo is not proven. Reliable pinch/pan, actual VoiceOver traversal/actions, loading/error states, Android/physical devices and user preference remain open |
+| Native acceptance | October 1 iOS 18.2 Vesper QA SE capture at app revision `3c2bf4b71`: 33 screenshots across five registered flows (14 standard reader/source/return, 10 largest-text, 4 replacement-time editor, 2 synthetic mock Save/Undo, 3 owner-confirmed reconciliation). All five Maestro flows completed, but the current structured visual verdict is not yet committed; the keyboard screenshot shows focus without the expected software keyboard | Synthetic fixtures/mock state only; current-device software-keyboard acceptance and full visual judgment remain open. Live authenticated save/refetch/Undo is not proven. Reliable pinch/pan, actual VoiceOver traversal/actions, loading/error states, Android/physical devices and user preference remain open |
 | Landed Technical dependencies | Exact-original revision binding and backend-only refinding of a bounded UTF-8 `text/plain` span; bounded public-acquisition primitives | No stable cross-representation Component identity, mobile selection API, artifact-bound discovery request or complete research-spend enforcement |
 | PC and later packages | House-design fallbacks and existing eligible original receiving remain usable; canonical private consumer-Collection owner, generated mobile contract/client, session-scoped paginated data facade with revision-bound continuation, bounded owner-backed Life Collections root API, batch owner-authorized Thing projection, and app-side Collection-page-to-Thing batch composition are implemented. The accepted Collections reading remains the product target. | Shared membership/audience/receiving, native Life Collections lens/detail route and device acceptance, founder-approved member labels/previews/hierarchy, approved catalog mappings/uses, exact kept editions and connected contextual additions remain unfinished |
 
@@ -1746,7 +1755,15 @@ original or guessing the event timezone from the device's current location.
    `20261001T153024Z`. A manual synthetic-field check entered
    `-04:00` with on-screen keys; because that makes the end precede the start,
    the editor showed its validation message and disabled Save, and Cancel
-   returned to the unchanged artifact.
+returned to the unchanged artifact.
+The later five-flow portfolio captured on the lane's `Vesper QA SE` simulator
+at app revision `3c2bf4b71` does **not** repeat that keyboard proof: its focused
+offset screenshot has no visible software keyboard. The editor, shared
+`FormField`, and `BottomSheet` code are unchanged between `51d275d11` and
+`3c2bf4b71`; the cause is therefore not established as an app regression. Keep
+the earlier iPhone SE proof bounded to that simulator/run and leave current
+assigned-device keyboard acceptance open pending a correctly configured
+recapture.
 4. **Boundary of this keyboard/validation/cancel capture:** no correction was
    submitted in this scenario; backend readback, deployed authentication,
    Android/physical-device behavior, or user preference was not proven by this
@@ -3096,3 +3113,20 @@ not established by this scrolled component/interaction flow.
 | Structured visual review | `npm run qa:verdict:validate -- .maestro/runs/20261001T184311Z-home-root`; `npm run qa:verdict:diff -- .maestro/runs/20261001T184311Z-home-root`; `npm run qa:verdict:commit -- .maestro/runs/20261001T184311Z-home-root home-root`; `npm run qa:verdict:committed` | Validated `pass`; committed as `e8b9be9e6`; all 81 committed verdicts validate. The reader-date P2 is closed. Current bounded findings are Home feed ordering below a long geology reading and the preview's text-only sender header versus the Home 03 reference avatar/name treatment. Both Home presentation findings route to Orchestration; this scrolled interaction flow does not certify Home 03's first viewport. |
 | Local service startup boundary | `make dev-backend`; `SKIP_AUTH=true DEFAULT_DEV_USER_ID=00000000-0000-0000-0000-000000000005 ANTHROPIC_API_KEY=local-no-ai-calls make dev-backend` | First startup stopped at missing local provider configuration. With process-only placeholder and synthetic development identity, the local API started and `/health` returned 200; no AI provider call was made. The lane database had zero user rows and no correction record was provisioned, so no app-to-backend correction write/readback was exercised. This is startup evidence only, not authenticated persistence. API process was stopped; no account or artifact fixture was created. |
 | Cross-repository change-aware preflight | `WORKSPACE_BASE_REF=7a95a8ee7886a0c79bf5b155867d4cad3c87e3d7 AGENT_BASE_REF=11fe148fee184c6219be2d9368f5f02419d96680 APP_BASE_REF=0a166e950622dafb221250f1a1a62b83cdf690d7 RUFF_CACHE_DIR=/private/tmp/vesper-artifact-foundation-ruff-cache PYTEST_ADDOPTS='-p no:cacheprovider' make verify-changed` | Passed with exit 0 on workspace `8b0ff6fc`, backend `11fe148f` (unchanged), and app `e8b9be9e6`. The app fast gate and full selected merge-scope suite passed; workspace docs links, spine and canon checks passed. This is local evidence, not hosted CI. |
+
+### October 1 current-revision artifact portfolio capture
+
+App commit `3c2bf4b71` changed mock owner-Thing reads to use the same
+API-backed query path as live mode, added mock readback/session partition tests,
+fixed original numbering to follow the displayed bundle order, and registered
+the owner-confirmed reconciliation interaction. The read parity and source
+numbering changes do not modify the replacement-time editor or its shared form
+controls.
+
+| Boundary | Exact verification | Result and limit |
+| --- | --- | --- |
+| App-focused checks before commit | Focused Jest, `npm run typecheck`, targeted ESLint and `npm run qa:polish:scenarios` | Four focused suites / 18 tests passed; typecheck passed; targeted ESLint emitted no diagnostics; 31 registered scenario IDs passed. See app commit `3c2bf4b71`. |
+| Full registered native portfolio | `VESPER_METRO_URL=http://localhost:64747 npm run qa:surface -- canonical-artifact-reader --after --device="Vesper QA SE"` | Run `canonical-artifact-reader-after`, manifest revision `3c2bf4b71`: five flows captured, 33 screenshots total (14 standard reader/source/return, 10 largest-text, 4 replacement-time editor, 2 mock Save/Undo, 3 reconciliation). Maestro flow assertions completed 5/5. This is evidence capture, not a committed visual-reference verdict. |
+| Software-keyboard acceptance | Opened `canonical-artifact-reader-replacement-time-editor-keyboard.png` from the full run and two focused reruns, `20261001T202156Z-canonical-artifact-reader` and `20261001T202335Z-canonical-artifact-reader` | The start-offset field is focused, but no software keyboard is visible in the assigned `Vesper QA SE` captures. A previous dedicated native run `20261001T153024Z` on `iPhone SE (3rd generation)` does show the keyboard; it remains evidence for that run only. Current-device cause is unresolved and the full portfolio must not be described as passing this assertion. |
+| Reconciliation visual review | Selected, connected and separated screenshots in the full run | Owner control, two retained originals, connection, and separation state are visible. The sticky translucent header overlaps underlying page headings in the selected and connected states; record this as a P2 component-fit finding in the pending structured visual review. |
+| Current acceptance boundary | Manifest, flow log and screenshot review | No authenticated backend persistence/readback, Android/physical-device, VoiceOver, or user-preference claim is established. The current full portfolio's structured visual verdict remains pending; preserve the keyboard discrepancy and header observation when judging it. |
