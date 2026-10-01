@@ -896,6 +896,23 @@ structured external-canon verdict path still lacks required `canonRefs`. D2
 remains active; this verifies exact opening and return, not complete Home/Places
 receiving or D2 completion.
 
+**Revision-bound Places authored-note handoff — 2026-10-01:** backend commit
+`30328c177` adds the source handoff revision to recipient-consented direct-note
+cards and carries the exact `(handoff id, revision)` into the V2 action
+destination, alongside the existing Places context and venue refs. Friend-save
+summaries are unchanged; a legacy row without a revision retains its ordinary
+Place door but does not invent an exact owner-read target. App commit
+`5b04067f5` regenerates the optional response type from the synced full OpenAPI
+snapshot and app projection; the existing selected-handoff reader consumes the
+typed destination. Focused backend Places/root-projection tests passed **59/59**
+with Ruff format/check; the app's focused navigation/reader suites passed
+**106/106**, typecheck passed, and docs checks passed for 9 headers and 480
+links. Offline schema synchronization succeeded. Real-backend cheap-mode and
+native exact-owner readback are **unverified**: the lane API at port 53176 was
+not listening, so no API/database or device claim is made. D2 remains active;
+next verify this revision-bound target against a running lane-local API and
+owner read, then continue ordinary/returned/live receiving coverage.
+
 ### Combined landing checkpoint — September 30
 
 The merged integration contains the Home/capture lane plus these completed

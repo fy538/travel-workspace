@@ -93218,6 +93218,18 @@
             "type": "array",
             "maxItems": 6,
             "title": "Venue Ids"
+          },
+          "handoff_revision": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Handoff Revision"
           }
         },
         "type": "object",
