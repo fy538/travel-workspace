@@ -786,5 +786,95 @@
       "failed": 0,
       "skipped": 0
     }
+  },
+  {
+    "schema_version": 1,
+    "label": "central-integration-preflight",
+    "command": [
+      "make",
+      "verify-changed",
+      "WORKSPACE_BASE_REF=e61b760f53f5b24c2125704ecdfee597efe01ced",
+      "AGENT_BASE_REF=8ffdfea816c880af53c4ac6bb8957e144d65d67a",
+      "APP_BASE_REF=f87360866"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "c8f5d167a5d6e99cfdca9dcbd372b64e2a9d9ed7",
+        "dirty": false
+      },
+      "travel-agent": {
+        "commit": "aba6278559a47a8eb45b26fe1a9d6e1cdc44e4a9",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "7eb9edcc7499a4244e5e58b2fd032c466cf35775",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.13.0",
+      "cpu_count": 14
+    },
+    "exit_code": 2,
+    "timed_out": false,
+    "wall_time_seconds": 383.171,
+    "log_path": "/private/tmp/vesper-central-integration-logs/central-integration-preflight-20261001T220316Z.log",
+    "test_counts": {
+      "framework": "jest",
+      "collected": 9236,
+      "passed": 9236,
+      "failed": 0,
+      "skipped": 0
+    },
+    "evidence_boundary": "Local coordinated regression only. Database/API-key/dogfood tests excluded. Existing exact backend quarantine baseline preserved. First run failed Node24 worker and sandbox loopback fixtures; final uses Node20.20.2 and loopback fixture permission.",
+    "node_version": "24.13.0"
+  },
+  {
+    "schema_version": 1,
+    "label": "central-integration-final-preflight",
+    "command": [
+      "make",
+      "verify-changed",
+      "WORKSPACE_BASE_REF=e61b760f53f5b24c2125704ecdfee597efe01ced",
+      "AGENT_BASE_REF=8ffdfea816c880af53c4ac6bb8957e144d65d67a",
+      "APP_BASE_REF=f87360866bb9cb26b356d7021aca2205c82bdbb6"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "b92dd955b168f94557a52c26c918473f2c12c992",
+        "dirty": false
+      },
+      "travel-agent": {
+        "commit": "2a11750c655385775682019f50b080ab45b4f04f",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "7eb9edcc7499a4244e5e58b2fd032c466cf35775",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.13.0",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 332.912,
+    "log_path": "/private/tmp/vesper-central-integration-logs/central-integration-final-preflight-20261001T221224Z.log",
+    "test_counts": {
+      "framework": "jest",
+      "collected": 9266,
+      "passed": 9266,
+      "failed": 0,
+      "skipped": 0
+    },
+    "evidence_boundary": "Local coordinated regression only. Database/API-key/dogfood tests excluded. Existing exact backend quarantine baseline preserved. First run failed Node24 worker and sandbox loopback fixtures; final uses Node20.20.2 and loopback fixture permission.",
+    "node_version": "20.20.2"
   }
 ]
