@@ -920,6 +920,16 @@ case both succeed; prior user-supplied connections are not repackaged as new;
 failed indexing differs from a complete empty search. Include retrieval and
 selection metrics independently, with equal-quality original baselines.
 
+**Current boundary:** the selected-source producer now treats a connection or
+interpretation explicitly included in the current `private_instruction` as
+already-known context and asks for a materially distinct supported relation or
+no addition. It has no prior-conversation or novelty-history input; this does
+not satisfy archive-wide or earlier-chat non-repetition, and it does not prove
+the model follows the instruction. The focused prompt regression verifies only
+that the bounded user statement reaches the model call. R2 remains open for
+representative matched human review of additions, prior-connection repetition,
+cross-source support and usefulness.
+
 ### R3 Share execution and account for its cost
 
 **Outcome:** foreground and background consumers can reuse compatible work
@@ -3945,3 +3955,40 @@ passed (**2 passed**). No candidate behavior changed; this receipt aligns the
 workspace acceptance wording with the existing owner-bound identity contract.
 Broader semantic grouping, support quality, selection usefulness and R2/R0–R7
 package acceptance remain open.
+
+#### R2 implementation receipt — current-request known-connection boundary (October 1)
+
+Backend commit `4bd57cd6c722b8ade5c8de6abd0b08a18c0c3b76` makes the selected-source
+producer explicitly treat a connection, explanation, observation or
+interpretation supplied in the current `private_instruction` as already-known
+context. The model is directed not to repeat or closely paraphrase it, and to
+return a materially distinct supported relation or `no_addition`. The prompt
+also states that the producer has no complete conversation or novelty-history
+view and must not claim an addition is new to the person. This does not access
+or summarize prior chat history, and applies only when the caller supplies the
+known connection in the current request.
+
+The added regression checks the serialized user instruction and system prompt
+boundary. This proves prompt delivery, not model compliance. It does not prove
+cross-source entailment, additional substance, usefulness, or non-repetition
+against insights absent from the current request.
+
+Validation on Darwin `25.5.0` arm64 / Python `3.13.0`:
+
+- `tests/research_agent/test_selected_source_producer.py` and
+  `tests/eval/test_selected_source_treatment.py`: **25 passed**.
+- Targeted Ruff check and format check passed.
+- `MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true make ci-static` passed; Ruff,
+  structural gates and mypy reported no issues across **1,900** backend source
+  files.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main` passed:
+  **22,220 passed, 14 skipped, 53 xpassed**, with two expected local-Qdrant
+  payload-index warnings. The full suite is offline/change-aware; skipped
+  database/provider cases remain unverified.
+- No live model/provider, disposable-Postgres run, API/schema, migration,
+  application, deployment or user-facing consumer behavior was exercised.
+
+This is a bounded prompt improvement inside R2, not completion of the
+prior-user-connection acceptance. R2 still needs representative matched model
+outputs and independent human review, plus a supported owner handoff for prior
+insights not present in `private_instruction`. R0–R7 remain open.
