@@ -21,8 +21,10 @@ verified obsolete implementation family, while measuring delivery friction.
 Keep the existing native QA and same-coverage test improvements; unfinished
 infrastructure awaiting product design is not an obsolete-code candidate.
 
-The accepted baseline is workspace `7018d055c6635b0edb5726612375c03f2c785520`,
-backend `0a1fdf224aaf59ca713eec5eba79a34321f038a9`, and app
+The accepted integration landed at workspace
+`7018d055c6635b0edb5726612375c03f2c785520`; roadmap-only PR #42 advanced the
+inspected workspace main to `0b6dfe093c06559827dc23648c51b8329cb9665e`.
+Its child pair remains backend `0a1fdf224aaf59ca713eec5eba79a34321f038a9`, and app
 `acf5bd837fe3725b00d9744727f513a601fb2498`, landed through central integration
 [workspace PR 41](https://github.com/fy538/travel-workspace/pull/41),
 [backend PR 241](https://github.com/fy538/travel-agent/pull/241), and
@@ -65,8 +67,11 @@ Screenshot review also finds real defects. The right improvement is to make the
 environment dependable and match verification to the changed behavior, while
 retaining deeper review for shared foundations and coherent product milestones.
 
-The first integration investments should be **faster workspace flow validation,
-early prerequisite checks, deterministic app tests and less repeated execution**.
+The first integration investments—faster workspace flow validation, early
+prerequisite checks, deterministic app tests and less repeated execution—have
+landed with the evidence limits above. Section 5 now prioritizes bounded
+obsolete-assumption/implementation retirement and the next measured feedback
+cost, rather than repeating those delivered CI changes.
 Choosing evidence for the changed behavior and making targeted native QA reliable
 remain required work, but do not block these device-independent improvements.
 Screenshots primarily establish visual state and support failure diagnosis;
@@ -589,7 +594,7 @@ Do not start a new integration or cleanup queue alongside this section.
 
 | Order | Work | Status and dependency | First beneficiaries |
 | --- | --- | --- | --- |
-| 1 — next | Package 6: reconcile obsolete operating assumptions and active documentation | Resolve contradictory merge ownership and stale pending/landed instructions in existing owners. Then retire a bounded set of superseded working documents, preserving unique rationale and fixing incoming links. Three earlier archive migrations are complete. | All lanes |
+| 1 — bounded closeout | Package 6: reconcile obsolete operating assumptions and active documentation | The central four-roadmap reconciliation resolves stale integration ownership, baselines and producer availability. Check only remaining affected owner references; do not repeat that completed roadmap pass. Then retire a bounded set of superseded working documents, preserving unique rationale and fixing incoming links. Three earlier archive migrations are complete. | All lanes |
 | 2 | Package 7: retire one verified obsolete code, API or dependency family | New bounded queue item. Establish current consumers, replacement behavior and retirement authority before selecting the first family. The 62 retiring API operations are candidates, not 62 approved deletions. | Lanes repeatedly touching compatibility paths |
 | 3 | Package 3A/3B/3C: reduce measured feedback and integration cost | Implementations landed. Use the existing ten-change pilot to choose the next demonstrated bottleneck: flaky retries, repeated setup/check execution or broad-test fallback. Default app sharding stays unchanged; the passed experiment alone does not justify adoption. | All integrations |
 | 4 | Package 1: reliable targeted native QA | One targeted Home capture passed; broader Home/Places wrong-state replay remains open. Work independently when the assigned device is available. | Orchestration and Strategy |
@@ -597,16 +602,39 @@ Do not start a new integration or cleanup queue alongside this section.
 | Conditional | Package 4: build reuse and measured setup optimizations | Existing checkout improvements are landed with limited before/after evidence. Native reuse requires a measured remaining setup bottleneck and safe environment identity. | Mobile and build owners |
 | Ongoing | Package 5: product-outcome acceptance | Remains with product lanes. Cleanup preserves their infrastructure, authority and acceptance requirements while design continues. | Product users |
 
-**Next owned assignment:** reconcile Package 6's operating instructions against
-the accepted tuple and central integration ownership, starting with this roadmap
-and the program's merge/handoff rules. The current planning change resolves
-those two entry points; inventory affected owner references before claiming the
-wider reconciliation complete. Then select one Package 7 family with evidence
-of actual maintenance burden and no unresolved current consumer. Record its
+**Next owned assignment:** close the remaining bounded Package 6 owner-reference
+inconsistencies after this four-roadmap reconciliation, then select one Package 7
+family with evidence of actual maintenance burden and no unresolved current
+consumer. Do not rerun the completed roadmap-baseline/producer-availability
+reconciliation, replay merged CI fixes or make the central integration checkout
+a permanent lane. The retained efficiency checkout and preserved dirty draft
+still predate the accepted main; its owner refreshes and reconciles them at
+intake without dropping the draft's unique evidence. Record its
 owner, callers, replacement, applicable checks and expected benefit here before
 editing implementation. Land and measure that small slice before selecting
 another. Unresolved use or product authority stays unresolved; move to a
 verified independent candidate rather than guessing.
+
+**First bounded retirement candidate to investigate:** the nine skipped
+Step 7 card-feedback/lifecycle tests in backend
+`tests/api/test_concierge_home.py`. The current file separately asserts that
+`/cards/feedback`, `/cards/lifecycle` and `/cards/restore` return 404; current
+mobile transport has no callers for those retired writes, and the app legacy
+boundary test rejects their reintroduction. This supports reviewing the dead
+test block, not removing the active concierge feed, current memory correction
+or other live Home contracts. Trace each old invariant to its current owner
+before retiring its test. Because these tests are already skipped, their
+removal cannot be advertised as faster test execution. Choose another family
+if this one has no meaningful tracing/maintenance burden. The 62 retiring API
+operations still require their own consumer and removal evidence.
+
+Use the existing ten-change measurement pilot for subsequent changes across
+the four lanes; a completed comparable pilot has not yet been observed.
+Recent interrupted integration turns repeatedly chased moving main revisions
+and reran broad gates; central landing and a stable committed handoff address
+that mechanism. Compare similar subsequent slices before claiming an overall
+speed gain. Required-check waiting, runner cost, retries and acceptance rework
+remain separate measurements.
 
 **October 1 Package 4 local preflight receipt.** The corrected checkout scope
 passed `make verify-changed` in 320.740 seconds against workspace base
@@ -1686,9 +1714,10 @@ they do not establish that every change was unnecessarily batched.
 
 The findings in this pass are incorporated into the single queue in
 [section 5](#5-improvement-roadmap). The completed-integration review below
-supersedes the initial ordering: workspace validation, app test determinism/speed
-and CI ownership lead; native QA, lighter review/context and documentation
-retirement remain in scope. Build reuse
+superseded the initial ordering. After those CI changes landed, the October 1
+cleanup reconciliation in section 5 sets the current order: bounded obsolete
+assumptions/implementation retirement, then the next measured feedback cost.
+Native QA and lighter review/context remain in scope. Build reuse
 and other setup experiments remain conditional. Package details, statuses and
 adoption checkpoints are maintained there rather than duplicated in this evidence
 section.

@@ -24,9 +24,20 @@ retrieval, jobs and native readers. Add the missing identity, selected-part,
 collection, saved-edition and discovery contracts deliberately. Do not create
 another assistant or a universal artifact service.
 
-**Execution status — October 1:** the artifact-foundation baseline and
-adjacent-lane integration are merged into remote `main` at the tuple in section
-2. The `codex/artifact-foundation` lane has implemented the initial
+**Current continuation — October 1 after central integration:** all committed
+artifact and adjacent-lane increments described below are landed in section 2's
+accepted tuple. The selected-source producer/result API is also landed; its
+feature remains disabled and private synthesis has no released allocation.
+Unmerged-code waiting is closed. Quality, spending and consumer adoption remain
+separate requirements, so interface availability does not authorize dispatch.
+The next assignment is the P1 real app/backend correction/readback acceptance
+below; final Collection presentation and new catalog rights remain design and
+provider dependencies rather than reasons to stop independent infrastructure.
+
+**Historical implementation receipt — October 1 before central integration:**
+the following checkpoint used the earlier September 30 merged baseline. Its
+local/unmerged statements describe that date; section 2 now records the newer
+accepted tuple. The `codex/artifact-foundation` lane has implemented the initial
 submission-backed Thing owner, evidence-backed reversible cross-submission
 aliases, an owner-scoped Thing read API, an app reader that opens original
 Sources without transferring their permissions, and the first ordinary
@@ -104,7 +115,7 @@ keyboard. Do not infer that missing state from the earlier iPhone SE capture.
 | P2 original-first readers | Ticket, source-backed place, text-built book/film/show/music, supplied passage and practical-record treatments; exact-original chooser/return; shared photo viewer | Catalog identity/art, selected-part UI and later dish/recipe/scorecard treatments; source facts do not establish attendance, author identity or payment state |
 | Reader lifetime | Account-session-scoped reads, expiry-aware displayed facts and foreground refresh, exact-source authorization and revision checks | Full source/audience/collection lifecycle replay and authenticated mobile-to-service acceptance |
 | Native acceptance | October 1 iOS 18.2 Vesper QA SE capture at app revision `3c2bf4b71`: 33 screenshots across five registered flows (14 standard reader/source/return, 10 largest-text, 4 replacement-time editor, 2 synthetic mock Save/Undo, 3 owner-confirmed reconciliation). All five Maestro flows completed, but the current structured visual verdict is not yet committed; the keyboard screenshot shows focus without the expected software keyboard | Synthetic fixtures/mock state only; current-device software-keyboard acceptance and full visual judgment remain open. Live authenticated save/refetch/Undo is not proven. Reliable pinch/pan, actual VoiceOver traversal/actions, loading/error states, Android/physical devices and user preference remain open |
-| Landed Technical dependencies | Exact-original revision binding and backend-only refinding of a bounded UTF-8 `text/plain` span; bounded public-acquisition primitives | No stable cross-representation Component identity, mobile selection API, artifact-bound discovery request or complete research-spend enforcement |
+| Landed Technical dependencies | Exact-original revision binding and backend-only refinding of a bounded UTF-8 `text/plain` span; bounded public-acquisition primitives | Landed dark exact-Source request/result exists; stable cross-representation Component identity, mobile selection/adoption, useful-addition acceptance and released research-spend allocation remain open |
 | PC and later packages | House-design fallbacks and existing eligible original receiving remain usable; canonical private consumer-Collection owner, generated mobile contract/client, session-scoped paginated data facade with revision-bound continuation, bounded owner-backed Life Collections root API, batch owner-authorized Thing projection, and app-side Collection-page-to-Thing batch composition are implemented. The accepted Collections reading remains the product target. | Shared membership/audience/receiving, native Life Collections lens/detail route and device acceptance, founder-approved member labels/previews/hierarchy, approved catalog mappings/uses, exact kept editions and connected contextual additions remain unfinished |
 
 Section 13 retains the exact revisions, commands and limits of each receipt.
@@ -115,11 +126,20 @@ unchanged screenshots did not establish pan/pinch. Do not turn either result
 into a broader gesture, accessibility or live-service claim. The Home dock
 stability repair was a QA prerequisite, not another artifact feature.
 
-**Next assignment:** preserve the next connected checkpoint in section 11:
-adopt Technical's supported artifact-target request/result contract in the
-focused reader for one useful eligible addition, with original-only value and
-exact return. That producer contract is not landed in the inspected
-`origin/main`; do not consume its unmerged branch. The bounded Life/Collection
+**Next assignment:** prove the landed P1 replacement-time correction through
+the real app transport and backend: Save → canonical refetch → Undo → canonical
+refetch. Cover persisted state, unchanged submitted original, stale revisions,
+exact retry, wrong-owner denial and account-session changes. Use the existing
+reader/data/API path and correction owner; do not add another command or reader.
+Record a genuine authenticated run separately from disposable synthetic-owner
+or auth-bypassed rehearsals. If credentials/device access blocks that receipt,
+complete independent transport/database acceptance and state the exact missing
+boundary rather than repeating mock screenshots as a substitute.
+
+After this bounded slice, preserve section 11's thin P3 consumer checkpoint:
+adopt the landed exact-Source request/result only under its required gates,
+with original-only value and exact return. Inspect the landed exact Source-based
+scope and quality/spend gates before consumer adoption. The bounded Life/Collection
 data composition is now implemented in the app data facade: it reads canonical
 Collection membership at its pinned revision and resolves each page through
 one current owner-authorized Thing batch, preserving the exact
@@ -194,14 +214,14 @@ Strategy Technical.
 
 ## 0 Strategy lane execution boundary
 
-**Current assignment:** continue section 11's P0/P1/PC/P2 artifact foundation
-from the merged reader/correction baseline. The content-free owner, reversible
-cross-source aliases, owner read API, native Thing reader, candidate-to-bundle
-opening, and owner-confirmed reconciliation transport/app interaction are
-implemented in the local lane. The next connected P3 slice adopts Technical's
-supported artifact-target request/result in a focused reader after that producer
-is landed and its contract is verified. It is currently on a separate unmerged
-branch; do not cherry-pick or consume it here. Continue independent P0/P1/PC/P2
+**Current assignment:** close the bounded P1 real app/backend replacement-time
+correction/readback slice above, from section 2's accepted tuple. Thing identity,
+reversible aliases, owner read API, native reader, candidate-to-bundle opening,
+reconciliation and Collection data composition are landed; reuse them. Technical's
+exact selected-Source producer and result API are landed too, but remain dark
+and unallocated. Review the full API and operation policy before any future
+mobile adoption; a contract fixture or data adapter does not authorize paid
+dispatch or certify a useful addition. Continue independent P0/P1/PC/P2
 and original-focused P6 work where existing owner and authority contracts are
 complete. Every format, catalog provider and artifact family need not finish
 before a supported slice lands; native acceptance work runs alongside
@@ -231,7 +251,8 @@ authority. Keep the three Git histories independent.
 Strategy Technical supplies reusable context/research primitives, while
 Orchestration owns capture transport and Home/Places delivery; neither lane
 owns the kept-Thing identity write. The artifact lane carries its slice through
-focused verification and landing, escalating only a changed authority boundary
+focused verification and committed handoff to central integration, escalating
+only a changed authority boundary
 or a real cross-lane conflict.
 
 **Product decision ownership — October 1:** the founder retains authority over
@@ -250,16 +271,16 @@ contract, query, cache and verification work remains with the accountable lane.
 existing `codex/artifact-foundation` coordinated tuple; do not create another
 branch or worktree merely to begin its next package. This tuple is the single
 accountable execution lane for the outcome and carries each bounded slice
-through implementation, cross-repo verification, review, commits and safe
-landing. “Single lane” does not collapse
+through implementation, cross-repo verification, review and committed handoff
+to central integration for safe landing. “Single lane” does not collapse
 the three repositories into one history or transfer ownership of their layers;
 each repository's changes are committed in that repository, under the
 ownership split above. Open a separate lane only for a genuinely independent
 outcome with explicit file/runtime ownership, not for another step in this same
-artifact sequence. Technical's selected-source producer remains a dependency
-owned by its lane; do not consume its unmerged branch as if it were part of
-this tuple. Continue independent artifact work here, and adopt that producer
-after it is landed and its contract is verified. Escalate only when the work
+artifact sequence. Technical owns the landed selected-source producer and its
+remaining quality and spending gates. Consume the accepted interface, not a sibling branch.
+Artifact owns its future reader adoption; do not rebuild the producer. Escalate
+only when the work
 requires a new product/authority decision, changes the agreed ownership
 boundary, or encounters a real cross-lane conflict; ordinary implementation
 and verification obstacles stay with the accountable lane.
@@ -276,8 +297,7 @@ native Save/refetch/Undo evidence is synthetic mock state only; authenticated
 live app/backend readback remains unproven. Time authoring remains
 explicit-offset only: the lane must not infer a zone from the device or place,
 alter an explicitly supplied offset, or present an unverified time as
-corrected. This slice does not depend on Strategy Technical's unlanded
-artifact-target producer.
+corrected. This slice is independent of research activation or consumer adoption.
 
 **Write ownership:** thing/component and cultural-subject identity, reconciliation,
 typed readings, focused reader internals, consumer collections and Life, approved
@@ -439,15 +459,19 @@ page) and S1–S2 (sharing and receiving) draw the surrounding pages.
 
 ### Current merged execution baseline
 
-September 30 Git verification established that all artifact-foundation commits
-are ancestors of remote `main`. Rebasing this lane advanced all three branches
-to these exact revisions, with clean trees and no remaining ahead/behind delta:
+The October 1 central integration landed the committed artifact-foundation
+increments and adjacent dependencies with required hosted checks passing.
+The inspected canonical main tuple for the next intake is:
 
-| Repository | Merged execution revision |
+| Repository | Accepted main revision |
 | --- | --- |
-| Workspace | `4febe0d461a62d204ba4dee9eaad7813c7c1509c` |
-| Backend | `bd1a683b8656c3f4091e16abb64f57897fa7fc42` |
-| App | `e7bdc660501eaa19234e6b45bda033658edaa2d4` |
+| Workspace | `0b6dfe093c06559827dc23648c51b8329cb9665e` — PRs #41/#42 |
+| Backend | `0a1fdf224aaf59ca713eec5eba79a34321f038a9` — PR #241 |
+| App | `acf5bd837fe3725b00d9744727f513a601fb2498` — PR #212 |
+
+The retained artifact owner checkout still has older heads; this roadmap pass
+does not rebase or move it. Refresh that existing coordinated lane at intake,
+preserving any owner edits and checking the actual current main tuple.
 
 This is the starting tuple for the next slice, not a new runtime test receipt.
 Section 13 preserves earlier acceptance at its recorded revisions; the
@@ -1728,7 +1752,7 @@ permissions. The user controls the connection; Vesper cannot infer or apply it.
    every reader state is accepted or repeat captures without a concrete defect
    hypothesis.
 
-### Current execution slice — owner replacement-time editor, October 1
+### Implemented editor and next connected acceptance — October 1
 
 **Outcome:** an owner can explicitly correct an artifact's private event-time
 interpretation from the canonical reader without changing the submitted
@@ -1805,7 +1829,7 @@ explicit offsets across a day boundary; this improves legibility but does not
 resolve the recorded UTC-notation or start/end place-label UX follow-ups. No
 user preference or product-policy decision is implied.
 
-**Next connected checkpoint:** adopt Technical's supported artifact-target
+**Next connected checkpoint after P1 readback:** adopt Technical's landed exact-Source
 request/result contract into the focused reader for a useful eligible addition,
 while preserving immediate original-only value and exact return. Existing
 Source-based reads and contract mapping can advance before the Thing migration;
@@ -1955,6 +1979,11 @@ Vesper is a design recommendation, not validation of Vesper's product advantage:
   from an empty result. Borrow the mechanisms, not new infrastructure.
 
 ## 13 Document completion record
+
+The dated receipts below preserve their original publication states and evidence
+boundaries. October 1 central integration landed their committed increments;
+section 2 and the current assignment supersede historical “local/unmerged” and
+“next” wording. Landing does not broaden a receipt into product acceptance.
 
 This document records planning, code-backed owner mapping, and bounded local
 implementation receipts. The September 30 follow-on checkpoint started from
