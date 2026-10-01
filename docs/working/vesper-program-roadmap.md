@@ -1295,21 +1295,27 @@ with `.venv/bin/python -m pytest -p no:cacheprovider tests/places/test_sections_
 Ruff check/format, backend pre-commit hooks, and `git diff --check` passed. The
 app exact Place Source routing suite passed **68/68** with
 `./node_modules/.bin/jest --runInBand --no-cache __tests__/utils/rootProjectionNavigation.test.ts`;
-app commit `a337c35cd` adds the route-helper regression. Follow-up app commit
-`8c94759c8` adds a rendered-feed interaction regression: tapping the lone card
-opens its exact Place with the Source ID/revision and preserves Places context
-and the return token. The full Places feed component suite passed **54/54**;
+app commit `a337c35cd` adds the route-helper regression. Follow-up backend test
+commit `a20da1929` verifies that the lone Source survives Places candidate
+selection and joined-runtime compilation with its exact Source/Place refs,
+`source.inspect` requirement, and canonical destination; the full
+`tests/root_projection/test_places_runtime.py` suite passed **20/20**. Follow-up
+app commit `8c94759c8` adds a rendered-feed interaction regression: tapping the
+lone card opens its exact Place with the Source ID/revision and preserves Places
+context and the return token. The full Places feed component suite passed
+**54/54**;
 `npm run typecheck`, `npm run test:typecheck:contracts`, registered polish
 scenario validation (**31 IDs**), targeted ESLint, and `git diff --check` also
-passed. Both app commits contain tests only, not runtime changes. The starting
-tuple was workspace `7410e08cb`, backend `1a9f57b91`, app `3ebde88e`; resulting
-child HEADs are backend `c120985bc` and app `8c94759c8` (with the first roadmap
-receipt at workspace `34fdd44e`). A live API owner read was not run, and native
-capture remains unverified because the assigned simulator/CoreSimulatorService
-was unavailable; no real-owner, visual-polish, external design-canon,
-recurring-supply, or full D2 acceptance is claimed. Continue with the next
-substantive supported Home/Places receiving gap and ordinary/returned/live
-coverage.
+passed. Both app commits contain tests only, not runtime changes; both backend
+commits together contain the one-section behavior plus its runtime regression.
+The starting tuple was workspace `7410e08cb`, backend `1a9f57b91`, app
+`3ebde88e`; resulting child HEADs are backend `a20da1929` and app `8c94759c8`
+(earlier roadmap receipts are at workspace `34fdd44e` and `3f4b7399`). A live
+API owner read was not run, and native capture remains unverified because the
+assigned simulator/CoreSimulatorService was unavailable; no real-owner,
+visual-polish, external design-canon, recurring-supply, or full D2 acceptance
+is claimed. Continue with the next substantive supported Home/Places receiving
+gap and ordinary/returned/live coverage.
 
 ### Combined landing checkpoint — September 30
 
