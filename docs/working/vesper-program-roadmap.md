@@ -1224,28 +1224,34 @@ canonical entity has eligible source evidence, then continue returned-state
 coverage using owner-provided facts; do not infer a visit date from Outcome
 creation time or make the friend note depend on a generated supplement.
 
-**Co-present authored-note Place door — 2026-10-01:** app commit
-`641ebbbbb7df694334de84ff7d54cf80868c51a2` updates the operating
-`PlacesSemanticField` composition. When a current field contains an attributed
-friend note with a live navigation action to one exact represented Place, the
-same Place destination/action is removed only from a co-present lead or browse
-unit. The note retains its authored exact Place action; absent notes, mismatched
-Places and unrepresented targets preserve the lead/browse door. Original units
-remain the source for exposure identity and layout, and audience/content/owner
-authority is unchanged.
+**Co-present authored-note Place door — 2026-10-01:** app commit `641ebbbbb`
+introduced exact-target deduplication in `PlacesSemanticField`, but the first
+feed-level integration did not yet provide the note as context: authored
+social notes are card-bound in the admitted projection, while the standalone
+field receives a separate `field_units` list. App commit `3ebde88e9` closes that
+integration gap by passing the full admitted projection as render context while
+still transforming only the standalone units. An attributed friend note keeps
+its exact live Place action; only an identical represented-Place destination
+and action on a co-present lead/browse unit are removed. Absent notes,
+mismatched Places and unrepresented targets preserve the ordinary door.
+Original units remain the source for exposure identity and layout; audience,
+content and owner authority are unchanged.
 
-Focused Places semantic-field, root-screen and section-feed tests passed
-**74/74**; app production typecheck, contract typecheck, targeted ESLint,
-`git diff --check`, and the 31-ID polish scenario check passed. The registered
+The feed-level regression mirrors the actual split between card-bound note
+context and standalone `field_units`. The focused Places semantic-field,
+root-screen and section-feed suites passed **74/74** with
+`./node_modules/.bin/jest --runInBand --no-cache __tests__/components/places/PlacesSectionFeed.test.tsx __tests__/components/places/PlacesSemanticField.test.tsx __tests__/components/places/PlacesRootV2Screen.test.tsx`;
+`npm run typecheck`, `npm run test:typecheck:contracts`, targeted ESLint,
+`git diff --check` and `npm run qa:polish:scenarios` passed. The registered
 Places design-ref check passed structurally (one manifest, six pairs), but
 reported `externalCanonVerified=0` because the operator-owned external bundle
 was unavailable. Native QA did not produce a screenshot: the default attempt
 stopped because Metro was not running at `:8081`; the retry configured for the
 lane's `:53177` failed when CoreSimulatorService was unavailable/refused and
 the runner could not create its per-device lock (`EPERM`). Visual polish is
-therefore unverified. This closes one duplicate-door
-composition defect only; D2 remains active. Continue with substantive
-source-backed Place value and representative ordinary/returned/live coverage.
+therefore unverified. This closes one duplicate-door composition defect only;
+D2 remains active. Continue with substantive source-backed Place value and
+representative ordinary/returned/live coverage.
 
 ### Combined landing checkpoint — September 30
 

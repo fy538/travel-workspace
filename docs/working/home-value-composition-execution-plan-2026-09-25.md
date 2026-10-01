@@ -2006,17 +2006,30 @@ device readback, or visual verdict was produced; those remain unverified.
 
 ### Places authored-note door deduplication — October 1
 
-As a D2 follow-on, app `641ebbbbb7df694334de84ff7d54cf80868c51a2`
-preserves the exact Place action on an attributed friend note while removing
-only an identical represented-Place door from a co-present Places lead or
-browse unit. Matching is exact and requires the Place to be represented by
-each unit; absent notes and non-matching targets keep their ordinary doors.
-Exposure identity/layout and owner authority remain unchanged. The focused
-Places field, root-screen and section-feed suites passed **74/74**; app and
-contract typechecks, targeted ESLint, scenario-ID validation and diff checks
-passed. Native capture is unverified because CoreSimulatorService failed during
-the registered QA run. This is one bounded Places composition repair, not H1-A
-or D2 completion; the program roadmap records its detailed evidence boundary.
+As a D2 follow-on, app `641ebbbbb` introduced exact-target deduplication for an
+attributed friend note and a co-present Places lead/browse unit. A fresh
+integration audit found that the real feed keeps the social note card-bound in
+the full admitted projection while passing only `field_units` to each standalone
+semantic field; therefore that first integration did not expose the note to the
+dedupe helper. App `3ebde88e9` completes the connection by providing the full
+admitted projection as context to each standalone field, but applying the
+dedupe only to the units actually rendered in that field. The exact action on
+the authored note remains; only an identical represented-Place destination and
+action on a co-present lead/browse unit are suppressed. Absent notes,
+non-matching targets and unrepresented Places retain their ordinary doors.
+Exposure identity/layout and owner authority remain unchanged.
+
+The feed-level regression mirrors the actual projection/field split. The
+Places section-feed, semantic-field and root-screen suites passed **74/74**
+with `./node_modules/.bin/jest --runInBand --no-cache __tests__/components/places/PlacesSectionFeed.test.tsx __tests__/components/places/PlacesSemanticField.test.tsx __tests__/components/places/PlacesRootV2Screen.test.tsx`;
+`npm run typecheck`, `npm run test:typecheck:contracts`, targeted ESLint,
+`git diff --check` and `npm run qa:polish:scenarios` passed. The design-ref
+check passed structurally (one manifest, six pairs) but reported
+`externalCanonVerified=0` because the operator-owned external bundle was not
+available. Native capture remains unverified: the registered run failed when
+CoreSimulatorService was unavailable/refused and its per-device lock creation
+returned `EPERM`. This is one bounded Places composition repair, not H1-A or
+D2 completion; the program roadmap records its detailed acceptance boundary.
 
 ### Published candidate — prior full coordinated gate
 
