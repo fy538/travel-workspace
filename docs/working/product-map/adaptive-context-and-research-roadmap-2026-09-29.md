@@ -3031,7 +3031,7 @@ checks unexpectedly.
 | Caller family | Current dispatch boundary | Current controls and remaining gap |
 | --- | --- | --- |
 | Concierge factual lookup and trip-direction fallback | Both use `core.public_research.acquire_public_research`; one typed public request, one tool-layer attempt and a bounded deadline | Content-free demand/execution observations only; no durable public-call reservation or shared chargeable-attempt settlement |
-| Concierge live-event discovery | Direct `WebSearchTool.execute_once` with a typed location/category/date window and approved-domain filter; event verification remains separate | Has shadow observations and bounded timeout, but bypasses the common acquisition adapter and has no durable reservation |
+| Concierge live-event discovery | Shared `core.public_research.acquire_public_research` adapter with a typed location/category/date request, fixed approved-domain filter, then a separate event-page verifier | One adapter attempt, bounded timeout and content-free observations; no durable reservation or billing settlement |
 | Concierge place-angle web augmentation | `WebSearchTool.execute` in `concierge/tool_handlers/search.py`, combining canonical place name and user query | Not routed through the typed acquisition adapter or public-research execution observation; normal tool retry path remains in effect |
 | Lookup-agent web enrichment | `WebSearchTool.execute` in `lookup_agent/handlers.py`, combining the requested phrase and city | Separate lookup flow; no common acquisition/reservation path. Query-bearing logs and exception details were removed in backend commit `4c3199ccf`; this does not review the public projection or add spend control |
 | Image candidate discovery | Direct Tavily SDK call in `media/sources/tavily_search.py`, with image mode and in-memory result cache | Governed by the web-search mode and pipeline no-op checks, but not represented as a content-research attempt or shared reservation |
@@ -3141,3 +3141,69 @@ unit-test references. No provider call, database read/mutation, deployment
 inspection, runtime change, or test execution occurred. This is inventory
 evidence only; it does not satisfy R3 load/recovery acceptance. R0–R7 remain
 open.
+
+#### R1/R3 implementation receipt — live-event acquisition joins the bounded adapter (October 1)
+
+Backend commit `11849326b` routes Concierge live-event discovery through the
+same `PublicResearchRequest` and `acquire_public_research` boundary used by
+factual lookups and trip-direction fallback. The typed request is constructed
+only after validating the event window and resolving the canonical place; its
+provider terms contain the normalized event category, canonical public
+location and bounded dates. The model's free-form query, personal name and
+private-note fields remain excluded. The reviewed event-domain filter is an
+internal adapter option, not caller query text. Existing post-search
+verification is unchanged: only approved HTTPS source pages with a matching
+date/location Event record can become displayable candidates.
+
+URL-only provider rows are represented as `url_candidate` only for the typed
+live-event purpose. They are leads, not citations or facts; ordinary fact and
+artifact research still rejects rows without excerpts. The common path now
+owns the event lookup's single tool attempt, deadline, cancellation observation
+and provider-dispatch usage count, while live-event result verification and
+content-free discovery metrics remain with Concierge. This consolidates an
+interactive dispatch seam; it does **not** establish durable commercial
+reservation, provider billing settlement, shared-capability enforcement,
+background-work accounting or a new native consumer.
+
+Validation on backend revision `11849326b` (Python 3.13.0):
+
+- Focused request, acquisition and Concierge handler tests: **50 passed**.
+- `scripts/check_surface_keys.py --ci`: passed (55 registered surface keys;
+  six retry callers remained allowlisted).
+- `make ci-static`: passed; Ruff, format, import and structural checks passed,
+  and mypy reported no issues across **1,900** backend source files.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main`:
+  **22,172 passed, 14 skipped, 1 xfailed, 52 xpassed**, two expected local
+  Qdrant payload-index warnings. Existing embedding tests logged Hugging Face
+  DNS retries in this offline environment; the full suite exited successfully.
+- Backend commit hooks passed. No live provider call, API/OpenAPI or database
+  schema change, released policy, feature flag, model activation, deployment or
+  native app change occurred.
+
+This reduces duplicated interactive provider dispatch logic but leaves the
+larger R3 workload split and finite cost/authorization boundary open. R0–R7
+remain open.
+
+#### Cross-repository verification receipt — live-event acquisition (October 1)
+
+The standard `make verify-changed WORKSPACE_BASE_REF=main
+AGENT_BASE_REF=main APP_BASE_REF=main` composite was attempted. It did **not**
+finish green: the sandbox denied writes to the backend `.pytest_cache`, Ruff
+cache, and Expo's `.expo/cache/eslint` (including an unlink during Expo lint).
+This is an environment/cache failure, not a code-test failure; the aggregate
+command remains recorded as failed and is not claimed as passed.
+
+The required checks were rerun individually with cache-sensitive tools either
+redirected to `/private/tmp` or invoked uncached:
+
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static` in `travel-agent`: passed; Ruff, format, architecture/structural checks and mypy across 1,900 files passed.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main` in `travel-agent`: passed, **22,172 passed, 14 skipped, 1 xfailed, 52 xpassed**, two expected local-Qdrant warnings.
+- Frontend fast checks passed using `./node_modules/.bin/eslint app components --no-cache` (167 existing warnings, zero errors), followed by typecheck, API-boundary, schema-bridge, Home-surface-budget and test-typecheck-contract checks. Native-compatibility and icon-current checks also passed. The Expo wrapper itself remains blocked by its fixed `.expo/cache/eslint` cleanup path in this sandbox.
+- `npm run verify:merge -- --base e7bdc660501eaa19234e6b45bda033658edaa2d4` in `travel-app`: passed, **1,289 suites / 9,178 tests**; Jest reported one worker force-exited after all suites passed.
+- `make contract-check api-coverage-check compatibility-check card-arrival-check chat-card-types-check docs-check` in the workspace: passed, including generated API parity and documentation governance, inventory, links, release scope, and Home-surface governance.
+
+These per-layer results establish the relevant code and contract checks, but do
+not erase the composite-run failure. No cache files were deleted or permission
+changes made. The Expo cache-path limitation is local-environment evidence, not
+a roadmap implementation item; a normal writable developer checkout/CI should
+still run the canonical composite gate before merge.
