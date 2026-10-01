@@ -4083,3 +4083,31 @@ Validation on Darwin `25.5.0` arm64 / Python `3.13.0`:
 This closes one exact-read freshness regression at the private result owner,
 not the complete R4 arrival/correction/lifecycle acceptance or the R2 quality
 acceptance. R0–R7 remain open.
+
+#### R3 caller audit — answer-only public reachability (October 1)
+
+At workspace `230dc98f`, backend `e35746b83`, and app `e2b51bcf3`, the typed
+answer-only graph path is not currently a production public-search caller.
+`quick_research` accepts `completion_mode="answer_only"` and an optional typed
+`PublicResearchRequest`; `_execute_answer_only_public_research` dispatches only
+when that request is present. The in-repository production call sites are the
+catalog worker and `research_experience`; neither supplies a public request,
+and no production call site opts into answer-only mode. Therefore the graph's
+typed public-request execution path cannot explain current provider spend.
+
+This does **not** close public R3 accounting. Existing chargeable dispatch is
+reachable through the Concierge `search_web` / trip-direction and live-event
+handlers, and the Lookup Agent's separate `WebSearchTool.execute` fallback.
+The Concierge records content-free `ai.research.live` demand and execution
+observations, but `_observe_live_research_demand` explicitly is not an access
+check or reservation; `ENFORCEMENT_READY_CAPABILITIES` still contains only
+`voice.session.start`. Those live handlers can reach Tavily when configured
+without a durable public reservation/settlement. The batch catalog-brief
+accounting receipt above is also attempt telemetry, not durable settlement.
+
+This read-only call-graph audit changed no code and made no provider call. It
+narrows R3's next public path work to the actual dispatch owners; do not add a
+second reservation around the unreachable answer-only path. Any enforcement
+change still needs a reviewed finite-allocation and failure/recovery policy
+before an active user-facing path is gated or charged. R3 and R0–R7 remain
+open.
