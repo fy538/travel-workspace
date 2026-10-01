@@ -836,6 +836,19 @@ Ruff and `git diff --check` passed. Native linked-photo/API acceptance is
 so no device or real-owner readback claim is made. D2 remains active; this is a
 bounded social receiving composition, not full Home/Places or D2 completion.
 
+**Authored Place-note delivery in Places — 2026-10-01:** backend commit
+`936becfda` preserves the exact recipient-consented `place_handoff` identity as
+represented/source evidence only, then composes its exact words as a `RootRead`.
+App commit `fd27d6e4e` renders sender and authored wording in the shared quote
+treatment, retains the exact Place action, and preserves direct wording inside
+plural social comparisons. Ordinary friend-save summaries remain link cards;
+audience gates, owner authority and wire contracts are unchanged. Backend Places
+coverage passed **17/17** with Ruff/format checks; the three affected app suites
+passed **27/27**, typecheck passed, ESLint reported **0 errors** and the existing
+renderer max-lines warning, and registered scenario validation passed (**31
+IDs**). Native visual and real-owner readback evidence were not run for this
+increment. This closes one authored-note receiving gap only; D2 remains active.
+
 ### Combined landing checkpoint — September 30
 
 The merged integration contains the Home/capture lane plus these completed
