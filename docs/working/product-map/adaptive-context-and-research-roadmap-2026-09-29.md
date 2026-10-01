@@ -82,9 +82,10 @@ private capability receives approved finite allocation/recovery controls and
 public chargeable callers have their own complete accounting boundary.
 The server now prioritizes up to two exact `text/plain` dependencies explicitly
 associated with the selected source's currently resolved, owner-visible subject,
-then same-note sources found within at most five 100-descriptor Life metadata
-pages, then bounded same-packet siblings ordered by source position. Subject,
-note and packet membership are candidate cues—not semantic, occurrence or
+then same-note sources from an owner/custody/text-filtered query capped at 100
+matching metadata rows, then bounded same-packet siblings ordered by source
+position. UTF-8 byte-only budget uncertainty remains explicitly incomplete.
+Subject, note and packet membership are candidate cues—not semantic, occurrence or
 interest-aware relevance. Legacy/noncanonical subject pointers can yield false negatives, and
 a truncated empty scan remains unavailable rather than authoritative silence.
 Candidate selection reads no source bodies; Intake revalidates every exact
@@ -722,7 +723,7 @@ is in section 1. The first connected assignment remains active:
 
 | Area | Landed capability to reuse | Remaining connection or evidence |
 | --- | --- | --- |
-| Selected evidence | Owner/revision-bound original reads and mobile callers; bounded UTF-8 text-span selection; exact in-memory hydration; a dark authenticated producer and private exact-result GET; bounded explicit-subject, exact-user-note discovery through at most five metadata pages (500 descriptors), and same-packet candidates; versioned retrieval-only known-answer fixture; real-Postgres acceptance verifies page-two candidate recovery and fail-closed incompleteness beyond the scan cap; exact quoted excerpts are checked against hydrated text before an addition is admitted | Archive coverage beyond the five-page/500-descriptor bound, semantic retrieval/ranking, general component or multimodal retrieval, semantic entailment, final-selection evidence and human usefulness remain open; neither candidate cues nor quote presence proves relevance |
+| Selected evidence | Owner/revision-bound original reads and mobile callers; bounded UTF-8 text-span selection; exact in-memory hydration; a dark authenticated producer and private exact-result GET; bounded explicit-subject, owner-filtered exact-note discovery capped at 100 matching metadata rows, and same-packet candidates; versioned retrieval-only known-answer fixture; real-Postgres acceptance verifies an older match beyond 500 unrelated descriptors, incomplete state beyond the 100-match cap, and conservative handling of uncertain multibyte byte counts; exact quoted excerpts are checked against hydrated text before an addition is admitted | Archive-scale query cost beyond the result cap has not been benchmarked; semantic retrieval/ranking, general component or multimodal retrieval, semantic entailment, final-selection evidence and human usefulness remain open; neither candidate cues nor quote presence proves relevance |
 | Public acquisition | Shared typed single-attempt lookup; answer-only routing without dossier writes; source kind, dates, quotes and truncation metadata | Construct public requests from selected material under an actual disclosure boundary; select a substantive addition and verify claim support beyond quote presence |
 | Runtime | Existing Source workflow/publication controls; content-free demand and tool/SDK-attempt telemetry; selected-source producer has one real reservation/fence and one no-retry/no-failover model attempt; provider-free Postgres now proves its test-policy reserve/settle/reopen lifecycle; private synthesis and public live research now have separate capability keys | The private synthesis key has no released policy or enforcement readiness; public research remains shadow-only; finite approved allocation, live-provider, shared chargeable-attempt coverage, concurrency, fairness and recovery behavior remain open |
 | Receiving dependencies | Merged family readers, exact-source inspection, correction/Undo and return behavior; Home/Places receiving improvements; authenticated result API exists but is dark | Existing preparation requests remain root-bound; no native artifact consumer has adopted the dark result API |
@@ -3801,3 +3802,45 @@ This is trace-content privacy hardening, not external-tracing governance or
 R1 caller-independent research acceptance. Approved public disclosure,
 substantive acquisition, comparative usefulness, native receiving and R0–R7
 package acceptance remain open.
+
+#### R2 implementation receipt — bounded exact-note owner query (October 1)
+
+Backend commit `90129d723ddb0c2abc631a9ffa70e043049f77f1` replaces the broad
+five-page/500-descriptor exact-note scan with an owner-, custody-, text-,
+normalized-note- and size-filtered Intake metadata query. The filter runs
+before the result cap, so an older exact-note candidate is no longer hidden
+behind unrelated recent sources. The query returns at most 100 matching
+metadata rows and reports `complete=false` if more matches exist; an empty
+incomplete result remains unavailable rather than authoritative silence.
+It reads no candidate bodies and adds no note-derived database index, since
+that would duplicate sensitive user-authored text in index storage. Query scan
+cost at very large per-owner archive sizes remains unbenchmarked.
+
+UTF-8 source metadata is byte-counted while the producer's combined input
+limit is character-counted. The lookup therefore uses four bytes per remaining
+Unicode code point as the upper bound for possibly fitting text. Sources whose
+byte count proves they fit are admitted under the conservative budget; if a
+possible multibyte match cannot be proven to fit from metadata alone, the
+candidate set stays incomplete rather than silently treating it as absent.
+
+Validation on the adaptive-context backend lane (Python 3.13.0):
+
+- Candidate selector and versioned relevance-fixture tests: **20 passed**.
+- The selected-source PostgreSQL integration file passed against the explicitly
+  disposable lane database `vesper_adaptive_context_test_20261001`: **14
+  passed**. This includes exact-note discovery beyond 500 unrelated
+  descriptors, incomplete state beyond 100 exact-note matches, and the
+  conservative multibyte budget case.
+- `make ci-static` passed: Ruff and formatting, architecture/structural gates,
+  and mypy across **1,900** backend source files.
+- Full offline `make merge-check BASE_REF=main` passed: **22,217 passed, 14
+  skipped, 53 xpassed**, with two expected local-Qdrant payload-index warnings.
+  Database-marked skips remain unverified by this offline run; no live model
+  or research provider was called.
+- `git diff --check` and commit hooks passed. No API/schema migration, mobile
+  consumer, provider activation, product surface or publication changed.
+
+This improves bounded exact-note candidate reach and truthful incompleteness,
+not semantic retrieval or usefulness. R2 still needs representative selection
+and supported-addition review; matched usefulness and native receiving remain
+open, as do R0–R7 package acceptance.
