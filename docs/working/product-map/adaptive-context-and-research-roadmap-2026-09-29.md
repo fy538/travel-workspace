@@ -1786,27 +1786,28 @@ second model call. If either the selected original or a supporting dependency
 is revoked after the model returns, publication is rejected after the result
 owner revalidates current Intake authority. Because a response was received,
 the test-policy reservation is committed; no result row is written. If a
-previously published result's selected original is later revoked, the
-authenticated exact GET returns a private no-store 404 and erases the stale
-row without invoking the model again. This proves these bounded on-demand
-reselection/revocation paths, not semantic usefulness, ambient triggers,
-notifications, late historical uploads, index lag, expiry, account change,
-cancellation or mounted-consumer behavior.
+previously published result's selected original or supporting dependency is
+later revoked, the authenticated exact GET returns a private no-store 404 and
+erases the stale row without invoking the model again. This proves these
+bounded on-demand reselection/revocation paths, not semantic usefulness,
+ambient triggers, notifications, late historical uploads, index lag, expiry,
+account change, cancellation or mounted-consumer behavior.
 
-Validation on backend commit `4e259a7bf` (including the revocation tests from
-`2c80e35f9` and `6db6713a5`):
+Validation on backend commit `257de30de` (including the prior race tests from
+`2c80e35f9`, `6db6713a5` and `4e259a7bf`):
 
 - The isolated lane runtime health check passed; the exact disposable database
   was `vesper_adaptive_context_test_20261001`.
-- The selected-source Postgres acceptance file passed: **9 passed**. The late
+- The selected-source Postgres acceptance file passed: **10 passed**. The late
   arrival case exercises the authenticated API, candidate owner, producer,
-  result owner and real ledger; revocation cases use the real producer and
-  owner revalidation. Model dispatch alone is stubbed under the injected
-  test-only policy.
+  result owner and real ledger. Both selected-source and dependency
+  revocations are exercised at publication and exact authenticated readback.
+  The ledger is real under injected test policy; model dispatch is stubbed and
+  route auth/feature/rate-limit controls are test-injected.
 - `ruff check` and `ruff format --check` passed for the changed test file.
 - `make ci-static` passed, including Ruff and mypy across **1,900 source files**.
 - `make merge-check BASE_REF=main` passed: **22,158 passed, 14 skipped,
-  1 xfailed, 52 xpassed**, with two expected local-Qdrant payload-index
+  1 xfailed, 52 xpassed**, with one expected local-Qdrant payload-index
   warnings. This is the offline/change-aware suite; the separately recorded
   Postgres run provides the database acceptance evidence.
 - Backend commit hooks passed. No production behavior, API/OpenAPI, schema,
