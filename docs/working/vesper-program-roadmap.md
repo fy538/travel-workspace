@@ -64,7 +64,11 @@ omitting its process paragraph and grouping basis; renderer and controlled
 native full-scroll assertions pass. The run uses a disposable synthetic
 recipient and isolated local API/database; it does not establish production
 auth, recurring supply, provider freshness or design-canon parity. Preserve the
-default QA account.
+default QA account. A follow-up client repair routes the additional friend
+card preserved beside a two-person Places comparison through its exact typed
+Place destination, not a generic venue fallback. Component and backend adapter
+evidence pass; this exact three-person composition has no dedicated native or
+production-owner acceptance yet.
 D1 capture gaps and D3 practical-help gaps
 remain open and can supply independent work when a D2 dependency is unavailable.
 
@@ -808,6 +812,28 @@ no account data or fixtures were changed. The assigned simulator and local
 services are now available, but a fresh full-scroll run still requires a
 configured synthetic recipient. No screenshot or new visual verdict was
 produced. D2 remains active.
+
+**Additional friend perspective exact Place receiving — 2026-10-01:** backend
+commits `f01b71673` and `1a9f57b91` preserve an eligible third friend's card
+beside a two-person Places comparison and attach its exact Place action. An app
+regression first failed: `PlacesFeedSectionContent` only used semantic
+destinations for `friend-pull:*` authored-note cards, so an ordinary additional
+friend card fell through to the generic venue route and lost its typed Places
+context. App commit `be43b6f34` resolves a friend-card action only when it
+targets exactly the tapped venue; a recipient-note card additionally requires
+its exact handoff ID, and ordinary cards reject handoff-bearing actions. The
+legacy route remains the fallback when no matching typed action exists.
+
+The app regression exercises the runtime shape (two attributed comparison
+cases plus Ari's separate card), confirms all three perspectives render, and
+asserts Ari's card opens the exact Place destination. The full focused
+`PlacesSectionFeed.test.tsx` suite passed **56/56**; `npm run typecheck`,
+`npm run test:typecheck:contracts`, targeted ESLint, registered polish scenario
+validation (**31 IDs**) and `git diff --check` passed. The backend runtime and
+candidate regressions passed **2/2**. No dedicated native three-friend run,
+live HTTP/API read or external-canon verdict was produced. This closes a
+client-side exact-context handoff gap only; ordinary/returned/live coverage,
+native visual review and D2 acceptance remain open.
 
 ### D3 Make practical help part of the same system
 

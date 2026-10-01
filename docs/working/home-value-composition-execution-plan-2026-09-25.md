@@ -2060,6 +2060,21 @@ The selected check did not run DB-marked tests. This closes one social-card
 loss case only; D2's real-owner state portfolio and native/full-scroll review
 remain open.
 
+The app initially did not consume the additional ordinary friend card through
+its typed destination: only `friend-pull:*` authored-note cards used the
+semantic Place action; other friend cards fell through to a generic venue
+route. App commit `be43b6f34` now resolves the typed `places.open_entity`
+destination only when exactly one venue ref matches the tapped card, while
+recipient-note cards still require the exact handoff ref. The app test composes
+the two-person comparison with Ari's third card, verifies all three authored
+perspectives render, and checks the third card opens its exact Place/context.
+`PlacesSectionFeed.test.tsx` passed **56/56**; app production and test-contract
+typechecks, targeted ESLint, registered polish scenarios (**31 IDs**) and
+`git diff --check` passed. The paired backend runtime/candidate regressions
+passed **2/2**. No dedicated native or live-API replay of this three-person
+shape was run, so this closes the app route-resolution regression, not broader
+native or real-owner social acceptance.
+
 ### Published candidate — prior full coordinated gate
 
 The full coordinated gate passed before this docs rebaseline on workspace
