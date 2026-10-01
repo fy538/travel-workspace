@@ -3313,3 +3313,33 @@ approved finite synthesis allocation and recovery, and complete accounting for
 public chargeable acquisition. The larger first R0/R1/R2/R6 connection still
 needs supported useful-result evidence and native consumer acceptance. R0–R7
 remain open.
+
+#### R3 acceptance receipt — concurrent selected-source reservation (October 1)
+
+Backend commit `7ba34d7b3` adds a disposable-Postgres race through the real
+selected-source producer and commercial gateway. Two independent work items
+for the same user compete for the injected one-unit daily test allocation. The
+winning model stub remains in flight while the other request attempts its
+reservation. Only one request reaches the model; the competitor is rejected
+before provider dispatch. The real ledger ends conserved at
+`(allocated, available, held, consumed) = (1, 0, 0, 1)`, with one reservation
+and no reconciliation mismatch.
+
+Validation on the final test revision:
+
+- The complete provider-free
+  `tests/api/test_selected_source_research_postgres.py` module passed:
+  **11 passed** against the isolated lane Postgres service, on a newly created
+  disposable database migrated to `selresult03`. The database was removed
+  immediately afterward.
+- Ruff lint, Ruff format, `git diff --check`, and the commit's applicable hooks
+  passed. Static checks and the full backend merge preflight passed on the
+  preceding production-code commit `5bf3c9575`; this test-only commit changed no
+  runtime code.
+
+This demonstrates same-user allocation integrity for two overlapping
+selected-source producers with a deterministic stub. It does not measure
+provider billing, cross-user fairness, overload behavior, operational
+reconciliation, or released-policy readiness. No live provider/model call,
+policy allocation, API/schema, feature flag, app, deployment, or publication
+changed. R3 and R0–R7 remain open.
