@@ -107,16 +107,24 @@ lint cache and exposed one stale retry-count contract expectation. The rerun
 used only the lane's ignored cache write access, and the corrected contract now
 passes.
 
-The Package 1 implementation is in app [PR #209](https://github.com/fy538/travel-app/pull/209).
+Package 1's implementation is in app [PR #209](https://github.com/fy538/travel-app/pull/209).
 Package 2's targeted-capture isolation, exact-input judgment carry, and
-proportional review guidance are implemented in that same PR. The workspace
-coordination and roadmap receipt are in [PR #39](https://github.com/fy538/travel-workspace/pull/39).
-The coordinated `make verify-changed` passed against workspace base `4febe0d`,
-backend base `bd1a683`, and app base `e7bdc66`; app fast checks, selected merge
-tests, and workspace documentation checks passed. One earlier composite attempt
-hit a transient Jest worker crash; the affected isolated suite and subsequent
-full coordinated run passed. A fresh hosted status read is unavailable because
-the GitHub API connection failed, so hosted checks are unverified.
+proportional review guidance are implemented in that PR. Workspace tracking is
+in [PR #39](https://github.com/fy538/travel-workspace/pull/39), and backend
+selector transparency is in [PR #239](https://github.com/fy538/travel-agent/pull/239).
+
+The coordinated `make verify-changed` passed for workspace base
+`4febe0d461a62d204ba4dee9eaad7813c7c1509c`, backend base
+`bd1a683b8656c3f4091e16abb64f57897fa7fc42`, and app base
+`e7bdc660501eaa19234e6b45bda033658edaa2d4`. App fast checks passed; the full
+app suite passed (1,289 suites, 9,178 tests, one snapshot). Backend static
+checks passed; the offline suite passed (22,084 passed, 14 skipped, 1 expected
+failure, 52 expected passes). Workspace tests passed (119), followed by contract
+and documentation checks. The first publisher attempts exposed a missing
+lane-local Python 3.13 dependency environment; installing the committed
+`requirements-dev.txt` in `.venv` allowed the final coordinated run to pass. A
+fresh hosted status read still fails with a GitHub API connection error, so
+hosted checks remain unverified.
 
 Package 1 is **implementation-complete for this PR, acceptance-unverified**: do
 not mark it complete until an exclusive simulator and its lane Expo server are
@@ -125,13 +133,12 @@ PR, acceptance in progress**: its review rules and targeted tooling are updated,
 but the shared-reader large-text clipping and Home/Places wrong-state defects
 have not yet been replayed. No positive result is claimed for either replay.
 
-**Package 3 — iteration and candidate selection:** selector transparency is in
-progress on the same lane. App plans now expose why a full suite is required and
-print related test paths before running Jest; backend plans expose selected test
-directories and full-suite fallback reasons. Workspace, app and backend routing
-tests pass (12, 7 and 15 tests respectively), including cumulative shared-change
-coverage after a later local edit. The complete coordinated gate for these new
-selector changes is still pending. No latency improvement is claimed.
+**Package 3 — iteration and candidate selection:** selector transparency passed
+the coordinated gate above. App plans expose full-suite reasons and print
+related test paths before running Jest; backend plans expose selected test
+directories and broad-fallback reasons. Workspace, app and backend routing tests
+passed (12, 7 and 15 tests respectively), including cumulative shared-change
+coverage after a later local edit. No latency improvement is claimed.
 
 ## 1. What the repository and traces establish
 
