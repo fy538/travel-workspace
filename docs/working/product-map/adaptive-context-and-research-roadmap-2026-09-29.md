@@ -1001,6 +1001,14 @@ lag; revoked source during generation; mounted expiry; account change and
 reconnect. Unchanged warm opens cause no generation. New ambient production
 requires its separate adopted trigger policy.
 
+**Current proof boundary:** the private result owner revalidates the exact
+selected-source and dependency revisions on read and erases a result if either
+no longer matches the current Intake source. Disposable-Postgres coverage now
+exercises revision mismatch for both selected and supporting sources. This
+simulates a changed source revision at the owner boundary; it does not exercise
+a supported user correction flow, novelty-history correction, index lag,
+mounted-client expiry, or recall of an already delivered result.
+
 ### R5 Apply assistance preferences in context
 
 **Outcome:** admitted context changes the type or depth of help only when it
@@ -4028,3 +4036,37 @@ representative matched outputs, independent human assessment of support and
 usefulness, and a real caller that supplies known insights from the relevant
 interaction. It does not grant access to conversation history or assert
 archive-wide deduplication. R0–R7 remain open.
+
+#### R4 implementation receipt — exact result invalidation on source revision change (October 1)
+
+Backend commit `006dd8582ab9a8f8d4a988f993405dafae177766` adds disposable-
+Postgres lifecycle acceptance for an exact selected-source result when the
+stored current revision changes. The parameterized test covers both the
+selected original and a supporting dependency. A later exact owner read detects
+the stale reference and erases the derived result row rather than returning it.
+The test changes the source object's stored content hash to simulate a newer
+revision; it does not claim coverage of a full user-visible correction command,
+new-source ingest, or already-delivered bytes. Backend Feature documentation
+records this boundary.
+
+Validation on Darwin `25.5.0` arm64 / Python `3.13.0`:
+
+- `tests/core/test_selected_source_research_results_postgres.py`: **11 passed**
+  against the healthy `vesper-adaptive-context-research` Postgres service at
+  `64355`, using the explicitly named disposable database
+  `vesper_adaptive_context_test_20261001` and
+  `TEST_DATABASE_DISPOSABLE=1`. An earlier invocation without the local
+  credentials skipped both parametrized cases and is not counted as evidence.
+- `MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true make ci-static` passed, including
+  Ruff, architecture/structural gates and mypy across **1,900** backend files.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main` passed:
+  **22,222 passed, 14 skipped, 1 xfailed, 52 xpassed**, with two expected
+  local-Qdrant warnings. The separate disposable-Postgres test above supplies
+  the DB evidence; database-gated cases in the full offline suite remain
+  unverified.
+- No API/schema or migration changed; no provider, app, consumer runtime,
+  deployment or publication behavior was exercised.
+
+This closes one exact-read freshness regression at the private result owner,
+not the complete R4 arrival/correction/lifecycle acceptance or the R2 quality
+acceptance. R0–R7 remain open.
