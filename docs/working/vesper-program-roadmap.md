@@ -1087,6 +1087,25 @@ focused ESLint (**0 errors**), registered scenario validation (**31 IDs**) and
 closes the no-op tap path, not photo-byte custody, real-owner acceptance,
 full-scroll parity or D2 completion.
 
+**Places source-door grounding — implemented 2026-10-01:** app commit
+`c3c563602` changes the generic “Open the source” door to consider only a
+unit's explicit `source_refs`, never a merely represented Place or context.
+The native Home-origin Places capture exposed that the “Three hours after the
+ferry” way-in card had no declared sources but still rendered a source door
+that resolved to broad Places context. The card now keeps its explicit
+Place-opening destination without the duplicate/misleading source link; the
+authored Maya note keeps its exact “Open Red Hook” action. Focused Places and
+original-delivery tests passed **50/50**, app typecheck passed, focused ESLint
+reported **0 errors** (one existing renderer max-lines warning), and
+`git diff --check` passed. The targeted iPhone 16 Pro flow
+`polish/places-semantic-field` captured **1/1** with five screenshots and
+verified opening the authored note's exact Place destination and returning to
+the same Places context. Its screenshot visibly confirms the duplicate source
+door is gone. This was the fixture-backed `elif/home-context` path: it does
+not prove API-backed owner data, the way-in card's destination tap, an external
+design-canon comparison, photo-byte custody, real-owner acceptance, or full
+Places/D2 parity. D2 remains active.
+
 ### Combined landing checkpoint — September 30
 
 The merged integration contains the Home/capture lane plus these completed
