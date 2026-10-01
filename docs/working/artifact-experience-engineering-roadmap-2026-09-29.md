@@ -79,11 +79,20 @@ returns authorized original references, not user-facing Thing titles or
 summaries. Define a bounded, owner-authorized Life composition over these
 existing owners before building member UI; do not copy Source content/claims,
 invent labels, or create an N+1 read pattern. Keep Strategy as the Collection
-owner and Life as presentation/projection owner. Owner-confirmed reconciliation
-is implemented and reversible; it does not claim semantic sameness. Collection
-continuity, native acceptance, timezone-authoring for typed-time replacement,
-and wider P0/P1/PC/P2 outcomes remain open. Do not build a second research
-engine; adopt Technical's landed interface and first-producer safeguards.
+owner and Life as presentation/projection owner. The code inspection found two
+concrete gates: the `consumer_collection` path is broadly allowlisted but has no
+native detail route yet, and the Life row contract requires a Source ref even
+though a Collection index row is directly backed by its canonical Collection
+owner. Do not fake provenance to make those rows compile. A bounded root index
+can use Collection-owner name/count summaries and exact total count without
+hydrating every Thing; a useful member reader still needs a current-authority,
+bounded display composition before UI, not one request per member. The current
+Life design reference is legacy Threads evidence, so it does not certify the
+Collections composition. Owner-confirmed reconciliation is implemented and
+reversible; it does not claim semantic sameness. Collection continuity, native
+acceptance, timezone-authoring for typed-time replacement, and wider
+P0/P1/PC/P2 outcomes remain open. Do not build a second research engine; adopt
+Technical's landed interface and first-producer safeguards.
 
 The accepted
 [Collections](../decisions/2026-09-28-collections-are-the-spine.md) and
