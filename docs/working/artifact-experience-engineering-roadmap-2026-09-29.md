@@ -44,8 +44,9 @@ candidate-to-bundle read path and the first explicit bundle-reconciliation
 path. A first private consumer-Collection backend slice is now implemented in
 the local artifact lane: canonical metadata, many-to-many kept-Thing references,
 owner-scoped reads and revision-bound create/rename/add/remove/soft-delete
-commands. Its operations are deliberately excluded from the mobile projection
-until a Life consumer is integrated and device-validated. Shared membership,
+commands. The operations are now in the generated mobile projection and have
+typed API, mock-parity, and session-scoped paginated data-facade coverage. They
+are not yet consumed by Life presentation or device-validated. Shared membership,
 audience/receiving, automated filing and native collection management remain
 open, along with broader P0/P1/PC/P2 acceptance.
 
@@ -57,7 +58,7 @@ open, along with broader P0/P1/PC/P2 acceptance.
 | Reader lifetime | Account-session-scoped reads, expiry-aware displayed facts and foreground refresh, exact-source authorization and revision checks | Full source/audience/collection lifecycle replay and authenticated mobile-to-service acceptance |
 | Native acceptance | Fourteen family/source/return fixture screenshots; ten largest-text screenshots; Life source/photo-viewer/removal flow on iOS 18.2 | Reliable pinch/pan, actual VoiceOver traversal/actions, loading/error states, Android/physical devices and live-service readback; these captures do not establish user preference |
 | Landed Technical dependencies | Exact-original revision binding and backend-only refinding of a bounded UTF-8 `text/plain` span; bounded public-acquisition primitives | No stable cross-representation Component identity, mobile selection API, artifact-bound discovery request or complete research-spend enforcement |
-| PC and later packages | House-design fallbacks and existing eligible original receiving remain usable; canonical private consumer-Collection backend owner and operations are implemented but not yet consumed by Life | Shared membership/audience/receiving, native Life management, approved catalog mappings/uses, exact kept editions and connected contextual additions remain unfinished |
+| PC and later packages | House-design fallbacks and existing eligible original receiving remain usable; canonical private consumer-Collection owner, generated mobile contract/client, and session-scoped paginated data facade are implemented but not yet consumed by Life | Shared membership/audience/receiving, native Life presentation and device acceptance, approved catalog mappings/uses, exact kept editions and connected contextual additions remain unfinished |
 
 Section 13 retains the exact revisions, commands and limits of each receipt.
 Earlier simulator/build failures are historical attempts, not the current
@@ -153,6 +154,18 @@ Orchestration owns capture transport and Home/Places delivery; neither lane
 owns the kept-Thing identity write. The artifact lane carries its slice through
 focused verification and landing, escalating only a changed authority boundary
 or a real cross-lane conflict.
+
+**Lane continuation decision — October 1:** continue this work in the existing
+`codex/artifact-foundation` coordinated tuple; do not create another branch or
+worktree merely to begin the next artifact package. This lane owns the
+artifact-roadmap outcome through its focused verification and landing, while
+the three repositories retain independent Git histories and layer ownership
+as stated above. Open a separate lane only for a genuinely independent outcome
+with explicit file/runtime ownership, not for another step in this same
+artifact sequence. Technical's selected-source producer remains a dependency
+owned by its lane; do not consume its unmerged branch as if it were part of
+this tuple. Continue independent artifact work here, and adopt that producer
+after it is landed and its contract is verified.
 
 **Write ownership:** thing/component and cultural-subject identity, reconciliation,
 typed readings, focused reader internals, consumer collections and Life, approved
@@ -619,8 +632,9 @@ and soft-delete commands. Membership stores Thing references rather than Source
 payloads; adding a Thing is currently limited to its owner, and deleting a
 Collection preserves the Things. The authenticated operations are included in
 the generated mobile contract, with typed app HTTP/API methods and mock parity
-covered by focused lifecycle tests. React Query data hooks, Life presentation,
-and device acceptance remain unfinished. This is not shared-Collection support:
+covered by focused lifecycle tests, along with session-scoped paginated React
+Query data hooks. Life presentation and device acceptance remain unfinished.
+This is not shared-Collection support:
 other-owner contributions, recipient grants, whole-collection serving,
 leave/withdrawal repair, and sharing UI remain unimplemented. Automatic
 filing/default Collection behavior and Vesper-initiated shared additions remain
@@ -2498,3 +2512,25 @@ The test database was created solely for this slice and dropped after
 verification; the artifact lane's Postgres service and volume remain available
 for the next implementation slice. This receipt is backend/database evidence
 only: the Collection root has not yet become a user-facing mobile experience.
+
+### October 1 private consumer-Collection app data facade
+
+This follow-on consumes the generated authenticated Collection operations
+without introducing a second Collection or identity owner. Workspace commit
+`2c93873c` activates the reviewed app projection and records its ownership
+policy; app commit `1241835ba` adds `data/consumerCollections.ts` with
+session-scoped paginated index/detail queries and gated create, rename, add,
+remove and soft-delete mutations. Successful writes invalidate only that
+account's Collection index/detail cache. Both real and stateful mock modes use
+the shared API boundary. This is a data-layer contract, not a Life screen,
+navigation path, native acceptance, shared membership, or recipient-grant
+implementation.
+
+Focused app evidence: TypeScript typecheck, generated-contract typecheck, the
+Collection/query-key Jest suites (3 suites, 18 tests), targeted ESLint, mock/real
+parity QA (6 suites, 185 tests), and API-boundary checks passed. Workspace API
+coverage passed with 590 active, 15 dark, 0 unflagged, and 62 retiring
+operations. App documentation checks passed for headers and links (330
+Markdown files). These checks establish API/data-facade behavior and mock/real
+selection boundaries; they do not establish a rendered Life experience or
+device/service acceptance.
