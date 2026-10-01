@@ -740,6 +740,22 @@ run was `20261001T001248Z-places-workspace` (UTC; local capture date
 2026-09-30). This closes a visible scroll-viewport defect only; D2 remains
 active. Continue with useful existing-supply coverage and full-scroll acceptance.
 
+**Home real-source reading sequence — 2026-09-30:** app commit `ecb37add8`
+hardens the native rehearsal fixture IDs and replaces a renderer-specific
+detail-screen selector with the exact seeded Place title. On the isolated
+lane API/database and assigned iPhone 16 Pro, `78-home-public-reading-sequence`
+passed end to end: both accepted source readings appeared together in Home,
+the exact Place opened, Back restored the same Home card, and the fixture
+cleanup check passed. `bash -n` and `git diff --check` passed for the runner
+changes. This is real-local source/owner-read and return evidence, not release
+acceptance or proof of the combined full-scroll portfolio. The combined
+three-family full-scroll rehearsal still does not admit the public composition
+alongside its other fixtures (observed 10 candidates, 8 admitted); this does
+not yet distinguish a fixture/persona interaction from a Home-selection issue.
+Keep admission policy unchanged until that is isolated. D2 remains active;
+next, establish a suitable controlled full-scroll acceptance profile and
+continue other independent Home/Places implementation slices.
+
 ### Combined landing checkpoint — September 30
 
 The merged integration contains the Home/capture lane plus these completed
