@@ -722,11 +722,11 @@ is in section 1. The first connected assignment remains active:
 
 | Area | Landed capability to reuse | Remaining connection or evidence |
 | --- | --- | --- |
-| Selected evidence | Owner/revision-bound original reads and mobile callers; bounded UTF-8 text-span selection; exact in-memory hydration; a dark authenticated producer and private exact-result GET; bounded explicit-subject, exact-user-note discovery through at most five metadata pages (500 descriptors), and same-packet candidates; versioned retrieval-only known-answer fixture; exact quoted excerpts are checked against hydrated text before an addition is admitted | Archive coverage beyond the five-page/500-descriptor bound, semantic retrieval/ranking, general component or multimodal retrieval, semantic entailment, final-selection evidence and human usefulness remain open; neither candidate cues nor quote presence proves relevance |
+| Selected evidence | Owner/revision-bound original reads and mobile callers; bounded UTF-8 text-span selection; exact in-memory hydration; a dark authenticated producer and private exact-result GET; bounded explicit-subject, exact-user-note discovery through at most five metadata pages (500 descriptors), and same-packet candidates; versioned retrieval-only known-answer fixture; real-Postgres acceptance now verifies an exact-note candidate beyond the first 100-descriptor page; exact quoted excerpts are checked against hydrated text before an addition is admitted | Archive coverage beyond the five-page/500-descriptor bound, semantic retrieval/ranking, general component or multimodal retrieval, semantic entailment, final-selection evidence and human usefulness remain open; neither candidate cues nor quote presence proves relevance |
 | Public acquisition | Shared typed single-attempt lookup; answer-only routing without dossier writes; source kind, dates, quotes and truncation metadata | Construct public requests from selected material under an actual disclosure boundary; select a substantive addition and verify claim support beyond quote presence |
 | Runtime | Existing Source workflow/publication controls; content-free demand and tool/SDK-attempt telemetry; selected-source producer has one real reservation/fence and one no-retry/no-failover model attempt; provider-free Postgres now proves its test-policy reserve/settle/reopen lifecycle; private synthesis and public live research now have separate capability keys | The private synthesis key has no released policy or enforcement readiness; public research remains shadow-only; finite approved allocation, live-provider, shared chargeable-attempt coverage, concurrency, fairness and recovery behavior remain open |
 | Receiving dependencies | Merged family readers, exact-source inspection, correction/Undo and return behavior; Home/Places receiving improvements; authenticated result API exists but is dark | Existing preparation requests remain root-bound; no native artifact consumer has adopted the dark result API |
-| Evaluation | Focused/offline checks, producer route tests, disposable-Postgres owner/readback, ledger lifecycle, source-revocation publication/readback races, late-candidate reselection after an empty result, R2 candidate fixture, exact-excerpt admission tests, backend static/offline gates, app regression and workspace docs checks | Matched usefulness comparisons, semantic/archive-wide retrieval quality, authorized live-provider evidence and real consumer acceptance |
+| Evaluation | Focused/offline checks, producer route tests, disposable-Postgres owner/readback, ledger lifecycle, source-revocation publication/readback races, late-candidate reselection after an empty result, R2 candidate fixture, real-Postgres page-two owner-scoped candidate retrieval, exact-excerpt admission tests, backend static/offline gates, app regression and workspace docs checks | Matched usefulness comparisons, semantic/archive-wide retrieval quality, authorized live-provider evidence and real consumer acceptance |
 
 R0's scope/owner admission, R1's disclosure and acquisition acceptance, R2's
 supported selection beyond exact-note and same-packet candidate cues, and R6/R7's connected evidence are unfinished. Minimum
@@ -3528,3 +3528,31 @@ a clean combined preflight. The isolated rerun supports a transient/concurrent
 test failure; no unrelated test or runtime code was changed to mask it. No
 provider, production allocation, native consumer, deployment, or publication
 was enabled. R0–R7 remain open.
+
+#### R2 acceptance receipt — second-page owner-scoped exact-note retrieval (October 1)
+
+Backend commit `f448c2fdc` adds a disposable-Postgres test to
+`tests/api/test_selected_source_research_postgres.py`. Its new owner has one
+older exact-note candidate, the selected source, and 99 newer unrelated source
+descriptors. The fixture sets deterministic source timestamps so the selected
+source closes page one at the 100-descriptor cursor and the matching candidate
+is the first result on page two. The production metadata reader is wrapped only
+to observe its cursors; both queries execute against PostgreSQL. The test
+verifies the exact candidate is returned and the call sequence is the initial
+query followed by the selected-source cursor. Sources remain exact-owner,
+verified retained records; no body is loaded by discovery.
+
+Validation on the adaptive-context lane:
+
+- Focused PostgreSQL test: **1 passed** against the isolated lane service in
+  `vesper_adapt_note_p2_20261001_01`, migrated to `selresult03`.
+- The test actor was confirmed removed; the uniquely named database had zero
+  active connections and was dropped after the run.
+- Candidate unit suite: **10 passed**. `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static` passed,
+  including Ruff, formatting, architecture/structural gates, and mypy across
+  **1,900** source files. Commit hooks passed.
+- This is database evidence for page-two keyset retrieval, not archive-wide
+  recall, relevance, semantic ranking, addition support, usefulness, or a
+  production route. The test-only change made no API/schema, provider, policy,
+  feature-flag, app, deployment, or publication changes. R0–R7 remain open.
