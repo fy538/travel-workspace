@@ -723,7 +723,7 @@ is in section 1. The first connected assignment remains active:
 | Public acquisition | Shared typed single-attempt lookup; answer-only routing without dossier writes; source kind, dates, quotes and truncation metadata | Construct public requests from selected material under an actual disclosure boundary; select a substantive addition and verify claim support beyond quote presence |
 | Runtime | Existing Source workflow/publication controls; content-free demand and tool/SDK-attempt telemetry; selected-source producer has one real reservation/fence and one no-retry/no-failover model attempt; provider-free Postgres now proves its test-policy reserve/settle/reopen lifecycle | Production capability boundary and allocation remain unapproved; public research callers still share a shadow-only capability; live-provider, shared chargeable-attempt coverage, concurrency, fairness and recovery behavior remain open |
 | Receiving dependencies | Merged family readers, exact-source inspection, correction/Undo and return behavior; Home/Places receiving improvements; authenticated result API exists but is dark | Existing preparation requests remain root-bound; no native artifact consumer has adopted the dark result API |
-| Evaluation | Focused/offline checks, producer route tests, disposable-Postgres owner/readback and ledger lifecycle, R2 candidate fixture, exact-excerpt admission tests, backend static/offline gates, app regression and workspace docs checks | Matched usefulness comparisons, semantic/archive-wide retrieval quality, authorized live-provider evidence and real consumer acceptance |
+| Evaluation | Focused/offline checks, producer route tests, disposable-Postgres owner/readback, ledger lifecycle and revoked-dependency publication race, R2 candidate fixture, exact-excerpt admission tests, backend static/offline gates, app regression and workspace docs checks | Matched usefulness comparisons, semantic/archive-wide retrieval quality, authorized live-provider evidence and real consumer acceptance |
 
 R0's scope/owner admission, R1's disclosure and acquisition acceptance, R2's
 supported selection beyond exact-note and same-packet candidate cues, and R6/R7's connected evidence are unfinished. Minimum
@@ -1741,6 +1741,37 @@ of later model turns, OCR-derived queries, other callers or broader egress
 policy. No claim-support verifier, public-source retention, private-memory
 filter, paid-attempt reservation, selected-component flow, live provider
 call, database mutation or native consumer readback was exercised. R1 and
+R0–R7 remain open.
+
+#### R4 implementation receipt — revoked dependency during publication (October 1)
+
+Added a provider-free disposable-Postgres race acceptance to
+travel-agent/tests/api/test_selected_source_research_postgres.py. The selected
+and related originals are owner-hydrated, a test model returns a syntactically
+valid addition with exact present excerpts, and the test revokes the related
+Intake source before the producer attempts publication. The owner revalidation
+rejects publication: no result row is stored. Since the model response already
+returned, the real test-policy ledger reservation is committed rather than
+released as though it had not incurred use. Cleanup removes only this test
+actor's data.
+
+This proves current dependency custody is rechecked at publication for this
+producer; it does not prove broad grant semantics across other owners, revoke
+after already delivered output, source correction, selection refresh after
+empty results, or a native mounted-screen race. R4 remains open for its wider
+arrival/correction/expiry acceptance set.
+
+Validation:
+
+- The isolated revocation-race test passed (**1 passed**) against the lane's
+  explicit disposable database vesper_adaptive_context_test_20261001.
+- Ruff check and format check passed for the changed acceptance file.
+- The complete selected-source Postgres acceptance file passed (**7 passed**),
+  including exact readback, no-addition settlement, ambiguous dispatch and
+  revocation-before-publication cases.
+- Commit 50a95ad07 (test: reject revoked selected-source dependencies) passed
+  repository hooks. No production behavior or policy changed.
+
 R0–R7 remain open.
 
 #### Implementation receipt — privacy-safe research diagnostics (September 30)
