@@ -87,13 +87,16 @@ checkouts still use the tested candidate commits. Align only the lane's own
 checkouts with landed dependencies at implementation intake. Approved Thesis
 and Product Model refinements are included in the landing, not outstanding
 canon conflicts. Subsequent owner drafts remain separate from this baseline.
+Strategy's artifact-foundation checkout has since synchronized its own
+three-repository worktree to the landed tuple; this verifies that lane's
+checkout, not all runtime or device readiness.
 
 | Area | Implemented foundation | Remaining work and owner |
 | --- | --- | --- |
 | Capture | Shared private composer, native extension host, retry/session custody, supported email attachment intake, original access | Supported-door delivery, failure/retry clarity and authenticated handoff: Orchestration D1 |
 | Home | Source discovery/request/worker/readback connections, contextual continuation, current commitment facts, native hierarchy improvements | Useful recurring supply, complete receiving, full-scroll quality and recovery options: D2/D3 |
-| Artifacts and Life | Source custody, original readers, revisioned reading descriptors, initial family readers/corrections, Life projections and original receiving | Complete thing/component identity, reader portfolio, catalog anchors, consumer collections and accepted Life model: Strategy; consume landed reader modes without declaring P0–P7 complete |
-| Context and research | Revision-bound original reads, bounded public acquisition and initial attempt accounting, alongside existing jobs and publication fences | Complete selected-object capability, supported additions, shared cost/reuse/maintenance and real-consumer quality evidence: Strategy Technical; its R0–R7 packages remain partially implemented |
+| Artifacts and Life | Source custody, typed family/fallback readers, exact originals and return, correction/Undo, session/expiry guards, bounded native fixture matrices, Life projections and original receiving | Reviewed stable Thing/Component identity and cross-source reconciliation, catalog anchors, consumer collections, selected-part/contextual reading and remaining acceptance: Strategy |
+| Context and research | Existing retrieval, exact-original revision checks, backend plain-text component refind, bounded public acquisition, jobs and publication fences | Artifact-target request/result integration, broader evidence selection, correct reuse, research-spend enforcement and bounded maintenance: Strategy Technical |
 | Places and practical help | Situated projections, entity pages, current place facts and owner-backed actions | Consume richer results coherently; useful current options and exact return: D2/D3 |
 
 These are code/evidence boundaries, not design-completion percentages.
@@ -251,7 +254,9 @@ includes the three roadmap baselines, accepted canon refinements and integrated
 product work. Ownership, dependency fallbacks and acceptance boundaries remain
 defined here and in the specialist roadmaps. This does not certify every
 checkout/runtime, native capture door, provider path or full product experience;
-section 3 owns the short lane-specific intake before resuming implementation.
+Strategy's synchronized checkout is recorded in section 1. Section 3 owns the
+short lane-specific intake before resuming implementation; it is not a reason to
+repeat the combined landing.
 
 Do not turn D0 into another architecture inventory or recurring acceptance-only
 lane. Resume the named unfinished product work rather than repeating the
