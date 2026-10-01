@@ -723,7 +723,7 @@ is in section 1. The first connected assignment remains active:
 
 | Area | Landed capability to reuse | Remaining connection or evidence |
 | --- | --- | --- |
-| Selected evidence | Owner/revision-bound original reads and mobile callers; bounded UTF-8 text-span selection; exact in-memory hydration; a dark authenticated producer and private exact-result GET; bounded explicit-subject, owner-filtered exact-note discovery capped at 100 matching metadata rows, and same-packet candidates; versioned retrieval-only known-answer fixture; real-Postgres acceptance verifies an older match beyond 500 unrelated descriptors, incomplete state beyond the 100-match cap, and conservative handling of uncertain multibyte byte counts; exact quoted excerpts are checked against hydrated text before an addition is admitted | Archive-scale query cost beyond the result cap has not been benchmarked; semantic retrieval/ranking, general component or multimodal retrieval, semantic entailment, final-selection evidence and human usefulness remain open; neither candidate cues nor quote presence proves relevance |
+| Selected evidence | Owner/revision-bound original reads and mobile callers; bounded UTF-8 text-span selection; exact in-memory hydration; a dark authenticated producer and private exact-result GET; bounded explicit-subject, owner-filtered exact-note discovery capped at 100 matching metadata rows, and same-packet candidates; versioned retrieval-only known-answer fixture; real-Postgres acceptance verifies an older match beyond 500 unrelated descriptors and incomplete state beyond the 100-match cap; unit regressions cover uncertain multibyte byte counts across subject/note/packet cues; exact quoted excerpts are checked against hydrated text before an addition is admitted | Archive-scale query cost beyond the result cap has not been benchmarked; semantic retrieval/ranking, general component or multimodal retrieval, semantic entailment, final-selection evidence and human usefulness remain open; neither candidate cues nor quote presence proves relevance |
 | Public acquisition | Shared typed single-attempt lookup; answer-only routing without dossier writes; source kind, dates, quotes and truncation metadata; an adversarial returned-snippet regression verifies one explicit provider query and terminal answer-only flow despite hostile text in the result | Construct public requests from selected material under an actual disclosure boundary; select a substantive addition and verify claim support beyond quote presence |
 | Runtime | Existing Source workflow/publication controls; content-free demand and tool/SDK-attempt telemetry; selected-source producer has one real reservation/fence and one no-retry/no-failover model attempt; provider-free Postgres now proves its test-policy reserve/settle/reopen lifecycle; private synthesis and public live research now have separate capability keys | The private synthesis key has no released policy or enforcement readiness; public research remains shadow-only; finite approved allocation, live-provider, shared chargeable-attempt coverage, concurrency, fairness and recovery behavior remain open |
 | Receiving dependencies | Merged family readers, exact-source inspection, correction/Undo and return behavior; Home/Places receiving improvements; authenticated result API exists but is dark | Existing preparation requests remain root-bound; no native artifact consumer has adopted the dark result API |
@@ -932,7 +932,13 @@ not satisfy archive-wide or earlier-chat non-repetition, and it does not prove
 the model follows the instruction. The focused prompt regression verifies only
 that the bounded user statement reaches the model call. R2 remains open for
 representative matched human review of additions, prior-connection repetition,
-cross-source support and usefulness.
+cross-source support and usefulness. Candidate discovery also now preserves
+incomplete status when byte-only metadata cannot establish whether a same-subject
+or same-packet UTF-8 original fits the remaining character budget, matching the
+existing exact-note behavior without reading candidate bodies during discovery.
+The focused unit tests cover this uncertainty and the route's existing incomplete-
+empty behavior; the isolated disposable database was not available for a new
+same-subject or packet-body integration run in this environment.
 
 ### R3 Share execution and account for its cost
 
