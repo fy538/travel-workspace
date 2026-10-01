@@ -56,6 +56,13 @@ owner-backed read foundation, not yet a native Life lens. The app still exposes
 the legacy Time, Places, Threads, and People controls until the Collections
 route, authorized member composition, and design are ready together.
 
+The owner-only Collection detail reader keeps paginated membership on one
+Collection revision. The first page supplies the revision; a continuation from
+an older revision returns a conflict and must restart at page one rather than
+silently combine pages from different Collection states. This protects the
+read boundary only: it does not yet provide a user-facing member composition,
+Thing labels, or a native Collections route.
+
 ## The production root at rest
 
 Every lens uses the same finite anatomy:

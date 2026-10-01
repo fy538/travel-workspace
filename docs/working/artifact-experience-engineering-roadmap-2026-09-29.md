@@ -53,7 +53,11 @@ native Life presentation or device-validated. Shared membership,
 audience/receiving, automated filing and native collection management remain
 open, along with broader P0/P1/PC/P2 acceptance. The root-read implementation
 is committed locally as backend `3f67aa32c` and app `4532fd497`; neither commit
-is merged or published. Its cross-repo receipt is in section 13.
+is merged or published. The detail continuation now pins to the first page's
+Collection revision, holds a shared owner-row lock while reading each bounded
+page, and returns a conflict for stale continuation. Backend commit
+`ebe90232b` and app commit `43c4b3b51` implement this read-consistency seam;
+neither is merged or published. Its cross-repo receipt is in section 13.
 
 | Area | Implemented and evidenced | Remaining boundary |
 | --- | --- | --- |
@@ -63,7 +67,7 @@ is merged or published. Its cross-repo receipt is in section 13.
 | Reader lifetime | Account-session-scoped reads, expiry-aware displayed facts and foreground refresh, exact-source authorization and revision checks | Full source/audience/collection lifecycle replay and authenticated mobile-to-service acceptance |
 | Native acceptance | Fourteen family/source/return fixture screenshots; ten largest-text screenshots; Life source/photo-viewer/removal flow on iOS 18.2 | Reliable pinch/pan, actual VoiceOver traversal/actions, loading/error states, Android/physical devices and live-service readback; these captures do not establish user preference |
 | Landed Technical dependencies | Exact-original revision binding and backend-only refinding of a bounded UTF-8 `text/plain` span; bounded public-acquisition primitives | No stable cross-representation Component identity, mobile selection API, artifact-bound discovery request or complete research-spend enforcement |
-| PC and later packages | House-design fallbacks and existing eligible original receiving remain usable; canonical private consumer-Collection owner, generated mobile contract/client, session-scoped paginated data facade, and bounded owner-backed Life Collections root API are implemented. The accepted Collections reading remains the product target. | Shared membership/audience/receiving, native Life Collections lens/detail route and device acceptance, authorized Thing display composition, approved catalog mappings/uses, exact kept editions and connected contextual additions remain unfinished |
+| PC and later packages | House-design fallbacks and existing eligible original receiving remain usable; canonical private consumer-Collection owner, generated mobile contract/client, session-scoped paginated data facade with revision-bound continuation, and bounded owner-backed Life Collections root API are implemented. The accepted Collections reading remains the product target. | Shared membership/audience/receiving, native Life Collections lens/detail route and device acceptance, authorized Thing display composition, approved catalog mappings/uses, exact kept editions and connected contextual additions remain unfinished |
 
 Section 13 retains the exact revisions, commands and limits of each receipt.
 Earlier simulator/build failures are historical attempts, not the current
@@ -90,10 +94,16 @@ Collections root index reads only the authenticated owner's bounded canonical
 Collection name/count summaries plus exact total in one owner query. Collection
 rows carry the canonical owner reference and do not fabricate Source lineage.
 The `consumer_collection` path still has no native detail route; no Collections
-tab or row is exposed in the app. A useful member reader still needs a
-current-authority, bounded display composition before UI, not one request per
-member. The current Life design reference is legacy Threads evidence, so it
-does not certify the Collections composition. Owner-confirmed reconciliation
+tab or row is exposed in the app. Its bounded detail reader now carries the
+first page's Collection revision into continuation requests, reads each page
+under a shared owner-row lock, and rejects stale continuations with a conflict
+that tells the caller to refresh from page one. This is read consistency
+infrastructure only; it does not choose member labels, previews, or final
+screen composition. A useful member reader still needs a current-authority,
+bounded display composition before UI, not one request per member. The current
+Life design reference is legacy Threads evidence, so it does not certify the
+Collections composition.
+Owner-confirmed reconciliation
 is implemented and reversible; it does not claim semantic sameness. Collection
 continuity, native
 acceptance, timezone-authoring for typed-time replacement, and wider
@@ -2644,3 +2654,36 @@ member reader, visual, device, or production-service acceptance. The next
 independent Life slice is the bounded current-authority member composition
 contract; do not expose a dead-end Collections row or implement member UI
 before that contract and the corresponding design are ready.
+
+### October 1 revision-bound Collection detail pagination
+
+Backend `Consumer Collection` detail pagination now returns a Collection
+revision on the first page and accepts that revision on continuation requests.
+The owner Collection row is read under a shared lock for each bounded detail
+query, so canonical writes cannot interleave with the page read; if the
+revision has changed since page one, the route returns `409 Conflict` and the
+client must restart at page one. The app pins continuation pages to the first
+page revision, sends `expected_revision`, and the stateful mock enforces the
+same stale-page behavior. This makes count, membership and pagination
+consistency explicit without deciding how a member should be rendered.
+
+Backend commit `ebe90232b` and app commit `43c4b3b51` implement the slice on
+`codex/artifact-foundation`. Workspace commit `b9dcc369` immediately precedes
+this cross-repo increment; the receipt commit records the updated contract,
+OpenAPI snapshots and this roadmap. All commits are local to the lane and are
+not merged or published.
+
+| Boundary | Exact verification | Result and limit |
+| --- | --- | --- |
+| Database contract | `DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_collection_paging_20261001_01 PYTHONPATH=. .venv/bin/python -B -m alembic upgrade head`; `TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_collection_paging_20261001_01 TEST_DATABASE_DISPOSABLE=1 SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -B -m pytest -p no:cacheprovider tests/api/test_consumer_collections.py tests/inbound/test_consumer_collections_postgres.py -q`; `DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_collection_paging_20261001_01 .venv/bin/python -B -m alembic check` | Empty disposable DB migrated successfully; 10 focused API/Postgres tests passed; Alembic found no new operations. The Postgres case proves stale continuation rejection after a persisted revision change in the lane DB, not production concurrency or deployed-service behavior. |
+| Backend checks | `/opt/homebrew/bin/ruff check --no-cache` and `/opt/homebrew/bin/ruff format --check --no-cache` on changed backend files; backend hooks during commit | Ruff, format and commit hooks passed. |
+| App contract and behavior | `npm exec jest -- --runInBand __tests__/data/consumerCollections.test.tsx __tests__/utils/api/http.test.ts __tests__/utils/api/mock/experienceGraph.test.ts`; `npx tsc --noEmit`; `npm run schema-bridge` | 3 suites / 107 tests passed; typecheck passed; schema bridge passed (376 facade exports, 1,372 generated models). No rendered screen or device acceptance. |
+| Cross-repo preflight | `WORKSPACE_BASE_REF=b9dcc36979806bbee5f8b46acb6b590aaba4dd84 AGENT_BASE_REF=3f67aa32c609b6ba613bca0ebf9e8d8b4e2f2a27 APP_BASE_REF=4532fd497e477ba9d343cbe860e6a8df1c8889a1 RUFF_CACHE_DIR=/private/tmp/vesper-artifact-foundation-ruff-cache PYTEST_ADDOPTS='-p no:cacheprovider' TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/artifact_collection_paging_20261001_01 TEST_DATABASE_DISPOSABLE=1 SKIP_AUTH=true make verify-changed` | Exit 0. Full app merge suite passed (1,292 suites / 9,199 tests); full backend suite passed (22,105 passed, 14 skipped, 1 xfailed, 52 xpassed); 118 contract tests passed; OpenAPI/projection/generated-type, API coverage, docs links/spine/canon and static checks passed. App lint retained 169 existing warnings; backend reported existing warnings. No visual/device, deployed auth or production-service acceptance. |
+
+The temporary database `artifact_collection_paging_20261001_01` was created
+after confirming that exact name was absent from the isolated
+`vesper-artifact-foundation` Postgres service. It was dropped after successful
+verification; the lane service and volume were preserved. This increment is
+not a UI member-composition decision: founder approval remains necessary for
+product meaning, labels and user-visible hierarchy, while routine pagination,
+cache invalidation and contract implementation remain lane-owned.
