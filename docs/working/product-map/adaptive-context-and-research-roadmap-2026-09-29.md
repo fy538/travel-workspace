@@ -3382,3 +3382,42 @@ Validation on the adaptive-context backend branch at `cbcf131df` (Python 3.13):
 R1 is not complete: the general caller-independent disclosure boundary,
 Lookup Agent admission, complete chargeable-attempt accounting, supported
 claim verification, and live-provider evidence remain open. R0–R7 remain open.
+
+#### R3 implementation receipt — Lookup Agent query-free web-attempt telemetry (October 1)
+
+Backend commit `7118bdd90` scopes the existing Lookup Agent Tavily fallback in
+the shared `tool_attempt_usage_scope`. It emits only aggregate tool-attempt,
+SDK-dispatch, retry, exception, cancellation and provider-reported-error
+counts. The query string, city, result text and exception message are not
+included. The existing terms, standard `WebSearchTool.execute` retry loop,
+timeout, fallback response and public-field projection are unchanged.
+
+This adds transient operational visibility to one interactive caller; it does
+not settle provider billing, reserve spend, persist attempt records, count
+Tavily's own HTTP retries, or admit the Lookup Agent's externally disclosed
+fields. The factual Lookup Agent disclosure decision remains pending. There is
+no provider/model dispatch from these tests and no production policy, feature
+flag, API/schema, app, deployment or publication change.
+
+Validation on backend commit `7118bdd90` (Python 3.13.0):
+
+- Lookup Agent suite: **67 passed**, including successful and failing mocked
+  SDK-boundary cases that verify attempt counts and ensure a query marker is
+  absent from captured logs.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static`: passed;
+  Ruff, formatting, architecture/structural checks and mypy across **1,900**
+  source files passed.
+- The first `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check
+  BASE_REF=main` run had one timing-sensitive failure in the unrelated
+  `tests/core/test_owner_reads.py::test_timed_out_physical_work_retains_portfolio_seats[False]`;
+  the exact case passed alone (**1 passed**). A full rerun passed:
+  **22,186 passed, 14 skipped, 53 xpassed**, one expected local-Qdrant
+  payload-index warning. No disposable-Postgres acceptance was run for this
+  telemetry change.
+- Commit hooks passed, including Ruff, secret detection and architecture
+  ratchets.
+
+This is partial R3 observability only. Durable spend reservation/settlement,
+cross-caller workload boundaries, provider-billing reconciliation, and the
+Lookup Agent disclosure gate remain open; R0–R7 remain open.
