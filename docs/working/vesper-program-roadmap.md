@@ -688,8 +688,9 @@ guards, exact original source/revision, root return, photo paging and private
 audio. Offline OpenAPI export, app projection and generated types agree with
 the combined code; API coverage passed. Follow-up repairs address an extension
 import boundary and obsolete test fixtures without removing safety assertions.
-See the [CI Plan](../reliability/CI%20Plan.md) for the measured failed first
-preflight and focused correction evidence. Publication, final combined checks
+See the [CI Plan](../reliability/CI%20Plan.md) for the measured preflights and
+focused correction evidence, including the final 720-test app delta and
+22,081-test backend offline result. Local corrections are complete; publication
 and hosted merge status are not yet complete at this checkpoint.
 
 This landing does not certify full native/design parity, live-model output

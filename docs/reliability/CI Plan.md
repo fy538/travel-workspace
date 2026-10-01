@@ -207,7 +207,9 @@ The next coordinated run (workspace `ed34684e`, backend `bc2dfc462`, app
 `49f51cfbd`) took **381.083s**. Backend static and offline checks passed:
 22,081 passed, 14 skipped, one expected failure and 52 unexpected passes under
 the existing `tests/flaky_order_baseline.txt` quarantine. Workspace tooling
-passed 118 tests; contract, API coverage and documentation checks passed.
+passed 118 tests; contract, API coverage, documentation links and spine checks
+passed. The merged Thesis/Model exceeded their existing word budgets; redundant
+prose was tightened without changing the approved opening or authority boundaries.
 App static checks passed, but its broad test run was not clean: 1,287 suites
 passed, the memory-hook worker crashed with SIGSEGV, and two source-location
 assertions in `rootHeaderContract.test.ts` failed after the viewport extraction.
@@ -216,6 +218,15 @@ corrected header suite and unchanged memory-hook suite passed all 45 tests in
 an isolated run (1.838s). This is composite local evidence, not a clean broad
 rerun or hosted certification. Final delta verification uses these exact
 per-repository bases; hosted gates still evaluate the complete PR diff.
+
+The final app delta passed static checks and 720 tests across 97 suites.
+Workspace tooling again passed 118 tests, with contracts/API coverage passing.
+The remaining local failure was the canon word budget; its focused repair
+passed `make docs-canon-check docs-links-check docs-spine-check` with Thesis +
+Model at 5,097 words. The pre-push commercial architecture header was also
+reverified against its current owner contract, separating July draft pricing
+rationale from current product policy. No runtime code changed after the above
+app/backend checks. Hosted publication and merge are still pending here.
 
 GitHub Actions was disabled in workspace and backend at the September 7 audit.
 It has been re-enabled. Their main-branch protection had unrelated frontend
