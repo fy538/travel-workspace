@@ -19,17 +19,19 @@ implementation queue in [section 5](#5-improvement-roadmap) is the current plan
 for Eng Efficiency. Package 3C landed in `origin/main` as `bc69d6d0` (PR 38);
 Package 3A passed its hosted checks on workspace PR 40 and app PR 210. Package
 3B is implemented across PRs 40, 210 and 240. Workspace and app hosted checks
-pass. Backend hosted checks passed except that `Merge ready` failed closed when
-its two-minute scope job cancelled a full-history checkout; the candidate now
-fetches only the pull request merge ref and its base parent and allows five
-minutes. Local focused and full checks pass; the hosted rerun remains pending.
+pass, and backend PR 240 passed its hosted rerun (scope completed in 14 seconds).
+The earlier run's `Merge ready` failure closed because its two-minute scope job
+cancelled a full-history checkout; the candidate now fetches the pull request
+merge ref and its base parent, allows five minutes, and preserves full history
+for manual dispatch. Local focused and full checks pass.
 Packages 1 and 2 have implementation and task-context changes published in
 [workspace PR 39](https://github.com/fy538/travel-workspace/pull/39),
 [app PR 209](https://github.com/fy538/travel-app/pull/209), and
 [backend PR 239](https://github.com/fy538/travel-agent/pull/239). Package 1's
 `home-root-returned` native capture now passes 1/1 after setting its documented
 shell flags. Package 2's original Home/Places wrong-state replay remains
-unverified. Workspace PR 39 needs conflict reconciliation after PR 38 landed.
+unverified. Workspace PR 39 has been rebased onto PR 38 and hosted checks are
+running; its app and backend companions have green required checks.
 Existing runtime, required checks and acceptance obligations remain in force.
 The program roadmap retains cross-lane ownership.
 
@@ -439,21 +441,18 @@ runs passed, each showing a much shorter required-job critical path than the
 implemented in the dedicated efficiency lane and has passed focused, repeated,
 selected-merge, full app-coverage and hosted PR checks described below.
 Package 3B's workflow consolidation is implemented on the dedicated lane.
-Workspace PR 40 and app PR 210 have green required checks. Backend PR 240's
-first run failed closed only because the two-minute scope job cancelled its
-full-history checkout. The current candidate uses a two-commit pull-request
-fetch, preserves full history for manual dispatch, and gives scope five minutes;
-its focused contract, complete offline suite and static checks pass locally.
-The hosted rerun is pending, so Package 3B remains under review. Package 1's
-targeted native capture passes, and its reproducible launch setup is documented
-in app PR 209. Package 2's original Home/Places wrong-state replay remains
-unverified. Packages 1 and 2 have implementation and task-context changes
-published in
+Workspace PR 40, app PR 210 and backend PR 240 have green required checks.
+Backend run 36894505540 passed after the scoped checkout fix; the selector job
+completed in 14 seconds. Package 1's targeted native capture passes, and its
+reproducible launch setup is documented in app PR 209. Package 2's original
+Home/Places wrong-state replay remains unverified. Packages 1 and 2 have
+implementation and task-context changes published in
 [workspace PR 39](https://github.com/fy538/travel-workspace/pull/39),
 [app PR 209](https://github.com/fy538/travel-app/pull/209), and
 [backend PR 239](https://github.com/fy538/travel-agent/pull/239). Package 1's
 native capture is one passing flow, not a full surface matrix; Package 2 remains
-open. Workspace PR 39 needs conflict reconciliation after PR 38 merged.
+open. Workspace PR 39 has been rebased onto PR 38 and its hosted checks are
+rerunning; its app and backend companion PRs have green required checks.
 Existing runtime, required checks and acceptance obligations remain in force. The current
 remote-main baseline is workspace `bc69d6d03eeb069eb8705953463b4ddc8a808e6d`,
 backend `bd1a683b8656c3f4091e16abb64f57897fa7fc42`, and app
@@ -465,8 +464,8 @@ cross-lane ownership.
 | 0 | Use the landed baseline and confirm tooling ownership | Complete on commit `cef7ac55`; isolated runtime ownership is recorded below | All lanes |
 | 1 | Package 3C: workspace flow validation and early prerequisite checks | Merged as `bc69d6d` (PR 38); three hosted runs passed. Critical paths ranged 5m46s–7m38s versus 23m18s; summed job runtimes ranged 25m28s–31m26s versus 23m18s (+9.3%–34.9%). | All integrations |
 | 2 | Package 3A: deterministic and faster app tests with the same checks | Hosted checks passed on workspace PR 40 and app PR 210. The app selected-test check passed in 9m36s; local repeated Place, full-coverage, and selected-merge evidence is recorded below. Runner-time improvement over a comparable Node 20 baseline remains unmeasured. | Every lane changing the app |
-| 3 | Package 3B: one execution owner per CI guarantee | Workflow consolidation is published in PRs 40/210/240. Workspace/app required checks pass. Backend's first hosted run cancelled while full-history checkout exceeded its two-minute scope-job limit; the current candidate limits PR fetch to merge ref plus base and allows five minutes, while manual dispatch keeps full history. Focused contract, full offline suite and backend static checks pass locally; hosted rerun and comparable full-run measurement remain. | All lanes |
-| 4 | Package 1: choose the right evidence and make targeted native QA reliable | Implementation is published in app PR 209 and workspace PR 39. The app selector accepts a full flow ID or canonical slug only, and readiness failures inspect Maestro's failed-command hierarchy. With the documented shell flags and IPv4 localhost binding, the `home-root-returned` flow captured two reviewed Home states and passed 1/1. An earlier missing-flags attempt displayed the legacy Plans shell and failed the `home-v2-screen` assertion, correctly catching setup error. The full Home/Places wrong-state replay remains unverified. Workspace PR 39 needs conflict reconciliation after PR 38 merged. | Orchestration and Strategy |
+| 3 | Package 3B: one execution owner per CI guarantee | Workflow consolidation is published in PRs 40/210/240. All required checks pass. Backend run 36894505540 passed after the pull-request checkout was bounded to the merge ref plus base, manual dispatch retained full history, and the scope timeout increased to five minutes; scope completed in 14 seconds. Focused contract, full offline suite and backend static checks pass locally. Comparable hosted full-run latency and runner-time measurement remain. | All lanes |
+| 4 | Package 1: choose the right evidence and make targeted native QA reliable | Implementation is published in app PR 209 and workspace PR 39. The app selector accepts a full flow ID or canonical slug only, and readiness failures inspect Maestro's failed-command hierarchy. With the documented shell flags and IPv4 localhost binding, the `home-root-returned` flow captured two reviewed Home states and passed 1/1. An earlier missing-flags attempt displayed the legacy Plans shell and failed the `home-v2-screen` assertion, correctly catching setup error. The full Home/Places wrong-state replay remains unverified. Workspace PR 39 has been rebased onto PR 38 and hosted checks are rerunning. | Orchestration and Strategy |
 | 5 | Package 2: proportionate review and shorter task context | Targeted review and context-routing changes are published in PRs 39/209/239. The original Home/Places wrong-state replay remains unverified; native-review adoption needs broader Package 1 evidence. | All lanes, especially mobile work |
 | 6 | Package 6: retire completed working documentation | One bounded migration completed: the superseded V2 report now lives in the dated archive, its three live references and inventory entry were repaired, and all documentation governance checks passed. | All lanes |
 | Conditional | Package 4: native build reuse and other measured setup optimizations | Only if meaningful build/setup cost remains | Mobile and build owners |
@@ -510,7 +509,7 @@ than the serial baseline. All three runs validate the full flow inventory; the
 spread shows material hosted variability. At that time Package 3A was gated on
 Package 3C landing; PR 38 has since merged as `bc69d6d`.
 
-**Package 3A local receipt (October 1; hosted evidence pending).** The candidate
+**Package 3A local receipt (October 1).** The candidate
 is based on workspace `b95e2e0040033c2f58f5a60bebc7f1bcf487678e` (merged with
 `origin/main` at `bc69d6d`), backend `bd1a683b8656c3f4091e16abb64f57897fa7fc42`,
 and app `e7bdc660501eaa19234e6b45bda033658edaa2d4`. Focused Invite and Place
@@ -652,31 +651,36 @@ selector tests passed 5 cases, its new workflow-ownership tests passed, and
 development environment; `make merge-ready-static` passed the broad-exception
 ratchet at 1,190/1,190 and validated five season plus four Here catalog entries.
 An earlier attempt forced the system Python and could not import SQLAlchemy;
-rerunning with the lane's `.venv` passed. Hosted candidate results remain
-required. No latency or runner-time improvement is claimed until that candidate
-is measured.
+rerunning with the lane's `.venv` passed. Backend PR 240's hosted candidate
+passed on run 36894505540. No latency or runner-time improvement is claimed
+from that single check result.
 
 **Package 3B delivery receipt (October 1).** Workspace PR 40 and app PR 210
-passed their hosted required checks. Backend PR 240's selected checks passed,
-but its `scope` job's `actions/checkout@v7` step was cancelled while fetching
-full history under a two-minute timeout; the fail-closed `Merge ready` aggregate
-reported that cancellation. No selector or test failed. The backend workflow
-now fetches depth 2 for `pull_request` runs, where GitHub checks out the
-synthetic merge ref with the recorded base as a parent, and depth 0 for
-`workflow_dispatch`, which accepts an arbitrary base. A synthetic shallow-clone
-reproduction retained the exact merge base and changed-file list. The focused
-workflow contract test passed 3/3, the change-aware offline suite passed
-22,085 tests with 14 skipped and 53 expected passes, and `make ci-static`
-passed. The first concurrent static attempt produced a mypy internal error;
-isolated mypy and the full static rerun both passed across 1,893 source files.
-The bounded local cross-repo preflight completed in 327.114 seconds on
-workspace `eed6d60989da1127099c8801d4da52f09ed52104`, backend
-`a81e5321b81e45eb8458cf762231c209f0e64004`, and app
+passed their hosted required checks. Backend PR 240's first hosted run cancelled
+while full-history checkout exceeded the two-minute scope-job timeout; the
+fail-closed `Merge ready` aggregate reported that cancellation. No selector or
+test failed. The backend workflow now fetches depth 2 for `pull_request` runs,
+where GitHub checks out the synthetic merge ref with the recorded base as a
+parent, and depth 0 for `workflow_dispatch`, which accepts an arbitrary base.
+A synthetic shallow-clone reproduction retained the exact merge base and
+changed-file list. The focused workflow contract test passed 3/3, the
+change-aware offline suite passed 22,085 tests with 14 skipped and 53 expected
+passes, and `make ci-static` passed. The first concurrent static attempt
+produced a mypy internal error; isolated mypy and the full static rerun both
+passed across 1,893 source files. Hosted run 36894505540 then passed the
+selected offline tests, isolated database tests, static checks and `Merge
+ready`; its scope job completed in 14 seconds. This is one hosted check result,
+not a comparable full-run latency or runner-time measurement.
+
+The latest bounded local cross-repo preflight completed in 287.010 seconds on
+workspace `9e553648815d05ed110952dcd6d2ddf1e505dac5` (exact command and tuple
+are in the verification baseline),
+backend `05dcc9144a2cb997c5cf4bb75161f842c60e03e4`, and app
 `906c5d5a4719da504ddb492bf4e2fd85c8caabc2`. Its log is
-`/private/tmp/vesper-efficiency-3b-preflight-logs/engineering-efficiency-3b-full-preflight-20261001T161419Z.log`;
-Jest passed 9,180 tests and the log records the child and workspace summaries.
-This is one local candidate measurement, not evidence of a stable or hosted
-speedup. The backend hosted rerun remains required.
+`/private/tmp/vesper-efficiency-postfix-preflight-logs/engineering-efficiency-3b-post-fix-preflight-20261001T164505Z.log`;
+Jest passed 9,180 tests, backend passed 22,085 tests with 14 skipped and 53
+expected passes, and workspace passed 144 tests. This single local measurement
+does not establish a stable productivity or hosted speedup.
 
 The checkout choice follows GitHub's documented `pull_request` merge-ref
 behavior and checkout depth semantics:
