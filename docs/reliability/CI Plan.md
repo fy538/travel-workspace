@@ -62,6 +62,25 @@ scenarios, invariants and Atlas tests remain covered by their owning partition;
 extra invocations solely for named logging are removed. Report groups from the
 same run rather than executing them again.
 
+### Cross-repository checkout history
+
+The reliability workflow keeps the workspace checkout at full history for its
+change-aware workspace checks. Pinned `travel-agent` and `travel-app` checkouts
+use depth 1; the four file-only Maestro syntax shards also use depth 1. The
+main reliability job then fetches the two configured child documentation
+baseline commits with `--no-tags --filter=blob:none --depth=1` before running
+child-document governance. That guard needs the historical trees to list old
+Markdown paths, while it reads document contents from the current pinned
+checkout. It does not need historical file blobs or intervening commits.
+
+`scripts/fetch_child_doc_baselines.py` validates the baseline registry, ensures
+the tree objects exist, preserves each pinned child HEAD, and fails the job on
+fetch or verification errors. Keep the exact candidate-tuple assertion before
+this step. If the registry adds another child or changes its baseline format,
+update the helper and its workflow tests together. A clean shallow-clone run of
+the production checker is the local proof; the hosted Reliability check remains
+the merge evidence for each workflow change.
+
 Test retirement must name a current replacement guarantee or confirm that the
 behavior itself was retired. The removed photo-viewer source-location assertion
 is covered by `PhotoViewerSurface.test.tsx`, which exercises both reduced-motion
@@ -288,15 +307,72 @@ review approval, administrator enforcement, and no force pushes/deletions.
 | backend | `Merge ready`, `lint`, `import-boundaries`, `typecheck`, `test-db-migrate`, `dogfood-persona-gate`, `eval-replay` |
 | frontend | `Merge ready`, `Lint`, `Frontend governance`, `Security audit`, `Visual evidence contracts`, `Type check`, `API types freshness`, `QA tooling contracts`, `Design alignment gate` (also emitted for documentation-only PRs) |
 
+### October 1 duplicate-execution consolidation
+
+This change keeps every required check name and branch-protection setting above.
+It removes repeated work inside the additive `Merge ready` jobs while preserving
+distinct selection and runtime evidence:
+
+- App `Merge ready` static keeps the merge-scope selector contract. Required
+  `Lint`, `Frontend governance`, and `Type check` own the fast checks already
+  present in regular PR CI; icon integrity is included in `Lint` so its coverage
+  remains required.
+- Backend `Merge ready` static keeps the broad-exception ratchet and the
+  Vesper world-catalog runway, which have no equivalent required PR owner.
+  Ruff/format remain in `lint`, import/route checks remain in
+  `import-boundaries`, and mypy remains in `typecheck`. The selected DB job
+  retains migration setup, fixtures, selected runtime tests and canonical
+  itinerary certification. Migration lifecycle, drift, parity and supported
+  rollback run in required `test-db-migrate` only.
+- Workspace `Merge ready` plans its workspace-only selection before installing
+  optional child dependencies. The plan requests backend and/or app dependency
+  sets only when selected commands need them. Exact child revisions are still
+  checked out and asserted. Required `Contract and golden paths` remains the
+  full cross-repository integration owner; the additive workspace preflight's
+  fail-fast benefit versus runner-time cost is not yet measured.
+
+Workflow ownership regression tests run inside each repository's existing
+required CI owner: workspace dependency planning is checked in workspace
+reliability, app ownership in required `Lint`, and backend ownership in required
+`import-boundaries`. They assert that selectors, unique checks, protected
+owners, selected DB evidence and existing aggregate names remain intact. Local
+checks do not establish the hosted workflow result or a latency improvement.
+Existing required checks remain authoritative until hosted candidate evidence
+is available.
+
 The workspace `Contract and golden paths` check remains the required aggregate.
 It waits for both the full workspace reliability suite and every required Maestro
 syntax shard, and fails when either dependency fails, is cancelled, skipped, or
 missing. The four isolated syntax jobs each receive the complete candidate
-workspace and child checkouts, then validate their deterministic portion of the
-same flow inventory with the pinned Maestro CLI. Disable matrix fail-fast so a
+workspace and depth-1 child checkouts at the immutable candidate SHAs, then
+validate their deterministic portion of the same flow inventory with the pinned
+Maestro CLI. Each shard asserts its actual child HEADs before reading files.
+These syntax checks do not inspect child history. Disable matrix fail-fast so a
 single syntax failure does not cancel the remaining diagnostic shards. The
 workflow tests pin the complete four-shard definition; each shard fails if its
 assigned inventory is empty. No branch-protection check name or policy changes.
+
+Keep full child history in `workspace-checks`: its
+`docs-child-governance-check` reads historical child baseline trees named by
+`docs/governance/child-baselines.yaml`. A depth-1 checkout made the baseline
+unavailable (`fatal: not a tree object`) in hosted run
+[36903398366](https://github.com/fy538/travel-workspace/actions/runs/36903398366).
+That run did confirm the exact pinned SHA assertions and all four syntax shards
+passed with depth-1 children. The final scope is therefore depth 1 only in the
+syntax matrix; the baseline-dependent reliability job keeps depth 0.
+
+The same child revisions provide one hosted comparison: across four syntax
+shards, combined Travel Agent and Travel App checkout time fell from 744.538s
+with full history in run
+[36897425346](https://github.com/fy538/travel-workspace/actions/runs/36897425346)
+to 51.194s at depth 1 in run
+[36903398366](https://github.com/fy538/travel-workspace/actions/runs/36903398366),
+a 93.1% reduction in cumulative checkout time. The slowest complete syntax job
+fell from 10m03s to 5m27s. This is one paired candidate comparison, not a stable
+end-to-end CI or productivity benchmark. Keep exact SHA assertions and use the
+full required hosted run to validate the final workflow revision. Both runs
+checked out Travel Agent `33a000e97ed4bf1ac8b6da4ad72301d644444a0e` and Travel
+App `21fdb724ff71abc089061d5f366eb1a65efa6558`.
 
 The workspace suite checks Qdrant's
 [`/readyz` endpoint](https://qdrant.tech/documentation/ops-monitoring/monitoring/#kubernetes-health-endpoints)

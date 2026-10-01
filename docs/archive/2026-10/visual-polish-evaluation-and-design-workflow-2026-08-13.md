@@ -1,18 +1,19 @@
 ---
-doc_type: working
-status: active
+doc_type: archive
+status: archived
 owner: founder / product / design / frontend
 created: 2026-08-13
-expires: 2026-09-12
-why_new: Focused synthesis of the August 13 discussion about why functional evals can pass while the mobile product still feels visually unfinished, how current visual-evaluation practices work, the role of Maestro and test environments, Claude Design versus Figma, useful Codex capabilities, and the smallest high-ROI operating model for improving polish without overengineering.
-promotes_to: a frontend visual-certification contract and a small canonical visual-checkpoint registry if the proposed pilot proves useful
+last_verified: 2026-10-01
+archived: 2026-10-01
+why_new: Preserves the August visual-polish and screenshot-QA research, external citations, and nine open proposals after current frontend task intake, visual-review operations, design workflow, and the September QA roadmap became the active owners; this archive does not adopt its proposed gates or tool pilots.
+promotes_to: null
 supersedes: []
 related:
-  - product-loop-coherence-maestro-and-environment-strategy-2026-08-12.md
-  - ../../travel-app/docs/Frontend Engineering Loop.md
-  - ../../travel-app/docs/Design Workflow.md
-  - ../../travel-app/docs/research/Product-Quality AI Design QA Loop.md
-  - ../../travel-app/docs/research/Frontend Engineering Loop with AI Agents and Screenshot QA.md
+  - ./product-loop-coherence-maestro-and-environment-strategy-2026-08-12.md
+  - ../../../travel-app/docs/Frontend Engineering Loop.md
+  - ../../../travel-app/docs/Design Workflow.md
+  - ../../../travel-app/docs/research/Product-Quality AI Design QA Loop.md
+  - ../../../travel-app/docs/research/Frontend Engineering Loop with AI Agents and Screenshot QA.md
 ---
 
 # Visual polish, evaluation, and design workflow
@@ -913,23 +914,23 @@ accepted evidence and reusable learning
 
 ## 21. Existing internal documents
 
-- [Product-loop coherence, Maestro, and environment strategy](product-loop-coherence-maestro-and-environment-strategy-2026-08-12.md)
+- [Product-loop coherence, Maestro, and environment strategy](./product-loop-coherence-maestro-and-environment-strategy-2026-08-12.md)
   contains the broader product-loop, current Maestro-estate, evidence, and
   environment analysis.
-- [Frontend Engineering Loop](../../travel-app/docs/Frontend%20Engineering%20Loop.md)
+- [Frontend Engineering Loop](../../../travel-app/docs/Frontend%20Engineering%20Loop.md)
   is the existing operational source for AI-assisted frontend iteration,
   screenshot QA, and dogfood visual review.
-- [Design Workflow](../../travel-app/docs/Design%20Workflow.md) explains the
+- [Design Workflow](../../../travel-app/docs/Design%20Workflow.md) explains the
   current Claude Design method: the screen as substrate diagnostic, Page Specs,
   friction triage, propagation, and the web-to-native limitation.
-- [Product-Quality AI Design QA Loop](../../travel-app/docs/research/Product-Quality%20AI%20Design%20QA%20Loop.md)
+- [Product-Quality AI Design QA Loop](../../../travel-app/docs/research/Product-Quality%20AI%20Design%20QA%20Loop.md)
   contains the detailed visual rubric, acceptance ladder, prompt templates, and
   research-derived anti-patterns.
-- [Frontend Engineering Loop with AI Agents and Screenshot QA](../../travel-app/docs/research/Frontend%20Engineering%20Loop%20with%20AI%20Agents%20and%20Screenshot%20QA.md)
+- [Frontend Engineering Loop with AI Agents and Screenshot QA](../../../travel-app/docs/research/Frontend%20Engineering%20Loop%20with%20AI%20Agents%20and%20Screenshot%20QA.md)
   contains the longer research treatment of tool roles, screenshot alignment,
   design-to-code contracts, component-level visual regression options, and the
   proposed operating model.
-- [Vesper design-file consolidation plan](design-file-consolidation-2026-07-29.md)
+- [Vesper design-file consolidation plan](../../working/design-file-consolidation-2026-07-29.md)
   records the 66-page/215-module Claude Design inventory, existing audits, and
   design-authority diagnosis.
 

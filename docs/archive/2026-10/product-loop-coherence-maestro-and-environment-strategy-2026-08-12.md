@@ -1,17 +1,18 @@
 ---
-doc_type: working
-status: active
+doc_type: archive
+status: archived
 owner: founder / product / engineering
 created: 2026-08-12
-expires: 2026-09-11
-why_new: Consolidates the product-loop, onboarding, Maestro, automated-judgment, and test-environment conclusions developed in the August 12 architecture discussion; existing convergence plans do not own this end-to-end product-and-certification operating model.
+last_verified: 2026-10-01
+archived: 2026-10-01
+why_new: Preserves the August product-loop, onboarding, certification, and environment synthesis with its unresolved proposals after current product canon, journey contracts, mobile reliability, and CI ownership moved to their current authorities; this archive does not adopt any proposal.
 promotes_to: null
 supersedes: []
 related:
-  - thesis-to-experience-convergence-audit-2026-08-09.md
-  - intentional-convergence-engineering-plan-2026-08-10.md
-  - definition-of-done-consolidation-2026-08-10.md
-  - ../reliability/Agent Reliability Playbook.md
+  - ../../working/thesis-to-experience-convergence-audit-2026-08-09.md
+  - ../../working/intentional-convergence-engineering-plan-2026-08-10.md
+  - ../../working/definition-of-done-consolidation-2026-08-10.md
+  - ../../reliability/Agent Reliability Playbook.md
 ---
 
 # Product-loop coherence, Maestro, and environment strategy
@@ -113,7 +114,7 @@ The current mobile tab layout supports this direction. Trips leads, Vesper is
 the center action surface, and Places is the third visible root. Discover and
 Atlas remain registered as legacy deep-link owners rather than visible tabs.
 See
-[`travel-app/app/(tabs)/_layout.tsx`](../../travel-app/app/%28tabs%29/_layout.tsx).
+[`travel-app/app/(tabs)/_layout.tsx`](../../../travel-app/app/%28tabs%29/_layout.tsx).
 
 ### 3.2 What the redesign did not fix by itself
 
@@ -477,15 +478,15 @@ therefore evidence for a later review process, not automatic visual verdicts.
 
 - Separate PR, nightly, Android, live, polish, baseline, and stability configs
   are already exposed through
-  [`travel-app/package.json`](../../travel-app/package.json).
+  [`travel-app/package.json`](../../../travel-app/package.json).
 - The direct runner standardizes Java resolution, disables analytics, emits
   JUnit and debug output, and stores run artifacts. See
-  [`run-maestro.mjs`](../../travel-app/scripts/mobile-stability/run-maestro.mjs).
+  [`run-maestro.mjs`](../../../travel-app/scripts/mobile-stability/run-maestro.mjs).
 - The polish runner preflights the environment, seeds persona and frozen time,
   uses locks, runs single-persona flows independently, verifies declared
   screenshots, and produces manifests/verdict scaffolds and before/after
   receipts. See
-  [`run-polish-qa.mjs`](../../travel-app/scripts/polish-qa/run-polish-qa.mjs).
+  [`run-polish-qa.mjs`](../../../travel-app/scripts/polish-qa/run-polish-qa.mjs).
 - Flow metadata includes owner, lane, isolation, fixture, journey, and area,
   making the suite more governable than a typical flat E2E directory.
 - Mock/live separation is explicit, and the live config is not included in PR
@@ -498,13 +499,13 @@ therefore evidence for a later review process, not automatic visual verdicts.
 The app exposes Trips, Vesper, and Places, but the PR lane still includes a
 flow that taps the visible **Discover** tab:
 
-- [`05-discover.yaml`](../../travel-app/.maestro/05-discover.yaml)
+- [`05-discover.yaml`](../../../travel-app/.maestro/05-discover.yaml)
 
 Other PR-tagged flows still wait for Discover copy or use Atlas-era routes:
 
-- [`24-journey-02-create-invite.yaml`](../../travel-app/.maestro/24-journey-02-create-invite.yaml)
-- [`45-navigation-continuity.yaml`](../../travel-app/.maestro/45-navigation-continuity.yaml)
-- [`68-journey-16-account-data-lifecycle.yaml`](../../travel-app/.maestro/68-journey-16-account-data-lifecycle.yaml)
+- [`24-journey-02-create-invite.yaml`](../../../travel-app/.maestro/24-journey-02-create-invite.yaml)
+- [`45-navigation-continuity.yaml`](../../../travel-app/.maestro/45-navigation-continuity.yaml)
+- [`68-journey-16-account-data-lifecycle.yaml`](../../../travel-app/.maestro/68-journey-16-account-data-lifecycle.yaml)
 
 Legacy compatibility deserves coverage, but it should not define the primary
 three-tab certification lane.
@@ -514,13 +515,13 @@ three-tab certification lane.
 The workspace contains a scheduled/manual local-simulator workflow and a
 conditional Maestro Cloud PR workflow:
 
-- [`visual-qa.yml`](../../.github/workflows/visual-qa.yml)
-- [`visual-qa-cloud.yml`](../../.github/workflows/visual-qa-cloud.yml)
+- [`visual-qa.yml`](../../../.github/workflows/visual-qa.yml)
+- [`visual-qa-cloud.yml`](../../../.github/workflows/visual-qa-cloud.yml)
 
 The Cloud job skips when its API key, project ID, or Expo token is absent. The
 EAS PR workflow is still manual-only pending activation:
 
-- [`maestro-pr.yml`](../../travel-app/.eas/workflows/maestro-pr.yml)
+- [`maestro-pr.yml`](../../../travel-app/.eas/workflows/maestro-pr.yml)
 
 Recent run history examined during the audit contained build, Metro, driver,
 and pre-Maestro failures. Local targeted device evidence existed, but there was
@@ -749,7 +750,7 @@ test is meant to remove.
 ### 12.3 PR mock lane
 
 The existing `e2e-test` build in
-[`travel-app/eas.json`](../../travel-app/eas.json) correctly uses mock API and
+[`travel-app/eas.json`](../../../travel-app/eas.json) correctly uses mock API and
 skip-auth flags. This lane should prove UI reachability, edge-state rendering,
 native behavior, and deterministic cross-surface presentation quickly.
 
@@ -761,11 +762,11 @@ unreliable timing.
 ### 12.4 Local real-stack lane
 
 The local substrate already includes Postgres/PostGIS and Qdrant through
-[`travel-agent/docker-compose.yml`](../../travel-agent/docker-compose.yml), and
+[`travel-agent/docker-compose.yml`](../../../travel-agent/docker-compose.yml), and
 the workspace’s dogfood environment helper keeps local Postgres and local
 Qdrant paired:
 
-- [`scripts/dogfood-env.sh`](../../scripts/dogfood-env.sh)
+- [`scripts/dogfood-env.sh`](../../../scripts/dogfood-env.sh)
 
 The current Docker services use persistent volumes, and backend tests contain
 substantial self-healing cleanup for leaked test records. For multi-request

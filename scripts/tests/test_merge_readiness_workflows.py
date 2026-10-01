@@ -10,6 +10,60 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 
 
+def assert_reliability_job_uses_pinned_children(
+    job, *, child_fetch_depth, fetch_doc_baselines=False
+):
+    steps = job["steps"]
+    checkouts = [
+        (index, step["with"])
+        for index, step in enumerate(steps)
+        if step.get("uses", "").startswith("actions/checkout")
+    ]
+    workspace_index, workspace_checkout = next(
+        (index, checkout)
+        for index, checkout in checkouts
+        if checkout.get("path") is None
+    )
+    assert workspace_checkout["fetch-depth"] == "0"
+
+    expected_refs = {
+        "travel-agent": "${{ steps.child_refs.outputs.agent_ref }}",
+        "travel-app": "${{ steps.child_refs.outputs.app_ref }}",
+    }
+    child_checkouts = {
+        checkout.get("path"): (index, checkout)
+        for index, checkout in checkouts
+        if checkout.get("path") in expected_refs
+    }
+    assert set(child_checkouts) == set(expected_refs)
+    for name, expected_ref in expected_refs.items():
+        index, checkout = child_checkouts[name]
+        assert index > workspace_index
+        assert checkout["repository"] == f"${{{{ github.repository_owner }}}}/{name}"
+        assert checkout["ref"] == expected_ref
+        assert checkout["token"] == "${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN }}"
+        assert checkout["fetch-depth"] == child_fetch_depth
+
+    assertion_index = next(
+        index
+        for index, step in enumerate(steps)
+        if step.get("run") == "python3 scripts/resolve_ci_tuple.py --assert-checkouts"
+    )
+    assert assertion_index > max(index for index, _ in child_checkouts.values())
+    if fetch_doc_baselines:
+        baseline_index = next(
+            index
+            for index, step in enumerate(steps)
+            if step.get("run") == "python3 scripts/fetch_child_doc_baselines.py"
+        )
+        governance_index = next(
+            index
+            for index, step in enumerate(steps)
+            if "docs-child-governance-check" in step.get("run", "")
+        )
+        assert assertion_index < baseline_index < governance_index
+
+
 @pytest.mark.parametrize("repo,command,delimiter", [
     ("travel-agent", "python3", "PY"),
     ("travel-app", "node", "JS"),
@@ -45,6 +99,41 @@ def test_full_backend_suites_do_not_duplicate_their_marker_partitions():
     assert len(offline) == len(database) == 1
     assert 'not requires_postgres and not requires_api_keys and not requires_dogfood_wedge' in offline[0]
     assert '(requires_postgres or requires_dogfood_wedge) and not requires_api_keys' in database[0]
+
+
+def test_workspace_merge_readiness_plans_before_conditional_installs():
+    workflow = yaml.load(
+        (ROOT / ".github/workflows/merge-ready.yml").read_text(), Loader=yaml.BaseLoader
+    )
+    steps = workflow["jobs"]["ready"]["steps"]
+    plan = next(i for i, step in enumerate(steps) if step.get("id") == "plan")
+    python_setup = next(
+        i
+        for i, step in enumerate(steps)
+        if step.get("uses", "").startswith("actions/setup-python")
+    )
+    node_setup = next(
+        i
+        for i, step in enumerate(steps)
+        if step.get("uses", "").startswith("actions/setup-node")
+    )
+    verify = next(
+        i
+        for i, step in enumerate(steps)
+        if step.get("run", "").startswith(
+            "python3 scripts/verify_changed.py --workspace-only"
+        )
+    )
+    assert plan < python_setup < verify
+    assert plan < node_setup < verify
+    assert "--dry-run --plan-json" in steps[plan]["run"]
+    assert steps[python_setup]["if"] == "steps.plan.outputs.travel_agent == 'true'"
+    assert steps[node_setup]["if"] == "steps.plan.outputs.travel_app == 'true'"
+    for step in steps:
+        if step.get("run", "").startswith("pip install -r travel-agent/"):
+            assert step["if"] == "steps.plan.outputs.travel_agent == 'true'"
+        if step.get("run", "").startswith("npm ci --prefix travel-app"):
+            assert step["if"] == "steps.plan.outputs.travel_app == 'true'"
 
 
 def test_workspace_real_journeys_have_an_explicit_disposable_database():
@@ -131,17 +220,26 @@ def test_reliability_required_check_rejects_an_unreadable_needs_context():
     assert "invalid NEEDS_JSON" in result.stderr
 
 
-def test_reliability_syntax_matrix_runs_all_four_full_checkout_shards():
+def test_reliability_workspace_checks_fetch_only_child_doc_baseline_trees():
+    workflow = yaml.load((ROOT / ".github/workflows/reliability.yml").read_text(), Loader=yaml.BaseLoader)
+    job = workflow["jobs"]["workspace-checks"]
+    assert any(
+        step.get("run") == "make docs-spine-check docs-status-check docs-links-check docs-child-governance-check"
+        for step in job["steps"]
+    )
+    assert_reliability_job_uses_pinned_children(
+        job, child_fetch_depth="1", fetch_doc_baselines=True
+    )
+
+
+def test_reliability_syntax_matrix_runs_all_four_shards_with_shallow_pinned_children():
     workflow = yaml.load((ROOT / ".github/workflows/reliability.yml").read_text(), Loader=yaml.BaseLoader)
     job = workflow["jobs"]["maestro-flow-validation"]
     assert job["strategy"]["fail-fast"] == "false"
     assert job["strategy"]["max-parallel"] == "4"
     assert job["strategy"]["matrix"]["shard"] == ["0", "1", "2", "3"]
     steps = job["steps"]
-    checkouts = [step["with"] for step in steps if step.get("uses", "").startswith("actions/checkout")]
-    assert any(checkout.get("path") == "travel-agent" for checkout in checkouts)
-    app_checkout = next(checkout for checkout in checkouts if checkout.get("path") == "travel-app")
-    assert app_checkout["fetch-depth"] == "0"
+    assert_reliability_job_uses_pinned_children(job, child_fetch_depth="1")
     cli = next(step for step in steps if step.get("name") == "Install pinned Maestro CLI")
     assert cli["env"]["MAESTRO_VERSION"] == "2.6.1"
     validation = next(step for step in steps if step.get("name") == "Validate this required syntax partition")

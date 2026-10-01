@@ -10,7 +10,7 @@ supersedes: []
 related:
   - onboarding-and-entry-point-product-investigation-2026-08-12.md
   - onboarding-claude-design-experiment-brief-2026-08-12.md
-  - product-loop-coherence-maestro-and-environment-strategy-2026-08-12.md
+  - ../archive/2026-10/product-loop-coherence-maestro-and-environment-strategy-2026-08-12.md
   - ../Card Catalog.md
   - ../decisions/2026-08-12-retire-discover-and-atlas-product-surfaces.md
   - ../../travel-app/docs/surfaces/vesper-chat/contract.md

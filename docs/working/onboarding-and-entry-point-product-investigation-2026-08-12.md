@@ -9,7 +9,7 @@ promotes_to: null
 supersedes: []
 related:
   - onboarding-claude-design-experiment-brief-2026-08-12.md
-  - product-loop-coherence-maestro-and-environment-strategy-2026-08-12.md
+  - ../archive/2026-10/product-loop-coherence-maestro-and-environment-strategy-2026-08-12.md
   - thesis-to-experience-convergence-audit-2026-08-09.md
   - ../decisions/2026-08-12-retire-discover-and-atlas-product-surfaces.md
   - ../../travel-app/docs/surfaces/onboarding/contract.md
@@ -568,7 +568,7 @@ The investigation leaves a short founder/product docket:
 - [Product Model](../../travel-agent/docs/product/Product%20Model.md)
 - [What We Believe](../../travel-agent/docs/product/What%20We%20Believe.md)
 - [Discover and Atlas retirement decision](../decisions/2026-08-12-retire-discover-and-atlas-product-surfaces.md)
-- [Broader product-loop and test strategy](product-loop-coherence-maestro-and-environment-strategy-2026-08-12.md)
+- [Broader product-loop and test strategy](../archive/2026-10/product-loop-coherence-maestro-and-environment-strategy-2026-08-12.md)
 - [Current State](../status/current-state.md)
 
 ### Primary implementation surfaces reviewed

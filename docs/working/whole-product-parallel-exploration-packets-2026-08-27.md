@@ -1208,7 +1208,7 @@ Read first, in this order:
 10. /Users/feihuyan/travel-workspace/travel-app/docs/working/vesper-visual-system-claude-design-brief-2026-08-23.md
 11. /Users/feihuyan/travel-workspace/travel-app/docs/working/vesper-visual-exploration-source-packet-plan-2026-08-23.md
 12. /Users/feihuyan/travel-workspace/docs/working/native-design-gallery-research-and-direction-2026-08-14.md
-13. /Users/feihuyan/travel-workspace/docs/working/visual-polish-evaluation-and-design-workflow-2026-08-13.md
+13. docs/archive/2026-10/visual-polish-evaluation-and-design-workflow-2026-08-13.md
 14. /Users/feihuyan/travel-workspace/travel-app/docs/design-packets/vesper-visual-system-2026-08-23/README.md
 15. /Users/feihuyan/travel-workspace/travel-app/docs/design-packets/vesper-visual-system-2026-08-23/03-foundation/README.md
 16. /Users/feihuyan/travel-workspace/travel-app/docs/design-packets/vesper-visual-system-2026-08-23/05-moodboard/candidates.md

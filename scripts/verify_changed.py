@@ -16,6 +16,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import shlex
 import subprocess
@@ -229,6 +230,41 @@ def select_commands(
     return selection
 
 
+def required_dependency_repositories(
+    selection: Selection, repositories: tuple[Repo, ...] | None = None
+) -> list[str]:
+    """Return child dependency sets needed by the selected workspace commands."""
+
+    repos = repositories or default_repositories()
+    by_key = {repo.key: repo for repo in repos}
+    required: set[str] = set()
+    for command in selection.commands:
+        if command.cwd == by_key["agent"].root:
+            required.add("travel-agent")
+        elif command.cwd == by_key["app"].root:
+            required.add("travel-app")
+        elif command.cwd == by_key["workspace"].root:
+            if (
+                command.argv
+                and command.argv[0] == "make"
+                and "contract-check" in command.argv
+            ):
+                required.update(("travel-agent", "travel-app"))
+            if (
+                command.argv
+                and command.argv[0] in {"python", "python3"}
+                and "pytest" in command.argv
+            ):
+                if any(
+                    arg == "scripts/tests/" or arg.startswith("scripts/tests/")
+                    for arg in command.argv
+                ):
+                    # Workspace tooling tests use PyYAML and backend contract imports
+                    # supplied by the backend development environment.
+                    required.add("travel-agent")
+    return sorted(required)
+
+
 # ── Independent Git repositories ──────────────────────────────────────────
 
 
@@ -337,6 +373,11 @@ def main(argv: list[str]) -> int:
     parser.add_argument("--app-base-ref")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--workspace-only", action="store_true")
+    parser.add_argument(
+        "--plan-json",
+        type=Path,
+        help="write the selected commands and child dependency sets",
+    )
     args = parser.parse_args(argv)
 
     repositories = default_repositories()
@@ -369,6 +410,21 @@ def main(argv: list[str]) -> int:
     for command in selection.commands:
         print(f"  [{command.reason}]")
         print(f"    ({command.cwd}) $ {command.display}")
+    if args.plan_json:
+        args.plan_json.parent.mkdir(parents=True, exist_ok=True)
+        plan = {
+            "schema_version": 1,
+            "dependencies": required_dependency_repositories(selection, repositories),
+            "commands": [
+                {
+                    "cwd": str(command.cwd),
+                    "argv": list(command.argv),
+                    "reason": command.reason,
+                }
+                for command in selection.commands
+            ],
+        }
+        args.plan_json.write_text(json.dumps(plan, indent=2) + "\n", encoding="utf-8")
     if args.dry_run:
         return 0
     if selection.fallback_to_verify:

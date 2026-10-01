@@ -11,7 +11,7 @@ supersedes: []
 related:
   - ../../travel-agent/docs/product/Vesper Expression, Medium, and Projection Canon.md
   - in-chat-artifact-system-inventory-and-sota-research-2026-08-12.md
-  - product-loop-coherence-maestro-and-environment-strategy-2026-08-12.md
+  - ../archive/2026-10/product-loop-coherence-maestro-and-environment-strategy-2026-08-12.md
   - ai-decision-and-learning-engineering-plan-2026-08-10.md
   - ../Card Catalog.md
   - ../../travel-app/docs/working/vesper-conversational-artifact-language-native-implementation-plan-2026-08-14.md

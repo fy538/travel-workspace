@@ -434,5 +434,357 @@
     "wall_time_seconds": 7.756,
     "log_path": "docs/reliability/runs/photo-draft-compact-final-docs-check-20260928T222558Z.log",
     "test_counts": null
+  },
+  {
+    "schema_version": 1,
+    "label": "engineering-efficiency-3b-full-preflight",
+    "command": [
+      "make",
+      "verify-changed",
+      "WORKSPACE_BASE_REF=bc69d6d03eeb069eb8705953463b4ddc8a808e6d",
+      "AGENT_BASE_REF=bd1a683b8656c3f4091e16abb64f57897fa7fc42",
+      "APP_BASE_REF=e7bdc660501eaa19234e6b45bda033658edaa2d4"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "eed6d60989da1127099c8801d4da52f09ed52104",
+        "dirty": false
+      },
+      "travel-agent": {
+        "commit": "a81e5321b81e45eb8458cf762231c209f0e64004",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "906c5d5a4719da504ddb492bf4e2fd85c8caabc2",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 327.114,
+    "log_path": "/private/tmp/vesper-efficiency-3b-preflight-logs/engineering-efficiency-3b-full-preflight-20261001T161419Z.log",
+    "test_counts": {
+      "framework": "jest",
+      "collected": 9180,
+      "passed": 9180,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  {
+    "schema_version": 1,
+    "label": "engineering-efficiency-3b-post-fix-preflight",
+    "command": [
+      "make",
+      "verify-changed",
+      "WORKSPACE_BASE_REF=bc69d6d03eeb069eb8705953463b4ddc8a808e6d",
+      "AGENT_BASE_REF=bd1a683b8656c3f4091e16abb64f57897fa7fc42",
+      "APP_BASE_REF=e7bdc660501eaa19234e6b45bda033658edaa2d4"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "9e553648815d05ed110952dcd6d2ddf1e505dac5",
+        "dirty": false
+      },
+      "travel-agent": {
+        "commit": "05dcc9144a2cb997c5cf4bb75161f842c60e03e4",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "906c5d5a4719da504ddb492bf4e2fd85c8caabc2",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 287.01,
+    "log_path": "/private/tmp/vesper-efficiency-postfix-preflight-logs/engineering-efficiency-3b-post-fix-preflight-20261001T164505Z.log",
+    "test_counts": {
+      "framework": "jest",
+      "collected": 9180,
+      "passed": 9180,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  {
+    "schema_version": 1,
+    "label": "reliability-shallow-child-checkout-preflight",
+    "command": [
+      "make",
+      "verify-changed",
+      "WORKSPACE_BASE_REF=bc69d6d03eeb069eb8705953463b4ddc8a808e6d",
+      "AGENT_BASE_REF=bd1a683b8656c3f4091e16abb64f57897fa7fc42",
+      "APP_BASE_REF=e7bdc660501eaa19234e6b45bda033658edaa2d4"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "06d8359eb08c4dd91a201afab21ea75884b1cbd6",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "05dcc9144a2cb997c5cf4bb75161f842c60e03e4",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "906c5d5a4719da504ddb492bf4e2fd85c8caabc2",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 421.252,
+    "log_path": "docs/reliability/runs/reliability-shallow-child-checkout-preflight-20261001T175006Z.log",
+    "test_counts": {
+      "framework": "jest",
+      "collected": 9180,
+      "passed": 9180,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  {
+    "schema_version": 1,
+    "label": "reliability-shallow-syntax-shards-preflight",
+    "command": [
+      "make",
+      "verify-changed",
+      "WORKSPACE_BASE_REF=bc69d6d03eeb069eb8705953463b4ddc8a808e6d",
+      "AGENT_BASE_REF=bd1a683b8656c3f4091e16abb64f57897fa7fc42",
+      "APP_BASE_REF=e7bdc660501eaa19234e6b45bda033658edaa2d4"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "3d2245905ee28176de4f1d50e753608537ee5397",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "05dcc9144a2cb997c5cf4bb75161f842c60e03e4",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "906c5d5a4719da504ddb492bf4e2fd85c8caabc2",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 320.74,
+    "log_path": "docs/reliability/runs/reliability-shallow-syntax-shards-preflight-20261001T180358Z.log",
+    "test_counts": {
+      "framework": "jest",
+      "collected": 9180,
+      "passed": 9180,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  {
+    "schema_version": 1,
+    "label": "reliability-child-baseline-fetch-preflight",
+    "command": [
+      "make",
+      "verify-changed",
+      "WORKSPACE_BASE_REF=bc69d6d03eeb069eb8705953463b4ddc8a808e6d",
+      "AGENT_BASE_REF=bd1a683b8656c3f4091e16abb64f57897fa7fc42",
+      "APP_BASE_REF=e7bdc660501eaa19234e6b45bda033658edaa2d4"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "91f991eaf13b168d65ff5796997574faee6b024e",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "05dcc9144a2cb997c5cf4bb75161f842c60e03e4",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "906c5d5a4719da504ddb492bf4e2fd85c8caabc2",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 376.152,
+    "log_path": "/private/tmp/vesper-efficiency-baseline-fetch-preflight-logs/reliability-child-baseline-fetch-preflight-20261001T182905Z.log",
+    "test_counts": {
+      "framework": "jest",
+      "collected": 9180,
+      "passed": 9180,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  {
+    "schema_version": 1,
+    "label": "reliability-baseline-fetch-contract-tests",
+    "command": [
+      "python3",
+      "-m",
+      "pytest",
+      "-p",
+      "no:cacheprovider",
+      "scripts/tests/test_fetch_child_doc_baselines.py",
+      "scripts/tests/test_merge_readiness_workflows.py",
+      "-q"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "91f991eaf13b168d65ff5796997574faee6b024e",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "05dcc9144a2cb997c5cf4bb75161f842c60e03e4",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "906c5d5a4719da504ddb492bf4e2fd85c8caabc2",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 2.526,
+    "log_path": "/private/tmp/vesper-efficiency-baseline-tests-logs/reliability-baseline-fetch-contract-tests-20261001T183649Z.log",
+    "test_counts": {
+      "framework": "pytest",
+      "collected": null,
+      "passed": 38,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0
+    }
+  },
+  {
+    "schema_version": 1,
+    "label": "reliability-baseline-fetch-contract-tests-final",
+    "command": [
+      "python3",
+      "-m",
+      "pytest",
+      "-p",
+      "no:cacheprovider",
+      "scripts/tests/test_fetch_child_doc_baselines.py",
+      "scripts/tests/test_merge_readiness_workflows.py",
+      "-q"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "91f991eaf13b168d65ff5796997574faee6b024e",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "05dcc9144a2cb997c5cf4bb75161f842c60e03e4",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "906c5d5a4719da504ddb492bf4e2fd85c8caabc2",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 4.105,
+    "log_path": "/private/tmp/vesper-efficiency-baseline-tests-logs/reliability-baseline-fetch-contract-tests-final-20261001T183754Z.log",
+    "test_counts": {
+      "framework": "pytest",
+      "collected": null,
+      "passed": 38,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0
+    }
+  },
+  {
+    "schema_version": 1,
+    "label": "eng-eff-roadmap-update-verify-changed",
+    "command": [
+      "make",
+      "verify-changed",
+      "WORKSPACE_BASE_REF=origin/main",
+      "AGENT_BASE_REF=origin/main",
+      "APP_BASE_REF=origin/main"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "6080a3d4f53c4fc2c7e4282aef719296f38c0b0b",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "05dcc9144a2cb997c5cf4bb75161f842c60e03e4",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "906c5d5a4719da504ddb492bf4e2fd85c8caabc2",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 279.78,
+    "log_path": "/private/tmp/eng-eff-roadmap-update/eng-eff-roadmap-update-verify-changed-20261001T205811Z.log",
+    "test_counts": {
+      "framework": "jest",
+      "collected": 9180,
+      "passed": 9180,
+      "failed": 0,
+      "skipped": 0
+    }
   }
 ]
