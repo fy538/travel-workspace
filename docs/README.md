@@ -112,9 +112,9 @@ this spine may be useful, but it must not silently become a competing source of 
 ## Supporting layers
 
 - [Adaptive context and research roadmap](working/product-map/adaptive-context-and-research-roadmap-2026-09-29.md):
-  September 29 cross-repository audit and research-backed implementation packages
-  for artifact retrieval, bounded public research, selective refresh, assistance
-  and receiving. Proposed work only; the program retains the dispatch queue.
+  active Strategy Technical lane plan for artifact-context retrieval, bounded
+  public research, selective refresh, assistance and receiving. The lane owns
+  its R0–R7 package sequence and receipts inside the program's boundaries.
 - [Content-to-native quality consolidation plan](working/content-to-native-quality-consolidation-plan-2026-09-15.md):
   proposed shared-pattern/content implementation packages with current-app polish
   as a required outcome; scheduling stays with the program roadmap.

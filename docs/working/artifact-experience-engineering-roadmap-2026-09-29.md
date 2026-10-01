@@ -1075,9 +1075,16 @@ Place-pair selector could not reliably discover, without requiring more input.
   do not globally weaken existing gates or force a second source as padding.
 - Distinguish user-supplied knowledge, kept explanations and passive exposure.
   Test semantic repeats and useful new mechanisms on familiar premises.
-- Use bounded research only for a named missing public fact. Reuse governed
-  public evidence across private matching where licenses and freshness allow;
-  never share personalized synthesis through a public cache.
+- Use bounded research to resolve a specified public uncertainty **or discover
+  candidates for a named purpose**, anchored to the selected object and relevant
+  circumstances. This matches the public-world discovery requirement above and
+  [Technical R1](product-map/adaptive-context-and-research-roadmap-2026-09-29.md#r1-generalize-bounded-acquisition).
+  Discovery proposes candidates; verification must support any presented claim.
+  Both paths require permitted public terms, source-use rights, finite limits
+  and applicable spend admission. This planning clarification enables no new
+  live/paid caller, ambient research or disclosure policy. Reuse governed public
+  evidence across private matching where licenses and freshness allow; never
+  share personalized synthesis through a public cache.
 - Reuse existing editorial/retrieval evaluators with artifact-appropriate
   metrics. Extend the current Home/Places expression schema and mark treatment
   dimensions such as root distinctness applicable only to their real job.
