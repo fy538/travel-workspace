@@ -1013,25 +1013,39 @@ original as photo delivery or byte-custody proof. Continue D2 on independent
 supported Home/Places value; handle local private-object-store acceptance as a
 separate explicit runtime dependency.
 
-**Home addressed Place note identity — implemented 2026-10-01:** backend commit
-`f152de2bf` and app commit `604860d67` bind a named Place into an individual or
-multi-note Home heading only from the exact canonical Place owner read. The heading retains
-sender attribution, the basis uses plain privacy language, the authored words
-and exact destination remain unchanged, and an unavailable Place name keeps the
-sender-only fallback. The real social-send rehearsal now asserts the exact
-Place, note, privacy basis, represented Place and handoff destination before
-launching the native flow. Backend focused coverage passed **5/5** plus the
-source-real composition acceptance **1/1**; Ruff and formatting passed. App
-Home renderer/smoke coverage passed **57/57**, runner contract tests **6/6**,
-`bash -n` passed, registered scenario validation covered **31 IDs**, the Home
-design-reference check passed (**1 manifest, 2 pairs**), and both child-repo
-pre-commit hooks passed. Workspace `make docs-check` passed all governance,
-inventory, canon, status, link, compatibility and Home-surface checks.
-Native/API acceptance remains **unverified**: the lane-local API was not
-listening and CoreSimulatorService was unavailable, so no native or visual
-claim is made.
-This closes the misleading generic Place-note label in code, not ordinary-user
-supply, full-scroll parity, or D2 acceptance.
+**Home addressed Place note identity — implemented 2026-10-01:** backend commits
+`f152de2bf` and `30b2fe5be` and app commit `604860d67` bind a named Place into
+an individual or multi-note Home heading only from the exact canonical Place
+owner read. The heading retains sender attribution, the basis uses plain
+privacy language, the authored words and exact destination remain unchanged,
+and an unavailable Place name keeps the sender-only fallback. The real
+social-send rehearsal asserts the exact Place, note, privacy basis, represented
+Place and handoff destination. Backend focused coverage passed **5/5**, and the
+full Home composition acceptance now includes the canonical Place name (**1/1**);
+Ruff and formatting passed. App Home renderer/smoke coverage passed **57/57**,
+runner contract tests **6/6**, `bash -n` passed, registered scenario
+validation covered **31 IDs**, the Home design-reference check passed (**1
+manifest, 2 pairs**), and both child-repo pre-commit hooks passed. Workspace
+`make docs-check` passed all governance, inventory, canon, status, link,
+compatibility and Home-surface checks. Native/API acceptance remains
+**unverified**: the lane-local API was not listening and CoreSimulatorService
+was unavailable, so no native or visual claim is made. This closes the
+misleading generic Place-note label in code, not ordinary-user supply,
+full-scroll parity, or D2 acceptance.
+
+**Home authored-note hierarchy — implemented 2026-10-01:** app commit
+`ab49039a6` changes direct and multi-note Home shares to lead with the exact
+authored words in the shared serif quote treatment, then present sender/Place
+context and the exact Place door as supporting information. This enforces the
+Home contract's author-first hierarchy without changing admission, text,
+audience, owner authority, or destination. Focused Home renderer/smoke tests
+passed **57/57**, app typecheck passed, ESLint reported **0 errors** with the
+existing renderer max-lines warning, and registered scenario validation
+covered **31 IDs**; the Home reference check passed (**1 manifest, 2 pairs**).
+The app pre-commit hook passed. Native visual review remains **unverified**
+because CoreSimulatorService was unavailable; the reference set is still
+reference-only and has no external-canon verdict. This corrects a real
+hierarchy mismatch, not full design parity or D2 acceptance.
 
 ### Combined landing checkpoint — September 30
 
