@@ -58,7 +58,11 @@ opening and Home return. The latest Places notice increment carries a typed
 venue destination and now passes the native synthetic-owner sequence: open the
 exact Place, return with the notice still present, then clear the notice while
 the underlying Save remains. Production-user/authenticated-content, provider
-freshness, recurring supply and full D2 acceptance remain open.
+freshness, recurring supply and full D2 acceptance remain open. A new Home-only
+projection keeps the source-backed steps of one public Place reading while
+omitting its process narration; renderer tests and the latest native full-scroll
+flow pass, but reviewable screenshot evidence for this exact visual change is
+still open.
 D1 capture gaps and D3 practical-help gaps
 remain open and can supply independent work when a D2 dependency is unavailable.
 
@@ -734,6 +738,22 @@ combined Home portfolio regression passes as part of **87/87** tests in
 starter-content implementation; native and authenticated owner-readback
 acceptance remain unverified. Detailed evidence is in the [H1 execution
 plan](home-value-composition-execution-plan-2026-09-25.md).
+
+**Home public Place-reading compact projection — 2026-10-01:** app commit
+`42d1495ce` hides the grouping/process paragraph only for Home's
+`home-public-content-sequence-v1` composition. The reading title, both
+source-backed steps, provenance/basis, and exact Place door remain; the deeper
+Places projection keeps its explanatory text. The focused renderer suite passed
+**14/14**, app typecheck, targeted ESLint, and the registered polish scenario
+check (**31 IDs**) passed. The Home design check passed its local manifest/pair
+validation, but reported `externalCanonVerified=0`, so no external design-parity
+verdict is claimed. The current `89-home-full-scroll` Maestro log records
+**20/20 completed commands** through the social note, public reading, original,
+and screenshot action. A prior failed attempt used a stale “A place from Maya”
+assertion absent from the current flow; its screenshot is not evidence for the
+current composition. The passing run did not leave a reviewable screenshot, so
+the changed visual treatment remains **unverified**; do not treat this as full
+scroll visual acceptance or D2 completion.
 
 ### D3 Make practical help part of the same system
 
