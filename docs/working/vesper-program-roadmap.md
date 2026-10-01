@@ -648,6 +648,22 @@ closes one receiving-state defect, not D2. **Next:** continue functional
 Home/Places completion against existing owner-backed supply and full-scroll
 acceptance; do not reopen this access-state slice absent new evidence.
 
+**Places floating-dock clearance — 2026-09-30:** app commit `935975712`
+reserves the shared floating-tab footprint on the Places `ScreenScaffold`
+scroll viewport. Previously the cold-start guide image visibly continued
+behind the dock even though the section-exposure registry already considered
+that area occluded. The scaffold now styles the scroll viewport itself, leaving
+the full parchment page behind the dock, and Places measures exposure against
+the shorter viewport plus only the still-overlaid floating header. Focused
+Places/root/scaffold suites passed **46/46**, `npm run typecheck` passed,
+targeted ESLint and `git diff --check` passed, and the registered
+`polish/places-workspace-cold` flow passed **1/1** with its screenshot inspected
+on `Vesper QA SE`. This is native internal mock-fixture evidence for clipping
+and geometry, not real-owner supply or external design parity. The screenshot
+run was `20261001T001248Z-places-workspace` (UTC; local capture date
+2026-09-30). This closes a visible scroll-viewport defect only; D2 remains
+active. Continue with useful existing-supply coverage and full-scroll acceptance.
+
 ## 6 Autonomous execution and landing
 
 Each lane starts by reading its roadmap, the ownership section above, root and
