@@ -910,12 +910,18 @@ handoff ID and revision. Focused backend Places/root-projection tests passed
 **59/59** with Ruff format/check; the app's focused navigation/reader suites
 passed **106/106**, typecheck passed, and docs checks passed for 9 headers and
 480 links. Offline schema synchronization and `make api-coverage-check` passed
-(**579 active, 15 dark, 0 unflagged, 62 retiring operations**). Real-backend
-cheap-mode and native exact-owner readback are **unverified**: the lane API at
-port 53176 was not listening, so no API/database or device claim is made. D2
-remains active; next verify this revision-bound target against a running
-lane-local API and owner read, then continue ordinary/returned/live receiving
-coverage.
+(**579 active, 15 dark, 0 unflagged, 62 retiring operations**). The API route
+forwarding suite passed **7/7**. On a fresh migration-to-head disposable
+PostgreSQL database, `test_entity_people_lines_recheck_pair_membership_and_revoke`
+passed **1/1**, covering exact current-revision selection, mismatched-revision
+absence, membership removal and revocation; a read-only cleanup check found
+zero test users or venues afterward. This verifies the database owner-read
+boundary, not a running HTTP API. `make dev-backend` did not become healthy in
+default mode (missing local `ANTHROPIC_API_KEY`); the explicit no-provider
+retry then stopped because `DEFAULT_DEV_USER_ID` is unset. Native exact-owner
+readback is also **unverified**: CoreSimulatorService refused the device query.
+D2 remains active; next restore a configured lane API/device path for the exact
+owner journey, then continue ordinary/returned/live receiving coverage.
 
 ### Combined landing checkpoint — September 30
 
