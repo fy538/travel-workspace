@@ -419,22 +419,23 @@ workspace ownership boundaries. This section is the single implementation queue
 for this lane; package numbers remain stable references rather than execution
 order. The research sections explain the evidence, not additional queues.
 
-**Current state:** the integration landed with required checks passing; the
-efficiency implementation packages remain unstarted. The verified remote-main
-baseline is workspace `4febe0d461a62d204ba4dee9eaad7813c7c1509c`,
+**Current state:** the integration landed with required checks passing. Package
+3C has a local implementation commit; its hosted latency comparison and landing
+remain pending. Other implementation packages are unstarted. The verified
+remote-main baseline is workspace `4febe0d461a62d204ba4dee9eaad7813c7c1509c`,
 backend `bd1a683b8656c3f4091e16abb64f57897fa7fc42`, and
 app `e7bdc660501eaa19234e6b45bda033658edaa2d4`; see section 9 for PRs and
 tested child identities. Canonical workspace HEAD remained `0a39e27362a5`
 during the audit to preserve another lane's uncommitted roadmap edits. Do not
 confuse that checkout with the landed baseline or switch its owner out from
-under active work. The dedicated efficiency lane is now prepared as recorded below;
-implementation packages remain unstarted.
+under active work. The dedicated efficiency lane is prepared below; Package 3C
+is implemented there and awaits its hosted comparison.
 
 | Order | Work | Status and dependency | First beneficiaries |
 | --- | --- | --- | --- |
-| 0 | Use the landed baseline and confirm tooling ownership | Lane prepared on the landed tuple; confirm the bounded shared-file scope at Package 3C intake | All lanes |
-| 1 | Package 3C: workspace flow validation and early prerequisite checks | First queued delivery; no device or native-build dependency | All integrations |
-| 2 | Package 3A: deterministic and faster app tests with the same checks | Queued; diagnose observed intermittent failures before expanding concurrency | Every lane changing the app |
+| 0 | Use the landed baseline and confirm tooling ownership | Complete on commit `cef7ac55`; isolated runtime ownership is recorded below | All lanes |
+| 1 | Package 3C: workspace flow validation and early prerequisite checks | Implemented locally; 408-flow partition, required aggregate, and local CLI checks pass; hosted latency comparison and landing remain pending | All integrations |
+| 2 | Package 3A: deterministic and faster app tests with the same checks | Queued after Package 3C lands; diagnose observed intermittent failures before expanding concurrency | Every lane changing the app |
 | 3 | Package 3B: one execution owner per CI guarantee | Queued after mapping current required checks and their callers | All lanes |
 | 4 | Package 1: choose the right evidence and make targeted native QA reliable | Independent of CI work after baseline preparation; may proceed earlier when device access or product need favors it | Orchestration and Strategy |
 | 5 | Package 2: proportionate review and shorter task context | Native-review adoption needs Package 1; documentation reconciliation is independent | All lanes, especially mobile work |
@@ -445,8 +446,8 @@ implementation packages remain unstarted.
 ### Efficiency lane setup
 
 Eng Efficiency owns `codex/engineering-efficiency` in all three independent
-repositories under `/Users/feihuyan/travel-workspace--engineering-efficiency`.
-The coordinated lane was created with `scripts/new-worktree.sh
+repositories in the coordinated `engineering-efficiency` worktree. The lane was
+created with `scripts/new-worktree.sh
 engineering-efficiency --base origin/main` from the exact landed workspace,
 backend and app revisions recorded above. The owner is Codex thread
 `01a0f2f0-0917-71b0-a150-030d05b2f680`; `.workspace-lane.json` records the bases,
@@ -464,10 +465,12 @@ port `63928`. No services were started and no device is assigned. These ports
 must be rechecked at startup. Dependency installation and product/native tests
 remain unrun; they are not prerequisites for this branch-and-document setup.
 
-This setup changes only this roadmap. Package 3C is the first implementation
-slice; its intake must confirm the exact shared tooling files and nearest tests
-before changes, using the existing targets below. No CI behavior or required
-check policy changes merely by opening the lane.
+The setup receipt was committed as `cef7ac55af49`; Package 3C is committed as
+`b1c174b7`. That slice owns the reliability workflow, workspace Maestro targets,
+the deterministic partition helper and their existing workflow tests. It
+preserves the required `Contract and golden paths` result name. CI behavior has
+not been exercised on the remote branch yet, and branch-protection settings
+were not changed.
 
 ### Start and adoption checkpoints
 
@@ -624,6 +627,36 @@ cannot produce a green aggregate. Prove dependency/setup failures surface before
 long validation. Measure complete hosted latency and runner-minutes on equivalent
 inputs, retaining the serial route if the pilot is not better. Do not narrow
 flow coverage or bulk-delete flows to meet a time target.
+
+**Local implementation receipt (October 1; hosted comparison pending).** Commit
+`b1c174b7` splits the prior workspace job into the existing required aggregate,
+the full reliability suite, and four isolated Maestro syntax jobs. The inventory
+helper matches the former recursive shell selection exactly, including `.yaml`,
+`.yml`, and the existing config exclusion. Every partition uses the full sibling
+checkout; CLI calls stay serial inside a shard. A missing or empty shard, missing
+CLI, failed/cancelled/skipped job, or absent aggregate input cannot pass the
+tested local boundary.
+
+The focused command
+`PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -p no:cacheprovider -q scripts/tests/test_partition_maestro_flows.py scripts/tests/test_merge_readiness_workflows.py`
+passed 39 tests. `make docs-check`, `make maestro-flow-inventory-check`,
+`make journey-registry-check`, and the moved flag, compatibility, card-arrival,
+chat-card-type and API coverage checks passed. Maestro CLI 2.6.1 passed all 408
+flows: four concurrent isolated local runs each returned 102 successful syntax
+results. On macOS 25.5 arm64, the slowest shard took 187.552 seconds; summed
+shard command time was 747.119 seconds. These are local measurements with a
+different runner and setup from hosted CI, so they do not establish reduced
+hosted latency. The raw command measurements and logs remain under
+`/private/tmp/vesper-maestro-run/` for this working session.
+
+The full workspace regression command
+`PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -p no:cacheprovider -q scripts/tests`
+reported 134 passed and 5 environment failures: one checker could not import
+SQLAlchemy because this lane's backend dependencies were not installed, and
+four worktree-runtime tests could not bind local sockets in this execution
+environment. This is not a passing full suite. Hosted CI installs backend
+dependencies and runs the socket tests in its runner; that complete result
+remains required before the Package 3C acceptance claim.
 
 **3A — App test determinism and execution, second in the queue.** At final
 candidate `21fdb724f`, the first hosted test job failed two unchanged tests;
