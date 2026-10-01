@@ -3,7 +3,7 @@ doc_type: current_status
 status: active
 owner: founder / Orchestration lane
 created: 2026-09-07
-last_verified: 2026-09-30
+last_verified: 2026-10-01
 why_new: Owns the existing program's lane boundaries and the Orchestration execution plan; specialist roadmaps own their own packages and receipts.
 supersedes:
   - single-lane dispatch and current assignments in earlier versions of this roadmap
@@ -23,7 +23,7 @@ depends_on:
 ## Direction and current assignment
 
 Build the complete product on the connected system already implemented.
-The next execution model is **three autonomous implementation lanes in three
+The execution model remains **three autonomous product lanes in three
 coordinated worktrees**, each containing the workspace and both independent
 children. This file owns the boundaries between them and the work of
 **Orchestration**, not a queue through which every other lane must ask permission.
@@ -41,20 +41,152 @@ they do not declare their runtime migration complete. No new booking execution,
 automatic sharing, connected-inbox sharing, background-generation posture,
 notification policy or deployment is authorized by this roadmap.
 
-**Execution status — September 30:** all three lanes have implemented useful
-increments. The founder requested a combined landing of their recent work;
-integration is published from the existing `codex/home-value-delivery` lane.
-This is a landing checkpoint, not a claim that any entire roadmap is finished.
-No new coordination service, fourth integration lane or routine inter-chat
-messaging is required. After landing, owners can resume their remaining scoped
-assignments from the common baseline.
+**Execution status — October 1:** the combined work from all three lanes is
+merged in the workspace and both children, with required hosted checks passing.
+D0's shared planning and landing checkpoint is complete; runtime readiness and
+product acceptance are not. **D2 is now underway:** controlled native
+full-scroll compositions for Home and Places are recorded below. Orchestration's
+next primary assignment is to continue substantive Home/Places receiving work
+and representative ordinary/returned/live coverage, including working
+interactions and native polish. The latest D2 increment lets one exact,
+revision-bound Place Source appear as a self-contained Places reading without
+requiring a second item, gives an exact Place-bound Home destination a specific
+door label, and verifies a returned Home reading's exact Place/source route and
+Home return token in the connected app path. A local synthetic-owner API/native
+rehearsal now also verifies a two-Source Home reading through exact Place
+opening and Home return. The latest Places notice increment carries a typed
+venue destination and now passes the native synthetic-owner sequence: open the
+exact Place, return with the notice still present, then clear the notice while
+the underlying Save remains. Production-user/authenticated-content, provider
+freshness, recurring supply and full D2 acceptance remain open. A new Home-only
+projection keeps the source-backed steps of one public Place reading while
+omitting its process paragraph and grouping basis; renderer and controlled
+native full-scroll assertions pass. The run uses a disposable synthetic
+recipient and isolated local API/database; it does not establish production
+auth, recurring supply, provider freshness or design-canon parity. Preserve the
+default QA account. A follow-up client repair routes the additional friend
+card preserved beside a two-person Places comparison through its exact typed
+Place destination, not a generic venue fallback. Component and backend adapter
+evidence pass; this exact three-person composition has no dedicated native or
+production-owner acceptance yet.
+D1 capture gaps and D3 practical-help gaps
+remain open and can supply independent work when a D2 dependency is unavailable.
+
+Eng Efficiency owns the separate [efficiency improvement queue](development-qa-research-and-roadmap-2026-09-30.md#5-improvement-roadmap).
+It supports product delivery; it is not a fourth product or integration queue,
+and its completion is not a prerequisite for independent D2 work. No new
+coordination service or routine inter-chat messaging is required. This roadmap
+sets execution order and acceptance; it does not certify runtime readiness,
+product acceptance, or activate new product behavior.
+
+**Central integration ownership — October 1 founder request:** the central
+integration session owns conflict resolution, coordinated dependency pins,
+the combined merge preflight, publication and protected-main landing for the
+four execution lanes. Each lane still owns its implementation, focused tests
+and acceptance receipts; it hands over a clean, committed candidate with its
+remaining boundaries stated. This handoff changes integration responsibility,
+not product authority or the required checks. Integrate compatible candidates
+in dependency order rather than waiting for every roadmap to finish.
+Uncommitted work stays with its lane owner. The current coordinated integration
+checkout is `worktrees/central-integration-2026-10-01`, on
+`codex/central-integration-2026-10-01` in all three independent repositories.
+Its initial candidate combines the committed research, artifact, Orchestration
+and efficiency snapshots; landing status follows the actual PRs and exact
+verified revision tuple, not this ownership assignment.
+
+**Central integration landing receipt — October 1:** the compatible committed
+research, artifact, Orchestration and efficiency snapshots now share backend
+[PR #241](https://github.com/fy538/travel-agent/pull/241) at
+`0a1fdf224aaf59ca713eec5eba79a34321f038a9` and app
+[PR #212](https://github.com/fy538/travel-app/pull/212) at
+`acf5bd837fe3725b00d9744727f513a601fb2498`. Required hosted checks passed
+without bypass. The workspace candidate pins that landed pair; its own
+protected-main landing still requires the coordinated contract/golden-path
+check. Integration repaired the backend migration join and research-to-Home
+novelty handoff, and aligned app source sizes, API consumer locations and new
+route/header ownership. Existing size limits and visual acceptance were not
+relaxed. Local combined regression and subsequent app/contract preflights are
+recorded in `docs/reliability/test-loop-baseline.json`, including failed
+attempts. Uncommitted lane edits, research activation, Collections presentation,
+current-device visual judgment, authenticated correction readback and full
+product acceptance remain outside this landing. No overall engineering speed
+improvement is inferred from these checks alone.
+
+**Integration efficiency checkpoint — October 1:** review of the September 30
+landing found stronger checkout, database and required-check reliability, but
+did not demonstrate a faster end-to-end merge: first combined candidate to
+workspace merge was about 55 minutes, and the final merge turn took 73 minutes.
+Late candidate repairs and overlapping waits explain avoidable work, but the
+measurements do not support a quantified productivity gain. Keep the operating
+changes in section 6—complete inexpensive checks before publishing a stable
+candidate, use one bounded watcher, and land compatible independent slices
+without waiting for every lane. Eng Efficiency owns the measured tooling
+improvements; Orchestration continues D2 without adding a new integration gate.
+The detailed measurements and boundaries remain in the
+[completed integration review](development-qa-research-and-roadmap-2026-09-30.md#9-completed-integration-review).
 
 ## 1 Inspected baseline and unfinished product work
 
 <a id="inspected-baseline-and-publication-state"></a>
 
-September 30 inspection distinguishes implementation from publication and
+The completed September 30 landing provides this shared main baseline. Preserve
+the distinction between merged implementation, local checkout state and product
 acceptance:
+
+| Repository | Landed main revision | Meaning |
+| --- | --- | --- |
+| Workspace | `4febe0d461a62d204ba4dee9eaad7813c7c1509c` | Combined landing, approved canon refinements, contracts and final child candidate pins; [PR #37](https://github.com/fy538/travel-workspace/pull/37) |
+| Backend | `bd1a683b8656c3f4091e16abb64f57897fa7fc42` | Combined product-lane changes and integration repairs; [PR #238](https://github.com/fy538/travel-agent/pull/238) |
+| App | `e7bdc660501eaa19234e6b45bda033658edaa2d4` | Combined capture, reader, Home/Places and integration repairs; [PR #208](https://github.com/fy538/travel-app/pull/208) |
+
+The workspace lock records tested backend `33a000e97ed4` and app `21fdb724ff71`.
+Their trees are identical to the corresponding main merge commits above. Keep
+those immutable candidate pins; do not repin just to replace them with
+identical-tree merge commits. Required checks passed without bypass, including
+private child checkout and disposable-database journeys. The [completed
+integration review](development-qa-research-and-roadmap-2026-09-30.md#9-completed-integration-review)
+records timing, retries and evidence limits. New changes need applicable checks;
+the completed landing is not a reason to repeat its broad suites.
+
+**Ownership decision — October 1:** continue the artifact roadmap in the
+existing `codex/artifact-foundation` coordinated workspace/backend/app tuple;
+do not open a duplicate branch or worktree for this same outcome. This tuple
+owns its artifact slices through focused verification, review and safe landing,
+while each repository keeps its independent Git history. The follow-on heads
+recorded at this checkpoint were workspace `b1fd4ad6`, backend `ebe90232b`, and
+app `3aaceef88`; subsequent implementation is receipted in the artifact
+roadmap below. At that checkpoint, these follow-on commits were local and not
+merged or published. The [artifact roadmap](artifact-experience-engineering-roadmap-2026-09-29.md#0-strategy-lane-execution-boundary)
+owns the detailed package sequence and file-level responsibilities. Strategy
+Technical remains the owner of its producer contract; Strategy adopts it only
+after it is landed and verified, and continues independent artifact work in
+the meantime. Founder review remains required for choices that change product
+meaning, authority, privacy, or visible claims.
+
+**Ownership clarification — October 1:** “Strategy owns” names product/domain
+authority; it does not mean Strategy authors every layer or that the current
+execution lane takes over adjacent domains. The existing artifact-foundation
+tuple is accountable for this roadmap outcome across its coordinated checkouts.
+Within it, the backend owns canonical artifact/Collection persistence and
+owner-scoped authorization, while the app owns presentation, navigation and
+query behavior. Strategy Technical owns the reusable producer request/result
+contract and shared research/runtime; Orchestration owns capture transport and
+Home/Places delivery. For the current bounded Thing-projection work, the
+artifact lane owns the cross-repo read contract and its reconciliation/consumer
+integration; this is not a separate Life-screen or Orchestration assignment.
+No duplicate lane is needed. Escalate only for a product/authority choice, a
+changed privacy or visible-claim boundary, or an actual cross-lane conflict.
+
+At that docs-only checkpoint, `docs/child-repos.ci-lock.json` pinned backend
+`33a000e97` and app `21fdb724f`, the integrated child tips. Both are ancestors
+of, and have identical source trees to, the child merge revisions above; those
+pins did not omit product changes from that landing. A new implementation
+slice must recheck the tuple and relevant gates.
+
+### Historical pre-integration inspection
+
+The following September 30 observations preceded the combined landing; they
+are provenance, not the next execution baseline:
 
 | Repository | Observed revision | Meaning |
 | --- | --- | --- |
@@ -63,28 +195,34 @@ acceptance:
 | Backend main | `3c170d21fc0ca9231b956f2b9de7f9f195231768` | Home/capture follow-up and CI changes merged through PR #237 |
 | App main | `87eceee24512d9086962eea5b844cef9d7bffbeb` | Home/capture follow-up and CI changes merged through PR #202 |
 
-The table records the pre-integration baseline, not the final landing tuple.
-The combined workspace [PR #37](https://github.com/fy538/travel-workspace/pull/37),
-backend [PR #238](https://github.com/fy538/travel-agent/pull/238), and app
-[PR #208](https://github.com/fy538/travel-app/pull/208) carry this checkpoint.
-Their live merge state and `docs/child-repos.ci-lock.json` identify the shared
-execution baseline. Private checkout and the workspace database-backed gate
-now have successful hosted evidence; do not reopen those old blockers from
-historical receipts. Child repairs still need their exact-revision hosted gates.
+The earlier landing pass recorded successful hosted evidence for private
+checkout and the workspace database-backed gate. Retain those receipts at
+their exact revisions; merge ancestry does not certify other checks or waive
+required hosted gates.
 
-The latest completed Strategy roadmap draft was inspected in its existing
-product-direction checkout; the latest Technical draft was in the canonical
-workspace. This rebaseline consolidates those roadmap contents here without
-changing the source Strategy checkout. Reconcile their pending documentation
-changes once before branching, rather than launching lanes from different
-draft generations. Strategy-child Thesis/Model edits remain separate owned work.
+The combined landing consolidated the Strategy and Technical roadmap drafts
+and the subsequent approved product-canon reconciliation. Do not restart that
+completed reconciliation from this historical table. Preserve any newer
+uncommitted work in other checkouts; it is not automatically part of this
+baseline or authorized for adoption.
+
+At that September 30 rebaseline, the canonical workspace checkout was at
+`0a39e273` with Eng Efficiency's uncommitted draft and was preserved.
+Orchestration's workspace was at the landed baseline, and its clean child
+checkouts used the tested candidate commits. Approved Thesis and Product Model
+refinements were included in the landing, not outstanding canon conflicts;
+subsequent owner drafts remained separate. Strategy's artifact-foundation
+checkout had also synchronized its own three-repository worktree to the landed
+tuple. These observations establish those checkouts at that checkpoint, not
+runtime or device readiness. Align only the lane's own checkouts with landed
+dependencies at implementation intake.
 
 | Area | Implemented foundation | Remaining work and owner |
 | --- | --- | --- |
 | Capture | Shared private composer, native extension host, retry/session custody, supported email attachment intake, original access | Supported-door delivery, failure/retry clarity and authenticated handoff: Orchestration D1 |
 | Home | Source discovery/request/worker/readback connections, contextual continuation, current commitment facts, native hierarchy improvements | Useful recurring supply, complete receiving, full-scroll quality and recovery options: D2/D3 |
-| Artifacts and Life | Source custody, original readers, owner references, Life projections and original receiving | Stable thing/component identity, typed family readers, catalog anchors, consumer collections and accepted Life model: Strategy |
-| Context and research | Existing retrieval, bounded research pieces, jobs, generation infrastructure and publication fences | General selected-object capability, evidence fidelity, correct reuse and bounded maintenance: Strategy Technical |
+| Artifacts and Life | Source custody, typed family/fallback readers, exact originals and return, correction/Undo, session/expiry guards, bounded native fixture matrices, Life projections and original receiving | Reviewed stable Thing/Component identity and cross-source reconciliation, catalog anchors, consumer collections, selected-part/contextual reading and remaining acceptance: Strategy |
+| Context and research | Existing retrieval, exact-original revision checks, backend plain-text component refind, bounded public acquisition, jobs and publication fences | Artifact-target request/result integration, broader evidence selection, correct reuse, research-spend enforcement and bounded maintenance: Strategy Technical |
 | Places and practical help | Situated projections, entity pages, current place facts and owner-backed actions | Consume richer results coherently; useful current options and exact return: D2/D3 |
 
 These are code/evidence boundaries, not design-completion percentages.
@@ -110,6 +248,26 @@ selection and prepared-result validity, consuming P4 when retention is required.
 P6 is split: Strategy owns collections, original sharing/receiving and Life;
 Orchestration owns their Home/Places placements. Technical R6 provides result
 readback and consumer-conformance evidence, not its own mobile redesign.
+
+**Program coordination is not a fourth implementation lane.** This strategy
+thread keeps the cross-lane product context, clarifies priorities and ownership,
+and reviews evidence at system checkpoints. The three execution lanes each own
+their bounded outcome through implementation, focused verification, commits
+and safe landing; owners coordinate directly on ordinary technical details.
+Escalate here for a consequential cross-lane conflict or a product/authority
+choice, not for routine progress reports or every implementation obstacle.
+Founder review remains reserved for decisions that change product meaning,
+privacy, authority or visible claims. Coordination must not duplicate an
+execution lane's implementation or become an approval queue.
+
+**Supporting engineering work:** Eng Efficiency owns the linked improvement
+queue, including workspace validation, app-test determinism/speed, duplicate
+checks and targeted native QA reliability. Before changing shared tooling, its
+owner records the bounded files and dependencies in that roadmap under the
+shared-file rule below. Product lanes consume landed improvements and retain
+their product acceptance duties; they do not duplicate the tooling queue or
+wait for all of it. This does not assign another lane's checkout or authorize
+concurrent writes to the same tooling.
 
 ### Code boundaries and shared files
 
@@ -145,15 +303,17 @@ models. Separate domain migrations may proceed independently. The later landing
 owner reconciles migration heads/order and validates the combined migration;
 do not rename or rewrite another lane's already landed migration.
 
-## 3 Prepare the common baseline once
+<a id="3-prepare-the-common-baseline-once"></a>
 
-Before implementation starts:
+## 3 Resume from the landed baseline
 
-1. Preserve and reconcile the three latest roadmap drafts, accepted decisions
-   and relevant pending owner-contract edits. Resolve workspace PR #37's actual
-   state and the delivery-only link repair; do not assume local main equals
-   remote main. Commit/land the intended shared starting tuple under the current
-   publication authority.
+Shared roadmap reconciliation and combined landing are complete. Before the
+next implementation slice, check only the current lane and its actual
+dependencies:
+
+1. Confirm the landed tuple in section 1 and any newer required dependency.
+   Preserve subsequent drafts. Do not reopen PR #37 or repeat shared planning;
+   local canonical main is not assumed to equal remote main.
 2. Inspect `make worktrees`, branches, HEADs and dirty files in all three repos.
    Reuse suitable free coordinated lanes. Do not repurpose a read-only inventory
    checkout or another session's unfinished checkout by assumption.
@@ -162,18 +322,21 @@ Before implementation starts:
    app worktree is not sufficient: verify its own `travel-agent/` and
    `travel-app/` checkouts, matching intended bases, before any cross-repo command.
    Keep three independent Git histories; no submodules or canonical-child fallback.
-4. Record the same starting workspace/backend/app SHA tuple in each lane's
-   existing assignment. Select a descriptive `codex/` branch per lane. Reuse the
-   worktree for follow-on packages rather than retaining a new branch per helper.
+4. Record the actual workspace/backend/app starting tuple in the lane's existing
+   assignment, with the required landed interfaces. Owners may advance
+   independently; identical HEADs across all lanes are not an ongoing gate.
+   Retain the descriptive `codex/` branch and reuse its worktree for follow-on
+   packages rather than retaining a new branch per helper.
 5. Check each lane's runtime manifest and `scripts/dev.sh --print-runtime`.
    Use isolated API/Expo ports, Compose projects, disposable test databases and
    caches. Reserve distinct simulator/device instances where capacity permits;
    otherwise only the device-dependent check waits. Do not restart another lane's
    services or repoint its app to a different backend.
 
-After this one-time setup, lanes are autonomous. Each keeps current progress
-in its own roadmap, not in all three. This file changes when priority or ownership
-changes, not whenever another lane passes a test.
+These checks do not claim that every lane's runtime is already ready. Lanes
+remain autonomous; each keeps current progress in its own roadmap, not in all
+three. This file changes when priority or ownership changes, not whenever
+another lane passes a test.
 
 ## 4 Interfaces and dependency order
 
@@ -187,20 +350,22 @@ services or an instruction to invent new wire schemas before inspecting owners.
 | Strategy P4/P6 | Exact retained-edition behavior and collection/audience operations, when adopted and implemented | Keep original-only and existing eligible receiving; disable unsupported retention/shared derivatives |
 | Orchestration D2/D3 | Root caller context and return behavior; invocation of existing practical owner commands and current facts | Other lanes preserve existing navigation/actions; do not emulate a provider result or successful mutation |
 
-**First parallel wave:**
+**Post-landing continuation:**
 
-- Strategy maps P0 early, then delivers the P1/PC/P2 foundation with original-first
-  value and honest catalog fallbacks.
-- Technical starts R0/R1 and an existing-original R2 path with first-producer
-  safeguards. It can improve evidence fidelity and public-acquisition boundaries
-  before new artifact identities land.
-- Orchestration starts D1 against existing custody and proceeds with independent
-  Home/Places improvements. It does not wait for catalog licensing, a new reader
-  or broad research infrastructure.
+- Strategy continues its Artifact roadmap from the landed descriptor, reader
+  and correction increments. Its owner chooses the remaining P0/P1/PC/P2 and
+  later package work; consumers do not assume those packages are complete.
+- Technical continues its Adaptive Context roadmap from the landed
+  revision-bound reads, bounded acquisition and accounting increments. Supported
+  additions, shared execution, maintenance and quality gaps remain owned there.
+- Orchestration prioritizes D2 using the supported original/current-owner supply
+  and any eligible prepared results actually available in the landed code. It
+  does not wait for catalog licensing, every reader family or broad research
+  completion; D1 and D3 retain their independent fallback work.
 
-Land the small additive P0/interface portion once ready; do not hold shared
-interfaces until every family renderer is complete. Consumers adopt **landed
-revisions**, not copied uncommitted code or a sibling branch that may change
+Land further small additive interfaces once ready; do not hold them until every
+family renderer is complete. Consumers adopt **landed revisions**, not copied
+uncommitted code or a sibling branch that may change
 under them. Typed fixtures can unblock presentation and adapter work but do not
 prove the producer connection. Recheck owner state at receipt, publication and
 readback where the existing contract requires it.
@@ -212,16 +377,27 @@ representative families, not a decision to narrow Vesper to one behavior loop.
 
 ## 5 Orchestration execution plan
 
+**Current order:** D0's shared-baseline work is complete; D2 is the next primary
+delivery assignment. D1 and D3 remain open for gaps needed by that experience
+and independent work when an exact D2 dependency is blocked. A signing, device,
+provider or unimplemented producer dependency blocks only its affected path.
+The dated implementation receipts below preserve evidence; their historical
+“Next” notes do not override this current order or reopen closed defects.
+
 ### D0 Rebaseline and prepare execution
 
-**Current task:** reconcile these roadmaps, ownership, evidence and start order.
-**Finish:** the three documents agree; each lane has a first assignment,
-exclusions, dependency fallback and acceptance boundary. Execution preparation
-in section 3 remains a separate step until actually performed.
+**Status: complete for shared planning and landing.** The combined main tuple
+includes the three roadmap baselines, accepted canon refinements and integrated
+product work. Ownership, dependency fallbacks and acceptance boundaries remain
+defined here and in the specialist roadmaps. This does not certify every
+checkout/runtime, native capture door, provider path or full product experience;
+Strategy's synchronized checkout is recorded in section 1. Section 3 owns the
+short lane-specific intake before resuming implementation; it is not a reason to
+repeat the combined landing.
 
 Do not turn D0 into another architecture inventory or recurring acceptance-only
-lane. The existing system and unfinished product work are sufficiently concrete
-to begin bounded implementation after baseline preparation.
+lane. Resume the named unfinished product work rather than repeating the
+completed integration or waiting for the efficiency program.
 
 ### D1 Finish supported capture delivery
 
@@ -336,14 +512,96 @@ CoreSimulatorService failed and the Maestro lock directory returned `EPERM`;
 real authenticated playback and device/visual acceptance therefore remain
 unverified.
 
-**Independent work when blocked:** in-app authenticated/native acceptance,
-email transport failure semantics and D2's existing-supply composition. The
-native share receipt stays in-extension; do not add unsupported host-launch
-workarounds.
+**Email custody failure classification — October 1:** backend commit
+`ed96555df` separates permanent content rejection from an impossible mismatch
+between the accepted email attachment manifest and persisted Intake source
+receipts. Unsupported/conflicting content keeps the existing `202 dropped`
+behavior; a missing or inconsistent persisted attachment receipt is logged
+without exposing details and returns a generic `503` so SendGrid can retry.
+This preserves the message idempotency key and changes no capture, identity, or
+retention contract. The backend feature doc records the provider boundary.
+`tests/inbound/test_email_forward_v2.py`,
+`tests/api/test_inbound_email_failure_semantics.py`, and
+`tests/api/test_inbound_email_attachment_parsing.py` passed **23/23** with
+`PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider -q`; targeted
+Ruff check/format and the normal pre-commit hooks passed. The tests use mocks;
+no live SendGrid delivery, disposable-DB path, sender notice, owner-visible
+failure receipt, or permanent-failure recovery is established. Unsupported
+bundles remain all-or-nothing.
+
+**Home private-Keep recovery door — October 1:** app commit `053cdcac5` adds a
+quiet **Resume Keep** action to Home's existing capture header only when the
+current authenticated iOS owner/session has a recoverable attempt in the
+existing protected journal. It opens the same composer and recovers the same
+idempotency key; no source preview, new Home unit, backend endpoint, or second
+custody owner was added. Five focused app suites passed **74/74**; production
+and test TypeScript checks, targeted lint, and Home scenario/surface registry
+checks passed. Native Home visual acceptance is **unverified**: the QA doctor
+could not reach Metro on the default port or the lane's assigned port `53177`.
+This closes the code-level Home resume affordance only, not signed-device or
+authenticated live-readback acceptance.
+
+**Independent work when blocked:** in-app authenticated/native acceptance and
+D2's existing-supply composition. Email's internal retry classification now
+has code/test evidence; provider delivery and owner-visible email failure or
+recovery remain open. Do not add partial admission, sender notices, or a new
+failure ledger without its owner/contract decision. The native share receipt
+stays in-extension; do not add unsupported host-launch workarounds.
 Do not block the whole lane on signing, an unavailable provider or an unapproved
 sharing policy. No Chat redesign or Life implementation belongs to D1.
 
 ### D2 Make Home and Places complete receiving surfaces
+
+**Active primary assignment:** continue turning the landed supply and reader
+capabilities into complete, useful Home/Places sections and interactions. The
+controlled Home and Places full-scroll compositions are a baseline, not the
+finish line: they use synthetic recipients and do not establish ordinary-user
+supply, recurrence, release acceptance, or visual parity with every adopted
+reference. Work in the existing root/projection owners; reuse Strategy's
+readers and Technical's results without taking over their implementations.
+
+1. At intake, map the adopted Home/Places sections to their current producer,
+   mobile row, action and return path. Use the existing H1 coverage/receipts and
+   registered design references; record only the next slice's concrete missing
+   connections here, not a new repository-wide inventory. Separate available
+   original/current-owner value from absent or unaccepted generated supply.
+2. Implement a coherent receiving slice through producer read, root composition,
+   exact object/component opening and restored root position. Include useful
+   sparse/empty and changed-access/error behavior. Prefer substantive missing
+   sections and interactions over another sequence of label-only corrections.
+   Preserve the distinct Home and Places roles and eligible human authorship.
+3. Finish that slice's hierarchy, density, imagery, touch and scrolling against
+   the adopted references. Retain focused behavior checks, authenticated owner
+   readback where available, and targeted native evidence for visible changes.
+   Review the full scroll when composition changes, not only the crown. If a
+   device/provider is unavailable, report that acceptance gap and continue
+   independent supported implementation; fixtures are not live delivery proof.
+4. Land the complete useful increment under the existing publication authority,
+   record its remaining gaps here, then take the next D2 section or D1/D3
+   dependency. Reassess product value and owner reuse at that outcome boundary,
+   not after each small fix. Do not accumulate every D2 state before any landing.
+
+**Slice finish:** the selected supported value is reachable, worth opening and
+correctly returned from, with the changed behavior and native treatment checked
+at their stated boundaries. D2 as a whole still requires the representative
+portfolio and full-scroll acceptance below. No prepared-result coverage,
+recurring supply or design-completion percentage follows merely from merging
+the other lanes' foundations.
+
+**Known Home value dependency — source-marked city notice:** the accepted Home
+union includes `horizon_world_fact_row`, but the current backend has no producer
+for it and the Home client has no renderer. Its authority is deliberately
+narrow: a city-scoped notice with a date, hour, or service consequence inside
+the person's window, visibly marked by its source; it is not a standing
+section and must never be inferred from a location trace. This differs from a
+multi-Source editorial connection, which already enters Home as
+`horizon_editorial_passage`. The Home/Places lane should consume this unit only
+after the bounded-public-acquisition owner supplies an exact, licensed,
+freshness-aware source read. Do not add a competing fetcher/generator or render
+an illustrative fixture as live value. Consumer work then needs the typed
+source-bearing row, current-window admission, source inspection, expiry or
+withdrawal behavior, and an exact Home return check. This dependency does not
+block independent D2 receiving and polish work.
 
 **Outcome:** both roots deliver substantial, navigable value from current
 authorized supply, with the polish of the adopted design references.
@@ -589,6 +847,96 @@ starter-content implementation; native and authenticated owner-readback
 acceptance remain unverified. Detailed evidence is in the [H1 execution
 plan](home-value-composition-execution-plan-2026-09-25.md).
 
+**Home public Place-reading compact projection — 2026-10-01:** app commits
+`42d1495ce`, `9fc1e4874`, and `1628a0269` hide the grouping/process paragraph
+and the basis that repeats how readings were grouped, only for Home's
+`home-public-content-sequence-v1` composition. Its title and both source-backed
+steps remain; the deeper Places projection retains the full explanation and
+basis. The focused renderer suite passed **14/14**, app typecheck, targeted
+ESLint, and the registered polish scenario check (**31 IDs**) passed. The Home
+design check passed local manifest/pair validation but reported
+`externalCanonVerified=0`, so no external design-parity verdict is claimed. The
+`89-home-full-scroll` flow now explicitly asserts that both process-only lines
+are absent; its static contract passed **3/3** and Maestro structure validation
+passed (**408 flows, 8 configs, 408 unique names, 10 package references**). The
+earlier full-scroll pass completed **20/20** commands on the pre-change
+baseline; its screenshot at `/tmp/home-full-scroll-original.png` visibly
+includes both lines and is not post-commit acceptance. A guarded rerun after
+the first negative assertion stopped before Maestro: existing QA-profile
+material prevented the public two-reading composition from being admitted. Its
+run-scoped fixture cleanup was armed and no cleanup warning was emitted. Do not
+clear or repurpose that QA account.
+
+**Controlled compact-copy native acceptance — 2026-10-01:** run
+`home-compact-copy-sparse-postchange-20261001T1845Z` passed `89-home-full-scroll`
+on iPhone 16 Pro / iOS 18.2 against the lane's local database and temporary
+development-auth API, using a controlled sparse synthetic recipient. The flow
+verified the friend item, exact two-source public Place reading, both
+source-backed steps, exact original, and the absence of the process paragraph
+and grouping-basis copy. Screenshot capture passed. The runner's three
+run-scoped fixtures were absent after cleanup. Removing the disposable
+recipient exposed that `/api/me` had created its default Vesper conversation;
+the fixture cleanup now removes only conversations owned by a marker-verified
+disposable account before deleting it. The focused fixture and Places contract
+tests passed **17/17**; Ruff check and format passed. `make ci-static` passed
+after pointing Ruff and mypy caches to `/tmp` (the initial default mypy cache
+could not be created outside this worktree). `make merge-check BASE_REF=main`
+passed the full offline suite: **22,099 passed, 14 skipped, 53 xpassed**, with
+two local-Qdrant warnings. The preflight did not run its optional DB-marked
+collection. This closes only the compact-copy native assertion, not D2
+full-scroll, production-owner/auth, recurring-supply or external design-canon
+acceptance.
+
+**Home full-scroll inspection checkpoints — 2026-10-01:** app commit
+`67ff1c8f8` extends the existing `89-home-full-scroll` journey with named
+viewport captures for the opening, addressed friend contribution, source-backed
+Place reading, and recipient-authorized original. The existing assertions,
+fixture scope and owner-return behavior are unchanged. The flow's two-document
+YAML parsed successfully, `npm run qa:polish:scenarios` validated all **31**
+registered IDs, `npm run maestro:metadata:check` verified all **408** flows,
+and `git diff --check` passed. A new native capture was not run: the assigned
+simulator check failed because CoreSimulatorService refused its connection.
+Therefore no new screenshot or visual verdict exists yet; rerun this same flow
+when that service is available. This makes the already-required full-scroll
+review inspectable without adding a new journey, test matrix or design canon.
+It does not close D2's real-owner, recurring-supply or external design-reference
+gaps.
+
+**Follow-up safety correction — 2026-10-01:** app commit `1a3165c03` makes
+`run-home-full-scroll.sh` require both the configured account ID and an
+`@eval.local` email before it can provision any Home/Places fixtures. The
+runner's focused contract tests passed **3/3**, `bash -n` passed,
+`npm run qa:polish:scenarios` validated **31** IDs,
+`npm run maestro:metadata:check` verified **408** flows, and `git diff --check`
+passed. A runtime negative check against the lane's current local
+account returned the synthetic-recipient rejection before fixture provisioning;
+no account data or fixtures were changed. The assigned simulator and local
+services are now available, but a fresh full-scroll run still requires a
+configured synthetic recipient. No screenshot or new visual verdict was
+produced. D2 remains active.
+
+**Additional friend perspective exact Place receiving — 2026-10-01:** backend
+commits `f01b71673` and `1a9f57b91` preserve an eligible third friend's card
+beside a two-person Places comparison and attach its exact Place action. An app
+regression first failed: `PlacesFeedSectionContent` only used semantic
+destinations for `friend-pull:*` authored-note cards, so an ordinary additional
+friend card fell through to the generic venue route and lost its typed Places
+context. App commit `be43b6f34` resolves a friend-card action only when it
+targets exactly the tapped venue; a recipient-note card additionally requires
+its exact handoff ID, and ordinary cards reject handoff-bearing actions. The
+legacy route remains the fallback when no matching typed action exists.
+
+The app regression exercises the runtime shape (two attributed comparison
+cases plus Ari's separate card), confirms all three perspectives render, and
+asserts Ari's card opens the exact Place destination. The full focused
+`PlacesSectionFeed.test.tsx` suite passed **56/56**; `npm run typecheck`,
+`npm run test:typecheck:contracts`, targeted ESLint, registered polish scenario
+validation (**31 IDs**) and `git diff --check` passed. The backend runtime and
+candidate regressions passed **2/2**. No dedicated native three-friend run,
+live HTTP/API read or external-canon verdict was produced. This closes a
+client-side exact-context handoff gap only; ordinary/returned/live coverage,
+native visual review and D2 acceptance remain open.
+
 ### D3 Make practical help part of the same system
 
 **Outcome:** what is happening now changes the useful options and actions across
@@ -668,9 +1016,716 @@ run was `20261001T001248Z-places-workspace` (UTC; local capture date
 2026-09-30). This closes a visible scroll-viewport defect only; D2 remains
 active. Continue with useful existing-supply coverage and full-scroll acceptance.
 
+**Home real-source reading sequence — 2026-09-30:** app commit `ecb37add8`
+hardens the native rehearsal fixture IDs and replaces a renderer-specific
+detail-screen selector with the exact seeded Place title. On the isolated
+lane API/database and assigned iPhone 16 Pro, `78-home-public-reading-sequence`
+passed end to end: both accepted source readings appeared together in Home,
+the exact Place opened, Back restored the same Home card, and the fixture
+cleanup check passed. `bash -n` and `git diff --check` passed for the runner
+changes. This is real-local source/owner-read and return evidence, not release
+acceptance or proof of the combined full-scroll portfolio. The initial combined
+three-family rehearsal against the shared accumulated QA recipient did not admit
+the public composition alongside the other fixtures (10 candidates, 8 admitted);
+that profile was not a controlled sparse baseline, so the result did not isolate
+an admission-policy issue. The controlled sparse-profile follow-up below resolves
+that uncertainty for this representative composition; keep admission policy
+unchanged and continue broader D2 acceptance.
+
+**Controlled Home full-scroll — 2026-10-01:** app commit `a83dfca6a`
+(`codex/home-value-delivery`) fixes the rehearsal's smart-quoted authored-note
+assertion and ensures cleanup deletes a fixture-created original sender without
+deleting a reused sender. Against a newly provisioned synthetic recipient on
+the isolated lane API/database, the canonical Home projection admitted all
+three families together: an addressed social note, a two-reading public Place
+composition, and an individually delivered original. The native
+`89-home-full-scroll.yaml` flow passed on iPhone 16 Pro / iOS 18.2
+(`home-full-scroll-sparse-20261001T0012Z-native`): Home launched, each exact
+unit and key text assertions appeared through scrolling, and fixture cleanup
+completed with a post-cleanup projection check. The shared-account failure was
+therefore profile contamination, not evidence that selection policy should
+change. This is synthetic-fixture evidence through the real local API and native
+client, not ordinary-user supply, recurrence, release acceptance, or a visual
+parity verdict against registered design references. The temporary sparse
+recipient and bootstrap delivery were removed afterward; the reused sender was
+preserved. D2 remains active; next, continue representative
+ordinary/returned/live coverage and substantive Home/Places receiving work
+without changing admission policy.
+
+**Controlled Places full-scroll — 2026-10-01:** app commit `962504c01`
+(`codex/home-value-delivery`) makes the Places full-scroll runner require the
+lane-assigned, booted simulator and pass its exact UDID to Maestro; its focused
+contract checks now guard that isolation and the authored quote text. The
+`90-places-full-scroll` flow passed on iPhone 16 Pro / iOS 18.2
+(`places-full-scroll-device-check-20261001T0034Z`). It read the canonical
+Source-field lead, accepted Place reading, consented friend contribution, and
+saved-place change in one native Places scroll, with each exact family visible;
+the runner's source, social, and saved-change cleanup plus post-cleanup owner
+reads passed. This used local-only
+`ROOT_SOURCE_CONTRIBUTION_PRODUCTION_ENABLED`,
+`PLACE_CONTENT_PRIMITIVE_READS_ENABLED`, and
+`CONTENT_CONTROL_PLANE_PLACE_ENABLED` flags; the background worker cohort and
+deployment flags remained off. This is controlled synthetic data through the
+real local API and native client, not recurring ordinary-user supply, release
+acceptance, or a design-reference visual verdict. Together with the Home
+full-scroll above, this verifies one bounded cross-family composition in each
+root; D2 still needs broader ordinary/returned/live coverage and substantive
+receiving gaps.
+
+**Exact Place-handoff photo composition — 2026-10-01:** backend commit
+`f46ed5adc` carries an original delivery's exact `handoff_id` into Home as
+presentation context only; app commit `365db6d7b` pairs one
+image original with one directly addressed Place note only when both name that
+exact handoff in the same Home region. Text originals, duplicate/ambiguous
+matches and unrelated notes remain separate. Both units retain their own live
+owner read, exposure boundary, action/return identity and unavailable state, so
+an unavailable original does not hide the note or its Place door. The app's
+Home screen and pairing suites passed **37/37**, `npm run typecheck` passed,
+targeted ESLint had **0 errors** (the existing renderer max-lines warning
+remains), and backend coverage passed **4/4** targeted cases (**84** deselected);
+Ruff and `git diff --check` passed. Native linked-photo/API acceptance is
+**unverified**: this lane's API did not become healthy at `/health` under
+`make dev-backend` (startup reported its missing local `ANTHROPIC_API_KEY`),
+so no device or real-owner readback claim is made. D2 remains active; this is a
+bounded social receiving composition, not full Home/Places or D2 completion.
+
+**Authored Place-note delivery in Places — 2026-10-01:** backend commit
+`936becfda` preserves the exact recipient-consented `place_handoff` identity as
+represented/source evidence only, then composes its exact words as a `RootRead`.
+App commit `fd27d6e4e` renders sender and authored wording in the shared quote
+treatment, retains the exact Place action, and preserves direct wording inside
+plural social comparisons. Ordinary friend-save summaries remain link cards;
+audience gates, owner authority and wire contracts are unchanged. Backend Places
+coverage passed **17/17** with Ruff/format checks; the three affected app suites
+passed **27/27**, typecheck passed, ESLint reported **0 errors** and the existing
+renderer max-lines warning, and registered scenario validation passed (**31
+IDs**). Native visual and real-owner readback evidence were not run for this
+increment. This closes one authored-note receiving gap only; D2 remains active.
+
+**Home-origin Places authored-note capture — 2026-10-01:** app commit
+`41a5f7587` registers the direct-note mock composition as a named native QA
+scenario. On iPhone 16 Pro / Maestro 2.6.1, the targeted flow
+`20261001T065104Z-places-workspace` captured all three screenshots: the
+Home-origin Places lead, field continuation, and Maya's exact authored words
+with the exact Red Hook door. The screen visibly asks for no reply. This used
+the internal four-root/Places V2 gates and mock API; it demonstrates native
+rendering of the authored-note path, not a real-owner readback or release
+acceptance. The external August design bundle's registered hashes verified,
+but it has no paired authored-note specimen: the generated comparison sheets
+had no matching app screenshot, and structured-verdict validation blocks a
+commit because the `external-canon` run path does not populate the required
+`canonRefs`. Therefore no design-parity verdict is claimed. The first broad
+matrix run under default Expo gates was 7/8; its only failure expected Home V2
+while those gates were disabled. The corrected targeted flow passed 1/1 with
+two extra captures; the complete matrix has not been rerun with the internal
+flags. Visual inspection also shows the same `Open Red Hook` door on the field
+immediately before and beneath Maya's note; retain exact destination ownership
+but consider consolidating that repeated action in a future polish pass. The
+internal simulator emitted 4.9–5.6 s cold-launch breadcrumbs against its 2.5 s
+budget, while settled layout was 146–148 ms against 3 s; this Metro/mock run is
+not a production performance baseline. Focused Places tests passed 27/27, app
+typecheck and ESLint passed, scenario validation covered 31 IDs, and the QA
+registry tests passed 5/5. This adds a useful receiving-path capture, not a D2
+completion or a reason to change lane order.
+
+**Places authored-note exact open and return — 2026-10-01:** app commits
+`de210c532`, `d466ef6fa`, and `27010a7d7` make same-capability actions
+unit-addressable, include exact destination refs in the internal presentation's
+return scope, and humanize a slug-shaped Place fallback. The committed native
+run `20261001T072134Z-places-workspace` passed on iPhone 16 Pro / Maestro 2.6.1
+with the internal four-root/Places V2 gates and mock API: **1/1 flow, 4/4 extra
+captures**. The flow opens the note's exact Red Hook Place, confirms the
+human-readable name, backs out, and verifies Maya's note remains in the same
+Places context. Focused Places/root-projection suites passed **37/37**, Place
+home smoke passed **18/18**, typecheck passed, and focused ESLint had **0
+errors** (one existing max-lines warning in the Place screen). The native run
+first exposed an unrepresented destination-ref invariant and then a raw-slug
+label; both were corrected before this passing capture. This is internal mock
+behavior only: the destination resolves to the honest cold Place state because
+the fixture has no real Place-owned depth. Real-owner supply/readback, enriched
+Place value, release acceptance, and external-canon visual parity remain open;
+the August bundle still lacks a matching authored-note specimen and the
+structured external-canon verdict path still lacks required `canonRefs`. D2
+remains active; this verifies exact opening and return, not complete Home/Places
+receiving or D2 completion.
+
+**Revision-bound Places authored-note handoff — 2026-10-01:** backend commit
+`30328c177` adds the source handoff revision to recipient-consented direct-note
+cards and carries the exact `(handoff id, revision)` into the V2 action
+destination, alongside the existing Places context and venue refs. Friend-save
+summaries are unchanged; a legacy row without a revision retains its ordinary
+Place door but does not invent an exact owner-read target. App commit
+`5b04067f5` regenerates the optional response type from the synced full OpenAPI
+snapshot and app projection; the existing selected-handoff reader consumes the
+typed destination. Backend commit `e3299cad0` extends the producer test through
+the V2 adapter, asserting that the actual generated action retains the exact
+handoff ID and revision. Focused backend Places/root-projection tests passed
+**59/59** with Ruff format/check; the app's focused navigation/reader suites
+passed **106/106**, typecheck passed, and docs checks passed for 9 headers and
+480 links. Offline schema synchronization and `make api-coverage-check` passed
+(**579 active, 15 dark, 0 unflagged, 62 retiring operations**). The API route
+forwarding suite passed **7/7**. On a fresh migration-to-head disposable
+PostgreSQL database, `test_entity_people_lines_recheck_pair_membership_and_revoke`
+passed **1/1**, covering exact current-revision selection, mismatched-revision
+absence, membership removal and revocation; a read-only cleanup check found
+zero test users or venues afterward, and the temporary 37 MB database was then
+removed. This verifies the database owner-read boundary, not a running HTTP API.
+`make dev-backend` did not become healthy in
+default mode (missing local `ANTHROPIC_API_KEY`); the explicit no-provider
+retry then stopped because `DEFAULT_DEV_USER_ID` is unset. Native exact-owner
+readback is also **unverified**: CoreSimulatorService refused the device query.
+D2 remains active; next restore a configured lane API/device path for the exact
+owner journey, then continue ordinary/returned/live receiving coverage.
+
+**Configured Places recipient run — completed 2026-10-01:** the bounded
+rehearsal uses the explicitly disposable `vesper_places_native_20261001`
+database, not the ambient development database. Backend commit `d9db593d1`
+adds the exact `place_handoff` ID/revision and context to the V2 social card's
+represented/source refs, satisfying the return-scope invariant. Focused backend
+Places runtime tests passed **17/17**; Ruff format/check and `git diff --check`
+passed. App commit `3e0832b24` routes the authored Place note's native card
+action through its exact V2 destination. Focused Places feed tests passed
+**53/53**, typecheck passed, the runner contract passed **4/4**, shell syntax
+passed, Maestro validation passed **408 flows / 8 configs / 10 package refs**,
+and metadata validation passed **408 flows**.
+Commands included `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.
+.venv/bin/python -m pytest -p no:cacheprovider -q --tb=short
+tests/root_projection/test_places_runtime.py`,
+`CI=1 npx jest --runInBand --no-cache
+__tests__/components/places/PlacesSectionFeed.test.tsx`, `npm run typecheck`,
+`node --test scripts/maestro/places-real-social-pull.test.mjs`,
+`python3 scripts/validate-maestro-flows.py --app-dir travel-app`, and
+`make docs-check`.
+
+Before simulator interaction, the runner confirmed the real local API returned
+Maya's authored note in the recipient's Places feed; the V2 action carried the
+exact handoff ID and revision; that selected current revision returned exactly
+one owner line, while the next stale revision returned none. The native flow
+`places-exact-handoff-20261001-d9db593d-r4` then passed **1/1** on iPhone 16 Pro
+/ iOS 18.2: it opened the exact note from Places, showed the authored words in
+the selected-line sheet, closed the sheet, verified the underlying Venue and
+inline line, returned to the same Places unit, and verified the note there.
+The runner confirmed its one synthetic fixture was cleaned up. An earlier r3
+attempt reached the correct Venue and note but asserted the underlying Venue
+root while the modal note sheet owned the accessibility tree; moving that
+assertion until after closing the sheet resolved the test without changing app
+behavior. An earlier duplicate-looking screenshot was confounded by multiple
+rehearsal senders named Maya and is not evidence of a product duplication defect.
+The two handoff feature flags were enabled only on the local rehearsal API;
+repository defaults and product rollout posture are unchanged.
+
+This proves a synthetic-recipient HTTP/Postgres and native exact-open/return
+path, not authenticated production-owner value, recurring supply, or D2 as a
+whole. The revised native flow focuses on exact opening/return; Keep/Leave-aside
+remain covered by focused component tests, not this native run. Continue
+ordinary/returned/live receiving coverage and substantive Home/Places work;
+D2 remains active.
+
+**Home addressed-note Keep and return — completed 2026-10-01:** app commit
+`1939e8d74` makes the Home real-social-send runner arm its exact fixture cleanup
+before provisioning, and its static contract now enforces that ordering. The
+native flow `home-exact-send-20261001-d9db593d-r1` passed **1/1** on iPhone 16
+Pro / iOS 18.2 against the same disposable local Postgres/API setup. Before
+launching the app, the runner confirmed the addressed `SEND_NOW` item was in
+the real Home V2 projection and its exact selected revision returned the
+authored owner line. In the UI, the user opened the exact Home destination,
+kept the line, and returned Home; afterward the runner confirmed the recipient
+owner state advanced to a newer `kept` revision, the exact note remained
+readable at that revision, the handled inbox unit was withdrawn from Home, and
+fixture cleanup removed the synthetic handoff. The run emitted non-blocking
+warnings for optional onboarding buttons absent from the already-prepared
+simulator; all product assertions passed. Static runner tests passed **6/6**,
+`bash -n` and `git diff --check` passed. This establishes a synthetic-recipient
+Home receiving/Keep/owner-read/withdrawal path, not ordinary-user supply,
+production-owner value, recurring delivery, or full D2 acceptance. The Home
+flow validates a native Keep journey; Places Keep/Leave-aside remain component-
+tested and were not part of the previous Places native exact-open/return run.
+Continue ordinary/returned/live receiving coverage and full-scroll assessment;
+D2 remains active.
+
+**Home text-original delivery and return — completed 2026-10-01:** app commit
+`31c20cd80` fixes two defects in the native original-delivery runner: empty
+optional-array expansion failed under `set -u` before the text fixture could be
+created, and cleanup was armed only after follow-up fixture parsing. Text and
+photo provisioning now take explicit argument paths, and cleanup is armed as
+soon as the fixture sender is known. The runner's focused contract passed
+**4/4**; `bash -n` and `git diff --check` passed. Native flow
+`home-original-text-20261001-d9db593d-r3` passed **1/1** on iPhone 16 Pro /
+iOS 18.2 against the disposable local API/database. It confirmed the original
+delivery in the real Home V2 projection, opened the exact owner-authorized
+material, returned to the same Home item, confirmed the delivery remained
+active, and verified fixture cleanup removed it from both the owner list and
+Home projection. This is synthetic-recipient local API/Postgres/native evidence,
+not production sharing or recurring ordinary-user supply.
+
+The photo variant remains **unverified**: this lane currently has no configured
+loopback S3-compatible endpoint or `vesper-qa-*` bucket. Its fixture requires
+private object storage and refuses to write to an external endpoint, so it was
+not run and no photo fixture was created. Do not interpret the passing text
+original as photo delivery or byte-custody proof. Continue D2 on independent
+supported Home/Places value; handle local private-object-store acceptance as a
+separate explicit runtime dependency.
+
+**Home addressed Place note identity — implemented 2026-10-01:** backend commits
+`f152de2bf` and `30b2fe5be` and app commit `604860d67` bind a named Place into
+an individual or multi-note Home heading only from the exact canonical Place
+owner read. The heading retains sender attribution, the basis uses plain
+privacy language, the authored words and exact destination remain unchanged,
+and an unavailable Place name keeps the sender-only fallback. The real
+social-send rehearsal asserts the exact Place, note, privacy basis, represented
+Place and handoff destination. Backend focused coverage passed **5/5**, and the
+full Home composition acceptance now includes the canonical Place name (**1/1**);
+Ruff and formatting passed. App Home renderer/smoke coverage passed **57/57**,
+runner contract tests **6/6**, `bash -n` passed, registered scenario
+validation covered **31 IDs**, the Home design-reference check passed (**1
+manifest, 2 pairs**), and both child-repo pre-commit hooks passed. Workspace
+`make docs-check` passed all governance, inventory, canon, status, link,
+compatibility and Home-surface checks. Native/API acceptance remains
+**unverified**: the lane-local API was not listening and CoreSimulatorService
+was unavailable, so no native or visual claim is made. This closes the
+misleading generic Place-note label in code, not ordinary-user supply,
+full-scroll parity, or D2 acceptance.
+
+**Home authored-note hierarchy — implemented 2026-10-01:** app commit
+`ab49039a6` changes direct and multi-note Home shares to lead with the exact
+authored words in the shared serif quote treatment, then present sender/Place
+context and the exact Place door as supporting information. This enforces the
+Home contract's author-first hierarchy without changing admission, text,
+audience, owner authority, or destination. Focused Home renderer/smoke tests
+passed **57/57**, app typecheck passed, ESLint reported **0 errors** with the
+existing renderer max-lines warning, and registered scenario validation
+covered **31 IDs**; the Home reference check passed (**1 manifest, 2 pairs**).
+The app pre-commit hook passed. Native visual review remains **unverified**
+because CoreSimulatorService was unavailable; the reference set is still
+reference-only and has no external-canon verdict. This corrects a real
+hierarchy mismatch, not full design parity or D2 acceptance.
+
+**Place-note original-photo receiving — implemented 2026-10-01:** backend commit
+`8cd85fd55` optionally reads current recipient-owned original deliveries only
+when the Places feed already contains a revision-bound, recipient-consented
+direct note. The read uses the existing bounded optional Places producer and
+is collected with value preparation in the normal composer paths;
+unavailability omits only the photo. The adapter joins by
+the exact handoff ID and requires the same sender and recipient, active/current
+delivery, an allowed image MIME type and unexpired effective read. It adds the
+original and grant refs to that existing authored note—no inferred join by
+person, venue or time, new endpoint, audience grant or OpenAPI change. App commit
+`9dc90bc6a` renders that exact image in the Places note using a shared,
+revalidating original preview also reused by Home. Before rendering bytes it
+checks the current owner-read revision and handoff ID; opening uses the exact
+original resource through Places' existing return-token path. The authored
+words and Place action remain when the optional read is absent, mismatched,
+expired or unavailable, and Places does not repeat sender attribution above
+the same note. Backend Places runtime tests passed **19/19**, Ruff/format and
+`git diff --check` passed. The app's Places exact-reference and original-reader
+suites passed **35/35**, app typecheck and test-contract typecheck passed,
+registered scenario validation passed (**31 IDs**), and targeted ESLint had
+**0 errors** (the existing Home and Places renderer max-lines warnings remain).
+Native/API acceptance is **unverified**: although simulators were booted, this
+lane's assigned API and Expo ports (53176/53177) were not listening, so there
+was no authenticated device readback or visual capture. This closes one
+connected-media social receiving gap, not real-owner photo acceptance, full
+scroll/design parity or D2 completion.
+
+**Place-note photo exact open and Places return — implemented 2026-10-01:**
+app commit `17cc42d03` adds `original_delivery` to the root resource router,
+using the existing exact-resource resolver to open the Relationships-owned
+recipient reader rather than trusting the backend owner path. The Places hook
+registers only the selected original ref and active note unit, carries the
+ephemeral root-return token, and records the open interaction. Route, hook and
+original-reader tests passed **93/93**; app typecheck, test-contract typecheck,
+focused ESLint (**0 errors**), registered scenario validation (**31 IDs**) and
+`git diff --check` passed. Native/authenticated owner readback remains
+**unverified** because this lane's API/Expo services were unavailable; this
+closes the no-op tap path, not photo-byte custody, real-owner acceptance,
+full-scroll parity or D2 completion.
+
+**Places source-door grounding — implemented 2026-10-01:** app commit
+`c3c563602` changes the generic “Open the source” door to consider only a
+unit's explicit `source_refs`, never a merely represented Place or context.
+The native Home-origin Places capture exposed that the “Three hours after the
+ferry” way-in card had no declared sources but still rendered a source door
+that resolved to broad Places context. The card now keeps its explicit
+Place-opening destination without the duplicate/misleading source link; the
+authored Maya note keeps its exact “Open Red Hook” action. Focused Places and
+original-delivery tests passed **50/50**, app typecheck passed, focused ESLint
+reported **0 errors** (one existing renderer max-lines warning), and
+`git diff --check` passed. The targeted iPhone 16 Pro flow
+`polish/places-semantic-field` captured **1/1** with five screenshots and
+verified opening the authored note's exact Place destination and returning to
+the same Places context. Its screenshot visibly confirms the duplicate source
+door is gone. This was the fixture-backed `elif/home-context` path: it does
+not prove API-backed owner data, the way-in card's destination tap, an external
+design-canon comparison, photo-byte custody, real-owner acceptance, or full
+Places/D2 parity. D2 remains active.
+
+**Home Outcome → exact Life record → Home — 2026-10-01:** the current
+workspace/backend/app tuple (`96fa6df8` / `8cd85fd55` / `c3c563602`) passed
+the existing `91-home-outcome-life-return` native flow on its assigned iPhone
+16 Pro / iOS 18.2. The run used a fresh, explicitly disposable, migration-to-
+head database (`vesper_home_return_20261001_01`), one synthetic `@eval.local`
+owner, the real local HTTP API, `SKIP_AUTH=true` for that owner only, and
+AI/search/background work disabled. Before app launch, the runner confirmed the
+exact private Outcome in Home v2 and the exact same Outcome and authored meaning
+in the owner's Life time read. On device it opened that exact Life record,
+returned, and found the same Home unit still visible. All three native captures
+were produced; the runner then verified that fixture cleanup withdrew the
+Outcome from both roots. The disposable database was removed after the API
+stopped. The runner contract passed **4/4**, `bash -n` and `git diff --check`
+passed. This proves one returned-state, cross-root owner-read/navigation/return
+path, not production authentication, a user's actual trip, recurring content,
+or full D2 acceptance.
+
+The screenshots also bound the next useful question: this deliberately sparse
+Outcome had no occurrence date or canonical Place binding, so Life correctly
+said “Date not recorded”; the page otherwise offered a generic “Explore Places”
+door. A direct Home read of the same fixture carried two non-retryable
+`moment.conditions_unavailable` degradations, rendered as “A partial read,”
+although the Outcome and Places door remained available. Do not infer the
+missing date or Place. The conditions-notice question is resolved in the
+following receipt; the next returned-state pass should use genuinely available
+date/place/source evidence where the owners provide it and assess whether the
+generic Places door can become a useful exact destination. D2 remains active;
+exact opening and return alone are not meaningful returned-content acceptance.
+
+**Expected optional Home conditions omission — 2026-10-01:** decision: do not
+show Home's generic partial-read notice for a non-retryable
+`moment.conditions_unavailable` degradation. The structural week-shape accepts
+missing current conditions, the omission has no useful action for the person,
+and the generic notice made an otherwise valid sparse Home look broken. This
+is a Home presentation rule only: the owner degradation remains in the API
+projection; retryable moment failures, other owner degradations, and
+Place-specific `current_conditions_unavailable` remain visible. The Home root
+implementation, component coverage, and Home surface contract were updated.
+
+Evidence: focused `HomeRootV2Screen.smoke.test.tsx` passed 34/34; TypeScript
+typecheck passed; registered polish scenarios passed 31/31; native polish
+doctor passed on the assigned iPhone 16 Pro / iOS 18.2 (Maestro 2.6.1, Java
+17); Home design-reference check passed (`manifests=1`, `pairs=2`,
+`externalCanonVerified=0`). A separate native capture against the real local
+Home API showed the exact sparse state with two non-retryable
+`moment.conditions_unavailable` degradations and no generic “A partial read”
+banner (`/tmp/vesper-home-conditions-omission-20261001/.maestro/tests/2026-10-01_083815/screenshot-⚠️-1790858318640-(vesper-home-conditions-omission-20261001.yaml).png`).
+The existing Home Outcome → Life → Home owner-return rehearsal also passed,
+including fixture withdrawal checks. Evidence was produced against one
+synthetic owner in disposable database
+`vesper_home_partial_notice_20261001_01`; its API was stopped and that database
+was dropped after verification. This does not verify production auth, editorial
+quality, external design-canon parity, or full D2 returned-content acceptance.
+The next pass remains focused on truthful date/Place/source evidence and the
+generic “Explore Places” dead-end; do not infer missing context.
+
+**Home friend note + current Place opening — 2026-10-01:** app commit
+`b97263894` corrects the existing real-owner runner to distinguish the
+standalone addressed-note copy from the server-composed Home human-opening
+copy. The old assertion required the venue name in the note anchor and the
+friend-only basis even when the joined composition correctly moved the venue
+name into the Place basis. This changes acceptance diagnostics, not product
+runtime behavior.
+
+The pre-run tuple was workspace/backend/app `8b72bdfc` / `8cd85fd55` /
+`c3c563602`. On an iPhone 16 Pro / iOS 18.2, the `run-home-real-joined-opening`
+journey used a fresh migration-to-head disposable database
+(`vesper_home_join_20261001_01`), one synthetic `@eval.local` recipient, the
+real local HTTP API, and the API's explicitly selected default-off
+`ADDRESSED_PLACE_HANDOFFS_ENABLED` and `RELATIONSHIP_UUID_HANDOFFS_ENABLED`
+flags. Auth bypass was scoped to that synthetic owner; AI, search and
+background work stayed disabled. Home returned one joined unit at the exact
+venue with Maya's unchanged note. The exact owner read succeeded; on device the
+recipient opened the note, chose Keep, opened the venue, returned to Home and
+the handled inbox unit disappeared. The Home context, sender, handoff and venue
+fixtures were cleaned; the API stopped; the disposable database was confirmed
+connection-free and dropped. The runner's focused contract passed **6/6**,
+`bash -n` and `git diff --check` passed. Optional onboarding controls were
+absent as expected.
+
+This is substantive low-effort social receiving and an offline Place door, not
+proof of production auth, an actual friend's account or recurring supply. The
+composed basis was only `Vesper Social Pull Café · New York City`: the path
+adds exact social context and a place, but no new source-backed fact about that
+place. The screenshots also contain internal development/query-health
+overlays, so they verify the interaction but are not a final visual-polish
+verdict. Next D2 work should add substantive Place value only where the same
+canonical entity has eligible source evidence, then continue returned-state
+coverage using owner-provided facts; do not infer a visit date from Outcome
+creation time or make the friend note depend on a generated supplement.
+
+**Co-present authored-note Place door — 2026-10-01:** app commit `641ebbbbb`
+introduced exact-target deduplication in `PlacesSemanticField`, but the first
+feed-level integration did not yet provide the note as context: authored
+social notes are card-bound in the admitted projection, while the standalone
+field receives a separate `field_units` list. App commit `3ebde88e9` closes that
+integration gap by passing the full admitted projection as render context while
+still transforming only the standalone units. An attributed friend note keeps
+its exact live Place action; only an identical represented-Place destination
+and action on a co-present lead/browse unit are removed. Absent notes,
+mismatched Places and unrepresented targets preserve the ordinary door.
+Original units remain the source for exposure identity and layout; audience,
+content and owner authority are unchanged.
+
+The feed-level regression mirrors the actual split between card-bound note
+context and standalone `field_units`. The focused Places semantic-field,
+root-screen and section-feed suites passed **74/74** with
+`./node_modules/.bin/jest --runInBand --no-cache __tests__/components/places/PlacesSectionFeed.test.tsx __tests__/components/places/PlacesSemanticField.test.tsx __tests__/components/places/PlacesRootV2Screen.test.tsx`;
+`npm run typecheck`, `npm run test:typecheck:contracts`, targeted ESLint,
+`git diff --check` and `npm run qa:polish:scenarios` passed. The registered
+Places design-ref check passed structurally (one manifest, six pairs), but
+reported `externalCanonVerified=0` because the operator-owned external bundle
+was unavailable. Native QA did not produce a screenshot: the default attempt
+stopped because Metro was not running at `:8081`; the retry configured for the
+lane's `:53177` failed when CoreSimulatorService was unavailable/refused and
+the runner could not create its per-device lock (`EPERM`). Visual polish is
+therefore unverified. This closes one duplicate-door composition defect only;
+D2 remains active. Continue with substantive source-backed Place value and
+representative ordinary/returned/live coverage.
+
+**Plural friend-perspective preservation — October 1:** backend commit
+`f01b71673` fixes a lossy Places adapter case. When the current friend-activity
+feed can form its two-person comparison, the adapter now consumes only those
+exact two source-card IDs. Any additional eligible friend cards remain
+individual candidates with their existing recipient-scoped relationship read
+and exact Place actions. No new sharing, audience, consent or identity rule is
+introduced. The regression first failed because a third friend's candidate
+was absent, then passed with the corrected adapter. Follow-up backend test
+commit `1a9f57b91` extends the assertion through candidate selection,
+`compile_places_v2`, and `compile_places_root_runtime_v1`: the comparison holds
+Mara/Jon while the actual workspace feed retains Ari's exact card.
+
+Focused projection/runtime/social Places coverage passed **78/78**; the focused
+three-friend regression passed **1/1**. Ruff check/format and all backend
+`ci-static` gates passed. `make merge-check BASE_REF=origin/main`, with
+`PYTEST_ADDOPTS='-p no:cacheprovider'`, passed the full offline suite:
+**22,094 passed, 14 skipped, 1 xfailed, 52 xpassed, 2 warnings**. No database
+tests ran. The first merge-check attempt reached 100% but exited during pytest
+cache write in the read-only checkout; disabling only the cache plugin produced
+the passing rerun. This preserves one extra social perspective, not D2
+completion; continue with source-backed Place value and representative
+ordinary/returned/live coverage.
+
+**Single source-backed Place reading — 2026-10-01:** backend commit
+`c120985bc` lets a lone current Place Source appear as a self-contained
+`A reading` item in the existing Places root when the existing public-content
+and release gates admit it. The item retains the exact revisioned Source and
+canonical Place subject and remains inspectable through `source.inspect`; the
+existing app destination opens the exact Place and carries Places return
+context (covered by app test commit `a337c35cd`). A lone legacy dossier remains
+hidden from this reading section because its existing GUIDE card already
+represents it; multi-item fork/collection behavior is unchanged. No source,
+generator, endpoint, schema, access rule, or visual component was added.
+
+Backend focused feed, collection, and root-projection suites passed **93/93**
+with `.venv/bin/python -m pytest -p no:cacheprovider tests/places/test_sections_feed.py tests/places/test_collections.py tests/root_projection/test_v2_contracts.py -q`;
+Ruff check/format, backend pre-commit hooks, and `git diff --check` passed. The
+app exact Place Source routing suite passed **68/68** with
+`./node_modules/.bin/jest --runInBand --no-cache __tests__/utils/rootProjectionNavigation.test.ts`;
+app commit `a337c35cd` adds the route-helper regression. Follow-up backend test
+commit `a20da1929` verifies that the lone Source survives Places candidate
+selection and joined-runtime compilation with its exact Source/Place refs,
+`source.inspect` requirement, and canonical destination; the full
+`tests/root_projection/test_places_runtime.py` suite passed **20/20**. Follow-up
+app commit `8c94759c8` adds a rendered-feed interaction regression: tapping the
+lone card opens its exact Place with the Source ID/revision and preserves Places
+context and the return token. The full Places feed component suite passed
+**54/54**;
+`npm run typecheck`, `npm run test:typecheck:contracts`, registered polish
+scenario validation (**31 IDs**), targeted ESLint, and `git diff --check` also
+passed. Both app commits contain tests only, not runtime changes; both backend
+commits together contain the one-section behavior plus its runtime regression.
+The starting tuple was workspace `7410e08cb`, backend `1a9f57b91`, app
+`3ebde88e`; resulting child HEADs are backend `a20da1929` and app `8c94759c8`
+(earlier roadmap receipts are at workspace `34fdd44e` and `3f4b7399`). A live
+API owner read was not run, and native capture remains unverified because the
+assigned simulator/CoreSimulatorService was unavailable; no real-owner,
+visual-polish, external design-canon, recurring-supply, or full D2 acceptance
+is claimed. Continue with the next substantive supported Home/Places receiving
+gap and ordinary/returned/live coverage.
+
+**Exact Place door for returned Home value — October 1:** app commit
+`31c673c95` gives a `places.open_entity` door the label “See this place” only
+when the destination carries a nonempty canonical ref of an existing routable
+Place kind (`place`, `venue`, `site`, `accommodation`, or `experience`). A
+broader Places context or reading remains “Open in Places”; the client does not
+invent a Place name or occurrence date from an opaque ref or an Outcome's
+creation time. The Home surface contract records this rule. The returned-Outcome
+regression verifies the exact Place-plus-Outcome destination is preserved when
+opened; the existing cold-context case verifies that a context/dossier-only
+destination keeps its broader label.
+
+The two focused Home suites passed **58/58** with
+`npm test -- --runInBand --no-cache --runTestsByPath __tests__/components/HomeRootV2Screen.smoke.test.tsx __tests__/utils/homeRootV2Renderer.test.ts`;
+`npm run typecheck`, `npm run test:typecheck:contracts`, targeted ESLint, and
+`git diff --check` passed. ESLint reported zero errors and the existing
+1400-line renderer `max-lines` warning. Registered scenario validation covered
+**31 IDs**, and the Home reference check passed structurally (`1` manifest,
+`2` pairs, `externalCanonVerified=0`). The registered Returned Home native
+capture passed **1/1** on the lane-assigned iPhone 16 Pro (Maestro 2.6.1), and
+its top/close screenshots were inspected. That capture's synthetic returned
+fixture does not contain an accepted Place-bound Outcome, so it is general Home
+surface evidence, not native proof of the new exact-ref label or destination.
+No authenticated API/owner read or external design-canon verdict was produced.
+This closes a precise receiving-copy gap, not meaningful returned-content
+acceptance or D2 as a whole; continue with available owner-provided Place/source
+evidence and ordinary/returned/live coverage.
+
+**Returned Home → exact Place reading — October 1:** app commit `fb53bd591`
+adds a connected Home experience regression for a returned reading whose
+destination carries a canonical Place, exact `place_content_primitive` revision,
+and resolved Places context. Pressing the Home door routes to that Place's
+selected-reading view with the exact source revision and a Home return token;
+the open interaction is recorded. The test suite also isolates the unrelated
+global capture-entry control, whose application-session provider is outside this
+navigation contract.
+
+The focused `HomeRootExperience.connected.test.tsx` suite passed **11/11**;
+`npm run typecheck`, `npm run test:typecheck:contracts`, targeted ESLint, and
+`git diff --check` passed. This is connected component/router evidence using a
+synthetic returned envelope. It does not prove a native exact-reading open,
+actual restored scroll position, authenticated owner data, or source-content
+availability. D2 remains active; retain the remaining owner and full-scroll
+acceptance gaps.
+
+**Home ordinary/returned/live posture captures — October 1:** after app commit
+`31c673c95`, the registered `polish/home-root-available` and
+`polish/home-root-live` flows each captured **1/1** on the lane-assigned iPhone
+16 Pro / iOS 18.2 (UDID
+`AF31B886-E837-4962-834A-5CBAD5C306DB`, Maestro 2.6.1). Their manifests confirm
+mock mode: the Available persona is `ready`, and Live is `carmen`; neither read
+the backend. Both screenshots were visually inspected. Available retains the
+prepared Saturday route, week shape and a separate Place reading; the route's
+opening-only destination correctly stays “Open in Places.” Live elevates the
+agreed Saturday dinner and keeps the two-person Occasion row subordinate. The
+Returned flow above also passed and was inspected. Together these are selected
+native mock posture captures, not a full seven-posture, full-scroll, real-owner,
+recurrence, or release portfolio; the reference manifest remains reference-only
+(`externalCanonVerified=0`). They add confidence that the ordinary, returned
+and live compositions coexist on the same root without proving their backing
+data or complete visual parity. D2 still needs substantive eligible Place value,
+broader production-owner/auth coverage, more full-scroll quality evidence and
+the remaining posture coverage.
+
+**Home public Place reading → exact Place → Home return — 2026-10-01:** the
+current lane tuple was workspace `c9fa9bfa`, backend `a20da1929`, app
+`fb53bd591`. On the lane's isolated Compose database (`vesper`, port `53173`),
+local API (`53176`), existing Metro (`53177`) and assigned iPhone 16 Pro / iOS
+18.2, the documented `scripts/maestro/run-home-public-reading-sequence.sh`
+passed with one existing synthetic local owner, `AI_MODE=off`,
+`WEB_SEARCH_MODE=off`, `SKIP_AUTH=true`, and background work disabled. The
+run ID was `home-public-sequence-exact-owner-20261001-1220`; Maestro logs are at
+`/tmp/vesper-home-public-sequence/.maestro/tests/2026-10-01_121738/`. The
+run-scoped fixture supplied two accepted Place Source revisions. The API
+selected their exact Home composition; Maestro verified both authored
+interpretations, opened the exact venue, returned to Home, and found the same
+Home unit still present. The runner removed the fixture and restored the
+owner's previous Home location; post-cleanup API readback no longer contained
+the fixture venue. Health and `/api/me` owner checks passed. During the fixture,
+the Home projection reported non-retryable moment-condition omissions and
+Place-owned current-condition gaps; Home suppressed the optional moment
+omissions while retaining the Place-owner notice, consistent with the current
+contract/tests. This is local owner-backed flow with synthetic sources and
+development auth—not production auth, recurring editorial supply,
+external-provider freshness, or full D2 acceptance. The post-return screen was
+inspected, but not compared against an external design canon.
+
+**Home full scroll across friend, Place reading and original — 2026-10-01:**
+the full local owner-backed flow passed on the same isolated lane database and
+iPhone 16 Pro / iOS 18.2. Workspace was `2094f89a`, backend `a20da1929`, and
+app source `fb53bd591`; app commit `58ea85d77` updates the existing Maestro
+flow. The first run found that the exact social unit and authored note were
+present but the flow still expected retired copy (“A place from Maya”). The
+captured hierarchy showed the current author treatment, private audience, and
+“See this place” door. The flow now asserts the exact authored words, private
+scope and Place door. Rerun ID `home-full-scroll-owner-20261001-1231` passed
+`89-home-full-scroll`: the API-projected Home composition contained the
+recipient-consented friend note, two exact accepted Place readings and an
+individually authorized original (“The corner table”); native checks found
+each in the full scroll. The runner verified its run-scoped fixtures were
+withdrawn after cleanup. Maestro logs are at
+`/tmp/vesper-home-full-scroll/.maestro/tests/2026-10-01_122831/`; a final
+simulator viewport was visually inspected at
+`/tmp/home-full-scroll-original.png`. This is one synthetic local owner with
+development auth and source fixtures—not production owner/auth parity,
+recurring content, all-posture coverage or full external design-canon parity.
+
+**Places public reading → exact reader → Places return — 2026-10-01:** app
+commit `27127fe5c` pins the existing real-Postgres rehearsal to the lane's
+declared, booted simulator before creating fixtures and passes that exact UDID
+to Maestro. Its four focused runner-contract tests passed with
+`node --test scripts/maestro/places-public-reading.test.mjs`; shell syntax and
+`git diff --check` passed. Run ID
+`places-reading-exact-return-owner-20261001-1250` passed
+`76-places-public-reading` on the assigned iPhone 16 Pro / iOS 18.2, against
+the isolated `vesper` database, local API `:53176`, and lane Metro `:53177`.
+The API used only local Place-reading gates with development auth and
+background work off; no production worker, paid model, or external provider
+was enabled. The flow read the accepted fixture Source from the canonical
+Places collection, opened that exact reading, asserted its authored claim and
+interpretation, returned to the scoped Places root with the same card visible,
+then verified that the fixture no longer appeared after cleanup. Maestro logs
+are at
+`/tmp/vesper-places-public-reading/.maestro/tests/2026-10-01_124924/`.
+This verifies one synthetic local reading's exact open/return and cleanup, not
+production authentication, recurring editorial supply, external design-canon
+parity, or D2 as a whole; no visual verdict was produced. Continue substantive
+eligible Place value and representative ordinary/returned/live coverage.
+
+**Places reopened Save → neutral dismissal → Save retained — 2026-10-01:** app
+commit `2b2daf493` pins the saved-reopen rehearsal to the lane's booted assigned
+simulator before fixture creation and passes that UDID to Maestro. Four focused
+runner-contract tests passed with
+`node --test scripts/maestro/places-saved-reopen.test.mjs`; shell syntax and
+`git diff --check` passed. Run ID
+`places-saved-reopen-owner-20261001-1300` passed
+`84-places-saved-reopen` on iPhone 16 Pro / iOS 18.2 against the isolated local
+API/database. With the authored local closed-to-operating history, the Places
+feed displayed the exact saved venue's `OPEN AGAIN` notice. The native flow
+cleared that notice and remained in Places; the runner verified the notice was
+absent, the original venue Save still existed at its owner endpoint, and the
+fixture was removed. This proves a synthetic local fact and Save survive
+projection dismissal—not production-provider freshness, production auth,
+external design-canon parity, venue-detail opening, or D2 as a whole. Continue
+the broader ordinary/returned/live and substantive Place-value work.
+
+**Places native state capture and contract alignment — 2026-10-01:** app
+commit `6a1a23ab4` updates the Places surface contract and registered capture
+expectation to match the accepted four-root composition from app commit
+`d8e30d7c2`: an automatic trip/place context begins with its first admitted
+field; the extra Vesper standfirst remains for starter or explicitly entered
+scope. `TZ=UTC npx jest --runInBand
+__tests__/components/places/PlacesWorkspaceState.test.tsx` passed **25/25**;
+`npm run qa:polish:scenarios` validated **31** IDs; the external design check
+verified **1** manifest and **6** reference pairs. The registered command
+`HOME_SURFACES_CANON_DIR=/Users/feihuyan/Downloads/vesper-home-surfaces
+VESPER_METRO_URL=http://127.0.0.1:53177 npm run qa:surface -- places-workspace
+--after` captured **9/9** mock personas and **4/4** extra screenshots on the
+lane-assigned iPhone 16 Pro; the default flow needed one retry, then passed.
+The run used app revision `1a3165c03`; no backend owner data or fixtures were
+changed. Capture and comparison sheets were generated, but the structured
+visual verdict remains pending, so this is not a full design-canon pass or
+real-owner/full-scroll acceptance. The stale standfirst expectation found in
+the capture is now aligned; D2 remains active. Continue substantive Place value
+and owner-backed receiving when a synthetic recipient is configured.
+
+**Saved reopening notice → exact Place → independent dismissal — implemented
+and natively exercised 2026-10-01:** backend commit `f583a054b` adds an optional
+typed venue read destination to the Places card contract and emits it for a
+confirmed reopening notice. App commit `89586d758` renders an accessible **Open
+place** action next to **Clear** and extends the real-API rehearsal. The runner
+asserts that the feed destination's venue ID is the fixture venue ID. Run
+`places-saved-reopen-owner-20261001-1327` passed on the lane-assigned iPhone 16
+Pro / iOS 18.2: the native action opened the fixture venue, **Go back** restored
+the same `OPEN AGAIN` notice without dismissing it, and **Clear** removed only
+the notice. The runner confirmed the venue Save remained at its owner endpoint
+and cleaned up the exact fixture. Focused runner-contract tests passed **4/4**;
+`npm run qa:polish:scenarios` validated all **31** registered scenario IDs;
+`bash -n` and `git diff --check` passed. This is a native behavioral receipt
+against the isolated local synthetic-owner API/database, not a visual-canon
+verdict: the external Places canon bundle was not configured. Production
+authentication/content, provider freshness, recurring supply, and full D2
+acceptance remain open; continue broader ordinary/returned/live coverage.
+
 ### Combined landing checkpoint — September 30
 
-The integration candidate contains the Home/capture lane plus these completed
+The merged integration contains the Home/capture lane plus these completed
 source cuts, preserving each repository's history:
 
 | Source lane | Workspace | Backend | App |
@@ -695,8 +1750,10 @@ focused correction evidence, including the final 720-test app delta and
 22,081-test backend offline result. The first published workspace candidate
 passed its complete required gate, including real-database journeys. Child
 hosted checks prompted bounded fixture, shared-design ownership and dependency
-repairs; the lock file names their final candidate heads. The three linked PRs
-are the final publication/merge record, not these earlier preflight results.
+repairs; the lock file names their final candidate heads. All three PRs are now
+merged with required checks passing. Section 1 records the final main tuple;
+the linked integration review retains the final hosted timings and retry limits.
+Earlier preflights do not substitute for that final publication record.
 
 This landing does not certify full native/design parity, live-model output
 quality, every capture door, or recurring real-owner supply. Those remain the
@@ -711,9 +1768,9 @@ diagnosis, implementation, focused verification, review corrections and delivery
 of its selected outcome. Ordinary debugging does not need an orchestrator reply.
 
 - Keep **one active coherent assignment per lane**, with bounded internal
-  subagents only when delegation is authorized and writes are disjoint. Three
-  lanes is a capacity limit, not a reason to invent work or run three native
-  builds simultaneously.
+  subagents only when delegation is authorized and writes are disjoint. The
+  three product lanes and bounded supporting efficiency work do not justify
+  inventing more work or running several native builds simultaneously.
 - The owner updates only its own roadmap's current assignment: exact base tuple,
   owned files/interfaces, finished behavior, remaining gaps and next action.
   Use existing PRs and receipts; no new daily report files or duplicate trackers.
@@ -728,11 +1785,21 @@ of its selected outcome. Ordinary debugging does not need an orchestrator reply.
   part proceeds. Do not merge every tiny commit, but do not keep completed work
   for weeks until all three roadmaps finish. If a dependency cannot land, name
   the specific blocker and stop adding dependent branch-only work.
+- Before publishing a complete slice, collect the inexpensive check failures
+  and repair them together. Publish a stable candidate rather than successive
+  tiny pushes that cancel checks before they report. Keep the final preflight
+  scoped to the whole integration diff, not just the last repair commit.
 - Each owner lands its own slice; Orchestration is not a required manual relay
   for ordinary merges. Serialize actual landings onto shared main, recheck the
   current base and affected compatibility, and follow the existing lane/CI policy.
   Land required child changes and then the workspace's matching contract/lock
   tuple. Never advance another session's checkout or overwrite its lock blindly.
+- Use one bounded watcher for the active verification set and inspect failures
+  together. On an unchanged candidate, rerun only failed eligible jobs where
+  supported; an unchanged retry passing does not prove an intermittent defect
+  repaired. A changed revision needs its own applicable checks. Independent
+  slices need not wait for unrelated lanes, while shared contracts must land as
+  a compatible set. Do not create another monitoring or approval layer.
 - Publishing, merging and deployment use their actual authorization. Passing a
   local subset does not waive required hosted checks. A complete worktree can be
   reused after landing; retiring it follows the existing recovery-safe lifecycle.
@@ -752,6 +1819,13 @@ persona, data source and reference before capture. Disposable DB tests require
 explicit opt-in. Keep exact commands, revisions and passed/failed/blocked/unrun/
 stale boundaries; use existing measurement tooling. Never claim a five-minute
 merge guarantee from this workflow or erase tests just to meet a slogan.
+
+The [efficiency roadmap](development-qa-research-and-roadmap-2026-09-30.md#5-improvement-roadmap)
+owns optimization order, timing targets and measurements. Product lanes adopt
+changes only after they land with their detection guarantees demonstrated;
+proposed sharding or review simplification does not change required checks.
+This lane remains accountable for substantive value, working actions and native
+polish. Faster integration supports those outcomes; it does not replace them.
 
 ## 7 Reassessment and scope control
 
@@ -792,8 +1866,10 @@ queue. Earlier program wording is preserved in
 [the pre-rebaseline version](https://github.com/fy538/travel-workspace/blob/73d9679409793f337be120bf9d6e39e27c966677/docs/working/vesper-program-roadmap.md)
 and the [September 27 archive](../archive/vesper-program-roadmap-history-through-2026-09-27.md).
 The [integration roadmap](complete-system-integration-roadmap-2026-09-05.md)
-is technical reference, not another schedule. This update changes planning and
-ownership only; it is not new runtime, device, provider or consumer evidence.
+is technical reference, not another schedule. The original rebaseline changed
+planning and ownership only. Subsequent dated implementation receipts record
+only the runtime, device, provider or consumer evidence they specifically
+describe; they do not substitute for the open acceptance boundaries above.
 
 ## Historical link compatibility
 

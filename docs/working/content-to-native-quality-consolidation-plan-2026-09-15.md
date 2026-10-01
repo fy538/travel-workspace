@@ -699,7 +699,7 @@ them or that a particular tool will improve its outcomes. Accessed September 15,
 | [Apple: Get started with Dynamic Type](https://developer.apple.com/videos/play/wwdc2024/10074/) — WWDC 2024 | Shows layout adaptation and prioritization of essential content as text grows, with accessibility auditing. | Supports native reflow instead of fixed screenshot geometry; SwiftUI examples require appropriate React Native implementation. |
 | [W3C WAI: Complex images](https://www.w3.org/WAI/tutorials/images/complex/) | Meaningful alternatives describe represented values, scales, relationships and trends, not merely the presence of a chart. | Applies to equivalent understanding in Vesper instruments; HTML techniques do not establish native accessibility conformance. |
 
-The [August polish note](visual-polish-evaluation-and-design-workflow-2026-08-13.md)
+The [August polish note](../archive/2026-10/visual-polish-evaluation-and-design-workflow-2026-08-13.md)
 is historical supporting research. Its older root names, proposed tool pilots
 and expired execution assumptions are not current instructions. This plan adds
 the current content-to-native implementation boundary, not another visual-QA

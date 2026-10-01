@@ -573,8 +573,8 @@ overrides:
     disposition: keep_reference
     rationale: Controlled-comparison research handoff for direct, language, and hybrid treatments; it does not settle the interaction model.
 
-  docs/working/claude-design-interaction-kernel-lab-v2-execution-report-2026-08-31.md:
-    disposition: keep_reference
+  docs/archive/2026-09/claude-design-interaction-kernel-lab-v2-execution-report-2026-08-31.md:
+    disposition: archive
     rationale: Superseded V2 execution evidence retained to explain the semantic-integrity failure and the need for the V2.1 correction.
 
   docs/working/form-chat-hybrid-comparative-interaction-research-2026-08-31.md:
@@ -997,10 +997,6 @@ overrides:
     disposition: keep_reference
     rationale: Active expiring research and implementation receipt for the native design workbench; vendor findings are a dated snapshot and durable rules live elsewhere.
 
-  docs/working/visual-polish-evaluation-and-design-workflow-2026-08-13.md:
-    disposition: keep_reference
-    rationale: Active expiring visual-quality workflow synthesis; it is not product canon and proposed gates require promotion into canonical frontend contracts or runbooks.
-
   docs/working/thesis-migration-register-2026-08-21.md:
     disposition: keep_reference
     rationale: Active cross-repository migration audit and decision docket for the August lived-world thesis; canonical product, release, journey, and system documents retain authority.
@@ -1124,10 +1120,6 @@ overrides:
   docs/working/intentional-convergence-engineering-plan-2026-08-10.md:
     disposition: keep_reference
     rationale: Active, expiring cross-repo execution plan that reconciles the August pivot audits and verified code/evidence gaps into ordered trust, convergence, proof-loop, and certification work; canonical product, release, journey, and system documents remain authoritative.
-
-  docs/working/product-loop-coherence-maestro-and-environment-strategy-2026-08-12.md:
-    disposition: keep_reference
-    rationale: Expiring synthesis of the product-loop, onboarding, Maestro, judgment-calibration, and test-environment discussion; product canon, reliability contracts, executable evidence, and generated status retain authority.
 
   docs/working/onboarding-and-entry-point-product-investigation-2026-08-12.md:
     disposition: keep_reference

@@ -14,7 +14,7 @@ depends_on:
   - docs/systems/artifact-expression-and-composition.md
   - docs/systems/contribution-and-consequence.md
   - docs/working/claude-design-interaction-kernel-lab-v2-controlled-comparison-handoff-2026-08-31.md
-  - docs/working/claude-design-interaction-kernel-lab-v2-execution-report-2026-08-31.md
+  - docs/archive/2026-09/claude-design-interaction-kernel-lab-v2-execution-report-2026-08-31.md
   - docs/working/claude-code-design-mcp-interaction-kernel-lab-handoff-2026-08-31.md
   - docs/working/form-chat-hybrid-comparative-interaction-research-2026-08-31.md
   - docs/working/ai-native-effortless-editing-and-composition-research-2026-08-31.md

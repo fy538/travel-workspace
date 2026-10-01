@@ -897,6 +897,26 @@
       "removal_trigger": "Remove only with an equivalent owner-scoped request transport.",
       "review_by": "2026-10-30"
     },
+    "GET /api/research/selected-source/{work_id}": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "SELECTED_SOURCE_RESEARCH_ENABLED",
+      "lifecycle": "dark",
+      "owner": "research",
+      "reason": "Exact owner-private selected-source result readback is implemented but has no reviewed native artifact consumer yet.",
+      "removal_trigger": "Adopt through an owner-reviewed artifact reader or retire the selected-source research capability.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/research/selected-source": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "SELECTED_SOURCE_RESEARCH_ENABLED",
+      "lifecycle": "dark",
+      "owner": "research",
+      "reason": "The explicit authenticated producer is dark by default and has no reviewed native artifact consumer; generation additionally requires a real commercial reservation.",
+      "removal_trigger": "Enable only after the selected-source owner, bounded budget, result usefulness and consuming artifact reader have passed their separate acceptance checks.",
+      "review_by": "2026-10-30"
+    },
     "POST /api/proposal-guest-capabilities/{capability_token}/claim": {
       "audience": "app",
       "consumers": [],
@@ -3017,6 +3037,118 @@
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
       "review_by": "2026-10-07"
     },
+    "POST /api/consumer-collections": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "createConsumerCollection",
+          "source": "travel-app/utils/api/httpArtifactEndpoints.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "consumer-collections",
+      "reason": "The typed app transport owns authenticated requests for user-owned private Collections; the Life presentation remains a separate unfinished surface.",
+      "removal_trigger": "Replace only with an equivalent owner-authorized private Collection transport.",
+      "review_by": null
+    },
+    "GET /api/consumer-collections": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "listConsumerCollections",
+          "source": "travel-app/utils/api/httpArtifactEndpoints.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "consumer-collections",
+      "reason": "The typed app transport owns authenticated requests for user-owned private Collections; the Life presentation remains a separate unfinished surface.",
+      "removal_trigger": "Replace only with an equivalent owner-authorized private Collection transport.",
+      "review_by": null
+    },
+    "GET /api/consumer-collections/{collection_id}": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "getConsumerCollection",
+          "source": "travel-app/utils/api/httpArtifactEndpoints.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "consumer-collections",
+      "reason": "The typed app transport owns authenticated requests for user-owned private Collections; the Life presentation remains a separate unfinished surface.",
+      "removal_trigger": "Replace only with an equivalent owner-authorized private Collection transport.",
+      "review_by": null
+    },
+    "POST /api/consumer-collections/{collection_id}/rename": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "renameConsumerCollection",
+          "source": "travel-app/utils/api/httpArtifactEndpoints.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "consumer-collections",
+      "reason": "The typed app transport owns authenticated requests for user-owned private Collections; the Life presentation remains a separate unfinished surface.",
+      "removal_trigger": "Replace only with an equivalent owner-authorized private Collection transport.",
+      "review_by": null
+    },
+    "POST /api/consumer-collections/{collection_id}/things/{thing_id}": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "addKeptThingToCollection",
+          "source": "travel-app/utils/api/httpArtifactEndpoints.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "consumer-collections",
+      "reason": "The typed app transport owns authenticated requests for user-owned private Collections; the Life presentation remains a separate unfinished surface.",
+      "removal_trigger": "Replace only with an equivalent owner-authorized private Collection transport.",
+      "review_by": null
+    },
+    "POST /api/consumer-collections/{collection_id}/things/{thing_id}/remove": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "removeKeptThingFromCollection",
+          "source": "travel-app/utils/api/httpArtifactEndpoints.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "consumer-collections",
+      "reason": "The typed app transport owns authenticated requests for user-owned private Collections; the Life presentation remains a separate unfinished surface.",
+      "removal_trigger": "Replace only with an equivalent owner-authorized private Collection transport.",
+      "review_by": null
+    },
+    "POST /api/consumer-collections/{collection_id}/delete": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "deleteConsumerCollection",
+          "source": "travel-app/utils/api/httpArtifactEndpoints.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "consumer-collections",
+      "reason": "The typed app transport owns authenticated requests for user-owned private Collections; the Life presentation remains a separate unfinished surface.",
+      "removal_trigger": "Replace only with an equivalent owner-authorized private Collection transport.",
+      "review_by": null
+    },
     "POST /api/curator/photos": {
       "audience": "server",
       "consumers": [
@@ -3626,6 +3758,54 @@
       "owner": "artifact-projection",
       "reason": "The owner reader needs authenticated access to a retained verified image source without exposing the private storage key.",
       "removal_trigger": "Remove only when an equivalent owner-scoped media transport preserves revocation and private custody semantics.",
+      "review_by": "2026-10-30"
+    },
+    "GET /api/kept-things": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "listKeptThingIndex",
+          "source": "travel-app/utils/api/httpArtifactEndpoints.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "kept-things",
+      "reason": "The owner needs a content-free index to deliberately choose a saved bundle for continuity reconciliation; source access remains a separate authorized read.",
+      "removal_trigger": "Remove only when an equivalent owner-scoped bundle index preserves identity and source-authorization boundaries.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/kept-things/aliases/{alias_id}/reverse": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "reverseKeptThingAlias",
+          "source": "travel-app/utils/api/httpArtifactEndpoints.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "kept-things",
+      "reason": "An owner can separate one exact prior bundle connection without deleting Sources or rewriting saved references.",
+      "removal_trigger": "Remove only when an equivalent owner-authorized reversible separation command is shipped.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/kept-things/{thing_id}/reconciliations": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "mergeKeptThingBundles",
+          "source": "travel-app/utils/api/httpArtifactEndpoints.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "kept-things",
+      "reason": "Only the owner may connect two saved bundles after supplying exact retained Source evidence, current revisions, and an explicit confirmation.",
+      "removal_trigger": "Remove only when an equivalent owner-authorized, evidence-bound, reversible continuity command is shipped.",
       "review_by": "2026-10-30"
     },
     "GET /api/intake/submissions/{submission_id}/interpretations": {

@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Strategy Technical lane
 created: 2026-09-29
-last_verified: 2026-09-30
+last_verified: 2026-10-01
 expires: 2026-10-13
 why_new: The artifact experience plan owns recognizable objects and readers, while the program owns dispatch. Neither should absorb this detailed cross-system code audit, nine-topic research synthesis, and proposed implementation dependencies for shared context, discovery, research, maintenance and evaluation.
 supersedes: []
@@ -38,20 +38,68 @@ and existing owner reads, and let measured failures justify additional machinery
 
 This is the **Strategy Technical execution roadmap** under the September 30
 [three-lane program](../vesper-program-roadmap.md#2-three-lane-ownership).
-Execution has not started merely by editing this plan. This lane owns its
-package sequence and receipts; the program owns cross-lane boundaries rather
-than a permission queue for ordinary implementation. Capture transport and
+The first implementation increments are merged; the connected assignment below
+remains unfinished. This lane owns its package sequence and receipts; the
+program owns cross-lane boundaries rather than a permission queue for ordinary
+implementation. Capture transport and
 Home/Places remain with Orchestration; artifact identity, focused readers,
 collections and Life remain with Strategy. No provider, background posture,
 sharing policy, deployment or release is enabled by this document.
 
 ## 0 Strategy Technical lane execution boundary
 
-**First assignment:** R0, the shared R1 acquisition boundary and an existing-original
-R2 adapter, with the first-producer R3/R4/R5 safeguards and R7 comparisons.
-Deliver actual owner-callable request/result/readback behavior, not just schemas
-or another unconnected research harness. Use the existing supported consumer
-contract first; adopt new artifact/component identities when Strategy lands them.
+**Current assignment:** selected original → supported addition → exact readback.
+Complete the first R0/R1/R2/R6 connection with the minimum R3/R4/R5 safeguards
+and R7 comparisons. Exact original/text-span reads, bounded acquisition, the
+selected-source work-item contract and private result owner now exist, and an
+in-memory adapter hydrates exact retained whole text or a bounded text span
+through Intake. The work item captures exact Intake revision/span, up to two
+exact Intake dependencies, consumer, bounded private intent and a separately
+typed public request. The result owner binds viewer, source revision and
+optional span, treatment, dependency revisions and content digest. At
+store/read it revalidates the selected source and every dependency against the
+same viewer's exact retained `text/plain` Intake originals, locking sources in
+stable ID order. Other dependency owners remain unsupported until their own
+exact readers are admitted. Additions require supported cross-source synthesis
+without asserting personal novelty until a novelty-history owner is admitted.
+Source correction/scrub
+erases results that refer to a source either as the selected original or a
+dependency; a JSONB GIN index supports dependency invalidation. Results retain
+the 24-hour maximum and bounded hourly cleanup. The backend now connects these
+contracts through a dark-by-default, authenticated producer route and exact
+owner readback. One reserved, single-dispatch synthesis is allowed only when
+the feature gate and commercial allocation both admit it; the path does not
+perform public lookup, activate a provider, or have a reviewed native consumer.
+Provider-free PostgreSQL acceptance now exercises this producer through the
+real gateway and ledger under an injected test-only allocation. This does not
+make the production route allocatable. Private selected-source synthesis now
+uses its own global, user-billed `ai.research.synthesize` capability; the key
+is absent from all released benefit rules and remains outside the environment
+enforcement-ready set. Public web-search paths remain on the separate
+`ai.research.live` key and emit shadow demand/execution observations; valid
+Tavily-reported credits are now retained as provider units, while monetary cost
+and settlement remain unknown. Neither capability has production allocation
+or activation. Keep R3 open until the private capability receives approved
+finite allocation/recovery controls and public chargeable callers have their
+own complete accounting boundary.
+The server now prioritizes up to two exact `text/plain` dependencies explicitly
+associated with the selected source's currently resolved, owner-visible subject,
+then same-note sources from an owner/custody/text-filtered query capped at 100
+matching metadata rows, then bounded same-packet siblings ordered by source
+position. UTF-8 byte-only budget uncertainty remains explicitly incomplete.
+Subject, note and packet membership are candidate cues—not semantic, occurrence or
+interest-aware relevance. Legacy/noncanonical subject pointers can yield false negatives, and
+a truncated empty scan remains unavailable rather than authoritative silence.
+Candidate selection reads no source bodies; Intake revalidates every exact
+dependency before model use. The versioned synthetic fixture below compares
+candidate retrieval against the exact-note/packet baseline; it does not establish
+final selection, supported-addition quality or user value. This is not
+semantic/archive-wide retrieval or product acceptance.
+The current Home/Places request is not an artifact request: do not adapt it as
+one.
+Use existing Source identity while Strategy owns broader thing/component
+identity. The scope, sequence and finish conditions are in
+[section 12](#12-document-delivery-and-next-handoff).
 
 **Write ownership:** general context/evidence selection, public acquisition,
 evidence fidelity, prepared-result execution/reuse, budget/retry/publication
@@ -65,14 +113,21 @@ fixtures. Strategy owns the focused-reader/data facade, exact kept editions and
 Life; Orchestration owns Home/Places receiving and practical owner adapters.
 R6's native acceptance requirements below remain whole-experience requirements,
 not permission to edit those screens in parallel. Inspect their landed adapters
-and attach evidence; complete the producer-owned connection and name any missing
-consumer adoption without declaring end-to-end delivery complete.
+and attach evidence; the producer-owned connection exists, but relevance-ranked
+selection, comparative usefulness and native consumer adoption remain open. Do
+not declare end-to-end delivery complete.
 
 **Dependencies and useful fallback:** begin with current source identity,
 selected-original owner reads, evidence fidelity and bounded public-request
-mapping. New component/collection modes consume Strategy P0/P1; exact retained
-editions consume P4; unsupported modes remain disabled. A missing native reader
-does not block the producer path, and mocked receiving does not certify it.
+mapping. R2 now finds bounded eligible candidates through existing explicit
+subject, note and packet seams rather than asking the person to nominate the
+connection; if no eligible support is found, the correct result is original-only
+or a content-free no-addition. The next R2 gate is separate evidence for
+candidate recall, final selection/support, and matched direct-source versus
+research-assisted usefulness. New component/collection modes consume Strategy
+P0/P1; exact retained editions consume P4; unsupported modes remain disabled.
+A missing native reader does not block backend work, and mocked receiving does
+not certify consumer adoption.
 No cultural catalog store, durable artifact owner, notification policy or
 practical provider action is invented here to avoid a dependency.
 
@@ -92,8 +147,31 @@ This is a cross-repository investigation of the value-delivery system, including
 its mobile consumers. It is not a line-by-line review of every product feature,
 an independent security certification, or an observation of deployed behavior.
 
-Inspection date is September 29 in New York; the second-pass evidence snapshot
-was taken around September 30 at 03:42 UTC. Branches advanced during the inspection.
+### Current merged baseline
+
+The September 30 combined landing includes this lane's previous work and the
+artifact and Home/Places increments. A fresh remote fetch and ancestry check
+confirmed every previous lane tip is in `origin/main`. This lane's three clean
+checkouts were rebased to the following tuple without replaying unique commits:
+
+| Repository | Merged revision | Previous lane tip included |
+| --- | --- | --- |
+| Workspace | `4febe0d461a62d204ba4dee9eaad7813c7c1509c` | `861d4633` |
+| Backend | `bd1a683b8656c3f4091e16abb64f57897fa7fc42` | `af05702ab` |
+| App | `e7bdc660501eaa19234e6b45bda033658edaa2d4` | `28717c7cf` |
+
+This is the next assignment's starting tuple, not a moving claim about main.
+The [program landing checkpoint](../vesper-program-roadmap.md#combined-landing-checkpoint--september-30)
+and CI Plan retain the combined verification evidence. This rebaseline checked
+Git and current interfaces; it did not rerun runtime or live-provider acceptance.
+Section 6 summarizes the present implementation; section 12 names the remaining
+connection. The original audit and implementation receipts below preserve their
+dated boundaries rather than implying that every historical gap is still open.
+
+### Historical investigation baseline
+
+The initial inspection date is September 29 in New York; the second-pass
+evidence snapshot was taken around September 30 at 03:42 UTC. Branches advanced during the inspection.
 The table records the later observed state rather than repeating an older
 claim that all local main checkouts lag implementation.
 
@@ -133,8 +211,9 @@ not as though its older entry table overrides their explicit amendments.
 
 The accepted [September 29 record-value amendment](../../decisions/2026-09-29-record-as-first-class-value.md)
 makes recognizing, keeping, enjoying and refinding independently complete value.
-The strategy-child Thesis/Model reconciliation is still working material;
-this roadmap does not declare all affected contracts updated.
+The founder-approved Thesis/Model reconciliation is now included in the merged
+backend baseline. Its accepted direction does not establish runtime completion
+of every affected contract.
 
 The accepted [September 29 Life model](../../decisions/2026-09-29-life-model-occasions-collections-and-sharing.md)
 also governs these adapters: occasions are things holding originals; spans such
@@ -186,6 +265,12 @@ other existing owners retain truth. The backend editorial `collections` table
 is not a consumer collection owner merely because the names match.
 
 ## 3 Current system and concrete gaps
+
+This section preserves the pre-implementation audit at the historical tuple in
+section 1. Subsequent receipts address parts of it, including exact original
+reads, snippet provenance, answer-only routing, diagnostic redaction and attempt
+telemetry. Use section 6 and the current code for execution status; do not
+redispatch those repairs from this dated inventory.
 
 Backend references beginning `backend/`, `tests/` or `tools/` are relative to
 `travel-agent/`; abbreviated implementation paths such as `concierge/` or
@@ -577,12 +662,13 @@ table or service per row.
   discovery, rejected proposal, provider failure, revoked evidence and expired
   practical facts. Use existing state models where possible.
 
-The proposed clarification to artifact P3 is: bounded public research may
+The aligned R1/P3 planning scope is: bounded public research may
 **resolve a specified uncertainty or discover candidates for a named purpose**,
 anchored to the selected object and circumstances, within explicit limits.
-Verify claims before presenting an addition. The existing line restricting
-research to a named missing fact is too narrow if applied to all discovery.
-This document proposes that change; it does not edit the other owner's plan.
+Candidate discovery need not know the answer in advance; verification must still
+support each presented claim. The artifact P3 wording now carries the same
+scope. This clarifies the engineering assignment, not permission to enable a
+new paid consumer, ambient research, unapproved catalog use or broader disclosure.
 
 ### Public storage is selective rather than absent
 
@@ -634,30 +720,24 @@ package identifiers, not additional standing lanes. Their artifact alignment
 records shared experience requirements, not a second implementation in
 Strategy.
 
-**Execution is underway.** The canonical three-lane baseline is on workspace
-`main` at `7b02b2bfe5d36e53060eee5f9fee6f8b5fd4d399` and is integrated into this
-lane. The first exact-original read is implemented across the owner-scoped
-backend reader and its mobile callers. Quick bounded results also carry
-query-free, request-scoped BaseTool attempt/retry/error/cancellation counts;
-this is observability, not a budget reservation or billing record. Existing
-factual lookup and trip-direction fallback now share a typed, one-tool-attempt
-public acquisition adapter with distinct empty, unavailable, failed and
-deadline outcomes. This is a partial R0/R1/R2/R6 result, not completion of any
-package: R0's complete scenario/owner matrix, R1's caller-independent disclosure
-and acquisition behavior, R2's supported candidate selection, R6's real
-consumer acceptance, and R7's matched-quality evidence remain open. R3/R4/R5
-requirements are being applied with the first producer. The commercial usage
-ledger now preserves dispatch uncertainty for existing voice-token actions;
-expired dispatched holds stay reserved until an authoritative outcome is
-resolved, while a retry that loses the dispatch fence cannot release the
-winner's reservation. This protects one existing commercial meter, but does
-not yet account for research-provider spend or complete R3. Authenticated
-interactive web lookup and trip-direction web fallback now emit content-free
-`ai.research.live` shadow demand decisions; these neither reserve nor gate the
-provider call. Shared execution, longitudinal change handling and assistance
-adaptation remain open. Receipts and exact limitations are in section 12.
+**Execution is underway; the prior increments are merged.** The current tuple
+is in section 1. The first connected assignment remains active:
 
-**Status measure (September 30): 0/8 packages fully accepted (0% package
+| Area | Landed capability to reuse | Remaining connection or evidence |
+| --- | --- | --- |
+| Selected evidence | Owner/revision-bound original reads and mobile callers; bounded UTF-8 text-span selection; exact in-memory hydration; a dark authenticated producer and private exact-result GET; bounded explicit-subject, owner-filtered exact-note discovery capped at 100 matching metadata rows, and same-packet candidates; versioned retrieval-only known-answer fixture; real-Postgres acceptance verifies an older match beyond 500 unrelated descriptors and incomplete state beyond the 100-match cap; unit regressions cover uncertain multibyte byte counts across subject/note/packet cues; exact quoted excerpts are checked against hydrated text before an addition is admitted; local synthetic PostgreSQL 15.4 server medians for the production exact-note query were 3.9/37.8/237.9/771.6 ms at 1k/10k/100k/500k owner submissions | The synthetic benchmark is not a user archive distribution, multi-tenant latency SLO or application-latency proof; its 500k owner was 82% of the fixture table. A privacy-acceptable query/index tradeoff remains undecided; semantic retrieval/ranking, general component or multimodal retrieval, semantic entailment, final-selection evidence and human usefulness remain open; neither candidate cues nor quote presence proves relevance |
+| Public acquisition | Shared typed single-attempt lookup; answer-only routing without dossier writes; source kind, dates, quotes and truncation metadata; an adversarial returned-snippet regression verifies one explicit provider query and terminal answer-only flow despite hostile text in the result | Construct public requests from selected material under an actual disclosure boundary; select a substantive addition and verify claim support beyond quote presence |
+| Runtime | Existing Source workflow/publication controls; content-free demand and tool/SDK-attempt telemetry; selected-source producer has one real reservation/fence and one no-retry/no-failover model attempt; provider-free Postgres now proves its test-policy reserve/settle/reopen lifecycle; private synthesis and public live research now have separate capability keys | The private synthesis key has no released policy or enforcement readiness; public research remains shadow-only; finite approved allocation, live-provider, shared chargeable-attempt coverage, concurrency, fairness and recovery behavior remain open |
+| Receiving dependencies | Merged family readers, exact-source inspection, correction/Undo and return behavior; Home/Places receiving improvements; authenticated result API exists but is dark | Existing preparation requests remain root-bound; no native artifact consumer has adopted the dark result API |
+| Evaluation | Focused/offline checks, producer route tests, disposable-Postgres owner/readback, ledger lifecycle, source-revocation publication/readback races, late-candidate reselection after an empty result, R2 candidate fixture, real-Postgres page-two recovery and beyond-cap incomplete-empty behavior, exact-excerpt admission tests, backend static/offline gates, app regression and workspace docs checks | Matched usefulness comparisons, semantic/archive-wide retrieval quality, authorized live-provider evidence and real consumer acceptance |
+
+R0's scope/owner admission, R1's disclosure and acquisition acceptance, R2's
+supported selection beyond exact-note and same-packet candidate cues, and R6/R7's connected evidence are unfinished. Minimum
+R3/R4/R5 controls accompany that producer; broad shared execution, longitudinal
+maintenance and assistance adaptation remain later work. No existing original
+reader or root connection needs to be rebuilt to start this assignment.
+
+**Status measure (October 1): 0/8 packages fully accepted (0% package
 closure).** This is not a claim of zero engineering progress: partial slices
 have shipped across R0/R1/R2/R3/R6/R7, but no package meets its complete
 acceptance definition. The roadmap does not support a defensible weighted
@@ -671,7 +751,7 @@ do not add packages or require a new shared platform before product work.
 
 | Concern | Required with the first connected producer | Conditional later expansion |
 | --- | --- | --- |
-| Context | Selected original/current owner reads, explicit purpose, current eligibility and request overrides | Broader passage/OCR indexes, contextual reranking, learned preferences |
+| Context | Selected original/current owner reads, explicit purpose and eligibility; server-side bounded retrieval of eligible support without asking the person to supply the connection | Broader passage/OCR indexes, contextual reranking, learned preferences |
 | Evidence | Acquisition type, preserved source metadata, supported claims and honest partial/failure states | Richer extraction and cross-corpus discovery when simpler access misses value |
 | Runtime | Finite attempts/deadline, applicable pre-dispatch budgets, publication fence and current readback | Cross-user acquisition reuse, fair queues and durable per-step checkpoints when warranted |
 | Change | Reject obsolete source/grant/result revisions; re-evaluate cheap current candidates when needed | Fine-grained dirty-scope tracking and archive-wide selective preparation |
@@ -765,12 +845,24 @@ bounded discovery without inventing a Place/Trip/conversation.
   tests. Record bounded execution evidence without retaining private content
   under an observability exception.
 - Preserve answer-only non-persistence semantics, but give lookup/discovery
-  purpose-specific planning and stop criteria. Today the quick path still
-  selects a dossier graph, and unknown target types default to site dimensions
-  in `backend/research_agent/agents/deep_research.py:400`; `answer_only` does not
-  remove those assumptions. Do not invent an entity or seek irrelevant dossier
-  completeness. Preserve the legacy path for its authorized callers. Adopt
-  the disposition mapper through an actual owner caller, not an unused layer.
+  purpose-specific planning and stop criteria. The current graph bypasses the
+  catalog lookup for untyped answer-only requests, accepts at most one
+  caller-supplied typed public request without planner-generated provider
+  queries, avoids dossier-profile selection, reflects against the caller's
+  question rather than fallback site dimensions, and terminates before the
+  dossier quality gate and writers. Preserve the legacy path for its authorized
+  callers; do not invent an entity or seek irrelevant dossier completeness.
+  An adversarial returned-snippet fixture now confirms the hostile excerpt reaches
+  reflection but does not cause planner fan-out or a follow-up provider attempt;
+  this proves only the existing answer-only route, not selected-source disclosure,
+  OCR/image handling or live-provider behavior.
+  The Experience owner now applies the disposition mapper to a valid
+  answer-only handoff and returns `current_answer` without source retention.
+  This owner-return test is not a production public-research caller. R1 still
+  needs caller-independent disclosure from a selected object, public
+  fact-lookup and bounded-discovery acceptance, claim-support checks, and a
+  connected user disclosure boundary; the selected-source route still rejects
+  public lookup. No live provider or reusable-result owner is admitted here.
 - Own a small observable effort policy here, with R3 enforcing its resource
   allocation. Distinguish difficulty, urgency and consequence; choose existing
   evidence, targeted acquisition or bounded discovery. Stop when evidence
@@ -811,7 +903,10 @@ artifact summary, without making every original expensive to ingest.
   archive workloads establish the need; a selected ticket must not wait for
   an archive index. Preserve an honest bounded owner-read fallback if an index
   is unavailable, without treating incomplete search as authoritative silence.
-  Group multiple representations by underlying evidence.
+  Group alternate representations only when admitted source identity/revision
+  and locator establish they derive from the same evidence. Do not join distinct
+  source references across submissions by equal content hash alone: equal bytes
+  prove neither one occurrence nor independent corroboration.
 - Hydrate current eligible originals or selected regions after recall; preserve
   surrounding context. Indexing cannot grant access or establish occurrence.
 - Allocate a bounded candidate set across useful relation directions, then
@@ -830,6 +925,25 @@ and repeated visits stay distinct; a supported contrast and an original-only
 case both succeed; prior user-supplied connections are not repackaged as new;
 failed indexing differs from a complete empty search. Include retrieval and
 selection metrics independently, with equal-quality original baselines.
+
+**Current boundary:** the selected-source producer now treats a connection or
+interpretation explicitly included in the current `private_instruction` as
+already-known context and asks for a materially distinct supported relation or
+no addition. It has no prior-conversation or novelty-history input; this does
+not satisfy archive-wide or earlier-chat non-repetition, and it does not prove
+the model follows the instruction. The focused prompt regression verifies only
+that the bounded user statement reaches the model call. R2 remains open for
+representative matched human review of additions, prior-connection repetition,
+cross-source support and usefulness. Candidate discovery also now preserves
+incomplete status when byte-only metadata cannot establish whether a same-subject
+or same-packet UTF-8 original fits the remaining character budget, matching the
+existing exact-note behavior without reading candidate bodies during discovery.
+The focused unit tests cover this uncertainty and the route's existing incomplete-
+empty behavior. A disposable-Postgres regression now verifies that two distinct
+Place identities with the same title do not cross-link their source candidates;
+the full current-module result and its evidence boundary are recorded in section
+12. This closes that identity regression only, not semantic ranking, support
+quality or matched usefulness.
 
 ### R3 Share execution and account for its cost
 
@@ -901,6 +1015,21 @@ empty selection; late historical upload; correction to novelty history; index
 lag; revoked source during generation; mounted expiry; account change and
 reconnect. Unchanged warm opens cause no generation. New ambient production
 requires its separate adopted trigger policy.
+
+**Current proof boundary:** the private result owner revalidates the exact
+selected-source and dependency revisions on read and erases a result if either
+no longer matches the current Intake source. Disposable-Postgres coverage now
+exercises revision mismatch for both selected and supporting sources. This
+simulates a changed source revision at the owner boundary; it does not exercise
+a supported user correction flow, novelty-history correction, index lag,
+mounted-client expiry, or recall of an already delivered result.
+
+The same current PostgreSQL module also verifies one bounded freshness case:
+after a complete no-addition result, a later retained same-note source becomes
+eligible on the next explicit request. Fresh owner selection yields a new
+dependency-bound work ID; the previous exact result remains readable, while
+the new result uses the new dependency. The synthesis is a deterministic test
+stub, and this does not enable background re-selection or notifications.
 
 ### R5 Apply assistance preferences in context
 
@@ -1062,7 +1191,7 @@ separate authorization.
 | Decision | Recommended posture | Blocks only |
 | --- | --- | --- |
 | Selected component and artifact identity | Reuse Source revision/locator and P1 mapping; no fake Trip or universal artifact table | Incompatible identity/schema implementations |
-| Focused discovery versus named-fact-only research | Admit both bounded request kinds, with purpose, evidence and limits | New discovery policy; existing exact fact lookups remain usable |
+| Lookup and candidate discovery admission | R1/P3 planning now includes both bounded purposes; specify the selected caller's public-field projection, evidence requirements and finite limits | New live/paid caller or disclosure behavior without its applicable admission; provider-free implementation and existing approved lookups can proceed |
 | Catalog sources and display/caching rights | Select per medium through PC; use approved fields and house fallbacks | Real catalog art/facts from unapproved suppliers |
 | Automatic preparation | Separate cheap reconsideration from paid generation; permit only named adopted triggers | New ambient generation, not explicit research or pure reads |
 | Shared synthesis and saved derivatives | Apply current grants; do not infer synthesis from display or invent survival after withdrawal | Affected shared AI/retained derivative modes |
@@ -1116,8 +1245,13 @@ cases exist. Resolve current paths before execution.
   current budget/refresh behavior, not proposed concurrent reservations or
   universally enforced post-call deadlines.
 - Acquisition/retries: `tests/inbound/test_web_retrieval.py` and
-  `tests/core/test_tool_retry.py`. Extend provider-tool-to-converter-to-compression
-  metadata coverage; current converter fixtures do not prove the complete path.
+  `tests/core/test_tool_retry.py`. The regression
+  `tests/research_agent/test_source_result_metadata.py` covers both the legacy
+  and typed mocked `WebSearchTool` → acquisition/conversion → compression →
+  bounded-result chains. These tests manually compose adapters around a stub
+  provider; they do not prove LangGraph wiring, live-provider behavior, or the
+  selected-source disclosure projection. Do not count this isolated fidelity
+  coverage as R1 acceptance.
 - Memory: `tests/core/test_personal_memory_evidence.py`, preference subsystem
   tests and `tests/eval/test_memory_loop.py`.
 - Quality: `tools/eval/plugins/retrieval/runner.py`,
@@ -1252,16 +1386,219 @@ implementation. Recommendations elsewhere are our engineering inferences.
 
 ## 12 Document delivery and next handoff
 
-The common baseline is prepared and integrated into this lane. The current
-assignment is **R0 completion plus the shared R1 boundary and an existing-original
-R2 adapter connected to R6 readback**, with the minimum R3/R4/R5 safeguards and
-R7 comparisons. One exact-source read is already connected; continue the same
-assignment through several artifact families, supported acquisition, real
-owner readback and matched quality evidence. Publish additive contracts early;
-Strategy connects its reader and Orchestration its roots from landed revisions.
-Until end-to-end evidence exists, report a bounded producer result and the exact
-consumer gap. Do not claim native acceptance from a fixture or wait for every
-design/policy decision.
+### Current assignment and supported scope
+
+**Selected original → supported addition → exact readback** is the remaining
+first assignment, starting from section 1's merged tuple. It connects R0/R1/R2
+to R6 with minimum R3/R4/R5 controls and R7 comparisons. The finish is an
+owner-callable, source-bound producer/result path, not another isolated helper.
+Original access remains independently useful and never waits for research.
+
+Start with private, currently retained `text/plain` originals and their exact
+bounded text spans: a passage and a text-backed ticket/confirmation exercise
+different purposes through the same contract. Also cover sparse history,
+already-stated connections and justified no-addition. Other supported originals
+retain their existing readers; this increment does not claim ticket-image OCR,
+PDF parsing, photo-region reasoning, shared-source AI use or new media admission.
+These are engineering coverage cases, not a narrower product thesis.
+
+### Implementation sequence
+
+1. **Admit the selected-source interface.** Implemented at the contract, owner
+   and backend route level: work items and results bind an explicit source
+   reference, revision, optional supported selector, viewer, purpose and
+   consumer. The authenticated POST derives viewer authority from the current
+   user, and exact GET revalidates owner/source/dependency state. Both operations
+   remain dark with no native consumer; this is not provider activation.
+   Map the result owner, lifetime, correction dependencies, applicable budget and
+   kill switch. Review the additive contract before consumer work: the current
+   Home/Places `context_ref` accepts only `places_context` and cannot stand in for
+   an artifact target. No invented Trip, new Thing owner or durable cross-
+   representation Component identity is needed for the exact-original adapter.
+2. **Connect evidence and acquisition.** The dark backend producer hydrates
+   an exact retained original/span and up to two exact Intake dependencies
+   through Intake in memory under one combined 20,000-character limit.
+   Candidate order is: up to 100 other retained `text/plain` sources explicitly
+   attached to the selected source's current canonical, owner-visible subject;
+   then exact normalized-note matches from an Intake query filtered by owner,
+   current custody/retention and text eligibility before its 100-row result
+   limit; then siblings from the selected source's verified Intake packet
+   ordered by source position. Note matches are restricted to a conservative
+   UTF-8 byte ceiling derived from the remaining character budget. When byte
+   metadata cannot prove a possible multibyte match fits, the result remains
+   incomplete rather than treating it as absent. More than 100 exact-note
+   matches also keeps the scan incomplete. Candidate relations are lexical or
+   capture cues, not semantic retrieval or relevance evidence; no candidate
+   body is read during discovery. A complete empty scan preserves the
+   content-free no-addition path; an incomplete empty scan returns unavailable.
+   Exact owner, custody, revision and retention are revalidated during Intake
+   hydration. A synthetic local PostgreSQL benchmark now measures the exact-
+   note query from 1k through 500k per-owner submissions, but representative
+   archive distributions, application latency and an acceptable privacy/query-
+   performance tradeoff remain open R2 work. Do not add a note-derived index
+   from this synthetic result alone. Semantic ranking also remains open. Honor
+   current intent and use eligible existing evidence where sufficient.
+   Additions must be supported across the selected original and a dependency,
+   while treating personal novelty as inapplicable without novelty history.
+   Public research is currently rejected by this route. For a missing public
+   fact or named discovery purpose,
+   construct the minimal `PublicResearchRequest` through a reviewed public-field
+   projection. Private source text, identifiers and instructions must not become
+   search terms by assertion. If safe public terms cannot be established, finish
+   without public acquisition. The current discovery adapter requires an explicit
+   public location; honor that bound, and review any nonspatial extension rather
+   than inventing a location. Verify provider arguments and diagnostics with
+   adversarial source fixtures; a typed string or regex is not a semantic privacy
+   guarantee.
+3. **Select and publish a useful result.** Current composition admission is
+   structural: it requires at least two supporting exact sources, but does not
+   prove entailment, additional substance or usefulness. Add a matched direct-
+   source versus research-assisted human comparison before accepting this
+   behavior. Reuse the research and production
+   owners with a focused treatment policy; preserve Home's existing pair rules.
+   Separate candidate, support, novelty and relevance judgments. Revalidate
+   source/grant revisions before use, publication and readback. Distinguish a
+   worthwhile addition, original-only, incomplete discovery, failed acquisition
+   and unavailable evidence. Exact quotes establish provenance, not entailment.
+4. **Enforce the first producer's resource envelope.** Bound all chargeable
+   model/tool attempts, retries and elapsed time; reserve resources before
+   dispatch and retain unknown outcomes after ambiguous completion. Apply this
+   to the actual research/synthesis caller, not merely the voice meter or a
+   telemetry field. Record the finite allocation and authorization before live
+   enablement. Provider-free disposable-Postgres acceptance now proves reserve,
+   dispatch, settlement, exact-result reopen and held ambiguous failure for the
+   selected-source producer using an injected one-unit test policy. The
+   producer now uses a distinct `ai.research.synthesize` key, global in resource
+   scope and billed to the user. The production parser excludes it from
+   enforcement readiness and released policies have no rule for it, so this
+   proves the code path, not deployable policy. Public web lookup remains on
+   `ai.research.live`, shadow-only; its chargeable-call and uncertain-outcome
+   boundary is still incomplete. R3 remains open pending approved finite
+   allocation/recovery for synthesis and complete accounting for public
+   acquisition. No provider or paid path is enabled. Broader fairness,
+   cross-user coalescing and predictive preparation stay conditional on
+   measured need.
+5. **Deliver readback and comparative evidence.** The exact owner-bound result
+   is now written and readable through the authenticated dark API, bound to the
+   selected source/span, dependency revisions and originating consumer. Ordinary
+   read, polling and reopen do not submit work. Producer execution and exact
+   result reopen are now exercised against real Postgres with provider dispatch
+   stubbed and test-only commercial policy; the route-level test still mocks
+   settlement and no native consumer is adopted. Compare direct-source
+   treatment with research-assisted treatment on matched inputs. Publish the
+   additive interface for the native owners to adopt and record their remaining
+   acceptance explicitly.
+
+The initial code seams are `backend/inbound/original_source_reader.py`,
+`backend/core/models/public_research.py`, `backend/core/public_research.py`,
+`backend/research_agent/agents/quick_research.py` and its bounded-result pipeline,
+plus the existing Source request/workflow/publication owners under
+`backend/api/routes/agent_workflows.py`, `backend/root_projection/v2/` and
+`backend/core/db/source_contributions.py`. These paths are candidates for a
+bounded adapter, not authorization to rewrite each subsystem. Follow current
+import/owner boundaries. Add no new scheduler, world store or parallel generator.
+
+#### Execution intake: selected-result ownership
+
+The exact-source adapter must not be routed through the existing root Source
+workflow. At the September 30 execution baseline, `SourceContributionWorkItemV1`
+rejects roots outside Home/Places, its canonical executor resolves only a
+Places context, and its exact result reader requires a root and root-composition
+readback. Those constraints preserve root semantics and are not missing
+generalization to remove as part of this assignment. Its short-lived
+`root_source_contributions` storage is keyed by a root source-group and
+situation, so it is not an exact selected-source result owner either.
+
+The domain-neutral `agent_workflows.result_json` is also not an adequate result
+owner by itself: it can contain personal request/result payloads, while the
+current terminal-workflow cleanup uses one global retention window (30 days by
+default) and runs nightly. Hiding a result after a shorter API TTL would not
+remove its stored contents on that TTL. The selected-source producer therefore
+needs an owner/readback contract that binds viewer, exact Source revision,
+optional text-span identity, treatment version, dependency revisions, result
+digest and an explicit expiry; content must not enter workflow events or
+diagnostics. This contract is now implemented in the dedicated selected-source
+result owner below. It does not reuse generic workflow result payload storage;
+any later workflow fencing must continue to pair with this owner so expiry and
+source-correction behavior remain real, without broadening or weakening another
+owner's retention policy.
+
+The admission model lives in
+`travel-agent/backend/core/models/selected_source_research.py` at backend commit
+`51c5e0a27`. It validates an exact `intake_source` hash, a `text/plain` span of
+at most 20,000 characters, one of the private assistance intents, a maximum
+24-hour work window and a separate optional `PublicResearchRequest`. The
+owner-scoped result model, table, migration `selresult01`, storage/readback
+helpers and source-scrub/retention hooks landed in backend commit `80452180e`;
+the research-owner status clarification followed in `580fd6b3b`.
+They bind viewer, exact source revision/span, consumer, intent, treatment,
+dependency revisions, digest and expiry. The October 1 follow-up below extends
+read/write validation and correction invalidation to every declared Intake
+dependency. A bounded hourly worker removes expired or no-longer-eligible rows.
+Database checks cover both an added composition and a content-free no-addition
+result. Simultaneous retries converge on one owner row. The exact acceptance
+receipts for the owner and dependency gate are:
+
+- `TEST_DATABASE_DISPOSABLE=1` with the lane's explicitly named, disposable
+  Postgres target; `tests/core/test_selected_source_research_work.py`,
+  `tests/core/test_selected_source_research_results_postgres.py` and
+  `tests/workers/test_maintenance_jobs.py`: **23 passed**. This covers
+  wrong-owner reads, custody revocation, source deletion, sequential and
+  concurrent idempotency, expiry, cleanup bounds and no-addition readback.
+- `make ci-static`: passed on backend `80452180e` (Ruff, import/structure gates,
+  catalog runway and mypy; caches redirected to the system temporary directory
+  because the managed lane disallows cache writes in the checkout).
+- `make merge-check BASE_REF=main`: passed on backend `80452180e`; offline
+  change-aware scope reported **22,093 passed, 14 skipped, 1 xfailed and 52
+  xpassed**. This is not DB acceptance; the focused disposable-DB suite above
+  supplies that separate evidence.
+- `make docs-check`: passed on the `codex/adaptive-context-research` workspace
+  lane (base `cf39e5d8`) after this roadmap receipt update.
+  `alembic heads` reported `selresult01 (head)` before the dependency-index
+  migration was added; the October 1 receipt below records the new head.
+
+Those dated receipts established only the storage/readback seam on their
+recorded revisions. The October 1 producer receipt below records the later
+authenticated producer and exact readback connection; neither set establishes
+public-query disclosure, semantic usefulness, live-provider permission or any
+native consumer acceptance.
+
+This is a storage/readback seam, not a new Thing or durable artifact owner.
+The result remains an expiring, owner-private recomputable projection; it does
+not imply Keep, sharing, or cross-surface publication. Original-only and
+unavailable outcomes need no result row. A separate deployment, provider, or
+background generation posture is not admitted here.
+
+### Finish conditions and dependencies
+
+- A selected revision reaches a real producer and exact owner readback with a
+  supported additional proposition or useful contrast; source-only and no-history
+  cases remain complete, and prior user-supplied connections are not repeated as
+  discoveries. Keep usefulness judgment separate from citation/contract validity.
+- A stale/revoked source, wrong owner, expired result, cancellation and duplicate
+  request produce the correct outcome. Unchanged readback causes zero new
+  generation; selected-span changes cannot reuse incompatible output. Record
+  all eligible attempts, including withheld/failed results and uncertain cost.
+- Focused tests, disposable-DB races, API/type compatibility where changed,
+  matched quality evaluation and any authorized live run have separate measured
+  receipts. This documentation revision runs none of those product acceptances.
+  Use section 9's checks and exact-base merge preflight when implementing.
+- Strategy owns focused-reader adoption and broader P0 identity decisions;
+  Orchestration owns Home/Places placement and root return. A backend finish names
+  missing consumer adoption and does not claim native delivery. No screen edits
+  or routine dispatch to other chats follow from this assignment.
+- Result readback follows its existing owner's retention rules. It is not a
+  permanent kept edition. Any new stable citation/reference, Keep, sharing or
+  other adopted retention trigger requires the appropriate P4 minimum snapshot
+  and dependency contract; otherwise that behavior remains unavailable. Do not
+  use ephemeral labeling to bypass it or silently retain an Ask.
+
+Reassess at interface admission and the first connected result. Resolve only
+the product/authority choice required by that behavior. Broader Thing/Collection
+ownership, catalog licensing, shared derivatives and ambient/push policy remain
+with their owners; they do not block private selected-original engineering.
+Passage indexes, learned preferences and archive-wide refresh need a measured
+failure of this simpler path before becoming the next assignment.
 
 This document retains its research/audit rationale and owns Strategy Technical's
 package progress under the program's lane assignment. It does not rewrite the
@@ -1303,6 +1640,42 @@ Remaining R1 acceptance includes a caller-independent typed disclosure boundary,
 purpose-specific lookup/discovery behavior, and supported-claim checks. R2's
 selected-original reader was still outstanding at this receipt's revision; the
 later implementation receipt below records subsequent progress.
+
+#### Verification receipt — tool-to-bounded metadata path (October 1)
+
+The acquisition/retries checklist above was reconciled against the landed
+`test_search_metadata_survives_tool_conversion_compression_and_bounded_result`
+regression rather than duplicating coverage. Re-running that file in the
+adaptive-context lane with Python 3.13.0 / pytest 9.1.1 produced **3 passed**.
+The path uses a stub Tavily client, invokes the real `WebSearchTool._execute`,
+then calls the real converter, compression helper and bounded-result normalizer;
+it verifies publication date, search-snippet identity, bounded-content
+truncation, citation index alignment and `include_raw_content=False`. This
+closes the specific stale test-coverage note, not R1: it does not execute the
+LangGraph, `acquire_public_research`, selected-source disclosure projection,
+live provider, or semantic claim-support acceptance.
+
+Backend commit `d1992ca62` adds a separate typed-path regression. It runs the
+real one-attempt `acquire_public_research` wrapper with a stub Tavily SDK,
+converts `PublicResearchResult` into transient sources, applies the existing
+compression helper, and normalizes the bounded result. The test verifies
+provider-summary and title/snippet truncation, publication date, evidence kind,
+the one-attempt usage projection, and exclusion of local subject identity from
+provider arguments. The selected-source route still does not admit public
+research, and neither regression proves the disclosure policy or consumer
+benefit. Both test modules passed **13 tests** together on the lane tuple before
+that backend commit.
+
+On backend `d1992ca62`, `make ci-static` passed, including Ruff/format and mypy
+with no issues in 1,900 source files. The first `make merge-check BASE_REF=main`
+run reached 100% tests but exited during pytest's final cache write because this
+managed worktree cannot write `.pytest_cache`; no assertion failure was
+reported. Re-running as
+`PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main` passed the
+full offline scope: **22,159 passed, 14 skipped, 1 xfailed, 52 xpassed**, with
+one expected local-Qdrant payload-index warning. Workspace `make docs-check`
+passed again after this receipt update. No live provider, database, app,
+deployment, or public lookup was exercised.
 
 Second-pass offline checks at workspace `44f637e85`, backend `3c170d21f`
 and app `87eceee24`, on Python `3.13.0` / Darwin 25.5 arm64:
@@ -1477,6 +1850,79 @@ policy. No claim-support verifier, public-source retention, private-memory
 filter, paid-attempt reservation, selected-component flow, live provider
 call, database mutation or native consumer readback was exercised. R1 and
 R0–R7 remain open.
+
+#### R4 implementation receipt — revoked dependency during publication (October 1)
+
+Added a provider-free disposable-Postgres race acceptance to
+travel-agent/tests/api/test_selected_source_research_postgres.py. The selected
+and related originals are owner-hydrated, a test model returns a syntactically
+valid addition with exact present excerpts, and the test revokes the related
+Intake source before the producer attempts publication. The owner revalidation
+rejects publication: no result row is stored. Since the model response already
+returned, the real test-policy ledger reservation is committed rather than
+released as though it had not incurred use. Cleanup removes only this test
+actor's data.
+
+This proves current dependency custody is rechecked at publication for this
+producer; it does not prove broad grant semantics across other owners, revoke
+after already delivered output, source correction, selection refresh after
+empty results, or a native mounted-screen race. R4 remains open for its wider
+arrival/correction/expiry acceptance set.
+
+Validation:
+
+- The isolated revocation-race test passed (**1 passed**) against the lane's
+  explicit disposable database vesper_adaptive_context_test_20261001.
+- Ruff check and format check passed for the changed acceptance file.
+- The complete selected-source Postgres acceptance file passed (**7 passed**),
+  including exact readback, no-addition settlement, ambiguous dispatch and
+  revocation-before-publication cases.
+- Commit 50a95ad07 (test: reject revoked selected-source dependencies) passed
+  repository hooks. No production behavior or policy changed.
+
+R0–R7 remain open.
+
+#### R4 follow-up receipt — late arrival, revocation and exact readback (October 1)
+
+Extended the provider-free disposable-Postgres acceptance across late arrival,
+generation and readback. A complete empty selection first produces a
+content-free no-addition without a model call or reservation. When a separately
+captured source with the exact user note arrives, the same explicit request
+reselects it, gets a different work identity, and can produce a supported
+addition under the test-only reservation; both exact results reopen without a
+second model call. If either the selected original or a supporting dependency
+is revoked after the model returns, publication is rejected after the result
+owner revalidates current Intake authority. Because a response was received,
+the test-policy reservation is committed; no result row is written. If a
+previously published result's selected original or supporting dependency is
+later revoked, the authenticated exact GET returns a private no-store 404 and
+erases the stale row without invoking the model again. This proves these
+bounded on-demand reselection/revocation paths, not semantic usefulness,
+ambient triggers, notifications, late historical uploads, index lag, expiry,
+account change, cancellation or mounted-consumer behavior.
+
+Validation on backend commit `257de30de` (including the prior race tests from
+`2c80e35f9`, `6db6713a5` and `4e259a7bf`):
+
+- The isolated lane runtime health check passed; the exact disposable database
+  was `vesper_adaptive_context_test_20261001`.
+- The selected-source Postgres acceptance file passed: **10 passed**. The late
+  arrival case exercises the authenticated API, candidate owner, producer,
+  result owner and real ledger. Both selected-source and dependency
+  revocations are exercised at publication and exact authenticated readback.
+  The ledger is real under injected test policy; model dispatch is stubbed and
+  route auth/feature/rate-limit controls are test-injected.
+- `ruff check` and `ruff format --check` passed for the changed test file.
+- `make ci-static` passed, including Ruff and mypy across **1,900 source files**.
+- `make merge-check BASE_REF=main` passed: **22,158 passed, 14 skipped,
+  1 xfailed, 52 xpassed**, with one expected local-Qdrant payload-index
+  warnings. This is the offline/change-aware suite; the separately recorded
+  Postgres run provides the database acceptance evidence.
+- Backend commit hooks passed. No production behavior, API/OpenAPI, schema,
+  released policy, runtime cohort, provider activation, or app behavior changed.
+
+R4 remains open for wider correction, late historical upload, index lag, expiry,
+account-change and consumer acceptance. R0–R7 remain open.
 
 #### Implementation receipt — privacy-safe research diagnostics (September 30)
 
@@ -2005,3 +2451,1847 @@ offline command, with both database-test variables explicitly unset, passed:
 All commit hooks passed with Ruff cache disabled. R7 package acceptance remains
 open; this repairs one verification fixture and does not establish comparative
 product quality or operational acceptance.
+
+#### Implementation receipt — exact dependency eligibility (October 1)
+
+Backend commit `5222e3b71` on `codex/adaptive-context-research` closes the
+selected-result dependency custody gap. Store and read now lock and revalidate
+the selected source plus every dependency as an exact, current, retained
+`text/plain` Intake original belonging to the same viewer. A dependency owned
+by another viewer, a changed revision, revoked custody or an unsupported
+dependency owner cannot support a result. Locks are acquired in stable source
+ID order. Source correction/scrub invalidation now removes rows that reference
+the source as either the selected source or a dependency; a GIN index supports
+the JSONB dependency membership check. The new migration is `selresult02`, the
+sole Alembic head. No non-Intake dependency owner is enabled by this adapter.
+
+Evidence on the committed backend tree:
+
+- With the explicitly disposable PostgreSQL database
+  `codex_selected_source_dependency_20261001`, the focused work, result-owner
+  and maintenance tests passed: **26 passed**. Coverage includes deletion on
+  read after a private dependency is revoked, transactional invalidation when
+  the dependency is scrubbed, and rejection of another viewer's dependency.
+  The disposable role and database were dropped after the test run.
+- `make ci-static` passed: Ruff, formatting, repository architecture/ratchet
+  gates, catalog runway and mypy across 1,896 source files. The final output
+  reported all gates green and no mypy issues.
+- `make merge-check BASE_REF=main` passed the complete offline suite:
+  **22,093 passed, 14 skipped, 1 xfailed, 52 xpassed**, with one expected
+  local-Qdrant payload-index warning. A few tests attempted unavailable
+  Hugging Face metadata requests but completed; no live provider acceptance is
+  claimed.
+- Commit hooks initially ran with the system Python and two SQLAlchemy-backed
+  parity checks could not import their dependency. Re-running the same hooks
+  with the lane virtualenv first on `PATH` passed all hooks. This is an
+  invocation-environment issue, not a bypassed check.
+
+At this receipt's backend revision, the result owner was not connected to an
+owner-callable producer. This historical receipt does not claim product
+usefulness, caller disclosure approval, research budget enforcement,
+live-provider permission or consumer readback. The later October 1 receipt below
+records producer/API delivery; R0–R7 remain open.
+
+#### Implementation receipt — selected-source context hydration (October 1)
+
+Backend commit `b8bd1c0cf` connects the selected-source work item to Intake's
+current exact owner reads through
+`backend/research_agent/selected_source_context.py`. It hydrates either the
+whole retained `text/plain` original (up to 20,000 characters) or the exact
+bounded UTF-8 span, checks the authenticated viewer independently of the
+serialized work item, expiry, source revision, component coordinates and
+content digest, and keeps source text in memory only with `repr` suppression.
+It invokes neither an LLM nor a public provider and writes no result. This is
+the first evidence-hydration adapter, not the selected-source producer.
+
+Evidence on the committed backend tree:
+
+- Focused offline hydration and original-reader tests passed: **21 passed**.
+- Against an explicitly disposable PostgreSQL target, the original-reader
+  lifecycle and selected-result owner tests passed: **12 passed**. This includes
+  hydration of an exact original and selected span through the database-backed
+  Intake owner; it does not prove remote object-store reads or an HTTP/mobile
+  round trip.
+- `make ci-static` passed all repository gates and mypy across 1,897 source
+  files. Ruff caches were redirected to `/private/tmp` for the managed-worktree
+  permission boundary.
+- `make merge-check BASE_REF=main` passed: **22,101 passed, 14 skipped, 53
+  xpassed** and one local-Qdrant payload-index warning. Optional Hugging Face
+  metadata requests retried without network access but did not fail tests; no
+  live-provider behavior is claimed.
+- The first commit-hook attempt could not write Ruff's default cache within the
+  managed worktree. Re-running with the lane virtualenv first on `PATH` and
+  `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-context-research-ruff-cache`
+  passed all hooks without exemptions.
+
+The next assignment is to connect this adapter, bounded public acquisition,
+selected-result storage and exact readback through an authenticated producer
+boundary. Owner hydration alone does not satisfy R0/R1/R2/R6 acceptance; no
+provider activation, useful-addition claim, consumer adoption or package
+closure is asserted.
+
+#### Implementation receipt — private intent in selected-source work item (October 1)
+
+Backend commit `717b8e148` adds an optional, whitespace-normalized private
+instruction to the selected-source work item, bounded to 1,200 characters and
+excluded from model representations. The instruction participates in stable
+work identity so a retry cannot reuse output produced under a different
+instruction. It remains separate from the typed public research request; the
+constructor does not project private wording into public query terms. No route,
+provider call, database schema, client surface, result generation or disclosure
+policy changed. This closes an input-contract gap for the producer, not the
+producer itself.
+
+Evidence on the committed backend tree:
+
+- Focused work-item contract tests: **11 passed**; Ruff check, format-check and
+  `git diff --check` passed.
+- `make ci-static` passed in this slice before the full preflight; the completed
+  `make merge-check BASE_REF=main` passed: **22,102 passed, 14 skipped, 53
+  xpassed**, with two expected local-Qdrant payload-index warnings. Optional
+  network metadata retries did not fail tests; no live-provider evidence is
+  claimed.
+- Backend commit hooks passed on commit `717b8e148` with the lane's Ruff cache
+  redirected to `/private/tmp`; no exemptions were used.
+
+The bounded private instruction is now available to an owner-callable producer,
+but remains process-local input; it is not persisted in a new table or exposed
+to the public-acquisition request. The first connected producer, authenticated
+invocation, exact stored result readback and all end-to-end usefulness evidence
+remain open. R0–R7 remain open.
+
+#### Implementation receipt — authenticated selected-source producer and exact readback (October 1)
+
+Backend commit `78479beef` connects exact retained-source hydration and bounded
+same-viewer dependencies to a dark-by-default authenticated producer and exact
+owner readback at `/api/research/selected-source`. The POST derives viewer
+authority from authentication; the GET revalidates current owner, source and
+dependency state. A content-free no-addition result avoids provider dispatch
+when no dependencies are admitted. Synthesis is private and ephemeral, requires
+explicit save to persist, and uses one structured model attempt only when both
+the server gate and a real commercial reservation admit it. Retry and failover
+are disabled, dispatch uncertainty holds the reservation, and this work did not
+activate a provider. The operations remain dark because there is no reviewed
+native artifact consumer.
+
+The current request accepts up to two exact same-viewer dependency refs from its
+caller. It does not retrieve/rank related evidence, make a public query, prove
+factual entailment, establish personal novelty, or show that the result is more
+useful than direct source access. It is connected plumbing, not yet the promised
+effortless product behavior.
+
+Evidence on the committed revisions:
+
+- Focused offline selected-source/producer/commercial tests: **63 passed**.
+- Disposable PostgreSQL lifecycle/API/Intake tests against the explicitly named
+  lane database `vesper_adaptive_context_test_20261001`: **13 passed**; migration
+  head `selresult03`.
+- Backend `make ci-static` passed; `make merge-check BASE_REF=main` passed:
+  **22,137 passed, 14 skipped, 53 xpassed, 0 failed**. The initial xdist
+  collection exposed unstable dynamic datetime parameters; those tests were
+  made deterministic and the full preflight passed on the corrected revision.
+- `make api-coverage-check`, API contract audit (**579 active, 17 dark, 0
+  unflagged, 62 retiring**), app projection check (**457 paths, 504 operations,
+  1,353 schemas**), flag registry check (**107 flags; no overdue/unregistered
+  flags**), `./scripts/sync-types.sh`, and app `tsc --noEmit` passed. Generated
+  enum changes are limited to `unknown` source authorship and
+  `retained_original` source kind.
+- Backend commit hooks and app commit hooks passed. App commit
+  `e2b51bcf3` contains only generated source-provenance types; workspace remains
+  uncommitted pending its documentation checks and commit.
+- The integrated `make verify-changed WORKSPACE_BASE_REF=main
+  AGENT_BASE_REF=main APP_BASE_REF=main` preflight passed on these revisions:
+  **1,289 app suites / 9,178 tests, 22,137 backend tests, and 118 workspace
+  tooling tests**, plus cross-repo API, projection, compatibility and docs
+  checks. It exited 0. The first sandboxed attempt was not used as evidence
+  because tool-cache writes and four loopback-dependent workspace tests were
+  denied; the elevated rerun completed successfully.
+
+No live-provider call, native consumer acceptance, matched human usefulness
+comparison, server-side related-evidence retrieval, or public research is
+claimed. The next implementation increment is R2 retrieval/ranking through
+existing same-viewer source/relationship owners, followed by direct-source vs
+research-assisted usefulness evaluation. Keep the route dark until the owning
+consumer and its acceptance evidence exist; R0–R7 are not package-complete.
+
+#### Implementation receipt — identity-bound selected-source dependencies (October 1)
+
+Backend work-item identity now includes up to two distinct exact retained
+`intake_source` dependency revisions. A dependency cannot be the selected source;
+non-Intake or unversioned references are rejected. The context adapter hydrates
+the selected original/span and each dependency through the same authenticated
+viewer's Intake readers, keeps all text in memory only, and enforces a combined
+20,000-character budget. Result construction can no longer attach dependencies
+that were absent from the retry-stable work item. The existing result owner
+continues to revalidate all bound dependencies at store/read and invalidate on
+correction.
+
+The result contract now requires an addition to be a Vesper-authored, supported
+synthesis with at least two distinct supporting sources, including the selected
+original and an exact dependency. It requires `novelty=not_applicable` because
+the work item has no admitted owner supplying novelty history; lack of retrieved
+history is not evidence that an idea is new to the person. The content-free
+no-addition vocabulary replaces `already_known`/`not_novel` with
+`no_substantive_connection`; migration `selresult03` remaps old ephemeral codes
+before tightening the result check constraint. The existing Home/Places
+source-contribution policy, which has its own known-claim evidence, is unchanged.
+
+Evidence on the current backend tree:
+
+- Focused offline work-item, hydration, and owner-contract tests: **23 passed**;
+  nine PostgreSQL lifecycle cases were deselected in that offline invocation.
+  Separately, the isolated lane Postgres service (`vesper-adaptive-context-
+  research`, host port 64355) was used to create the named disposable database
+  `vesper_adaptive_context_test_20261001`. After applying migrations through
+  `selresult03`, **12 PostgreSQL tests passed** across
+  `test_selected_source_research_results_postgres.py` and
+  `test_original_source_reader_postgres.py`, including custody, revision,
+  dependency invalidation, and result readback boundaries.
+- Tests cover dependency revisions changing work identity, canonicalizing
+  dependency order, rejecting self/duplicate/unsupported dependencies, exact
+  same-viewer hydration, hidden text representations, the combined character
+  limit, dependency-bound result construction, rejection of unsupported
+  personal novelty, and the content-free no-addition reason.
+- `make ci-static` passed, including mypy across 1,897 source files. The full
+  `make merge-check BASE_REF=main` passed: **22,106 passed, 14 skipped, 53
+  xpassed**. One expected local-Qdrant warning was emitted; network metadata
+  retries did not fail the suite.
+- `make docs-check` passed after updating the workspace receipt.
+- No endpoint, OpenAPI schema, generated mobile type, provider activation,
+  model call, source text persistence, client readback or consumer acceptance is
+  claimed. The producer and authenticated end-to-end path remain open; R0–R7
+  remain open.
+
+#### Implementation receipt — composition admission without inferred personal novelty (October 1)
+
+Backend commit `1735c6ad6` fixes a producer-blocking composition rule: the shared
+compiler had required every editorial lead to assert `NEW_TO_PERSON`, even when
+the selected-source work item had no novelty-history owner. A Vesper-authored
+`SYNTHESIS` may now be admitted with `NOT_APPLICABLE` novelty only when it has
+`SUPPORTED` or `VERIFIED` confidence and declares a minimum of two distinct
+supporting exact Source references. The selected-source result owner enforces
+the same minimum. A single-source paraphrase and duplicate aliases are rejected;
+the Home/Places root compiler still retains its stronger owner-specific known-
+claim policy. This is structural support admission, not independent factual
+verification or proof that the synthesis is useful.
+
+Evidence on the current backend tree:
+
+- Focused semantic-composition, root projection, selected-source work and result
+  contract tests: **40 passed**.
+- `make ci-static` passed (Ruff, formatting, architecture/ratchet gates,
+  catalog runway and mypy across 1,897 source files); caches were directed to
+  `/private/tmp` for the managed-worktree permission boundary.
+- Against the explicitly disposable lane database
+  `vesper_adaptive_context_test_20261001`, **12 PostgreSQL lifecycle tests
+  passed** across `test_selected_source_research_results_postgres.py` and
+  `test_original_source_reader_postgres.py` after migration `selresult03`.
+- A fresh `make merge-check BASE_REF=main` on backend commit `1735c6ad6` passed:
+  **22,110 passed, 14 skipped, 1 xfailed, 52 xpassed** in 100.29 seconds.
+  Two expected local-Qdrant payload-index warnings were emitted. Optional
+  Hugging Face metadata requests retried without network access but did not
+  fail the suite; this is not live-provider acceptance.
+- Workspace commit `34d8cece` had a clean tree before this receipt. No route,
+  mobile consumer, live provider call, or end-to-end user-value acceptance is
+claimed. R0–R7 and the connected producer/readback assignment remain open.
+
+#### Implementation receipt — same-submission selected-source candidates (October 1)
+
+Backend commit `e709ace50` removes dependency selection from the client request.
+The authenticated selected-source route now asks the existing Intake owner for
+metadata-only siblings of the exact selected source, limited to the same
+verified, currently retained submission and `text/plain` originals. It chooses
+at most two distinct content hashes in deterministic source-ordinal proximity
+order, using byte counts as a conservative combined 20,000-character budget.
+The relation means only “captured in this same packet”; it does not claim
+semantic relevance. The route rejects caller-supplied `dependency_refs`, and
+the selected source plus each chosen dependency is re-read through Intake's
+exact owner adapter before synthesis, which rechecks viewer, custody, revision,
+retention, MIME, scan and byte integrity. The blocking lookup and exact-result
+GET use the bounded owner-read executor. An incomplete empty metadata scan
+returns a content-free unavailable response rather than a false authoritative
+no-result. No migration was needed.
+
+Evidence on the committed backend revision:
+
+- Focused selected-source route, candidate, context, producer and work-item
+  suite: **51 passed** offline. Against the explicitly disposable lane database
+  `vesper_adaptive_context_test_20261001`, the selected-source PostgreSQL route
+  and owner-scoping tests passed: **2 passed**.
+- `make ci-static` passed after the bounded-executor correction, including Ruff,
+  formatter, architecture/ratchet checks and mypy across **1,900 source files**.
+- `make merge-check BASE_REF=main` exited 0 on the final backend state:
+  **22,141 passed, 14 skipped, 1 xfailed, 52 xpassed**. PostgreSQL-only cases
+  not opted into the named disposable database were skipped in that broad run;
+  the 2 required R2 database tests ran separately as recorded above.
+- `./scripts/sync-types.sh` removed only the request's obsolete optional
+  `dependency_refs` field from `docs/openapi.json`. The active app projection
+  remained at **457 paths, 504 operations and 1,353 schemas**; generated app
+  types had no diff, and `tsc --noEmit` passed. `make api-coverage-check`,
+  app-projection check, API contract audit (**579 active, 17 dark, 0
+  unflagged, 62 retiring**) and flag-registry check (**107 registered flags,
+  none overdue/unregistered**) passed.
+- Integrated `make verify-changed WORKSPACE_BASE_REF=main
+  AGENT_BASE_REF=main APP_BASE_REF=main` exited 0 on workspace `1d661f07`,
+  backend `e709ace50`, and app `e2b51bcf3`: **1,289 app suites / 9,178 tests,
+  22,141 backend tests passed (14 skipped, 53 xpassed), and 118 workspace
+  tooling tests passed**, followed by contract, OpenAPI, schema-bridge, docs,
+  and compatibility checks. App lint reported 167 warnings and no errors; Jest
+  noted one worker required forced shutdown, but all suites passed.
+
+The feature remains dark: no provider was called or enabled, no native consumer
+adopted the result, and no matched human usefulness comparison ran. This is a
+same-submission candidate heuristic, not semantic or archive-wide retrieval;
+it does not yet establish that an addition is useful. Broader R2 selection,
+R6 consumer acceptance, R7 comparison and the remaining R0–R7 requirements
+remain open.
+
+#### Implementation receipt — exact-note cross-submission candidates (October 1)
+
+The dark candidate adapter now consults the existing owner-scoped Life
+retained-original metadata read when the selected Intake submission has a
+non-empty user note. It checks at most the first 100 recent eligible source
+descriptors and prioritizes up to two `text/plain` originals from distinct
+submissions whose note matches exactly after case/whitespace normalization;
+it orders ties by capture-time distance but preserves separate source IDs even
+when hashes or titles match. It then uses the existing same-submission siblings
+as fallback within the shared context-character bound. The selected note is
+suppressed from value representations, never persisted in this pathway, never
+sent to a provider, and never returned by the candidate adapter. Both kinds of
+candidate remain hypotheses: no fuzzy phrase match, semantic rank, cross-user
+source, or public lookup was added. An incomplete empty metadata page remains
+incomplete; an exact positive candidate can still proceed as a bounded
+candidate set. Intake's exact owner read remains the final custody/revision
+gate. No schema migration or API/OpenAPI change is required.
+
+This is a deliberate R2 bridge through the existing Life source owner, not the
+final archive retrieval design. The immediate follow-up is to compare this
+literal baseline against representative same-title/repeated-visit and
+cross-artifact cases, then extend the existing retrieval/evaluation owners only
+where those cases show misses or false associations. The route remains dark
+until the R6 consumer and R7 usefulness evidence are accepted.
+
+Validation for this increment, before commit:
+
+- Focused offline selected-source tests: **61 passed**. Against the explicitly
+  disposable lane database `vesper_adaptive_context_test_20261001`, selected-
+  source route and original-reader PostgreSQL tests: **5 passed**.
+- Backend `make ci-static` and `make merge-check BASE_REF=main` passed;
+  the latter reported **22,143 passed, 14 skipped, 1 xfailed, 52 xpassed**.
+- Workspace documentation checks passed. The integrated
+  `make verify-changed WORKSPACE_BASE_REF=main AGENT_BASE_REF=main
+  APP_BASE_REF=main` completed backend and workspace checks, including **118
+  workspace tooling tests**, but exited nonzero because Jest reported a worker
+  SIGSEGV while starting `__tests__/utils/stayState.tz.test.ts`. The other
+  **1,288 app suites / 9,175 tests passed** in that run. Re-running that suite
+  alone with `npm test -- --runInBand __tests__/utils/stayState.tz.test.ts`
+  passed (**1 suite, 3 tests**). This supports a transient parallel-worker
+  failure, but does not turn the integrated preflight into a passing result.
+- The app checkout has no changes. No provider, route, schema, native consumer
+  or app behavior changed in this increment.
+
+#### R2 baseline acceptance cases — bounded text candidates (October 1)
+
+Added deterministic cases to the existing selected-source tests rather than
+creating a parallel evaluation framework. The covered distinctions are:
+
+| Case | Observed baseline behavior | What it proves / does not prove |
+| --- | --- | --- |
+| Repeated capture with the same title and content hash | Two exact source IDs from separate submissions remain distinct; nearest capture time outranks metadata page order | Subject/visit identity is not deduplicated by filename or bytes. It does not prove the two visits should be synthesized together |
+| Different text artifact filenames with the same explicit note | The two `text/plain` sources are eligible in deterministic capture-time order | The baseline can bridge text-backed source kinds when a user note matches. It does not inspect artifact contents or establish a useful connection |
+| Positive candidate from a truncated metadata page | The authenticated producer route can proceed with the exact positive refs while preserving `complete=False` | A partial positive scan is usable as a candidate set; an empty incomplete scan remains unavailable |
+
+Focused offline API/candidate tests passed: **22 passed**. These are contract and
+ordering checks, not a relevance-labeled corpus: no candidate precision/recall,
+semantic false-association rate, supported-addition quality or human-benefit
+score is claimed. Candidate generation remains metadata-only, same-viewer,
+text-only and bounded. This evidence does not justify semantic retrieval or a
+ranking model; it does justify the next R2 step: curate a small, versioned
+relevance set with true relations, same-title/repeat-visit distractors,
+cross-artifact text and empty/insufficient-support cases, then compare the
+existing exact-note/packet baseline with existing owner-linked retrieval
+without calling a live provider. Reject any metric that conflates candidate
+recall with final selection or user value.
+
+Validation for the acceptance-case increment, before commit:
+
+- `make ci-static` passed, including architecture gates and mypy across **1,900
+  source files**.
+- `make merge-check BASE_REF=main` passed: **22,145 passed, 14 skipped, 1
+  xfailed, 52 xpassed**. Two expected local-Qdrant payload-index warnings were
+  emitted; no live provider call occurred.
+- Workspace `make docs-check` passed; app remained unchanged. These narrower
+  checks are not a replacement for the earlier failed integrated preflight or
+  an end-to-end consumer acceptance.
+
+#### Implementation receipt — explicit subject-linked selected-source candidates (October 1)
+
+R2 now has an owner-bound cross-submission relation in addition to the
+exact-note and same-packet cues. The selected Intake submission's explicit
+`subject_entity_ref` is resolved to its current canonical entity and visibility
+is checked for that owner. The Intake metadata reader then returns up to 100
+nearest-in-time, currently retained, verified, clean `text/plain` sources from
+other submissions whose stored pointer names that exact canonical entity. It
+reads no candidate body or note. Exact subject candidates are prioritized,
+then exact user-note matches, then same-submission packet siblings, within the
+existing two-dependency and 20,000-character limits. Exact source bodies still
+pass through the existing Intake hydration and custody/revision checks before
+provider use.
+
+This is a candidate relation only: a shared entity pointer says what the user
+associated with each capture, not that the sources describe one visit, event,
+or claim. Distinct source IDs remain distinct even when their content hashes
+match. The current query intentionally favors false negatives over inferred
+identity: noncanonical legacy pointers, sources without an explicit pointer,
+non-text artifacts and unresolved private entities do not enter this bridge.
+It does not establish that a connection is useful or novel, and does not
+resolve the exact-note cue's remaining false-positive risk.
+
+The existing `source_contribution_discovery` path was reviewed but not treated
+as a selected-source retrieval API: it assembles situation- and root-scoped
+Home/Places opportunities around current subjects; it does not take one
+selected Intake Source as its query or provide the exact reverse relation
+needed here. The change therefore extends the current Intake metadata owner
+rather than coupling this route to root ranking/grouping semantics.
+
+Validation on the committed backend candidate before this receipt:
+
+- Focused offline selected-source API/candidate tests: **24 passed**.
+- The disposable-Postgres regression passed (**1 passed**) against the named
+  lane database `vesper_adaptive_context_test_20261001` on the lane's isolated
+  PostgreSQL port. It exercised explicit same-subject discovery, two separate
+  same-owner source IDs with identical content hashes, and exclusion of a
+  closer-in-time other-owner source.
+- Ruff lint and format checks passed for the six changed backend/test files.
+- Backend `make ci-static` passed, including architecture gates and mypy across
+  **1,900 source files**. Backend `make merge-check BASE_REF=main` passed the
+  offline suite: **22,147 passed, 14 skipped, 53 xpassed** with two expected
+  local-Qdrant warnings. Database-marked cases were not part of that offline
+  run; the focused disposable-Postgres regression above is separate evidence.
+- No schema migration, API/OpenAPI, app, provider, or product-surface change.
+  The feature remains dark and has no consumer usefulness acceptance.
+
+The next R2 step remains a small versioned known-answer relevance fixture:
+explicit same-subject positives, repeated-visit identity, exact-note
+distractors, cross-artifact text, and complete-empty/insufficient-support.
+Use it to distinguish candidate recall from producer selection and supported
+addition quality; do not report synthetic fixture scores as consumer evidence.
+R0–R7 remain open.
+
+#### R2 implementation receipt — versioned candidate relevance fixture (October 1)
+
+Added tests/research_agent/fixtures/selected_source_relevance_v1.json and an
+offline replay test. Six constructed cases cover an explicit-subject positive
+competing with note/packet distractors, same-title repeated captures with
+different source IDs and identical hashes, cross-artifact text under the same
+explicit subject, an exact-note false association, a complete empty scan, and
+an incomplete empty owner-linked scan. The replay runs the current candidate
+selector twice against identical bounded metadata: with the owner-linked
+subject relation and with that relation disabled to represent the exact-note /
+same-packet cue baseline.
+
+Fixture-only counts: the baseline returned 0 of 3 annotated support sources,
+alongside 3 annotated distractors in 3 candidates; the owner-linked variant
+returned all 3 annotated supports, alongside 3 distractors in 6 candidates.
+The baseline considered all six cases complete; the owner-linked variant
+preserved the incomplete-empty distinction (5 complete, 1 incomplete). These
+are authored synthetic case labels and fixed-budget retrieval counts, not
+representative-distribution estimates, model-selection results, semantic
+false-association rates, supported-addition quality, or consumer evidence.
+No source body is stored in the fixture and no provider is called. In
+particular, candidate recall is not final selection; whether a produced
+addition is supported, additional, relevant, or worthwhile remains untested by
+this fixture.
+
+Validation:
+
+- Focused offline retrieval and producer tests: **26 passed**.
+- Ruff check and format checks passed for the new replay test; fixture JSON
+  parsed; git diff --check passed.
+- Backend make ci-static passed with Ruff, architecture gates and mypy across
+  **1,900 source files**. The managed checkout required Ruff and mypy caches to
+  be redirected to /private/tmp.
+- make merge-check BASE_REF=main passed: **22,156 passed, 14 skipped, 1
+  xfailed, 52 xpassed**; one expected local-Qdrant payload-index warning. The
+  run used PYTEST_ADDOPTS=-p no:cacheprovider because this managed checkout
+  disallows writing pytest cache files. Skipped/database-gated cases are not
+  disposable-Postgres evidence. No contract, schema, mobile consumer, provider
+  activation, or product surface changed.
+
+The next R2 implementation/acceptance work is the roadmap's separate
+**select-and-publish** gate: compare matched direct-source and
+research-assisted treatments, then review candidate relevance, actual
+cross-source support, additional substance and human usefulness independently.
+Existing structural producer tests do not satisfy that gate. Keep the research
+route dark until its supported-result and applicable cost/authorization
+evidence is adequate; do not add semantic/archive-wide retrieval based only on
+this constructed fixture. R0–R7 remain open.
+
+#### R3 implementation receipt — selected-source gateway and ledger acceptance (October 1)
+
+Added two provider-free, disposable-Postgres acceptance tests in
+`travel-agent/tests/api/test_selected_source_research_postgres.py`. They call
+the real selected-source producer, real Intake source hydration, commercial
+gateway and usage-ledger functions while replacing only the structured model
+dispatch with a local stub. The tests inject a one-unit/day `ai.research.live`
+policy and actor cohort in process; they do not change `ENFORCEMENT_READY`, a
+released benefit set, an environment cohort or any live model/provider setting.
+
+- Successful execution records real `reserve → dispatch → commit` postings,
+  leaves the one-unit bucket conserved at `(allocated, available, held,
+  consumed) = (1, 0, 0, 1)`, stores and reopens the exact owner-bound result,
+  and proves reopening causes no second reservation or model invocation.
+- A simulated ambiguous post-dispatch timeout leaves the reservation
+  `dispatched` with its unit held and unconsumed. Repeating the same work
+  identity becomes `in_progress`; the model stub is invoked only once. The
+  existing commercial-ledger recovery test separately verifies expiry to
+  `unknown`, conservation, and explicit authoritative resolution; it does not
+  operate on the producer test's reservation.
+
+Evidence boundary: the gateway/ledger lifecycle works when an authorized
+allocation is supplied, but the production runtime cannot currently supply it
+for this action. `CommercialAccessConfig.from_env()` deliberately excludes
+`ai.research.live` from enforcement readiness; released policies allocate no
+units for selected-source synthesis; and ordinary public-search callers with
+the same capability remain shadow-only. This test does not establish a live
+allocation, product pricing, public-search spend control, provider behavior,
+human evaluation, or native receiving. Keep R3 open; before any enablement,
+resolve the capability boundary and chargeable-call coverage rather than
+loosening the shared allowlist opportunistically.
+
+Validation on backend commit `df349ebf1` (Python 3.13.0):
+
+- Complete selected-source disposable-Postgres file: **5 passed**.
+- Existing expired-dispatch ledger recovery case on the same explicitly named
+  disposable lane DB `vesper_adaptive_context_test_20261001`: **1 passed**.
+- Focused offline selected-source producer/candidate/relevance and commercial
+  gateway tests: **42 passed**.
+- `make ci-static` passed, including architecture gates and mypy across
+  **1,900 source files**.
+- `make merge-check BASE_REF=main` passed: **22,156 passed, 14 skipped, 1
+  xfailed, 52 xpassed**, with two expected local-Qdrant payload-index warnings.
+- Backend commit hooks passed. No schema, API/OpenAPI, app, runtime cohort,
+  released commercial policy or provider activation changed.
+
+R0–R7 remain open.
+
+#### R2 implementation receipt — exact evidence excerpt admission (October 1)
+
+The selected-source producer's internal output contract now requires an
+addition to provide one short exact excerpt from the selected original and one
+for every dependency it declares as supporting the claim. Before composition
+construction or result storage, the producer checks each excerpt against the
+current owner-hydrated text. Missing, invented or wrongly indexed excerpts
+fail admission; a complete no-addition still carries no generated text or
+excerpt. A provider-free Postgres acceptance also covers a model-declared
+no-addition despite eligible candidates: it settles one unit, persists only
+the reason, and exact reopen makes no new provider dispatch. The excerpts
+remain in process and are not copied into the private composition or API
+result. Because a response has already returned, its reservation is settled
+even when its content fails this admission check.
+
+This is a provenance floor, not a semantic entailment or usefulness judge:
+real text can be irrelevant to the claim, the selected relation can be
+repetitive, and user-supplied connections are not tracked. The R2
+select-and-publish gate remains open for matched direct-source versus
+research-assisted comparisons, explicit support/relevance review, and human
+usefulness evidence. R1 public research remains unsupported by this producer;
+there is no provider or native consumer activation.
+
+Validation on the backend candidate:
+
+- Ruff check and format check passed for the producer, focused unit tests and
+  disposable-Postgres acceptance file.
+- Focused selected-source producer tests: **11 passed**.
+- Selected-source API/ledger Postgres acceptance file: **6 passed** against
+  the explicit disposable database vesper_adaptive_context_test_20261001.
+  This includes authenticated production/readback and real ledger dispatch/
+  settlement under test-only policy, with the model call stubbed; excerpts
+  were checked against current originals and absent from the API response, and
+  the no-addition case stores only a content-free reason and reopens without
+  another reservation.
+- Backend make ci-static passed after the change, including architecture gates
+  and mypy across **1,900 source files**. Backend make merge-check BASE_REF=main
+  passed: **22,158 passed, 14 skipped, 53 xpassed**, with one expected local
+  Qdrant payload-index warning. The test set included the changed offline
+  producer tests; the separately recorded disposable-Postgres tests are not
+  inferred from this offline count.
+- Workspace tooling suite under default sandbox: **118 passed, 4 failed**;
+  all four failures were loopback ephemeral-port binds denied by the sandbox
+  in worktree runtime tests. Rerunning those exact cases with local networking
+  permission passed: **4 passed**. No workspace-tooling code changed.
+- App npm run verify:fast: passed (167 existing lint warnings, zero lint
+  errors); the earlier Expo cache denial was environmental. Existing app
+  verify:merge evidence remains 1,289 suites / 9,178 tests passed.
+- Backend implementation and feature-authority changes are committed as
+  f3b18d687 (feat: verify selected-source evidence excerpts); the additional
+  Postgres no-addition acceptance is committed as f7968225b. Hooks passed for
+  both. Workspace make docs-check passed after this receipt update. No OpenAPI,
+  database schema, released policy, feature flag, native consumer, provider or
+  app behavior changed.
+
+R0–R7 remain open.
+
+#### R2 implementation receipt — matched-treatment review scaffold (October 1)
+
+Committed backend revision `58d25c1b0` adds
+`tools/eval/judges/selected_source_treatment.py` inside the existing evaluation
+package. Each comparison holds intent and the selected/related originals fixed,
+then pairs a direct treatment with a research-assisted addition or explicit
+no-addition. It separates cross-source support, additional substance over the
+direct baseline, intent relevance, human usefulness, and effort remaining with
+the person. Passing judgments must cite their relevant inputs; a case cannot
+call the assisted result better unless all four value dimensions pass and
+remaining effort is none or light. Its A/B prompt can counterbalance order but
+does not call a model or turn judgment into a release rule.
+
+The five checked-in examples cover a grounded weekend idea, an unsupported
+pasta-cause explanation, repetition of the Colosseum/film connection, an
+effort-shifting checklist, and no addition when there is no related evidence.
+Exactly one illustrative authored example clears the rubric. These labels and
+outputs are not human-reviewed, were not produced by the live model, contain no
+participant data, and are not consumer evidence. The scaffold makes the
+roadmap's intended comparison executable; it does not complete the comparison.
+
+The backend `tools/eval/README.md` and Research Agent `FEATURE.md` document the
+scope. No producer admission, API, schema, provider, policy, feature flag,
+native consumer, or app behavior changed. Actual R2 acceptance still requires
+representative matched results, independent review of support and added value,
+and evidence that a useful result leaves little work for the person. Keep
+no-addition, failure, and withheld outcomes in the denominator; do not promote
+from this fixture or judge agreement alone.
+
+Validation on the final backend revision:
+
+- Focused selected-source tests, including the current candidate-relevance
+  fixture: **44 passed** with
+  `./.venv/bin/python -m pytest -p no:cacheprovider
+  tests/research_agent/test_selected_source_*.py
+  tests/eval/test_selected_source_treatment.py -q`.
+- Ruff check and format check passed for the new evaluator and tests.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static` passed,
+  including architecture gates and mypy across **1,900** source files.
+- Final `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main`
+  passed: **22,165 passed, 14 skipped, 53 xpassed**, with one expected local
+  Qdrant payload-index warning. The skipped/database-gated tests were not
+  executed by this offline preflight. An earlier full attempt had one existing
+  `test_sync_executor_with_multiple_tools` timing miss (99.8 ms vs. 90 ms); it
+  passed alone, a subsequent full attempt passed, and the final revision's
+  full check passed again.
+- Backend commit hooks passed. Workspace documentation validation is recorded
+  in the workspace commit following this receipt.
+
+No model/provider, live lookup, database mutation, native consumer, or consumer
+study ran for this increment. R0–R7 remain open.
+
+#### R2/R7 implementation receipt — retain failed and withheld comparison outcomes (October 1)
+
+Backend commit `a6a2d1ab6` extends the existing matched-treatment evaluation
+contract with four explicit outcomes: addition, clean no-addition, technical or
+research failure, and safety-withheld. Failed and withheld cases carry no
+generated text, mark remaining effort and relative value as unknown, and keep
+all value dimensions at insufficient evidence. The fixture validator now
+requires both outcomes. Its summary counts all four and computes the authored
+worthwhile-label rate over every fixture case, including no-addition, failed,
+and withheld outcomes. In the seven authored examples, that illustrative rate
+is 1/7; it is a structural denominator check, not evidence about model quality,
+users, or product value.
+
+The evaluator README and Research Agent feature contract now describe this
+boundary. Existing outputs, API/schema, provider behavior, policy, feature
+flags, native consumers, and app behavior are unchanged. No model/provider or
+live lookup ran, and this does not supply representative matched results,
+independent human usefulness review, or R2/R7 acceptance. Database-gated cases
+were skipped by the full offline preflight; no database acceptance is claimed.
+
+Validation on backend commit `a6a2d1ab6` (Python 3.13.0):
+
+- Focused selected-source treatment tests: **13 passed**.
+- Exact-file Ruff lint and format checks passed; JSON fixture syntax and
+  `git diff --check` passed.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static` passed,
+  including architectural/structural gates and mypy across **1,900** source
+  files.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main` passed:
+  **22,193 passed, 14 skipped, 53 xpassed**, with eight warnings including the
+  expected local-Qdrant payload-index warning. Skipped/database-gated cases
+  remain unverified.
+- Commit hooks passed, including Ruff, formatting, secret scanning, and
+  architecture ratchets.
+
+R2 still needs retrieval/selection quality and representative matched human
+usefulness evidence; R7 remains open for actual comparative quality and
+lifecycle/operating acceptance. R0–R7 remain open.
+
+#### R3 implementation receipt — external research caller inventory (October 1)
+
+A source audit of Tavily dispatch paths confirms that `ai.research.live` is not
+yet a coherent shared spend boundary. It spans distinct user-facing lookups,
+content enrichment, batch corpus jobs, image discovery, and operational
+probes. They have different authority, retry, result-retention and scheduling
+owners; treating every SDK call as one user capability would couple unrelated
+work and could make a future enforcement switch affect seed jobs or health
+checks unexpectedly.
+
+| Caller family | Current dispatch boundary | Current controls and remaining gap |
+| --- | --- | --- |
+| Concierge factual lookup and trip-direction fallback | Both use `core.public_research.acquire_public_research`; one typed public request, one tool-layer attempt and a bounded deadline | Content-free demand/execution observations only; no durable public-call reservation or shared chargeable-attempt settlement |
+| Concierge live-event discovery | Shared `core.public_research.acquire_public_research` adapter with a typed location/category/date request, fixed approved-domain filter, then a separate event-page verifier | One adapter attempt, bounded timeout and content-free observations; no durable reservation or billing settlement |
+| Concierge place-angle web augmentation | `WebSearchTool.execute` in `concierge/tool_handlers/search.py`, combining canonical place name and user query | Not routed through the typed acquisition adapter or public-research execution observation; normal tool retry path remains in effect |
+| Lookup-agent web enrichment | `WebSearchTool.execute` in `lookup_agent/handlers.py`, combining model-derived query terms and TripContext city across hours, ratings, search, events, details, dietary and price | Separate lookup flow; no common acquisition/reservation path. Query-bearing logs and exception details were removed in backend commit `4c3199ccf`; this does not review the public projection or add spend control. A typed migration must first admit its exact externally disclosed fields |
+| Image candidate discovery | Direct Tavily SDK call in `media/sources/tavily_search.py`, with image mode and in-memory result cache | Governed by the web-search mode and pipeline no-op checks, but not represented as a content-research attempt or shared reservation |
+| Mention extraction | Direct Tavily SDK call in `research_agent/tasks/extract_mentions.py` for each planned query | Batch job path with its own task counters; no shared user-facing capability reservation |
+| Destination and brief generation | `WebSearchTool` in the destination-seeding and brief-generation tasks | Background enrichment with pipeline/task ownership; does not use the user-facing public acquisition adapter |
+| API health and provider canary | `/health` uses `WebSearchTool._execute`; provider-canary worker calls Tavily SDK directly | Operational probes have intentionally different mode behavior; they need an explicit operational cost allowance, not a user's research entitlement |
+
+This inventory is code evidence, not a cost measurement: no live provider call
+or provider billing record was inspected. It identifies the next R3 boundary
+decision precisely. Before enforcement readiness, split at least (a)
+user-authorized interactive research, (b) scheduled/background content work,
+(c) media candidate discovery, and (d) operator probes, then assign each one a
+finite budget, retry owner, stable invocation identity and ambiguous-outcome
+policy. Do not flip the global allowlist or assume one entitlement should
+cover these workloads. The selected-source producer's test-only reservation
+acceptance remains separate evidence and does not account for any Tavily call.
+
+Validation was a read-only callsite audit (`rg` plus inspection of each
+dispatch owner); no source behavior changed. R3 remains open, and no provider,
+feature flag, capability allowlist, released allocation or product policy was
+changed. R0–R7 remain open.
+
+#### R1/R3 implementation receipt — lookup diagnostic content minimization (October 1)
+
+Backend commits `4c3199ccf` and `cd8d050d9` remove raw lookup queries,
+classifier output, resolved place slugs and exception messages from Lookup
+Agent logs. Failures retain a bounded operation name and exception class;
+success logs retain only query type, score/latency and result source needed for
+diagnosis. Regression tests inject a unique query marker into classifier, web
+and Places failures, and a resolved-place marker into success; none appears in
+captured logs. User-visible fallback behavior is unchanged.
+
+This closes an observable local-log exposure only. It does not change the
+existing Qdrant lookup cache, which still stores query/answer payloads; does
+not establish that raw lookup wording is appropriate for Tavily; and does not
+route Lookup Agent through the typed public-request adapter, shared spend
+reservation, or reviewed disclosure boundary. Those remain separate R1/R3
+work.
+
+Validation on final backend commit `cd8d050d9` (Python 3.13.0):
+
+- Focused Lookup Agent classifier, handler, synthesizer, cache and agent tests:
+  **66 passed** on `4c3199ccf`; the success-path place-redaction test passed as
+  part of **6 agent tests** on `cd8d050d9`.
+- Ruff lint and format checks passed; `git diff --check` passed.
+- `make ci-static` passed, including the repository architecture gates and
+  mypy across **1,900** backend source files.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main` passed:
+  **22,170 passed, 14 skipped, 1 xfailed, 52 xpassed**, with one expected
+  local-Qdrant payload-index warning. Database-marked tests were skipped by
+  this offline preflight; no disposable database was used.
+- Backend commit hooks passed on both commits. The first test marker naming
+  caused a secret-detector false positive; it was renamed without an exemption
+  before the final complete hook run passed.
+
+No provider/model call, cache-retention change, API/schema change, commercial
+policy, capability flag, native consumer, deployment or publication changed.
+R0–R7 remain open.
+
+#### R3 implementation receipt — entity research queue drain and lease audit (October 1)
+
+The entity `research_queue` is a separate legacy/catalog enrichment workflow,
+not the selected-source producer or a shared dispatch owner.
+
+- The authenticated object-page request route is gated by
+  `ENTITY_RESEARCH_REQUESTS_ENABLED` plus an explicit user-ID or email-suffix
+  allowlist. It can enqueue one verified catalog venue/site/accommodation
+  request, but does not dispatch it. The flag defaults off when absent.
+- The planning DB provider also enqueues venue/site work when a detail read
+  finds no dossier. That call has no request-feature-flag check and is
+  non-blocking; it only writes a pending queue row.
+- The only in-repository drain entry is the manually invoked
+  `scripts/process_research_queue.py` CLI, which calls
+  `backend.research_agent.tasks.process_research_queue`. The processor is not
+  registered in `audio_jobs.WorkerSettings.functions` or its `cron_jobs`.
+  `fly.toml` starts that Arq worker for other durable work but defines no
+  research-queue command or schedule. Thus the repository's declared runtime
+  has no automatic drain for this queue. This source/config audit cannot rule
+  out an external scheduler not represented in the repository; no deployment
+  state or database queue contents were inspected.
+- Claiming uses a global PostgreSQL advisory lock, a default four-row shared
+  processing cap and a processing timeout (default 3,600 seconds). On a later
+  claim call, rows older than the timeout are reset to pending and attempts
+  increment on re-claim. The processor has no lease heartbeat. Its completion
+  helper updates by row ID only: it does not compare a claim generation,
+  expected status or attempt number. The queue seam therefore does not prove
+  that an expired worker is fenced from later queue-state writes. Because the
+  research graph can persist dossier/brief effects before queue completion,
+  those effects also need an owner-level stale-writer audit before this queue
+  can be safely reused as a managed worker. No stale-worker race was executed.
+
+This closes the code/deployment inventory portion of R3, not the operating
+design. Do not register the processor in Arq, add a cron, or run its deep
+research CLI as part of this lane: the path lacks a demonstrated shared
+reservation boundary and claim/publication fencing, and its batch workload
+must not inherit the selected-source producer's test-only commercial policy.
+Keep the queue separate from the selected-source capability. Any future reuse
+requires an owner decision on whether planner-triggered enqueue remains
+desirable, explicit background-work budget/retry/deadline policy, and fencing
+that covers both queue state and research artifact publication. An external
+scheduler or provider billing state remains unverified.
+
+Validation was a read-only source/config audit at backend revision
+`cd8d050d9`: inspected the API and planner enqueue call sites, queue claim and
+update helpers, processor/CLI, `WorkerSettings`, `fly.toml`, and the existing
+unit-test references. No provider call, database read/mutation, deployment
+inspection, runtime change, or test execution occurred. This is inventory
+evidence only; it does not satisfy R3 load/recovery acceptance. R0–R7 remain
+open.
+
+#### R1/R3 implementation receipt — live-event acquisition joins the bounded adapter (October 1)
+
+Backend commit `11849326b` routes Concierge live-event discovery through the
+same `PublicResearchRequest` and `acquire_public_research` boundary used by
+factual lookups and trip-direction fallback. The typed request is constructed
+only after validating the event window and resolving the canonical place; its
+provider terms contain the normalized event category, canonical public
+location and bounded dates. The model's free-form query, personal name and
+private-note fields remain excluded. The reviewed event-domain filter is an
+internal adapter option, not caller query text. Existing post-search
+verification is unchanged: only approved HTTPS source pages with a matching
+date/location Event record can become displayable candidates.
+
+URL-only provider rows are represented as `url_candidate` only for the typed
+live-event purpose. They are leads, not citations or facts; ordinary fact and
+artifact research still rejects rows without excerpts. The common path now
+owns the event lookup's single tool attempt, deadline, cancellation observation
+and provider-dispatch usage count, while live-event result verification and
+content-free discovery metrics remain with Concierge. This consolidates an
+interactive dispatch seam; it does **not** establish durable commercial
+reservation, provider billing settlement, shared-capability enforcement,
+background-work accounting or a new native consumer.
+
+Validation on backend revision `11849326b` (Python 3.13.0):
+
+- Focused request, acquisition and Concierge handler tests: **50 passed**.
+- `scripts/check_surface_keys.py --ci`: passed (55 registered surface keys;
+  six retry callers remained allowlisted).
+- `make ci-static`: passed; Ruff, format, import and structural checks passed,
+  and mypy reported no issues across **1,900** backend source files.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main`:
+  **22,172 passed, 14 skipped, 1 xfailed, 52 xpassed**, two expected local
+  Qdrant payload-index warnings. Existing embedding tests logged Hugging Face
+  DNS retries in this offline environment; the full suite exited successfully.
+- Backend commit hooks passed. No live provider call, API/OpenAPI or database
+  schema change, released policy, feature flag, model activation, deployment or
+  native app change occurred.
+
+This reduces duplicated interactive provider dispatch logic but leaves the
+larger R3 workload split and finite cost/authorization boundary open. R0–R7
+remain open.
+
+#### Cross-repository verification receipt — live-event acquisition (October 1)
+
+The standard `make verify-changed WORKSPACE_BASE_REF=main
+AGENT_BASE_REF=main APP_BASE_REF=main` composite was attempted. It did **not**
+finish green: the sandbox denied writes to the backend `.pytest_cache`, Ruff
+cache, and Expo's `.expo/cache/eslint` (including an unlink during Expo lint).
+This is an environment/cache failure, not a code-test failure; the aggregate
+command remains recorded as failed and is not claimed as passed.
+
+The required checks were rerun individually with cache-sensitive tools either
+redirected to `/private/tmp` or invoked uncached:
+
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static` in `travel-agent`: passed; Ruff, format, architecture/structural checks and mypy across 1,900 files passed.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main` in `travel-agent`: passed, **22,172 passed, 14 skipped, 1 xfailed, 52 xpassed**, two expected local-Qdrant warnings.
+- Frontend fast checks passed using `./node_modules/.bin/eslint app components --no-cache` (167 existing warnings, zero errors), followed by typecheck, API-boundary, schema-bridge, Home-surface-budget and test-typecheck-contract checks. Native-compatibility and icon-current checks also passed. The Expo wrapper itself remains blocked by its fixed `.expo/cache/eslint` cleanup path in this sandbox.
+- `npm run verify:merge -- --base e7bdc660501eaa19234e6b45bda033658edaa2d4` in `travel-app`: passed, **1,289 suites / 9,178 tests**; Jest reported one worker force-exited after all suites passed.
+- `make contract-check api-coverage-check compatibility-check card-arrival-check chat-card-types-check docs-check` in the workspace: passed, including generated API parity and documentation governance, inventory, links, release scope, and Home-surface governance.
+
+These per-layer results establish the relevant code and contract checks, but do
+not erase the composite-run failure. No cache files were deleted or permission
+changes made. The Expo cache-path limitation is local-environment evidence, not
+a roadmap implementation item; a normal writable developer checkout/CI should
+still run the canonical composite gate before merge.
+
+#### R1 disclosure gate — Lookup Agent factual web fallbacks (October 1)
+
+Current code in `backend/lookup_agent/handlers.py` calls the retrying
+`WebSearchTool.execute` path for hours, ratings, dietary and price, constructing
+provider terms from model-derived venue/search terms plus `TripContext.city`.
+The same helper also serves open-ended search, events and details. This remains
+legacy behavior: it bypasses the shared typed acquisition adapter and durable
+cost reservation, despite content-free error logging.
+
+A proposed migration would have replaced only the four fact fallbacks with a
+one-attempt `PublicResearchRequest` built from a resolved canonical entity
+label, a fixed fact facet and the existing trip city, while refusing to search
+when no canonical entity resolved. No implementation or provider call occurred.
+The exact canonical-place/trip-city projection to Tavily is not explicitly
+admitted by the current disclosure authority, so it remains a founder decision.
+Do not route the same fields through an alternate helper or describe the typed
+boundary as authorization. Once admitted, the first acceptance should verify
+exact provider arguments with a fake tool, exclude user/classifier text, prove
+no dispatch for unresolved entities, and preserve the legacy search/events/
+details paths until their own public-field projections are reviewed.
+
+#### R3 implementation receipt — catalog brief attempt accounting (October 1)
+
+Backend commit `ce340e0f7` adds content-free Tavily attempt accounting to the
+existing catalog `generate_briefs` batch. Each entity's Tavily call runs inside
+the shared `tool_attempt_usage_scope`; its `BriefGenStats` and completion log
+now aggregate tool-layer attempts, retries, local Tavily SDK-call-boundary
+entries, exception events, terminal exceptions, cancellations and
+provider-reported error responses. Query text, entity names and provider
+exception messages are not written to these diagnostics. Wikidata calls and
+the batch's model-generation calls are not counted by these fields.
+
+The measurements do not count Tavily's internal HTTP retries or billable units,
+do not settle or reserve cost, and are not durable cross-worker accounting.
+The batch query, retry policy, provider configuration and public-data behavior
+are unchanged; no user-facing acquisition path or scheduler was activated.
+
+Validation on committed backend revision `ce340e0f7` (Python 3.13.0):
+
+- Focused `tests/research_agent/test_generate_briefs.py`: **25 passed**.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static`: passed;
+  Ruff, format, architecture/structural gates and mypy across **1,900** source
+  files passed.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main`:
+  **22,175 passed, 14 skipped, 53 xpassed**, one expected local-Qdrant warning.
+  The offline environment also emitted a Hugging Face DNS retry during existing
+  embedding coverage; the test suite completed successfully. Database-marked
+  checks remain skipped by this offline preflight.
+- Commit hooks passed, including secret detection; no scanner exemption was
+  added. No live provider call, model call, database mutation, schema/API change,
+  commercial policy, feature flag, deployment or mobile change occurred.
+
+This improves operating evidence for one existing batch caller only. It does
+not satisfy R3's shared reservation, workload isolation, durable recovery,
+publication fencing, spend settlement or load/recovery acceptance. R0–R7 remain
+open.
+
+#### R3 implementation receipt — separate private synthesis from public lookup (October 1)
+
+Backend commit `5bf3c9575` gives the authenticated selected-source producer a
+distinct `ai.research.synthesize` capability. It has global resource scope,
+user billing scope, and periodic `ai_units` allocation semantics. The producer
+reserves that key before its single model dispatch, and the selected-source LLM
+surface maps to the same key for COGS classification. The key is deliberately
+absent from every released benefit-set rule and the enforcement-ready set, so
+there is no deployable allocation or production activation. Public web
+acquisition continues under `ai.research.live` as shadow-only demand; it does
+not inherit the private producer's reservation. No public-field disclosure,
+provider call, product policy, provider configuration or runtime enablement was
+introduced.
+
+Validation on backend commit `5bf3c9575` (Python 3.13.0):
+
+- Focused commercial catalog/enforcement and selected-source producer tests:
+  **45 passed**.
+- Provider-free `tests/api/test_selected_source_research_postgres.py`: **10
+  passed** against the isolated lane Postgres container. A uniquely named
+  disposable database was created after confirming it did not exist, migrated
+  through `selresult03` (head), and dropped after the test run. The test injected
+  one unit of test-only policy; it does not establish released allocation.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static`: passed;
+  Ruff and format checks, structural/architecture gates, and mypy across **1,900**
+  backend files passed.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main`:
+  **22,179 passed, 14 skipped, 1 xfailed, 52 xpassed**, one expected local
+  Qdrant warning. Existing embedding tests logged Hugging Face DNS retries in
+  this offline environment; the suite exited successfully.
+- Backend commit hooks passed, including secret scanning. No API/schema,
+  released-policy, feature-flag, provider, mobile, deployment or publication
+  change occurred.
+
+This closes the capability-key conflation between private synthesis and public
+lookup, but not either capability's production authorization. R3 still needs
+approved finite synthesis allocation and recovery, and complete accounting for
+public chargeable acquisition. The larger first R0/R1/R2/R6 connection still
+needs supported useful-result evidence and native consumer acceptance. R0–R7
+remain open.
+
+#### R3 acceptance receipt — concurrent selected-source reservation (October 1)
+
+Backend commit `7ba34d7b3` adds a disposable-Postgres race through the real
+selected-source producer and commercial gateway. Two independent work items
+for the same user compete for the injected one-unit daily test allocation. The
+winning model stub remains in flight while the other request attempts its
+reservation. Only one request reaches the model; the competitor is rejected
+before provider dispatch. The real ledger ends conserved at
+`(allocated, available, held, consumed) = (1, 0, 0, 1)`, with one reservation
+and no reconciliation mismatch.
+
+Validation on the final test revision:
+
+- The complete provider-free
+  `tests/api/test_selected_source_research_postgres.py` module passed:
+  **11 passed** against the isolated lane Postgres service, on a newly created
+  disposable database migrated to `selresult03`. The database was removed
+  immediately afterward.
+- Ruff lint, Ruff format, `git diff --check`, and the commit's applicable hooks
+  passed. Static checks and the full backend merge preflight passed on the
+  preceding production-code commit `5bf3c9575`; this test-only commit changed no
+  runtime code.
+
+This demonstrates same-user allocation integrity for two overlapping
+selected-source producers with a deterministic stub. It does not measure
+provider billing, cross-user fairness, overload behavior, operational
+reconciliation, or released-policy readiness. No live provider/model call,
+policy allocation, API/schema, feature flag, app, deployment, or publication
+changed. R3 and R0–R7 remain open.
+
+#### R1 implementation receipt — structured live-event request at shared acquisition boundary (October 1)
+
+Backend commit `cbcf131df` advances `PublicResearchRequest` to v2. The shared
+acquisition contract now accepts live-event category, canonical public
+location, and ordered date bounds as separate typed fields; it rejects a
+free-form event query, categories outside the existing six-category
+projection, reversed dates, and windows longer than the existing 31-day limit.
+It renders the same provider phrase as before, and the Concierge's approved
+domain filter and event-page/schema verifier are unchanged. Event fields are
+rejected for other research purposes. Fact lookup and candidate discovery keep
+their existing public-query behavior.
+
+This closes a structural gap between the already-typed Concierge request and
+the shared one-attempt acquisition seam; it does not authorize any new terms
+or caller. The exact canonical-place/category/date terms already used by the
+live-event path are unchanged. The separate Lookup Agent projection remains
+unapproved, and this work adds no provider or model dispatch, budget allocation,
+commercial reservation, feature flag, deployment, app consumer, or production
+activation.
+
+Validation on the adaptive-context backend branch at `cbcf131df` (Python 3.13):
+
+- Focused public-request/acquisition, Concierge live-event, selected-source
+  work identity, answer-only and bounded-result tests: **122 passed**.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static`: passed;
+  Ruff, formatting, architectural and structural gates passed, with mypy
+  reporting no issues across **1,900** source files.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main`:
+  **22,185 passed, 14 skipped, 1 xfailed, 52 xpassed**, one expected local
+  Qdrant payload-index warning. The offline preflight does not establish
+  database-gated acceptance; the skipped cases remain unverified here.
+- Backend commit hooks passed, including Ruff, import/architecture ratchets and
+  secret detection. No OpenAPI/generated-type change was produced.
+
+R1 is not complete: the general caller-independent disclosure boundary,
+Lookup Agent admission, complete chargeable-attempt accounting, supported
+claim verification, and live-provider evidence remain open. R0–R7 remain open.
+
+#### R3 implementation receipt — Lookup Agent query-free web-attempt telemetry (October 1)
+
+Backend commit `7118bdd90` scopes the existing Lookup Agent Tavily fallback in
+the shared `tool_attempt_usage_scope`. It emits only aggregate tool-attempt,
+SDK-dispatch, retry, exception, cancellation and provider-reported-error
+counts. The query string, city, result text and exception message are not
+included. The existing terms, standard `WebSearchTool.execute` retry loop,
+timeout, fallback response and public-field projection are unchanged.
+
+This adds transient operational visibility to one interactive caller; it does
+not settle provider billing, reserve spend, persist attempt records, count
+Tavily's own HTTP retries, or admit the Lookup Agent's externally disclosed
+fields. The factual Lookup Agent disclosure decision remains pending. There is
+no provider/model dispatch from these tests and no production policy, feature
+flag, API/schema, app, deployment or publication change.
+
+Validation on backend commit `7118bdd90` (Python 3.13.0):
+
+- Lookup Agent suite: **67 passed**, including successful and failing mocked
+  SDK-boundary cases that verify attempt counts and ensure a query marker is
+  absent from captured logs.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static`: passed;
+  Ruff, formatting, architecture/structural checks and mypy across **1,900**
+  source files passed.
+- The first `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check
+  BASE_REF=main` run had one timing-sensitive failure in the unrelated
+  `tests/core/test_owner_reads.py::test_timed_out_physical_work_retains_portfolio_seats[False]`;
+  the exact case passed alone (**1 passed**). A full rerun passed:
+  **22,186 passed, 14 skipped, 53 xpassed**, one expected local-Qdrant
+  payload-index warning. No disposable-Postgres acceptance was run for this
+  telemetry change.
+- Commit hooks passed, including Ruff, secret detection and architecture
+  ratchets.
+
+This is partial R3 observability only. Durable spend reservation/settlement,
+cross-caller workload boundaries, provider-billing reconciliation, and the
+Lookup Agent disclosure gate remain open; R0–R7 remain open.
+
+#### R2 implementation receipt — bounded exact-note archive pagination (October 1)
+
+Backend commit `2e5545ac7` extends selected-source candidate discovery through
+the existing owner-scoped keyset metadata reader. Exact normalized user-note
+search now follows at most five pages of up to 100 descriptors each, allowing
+bounded discovery beyond the previous first page without adding an index,
+reading candidate bodies, or changing the selected-source contract. Every
+candidate remains a cue only; current owner, custody and exact revision are
+revalidated by the existing Intake reader before synthesis.
+
+If the page budget expires while more metadata exists, the scan stays marked
+incomplete. An empty incomplete scan follows the existing route's
+`retrieval_incomplete` response rather than being stored as no-addition. A
+positive candidate already found in a partial scan may still proceed through
+the existing exact-owner hydration and admission path. This increases bounded
+archive reach to at most 500 descriptors, not archive-wide recall, and does not
+improve semantic relevance or establish that a same-note item is the same
+occurrence.
+
+Validation on backend commit `2e5545ac7` (Python 3.13.0):
+
+- Focused candidate, retrieval-fixture and route tests: **35 passed**. This
+  includes a candidate found after the first metadata page, empty-result
+  behavior at the scan cap, and the API's existing 503 refusal for incomplete
+  empty scans.
+- Ruff lint and formatting checks passed for the changed source and tests;
+  `git diff --check` passed.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static` passed,
+  including architecture/structural gates and mypy across **1,900** source
+  files.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main` passed:
+  **22,195 passed, 14 skipped, 53 xpassed**, with four warnings including the
+  expected local-Qdrant payload-index warning. Skipped/database-gated cases
+  remain unverified.
+- Commit hooks passed, including Ruff, formatting, secret scanning and
+  architecture ratchets. No API/schema, database migration, provider, policy,
+  feature flag, app, deployment or publication changed.
+
+This closes only the first-page retrieval limit for the exact-note cue. Semantic
+retrieval/ranking, archive coverage beyond the bound, final selection/support,
+matched usefulness, native consumer adoption and R0–R7 package acceptance
+remain open.
+
+#### Coordinated change-preflight receipt (October 1)
+
+The coordinated lane command
+`make verify-changed WORKSPACE_BASE_REF=main AGENT_BASE_REF=main APP_BASE_REF=main`
+ran against workspace `c861ed5d`, backend `2e5545ac7`, and app `e2b51bcf3`,
+using main bases `0a39e273`, `bd1a683b`, and `e7bdc660`. It returned nonzero
+because the full backend test run had one failure in the unchanged
+`tests/core/test_background_regen_gate.py::test_env_markers_default_on[production-APP_ENV]`
+case (`RuntimeError: dictionary changed size during iteration`). The exact
+case passed alone (**1 passed**). A second full backend merge check passed:
+**22,195 passed, 14 skipped, 1 xfailed, 52 xpassed**, with two expected local
+Qdrant warnings. It ran in the offline environment; database-gated cases
+remain skipped, and existing Hugging Face checks retried after DNS failures.
+
+The same coordinated run's app merge-scope suite passed (**118 passed**), API
+snapshot/projection/type checks passed, and workspace docs checks passed
+(557 living Markdown links, 10 spine entries, canon budget within limit).
+Because the combined command itself returned nonzero, this is not recorded as
+a clean combined preflight. The isolated rerun supports a transient/concurrent
+test failure; no unrelated test or runtime code was changed to mask it. No
+provider, production allocation, native consumer, deployment, or publication
+was enabled. R0–R7 remain open.
+
+#### R2 acceptance receipt — page-two recovery and scan-cap completeness (October 1)
+
+Backend commit `a2cc14f4e` extends the disposable-Postgres test in
+`tests/api/test_selected_source_research_postgres.py`. The two boundary cases
+use a fresh test owner. With 99 newer unrelated descriptors, the selected source
+closes page one and the exact-note candidate is recovered on page two. With 500
+newer unrelated descriptors, the matching candidate falls beyond the five-page
+budget; the scan returns no candidate and remains explicitly incomplete. The
+fixtures set deterministic source timestamps. The production metadata reader
+is wrapped only to observe cursors; its queries execute against PostgreSQL.
+Sources remain exact-owner, verified retained records; no body is loaded by
+discovery. Filler records are split into packets within the source-owner event's
+32-reference bound.
+
+Validation on the adaptive-context lane:
+
+- Focused PostgreSQL boundary cases: **2 passed** against the isolated lane
+  service in `vesper_adapt_note_p2_20261001_01`, migrated to `selresult03`.
+  The test actor was confirmed removed; the uniquely named database had zero
+  active connections and was dropped after the run.
+- Candidate unit suite: **10 passed**. `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static` passed,
+  including Ruff, formatting, architecture/structural gates, and mypy across
+  **1,900** source files. Commit hooks passed.
+- This is database evidence for page-two keyset retrieval, not archive-wide
+  recall or relevance, semantic ranking, addition support, usefulness, or a
+  production route. The test-only change made no API/schema, provider, policy,
+  feature-flag, app, deployment, or publication changes. R0–R7 remain open.
+
+#### R0/R2 correctness receipt — keep source chronology unknown until verified (October 1)
+
+Backend commit `99f38d827` removes a misleading temporal projection from the
+selected-source producer. `work_item.represented_at` is the time Vesper began
+this synthesis; the Intake owner read does not establish when the facts in each
+original apply. The producer therefore leaves `CompositionSourceV1.represented_at`
+unset rather than assigning the request time to the selected original and every
+dependency. Result generation time remains represented by the result owner.
+The Research Agent FEATURE contract records this boundary, and the focused
+producer regression asserts that no source-manifest item claims a represented
+time. This does not add temporal owner metadata or establish event/occurrence
+time; those remain unknown until a source owner admits a field with those
+semantics.
+
+Validation on the adaptive-context backend lane:
+
+- `./.venv/bin/python -m pytest -p no:cacheprovider
+  tests/research_agent/test_selected_source_producer.py -q`: **11 passed**.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static`: passed,
+  including Ruff, formatting, architecture/structural gates and mypy across
+  **1,900** source files.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main` did
+  **not** pass: **22,193 passed, 14 skipped, 53 xpassed**, with one timing
+  threshold miss (`test_sync_executor_with_multiple_tools`, 92.4 ms vs. 90 ms)
+  and two setup/teardown errors reporting `RuntimeError: dictionary changed size
+  during iteration`. The exact three affected tests passed in isolation (**3
+  passed**). The composite result remains failed; the isolated rerun does not
+  erase it.
+- Commit hooks passed. No database acceptance was needed for this in-memory
+  manifest correction, and no OpenAPI, schema, commercial policy, feature flag,
+  provider, app, deployment or publication changed.
+
+This closes one temporal-integrity defect, not R0/R2 acceptance: exact source
+time, occurrence semantics, selection quality, supported-addition usefulness,
+native receiving and the broader R0–R7 package outcomes remain open.
+
+#### R1/R3 implementation receipt — redact image-search failure diagnostics (October 1)
+
+Backend commit `f660abaaf` changes the direct Tavily image-discovery adapter's
+failure diagnostic to include only the exception class. It no longer writes raw
+search wording or provider exception text/tracebacks to logs. The Media FEATURE
+contract records the rule, and a marker-based regression verifies that neither
+the query marker nor an exception-message marker appears in captured logs while
+the failure class remains observable. User-facing fallback behavior stays the
+same (`[]` on provider failure).
+
+Validation on the adaptive-context backend lane:
+
+- `./.venv/bin/python -m pytest -p no:cacheprovider
+  tests/media/test_tavily_search.py -q`: **14 passed**.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static`: passed,
+  including Ruff, formatting, architecture/structural gates and mypy across
+  **1,900** source files.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main` passed:
+  **22,196 passed, 14 skipped, 53 xpassed**, with one expected local-Qdrant
+  warning. Database-gated cases remain skipped by this offline check.
+- Commit hooks passed. No live-provider call, API/schema, commercial policy,
+  feature flag, cache-retention, app, deployment or publication behavior
+  changed.
+
+This closes a local-log exposure only. The image query is still passed to the
+provider under its existing caller authority, the in-process cache remains
+keyed by query, and this caller has no shared durable reservation or usage
+settlement. Its external disclosure and R3 workload-accounting boundaries
+remain open; R0–R7 remain open.
+
+#### R1 implementation receipt — redact entity-mention planning logs (October 1)
+
+Backend commit `a1aacde59` removes raw query text from the entity-mention
+planning INFO log, complementing `f9223875f`'s failure-path redaction. The
+destination-grounding and entity-mention pipelines now omit both query content
+and provider exception details from the covered planning/failure logs. The
+Research Agent FEATURE contract describes this exact scope. User-visible
+fallbacks, provider arguments and dispatch are unchanged; this is log
+minimization, not external-disclosure authorization.
+
+Validation on the adaptive-context backend lane (Python 3.13.0):
+
+- `PYTEST_ADDOPTS='-p no:cacheprovider' .venv/bin/python3.13 -m pytest
+  tests/research_agent/test_seed_destination.py
+  tests/research_agent/test_extract_mentions.py -q`: **41 passed**.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static`: passed;
+  Ruff, formatting, architecture/structural checks, catalog runway and mypy
+  across **1,900** source files passed. Commit hooks passed on the same
+  temporary cache configuration.
+- The broad offline `make merge-check BASE_REF=main` remained non-green with
+  **22,196 passed, 14 skipped, 53 xpassed, and one setup error** in the
+  unchanged `tests/core/db/test_itinerary_v2_schema.py::test_operation_root_contains_normalized_contract_and_attribution`
+  (`RuntimeError: dictionary changed size during iteration`). That exact case
+  passed alone (**1 passed**); this isolated rerun does not erase the composite
+  failure.
+- Coordinated `make verify-changed` also did not complete cleanly: app ESLint
+  could not write its `.expo/cache` file in the restricted environment, and
+  workspace loopback-socket tests were denied permission. The workspace runtime
+  suite passed when rerun in its intended local-network environment (**11
+  passed**). The original backend failure in this combined run was this change's
+  regression test catching the planning-log leak; after the fix, the focused
+  suite above passes. App test and API-contract results are not substituted for
+  the failed combined preflight.
+
+No API/schema, policy, feature flag, app behavior, deployment, publication,
+database or live-provider call changed. This closes a narrow diagnostic leak,
+not R1's caller-independent disclosure boundary or R3 accounting; R0–R7 remain
+open.
+
+#### R1 implementation receipt — redact batch search failure diagnostics (October 1)
+
+Backend commit `f9223875f` removes raw query text and exception details from
+failure logs in destination grounding and entity-mention extraction. Each
+pipeline retains its existing empty-result fallback and now logs only the
+exception class. Marker-based regressions verify that provider exception text
+and query content do not appear in captured logs. The Research Agent FEATURE
+contract narrows its earlier caveat to these covered pipelines; this is not a
+claim about every research-adjacent batch task.
+
+Validation on the adaptive-context backend lane (Python 3.13.0):
+
+- `PYTEST_ADDOPTS='-p no:cacheprovider' .venv/bin/python3.13 -m pytest
+  tests/research_agent/test_seed_destination.py
+  tests/research_agent/test_extract_mentions.py -q`: **41 passed**.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static`: passed,
+  including Ruff, formatting, architecture/structural gates and mypy across
+  **1,900 source files**.
+- Commit hooks initially could not write Ruff's default cache under the
+  managed worktree. Retrying with the same cache directories under
+  `/private/tmp` passed all hooks, including secret scanning and architecture
+  ratchets.
+- No API/schema, model, query, provider, release-policy, runtime-feature,
+consumer, deployment or publication behavior changed. No live provider or
+database was used. R1 privacy coverage is improved for these two batch paths;
+public disclosure authorization and R3 accounting remain open; R0–R7 remain
+open.
+
+#### R1 implementation receipt — minimize interactive search diagnostics (October 1)
+
+Backend commit `f2f123b0c` removes the raw search phrase, exception message and
+malformed model response from two interactive diagnostic paths. Concierge
+semantic activity-search failure logs now retain only the exception class and
+continue returning structured-filter results. Search interpretation failures
+likewise log only the exception class or a generic response-shape label. The
+bounded interpreter cache remains keyed by the exact query; no cache-retention
+or provider-disclosure policy is implied. The Concierge and Search FEATURE
+contracts record these precise boundaries.
+
+Validation on the adaptive-context backend lane (Python 3.13.0):
+
+- `PYTEST_ADDOPTS='-p no:cacheprovider' .venv/bin/python3.13 -m pytest
+  tests/test_search_interpretation.py
+  tests/concierge/test_search_filter_forwarding.py -q`: **40 passed**,
+  including marker assertions for query, exception and malformed response
+  content.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static`: passed;
+  Ruff, formatting, architecture/structural checks, catalog runway and mypy
+  across **1,900** source files passed. Commit hooks passed.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main` passed
+  its full offline backend scope: **22,201 passed, 14 skipped, 1 xfailed, 52
+  xpassed**, with two expected local-Qdrant payload-index warnings. The
+  disposable-Postgres cases among the skips remain unverified by this offline
+  check; no live provider was called.
+
+This improves local diagnostic minimization only. Search still sends content
+through its existing retrieval/interpreter calls; the selected-source route
+still rejects public research, so caller-independent disclosure, substantive
+public acquisition, matched usefulness, native receiving and R0–R7 package
+acceptance remain open.
+
+#### R1 implementation receipt — minimize live Places provider diagnostics (October 1)
+
+Backend commit `5cabc3b16` removes searched names/queries, exact coordinates,
+provider response bodies and exception text from Google Places/Foursquare
+failure diagnostics at both the provider and service layers. Errors continue to
+retain provider/operation, exception class and HTTP status; failure fallback
+behavior and outbound provider requests are unchanged. `backend/places/FEATURE.md`
+records this scope.
+
+Validation on the adaptive-context backend lane (Python 3.13.0):
+
+- `PYTEST_ADDOPTS='-p no:cacheprovider' .venv/bin/python3.13 -m pytest
+  tests/places/test_google_places_provider.py
+  tests/places/test_foursquare_provider.py tests/places/test_places_service.py
+  tests/places/test_search_nearby.py -q`: **46 passed**, including marker
+  checks for query, coordinates and provider exception/response content.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static`: passed,
+  including architecture checks and mypy across **1,900** source files.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main` passed
+  on the exact backend commit: **22,212 passed, 14 skipped, 53 xpassed**, with
+  two expected local-Qdrant payload-index warnings. `TEST_DATABASE_URL` and
+  `TEST_DATABASE_DISPOSABLE` were unset; the skipped DB-gated cases remain
+  unverified, and no live provider was called.
+- The commit hook's detect-secrets step could not rewrite the read-only
+  `.secrets.baseline` in this managed checkout. A no-network scan against a
+  temporary copy of the existing baseline found no new detections; the commit
+  was retried with only that hook skipped. All other commit hooks passed. The
+  tracked baseline was not modified.
+
+This is local diagnostic minimization, not authorization to send a selected
+personal source to a public provider. Caller-independent disclosure, public
+research from selected material, R3 public-attempt accounting, comparative
+usefulness, native receiving and R0–R7 package acceptance remain open.
+
+#### R1 implementation receipt — gate trace previews and exception details (October 1)
+
+Backend commit `98ef076b28bf291493f961ce530702ac013909a3` closes a content
+capture bypass in local traces and Langfuse parent spans. Local traces retain
+error class and structural status by default, but omit exception messages and
+tracebacks; LLM error details require both prompt and response capture, while
+tool error details follow the existing tool-I/O capture setting. System-prompt
+previews are now omitted unless prompt capture is explicitly enabled. Langfuse
+parent spans receive a content-free error-class status and close without the
+raw exception object unless `LANGFUSE_CAPTURE_USER_CONTENT=true`. The
+`core/FEATURE.md` contract now records the behavior. No model request, API
+contract, database schema, or app consumer changed.
+
+Validation on the adaptive-context backend lane (Python 3.13.0):
+
+- `PYTEST_ADDOPTS='-p no:cacheprovider' .venv/bin/python3.13 -m pytest
+  tests/core/test_tracing_tool_evidence.py
+  tests/core/test_langfuse_tracing.py -q`: **38 passed**, including marker
+  assertions for local LLM/tool/agent errors, prompt previews, Langfuse parent
+  span closure, and the explicit-capture path.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static`: passed;
+  Ruff and formatting passed, architecture/static gates passed, and mypy
+  reported no issues across **1,900** source files.
+- `env -u TEST_DATABASE_URL -u TEST_DATABASE_DISPOSABLE
+  PYTEST_ADDOPTS='-p no:cacheprovider' RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make merge-check BASE_REF=main`:
+  **22,216 passed, 14 skipped, 1 xfailed, 52 xpassed**, with two expected
+  local-Qdrant payload-index warnings. The 14 database-gated skips remain
+  unverified. A few unrelated fixture retries could not resolve Hugging Face
+  hosts in this network-restricted environment; they did not fail the suite.
+  No live model/provider acceptance was run.
+
+This is trace-content privacy hardening, not external-tracing governance or
+R1 caller-independent research acceptance. Approved public disclosure,
+substantive acquisition, comparative usefulness, native receiving and R0–R7
+package acceptance remain open.
+
+#### R2 implementation receipt — bounded exact-note owner query (October 1)
+
+Backend commit `90129d723ddb0c2abc631a9ffa70e043049f77f1` replaces the broad
+five-page/500-descriptor exact-note scan with an owner-, custody-, text-,
+normalized-note- and size-filtered Intake metadata query. The filter runs
+before the result cap, so an older exact-note candidate is no longer hidden
+behind unrelated recent sources. The query returns at most 100 matching
+metadata rows and reports `complete=false` if more matches exist; an empty
+incomplete result remains unavailable rather than authoritative silence.
+It reads no candidate bodies and adds no note-derived database index, since
+that would duplicate sensitive user-authored text in index storage. Query scan
+cost at very large per-owner archive sizes remains unbenchmarked.
+
+UTF-8 source metadata is byte-counted while the producer's combined input
+limit is character-counted. The lookup therefore uses four bytes per remaining
+Unicode code point as the upper bound for possibly fitting text. Sources whose
+byte count proves they fit are admitted under the conservative budget; if a
+possible multibyte match cannot be proven to fit from metadata alone, the
+candidate set stays incomplete rather than silently treating it as absent.
+
+Validation on the adaptive-context backend lane (Python 3.13.0):
+
+- Candidate selector and versioned relevance-fixture tests: **20 passed**.
+- The selected-source PostgreSQL integration file passed against the explicitly
+  disposable lane database `vesper_adaptive_context_test_20261001`: **14
+  passed**. This includes exact-note discovery beyond 500 unrelated
+  descriptors, incomplete state beyond 100 exact-note matches, and the
+  conservative multibyte budget case.
+- `make ci-static` passed: Ruff and formatting, architecture/structural gates,
+  and mypy across **1,900** backend source files.
+- Full offline `make merge-check BASE_REF=main` passed: **22,217 passed, 14
+  skipped, 53 xpassed**, with two expected local-Qdrant payload-index warnings.
+  Database-marked skips remain unverified by this offline run; no live model
+  or research provider was called.
+- `git diff --check` and commit hooks passed. No API/schema migration, mobile
+  consumer, provider activation, product surface or publication changed.
+
+This improves bounded exact-note candidate reach and truthful incompleteness,
+not semantic retrieval or usefulness. R2 still needs representative selection
+and supported-addition review; matched usefulness and native receiving remain
+open, as do R0–R7 package acceptance.
+
+#### R1 implementation receipt — Experience answer disposition (October 1)
+
+Backend owner `research_experience` now applies the existing disposition mapper
+to a valid `answer_only` bounded result. It returns `current_answer`, correlates
+to the selected Experience row, and keeps `retain_source=false`; it never enters
+the legacy Experience brief/dossier writer. A missing handoff gets no inferred
+disposition; a malformed one preserves the current answer, omits the
+disposition, and logs no content. This adopts the mapper at an owner handoff
+without treating the canonical subject reference as a retention grant.
+
+The prior R1 paragraph claiming the quick graph still used dossier defaults
+was stale: current code bypasses catalog lookup for untyped answer-only requests,
+uses only a caller-supplied typed public request (at most one lookup, no
+replanning), avoids dossier profile and site-dimension fallback, and terminates
+before quality gate and domain writers. Those graph properties are covered by
+`tests/research_agent/test_answer_only_research.py`; the new owner mapping and
+malformed-handoff behavior are covered by
+`tests/research_agent/test_experience_research.py`. No provider, database, API
+schema, mobile surface or product disclosure behavior changed.
+
+Validation on the adaptive-context backend lane (Python 3.13.0):
+
+- Focused answer-only, disposition, quick-research and Experience owner tests:
+  **50 passed**.
+- `make ci-static` passed: Ruff check/format, architecture and structural gates,
+  and mypy across **1,900** backend source files.
+- The first `make merge-check BASE_REF=main` run found one unrelated,
+  timing-sensitive owner-read timeout assertion. The exact test passed alone;
+  a complete rerun passed **22,218 passed, 14 skipped, 53 xpassed**, with two
+  expected local-Qdrant warnings. Database-gated skips remain unverified; no
+  live provider was called.
+- The assumed direct Ruff executable path was unavailable; the repository static
+  gate supplied the successful Ruff/format verification. No API/schema,
+  migration, generated type, app, database or deployment change was made.
+
+This closes only mapper adoption at one existing internal owner-return
+boundary. It does not provide a production typed-public-request caller,
+caller-independent selected-object disclosure, claim entailment verification,
+live-provider quality, comparative usefulness, or R1/R0–R7 acceptance.
+
+#### R3 acceptance receipt — pinned Tavily SDK failure multiplicity (October 1)
+
+Backend commit `2c2ec8862` extends the shared public-acquisition regression to
+verify that `tavily-python==0.8.0` produces exactly one HTTP `POST /search` for
+both a connection failure and a retryable HTTP 503. The tool adapter uses
+`execute_once`, bypassing the backend's own retry loop; this test verifies that
+the pinned SDK does not add a hidden retry for those failure classes. The test
+now also closes its externally supplied HTTP client after the assertion.
+
+Validation on the adaptive-context backend lane (Python 3.13.0):
+
+- `tests/core/test_public_research_acquisition.py`: **11 passed**, including
+  both one-request failure cases.
+- `make ci-static` passed, including Ruff/format, architecture gates and mypy
+  across **1,900** backend files.
+- `make merge-check BASE_REF=main` passed: **22,219 passed, 14 skipped, 53
+  xpassed**, with two expected local-Qdrant warnings. Database-gated skips
+  remain unverified; no live provider was called.
+- Commit hooks passed. No provider query, payment/reservation, release policy,
+  API/schema, application or deployment behavior changed.
+
+This bounds and tests HTTP request multiplicity for two failure classes under
+the currently pinned SDK. It does not prove Tavily's billable accounting for a
+successful result, its internal server-side work, provider charge units, or
+durable reservation/settlement. R3 and R0–R7 package acceptance remain open.
+
+#### R2 contract clarification — source identity versus byte equality (October 1)
+
+Fresh review confirmed that exact-note cross-submission candidates preserve
+distinct Intake Source IDs even when their content hashes match. This is
+intentional: identical bytes do not establish that captures are one occurrence
+or that they are independent corroboration. Same-packet duplicate suppression
+remains a separate cue-specific rule. The R2 requirement to group alternate
+representations therefore uses admitted source identity/revision and a locator,
+not a content-hash join across distinct Source references.
+
+The existing regressions
+`test_exact_user_note_finds_cross_submission_sources_without_collapsing_visits`
+and `test_explicit_subject_candidates_precede_note_matches_without_duplicate_sources`
+passed (**2 passed**). No candidate behavior changed; this receipt aligns the
+workspace acceptance wording with the existing owner-bound identity contract.
+Broader semantic grouping, support quality, selection usefulness and R2/R0–R7
+package acceptance remain open.
+
+#### R2 implementation receipt — current-request known-connection boundary (October 1)
+
+Backend commit `4bd57cd6c722b8ade5c8de6abd0b08a18c0c3b76` makes the selected-source
+producer explicitly treat a connection, explanation, observation or
+interpretation supplied in the current `private_instruction` as already-known
+context. The model is directed not to repeat or closely paraphrase it, and to
+return a materially distinct supported relation or `no_addition`. The prompt
+also states that the producer has no complete conversation or novelty-history
+view and must not claim an addition is new to the person. This does not access
+or summarize prior chat history, and applies only when the caller supplies the
+known connection in the current request.
+
+The added regression checks the serialized user instruction and system prompt
+boundary. This proves prompt delivery, not model compliance. It does not prove
+cross-source entailment, additional substance, usefulness, or non-repetition
+against insights absent from the current request.
+
+Validation on Darwin `25.5.0` arm64 / Python `3.13.0`:
+
+- `tests/research_agent/test_selected_source_producer.py` and
+  `tests/eval/test_selected_source_treatment.py`: **25 passed**.
+- Targeted Ruff check and format check passed.
+- `MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true make ci-static` passed; Ruff,
+  structural gates and mypy reported no issues across **1,900** backend source
+  files.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main` passed:
+  **22,220 passed, 14 skipped, 53 xpassed**, with two expected local-Qdrant
+  payload-index warnings. The full suite is offline/change-aware; skipped
+  database/provider cases remain unverified.
+- No live model/provider, disposable-Postgres run, API/schema, migration,
+  application, deployment or user-facing consumer behavior was exercised.
+
+This is a bounded prompt improvement inside R2, not completion of the
+prior-user-connection acceptance. R2 still needs representative matched model
+outputs and independent human review, plus a supported owner handoff for prior
+insights not present in `private_instruction`. R0–R7 remain open.
+
+#### R2 evaluation receipt — explicit user-known context in matched review (October 1)
+
+Backend commit `1b172b473953af6a1e3e7966ff559be09042d7b4` extends the
+selected-source treatment fixture and anonymous A/B review packet with a
+separate optional `known_user_context`. The Colosseum/film regression now states
+that the user already made that connection. Review instructions distinguish
+that prior knowledge from source evidence and require repeated or closely
+paraphrased output to fail incremental-substance review. The fixture validator
+also rejects using user-known context as factual support. This makes a future
+human comparison test the relevant failure directly; the authored fixture
+labels remain illustrative and are not behavior or acceptance evidence.
+
+Validation on Darwin `25.5.0` arm64 / Python `3.13.0`:
+
+- Producer and matched-treatment tests: **27 passed**; targeted Ruff and format
+  checks passed.
+- `MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true make ci-static` passed; Ruff,
+  architecture/structural gates and mypy reported no issues across **1,900**
+  backend source files.
+- The first full `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check
+  BASE_REF=main` run had one unrelated timing assertion failure in
+  `tests/test_parallel_tools.py::TestExecuteToolsParallelSync::test_multiple_tools_parallel`
+  (0.60s observed against its 0.18s threshold). The isolated test passed
+  (**1 passed**). The full rerun passed: **22,222 passed, 14 skipped, 53
+  xpassed**, with two expected local-Qdrant warnings. An existing model-cache
+  test emitted a network warning; it did not fail the run. Skipped database and
+  provider acceptance remain unverified.
+- No live model output, human participant review, consumer runtime, database
+  race, API/schema, migration, application or deployment behavior was exercised.
+
+This advances the evaluation contract only. R2 acceptance still requires
+representative matched outputs, independent human assessment of support and
+usefulness, and a real caller that supplies known insights from the relevant
+interaction. It does not grant access to conversation history or assert
+archive-wide deduplication. R0–R7 remain open.
+
+#### R4 implementation receipt — exact result invalidation on source revision change (October 1)
+
+Backend commit `006dd8582ab9a8f8d4a988f993405dafae177766` adds disposable-
+Postgres lifecycle acceptance for an exact selected-source result when the
+stored current revision changes. The parameterized test covers both the
+selected original and a supporting dependency. A later exact owner read detects
+the stale reference and erases the derived result row rather than returning it.
+The test changes the source object's stored content hash to simulate a newer
+revision; it does not claim coverage of a full user-visible correction command,
+new-source ingest, or already-delivered bytes. Backend Feature documentation
+records this boundary.
+
+Validation on Darwin `25.5.0` arm64 / Python `3.13.0`:
+
+- `tests/core/test_selected_source_research_results_postgres.py`: **11 passed**
+  against the healthy `vesper-adaptive-context-research` Postgres service at
+  `64355`, using the explicitly named disposable database
+  `vesper_adaptive_context_test_20261001` and
+  `TEST_DATABASE_DISPOSABLE=1`. An earlier invocation without the local
+  credentials skipped both parametrized cases and is not counted as evidence.
+- `MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true make ci-static` passed, including
+  Ruff, architecture/structural gates and mypy across **1,900** backend files.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main` passed:
+  **22,222 passed, 14 skipped, 1 xfailed, 52 xpassed**, with two expected
+  local-Qdrant warnings. The separate disposable-Postgres test above supplies
+  the DB evidence; database-gated cases in the full offline suite remain
+  unverified.
+- No API/schema or migration changed; no provider, app, consumer runtime,
+  deployment or publication behavior was exercised.
+
+This closes one exact-read freshness regression at the private result owner,
+not the complete R4 arrival/correction/lifecycle acceptance or the R2 quality
+acceptance. R0–R7 remain open.
+
+#### R3 caller audit — answer-only public reachability (October 1)
+
+At workspace `230dc98f`, backend `e35746b83`, and app `e2b51bcf3`, the typed
+answer-only graph path is not currently a production public-search caller.
+`quick_research` accepts `completion_mode="answer_only"` and an optional typed
+`PublicResearchRequest`; `_execute_answer_only_public_research` dispatches only
+when that request is present. The in-repository production call sites are the
+catalog worker and `research_experience`; neither supplies a public request,
+and no production call site opts into answer-only mode. Therefore the graph's
+typed public-request execution path cannot explain current provider spend.
+
+This does **not** close public R3 accounting. Existing chargeable dispatch is
+reachable through the Concierge `search_web` / trip-direction and live-event
+handlers, and the Lookup Agent's separate `WebSearchTool.execute` fallback.
+The Concierge records content-free `ai.research.live` demand and execution
+observations, but `_observe_live_research_demand` explicitly is not an access
+check or reservation; `ENFORCEMENT_READY_CAPABILITIES` still contains only
+`voice.session.start`. Those live handlers can reach Tavily when configured
+without a durable public reservation/settlement. The batch catalog-brief
+accounting receipt above is also attempt telemetry, not durable settlement.
+
+This read-only call-graph audit changed no code and made no provider call. It
+narrows R3's next public path work to the actual dispatch owners; do not add a
+second reservation around the unreachable answer-only path. Any enforcement
+change still needs a reviewed finite-allocation and failure/recovery policy
+before an active user-facing path is gated or charged. R3 and R0–R7 remain
+open.
+
+#### R2 acceptance receipt — same-title Place identity (October 1)
+
+Backend commit `e35746b83` adds a disposable-Postgres regression proving that
+two canonical Place rows with the same display title remain distinct during
+selected-source candidate retrieval. It attaches separate retained text
+sources to each Place ID and verifies that selecting one Place admits only its
+own source as a dependency. This tests identity isolation at the real metadata
+query and Intake-backed source path, not relevance or semantic equivalence.
+
+Validation on the `codex/adaptive-context-research` lane:
+
+- The complete provider-free
+  `tests/api/test_selected_source_research_postgres.py` module passed:
+  **15 passed** against the lane's isolated Postgres service on port `64355`.
+- A fresh database named
+  `vesper_adaptive_context_test_20261001_r3_same_title` was confirmed absent,
+  created solely for this run, migrated through `selresult03`, and used with
+  `TEST_DATABASE_DISPOSABLE=1`. After the test, it had zero connections and was
+  dropped. No ambient development or production database was used.
+- No provider/model call, API/schema change, application behavior or deployment
+  was involved. The whole-module pass verifies these Postgres cases at this
+  revision; it does not replace the broader static/merge gates.
+
+This closes the same-title identity regression only. R2 still needs supported
+addition quality, representative matched human usefulness review and prior-
+connection repetition evidence; R0–R7 remain open.
+
+#### R4 acceptance receipt — new related source after an empty selection (October 1)
+
+The current provider-free PostgreSQL module includes
+`test_new_related_source_gets_new_work_after_prior_empty_selection`. It first
+stores a complete, content-free no-addition result with no eligible dependency.
+After a separately captured exact-note source arrives, the next authorized
+request reruns bounded owner selection, derives a new work ID from the added
+exact dependency, and produces an addition through a deterministic synthesis
+stub. Exact reads of both the old no-addition and new addition still return
+their own unchanged result. Only the second request reserves and dispatches.
+
+Validation is the same exact-module run recorded above:
+`tests/api/test_selected_source_research_postgres.py` — **15 passed** on the
+fresh, isolated, migrated disposable database. No live model, provider, mobile
+consumer, background scheduler, notification, or correction command ran.
+This closes the bounded "new candidate after empty selection" acceptance for
+the explicit-request producer. It does not establish automatic freshness,
+archive-wide recall, novelty-history repair, or full R4 acceptance; R0–R7
+remain open.
+
+#### R3 implementation receipt — provider-reported Tavily credits (October 1)
+
+Backend commit `7424493fc` requests Tavily's `include_usage` response field and
+records only a valid nonnegative integer `usage.credits` in the active
+content-free tool-usage scope. Missing, malformed, negative, boolean, timeout,
+and failed-response usage remains unknown; reported zero is distinct from
+unknown. The normalized/model-facing search result does not receive provider
+credit metadata. The signal is carried into Concierge execution telemetry,
+Lookup Agent usage logs, and batch brief-generation statistics. Commercial
+telemetry continues to report `provider_cost_state=unknown`: Tavily credits are
+provider-native units, not USD cost, a durable attempt ledger, reservation, or
+settlement. This does not change capability access, budgets, benefit policy,
+provider activation, or retry behavior.
+
+Validation on the adaptive-context backend lane (Python 3.13.0; pinned
+`tavily-python==0.8.0`):
+
+- The focused provider/telemetry set passed: **125 passed** across
+  `test_tool_retry.py`, `test_public_research_acquisition.py`, commercial
+  service, Concierge web-search, Lookup Agent handlers, and brief generation.
+  MockTransport exercised the real SDK request, verified `include_usage=true`,
+  and covered positive/zero, absent, malformed, connection-failure and HTTP-503
+  cases without calling Tavily.
+- `MYPY_CACHE_DIR=/dev/null RUFF_NO_CACHE=true make ci-static` passed; Ruff,
+  formatting, architecture/structural gates, and mypy across **1,900** backend
+  files all passed.
+- `env -u TEST_DATABASE_URL -u TEST_DATABASE_DISPOSABLE
+  PYTEST_ADDOPTS='-p no:cacheprovider' MYPY_CACHE_DIR=/dev/null
+  RUFF_NO_CACHE=true make merge-check BASE_REF=main` passed:
+  **22,240 passed, 14 skipped, 1 xfailed, 52 xpassed**, with two expected
+  local-Qdrant payload-index warnings. Database-gated skips remain unverified;
+  Hugging Face DNS retries were emitted by existing offline tests but did not
+  fail the suite.
+- Commit hooks passed. The credit instrumentation itself does not change the
+  API. The required offline `sync-types.sh` check also found and synchronized the
+  previously missing `ai.research.synthesize` capability enum across the full
+  snapshot (`e22b5022`), app projection, and generated app types (`5e53aeb9`);
+  generated-type `tsc --noEmit` passed. No endpoint, database, migration,
+  user-facing mobile behavior, product policy, provider activation, live
+  provider, deployment, or release change was made.
+
+This closes only content-free capture and propagation of the provider's own
+reported credit units for existing `WebSearchTool` callers. It does not resolve
+the public callers' missing finite allocation/recovery policy or durable
+reservation and settlement, prove independent Tavily invoicing, convert credits
+to monetary cost, or complete R3 or R0–R7.
+
+#### R2 measurement receipt — synthetic exact-note archive query cost (October 1)
+
+Added `travel-agent/scripts/benchmark_selected_source_archive_scale.py`, a
+loopback-only diagnostic that captures the SQL emitted by the production
+`read_same_note_retained_text_sources` owner and runs PostgreSQL
+`EXPLAIN (ANALYZE, BUFFERS, FORMAT JSON)` against that exact statement. The
+runner requires `TEST_DATABASE_DISPOSABLE=1`, a database name prefixed
+`vesper_selected_source_benchmark_`, and an empty migrated database; it seeds
+only synthetic user and Intake metadata, then deletes those owners and their
+cascaded rows. It does not create or drop databases, and it never reads or
+stores real source bodies.
+
+On this lane's isolated PostgreSQL 15.4 service, four synthetic owners held
+1,000, 10,000, 100,000 and 500,000 submissions (611,000 total). Every 500th
+submission had an exact normalized-note match. After two warm-ups, seven
+server-side measured runs produced these medians / maxima:
+
+| Synthetic submissions for queried owner | Expected exact matches | SQL rows fetched before custody checks | Server execution median / max |
+| ---: | ---: | ---: | ---: |
+| 1,000 | 2 | 2 | 3.936 / 4.214 ms |
+| 10,000 | 20 | 20 | 37.839 / 39.415 ms |
+| 100,000 | 200 | 101 | 237.933 / 311.524 ms |
+| 500,000 | 1,000 | 101 | 771.633 / 976.494 ms |
+
+The SQL query returns at most 101 matching metadata rows so the owner can mark a
+result incomplete when the 100-match limit is exceeded. These are database rows
+before Python-side custody-receipt validation, not admitted dependencies. Its
+normalized-note predicate has no matching index, so the query still inspects
+that owner's submission metadata before applying the match limit. Plans used
+the owner index through 100,000 submissions, then a sequential scan at 500,000 because
+that one owner represented 82% of this small fixture table. This plan change is
+fixture-specific. The numbers are local synthetic database execution times,
+not real user archive distributions, full backend/application latency,
+production concurrency, a user-facing SLO, or evidence that 500,000 items is a
+plausible single-user archive. They do establish that exact-note discovery's
+database cost grows materially with owner archive size even when only 101 rows
+are returned.
+
+Validation and cleanup:
+
+- Ruff check and format check passed; targeted mypy passed for the benchmark
+  script. The CLI help path passed. The script rejected both a missing
+  disposable-database marker and a URL pointing at the lane's ordinary `vesper`
+  database before attempting a connection. The focused R2 candidate and
+  versioned-fixture tests passed: **22 passed**.
+- Backend `make ci-static` passed, including structural/architecture gates and
+  mypy across **1,900 source files**. Workspace `make docs-check` passed all
+  governance, inventory, spine, canon, release, status, link, compatibility,
+  and Home-surface checks.
+- The first full offline `make merge-check BASE_REF=main` run failed only
+  `tests/api/test_plan_assistance.py::test_private_deadline_cancels_inference_and_returns_terminal_504[request]`
+  under two-worker scheduling. Both parametrized cases passed when rerun
+  serially. A complete two-worker rerun passed: **22,240 passed, 14 skipped,
+  53 xpassed**. The 14 database/provider-gated skips remain unverified in that
+  offline suite; two expected local-Qdrant payload-index warnings were emitted.
+- `TEST_DATABASE_URL` named the newly created
+  `vesper_selected_source_benchmark_20261001` database on lane port `64355`,
+  with `TEST_DATABASE_DISPOSABLE=1`; migrations reached `selresult03`.
+- After the run, PostgreSQL reported zero users, submissions, source objects,
+  and active connections for the benchmark database. That exact empty database
+  was then dropped; the isolated Postgres service and Compose volume were left
+  intact. The pre-existing Qdrant service was not changed.
+- No provider or model was called; no production query/index, schema, API,
+  result behavior, allocation, mobile consumer, deployment, or release changed.
+- Backend implementation/owner-doc are committed as
+  `travel-agent` commit `9212d1351` on the existing
+  `codex/adaptive-context-research` lane; this workspace receipt is committed
+  separately below.
+
+This closes the missing *synthetic database query-cost measurement*, not R2's
+archive-scale retrieval design. Do not add a plaintext or normalized-note index
+from this evidence alone. The next decision needs representative per-owner
+archive-size assumptions and an explicit privacy/performance bar; then compare
+the current exact-note baseline with any proposed privacy-preserving lookup on
+the same workload. Semantic ranking, supported-addition quality, final
+selection, independent human usefulness review and complete R2 acceptance
+remain open; R0–R7 are not complete.

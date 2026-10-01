@@ -260,6 +260,27 @@ flags:
       failure omits the optional contribution rather than generating without
       continuity ownership.
 
+  - name: SELECTED_SOURCE_RESEARCH_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:selected_source_research_enabled
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    target_journey: P02,P05,P07
+    cohort: none by default; explicit authenticated request only when the server flag and a real AI_RESEARCH_LIVE reservation both admit dispatch
+    kill_switch: Set SELECTED_SOURCE_RESEARCH_ENABLED=false; fresh selected-source synthesis returns unavailable, while owner-authorized reads of already stored unexpired results remain available.
+    promotion_removal_question: >
+      By 2026-10-30, do exact-source correctness, matched usefulness,
+      reconciliation of uncertain dispatches, and a finite commercial allocation
+      justify retaining this producer gate, or should selected-source synthesis
+      remain dark or be removed?
+    notes: >
+      This is a producer kill switch, not a commercial grant or public-research
+      authorization. Public lookup is not accepted; default commercial policy
+      currently fails closed when there is no real allocation.
+
   - name: LIVED_EXPERIENCE_CONSEQUENCE_RESOLUTION_ENABLED
     repo: travel-agent
     location: backend/core/feature_flags.py:lived_experience_consequence_resolution_enabled
