@@ -1253,6 +1253,26 @@ therefore unverified. This closes one duplicate-door composition defect only;
 D2 remains active. Continue with substantive source-backed Place value and
 representative ordinary/returned/live coverage.
 
+**Plural friend-perspective preservation — October 1:** backend commit
+`f01b71673` fixes a lossy Places adapter case. When the current friend-activity
+feed can form its two-person comparison, the adapter now consumes only those
+exact two source-card IDs. Any additional eligible friend cards remain
+individual candidates with their existing recipient-scoped relationship read
+and exact Place actions. No new sharing, audience, consent or identity rule is
+introduced. The regression first failed because a third friend's candidate
+was absent, then passed with the corrected adapter.
+
+Focused projection/runtime/social Places coverage passed **78/78**; the focused
+three-friend regression passed **1/1**. Ruff check/format and all backend
+`ci-static` gates passed. `make merge-check BASE_REF=origin/main`, with
+`PYTEST_ADDOPTS='-p no:cacheprovider'`, passed the full offline suite:
+**22,094 passed, 14 skipped, 1 xfailed, 52 xpassed, 2 warnings**. No database
+tests ran. The first merge-check attempt reached 100% but exited during pytest
+cache write in the read-only checkout; disabling only the cache plugin produced
+the passing rerun. This preserves one extra social perspective, not D2
+completion; continue with source-backed Place value and representative
+ordinary/returned/live coverage.
+
 ### Combined landing checkpoint — September 30
 
 The merged integration contains the Home/capture lane plus these completed

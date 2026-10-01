@@ -2031,6 +2031,30 @@ CoreSimulatorService was unavailable/refused and its per-device lock creation
 returned `EPERM`. This is one bounded Places composition repair, not H1-A or
 D2 completion; the program roadmap records its detailed acceptance boundary.
 
+### Preserve additional friend perspectives beside the comparison — October 1
+
+Backend `f01b71673` fixes a lossy projection boundary in Places social value.
+The existing adapter can represent the first two cards from distinct people in
+a `friend_activity` section as one attributed comparison. It previously marked
+every friend card in the source section as consumed, so any third or later
+person vanished. The adapter now returns the exact source-card IDs represented
+by the comparison and suppresses only those; additional cards remain
+individual candidates and retain their own relationship owner-read requirement
+and exact Place actions. No sharing or permission contract changes.
+
+The regression failed before the fix because `friend-3` was missing, then
+passed with the exact Place destination preserved. The full focused projection,
+Places runtime and social-sections tests passed **78/78**; the focused
+three-friend case passed **1/1**. Ruff check and format passed. Backend
+`make ci-static` passed with Ruff and mypy caches redirected to writable
+temporary storage (the initial default-cache mypy invocation crashed; rerunning
+with a clean temporary cache succeeded). `make merge-check BASE_REF=origin/main`
+with `PYTEST_ADDOPTS='-p no:cacheprovider'` passed the full **offline** suite:
+22,094 passed, 14 skipped, 1 xfailed, 52 xpassed, two existing Qdrant warnings.
+The selected check did not run DB-marked tests. This closes one social-card
+loss case only; D2's real-owner state portfolio and native/full-scroll review
+remain open.
+
 ### Published candidate — prior full coordinated gate
 
 The full coordinated gate passed before this docs rebaseline on workspace
