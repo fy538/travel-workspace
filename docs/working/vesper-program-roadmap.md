@@ -54,11 +54,11 @@ requiring a second item, gives an exact Place-bound Home destination a specific
 door label, and verifies a returned Home reading's exact Place/source route and
 Home return token in the connected app path. A local synthetic-owner API/native
 rehearsal now also verifies a two-Source Home reading through exact Place
-opening and Home return. The latest Places notice increment now carries a typed
-venue destination so a saved reopening can be opened separately from being
-dismissed; focused code and contract checks pass, but native/real-owner return
-validation remains pending. Production authentication/content, recurring
-supply and full D2 acceptance remain open.
+opening and Home return. The latest Places notice increment carries a typed
+venue destination and now passes the native synthetic-owner sequence: open the
+exact Place, return with the notice still present, then clear the notice while
+the underlying Save remains. Production-user/authenticated-content, provider
+freshness, recurring supply and full D2 acceptance remain open.
 D1 capture gaps and D3 practical-help gaps
 remain open and can supply independent work when a D2 dependency is unavailable.
 
@@ -1484,22 +1484,22 @@ external design-canon parity, venue-detail opening, or D2 as a whole. Continue
 the broader ordinary/returned/live and substantive Place-value work.
 
 **Saved reopening notice → exact Place → independent dismissal — implemented
-2026-10-01:** backend commit `f583a054b` adds an optional typed venue read
-destination to the Places card contract and emits it for a confirmed reopening
-notice. App commit `8c5b7fddd` renders an accessible **Open place** action next
-to the existing **Clear** action. Opening routes to the exact saved venue and
-does not clear the notice; clearing still uses the notice owner and never
-opens the venue. Backend tests passed **33/33** and the Places feed suite passed
-**55/55**. Offline OpenAPI export, app projection and generated types were
-reviewed together; `make api-coverage-check`, app typecheck/docs checks,
-`npm run qa:polish:scenarios`, backend Ruff checks, and workspace `make
-docs-check` passed. Native surface QA and exact on-device back/return were not
-run: CoreSimulatorService was unavailable, the external Places canon bundle
-was not configured, and the lane API was not running. This proves the typed
-producer/action split and tested route dispatch, not native appearance,
-authenticated production-owner behavior, provider freshness, or D2 completion.
-Run the registered Places-native QA when its simulator, canon reference, and
-lane runtime are available; keep broader ordinary/returned/live coverage open.
+and natively exercised 2026-10-01:** backend commit `f583a054b` adds an optional
+typed venue read destination to the Places card contract and emits it for a
+confirmed reopening notice. App commit `89586d758` renders an accessible **Open
+place** action next to **Clear** and extends the real-API rehearsal. The runner
+asserts that the feed destination's venue ID is the fixture venue ID. Run
+`places-saved-reopen-owner-20261001-1327` passed on the lane-assigned iPhone 16
+Pro / iOS 18.2: the native action opened the fixture venue, **Go back** restored
+the same `OPEN AGAIN` notice without dismissing it, and **Clear** removed only
+the notice. The runner confirmed the venue Save remained at its owner endpoint
+and cleaned up the exact fixture. Focused runner-contract tests passed **4/4**;
+`npm run qa:polish:scenarios` validated all **31** registered scenario IDs;
+`bash -n` and `git diff --check` passed. This is a native behavioral receipt
+against the isolated local synthetic-owner API/database, not a visual-canon
+verdict: the external Places canon bundle was not configured. Production
+authentication/content, provider freshness, recurring supply, and full D2
+acceptance remain open; continue broader ordinary/returned/live coverage.
 
 ### Combined landing checkpoint — September 30
 
