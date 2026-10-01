@@ -776,6 +776,26 @@ preserved. D2 remains active; next, continue representative
 ordinary/returned/live coverage and substantive Home/Places receiving work
 without changing admission policy.
 
+**Controlled Places full-scroll — 2026-10-01:** app commit `962504c01`
+(`codex/home-value-delivery`) makes the Places full-scroll runner require the
+lane-assigned, booted simulator and pass its exact UDID to Maestro; its focused
+contract checks now guard that isolation and the authored quote text. The
+`90-places-full-scroll` flow passed on iPhone 16 Pro / iOS 18.2
+(`places-full-scroll-device-check-20261001T0034Z`). It read the canonical
+Source-field lead, accepted Place reading, consented friend contribution, and
+saved-place change in one native Places scroll, with each exact family visible;
+the runner's source, social, and saved-change cleanup plus post-cleanup owner
+reads passed. This used local-only
+`ROOT_SOURCE_CONTRIBUTION_PRODUCTION_ENABLED`,
+`PLACE_CONTENT_PRIMITIVE_READS_ENABLED`, and
+`CONTENT_CONTROL_PLANE_PLACE_ENABLED` flags; the background worker cohort and
+deployment flags remained off. This is controlled synthetic data through the
+real local API and native client, not recurring ordinary-user supply, release
+acceptance, or a design-reference visual verdict. Together with the Home
+full-scroll above, this verifies one bounded cross-family composition in each
+root; D2 still needs broader ordinary/returned/live coverage and substantive
+receiving gaps.
+
 ### Combined landing checkpoint — September 30
 
 The merged integration contains the Home/capture lane plus these completed
