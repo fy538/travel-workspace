@@ -72,11 +72,14 @@ the feature gate and commercial allocation both admit it; the path does not
 perform public lookup, activate a provider, or have a reviewed native consumer.
 Provider-free PostgreSQL acceptance now exercises this producer through the
 real gateway and ledger under an injected test-only allocation. This does not
-make the production route allocatable: `ai.research.live` remains outside the
-environment enforcement-ready set and shipped policies grant it no units;
-public web-search paths sharing that capability still only emit shadow demand
-observations. Keep R3 open and do not enable the shared capability globally
-until its capability boundary and chargeable-call coverage are coherent.
+make the production route allocatable. Private selected-source synthesis now
+uses its own global, user-billed `ai.research.synthesize` capability; the key
+is absent from all released benefit rules and remains outside the environment
+enforcement-ready set. Public web-search paths remain on the separate
+`ai.research.live` key and only emit shadow demand observations. Neither
+capability has production allocation or activation. Keep R3 open until the
+private capability receives approved finite allocation/recovery controls and
+public chargeable callers have their own complete accounting boundary.
 The server now prioritizes up to two exact `text/plain` dependencies explicitly
 associated with the selected source's currently resolved, owner-visible subject,
 then same-note sources from Life's first 100 recent descriptors, then bounded
@@ -721,7 +724,7 @@ is in section 1. The first connected assignment remains active:
 | --- | --- | --- |
 | Selected evidence | Owner/revision-bound original reads and mobile callers; bounded UTF-8 text-span selection; exact in-memory hydration; a dark authenticated producer and private exact-result GET; bounded explicit-subject, exact-user-note and same-packet candidates; versioned retrieval-only known-answer fixture; exact quoted excerpts are checked against hydrated text before an addition is admitted | Semantic retrieval/ranking, archive coverage beyond the first 100 descriptors, general component or multimodal retrieval, semantic entailment, final-selection evidence and human usefulness remain open; neither candidate cues nor quote presence proves relevance |
 | Public acquisition | Shared typed single-attempt lookup; answer-only routing without dossier writes; source kind, dates, quotes and truncation metadata | Construct public requests from selected material under an actual disclosure boundary; select a substantive addition and verify claim support beyond quote presence |
-| Runtime | Existing Source workflow/publication controls; content-free demand and tool/SDK-attempt telemetry; selected-source producer has one real reservation/fence and one no-retry/no-failover model attempt; provider-free Postgres now proves its test-policy reserve/settle/reopen lifecycle | Production capability boundary and allocation remain unapproved; public research callers still share a shadow-only capability; live-provider, shared chargeable-attempt coverage, concurrency, fairness and recovery behavior remain open |
+| Runtime | Existing Source workflow/publication controls; content-free demand and tool/SDK-attempt telemetry; selected-source producer has one real reservation/fence and one no-retry/no-failover model attempt; provider-free Postgres now proves its test-policy reserve/settle/reopen lifecycle; private synthesis and public live research now have separate capability keys | The private synthesis key has no released policy or enforcement readiness; public research remains shadow-only; finite approved allocation, live-provider, shared chargeable-attempt coverage, concurrency, fairness and recovery behavior remain open |
 | Receiving dependencies | Merged family readers, exact-source inspection, correction/Undo and return behavior; Home/Places receiving improvements; authenticated result API exists but is dark | Existing preparation requests remain root-bound; no native artifact consumer has adopted the dark result API |
 | Evaluation | Focused/offline checks, producer route tests, disposable-Postgres owner/readback, ledger lifecycle, source-revocation publication/readback races, late-candidate reselection after an empty result, R2 candidate fixture, exact-excerpt admission tests, backend static/offline gates, app regression and workspace docs checks | Matched usefulness comparisons, semantic/archive-wide retrieval quality, authorized live-provider evidence and real consumer acceptance |
 
@@ -1403,14 +1406,17 @@ These are engineering coverage cases, not a narrower product thesis.
    telemetry field. Record the finite allocation and authorization before live
    enablement. Provider-free disposable-Postgres acceptance now proves reserve,
    dispatch, settlement, exact-result reopen and held ambiguous failure for the
-   selected-source producer using an injected one-unit test policy. This proves
-   the code path, not deployable policy: the production parser rejects
-   `ai.research.live` as not enforcement-ready and released policies provide no
-   allocation for this producer. Public web lookup still only observes that
-   shared capability, so R3 remains open pending a safe shared capability
-   boundary and a reviewed finite allocation/authorization. No provider or paid
-   path is enabled. Broader fairness, cross-user coalescing and predictive
-   preparation stay conditional on measured need.
+   selected-source producer using an injected one-unit test policy. The
+   producer now uses a distinct `ai.research.synthesize` key, global in resource
+   scope and billed to the user. The production parser excludes it from
+   enforcement readiness and released policies have no rule for it, so this
+   proves the code path, not deployable policy. Public web lookup remains on
+   `ai.research.live`, shadow-only; its chargeable-call and uncertain-outcome
+   boundary is still incomplete. R3 remains open pending approved finite
+   allocation/recovery for synthesis and complete accounting for public
+   acquisition. No provider or paid path is enabled. Broader fairness,
+   cross-user coalescing and predictive preparation stay conditional on
+   measured need.
 5. **Deliver readback and comparative evidence.** The exact owner-bound result
    is now written and readable through the authenticated dark API, bound to the
    selected source/span, dependency revisions and originating consumer. Ordinary
@@ -3265,3 +3271,45 @@ This improves operating evidence for one existing batch caller only. It does
 not satisfy R3's shared reservation, workload isolation, durable recovery,
 publication fencing, spend settlement or load/recovery acceptance. R0–R7 remain
 open.
+
+#### R3 implementation receipt — separate private synthesis from public lookup (October 1)
+
+Backend commit `5bf3c9575` gives the authenticated selected-source producer a
+distinct `ai.research.synthesize` capability. It has global resource scope,
+user billing scope, and periodic `ai_units` allocation semantics. The producer
+reserves that key before its single model dispatch, and the selected-source LLM
+surface maps to the same key for COGS classification. The key is deliberately
+absent from every released benefit-set rule and the enforcement-ready set, so
+there is no deployable allocation or production activation. Public web
+acquisition continues under `ai.research.live` as shadow-only demand; it does
+not inherit the private producer's reservation. No public-field disclosure,
+provider call, product policy, provider configuration or runtime enablement was
+introduced.
+
+Validation on backend commit `5bf3c9575` (Python 3.13.0):
+
+- Focused commercial catalog/enforcement and selected-source producer tests:
+  **45 passed**.
+- Provider-free `tests/api/test_selected_source_research_postgres.py`: **10
+  passed** against the isolated lane Postgres container. A uniquely named
+  disposable database was created after confirming it did not exist, migrated
+  through `selresult03` (head), and dropped after the test run. The test injected
+  one unit of test-only policy; it does not establish released allocation.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static`: passed;
+  Ruff and format checks, structural/architecture gates, and mypy across **1,900**
+  backend files passed.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main`:
+  **22,179 passed, 14 skipped, 1 xfailed, 52 xpassed**, one expected local
+  Qdrant warning. Existing embedding tests logged Hugging Face DNS retries in
+  this offline environment; the suite exited successfully.
+- Backend commit hooks passed, including secret scanning. No API/schema,
+  released-policy, feature-flag, provider, mobile, deployment or publication
+  change occurred.
+
+This closes the capability-key conflation between private synthesis and public
+lookup, but not either capability's production authorization. R3 still needs
+approved finite synthesis allocation and recovery, and complete accounting for
+public chargeable acquisition. The larger first R0/R1/R2/R6 connection still
+needs supported useful-result evidence and native consumer acceptance. R0–R7
+remain open.
