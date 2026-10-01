@@ -933,12 +933,16 @@ revision returned exactly one owner line, while the next stale revision returned
 none. This is synthetic-recipient HTTP/Postgres evidence, not an authenticated
 production-owner or recurring-supply claim. The revised native flow reached the
 V2 social-comparison unit on the iPhone 16 Pro simulator but failed before
-acceptance. Its screenshot shows the same person's note and Place action
-rendered twice. The duplication's owning layer is not yet established; trace the
-feed-to-composition-to-render path and add a regression before treating this
-receiving slice as complete. The flow's authored-text assertion also needs to be
-made robust to the rendered/accessibility structure without weakening the
-content expectation. **Next:** fix and rerun this exact native receiving path,
+acceptance. Its screenshot shows two identical “Maya” perspectives and Place
+actions. However, this run followed an earlier manually provisioned fixture
+that remained in the same disposable database; each fixture creates a distinct
+sender but uses the display name “Maya.” The screenshot is therefore confounded
+by multiple rehearsal senders and does not establish a product duplication bug.
+Clean the exact stale fixture and rerun with one active fixture before tracing
+or changing the feed/composition/render path. The authored-text assertion also
+failed even though the screenshot visibly contains the expected words; make the
+selector robust to the rendered/accessibility structure without weakening the
+content expectation. **Next:** isolate and rerun this native receiving path,
 then continue ordinary/returned/live coverage; D2 remains active.
 
 ### Combined landing checkpoint — September 30
