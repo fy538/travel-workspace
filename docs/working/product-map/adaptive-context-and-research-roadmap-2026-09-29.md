@@ -3056,13 +3056,13 @@ changed. R0–R7 remain open.
 
 #### R1/R3 implementation receipt — lookup diagnostic content minimization (October 1)
 
-Backend commit `4c3199ccf` removes raw lookup queries, classifier output,
-place-name query text and exception messages from Lookup Agent logs. Failures
-retain a bounded operation name and exception class; success logs retain only
-the query type, score/latency and result source needed for diagnosis. Regression
-tests inject a unique query marker into classifier, web, and Places failures
-and assert it is absent from captured logs. User-visible fallback behavior is
-unchanged.
+Backend commits `4c3199ccf` and `cd8d050d9` remove raw lookup queries,
+classifier output, resolved place slugs and exception messages from Lookup
+Agent logs. Failures retain a bounded operation name and exception class;
+success logs retain only query type, score/latency and result source needed for
+diagnosis. Regression tests inject a unique query marker into classifier, web
+and Places failures, and a resolved-place marker into success; none appears in
+captured logs. User-visible fallback behavior is unchanged.
 
 This closes an observable local-log exposure only. It does not change the
 existing Qdrant lookup cache, which still stores query/answer payloads; does
@@ -3071,20 +3071,21 @@ route Lookup Agent through the typed public-request adapter, shared spend
 reservation, or reviewed disclosure boundary. Those remain separate R1/R3
 work.
 
-Validation on backend commit `4c3199ccf` (Python 3.13.0):
+Validation on final backend commit `cd8d050d9` (Python 3.13.0):
 
 - Focused Lookup Agent classifier, handler, synthesizer, cache and agent tests:
-  **66 passed**.
+  **66 passed** on `4c3199ccf`; the success-path place-redaction test passed as
+  part of **6 agent tests** on `cd8d050d9`.
 - Ruff lint and format checks passed; `git diff --check` passed.
 - `make ci-static` passed, including the repository architecture gates and
   mypy across **1,900** backend source files.
 - `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main` passed:
-  **22,170 passed, 14 skipped, 53 xpassed**, with one expected local-Qdrant
-  payload-index warning. Database-marked tests were skipped by this offline
-  preflight; no disposable database was used.
-- Backend commit hooks passed. Two earlier hook attempts rejected the test
-  marker's initial secret-like name; it was renamed without adding an
-  exemption, and the final complete hook run passed.
+  **22,170 passed, 14 skipped, 1 xfailed, 52 xpassed**, with one expected
+  local-Qdrant payload-index warning. Database-marked tests were skipped by
+  this offline preflight; no disposable database was used.
+- Backend commit hooks passed on both commits. The first test marker naming
+  caused a secret-detector false positive; it was renamed without an exemption
+  before the final complete hook run passed.
 
 No provider/model call, cache-retention change, API/schema change, commercial
 policy, capability flag, native consumer, deployment or publication changed.
