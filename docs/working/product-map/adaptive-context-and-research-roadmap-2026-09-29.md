@@ -82,10 +82,10 @@ private capability receives approved finite allocation/recovery controls and
 public chargeable callers have their own complete accounting boundary.
 The server now prioritizes up to two exact `text/plain` dependencies explicitly
 associated with the selected source's currently resolved, owner-visible subject,
-then same-note sources from Life's first 100 recent descriptors, then bounded
-same-packet siblings ordered by source position. Subject, note and packet
-membership are candidate cues—not semantic, occurrence or interest-aware
-relevance. Legacy/noncanonical subject pointers can yield false negatives, and
+then same-note sources found within at most five 100-descriptor Life metadata
+pages, then bounded same-packet siblings ordered by source position. Subject,
+note and packet membership are candidate cues—not semantic, occurrence or
+interest-aware relevance. Legacy/noncanonical subject pointers can yield false negatives, and
 a truncated empty scan remains unavailable rather than authoritative silence.
 Candidate selection reads no source bodies; Intake revalidates every exact
 dependency before model use. The versioned synthetic fixture below compares
@@ -722,7 +722,7 @@ is in section 1. The first connected assignment remains active:
 
 | Area | Landed capability to reuse | Remaining connection or evidence |
 | --- | --- | --- |
-| Selected evidence | Owner/revision-bound original reads and mobile callers; bounded UTF-8 text-span selection; exact in-memory hydration; a dark authenticated producer and private exact-result GET; bounded explicit-subject, exact-user-note and same-packet candidates; versioned retrieval-only known-answer fixture; exact quoted excerpts are checked against hydrated text before an addition is admitted | Semantic retrieval/ranking, archive coverage beyond the first 100 descriptors, general component or multimodal retrieval, semantic entailment, final-selection evidence and human usefulness remain open; neither candidate cues nor quote presence proves relevance |
+| Selected evidence | Owner/revision-bound original reads and mobile callers; bounded UTF-8 text-span selection; exact in-memory hydration; a dark authenticated producer and private exact-result GET; bounded explicit-subject, exact-user-note discovery through at most five metadata pages (500 descriptors), and same-packet candidates; versioned retrieval-only known-answer fixture; exact quoted excerpts are checked against hydrated text before an addition is admitted | Archive coverage beyond the five-page/500-descriptor bound, semantic retrieval/ranking, general component or multimodal retrieval, semantic entailment, final-selection evidence and human usefulness remain open; neither candidate cues nor quote presence proves relevance |
 | Public acquisition | Shared typed single-attempt lookup; answer-only routing without dossier writes; source kind, dates, quotes and truncation metadata | Construct public requests from selected material under an actual disclosure boundary; select a substantive addition and verify claim support beyond quote presence |
 | Runtime | Existing Source workflow/publication controls; content-free demand and tool/SDK-attempt telemetry; selected-source producer has one real reservation/fence and one no-retry/no-failover model attempt; provider-free Postgres now proves its test-policy reserve/settle/reopen lifecycle; private synthesis and public live research now have separate capability keys | The private synthesis key has no released policy or enforcement readiness; public research remains shadow-only; finite approved allocation, live-provider, shared chargeable-attempt coverage, concurrency, fairness and recovery behavior remain open |
 | Receiving dependencies | Merged family readers, exact-source inspection, correction/Undo and return behavior; Home/Places receiving improvements; authenticated result API exists but is dark | Existing preparation requests remain root-bound; no native artifact consumer has adopted the dark result API |
@@ -3461,3 +3461,47 @@ Validation on backend commit `7118bdd90` (Python 3.13.0):
 This is partial R3 observability only. Durable spend reservation/settlement,
 cross-caller workload boundaries, provider-billing reconciliation, and the
 Lookup Agent disclosure gate remain open; R0–R7 remain open.
+
+#### R2 implementation receipt — bounded exact-note archive pagination (October 1)
+
+Backend commit `2e5545ac7` extends selected-source candidate discovery through
+the existing owner-scoped keyset metadata reader. Exact normalized user-note
+search now follows at most five pages of up to 100 descriptors each, allowing
+bounded discovery beyond the previous first page without adding an index,
+reading candidate bodies, or changing the selected-source contract. Every
+candidate remains a cue only; current owner, custody and exact revision are
+revalidated by the existing Intake reader before synthesis.
+
+If the page budget expires while more metadata exists, the scan stays marked
+incomplete. An empty incomplete scan follows the existing route's
+`retrieval_incomplete` response rather than being stored as no-addition. A
+positive candidate already found in a partial scan may still proceed through
+the existing exact-owner hydration and admission path. This increases bounded
+archive reach to at most 500 descriptors, not archive-wide recall, and does not
+improve semantic relevance or establish that a same-note item is the same
+occurrence.
+
+Validation on backend commit `2e5545ac7` (Python 3.13.0):
+
+- Focused candidate, retrieval-fixture and route tests: **35 passed**. This
+  includes a candidate found after the first metadata page, empty-result
+  behavior at the scan cap, and the API's existing 503 refusal for incomplete
+  empty scans.
+- Ruff lint and formatting checks passed for the changed source and tests;
+  `git diff --check` passed.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static` passed,
+  including architecture/structural gates and mypy across **1,900** source
+  files.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main` passed:
+  **22,195 passed, 14 skipped, 53 xpassed**, with four warnings including the
+  expected local-Qdrant payload-index warning. Skipped/database-gated cases
+  remain unverified.
+- Commit hooks passed, including Ruff, formatting, secret scanning and
+  architecture ratchets. No API/schema, database migration, provider, policy,
+  feature flag, app, deployment or publication changed.
+
+This closes only the first-page retrieval limit for the exact-note cue. Semantic
+retrieval/ranking, archive coverage beyond the bound, final selection/support,
+matched usefulness, native consumer adoption and R0–R7 package acceptance
+remain open.
