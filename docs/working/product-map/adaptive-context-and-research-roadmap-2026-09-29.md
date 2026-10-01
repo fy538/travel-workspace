@@ -1022,6 +1022,13 @@ simulates a changed source revision at the owner boundary; it does not exercise
 a supported user correction flow, novelty-history correction, index lag,
 mounted-client expiry, or recall of an already delivered result.
 
+The same current PostgreSQL module also verifies one bounded freshness case:
+after a complete no-addition result, a later retained same-note source becomes
+eligible on the next explicit request. Fresh owner selection yields a new
+dependency-bound work ID; the previous exact result remains readable, while
+the new result uses the new dependency. The synthesis is a deterministic test
+stub, and this does not enable background re-selection or notifications.
+
 ### R5 Apply assistance preferences in context
 
 **Outcome:** admitted context changes the type or depth of help only when it
@@ -4138,3 +4145,23 @@ Validation on the `codex/adaptive-context-research` lane:
 This closes the same-title identity regression only. R2 still needs supported
 addition quality, representative matched human usefulness review and prior-
 connection repetition evidence; R0–R7 remain open.
+
+#### R4 acceptance receipt — new related source after an empty selection (October 1)
+
+The current provider-free PostgreSQL module includes
+`test_new_related_source_gets_new_work_after_prior_empty_selection`. It first
+stores a complete, content-free no-addition result with no eligible dependency.
+After a separately captured exact-note source arrives, the next authorized
+request reruns bounded owner selection, derives a new work ID from the added
+exact dependency, and produces an addition through a deterministic synthesis
+stub. Exact reads of both the old no-addition and new addition still return
+their own unchanged result. Only the second request reserves and dispatches.
+
+Validation is the same exact-module run recorded above:
+`tests/api/test_selected_source_research_postgres.py` — **15 passed** on the
+fresh, isolated, migrated disposable database. No live model, provider, mobile
+consumer, background scheduler, notification, or correction command ran.
+This closes the bounded "new candidate after empty selection" acceptance for
+the explicit-request producer. It does not establish automatic freshness,
+archive-wide recall, novelty-history repair, or full R4 acceptance; R0–R7
+remain open.
