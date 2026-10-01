@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Strategy lane
 created: 2026-09-29
-last_verified: 2026-09-30
+last_verified: 2026-10-01
 expires: 2026-10-13
 why_new: The strategy handoff names three artifact workstreams but cannot hold their detailed contracts, dependencies, migration, evaluation and delivery sequence without becoming a second general roadmap. This bounded supporting plan expands that section for the existing program owner.
 supersedes: []
@@ -24,15 +24,19 @@ retrieval, jobs and native readers. Add the missing identity, selected-part,
 collection, saved-edition and discovery contracts deliberately. Do not create
 another assistant or a universal artifact service.
 
-**Execution status — September 30 after landing:** the artifact-foundation
-increments and adjacent lanes' integration are merged into remote `main` in
-all three repositories. This lane is synchronized to the tuple in section 2.
-That closes baseline preparation, not P0/P1/PC/P2 or product acceptance.
+**Execution status — October 1:** the artifact-foundation baseline and
+adjacent-lane integration are merged into remote `main` at the tuple in section
+2. Since that landing, the `codex/artifact-foundation` lane has recorded the
+initial Thing persistence design in workspace commit `38a2388a` and implemented
+the backend persistence slice in local commit `0911ad063`; neither follow-on
+commit is merged to remote `main`. The app remains at the merged baseline.
+This first identity write does not complete cross-submission reconciliation,
+the user-facing reader/API, or P0/P1/PC/P2 acceptance.
 
 | Area | Implemented and evidenced | Remaining boundary |
 | --- | --- | --- |
-| P0 contracts and portfolio | Accepted kept-thing identity direction; code-backed owner map, supported-door/mode crosswalk, versioned reading descriptor, family/fallback fixtures and sparse-history examples | Exact Thing storage/migration design, Subject/Component and edition mappings, selected-part representation cases and broader lifecycle portfolio; fixtures are not live generation or desirability evidence |
-| P1 correction and continuity | Revision-bound corrections and append-only Undo; backend typed-time replacement; capture-to-reader and exact-source-to-confirmed-record links with source/digest checks | Cross-submission identity, reversible reconciliation and collection continuity; native replacement-time editor still needs timezone-authoring behavior |
+| P0 contracts and portfolio | Accepted kept-thing identity direction; code-backed owner map, supported-door/mode crosswalk, versioned reading descriptor, family/fallback fixtures and sparse-history examples; initial Thing storage/migration design is implemented under P1 | Subject/Component and edition mappings, selected-part representation cases and broader lifecycle portfolio; fixtures are not live generation or desirability evidence |
+| P1 correction and continuity | Revision-bound corrections and append-only Undo; backend typed-time replacement; capture-to-reader and exact-source-to-confirmed-record links with source/digest checks; initial owner-scoped Thing row is created transactionally on verified private Keep | Cross-submission identity, reversible reconciliation, API/client readback and collection continuity; native replacement-time editor still needs timezone-authoring behavior |
 | P2 original-first readers | Ticket, source-backed place, text-built book/film/show/music, supplied passage and practical-record treatments; exact-original chooser/return; shared photo viewer | Catalog identity/art, selected-part UI and later dish/recipe/scorecard treatments; source facts do not establish attendance, author identity or payment state |
 | Reader lifetime | Account-session-scoped reads, expiry-aware displayed facts and foreground refresh, exact-source authorization and revision checks | Full source/audience/collection lifecycle replay and authenticated mobile-to-service acceptance |
 | Native acceptance | Fourteen family/source/return fixture screenshots; ten largest-text screenshots; Life source/photo-viewer/removal flow on iOS 18.2 | Reliable pinch/pan, actual VoiceOver traversal/actions, loading/error states, Android/physical devices and live-service readback; these captures do not establish user preference |
@@ -47,9 +51,10 @@ unchanged screenshots did not establish pan/pinch. Do not turn either result
 into a broader gesture, accessibility or live-service claim. The Home dock
 stability repair was a QA prerequisite, not another artifact feature.
 
-**Next assignment:** design the storage and migration details for the accepted
-kept-thing identity boundary in section 3, then implement section 11's bounded
-cross-source identity slice. Keep the remaining reader checks bounded; do not substitute
+**Next assignment:** extend the implemented submission-backed Thing identity
+into section 11's bounded cross-source identity slice: add evidence-backed,
+reversible links/aliases and compatible owner reads without transferring
+Source permissions. Keep the remaining reader checks bounded; do not substitute
 repeated polish for the missing identity foundation. Adopt Technical's landed
 primitives without building another research engine, and connect artifact-bound
 additions once their request/result and first-producer safeguards are ready.
@@ -339,7 +344,7 @@ or an instruction to create a table for every row.
 | Responsibility | Minimum distinction | Owning boundary |
 | --- | --- | --- |
 | Original | Source ID, content/custody revision, author, received time and permitted uses | Intake and Source custody |
-| Recognizable thing | Stable owner reference and reversible source/recognition links; fields read from their existing authorities | Accepted narrow kept-thing domain within the existing backend; exact storage placement remains design work |
+| Recognizable thing | Stable owner reference and reversible source/recognition links; fields read from their existing authorities | Implemented initial `kept_things` owner in the existing backend/Postgres; the row is content-free and submission-backed. Cross-submission links/aliases and consumer reads remain unfinished. |
 | Selected component | Stable component ID and source-revision-bound locator | Source/Intake evidence adapter, shared with composition and readers |
 | Subject | Film, book, dish or Place identity | Entity/domain owner; not an occasion or attendance claim |
 | Occasion and occurrence | A bounded occasion, original contributions, separately supported event claims | Experience Graph and existing operational owners |
@@ -355,10 +360,11 @@ establishes a thin, user-owned **Thing identity** (`ThingRef`) that
 names what the person keeps, with original Sources, source-local recognition,
 world Subjects, selected Components, and generated/kept expressions remaining
 separate authorities. This is a narrow domain inside the existing backend,
-not a new microservice or a completed migration. It satisfies the accepted
-ingestion rule—two copies of the
-same ticket resolve to one kept thing while retaining both Sources—without
-turning every downstream concept into a generic Artifact row.
+not a new microservice or a completed cross-source migration. Once
+reconciliation is implemented, it can satisfy the accepted ingestion rule:
+two copies of the same ticket resolve to one kept thing while retaining both
+Sources. The first persisted slice still leaves separate submissions distinct;
+it does not turn every downstream concept into a generic Artifact row.
 
 The table separates the accepted identity responsibilities from remaining
 implementation recommendations: cultural-work schemas and stable Component
@@ -383,18 +389,21 @@ World Foundry promotion rebuilds Place projections. Reusing those tables for
 cultural works is a capability/owner migration, not a safe enum addition. On
 the other side, keeping only submission-local Intake candidates cannot satisfy
 cross-door identity or canonical Collection membership. A narrow Thing owner
-is the accepted middle boundary; its backend module/repository placement and
-exact minimum fields remain to design. Capture still owns candidate truth
+is the accepted middle boundary. Its initial backend table/repository and
+minimum content-free fields are implemented; cross-submission reconciliation,
+compatibility and downstream reads remain. Capture still owns candidate truth
 under the September 8 lifecycle decision; a candidate is not silently migrated
 or reclassified by this approval.
 
-Before the implementation slice lands:
+Before cross-submission identity can be accepted:
 
-1. Map producer, reader and Collection consumers and choose the smallest
-   storage/command/revision contract for the accepted kept-thing identity.
-2. Specify evidence-backed reversible link/merge/split, old-reference
-   compatibility, retries/concurrency, migration and rollback. Preserve
-   independent Source custody; never union grants when Things reconcile.
+1. Preserve the delivered submission-backed row as the initial idempotent
+   identity. Define how source and recognition references attach to it, how
+   existing reader IDs remain compatible, and which future consumers resolve
+   `ThingRef` rather than an Intake candidate.
+2. Implement and verify evidence-backed reversible link/merge/split, retries,
+   concurrency, migration and rollback. Preserve independent Source custody;
+   never union grants when Things reconcile.
 3. Keep cultural-work schema/capability changes explicit; they are not an enum
    addition to the existing physical Place owner. That separate design remains
    open and must not block source-backed kept-item identity unnecessarily.
@@ -406,14 +415,22 @@ These are implementation design obligations, not another founder approval gate
 for the same kept-thing direction. Escalate changes that would alter the accepted
 authority boundary; keep unrelated policy decisions separate.
 
-The first acceptance fixture is decisive: importing one identical ticket from
+The initial persistence slice now materializes one content-free,
+owner-scoped identity in the same Intake transaction that establishes verified
+private retention; the unique owner/submission origin makes that write
+idempotent. It neither returns a Thing through the HTTP API nor changes the
+existing candidate-backed reader target. Each separate submission currently
+gets its own row, so this is not yet cross-door identity.
+
+The full acceptance fixture is decisive: importing one identical ticket from
 email and screenshot yields one `ThingRef` with two separately addressable
 Sources; revoking either Source removes only that Source's access and does not
 silently grant the surviving Source's permissions to the other. Two tickets
 for different screenings remain two Things while referring to one film Subject.
 Explicit merge/split preserves prior references or typed redirects and every
-original remains independently addressable. The owner direction is accepted;
-storage, compatibility and migration design must still support these cases.
+original remains independently addressable. The owner direction and initial
+storage boundary are accepted and implemented; reconciliation,
+compatibility and migration behavior for these cases remain to build and verify.
 
 **P1 initial identity grain:** the verified private Keep submission is the
 idempotent origin and grouping boundary for one `ThingRef` contribution bundle.
@@ -426,8 +443,11 @@ merge/split. Place this owner in the existing backend/Postgres system, in a
 narrow `kept_things` SQLAlchemy Core table/repository, and create it in the
 Intake transaction that establishes private retention. Do not reuse EntityRef,
 ExperienceAnchor, the graph projection or editorial Collections as the Thing
-owner. This is the selected P1 implementation design; exact migration, API,
-alias command and downstream compatibility still need code-level acceptance.
+owner. The first delivery is implemented in backend commit `0911ad063`: the
+SQLAlchemy Core table/repository, Alembic backfill, and transactionally created
+identity on verified private retention. There is not yet a Thing API/client
+reader, cross-submission alias command, or downstream Collection integration;
+those remain separate acceptance requirements.
 
 Code basis for this boundary: `travel-agent/backend/core/models/entity_identity.py`
 and `backend/core/entity_types.py` define place-like `EntityRef` values and
@@ -474,7 +494,7 @@ source grants; merging identity does not union permission. Reference migration
 must preserve old links through a reviewed alias or redirect, and reversible
 split must leave each original addressable.
 
-### Code-backed owner map and present reader boundary — September 30
+### Code-backed owner map and present reader boundary — October 1 update to the September 30 baseline
 
 The following is an implementation inventory, not a decision to promote any
 projection into a new canonical owner.
@@ -482,6 +502,7 @@ projection into a new canonical owner.
 | Concern | Existing implementation and authority | What this establishes—and what it does not |
 | --- | --- | --- |
 | Source custody | Intake submissions, source objects, and retained-source lifecycle in `travel-agent/backend/core/db/intake_v2.py`; HTTP commands in `travel-agent/backend/api/routes/intake.py` | Source ownership and revocation exist. `DELETE /api/intake/submissions/{id}` revokes/scrubs the source; it is not a reversible artifact Undo. |
+| Kept Thing identity | `travel-agent/backend/core/db/_tables/kept_things.py`, `travel-agent/backend/core/db/kept_things.py`, and Alembic revision `keptthing01`; Intake writes from `travel-agent/backend/core/db/intake_v2.py` | Backend commit `0911ad063` creates one content-free owner-scoped identity for each verified private Keep submission, in the custody transaction; the migration backfills existing verified `source_and_derived` submissions. No Thing route/client read, cross-submission reconciliation, merge/split alias, or Collection consumer exists yet. |
 | Confirmed thing/read target | Confirmed Intake candidates are projected by `travel-agent/backend/core/db/intake_anchors.py` as `ExperienceAnchorProjection`; `travel-agent/backend/api/routes/artifact_projections.py` reads them through `ResourceRef(kind="experience_anchor")` at `/you/memories/artifacts/{id}`. Candidate rows retain a UUID across replay/status changes and use `(submission_id, candidate_key)` as their idempotent key. | The same row ID becomes the confirmed reader target, but identity is submission-local: a separate submission has a separate candidate, and no cross-door/cross-submission reconciliation is provided. This is not independent durable artifact custody. |
 | Claims and correction | Intake observations/candidate revisions in `travel-agent/backend/core/db/intake_semantics.py`; source-bound projection in `travel-agent/backend/core/canonical_artifact_projection.py` | The reader still exposes three gated owner commands: `wrong_time`, `separate_from_occasion`, and `keep_occurrence_forget_interpretation`. These now carry a stable command ID and expected numeric revision. The owner contract also accepts a typed `replace_time` correction and replays it through the canonical anchor owner, but the mobile reader does not yet expose a replacement editor: preserving or explicitly selecting the source time zone remains unresolved. |
 | Place and occurrence context | Physical `EntityRef` vocabulary in `travel-agent/backend/core/entity_types.py`; owner-scoped Experience Graph rows bridged by the artifact projection route | Place/time/Occasion/Plan context can be read from its existing owners. The place-like entity capability sets are not a cultural-work identity registry. |
@@ -1271,7 +1292,7 @@ checkpoint. Retire replaced adapters only after consumer/readback coverage.
 
 | Decision | Recommendation or current boundary | Blocks | Does not block |
 | --- | --- | --- | --- |
-| Kept Thing identity and reconciliation | Accepted September 30: a narrow stable kept-thing domain, separate from Sources, candidates, Subjects and generated editions, inside the existing backend. Specify storage, compatibility and reversible reconciliation under that direction. | Unsafe or unspecified migration mechanics, not another approval of the identity direction | Existing readers and bounded implementation design |
+| Kept Thing identity and reconciliation | Accepted September 30: a narrow stable kept-thing domain, separate from Sources, candidates, Subjects and generated editions, inside the existing backend. Initial submission-backed storage and migration are implemented; cross-source compatibility and reversible reconciliation remain. | Unsafe or unspecified migration/alias compatibility and downstream reads, not another approval of the identity direction | Existing readers and the delivered private-Keep identity writer |
 | Components and cultural subjects | Stable cross-representation Component identity and cultural-work schemas remain design recommendations; review physical capabilities, external ID namespaces and typed readings | Dependent component/catalog schema changes | Existing source-bound selectors and kept-thing identity work |
 | Consumer collection owner | Product semantics are accepted: user-owned collections, many-to-many membership, whole-collection visibility, and explicit Remove/Delete. Code inspection confirms that the viewer-scoped derived Life organization and public editorial guide collections are different owners; preserve them as read/projection and editorial systems. Define a distinct canonical consumer Collection owner over the reviewed stable ThingRef boundary. Vesper-initiated additions to shared collections remain a separate pending policy choice. | Durable collection writes and corresponding sharing | Single-object private reader and owner-linked discovery |
 | Kept edition after supporting withdrawal | Recommended default: withhold affected content, preserve only permitted metadata, offer a new independently supported version; exact policy unadopted | Shared derivative retention and partial salvage promises | Private originals and edition mechanics tested without disputed shared material |
@@ -1471,29 +1492,23 @@ and provider need not finish at once.
 across submissions, without confusing a world Subject with the person's Thing
 or granting one Source another's permissions.
 
-1. **Design the accepted P0 owner boundary.** Use the September 30 `ThingRef`
-   decision; choose the smallest backend storage/module boundary and specify
-   existing-candidate/reference compatibility, revisions and reversible
-   reconciliation. Map producer and Collection consumers before choosing minimum
-   fields. Review migration/rollback against the acceptance cases below without
-   reopening the approved kept-thing direction. Cultural-work and stable
-   Component schemas remain separate design work.
-2. **Implement the adopted P1 boundary through existing custody.** Preserve
+1. **Extend the delivered P1 identity through existing custody.** Keep the
+   verified private-Keep submission as the idempotent origin; preserve
    submission-local recognition and each original's Source/content revision.
-   Add only the identity and links needed for the supported case, with
-   evidence-backed reconciliation, retry safety and reversible merge/split.
-   Preserve old reader references through the reviewed alias/redirect behavior.
-   Do not build a universal Artifact store, general catalog or complete
-   Collection service as a prerequisite.
-3. **Accept the bounded behavior.** Two supported inputs representing the same
-   ticket resolve to one Thing with two originals; two different screenings
-   remain different Things. Revoking either Source removes only its access and
-   never transfers grants. Correction, merge/split, retries and reopening retain
-   the intended identity and separately addressable evidence. Use persisted-owner
-   and route checks plus a native reopen/return case. An email/screenshot fixture
-   proves reconciliation only at its exercised boundary, not external email
-   delivery or OCR accuracy.
-4. **Keep reader acceptance bounded and available independently.** Complete the
+   Add the evidence-backed link/alias and owner-read behavior needed for the
+   supported cross-submission case, with retry safety and reversible merge/split.
+   Preserve old reader references through reviewed redirects. Do not build a
+   universal Artifact store, general catalog or complete Collection service as
+   a prerequisite. Cultural-work and stable Component schemas remain separate.
+2. **Prove compatibility and independent permissions.** Two supported inputs
+   representing the same ticket resolve to one Thing with two originals; two
+   different screenings remain different Things. Revoking either Source
+   removes only its access and never transfers grants. Correction, merge/split,
+   retries and reopening retain the intended identity and separately
+   addressable evidence. Use persisted-owner and route checks plus a native
+   reopen/return case. An email/screenshot fixture proves only the exercised
+   reconciliation boundary, not external email delivery or OCR accuracy.
+3. **Keep reader acceptance bounded and available independently.** Complete the
    remaining loading/error, reliable photo pan/pinch and actual VoiceOver cases
    when the runtime is available. Retain Android/physical-device and authenticated
    service readback as explicit remaining boundaries. Reuse the passed family
@@ -1663,6 +1678,7 @@ coverage through the authenticated Intake route (`5dbc29353`, extended by
 
 | Boundary | Command | Result and limit |
 | --- | --- | --- |
+| P1 initial Thing persistence | Backend `0911ad063`; `DATABASE_URL=postgresql://vesper:localdev@localhost:64743/vesper_artifact_backfill_test .venv/bin/alembic upgrade head`; `TEST_DATABASE_URL=postgresql://vesper:localdev@localhost:64743/vesper_artifact_test TEST_DATABASE_DISPOSABLE=1 .venv/bin/python -B -m pytest -p no:cacheprovider tests/inbound/test_kept_things_postgres.py tests/inbound/test_chat_keep_handoff_postgres.py tests/inbound/test_intake_subject_postgres.py -q`; `make verify-changed WORKSPACE_BASE_REF=38a2388aaa6c79c7a8e16149beabbc935f4b86b9 AGENT_BASE_REF=0911ad0639b8b9cfa3ae48e9740e6e5432106685 APP_BASE_REF=e7bdc660501eaa19234e6b45bda033658edaa2d4` with temporary Ruff/mypy caches and `PYTEST_ADDOPTS='-p no:cacheprovider'` | Nine disposable-Postgres tests passed. A synthetic retained submission seeded before `keptthing01` upgraded was backfilled as exactly one owner-matching identity row. `verify-changed` passed: static gates, 22,082 passed / 14 skipped / 1 xfailed / 52 xpassed offline tests, OpenAPI/app-projection/generated-type and cross-repo contracts, and docs links/spine/canon checks. Two Qdrant local-mode warnings; no failed tests. This proves only local submission-backed identity persistence and backfill. No Thing API/client reader, cross-submission merge/split, Collection integration, deployed-service, or user-value evidence. |
 | Backend email admission | `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/inbound/test_email_forward_v2.py -q` | 17 passed at backend `d6730f6d6`; mock-based owner-boundary behavior, no DB/provider delivery evidence. Includes valid-PNG + scanner-gated-PDF whole-bundle rejection. |
 | Backend test quality | `ruff check --cache-dir /private/tmp/vesper-artifact-ruff tests/inbound/test_email_forward_v2.py` and `ruff format --check --cache-dir /private/tmp/vesper-artifact-ruff tests/inbound/test_email_forward_v2.py` | Both passed; backend commit hooks also passed Ruff, formatting, Vulture, and secret checks. |
 | Backend correction replay | `PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider tests/inbound/test_anchor_runtime.py tests/inbound/test_intake_anchor_projection.py tests/core/test_canonical_artifact_projection.py tests/api/test_artifact_projections.py -q` | 49 passed at backend `3cecd34f6`; replay selects the newest semantic correction while ignoring a confirmation audit row, is deterministic, and preserves original source lineage/hash as interpretation claims change. Fixture-level evidence only; no database concurrency or persisted replay proof. |
