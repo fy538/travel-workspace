@@ -3228,3 +3228,40 @@ boundary as authorization. Once admitted, the first acceptance should verify
 exact provider arguments with a fake tool, exclude user/classifier text, prove
 no dispatch for unresolved entities, and preserve the legacy search/events/
 details paths until their own public-field projections are reviewed.
+
+#### R3 implementation receipt — catalog brief attempt accounting (October 1)
+
+Backend commit `ce340e0f7` adds content-free Tavily attempt accounting to the
+existing catalog `generate_briefs` batch. Each entity's Tavily call runs inside
+the shared `tool_attempt_usage_scope`; its `BriefGenStats` and completion log
+now aggregate tool-layer attempts, retries, local Tavily SDK-call-boundary
+entries, exception events, terminal exceptions, cancellations and
+provider-reported error responses. Query text, entity names and provider
+exception messages are not written to these diagnostics. Wikidata calls and
+the batch's model-generation calls are not counted by these fields.
+
+The measurements do not count Tavily's internal HTTP retries or billable units,
+do not settle or reserve cost, and are not durable cross-worker accounting.
+The batch query, retry policy, provider configuration and public-data behavior
+are unchanged; no user-facing acquisition path or scheduler was activated.
+
+Validation on committed backend revision `ce340e0f7` (Python 3.13.0):
+
+- Focused `tests/research_agent/test_generate_briefs.py`: **25 passed**.
+- `RUFF_CACHE_DIR=/private/tmp/vesper-adaptive-ruff
+  MYPY_CACHE_DIR=/private/tmp/vesper-adaptive-mypy make ci-static`: passed;
+  Ruff, format, architecture/structural gates and mypy across **1,900** source
+  files passed.
+- `PYTEST_ADDOPTS='-p no:cacheprovider' make merge-check BASE_REF=main`:
+  **22,175 passed, 14 skipped, 53 xpassed**, one expected local-Qdrant warning.
+  The offline environment also emitted a Hugging Face DNS retry during existing
+  embedding coverage; the test suite completed successfully. Database-marked
+  checks remain skipped by this offline preflight.
+- Commit hooks passed, including secret detection; no scanner exemption was
+  added. No live provider call, model call, database mutation, schema/API change,
+  commercial policy, feature flag, deployment or mobile change occurred.
+
+This improves operating evidence for one existing batch caller only. It does
+not satisfy R3's shared reservation, workload isolation, durable recovery,
+publication fencing, spend settlement or load/recovery acceptance. R0–R7 remain
+open.
