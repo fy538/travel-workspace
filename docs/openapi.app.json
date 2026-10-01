@@ -45336,6 +45336,7 @@
           "ai.plan.generate",
           "ai.plan.rewrite",
           "ai.research.live",
+          "ai.research.synthesize",
           "ai.document.parse",
           "ai.group.summarize",
           "ai.memory.synthesize",
