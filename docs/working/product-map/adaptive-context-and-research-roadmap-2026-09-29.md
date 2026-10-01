@@ -53,13 +53,16 @@ Complete the first R0/R1/R2/R6 connection with the minimum R3/R4/R5 safeguards
 and R7 comparisons. Exact original/text-span reads, bounded acquisition, the
 selected-source work-item contract and private result owner now exist, and an
 in-memory adapter hydrates exact retained whole text or a bounded text span
-through Intake. The work item captures exact Intake revision/span, consumer,
-private intent and a separately typed public request. The result owner binds
-viewer, source revision and optional span, treatment, dependency revisions and
-content digest. At store/read it now revalidates the selected source and every
-dependency against the same viewer's exact retained `text/plain` Intake
-originals, locking sources in stable ID order. Other dependency owners remain
-unsupported until their own exact readers are admitted. Source correction/scrub
+through Intake. The work item captures exact Intake revision/span, up to two
+exact Intake dependencies, consumer, bounded private intent and a separately
+typed public request. The result owner binds viewer, source revision and
+optional span, treatment, dependency revisions and content digest. At
+store/read it revalidates the selected source and every dependency against the
+same viewer's exact retained `text/plain` Intake originals, locking sources in
+stable ID order. Other dependency owners remain unsupported until their own
+exact readers are admitted. Additions require supported cross-source synthesis
+without asserting personal novelty until a novelty-history owner is admitted.
+Source correction/scrub
 erases results that refer to a source either as the selected original or a
 dependency; a JSONB GIN index supports dependency invalidation. Results retain
 the 24-hour maximum and bounded hourly cleanup. These are backend contracts
@@ -1324,9 +1327,12 @@ These are engineering coverage cases, not a narrower product thesis.
    an artifact target. No invented Trip, new Thing owner or durable cross-
    representation Component identity is needed for the exact-original adapter.
 2. **Connect evidence and acquisition.** A backend-only adapter now hydrates
-   an exact retained original/span through Intake in memory. Connect it to the
-   producer; honor current intent and use eligible existing evidence
-   where sufficient. For a missing public fact or named discovery purpose,
+   an exact retained original/span and up to two bound Intake dependencies
+   through Intake in memory under one combined 20,000-character limit. Connect
+   it to the producer; honor current intent and use eligible existing evidence
+   where sufficient. Additions must be supported across the selected original
+   and a dependency, while treating personal novelty as inapplicable without
+   novelty history. For a missing public fact or named discovery purpose,
    construct the minimal `PublicResearchRequest` through a reviewed public-field
    projection. Private source text, identifiers and instructions must not become
    search terms by assertion. If safe public terms cannot be established, finish
@@ -2319,3 +2325,46 @@ but remains process-local input; it is not persisted in a new table or exposed
 to the public-acquisition request. The first connected producer, authenticated
 invocation, exact stored result readback and all end-to-end usefulness evidence
 remain open. R0–R7 remain open.
+
+#### Implementation receipt — identity-bound selected-source dependencies (October 1)
+
+Backend work-item identity now includes up to two distinct exact retained
+`intake_source` dependency revisions. A dependency cannot be the selected source;
+non-Intake or unversioned references are rejected. The context adapter hydrates
+the selected original/span and each dependency through the same authenticated
+viewer's Intake readers, keeps all text in memory only, and enforces a combined
+20,000-character budget. Result construction can no longer attach dependencies
+that were absent from the retry-stable work item. The existing result owner
+continues to revalidate all bound dependencies at store/read and invalidate on
+correction.
+
+The result contract now requires an addition to be a Vesper-authored, supported
+synthesis with at least two distinct supporting sources, including the selected
+original and an exact dependency. It requires `novelty=not_applicable` because
+the work item has no admitted owner supplying novelty history; lack of retrieved
+history is not evidence that an idea is new to the person. The content-free
+no-addition vocabulary replaces `already_known`/`not_novel` with
+`no_substantive_connection`; migration `selresult03` remaps old ephemeral codes
+before tightening the result check constraint. The existing Home/Places
+source-contribution policy, which has its own known-claim evidence, is unchanged.
+
+Evidence on the current backend tree:
+
+- Focused offline work-item, hydration, and owner-contract tests: **23 passed**;
+  **9 PostgreSQL lifecycle cases were deselected**, not passed. A disposable DB
+  is not configured in this lane (`TEST_DATABASE_URL` unset), so persistence
+  and invalidation coverage for these changed work-item semantics must be rerun
+  against a named disposable target before that boundary is accepted.
+- Tests cover dependency revisions changing work identity, canonicalizing
+  dependency order, rejecting self/duplicate/unsupported dependencies, exact
+  same-viewer hydration, hidden text representations, the combined character
+  limit, dependency-bound result construction, rejection of unsupported
+  personal novelty, and the content-free no-addition reason.
+- `make ci-static` passed, including mypy across 1,897 source files. The full
+  `make merge-check BASE_REF=main` passed: **22,106 passed, 14 skipped, 53
+  xpassed**. One expected local-Qdrant warning was emitted; network metadata
+  retries did not fail the suite.
+- No endpoint, OpenAPI schema, generated mobile type, provider activation,
+  model call, source text persistence, client readback or consumer acceptance is
+  claimed. The producer and authenticated end-to-end path remain open; R0–R7
+  remain open.
