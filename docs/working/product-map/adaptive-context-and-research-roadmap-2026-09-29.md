@@ -51,7 +51,40 @@ sharing policy, deployment or release is enabled by this document.
 
 ## 0 Strategy Technical lane execution boundary
 
-### Current assignment — October 2: R3 interruption and elapsed-time correctness
+### R3 completed handoff — October 2
+
+Backend `7a6a29003564d5aa547530dec6a5acd10e153766` implements cancellation,
+elapsed expiry and actual-process restart recovery through the existing
+producer, result owner and ledger. Successful result persistence and usage
+settlement share one transaction. Expired work/source state cannot publish a
+result after a long call; observed usage is still settled when the result is
+withheld. Same-work retry cannot dispatch again after an ambiguous failure.
+
+The owner lane's explicitly disposable Postgres acceptance passed 39 cases,
+including process kills before and after the atomic transaction and rollback
+between result insert and settlement. No external provider was called. Central
+combined preflight with the independent capture fix passed 22,300 offline
+tests, 14 skipped, one expected failure and 52 expected passes, plus static,
+type and cross-repository checks. The captured aggregate does not enumerate
+the skipped test names; hosted selected database checks remain separate.
+[Backend PR #244](https://github.com/fy538/travel-agent/pull/244) owns the
+combined acceptance. It merged normally at
+`eda35d6de90ac8c4056dec93630206a2cb6ffa96` after all required hosted checks
+passed, including selected database acceptance (1,516 passed / 38 skipped)
+and canonical-posture suites (444 and 376 passed). The hosted summary does not
+enumerate skipped names; no live-provider or production acceptance is claimed.
+
+Residual failure is explicit: death after provider response observation but
+before the database transaction loses the in-memory payload. The reservation
+remains unknown pending authoritative reconciliation, the same identity cannot
+redispatch, and a consumed unit may have no result. No queue, replacement
+output store, provider activation or production allocation was introduced.
+Do not repeat this completed implementation; preserve it through central
+landing. The approved frozen $0.50 actual-model pilot still needs secure
+Anthropic access and later independent human judgments. Artifact's local
+GET-only reader handoff is separately blocked on app acceptance.
+
+### Historical assignment — October 2: R3 interruption and elapsed-time correctness
 
 **Objective:** finish one repairable execution/recovery slice in the existing
 selected-source producer, so an interrupted request cannot silently produce a

@@ -1985,5 +1985,104 @@
       "skipped": 0,
       "errors": 0
     }
+  },
+  {
+    "schema_version": 1,
+    "label": "combined-backend-recovery-preflight",
+    "command": [
+      "make",
+      "verify-changed",
+      "WORKSPACE_BASE_REF=a483be795b6b32b0b2778be6dea64b50fda46e09",
+      "AGENT_BASE_REF=355a8c11df54fee27f8de3b86196b606a64a071c",
+      "APP_BASE_REF=acf5bd837fe3725b00d9744727f513a601fb2498"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "a483be795b6b32b0b2778be6dea64b50fda46e09",
+        "dirty": false
+      },
+      "travel-agent": {
+        "commit": "0e7048120414c1f18c5a0e39c50c10afc9fc24f7",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "acf5bd837fe3725b00d9744727f513a601fb2498",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.13.0",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 251.337,
+    "log_path": "/private/tmp/vesper-lane-integration-evidence/combined-backend-recovery-preflight-20261002T064851Z.log",
+    "test_counts": {
+      "framework": "pytest",
+      "collected": null,
+      "passed": 22300,
+      "failed": 0,
+      "skipped": 14,
+      "errors": 0
+    },
+    "notes": [
+      "Central measured integration receipt; exact commands and revision tuple retained.",
+      "Offline execution; TEST_DATABASE_URL and TEST_DATABASE_DISPOSABLE unset. No provider calls.",
+      "22,300 passed,14 skipped,1 xfailed,52 xpassed; skip names not enumerated in stored summary.",
+      "Accepted backend PR244, merge eda35d6de90ac8c4056dec93630206a2cb6ffa96. Required hosted checks passed; selected DB1516passed/38skipped; canonical444+376passed.",
+      "App source handoffs remain separately blocked on required node-forge Security audit; no bypass."
+    ]
+  },
+  {
+    "schema_version": 1,
+    "label": "capture-app-current-base-preflight",
+    "command": [
+      "make",
+      "verify-changed",
+      "WORKSPACE_BASE_REF=a483be795b6b32b0b2778be6dea64b50fda46e09",
+      "AGENT_BASE_REF=355a8c11df54fee27f8de3b86196b606a64a071c",
+      "APP_BASE_REF=acf5bd837fe3725b00d9744727f513a601fb2498"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "a483be795b6b32b0b2778be6dea64b50fda46e09",
+        "dirty": false
+      },
+      "travel-agent": {
+        "commit": "355a8c11df54fee27f8de3b86196b606a64a071c",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "1551287a480ae87ab2fff2b1eda51e11777b1fa8",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.13.0",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 125.961,
+    "log_path": "/private/tmp/vesper-lane-integration-evidence/capture-app-current-base-preflight-20261002T070202Z.log",
+    "test_counts": {
+      "framework": "jest",
+      "collected": 9274,
+      "passed": 9274,
+      "failed": 0,
+      "skipped": 0
+    },
+    "notes": [
+      "Central measured integration receipt; exact commands and revision tuple retained.",
+      "Offline execution; TEST_DATABASE_URL and TEST_DATABASE_DISPOSABLE unset. No provider calls.",
+      "9,274 tests passed, zero skipped. Prepared PR213 head1551287a; hosted acceptance is pending and the inherited security blocker remains."
+    ]
   }
 ]

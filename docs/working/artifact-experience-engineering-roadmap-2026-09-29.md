@@ -31,7 +31,28 @@ security audit. The receipt uses synthetic data and SKIP_AUTH, so authenticated
 production behavior remains open. Do not repeat the completed happy-path goal or
 represent the app candidate as accepted main.
 
-**Next objective — P3 exact-result consumer foundation:** adopt the existing
+**P3 local implementation handoff — October 2:** app `76cfc1443` and workspace
+`5c17d29a` implement the exact-result consumer described below. The owner lane
+reports 129 focused app tests, 1,298 suites / 9,279 tests on the final broad
+rerun, 176 workspace tooling tests, 13 disposable-Postgres owner-read/lifecycle
+tests, and the registered native fixture flow passing 1/1. The original
+aggregate preflight had an Expo cache-permission failure and a Jest worker
+crash; focused lint, the crashed suite alone, and the full app rerun passed.
+These carried receipts do not convert that failed aggregate into a pass.
+
+Central preparation reconciles this handoff with the newer roadmaps and passes
+the generated-contract, API-governance, compatibility and docs checks. The app
+candidate remains unmerged because its required Security audit fails. The API
+GET adoption and generated types are one coordinated candidate: the projection
+cannot land against accepted app `acf5bd837` without its matching generated
+schema. Keep the original-only fallback, internal/default-off presentation,
+zero generation on reads, and separate dark/unallocated POST. This does not
+establish live-model quality, authenticated production use or useful output.
+Do not repeat completed local receiving work; central owns protected landing,
+then the frozen quality/usefulness gates and their remaining access/human-review
+requirements are the next substantive evidence.
+
+**Implemented handoff scope — P3 exact-result consumer foundation:** adopt the existing
 selected-source result read into the focused-reader data path, preserving
 immediate original-only value. The backend GET exists, but the inspected app
 has no selected-source result transport/data consumer and its generated mobile
