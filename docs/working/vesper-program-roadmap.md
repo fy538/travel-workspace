@@ -666,6 +666,20 @@ flow or authenticated owner readback. No source behavior changed. C1.3 remains
 unrun because its approved-session prerequisite is absent; no credentials or
 synthetic identity were used.
 
+**C1.3 preparation — October 2:** `npm run capture-journal:test` passed its
+host-compiled Swift journal-store harness, including exact original-byte
+preservation, idempotent preparation replay, separate-process recovery, stable
+submission receipt identity, and owner/session isolation. The app's six focused
+capture-attempt, draft, session-host, and Chat-entry suites passed 74 tests; the
+backend's replay-identity and Intake route selection passed 7 tests (27
+deselected). Those app/backend checks use in-memory or mocked transport, and
+the Swift harness compiles the storage type rather than loading the Expo module
+inside iOS. They prepare the retry path but do not prove native-device
+response-loss, authenticated server custody, or current-owner readback. No
+disposable database or lane service was started. The assigned simulator still
+shows first-run onboarding, so C1.3's native signed-in execution remains
+blocked pending the approved QA session.
+
 **Finish:** a clean committed candidate and focused evidence for C1.2; the exact
 C1.3 native/authenticated receipt is required before calling the whole goal
 complete. If authentication or local device access is still unavailable after
