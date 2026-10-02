@@ -638,6 +638,127 @@ publication/hosted checks/merge; the owner does not poll central. Record one
 current milestone, exact candidate and evidence tuple, blocker and next action
 here. Replace a candidate explicitly rather than silently moving tested HEAD.
 
+**E1 execution receipt — October 2:** candidate lane is
+`codex/eng-eff-verification-evidence-20261002`. Tested commits were workspace
+`d9452e7af4e768f73ceeebf139a8abc378f470e4`, backend
+`28a72b0643ae168a4976c1dfe7861a7c1022267c`, and app
+`8c4a2e59dce62d714abb4fd2586e35821dda4a21`; the explicit verification bases
+were workspace `da4c3d716aaff3e20a8d85ea35acc857810c4c16`, backend
+`28a72b0643ae168a4976c1dfe7861a7c1022267c`, and app
+`0f607bf2cef95dd4cd91c6fc9bbad10aa282a535`. E1.1 recorder tests passed (33)
+with stable before/after identity; the full workspace tooling suite passed (199)
+with stable identity. E1.2 polish prerequisite tests passed (25) with stable
+identity. Its dry-run produced zero screenshots, correctly recorded
+`preflightStatus=not-checked`, mock mode as unobserved, and the lane device as
+unresolved; this is wiring evidence only, not a native pass. The committed-head
+explicit-base `make verify-changed` passed in 130.148 seconds with stable
+identity: app fast checks, 1,298 suites / 9,289 tests, workspace tooling tests,
+cross-repository contracts, and the selected docs links/spine/canon checks. The
+app test runner reported one worker force-exit warning after all tests passed.
+The first sandboxed workspace run could not bind ephemeral local ports; the
+complete gate passed when rerun with that test prerequisite available.
+Measurement labels are `e1-recorder-regression`,
+`e1-workspace-tooling-suite`, `e1-qa-preflight-regression`, and
+`e1-committed-explicit-base-preflight`.
+
+After recording the device/session blocker, the latest committed-head check
+also passed: `e1-final-current-head-preflight` measured workspace
+`f355bd782113999390696c4b3acd8e4a71226a6d`, backend
+`28a72b0643ae168a4976c1dfe7861a7c1022267c`, and app
+`8c4a2e59dce62d714abb4fd2586e35821dda4a21` against the same explicit base
+tuple. Inputs stayed stable; `make verify-changed` exited 0 in 131.684 seconds
+with 1,298 app suites / 9,289 tests, 199 workspace tests, cross-repository
+contracts, and selected docs checks. The app runner again reported a worker
+force-exit warning after all tests passed. The latest measurement record and
+log remain in the lane host's temporary E1 evidence files.
+
+**Real-mode doctor follow-up — October 2:** app commit
+`60f0a31c698ed5836756fc7e486fc1d09d504cc0` adds an explicitly selected
+`--doctor --mode=real` path. It checks host API/Metro and installed-app identity,
+then observes the live-mode marker and Clerk session through read-only Maestro
+flows. The authenticated marker is rendered only after the auth guard sees both
+`isLoaded` and `isSignedIn`; the signed-out marker records an explicit sign-in
+screen. Generic Home visibility is no longer treated as session proof because
+skip-auth can also render it. The flows do not clear state, capture screenshots,
+or perform Keep/Save. Missing or unknown evidence retains a blocked receipt.
+
+Focused Polish-QA tests, TypeScript, app lint (0 errors; 167 warnings across the
+app), Maestro structure/inventory and metadata validation passed. The Maestro
+CLI syntax command was attempted but could not initialize its shared
+`~/.maestro/deps/applesimutils` dependency in this sandbox; semantic CLI parsing
+is unverified locally. The required hosted flow-syntax check has not run on
+this candidate yet.
+The measured current-head `make verify-changed` at workspace `37850b88`, backend
+`28a72b06`, and app `60f0a31c` used the explicit base tuple above, stable
+before/after inputs, and passed in 134.409 seconds: 1,298 app suites / 9,289
+tests, 199 workspace tests, contracts/API checks and selected documentation
+checks. The app runner emitted its existing worker force-exit warning after all
+tests passed. The first sandboxed attempt is retained as a failed measurement:
+all app tests passed, while four workspace tests were denied ephemeral loopback
+socket binds; the same gate passed with local loopback access. Both records and
+logs remain in `/private/tmp/vesper-e1-verification-records.json` and
+`/private/tmp/vesper-e1-verification-logs/` on this host.
+
+**Frozen E1 candidate and recorder follow-on — October 2:** before this
+follow-on, the original candidate refs were preserved at workspace
+`6f56789e097d103606e77c921df77b831535d7b7`, backend
+`28a72b0643ae168a4976c1dfe7861a7c1022267c`, and app
+`60f0a31c698ed5836756fc7e486fc1d09d504cc0` on
+`codex/eng-eff-verification-evidence-20261002`. The separate branch
+`codex/eng-eff-tool-versions-20261002` starts from those exact three commits;
+the original refs remain unchanged for central integration. Workspace commit
+`aab567ca` preserves the historical `primary_command` record and adds an
+explicit `transitive_tool_versions: unknown` receipt when child processes
+aren't traced. It records Make 3.81 for the selected top-level command without
+claiming that version identifies Node, npm, Python subprocesses or the complete
+toolchain. Focused recorder tests passed (35), and Ruff passed. A first full
+explicit-base run retained the sandbox's four loopback-permission failures;
+the same input then passed with loopback access in 203.535 seconds: 1,298 app
+suites / 9,289 tests, 201 workspace tests, API contracts and selected docs
+checks. The clean committed-head rerun and exact result are recorded below.
+
+**Read-only native prerequisite window — October 2:** Connectivity released
+the assigned iPhone SE (3rd generation), UDID
+`51A7A2C0-49CB-487E-A056-A771361EFA9B`, for one bounded window from
+`2026-10-02T21:55:37Z` to `2026-10-02T22:07:05Z`. Before claiming it, registered
+lane manifests were checked: no lane held this UDID; Home/Places had a separate
+reservation for `AF31B886-E837-4962-834A-5CBAD5C306DB`. Read-only simulator
+inspection resolved the assigned device and installed `com.fyan.vesper`
+version `1.0.0`, build `1`, matching the source identity. The check still does
+not establish a native build fingerprint.
+
+On this lane, host API `http://127.0.0.1:50571` and Metro
+`http://127.0.0.1:50572` were unavailable. The real-mode doctor wrote the
+sanitized receipt
+`travel-app/.maestro/runs/_preflight/2026-10-02T22-05-46-333Z-home-root.json`
+with status `blocked` and failure codes `metro` and `api`; mode and approved
+session remained `unknown`. A read-only Maestro hierarchy query returned
+success but exposed neither the supported live-mode nor sign-in/session marker,
+so no absent/present session claim was inferred. The doctor exited at static
+preflight before its link-opening observations; no UI navigation, screenshot,
+Keep/Save or other product mutation ran. Its receipt has zero screenshot files.
+The release context reported Vesper at Welcome, which remained untouched.
+This is valid negative evidence for unavailable host prerequisites and honest
+unknowns, not a passed authenticated native trial. The device assignment was
+cleared from this lane manifest at `2026-10-02T22:07:05Z`.
+
+The headless readiness tests still cover valid, missing and unknown session
+signals and the stop-before-Keep/Save result. This device window did not exercise
+that UI session signal: the required no-navigation boundary and unavailable
+API/Metro prevented it. E1.2's authenticated native observation remains
+unverified; do not convert this negative receipt into an authenticated pass.
+
+**Conditional E1.3 candidate — October 2:** central identified natural app PR
+[#216](https://github.com/fy538/travel-app/pull/216), app head
+`8088501a6121acaac68b6691e7334d943382b230`, workspace dependency
+`8babb0d125c0e1c104f80d8a0c22063684365f04`, backend
+`114e6657d5390d2ee2c3162e63ce4829e8062dcd`. Its dependency-pin changes make it
+eligible for one successful serial baseline and one successful sharded run via
+the existing experiment workflow after E1.1's clean gate. Both runs must use
+this immutable tuple, dependency policy and runner class; retain failed attempts
+and the exact test union. No required-check changes or new PR are in scope.
+Central retains publication, normal hosted checks and merge.
+
 **Ownership:** workspace recorder and QA tooling/app preflight only, plus the
 existing tests/runbooks affected. Connectivity owns product capture/session
 behavior and the QA SE reservation; Artifact owns correction/readers. Do not
