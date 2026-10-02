@@ -661,6 +661,17 @@ Measurement labels are `e1-recorder-regression`,
 `e1-workspace-tooling-suite`, `e1-qa-preflight-regression`, and
 `e1-committed-explicit-base-preflight`.
 
+After recording the device/session blocker, the latest committed-head check
+also passed: `e1-final-current-head-preflight` measured workspace
+`f355bd782113999390696c4b3acd8e4a71226a6d`, backend
+`28a72b0643ae168a4976c1dfe7861a7c1022267c`, and app
+`8c4a2e59dce62d714abb4fd2586e35821dda4a21` against the same explicit base
+tuple. Inputs stayed stable; `make verify-changed` exited 0 in 131.684 seconds
+with 1,298 app suites / 9,289 tests, 199 workspace tests, cross-repository
+contracts, and selected docs checks. The app runner again reported a worker
+force-exit warning after all tests passed. The latest measurement record and
+log remain in the lane host's temporary E1 evidence files.
+
 The implementation and headless acceptance are ready for the device trial, but
 E1 is not complete: this lane's runtime has no assigned device and Connectivity
 owns the reserved QA SE. Connectivity's registered C1 lane reports that the
