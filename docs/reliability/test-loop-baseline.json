@@ -2084,5 +2084,185 @@
       "Offline execution; TEST_DATABASE_URL and TEST_DATABASE_DISPOSABLE unset. No provider calls.",
       "9,274 tests passed, zero skipped. Prepared PR213 head1551287a; hosted acceptance is pending and the inherited security blocker remains."
     ]
+  },
+  {
+    "schema_version": 1,
+    "label": "flag-gate-preflight-verify-changed",
+    "command": [
+      "make",
+      "verify-changed",
+      "WORKSPACE_BASE_REF=origin/main",
+      "AGENT_BASE_REF=origin/main",
+      "APP_BASE_REF=origin/main"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "6b44f814542309eafa212d475e564630ecec724c",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "eda35d6de90ac8c4056dec93630206a2cb6ffa96",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "acf5bd837fe3725b00d9744727f513a601fb2498",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.13.0",
+      "cpu_count": 14
+    },
+    "exit_code": 2,
+    "timed_out": false,
+    "wall_time_seconds": 104.27,
+    "log_path": "docs/reliability/runs/flag-gate-preflight-verify-changed-20261002T074039Z.log",
+    "test_counts": {
+      "framework": "pytest",
+      "collected": null,
+      "passed": 181,
+      "failed": 4,
+      "skipped": 0,
+      "errors": 0
+    }
+  },
+  {
+    "schema_version": 1,
+    "label": "flag-gate-preflight-verify-changed-offline-deps",
+    "command": [
+      "make",
+      "verify-changed",
+      "WORKSPACE_BASE_REF=origin/main",
+      "AGENT_BASE_REF=origin/main",
+      "APP_BASE_REF=origin/main"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "6b44f814542309eafa212d475e564630ecec724c",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "eda35d6de90ac8c4056dec93630206a2cb6ffa96",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "acf5bd837fe3725b00d9744727f513a601fb2498",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.13.0",
+      "cpu_count": 14
+    },
+    "exit_code": 2,
+    "timed_out": false,
+    "wall_time_seconds": 47.705,
+    "log_path": "docs/reliability/runs/flag-gate-preflight-verify-changed-offline-deps-20261002T074406Z.log",
+    "test_counts": {
+      "framework": "pytest",
+      "collected": null,
+      "passed": 181,
+      "failed": 4,
+      "skipped": 0,
+      "errors": 0
+    }
+  },
+  {
+    "schema_version": 1,
+    "label": "flag-gate-focused-policy-tests",
+    "command": [
+      "python3",
+      "-m",
+      "pytest",
+      "scripts/tests/test_verify_changed.py",
+      "scripts/tests/test_check_flag_registry.py",
+      "scripts/tests/test_render_current_state.py",
+      "-q"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "6b44f814542309eafa212d475e564630ecec724c",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "eda35d6de90ac8c4056dec93630206a2cb6ffa96",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "acf5bd837fe3725b00d9744727f513a601fb2498",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.13.0",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 7.345,
+    "log_path": "docs/reliability/runs/flag-gate-focused-policy-tests-20261002T074625Z.log",
+    "test_counts": {
+      "framework": "pytest",
+      "collected": null,
+      "passed": 28,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0
+    }
+  },
+  {
+    "schema_version": 1,
+    "label": "flag-gate-final-policy-tests",
+    "command": [
+      "python3",
+      "-m",
+      "pytest",
+      "scripts/tests/test_verify_changed.py",
+      "scripts/tests/test_check_flag_registry.py",
+      "scripts/tests/test_render_current_state.py",
+      "-q"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "6b44f814542309eafa212d475e564630ecec724c",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "eda35d6de90ac8c4056dec93630206a2cb6ffa96",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "acf5bd837fe3725b00d9744727f513a601fb2498",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.13.0",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 7.102,
+    "log_path": "docs/reliability/runs/flag-gate-final-policy-tests-20261002T074707Z.log",
+    "test_counts": {
+      "framework": "pytest",
+      "collected": null,
+      "passed": 28,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0
+    }
   }
 ]
