@@ -3,7 +3,7 @@ doc_type: current_status
 status: active
 owner: founder / Orchestration lane
 created: 2026-09-07
-last_verified: 2026-10-01
+last_verified: 2026-10-02
 why_new: Owns the existing program's lane boundaries and the Orchestration execution plan; specialist roadmaps own their own packages and receipts.
 supersedes:
   - single-lane dispatch and current assignments in earlier versions of this roadmap
@@ -41,7 +41,7 @@ they do not declare their runtime migration complete. No new booking execution,
 automatic sharing, connected-inbox sharing, background-generation posture,
 notification policy or deployment is authorized by this roadmap.
 
-**Execution status — October 1:** the combined work from all three lanes is
+**Historical execution status — October 1 (superseded for next assignment by the October 2 activation below):** the combined work from all three lanes is
 merged in the workspace and both children, with required hosted checks passing.
 D0's shared planning and landing checkpoint is complete; runtime readiness and
 product acceptance are not. **D2 is now underway:** controlled native
@@ -155,7 +155,78 @@ improvements; Orchestration continues D2 without adding a new integration gate.
 The detailed measurements and boundaries remain in the
 [completed integration review](development-qa-research-and-roadmap-2026-09-30.md#9-completed-integration-review).
 
-### Next activation round — October 1 reconciliation
+### Next activation round — October 2 infrastructure continuation
+
+This is the current activation plan. The October 1 reconciliation below is
+historical and does not assign another replay of the completed round. Connectivity
+is the Home/Places **Orchestration** domain in this file. The four lanes pursue
+longer-lived outcomes through the ordered, bounded milestones below; the plan
+does not itself dispatch chats or require them to run for the whole night.
+
+**Inspected accepted baseline:** workspace `b3e735129e5bc93ece676eebf5625cc81590feaa`
+(PR #48), backend `355a8c11df54fee27f8de3b86196b606a64a071c` (PR #243),
+app `acf5bd837fe3725b00d9744727f513a601fb2498` (PR #212). Adaptive Context
+implementation and Artifact backend/evidence have landed. Artifact app PR #214
+at `fe927de04f40d1d0d1af86af121286bba6f20461` and Connectivity app PR #213
+at `4f0bafc5982868d0384da78e241461dd460239c2` remain open; the required
+security audit is their observed remaining failure. Their local completion does
+not make them accepted-main dependencies. Recheck these dated identities at intake.
+
+| Lane | Longer-term infrastructure outcome | Next bounded milestone and finish | Ordered continuation |
+| --- | --- | --- | --- |
+| Connectivity / Orchestration | A supported contribution survives interruption and reopens the same authorized original. | D1 recovery through the existing in-app private text Keep: drop a response after server persistence, restart the client, retry the same attempt, and verify one logical submission plus exact original/open/return. Add a changed-session case that cannot publish the previous owner’s receipt or erase their recoverable draft. | After this proof, cover one second interruption boundary in the same flow, such as restart after a submission ID is journaled but before upload/finalization completes. Reuse existing journal and owner APIs; stop before a new capture door, sharing policy or native entitlement dependency. |
+| Artifact | Existing focused readers consume an exact eligible addition without compromising original-only value. | P3 read-only adoption of the existing selected-source result GET: generated contract, typed transport/data facade and explicit exact-result binding to the selected original. Prove addition/no-addition/missing/expired/revoked/wrong-account states through the real local API with controlled results; no generation dispatch. | Connect that data seam to the existing reader behind the existing disabled feature boundary, preserving exact-original and return behavior. Native acceptance uses a local fixture with an explicit work ID; do not invent production result discovery or a new presentation hierarchy. |
+| Adaptive Context | Bounded selected-source execution remains correct across interruption and elapsed time. | R3 post-dispatch recovery and publication-time validation in the existing producer/gateway/ledger. Establish which failure boundaries lack evidence, then test cancellation, interrupted settlement/store and source/work expiry during an in-flight call. Repair reproduced gaps; preserve held/unknown usage until an authoritative outcome exists. | Verify restart/reconciliation against the same work identity and one finite test allocation, with no second dispatch or stale return. Keep R2/R7 actual-output/human-quality acceptance separate; no new queue, paid calls, allocation policy or activation. |
+| Eng Efficiency | Reliable feedback and protected landing consume less avoidable waiting and runner capacity. | Timebox a security-remediation investigation for the shared app blocker, then repair the observed label-trigger/cancellation interaction in the advisory verification trial without weakening required checks. | Exercise relevant PR event sequences and a naturally occurring eligible change plus rejection/failure cases. Measure every attempt; decide whether to continue or stop the pilot from evidence, not job count. Required-scope adoption remains a separate decision. |
+
+**Why these assignments changed:** current producer and PostgreSQL tests already
+cover a real reservation/settlement, concurrent allocation denial, ambiguous
+timeout holds and same-key replay denial. Rebuilding those mechanisms is not a
+new R3 milestone. The producer captures its clock before awaiting generation
+and passes it to final storage; expiry during a call and interruption between
+settlement and storage deserve explicit investigation, not an asserted defect
+without reproduction. The app has no selected-source result consumer, and the
+GET/POST remain dark with no declared consumers. Artifact adoption therefore
+includes operation governance and regenerated types, not hand-written wire
+models. Existing capture tests and the Swift journal harness cover component
+and storage behavior; a dropped-response/restart real-transport proof is a
+distinct boundary from the already recorded happy-path receiving rehearsal.
+
+**Independence and stopping rules:**
+
+- Reuse each outcome’s owner worktree. Refresh accepted dependencies there,
+  preserving the owner’s unmerged app candidate; record a dependency on PR #213
+  or #214 explicitly rather than representing it as landed or duplicating it.
+- Each milestone ends with a clean committed candidate, focused acceptance,
+  an explicit-base merge preflight and a brief receipt of remaining limits.
+  Central integration owns publication, shared conflicts, pins and landing.
+  Security-blocked app work may be handed over without falsely claiming a merge.
+- Continue only to the listed independent follow-on. Stop when it needs founder
+  policy, unavailable credentials, paid authorization, a design decision or
+  external signing access. A passed audit with no implementation gap is a valid
+  finish; do not add abstractions or tests merely to occupy the session.
+- Artifact owns result-consuming API governance/generated-file changes for
+  this round; Adaptive Context preserves the published wire shape unless a
+  concrete incompatibility requires an explicit handoff. Connectivity owns
+  capture callers/journal recovery. Eng Efficiency owns workflow and dependency
+  verification. Do not independently edit another lane’s reader or transport.
+- Use synthetic disposable data for unattended fault injection. One owner uses
+  a particular simulator/runtime at a time; other lanes continue headless work.
+  Real Clerk authentication, remote services, physical-device behavior and
+  human usefulness remain separate, honestly named evidence boundaries.
+- Preserve original-first behavior and accepted authority. No new Collection
+  presentation, automatic joins/sharing, paid dispatch, background generation,
+  provider deployment or security exception is authorized by this update.
+
+The owner roadmaps hold the detailed Artifact, Adaptive Context and efficiency
+acceptance. D1 below remains Connectivity’s owner package; D2/D3 remain longer-term
+work after this durability milestone. The model pilot stays blocked on secure
+Anthropic access and explicit approval of its existing $0.50 cap, followed by
+human review. Do not keep regenerating synthetic review packs while waiting.
+
+<a id="next-activation-round--october-1-reconciliation"></a>
+
+### Historical October 1 activation reconciliation
 
 The current chat names are **Artifact**, **Adaptive Context**, **Orchestration**
 and **Eng Efficiency**. Strategy and Strategy Technical below retain their
@@ -229,7 +300,7 @@ central integration need not wait for all four lanes to finish together.
 
 <a id="inspected-baseline-and-publication-state"></a>
 
-The current accepted tuple is recorded in the activation checkpoint above.
+The current inspected accepted tuple is recorded in the October 2 activation checkpoint above.
 The following September 30 table is historical landing evidence, not the next
 assignment base. Preserve the distinction between merged implementation, local
 checkout state and product acceptance:
@@ -481,13 +552,11 @@ representative families, not a decision to narrow Vesper to one behavior loop.
 
 ## 5 Orchestration execution plan
 
-**Current order:** D0's shared-baseline work is complete; D2 is the next primary
-delivery assignment. The activation checkpoint above bounds this round to one
-connected receiving slice. D1 and D3 remain open for gaps needed by that experience
-and independent work when an exact D2 dependency is blocked. A signing, device,
-provider or unimplemented producer dependency blocks only its affected path.
-The dated implementation receipts below preserve evidence; their historical
-“Next” notes do not override this current order or reopen closed defects.
+**Current order:** D0’s shared-baseline work is complete. The October 2
+activation gives Connectivity a bounded D1 interrupted-capture durability
+milestone; D2 remains the longer-term receiving outcome and D3 its practical-help
+continuation. Use the current activation table for the next task rather than
+replaying the historical D2 acceptance rounds below.
 
 ### D0 Rebaseline and prepare execution
 
@@ -657,7 +726,7 @@ sharing policy. No Chat redesign or Life implementation belongs to D1.
 
 ### D2 Make Home and Places complete receiving surfaces
 
-**Active primary assignment:** continue turning the landed supply and reader
+**Longer-term D2 assignment (after the October 2 D1 durability milestone):** continue turning the landed supply and reader
 capabilities into complete, useful Home/Places sections and interactions. The
 controlled Home and Places full-scroll compositions are a baseline, not the
 finish line: they use synthetic recipients and do not establish ordinary-user

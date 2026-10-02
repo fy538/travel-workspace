@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Strategy lane
 created: 2026-09-29
-last_verified: 2026-10-01
+last_verified: 2026-10-02
 expires: 2026-10-13
 why_new: The strategy handoff names three artifact workstreams but cannot hold their detailed contracts, dependencies, migration, evaluation and delivery sequence without becoming a second general roadmap. This bounded supporting plan expands that section for the existing program owner.
 supersedes: []
@@ -24,15 +24,52 @@ retrieval, jobs and native readers. Add the missing identity, selected-part,
 collection, saved-edition and discovery contracts deliberately. Do not create
 another assistant or a universal artifact service.
 
-**Current continuation — October 1 after central integration:** all committed
-artifact and adjacent-lane increments described below are landed in section 2's
-accepted tuple. The selected-source producer/result API is also landed; its
-feature remains disabled and private synthesis has no released allocation.
-Unmerged-code waiting is closed. Quality, spending and consumer adoption remain
-separate requirements, so interface availability does not authorize dispatch.
-The next assignment is the P1 real app/backend correction/readback acceptance
-below; final Collection presentation and new catalog rights remain design and
-provider dependencies rather than reasons to stop independent infrastructure.
+**Current continuation — October 2:** P1 native correction/readback has its
+bounded local real-HTTP/disposable-Postgres receipt. Backend PR #243 and workspace
+PR #48 are merged; app PR #214 is implemented but remains blocked by its required
+security audit. The receipt uses synthetic data and SKIP_AUTH, so authenticated
+production behavior remains open. Do not repeat the completed happy-path goal or
+represent the app candidate as accepted main.
+
+**Next objective — P3 exact-result consumer foundation:** adopt the existing
+selected-source result read into the focused-reader data path, preserving
+immediate original-only value. The backend GET exists, but the inspected app
+has no selected-source result transport/data consumer and its generated mobile
+schema does not expose that route. Both GET and producer POST are dark with no
+declared consumers in `docs/governance/api-operation-policy.json`.
+
+1. Implement read-only GET adoption through the operation-governance owner,
+   mobile projection and generated types, typed transport and session-scoped
+   data facade. Use `scripts/sync-types.sh` and `make api-coverage-check`; do not
+   hand-copy backend models. Declare the actual gated consumer honestly while
+   preserving the producer POST's disabled/unallocated status. Lifecycle labels
+   must follow the governance checker; adoption is not feature activation.
+2. Bind a supplied exact work ID to the expected original/revision and current
+   account. Exercise addition, content-free no-addition, missing/expired result,
+   revoked dependency, source revision change and account change. GET, rerender,
+   retry and original opening must make zero producer POST/model calls. An old
+   result cannot flash from a prior account cache or replace a different source.
+3. Use controlled results through the real local result owner/API to connect
+   the seam to the existing reader under its disabled feature boundary. A local
+   fixture may provide the exact work ID for this proof. Production discovery
+   of that ID and new generation controls are not invented to complete a demo.
+   Preserve exact-original access and return context; use an existing compatible
+   composition treatment or stop at the verified data seam if presentation
+   requires a design decision.
+
+**Completion and handoff:** a clean committed slice with generated contract
+parity, meaningful data/transport tests, real owner-read/denial evidence and a
+registered native receipt if visible reader behavior changes. Original-only
+remains useful for no-addition and unavailable assistance. Controlled content
+proves integration, not semantic support or model usefulness. Preserve P1
+correction coverage; record PR #214 as a prerequisite wherever it is actually
+needed. Central integration owns shared pins and protected landing.
+
+**Longer-term continuation:** after that seam, reviewed useful outputs and
+explicit spending admission can justify an explicit request-to-read experience.
+Exact saved editions follow demonstrated useful additions and approved retention
+semantics. Final Collection presentation, shared derivative retention, catalog
+rights and automatic generation remain outside this unattended milestone.
 
 **Historical implementation receipt — October 1 before central integration:**
 the following checkpoint used the earlier September 30 merged baseline. Its
@@ -126,7 +163,7 @@ unchanged screenshots did not establish pan/pinch. Do not turn either result
 into a broader gesture, accessibility or live-service claim. The Home dock
 stability repair was a QA prerequisite, not another artifact feature.
 
-**Next assignment:** prove the landed P1 replacement-time correction through
+**Historical October 1 assignment (local proof completed; see October 2 continuation above):** prove the landed P1 replacement-time correction through
 the real app transport and backend: Save → canonical refetch → Undo → canonical
 refetch. Cover persisted state, unchanged submitted original, stale revisions,
 exact retry, wrong-owner denial and account-session changes. Use the existing
@@ -222,18 +259,13 @@ Strategy Technical.
 
 ## 0 Strategy lane execution boundary
 
-**Current assignment:** close the bounded P1 real app/backend replacement-time
-correction/readback slice above, from section 2's accepted tuple. Thing identity,
-reversible aliases, owner read API, native reader, candidate-to-bundle opening,
-reconciliation and Collection data composition are landed; reuse them. Technical's
-exact selected-Source producer and result API are landed too, but remain dark
-and unallocated. Review the full API and operation policy before any future
-mobile adoption; a contract fixture or data adapter does not authorize paid
-dispatch or certify a useful addition. Continue independent P0/P1/PC/P2
-and original-focused P6 work where existing owner and authority contracts are
-complete. Every format, catalog provider and artifact family need not finish
-before a supported slice lands; native acceptance work runs alongside
-implementation.
+**Current assignment:** implement the October 2 read-only P3 result-consumer
+milestone at the top of this roadmap. Preserve the completed P1 acceptance and
+its unmerged app prerequisite. Thing identity, aliases, Collections data and
+Technical’s exact selected-source API remain existing infrastructure to reuse.
+Broader P0/P1/PC/P2/P6 packages below are context, not additional unattended
+assignments. Quality, production allocation and design decisions retain their
+separate gates.
 
 The October 1 batch-read increment now resolves up to 50 owner-authorized
 Thing projections in bounded set-based reads, and reconciliation requests its
@@ -1711,7 +1743,9 @@ increments, not every small commit or one branch after the entire roadmap ends.
 Update only this roadmap's current assignment and evidence, leaving the other
 lanes' queues and checkouts untouched.
 
-## 11 Recommended first assignment
+<a id="11-recommended-first-assignment"></a>
+
+## 11 Historical first assignment and completed foundation receipts
 
 Continue **P0 plus the necessary P1 foundation, PC catalog anchoring for the
 first families, and P2 reader integration** from the merged baseline in section
