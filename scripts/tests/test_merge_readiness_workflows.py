@@ -189,14 +189,28 @@ def test_roadmap_scope_pilot_isolated_from_required_reliability():
     assert pilot_pull_request["types"] == [
         "opened", "synchronize", "reopened", "labeled"
     ]
-    assert pilot_workflow["concurrency"]["group"].startswith("roadmap-scope-pilot-")
+    assert set(pilot_workflow["jobs"]) == {"roadmap-scope-pilot"}
+    pilot = pilot_workflow["jobs"]["roadmap-scope-pilot"]
+    # Unrelated label events receive their own workflow concurrency groups, so
+    # they cannot cancel a running pilot even if job scheduling order changes.
+    assert pilot_workflow["concurrency"]["group"].startswith(
+        "roadmap-scope-pilot-"
+    )
+    assert "format('unrelated-{0}', github.event.label.name)" in (
+        pilot_workflow["concurrency"]["group"]
+    )
+    assert "|| 'eligible'" in pilot_workflow["concurrency"]["group"]
     assert (
         pilot_workflow["concurrency"]["group"] != workflow["concurrency"]["group"]
     )
     assert pilot_workflow["concurrency"]["cancel-in-progress"] == "true"
-    assert set(pilot_workflow["jobs"]) == {"roadmap-scope-pilot"}
-    pilot = pilot_workflow["jobs"]["roadmap-scope-pilot"]
-    assert "roadmap-scope-pilot" in pilot["if"]
+    assert "concurrency" not in pilot
+    assert pilot["if"] == (
+        "github.event_name == 'pull_request' && "
+        "contains(github.event.pull_request.labels.*.name, 'roadmap-scope-pilot') && "
+        "(github.event.action != 'labeled' || "
+        "github.event.label.name == 'roadmap-scope-pilot')"
+    )
     assert_reliability_job_uses_pinned_children(pilot, child_fetch_depth="1")
     plan_index = next(
         i for i, step in enumerate(pilot["steps"])

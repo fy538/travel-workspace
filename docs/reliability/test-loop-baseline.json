@@ -1849,5 +1849,141 @@
       "skipped": 0,
       "errors": 0
     }
+  },
+  {
+    "schema_version": 1,
+    "label": "pilot-label-event-guard-focused",
+    "command": [
+      "env",
+      "PYTHONDONTWRITEBYTECODE=1",
+      "python3",
+      "-m",
+      "pytest",
+      "-p",
+      "no:cacheprovider",
+      "scripts/tests/test_merge_readiness_workflows.py",
+      "-q"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "877b7be3f5911fbd8143262266e130e674b98b8e",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "355a8c11df54fee27f8de3b86196b606a64a071c",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "acf5bd837fe3725b00d9744727f513a601fb2498",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 1.468,
+    "log_path": "/private/tmp/vesper-efficiency-lane-20261002/pilot-label-event-guard-focused-20261002T061331Z.log",
+    "test_counts": {
+      "framework": "pytest",
+      "collected": null,
+      "passed": 33,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0
+    }
+  },
+  {
+    "schema_version": 1,
+    "label": "pilot-label-event-guard-preflight",
+    "command": [
+      "make",
+      "verify-changed",
+      "WORKSPACE_BASE_REF=origin/main",
+      "AGENT_BASE_REF=origin/main",
+      "APP_BASE_REF=origin/main"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "877b7be3f5911fbd8143262266e130e674b98b8e",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "355a8c11df54fee27f8de3b86196b606a64a071c",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "acf5bd837fe3725b00d9744727f513a601fb2498",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 2,
+    "timed_out": false,
+    "wall_time_seconds": 20.236,
+    "log_path": "/private/tmp/vesper-efficiency-lane-20261002/pilot-label-event-guard-preflight-20261002T061333Z.log",
+    "test_counts": {
+      "framework": "pytest",
+      "collected": null,
+      "passed": 171,
+      "failed": 5,
+      "skipped": 0,
+      "errors": 0
+    }
+  },
+  {
+    "schema_version": 1,
+    "label": "pilot-guard-central-preflight",
+    "command": [
+      "make",
+      "verify-changed",
+      "WORKSPACE_BASE_REF=e5a929cdec71c74b0b7179bb099b0f47ba373707",
+      "AGENT_BASE_REF=355a8c11df54fee27f8de3b86196b606a64a071c",
+      "APP_BASE_REF=acf5bd837fe3725b00d9744727f513a601fb2498"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "e5a929cdec71c74b0b7179bb099b0f47ba373707",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "355a8c11df54fee27f8de3b86196b606a64a071c",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "acf5bd837fe3725b00d9744727f513a601fb2498",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.13.0",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 45.422,
+    "log_path": "/private/tmp/vesper-pilot-guard-verification/pilot-guard-central-preflight-20261002T062610Z.log",
+    "test_counts": {
+      "framework": "pytest",
+      "collected": null,
+      "passed": 176,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0
+    }
   }
 ]
