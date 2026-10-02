@@ -942,6 +942,25 @@ artifact recorded workspace merge candidate
 revisions matched. The label event started no new Reliability or Maestro
 workflow, and the original required checks stayed green.
 
+PR #49's next commit, `c16871daebb39d353bb8f55cbe280e3c76f11e5a`, was
+committed at 05:18:14Z and received new pull-request runs at 05:18:26Z:
+[Reliability 36968341906](https://github.com/fy538/travel-workspace/actions/runs/36968341906),
+[Merge ready 36968341851](https://github.com/fy538/travel-workspace/actions/runs/36968341851),
+and [pilot 36968341865](https://github.com/fy538/travel-workspace/actions/runs/36968341865).
+All required Reliability jobs, all four syntax shards, `Contract and golden
+paths`, and Merge ready passed on that exact head. The final required gate
+completed at 05:24:02Z, 5m36s after run creation; the pilot job completed in
+30s. Its uploaded plan SHA-256 was
+`7ac9cbe6e2560968de73091d5e26e6255f6aaae30ba63f20d9f369823ad92f46` and
+conservatively reported `eligible: false`, `scope: full`, with no commands.
+The candidate and tested tuple matched at workspace
+`ac697020d6c13981ff60459006e3ed49c6f278be`, backend
+`355a8c11df54fee27f8de3b86196b606a64a071c`, and app
+`acf5bd837fe3725b00d9744727f513a601fb2498`. Maestro Cloud configuration
+passed and its PR smoke remained skipped by the existing configuration gate.
+This proves the newer commit received its own full required gate; it is not an
+additional natural eligible sample.
+
 The Reliability run's six completed jobs used 25m29s of runner occupancy;
 `Merge ready` used 3m16s, the cloud configuration check used 4s, and the
 label-triggered pilot used 27s. The label run came after full verification, so
