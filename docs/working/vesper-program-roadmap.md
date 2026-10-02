@@ -163,8 +163,8 @@ is the Home/Places **Orchestration** domain in this file. The four lanes pursue
 longer-lived outcomes through the ordered, bounded milestones below; the plan
 does not itself dispatch chats or require them to run for the whole night.
 
-**Inspected accepted baseline:** workspace `b3e735129e5bc93ece676eebf5625cc81590feaa`
-(PR #48), backend `355a8c11df54fee27f8de3b86196b606a64a071c` (PR #243),
+**Inspected accepted baseline:** workspace `877b7be3f5911fbd8143262266e130e674b98b8e`
+(PRs #48/#49), backend `355a8c11df54fee27f8de3b86196b606a64a071c` (PR #243),
 app `acf5bd837fe3725b00d9744727f513a601fb2498` (PR #212). Adaptive Context
 implementation and Artifact backend/evidence have landed. Artifact app PR #214
 at `fe927de04f40d1d0d1af86af121286bba6f20461` and Connectivity app PR #213
@@ -218,11 +218,21 @@ distinct boundary from the already recorded happy-path receiving rehearsal.
   presentation, automatic joins/sharing, paid dispatch, background generation,
   provider deployment or security exception is authorized by this update.
 
+**Founder authorization checkpoint — October 2:** the founder approved the
+Orchestrator and all four lanes to carry out the discussed work. Hourly
+coordination, routine implementation, roadmap publication and protected merges
+are authorized. The frozen model pilot is approved within its existing $0.50
+cap. General delegation does not identify the exact configuration and impact
+of a security exception; automatic action review requires that concrete
+candidate before a control is changed. Continue independent work while such
+proposals are prepared.
+
 The owner roadmaps hold the detailed Artifact, Adaptive Context and efficiency
 acceptance. D1 below remains Connectivity’s owner package; D2/D3 remain longer-term
 work after this durability milestone. The model pilot stays blocked on secure
-Anthropic access and explicit approval of its existing $0.50 cap, followed by
-human review. Do not keep regenerating synthetic review packs while waiting.
+Anthropic access, followed by human review. The founder has explicitly approved
+its existing $0.50 maximum and recorded attempt limits; approval is no longer
+the missing dependency. Do not keep regenerating synthetic review packs while waiting.
 
 <a id="next-activation-round--october-1-reconciliation"></a>
 

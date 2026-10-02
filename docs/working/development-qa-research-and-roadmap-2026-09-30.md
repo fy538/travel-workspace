@@ -622,15 +622,17 @@ n=1 boundary and the required full gate; do not infer general productivity gains
    exposure/remediation options and continue to step 2; do not spend the night
    polling upstream, authoring a crypto fork, downgrading into known exposure or
    adding an audit exception. Risk acceptance requires founder review.
-2. **Repair event/cancellation behavior before scope adoption.** Inspect
-   `.github/workflows/reliability.yml`, which listens to both PR creation and
-   label events under a cancelling concurrency group. Reproduce the same-head
-   duplicate scenario and keep advisory trigger handling from unnecessarily
-   restarting or poisoning the authoritative full gate. GitHub's
+2. **Finish the remaining advisory event guard before scope adoption.**
+   PR #49 has already separated the advisory pilot into
+   `.github/workflows/roadmap-scope-pilot.yml`; required Reliability no longer
+   restarts when its opt-in label is added. Preserve that landed repair and its
+   hosted rejection receipt below. The separate pilot still has workflow-level
+   cancelling concurrency, so an unrelated label can acquire its slot even when
+   the advisory job is skipped. Reproduce and repair this remaining edge case,
+   keeping skipped events from cancelling a valid pilot. GitHub's
    [concurrency documentation](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency)
-   confirms cancellation is controlled by the group and `cancel-in-progress`;
-   the repository's particular required-check interaction must be established
-   with its hosted result, not inferred solely from documentation.
+   establishes the scheduling mechanism; hosted evidence must establish this
+   repository's actual event and required-check behavior.
 3. **Prove the replacement and measure a natural change.** Cover opened plus
    pilot-label events, unrelated labels, synchronize to a newer head and rerun
    of a failed check. New commits must receive their own full gate; cancelled,

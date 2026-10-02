@@ -57,7 +57,9 @@ sharing policy, deployment or release is enabled by this document.
 selected-source producer, so an interrupted request cannot silently produce a
 second chargeable dispatch, lose accounting, or return an obsolete result.
 R2/R7 replay implementation is delivered; its frozen actual-model pilot remains
-blocked on secure Anthropic access and explicit approval of up to $0.50.
+blocked on secure Anthropic access. The founder approved the existing $0.50
+maximum and recorded case/attempt limits on October 2; approval is no longer
+the blocker.
 Independent human judgments remain required afterward. That is a separate
 quality gate, not a reason to repeat authored examples overnight.
 
