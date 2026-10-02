@@ -38,8 +38,11 @@ and existing owner reads, and let measured failures justify additional machinery
 
 This is the **Strategy Technical execution roadmap** under the September 30
 [three-lane program](../vesper-program-roadmap.md#2-three-lane-ownership).
-The first implementation increments are merged; the connected assignment below
-remains unfinished. This lane owns its package sequence and receipts; the
+The first implementation increments are merged; the bounded R2/R7 evaluation
+implementation is now delivered as a provider-free producer replay.
+Representative model outputs and independent human judgments remain absent, so
+this does not close product-quality acceptance. This lane owns its package
+sequence and receipts; the
 program owns cross-lane boundaries rather than a permission queue for ordinary
 implementation. Capture transport and
 Home/Places remain with Orchestration; artifact identity, focused readers,
@@ -48,11 +51,13 @@ sharing policy, deployment or release is enabled by this document.
 
 ## 0 Strategy Technical lane execution boundary
 
-**Current assignment:** R2/R7 final-selection and supported-addition evaluation
-within selected original → supported addition → exact readback. The backend
-producer and exact-result API are landed; building that connection again is not
-the next task. Extend the existing retrieval and pairwise-treatment evaluation
-through the landed producer rather than adding a separate evaluation framework.
+**Current assignment status:** the bounded R2/R7 final-selection and
+supported-addition evaluation implementation is delivered for selected original
+→ supported addition → exact readback. The backend producer and exact-result
+API are landed; this round extended the existing retrieval and pairwise-treatment
+tools through the real producer with controlled dependencies, without adding a
+second evaluation framework. Representative model output and human review remain
+the next evidence gates; they are not a reason to claim quality today.
 
 For a bounded versioned case set, distinguish candidate recall, final selected
 support, semantic claim support, added substance and direct-original versus
@@ -67,21 +72,27 @@ hand over the evaluated replay plus that exact missing evidence. Do not turn
 this into automatic production allocation, a new retrieval index, public
 lookup, native screen work or personal-novelty claims.
 
-**First evaluation deliverable:** the current retrieval fixture contains six
-constructed known-answer cases; the treatment fixture contains seven authored
-examples, with no live-model outputs or human participants. Preserve them as
-regressions, then run a bounded case set through the actual producer with
-controlled inputs and record where model output is replayed versus generated.
-For authorized recorded/generated outputs, pair the original-only and assisted
-treatments, randomize presentation order and obtain independent human judgments
-for support, added substance and remaining effort. Calibrate any model grader
-against those judgments; do not relabel authored preferences as human review.
-Retain all eligible attempts, no-addition/failure outcomes, repeated runs and
-cost/latency in the denominator. If cases drive a prompt/selection change, check
-separate held-out cases before claiming improvement. Use the existing evaluation
-tools and R7 receipt; this does not authorize paid production allocation or a
-new evaluator platform. A replay-only result closes deterministic wiring, with
-model quality and human usefulness explicitly still open.
+**Evaluation implementation receipt:** the existing six constructed retrieval
+cases remain intact and are now executable from the producer-evaluation tool.
+Eight authored synthetic producer scenarios produced nine eligible attempts,
+including two repeated-known-connection runs, sparse history, a distractor,
+no-addition, budget withholding, timeout and changed access. The report keeps
+all outcomes in the denominator and separates candidate recall, producer-bound
+dependency selection and exact-quote admission. A deliberately unsupported
+causal claim passes exact quote admission, exposing why quote provenance must
+not be reported as semantic support. The seeded original-only versus assisted
+review pack has five pairs, including the model-response no-addition, and is
+pending human judgments. No live or recorded
+model output, participant rating, provider cost, model latency, or product value
+measurement exists. See the October 1 R2/R7 evaluation handoff receipt in
+section 12. Do not convert the replay result into an improvement claim.
+
+For representative authorized outputs, obtain independent human judgments for
+claim support, added substance, intent fit, usefulness and remaining effort;
+calibrate any model grader against those judgments rather than authored labels.
+Keep failures/withheld attempts in the denominator and use held-out cases for
+any prompt/selection change. The replay tool does not authorize paid production
+allocation or a new evaluator platform.
 
 Complete the first R0/R1/R2/R6 connection with the minimum R3/R4/R5 safeguards
 and R7 comparisons. Exact original/text-span reads, bounded acquisition, the
@@ -1427,13 +1438,14 @@ implementation. Recommendations elsewhere are our engineering inferences.
 
 ### Current assignment and supported scope
 
-**R2/R7 selection and supported-addition evaluation** is the next bounded
-assignment in section 0, starting from section 1's accepted tuple.
-**Selected original → supported addition → exact readback** remains the overall
-connection outcome; its backend path is already implemented. It connects R0/R1/R2
-to R6 with minimum R3/R4/R5 controls and R7 comparisons. The finish is an
-owner-callable, source-bound producer/result path, not another isolated helper.
-Original access remains independently useful and never waits for research.
+**R2/R7 selection and supported-addition evaluation implementation is delivered**
+from section 1's accepted tuple; the dated receipt below names the exact code,
+cases, outputs and verification. **Selected original → supported addition →
+exact readback** remains the overall connection outcome; its backend path is
+already implemented. This handoff proves candidate/replay wiring only—not
+representative model selection, semantic claim support, human usefulness, or
+product acceptance. Original access remains independently useful and never
+waits for research.
 
 Start with private, currently retained `text/plain` originals and their exact
 bounded text spans: a passage and a text-backed ticket/confirmation exercise
@@ -1445,10 +1457,11 @@ These are engineering coverage cases, not a narrower product thesis.
 
 ### Implementation sequence
 
-The current round evaluates the remaining selection/support/usefulness gap.
-The implemented interface, owner hydration, ledger and readback steps below are
-reuse inputs, not instructions to reconstruct them. Artifact owns future native
-consumer adoption and Orchestration owns root receiving.
+The current round's provider-free evaluation is complete; any follow-on prompt,
+selection or production activation is a separate decision. The implemented
+interface, owner hydration, ledger and readback steps below are reuse inputs,
+not instructions to reconstruct them. Artifact owns future native consumer
+adoption and Orchestration owns root receiving.
 
 1. **Admit the selected-source interface.** Implemented at the contract, owner
    and backend route level: work items and results bind an explicit source
@@ -4341,3 +4354,185 @@ the current exact-note baseline with any proposed privacy-preserving lookup on
 the same workload. Semantic ranking, supported-addition quality, final
 selection, independent human usefulness review and complete R2 acceptance
 remain open; R0–R7 are not complete.
+
+#### R2/R7 evaluation handoff receipt — actual producer replay (October 1)
+
+Added `travel-agent/tools/eval/judges/selected_source_producer_eval.py` and
+versioned authored synthetic cases in
+`travel-agent/tools/eval/judges/fixtures/selected-source-producer-cases-v1.json`.
+The backend implementation and generated evaluation artifacts were initially
+committed on this lane as `14db6a8ee`. A follow-up correction that includes
+model-response abstentions in the blinded review pack is committed as
+`07d09b1fd`.
+The runner invokes the landed `execute_selected_source_research` producer and
+the actual selected-source candidate finder. Owner hydration, commercial
+reservation/settlement, result persistence and model responses are controlled
+doubles; this run contacted neither a database nor an AI provider. The six
+existing candidate-retrieval cases and seven existing authored treatment cases
+remain unchanged as regression fixtures.
+
+Candidate retrieval, against the fixture's authored support/distractor labels:
+
+| Path | Labeled support recalled | Candidate recall | Labeled distractors retrieved | Candidates | Complete / incomplete cases |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Legacy note/packet cue baseline | 0 / 3 | 0.0 | 3 | 3 | 6 / 0 |
+| Owner-linked candidate path | 3 / 3 | 1.0 | 3 | 6 | 5 / 1 |
+
+This synthetic comparison shows increased support recall **and** unchanged
+labeled-distractor exposure; it is not representative archive recall or
+semantic relevance. Across eight authored producer scenarios the runner retains
+nine eligible attempts (the repeated-known-connection case ran twice): four
+addition replays, two no-additions, one budget-withheld attempt, one timeout,
+and one changed-access unavailable result. The four addition responses passed
+exact-excerpt admission and had their declared dependency IDs bound into the
+result. Those responses and selected indexes are authored test doubles, so
+model-selection accuracy and semantic claim support remain unmeasured. The
+fixture deliberately includes an unsupported causal claim whose quoted text
+passes the producer's exact-excerpt gate; this is evidence of the gate's
+boundary, not evidence that the claim is true or an unanticipated product
+regression.
+
+The run writes a per-attempt report plus five seeded, blinded original-only vs.
+assisted replay packets with a blank rubric response template and a separately
+stored answer key under `travel-agent/tools/eval/judges/results/`: four
+addition attempts and one model-response no-addition. The packet template
+records abstention appropriateness separately; the no-dependency sparse-history
+path is not mislabeled as a model response, and withheld/failed cases remain in
+the outcome denominator without entering text comparisons. All five packets
+are pending human review. Added substance, intent fit, human usefulness and
+remaining user effort have no ratings. Local
+`producer_elapsed_ms_with_doubles` is harness timing; model latency, provider
+units and monetary cost are null because there was no provider call. No value
+rate is inferred from the replay.
+
+Reproduction from `travel-agent/`:
+
+```bash
+PYTHONPATH=. python -m tools.eval.judges.selected_source_producer_eval
+```
+
+Validation on Darwin 26.5 arm64 / Python 3.13.0:
+
+- Focused producer, retrieval and treatment suite: **40 passed**. Exact command
+  from `travel-agent/`:
+
+  ```bash
+  PYTHONPATH=. .venv/bin/python -m pytest -p no:cacheprovider -q \
+    tests/eval/test_selected_source_producer_eval.py \
+    tests/eval/test_selected_source_treatment.py \
+    tests/research_agent/test_selected_source_relevance_fixture.py \
+    tests/research_agent/test_selected_source_producer.py
+  ```
+
+- Targeted Ruff lint and format checks passed; full static gate passed with
+  `RUFF_NO_CACHE=true MYPY_CACHE_DIR=/dev/null make ci-static`. Ruff reported
+  all checks clean, formatting covered 3,996 files, structural gates passed,
+  and mypy reported no issues across 1,909 source files.
+- The explicit three-repository preflight passed with this command from the
+  coordinated workspace lane:
+
+  ```bash
+  env -u TEST_DATABASE_URL -u TEST_DATABASE_DISPOSABLE \
+    PYTEST_ADDOPTS='-p no:cacheprovider' RUFF_NO_CACHE=true MYPY_CACHE_DIR=/dev/null \
+    make verify-changed \
+    WORKSPACE_BASE_REF=93301ec311b32ef72a39d090b59819b9ad12c589 \
+    AGENT_BASE_REF=0a1fdf224aaf59ca713eec5eba79a34321f038a9 \
+    APP_BASE_REF=acf5bd837fe3725b00d9744727f513a601fb2498
+  ```
+
+  The backend offline suite reported **22,298 passed, 14 skipped, 1 xfailed,
+  52 xpassed**;
+  docs-links, docs-spine and docs-canon checks passed. A separate rerun from
+  `travel-agent/` with database variables unset used
+  `env -u TEST_DATABASE_URL -u TEST_DATABASE_DISPOSABLE PYTEST_ADDOPTS='-p no:cacheprovider -rs' python scripts/merge_scope.py --base 0a1fdf224aaf59ca713eec5eba79a34321f038a9`
+  to make skip reasons explicit. The 14 skipped node IDs were:
+
+  - Retired Concierge Home tests: `tests/api/test_concierge_home.py::test_post_concierge_card_feedback_records_event`, `::test_post_concierge_card_feedback_wrong_records_memory_observation`, `::test_post_concierge_card_feedback_wrong_skips_memory_write_with_no_context`, `::test_post_concierge_card_feedback_wrong_write_failure_does_not_fail_request`, `::test_post_concierge_card_feedback_requires_trip_membership`, `::test_post_concierge_card_lifecycle_updates_durable_card`, `::test_post_concierge_card_lifecycle_accepts_generated_card_noop`, `::test_post_concierge_card_restore_records_undo_feedback`, and `::test_get_concierge_card_feedback_returns_recent_events`.
+  - Legacy-file enum probes: `tests/api/test_enum_contracts.py::test_trip_ended_is_a_403_not_409`, `::test_fe_edit_commit_handles_trip_ended_as_403`, and `::test_experience_availability_on_demand_not_always`.
+  - VCR smoke tests: `tests/vcr/test_vcr_smoke.py::test_vcr_cassette_directory_exists` and `::test_vcr_replay_if_cassette_exists`, because the cassette directory has not been created.
+
+  One expected local-Qdrant payload-index warning remained. The skipped legacy,
+  database/provider and VCR paths are not needed to exercise this provider-free
+  evaluator; their separate acceptance remains outside this bounded replay.
+- The report and review files were produced by the executable with seed
+  `20261001`; their checked-in copies preserve all nine attempts and the
+  randomized review key. The recorded provider/database flags are false.
+
+#### Frozen actual-model pilot proposal — not executed (October 1)
+
+The first actual-model quality baseline is prepared but not authorized or run.
+Current source resolves `vesper.research.selected_source` to the active
+`RESEARCH_SYNTHESIS` surface and `claude-sonnet-4-6`; runtime inspection reports
+`AI_MODE=live`, but `ANTHROPIC_API_KEY` is absent from the process environment.
+The GitHub CLI login is unrelated to Anthropic provider access. The dark
+selected-source producer remains disabled for ordinary product use; a
+diagnostic call must use only authored synthetic inputs, the exact registered
+prompt/schema and the supported `call_llm_structured` provider helper, with
+controlled owner/capacity/persistence dependencies. It must not enable the
+feature, touch user data, or persist product results.
+
+Freeze the initial generation set before any output is observed:
+
+| Request(s) | Case | Expected evaluation question |
+| --- | --- | --- |
+| 1 | `supported_cross_source_relation` | Does the bridge/harbor relation add a specific, source-supported point beyond the original? |
+| 2 | `known_connection_repeated` (two independent calls) | Does the model avoid returning the already-stated bridge/harbor/old-town connection consistently? |
+| 1 | `distractor_and_unsupported_cause` | Does the model avoid inventing a local-milling cause from a texture note, a semolina receipt, and unrelated courtyard detail? |
+| 1 | `justified_no_addition_with_candidates` | Does the model abstain when the station-tile note and cafe receipt have no useful supported relation? |
+
+That is five provider attempts. `sparse_history_no_candidate` must remain a
+zero-dispatch producer outcome. Budget withholding, provider timeout, and
+changed-access remain separately labeled controlled tests and are not sent to
+the provider. Keep every generated response, malformed response, timeout and
+other failed provider attempt in the run record; do not retry or fail over.
+
+Seal two synthetic holdouts now. Use them only if the primary baseline shows a
+clear defect that warrants one narrow prompt-level correction; then run each
+holdout once with the frozen baseline and once with that correction (four
+additional attempts, nine total maximum):
+
+1. `holdout_repeated_paraphrase`: intent “Find one detail I may have missed”;
+   known context “I already noticed that the bridge connects the harbor road
+   to the old town”; selected original “The old stone span carries the market
+   road over the old harbor channel”; related original “The route from the
+   market reaches the old quarter by crossing the harbor bridge.” This tests
+   abstention to a paraphrased, already-known relation.
+2. `holdout_date_coincidence`: intent “Find a useful connection between these
+   notes”; selected original “In Rome on August 18, I tasted a crisp pastry
+   filled with apricot”; related original “In Brooklyn on August 18, I heard a
+   friend rehearse piano.” A shared date is the only cross-source cue; this
+   tests whether a coincidence is mistaken for a meaningful relation.
+
+For every generation, use the exact registered source prompt and structured
+schema, `max_tokens=700`, `provider_max_retries=0`, and `allow_failover=False`.
+Pre-count the complete provider input using the [Anthropic token-counting API]
+(https://platform.claude.com/docs/en/api/http/messages/count_tokens) and
+refuse a request above 6,000 input tokens; refuse any output limit above 700.
+At current documented [Sonnet 4.6 rates](https://platform.claude.com/docs/en/about-claude/pricing),
+the nine-call theoretical maximum is $0.2565 at base rates (about
+$0.2822 with a 1.1x regional multiplier). Set a hard local all-in generation
+budget of **$0.50**, including room for provider accounting variance; abort
+before any request if its bounded worst-case charge would exceed the remaining
+budget. The approved cap covers no more than nine generations and is not
+permission to broaden the case set.
+
+Compare each same-input direct treatment against the assisted output. Retain
+separate source-support, additional-substance, intent-fit, usefulness, and
+remaining-effort fields. Randomize the paired comparison and keep its answer
+key separate. Human ratings remain pending until a reviewer returns them;
+model or automated scores cannot stand in for usefulness. This is a small
+synthetic prompt-quality pilot, not evidence of representative user benefit.
+
+**Required before execution:** user approval for the proposed maximum **$0.50**
+provider spend and a securely configured Anthropic credential in the isolated
+lane (never pasted into chat). Neither prerequisite is currently present; no
+provider call has been made.
+- No live or recorded model output, human review, consumer runtime, API/schema,
+  migration, production allocation, provider spend or user value was exercised.
+
+This completes the **bounded engineering replay and handoff** for the current
+R2/R7 assignment, not R2/R7 product-quality acceptance. The next evidence
+needed before a quality claim is authorized representative model output plus
+independent human review of the separated rubric dimensions. Keep the feature
+dark; the replay neither authorizes a paid provider run nor changes product
+allocation.

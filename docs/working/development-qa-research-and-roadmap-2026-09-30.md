@@ -718,10 +718,55 @@ smoke was skipped.
 This hosted case confirms full-scope rejection, tuple matching, visible
 cancellation failure and a successful full required gate. It is not an eligible
 prose-only run and gives no evidence that the narrow checks are sufficient or
-faster. This evidence update changes only the body of this admitted roadmap and
-is intended to exercise the positive classification path; its hosted result is
-pending. Do not make an adoption decision until that artifact and its full-gate
-comparison have been reviewed.
+faster. The subsequent evidence update supplied the positive case below.
+
+**Hosted positive-selection receipt, October 2 UTC:**
+[PR #46](https://github.com/fy538/travel-workspace/pull/46) changed only this
+roadmap's body prose at head `fc5ba8154465f72c5285744ccc8b4a0d939a7e90`,
+base `f8ae68e075a634bc75f97fe3839013f4bcfc44ec`, and the unchanged child pair
+above. Both successful attempts produced `eligible=true`,
+`scope=working-roadmap-prose`, and plan SHA-256
+`fd8326fa451a9546301c97222bbf8a41a46ce2e4f57d828f7646b70487e18b0a`.
+Their tuple artifacts matched hosted workspace merge candidate
+`788456a3b1f595b4f8762077ec1019e4ebf9068a` and both pinned children.
+
+The selected commands were the new-document guard at the explicit base;
+`make docs-inventory-check docs-status-check docs-child-governance-check`;
+`make docs-links-check docs-spine-check docs-canon-check`; and
+`python3 -m pytest scripts/tests/test_preserved_doc_governance.py`, selected for
+a checker referenced by this document. The first advisory job took **1m42s**:
+about 23s from job start through planning, 66s installing backend development
+dependencies, 10s executing selected checks, and the remaining upload/cleanup.
+The run API reported zero creation-to-start queue time; its first job began
+13s after creation. These are GitHub API job/step windows, not developer effort.
+
+| Reliability run / attempt | Outcome | Advisory job | Required aggregate completion from attempt creation | Completed-job runner occupancy |
+| --- | --- | --- | --- | --- |
+| [36958809900 / 1](https://github.com/fy538/travel-workspace/actions/runs/36958809900) | Full and narrow paths passed | 1m42s | 6m54s | 27m57s |
+| [36958809950 / 1](https://github.com/fy538/travel-workspace/actions/runs/36958809950/attempts/1) | Cancelled; aggregate failed on cancelled dependencies | Cancelled before execution | Failed at 10s | 10s |
+| [36958809950 / 2](https://github.com/fy538/travel-workspace/actions/runs/36958809950/attempts/2) | Full and narrow paths passed after explicit rerun | 1m39s | 5m42s | 25m09s |
+
+GitHub initially refused an ordinary merge despite the successful first run;
+the cancelled duplicate retained a failed required result. Auto-merge was also
+unavailable because the repository disables it. Rerunning the cancelled
+workflow on the same commit cleared the policy blocker without an admin bypass
+or protection change. The retry API's start timestamp precedes its creation
+timestamp by one second; its required gate finished 5m43s after that start.
+Do not interpret that timestamp discrepancy as negative queue time. PR #46
+merged at 03:23:56Z as `ceb040abd16750b0b014b7e1929b83f54a3c7964`.
+
+Across both run IDs and all three attempts, Reliability used **53m16s** of
+runner occupancy. The separate `Merge ready` job added 27s and the cloud
+configuration check 2s; Maestro Cloud PR smoke remained skipped. Both plan
+artifacts and their tuple records are retained under their respective runs;
+all required Reliability jobs remained active. The original positive run's full
+required completion was 6m54s, and first PR-run creation to merge was 15m46s,
+including diagnosis and the retry. The advisory result arrived earlier for
+this one input, but required merge time did not shrink and the duplicate/run
+retry defeats any runner-cost saving claim. Two attempts of one change are
+still **n=1** for change frequency and acceptance. Keep required checks unchanged;
+resolve label-trigger/cancellation behavior and continue the ordinary-change
+sample before considering default adoption.
 
 Compare elapsed feedback time and runner use with equivalent prose changes,
 and record how frequently that class occurs in the existing ten-change pilot.
