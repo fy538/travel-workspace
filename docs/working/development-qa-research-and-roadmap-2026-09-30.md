@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Eng Efficiency
 created: 2026-09-30
-last_verified: 2026-10-01
+last_verified: 2026-10-02
 expires: 2026-10-30
 why_new: Combines the September 30 trace audit and engineering research with this lane's improvement sequence; the September 7 instruction audit is historical, the native-quality plan owns product presentation, and the CI runbook describes adopted operations rather than pending work.
 supersedes: []
@@ -626,16 +626,17 @@ timestamps; workflow duration is creation to final update, not human time lost.
 | PR #43, `ef8abf84009a0ba40ff35e8d1578f1549984b251`; [run 36942761248](https://github.com/fy538/travel-workspace/actions/runs/36942761248) | 23:48:40–23:54:01, 5m21s | 4m55s | 24m37s across six jobs | Backend install 47s, frontend install 21s, journey mocks 63s, database migration 4s, goldens 24s; all four syntax shards also ran |
 
 GitHub reported zero billable minutes for both runs because this is a public
-repository; job occupancy is a separate resource measure. At the October 2
-audit, 3 of the ten most recently merged workspace PRs (#35–#44) matched the
-path-and-body-only shape: [#42](https://github.com/fy538/travel-workspace/pull/42),
-[#43](https://github.com/fy538/travel-workspace/pull/43) and
-[#44](https://github.com/fy538/travel-workspace/pull/44) each changed only
-admitted working-roadmap prose and preserved front matter. That 30% is a short,
-clustered roadmap and integration burst, not a representative frequency estimate
-or a run of the new classifier. Continue the prospective ten-change sample
-before judging whether this class is frequent enough to justify a lasting
-exception.
+repository; job occupancy is a separate resource measure. The earlier window (#35–#44) matched three of ten merged PRs (#42–#44).
+At 2026-10-02 04:29:59Z, the ten most recently merged workspace PRs were
+#39–#48. Four matched the path-and-body-only shape: [#42](https://github.com/fy538/travel-workspace/pull/42),
+[#43](https://github.com/fy538/travel-workspace/pull/43), [#44](https://github.com/fy538/travel-workspace/pull/44),
+and [#46](https://github.com/fy538/travel-workspace/pull/46). The three
+earlier matches predate the classifier; #46 is the only classifier-era
+candidate. This 4/10 retrospective rate is clustered around roadmap and
+integration work, not a representative frequency estimate. There were no
+open workspace PRs at that audit time, so the prospective classifier sample
+remained n=1. Continue with ordinary workspace changes; do not create a PR
+solely to grow the sample.
 
 Trial only an explicit narrow set of working-roadmap prose inputs, preserving
 their metadata, link, governance and referenced-checker obligations. Require the
@@ -764,9 +765,17 @@ required completion was 6m54s, and first PR-run creation to merge was 15m46s,
 including diagnosis and the retry. The advisory result arrived earlier for
 this one input, but required merge time did not shrink and the duplicate/run
 retry defeats any runner-cost saving claim. Two attempts of one change are
-still **n=1** for change frequency and acceptance. Keep required checks unchanged;
-resolve label-trigger/cancellation behavior and continue the ordinary-change
-sample before considering default adoption.
+still **n=1** for change frequency and acceptance. Recommendation after the first hosted trial: revise the demonstrated
+label-trigger cancellation behavior by running the optional pilot in its
+own workflow and concurrency group. Keep all required checks unchanged and
+do not adopt the exception as a replacement yet. The eligible result arrived
+in 1m42s versus 6m54s for the required aggregate, a potential 5m12s earlier
+signal on one change, but it did not reduce merge wait. All attempts used
+53m16s of Reliability runner occupancy. The 4/10 retrospective shape count
+is clustered, and the prospective classifier sample remains n=1. The
+classifier, its regression suite and CI wiring have real maintenance cost;
+maintenance hours have not been measured. The isolated workflow fix and a
+new natural-change sample must pass before any separate rollout review.
 
 Compare elapsed feedback time and runner use with equivalent prose changes,
 and record how frequently that class occurs in the existing ten-change pilot.
