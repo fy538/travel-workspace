@@ -445,9 +445,22 @@ def safe_modes(env: dict[str, str] | None = None) -> dict:
 
 
 def capture_tool_versions(command: list[str]) -> dict:
-    """Record a safe version probe for the primary known command, if available."""
+    """Probe the top-level command and state the unobserved child-tool boundary.
+
+    The recorder does not trace subprocess execution. Keep the historical
+    ``primary_command`` field for record compatibility, and make transitive
+    tool versions explicitly unknown instead of implying the primary version
+    represents the full verification toolchain.
+    """
     if not command:
-        return {"recorder_python": sys.version.split()[0], "primary_command": None}
+        return {
+            "recorder_python": sys.version.split()[0],
+            "primary_command": None,
+            "transitive_tool_versions": {
+                "status": "unknown",
+                "reason": "child process execution is not traced",
+            },
+        }
     requested = command[0]
     name = Path(requested).name
     entry = {
@@ -477,6 +490,10 @@ def capture_tool_versions(command: list[str]) -> dict:
     return {
         "recorder_python": sys.version.split()[0],
         "primary_command": entry,
+        "transitive_tool_versions": {
+            "status": "unknown",
+            "reason": "child process execution is not traced",
+        },
     }
 
 

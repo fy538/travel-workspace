@@ -59,6 +59,56 @@ def test_run_command_handles_missing_executable(tmp_path: Path) -> None:
     assert "not found" in log_path.read_text()
 
 
+def test_tool_version_receipt_versions_primary_and_marks_children_unknown(
+    tmp_path: Path, monkeypatch
+) -> None:
+    tool = tmp_path / "make"
+    tool.write_text("#!/bin/sh\nprintf 'GNU Make 4.4\\n'\n", encoding="utf-8")
+    tool.chmod(0o755)
+    monkeypatch.setattr(
+        MODULE.shutil,
+        "which",
+        lambda requested: str(tool) if requested == "make" else None,
+    )
+
+    versions = MODULE.capture_tool_versions(["make", "verify-changed"])
+
+    assert versions["primary_command"] == {
+        "name": "make",
+        "path": str(tool),
+        "version": "GNU Make 4.4",
+        "status": "ok",
+    }
+    assert versions["transitive_tool_versions"] == {
+        "status": "unknown",
+        "reason": "child process execution is not traced",
+    }
+    assert versions["recorder_python"] == sys.version.split()[0]
+
+
+def test_tool_version_receipt_keeps_probe_failure_and_child_scope_explicit(
+    tmp_path: Path, monkeypatch
+) -> None:
+    tool = tmp_path / "make"
+    tool.write_text("#!/bin/sh\nexit 0\n", encoding="utf-8")
+    tool.chmod(0o755)
+    monkeypatch.setattr(
+        MODULE.shutil,
+        "which",
+        lambda requested: str(tool) if requested == "make" else None,
+    )
+
+    def unavailable(*_args, **_kwargs):
+        raise MODULE.subprocess.TimeoutExpired([str(tool), "--version"], timeout=5)
+
+    monkeypatch.setattr(MODULE.subprocess, "run", unavailable)
+    versions = MODULE.capture_tool_versions(["make", "verify-changed"])
+
+    assert versions["primary_command"]["status"] == "unavailable"
+    assert versions["primary_command"]["version"] is None
+    assert versions["transitive_tool_versions"]["status"] == "unknown"
+
+
 # ── parse_test_counts: partial-result behavior ────────────────────────────
 
 
@@ -403,6 +453,7 @@ def test_recorder_retains_completed_command_failure_and_missing_tool(
     assert missing_status == 127
     assert missing["exit_code"] == 127
     assert missing["verification"]["tool_versions"]["primary_command"]["status"] == "not-found"
+    assert missing["verification"]["tool_versions"]["transitive_tool_versions"]["status"] == "unknown"
     assert [record["label"] for record in records] == ["command-failure", "tool-failure"]
 
 
