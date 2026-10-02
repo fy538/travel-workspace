@@ -15,6 +15,92 @@ repositories. Local worktrees use the same layout.
 
 ## Required checks and evidence
 
+### Opt-in roadmap prose scope pilot
+
+The workspace Reliability workflow includes an advisory job gated by the
+`roadmap-scope-pilot` pull-request label. In addition to GitHub's default PR
+activities (`opened`, `synchronize`, `reopened`), it listens for `labeled`, so
+adding the label to an existing PR starts a run. It may select checks only for
+body edits to the four working-roadmap documents admitted in the Eng Efficiency
+roadmap. GitHub requires the explicit `labeled` activity type for this trigger
+([event documentation](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#pull_request)).
+The classifier requires the exact current protected-main base, the
+same immutable child lock as that base, actual tested child checkouts, clean
+repositories, existing regular Markdown files and byte-identical lifecycle
+front matter. It reuses the change-aware documentation selection, adds mapped
+checker tests, and retains new-document, inventory, generated-status and
+child-document governance checks. A missing tool, history object, tuple or any
+uncertain/different path or metadata input reports full scope; it does not run
+the narrow checks.
+
+The pilot is not a required check and is not an input to `Contract and golden
+paths`. The full Reliability workspace job and all four Maestro syntax shards
+remain required and unchanged throughout this trial. An eligible labeled PR
+uploads its classifier plan and immutable candidate tuple. Compare those with
+the full gate result, end-to-end workflow time and runner use; record failures,
+rejections and cancellations. Since both paths run during the trial, do not
+claim saved wait time or runner minutes. A later required-check or protection
+change needs its own verified additive rollout and authorization.
+
+Use the implementation PR itself as the first hosted rejection case: after it
+opens, add `roadmap-scope-pilot` and expect an artifact with `eligible: false`
+and `scope: full`, because it changes workflow, classifier and test files. The
+and `scope: full`, because it changes workflow, classifier and test files. Since
+the advisory job is part of the Reliability workflow, this label event also
+starts its full required workspace and Maestro jobs. The workflow's concurrency
+rule may cancel an overlapping run from the original `opened` event; preserve
+both outcomes and all attempts rather than treating cancellation as a pass.
+After the implementation lands, use the next natural PR whose only change is
+working-roadmap body prose and whose lifecycle front matter is byte-identical.
+At the trial base, expect the same child lock as protected main (`travel-agent`
+`0a1fdf224aaf59ca713eec5eba79a34321f038a9`, `travel-app`
+`acf5bd837fe3725b00d9744727f513a601fb2498`); a moved main base or different
+child identity is a full-scope rejection. Adding the label should produce
+`eligible: true`, a plan with documentation checks plus tests for any referenced
+checker, and the tuple/plan artifact, while `Reliability checks`, all four
+Maestro syntax shards and `Contract and golden paths` still run. Measure the
+label-triggered run together with any earlier run for that PR. Do not create a
+synthetic prose PR just to force a positive sample.
+
+For a reproducible hosted comparison, retain the run ID, attempt number, commit,
+event, plan artifact, and conclusion for every selected or rejected candidate.
+Use the GitHub workflow-jobs API timestamps for job execution windows, then sum
+elapsed seconds across every attempt to report runner occupancy separately from
+the workflow's end-to-end window. Measure end-to-end time from run creation to
+the final `Contract and golden paths` completion; report the advisory pilot job
+duration on its own. Include failed, cancelled and unfinished jobs in the record
+instead of silently dropping them. The repository is public, so GitHub reports
+no billable Actions minutes; occupancy still describes runner capacity consumed.
+The [workflow-jobs REST API](https://docs.github.com/en/rest/actions/workflow-jobs?apiVersion=2026-03-10)
+exposes job start and completion timestamps. GitHub says the [workflow-run
+usage endpoint](https://docs.github.com/en/rest/actions/workflow-runs?apiVersion=2026-03-10)
+is in the process of closing down and that billable minutes only apply to
+private repositories; its [job execution guidance](https://docs.github.com/en/actions/how-tos/monitor-workflows/view-job-execution-time)
+confirms public repositories have no billable minutes.
+
+Example read-only collection:
+
+```sh
+gh run list --repo fy538/travel-workspace --branch <HEAD_BRANCH> --limit 20 \
+  --json databaseId,headSha,event,status,conclusion,createdAt,url
+gh api repos/fy538/travel-workspace/actions/runs/<RUN_ID> \
+  --jq '[.created_at, .run_started_at, .head_sha, .event, .conclusion, .run_attempt] | @tsv'
+gh api 'repos/fy538/travel-workspace/actions/runs/<RUN_ID>/attempts/<ATTEMPT_NUMBER>/jobs?per_page=100' \
+  --jq '.jobs[] | {name,conclusion,started_at,completed_at,steps:[.steps[]|{name,conclusion,started_at,completed_at}]}'
+gh pr list --repo fy538/travel-workspace --state merged --limit 10 \
+  --json number,mergedAt,files
+gh pr diff <PR_NUMBER> --repo fy538/travel-workspace
+```
+
+For the path-frequency denominator, take the ten most recently merged PRs at a
+stated audit time, inspect each PR's changed-file list, and count a match only
+when every changed file is one of the admitted roadmap documents and the PR
+diff leaves each document's lifecycle front matter unchanged. Preserve the PR
+numbers and the denominator, including zero-match windows. This retrospective
+shape count is not a substitute for the prospective ten-change pilot.
+Query every run attempt from 1 through `run_attempt`; an omitted attempt or
+missing timestamp is an incomplete measurement and should be labeled as such.
+
 ### September 30 merge-latency cleanup — staged rollout
 
 **Target:** ordinary final-push-to-merge-readiness under five minutes. This is a
