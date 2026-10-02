@@ -15,6 +15,12 @@ repositories. Local worktrees use the same layout.
 
 ## Required checks and evidence
 
+Merge readiness runs the changed-scope preflight offline and deselects tests
+that require Postgres. The required Reliability workflow runs the two
+database-backed checker suites referenced by this plan after migrating its
+disposable Postgres service. Local `make verify-changed` should use an isolated
+disposable database whenever its selected tests carry those markers.
+
 ### Opt-in roadmap prose scope pilot
 
 The required workspace Reliability workflow runs on pull-request opened,
@@ -60,6 +66,19 @@ and timing receipt are in the [working roadmap](../working/development-qa-resear
 A cancelled pilot attempt remains visible, while the required full result
 stays authoritative.
 
+The first natural post-isolation eligible sample was workspace
+[PR #54](https://github.com/fy538/travel-workspace/pull/54). Its opened-event
+pilot check skipped in [run 36983897512](https://github.com/fy538/travel-workspace/actions/runs/36983897512);
+adding the opt-in label started [run 36984013226](https://github.com/fy538/travel-workspace/actions/runs/36984013226),
+which passed on attempt 1 with `eligible: true` and
+`scope: working-roadmap-prose`.
+The plan digest, exact candidate/tested tuple and timing receipt are in the
+[working roadmap](../working/development-qa-research-and-roadmap-2026-09-30.md#first-eligible-post-isolation-sample-october-2-utc).
+The pilot returned 2m55s before the required `Contract and golden paths`
+check, but the PR still waited for the full required gate and merged 37s after
+that check. This one natural candidate provides no measured reduction in merge
+latency or runner use; the prospective sample remains `n=1`.
+
 ### Shared app security-audit blocker — October 2, 2026
 
 App PRs [#213](https://github.com/fy538/travel-app/pull/213) and
@@ -74,17 +93,13 @@ required audit in force and add no temporary exception. Recheck after Expo or
 `node-forge` publishes a supported fixed dependency, then require the affected
 app checks to pass before either PR can land.
 
-After the implementation lands, use the next natural PR whose only change is
-working-roadmap body prose and whose lifecycle front matter is byte-identical.
-At the trial base, expect the same child lock as protected main (`travel-agent`
-`0a1fdf224aaf59ca713eec5eba79a34321f038a9`, `travel-app`
-`acf5bd837fe3725b00d9744727f513a601fb2498`); a moved main base or different
-child identity is a full-scope rejection. Adding the label should produce
-`eligible: true`, a plan with documentation checks plus tests for any referenced
-checker, and the tuple/plan artifact, while `Reliability checks`, all four
-Maestro syntax shards and `Contract and golden paths` still run. Measure the
-label-triggered run together with any earlier run for that PR. Do not create a
-synthetic prose PR just to force a positive sample.
+Continue the prospective ten-change sample with naturally occurring changes;
+do not create a synthetic prose PR just to force another positive result. For
+each candidate, retain the label-triggered run, any earlier run for the PR,
+the immutable candidate tuple, and all rejection, failure, retry and
+cancellation outcomes. Keep the required Reliability and Maestro checks
+authoritative until a separate rollout review is supported by the completed
+sample.
 
 For a reproducible hosted comparison, retain the run ID, attempt number, commit,
 event, plan artifact, and conclusion for every selected or rejected candidate.

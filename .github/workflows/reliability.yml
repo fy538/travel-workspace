@@ -233,6 +233,13 @@ jobs:
         run: PYTHONPATH=. alembic upgrade head
         working-directory: travel-agent
 
+      - name: Run documented database-backed checker tests
+        run: >-
+          python -m pytest
+          tests/scripts/test_check_check_constraints.py
+          tests/scripts/test_check_migration_lifecycle.py -q
+        working-directory: travel-agent
+
       - name: Golden path QA
         # These scenarios exercise real persistence, not the offline partition.
         run: make golden-path-qa
