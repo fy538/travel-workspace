@@ -597,7 +597,7 @@ Do not start a new integration or cleanup queue alongside this section.
 
 | Order | Work | Status and dependency | First beneficiaries |
 | --- | --- | --- | --- |
-| 1 | Package 3A/3B/3C: reduce measured feedback and integration cost | Existing implementations landed. Next repair is the observed duplicate/cancellation behavior in that advisory trial; use the ten-change pilot to judge frequency and benefit before wider adoption. Default app sharding stays unchanged; the passed experiment alone does not justify adoption. | All integrations |
+| 1 | Package 3A/3B/3C: reduce measured feedback and integration cost | The isolated advisory workflow, unrelated-label guard and early preflight checks are merged. PR #54 is the first natural eligible post-isolation sample (`n=1`); required checks remain authoritative. Keep the pilot advisory and continue the natural ten-change sample before any wider adoption or claim of savings. | All integrations |
 | 2 — independently when needed | Package 1: reliable targeted native QA | One targeted Home capture passed; broader Home/Places wrong-state replay remains open. Prioritize a specific native blocker for the current Artifact/Orchestration assignments when the assigned device is available. | Orchestration and Artifact |
 | 3 | Package 2: proportionate review and shorter task context | Tooling landed; changed review scope still requires clean cases and known-defect detection, including the unresolved replay. | All lanes, especially mobile work |
 | As encountered | Package 6: reconcile obsolete operating assumptions and active documentation | The central four-roadmap reconciliation resolves stale integration ownership, baselines and producer availability. Fix remaining contradictions in affected owners; do not repeat a global inventory or archive pass without an observed navigation cost. Three earlier archive migrations are complete. | All lanes |
@@ -605,25 +605,31 @@ Do not start a new integration or cleanup queue alongside this section.
 | Conditional | Package 4: build reuse and measured setup optimizations | Existing checkout improvements are landed with limited before/after evidence. Native reuse requires a measured remaining setup bottleneck and safe environment identity. | Mobile and build owners |
 | Ongoing | Package 5: product-outcome acceptance | Remains with product lanes. Cleanup preserves their infrastructure, authority and acceptance requirements while design continues. | Product users |
 
-**Observed completion checkpoint — October 2:** the remaining unrelated-label
+**Observed completion checkpoint — October 2:** the unrelated-label
 cancellation repair landed in
 [workspace PR #51](https://github.com/fy538/travel-workspace/pull/51), merge
-`a483be795b6b32b0b2778be6dea64b50fda46e09`. At exact head `ced324fd`, retry
-pilot [36973924420](https://github.com/fy538/travel-workspace/actions/runs/36973924420)
-was observed in progress; the `documentation` label created skipped run
-[36973934794](https://github.com/fy538/travel-workspace/actions/runs/36973934794).
-The active pilot completed successfully in 28s. Original Reliability
+`a483be795b6b32b0b2778be6dea64b50fda46e09`. At head `ced324fd`, pilot run
+[36973924420](https://github.com/fy538/travel-workspace/actions/runs/36973924420)
+was active from 06:31:05Z to 06:31:33Z. The unrelated `documentation` label
+arrived at 06:31:10Z and its pilot job skipped in
+[run 36973934794](https://github.com/fy538/travel-workspace/actions/runs/36973934794);
+the active pilot completed successfully. The opened Reliability
 [36973727972](https://github.com/fy538/travel-workspace/actions/runs/36973727972)
-and Merge readiness
+and Merge ready
 [36973728084](https://github.com/fy538/travel-workspace/actions/runs/36973728084)
-remained intact and passed. The first observer missed the active window on
-36973749570; retain that attempt as successful verification without race proof.
-The downloaded plan is `scope=full`, `eligible=false`; synthetic tested workspace
-`d8a5826d4a08d3702f9284dbc2f4414e5932b528`, backend `355a8c11d`, app `acf5bd837`.
-Central local preflight passed 176 tooling tests plus selected contracts in
-45.422s. This closes the demonstrated unrelated-label edge, not all synchronize,
-failed-rerun or natural-change evidence. Natural eligible post-isolation sample
-size remains zero; no overall engineering speedup is established.
+checks remained intact and passed. An earlier successful run, 36973749570,
+was not observed during execution; the later overlapping event supplies the
+race evidence. The downloaded plan was `scope=full`, `eligible=false`; its
+synthetic tested workspace was `d8a5826d4a08d3702f9284dbc2f4414e5932b528`,
+backend `355a8c11d`, app `acf5bd837`. Central local preflight passed 176
+workspace tooling tests plus selected contracts in 45.422s.
+
+The post-merge PR #53 event check and its limit are recorded below. PR #49's
+synchronize event and PR #46's cancelled required attempt plus explicit rerun
+remain in their dated receipts. The first natural eligible post-isolation
+sample now exists in PR #54 (`n=1`); its timing and candidate tuple are recorded
+below. These separate cases establish the bounded repair and its failure
+handling, not an overall engineering speedup.
 
 The bounded app-blocker recheck confirmed `node-forge@1.4.0` also lies on the
 production dependency path `expo-updates@55.0.30` →
@@ -682,47 +688,50 @@ a clean committed handoff. A concrete external blocker is a valid stop. No
 weakened assertions, broader native portfolio, repeated pilot events, security
 exception or open-ended retry loop is included.
 
-**Remaining owned evidence — October 2: remove observed integration waste.**
-The advisory selector and positive/rejection evidence have landed; the trial is
-not waiting for another implementation of narrow selection. PR #46 required a
-cancelled duplicate to be rerun despite a passing same-head workflow. Its three
-attempts consumed 53m16s of Reliability job occupancy for one change. Keep that
-n=1 boundary and the required full gate; do not infer general productivity gains.
+**Current evidence and follow-up — October 2: measure the advisory pilot.**
+The shared security blocker review, workflow repair and first post-isolation
+natural sample are complete. PR #46's cancelled duplicate had to be rerun
+despite a passing same-head attempt; its three attempts consumed 53m16s of
+Reliability job occupancy for one change. Preserve that cost and the required
+full gate when comparing later observations.
 
-1. **Bound the shared app blocker investigation.** Recheck the actual locked
-   dependency chain, upstream remediation and affected call sites once. App
-   PRs #213/#214 currently fail only their required security audit. The reviewed
+1. **Shared app blocker — bounded review complete.** The app PRs #213/#214
+   still fail only their required `Security audit`. The reviewed
    [node-forge advisory](https://github.com/advisories/GHSA-86w9-cpqp-85rv)
-   still lists affected versions through 1.4.0 and no patched version on
-   October 2. A supported compatible dependency repair can be prepared and
-   verified as a separate candidate. If none exists, hand over the specific
-   exposure/remediation options and continue to step 2; do not spend the night
-   polling upstream, authoring a crypto fork, downgrading into known exposure or
-   adding an audit exception. Risk acceptance requires founder review.
-2. **Finish the remaining advisory event guard before scope adoption.**
-   PR #49 has already separated the advisory pilot into
-   `.github/workflows/roadmap-scope-pilot.yml`; required Reliability no longer
-   restarts when its opt-in label is added. Preserve that landed repair and its
-   hosted rejection receipt below. The separate pilot still has workflow-level
-   cancelling concurrency, so an unrelated label can acquire its slot even when
-   the advisory job is skipped. Reproduce and repair this remaining edge case,
-   keeping skipped events from cancelling a valid pilot. GitHub's
-   [concurrency documentation](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency)
-   establishes the scheduling mechanism; hosted evidence must establish this
-   repository's actual event and required-check behavior.
-3. **Prove the replacement and measure a natural change.** Cover opened plus
-   pilot-label events, unrelated labels, synchronize to a newer head and rerun
-   of a failed check. New commits must receive their own full gate; cancelled,
-   missing or genuinely failed checks cannot be reported as passed. Retain
-   tuple/digest matching and the selector's uncertain-input full fallback.
-   Use the next ordinary eligible roadmap change and a rejection case, recording
-   every run/attempt, final required-gate latency and total runner occupancy.
-   Local workflow tests alone do not close hosted cancellation acceptance.
+   has no supported patched release as of October 2. No override, crypto fork
+   or audit exception was applied. Recheck only after a compatible Expo or
+   `node-forge` release changes the locked dependency chain.
+2. **Workflow repair — merged and hosted.** PR #49 isolated the advisory pilot;
+   PR #51 separated unrelated-label events; PR #53 moved flag and generated-
+   state checks earlier in preflight. Hosted opened, opt-in-label and unrelated-
+   label outcomes are recorded above. PR #51 includes an unrelated label during
+   the pilot's active interval; PR #53 later reconfirmed skip behavior after its
+   pilot had completed. PR #49's synchronize run and PR #46's cancelled required
+   attempt plus explicit rerun remain separate evidence. All required checks
+   remain unchanged and authoritative.
+3. **Natural eligible change — first sample recorded, `n=1`.** PR #54's
+   advisory run took 1m42s from creation; its required gate took 5m49s, and its
+   recorded PR checks used 24m42s of runner occupancy. The pilot result came
+   2m55s before the final required check, but the PR merged 37s after that
+   check. Before isolation, PR #46's first eligible
+   attempt produced a signal in 1m42s and completed the required gate in 6m54s,
+   with 27m57s of Reliability runner occupancy. Its later cancellation and
+   retry brought all-attempt Reliability occupancy to 53m16s. After isolation,
+   PR #54 produced the signal in 1m42s, completed the required gate in 5m49s,
+   and used 22m32s of Reliability occupancy (24m42s across its recorded PR
+   checks). These are distinct candidates, not a controlled comparison; do not
+   attribute their differences to the workflow change. PR #54 merged 37s after
+   its required gate, and there is no comparable pre-change measurement that
+   isolates check-to-merge latency. Continue collecting only naturally
+   occurring candidates and preserve each run, attempt, rejection, failure and
+   cancellation. Do not manufacture another prose PR or change required-check
+   policy to increase the sample.
 
-**Finish:** a reviewed workflow repair with representative clean, violating and
-execution-failure evidence, an actual hosted event-sequence receipt, and a
-before/after comparison with sample limits. Stop or retain the advisory pilot
-according to observed benefit; insufficient samples remain insufficient.
+**Finish:** retain the pilot as advisory while the natural sample is small.
+The current evidence shows an earlier scope signal on one post-isolation
+candidate, confirms that required checks remained authoritative, and does not
+establish lower merge latency, lower runner occupancy or an overall productivity
+gain. Reassess wider adoption only after the prospective sample supports it.
 No default narrow required scope, protection change or security waiver is
 included. The ten-change sample uses real work rather than fabricated prose
 commits. Central integration remains the landing owner; this task does not
@@ -986,13 +995,66 @@ supersedes the earlier missing-dependency/socket-denial blocker for this
 integration boundary; it does not establish hosted event behavior.
 
 At the original handoff, no hosted unrelated-label event had exercised the new concurrency key.
-After central integration publishes the candidate, add the opt-in label to
-that PR, then add an existing unrelated label while the pilot is active. Confirm
-the unrelated-label pilot job is skipped, the active pilot is not cancelled,
-and the required Reliability workflow neither restarts nor loses its green
-result. Also record a failed or cancelled required-check rerun as a failure.
-This implementation PR is a rejection/full-scope case, not a natural eligible
-roadmap-prose sample; post-isolation eligible sample size remains zero.
+The merged guard was later exercised on
+[workspace PR #53](https://github.com/fy538/travel-workspace/pull/53): the
+opened-event pilot skipped in
+[run 36981170611](https://github.com/fy538/travel-workspace/actions/runs/36981170611),
+the opt-in label started
+[run 36981553687](https://github.com/fy538/travel-workspace/actions/runs/36981553687),
+and a later unrelated-label event produced a skipped pilot job in
+[run 36981600793](https://github.com/fy538/travel-workspace/actions/runs/36981600793).
+The opt-in candidate was rejected conservatively as `eligible: false`,
+`scope: full`; it completed in 26s. The unrelated-label event did not start a
+second required Reliability or Maestro run. It followed the pilot's completion,
+so this PR #53 repeat confirms filtering but does not itself prove overlap
+protection. PR #51's unrelated label arrived during the active pilot, as recorded
+in the observed completion checkpoint above. PR #53's opened-event required
+[Reliability run 36981170634](https://github.com/fy538/travel-workspace/actions/runs/36981170634)
+and [Merge ready run 36981170641](https://github.com/fy538/travel-workspace/actions/runs/36981170641)
+passed. A failed or cancelled required-check rerun remains a failure and must
+stay in the attempt record.
+
+### First eligible post-isolation sample, October 2 UTC
+
+Workspace [PR #54](https://github.com/fy538/travel-workspace/pull/54), head
+`76911e8edd575eb12b5430505d770587baf2dc88`, was the first natural candidate
+whose only changed files were admitted roadmap body prose with unchanged
+lifecycle front matter. The opened-event pilot check skipped in
+[run 36983897512](https://github.com/fy538/travel-workspace/actions/runs/36983897512).
+Adding `roadmap-scope-pilot` started
+[run 36984013226](https://github.com/fy538/travel-workspace/actions/runs/36984013226),
+attempt 1, which passed with
+`eligible: true`, `scope: working-roadmap-prose` and reason “only admitted
+roadmap prose changed over the current protected-main child tuple.” The uploaded
+plan SHA-256 is
+`81f8a4c59663b404ac2825be6a778fcdcdaa185cf8e997f3cc080449e47ab451`.
+The selected checks were new-document governance, inventory/status/child
+policy, documentation links/spine/canon and the preserved-governance regression
+test.
+
+The artifact's candidate and tested tuples matched exactly: workspace
+`ad3addd9de8308954f94672a54582d547dbb0582`, backend
+`0e7048120414c1f18c5a0e39c50c10afc9fc24f7`, app
+`acf5bd837fe3725b00d9744727f513a601fb2498`. The Reliability run
+[36983897491](https://github.com/fy538/travel-workspace/actions/runs/36983897491)
+was created at 08:24:59Z; its final required `Contract and golden paths` check
+completed at 08:30:48Z, a 5m49s creation-to-final-check window. All required
+Reliability checks and four Maestro syntax shards passed. The separate
+[Merge ready run 36983897448](https://github.com/fy538/travel-workspace/actions/runs/36983897448)
+passed; Maestro Cloud smoke was skipped by its existing configuration gate.
+
+The pilot run was created at 08:26:12Z, and its job ran from 08:26:15Z to
+08:27:53Z: 98s of runner occupancy and 102s from run creation to completion.
+Its result preceded the final required check by 2m55s. PR #54 merged at
+08:31:25Z, 37s after that final required check, so the earlier advisory signal
+did not shorten merge time. The Reliability jobs occupied 22m32s in aggregate;
+adding Merge ready (28s), the cloud-configuration check (4s), and the advisory
+pilot (98s) gives 24m42s across these completed PR checks. The optional pilot
+added runner occupancy while the full gate remained required; this sample shows
+no runner saving. It is one accepted eligible candidate (`n=1`), not evidence
+for changing branch protection or claiming an overall delivery-speed gain.
+Continue the natural ten-change sample and record every attempt; do not create
+another PR solely to obtain a positive result.
 
 ### Bounded app security blocker review, October 2 UTC
 
