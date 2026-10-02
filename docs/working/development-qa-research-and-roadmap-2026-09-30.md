@@ -2394,13 +2394,22 @@ App [PR #214](https://github.com/fy538/travel-app/pull/214) and follow-up
 `Logic QA journeys` jobs were skipped, so this sample does not show a duplicate
 full app-suite run within either PR. The two PRs are separate candidates, and
 their runner times should not be read as a same-candidate retry.
+Runner occupancy is the sum of non-skipped job durations in the linked runs;
+parallel jobs count separately. The table's job-start span is from the earliest
+selected job start to the final listed result.
 
-| Candidate and hosted runs | Selected runner occupancy | Critical-path wall time | Result and boundary |
+| Candidate and hosted runs | Selected runner occupancy | Job-start-to-final span | Result and boundary |
 | --- | ---: | ---: | --- |
-| App #214: [CI 37029175430](https://github.com/fy538/travel-app/actions/runs/37029175430), [Merge readiness 37029175353](https://github.com/fy538/travel-app/actions/runs/37029175353) | 1,319s (21m59s) | 621s (10m21s) | Eight non-skipped CI jobs plus scope, tests, static and final gate; the selected app checks passed. |
+| App #214: [CI 37029175430](https://github.com/fy538/travel-app/actions/runs/37029175430), [Merge readiness 37029175353](https://github.com/fy538/travel-app/actions/runs/37029175353) | 1,320s (22m00s) | 621s (10m21s) | Eight non-skipped CI jobs plus scope, tests, static and final gate; the selected app checks passed. |
 | App #215: [CI 37032172500](https://github.com/fy538/travel-app/actions/runs/37032172500), [Merge readiness 37032172743](https://github.com/fy538/travel-app/actions/runs/37032172743) | 1,356s (22m36s) | 638s (10m38s) | Same broad shape on a later candidate; the selected app checks passed. |
-| Workspace #57 first attempt: [Reliability 37030676363](https://github.com/fy538/travel-workspace/actions/runs/37030676363), [Merge readiness 37030676412](https://github.com/fy538/travel-workspace/actions/runs/37030676412), [final contract job](https://github.com/fy538/travel-workspace/actions/runs/37030676363/job/110918359984) | 1,444s (24m04s) | 306s (5m06s) to the final failure | Reliability failed on three flow metadata headers after all syntax shards and Merge readiness passed. |
-| Workspace #57 accepted retry: [Reliability 37033807108](https://github.com/fy538/travel-workspace/actions/runs/37033807108), [Merge readiness 37033807091](https://github.com/fy538/travel-workspace/actions/runs/37033807091) | 1,767s (29m27s) | 387s (6m27s) to the final required result | Required checks passed on corrected app pin `0f607bf2`; PR #57 merged at 16:33:22Z. |
+| Workspace #57 first attempt: [Reliability 37030676363](https://github.com/fy538/travel-workspace/actions/runs/37030676363), [Merge readiness 37030676412](https://github.com/fy538/travel-workspace/actions/runs/37030676412), [Cloud configuration 37030676490](https://github.com/fy538/travel-workspace/actions/runs/37030676490), [final contract job](https://github.com/fy538/travel-workspace/actions/runs/37030676363/job/110918359984) | 1,444s (24m04s) | 306s (5m06s) to the final failure | Reliability failed on three flow metadata headers after all syntax shards and Merge readiness passed. |
+| Workspace #57 accepted retry: [Reliability 37033807108](https://github.com/fy538/travel-workspace/actions/runs/37033807108), [Merge readiness 37033807091](https://github.com/fy538/travel-workspace/actions/runs/37033807091), [Cloud configuration 37033807051](https://github.com/fy538/travel-workspace/actions/runs/37033807051) | 1,767s (29m27s) | 387s (6m27s) to the final required result | Required checks passed on corrected app pin `0f607bf2`; PR #57 merged at 16:33:22Z. |
+
+From workflow creation to the final result, including dispatch wait, the same
+runs took 624s (10m24s) for app #214, 641s (10m41s) for app #215, 308s (5m08s)
+for #57's first attempt and 390s (6m30s) for its accepted retry. These are
+elapsed windows; they are distinct from the job-start spans and summed runner
+occupancy above.
 
 Across the two #57 attempts, selected runner occupancy was 3,211s (53m31s).
 From the first Reliability start at 15:58:08Z to merge at 16:33:22Z was 35m14s;
