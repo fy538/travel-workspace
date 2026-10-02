@@ -55,8 +55,8 @@ sharing policy, deployment or release is enabled by this document.
 implementation configuring `gpt-6-luna` at low reasoning effort only for
 selected-source synthesis. Its feature remains dark; constructed replay is not
 actual-model evidence. On October 2 the founder explicitly excluded model
-evaluation from this integration round. Central review is preparing the
-committed implementation against accepted main, without token-count or
+evaluation from this integration round. The implementation is accepted in backend PR #246 at
+`28a72b0643ae168a4976c1dfe7861a7c1022267c`, without token-count or
 generation calls. The historical evaluation plan below is deferred and does
 not authorize a live run or block completion of this implementation slice.
 
@@ -5034,8 +5034,9 @@ independent review; no live run is implied by this configuration change.
 ### 13.7 Central integration receipt — implementation only (October 2)
 
 The founder explicitly excluded model evaluation from this completion round.
-The implementation is under protected backend review in
-[PR #246](https://github.com/fy538/travel-agent/pull/246); no token-count or
+The implementation is accepted through protected backend review in
+[PR #246](https://github.com/fy538/travel-agent/pull/246), merge
+`28a72b0643ae168a4976c1dfe7861a7c1022267c`; no token-count or
 generation call was made. Provider activation, model quality, billing acceptance
 and the historical L3/L4 plan remain separate, deferred boundaries.
 
@@ -5056,5 +5057,7 @@ GPS radius near dinner time. The fixture now stores its real fresh GPS fix
 before blocks exist, preserving production matching and every exact two-proposal
 and one-proposal-per-member assertion. All five existing cases passed unmasked
 against that disposable database (no skipped/quarantined cases) in 12.873
-seconds; the committed test repair is backend `2f3f4ff94`. Normal hosted checks
-on the repaired candidate remain required before acceptance.
+seconds; the committed test repair is backend `2f3f4ff94`. Every normal required hosted check passed on repaired candidate
+`2f3f4ff94`, including the full selected disposable-Postgres job. PR #246
+merged normally after those results; the first failed attempt remains in the
+evidence record. This workspace update pins the actual accepted merge revision.

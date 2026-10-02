@@ -29,9 +29,16 @@ is accepted at `2e3e66416998823615d978eb8fd4e667917b333d`. Both passed their
 normal required hosted checks. App `0f607bf2` already includes the conditional
 Expo tutorial guard; the distinct source commit `89f7bae1d` does not require a
 duplicate implementation or merge. The disabled selected-source provider
-support from owner backend `d62e00a05` is under central review against accepted
-backend `c5ff69a8`. Connectivity owns the remaining bounded authenticated
-native interruption receipt or the exact external setup blocker. No
+support from owner backend `d62e00a05` is accepted in backend
+[PR #246](https://github.com/fy538/travel-agent/pull/246), merge
+`28a72b0643ae168a4976c1dfe7861a7c1022267c`, after every normal required
+hosted check passed on repaired candidate `2f3f4ff94`. Its five previously
+failing database scenario setups were reproduced and repaired solely by
+storing the fixture GPS fix before timed blocks exist; production matching
+and exact confirmation assertions remain unchanged. This workspace update
+includes the accepted child pin and Connectivity receipt `a323180d`: the
+real-local-API attempt is blocked before capture by the missing signed-in
+Clerk QA session on the assigned simulator. No
 token-count/generation calls or quality evaluation are scheduled in this round;
 the historical pilot plans below are deferred. Do not keep a lane executing
 synthetic replays to imitate missing authenticated or model-quality evidence.
