@@ -88,10 +88,18 @@ required `Security audit` reports `node-forge` advisory
 The app lockfile resolves `node-forge` 1.4.0 through its production Expo
 dependency graph. The bounded usage and upstream-remediation review is in the
 [Eng Efficiency roadmap](../working/development-qa-research-and-roadmap-2026-09-30.md#bounded-app-security-blocker-review-october-2-utc).
-No compatible patched release was published in this review window. Keep the
-required audit in force and add no temporary exception. Recheck after Expo or
+No compatible patched release was published in this review window. A local
+`npm audit --omit=dev --json` attempt could not reach the registry and returned
+no report; the required hosted check remains authoritative. Keep the required
+audit in force and add no temporary exception. Recheck after Expo or
 `node-forge` publishes a supported fixed dependency, then require the affected
-app checks to pass before either PR can land.
+app checks to pass before either PR can land. The bounded decision packet
+records the exact optional exception identity (source 1240912, GHSA, package
+and version), owner `fy538`, and expiry 2026-10-09 UTC. If approved, that row
+would apply to every `travel-app` audit invocation through expiry, and the
+checker would have to reject any changed identity or severity. It has not been
+approved or applied; malformed/unavailable audits and all other findings stay
+blocking.
 
 Continue the prospective ten-change sample with naturally occurring changes;
 do not create a synthetic prose PR just to force another positive result. For
