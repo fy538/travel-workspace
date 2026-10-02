@@ -25662,6 +25662,66 @@
         }
       }
     },
+    "/api/research/selected-source/{work_id}": {
+      "get": {
+        "tags": [
+          "selected-source-research"
+        ],
+        "summary": "Read Selected Source Research",
+        "description": "Read the exact current result for its owner; this route never generates.",
+        "operationId": "read_selected_source_research_api_research_selected_source__work_id__get",
+        "parameters": [
+          {
+            "name": "work_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^selected-source-work:[0-9a-f]{64}$",
+              "title": "Work Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectedSourceResearchResultV1"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/social-circles": {
       "post": {
         "tags": [
@@ -94943,6 +95003,199 @@
         ],
         "title": "SecondOccasionOutcome",
         "description": "Owner-private read model for one prior-memory application."
+      },
+      "SelectedSourceResearchConsumer": {
+        "type": "string",
+        "enum": [
+          "chat",
+          "home",
+          "places",
+          "life"
+        ],
+        "title": "SelectedSourceResearchConsumer",
+        "description": "Product surface that requested this private, selected-source result."
+      },
+      "SelectedSourceResearchDisposition": {
+        "type": "string",
+        "enum": [
+          "addition",
+          "no_addition"
+        ],
+        "title": "SelectedSourceResearchDisposition",
+        "description": "Only complete worthwhile additions or explicit no-addition results persist."
+      },
+      "SelectedSourceResearchIntent": {
+        "type": "string",
+        "enum": [
+          "make_sense",
+          "open_possibility",
+          "help_it_work"
+        ],
+        "title": "SelectedSourceResearchIntent",
+        "description": "Private, one-interaction purpose for treating a selected original."
+      },
+      "SelectedSourceResearchNoAdditionReason": {
+        "type": "string",
+        "enum": [
+          "insufficient_support",
+          "no_substantive_connection",
+          "not_relevant"
+        ],
+        "title": "SelectedSourceResearchNoAdditionReason",
+        "description": "Content-free reasons a complete run may preserve the original alone."
+      },
+      "SelectedSourceResearchResultV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "selected-source-research-result.v1",
+            "title": "Schema Version",
+            "default": "selected-source-research-result.v1"
+          },
+          "work_id": {
+            "type": "string",
+            "pattern": "^selected-source-work:[0-9a-f]{64}$",
+            "title": "Work Id"
+          },
+          "viewer_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Viewer Id"
+          },
+          "source_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "source_representation": {
+            "type": "string",
+            "const": "text/plain",
+            "title": "Source Representation",
+            "default": "text/plain"
+          },
+          "text_span": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SelectedTextSpanV1"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "consumer": {
+            "$ref": "#/components/schemas/SelectedSourceResearchConsumer"
+          },
+          "intent": {
+            "$ref": "#/components/schemas/SelectedSourceResearchIntent"
+          },
+          "treatment_version": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9._:-]{1,79}$",
+            "title": "Treatment Version"
+          },
+          "represented_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Represented At"
+          },
+          "dependency_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 2,
+            "title": "Dependency Refs",
+            "default": []
+          },
+          "disposition": {
+            "$ref": "#/components/schemas/SelectedSourceResearchDisposition"
+          },
+          "brief": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CompositionBriefV1"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "no_addition_reason": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SelectedSourceResearchNoAdditionReason"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Expires At"
+          },
+          "result_digest": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Result Digest"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "work_id",
+          "viewer_id",
+          "source_ref",
+          "consumer",
+          "intent",
+          "treatment_version",
+          "represented_at",
+          "disposition",
+          "created_at",
+          "expires_at",
+          "result_digest"
+        ],
+        "title": "SelectedSourceResearchResultV1",
+        "description": "Private, expiring composition bound to one exact selected Source.\n\nThe owner stores no source text or original query. A result can contain a\nprivate composition or a content-free, complete no-addition disposition;\nunavailable and failed work is not a result and is not persisted here."
+      },
+      "SelectedTextSpanV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "selected-text-span.v1",
+            "title": "Schema Version",
+            "default": "selected-text-span.v1"
+          },
+          "source_content_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Source Content Sha256"
+          },
+          "char_start": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Char Start"
+          },
+          "char_end": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Char End"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "source_content_sha256",
+          "char_start",
+          "char_end"
+        ],
+        "title": "SelectedTextSpanV1",
+        "description": "Exact character coordinates into the selected text/plain revision."
       },
       "SelfProfileAuthoredLine": {
         "properties": {

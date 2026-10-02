@@ -71,6 +71,14 @@ Exact saved editions follow demonstrated useful additions and approved retention
 semantics. Final Collection presentation, shared derivative retention, catalog
 rights and automatic generation remain outside this unattended milestone.
 
+**Local receiving handoff — October 2:** app `76cfc1443` and workspace
+`5c17d29a` implement and locally verify the thin read-only result consumer.
+They remain unmerged candidates; the app's required Security audit still
+blocks acceptance. The API GET adoption and generated projection below
+belong to this candidate, not the accepted main tuple. The original stays
+available, presentation is internal/default-off, and reads never generate.
+Central integration owns protected acceptance and the coordinated pin update.
+
 **Historical implementation receipt — October 1 before central integration:**
 the following checkpoint used the earlier September 30 merged baseline. Its
 local/unmerged statements describe that date; section 2 now records the newer
@@ -151,8 +159,8 @@ keyboard. Do not infer that missing state from the earlier iPhone SE capture.
 | P1 correction and continuity | Revision-bound corrections and append-only Undo; backend typed-time replacement; native owner-only replacement-time editor with separate explicit start/end offsets and revision-bound Save/Undo; capture-to-reader and exact-source-to-confirmed-record links with source/digest checks; owner-scoped Thing row on verified private Keep; evidence-backed reversible cross-submission aliases; owner-scoped Thing API/native reader; candidate-to-bundle entry from a qualifying occurrence reader; owner-confirmed reversible reconciliation transport/app controls; Postgres coverage for concurrent merge/reversal retries and competing merge directions | Synthetic mock-mode Save/refetch/Undo has registered native iOS 18.2 evidence. The five-flow current-revision portfolio includes reconciliation capture, but its structured visual verdict is still pending. The current assigned-device keyboard screenshot does not show the software keyboard, so that assertion is not accepted from this portfolio. Authenticated app-to-backend persistence/readback remains open; raw UTC-offset entry and absent start/end place labels remain UX follow-ups; wider migration/rollback and lifecycle acceptance remain separate |
 | P2 original-first readers | Ticket, source-backed place, text-built book/film/show/music, supplied passage and practical-record treatments; exact-original chooser/return; shared photo viewer | Catalog identity/art, selected-part UI and later dish/recipe/scorecard treatments; source facts do not establish attendance, author identity or payment state |
 | Reader lifetime | Account-session-scoped reads, expiry-aware displayed facts and foreground refresh, exact-source authorization and revision checks | Full source/audience/collection lifecycle replay and authenticated mobile-to-service acceptance |
-| Native acceptance | October 1 iOS 18.2 Vesper QA SE capture at app revision `3c2bf4b71`: 33 screenshots across five registered flows (14 standard reader/source/return, 10 largest-text, 4 replacement-time editor, 2 synthetic mock Save/Undo, 3 owner-confirmed reconciliation). All five Maestro flows completed, but the current structured visual verdict is not yet committed; the keyboard screenshot shows focus without the expected software keyboard | Synthetic fixtures/mock state only; current-device software-keyboard acceptance and full visual judgment remain open. Live authenticated save/refetch/Undo is not proven. Reliable pinch/pan, actual VoiceOver traversal/actions, loading/error states, Android/physical devices and user preference remain open |
-| Landed Technical dependencies | Exact-original revision binding and backend-only refinding of a bounded UTF-8 `text/plain` span; bounded public-acquisition primitives | Landed dark exact-Source request/result exists; stable cross-representation Component identity, mobile selection/adoption, useful-addition acceptance and released research-spend allocation remain open |
+| Native acceptance | October 1 iOS 18.2 Vesper QA SE capture at app revision `3c2bf4b71`: 33 screenshots across five registered flows (14 standard reader/source/return, 10 largest-text, 4 replacement-time editor, 2 synthetic mock Save/Undo, 3 owner-confirmed reconciliation). The October 2 registered result-reader flow also passed on the dedicated simulator with synthetic addition and original-only fallback. | The October 1 portfolio's structured visual verdict remains pending; its keyboard screenshot shows focus without the expected software keyboard. The October 2 result-reader flow is fixture-only, not a live produced result. Full visual judgment, live authenticated save/refetch/Undo, reliable pinch/pan, actual VoiceOver traversal/actions, loading/error states, Android/physical devices and user preference remain open |
+| Landed Technical dependencies | Exact-original revision binding and backend-only refinding of a bounded UTF-8 `text/plain` span; bounded public-acquisition primitives; exact-result GET now adopted in the existing Life/artifact reader through a default-off internal gate | Stable cross-representation Component identity, useful-addition acceptance and released research-spend allocation remain open |
 | PC and later packages | House-design fallbacks and existing eligible original receiving remain usable; canonical private consumer-Collection owner, generated mobile contract/client, session-scoped paginated data facade with revision-bound continuation, bounded owner-backed Life Collections root API, batch owner-authorized Thing projection, and app-side Collection-page-to-Thing batch composition are implemented. The accepted Collections reading remains the product target. | Shared membership/audience/receiving, native Life Collections lens/detail route and device acceptance, founder-approved member labels/previews/hierarchy, approved catalog mappings/uses, exact kept editions and connected contextual additions remain unfinished |
 
 Section 13 retains the exact revisions, commands and limits of each receipt.
@@ -163,27 +171,32 @@ unchanged screenshots did not establish pan/pinch. Do not turn either result
 into a broader gesture, accessibility or live-service claim. The Home dock
 stability repair was a QA prerequisite, not another artifact feature.
 
-**Historical October 1 assignment (local proof completed; see October 2 continuation above):** prove the landed P1 replacement-time correction through
-the real app transport and backend: Save → canonical refetch → Undo → canonical
-refetch. Cover persisted state, unchanged submitted original, stale revisions,
-exact retry, wrong-owner denial and account-session changes. Use the existing
-reader/data/API path and correction owner; do not add another command or reader.
-Record a genuine authenticated run separately from disposable synthetic-owner
-or auth-bypassed rehearsals. If credentials/device access blocks that receipt,
-complete independent transport/database acceptance and state the exact missing
-boundary rather than repeating mock screenshots as a substitute.
+**P1 correction acceptance — completed October 1, with an explicit auth limit:**
+the native app transport and disposable PostgreSQL rehearsal exercised Save →
+canonical readback → Undo → canonical readback, including persisted state and
+unchanged submitted original. It used a synthetic development owner and local
+`SKIP_AUTH`; it does not prove Clerk-authenticated behavior or remote-service
+acceptance. The exact commands and limits remain in section 13. Do not repeat
+the local rehearsal; a real-auth run is a separate acceptance target.
 
-This is one representative lifecycle proof for the existing durable correction
-path. Stop when Save/readback/Undo and its authority failures are evidenced;
-do not grow it into another time editor, broader timezone UX or repeated visual
-polish. Reuse the landed PostgreSQL lifecycle tests and app transport coverage,
-adding only the missing connection evidence. The useful result is a correction
-that survives canonical readback while its original remains intact. Final
-Collection presentation and wider reader design remain separate dependencies.
+**P3 receiving checkpoint — completed October 2:** the exact selected-source
+result GET is connected to the existing focused artifact reader behind a
+default-off internal presentation flag. The reader uses the explicit work ID,
+exact original/revision, current viewer/account and `life` consumer; addition
+and no-addition preserve original access. Reads, retries, rerenders and opening
+the original never invoke generation. The POST producer remains dark and has
+no released allocation. This is receiving integration, not relevance, model
+quality, comparative usefulness or product-value acceptance; see section 13.
 
-After this bounded slice, preserve section 11's thin P3 consumer checkpoint:
-adopt the landed exact-Source request/result only under its required gates,
-with original-only value and exact return. Inspect the landed exact Source-based
+The next substantive gate is evidence of result quality and usefulness using
+the existing frozen evaluation proposal and independent human review. Keep
+producer dispatch disabled; representative output collection and any paid call
+remain separately gated. Final Collection presentation and wider reader design
+remain independent work.
+
+After this bounded slice, preserve section 11's P3 quality checkpoint: evaluate
+the landed exact-Source request/result under its existing authority, evidence
+and spend gates, with original-only value and exact return. Inspect the landed exact Source-based
 scope and quality/spend gates before consumer adoption. The bounded Life/Collection
 data composition is now implemented in the app data facade: it reads canonical
 Collection membership at its pinned revision and resolves each page through
@@ -259,13 +272,15 @@ Strategy Technical.
 
 ## 0 Strategy lane execution boundary
 
-**Current assignment:** implement the October 2 read-only P3 result-consumer
-milestone at the top of this roadmap. Preserve the completed P1 acceptance and
-its unmerged app prerequisite. Thing identity, aliases, Collections data and
-Technical’s exact selected-source API remain existing infrastructure to reuse.
-Broader P0/P1/PC/P2/P6 packages below are context, not additional unattended
-assignments. Quality, production allocation and design decisions retain their
-separate gates.
+**Current assignment:** the October 2 read-only P3 result-consumer milestone
+is implemented and locally evidenced in the handoff above. Preserve P1 and P3
+app candidates while central integration resolves the shared security blocker
+and verifies the coordinated contract. Do not repeat their completed local
+rehearsals or claim accepted-main adoption. After landing, continue the stated
+quality and usefulness gates using the frozen evaluation proposal. The approved
+finite provider pilot still requires credentials and later independent human
+review. Production allocation, automatic generation, broader P0/P1/PC/P2/P6
+work and unresolved design decisions keep their separate gates.
 
 The October 1 batch-read increment now resolves up to 50 owner-authorized
 Thing projections in bounded set-based reads, and reconciliation requests its
@@ -1871,13 +1886,15 @@ explicit offsets across a day boundary; this improves legibility but does not
 resolve the recorded UTC-notation or start/end place-label UX follow-ups. No
 user preference or product-policy decision is implied.
 
-**Next connected checkpoint after P1 readback:** adopt Technical's landed exact-Source
-request/result contract into the focused reader for a useful eligible addition,
-while preserving immediate original-only value and exact return. Existing
-Source-based reads and contract mapping can advance before the Thing migration;
-do not invent the producer API in a screen or make all P1/PC/P2 completion a
-prerequisite. Broader P3 generation waits for its required authority, lineage,
-publication and spend boundaries, not for unrelated final visual polish.
+**Connected receiving checkpoint — completed October 2:** the focused Life
+artifact reader adopts Technical's exact-result contract through the generated
+mobile API projection, typed transport and session/account-scoped data facade.
+It is gated to an explicit result reference and exact eligible original; no
+screen triggers producer work. This does not require Thing migration or imply
+broader P1/PC/P2 completion. The next open gate is comparative evidence of
+supported addition quality, usefulness and remaining effort. Broader P3
+generation remains behind its authority, lineage, publication and spend
+boundaries, not unrelated visual polish.
 
 ### Foundation completion criteria
 
@@ -1888,9 +1905,10 @@ For a fast first release:
   evidence, plus a native synthetic-mock Save/refetch/Undo round-trip. The
   authenticated live app/backend persistence and readback acceptance remains
   open; do not infer an event timezone or overstate the synthetic capture.
-- Adopt Technical's thin P3 capability once its landed interfaces and eligible
-  owner reads are stable. Connect its useful additions to P2 early; do not build
-  another producer while waiting.
+- The thin P3 read-only receiver is connected in the existing Life/artifact
+  reader behind an internal default-off flag. Keep it there until the existing
+  quality, authority and spend gates are met; do not treat a synthetic fixture
+  or a successful read as evidence that additions are useful.
 - Include permission, publication, input-lineage and spend safeguards with
   the first live P3; include provider limits with PC.
 - Defer saved editions and broader archive maintenance until additions show
@@ -3282,3 +3300,51 @@ API actor that did not match the fixture owner; the fail-closed runner rejected
 the actor mismatch before running a flow. The final run used the refreshed
 lane-local bundle and matching API owner. The earlier crash's upstream
 similarity is not treated as proof of root cause or of a general Expo defect.
+
+### October 2 exact selected-source result receiving
+
+The app's existing canonical artifact reader can now receive an exact
+selected-source research result without owning or starting its producer. The
+workspace activates only the authenticated owner-authorized GET in the mobile
+operation projection. The app adds a typed transport, explicit work-ID route
+parameters, a session/account-scoped query facade, and a concise inline result
+card. The facade requires the expected viewer, `life` consumer, exact retained
+`text/plain` original and revision, canonical source identity, source-span
+digest, unexpired result, and valid addition/no-addition shape. A missing result
+is an ordinary original-only state. Cache identity includes the account session,
+viewer, work ID, source ID and revision; leaving the reader removes the query
+cache. The native route stays internal-only and default-off. No GET, retry,
+rerender, refetch or opening of the original can dispatch or repeat generation.
+The producer POST remains dark and unallocated.
+
+Validation and limits:
+
+- Focused app tests passed: three suites, **129 tests**. Command from
+  `travel-app/`: `npm test -- --runInBand --no-cache
+  __tests__/data/selectedSourceResearch.test.tsx
+  __tests__/screens/canonical-artifact-reader.test.tsx
+  __tests__/utils/api/http.test.ts`. App typecheck passed. Targeted ESLint
+  reported **0 errors and 7 warnings** (existing warning classes).
+- API governance, generated projection/types, and compatibility checks passed:
+  `make contract-check api-coverage-check compatibility-check`. The audit
+  reported **592 active, 16 dark (0 unflagged), and 62 retiring operations**.
+- The real-backend owner-read/denial lifecycle ran against the explicitly
+  disposable database `artifact_result_reader_20261002`: **13 passed** across
+  the authenticated exact-read and result lifecycle tests. The synthesis
+  provider was mocked; no external provider was called.
+- Registered native fixture flow
+  `.maestro/polish/selected-source-result-reader.yaml` passed **1/1** on the
+  dedicated iOS 18.2 `Vesper QA SE` simulator. It demonstrated both a synthetic
+  addition and original-only fallback through the actual reader. This is local
+  fixture evidence, not a live produced result, production authentication,
+  Android/physical-device acceptance, or user-value evidence.
+- The app implementation is committed on `codex/artifact-foundation` as
+  `76cfc1443`. The workspace operation policy, generated projection,
+  this receipt and the adaptive-context receipt are committed separately in
+  the workspace repository; no backend implementation changed in this slice.
+
+This closes only thin receiving integration for one existing reader. R2
+candidate relevance, semantic support, model quality, matched comparative
+usefulness, intent fit, remaining user effort, broader consumers and R0–R7
+package acceptance remain open. The feature remains internal/default-off; this
+receipt neither activates generation nor releases provider allocation.
