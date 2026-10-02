@@ -73932,37 +73932,61 @@
             "title": "Object Id"
           },
           "detected_mime_type": {
-            "type": "string",
-            "maxLength": 128,
-            "minLength": 1,
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Detected Mime Type"
           },
           "byte_count": {
-            "type": "integer",
-            "minimum": 0.0,
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Byte Count"
           },
           "content_sha256": {
-            "type": "string",
-            "maxLength": 64,
-            "minLength": 64,
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64,
+                "minLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Content Sha256"
           },
           "storage_ref": {
-            "type": "string",
-            "maxLength": 1000,
-            "minLength": 1,
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 1000,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Storage Ref"
           }
         },
         "additionalProperties": false,
         "type": "object",
         "required": [
-          "object_id",
-          "detected_mime_type",
-          "byte_count",
-          "content_sha256",
-          "storage_ref"
+          "object_id"
         ],
         "title": "FinalizeIntakeObject"
       },
