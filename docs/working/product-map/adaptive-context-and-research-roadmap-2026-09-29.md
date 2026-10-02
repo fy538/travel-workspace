@@ -4457,6 +4457,76 @@ Validation on Darwin 26.5 arm64 / Python 3.13.0:
 - The report and review files were produced by the executable with seed
   `20261001`; their checked-in copies preserve all nine attempts and the
   randomized review key. The recorded provider/database flags are false.
+
+#### Frozen actual-model pilot proposal — not executed (October 1)
+
+The first actual-model quality baseline is prepared but not authorized or run.
+Current source resolves `vesper.research.selected_source` to the active
+`RESEARCH_SYNTHESIS` surface and `claude-sonnet-4-6`; runtime inspection reports
+`AI_MODE=live`, but `ANTHROPIC_API_KEY` is absent from the process environment.
+The GitHub CLI login is unrelated to Anthropic provider access. The dark
+selected-source producer remains disabled for ordinary product use; a
+diagnostic call must use only authored synthetic inputs, the exact registered
+prompt/schema and the supported `call_llm_structured` provider helper, with
+controlled owner/capacity/persistence dependencies. It must not enable the
+feature, touch user data, or persist product results.
+
+Freeze the initial generation set before any output is observed:
+
+| Request(s) | Case | Expected evaluation question |
+| --- | --- | --- |
+| 1 | `supported_cross_source_relation` | Does the bridge/harbor relation add a specific, source-supported point beyond the original? |
+| 2 | `known_connection_repeated` (two independent calls) | Does the model avoid returning the already-stated bridge/harbor/old-town connection consistently? |
+| 1 | `distractor_and_unsupported_cause` | Does the model avoid inventing a local-milling cause from a texture note, a semolina receipt, and unrelated courtyard detail? |
+| 1 | `justified_no_addition_with_candidates` | Does the model abstain when the station-tile note and cafe receipt have no useful supported relation? |
+
+That is five provider attempts. `sparse_history_no_candidate` must remain a
+zero-dispatch producer outcome. Budget withholding, provider timeout, and
+changed-access remain separately labeled controlled tests and are not sent to
+the provider. Keep every generated response, malformed response, timeout and
+other failed provider attempt in the run record; do not retry or fail over.
+
+Seal two synthetic holdouts now. Use them only if the primary baseline shows a
+clear defect that warrants one narrow prompt-level correction; then run each
+holdout once with the frozen baseline and once with that correction (four
+additional attempts, nine total maximum):
+
+1. `holdout_repeated_paraphrase`: intent “Find one detail I may have missed”;
+   known context “I already noticed that the bridge connects the harbor road
+   to the old town”; selected original “The old stone span carries the market
+   road over the old harbor channel”; related original “The route from the
+   market reaches the old quarter by crossing the harbor bridge.” This tests
+   abstention to a paraphrased, already-known relation.
+2. `holdout_date_coincidence`: intent “Find a useful connection between these
+   notes”; selected original “In Rome on August 18, I tasted a crisp pastry
+   filled with apricot”; related original “In Brooklyn on August 18, I heard a
+   friend rehearse piano.” A shared date is the only cross-source cue; this
+   tests whether a coincidence is mistaken for a meaningful relation.
+
+For every generation, use the exact registered source prompt and structured
+schema, `max_tokens=700`, `provider_max_retries=0`, and `allow_failover=False`.
+Pre-count the complete provider input using the [Anthropic token-counting API]
+(https://platform.claude.com/docs/en/api/http/messages/count_tokens) and
+refuse a request above 6,000 input tokens; refuse any output limit above 700.
+At current documented [Sonnet 4.6 rates](https://platform.claude.com/docs/en/about-claude/pricing),
+the nine-call theoretical maximum is $0.2565 at base rates (about
+$0.2822 with a 1.1x regional multiplier). Set a hard local all-in generation
+budget of **$0.50**, including room for provider accounting variance; abort
+before any request if its bounded worst-case charge would exceed the remaining
+budget. The approved cap covers no more than nine generations and is not
+permission to broaden the case set.
+
+Compare each same-input direct treatment against the assisted output. Retain
+separate source-support, additional-substance, intent-fit, usefulness, and
+remaining-effort fields. Randomize the paired comparison and keep its answer
+key separate. Human ratings remain pending until a reviewer returns them;
+model or automated scores cannot stand in for usefulness. This is a small
+synthetic prompt-quality pilot, not evidence of representative user benefit.
+
+**Required before execution:** user approval for the proposed maximum **$0.50**
+provider spend and a securely configured Anthropic credential in the isolated
+lane (never pasted into chat). Neither prerequisite is currently present; no
+provider call has been made.
 - No live or recorded model output, human review, consumer runtime, API/schema,
   migration, production allocation, provider spend or user value was exercised.
 
