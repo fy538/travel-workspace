@@ -12,7 +12,21 @@ source_of_truth_for: []
 
 # Adaptive context and research engineering roadmap
 
-**Receiving integration checkpoint — October 2:** Artifact's exact read-only consumer is accepted in app [PR #214](https://github.com/fy538/travel-app/pull/214), merge `e715953796ff7c3b09b82444aa5d68f85f697f52`; matching governance/contracts accompany the workspace update. R3 remains accepted through backend #244, preserved in backend `c5ff69a8`. Neither implementation needs repeating. The approved frozen actual-model pilot now has secure local credential access but is blocked on provider credit: the owner reports token counting rejected for insufficient credit. Its existing authorization is `claude-sonnet-4-6`, at most five primary and four conditional holdout attempts, total maximum $0.50. No generation ran or model output was produced. The owner reports two token-count attempts reached Anthropic and were rejected; that is provider failure evidence, not model-quality acceptance. After funded access exists, execute only the bounded evaluation and retain actual usage, outputs and independent human judgments. The separate Luna-low provider-support handoff is committed locally at backend `d62e00a05` and owner roadmap `4ca17fc4`; it is unpushed and unmerged, stays dark, and does not inherit the Anthropic paid-call approval. Its 420 focused tests and broader offline/static receipts are owner evidence; central review, hosted acceptance and the live spend/output-budget decision remain separate. Synthetic replay is not a substitute; no increased budget or changed model configuration is authorized.
+**Receiving integration checkpoint — October 2:** Artifact's exact read-only
+consumer is accepted through app [PR #214](https://github.com/fy538/travel-app/pull/214)
+and corrective [PR #215](https://github.com/fy538/travel-app/pull/215), current
+accepted app `0f607bf2`. R3's recovery work is accepted through backend #244.
+The separate Luna-low provider-support handoff is now accepted through backend
+[PR #246](https://github.com/fy538/travel-agent/pull/246), merge
+`28a72b0643ae168a4976c1dfe7861a7c1022267c`; sections 13.6–13.7 retain the
+implementation and corrected hosted evidence. These implementations do not
+need repeating. The founder explicitly excluded model evaluation from this
+completion round. The historical Anthropic pilot reached token counting twice
+and was rejected for insufficient credit; no generation or model output was
+produced. Neither that diagnostic nor the disabled provider-support change
+establishes model quality or authorizes a paid OpenAI substitution. The pilot,
+actual model output and independent human-quality judgment remain deferred;
+do not dispatch them as the next lane assignment without new founder steering.
 
 Vesper needs to turn a person's material and present circumstances into useful
 understanding, discovery, practical help and enjoyable return. This document
