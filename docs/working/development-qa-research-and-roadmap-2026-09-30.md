@@ -639,22 +639,27 @@ current milestone, exact candidate and evidence tuple, blocker and next action
 here. Replace a candidate explicitly rather than silently moving tested HEAD.
 
 **E1 execution receipt — October 2:** candidate lane is
-`codex/eng-eff-verification-evidence-20261002`, based on workspace
-`da4c3d716aaff3e20a8d85ea35acc857810c4c16`, backend
+`codex/eng-eff-verification-evidence-20261002`. Tested commits were workspace
+`d9452e7af4e768f73ceeebf139a8abc378f470e4`, backend
+`28a72b0643ae168a4976c1dfe7861a7c1022267c`, and app
+`8c4a2e59dce62d714abb4fd2586e35821dda4a21`; the explicit verification bases
+were workspace `da4c3d716aaff3e20a8d85ea35acc857810c4c16`, backend
 `28a72b0643ae168a4976c1dfe7861a7c1022267c`, and app
 `0f607bf2cef95dd4cd91c6fc9bbad10aa282a535`. E1.1 recorder tests passed (33)
 with stable before/after identity; the full workspace tooling suite passed (199)
 with stable identity. E1.2 polish prerequisite tests passed (25) with stable
 identity. Its dry-run produced zero screenshots, correctly recorded
 `preflightStatus=not-checked`, mock mode as unobserved, and the lane device as
-unresolved; this is wiring evidence only, not a native pass. The final explicit-
-base `make verify-changed` passed against the tuple above: app fast checks,
-1,298 suites / 9,289 tests, workspace tooling tests, and cross-repository
-contracts. The app test runner reported one worker force-exit warning after all
-tests passed. The first sandboxed workspace run could not bind ephemeral local
-ports; the complete gate passed when rerun with that test prerequisite
-available. Measurement labels are `e1-recorder-regression`,
-`e1-workspace-tooling-suite`, and `e1-qa-preflight-regression`.
+unresolved; this is wiring evidence only, not a native pass. The committed-head
+explicit-base `make verify-changed` passed in 130.148 seconds with stable
+identity: app fast checks, 1,298 suites / 9,289 tests, workspace tooling tests,
+cross-repository contracts, and the selected docs links/spine/canon checks. The
+app test runner reported one worker force-exit warning after all tests passed.
+The first sandboxed workspace run could not bind ephemeral local ports; the
+complete gate passed when rerun with that test prerequisite available.
+Measurement labels are `e1-recorder-regression`,
+`e1-workspace-tooling-suite`, `e1-qa-preflight-regression`, and
+`e1-committed-explicit-base-preflight`.
 
 The implementation and headless acceptance are ready for the device trial, but
 E1 is not complete: this lane's runtime has no assigned device and Connectivity
