@@ -51,6 +51,15 @@ Home/Places remain with Orchestration; artifact identity, focused readers,
 collections and Life remain with Strategy. No provider, background posture,
 sharing policy, deployment or release is enabled by this document.
 
+**October 2 provider follow-up:** section 13 records the bounded
+implementation configuring `gpt-6-luna` at low reasoning effort only for
+selected-source synthesis. Its feature remains dark; constructed replay is not
+actual-model evidence. On October 2 the founder explicitly excluded model
+evaluation from this integration round. Central review is preparing the
+committed implementation against accepted main, without token-count or
+generation calls. The historical evaluation plan below is deferred and does
+not authorize a live run or block completion of this implementation slice.
+
 ## 0 Strategy Technical lane execution boundary
 
 ### R3 completed handoff — October 2
@@ -4700,3 +4709,324 @@ unmerged. The app's required Security audit is the current shared blocker;
 central integration owns the coordinated acceptance and pin update. This
 receipt establishes the owner lane's stated local evidence only. It does not
 promote the generated API adoption or native reader into accepted main.
+## 13 OpenAI Luna-low provider support and selected-source evaluation plan — October 2
+
+### 13.1 Recommendation and evidence boundary
+
+Configure `gpt-6-luna` with `reasoning.effort=low` as the default only for the
+dedicated `vesper.research.selected_source` role, through the existing shared
+provider layer. The bounded backend routing/adapter path is now implemented and
+mock-verified; authored synthetic cases have not been sent to the model. Do not
+change every research generator or the Chat model to obtain this evidence. This
+is not production feature activation or a finding that Luna delivers useful
+synthesis.
+
+The expected benefit is a much cheaper candidate for bounded reasoning over a
+small supplied context. The product requirement remains a useful, supported
+addition or an honest no-addition—not merely valid JSON or low token cost.
+Models remain replaceable; Vesper continues to own context eligibility, source
+custody, source revision, action authority, admission and receiving.
+
+Investigation baseline: owner lane `codex/adaptive-context-research`, workspace
+`e8de6bc4fb82cc4c8722a2261f10f855fd435a4d`, backend
+`7a6a29003564d5aa547530dec6a5acd10e153766`, app
+`acf5bd837fe3725b00d9744727f513a601fb2498`. All three were clean before this
+implementation. Canonical main was workspace
+`cf260711ee4cba99821505195174caab69ae1dd1`, backend
+`355a8c11df54fee27f8de3b86196b606a64a071c`, app
+`03dd9ee1fa22fdb3108e7eccb8206fda380356e6`. The examined OpenAI adapter was
+identical between lane and canonical backend. Before implementation, refresh
+the lane from the agreed baseline and inspect concurrent ownership again;
+this proposal is not permission to overwrite newer work.
+
+**Dated correction to the October 1 prerequisites:** a nonempty, ignored local
+Anthropic credential was located and the user authorized the bounded synthetic
+Anthropic pilot with a $0.50 maximum. A sandbox network attempt did not reach
+the provider. After authorization, two token-count attempts reached Anthropic
+and were rejected; the diagnostic response explicitly reported insufficient
+credit. No generation ran, no output was produced, and no product feature or
+allocation was enabled. OpenAI also has a nonempty local credential in the
+canonical backend `.env`, but model availability, billing and successful
+authentication have not been tested. A credential's presence is not proof of
+usable account access. Do not copy credentials into the roadmap, traces or
+commits. The Anthropic permission must not silently be rerouted into an
+OpenAI paid run; this plan performs no OpenAI call.
+
+### 13.2 What official documentation establishes
+
+`gpt-6-luna` supports low effort. For its function calling with reasoning, use
+Responses; Chat Completions function calling requires effort `none`. Standard
+rates per million tokens are $0.10 ordinary input, $0.01 cached input, $0.125
+cache writes and $0.50 output. These are documented prices, not a verified bill
+for our account. [GPT-6 Luna model documentation](https://developers.openai.com/api/docs/models/gpt-6-luna).
+
+Non-`none` effort also changes parameter compatibility: omit unsupported
+sampling/log-probability parameters rather than passing our generic
+`temperature` through. Keep `low` explicit, since an omitted effort may select
+a different default. The family migration guide supports this endpoint and
+parameter distinction. Its direct Markdown URL could not be retrieved by the
+browser; the substantive HTML guide was retrieved instead, without changing
+the requested Luna target. [GPT-6 migration quickstart](https://developers.openai.com/api/docs/guides/latest-model#migration-quickstart).
+
+`max_output_tokens` includes reasoning and visible output. An incomplete
+response may consume tokens without returning usable visible output; reasoning
+usage is already part of total output. A larger output allowance is therefore
+a treatment choice, not a harmless rename of our existing limit. [Reasoning
+guide](https://developers.openai.com/api/docs/guides/reasoning).
+
+Responses exposes an input-token-count endpoint accepting the model input,
+instructions and tool definitions. Derive its request from the same translated
+request used for generation; do not independently reconstruct an approximate
+prompt for budgeting. [Token-counting guide](https://developers.openai.com/api/docs/guides/token-counting).
+
+Responses has different function definitions and typed output items from Chat
+Completions. Multi-turn tool execution additionally requires preserving
+returned reasoning items and function call identifiers. The first slice below
+does not implement that wider loop. [Responses migration](https://developers.openai.com/api/docs/guides/migrate-to-responses),
+[function-calling guide](https://developers.openai.com/api/docs/guides/function-calling).
+
+Use `store=false` for the proposed one-shot request. That disables retained
+response application state; it is not a claim of zero provider retention,
+zero abuse-monitoring logs or approved processing of private user material.
+No conversation object, previous-response linkage, hosted tool or background
+request is needed. [OpenAI data controls](https://developers.openai.com/api/docs/guides/your-data).
+
+### 13.3 Repository gaps at investigation baseline and owning layers
+
+| Observed gap | Owner and required change |
+| --- | --- |
+| OpenAI async, sync and stream paths use Chat Completions; request translation does not pass effort. GPT-6 is absent from its completion-token prefix list. | `backend/core/providers/openai_adapter.py`: additive, explicit Responses capability; validate endpoint/model/effort before dispatch. Preserve the existing Chat Completions path, including configured OpenAI-compatible hosts. |
+| Model roles carry provider/model only; all 48 defaults are Anthropic. The selected-source surface shares `RESEARCH_SYNTHESIS` with other generators. | `backend/core/model_registry.py`, shared wrappers and surface ownership: a typed execution policy distinct from model ID, with no global role flip. Any selected-surface override is server-owned and diagnostic-only initially. |
+| Structured calls use a forced synthetic output function and inspect the normalized `tool_use` block. | Shared adapter normalizes Responses function-call output into the existing wire contract; `call_llm_structured` and the producer keep their semantic schema and validators. The synthetic output function does not execute an external action. |
+| OpenAI pricing falls back to GPT-4o for unknown IDs and assumes a blanket 50% cache-read discount. | Add exact Luna rates and model-specific cache pricing. A bounded run fails closed on unavailable pricing instead of using the fallback as a reliable spend estimate. Preserve compatibility for other models while fixing independently verified rates. |
+| Canonical accounting already separates cached input and reasoning output, but adapter extraction is Chat Completions-shaped. The pinned SDK's Responses usage types expose cached/reasoning tokens, not a typed cache-write field. | Normalize Responses usage and verify current cache-write wire semantics. Do not assume an absent field is zero billed writes. Review every cost consumer, including `llm_accounting.py` and wrapper token tracking. |
+| VCR hashes whitelist Anthropic-shaped behavior fields; endpoint/effort are not present. | `llm_vcr.py`: distinguish new execution policies without changing legacy hashes when the policy is absent. Separate cassettes/metadata by provider and endpoint; replay miss must never become an unauthorized live request. |
+| Selected-source production has a 700-output-token ceiling, a 15-second timeout, one-unit commercial reservation and single-attempt dispatch. | `research_agent/selected_source_producer.py`: keep current production limits unchanged. A new diagnostic treatment needs an explicit total-output ceiling; any later product policy must align its reservation, timeout and execution cap. |
+| Existing evaluation is provider-free and uses constructed responses; independent ratings and actual model output are absent. | Extend the existing selected-source evaluator, not a parallel direct-SDK harness. Preserve the real producer's admission behavior under controlled synthetic owner/capacity/persistence dependencies. |
+
+The backend pins `openai==2.32.0`. The installed package exposes Responses and
+`responses.input_tokens.count`, so an SDK upgrade is not automatically needed.
+Prove the required request/response types and cache-write handling with this
+version first; if genuinely insufficient, update the `.in` dependency source
+and regenerate runtime/dev locks together. Installed API shape is not evidence
+that this account can execute the requested model.
+
+OpenAI embeddings remain a separate concern: production configuration selects
+`text-embedding-3-small` with the existing 768-dimensional contract. This plan
+does not change vector geometry, indexing, public lookup, mobile transport or
+our independent repository boundaries.
+
+### 13.4 Ordered implementation packages and finish conditions
+
+**L0 — execution policy and compatibility contract.** In the shared core,
+define a narrow typed policy carrying endpoint and effort. Preserve existing
+behavior when absent. Reject unsupported model/endpoint/effort combinations
+before obtaining a client or dispatching. The first Responses capability is
+async, nonstreaming, one-shot text/structured generation. Explicitly reject
+unsupported Responses sync, stream, image, tool-result history or multi-turn
+inputs until implemented; never silently flatten them or change endpoint.
+Do not expose arbitrary model, effort or endpoint selection to mobile clients.
+Document the boundary in core's existing FEATURE owner.
+
+Finish with deterministic tests for legacy requests unchanged, Luna low routed
+to Responses, invalid configurations zero-dispatch, and no unsupported
+parameters. The evaluation must select only
+`vesper.research.selected_source`; a `MODEL_RESEARCH_SYNTHESIS` override alone
+does not satisfy isolation because other surfaces share the role.
+The producer also needs one narrow, injected execution-budget seam with the
+current 700-token/15-second production defaults. Resolve its diagnostic total
+output cap before reservation and forward it unchanged to the wrapper and
+local pilot budget. Do not silently override a 700-token admitted request to
+4,096 inside the adapter or patch unrelated generators' limits.
+
+**L1 — provider translation, response admission and replay.** Extend the
+registered OpenAI adapter behind the shared wrapper and existing
+fixture/replay/permission controls. Build one request containing the exact
+instructions/input, forced output-function schema, explicit low effort,
+`store=false`, disabled automatic truncation, and the chosen total-output cap.
+Use Responses' flat function representation and explicit tool choice;
+disable parallel calls for this single-output function. Strict-schema
+translation must preserve nullable/union semantics and fail explicitly when
+unsupported; it must not silently erase meaning to get provider acceptance.
+
+Normalize completed output, multiple typed items, function arguments, refusal,
+incomplete status, missing usage and provider failure. Read typed output items,
+not an assumed first text item. Return usage to the consuming boundary before
+semantic validation; malformed/billed output must not be reported as
+unconsumed. Incomplete output must not become a publishable partial addition.
+Keep unknown post-dispatch timeout consumption unresolved and bounded, without
+retry/failover. Test no hidden SDK retries, failure before/after dispatch,
+incorrect/multiple function output, malformed JSON, and legacy routing parity.
+
+Include the policy and schema-treatment behavior in new VCR identity. Keep
+legacy golden hashes fixed and test that endpoint or effort differences cannot
+return the same replay recording. Do not enable prompt/response capture at
+ordinary telemetry sinks; evaluation retention applies only to approved
+authored synthetic outputs.
+
+**L2 — usage and finite spend controls.** Add Luna's ordinary input, cache
+read, cache write and output rates to the shared cost owner. Verify which
+native counts are overlapping versus separate before normalization. Reasoning
+tokens are part of output, not an extra billable bucket. Test uncached, cache
+read, cache write, mixed, missing-detail and inconsistent-count cases through
+the wrapper and accounting sink—not only the adapter formula.
+
+Create the input-count request from the L1 builder's countable fields; the
+counter does not receive generation-only options such as `max_output_tokens`.
+Freeze/hash the request, count it, and dispatch exactly that admitted input.
+Fail closed on input-count failure, unknown processing/pricing, exceeded cap,
+or changed input. The local pilot spend tracker is independent of the
+product's one-unit commercial reservation and nonblocking telemetry: those
+are not an exact-dollar limiter. Reserve worst-case local spend before each
+generation, and retain that reservation for uncertain timeouts rather than
+releasing it to permit another attempt. The outer producer timeout must not
+permit an overlapping second call while physical provider work continues.
+
+**L3 — frozen Luna-low synthetic pilot.** After code review and the finite
+OpenAI-specific execution authorization, extend the current evaluation tool to
+run the five primary requests above through the real shared provider boundary.
+Controlled dependencies stay synthetic and nonpersisting. Keep prompt text,
+source material, schema meaning, request ordering and review rubric fixed;
+record provider/model/effort/endpoint/schema translation and execution limits
+as a **new treatment**, not the completed Sonnet baseline. No public web tools,
+personal data, production allocation or product feature activation.
+The checked-in fixture bytes are authoritative for those primary inputs:
+`supported_cross_source_relation` uses the east gate and old harbor road,
+whereas `known_connection_repeated` uses the bridge and old town. The older
+table's bridge/harbor shorthand must not replace the actual supported-case
+text. Hash the selected case inputs separately from its authored replay
+response, which must never be sent as an answer/example to the real model.
+
+Proposed initial envelope: five generation attempts; at most 6,000 counted
+input tokens per attempt; `max_output_tokens=4096` total reasoning plus output;
+the existing 15-second deadline; SDK/application retries zero; failover false;
+Standard processing; and a hard local $0.50 all-in ceiling. The 4,096 ceiling
+is a deliberately finite starting experiment, not a documented guarantee of
+sufficient reasoning space. Token exhaustion or timeout stays a measured
+failed attempt; changing the ceiling or deadline requires a new versioned run,
+not replacement of the failure. Output field/content bounds remain enforced.
+
+Using the conservative input assumption that every counted token could incur
+the $0.125/M cache-write rate, five full-envelope calls estimate at most
+`5 × (6000 × 0.125 + 4096 × 0.50) / 1,000,000 = $0.01399` at base Standard
+rates, or approximately $0.01539 with a 10% regional premium. This is a
+generation-only planning estimate, not measured spend or a guarantee about
+unverified account charges. Resolve any additional billable component before
+calling; unsupported/unknown charges fail the local budget preflight. No Fast,
+Batch, Flex, hosted tools or automatic supplementary generations are implied.
+
+Sparse history remains zero-dispatch. Budget withholding, timeout and changed
+access remain controlled cases. The two sealed holdouts from October 1 are not
+automatically consumed by this treatment or its implementation tests; revisit
+their approved use only for a separately justified, narrow correction.
+Each run retains every attempt, incomplete/refused/malformed response,
+provider status, exact model returned, token buckets, duration and cost basis.
+Stop the pilot on account/authentication/quota failure rather than looping.
+
+**L4 — review and conditional surface adoption.** Produce the existing blinded
+original-only versus assisted review pack. Separate semantic support, added
+substance, intent fit, usefulness and remaining effort. Verify that the repeated
+known connection is not merely restated and unrelated originals do not force
+an invented connection. Have an independent person review the outputs;
+automated checks or this small synthetic sample do not establish representative
+benefit or reliable latency percentiles. Report individual timings and the
+full denominator instead.
+
+Decide after evidence: keep Luna low for this surface, change one explicitly
+versioned treatment, or reject it for synthesis while considering bounded
+extraction/routing separately. If Anthropic credit is restored, a matched
+Sonnet comparator remains a separate authorized run; without one, do not claim
+Luna superiority or noninferiority. Production adoption needs its own approved
+surface policy, adequate commercial limits, receiving/correction evidence and
+rollback. Restoring the prior surface selection is the rollback; original
+custody, evidence admission and existing results must not change.
+
+### 13.5 Verification, coordination and immediate next action
+
+L0–L2 are one coherent backend outcome, carried through implementation and
+review before the paid pilot. They share wrapper/adapter/accounting files and
+should not be split among concurrent implementation lanes. Review can be
+independent. Coordinate any other core-provider owner before editing.
+No native work is needed for this package, so Home/Places and artifact-reader
+lanes can continue independently. A shared-role/default change would expand
+the blast radius and requires a separate decision.
+
+Planned focused regression evidence includes `tests/core/test_openai_adapter.py`,
+`test_llm_provider_routing.py`, `test_provider_usage.py`,
+`test_llm_accounting.py`, `test_llm_accounting_capabilities.py`,
+`test_llm_vcr_hash_stability.py`, existing selected-source producer/evaluation
+tests, and new Responses-shaped contract fixtures. Exercise fixture/replay
+zero-network behavior, SDK/client failure, unknown accounting and consumed
+invalid output. Run registered-surface/import/static checks and the lane's
+change-aware merge preflight with explicit three-repo bases. No database test
+may use an ambient development database. If API/DB contracts stay unchanged,
+no snapshot regeneration or migration is expected; reconsider if the actual
+implementation changes them.
+
+Checkpoints are the first complete offline L0–L2 result, a genuine unresolved
+provider/accounting/authority blocker, and the final L3/L4 evidence—not a
+handoff after each small helper. The bounded routing/adapter/accounting subset
+is implemented below. The producer's injectable execution-budget seam and a
+separate exact-dollar pilot guard are still open before L3. Paid L3 and product
+L4 are later gates, not implicit consequences of adding a key or passing
+mocked tests.
+
+### 13.6 Implementation status — October 2
+
+The current backend branch configures a dedicated
+`SELECTED_SOURCE_SYNTHESIS` role as `openai:gpt-6-luna`, with a fixed low-effort
+Responses policy and 6,000-token input ceiling. Other research roles—including
+the existing shared `RESEARCH_SYNTHESIS` consumers—retain their previous
+provider/model assignment. The selected-source surface remains dark by default;
+this does not enable a user request path, commercial allocation or provider
+dispatch.
+
+Implemented in this slice:
+
+- The shared wrapper carries endpoint/effort/input-limit policy only from the
+  registered role. The OpenAI adapter translates this one structured,
+  one-message text request to Responses; it keeps `store=false`, disables
+  truncation/parallel calls, and fails closed for unsupported statuses,
+  request shapes, sync and streaming paths.
+- The exact translated request is counted before generation. Invalid policy
+  and input-over-limit cases stop before a generation dispatch; invalid policy
+  also stops before async-client construction. The producer's existing
+  700-output-token ceiling, 15-second timeout, one-unit reservation, zero
+  retry and no-failover limits remain unchanged.
+- Responses output/usage is normalized into the current provider-neutral
+  wrapper. When usage is available, incomplete, refused, failed/unknown-status
+  and malformed-argument outputs preserve it before structured rejection;
+  multiple or unexpected functions cannot be accepted as a valid answer.
+  Missing usage is rejected with consumption unresolved. Luna rates are
+  modeled explicitly, including conservative cache-write pricing when that
+  count is unavailable. Endpoint/effort/input limit enter VCR identity while
+  old hash fixtures remain stable.
+- Core feature ownership docs describe the narrow workload. No API schema,
+  database schema, mobile consumer, embedding path or environment secret was
+  changed.
+
+Verification on this lane, using Python 3.13.0 / pytest 9.1.1:
+
+- Focused wrapper, model registry, Responses adapter, VCR, accounting,
+  selected-source producer and evaluation tests: **420 passed**. The
+  change-aware offline backend suite then completed **22,323 passed, 14
+  skipped, 1 xfailed, 52 xpassed**. Database acceptance remained skipped; no
+  model response was live.
+- `make ci-static` passed with Ruff and Mypy caches redirected to `/private/tmp`
+  because this checkout is not writable for tool caches. The surface-key check
+  passed: 55 literal keys registered and six direct retry callers allowlisted.
+- Cross-repository OpenAPI, place identity, schema bridge, API compatibility,
+  doc-links, doc-spine and canon-budget checks passed. `git diff --check` passed.
+- The `make verify-changed` umbrella command itself exited nonzero when its
+  first invocation let Mypy use the protected checkout for its cache. Its
+  underlying static check passed when rerun with the external cache path; the
+  full offline test and contract/doc checks also passed. This is an environment
+  cache-path limitation, not an observed source/type failure.
+
+No OpenAI token-count or generation call was made. The lane's existing OpenAI
+credential presence remains unverified for model access, billing and quota; do
+not treat its presence as a successful account check. The constructed replay,
+October 1 acceptance limits and sealed holdouts remain unchanged. The next
+decision is whether to authorize a separately bounded, five-case synthetic
+Luna-low run after the remaining exact-dollar execution-budget guard and
+independent review; no live run is implied by this configuration change.
