@@ -12,12 +12,15 @@ source_of_truth_for: []
 
 # Artifact experience engineering roadmap
 
-**Current execution plan — October 2:** A1 in [section 0](#a1-private-reader-and-collection-data-coherence)
-is the next assignment. P1 correction, private Thing/Collection owners and the
-P3 read-only exact-result consumer are already implemented. The
-[program baseline](vesper-program-roadmap.md#next-activation-round--october-2-roadmap-goals)
-records the verified accepted tuple and central integration rules. This plan
-update does not start the chat Goal. Model evaluation remains excluded.
+**Current lane state — October 2:** A1 in [section 0](#a1-private-reader-and-collection-data-coherence)
+is implemented and verified in the frozen candidate tuple: workspace
+`f77e055045562d04774a447b45150c6eb8e01d32`, backend
+`3e66aed35856c8963220cf211ecceacd54859c84`, and app
+`8bf11fb84a60455bfabf47a08b546d28d856603e`. The lane is clean; central
+integration owns review and landing. Do not repeat A1 or treat the tuple as
+accepted main. One separately bounded Clerk-authenticated mobile acceptance
+gate remains open below. No new chat Goal is active; model evaluation remains
+excluded.
 
 Vesper should make an original worth keeping, opening and returning to, with
 optional intelligence that adds substance. A1 hardens existing private data and
@@ -80,6 +83,36 @@ not authenticated app-to-service behavior. No approved Clerk session or device
 was assigned to this lane. Keep this gate open until that evidence is available;
 do not infer closure from the route tests, mock app tests, or prior synthetic
 native runs.
+
+**Provider-free API readiness — October 2:** the lane-local Postgres and Qdrant
+were healthy. The API started with the locally configured real Clerk issuer/JWKS,
+`SKIP_AUTH=false`, `AI_MODE=off`, `WEB_SEARCH_MODE=off`,
+`DISABLE_API_BACKGROUND_TASKS=true`, `DISABLE_LLM_BACKGROUND_LOOPS=true`, and
+`EMBEDDING_PREWARM_ENABLED=false`; read-only `/health` and `/ready` both returned
+HTTP 200, with Postgres, Qdrant, and the local embedding configuration ready.
+The first startup omitted the prewarm override and contacted Hugging Face Hub
+for the local embedding-model prewarm; it was stopped immediately. A corrected
+startup with prewarm explicitly disabled produced no prewarm activity. No
+LLM/search-provider call, protected-route request, or user-data mutation was
+made. The API process was stopped after the probes. The app lane has no local
+`EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY` configured, and no device/session is
+assigned, so this is startup readiness—not authenticated mobile acceptance.
+
+This investigation also found a registry mismatch: implementation and tests
+prewarm when `EMBEDDING_PREWARM_ENABLED` is unset, while the flag registry says
+the default is false. The registry is corrected to match the verified behavior;
+the provider-free command above must continue setting the kill switch explicitly.
+
+**Finite remaining acceptance objective:** when an approved Clerk app key,
+signed-in QA session, and assigned device are available, perform one real
+owner-scoped replacement-time Save → canonical readback/cold reopen → Undo →
+canonical readback/cold reopen against a non-sensitive test artifact. Record
+the authenticated session-to-owner mapping and app/backend revisions; verify
+the explicit offsets and expected revision progression, and that the original
+source evidence is unchanged. Stop after this one round trip. The present
+blocker is missing app auth configuration plus approved session/device—not
+another implementation package. Backend denial and persistence tests remain
+separate evidence and are not substitutes for this acceptance.
 
 **Goal completion boundary:** A1's mandatory outcome is verified private
 implementation/data coherence plus the reviewable candidate; it does not certify
