@@ -1370,8 +1370,14 @@ trip request correctly returned 403 after the synthetic identity switch; Home
 showed a recoverable partial-read notice while the intended original remained
 readable, with no cross-account content observed. This does not establish
 real-auth account-switch behavior. The focused app Jest command was attempted
-but could not start because `travel-app/node_modules/.bin/jest` is absent; app
-Jest coverage is **unverified**, not passed. Workspace `main` was
+but could not start because `travel-app/node_modules/.bin/jest` is absent.
+`make docs-check` passed. The explicit local preflight
+`make verify-changed WORKSPACE_BASE_REF=origin/main AGENT_BASE_REF=origin/main APP_BASE_REF=origin/main`
+exited **2**: workspace documentation checks passed, app `verify:fast` stopped
+because `@resvg/resvg-js` is absent, and app `verify:merge` could not resolve
+`jest/bin/jest.js`. Required app preflight is therefore **blocked/unverified**,
+not passed; do not publish this app commit until dependencies are restored and
+the change-aware preflight passes. Workspace `main` was
 `f8ae68e075a634bc75f97fe3839013f4bcfc44ec`, backend `main`
 `0a1fdf224aaf59ca713eec5eba79a34321f038a9`, and app `main`
 `03dd9ee1fa22fdb3108e7eccb8206fda380356e6`; the app commit is one commit
