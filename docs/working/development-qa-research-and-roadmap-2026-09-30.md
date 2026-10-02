@@ -64,6 +64,8 @@ adds the final three-repository merge tuple and critical-path timings. Reliabili
 improved, but faster end-to-end delivery is not yet demonstrated. This evidence
 reorders section 5 without removing the native-quality work.
 
+**Demonstrated preflight gap and repair — October 2:** workspace #57's first Reliability attempt (`37030676363`) rejected unknown execution tags and missing primary lanes in three newly packaged artifact flows. All four command-syntax shards and Merge ready passed; those passes did not certify metadata. Corrective app [PR #215](https://github.com/fy538/travel-app/pull/215) merged at `0f607bf2cef95dd4cd91c6fc9bbad10aa282a535` after all nine required checks passed. Native command bodies remain identical. Central now routes the existing Maestro inventory/metadata gate before broad local suites for changed flow/policy/package/child-pin inputs, with required Python and Node dependencies. The repair preflight passed 9,289 app cases and 193 workspace tests in 125.604s; focused routing/inventory coverage passed 33. Both old hosted runs had completed before cancellation was attempted, so no runner saving from cancellation is claimed. The final workspace retry uses the accepted corrective app pin. Keep this failure, repair and all run timings in the natural-change sample; do not call this contract/tooling candidate a prose-only positive.
+
 ## Recommendation
 
 Vesper has useful verification machinery, but the observed workflow spends too

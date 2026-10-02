@@ -99,8 +99,10 @@ plan includes the backend PyYAML and app Node dependencies. Focused routing,
 valid/violating inventory and unavailable-tool coverage passed 33 cases; all
 415 actual flows and metadata normalization passed. Explicit delta preflight
 at `cf93ce32/c5ff69a8/128b3ba12` passed 9,289 app tests and 193 workspace
-tests in 125.604s. The corrective app and refreshed workspace candidates still
-require their own passing hosted checks. This repairs a demonstrated local
+tests in 125.604s. Corrective app [PR #215](https://github.com/fy538/travel-app/pull/215)
+merged at `0f607bf2cef95dd4cd91c6fc9bbad10aa282a535` after all nine required
+hosted checks passed. The refreshed workspace candidate still requires its own
+passing hosted checks. This repairs a demonstrated local
 preflight gap; it does not certify a faster overall delivery process.
 
 ### Shared app security-audit blocker — October 2, 2026

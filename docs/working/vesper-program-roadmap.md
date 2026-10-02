@@ -26,6 +26,8 @@ Native mock-mode Keep → Life entry → exact original → viewer → Undo remo
 
 `fy538` approved only node-forge GHSA-86w9-cpqp-85rv/source 1240912/version 1.4.0 through October 9 UTC. All 26 safeguard/parser tests and actual registry audit passed. Expiry, changed identity, new high/critical findings and tooling failures remain blocking. This is risk acceptance, not a fix or release/deployment permission. Earlier checkpoints below are historical; this record supersedes their app/security/device status. Owner checkouts remain preserved.
 
+**Corrective acceptance — October 2:** app [PR #215](https://github.com/fy538/travel-app/pull/215) landed at `0f607bf2cef95dd4cd91c6fc9bbad10aa282a535` with all nine required hosted checks passing. Workspace #57's first Reliability attempt rejected three flow headers despite passing command-syntax shards; the metadata-only correction preserves every native command. Local preflight now selects the existing full flow-governance gate for changed flow/policy/package/child-pin inputs. Its repair preflight passed 9,289 app tests and 193 workspace tests; the failed hosted attempt remains a failure record. The workspace pin now names the actual accepted corrective app revision, and its refreshed protected landing remains separate.
+
 **Completed handoff checkpoint — October 2:** Connectivity's committed backend
 pending-capture replay fix (`6c9b4c51a`) and Adaptive Context's atomic research
 recovery fix (`7a6a2900`) are combined in central backend
