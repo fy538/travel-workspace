@@ -144,6 +144,19 @@ Local commands now match the bounded selection policy:
 - Workspace: `make verify-changed WORKSPACE_BASE_REF=<ref> AGENT_BASE_REF=<ref>
   APP_BASE_REF=<ref>`; all three bases are independent, explicit Git revisions.
   `--workspace-only` is for the workspace's hosted job, not cross-repo delivery.
+- The workspace selector runs `make flag-registry-check` when
+  `docs/flags/registry.yaml`, a non-test Python file under
+  `travel-agent/backend/`, or `travel-app/constants/featureFlags.ts` changes.
+  It runs `make docs-status-check` for its source files (`docs/openapi.json`,
+  `docs/journeys/STATUS.md`, `docs/journeys/journeys.yaml`,
+  `docs/flags/registry.yaml`, `docs/governance/inventory.yaml`, and
+  `docs/release/v1-scope.yaml`), the generated
+  `docs/status/current-state.md`, or an added/deleted workspace Markdown file.
+  The plan includes `travel-agent` development dependencies for these gates
+  because they need PyYAML; ordinary app component changes do not select flag
+  discovery. Registry acceptance/rejection, stale generated status, selected
+  dependencies, checker startup failure, and policy-gate ordering before broad
+  suites are covered by local tests.
 - Backend: `make ci-static` plus `make merge-check BASE_REF=<ref>`.
   `scripts/merge_scope.py --base <ref> --database` is the separate selected DB
   run and requires an explicitly disposable database. Shared/unknown changes

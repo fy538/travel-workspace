@@ -638,6 +638,30 @@ was applied. Do not repeat open-ended upstream polling. Remaining event/scope
 adoption evidence should accompany natural work, while central lands the
 independent completed backend handoffs.
 
+**Early governance preflight handoff — October 2:** the next concrete integration
+failure was a missing mobile feature-flag registration followed by stale generated
+Current State. Both escaped the selected local preflight and surfaced during
+publication of the Artifact reader. Eng Efficiency commits `8a55cac9` and
+`cb3378f6` now select the existing registry and generated-state gates from their
+actual inputs, run them before broader suites, and declare their Python dependency.
+Ordinary app component edits do not select flag discovery. Checker startup failure
+remains an error, while later selected checks still run; required hosted checks
+are unchanged.
+
+The focused clean/violating/tool-failure and ordering cases pass 29/29. The owner's
+first full run had a missing Python dependency and four denied loopback binds;
+the dependency-correct run retained those four runtime failures with 181 passes.
+Central verification of clean `cb3378f65377157050d66a222c381f08ea6c8cc0`, backend
+`eda35d6de90ac8c4056dec93630206a2cb6ffa96`, app
+`acf5bd837fe3725b00d9744727f513a601fb2498` passed all 186 tooling tests, contracts
+and docs checks in 41.824s with approved local socket access, Python 3.13.0,
+Node 24.13.0 and matching locked dependencies. No tests were skipped. The exact
+explicit-base command and original failed attempts remain in
+`docs/reliability/test-loop-baseline.json`. This is local candidate acceptance;
+protected hosted landing remains pending. It establishes earlier defect feedback,
+not a measured overall speedup. Further advisory event and natural-change samples
+belong with ordinary eligible work; do not generate commits just to exercise CI.
+
 **Remaining owned evidence — October 2: remove observed integration waste.**
 The advisory selector and positive/rejection evidence have landed; the trial is
 not waiting for another implementation of narrow selection. PR #46 required a

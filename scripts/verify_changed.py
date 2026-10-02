@@ -84,6 +84,54 @@ _BACKEND_RE = re.compile(BACKEND_PATTERN)
 _DOCS_RE = re.compile(DOCS_PATTERN)
 _SCRIPT_REF_RE = re.compile(r"\b(check[-_][\w-]+)\.(py|mjs)\b")
 
+FLAG_REGISTRY_PATH = "docs/flags/registry.yaml"
+APP_FLAG_SOURCE_PATH = "travel-app/constants/featureFlags.ts"
+CURRENT_STATE_INPUT_PATHS = {
+    "docs/openapi.json",
+    "docs/journeys/STATUS.md",
+    "docs/journeys/journeys.yaml",
+    FLAG_REGISTRY_PATH,
+    "docs/governance/inventory.yaml",
+    "docs/release/v1-scope.yaml",
+    "docs/status/current-state.md",
+}
+
+
+def _is_flag_registry_input(path: str) -> bool:
+    if path in {FLAG_REGISTRY_PATH, APP_FLAG_SOURCE_PATH}:
+        return True
+    parts = path.split("/")
+    return (
+        path.startswith("travel-agent/backend/")
+        and path.endswith(".py")
+        and "tests" not in parts
+        and "__pycache__" not in parts
+    )
+
+
+def _is_current_state_input(path: str) -> bool:
+    return path in CURRENT_STATE_INPUT_PATHS
+
+
+def _markdown_inventory_count_changed(
+    files: list[str], workspace: Repo, base_ref: str | None
+) -> bool:
+    """Detect added/deleted docs Markdown because current-state reports its count."""
+
+    if not base_ref:
+        return False
+    for path in files:
+        if not (path.startswith("docs/") and path.endswith(".md")):
+            continue
+        base_entry = _git(
+            workspace, ["cat-file", "-e", f"{base_ref}:{path}"], timeout=10
+        )
+        existed_at_base = base_entry.returncode == 0
+        exists_now = (workspace.root / path).is_file()
+        if existed_at_base != exists_now:
+            return True
+    return False
+
 
 def classify_path(path: str) -> str:
     for pattern in _HIGH_RISK_RE:
@@ -168,7 +216,9 @@ def select_commands(
     selection = Selection()
     frontend_files = [p for p in files if p.startswith("travel-app/")]
     backend_files = [p for p in files if p.startswith("travel-agent/")]
-    workspace_files = [p for p in files if not p.startswith(("travel-app/", "travel-agent/"))]
+    workspace_files = [
+        p for p in files if not p.startswith(("travel-app/", "travel-agent/"))
+    ]
     docs_files = [p for p in workspace_files if p.endswith(".md")]
     base_refs = base_refs or {}
     for key, paths in (("app", frontend_files), ("agent", backend_files)):
@@ -177,7 +227,30 @@ def select_commands(
 
     def prose_only(paths: list[str], prefix: str) -> bool:
         relative = [p.removeprefix(prefix) for p in paths]
-        return all(p.endswith(".md") and (p.startswith("docs/") or p in {"README.md", "AGENTS.md", "CLAUDE.md"}) for p in relative)
+        return all(
+            p.endswith(".md")
+            and (p.startswith("docs/") or p in {"README.md", "AGENTS.md", "CLAUDE.md"})
+            for p in relative
+        )
+
+    # Run policy checks before broad suites so registry or generated-state
+    # defects report early.
+    if any(_is_flag_registry_input(path) for path in files):
+        selection.add(
+            ("make", "flag-registry-check"),
+            workspace.root,
+            "feature-flag registry, backend flag source, or canonical mobile flag source changed",
+        )
+    if any(
+        _is_current_state_input(path) for path in files
+    ) or _markdown_inventory_count_changed(
+        files, workspace, base_refs.get("workspace")
+    ):
+        selection.add(
+            ("make", "docs-status-check"),
+            workspace.root,
+            "generated current-state input or output changed",
+        )
 
     if frontend_files and not prose_only(frontend_files, "travel-app/"):
         selection.add(
@@ -196,22 +269,59 @@ def select_commands(
             agent.root,
             "backend static checks",
         )
-        python = str(agent.root / ".venv/bin/python") if (agent.root / ".venv/bin/python").exists() else "python3"
-        selection.add((python, "scripts/merge_scope.py", "--base", base_refs["agent"]), agent.root,
-                      "backend selected offline tests; selected database checks remain required in CI")
+        python = (
+            str(agent.root / ".venv/bin/python")
+            if (agent.root / ".venv/bin/python").exists()
+            else "python3"
+        )
+        selection.add(
+            (python, "scripts/merge_scope.py", "--base", base_refs["agent"]),
+            agent.root,
+            "backend selected offline tests; selected database checks remain required in CI",
+        )
     if any(not p.endswith(".md") for p in workspace_files):
-        selection.add(("python3", "-m", "pytest", "scripts/tests/", "-q"), workspace.root, "workspace tooling changes")
-    if (any(not p.endswith(".md") for p in workspace_files)
-            or any(p.startswith(("travel-agent/backend/api/", "travel-agent/backend/core/", "travel-app/utils/api/")) for p in files)):
-        selection.add(("make", "contract-check", "api-coverage-check", "compatibility-check", "card-arrival-check", "chat-card-types-check"), workspace.root,
-                      "cross-repository contracts, not a repeat of both child suites")
+        selection.add(
+            ("python3", "-m", "pytest", "scripts/tests/", "-q"),
+            workspace.root,
+            "workspace tooling changes",
+        )
+    if any(not p.endswith(".md") for p in workspace_files) or any(
+        p.startswith(
+            (
+                "travel-agent/backend/api/",
+                "travel-agent/backend/core/",
+                "travel-app/utils/api/",
+            )
+        )
+        for p in files
+    ):
+        selection.add(
+            (
+                "make",
+                "contract-check",
+                "api-coverage-check",
+                "compatibility-check",
+                "card-arrival-check",
+                "chat-card-types-check",
+            ),
+            workspace.root,
+            "cross-repository contracts, not a repeat of both child suites",
+        )
     if docs_files:
         selection.add(
             ("make", "docs-links-check", "docs-spine-check", "docs-canon-check"),
             workspace.root,
             f"{len(docs_files)} documentation file(s) changed",
         )
-        for doc_file in docs_files if not (frontend_files or backend_files or any(not p.endswith(".md") for p in workspace_files)) else []:
+        for doc_file in (
+            docs_files
+            if not (
+                frontend_files
+                or backend_files
+                or any(not p.endswith(".md") for p in workspace_files)
+            )
+            else []
+        ):
             for repo, test_path in referenced_checker_tests(
                 doc_texts.get(doc_file, ""), repos
             ):
@@ -252,6 +362,18 @@ def required_dependency_repositories(
                 required.update(("travel-agent", "travel-app"))
             if (
                 command.argv
+                and command.argv[0] == "make"
+                and any(
+                    gate in command.argv
+                    for gate in ("flag-registry-check", "docs-status-check")
+                )
+            ):
+                # Both workspace gates parse YAML with PyYAML from the backend
+                # development requirements; the mobile checkout is already
+                # present and needs no npm installation for flag discovery.
+                required.add("travel-agent")
+            if (
+                command.argv
                 and command.argv[0] in {"python", "python3"}
                 and "pytest" in command.argv
             ):
@@ -276,7 +398,16 @@ def _git(
     repo: Repo, args: list[str], *, timeout: int = 30
 ) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
-        ["git", *args], cwd=repo.root, env={k: v for k, v in os.environ.items() if k not in {"GIT_DIR", "GIT_WORK_TREE", "GIT_COMMON_DIR", "GIT_INDEX_FILE"}}, capture_output=True, text=True, timeout=timeout
+        ["git", *args],
+        cwd=repo.root,
+        env={
+            k: v
+            for k, v in os.environ.items()
+            if k not in {"GIT_DIR", "GIT_WORK_TREE", "GIT_COMMON_DIR", "GIT_INDEX_FILE"}
+        },
+        capture_output=True,
+        text=True,
+        timeout=timeout,
     )
 
 
@@ -289,7 +420,9 @@ def resolve_base_ref(repo: Repo, base_ref: str | None) -> str:
         raise BaseRefError(f"{repo.display_name}: not a Git repository at {repo.root}")
     try:
         out = _git(
-            repo, ["rev-parse", "--verify", "--end-of-options", f"{base_ref}^{{commit}}"], timeout=10
+            repo,
+            ["rev-parse", "--verify", "--end-of-options", f"{base_ref}^{{commit}}"],
+            timeout=10,
         )
     except (subprocess.TimeoutExpired, FileNotFoundError, OSError) as exc:
         raise BaseRefError(
@@ -387,14 +520,18 @@ def main(argv: list[str]) -> int:
         "app": args.app_base_ref,
     }
     try:
-        selected_repositories = repositories[:1] if args.workspace_only else repositories
+        selected_repositories = (
+            repositories[:1] if args.workspace_only else repositories
+        )
         resolved, files = collect_changed_paths(base_refs, selected_repositories)
     except (BaseRefError, subprocess.CalledProcessError) as exc:
         print(f"verify-changed: {exc}", file=sys.stderr)
         return 2
 
     selection = select_commands(
-        files, doc_texts=read_doc_texts(files, repositories), repositories=repositories,
+        files,
+        doc_texts=read_doc_texts(files, repositories),
+        repositories=repositories,
         base_refs=resolved,
     )
     print("verify-changed: resolved bases")
@@ -432,12 +569,23 @@ def main(argv: list[str]) -> int:
             next(repo for repo in repositories if repo.key == "workspace")
         )
     exit_code = 0
+    tool_start_failed = False
     for command in selection.commands:
         print(f"\n({command.cwd}) $ {command.display}")
-        result = subprocess.run(command.argv, cwd=command.cwd).returncode
+        try:
+            result = subprocess.run(command.argv, cwd=command.cwd).returncode
+        except OSError as exc:
+            print(
+                f"verify-changed: could not start selected check {command.display} "
+                f"in {command.cwd}: {exc}",
+                file=sys.stderr,
+            )
+            tool_start_failed = True
+            exit_code = 2
+            continue
         if result != 0:
             exit_code = result
-    return exit_code
+    return 2 if tool_start_failed else exit_code
 
 
 if __name__ == "__main__":
