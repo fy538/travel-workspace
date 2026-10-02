@@ -672,6 +672,33 @@ contracts, and selected docs checks. The app runner again reported a worker
 force-exit warning after all tests passed. The latest measurement record and
 log remain in the lane host's temporary E1 evidence files.
 
+**Real-mode doctor follow-up — October 2:** app commit
+`60f0a31c698ed5836756fc7e486fc1d09d504cc0` adds an explicitly selected
+`--doctor --mode=real` path. It checks host API/Metro and installed-app identity,
+then observes the live-mode marker and Clerk session through read-only Maestro
+flows. The authenticated marker is rendered only after the auth guard sees both
+`isLoaded` and `isSignedIn`; the signed-out marker records an explicit sign-in
+screen. Generic Home visibility is no longer treated as session proof because
+skip-auth can also render it. The flows do not clear state, capture screenshots,
+or perform Keep/Save. Missing or unknown evidence retains a blocked receipt.
+
+Focused Polish-QA tests, TypeScript, app lint (0 errors; 167 warnings across the
+app), Maestro structure/inventory and metadata validation passed. The Maestro
+CLI syntax command was attempted but could not initialize its shared
+`~/.maestro/deps/applesimutils` dependency in this sandbox; semantic CLI parsing
+is unverified locally. The required hosted flow-syntax check has not run on
+this candidate yet.
+The measured current-head `make verify-changed` at workspace `37850b88`, backend
+`28a72b06`, and app `60f0a31c` used the explicit base tuple above, stable
+before/after inputs, and passed in 134.409 seconds: 1,298 app suites / 9,289
+tests, 199 workspace tests, contracts/API checks and selected documentation
+checks. The app runner emitted its existing worker force-exit warning after all
+tests passed. The first sandboxed attempt is retained as a failed measurement:
+all app tests passed, while four workspace tests were denied ephemeral loopback
+socket binds; the same gate passed with local loopback access. Both records and
+logs remain in `/private/tmp/vesper-e1-verification-records.json` and
+`/private/tmp/vesper-e1-verification-logs/` on this host.
+
 The implementation and headless acceptance are ready for the device trial, but
 E1 is not complete: this lane's runtime has no assigned device and Connectivity
 owns the reserved QA SE. Connectivity's registered C1 lane reports that the
