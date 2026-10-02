@@ -774,8 +774,48 @@ signal on one change, but it did not reduce merge wait. All attempts used
 53m16s of Reliability runner occupancy. The 4/10 retrospective shape count
 is clustered, and the prospective classifier sample remains n=1. The
 classifier, its regression suite and CI wiring have real maintenance cost;
-maintenance hours have not been measured. The isolated workflow fix and a
-new natural-change sample must pass before any separate rollout review.
+maintenance hours have not been measured. The demonstrated cancellation
+defect is fixed and its post-fix rejection case passed, but the isolated
+workflow has not yet had a natural eligible prose candidate. Keep the full
+required checks authoritative and the pilot advisory until that candidate
+and the prospective ten-change sample provide evidence for a separate
+rollout review.
+
+### Hosted trigger isolation recheck, October 2 UTC
+
+[PR #49](https://github.com/fy538/travel-workspace/pull/49), head
+`64af4b3ae8a265e08228edf999916899bbd4d7ca`, changed the required workflow's
+label trigger and moved the advisory pilot into its own workflow and
+concurrency group. The opened event ran the full required set: [Reliability
+run 36967417902](https://github.com/fy538/travel-workspace/actions/runs/36967417902),
+[Merge ready run 36967417922](https://github.com/fy538/travel-workspace/actions/runs/36967417922),
+and the [Maestro Cloud PR gate](https://github.com/fy538/travel-workspace/actions/runs/36967417900).
+All four syntax shards, `Reliability checks`, `Contract and golden paths`
+and `Merge ready` passed. The full required aggregate finished at 05:12:59Z,
+7m05s after the Reliability workflow was created at 05:05:54Z. Maestro Cloud
+smoke was skipped by its existing configuration gate. The separate pilot
+workflow's opened-event job was skipped because the opt-in label was absent.
+
+After the required aggregate finished, adding `roadmap-scope-pilot` produced
+[pilot run 36967975701](https://github.com/fy538/travel-workspace/actions/runs/36967975701),
+which completed successfully in 27s. Its uploaded plan had SHA-256
+`7ac9cbe6e2560968de73091d5e26e6255f6aaae30ba63f20d9f369823ad92f46`,
+`eligible: false`, `scope: full`, reason “Only modifications to existing
+roadmap files are eligible,” and no narrow commands. The candidate-tuple
+artifact recorded workspace merge candidate
+`1ba1d0eaafcf04476da82931e07b6dd4abbf346c`, backend
+`355a8c11df54fee27f8de3b86196b606a64a071c`, and app
+`acf5bd837fe3725b00d9744727f513a601fb2498`; tested and candidate child
+revisions matched. The label event started no new Reliability or Maestro
+workflow, and the original required checks stayed green.
+
+The Reliability run's six completed jobs used 25m29s of runner occupancy;
+`Merge ready` used 3m16s, the cloud configuration check used 4s, and the
+label-triggered pilot used 27s. The label run came after full verification, so
+this rejection case offers no merge-wait or runner saving estimate. The
+positive classifier result in PR #46 predates the split; post-isolation
+eligible hosted sample size remains zero. Do not count repeated runs of this
+same implementation PR as additional natural candidates.
 
 Compare elapsed feedback time and runner use with equivalent prose changes,
 and record how frequently that class occurs in the existing ten-change pilot.

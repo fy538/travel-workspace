@@ -46,13 +46,17 @@ rejections and cancellations. Since both paths run during the trial, do not
 claim saved wait time or runner minutes. A later required-check or protection
 change needs its own verified additive rollout and authorization.
 
-Use the implementation PR itself as the first hosted rejection case. Let
-its opened event start the required full Reliability workflow, then add the
-roadmap-scope-pilot label after that run completes. The separate pilot
-should publish eligible=false and scope=full because the PR changes workflow,
-classifier and test files; it must not start another full Reliability or
-Maestro run. Preserve both outcomes and every attempt. A cancelled pilot
-attempt remains visible, while the required full result stays authoritative.
+The implementation PR isolation check is complete: [PR #49](https://github.com/fy538/travel-workspace/pull/49)
+passed the opened-event full gate in [Reliability run 36967417902](https://github.com/fy538/travel-workspace/actions/runs/36967417902)
+and [Merge ready run 36967417922](https://github.com/fy538/travel-workspace/actions/runs/36967417922).
+After `Contract and golden paths` completed, adding the pilot label started
+[run 36967975701](https://github.com/fy538/travel-workspace/actions/runs/36967975701)
+only. Its artifact reported `eligible: false`, `scope: full`, and no narrow
+commands because the PR changes workflow, documentation and tests. No second
+Reliability or Maestro run started. The detailed candidate tuple, plan digest
+and timing receipt are in the [working roadmap](../working/development-qa-research-and-roadmap-2026-09-30.md#hosted-trigger-isolation-recheck-october-2-utc).
+A cancelled pilot attempt remains visible, while the required full result
+stays authoritative.
 After the implementation lands, use the next natural PR whose only change is
 working-roadmap body prose and whose lifecycle front matter is byte-identical.
 At the trial base, expect the same child lock as protected main (`travel-agent`
