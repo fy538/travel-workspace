@@ -15,6 +15,12 @@ repositories. Local worktrees use the same layout.
 
 ## Required checks and evidence
 
+Merge readiness runs the changed-scope preflight offline and deselects tests
+that require Postgres. The required Reliability workflow runs the two
+database-backed checker suites referenced by this plan after migrating its
+disposable Postgres service. Local `make verify-changed` should use an isolated
+disposable database whenever its selected tests carry those markers.
+
 ### Opt-in roadmap prose scope pilot
 
 The required workspace Reliability workflow runs on pull-request opened,
