@@ -620,10 +620,22 @@ Markdown, with unchanged backend `0a1fdf224aaf59ca713eec5eba79a34321f038a9`
 and app `acf5bd837fe3725b00d9744727f513a601fb2498`. Times use GitHub UTC
 timestamps; workflow duration is creation to final update, not human time lost.
 
-| Prose-only candidate | Reliability workflow window | Workspace job | Selected repeated steps |
+| Prose-only candidate | Reliability workflow window | Workspace job | Total job occupancy | Selected repeated steps |
 | --- | --- | --- | --- |
-| PR #42, `b03c08dd87ad0b2127d3e309962abe5291c05e66`; [run 36940383017](https://github.com/fy538/travel-workspace/actions/runs/36940383017) | 23:21:40–23:27:15, 5m35s | 5m09s | Backend install 51s, frontend install 23s, journey mocks 64s, database migration 4s, goldens 25s; all four syntax shards also ran |
-| PR #43, `ef8abf84009a0ba40ff35e8d1578f1549984b251`; [run 36942761248](https://github.com/fy538/travel-workspace/actions/runs/36942761248) | 23:48:40–23:54:01, 5m21s | 4m55s | Backend install 47s, frontend install 21s, journey mocks 63s, database migration 4s, goldens 24s; all four syntax shards also ran |
+| PR #42, `b03c08dd87ad0b2127d3e309962abe5291c05e66`; [run 36940383017](https://github.com/fy538/travel-workspace/actions/runs/36940383017) | 23:21:40–23:27:15, 5m35s | 5m09s | 22m58s across six jobs | Backend install 51s, frontend install 23s, journey mocks 64s, database migration 4s, goldens 25s; all four syntax shards also ran |
+| PR #43, `ef8abf84009a0ba40ff35e8d1578f1549984b251`; [run 36942761248](https://github.com/fy538/travel-workspace/actions/runs/36942761248) | 23:48:40–23:54:01, 5m21s | 4m55s | 24m37s across six jobs | Backend install 47s, frontend install 21s, journey mocks 63s, database migration 4s, goldens 24s; all four syntax shards also ran |
+
+GitHub reported zero billable minutes for both runs because this is a public
+repository; job occupancy is a separate resource measure. At the October 2
+audit, 3 of the ten most recently merged workspace PRs (#35–#44) matched the
+path-and-body-only shape: [#42](https://github.com/fy538/travel-workspace/pull/42),
+[#43](https://github.com/fy538/travel-workspace/pull/43) and
+[#44](https://github.com/fy538/travel-workspace/pull/44) each changed only
+admitted working-roadmap prose and preserved front matter. That 30% is a short,
+clustered roadmap and integration burst, not a representative frequency estimate
+or a run of the new classifier. Continue the prospective ten-change sample
+before judging whether this class is frequent enough to justify a lasting
+exception.
 
 Trial only an explicit narrow set of working-roadmap prose inputs, preserving
 their metadata, link, governance and referenced-checker obligations. Require the
@@ -637,6 +649,124 @@ and cancellation cases plus exact hosted candidate behavior before adopting a
 new scope. Keep full integration diagnostics on the appropriate code changes
 and main/nightly/manual paths. This roadmap changes no workflow, protection
 setting or required-check obligation.
+
+**October 1 implementation candidate:** the opt-in `roadmap-scope-pilot` job in
+the workspace Reliability workflow admits only body edits to the four documents
+listed above. It checks exact current-main and immutable child identities,
+requires clean child checkouts and unchanged lifecycle metadata, and reuses the
+existing documentation selector and referenced-checker tests alongside the
+governance, inventory, generated-status and child-document checks. Missing or
+uncertain evidence falls back to full scope. The pilot job is label-gated and
+is not a dependency of `Contract and golden paths`; the required full workspace
+suite and all four Maestro syntax shards remain unchanged and authoritative.
+
+This candidate cannot yet reduce the required end-to-end wait or runner use:
+the full required gate still runs during the trial, and the optional job adds
+runner work when explicitly enabled. An eligible roadmap-only PR must carry the
+`roadmap-scope-pilot` label to produce the plan artifact and hosted timing. Keep
+the artifact, full-gate result, total workflow time and runner minutes together;
+record a rejection, checker failure or cancelled run as such. This is evidence
+for reviewing whether a later additive-to-required cutover is justified, not an
+adoption or speedup claim. Any protection or required-check change remains a
+separate, authorized rollout decision.
+
+**Local validation boundary, October 1 EDT / October 2 UTC:** the classifier and
+aggregate contracts passed 53 tests in 32.005 seconds. Documentation inventory,
+status, child governance, links, spine and canon checks passed; the new-document
+guard found zero new documents. The final
+`make verify-changed` passed in 66.377 seconds on workspace
+`93301ec311b32ef72a39d090b59819b9ad12c589`, backend
+`0a1fdf224aaf59ca713eec5eba79a34321f038a9`, and app
+`acf5bd837fe3725b00d9744727f513a601fb2498`. It passed 173 workspace tooling
+tests, cross-repository contract/API/compatibility checks, and links/spine/canon
+checks; backend and app product suites were not selected for this workspace
+change. The exact commands, environment, timings and logs are recorded in the
+[verification baseline](../reliability/test-loop-baseline.json).
+
+**Hosted scope-rejection trial, October 2 UTC:** [PR #45](https://github.com/fy538/travel-workspace/pull/45)
+published the workflow and classifier candidate at head
+`eac09fb6405c67efd4daf8ee7b9ccde32130b63d`, against base
+`93301ec311b32ef72a39d090b59819b9ad12c589`; it merged as
+`f8ae68e075a634bc75f97fe3839013f4bcfc44ec`. The label-triggered
+[plan artifact](https://github.com/fy538/travel-workspace/actions/runs/36957506694)
+reported `eligible: false`, `scope: full`, reason “Only modifications to
+existing roadmap files are eligible,” and selected no narrow commands. Its
+changed-path inventory included the workflow, classifier, tests, runbook and
+measurement receipt. The accompanying candidate-tuple artifact recorded tested
+workspace merge SHA `0136f969ad19dec9d4ecf85c4a762b5a90d7353c`, backend
+`0a1fdf224aaf59ca713eec5eba79a34321f038a9`, and app
+`acf5bd837fe3725b00d9744727f513a601fb2498`; tested and candidate revisions
+matched.
+
+Adding the label cancelled the first Reliability run
+([36957506676](https://github.com/fy538/travel-workspace/actions/runs/36957506676))
+12 seconds after creation. Its required aggregate failed after 7 seconds because
+the required dependencies were cancelled. The replacement
+([36957506694](https://github.com/fy538/travel-workspace/actions/runs/36957506694))
+completed successfully: the advisory job took 25 seconds, `Reliability checks`
+took 5m48s, the four Maestro syntax shards took 4m01s, 4m41s, 4m48s and 5m26s,
+and `Contract and golden paths` passed at 02:57:03Z, 6m10s after run creation.
+Its completed jobs used 25m14s of runner occupancy; the cancelled run added
+13 seconds, for 25m27s across both runs. The run API reported creation and start
+at the same time, while the first job started 13 seconds later. Backend
+dependency installation took 63 seconds, Node setup 8 seconds, frontend
+dependency installation 26 seconds, Journey mock-walk 72 seconds and Golden
+path QA 28 seconds. GitHub reported no billable minutes for this public
+repository. The additive `Merge ready` check passed in 2m55s; Maestro Cloud PR
+smoke was skipped.
+
+This hosted case confirms full-scope rejection, tuple matching, visible
+cancellation failure and a successful full required gate. It is not an eligible
+prose-only run and gives no evidence that the narrow checks are sufficient or
+faster. The subsequent evidence update supplied the positive case below.
+
+**Hosted positive-selection receipt, October 2 UTC:**
+[PR #46](https://github.com/fy538/travel-workspace/pull/46) changed only this
+roadmap's body prose at head `fc5ba8154465f72c5285744ccc8b4a0d939a7e90`,
+base `f8ae68e075a634bc75f97fe3839013f4bcfc44ec`, and the unchanged child pair
+above. Both successful attempts produced `eligible=true`,
+`scope=working-roadmap-prose`, and plan SHA-256
+`fd8326fa451a9546301c97222bbf8a41a46ce2e4f57d828f7646b70487e18b0a`.
+Their tuple artifacts matched hosted workspace merge candidate
+`788456a3b1f595b4f8762077ec1019e4ebf9068a` and both pinned children.
+
+The selected commands were the new-document guard at the explicit base;
+`make docs-inventory-check docs-status-check docs-child-governance-check`;
+`make docs-links-check docs-spine-check docs-canon-check`; and
+`python3 -m pytest scripts/tests/test_preserved_doc_governance.py`, selected for
+a checker referenced by this document. The first advisory job took **1m42s**:
+about 23s from job start through planning, 66s installing backend development
+dependencies, 10s executing selected checks, and the remaining upload/cleanup.
+The run API reported zero creation-to-start queue time; its first job began
+13s after creation. These are GitHub API job/step windows, not developer effort.
+
+| Reliability run / attempt | Outcome | Advisory job | Required aggregate completion from attempt creation | Completed-job runner occupancy |
+| --- | --- | --- | --- | --- |
+| [36958809900 / 1](https://github.com/fy538/travel-workspace/actions/runs/36958809900) | Full and narrow paths passed | 1m42s | 6m54s | 27m57s |
+| [36958809950 / 1](https://github.com/fy538/travel-workspace/actions/runs/36958809950/attempts/1) | Cancelled; aggregate failed on cancelled dependencies | Cancelled before execution | Failed at 10s | 10s |
+| [36958809950 / 2](https://github.com/fy538/travel-workspace/actions/runs/36958809950/attempts/2) | Full and narrow paths passed after explicit rerun | 1m39s | 5m42s | 25m09s |
+
+GitHub initially refused an ordinary merge despite the successful first run;
+the cancelled duplicate retained a failed required result. Auto-merge was also
+unavailable because the repository disables it. Rerunning the cancelled
+workflow on the same commit cleared the policy blocker without an admin bypass
+or protection change. The retry API's start timestamp precedes its creation
+timestamp by one second; its required gate finished 5m43s after that start.
+Do not interpret that timestamp discrepancy as negative queue time. PR #46
+merged at 03:23:56Z as `ceb040abd16750b0b014b7e1929b83f54a3c7964`.
+
+Across both run IDs and all three attempts, Reliability used **53m16s** of
+runner occupancy. The separate `Merge ready` job added 27s and the cloud
+configuration check 2s; Maestro Cloud PR smoke remained skipped. Both plan
+artifacts and their tuple records are retained under their respective runs;
+all required Reliability jobs remained active. The original positive run's full
+required completion was 6m54s, and first PR-run creation to merge was 15m46s,
+including diagnosis and the retry. The advisory result arrived earlier for
+this one input, but required merge time did not shrink and the duplicate/run
+retry defeats any runner-cost saving claim. Two attempts of one change are
+still **n=1** for change frequency and acceptance. Keep required checks unchanged;
+resolve label-trigger/cancellation behavior and continue the ordinary-change
+sample before considering default adoption.
 
 Compare elapsed feedback time and runner use with equivalent prose changes,
 and record how frequently that class occurs in the existing ten-change pilot.
