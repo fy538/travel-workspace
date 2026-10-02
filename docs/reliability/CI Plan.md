@@ -155,7 +155,8 @@ Local commands now match the bounded selection policy:
   The plan includes `travel-agent` development dependencies for these gates
   because they need PyYAML; ordinary app component changes do not select flag
   discovery. Registry acceptance/rejection, stale generated status, selected
-  dependencies, and checker startup failure are covered by local tests.
+  dependencies, checker startup failure, and policy-gate ordering before broad
+  suites are covered by local tests.
 - Backend: `make ci-static` plus `make merge-check BASE_REF=<ref>`.
   `scripts/merge_scope.py --base <ref> --database` is the separate selected DB
   run and requires an explicitly disposable database. Shared/unknown changes

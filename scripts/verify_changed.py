@@ -233,6 +233,25 @@ def select_commands(
             for p in relative
         )
 
+    # Run policy checks before broad suites so registry or generated-state
+    # defects report early.
+    if any(_is_flag_registry_input(path) for path in files):
+        selection.add(
+            ("make", "flag-registry-check"),
+            workspace.root,
+            "feature-flag registry, backend flag source, or canonical mobile flag source changed",
+        )
+    if any(
+        _is_current_state_input(path) for path in files
+    ) or _markdown_inventory_count_changed(
+        files, workspace, base_refs.get("workspace")
+    ):
+        selection.add(
+            ("make", "docs-status-check"),
+            workspace.root,
+            "generated current-state input or output changed",
+        )
+
     if frontend_files and not prose_only(frontend_files, "travel-app/"):
         selection.add(
             ("npm", "run", "verify:fast"),
@@ -265,22 +284,6 @@ def select_commands(
             ("python3", "-m", "pytest", "scripts/tests/", "-q"),
             workspace.root,
             "workspace tooling changes",
-        )
-    if any(_is_flag_registry_input(path) for path in files):
-        selection.add(
-            ("make", "flag-registry-check"),
-            workspace.root,
-            "feature-flag registry, backend flag source, or canonical mobile flag source changed",
-        )
-    if any(
-        _is_current_state_input(path) for path in files
-    ) or _markdown_inventory_count_changed(
-        files, workspace, base_refs.get("workspace")
-    ):
-        selection.add(
-            ("make", "docs-status-check"),
-            workspace.root,
-            "generated current-state input or output changed",
         )
     if any(not p.endswith(".md") for p in workspace_files) or any(
         p.startswith(

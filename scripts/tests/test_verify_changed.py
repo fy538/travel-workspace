@@ -138,6 +138,34 @@ def test_flag_sources_select_registry_gate_and_keep_general_app_edits_out(
     )
 
 
+def test_policy_gates_precede_broader_suites_for_mixed_flag_changes(
+    tmp_path: Path,
+) -> None:
+    repos = _repositories(tmp_path)
+    selection = MODULE.select_commands(
+        ["docs/flags/registry.yaml", "travel-app/constants/featureFlags.ts"],
+        repositories=repos,
+        base_refs={"workspace": "HEAD", "app": "HEAD"},
+    )
+
+    gate_positions = [
+        index
+        for index, command in enumerate(selection.commands)
+        if command.argv
+        and command.argv[0] == "make"
+        and command.argv[1] in {"flag-registry-check", "docs-status-check"}
+    ]
+    broad_positions = [
+        index
+        for index, command in enumerate(selection.commands)
+        if "verify:merge" in command.argv or "scripts/tests/" in command.argv
+    ]
+
+    assert len(gate_positions) == 2
+    assert broad_positions
+    assert max(gate_positions) < min(broad_positions)
+
+
 def test_generated_current_state_sources_select_status_gate_and_backend_dependencies(
     tmp_path: Path,
 ) -> None:
