@@ -239,7 +239,7 @@ def dirty_input_identity(repo_path: Path) -> dict:
         ['git', '--no-pager', 'diff', '--binary', '--no-ext-diff', '--no-textconv', 'HEAD', '--'],
         repo_path, max(0, DIRTY_INPUT_BYTE_LIMIT - consumed),
     )
-    if return_code not in {0, None}:
+    if return_code != 0:
         return _unknown_dirty_identity(dirty)
     digest.update(b'diff\0' + diff)
     consumed += len(diff)
@@ -249,7 +249,7 @@ def dirty_input_identity(repo_path: Path) -> dict:
         ['git', 'ls-files', '--others', '--exclude-standard', '-z'],
         repo_path, min(STATUS_BYTE_LIMIT, max(0, DIRTY_INPUT_BYTE_LIMIT - consumed)),
     )
-    if return_code not in {0, None}:
+    if return_code != 0:
         return _unknown_dirty_identity(dirty)
     truncated = truncated or listing_truncated
     for raw_path in listing.split(b'\0'):

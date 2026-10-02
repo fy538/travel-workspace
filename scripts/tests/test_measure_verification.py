@@ -280,6 +280,28 @@ def test_git_dirty_returns_none_for_nonexistent_path(tmp_path: Path) -> None:
     assert MODULE.git_dirty(tmp_path / "does-not-exist") is None
 
 
+def test_dirty_input_identity_is_unknown_when_diff_or_listing_cannot_start(
+    tmp_path: Path, monkeypatch
+) -> None:
+    repo = tmp_path / "repo"
+    _initialize_repo(repo)
+    original = MODULE._bounded_output
+
+    for unavailable_command in ("--no-pager", "ls-files"):
+        def bounded_output(command, cwd, limit, unavailable_command=unavailable_command):
+            if command[1] == unavailable_command:
+                return b"", False, None
+            return original(command, cwd, limit)
+
+        with monkeypatch.context() as patch:
+            patch.setattr(MODULE, "_bounded_output", bounded_output)
+            identity = MODULE.dirty_input_identity(repo)
+
+        assert identity["status"] == "unknown"
+        assert identity["sha256"] is None
+        assert identity["dirty"] is False
+
+
 def test_repo_snapshot_contains_all_three_real_repositories() -> None:
     snapshot = MODULE.repo_snapshot()
     assert set(snapshot) == {"workspace", "travel-agent", "travel-app"}
