@@ -114,21 +114,47 @@ that exact decision in this goal block and stop implementation at that boundary.
 AC1 is not yet promised to be a long uninterrupted coding run.
 
 **AC1.1 investigation receipt — October 2:** the existing public-request type
-and one-attempt acquisition adapter have no reproduced defect. The gap is the
-missing selected-object caller/authority connection, not query construction:
+and one-attempt acquisition adapter are bounded and have no reproduced defect.
+The gap is the missing selected-object caller/authority connection, not query
+construction:
 the selected-source POST accepts only the private synthesis request and rejects
 unknown public lookup fields; the producer rejects a work item carrying a public
 request before source hydration, spending or model work. The mobile selected-
 source path is an exact-result GET reader and does not start this work. The
-provider-free focused suite passed **94 tests** across request validation,
-acquisition, work identity, the API route, answer-only lookup and producer
-rejection. A positive candidate-discovery fixture proves the shared adapter
-retains an injected candidate as a `search_snippet` with URL and published-date
-metadata while keeping local subject identity out of its result. Existing cases
-also cover fact lookup, empty/error/deadline outcomes, URL-only leads, answer-only
-abstention, citation source binding, malicious returned content without a
-second dispatch, and the selected-source route/producer's zero-dispatch
-rejection. No provider/network/model call was made.
+provider-free focused suite passed **147 tests** across request validation,
+acquisition, work identity, the API route, answer-only lookup, result
+normalization, producer rejection and adjacent compatibility. Positive injected
+fact/candidate responses preserve snippets, URL and published-date metadata
+while keeping local subject identity out of provider arguments/results. Existing
+cases cover empty/error/deadline outcomes, URL-only leads, answer-only abstention,
+citation source binding, malicious returned content without a second dispatch,
+and the selected-source route/producer's zero-dispatch rejection. No
+provider/network/model call was made.
+
+**AC1.3 provenance repair — October 2:** the adapter correctly labels an
+excerpt-free live-event URL as `url_candidate`, but the conversion to the
+existing generic `SourceResult` model had relabeled it `search_snippet`. That
+could make a bare link look like excerpt evidence. The conversion now retains
+only excerpt-backed results in that evidence model; URL-only leads remain
+available with their original `url_candidate` kind in the existing
+`PublicResearchResult`; because the existing generic evidence-source contract
+has no lead-only kind, the converter omits them from answer evidence rather than
+mislabeling them. This fixes the provenance error without widening the result
+contract or changing the private selected-source result. Regressions exercise
+acquisition → conversion → bounded answer handoff and verify abstention with no
+synthesis call.
+
+**AC1.4 local verification — October 2:** the focused provider-free set passed
+147 tests. The explicit-base workspace preflight also passed against workspace
+`da4c3d716aaff3e20a8d85ea35acc857810c4c16`, backend
+`28a72b0643ae168a4976c1dfe7861a7c1022267c`, and app
+`0f607bf2cef95dd4cd91c6fc9bbad10aa282a535`: backend static gates (including
+Ruff, import/architecture checks, and mypy over 1,909 files), the selected
+offline merge scope (**818 passed**), feature-flag checks, and workspace
+documentation links/spine/canonical-budget checks. No DB-marked tests, provider
+network calls, or model calls were run. API/OpenAPI/mobile types and the private
+selected-source result contract were unchanged. Hosted database/CI checks remain
+separate; central owns publication and merge.
 
 The adopted contribution contract already makes provider contact a T2 boundary:
 prepare one exact effect and ask once; explicit language does not bypass provider
