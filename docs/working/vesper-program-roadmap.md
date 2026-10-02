@@ -20,6 +20,14 @@ depends_on:
 
 # Vesper program roadmap
 
+**Current integration acceptance — October 2:** app [PR #214](https://github.com/fy538/travel-app/pull/214) merged through passing required hosted checks at `e715953796ff7c3b09b82444aa5d68f85f697f52`. It combines Connectivity's private Keep recovery/session fencing, Artifact's read-only exact-result consumer, and the conditional Expo readiness correction. Local explicit-base preflight at workspace `a71153af` / backend `c5ff69a8` / app `c7d7d7f52` passed 9,289 app tests, one snapshot, 186 workspace tests and contracts/types in 124.374s. App #213's capture candidate is included. Matching workspace governance, generated contracts and child pins accompany this update; its protected landing remains separate.
+
+Native mock-mode Keep → Life entry → exact original → viewer → Undo removal passed (one primary and three extra frames). Unsupported expected persona failed while actual Default Alex/mock mode remained selected. Tutorial-present dismissal and real authenticated interrupted binary recovery remain unverified; mock receipts do not establish production acceptance. The reader stays internal/default-off and read-only. Adaptive Context now has a securely configured local credential, but its owner reports Anthropic token counting rejected for insufficient provider credit. No generation or model output occurred; independent human judgments remain open. The separate provider-routing candidate is not part of this accepted integration and does not authorize a paid OpenAI substitution.
+
+`fy538` approved only node-forge GHSA-86w9-cpqp-85rv/source 1240912/version 1.4.0 through October 9 UTC. All 26 safeguard/parser tests and actual registry audit passed. Expiry, changed identity, new high/critical findings and tooling failures remain blocking. This is risk acceptance, not a fix or release/deployment permission. Earlier checkpoints below are historical; this record supersedes their app/security/device status. Owner checkouts remain preserved.
+
+**Corrective acceptance — October 2:** app [PR #215](https://github.com/fy538/travel-app/pull/215) landed at `0f607bf2cef95dd4cd91c6fc9bbad10aa282a535` with all nine required hosted checks passing. Workspace #57's first Reliability attempt rejected three flow headers despite passing command-syntax shards; the metadata-only correction preserves every native command. Local preflight now selects the existing full flow-governance gate for changed flow/policy/package/child-pin inputs. Its repair preflight passed 9,289 app tests and 193 workspace tests; the failed hosted attempt remains a failure record. The workspace pin now names the actual accepted corrective app revision, and its refreshed protected landing remains separate.
+
 **Completed handoff checkpoint — October 2:** Connectivity's committed backend
 pending-capture replay fix (`6c9b4c51a`) and Adaptive Context's atomic research
 recovery fix (`7a6a2900`) are combined in central backend
@@ -83,9 +91,9 @@ Keep-to-original candidate in app
 [PR #213](https://github.com/fy538/travel-app/pull/213). Artifact's app
 `76cfc1443` and workspace `5c17d29a` implement the thin default-off result
 reader; the API projection must land with matching generated app types, rather
-than independently against accepted app `acf5bd837`. Both app tracks remain
-blocked by the required Security audit. This checkpoint is local implementation
-progress, not app-main adoption or production acceptance. Existing unfinished
+than independently against accepted app `acf5bd837`. At that earlier checkpoint both app tracks were blocked by Security audit;
+the current integration acceptance above supersedes this local-only status.
+Production acceptance remains separate. Existing unfinished
 Home/Places work and staged owner edits remain outside the handoff.
 
 The completed Connectivity lane's temporary API and isolated Postgres/Qdrant

@@ -79,6 +79,32 @@ check, but the PR still waited for the full required gate and merged 37s after
 that check. This one natural candidate provides no measured reduction in merge
 latency or runner use; the prospective sample remains `n=1`.
 
+### October 2 corrective flow-governance integration
+
+Workspace PR #57's first Reliability attempt (`37030676363`) failed because
+three newly packaged synthetic artifact-correction flows had an unknown
+reporting label as their execution tag and lacked a governed primary lane.
+All four Maestro command-syntax shards passed; Merge ready (`37030676412`)
+passed. Those passes did not certify inventory/metadata and did not permit
+landing. Both runs had completed before cancellation was attempted; no actual
+cancellation or waived check occurred.
+
+The corrective app slice normalizes only those flow headers to `stability`,
+with `local-real-backend` isolation and separate synthetic execution,
+implementation-owner and disposable-database reporting properties. Command
+bodies remain byte-for-byte unchanged. `verify_changed.py` now selects the
+existing `maestro-flow-governance-check` before broad suites when flow YAML,
+flow-governance scripts, app package input or packaged child pins change. Its
+plan includes the backend PyYAML and app Node dependencies. Focused routing,
+valid/violating inventory and unavailable-tool coverage passed 33 cases; all
+415 actual flows and metadata normalization passed. Explicit delta preflight
+at `cf93ce32/c5ff69a8/128b3ba12` passed 9,289 app tests and 193 workspace
+tests in 125.604s. Corrective app [PR #215](https://github.com/fy538/travel-app/pull/215)
+merged at `0f607bf2cef95dd4cd91c6fc9bbad10aa282a535` after all nine required
+hosted checks passed. The refreshed workspace candidate still requires its own
+passing hosted checks. This repairs a demonstrated local
+preflight gap; it does not certify a faster overall delivery process.
+
 ### Shared app security-audit blocker — October 2, 2026
 
 App PRs [#213](https://github.com/fy538/travel-app/pull/213) and
@@ -88,10 +114,19 @@ required `Security audit` reports `node-forge` advisory
 The app lockfile resolves `node-forge` 1.4.0 through its production Expo
 dependency graph. The bounded usage and upstream-remediation review is in the
 [Eng Efficiency roadmap](../working/development-qa-research-and-roadmap-2026-09-30.md#bounded-app-security-blocker-review-october-2-utc).
-No compatible patched release was published in this review window. Keep the
-required audit in force and add no temporary exception. Recheck after Expo or
-`node-forge` publishes a supported fixed dependency, then require the affected
-app checks to pass before either PR can land.
+No compatible patched release was published in this review window. On October 2,
+`fy538` explicitly approved a temporary risk acceptance for source `1240912`,
+GHSA-86w9-cpqp-85rv, package `node-forge`, locked version `1.4.0`, affected
+range `<=1.4.0`, severity `high`. The existing app audit checker matches all
+these fields and the installed package-lock identities. This applies to every
+app audit invocation through 2026-10-09 UTC and fails closed starting
+2026-10-10T00:00:00Z; approval and removal owner is `fy538`.
+Changed identity or severity, another high/critical advisory, and malformed or
+unavailable audit tooling remain blocking. Moderate findings retain the existing
+nonblocking policy. Required hosted checks remain authoritative. This accepts
+bounded Expo tooling risk temporarily; it does not fix the vulnerability or
+authorize release or deployment. Recheck supported upstream remediation before
+expiry, and remove the exception when a compatible fix is accepted.
 
 Continue the prospective ten-change sample with naturally occurring changes;
 do not create a synthetic prose PR just to force another positive result. For

@@ -899,12 +899,18 @@
     },
     "GET /api/research/selected-source/{work_id}": {
       "audience": "app",
-      "consumers": [],
-      "feature_flag": "SELECTED_SOURCE_RESEARCH_ENABLED",
-      "lifecycle": "dark",
+      "consumers": [
+        {
+          "kind": "app_transport",
+          "name": "getSelectedSourceResearchResult",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
       "owner": "research",
-      "reason": "Exact owner-private selected-source result readback is implemented but has no reviewed native artifact consumer yet.",
-      "removal_trigger": "Adopt through an owner-reviewed artifact reader or retire the selected-source research capability.",
+      "reason": "Adopts exact owner-private result readback for the existing artifact reader. The native presentation remains internal and default-off; this read never invokes the separately dark producer.",
+      "removal_trigger": "Remove only with an equivalent owner-authorized exact-result reader or retirement of selected-source research.",
       "review_by": "2026-10-30"
     },
     "POST /api/research/selected-source": {

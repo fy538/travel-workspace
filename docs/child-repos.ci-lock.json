@@ -1,5 +1,5 @@
 {
-  "travel-agent": "0e7048120414c1f18c5a0e39c50c10afc9fc24f7",
-  "travel-app": "acf5bd837fe3725b00d9744727f513a601fb2498",
-  "_comment": "Immutable coordinated child SHAs for workspace reliability CI. Bump both after child changes land."
+  "travel-agent": "c5ff69a8d34e34e094b31258b5683a297d45a8e6",
+  "travel-app": "0f607bf2cef95dd4cd91c6fc9bbad10aa282a535",
+  "_comment": "Accepted protected-main child revisions: private Keep recovery and default-off exact-result reader; no release or deployment claim."
 }

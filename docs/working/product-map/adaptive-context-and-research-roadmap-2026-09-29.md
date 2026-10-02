@@ -12,6 +12,8 @@ source_of_truth_for: []
 
 # Adaptive context and research engineering roadmap
 
+**Receiving integration checkpoint — October 2:** Artifact's exact read-only consumer is accepted in app [PR #214](https://github.com/fy538/travel-app/pull/214), merge `e715953796ff7c3b09b82444aa5d68f85f697f52`; matching governance/contracts accompany the workspace update. R3 remains accepted through backend #244, preserved in backend `c5ff69a8`. Neither implementation needs repeating. The approved frozen actual-model pilot now has secure local credential access but is blocked on provider credit: the owner reports token counting rejected for insufficient credit. Its existing authorization is `claude-sonnet-4-6`, at most five primary and four conditional holdout attempts, total maximum $0.50. No generation ran or model output was produced. The owner reports two token-count attempts reached Anthropic and were rejected; that is provider failure evidence, not model-quality acceptance. After funded access exists, execute only the bounded evaluation and retain actual usage, outputs and independent human judgments. The separate Luna-low provider-support handoff is committed locally at backend `d62e00a05` and owner roadmap `4ca17fc4`; it is unpushed and unmerged, stays dark, and does not inherit the Anthropic paid-call approval. Its 420 focused tests and broader offline/static receipts are owner evidence; central review, hosted acceptance and the live spend/output-budget decision remain separate. Synthetic replay is not a substitute; no increased budget or changed model configuration is authorized.
+
 Vesper needs to turn a person's material and present circumstances into useful
 understanding, discovery, practical help and enjoyable return. This document
 maps the September research to the actual repositories and proposes how to
@@ -81,8 +83,8 @@ redispatch, and a consumed unit may have no result. No queue, replacement
 output store, provider activation or production allocation was introduced.
 Do not repeat this completed implementation; preserve it through central
 landing. The approved frozen $0.50 actual-model pilot still needs secure
-Anthropic access and later independent human judgments. Artifact's local
-GET-only reader handoff is separately blocked on app acceptance.
+Anthropic access and later independent human judgments. Artifact's GET-only reader has since landed; see the current receiving integration
+checkpoint above. Model-quality acceptance remains separate.
 
 ### Historical assignment — October 2: R3 interruption and elapsed-time correctness
 
@@ -149,6 +151,18 @@ API are landed; this round extended the existing retrieval and pairwise-treatmen
 tools through the real producer with controlled dependencies, without adding a
 second evaluation framework. Representative model output and human review remain
 the next evidence gates; they are not a reason to claim quality today.
+
+**Local receiving status — October 2 (unmerged candidate):** the exact-result GET is implemented in the
+existing Life/artifact reader through the generated mobile contract, typed HTTP
+transport, and a session/account-scoped data facade. The reader presents only an
+explicitly addressed result matching the exact retained `text/plain` original,
+revision, viewer, account and `life` consumer. The internal presentation flag
+remains false by default. A controlled native fixture demonstrates both a
+supported addition and original-only fallback; real PostgreSQL acceptance covers
+owner read and denial/invalidation. This closes the thin consumer-adoption gap
+for this reader only—not R2 relevance, model quality, human usefulness, paid
+dispatch, broader artifact formats, or Home/Places adoption. The producer POST
+remains independently dark and unallocated.
 
 For a bounded versioned case set, distinguish candidate recall, final selected
 support, semantic claim support, added substance and direct-original versus
@@ -247,11 +261,12 @@ not independently in the Strategy lane.
 **Consumer boundary:** R6 owns backend result/readback contracts and conformance
 fixtures. Strategy owns the focused-reader/data facade, exact kept editions and
 Life; Orchestration owns Home/Places receiving and practical owner adapters.
-R6's native acceptance requirements below remain whole-experience requirements,
-not permission to edit those screens in parallel. Inspect their landed adapters
-and attach evidence; the producer-owned connection exists, but relevance-ranked
-selection, comparative usefulness and native consumer adoption remain open. Do
-not declare end-to-end delivery complete.
+The existing Life/artifact reader now consumes this exact result under a
+default-off internal flag. R6's broader native acceptance requirements below
+remain whole-experience requirements, not permission to edit Home/Places in
+parallel. Relevance-ranked selection, comparative usefulness, production
+activation, broader consumer adoption and end-to-end product acceptance remain
+open. Do not declare the complete R0–R7 program delivered.
 
 **Dependencies and useful fallback:** begin with current source identity,
 selected-original owner reads, evidence fidelity and bounded public-request
@@ -1563,8 +1578,10 @@ adoption and Orchestration owns root receiving.
    and backend route level: work items and results bind an explicit source
    reference, revision, optional supported selector, viewer, purpose and
    consumer. The authenticated POST derives viewer authority from the current
-   user, and exact GET revalidates owner/source/dependency state. Both operations
-   remain dark with no native consumer; this is not provider activation.
+   user, and exact GET revalidates owner/source/dependency state. The exact
+   owner-authorized GET is now active in app transport and adopted by the
+   existing artifact reader behind a default-off internal presentation flag.
+   The producer POST remains dark; this is not provider activation.
    Map the result owner, lifetime, correction dependencies, applicable budget and
    kill switch. Review the additive contract before consumer work: the current
    Home/Places `context_ref` accepts only `places_context` and cannot stand in for
@@ -1637,12 +1654,14 @@ adoption and Orchestration owns root receiving.
    is now written and readable through the authenticated dark API, bound to the
    selected source/span, dependency revisions and originating consumer. Ordinary
    read, polling and reopen do not submit work. Producer execution and exact
-   result reopen are now exercised against real Postgres with provider dispatch
-   stubbed and test-only commercial policy; the route-level test still mocks
-   settlement and no native consumer is adopted. Compare direct-source
-   treatment with research-assisted treatment on matched inputs. Publish the
-   additive interface for the native owners to adopt and record their remaining
-   acceptance explicitly.
+   result reopen are exercised against real Postgres with provider dispatch
+   stubbed and test-only commercial policy. The exact owner GET is now active in
+   the generated app projection and adopted by the existing Life/artifact
+   reader through a default-off internal presentation flag. That receiver has
+   local native fixture evidence for both an addition and original-only
+   fallback; it does not call the producer. Compare direct-source treatment
+   with research-assisted treatment on matched inputs, and record the remaining
+   quality and consumer acceptance explicitly.
 
 The initial code seams are `backend/inbound/original_source_reader.py`,
 `backend/core/models/public_research.py`, `backend/core/public_research.py`,
@@ -4632,3 +4651,52 @@ needed before a quality claim is authorized representative model output plus
 independent human review of the separated rubric dimensions. Keep the feature
 dark; the replay neither authorizes a paid provider run nor changes product
 allocation.
+
+#### Local receiving implementation receipt — exact result in the Life artifact reader (October 2)
+
+The app now reads an already-created selected-source research result in the
+existing canonical artifact reader. The workspace API-operation policy
+activates the exact owner-authorized GET in the mobile projection; the POST
+producer remains dark and unallocated. The generated app contract, typed
+transport, explicit work-ID route parameters and session/account-scoped facade
+preserve the backend's exact work/source/revision/viewer/consumer binding. The
+facade additionally checks the canonical source identity, bounded text-span
+digest, expiry and addition/no-addition shape. Missing results leave the
+original reader as the complete fallback. The native presentation remains
+internal-only and default-off; reading, retrying or reopening never invokes
+generation.
+
+Evidence on the coordinated `codex/artifact-foundation` tuple:
+
+- App focused tests: **3 suites / 129 tests passed** for the result facade,
+  canonical reader integration and HTTP transport. `npm run typecheck` passed;
+  targeted ESLint reported **0 errors / 7 warnings**.
+- The real PostgreSQL exact-owner read, denial and lifecycle tests passed:
+  **13 passed** against the explicitly disposable
+  `artifact_result_reader_20261002` database. Provider dispatch was mocked;
+  no external model/provider call occurred.
+- `make contract-check api-coverage-check compatibility-check` passed after
+  operation-policy and generated-projection updates. The audit reported
+  **592 active, 16 dark (0 unflagged), 62 retiring operations**.
+- The registered Maestro fixture
+  `travel-app/.maestro/polish/selected-source-result-reader.yaml` passed
+  **1/1** on the dedicated iOS 18.2 `Vesper QA SE` simulator. It showed a
+  synthetic addition and original-only fallback through the existing reader.
+  This is not a live producer result or production-authenticated consumer
+  acceptance.
+- The app implementation is committed on `codex/artifact-foundation` as
+  `76cfc1443`; the workspace policy/projection/docs increment is committed in
+  the separate workspace repository. The backend implementation did not
+  change.
+
+This closes thin read-only receiving integration for the Life/artifact reader,
+not R2 relevance or semantic support, actual-model quality, matched usefulness,
+intent fit, remaining user effort, other native consumers, production
+allocation, or R0–R7 package acceptance. Keep generation dark until those
+independent gates are resolved.
+
+Integration boundary: app `76cfc1443` and workspace `5c17d29a` remain
+unmerged. The app's required Security audit is the current shared blocker;
+central integration owns the coordinated acceptance and pin update. This
+receipt establishes the owner lane's stated local evidence only. It does not
+promote the generated API adoption or native reader into accepted main.

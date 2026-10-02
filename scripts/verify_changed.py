@@ -252,6 +252,22 @@ def select_commands(
             "generated current-state input or output changed",
         )
 
+    if any(
+        (path.startswith("travel-app/.maestro/") and path.endswith((".yaml", ".yml")))
+        or path in {
+            "docs/child-repos.ci-lock.json",
+            "travel-app/package.json",
+            "scripts/validate-maestro-flows.py",
+            "travel-app/scripts/maestro/normalize-metadata.mjs",
+        }
+        for path in files
+    ):
+        selection.add(
+            ("make", "maestro-flow-governance-check"),
+            workspace.root,
+            "Maestro flow policy or packaged child revision changed",
+        )
+
     if frontend_files and not prose_only(frontend_files, "travel-app/"):
         selection.add(
             ("npm", "run", "verify:fast"),
@@ -365,13 +381,15 @@ def required_dependency_repositories(
                 and command.argv[0] == "make"
                 and any(
                     gate in command.argv
-                    for gate in ("flag-registry-check", "docs-status-check")
+                    for gate in ("flag-registry-check", "docs-status-check", "maestro-flow-governance-check")
                 )
             ):
-                # Both workspace gates parse YAML with PyYAML from the backend
-                # development requirements; the mobile checkout is already
-                # present and needs no npm installation for flag discovery.
+                # Policy gates parse YAML with PyYAML from the backend
+                # development requirements. Maestro metadata also uses the
+                # app YAML dependency; flag discovery needs only app source.
                 required.add("travel-agent")
+                if "maestro-flow-governance-check" in command.argv:
+                    required.add("travel-app")
             if (
                 command.argv
                 and command.argv[0] in {"python", "python3"}

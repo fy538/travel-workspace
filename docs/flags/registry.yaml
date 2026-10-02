@@ -260,6 +260,28 @@ flags:
       failure omits the optional contribution rather than generating without
       continuity ownership.
 
+  - name: ARTIFACT_RESEARCH_RESULT_READER_ENABLED
+    repo: travel-app
+    location: constants/featureFlags.ts:ARTIFACT_RESEARCH_RESULT_READER_ENABLED
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    target_journey: P02,P05,P07
+    cohort: internal builds with explicit EXPO_PUBLIC_ARTIFACT_RESEARCH_RESULT_READER_ENABLED=true only
+    kill_switch: Set EXPO_PUBLIC_ARTIFACT_RESEARCH_RESULT_READER_ENABLED=false; the existing artifact reader remains original-only and never dispatches generation.
+    promotion_removal_question: >
+      By 2026-10-30, do exact work/source/revision and account-fenced reads,
+      owner lifecycle acceptance and matched human usefulness justify retaining
+      or broadening this reader presentation, or should it remain dark or be removed?
+    notes: >
+      GET-only presentation of an explicitly addressed existing result. No work-ID
+      discovery, POST dispatch, paid allocation or producer activation follows.
+      The independent server producer flag and reservation remain required for
+      generation. Registry admission preserves the false default; the local
+      fixture and transport proofs do not establish generated-output quality.
+
   - name: SELECTED_SOURCE_RESEARCH_ENABLED
     repo: travel-agent
     location: backend/core/feature_flags.py:selected_source_research_enabled
@@ -269,7 +291,7 @@ flags:
     expires: 2026-10-30
     status: active
     target_journey: P02,P05,P07
-    cohort: none by default; explicit authenticated request only when the server flag and a real AI_RESEARCH_LIVE reservation both admit dispatch
+    cohort: none by default; explicit authenticated request only when the server flag and a real AI_RESEARCH_SYNTHESIZE reservation both admit dispatch
     kill_switch: Set SELECTED_SOURCE_RESEARCH_ENABLED=false; fresh selected-source synthesis returns unavailable, while owner-authorized reads of already stored unexpired results remain available.
     promotion_removal_question: >
       By 2026-10-30, do exact-source correctness, matched usefulness,
