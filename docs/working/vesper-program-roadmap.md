@@ -20,7 +20,29 @@ depends_on:
 
 # Vesper program roadmap
 
-## Direction and current assignment
+**Completed handoff checkpoint — October 2:** Connectivity's committed backend
+pending-capture replay fix (`6c9b4c51a`) and Adaptive Context's atomic research
+recovery fix (`7a6a2900`) are combined in central backend
+[PR #244](https://github.com/fy538/travel-agent/pull/244), candidate
+`0e7048120414c1f18c5a0e39c50c10afc9fc24f7`. It merged normally at `eda35d6de90ac8c4056dec93630206a2cb6ffa96` after
+all required hosted checks passed; local explicit-base preflight also passed. Do not repeat their completed local
+implementation goals while central integration owns acceptance.
+
+Connectivity's app session-fencing handoff `84e875cb5` extends the existing
+Keep-to-original candidate in app
+[PR #213](https://github.com/fy538/travel-app/pull/213). Artifact's app
+`76cfc1443` and workspace `5c17d29a` implement the thin default-off result
+reader; the API projection must land with matching generated app types, rather
+than independently against accepted app `acf5bd837`. Both app tracks remain
+blocked by the required Security audit. This checkpoint is local implementation
+progress, not app-main adoption or production acceptance. Existing unfinished
+Home/Places work and staged owner edits remain outside the handoff.
+
+The completed Connectivity lane's temporary API and isolated Postgres/Qdrant
+services were verified and stopped centrally; volumes and all owner checkouts
+were preserved. No provider, release flag or security exception was enabled.
+
+
 
 Build the complete product on the connected system already implemented.
 The execution model remains **three autonomous product lanes in three

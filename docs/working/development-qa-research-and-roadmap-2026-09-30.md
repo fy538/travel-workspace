@@ -605,7 +605,40 @@ Do not start a new integration or cleanup queue alongside this section.
 | Conditional | Package 4: build reuse and measured setup optimizations | Existing checkout improvements are landed with limited before/after evidence. Native reuse requires a measured remaining setup bottleneck and safe environment identity. | Mobile and build owners |
 | Ongoing | Package 5: product-outcome acceptance | Remains with product lanes. Cleanup preserves their infrastructure, authority and acceptance requirements while design continues. | Product users |
 
-**Next owned assignment — October 2: remove observed integration waste.**
+**Observed completion checkpoint — October 2:** the remaining unrelated-label
+cancellation repair landed in
+[workspace PR #51](https://github.com/fy538/travel-workspace/pull/51), merge
+`a483be795b6b32b0b2778be6dea64b50fda46e09`. At exact head `ced324fd`, retry
+pilot [36973924420](https://github.com/fy538/travel-workspace/actions/runs/36973924420)
+was observed in progress; the `documentation` label created skipped run
+[36973934794](https://github.com/fy538/travel-workspace/actions/runs/36973934794).
+The active pilot completed successfully in 28s. Original Reliability
+[36973727972](https://github.com/fy538/travel-workspace/actions/runs/36973727972)
+and Merge readiness
+[36973728084](https://github.com/fy538/travel-workspace/actions/runs/36973728084)
+remained intact and passed. The first observer missed the active window on
+36973749570; retain that attempt as successful verification without race proof.
+The downloaded plan is `scope=full`, `eligible=false`; synthetic tested workspace
+`d8a5826d4a08d3702f9284dbc2f4414e5932b528`, backend `355a8c11d`, app `acf5bd837`.
+Central local preflight passed 176 tooling tests plus selected contracts in
+45.422s. This closes the demonstrated unrelated-label edge, not all synchronize,
+failed-rerun or natural-change evidence. Natural eligible post-isolation sample
+size remains zero; no overall engineering speedup is established.
+
+The bounded app-blocker recheck confirmed `node-forge@1.4.0` also lies on the
+production dependency path `expo-updates@55.0.30` →
+`@expo/code-signing-certificates@0.0.6` → `node-forge`. The actual audit uses
+`npm audit --omit=dev`; this is not a dev-only classification. The
+[reviewed advisory](https://github.com/advisories/GHSA-86w9-cpqp-85rv) still
+lists no patched version, and
+[upstream PR #1152](https://github.com/digitalbazaar/forge/pull/1152) remains
+unreleased. No supported compatible released remedy was found in this bounded
+pass. Keep app #213/#214 blocked; no override, crypto fork or audit exception
+was applied. Do not repeat open-ended upstream polling. Remaining event/scope
+adoption evidence should accompany natural work, while central lands the
+independent completed backend handoffs.
+
+**Remaining owned evidence — October 2: remove observed integration waste.**
 The advisory selector and positive/rejection evidence have landed; the trial is
 not waiting for another implementation of narrow selection. PR #46 required a
 cancelled duplicate to be rerun despite a passing same-head workflow. Its three
