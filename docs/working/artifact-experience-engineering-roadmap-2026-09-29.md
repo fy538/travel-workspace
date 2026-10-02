@@ -12,6 +12,8 @@ source_of_truth_for: []
 
 # Artifact experience engineering roadmap
 
+**Current acceptance — October 2:** combined central app [PR #214](https://github.com/fy538/travel-app/pull/214) landed at `e715953796ff7c3b09b82444aa5d68f85f697f52` with required hosted checks passing. P3's exact-result transport, session-scoped reader and original-only fallback are accepted implementation; matching governance/projection/types accompany the workspace update. Presentation stays internal/default-off, reads never dispatch generation, and producer POST remains dark. Combined local preflight passed 9,289 app tests and 186 workspace tests. Native fixture evidence remains mock evidence. The frozen live-model/usefulness evaluation still needs secure credentials and independent human judgments; authenticated production use is not certified. Do not reimplement P3 or widen presentation. Earlier local-handoff receipts below are historical.
+
 Vesper should turn an ordinary contribution into a recognizable thing worth
 keeping, opening and returning to. Around that stable object, the system can
 offer worthwhile connections to personal material, collections, other people
@@ -26,8 +28,8 @@ another assistant or a universal artifact service.
 
 **Current continuation — October 2:** P1 native correction/readback has its
 bounded local real-HTTP/disposable-Postgres receipt. Backend PR #243 and workspace
-PR #48 are merged; app PR #214 is implemented but remains blocked by its required
-security audit. The receipt uses synthetic data and SKIP_AUTH, so authenticated
+PR #48 are merged; app PR #214 has since landed as recorded in the current
+acceptance above. The receipt uses synthetic data and SKIP_AUTH, so authenticated
 production behavior remains open. Do not repeat the completed happy-path goal or
 represent the app candidate as accepted main.
 
@@ -42,7 +44,8 @@ These carried receipts do not convert that failed aggregate into a pass.
 
 Central preparation reconciles this handoff with the newer roadmaps and passes
 the generated-contract, API-governance, compatibility and docs checks. The app
-candidate remains unmerged because its required Security audit fails. The API
+candidate was blocked by Security audit at this historical preparation checkpoint;
+the current acceptance above records its approved, checked landing. The API
 GET adoption and generated types are one coordinated candidate: the projection
 cannot land against accepted app `acf5bd837` without its matching generated
 schema. Keep the original-only fallback, internal/default-off presentation,

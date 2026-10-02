@@ -12,6 +12,10 @@ source_of_truth_for: []
 
 # Faster development with trustworthy QA
 
+**Current integration receipt — October 2:** readiness correction and native wrong-persona rejection are included in combined app [PR #214](https://github.com/fy538/travel-app/pull/214), accepted merge `e715953796ff7c3b09b82444aa5d68f85f697f52`. Connectivity's mock-mode Life Keep/original/viewer/Undo flow passed (one primary and three extra frames). Unsupported expected persona failed at its exact identity assertion while Default Alex/mock mode stayed selected. Tutorial-present dismissal and authenticated interruption remain separately unverified.
+
+The founder approved only the exact node-forge exception below through October 9 UTC; 26 checker/parser tests and actual registry audit passed, with required hosted checks preserved. Final local integration preflight ran once on immutable tuple `a71153af/c5ff69a8/c7d7d7f52` in 124.374s (9,289 app tests, 186 workspace tests, contracts/types). These are measured receipts, not an overall productivity percentage. Continue the existing natural-change pilot and supported upstream remediation; do not duplicate the completed investigation or claim a vulnerability fix.
+
 **Decision:** What should Vesper change about building, testing and reviewing work?
 **Research cutoff:** October 1, 2026, with October 2 targeted code, hosted-run
 and upstream-advisory rechecks. **Planning and execution update:** October 2,

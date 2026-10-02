@@ -12,6 +12,8 @@ source_of_truth_for: []
 
 # Adaptive context and research engineering roadmap
 
+**Receiving integration checkpoint — October 2:** Artifact's exact read-only consumer is accepted in app [PR #214](https://github.com/fy538/travel-app/pull/214), merge `e715953796ff7c3b09b82444aa5d68f85f697f52`; matching governance/contracts accompany the workspace update. R3 remains accepted through backend #244, preserved in backend `c5ff69a8`. Neither implementation needs repeating. The approved frozen actual-model pilot remains blocked on secure Anthropic credential access: `claude-sonnet-4-6`, at most five primary and four conditional holdout attempts, total maximum $0.50. No provider/count-token calls or spend occurred. After secure access exists, execute only that bounded evaluation and retain outputs and independent human judgments. Synthetic replay is not a substitute; no increased budget or changed model configuration is authorized.
+
 Vesper needs to turn a person's material and present circumstances into useful
 understanding, discovery, practical help and enjoyable return. This document
 maps the September research to the actual repositories and proposes how to
@@ -81,8 +83,8 @@ redispatch, and a consumed unit may have no result. No queue, replacement
 output store, provider activation or production allocation was introduced.
 Do not repeat this completed implementation; preserve it through central
 landing. The approved frozen $0.50 actual-model pilot still needs secure
-Anthropic access and later independent human judgments. Artifact's local
-GET-only reader handoff is separately blocked on app acceptance.
+Anthropic access and later independent human judgments. Artifact's GET-only reader has since landed; see the current receiving integration
+checkpoint above. Model-quality acceptance remains separate.
 
 ### Historical assignment — October 2: R3 interruption and elapsed-time correctness
 

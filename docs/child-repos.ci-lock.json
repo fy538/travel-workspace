@@ -1,5 +1,5 @@
 {
   "travel-agent": "c5ff69a8d34e34e094b31258b5683a297d45a8e6",
-  "travel-app": "265b0b3393c3e435321591532bc9541dd3c0420d",
-  "_comment": "Immutable coordinated review tuple for capture recovery and exact result reader; this branch is not accepted main."
+  "travel-app": "e715953796ff7c3b09b82444aa5d68f85f697f52",
+  "_comment": "Accepted protected-main child revisions: private Keep recovery and default-off exact-result reader; no release or deployment claim."
 }
