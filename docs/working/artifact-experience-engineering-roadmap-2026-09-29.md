@@ -3200,3 +3200,51 @@ pending, and its assigned-device editor capture still lacks the software
 keyboard. The reason for the ownership choice remains recorded in section 0;
 the UI/test/verdict work stayed in the existing coordinated
 `codex/artifact-foundation` tuple, with no duplicate lane or worktree.
+
+### October 1 explicit correction rehearsal: startup disclosure and live native flow
+
+The focused Save → canonical readback → Undo → canonical readback rehearsal
+uses only synthetic owner, submission, candidate, and source records in the
+lane's disposable local PostgreSQL database. The first local backend startup
+attempt also made an outbound request to public Hugging Face model-host
+metadata while resolving the configured local model assets. No user content,
+account data, credentials, or artifact/source payload was sent in that
+metadata lookup. The backend was restarted with Hugging Face offline flags for
+the rehearsal; this disclosure is separate from the app's local API traffic.
+
+An early native attempt exposed an important acceptance gap: the editor showed
+“Correction saved” even though the submitted offset remained `-04:00`. The
+canonical projection exposed that false-green. The live flow now verifies the
+entered `+01:00` value before Save, then checks the full persisted time window
+after Save and the source-extracted original after Undo. This is the first
+evidence here for a correction through the native app transport, not a mock
+mutation or a UI-only confirmation.
+
+The changes are committed independently in the two child repositories:
+backend 7c8da9dd4 and app 9164f9750. No branch was pushed or merged.
+
+| Boundary | Exact verification | Result and limit |
+| --- | --- | --- |
+| Startup/network disclosure | First local backend startup attempt; final API process started with `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1` | The initial startup attempted a public Hugging Face model-host metadata lookup before offline mode was enabled. No user/account data, credentials, or app/artifact payload was sent. The final rehearsal backend was launched with both offline flags. This is a bounded disclosure about that startup path, not a claim that all local tooling or telemetry is network-silent. |
+| Backend invariants | `env QA_ALLOW_DATABASE=vesper_artifact_correction_20261001a32cabd9d TEST_DATABASE_URL=postgresql://vesper:localdev@127.0.0.1:64743/vesper_artifact_correction_20261001a32cabd9d TEST_DATABASE_DISPOSABLE=1 PYTEST_ADDOPTS='-p no:cacheprovider' ./.venv/bin/python -m pytest tests/inbound/test_candidate_owner_lifecycle_postgres.py -q -k revisioned_time_corrections_apply_successively_and_dedupe_exact_retry -rs` | 1 passed / 2 deselected. Covers wrong-owner denial, exact idempotent retry, changed-payload and stale-revision conflicts, successive correction revisions, and unchanged original source bytes. Run against the explicitly disposable lane database. |
+| Native Save/readback/source/Undo | `bash scripts/maestro/run-canonical-artifact-replacement-time-live.sh` with the lane API `http://127.0.0.1:64746`, Metro `http://192.168.1.153:64747`, and fixture `20261001finalb`; Vesper QA SE, iOS 18.2 | Passed. Maestro runs `2026-10-01_233524` (Save + cold reopen), `2026-10-01_233601` (exact original source reader), and `2026-10-01_233614` (Undo + cold reopen) all completed. The script verified persisted correction revision 6 with start `2026-10-07T18:00:00+01:00` and end `2026-10-07T20:00:00-04:00`; after Undo it verified revision 7 restored source-extracted start/end at `-04:00`. Exact original source bytes matched before Save, after Save, and after Undo. Debug output is retained at `/tmp/vesper-artifact-correction-20261001finalb`. |
+| App-focused checks | `npx jest --runInBand --no-cache __tests__/utils/api/httpIntakeEndpoints.test.ts __tests__/data/intakeCorrectionSession.test.tsx __tests__/screens/canonical-artifact-reader.test.tsx __tests__/utils/api/http.test.ts`; `npm run typecheck`; `npm run lint -- --no-cache`; `npm run api-boundaries`; `npm run schema-bridge`; `npm run home-surface-budgets`; `npm run test:typecheck:contracts`; `npm run native-compatibility`; `npm run brand:icons:check`; Maestro flow guard test and runner `bash -n` | 4 suites / 135 tests passed. All listed checks passed; lint reported 0 errors / 167 existing warnings. The normal `verify:fast` lint invocation could not write Expo's ignored `.expo/cache/eslint` file in this sandbox (`EPERM`), so the same Expo lint command was rerun with `--no-cache`. |
+| App changed-scope merge suite | `npm run verify:merge -- --base acf5bd837fe3725b00d9744727f513a601fb2498` | Passed after correcting the transport test to assert the account-session revision fence: 1,297 suites / 9,270 tests / 1 snapshot. This was the full-suite fallback because new Maestro YAML/scripts and shared API adapters are outside the narrow local-source selector. |
+| Cross-repository and documentation checks | `make ci-static`; backend `scripts/merge_scope.py --base 0a1fdf224aaf59ca713eec5eba79a34321f038a9`; `make contract-check api-coverage-check compatibility-check card-arrival-check chat-card-types-check`; `make docs-links-check docs-spine-check docs-canon-check` | Backend static checks and selected offline suite passed (22,294 passed, 14 skipped, 1 xfailed, 52 xpassed); API projection/type parity and compatibility checks passed; docs checks passed (555 living Markdown files, 10 canonical entry points, 8 authorities within budget). The first composite `make verify-changed` attempt exited nonzero on the stale app expectation and Expo cache `EPERM`; after the test correction, the full app suite, app fast-gate subcommands, cross-contract checks, and docs checks passed. The backend checks had passed during the initial composite run; the composite command itself was not rerun end-to-end. |
+| Auth and persistence boundary | Synthetic rehearsal fixture and local `SKIP_AUTH` backend | The device used the app's real local HTTP client and a disposable local PostgreSQL database, with a synthetic development owner. This establishes native local persistence and canonical readback, but not Clerk-authenticated user behavior, remote service acceptance, Android/physical-device, or VoiceOver behavior. |
+
+Commit-hook boundary: app secret-prefix and untracked-import hooks passed.
+Backend hooks passed with RUFF_CACHE_DIR=/private/tmp/vesper-artifact-foundation-ruff-cache;
+the formatter's write-mode hook was skipped because the sandbox denied writes
+to the checkout, after explicit ruff format --check and ruff check both passed
+on the committed backend files. All other applicable backend hooks passed.
+
+The previous app-native startup failure is treated separately from the
+metadata disclosure: opening the embedded app and then replacing its JavaScript
+runtime reproduced an iOS ExpoModulesJSI teardown crash. The current rehearsal
+flows now cold-open the Expo development-client URL directly before deep-linking
+to the reader. Initial attempts also used a stale Metro bundle or a synthetic
+API actor that did not match the fixture owner; the fail-closed runner rejected
+the actor mismatch before running a flow. The final run used the refreshed
+lane-local bundle and matching API owner. The earlier crash's upstream
+similarity is not treated as proof of root cause or of a general Expo defect.
