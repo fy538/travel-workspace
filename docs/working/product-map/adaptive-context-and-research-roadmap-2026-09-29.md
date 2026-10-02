@@ -67,6 +67,22 @@ hand over the evaluated replay plus that exact missing evidence. Do not turn
 this into automatic production allocation, a new retrieval index, public
 lookup, native screen work or personal-novelty claims.
 
+**First evaluation deliverable:** the current retrieval fixture contains six
+constructed known-answer cases; the treatment fixture contains seven authored
+examples, with no live-model outputs or human participants. Preserve them as
+regressions, then run a bounded case set through the actual producer with
+controlled inputs and record where model output is replayed versus generated.
+For authorized recorded/generated outputs, pair the original-only and assisted
+treatments, randomize presentation order and obtain independent human judgments
+for support, added substance and remaining effort. Calibrate any model grader
+against those judgments; do not relabel authored preferences as human review.
+Retain all eligible attempts, no-addition/failure outcomes, repeated runs and
+cost/latency in the denominator. If cases drive a prompt/selection change, check
+separate held-out cases before claiming improvement. Use the existing evaluation
+tools and R7 receipt; this does not authorize paid production allocation or a
+new evaluator platform. A replay-only result closes deterministic wiring, with
+model quality and human usefulness explicitly still open.
+
 Complete the first R0/R1/R2/R6 connection with the minimum R3/R4/R5 safeguards
 and R7 comparisons. Exact original/text-span reads, bounded acquisition, the
 selected-source work-item contract and private result owner now exist, and an
@@ -174,7 +190,7 @@ inspected for the next intake is:
 
 | Repository | Accepted main revision |
 | --- | --- |
-| Workspace | `0b6dfe093c06559827dc23648c51b8329cb9665e` — PRs #41/#42 |
+| Workspace | `0b8792793fc25eceb8967edf7b832fe0f0194934` — PRs #41/#42/#43 |
 | Backend | `0a1fdf224aaf59ca713eec5eba79a34321f038a9` — PR #241 |
 | App | `acf5bd837fe3725b00d9744727f513a601fb2498` — PR #212 |
 

@@ -13,17 +13,18 @@ source_of_truth_for: []
 # Faster development with trustworthy QA
 
 **Decision:** What should Vesper change about building, testing and reviewing work?
-**Research cutoff:** September 30, 2026. **Planning and execution update:**
-October 1, following the founder's request to refocus this lane after central
+**Research cutoff:** October 1, 2026. **Planning and execution update:**
+October 1, following the founder's request to recheck priorities after central
 integration and Git cleanup. [Section 5](#5-improvement-roadmap) remains the
-single execution queue. Begin with conflicting operating assumptions and one
-verified obsolete implementation family, while measuring delivery friction.
+single execution queue. Begin with the next measured verification bottleneck;
+fix obsolete assumptions when they obstruct current work and retire an old
+implementation family only when its maintenance burden justifies the work.
 Keep the existing native QA and same-coverage test improvements; unfinished
 infrastructure awaiting product design is not an obsolete-code candidate.
 
 The accepted integration landed at workspace
-`7018d055c6635b0edb5726612375c03f2c785520`; roadmap-only PR #42 advanced the
-inspected workspace main to `0b6dfe093c06559827dc23648c51b8329cb9665e`.
+`7018d055c6635b0edb5726612375c03f2c785520`; roadmap-only PRs #42/#43 advanced the
+inspected workspace main to `0b8792793fc25eceb8967edf7b832fe0f0194934`.
 Its child pair remains backend `0a1fdf224aaf59ca713eec5eba79a34321f038a9`, and app
 `acf5bd837fe3725b00d9744727f513a601fb2498`, landed through central integration
 [workspace PR 41](https://github.com/fy538/travel-workspace/pull/41),
@@ -69,9 +70,11 @@ retaining deeper review for shared foundations and coherent product milestones.
 
 The first integration investments—faster workspace flow validation, early
 prerequisite checks, deterministic app tests and less repeated execution—have
-landed with the evidence limits above. Section 5 now prioritizes bounded
-obsolete-assumption/implementation retirement and the next measured feedback
-cost, rather than repeating those delivered CI changes.
+landed with the evidence limits above. Section 5 now prioritizes a bounded trial
+against observed feedback cost. The earlier cleanup-first order had weaker
+benefit evidence: already-skipped tests incur no execution cost, and moving
+documents alone has not demonstrated faster delivery. Cleanup remains useful
+where an active task encounters conflicting ownership or repeated legacy work.
 Choosing evidence for the changed behavior and making targeted native QA reliable
 remain required work, but do not block these device-independent improvements.
 Screenshots primarily establish visual state and support failure diagnosis;
@@ -594,28 +597,64 @@ Do not start a new integration or cleanup queue alongside this section.
 
 | Order | Work | Status and dependency | First beneficiaries |
 | --- | --- | --- | --- |
-| 1 — bounded closeout | Package 6: reconcile obsolete operating assumptions and active documentation | The central four-roadmap reconciliation resolves stale integration ownership, baselines and producer availability. Check only remaining affected owner references; do not repeat that completed roadmap pass. Then retire a bounded set of superseded working documents, preserving unique rationale and fixing incoming links. Three earlier archive migrations are complete. | All lanes |
-| 2 | Package 7: retire one verified obsolete code, API or dependency family | New bounded queue item. Establish current consumers, replacement behavior and retirement authority before selecting the first family. The 62 retiring API operations are candidates, not 62 approved deletions. | Lanes repeatedly touching compatibility paths |
-| 3 | Package 3A/3B/3C: reduce measured feedback and integration cost | Implementations landed. Use the existing ten-change pilot to choose the next demonstrated bottleneck: flaky retries, repeated setup/check execution or broad-test fallback. Default app sharding stays unchanged; the passed experiment alone does not justify adoption. | All integrations |
-| 4 | Package 1: reliable targeted native QA | One targeted Home capture passed; broader Home/Places wrong-state replay remains open. Work independently when the assigned device is available. | Orchestration and Strategy |
-| 5 | Package 2: proportionate review and shorter task context | Tooling landed; changed review scope still requires clean cases and known-defect detection, including the unresolved replay. | All lanes, especially mobile work |
+| 1 | Package 3A/3B/3C: reduce measured feedback and integration cost | Existing implementations landed. First candidate is the narrow working-roadmap-only hosted scope below; use the ten-change pilot to judge frequency and benefit before wider adoption. Default app sharding stays unchanged; the passed experiment alone does not justify adoption. | All integrations |
+| 2 — independently when needed | Package 1: reliable targeted native QA | One targeted Home capture passed; broader Home/Places wrong-state replay remains open. Prioritize a specific native blocker for the current Artifact/Orchestration assignments when the assigned device is available. | Orchestration and Artifact |
+| 3 | Package 2: proportionate review and shorter task context | Tooling landed; changed review scope still requires clean cases and known-defect detection, including the unresolved replay. | All lanes, especially mobile work |
+| As encountered | Package 6: reconcile obsolete operating assumptions and active documentation | The central four-roadmap reconciliation resolves stale integration ownership, baselines and producer availability. Fix remaining contradictions in affected owners; do not repeat a global inventory or archive pass without an observed navigation cost. Three earlier archive migrations are complete. | All lanes |
+| Conditional | Package 7: retire one verified obsolete code, API or dependency family | Select a family with demonstrated repeated tracing/rework cost, current replacement and no unresolved consumer. The 62 retiring API operations are candidates, not approved deletions. | Lanes repeatedly touching compatibility paths |
 | Conditional | Package 4: build reuse and measured setup optimizations | Existing checkout improvements are landed with limited before/after evidence. Native reuse requires a measured remaining setup bottleneck and safe environment identity. | Mobile and build owners |
 | Ongoing | Package 5: product-outcome acceptance | Remains with product lanes. Cleanup preserves their infrastructure, authority and acceptance requirements while design continues. | Product users |
 
-**Next owned assignment:** close the remaining bounded Package 6 owner-reference
-inconsistencies after this four-roadmap reconciliation, then select one Package 7
-family with evidence of actual maintenance burden and no unresolved current
-consumer. Do not rerun the completed roadmap-baseline/producer-availability
-reconciliation, replay merged CI fixes or make the central integration checkout
-a permanent lane. The retained efficiency checkout and preserved dirty draft
-still predate the accepted main; its owner refreshes and reconciles them at
-intake without dropping the draft's unique evidence. Record its
-owner, callers, replacement, applicable checks and expected benefit here before
-editing implementation. Land and measure that small slice before selecting
-another. Unresolved use or product authority stays unresolved; move to a
-verified independent candidate rather than guessing.
+**Next owned assignment:** validate one bounded reduction in repeated hosted
+verification for working-roadmap prose changes. The current workspace
+`Merge ready` already scopes optional dependencies, but required `Contract and
+golden paths` still waits for the full Reliability suite and all four Maestro
+syntax partitions on these changes. The observed candidate is that remaining
+scope, not replaying the delivered sharding or checkout changes. Refresh the
+retained efficiency checkout from accepted main and reconcile its preserved
+dirty draft without dropping unique evidence; the central integration checkout
+is not a permanent lane.
 
-**First bounded retirement candidate to investigate:** the nine skipped
+**Observed baseline, October 1:** both PRs below changed only working-roadmap
+Markdown, with unchanged backend `0a1fdf224aaf59ca713eec5eba79a34321f038a9`
+and app `acf5bd837fe3725b00d9744727f513a601fb2498`. Times use GitHub UTC
+timestamps; workflow duration is creation to final update, not human time lost.
+
+| Prose-only candidate | Reliability workflow window | Workspace job | Selected repeated steps |
+| --- | --- | --- | --- |
+| PR #42, `b03c08dd87ad0b2127d3e309962abe5291c05e66`; [run 36940383017](https://github.com/fy538/travel-workspace/actions/runs/36940383017) | 23:21:40–23:27:15, 5m35s | 5m09s | Backend install 51s, frontend install 23s, journey mocks 64s, database migration 4s, goldens 25s; all four syntax shards also ran |
+| PR #43, `ef8abf84009a0ba40ff35e8d1578f1549984b251`; [run 36942761248](https://github.com/fy538/travel-workspace/actions/runs/36942761248) | 23:48:40–23:54:01, 5m21s | 4m55s | Backend install 47s, frontend install 21s, journey mocks 63s, database migration 4s, goldens 24s; all four syntax shards also ran |
+
+Trial only an explicit narrow set of working-roadmap prose inputs, preserving
+their metadata, link, governance and referenced-checker obligations. Require the
+unchanged immutable child tuple and a known successful integration baseline.
+Contract, policy, pin, workflow, checker, source and unknown changes take the
+full path; unavailable history or verification identity must not yield a narrow
+pass. Keep the required aggregate always reported and fail closed on missing,
+failed or cancelled required work. Follow the existing staged
+[CI Plan](../reliability/CI%20Plan.md): demonstrate valid, violating, tool-error
+and cancellation cases plus exact hosted candidate behavior before adopting a
+new scope. Keep full integration diagnostics on the appropriate code changes
+and main/nightly/manual paths. This roadmap changes no workflow, protection
+setting or required-check obligation.
+
+Compare elapsed feedback time and runner use with equivalent prose changes,
+and record how frequently that class occurs in the existing ten-change pilot.
+Two docs-only samples do not establish the dominant cost of ordinary product
+development. If the scope cannot be classified safely or its frequency does
+not justify implementation/maintenance cost, retain the full path and select
+the next evidenced bottleneck. Do not build a general result-cache platform
+for this slice. Hand over the bounded implementation and evidence, or the
+specific rejected hypothesis, before expanding the assignment.
+
+[DORA's work-visibility guidance](https://dora.dev/capabilities/work-visibility-in-value-stream/)
+supports directing improvement at observed constraints in the delivery path.
+[SPACE](https://www.microsoft.com/en-us/research/publication/the-space-of-developer-productivity-theres-more-to-it-than-you-think/)
+warns against treating activity or a single efficiency metric as productivity.
+The application here is a measured trial with preserved defect detection, not
+a promised productivity percentage or a reason to keep all lanes busy.
+
+**Conditional retirement candidate, not the first assignment:** the nine skipped
 Step 7 card-feedback/lifecycle tests in backend
 `tests/api/test_concierge_home.py`. The current file separately asserts that
 `/cards/feedback`, `/cards/lifecycle` and `/cards/restore` return 404; current
@@ -1028,7 +1067,7 @@ operating changes require no new tracker, monitoring service or approval layer.
 
 ### Package 1 — Make native QA start reliably
 
-**Queue:** fourth in the integration-focused order; independent after baseline
+**Queue:** second in the current order; independent after baseline
 preparation and eligible earlier when it unblocks product work.
 **Delivery owner:** Eng Efficiency; mobile/runtime
 and workspace tooling own the affected implementation boundaries.
@@ -1071,7 +1110,7 @@ and failing cases; mocked command tests alone do not establish simulator access.
 
 ### Package 2 — Make review proportional to the change
 
-**Queue:** fifth; documentation reconciliation is independent of device access.
+**Queue:** third; documentation reconciliation is independent of device access.
 **Delivery owner:** Eng Efficiency within mobile QA/surface and task-intake
 ownership. Preserve founder review for unresolved product/authority choices.
 
@@ -1110,10 +1149,11 @@ reading. A shorter document alone is not acceptance evidence.
 ### Package 3 — Separate iteration from candidate verification
 
 **Delivery owner:** Eng Efficiency within workspace CI and child selector
-ownership. Deliver 3C, 3A and 3B independently in that order; the lettered names
-remain stable so existing references to 3A and 3B still mean the same work.
+ownership. The original 3C → 3A → 3B implementation sequence and its receipts
+below are historical; the remaining measured assignment is in section 5.
+The lettered names remain stable references, not a request to rebuild landed work.
 
-**3C — Workspace critical path, first in the queue.** The completed workspace
+**3C — Workspace critical path, original first implementation.** The completed workspace
 check took 23m18s, including 16m55s of flow validation. The current wrapper starts
 the pinned Maestro semantic parser separately for each of 408 non-config flow
 files. This is syntax validation, not 408 device journeys.
@@ -1374,7 +1414,8 @@ score” substitutes for those separate outcomes.
 
 ### Package 6 — Retire completed working documentation
 
-**Queue:** first in the post-integration sequence. **Delivery owner:** Eng Efficiency within workspace documentation
+**Queue:** as encountered in active work, after the completed central roadmap
+reconciliation; not a new global cleanup pass. **Delivery owner:** Eng Efficiency within workspace documentation
 governance; product owners retain their current contracts and unresolved choices.
 
 First reconcile conflicting instructions in the affected owner documents: the
@@ -1469,7 +1510,7 @@ remain authoritative.
 
 ### Package 7 — Retire verified obsolete implementation families
 
-**Queue:** second. **Delivery owner:** Eng Efficiency proposes and implements
+**Queue:** conditional on demonstrated maintenance burden. **Delivery owner:** Eng Efficiency proposes and implements
 bounded engineering retirement within existing app/backend/workspace owners;
 product owners retain unresolved design and authority choices.
 
@@ -1715,8 +1756,9 @@ they do not establish that every change was unnecessarily batched.
 The findings in this pass are incorporated into the single queue in
 [section 5](#5-improvement-roadmap). The completed-integration review below
 superseded the initial ordering. After those CI changes landed, the October 1
-cleanup reconciliation in section 5 sets the current order: bounded obsolete
-assumptions/implementation retirement, then the next measured feedback cost.
+research recheck in section 5 sets the current order: the next measured feedback
+cost, with obsolete-assumption repairs where encountered and implementation
+retirement conditional on actual maintenance burden.
 Native QA and lighter review/context remain in scope. Build reuse
 and other setup experiments remain conditional. Package details, statuses and
 adoption checkpoints are maintained there rather than duplicated in this evidence
@@ -1841,9 +1883,10 @@ engineering cadence, not a narrower product vision or permission to split
 cross-repository invariants.
 
 Section 5 remains the only execution queue. The October 1 planning update
-supersedes this review's earlier ordering: first reconcile operating assumptions,
-then retire one verified obsolete implementation family, while continuing the
-existing ten-change measurement pilot and unresolved native QA. Package numbers
+supersedes this review's earlier ordering: validate the next measured feedback
+bottleneck, continuing the existing ten-change pilot and unresolved native QA.
+Repair conflicting assumptions when encountered; an obsolete implementation
+family needs demonstrated maintenance burden before retirement. Package numbers
 remain stable references. Landed tooling and earlier receipts retain their exact
 boundaries; Git cleanup and successful tests do not establish an overall speed
 gain. The sharding experiment is merged and passed its final run, while default

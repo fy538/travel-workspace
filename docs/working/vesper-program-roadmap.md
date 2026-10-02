@@ -139,8 +139,8 @@ This planning update does not dispatch a chat or activate a product feature.
 | --- | --- | --- |
 | Artifact | P1 correction/readback acceptance through the real app transport and backend, starting with explicit-offset replacement-time Save/refetch/Undo. Preserve current original access and exact revision/retry behavior. | Persisted correction and Undo, unchanged original, stale/wrong-owner denial and session-safe readback have separate receipts. Name actual auth/device boundaries; mock or auth-bypassed runs cannot close them. Hand over a committed slice or the exact external blocker. |
 | Adaptive Context | R2/R7 final-selection and supported-addition evaluation using the existing candidate and pairwise-treatment fixtures and producer. | Separate candidate recall, selected support, claim support, incremental substance and direct-original versus assisted usefulness. Include repeats, distractors, no-addition, failed/withheld cases and all eligible attempts. Provider-free replay proves the evaluated boundary; genuine model/user value and paid activation remain separate gates. |
-| Orchestration | D2 one real-backend supported input → source-backed root value → exact reader → restored root, using an already admitted input such as in-app text. | Persisted owner/source identity, exact open/return and stale/revoked/error behavior pass at their owning layers; affected native state is checked on the assigned device. Record authenticated versus synthetic/auth-bypassed evidence explicitly. No new final screen hierarchy is required. |
-| Eng Efficiency | Close the remaining bounded Package 6 owner-reference inconsistencies, then select and retire one Package 7 family with proven replacement and maintenance burden. | Record callers, entrypoints, required safeguards and replacement before removal. Preserve ongoing design infrastructure. Measure tracing/rework or verification cost through the existing pilot; file/test counts alone do not prove a gain. |
+| Orchestration | D2 one real-backend supported input → persisted Source → eligible root/read → exact reader → restored root, using an already admitted input such as in-app text. | Exercise actual intake commands and owner reads, not only seeded final projections. Original-only/no eligible root addition is valid. Persisted identity, exact open/return and stale/revoked/error behavior pass at their owning layers; record native, authenticated and synthetic/auth-bypassed evidence separately. No new final screen hierarchy is required. |
+| Eng Efficiency | Package 3: measure and validate the next feedback bottleneck; first candidate is repeated full hosted verification for working-roadmap-only changes at unchanged child revisions. | Follow the staged CI Plan: prove narrow selection, full fallback and failure detection before adoption; preserve the required aggregate and deeper integration coverage. Compare elapsed time, runner use and change frequency. Fix obsolete references when they obstruct this work; retire a code family only with demonstrated maintenance burden. |
 
 These assignments can run in parallel: Artifact owns reader/correction and
 Collection contracts, Adaptive Context owns research selection/producer/evals,
@@ -152,7 +152,7 @@ central integration. Use the lane's recorded runtime and exclusive device;
 serialize only competing native device/build work.
 
 **Start from accepted main, not the old integration turn.** The canonical
-inspection tuple is workspace `0b6dfe093c06559827dc23648c51b8329cb9665e`,
+inspection tuple is workspace `0b8792793fc25eceb8967edf7b832fe0f0194934`,
 backend `0a1fdf224aaf59ca713eec5eba79a34321f038a9`, app
 `acf5bd837fe3725b00d9744727f513a601fb2498`. All four retained owner checkouts
 still have earlier heads. Their owners refresh their own three-repository
@@ -175,6 +175,27 @@ share card, infer automatic joins from kept-bundle reconciliation, or invent
 Collection member presentation in this round. Existing private custody,
 explicit correction, manual membership, original readers and provider-free
 research evaluation can proceed while those records and design are finalized.
+
+**Research recheck:** keep the three product assignments, but make their finish
+lines explicit. Artifact's existing time correction is a representative durable
+write/read/Undo proof, not a new editor project. Adaptive Context must distinguish
+its six constructed retrieval cases and seven authored treatment examples from
+actual producer outputs and human usefulness evidence. Orchestration must cross
+real capture and persistence; the existing seeded-source rehearsal proves only
+its receiving boundary. A missing credential or device blocks that specific
+receipt while independent contract/database work continues. Once a bounded
+assignment has its evidence or a specific external blocker, hand it off rather
+than expanding the same round indefinitely.
+
+Eng Efficiency's earlier cleanup-first order is superseded by the measured-cost
+queue in its [roadmap](development-qa-research-and-roadmap-2026-09-30.md#5-improvement-roadmap).
+Two prose-only Reliability runs took 5m35s and 5m21s at the same child pair;
+removing nine already-skipped tests has no execution-time benefit. These samples
+justify a bounded verification-scope trial, not a claim that it is the largest
+cost across product changes or that overall productivity has improved. The
+existing ten-change pilot decides whether the saving is frequent enough to
+justify adoption. Keep landing independently useful slices as they become ready;
+central integration need not wait for all four lanes to finish together.
 
 ## 1 Inspected baseline and unfinished product work
 
@@ -1906,6 +1927,22 @@ three lanes or permission for an agent to decide new product policy.
 
 ## 8 Research basis and history
 
+[DORA's small-batch guidance](https://dora.dev/capabilities/working-in-small-batches/)
+supports independently testable service/API changes before their UI is released.
+This fits infrastructure delivery while product design continues. Its
+[work-visibility guidance](https://dora.dev/capabilities/work-visibility-in-value-stream/)
+supports targeting observed waiting and rework rather than assuming any cleanup
+will improve end-to-end flow. These are general practices, not causal estimates
+for Vesper or proof that four concurrent lanes is optimal.
+
+For AI work, [ALCE](https://aclanthology.org/2023.emnlp-main.398/) evaluates answer
+correctness and citation quality separately, while
+[Anthropic's agent-evaluation guidance](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)
+distinguishes actual resulting state from a successful-looking transcript and
+calls for human calibration of model graders. The application here is a bounded
+producer-quality comparison and persisted acceptance at existing owners. Neither
+source supplies a Vesper usefulness threshold or validates product demand.
+
 The worktree recommendation follows official [Codex worktree guidance](https://developers.openai.com/codex/app/worktrees/)
 and [Git's worktree documentation](https://git-scm.com/docs/git-worktree):
 separate checkouts permit parallel branches; they do not settle application
@@ -1916,7 +1953,7 @@ needs coordinated child checkouts and separate runtime assignments.
 distinguishes textual from semantic conflicts and warns that pulling main without
 landing one's own work does not prevent divergence. Our application is a
 bounded-slice landing practice, not a claim of strict continuous integration or
-evidence that exactly three agents is optimal. The lane count is the founder's
+evidence that the chosen lane count is optimal. The lane count is the founder's
 chosen capacity. Explicit owners, additive interfaces and timely landing should
 reduce coordination; measure the result rather than assume a speedup.
 

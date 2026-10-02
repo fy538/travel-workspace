@@ -136,6 +136,14 @@ or auth-bypassed rehearsals. If credentials/device access blocks that receipt,
 complete independent transport/database acceptance and state the exact missing
 boundary rather than repeating mock screenshots as a substitute.
 
+This is one representative lifecycle proof for the existing durable correction
+path. Stop when Save/readback/Undo and its authority failures are evidenced;
+do not grow it into another time editor, broader timezone UX or repeated visual
+polish. Reuse the landed PostgreSQL lifecycle tests and app transport coverage,
+adding only the missing connection evidence. The useful result is a correction
+that survives canonical readback while its original remains intact. Final
+Collection presentation and wider reader design remain separate dependencies.
+
 After this bounded slice, preserve section 11's thin P3 consumer checkpoint:
 adopt the landed exact-Source request/result only under its required gates,
 with original-only value and exact return. Inspect the landed exact Source-based
@@ -465,7 +473,7 @@ The inspected canonical main tuple for the next intake is:
 
 | Repository | Accepted main revision |
 | --- | --- |
-| Workspace | `0b6dfe093c06559827dc23648c51b8329cb9665e` — PRs #41/#42 |
+| Workspace | `0b8792793fc25eceb8967edf7b832fe0f0194934` — PRs #41/#42/#43 |
 | Backend | `0a1fdf224aaf59ca713eec5eba79a34321f038a9` — PR #241 |
 | App | `acf5bd837fe3725b00d9744727f513a601fb2498` — PR #212 |
 
