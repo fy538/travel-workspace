@@ -698,6 +698,20 @@ because its default Expo lint attempted to write `.expo/cache/eslint` and the
 environment returned `EPERM`; this is an unverified wrapper/cache-write state,
 not a lint finding. No cache cleanup or permission changes were attempted.
 
+**C1.2 preflight retry — October 2:** retried the same aggregate command with
+narrow execution permission for Expo's ignored lint cache; no checker,
+configuration, source, or repository permissions were changed. Exact command:
+`make verify-changed WORKSPACE_BASE_REF=da4c3d716aaff3e20a8d85ea35acc857810c4c16 AGENT_BASE_REF=28a72b0643ae168a4976c1dfe7861a7c1022267c APP_BASE_REF=0f607bf2cef95dd4cd91c6fc9bbad10aa282a535`.
+It exited 0. The resolved bases matched those explicit revisions; the router
+selected app `verify:fast`, scoped app `verify:merge` (one related test file,
+`__tests__/hooks/usePlacesSemanticNavigation.test.tsx`), and workspace docs
+links/spine/canon checks. Expo lint completed with 0 errors and 167 warnings;
+TypeScript, native compatibility, icon freshness, API boundaries, schema bridge,
+Home-surface budgets, test-contract typecheck, the scoped Jest suite, and all
+three docs checks passed. This closes the prior cache-write-only preflight
+failure. It does not change the C1.3 authentication/device prerequisite or add
+native/authenticated evidence.
+
 **Finish:** a clean committed candidate and focused evidence for C1.2; the exact
 C1.3 native/authenticated receipt is required before calling the whole goal
 complete. If authentication or local device access is still unavailable after
