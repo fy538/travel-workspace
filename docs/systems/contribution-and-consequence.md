@@ -516,6 +516,35 @@ Explicit natural language may authorize a bounded reversible owner command
 without a second confirmation. It does not bypass protected data, spend,
 provider, publication, affected-person, or weak-reversal boundaries.
 
+### 6.1 Selected-source public lookup — decision of October 2
+
+A public lookup requested from a selected private Source always uses T2, even
+when the person says “research this.” Before contact, Vesper previews the exact
+normalized provider-facing terms, purpose, provider, and any applicable public
+location, category, or date window. The preview makes explicit that the
+selected original, private instruction, notes, OCR, conversation history, and
+local identifiers are not sent automatically.
+
+One explicit confirmation authorizes one bounded lookup only. The server binds
+the grant to the authenticated viewer, exact current selected Source revision
+and optional text span, normalized public request, purpose, and provider. A
+denial, cancellation, account change, changed request or selection, stale
+Source, replay, or expiry stops before another provider dispatch. An unused
+approval expires ten minutes after approval. A request already dispatched
+cannot be recalled; cancellation still withholds the transient result and
+prevents reuse. Before returning a dispatched result, Vesper revalidates the
+same owner-held Source revision and retention state. Revocation, revision
+change, or loss of retention while the provider call is in flight invalidates
+the approval and suppresses the result. Approval expiry after dispatch began
+does not by itself suppress an otherwise-current result.
+
+The public result is returned transiently with URL, source-kind, and date
+provenance. It is not automatically attached to the private selected-source
+result, retained as an artifact, or written into memory. A search snippet is
+not a fetched page; a URL candidate or snippet is not verified evidence and
+does not by itself support a claim. Public-evidence binding, semantic support,
+commercial admission, and any future persistence remain separate decisions.
+
 For [lightweight arrangements](../../travel-agent/docs/product/Multiplayer%20Product%20Strategy.md#52-lightweight-arrangements--decision-of-september-4),
 an optional suggestion is not a pending decision, exploration is not adoption,
 and an accepted arrangement edit is not everyone’s acceptance or attendance.

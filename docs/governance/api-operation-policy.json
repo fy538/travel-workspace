@@ -923,6 +923,46 @@
       "removal_trigger": "Enable only after the selected-source owner, bounded budget, result usefulness and consuming artifact reader have passed their separate acceptance checks.",
       "review_by": "2026-10-30"
     },
+    "POST /api/research/selected-source/public-lookup/cancel": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "SELECTED_SOURCE_PUBLIC_LOOKUP_ENABLED",
+      "lifecycle": "dark",
+      "owner": "research",
+      "reason": "Revokes one short-lived selected-source public lookup preview or suppresses an in-flight transient result; no native caller is admitted.",
+      "removal_trigger": "Remove only with retirement of the corresponding public-lookup approval lifecycle.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/research/selected-source/public-lookup/execute": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "SELECTED_SOURCE_PUBLIC_LOOKUP_ENABLED",
+      "lifecycle": "dark",
+      "owner": "research",
+      "reason": "Consumes one exact explicit approval and returns a transient bounded public result; public dispatch additionally requires an enforcement-ready live-research reservation, which is not currently available.",
+      "removal_trigger": "Enable only after public-dispatch admission and a real consumer are separately reviewed.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/research/selected-source/public-lookup/previews": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "SELECTED_SOURCE_PUBLIC_LOOKUP_ENABLED",
+      "lifecycle": "dark",
+      "owner": "research",
+      "reason": "Prepares an exact selected-source disclosure preview without provider dispatch; no native caller is admitted.",
+      "removal_trigger": "Remove only with retirement of the corresponding public-lookup approval lifecycle.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/research/selected-source/public-lookup/previews/{preview_id}/approve": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "SELECTED_SOURCE_PUBLIC_LOOKUP_ENABLED",
+      "lifecycle": "dark",
+      "owner": "research",
+      "reason": "Records explicit approval for one exact preview and returns one short-lived token; no native caller is admitted.",
+      "removal_trigger": "Remove only with retirement of the corresponding public-lookup approval lifecycle.",
+      "review_by": "2026-10-30"
+    },
     "POST /api/proposal-guest-capabilities/{capability_token}/claim": {
       "audience": "app",
       "consumers": [],
