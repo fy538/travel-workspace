@@ -20,9 +20,45 @@ depends_on:
 
 # Vesper program roadmap
 
+**Remaining-work scope — October 2:** the founder asked to finish the remaining
+implementation and integration, explicitly excluding model evaluation.
+Workspace [PR #57](https://github.com/fy538/travel-workspace/pull/57) is accepted
+at `992f7fb573a393c023a5177dc4f9145b89c0c52e`; Eng Efficiency's measured
+integration receipt [PR #58](https://github.com/fy538/travel-workspace/pull/58)
+is accepted at `2e3e66416998823615d978eb8fd4e667917b333d`. Both passed their
+normal required hosted checks. App `0f607bf2` already includes the conditional
+Expo tutorial guard; the distinct source commit `89f7bae1d` does not require a
+duplicate implementation or merge. The disabled selected-source provider
+support from owner backend `d62e00a05` is accepted in backend
+[PR #246](https://github.com/fy538/travel-agent/pull/246), merge
+`28a72b0643ae168a4976c1dfe7861a7c1022267c`, after every normal required
+hosted check passed on repaired candidate `2f3f4ff94`. Its five previously
+failing database scenario setups were reproduced and repaired solely by
+storing the fixture GPS fix before timed blocks exist; production matching
+and exact confirmation assertions remain unchanged. This workspace update
+includes the accepted child pin and Connectivity receipt `a323180d`: the
+real-local-API attempt is blocked before capture by the missing signed-in
+Clerk QA session on the assigned simulator. No
+token-count/generation calls or quality evaluation are scheduled in this round;
+the historical pilot plans below are deferred. Do not keep a lane executing
+synthetic replays to imitate missing authenticated or model-quality evidence.
+
 **Current integration acceptance — October 2:** app [PR #214](https://github.com/fy538/travel-app/pull/214) merged through passing required hosted checks at `e715953796ff7c3b09b82444aa5d68f85f697f52`. It combines Connectivity's private Keep recovery/session fencing, Artifact's read-only exact-result consumer, and the conditional Expo readiness correction. Local explicit-base preflight at workspace `a71153af` / backend `c5ff69a8` / app `c7d7d7f52` passed 9,289 app tests, one snapshot, 186 workspace tests and contracts/types in 124.374s. App #213's capture candidate is included. Matching workspace governance, generated contracts and child pins accompany this update; its protected landing remains separate.
 
 Native mock-mode Keep → Life entry → exact original → viewer → Undo removal passed (one primary and three extra frames). Unsupported expected persona failed while actual Default Alex/mock mode remained selected. Tutorial-present dismissal and real authenticated interrupted binary recovery remain unverified; mock receipts do not establish production acceptance. The reader stays internal/default-off and read-only. Adaptive Context now has a securely configured local credential, but its owner reports Anthropic token counting rejected for insufficient provider credit. No generation or model output occurred; independent human judgments remain open. The separate provider-routing candidate is not part of this accepted integration and does not authorize a paid OpenAI substitution.
+
+**Bounded authenticated native attempt — October 2:** on the assigned QA SE
+simulator (`51A7A2C0-49CB-487E-A056-A771361EFA9B`), I cleared the persisted
+mock-mode override and confirmed the app pointed at the lane-local API
+(`127.0.0.1:56986`). The isolated API was healthy with `SKIP_AUTH=false`, the
+approved Clerk test issuer/JWKS configuration, and AI, search and background
+loops disabled. After Clerk session checking, the app showed its first-run
+screen with “I already have an account”; no authenticated QA session was
+available. No Keep was submitted, no owner data was written, and no auth bypass
+or credentials were used. This attempt is **blocked before capture (0/1)**;
+restore an approved signed-in Clerk QA session on this assigned simulator
+before retrying. It does not replace the separate synthetic-auth local API
+receipt or establish native interrupted recovery.
 
 `fy538` approved only node-forge GHSA-86w9-cpqp-85rv/source 1240912/version 1.4.0 through October 9 UTC. All 26 safeguard/parser tests and actual registry audit passed. Expiry, changed identity, new high/critical findings and tooling failures remain blocking. This is risk acceptance, not a fix or release/deployment permission. Earlier checkpoints below are historical; this record supersedes their app/security/device status. Owner checkouts remain preserved.
 
