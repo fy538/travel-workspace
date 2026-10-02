@@ -76,6 +76,87 @@ not authorize a live run or block completion of this implementation slice.
 
 ## 0 Strategy Technical lane execution boundary
 
+### AC1 Selected-source public-acquisition prerequisites
+
+**Current goal — planned October 2, conditional admission:** implement and verify the provider-free
+R1 disclosure/acquisition prerequisite for an exact selected object, using
+existing public-request and bounded acquisition owners. Finish the finite
+milestones below; do not reimplement accepted R3 recovery, tune prompts, collect
+model outputs or activate public dispatch. The [program baseline and rules](../vesper-program-roadmap.md#next-activation-round--october-2-roadmap-goals)
+own common starting revisions and consolidation. Editing this roadmap does not
+activate a persistent chat Goal. At activation record its roadmap revision and
+fresh accepted three-repo bases.
+
+**Why the goal is narrower than full R1:** current
+`backend/research_agent/selected_source_producer.py` explicitly rejects a work
+item carrying `public_research_request`; the HTTP route also forbids an extra
+public-request field. Its persisted result only binds admitted private evidence.
+`backend/core/models/public_research.py` already defines purposes, bounded
+query/location fields, limits, provenance and usage; it does not determine
+whether a caller's free-form text is safe or authorized for external disclosure.
+The existing answer-only adapter can consume a caller-supplied public request,
+but that is not a connected selected-object disclosure affordance. Public
+`ai.research.live` is also a different accounting boundary from private synthesis.
+Removing the rejection would bypass these unresolved boundaries.
+
+**Already available, not new AC1 deliverables:**
+`build_selected_source_research_work_item` already includes an explicitly supplied
+public request in stable work identity and never derives it from the private
+instruction. `tests/core/test_public_research_request.py` and
+`test_public_research_acquisition.py` cover purpose/field limits, local-identity
+exclusion, truncation, URL-only leads, deadline/cancellation and dispatch counts.
+`tests/research_agent/test_answer_only_research.py` covers explicit-request-only
+search, no generated query fan-out and source-bound output. AC1.1 must identify
+a missing connected owner boundary beyond these existing mechanisms. Do not add
+an unused forwarding wrapper or repeat this suite as new implementation progress.
+If the only remaining gap requires an unadopted disclosure/result policy, prepare
+that exact decision in this goal block and stop implementation at that boundary.
+AC1 is not yet promised to be a long uninterrupted coding run.
+
+| Milestone | Work and observable finish |
+| --- | --- |
+| AC1.1 Existing-proof and disclosure admission | First map the existing constructor/adapter proofs to the selected-object caller and identify the precise missing owner/authority boundary. Reuse the current work-item constructor; implement only a demonstrated gap within adopted semantics. Map an exact selected object/revision and one explicitly caller-approved public request into the existing acquisition boundary. Keep selected private text, notes, OCR, history and local subject identifiers outside provider arguments. Reuse the existing request limits; accept only a named public purpose and explicit public terms. A typed string is not proof of disclosure authority, and a keyword scrubber must not manufacture that authority. Unknown/unapproved inputs fail closed. |
+| AC1.2 Bounded provider-free connection | Exercise fact lookup and candidate discovery through the actual shared adapter with injected provider responses, optional local subject identity and no fabricated Place/Trip. Preserve the existing candidate-discovery public-location requirement. Prove missing authority causes zero dispatch; admitted fixture requests stay within current tool/SDK attempt and deadline limits; returned malicious text cannot introduce follow-up disclosure or fan-out. Include no-result, error and elapsed-deadline outcomes. No provider network call is permitted in this goal. |
+| AC1.3 Evidence and result boundary | Preserve URL, source kind, date and truncation metadata into the transient handoff. Keep a URL candidate/snippet distinct from fetched and verified evidence. Exercise an unsupported claim with a plausible citation and require abstention/unsupported treatment at the available structural boundary; do not claim semantic verification from quote matching. Preserve the selected-source production rejection and private result contract. Document the exact missing public-evidence binding and finite-allocation/recovery policy before a future producer can consume this handoff. |
+| AC1.4 Compatible committed handoff | Extend existing adapter/disclosure/answer-only tests, including negative egress/log/trace cases and zero unintended owner writes. Re-run affected existing caller compatibility and the explicit-base preflight. Commit the coherent backend slice with a concise map of implemented prerequisites versus unresolved public-result/production admission. No new queue, research engine or parallel evaluation harness. |
+
+**Implementation versus decision boundary:** build against explicitly approved
+public fixture inputs and existing supported semantics. If the selected-object
+adapter needs a new user disclosure agreement, persistence/retention rule or
+public evidence-owner contract, record the exact proposed fields, purpose,
+affected owner and unsupported cases for review; do not infer policy from a
+roadmap label. Continue independent adapter/provenance work. A blocked policy
+component does not authorize private text export, removal of route rejection or
+production allocation. A proposal alone cannot be marked implemented.
+
+**Completion:** existing acquisition owners support the provider-free seam,
+explicit denial and provenance cases are evidenced, compatibility is retained,
+and a stable candidate identifies the remaining admission contract. This closes
+AC1 only. Full R1 stays open for connected user disclosure, public evidence
+binding/claim support and admitted production callers; full R3 public accounting
+and live quality remain open. If a mandatory AC1 case depends on unresolved
+policy, label it blocked and stop after independent work, not “complete”.
+
+**Ownership:** backend public request/acquisition adapters, disclosure tests and
+transient provenance. Do not edit Artifact readers or Connectivity roots. Keep
+HTTP/API schema and generated app types unchanged for AC1 unless an actual
+incompatibility needs a separately coordinated contract slice. Existing provider
+support, default flags, registry defaults and commercial enforcement posture
+remain unchanged. No paid token counting, generation, model evaluation,
+semantic/private plaintext index, broader retention or automatic background work.
+
+**Longer ownership:** continue through AC1.1–AC1.4 without another assignment;
+maintain only current milestone, candidate tuple, focused evidence, unresolved
+boundary and next independent action here. Central integrates coherent ready
+slices; owners do not poll it. Later R1 admission or R2/R7 quality work requires
+a new bounded goal and applicable decisions, not automatic continuation.
+
+### Historical completed assignments and evidence
+
+The receipts below preserve the prior R3 and R2/R7 work. Their older “next” and
+pilot instructions are historical; AC1 is the only new assignment. The founder
+excluded model evaluation, regardless of the earlier $0.50 pilot authorization.
+
 ### R3 completed handoff — October 2
 
 Backend `7a6a29003564d5aa547530dec6a5acd10e153766` implements cancellation,
@@ -165,7 +246,7 @@ Artifact owns the app consumer and generated-contract adoption. Preserve its
 GET-only dependency and the default-disabled feature. The longer R3/R4 queue
 remains below; this milestone does not close all of it.
 
-### Completed R2/R7 implementation and remaining quality boundary
+### Completed R2/R7 implementation and deferred quality boundary
 
 **Previous assignment status:** the bounded R2/R7 final-selection and
 supported-addition evaluation implementation is delivered for selected original
@@ -175,7 +256,7 @@ tools through the real producer with controlled dependencies, without adding a
 second evaluation framework. Representative model output and human review remain
 the next evidence gates; they are not a reason to claim quality today.
 
-**Local receiving status — October 2 (unmerged candidate):** the exact-result GET is implemented in the
+**Historical local receiving status — October 2 (before accepted integration):** the exact-result GET is implemented in the
 existing Life/artifact reader through the generated mobile contract, typed HTTP
 transport, and a session/account-scoped data facade. The reader presents only an
 explicitly addressed result matching the exact retained `text/plain` original,
@@ -1565,11 +1646,13 @@ implementation. Recommendations elsewhere are our engineering inferences.
 
 ## 12 Document delivery and next handoff
 
-### Current assignment and supported scope
+<a id="current-assignment-and-supported-scope"></a>
 
-The October 2 R3 milestone in section 0 owns the next execution. The following
-R2/R7 material preserves delivered scope and the still-open quality gates; it
-does not request another replay implementation.
+### Historical assignment and supported scope
+
+AC1 in section 0 owns the next execution. The following R2/R7 material preserves
+delivered scope and still-open quality gates; model evaluation is deferred and
+this historical sequence does not request another replay implementation.
 
 
 **R2/R7 selection and supported-addition evaluation implementation is delivered**
@@ -4725,6 +4808,11 @@ receipt establishes the owner lane's stated local evidence only. It does not
 promote the generated API adoption or native reader into accepted main.
 ## 13 OpenAI Luna-low provider support and selected-source evaluation plan — October 2
 
+**Historical scope / current exclusion:** provider support is accepted; L3/L4
+model evaluation and human quality work are deferred by the founder. All “next”
+instructions in this retained plan describe its earlier proposal, not AC1.
+Do not restore paid work because a credential or credit later becomes available.
+
 ### 13.1 Recommendation and evidence boundary
 
 Configure `gpt-6-luna` with `reasoning.effort=low` as the default only for the
@@ -4955,7 +5043,9 @@ surface policy, adequate commercial limits, receiving/correction evidence and
 rollback. Restoring the prior surface selection is the rollback; original
 custody, evidence admission and existing results must not change.
 
-### 13.5 Verification, coordination and immediate next action
+<a id="135-verification-coordination-and-immediate-next-action"></a>
+
+### 13.5 Historical verification, coordination and proposed next action
 
 L0–L2 are one coherent backend outcome, carried through implementation and
 review before the paid pilot. They share wrapper/adapter/accounting files and

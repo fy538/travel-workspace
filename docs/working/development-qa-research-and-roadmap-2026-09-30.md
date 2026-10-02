@@ -14,13 +14,13 @@ source_of_truth_for: []
 
 **Current integration receipt — October 2:** readiness correction and native wrong-persona rejection are included in combined app [PR #214](https://github.com/fy538/travel-app/pull/214), accepted merge `e715953796ff7c3b09b82444aa5d68f85f697f52`. Connectivity's mock-mode Life Keep/original/viewer/Undo flow passed (one primary and three extra frames). Unsupported expected persona failed at its exact identity assertion while Default Alex/mock mode stayed selected. Tutorial-present dismissal and authenticated interruption remain separately unverified.
 
-The founder approved only the exact node-forge exception below through October 9 UTC; 26 checker/parser tests and actual registry audit passed, with required hosted checks preserved. Final local integration preflight ran once on immutable tuple `a71153af/c5ff69a8/c7d7d7f52` in 124.374s (9,289 app tests, 186 workspace tests, contracts/types). These are measured receipts, not an overall productivity percentage. Continue the existing natural-change pilot and supported upstream remediation; do not duplicate the completed investigation or claim a vulnerability fix.
+The founder approved only the exact node-forge exception below through October 9 UTC; 26 checker/parser tests and actual registry audit passed, with required hosted checks preserved. Final local integration preflight ran once on immutable tuple `a71153af/c5ff69a8/c7d7d7f52` in 124.374s (9,289 app tests, 186 workspace tests, contracts/types). These are measured receipts, not an overall productivity percentage. E1 in section 5 now owns the next assignment. Collect further pilot evidence only from natural changes; do not duplicate the completed investigation or claim a vulnerability fix.
 
 **Decision:** What should Vesper change about building, testing and reviewing work?
 **Research cutoff:** October 1, 2026, with October 2 targeted code, hosted-run
 and upstream-advisory rechecks. **Planning and execution update:** October 2,
 following the founder’s request for independently executable overnight goals. [Section 5](#5-improvement-roadmap) remains the
-single execution queue. Begin with the next measured verification bottleneck;
+single execution queue. Begin with E1’s verification identity and native prerequisites;
 fix obsolete assumptions when they obstruct current work and retire an old
 implementation family only when its maintenance burden justifies the work.
 Keep the existing native QA and same-coverage test improvements; unfinished
@@ -44,7 +44,7 @@ wrong-state replay remains unverified.
 
 Git cleanup retired six completed lanes (17 checkouts), 15 local branches and
 seven remote branches. The four execution lanes and product-direction checkout
-remain. All canonical main checkouts are current and clean. Uncommitted owner
+remain. At that cleanup checkpoint, canonical main checkouts were current and clean. Uncommitted owner
 work, five experiment measurements and ignored evidence were preserved in
 local recovery snapshots, not silently promoted to main or product acceptance.
 An updated roadmap does not prove that obsolete assumptions have been removed.
@@ -76,8 +76,8 @@ retaining deeper review for shared foundations and coherent product milestones.
 
 The first integration investments—faster workspace flow validation, early
 prerequisite checks, deterministic app tests and less repeated execution—have
-landed with the evidence limits above. Section 5 now prioritizes a bounded trial
-against observed feedback cost. The earlier cleanup-first order had weaker
+landed with the evidence limits above. Section 5 now prioritizes reliable input identity and early native prerequisites,
+with a conditional trial against the observed broad app feedback cost. The earlier cleanup-first order had weaker
 benefit evidence: already-skipped tests incur no execution cost, and moving
 documents alone has not demonstrated faster delivery. Cleanup remains useful
 where an active task encounters conflicting ownership or repeated legacy work.
@@ -588,28 +588,96 @@ help diagnosis; diagnostic capture does not imply a new baseline or approval gat
 
 ## 5. Improvement roadmap
 
-**Delivery owner:** Eng Efficiency, working within the mobile, backend and
-workspace ownership boundaries. This section is the single implementation queue
-for this lane; package numbers remain stable references rather than execution
-order. The research sections explain the evidence, not additional queues.
+### E1 Verification identity and native prerequisites
 
-**Current state:** the dated implementation and failure receipts below remain
-historical evidence. Packages 3A/3B/3C and targeted native-QA tooling have landed
-in the accepted tuple above. Existing gains have their stated sample limits;
-there is no measured overall engineering productivity gain. Central integration
-owns compatible handoff review, shared conflicts, dependency pins and landing;
-Eng Efficiency owns its implementations, focused evidence and adoption receipts.
-Do not start a new integration or cleanup queue alongside this section.
+**Current goal — planned October 2:** make the existing verification recorder
+identify the inputs it actually tested, and make native acceptance reveal missing
+prerequisites before mutation/capture. Carry implementation, failure-path proof,
+documentation and a clean candidate through one assignment. The existing
+[program](vesper-program-roadmap.md#next-activation-round--october-2-roadmap-goals)
+records the fresh accepted baseline and consolidation policy; this edit does not
+activate the chat Goal. Record the roadmap revision and current three-repo bases
+at activation. Package numbers below retain their meanings, not another queue.
 
-| Order | Work | Status and dependency | First beneficiaries |
-| --- | --- | --- | --- |
-| 1 | Package 3A/3B/3C: reduce measured feedback and integration cost | The isolated advisory workflow, unrelated-label guard and early preflight checks are merged. PR #54 remains the first natural eligible post-isolation sample (`n=1`). The October 2 Maestro metadata failure and selector-routing repair are a separate correctness receipt, not another eligible pilot sample; keep required checks authoritative and measure the repair on the next natural flow change before considering any further gate change. Continue the natural ten-change sample; no overall speedup is established. | All integrations |
-| 2 — independently when needed | Package 1: reliable targeted native QA | One targeted Home capture passed; broader Home/Places wrong-state replay remains open. Prioritize a specific native blocker for the current Artifact/Orchestration assignments when the assigned device is available. | Orchestration and Artifact |
-| 3 | Package 2: proportionate review and shorter task context | Tooling landed; changed review scope still requires clean cases and known-defect detection, including the unresolved replay. | All lanes, especially mobile work |
-| As encountered | Package 6: reconcile obsolete operating assumptions and active documentation | The central four-roadmap reconciliation resolves stale integration ownership, baselines and producer availability. Fix remaining contradictions in affected owners; do not repeat a global inventory or archive pass without an observed navigation cost. Three earlier archive migrations are complete. | All lanes |
-| Conditional | Package 7: retire one verified obsolete code, API or dependency family | Select a family with demonstrated repeated tracing/rework cost, current replacement and no unresolved consumer. The 62 retiring API operations are candidates, not approved deletions. | Lanes repeatedly touching compatibility paths |
-| Conditional | Package 4: build reuse and measured setup optimizations | Existing checkout improvements are landed with limited before/after evidence. Native reuse requires a measured remaining setup bottleneck and safe environment identity. | Mobile and build owners |
-| Ongoing | Package 5: product-outcome acceptance | Remains with product lanes. Cleanup preserves their infrastructure, authority and acceptance requirements while design continues. | Product users |
+**Accepted work to preserve:** Packages 3A/3B/3C's duplicate-suite removal,
+workspace syntax parallelism, label cancellation repair, early flag/generated-
+state checks and full Maestro metadata routing are landed. Targeted native
+flows, device binding, bounded infrastructure retry and wrong-persona detection
+exist. The advisory pilot still has only one eligible natural sample. Do not
+reimplement these or broaden policy from that sample.
+
+**Code-backed priorities:** `scripts/measure_verification.py` records repository
+state after the command and `_child_repo_root` can choose a sibling checkout.
+`travel-app/scripts/polish-qa/preflight.mjs` checks installed bundle ID and
+marketing version; that does not establish complete JS/native compatibility or
+an approved signed-in QA session. These are separate deficiencies. App #214's
+broad test command took 518 seconds; the two seven-second polish-check executions
+are lower priority. Its 621-second job span is not the same measure as command
+time. These observations motivate E1; they are not new benchmark results.
+
+| Milestone | Work | Completion evidence |
+| --- | --- | --- |
+| E1.1 Trustworthy measurement identity — mandatory | Extend the existing recorder with before/after resolved repository paths, revisions and bounded dirty-input digests; explicit bases/selected verification plan; executed tool versions, dependency-lock identity and safe allowlisted mode information. In a coordinated lane, missing children must not silently resolve to unrelated siblings. Preserve documented legitimate layouts through explicit resolution. Keep prior record compatibility and preserve failed attempts. | Stable input, modified input during execution, missing child, command/tool failure and secret-redaction cases. Unknown identity stays unknown/error; command exit semantics remain honest. Capture no credentials or source contents in receipts. Before/after identity detects observed changes, not a change-and-restore between samples; isolated checkout ownership remains necessary. No cached-pass reuse is introduced. |
+| E1.2 Early native prerequisite receipt — mandatory | Extend the existing QA intake/preflight to record assigned device, installed identity with known/unknown compatibility limits, API/Metro reachability, intended/observed mock-or-real mode and presence/absence/unknown of the required approved session. Establish session readiness through supported app/test signals, without extracting credentials or logging tokens/user data. Surface the actionable missing prerequisite before product mutations. | Missing-session real acceptance stops before Keep/Save; mock QA remains usable under its own declared requirements; wrong mode/persona still fails. Prove valid, violating and tool-unavailable cases. One serialized device trial verifies the receipt's actual environment; headless tests alone do not certify native compatibility or login. Do not promise full build-fingerprint coverage in this milestone. |
+| E1.3 Comparable broad app sharding — conditional | On the next naturally required broad app candidate, reuse `.github/workflows/app-test-sharding-experiment.yml`. Compare one successful baseline and successful shards with the same revision, dependency/coverage policy and runner class; retain every failed attempt. | Exact test union and failure propagation preserved. Record queue, install, test, aggregation and total runner occupancy separately. One passing sample is exploratory; repeat comparable natural cases before recommending adoption. If no eligible candidate exists, leave this experiment pending without creating dummy PRs or prolonging E1. Required-check changes need their own concrete reviewed candidate. |
+
+**Goal finish:** E1.1 and E1.2 are implemented, their stated representative
+acceptance is executed, and a coherent committed candidate has passed the
+appropriate explicit-base preflight. A missing mandatory native trial remains
+blocked and does not become a headless pass. E1.3 is a conditional experiment,
+not a prerequisite for independent E1.1/E1.2 landing or a promised speedup.
+Maintain the first failure, repair and evidence boundaries in the existing
+measurement/roadmap owners; do not start a new reporting platform.
+
+**Autonomous sequence and integration:** start E1.1 while preparing E1.2's
+headless cases. Once Connectivity releases a bounded device window, perform the
+native trial; do not require it to stop useful product work while tooling is
+being written. Submit an independently ready recorder or preflight slice when
+it unlocks another lane, then continue the remaining milestone. Central owns
+publication/hosted checks/merge; the owner does not poll central. Record one
+current milestone, exact candidate and evidence tuple, blocker and next action
+here. Replace a candidate explicitly rather than silently moving tested HEAD.
+
+**Ownership:** workspace recorder and QA tooling/app preflight only, plus the
+existing tests/runbooks affected. Connectivity owns product capture/session
+behavior and the QA SE reservation; Artifact owns correction/readers. Do not
+implement a second auth store, reset another owner's device, change core user
+state for setup, weaken a required check, increase retry budgets, or force global
+AI/search modes to make tests pass. Helpers, when separately authorized, need
+bounded read/reproduction tasks rather than a new permanent implementation lane.
+
+**Due obligations, with specific scope:** backend's 53 exact quarantined test
+identities have an October 7 review; retain explicit skips/XPASS boundaries and
+repair a family only after reproducing its shared-state fault. The founder's
+node-forge 1.4.0 exception for GHSA-86w9-cpqp-85rv/source 1240912 expires after
+October 9 UTC and fails closed October 10. Recheck a supported released remedy
+at the due checkpoint or upon an upstream change; no open-ended polling,
+automatic exception extension, crypto fork or policy bypass. If no remedy exists,
+prepare the exact affected version/path, risk, owner and proposed expiry for a
+specific decision; continue unaffected E1 work. A due date is not authorization
+to change the control.
+
+**After E1, reassess instead of automatically consuming the backlog:** a full
+native compatibility-identity pilot requires an available build artifact and
+must distinguish matching/stale/unknown without rebuilding for every JS-only
+change. Read-only Git accepted/equivalent/unique classification remains useful
+only with fresh hosted evidence and unchanged safe-retirement rules. Convention
+suite cost, residual small QA duplication, obsolete APIs and setup reuse require
+observed recurring cost before implementation. Broad inventory cleanup, model
+selection/evaluation, new CI platforms and fixed all-lane runtime targets are
+not part of E1.
+
+**Operating measurement:** use the program's next ten natural handoffs and up to
+five naturally required native attempts, separated by change type. Measure
+ready-to-integration delay, prerequisite failures, candidate replacements and
+post-acceptance defects as well as test elapsed time and summed runner use.
+Fewer tests, instructions or status messages alone do not establish improvement.
+
+### Historical improvement queue and implementation receipts
+
+The preceding E1 milestones are the only current assignment. Earlier package
+orders and “keep PRs blocked” language below describe past checkpoints, not the
+accepted baseline or new instructions. Model evaluation remains excluded.
 
 **Observed completion checkpoint — October 2:** the unrelated-label
 cancellation repair landed in
@@ -2525,3 +2593,28 @@ comparison. The third pass added read-only hosted-CI timing inspection as descri
 above; it did not independently verify all branch protection settings.
 Documentation-check results belong to the
 delivery receipt for this note, not to product readiness.
+
+### Historical section 5 ordering — superseded by E1
+
+**Delivery owner:** Eng Efficiency, working within the mobile, backend and
+workspace ownership boundaries. This section is the single implementation queue
+for this lane; package numbers remain stable references rather than execution
+order. The research sections explain the evidence, not additional queues.
+
+**Current state:** the dated implementation and failure receipts below remain
+historical evidence. Packages 3A/3B/3C and targeted native-QA tooling have landed
+in the accepted tuple above. Existing gains have their stated sample limits;
+there is no measured overall engineering productivity gain. Central integration
+owns compatible handoff review, shared conflicts, dependency pins and landing;
+Eng Efficiency owns its implementations, focused evidence and adoption receipts.
+Do not start a new integration or cleanup queue alongside this section.
+
+| Order | Work | Status and dependency | First beneficiaries |
+| --- | --- | --- | --- |
+| 1 | Package 3A/3B/3C: reduce measured feedback and integration cost | The isolated advisory workflow, unrelated-label guard and early preflight checks are merged. PR #54 remains the first natural eligible post-isolation sample (`n=1`). The October 2 Maestro metadata failure and selector-routing repair are a separate correctness receipt, not another eligible pilot sample; keep required checks authoritative and measure the repair on the next natural flow change before considering any further gate change. Continue the natural ten-change sample; no overall speedup is established. | All integrations |
+| 2 — independently when needed | Package 1: reliable targeted native QA | One targeted Home capture passed; broader Home/Places wrong-state replay remains open. Prioritize a specific native blocker for the current Artifact/Orchestration assignments when the assigned device is available. | Orchestration and Artifact |
+| 3 | Package 2: proportionate review and shorter task context | Tooling landed; changed review scope still requires clean cases and known-defect detection, including the unresolved replay. | All lanes, especially mobile work |
+| As encountered | Package 6: reconcile obsolete operating assumptions and active documentation | The central four-roadmap reconciliation resolves stale integration ownership, baselines and producer availability. Fix remaining contradictions in affected owners; do not repeat a global inventory or archive pass without an observed navigation cost. Three earlier archive migrations are complete. | All lanes |
+| Conditional | Package 7: retire one verified obsolete code, API or dependency family | Select a family with demonstrated repeated tracing/rework cost, current replacement and no unresolved consumer. The 62 retiring API operations are candidates, not approved deletions. | Lanes repeatedly touching compatibility paths |
+| Conditional | Package 4: build reuse and measured setup optimizations | Existing checkout improvements are landed with limited before/after evidence. Native reuse requires a measured remaining setup bottleneck and safe environment identity. | Mobile and build owners |
+| Ongoing | Package 5: product-outcome acceptance | Remains with product lanes. Cleanup preserves their infrastructure, authority and acceptance requirements while design continues. | Product users |
