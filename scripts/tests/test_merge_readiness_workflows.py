@@ -171,6 +171,9 @@ def test_roadmap_scope_pilot_is_opt_in_and_cannot_replace_required_reliability()
     workflow = yaml.load(
         (ROOT / ".github/workflows/reliability.yml").read_text(), Loader=yaml.BaseLoader
     )
+    pull_request = workflow["on"]["pull_request"]
+    assert pull_request["branches"] == ["main"]
+    assert pull_request["types"] == ["opened", "synchronize", "reopened", "labeled"]
     jobs = workflow["jobs"]
     pilot = jobs["roadmap-scope-pilot"]
     assert "github.event_name == 'pull_request'" in pilot["if"]
