@@ -799,11 +799,16 @@ attempt as infrastructure failure. Central retains publication, normal hosted
 checks and merge.
 
 **E1.3 repair and measurement receipt — October 2.** Central's explicit-base
-preflight for the repair passed in 169.003s at app `c895df7e`, workspace
-`6d79b56f` and backend `f5f34cac`: 9,294 app tests and 202 workspace tests.
-Before the experiment, a dispatch request using the target app SHA as the
-workflow `ref` returned HTTP 422 and created no event or run. It has no run ID
-or runner timing; it is retained as a failed dispatch request, not counted as a
+preflight for the integration candidate passed in 169.003s at workspace
+`418afdbdb130a11640620fb4a7e8b89eb341288f`, app
+`c895df7e4cf4522859c3d577cae1ded2b0dbe4ab` and backend
+`f5f34cac89a87480e11e9f3a4ff430ad730baa1a`: 9,294 app tests and 202
+workspace tests. Before the experiment, a dispatch request using workflow ref
+`35537620848bedf860aa9e273b0d9c0fed309651` returned HTTP 422, “No ref found
+for 35537620848bedf860aa9e273b0d9c0fed309651,” and created no event or run.
+The target app SHA `8088501a6121acaac68b6691e7334d943382b230` was the
+`app_sha` input in both requests. The failed dispatch request has no run ID or
+runner timing; it is retained as a failed dispatch request, not counted as a
 GitHub run attempt. The corrected dispatch ran the merged workflow from `main`
 with the target SHA as input: [run 37076671614](https://github.com/fy538/travel-app/actions/runs/37076671614), attempt 1, conclusion `success`.
 
