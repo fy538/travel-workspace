@@ -1150,25 +1150,22 @@ suggestion is a compatible supported repair. The checker must keep malformed
 or unavailable audit results as errors. Do not repeat the same registry probe
 without changed dependency or advisory evidence.
 
-**Decision packet:** keep #213 and #214 blocked until Expo or `node-forge`
-publishes a supported compatible fix; then update the lockfile on both affected
-heads and require the real hosted Security audit to pass.
-If the founder chooses temporary risk acceptance, the only proposed setting is
-one row in `travel-app/scripts/security-audit.mjs`'s existing `EXCEPTIONS` map,
-keyed by source `1240912`, with this exact match identity: advisory URL
-`https://github.com/advisories/GHSA-86w9-cpqp-85rv`, package `node-forge`,
-installed lockfile version `1.4.0`, advisory affected range `<=1.4.0`, and
-severity `high`. Record owner `fy538`, reason naming the GHSA and this bounded
-Expo tooling exposure, and expiry `2026-10-09` (UTC; fail closed from
-2026-10-10T00:00:00Z). The exception code must match every identity field,
-including the locked package version, and must not suppress a changed range,
-URL, package, or severity. Every other high/critical advisory and every malformed or unavailable audit
-remains failing; moderate findings retain the existing nonblocking policy. This map is evaluated on every invocation,
-so the exception would cover every `travel-app` audit run through its expiry,
-not only #213/#214; there is no PR-specific exception mechanism. Approval owner:
-`fy538`; expiry/removal owner: `fy538`. This is an unapproved option only: no
-exception, dependency override, audit-policy change, or control change was
-applied. The operational record is in the
+**Approved decision, October 2:** `fy538` explicitly approved temporary risk
+acceptance for one row in `travel-app/scripts/security-audit.mjs`'s existing
+`EXCEPTIONS` map, keyed by source `1240912`. Its exact match identity is advisory
+URL `https://github.com/advisories/GHSA-86w9-cpqp-85rv`, package `node-forge`,
+installed lockfile version `1.4.0`, affected range `<=1.4.0`, and severity `high`.
+Owner and expiry/removal owner: `fy538`. It is valid through `2026-10-09` UTC,
+and fails closed from 2026-10-10T00:00:00Z. Every identity field and installed
+node version must match; a changed range, URL, package or severity stays
+blocking. Every other high/critical advisory and malformed or unavailable audit
+remains failing; moderate findings retain the existing nonblocking policy.
+The map applies to every app audit invocation during this window. This is
+bounded risk acceptance for Expo signing tooling pending a supported upstream
+fix, not a patched dependency or release/deployment authorization. Central
+integration applies the concrete candidate and requires real audit and hosted
+checks before landing. Prior failed checks remain historical failures; they
+are not retroactively passes. The operational record is in the
 [CI Plan](../reliability/CI%20Plan.md#shared-app-security-audit-blocker--october-2-2026).
 
 [DORA's work-visibility guidance](https://dora.dev/capabilities/work-visibility-in-value-stream/)
