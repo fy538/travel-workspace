@@ -81,7 +81,8 @@ all outcomes in the denominator and separates candidate recall, producer-bound
 dependency selection and exact-quote admission. A deliberately unsupported
 causal claim passes exact quote admission, exposing why quote provenance must
 not be reported as semantic support. The seeded original-only versus assisted
-review pack has four pairs and is pending human judgments. No live or recorded
+review pack has five pairs, including the model-response no-addition, and is
+pending human judgments. No live or recorded
 model output, participant rating, provider cost, model latency, or product value
 measurement exists. See the October 1 R2/R7 evaluation handoff receipt in
 section 12. Do not convert the replay result into an improvement claim.
@@ -4359,8 +4360,10 @@ remain open; R0–R7 are not complete.
 Added `travel-agent/tools/eval/judges/selected_source_producer_eval.py` and
 versioned authored synthetic cases in
 `travel-agent/tools/eval/judges/fixtures/selected-source-producer-cases-v1.json`.
-The backend implementation and generated evaluation artifacts are committed
-on this lane as `14db6a8ee`.
+The backend implementation and generated evaluation artifacts were initially
+committed on this lane as `14db6a8ee`. A follow-up correction that includes
+model-response abstentions in the blinded review pack is committed as
+`07d09b1fd`.
 The runner invokes the landed `execute_selected_source_research` producer and
 the actual selected-source candidate finder. Owner hydration, commercial
 reservation/settlement, result persistence and model responses are controlled
@@ -4389,11 +4392,15 @@ passes the producer's exact-excerpt gate; this is evidence of the gate's
 boundary, not evidence that the claim is true or an unanticipated product
 regression.
 
-The run writes a per-attempt report plus four seeded, blinded original-only vs.
+The run writes a per-attempt report plus five seeded, blinded original-only vs.
 assisted replay packets with a blank rubric response template and a separately
-stored answer key under `travel-agent/tools/eval/judges/results/`. All four
-packets are pending human review. Added substance, intent fit, human usefulness
-and remaining user effort have no ratings. Local
+stored answer key under `travel-agent/tools/eval/judges/results/`: four
+addition attempts and one model-response no-addition. The packet template
+records abstention appropriateness separately; the no-dependency sparse-history
+path is not mislabeled as a model response, and withheld/failed cases remain in
+the outcome denominator without entering text comparisons. All five packets
+are pending human review. Added substance, intent fit, human usefulness and
+remaining user effort have no ratings. Local
 `producer_elapsed_ms_with_doubles` is harness timing; model latency, provider
 units and monetary cost are null because there was no provider call. No value
 rate is inferred from the replay.
@@ -4425,14 +4432,16 @@ Validation on Darwin 26.5 arm64 / Python 3.13.0:
   coordinated workspace lane:
 
   ```bash
-  PYTEST_ADDOPTS='-p no:cacheprovider' RUFF_NO_CACHE=true MYPY_CACHE_DIR=/dev/null \
+  env -u TEST_DATABASE_URL -u TEST_DATABASE_DISPOSABLE \
+    PYTEST_ADDOPTS='-p no:cacheprovider' RUFF_NO_CACHE=true MYPY_CACHE_DIR=/dev/null \
     make verify-changed \
     WORKSPACE_BASE_REF=93301ec311b32ef72a39d090b59819b9ad12c589 \
     AGENT_BASE_REF=0a1fdf224aaf59ca713eec5eba79a34321f038a9 \
     APP_BASE_REF=acf5bd837fe3725b00d9744727f513a601fb2498
   ```
 
-  The backend offline suite reported **22,298 passed, 14 skipped, 53 xpassed**;
+  The backend offline suite reported **22,298 passed, 14 skipped, 1 xfailed,
+  52 xpassed**;
   docs-links, docs-spine and docs-canon checks passed. A separate rerun from
   `travel-agent/` with database variables unset used
   `env -u TEST_DATABASE_URL -u TEST_DATABASE_DISPOSABLE PYTEST_ADDOPTS='-p no:cacheprovider -rs' python scripts/merge_scope.py --base 0a1fdf224aaf59ca713eec5eba79a34321f038a9`
