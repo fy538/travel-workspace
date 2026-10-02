@@ -15,6 +15,29 @@ repositories. Local worktrees use the same layout.
 
 ## Required checks and evidence
 
+### Opt-in roadmap prose scope pilot
+
+The workspace Reliability workflow includes an advisory job gated by the
+`roadmap-scope-pilot` pull-request label. It may select checks only for body
+edits to the four working-roadmap documents admitted in the Eng Efficiency
+roadmap. The classifier requires the exact current protected-main base, the
+same immutable child lock as that base, actual tested child checkouts, clean
+repositories, existing regular Markdown files and byte-identical lifecycle
+front matter. It reuses the change-aware documentation selection, adds mapped
+checker tests, and retains new-document, inventory, generated-status and
+child-document governance checks. A missing tool, history object, tuple or any
+uncertain/different path or metadata input reports full scope; it does not run
+the narrow checks.
+
+The pilot is not a required check and is not an input to `Contract and golden
+paths`. The full Reliability workspace job and all four Maestro syntax shards
+remain required and unchanged throughout this trial. An eligible labeled PR
+uploads its classifier plan and immutable candidate tuple. Compare those with
+the full gate result, end-to-end workflow time and runner use; record failures,
+rejections and cancellations. Since both paths run during the trial, do not
+claim saved wait time or runner minutes. A later required-check or protection
+change needs its own verified additive rollout and authorization.
+
 ### September 30 merge-latency cleanup — staged rollout
 
 **Target:** ordinary final-push-to-merge-readiness under five minutes. This is a

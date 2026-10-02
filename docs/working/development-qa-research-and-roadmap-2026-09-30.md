@@ -638,6 +638,41 @@ new scope. Keep full integration diagnostics on the appropriate code changes
 and main/nightly/manual paths. This roadmap changes no workflow, protection
 setting or required-check obligation.
 
+**October 1 implementation candidate:** the opt-in `roadmap-scope-pilot` job in
+the workspace Reliability workflow admits only body edits to the four documents
+listed above. It checks exact current-main and immutable child identities,
+requires clean child checkouts and unchanged lifecycle metadata, and reuses the
+existing documentation selector and referenced-checker tests alongside the
+governance, inventory, generated-status and child-document checks. Missing or
+uncertain evidence falls back to full scope. The pilot job is label-gated and
+is not a dependency of `Contract and golden paths`; the required full workspace
+suite and all four Maestro syntax shards remain unchanged and authoritative.
+
+This candidate cannot yet reduce the required end-to-end wait or runner use:
+the full required gate still runs during the trial, and the optional job adds
+runner work when explicitly enabled. An eligible roadmap-only PR must carry the
+`roadmap-scope-pilot` label to produce the plan artifact and hosted timing. Keep
+the artifact, full-gate result, total workflow time and runner minutes together;
+record a rejection, checker failure or cancelled run as such. This is evidence
+for reviewing whether a later additive-to-required cutover is justified, not an
+adoption or speedup claim. Any protection or required-check change remains a
+separate, authorized rollout decision.
+
+**Local validation boundary, October 1 EDT / October 2 UTC:** the classifier and
+aggregate contracts passed 53 tests in 32.005 seconds. Documentation inventory,
+status, child governance, links, spine and canon checks passed; the new-document
+guard found zero new documents. The final
+`make verify-changed` passed in 66.377 seconds on workspace
+`93301ec311b32ef72a39d090b59819b9ad12c589`, backend
+`0a1fdf224aaf59ca713eec5eba79a34321f038a9`, and app
+`acf5bd837fe3725b00d9744727f513a601fb2498`. It passed 173 workspace tooling
+tests, cross-repository contract/API/compatibility checks, and links/spine/canon
+checks; backend and app product suites were not selected for this workspace
+change. The exact commands, environment, timings and logs are recorded in the
+[verification baseline](../reliability/test-loop-baseline.json). No hosted pilot
+run has been made, so scope correctness in GitHub, end-to-end time and runner
+cost remain unverified.
+
 Compare elapsed feedback time and runner use with equivalent prose changes,
 and record how frequently that class occurs in the existing ten-change pilot.
 Two docs-only samples do not establish the dominant cost of ordinary product

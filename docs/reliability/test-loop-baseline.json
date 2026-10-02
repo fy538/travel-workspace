@@ -966,5 +966,265 @@
     },
     "node_version": "20.20.2",
     "evidence_boundary": "App source extraction regression and workspace contracts. Backend unchanged and broad suite not repeated. First repair run passed 1296 suites / 9266 tests but failed stale API consumer registry; final registry and header ownership repair passes. Visual/product acceptance is not promoted."
+  },
+  {
+    "schema_version": 1,
+    "label": "roadmap-scope-contract-tests",
+    "command": [
+      "python3",
+      "-m",
+      "pytest",
+      "-p",
+      "no:cacheprovider",
+      "scripts/tests/test_roadmap_reliability_scope.py",
+      "scripts/tests/test_merge_readiness_workflows.py",
+      "-q"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "93301ec311b32ef72a39d090b59819b9ad12c589",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "0a1fdf224aaf59ca713eec5eba79a34321f038a9",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "acf5bd837fe3725b00d9744727f513a601fb2498",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 32.457,
+    "log_path": "docs/reliability/runs/roadmap-scope-contract-tests-20261002T015859Z.log",
+    "test_counts": {
+      "framework": "pytest",
+      "collected": null,
+      "passed": 52,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0
+    }
+  },
+  {
+    "schema_version": 1,
+    "label": "roadmap-scope-doc-checks",
+    "command": [
+      "make",
+      "docs-inventory-check",
+      "docs-status-check",
+      "docs-child-governance-check",
+      "docs-links-check",
+      "docs-spine-check",
+      "docs-canon-check"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "93301ec311b32ef72a39d090b59819b9ad12c589",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "0a1fdf224aaf59ca713eec5eba79a34321f038a9",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "acf5bd837fe3725b00d9744727f513a601fb2498",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 3.345,
+    "log_path": "docs/reliability/runs/roadmap-scope-doc-checks-20261002T015955Z.log",
+    "test_counts": null
+  },
+  {
+    "schema_version": 1,
+    "label": "roadmap-scope-verify-changed",
+    "command": [
+      "make",
+      "verify-changed",
+      "WORKSPACE_BASE_REF=93301ec311b32ef72a39d090b59819b9ad12c589",
+      "AGENT_BASE_REF=0a1fdf224aaf59ca713eec5eba79a34321f038a9",
+      "APP_BASE_REF=acf5bd837fe3725b00d9744727f513a601fb2498"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "93301ec311b32ef72a39d090b59819b9ad12c589",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "0a1fdf224aaf59ca713eec5eba79a34321f038a9",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "acf5bd837fe3725b00d9744727f513a601fb2498",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 74.187,
+    "log_path": "docs/reliability/runs/roadmap-scope-verify-changed-20261002T020044Z.log",
+    "test_counts": {
+      "framework": "pytest",
+      "collected": null,
+      "passed": 172,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0
+    }
+  },
+  {
+    "schema_version": 1,
+    "label": "roadmap-scope-contract-tests-final",
+    "command": [
+      "python3",
+      "-m",
+      "pytest",
+      "-p",
+      "no:cacheprovider",
+      "scripts/tests/test_roadmap_reliability_scope.py",
+      "scripts/tests/test_merge_readiness_workflows.py",
+      "-q"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "93301ec311b32ef72a39d090b59819b9ad12c589",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "0a1fdf224aaf59ca713eec5eba79a34321f038a9",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "acf5bd837fe3725b00d9744727f513a601fb2498",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 32.005,
+    "log_path": "docs/reliability/runs/roadmap-scope-contract-tests-final-20261002T020505Z.log",
+    "test_counts": {
+      "framework": "pytest",
+      "collected": null,
+      "passed": 53,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0
+    }
+  },
+  {
+    "schema_version": 1,
+    "label": "roadmap-scope-verify-changed-final",
+    "command": [
+      "make",
+      "verify-changed",
+      "WORKSPACE_BASE_REF=93301ec311b32ef72a39d090b59819b9ad12c589",
+      "AGENT_BASE_REF=0a1fdf224aaf59ca713eec5eba79a34321f038a9",
+      "APP_BASE_REF=acf5bd837fe3725b00d9744727f513a601fb2498"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "93301ec311b32ef72a39d090b59819b9ad12c589",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "0a1fdf224aaf59ca713eec5eba79a34321f038a9",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "acf5bd837fe3725b00d9744727f513a601fb2498",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 66.377,
+    "log_path": "docs/reliability/runs/roadmap-scope-verify-changed-final-20261002T020549Z.log",
+    "test_counts": {
+      "framework": "pytest",
+      "collected": null,
+      "passed": 173,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0
+    }
+  },
+  {
+    "schema_version": 1,
+    "label": "roadmap-scope-doc-checks-final",
+    "command": [
+      "make",
+      "docs-inventory-check",
+      "docs-status-check",
+      "docs-child-governance-check",
+      "docs-links-check",
+      "docs-spine-check",
+      "docs-canon-check"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "93301ec311b32ef72a39d090b59819b9ad12c589",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "0a1fdf224aaf59ca713eec5eba79a34321f038a9",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "acf5bd837fe3725b00d9744727f513a601fb2498",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 4.79,
+    "log_path": "docs/reliability/runs/roadmap-scope-doc-checks-final-20261002T021044Z.log",
+    "test_counts": null
   }
 ]
