@@ -681,9 +681,47 @@ guard found zero new documents. The final
 tests, cross-repository contract/API/compatibility checks, and links/spine/canon
 checks; backend and app product suites were not selected for this workspace
 change. The exact commands, environment, timings and logs are recorded in the
-[verification baseline](../reliability/test-loop-baseline.json). No hosted pilot
-run has been made, so scope correctness in GitHub, end-to-end time and runner
-cost remain unverified.
+[verification baseline](../reliability/test-loop-baseline.json).
+
+**Hosted scope-rejection trial, October 2 UTC:** [PR #45](https://github.com/fy538/travel-workspace/pull/45)
+published the workflow and classifier candidate at head
+`eac09fb6405c67efd4daf8ee7b9ccde32130b63d`, against base
+`93301ec311b32ef72a39d090b59819b9ad12c589`; it merged as
+`f8ae68e075a634bc75f97fe3839013f4bcfc44ec`. The label-triggered
+[plan artifact](https://github.com/fy538/travel-workspace/actions/runs/36957506694)
+reported `eligible: false`, `scope: full`, reason “Only modifications to
+existing roadmap files are eligible,” and selected no narrow commands. Its
+changed-path inventory included the workflow, classifier, tests, runbook and
+measurement receipt. The accompanying candidate-tuple artifact recorded tested
+workspace merge SHA `0136f969ad19dec9d4ecf85c4a762b5a90d7353c`, backend
+`0a1fdf224aaf59ca713eec5eba79a34321f038a9`, and app
+`acf5bd837fe3725b00d9744727f513a601fb2498`; tested and candidate revisions
+matched.
+
+Adding the label cancelled the first Reliability run
+([36957506676](https://github.com/fy538/travel-workspace/actions/runs/36957506676))
+12 seconds after creation. Its required aggregate failed after 7 seconds because
+the required dependencies were cancelled. The replacement
+([36957506694](https://github.com/fy538/travel-workspace/actions/runs/36957506694))
+completed successfully: the advisory job took 25 seconds, `Reliability checks`
+took 5m48s, the four Maestro syntax shards took 4m01s, 4m41s, 4m48s and 5m26s,
+and `Contract and golden paths` passed at 02:57:03Z, 6m10s after run creation.
+Its completed jobs used 25m14s of runner occupancy; the cancelled run added
+13 seconds, for 25m27s across both runs. The run API reported creation and start
+at the same time, while the first job started 13 seconds later. Backend
+dependency installation took 63 seconds, Node setup 8 seconds, frontend
+dependency installation 26 seconds, Journey mock-walk 72 seconds and Golden
+path QA 28 seconds. GitHub reported no billable minutes for this public
+repository. The additive `Merge ready` check passed in 2m55s; Maestro Cloud PR
+smoke was skipped.
+
+This hosted case confirms full-scope rejection, tuple matching, visible
+cancellation failure and a successful full required gate. It is not an eligible
+prose-only run and gives no evidence that the narrow checks are sufficient or
+faster. This evidence update changes only the body of this admitted roadmap and
+is intended to exercise the positive classification path; its hosted result is
+pending. Do not make an adoption decision until that artifact and its full-gate
+comparison have been reviewed.
 
 Compare elapsed feedback time and runner use with equivalent prose changes,
 and record how frequently that class occurs in the existing ten-change pilot.
