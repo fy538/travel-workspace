@@ -620,10 +620,22 @@ Markdown, with unchanged backend `0a1fdf224aaf59ca713eec5eba79a34321f038a9`
 and app `acf5bd837fe3725b00d9744727f513a601fb2498`. Times use GitHub UTC
 timestamps; workflow duration is creation to final update, not human time lost.
 
-| Prose-only candidate | Reliability workflow window | Workspace job | Selected repeated steps |
+| Prose-only candidate | Reliability workflow window | Workspace job | Total job occupancy | Selected repeated steps |
 | --- | --- | --- | --- |
-| PR #42, `b03c08dd87ad0b2127d3e309962abe5291c05e66`; [run 36940383017](https://github.com/fy538/travel-workspace/actions/runs/36940383017) | 23:21:40–23:27:15, 5m35s | 5m09s | Backend install 51s, frontend install 23s, journey mocks 64s, database migration 4s, goldens 25s; all four syntax shards also ran |
-| PR #43, `ef8abf84009a0ba40ff35e8d1578f1549984b251`; [run 36942761248](https://github.com/fy538/travel-workspace/actions/runs/36942761248) | 23:48:40–23:54:01, 5m21s | 4m55s | Backend install 47s, frontend install 21s, journey mocks 63s, database migration 4s, goldens 24s; all four syntax shards also ran |
+| PR #42, `b03c08dd87ad0b2127d3e309962abe5291c05e66`; [run 36940383017](https://github.com/fy538/travel-workspace/actions/runs/36940383017) | 23:21:40–23:27:15, 5m35s | 5m09s | 22m58s across six jobs | Backend install 51s, frontend install 23s, journey mocks 64s, database migration 4s, goldens 25s; all four syntax shards also ran |
+| PR #43, `ef8abf84009a0ba40ff35e8d1578f1549984b251`; [run 36942761248](https://github.com/fy538/travel-workspace/actions/runs/36942761248) | 23:48:40–23:54:01, 5m21s | 4m55s | 24m37s across six jobs | Backend install 47s, frontend install 21s, journey mocks 63s, database migration 4s, goldens 24s; all four syntax shards also ran |
+
+GitHub reported zero billable minutes for both runs because this is a public
+repository; job occupancy is a separate resource measure. At the October 2
+audit, 3 of the ten most recently merged workspace PRs (#35–#44) matched the
+path-and-body-only shape: [#42](https://github.com/fy538/travel-workspace/pull/42),
+[#43](https://github.com/fy538/travel-workspace/pull/43) and
+[#44](https://github.com/fy538/travel-workspace/pull/44) each changed only
+admitted working-roadmap prose and preserved front matter. That 30% is a short,
+clustered roadmap and integration burst, not a representative frequency estimate
+or a run of the new classifier. Continue the prospective ten-change sample
+before judging whether this class is frequent enough to justify a lasting
+exception.
 
 Trial only an explicit narrow set of working-roadmap prose inputs, preserving
 their metadata, link, governance and referenced-checker obligations. Require the

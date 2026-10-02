@@ -38,6 +38,43 @@ rejections and cancellations. Since both paths run during the trial, do not
 claim saved wait time or runner minutes. A later required-check or protection
 change needs its own verified additive rollout and authorization.
 
+For a reproducible hosted comparison, retain the run ID, attempt number, commit,
+event, plan artifact, and conclusion for every selected or rejected candidate.
+Use the GitHub workflow-jobs API timestamps for job execution windows, then sum
+elapsed seconds across every attempt to report runner occupancy separately from
+the workflow's end-to-end window. Measure end-to-end time from run creation to
+the final `Contract and golden paths` completion; report the advisory pilot job
+duration on its own. Include failed, cancelled and unfinished jobs in the record
+instead of silently dropping them. The repository is public, so GitHub reports
+no billable Actions minutes; occupancy still describes runner capacity consumed.
+The [workflow-jobs REST API](https://docs.github.com/en/rest/actions/workflow-jobs?apiVersion=2026-03-10)
+exposes job start and completion timestamps. GitHub says the [workflow-run
+usage endpoint](https://docs.github.com/en/rest/actions/workflow-runs?apiVersion=2026-03-10)
+is in the process of closing down and that billable minutes only apply to
+private repositories; its [job execution guidance](https://docs.github.com/en/actions/how-tos/monitor-workflows/view-job-execution-time)
+confirms public repositories have no billable minutes.
+
+Example read-only collection:
+
+```sh
+gh api repos/fy538/travel-workspace/actions/runs/<RUN_ID> \
+  --jq '[.created_at, .head_sha, .event, .conclusion, .run_attempt] | @tsv'
+gh api 'repos/fy538/travel-workspace/actions/runs/<RUN_ID>/attempts/<ATTEMPT_NUMBER>/jobs?per_page=100' \
+  --jq '.jobs[] | [.name, .conclusion, .started_at, .completed_at] | @tsv'
+gh pr list --repo fy538/travel-workspace --state merged --limit 10 \
+  --json number,mergedAt,files
+gh pr diff <PR_NUMBER> --repo fy538/travel-workspace
+```
+
+For the path-frequency denominator, take the ten most recently merged PRs at a
+stated audit time, inspect each PR's changed-file list, and count a match only
+when every changed file is one of the admitted roadmap documents and the PR
+diff leaves each document's lifecycle front matter unchanged. Preserve the PR
+numbers and the denominator, including zero-match windows. This retrospective
+shape count is not a substitute for the prospective ten-change pilot.
+Query every run attempt from 1 through `run_attempt`; an omitted attempt or
+missing timestamp is an incomplete measurement and should be labeled as such.
+
 ### September 30 merge-latency cleanup — staged rollout
 
 **Target:** ordinary final-push-to-merge-readiness under five minutes. This is a

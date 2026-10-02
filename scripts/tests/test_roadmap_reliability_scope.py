@@ -177,6 +177,7 @@ def test_allowlisted_prose_uses_existing_doc_checks_and_referenced_checker_test(
     "path,content",
     [
         ("src/source.ts", "export const changed = true;\n"),
+        ("docs/openapi.json", "{\"openapi\": \"3.1.0\"}\n"),
         ("docs/reliability/CI Plan.md", "---\ndoc_type: runbook\n---\npolicy\n"),
         (".github/workflows/reliability.yml", "name: Changed\n"),
         (
@@ -255,6 +256,22 @@ def test_tuple_mismatch_keeps_full_scope(candidate_fixture):
 
     assert plan["eligible"] is False
     assert "does not match travel-app" in plan["reason"]
+
+
+@pytest.mark.parametrize("identity", ["missing", "malformed"])
+def test_missing_or_malformed_candidate_identity_keeps_full_scope(
+    candidate_fixture, identity: str
+):
+    fixture = candidate_fixture
+    if identity == "missing":
+        fixture["tuple"].unlink()
+    else:
+        fixture["tuple"].write_text("not-json\n", encoding="utf-8")
+
+    plan = classify(fixture)
+
+    assert plan["eligible"] is False
+    assert "Candidate verification identity" in plan["reason"]
 
 
 def test_changed_child_lock_keeps_full_scope(candidate_fixture):
