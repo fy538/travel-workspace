@@ -657,10 +657,30 @@ Central verification of clean `cb3378f65377157050d66a222c381f08ea6c8cc0`, backen
 and docs checks in 41.824s with approved local socket access, Python 3.13.0,
 Node 24.13.0 and matching locked dependencies. No tests were skipped. The exact
 explicit-base command and original failed attempts remain in
-`docs/reliability/test-loop-baseline.json`. This is local candidate acceptance;
-protected hosted landing remains pending. It establishes earlier defect feedback,
+`docs/reliability/test-loop-baseline.json`. Protected workspace
+[PR #53](https://github.com/fy538/travel-workspace/pull/53) merged normally at
+`799cf00a9a36954b6a486ed7d95b86d0d5958402`. Full Reliability
+`36981170634`, all four syntax shards and Merge readiness `36981170641`
+passed; configured Cloud smoke was skipped because the service is unavailable.
+The one already-started additional label sequence on this ordinary mixed change
+also passed (`36981553687`) with the unrelated-label run skipped (`36981600793`),
+leaving the original Reliability run intact. Its plan remained `eligible=false`,
+`scope=full`; it adds no naturally eligible sample. No extra events were run. It establishes earlier defect feedback,
 not a measured overall speedup. Further advisory event and natural-change samples
 belong with ordinary eligible work; do not generate commits just to exercise CI.
+
+**Current bounded follow-on — October 2:** Connectivity's assigned-device
+capture now has a concrete Package 1 setup blocker: two attempts at
+`polish/life-intake-source-continuity` stop at the Expo developer-menu/tutorial
+overlay before app readiness, with 0/1 captured. Diagnose the existing
+runner/launch configuration and repair only the reproduced cause. Connectivity
+retains exclusive QA SE control; Eng Efficiency supplies the setup diagnosis or
+isolated tooling candidate, and coordinates a concrete execution instruction.
+Acceptance requires the intended readiness/native case to work and an incorrect
+product state to remain rejected, with exact environment, focused evidence and
+a clean committed handoff. A concrete external blocker is a valid stop. No
+weakened assertions, broader native portfolio, repeated pilot events, security
+exception or open-ended retry loop is included.
 
 **Remaining owned evidence — October 2: remove observed integration waste.**
 The advisory selector and positive/rejection evidence have landed; the trial is

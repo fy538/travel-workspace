@@ -2354,5 +2354,93 @@
       "skipped": 0,
       "errors": 0
     }
+  },
+  {
+    "schema_version": 1,
+    "label": "central-binary-recovery-preflight",
+    "command": [
+      "make",
+      "verify-changed",
+      "WORKSPACE_BASE_REF=6b44f814542309eafa212d475e564630ecec724c",
+      "AGENT_BASE_REF=eda35d6de90ac8c4056dec93630206a2cb6ffa96",
+      "APP_BASE_REF=1551287a480ae87ab2fff2b1eda51e11777b1fa8"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "f868e7745ccde3d3ef6183d595cad7810aae699e",
+        "dirty": false
+      },
+      "travel-agent": {
+        "commit": "f266e325c654b046db9414e8d52fcedcb03fc752",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "03fd900c73ec14dc0a81bd3c2be322fd195bac99",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.13.0",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 357.082,
+    "log_path": "/private/tmp/vesper-lane-integration-evidence/central-binary-recovery-preflight-20261002T080012Z.log",
+    "test_counts": {
+      "framework": "jest",
+      "collected": 9276,
+      "passed": 9276,
+      "failed": 0,
+      "skipped": 0
+    },
+    "evidence_boundary": "Children stayed fixed at f266e325/03fd900c. Workspace advanced from 106c018b to f868e774 during the run as accepted efficiency tooling was reconciled; the initial command selection used the earlier workspace. Separate central-capture-workspace-reconciliation verifies the final workspace delta. Do not claim one immutable full-tuple run."
+  },
+  {
+    "schema_version": 1,
+    "label": "central-capture-workspace-reconciliation",
+    "command": [
+      "make",
+      "verify-changed",
+      "WORKSPACE_BASE_REF=106c018bc72b58e979a7381dff1aba5d46e7faf6",
+      "AGENT_BASE_REF=f266e325c654b046db9414e8d52fcedcb03fc752",
+      "APP_BASE_REF=03fd900c73ec14dc0a81bd3c2be322fd195bac99"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "f868e7745ccde3d3ef6183d595cad7810aae699e",
+        "dirty": false
+      },
+      "travel-agent": {
+        "commit": "f266e325c654b046db9414e8d52fcedcb03fc752",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "03fd900c73ec14dc0a81bd3c2be322fd195bac99",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.13.0",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 40.682,
+    "log_path": "/private/tmp/vesper-lane-integration-evidence/central-capture-workspace-reconciliation-20261002T080716Z.log",
+    "test_counts": {
+      "framework": "pytest",
+      "collected": null,
+      "passed": 186,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0
+    }
   }
 ]
