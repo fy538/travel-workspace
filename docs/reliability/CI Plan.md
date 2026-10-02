@@ -3,7 +3,7 @@ doc_type: runbook
 status: active
 owner: engineering
 created: 2026-09-07
-last_verified: 2026-10-01
+last_verified: 2026-10-02
 why_new: Describes the actual three-repository CI contract, immutable candidate identity, private checkout credentials, and enforcement checks.
 ---
 
@@ -17,13 +17,17 @@ repositories. Local worktrees use the same layout.
 
 ### Opt-in roadmap prose scope pilot
 
-The workspace Reliability workflow includes an advisory job gated by the
-`roadmap-scope-pilot` pull-request label. In addition to GitHub's default PR
-activities (`opened`, `synchronize`, `reopened`), it listens for `labeled`, so
-adding the label to an existing PR starts a run. It may select checks only for
-body edits to the four working-roadmap documents admitted in the Eng Efficiency
-roadmap. GitHub requires the explicit `labeled` activity type for this trigger
-([event documentation](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#pull_request)).
+The required workspace Reliability workflow runs on pull-request opened,
+synchronize and reopened events. The optional pilot lives in the separate
+workspace workflow .github/workflows/roadmap-scope-pilot.yml, which listens
+to those events and labeled. It runs only when the roadmap-scope-pilot label
+is present and has a distinct concurrency group. Adding the label to an
+existing PR starts the pilot without cancelling or repeating the required
+Reliability workflow. A source update or reopen can start both workflows;
+their runs remain isolated. The pilot may select checks only for body edits
+to the four working-roadmap documents admitted in the Eng Efficiency
+roadmap. GitHub requires the explicit labeled activity type for this trigger
+(https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#pull_request).
 The classifier requires the exact current protected-main base, the
 same immutable child lock as that base, actual tested child checkouts, clean
 repositories, existing regular Markdown files and byte-identical lifecycle
@@ -42,14 +46,17 @@ rejections and cancellations. Since both paths run during the trial, do not
 claim saved wait time or runner minutes. A later required-check or protection
 change needs its own verified additive rollout and authorization.
 
-Use the implementation PR itself as the first hosted rejection case: after it
-opens, add `roadmap-scope-pilot` and expect an artifact with `eligible: false`
-and `scope: full`, because it changes workflow, classifier and test files. The
-and `scope: full`, because it changes workflow, classifier and test files. Since
-the advisory job is part of the Reliability workflow, this label event also
-starts its full required workspace and Maestro jobs. The workflow's concurrency
-rule may cancel an overlapping run from the original `opened` event; preserve
-both outcomes and all attempts rather than treating cancellation as a pass.
+The implementation PR isolation check is complete: [PR #49](https://github.com/fy538/travel-workspace/pull/49)
+passed the opened-event full gate in [Reliability run 36967417902](https://github.com/fy538/travel-workspace/actions/runs/36967417902)
+and [Merge ready run 36967417922](https://github.com/fy538/travel-workspace/actions/runs/36967417922).
+After `Contract and golden paths` completed, adding the pilot label started
+[run 36967975701](https://github.com/fy538/travel-workspace/actions/runs/36967975701)
+only. Its artifact reported `eligible: false`, `scope: full`, and no narrow
+commands because the PR changes workflow, documentation and tests. No second
+Reliability or Maestro run started. The detailed candidate tuple, plan digest
+and timing receipt are in the [working roadmap](../working/development-qa-research-and-roadmap-2026-09-30.md#hosted-trigger-isolation-recheck-october-2-utc).
+A cancelled pilot attempt remains visible, while the required full result
+stays authoritative.
 After the implementation lands, use the next natural PR whose only change is
 working-roadmap body prose and whose lifecycle front matter is byte-identical.
 At the trial base, expect the same child lock as protected main (`travel-agent`

@@ -671,16 +671,17 @@ timestamps; workflow duration is creation to final update, not human time lost.
 | PR #43, `ef8abf84009a0ba40ff35e8d1578f1549984b251`; [run 36942761248](https://github.com/fy538/travel-workspace/actions/runs/36942761248) | 23:48:40–23:54:01, 5m21s | 4m55s | 24m37s across six jobs | Backend install 47s, frontend install 21s, journey mocks 63s, database migration 4s, goldens 24s; all four syntax shards also ran |
 
 GitHub reported zero billable minutes for both runs because this is a public
-repository; job occupancy is a separate resource measure. At the October 2
-audit, 3 of the ten most recently merged workspace PRs (#35–#44) matched the
-path-and-body-only shape: [#42](https://github.com/fy538/travel-workspace/pull/42),
-[#43](https://github.com/fy538/travel-workspace/pull/43) and
-[#44](https://github.com/fy538/travel-workspace/pull/44) each changed only
-admitted working-roadmap prose and preserved front matter. That 30% is a short,
-clustered roadmap and integration burst, not a representative frequency estimate
-or a run of the new classifier. Continue the prospective ten-change sample
-before judging whether this class is frequent enough to justify a lasting
-exception.
+repository; job occupancy is a separate resource measure. The earlier window (#35–#44) matched three of ten merged PRs (#42–#44).
+At 2026-10-02 04:29:59Z, the ten most recently merged workspace PRs were
+#39–#48. Four matched the path-and-body-only shape: [#42](https://github.com/fy538/travel-workspace/pull/42),
+[#43](https://github.com/fy538/travel-workspace/pull/43), [#44](https://github.com/fy538/travel-workspace/pull/44),
+and [#46](https://github.com/fy538/travel-workspace/pull/46). The three
+earlier matches predate the classifier; #46 is the only classifier-era
+candidate. This 4/10 retrospective rate is clustered around roadmap and
+integration work, not a representative frequency estimate. There were no
+open workspace PRs at that audit time, so the prospective classifier sample
+remained n=1. Continue with ordinary workspace changes; do not create a PR
+solely to grow the sample.
 
 Trial only an explicit narrow set of working-roadmap prose inputs, preserving
 their metadata, link, governance and referenced-checker obligations. Require the
@@ -809,9 +810,57 @@ required completion was 6m54s, and first PR-run creation to merge was 15m46s,
 including diagnosis and the retry. The advisory result arrived earlier for
 this one input, but required merge time did not shrink and the duplicate/run
 retry defeats any runner-cost saving claim. Two attempts of one change are
-still **n=1** for change frequency and acceptance. Keep required checks unchanged;
-resolve label-trigger/cancellation behavior and continue the ordinary-change
-sample before considering default adoption.
+still **n=1** for change frequency and acceptance. Recommendation after the first hosted trial: revise the demonstrated
+label-trigger cancellation behavior by running the optional pilot in its
+own workflow and concurrency group. Keep all required checks unchanged and
+do not adopt the exception as a replacement yet. The eligible result arrived
+in 1m42s versus 6m54s for the required aggregate, a potential 5m12s earlier
+signal on one change, but it did not reduce merge wait. All attempts used
+53m16s of Reliability runner occupancy. The 4/10 retrospective shape count
+is clustered, and the prospective classifier sample remains n=1. The
+classifier, its regression suite and CI wiring have real maintenance cost;
+maintenance hours have not been measured. The demonstrated cancellation
+defect is fixed and its post-fix rejection case passed, but the isolated
+workflow has not yet had a natural eligible prose candidate. Keep the full
+required checks authoritative and the pilot advisory until that candidate
+and the prospective ten-change sample provide evidence for a separate
+rollout review.
+
+### Hosted trigger isolation recheck, October 2 UTC
+
+[PR #49](https://github.com/fy538/travel-workspace/pull/49), head
+`64af4b3ae8a265e08228edf999916899bbd4d7ca`, changed the required workflow's
+label trigger and moved the advisory pilot into its own workflow and
+concurrency group. The opened event ran the full required set: [Reliability
+run 36967417902](https://github.com/fy538/travel-workspace/actions/runs/36967417902),
+[Merge ready run 36967417922](https://github.com/fy538/travel-workspace/actions/runs/36967417922),
+and the [Maestro Cloud PR gate](https://github.com/fy538/travel-workspace/actions/runs/36967417900).
+All four syntax shards, `Reliability checks`, `Contract and golden paths`
+and `Merge ready` passed. The full required aggregate finished at 05:12:59Z,
+7m05s after the Reliability workflow was created at 05:05:54Z. Maestro Cloud
+smoke was skipped by its existing configuration gate. The separate pilot
+workflow's opened-event job was skipped because the opt-in label was absent.
+
+After the required aggregate finished, adding `roadmap-scope-pilot` produced
+[pilot run 36967975701](https://github.com/fy538/travel-workspace/actions/runs/36967975701),
+which completed successfully in 27s. Its uploaded plan had SHA-256
+`7ac9cbe6e2560968de73091d5e26e6255f6aaae30ba63f20d9f369823ad92f46`,
+`eligible: false`, `scope: full`, reason “Only modifications to existing
+roadmap files are eligible,” and no narrow commands. The candidate-tuple
+artifact recorded workspace merge candidate
+`1ba1d0eaafcf04476da82931e07b6dd4abbf346c`, backend
+`355a8c11df54fee27f8de3b86196b606a64a071c`, and app
+`acf5bd837fe3725b00d9744727f513a601fb2498`; tested and candidate child
+revisions matched. The label event started no new Reliability or Maestro
+workflow, and the original required checks stayed green.
+
+The Reliability run's six completed jobs used 25m29s of runner occupancy;
+`Merge ready` used 3m16s, the cloud configuration check used 4s, and the
+label-triggered pilot used 27s. The label run came after full verification, so
+this rejection case offers no merge-wait or runner saving estimate. The
+positive classifier result in PR #46 predates the split; post-isolation
+eligible hosted sample size remains zero. Do not count repeated runs of this
+same implementation PR as additional natural candidates.
 
 Compare elapsed feedback time and runner use with equivalent prose changes,
 and record how frequently that class occurs in the existing ten-change pilot.
