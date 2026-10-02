@@ -1,0 +1,131 @@
+name: Roadmap scope pilot
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, labeled]
+
+concurrency:
+  group: roadmap-scope-pilot-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  roadmap-scope-pilot:
+    name: Advisory roadmap prose scope pilot
+    if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'roadmap-scope-pilot')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - name: Check out workspace history
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Resolve and record immutable candidate tuple
+        id: child_refs
+        run: python3 scripts/resolve_ci_tuple.py
+
+      - name: Require private checkout credentials
+        env:
+          CHECKOUT_TOKEN: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN }}
+        run: |
+          test -n "$CHECKOUT_TOKEN" || { echo "::error::TRAVEL_WORKSPACE_CI_TOKEN must have read access to both private child repositories"; exit 1; }
+
+      - name: Check out Travel Agent
+        uses: actions/checkout@v6
+        with:
+          repository: ${{ github.repository_owner }}/travel-agent
+          path: travel-agent
+          ref: ${{ steps.child_refs.outputs.agent_ref }}
+          token: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN }}
+          fetch-depth: 1
+
+      - name: Check out Travel App
+        uses: actions/checkout@v6
+        with:
+          repository: ${{ github.repository_owner }}/travel-app
+          path: travel-app
+          ref: ${{ steps.child_refs.outputs.app_ref }}
+          token: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN }}
+          fetch-depth: 1
+
+      - name: Assert actual checkouts equal candidate tuple
+        run: python3 scripts/resolve_ci_tuple.py --assert-checkouts
+
+      - name: Fetch child documentation baseline trees
+        run: python3 scripts/fetch_child_doc_baselines.py
+
+      - name: Plan the opt-in roadmap scope
+        id: scope_plan
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_BASE_BRANCH: ${{ github.event.pull_request.base.ref }}
+          EVENT_NAME: ${{ github.event_name }}
+          PLAN_PATH: ${{ runner.temp }}/roadmap-scope-plan.json
+        run: |
+          python3 scripts/roadmap_reliability_scope.py \
+            --base-ref "$PR_BASE_SHA" \
+            --base-branch "$PR_BASE_BRANCH" \
+            --event-name "$EVENT_NAME" \
+            --candidate-tuple candidate-tuple.json \
+            --plan-json "$PLAN_PATH" \
+            --github-output "$GITHUB_OUTPUT"
+
+      - name: Summarize scope decision
+        if: always()
+        env:
+          PLAN_PATH: ${{ runner.temp }}/roadmap-scope-plan.json
+        run: |
+          if [ -s "$PLAN_PATH" ]; then
+            python3 -c 'import json,os; plan=json.load(open(os.environ["PLAN_PATH"], encoding="utf-8")); print("### Roadmap scope pilot\n\n- Scope: `" + plan["scope"] + "`\n- Eligible: `" + str(plan["eligible"]).lower() + "`\n- Reason: " + plan["reason"] + "\n\nThe required full Reliability aggregate remains authoritative.")' >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Roadmap scope plan was not produced. The required full Reliability aggregate remains authoritative." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Install roadmap check dependencies
+        if: steps.scope_plan.outputs.eligible == 'true' && steps.scope_plan.outputs.travel_agent == 'true'
+        run: pip install -r travel-agent/requirements-dev.txt
+
+      - name: Install minimal documentation dependency
+        if: steps.scope_plan.outputs.eligible == 'true' && steps.scope_plan.outputs.travel_agent != 'true'
+        run: pip install PyYAML==6.0.3
+
+      - name: Set up Node for referenced checker tests
+        if: steps.scope_plan.outputs.eligible == 'true' && steps.scope_plan.outputs.travel_app == 'true'
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: travel-app/package-lock.json
+
+      - name: Install app checker dependencies
+        if: steps.scope_plan.outputs.eligible == 'true' && steps.scope_plan.outputs.travel_app == 'true'
+        run: npm ci
+        working-directory: travel-app
+
+      - name: Run roadmap-specific Reliability checks
+        if: steps.scope_plan.outputs.eligible == 'true'
+        env:
+          PLAN_PATH: ${{ runner.temp }}/roadmap-scope-plan.json
+        run: python3 scripts/roadmap_reliability_scope.py --run-plan "$PLAN_PATH"
+
+      - name: Upload roadmap scope evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: roadmap-scope-pilot-${{ github.run_id }}
+          path: |
+            candidate-tuple.json
+            ${{ runner.temp }}/roadmap-scope-plan.json
+          if-no-files-found: ignore
+          retention-days: 14

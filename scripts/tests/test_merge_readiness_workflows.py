@@ -167,18 +167,36 @@ def test_reliability_required_check_aggregates_workspace_and_matrix_jobs():
     assert gate["run"] == "python3 scripts/require_successful_jobs.py workspace-checks maestro-flow-validation"
 
 
-def test_roadmap_scope_pilot_is_opt_in_and_cannot_replace_required_reliability():
+def test_roadmap_scope_pilot_isolated_from_required_reliability():
     workflow = yaml.load(
         (ROOT / ".github/workflows/reliability.yml").read_text(), Loader=yaml.BaseLoader
     )
-    pull_request = workflow["on"]["pull_request"]
-    assert pull_request["branches"] == ["main"]
-    assert pull_request["types"] == ["opened", "synchronize", "reopened", "labeled"]
+    required_pull_request = workflow["on"]["pull_request"]
+    assert required_pull_request["branches"] == ["main"]
+    assert required_pull_request["types"] == ["opened", "synchronize", "reopened"]
+    assert workflow["concurrency"]["group"].startswith("reliability-")
     jobs = workflow["jobs"]
-    pilot = jobs["roadmap-scope-pilot"]
-    assert "github.event_name == 'pull_request'" in pilot["if"]
+    assert "roadmap-scope-pilot" not in jobs
+    aggregate = jobs["contract-and-golden-path"]
+    assert aggregate["needs"] == ["workspace-checks", "maestro-flow-validation"]
+
+    pilot_workflow = yaml.load(
+        (ROOT / ".github/workflows/roadmap-scope-pilot.yml").read_text(),
+        Loader=yaml.BaseLoader,
+    )
+    pilot_pull_request = pilot_workflow["on"]["pull_request"]
+    assert pilot_pull_request["branches"] == ["main"]
+    assert pilot_pull_request["types"] == [
+        "opened", "synchronize", "reopened", "labeled"
+    ]
+    assert pilot_workflow["concurrency"]["group"].startswith("roadmap-scope-pilot-")
+    assert (
+        pilot_workflow["concurrency"]["group"] != workflow["concurrency"]["group"]
+    )
+    assert pilot_workflow["concurrency"]["cancel-in-progress"] == "true"
+    assert set(pilot_workflow["jobs"]) == {"roadmap-scope-pilot"}
+    pilot = pilot_workflow["jobs"]["roadmap-scope-pilot"]
     assert "roadmap-scope-pilot" in pilot["if"]
-    assert "needs" not in pilot
     assert_reliability_job_uses_pinned_children(pilot, child_fetch_depth="1")
     plan_index = next(
         i for i, step in enumerate(pilot["steps"])
@@ -194,9 +212,6 @@ def test_roadmap_scope_pilot_is_opt_in_and_cannot_replace_required_reliability()
         and step.get("if") == "steps.scope_plan.outputs.eligible == 'true'"
         for step in pilot["steps"]
     )
-    aggregate = jobs["contract-and-golden-path"]
-    assert aggregate["needs"] == ["workspace-checks", "maestro-flow-validation"]
-    assert "roadmap-scope-pilot" not in aggregate["needs"]
 
 
 @pytest.mark.parametrize("workspace,maestro", [
