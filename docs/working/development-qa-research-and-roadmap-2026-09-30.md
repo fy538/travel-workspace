@@ -638,6 +638,31 @@ publication/hosted checks/merge; the owner does not poll central. Record one
 current milestone, exact candidate and evidence tuple, blocker and next action
 here. Replace a candidate explicitly rather than silently moving tested HEAD.
 
+**E1 execution receipt — October 2:** candidate lane is
+`codex/eng-eff-verification-evidence-20261002`, based on workspace
+`da4c3d716aaff3e20a8d85ea35acc857810c4c16`, backend
+`28a72b0643ae168a4976c1dfe7861a7c1022267c`, and app
+`0f607bf2cef95dd4cd91c6fc9bbad10aa282a535`. E1.1 recorder tests passed (33)
+with stable before/after identity; the full workspace tooling suite passed (199)
+with stable identity. E1.2 polish prerequisite tests passed (25) with stable
+identity. Its dry-run produced zero screenshots, correctly recorded
+`preflightStatus=not-checked`, mock mode as unobserved, and the lane device as
+unresolved; this is wiring evidence only, not a native pass. The final explicit-
+base `make verify-changed` passed against the tuple above: app fast checks,
+1,298 suites / 9,289 tests, workspace tooling tests, and cross-repository
+contracts. The app test runner reported one worker force-exit warning after all
+tests passed. The first sandboxed workspace run could not bind ephemeral local
+ports; the complete gate passed when rerun with that test prerequisite
+available. Measurement labels are `e1-recorder-regression`,
+`e1-workspace-tooling-suite`, and `e1-qa-preflight-regression`.
+
+The implementation and headless acceptance are ready for the device trial, but
+E1 is not complete: this lane's runtime has no assigned device and Connectivity
+owns the reserved QA SE. Next action is to use one bounded device window after
+Connectivity releases it, run one prerequisite-receipt trial, then update this
+record with the native evidence. E1.3 remains pending until a natural broad app
+candidate qualifies. Central retains publication, hosted checks, and merge.
+
 **Ownership:** workspace recorder and QA tooling/app preflight only, plus the
 existing tests/runbooks affected. Connectivity owns product capture/session
 behavior and the QA SE reservation; Artifact owns correction/readers. Do not

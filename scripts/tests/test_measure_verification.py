@@ -204,7 +204,7 @@ def test_append_record_refuses_to_clobber_non_array_content(tmp_path: Path) -> N
     path.write_text(json.dumps({"not": "an array"}))
     try:
         MODULE.append_record(path, {"label": "run1"})
-        assert False, "expected ValueError"
+        raise AssertionError("expected ValueError")
     except ValueError as exc:
         assert "not a JSON array" in str(exc)
 
@@ -243,6 +243,216 @@ def test_git_commit_resolves_real_workspace_head() -> None:
     commit = MODULE.git_commit(MODULE.WORKSPACE_ROOT)
     assert commit is not None
     assert len(commit) == 40
+
+
+def _initialize_repo(path: Path, *, lockfile: bool = False) -> None:
+    path.mkdir(parents=True, exist_ok=True)
+    subprocess.run(["git", "init", "--quiet"], cwd=path, check=True)
+    subprocess.run(["git", "config", "user.name", "Verification Test"], cwd=path, check=True)
+    subprocess.run(["git", "config", "user.email", "verification@example.invalid"], cwd=path, check=True)
+    (path / "README.md").write_text("stable input\n", encoding="utf-8")
+    if lockfile:
+        (path / "package-lock.json").write_text('{"lockfileVersion": 3}\n', encoding="utf-8")
+    subprocess.run(["git", "add", "README.md", "package-lock.json"] if lockfile else ["git", "add", "README.md"], cwd=path, check=True)
+    subprocess.run(["git", "commit", "--quiet", "-m", "fixture"], cwd=path, check=True)
+
+
+def _initialize_lane(path: Path, *, missing: str | None = None) -> None:
+    path.mkdir(parents=True, exist_ok=True)
+    for name in ("workspace", "travel-agent", "travel-app"):
+        if name == missing:
+            continue
+        repo_path = path if name == "workspace" else path / name
+        _initialize_repo(repo_path, lockfile=name == "travel-app")
+    (path / ".gitignore").write_text(
+        "travel-agent/\ntravel-app/\n.workspace-lane.json\n",
+        encoding="utf-8",
+    )
+    subprocess.run(["git", "add", ".gitignore"], cwd=path, check=True)
+    subprocess.run(["git", "commit", "--quiet", "-m", "ignore child repos and lane metadata"], cwd=path, check=True)
+    backend = path / "travel-agent"
+    if backend.exists():
+        (backend / ".gitignore").write_text("requirements-dev.txt\n", encoding="utf-8")
+        subprocess.run(["git", "add", ".gitignore"], cwd=backend, check=True)
+        subprocess.run(["git", "commit", "--quiet", "-m", "ignore generated lock"], cwd=backend, check=True)
+        (backend / "requirements-dev.txt").write_text("pytest==1.0\n", encoding="utf-8")
+    (path / ".workspace-lane.json").write_text(
+        json.dumps({
+            "bases": {
+                "workspace": "a" * 40,
+                "travel-agent": "b" * 40,
+                "travel-app": "c" * 40,
+            }
+        }),
+        encoding="utf-8",
+    )
+
+
+def test_recorder_marks_unchanged_repository_inputs_stable(tmp_path: Path, monkeypatch, capsys) -> None:
+    lane = tmp_path / "lane"
+    _initialize_lane(lane)
+    monkeypatch.setattr(MODULE, "WORKSPACE_ROOT", lane)
+    status = MODULE.main([
+        "--label", "stable",
+        "--log-dir", str(tmp_path / "logs"),
+        "--base", f"workspace={'d' * 40}",
+        "--plan", "focused-recorder-tests",
+        "--", sys.executable, "-c", "pass",
+    ])
+    record = json.loads(capsys.readouterr().out)
+    assert status == 0
+    assert record["input_identity"]["status"] == "stable"
+    assert record["input_identity"]["before"]["workspace"]["path"] == str(lane.resolve())
+    assert record["verification"]["plan"] == "focused-recorder-tests"
+    assert record["verification"]["plan_source"] == "cli"
+    assert record["verification"]["bases"]["workspace"] == {
+        "revision": "d" * 40,
+        "source": "cli",
+    }
+    assert record["verification"]["bases"]["travel-agent"]["source"] == "workspace-lane-manifest"
+    assert record["verification"]["dependency_locks"]["travel-app"][0]["sha256"]
+
+
+def test_recorder_detects_repository_input_modified_during_command(
+    tmp_path: Path, monkeypatch, capsys
+) -> None:
+    lane = tmp_path / "lane"
+    _initialize_lane(lane)
+    monkeypatch.setattr(MODULE, "WORKSPACE_ROOT", lane)
+    status = MODULE.main([
+        "--label", "mutated",
+        "--log-dir", str(tmp_path / "logs"),
+        "--", sys.executable, "-c",
+        "from pathlib import Path; Path('README.md').write_text('changed during run\\n')",
+    ])
+    record = json.loads(capsys.readouterr().out)
+    assert status == 2
+    assert record["exit_code"] == 0
+    assert record["input_identity"]["status"] == "changed"
+    assert record["input_identity"]["changed_repositories"] == ["workspace"]
+
+
+def test_recorder_detects_lockfile_changed_even_when_git_ignores_it(
+    tmp_path: Path, monkeypatch, capsys
+) -> None:
+    lane = tmp_path / "lane"
+    _initialize_lane(lane)
+    monkeypatch.setattr(MODULE, "WORKSPACE_ROOT", lane)
+    status = MODULE.main([
+        "--label", "mutated-lock",
+        "--log-dir", str(tmp_path / "logs"),
+        "--", sys.executable, "-c",
+        "from pathlib import Path; Path('travel-agent/requirements-dev.txt').write_text('pytest==2.0\\n')",
+    ])
+    record = json.loads(capsys.readouterr().out)
+    assert status == 2
+    assert record["input_identity"]["status"] == "changed"
+    assert record["input_identity"]["changed_repositories"] == []
+    assert record["input_identity"]["changed_dependency_locks"] == ["travel-agent"]
+    assert record["verification"]["dependency_locks_stable"] is False
+
+
+def test_recorder_does_not_fall_back_to_a_sibling_when_a_child_is_missing(
+    tmp_path: Path, monkeypatch, capsys
+) -> None:
+    lane = tmp_path / "lane"
+    _initialize_lane(lane, missing="travel-agent")
+    sibling = tmp_path / "travel-agent"
+    _initialize_repo(sibling)
+    monkeypatch.setattr(MODULE, "WORKSPACE_ROOT", lane)
+    status = MODULE.main([
+        "--label", "missing-child",
+        "--log-dir", str(tmp_path / "logs"),
+        "--", sys.executable, "-c", "pass",
+    ])
+    record = json.loads(capsys.readouterr().out)
+    assert status == 2
+    assert record["exit_code"] == 0
+    assert record["input_identity"]["status"] == "unknown"
+    assert record["input_identity"]["before"]["travel-agent"]["status"] == "missing"
+    assert record["input_identity"]["before"]["travel-agent"]["path"] == str(
+        (lane / "travel-agent").resolve()
+    )
+
+
+def test_recorder_retains_completed_command_failure_and_missing_tool(
+    tmp_path: Path, monkeypatch, capsys
+) -> None:
+    lane = tmp_path / "lane"
+    _initialize_lane(lane)
+    monkeypatch.setattr(MODULE, "WORKSPACE_ROOT", lane)
+    status = MODULE.main([
+        "--label", "command-failure",
+        "--log-dir", str(tmp_path / "logs"),
+        "--append-to", str(tmp_path / "failures.json"),
+        "--", sys.executable, "-c", "import sys; sys.exit(13)",
+    ])
+    failed = json.loads(capsys.readouterr().out)
+    assert status == 13
+    assert failed["exit_code"] == 13
+    assert failed["input_identity"]["status"] == "stable"
+
+    missing_status = MODULE.main([
+        "--label", "tool-failure",
+        "--log-dir", str(tmp_path / "logs"),
+        "--append-to", str(tmp_path / "failures.json"),
+        "--", "measure-verification-missing-tool",
+    ])
+    missing = json.loads(capsys.readouterr().out)
+    records = json.loads((tmp_path / "failures.json").read_text(encoding="utf-8"))
+    assert missing_status == 127
+    assert missing["exit_code"] == 127
+    assert missing["verification"]["tool_versions"]["primary_command"]["status"] == "not-found"
+    assert [record["label"] for record in records] == ["command-failure", "tool-failure"]
+
+
+def test_receipt_redacts_credentials_inline_source_and_unapproved_modes(monkeypatch) -> None:
+    command = [
+        "node", "script.mjs", "--token=secret-token", "--password", "private-value",
+        "https://example.invalid/?access_token=query-secret", "-c", "SOURCE_CONTENT",
+    ]
+    safe = MODULE.safe_command(command)
+    assert "secret-token" not in json.dumps(safe)
+    assert "private-value" not in json.dumps(safe)
+    assert "query-secret" not in json.dumps(safe)
+    assert "SOURCE_CONTENT" not in json.dumps(safe)
+    assert "<inline-code-omitted>" in safe
+
+    modes = MODULE.safe_modes({
+        "EXPO_PUBLIC_AUTH_MODE": "real",
+        "QA_MODE": "private-user-data",
+        "EXPO_PUBLIC_API_URL": "https://user:password@example.invalid/token-secret",
+        "API_TOKEN": "secret-token",
+    })
+    assert modes["EXPO_PUBLIC_AUTH_MODE"]["value"] == "real"
+    assert modes["QA_MODE"] == {"present": True, "value": None, "status": "unknown"}
+    assert "EXPO_PUBLIC_API_URL" not in modes
+    assert "API_TOKEN" not in modes
+    assert "password" not in json.dumps(modes)
+    record = MODULE.build_record(
+        label="password=label-secret",
+        cmd=command,
+        run_result={
+            "exit_code": 13,
+            "timed_out": False,
+            "wall_time_seconds": 0.2,
+            "log_path": "/tmp/access_token=path-secret.log",
+        },
+        repos={},
+        env=modes,
+        log_text=None,
+    )
+    serialized = json.dumps(record)
+    for secret in (
+        "secret-token",
+        "private-value",
+        "query-secret",
+        "SOURCE_CONTENT",
+        "label-secret",
+        "path-secret",
+    ):
+        assert secret not in serialized
+    assert record["exit_code"] == 13
 
 
 # ── CLI end-to-end ────────────────────────────────────────────────────────
@@ -345,12 +555,12 @@ def test_main_propagates_completed_command_failure(tmp_path: Path, capsys) -> No
 def test_main_rejects_missing_command() -> None:
     try:
         MODULE.main(["--label", "no-cmd"])
-        assert False, "expected SystemExit from argparse error()"
+        raise AssertionError("expected SystemExit from argparse error()")
     except SystemExit as exc:
         assert exc.code != 0
 
 
-def test_identity_ignores_foreign_git_environment(tmp_path, monkeypatch):
+def test_identity_ignores_foreign_git_environment(tmp_path, monkeypatch) -> None:
     import subprocess
     repos = []
     for name in ("one", "two"):
