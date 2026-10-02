@@ -16,9 +16,12 @@ source_of_truth_for: []
 is implemented and verified in the frozen candidate tuple: workspace
 `f77e055045562d04774a447b45150c6eb8e01d32`, backend
 `3e66aed35856c8963220cf211ecceacd54859c84`, and app
-`8bf11fb84a60455bfabf47a08b546d28d856603e`. The lane is clean; central
-integration owns review and landing. Do not repeat A1 or treat the tuple as
-accepted main. One separately bounded Clerk-authenticated mobile acceptance
+`8bf11fb84a60455bfabf47a08b546d28d856603e`. Central integration has now landed
+these candidates through backend [PR #247](https://github.com/fy538/travel-agent/pull/247),
+app [PR #216](https://github.com/fy538/travel-app/pull/216), and workspace
+[PR #61](https://github.com/fy538/travel-workspace/pull/61), with required checks
+passing. The accepted merge tuple is recorded in the
+[program checkpoint](vesper-program-roadmap.md). Do not repeat A1. One separately bounded Clerk-authenticated mobile acceptance
 gate remains open below. No new chat Goal is active; model evaluation remains
 excluded.
 
