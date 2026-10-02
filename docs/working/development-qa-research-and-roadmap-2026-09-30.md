@@ -717,6 +717,23 @@ the same input then passed with loopback access in 203.535 seconds: 1,298 app
 suites / 9,289 tests, 201 workspace tests, API contracts and selected docs
 checks. The clean committed-head rerun and exact result are recorded below.
 
+**Corrected committed-head verification — October 2:** a focused fault injection
+showed that unavailable `git diff` and `git ls-files` probes returned `return_code
+= None`, which the recorder treated as successful empty output. The reproduction
+returned `dirty_input_identity.status=ok` despite missing inputs. Workspace
+commit `6455024a74f36dcb904b3d5a43c64b92fb3550b2` now requires a zero exit status
+for both probes; the new regression covers each failure and expects an unknown
+digest. The recorder suite passed (36 tests), Ruff passed, and the clean
+explicit-base `make verify-changed` passed in 162.835 seconds with stable
+before/after identities. It covered app `60f0a31c`, backend `28a72b06`, and
+workspace `6455024a` against bases workspace `da4c3d71`, backend `28a72b06`,
+and app `0f607bf2`: 1,298 app suites / 9,289 tests, 202 workspace tests, API
+contracts and selected docs checks. The measurement record and log are
+`e1-dirty-probe-fail-closed-current-head` and
+`/private/tmp/vesper-e1-verification-logs/e1-dirty-probe-fail-closed-current-head-20261002T221916Z.log`.
+The earlier sandbox socket-denied attempt remains recorded; it is not counted
+as a pass.
+
 **Read-only native prerequisite window — October 2:** Connectivity released
 the assigned iPhone SE (3rd generation), UDID
 `51A7A2C0-49CB-487E-A056-A771361EFA9B`, for one bounded window from
@@ -752,12 +769,21 @@ unverified; do not convert this negative receipt into an authenticated pass.
 [#216](https://github.com/fy538/travel-app/pull/216), app head
 `8088501a6121acaac68b6691e7334d943382b230`, workspace dependency
 `8babb0d125c0e1c104f80d8a0c22063684365f04`, backend
-`114e6657d5390d2ee2c3162e63ce4829e8062dcd`. Its dependency-pin changes make it
-eligible for one successful serial baseline and one successful sharded run via
-the existing experiment workflow after E1.1's clean gate. Both runs must use
-this immutable tuple, dependency policy and runner class; retain failed attempts
-and the exact test union. No required-check changes or new PR are in scope.
-Central retains publication, normal hosted checks and merge.
+`114e6657d5390d2ee2c3162e63ce4829e8062dcd`. Its dependency-pin changes are a
+natural broad-test candidate, but the existing experiment workflow is not
+eligible on this PR: it triggers only on `pull_request` and gates all three jobs
+on `github.head_ref == 'codex/eng-eff-3a-app-tests'`; PR #216 uses
+`codex/integrate-autonomous-round-20261002`. There is no manual-dispatch path.
+Therefore no baseline/sharded pair ran. Reusing it on #216 would require a
+workflow or PR change, so leave E1.3 pending rather than editing a required
+check, creating a synthetic PR, or substituting a different runner.
+
+Central reports app #216's full tests passed in 9m40s. Its final `Merge ready`
+job `111049259802` ran no steps and timed out: the annotation said the maximum
+execution was 1m while wall time was 6m. Central issued one failed-job rerun at
+the same head; this lane did not poll or duplicate it. Preserve the first
+attempt as infrastructure failure. Central retains publication, normal hosted
+checks and merge.
 
 **Ownership:** workspace recorder and QA tooling/app preflight only, plus the
 existing tests/runbooks affected. Connectivity owns product capture/session
