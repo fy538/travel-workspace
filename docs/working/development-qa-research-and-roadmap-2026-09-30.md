@@ -13,19 +13,19 @@ source_of_truth_for: []
 # Faster development with trustworthy QA
 
 **Decision:** What should Vesper change about building, testing and reviewing work?
-**Research cutoff:** October 1, 2026. **Planning and execution update:**
-October 1, following the founder's request to recheck priorities after central
-integration and Git cleanup. [Section 5](#5-improvement-roadmap) remains the
+**Research cutoff:** October 1, 2026, with October 2 targeted code, hosted-run
+and upstream-advisory rechecks. **Planning and execution update:** October 2,
+following the founder’s request for independently executable overnight goals. [Section 5](#5-improvement-roadmap) remains the
 single execution queue. Begin with the next measured verification bottleneck;
 fix obsolete assumptions when they obstruct current work and retire an old
 implementation family only when its maintenance burden justifies the work.
 Keep the existing native QA and same-coverage test improvements; unfinished
 infrastructure awaiting product design is not an obsolete-code candidate.
 
-The accepted integration landed at workspace
+The historical October 1 integration landed at workspace
 `7018d055c6635b0edb5726612375c03f2c785520`; roadmap-only PRs #42/#43 advanced the
 inspected workspace main to `0b8792793fc25eceb8967edf7b832fe0f0194934`.
-Its child pair remains backend `0a1fdf224aaf59ca713eec5eba79a34321f038a9`, and app
+That historical child pair was backend `0a1fdf224aaf59ca713eec5eba79a34321f038a9`, and app
 `acf5bd837fe3725b00d9744727f513a601fb2498`, landed through central integration
 [workspace PR 41](https://github.com/fy538/travel-workspace/pull/41),
 [backend PR 241](https://github.com/fy538/travel-agent/pull/241), and
@@ -597,7 +597,7 @@ Do not start a new integration or cleanup queue alongside this section.
 
 | Order | Work | Status and dependency | First beneficiaries |
 | --- | --- | --- | --- |
-| 1 | Package 3A/3B/3C: reduce measured feedback and integration cost | Existing implementations landed. First candidate is the narrow working-roadmap-only hosted scope below; use the ten-change pilot to judge frequency and benefit before wider adoption. Default app sharding stays unchanged; the passed experiment alone does not justify adoption. | All integrations |
+| 1 | Package 3A/3B/3C: reduce measured feedback and integration cost | Existing implementations landed. Next repair is the observed duplicate/cancellation behavior in that advisory trial; use the ten-change pilot to judge frequency and benefit before wider adoption. Default app sharding stays unchanged; the passed experiment alone does not justify adoption. | All integrations |
 | 2 — independently when needed | Package 1: reliable targeted native QA | One targeted Home capture passed; broader Home/Places wrong-state replay remains open. Prioritize a specific native blocker for the current Artifact/Orchestration assignments when the assigned device is available. | Orchestration and Artifact |
 | 3 | Package 2: proportionate review and shorter task context | Tooling landed; changed review scope still requires clean cases and known-defect detection, including the unresolved replay. | All lanes, especially mobile work |
 | As encountered | Package 6: reconcile obsolete operating assumptions and active documentation | The central four-roadmap reconciliation resolves stale integration ownership, baselines and producer availability. Fix remaining contradictions in affected owners; do not repeat a global inventory or archive pass without an observed navigation cost. Three earlier archive migrations are complete. | All lanes |
@@ -605,15 +605,62 @@ Do not start a new integration or cleanup queue alongside this section.
 | Conditional | Package 4: build reuse and measured setup optimizations | Existing checkout improvements are landed with limited before/after evidence. Native reuse requires a measured remaining setup bottleneck and safe environment identity. | Mobile and build owners |
 | Ongoing | Package 5: product-outcome acceptance | Remains with product lanes. Cleanup preserves their infrastructure, authority and acceptance requirements while design continues. | Product users |
 
-**Next owned assignment:** validate one bounded reduction in repeated hosted
-verification for working-roadmap prose changes. The current workspace
-`Merge ready` already scopes optional dependencies, but required `Contract and
-golden paths` still waits for the full Reliability suite and all four Maestro
-syntax partitions on these changes. The observed candidate is that remaining
-scope, not replaying the delivered sharding or checkout changes. Refresh the
-retained efficiency checkout from accepted main and reconcile its preserved
-dirty draft without dropping unique evidence; the central integration checkout
-is not a permanent lane.
+**Next owned assignment — October 2: remove observed integration waste.**
+The advisory selector and positive/rejection evidence have landed; the trial is
+not waiting for another implementation of narrow selection. PR #46 required a
+cancelled duplicate to be rerun despite a passing same-head workflow. Its three
+attempts consumed 53m16s of Reliability job occupancy for one change. Keep that
+n=1 boundary and the required full gate; do not infer general productivity gains.
+
+1. **Bound the shared app blocker investigation.** Recheck the actual locked
+   dependency chain, upstream remediation and affected call sites once. App
+   PRs #213/#214 currently fail only their required security audit. The reviewed
+   [node-forge advisory](https://github.com/advisories/GHSA-86w9-cpqp-85rv)
+   still lists affected versions through 1.4.0 and no patched version on
+   October 2. A supported compatible dependency repair can be prepared and
+   verified as a separate candidate. If none exists, hand over the specific
+   exposure/remediation options and continue to step 2; do not spend the night
+   polling upstream, authoring a crypto fork, downgrading into known exposure or
+   adding an audit exception. Risk acceptance requires founder review.
+2. **Finish the remaining advisory event guard before scope adoption.**
+   PR #49 has already separated the advisory pilot into
+   `.github/workflows/roadmap-scope-pilot.yml`; required Reliability no longer
+   restarts when its opt-in label is added. Preserve that landed repair and its
+   hosted rejection receipt below. The separate pilot still has workflow-level
+   cancelling concurrency, so an unrelated label can acquire its slot even when
+   the advisory job is skipped. Reproduce and repair this remaining edge case,
+   keeping skipped events from cancelling a valid pilot. GitHub's
+   [concurrency documentation](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency)
+   establishes the scheduling mechanism; hosted evidence must establish this
+   repository's actual event and required-check behavior.
+3. **Prove the replacement and measure a natural change.** Cover opened plus
+   pilot-label events, unrelated labels, synchronize to a newer head and rerun
+   of a failed check. New commits must receive their own full gate; cancelled,
+   missing or genuinely failed checks cannot be reported as passed. Retain
+   tuple/digest matching and the selector's uncertain-input full fallback.
+   Use the next ordinary eligible roadmap change and a rejection case, recording
+   every run/attempt, final required-gate latency and total runner occupancy.
+   Local workflow tests alone do not close hosted cancellation acceptance.
+
+**Finish:** a reviewed workflow repair with representative clean, violating and
+execution-failure evidence, an actual hosted event-sequence receipt, and a
+before/after comparison with sample limits. Stop or retain the advisory pilot
+according to observed benefit; insufficient samples remain insufficient.
+No default narrow required scope, protection change or security waiver is
+included. The ten-change sample uses real work rather than fabricated prose
+commits. Central integration remains the landing owner; this task does not
+become an indefinite cross-lane watcher.
+
+**Independent follow-on:** if a current lane is blocked by native QA setup,
+fix one reproduced cause under Package 1 and show both its recovered intended
+case and a real product failure still failing. Otherwise hand off the completed
+workflow milestone. Broader cleanup, semantic visual approval and app sharding
+remain conditional on their existing evidence gates.
+
+**Previous assignment and baseline rationale:** the roadmap-prose selector is
+already implemented. The following original baseline and pilot protocol remain
+historical comparison evidence; current execution order is the October 2
+assignment above. Packages 3A/3B/3C are not instructions to replay landed work.
 
 **Observed baseline, October 1:** both PRs below changed only working-roadmap
 Markdown, with unchanged backend `0a1fdf224aaf59ca713eec5eba79a34321f038a9`

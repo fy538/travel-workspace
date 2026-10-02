@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Strategy Technical lane
 created: 2026-09-29
-last_verified: 2026-10-01
+last_verified: 2026-10-02
 expires: 2026-10-13
 why_new: The artifact experience plan owns recognizable objects and readers, while the program owns dispatch. Neither should absorb this detailed cross-system code audit, nine-topic research synthesis, and proposed implementation dependencies for shared context, discovery, research, maintenance and evaluation.
 supersedes: []
@@ -51,7 +51,65 @@ sharing policy, deployment or release is enabled by this document.
 
 ## 0 Strategy Technical lane execution boundary
 
-**Current assignment status:** the bounded R2/R7 final-selection and
+### Current assignment — October 2: R3 interruption and elapsed-time correctness
+
+**Objective:** finish one repairable execution/recovery slice in the existing
+selected-source producer, so an interrupted request cannot silently produce a
+second chargeable dispatch, lose accounting, or return an obsolete result.
+R2/R7 replay implementation is delivered; its frozen actual-model pilot remains
+blocked on secure Anthropic access. The founder approved the existing $0.50
+maximum and recorded case/attempt limits on October 2; approval is no longer
+the blocker.
+Independent human judgments remain required afterward. That is a separate
+quality gate, not a reason to repeat authored examples overnight.
+
+**Evidence that narrows the work:**
+`backend/research_agent/selected_source_producer.py` already disables SDK retries
+and failover, limits a dispatch to 15 seconds, reserves through the shared
+commercial gateway and preserves ambiguous consumption. The real-Postgres
+`tests/api/test_selected_source_research_postgres.py` already covers settlement,
+allocation contention, no-addition, revocation during generation and ambiguous
+timeout/same-key replay. `tests/core/commercial_access/test_usage_ledger_postgres.py`
+already covers expired dispatched holds and authoritative no-use reconciliation.
+Do not rebuild these mechanisms or describe this coverage as missing.
+
+1. Trace cancellation and failure between dispatch, response observation,
+   settlement and result storage. Use the existing ledger and result owner;
+   document observed current behavior before changing it. Unknown provider use
+   remains held/unknown; elapsed time alone is not evidence of zero use.
+2. Add a deterministic advancing-clock case for work/source expiry while a
+   provider call is in flight. The producer currently captures `current` before
+   awaiting generation and supplies it to final storage. This is an unresolved
+   stale-time risk, not an executed failure receipt. Verify current authority
+   and time at publication/return, and repair only reproduced contract violations.
+3. Demonstrate restart/retry of the same work identity after an injected
+   interruption, using a disposable database and controlled provider responses.
+   Assert dispatch count, ledger balances/status and exact result availability
+   together. If a consumed request has no stored result, preserve the bounded
+   failure instead of automatically paying for a replacement or inventing a
+   durable model-output store; a new recovery policy requires review.
+
+**Completion:** retain a small boundary matrix with existing coverage, executed
+new cases, fixes and unresolved policy choices. Same-key retry cannot duplicate
+dispatch; expired/revoked results cannot publish or be returned; ambiguous use
+cannot free capacity without authoritative reconciliation. Include cancellation
+before and after response observation and failure before result storage where
+supported by the existing test seams. A full OS-process-kill claim requires an
+actual process boundary; monkeypatched exceptions prove only their stated seam.
+Run the relevant real-Postgres acceptance and explicit-base preflight; hand off
+one clean committed slice. If evidence shows no defect, hand off that bounded
+finding and stop rather than adding speculative scheduling infrastructure.
+
+**Scope:** backend producer, exact-result owner and existing accounting seams.
+No new queue, subscription service, shared public-result cache, production
+allocation, live provider calls, prompt tuning or API shape change is implied.
+Artifact owns the app consumer and generated-contract adoption. Preserve its
+GET-only dependency and the default-disabled feature. The longer R3/R4 queue
+remains below; this milestone does not close all of it.
+
+### Completed R2/R7 implementation and remaining quality boundary
+
+**Previous assignment status:** the bounded R2/R7 final-selection and
 supported-addition evaluation implementation is delivered for selected original
 → supported addition → exact readback. The backend producer and exact-result
 API are landed; this round extended the existing retrieval and pairwise-treatment
@@ -192,7 +250,7 @@ This is a cross-repository investigation of the value-delivery system, including
 its mobile consumers. It is not a line-by-line review of every product feature,
 an independent security certification, or an observation of deployed behavior.
 
-### Current merged baseline
+### Historical October 1 merged baseline
 
 The October 1 central integration includes the committed producer, result,
 candidate-retrieval and accounting increments, alongside artifact and
@@ -209,7 +267,7 @@ The retained Adaptive Context lane still has earlier heads. Its owner refreshes
 that coordinated tuple at intake; this documentation change does not move it
 or certify a current runtime. Preserve the exact dated receipts below.
 
-This is the next assignment's starting tuple, not a moving claim about main.
+This was the October 1 starting tuple. Use the program roadmap’s October 2 activation tuple and recheck current main at intake.
 The [program landing checkpoint](../vesper-program-roadmap.md#combined-landing-checkpoint--september-30)
 and CI Plan retain the combined verification evidence. This rebaseline checked
 Git and current interfaces; it did not rerun runtime or live-provider acceptance.
@@ -1437,6 +1495,11 @@ implementation. Recommendations elsewhere are our engineering inferences.
 ## 12 Document delivery and next handoff
 
 ### Current assignment and supported scope
+
+The October 2 R3 milestone in section 0 owns the next execution. The following
+R2/R7 material preserves delivered scope and the still-open quality gates; it
+does not request another replay implementation.
+
 
 **R2/R7 selection and supported-addition evaluation implementation is delivered**
 from section 1's accepted tuple; the dated receipt below names the exact code,
