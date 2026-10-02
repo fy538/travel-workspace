@@ -654,17 +654,25 @@ accepted starting tuple remains workspace
 `da4c3d716aaff3e20a8d85ea35acc857810c4c16`, backend
 `28a72b0643ae168a4976c1dfe7861a7c1022267c`, app
 `0f607bf2cef95dd4cd91c6fc9bbad10aa282a535`.
+The C1.2 candidate is workspace branch `codex/capture-recovery-20261002`
+starting from receipt commit `bfd06b7c` plus this roadmap amendment, backend
+`28a72b0643ae168a4976c1dfe7861a7c1022267c`, and app
+`aa731cab24043dda24872742a0d3d4fe72e8b421` (`test: cover additional-friend
+Places route return`).
 
-C1.2 found no demonstrated defect. Existing app evidence passed 177 tests in
-seven focused suites covering the additional-friend exact Place action,
-source-bound navigation and return context/viewport, Places reader withdrawal
+C1.2 found no demonstrated defect. The seven focused app suites now pass 178
+tests. A direct `usePlacesSemanticNavigation` test joins the additional-friend
+unit from the two-person comparison field to its exact venue route, selected
+Place refs, root-return token, and exact restored active unit. The other focused
+checks cover source-bound navigation/return context, Places reader withdrawal
 or revision changes, and suppression of delayed owner reads across navigation
-and account changes. Focused backend exact-reading, route and three-person
-projection checks passed 9 tests (88 related tests deselected). These are
-synthetic/contract-level checks, not a captured combined native three-person
-flow or authenticated owner readback. No source behavior changed. C1.3 remains
-unrun because its approved-session prerequisite is absent; no credentials or
-synthetic identity were used.
+and account changes. The existing Places tab remains mounted beneath pushed
+detail routes, retaining its scroll view. Focused backend exact-reading, route
+and three-person projection checks passed 9 tests (88 related tests
+deselected). These are synthetic/contract-level checks, not a captured native
+viewport measurement or authenticated owner readback. No source behavior
+changed. C1.3 remains unrun because its approved-session prerequisite is
+absent; no credentials or synthetic identity were used.
 
 **C1.3 preparation — October 2:** `npm run capture-journal:test` passed its
 host-compiled Swift journal-store harness, including exact original-byte
@@ -679,6 +687,16 @@ response-loss, authenticated server custody, or current-owner readback. No
 disposable database or lane service was started. The assigned simulator still
 shows first-run onboarding, so C1.3's native signed-in execution remains
 blocked pending the approved QA session.
+
+The explicit-base `make verify-changed` selected app `verify:fast`, app
+`verify:merge`, and workspace documentation checks. `verify:merge` and the
+documentation checks passed. Fast-check components also passed individually:
+native compatibility, icon freshness, TypeScript, API boundaries, schema
+bridge, Home-surface budgets, test-contract TypeScript, and full lint with
+`--no-cache` (0 errors, 167 warnings). The aggregate wrapper returned exit 2
+because its default Expo lint attempted to write `.expo/cache/eslint` and the
+environment returned `EPERM`; this is an unverified wrapper/cache-write state,
+not a lint finding. No cache cleanup or permission changes were attempted.
 
 **Finish:** a clean committed candidate and focused evidence for C1.2; the exact
 C1.3 native/authenticated receipt is required before calling the whole goal
