@@ -436,3 +436,23 @@ def test_git_identity_ignores_hook_environment(tmp_path, monkeypatch):
     monkeypatch.setenv("GIT_WORK_TREE", str(repos[0].root))
     assert [MODULE._git(r, ["rev-parse", "HEAD"]).stdout for r in repos] == expected
     assert len(set(expected)) == 3
+
+
+@pytest.mark.parametrize("path", [
+    "travel-app/.maestro/polish/new.yaml",
+    "travel-app/.maestro/config.pr.yaml",
+    "travel-app/package.json",
+    "docs/child-repos.ci-lock.json",
+    "scripts/validate-maestro-flows.py",
+    "travel-app/scripts/maestro/normalize-metadata.mjs",
+])
+def test_maestro_inputs_check_packaged_inventory_before_child_suites(path):
+    selection = MODULE.select_commands([path], base_refs={"workspace": "base", "app": "base"})
+    gate = next(i for i,c in enumerate(selection.commands) if c.argv == ("make", "maestro-flow-governance-check"))
+    assert all(gate < i for i,c in enumerate(selection.commands) if "verify:merge" in c.argv)
+    assert MODULE.required_dependency_repositories(selection) == ["travel-agent", "travel-app"]
+
+
+def test_ordinary_component_edit_does_not_select_whole_maestro_inventory():
+    selection = MODULE.select_commands(["travel-app/components/Foo.tsx"], base_refs={"app": "base"})
+    assert not any("maestro-flow-governance-check" in c.argv for c in selection.commands)
