@@ -113,6 +113,48 @@ If the only remaining gap requires an unadopted disclosure/result policy, prepar
 that exact decision in this goal block and stop implementation at that boundary.
 AC1 is not yet promised to be a long uninterrupted coding run.
 
+**AC1.1 investigation receipt — October 2:** the existing public-request type
+and one-attempt acquisition adapter have no reproduced defect. The gap is the
+missing selected-object caller/authority connection, not query construction:
+the selected-source POST accepts only the private synthesis request and rejects
+unknown public lookup fields; the producer rejects a work item carrying a public
+request before source hydration, spending or model work. The mobile selected-
+source path is an exact-result GET reader and does not start this work. The
+provider-free focused suite passed **93 tests** across request validation,
+acquisition, work identity, the API route, answer-only lookup and producer
+rejection. No provider/network/model call was made.
+
+The adopted contribution contract already makes provider contact a T2 boundary:
+prepare one exact effect and ask once; explicit language does not bypass provider
+contact. It does not yet define the selected-object confirmation payload or how
+that grant binds to execution/result owners. Before connecting this caller, the
+Product/Chat interaction owner should adopt or revise this conservative proposal:
+
+1. Every selected-object public lookup gets one T2 confirmation, including when
+   the person says “research this.” Preview the exact normalized provider-facing
+   terms (`PublicResearchRequest.provider_query()`), purpose and provider, with
+   any location/date/category visibly included. State that the selected source,
+   private instruction, notes, OCR, history and local identifiers are not sent.
+2. The approval is for one bounded lookup and is bound server-side to the
+   authenticated viewer, exact selected source revision/span, exact normalized
+   request, purpose and provider. Any change to those terms needs a new approval;
+   denial or expiry causes zero public dispatch. Product must set the approval's
+   expiry/revocation behavior; the request's existing 8–15 second acquisition
+   deadline is not an approval lifetime.
+3. Public results remain a transient answer with explicit URL/source-kind/date
+   provenance for this slice. Do not attach them to the persisted private
+   selected-source result or broaden that result contract until its owner adopts
+   evidence binding, claim-support, retention and correction behavior. A URL
+   candidate/snippet remains distinct from fetched, verified evidence.
+
+Affected owners: Product/Chat interaction (T2 preview and approval), the
+selected-source route/producer (grant validation and zero-dispatch denial), the
+shared public-acquisition adapter (egress allowlist), and the result owner (any
+future persistence/readback). This packet is a proposed decision, not policy
+adoption. Until adopted, preserve the current fail-closed route/producer and do
+not connect public acquisition to selected-source production. AC1.1's
+investigation is complete; AC1 implementation is paused at this owner decision.
+
 | Milestone | Work and observable finish |
 | --- | --- |
 | AC1.1 Existing-proof and disclosure admission | First map the existing constructor/adapter proofs to the selected-object caller and identify the precise missing owner/authority boundary. Reuse the current work-item constructor; implement only a demonstrated gap within adopted semantics. Map an exact selected object/revision and one explicitly caller-approved public request into the existing acquisition boundary. Keep selected private text, notes, OCR, history and local subject identifiers outside provider arguments. Reuse the existing request limits; accept only a named public purpose and explicit public terms. A typed string is not proof of disclosure authority, and a keyword scrubber must not manufacture that authority. Unknown/unapproved inputs fail closed. |
