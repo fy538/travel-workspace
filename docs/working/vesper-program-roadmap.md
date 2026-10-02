@@ -24,6 +24,19 @@ depends_on:
 
 Native mock-mode Keep → Life entry → exact original → viewer → Undo removal passed (one primary and three extra frames). Unsupported expected persona failed while actual Default Alex/mock mode remained selected. Tutorial-present dismissal and real authenticated interrupted binary recovery remain unverified; mock receipts do not establish production acceptance. The reader stays internal/default-off and read-only. Adaptive Context now has a securely configured local credential, but its owner reports Anthropic token counting rejected for insufficient provider credit. No generation or model output occurred; independent human judgments remain open. The separate provider-routing candidate is not part of this accepted integration and does not authorize a paid OpenAI substitution.
 
+**Bounded authenticated native attempt — October 2:** on the assigned QA SE
+simulator (`51A7A2C0-49CB-487E-A056-A771361EFA9B`), I cleared the persisted
+mock-mode override and confirmed the app pointed at the lane-local API
+(`127.0.0.1:56986`). The isolated API was healthy with `SKIP_AUTH=false`, the
+approved Clerk test issuer/JWKS configuration, and AI, search and background
+loops disabled. After Clerk session checking, the app showed its first-run
+screen with “I already have an account”; no authenticated QA session was
+available. No Keep was submitted, no owner data was written, and no auth bypass
+or credentials were used. This attempt is **blocked before capture (0/1)**;
+restore an approved signed-in Clerk QA session on this assigned simulator
+before retrying. It does not replace the separate synthetic-auth local API
+receipt or establish native interrupted recovery.
+
 `fy538` approved only node-forge GHSA-86w9-cpqp-85rv/source 1240912/version 1.4.0 through October 9 UTC. All 26 safeguard/parser tests and actual registry audit passed. Expiry, changed identity, new high/critical findings and tooling failures remain blocking. This is risk acceptance, not a fix or release/deployment permission. Earlier checkpoints below are historical; this record supersedes their app/security/device status. Owner checkouts remain preserved.
 
 **Corrective acceptance — October 2:** app [PR #215](https://github.com/fy538/travel-app/pull/215) landed at `0f607bf2cef95dd4cd91c6fc9bbad10aa282a535` with all nine required hosted checks passing. Workspace #57's first Reliability attempt rejected three flow headers despite passing command-syntax shards; the metadata-only correction preserves every native command. Local preflight now selects the existing full flow-governance gate for changed flow/policy/package/child-pin inputs. Its repair preflight passed 9,289 app tests and 193 workspace tests; the failed hosted attempt remains a failure record. The workspace pin now names the actual accepted corrective app revision, and its refreshed protected landing remains separate.
