@@ -79,6 +79,30 @@ check, but the PR still waited for the full required gate and merged 37s after
 that check. This one natural candidate provides no measured reduction in merge
 latency or runner use; the prospective sample remains `n=1`.
 
+### October 2 corrective flow-governance integration
+
+Workspace PR #57's first Reliability attempt (`37030676363`) failed because
+three newly packaged synthetic artifact-correction flows had an unknown
+reporting label as their execution tag and lacked a governed primary lane.
+All four Maestro command-syntax shards passed; Merge ready (`37030676412`)
+passed. Those passes did not certify inventory/metadata and did not permit
+landing. Both runs had completed before cancellation was attempted; no actual
+cancellation or waived check occurred.
+
+The corrective app slice normalizes only those flow headers to `stability`,
+with `local-real-backend` isolation and separate synthetic execution,
+implementation-owner and disposable-database reporting properties. Command
+bodies remain byte-for-byte unchanged. `verify_changed.py` now selects the
+existing `maestro-flow-governance-check` before broad suites when flow YAML,
+flow-governance scripts, app package input or packaged child pins change. Its
+plan includes the backend PyYAML and app Node dependencies. Focused routing,
+valid/violating inventory and unavailable-tool coverage passed 33 cases; all
+415 actual flows and metadata normalization passed. Explicit delta preflight
+at `cf93ce32/c5ff69a8/128b3ba12` passed 9,289 app tests and 193 workspace
+tests in 125.604s. The corrective app and refreshed workspace candidates still
+require their own passing hosted checks. This repairs a demonstrated local
+preflight gap; it does not certify a faster overall delivery process.
+
 ### Shared app security-audit blocker — October 2, 2026
 
 App PRs [#213](https://github.com/fy538/travel-app/pull/213) and
