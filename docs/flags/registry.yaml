@@ -926,13 +926,13 @@ flags:
 
   - name: EMBEDDING_PREWARM_ENABLED
     repo: travel-agent
-    location: backend/api/lifecycle.py:223
-    default: false
+    location: backend/api/lifecycle.py:288
+    default: true
     category: ops
     owner: fy538
     expires: 2026-10-04
     status: active
-    notes: Gates startup embedding-model prewarm; disabled by default to keep boot independent of model availability.
+    notes: Enables startup prewarm of the local sentence-transformer used by supported search paths; set false to keep boot independent of model availability.
 
   # ── Found unregistered by scripts/check_flag_registry.py's ad-hoc-lever
   # scan (2026-07-10, simplification audit). All 8 are read via

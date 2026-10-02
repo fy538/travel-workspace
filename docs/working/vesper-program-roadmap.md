@@ -20,7 +20,30 @@ depends_on:
 
 # Vesper program roadmap
 
-**Current plan — October 2, after the engineering-efficiency investigation:**
+**Current execution checkpoint — October 2, 22:16 UTC:** the C1.2 route-continuity,
+A1 private data-coherence and AC1 provider-free evidence prerequisites landed
+through normal required hosted checks: backend [PR #247](https://github.com/fy538/travel-agent/pull/247)
+at `f5f34cac89a87480e11e9f3a4ff430ad730baa1a`, app
+[PR #216](https://github.com/fy538/travel-app/pull/216) at
+`d80d3476a5f99262eec36b77d39f1c47a9cb1663`, and workspace
+[PR #61](https://github.com/fy538/travel-workspace/pull/61) at
+`a303c1b0978c088d908134f36c2728740827b16a`. The app's final aggregate
+timed out before recording steps; one failed-job rerun passed at the unchanged
+head. No required check was waived. Canonical checkouts and active owner edits
+were preserved; this accepted tuple is not a claim that those checkouts advanced.
+
+Connectivity is preparing the shared QA simulator for ordinary approved-account
+sign-in. Artifact's isolated API and Metro are ready; its authenticated
+Save/readback/Undo gate remains open. Adaptive Context is implementing the
+founder-approved exact public-lookup approval contract, including a ten-minute
+unused-approval expiry, with provider dispatch still disabled. Eng Efficiency
+is finishing verification-input identity and native-prerequisite evidence.
+The hourly central orchestrator is active again and assigns ordered independent
+milestones when useful work exists. Active implementation turns do not imply
+that every chat's persistent Goal is active: blocked Goals require user/system
+resume. Do not repeat completed slices merely to keep a lane running.
+
+**Assignment plan — October 2, after the engineering-efficiency investigation:**
 the [next activation round](#next-activation-round--october-2-roadmap-goals)
 owns the four lanes' assignments. Connectivity's detailed goal is in
 [section 5](#c1-supported-capture-and-existing-root-continuity); the other
@@ -28,7 +51,7 @@ three owners maintain their milestones in their existing specialist roadmaps.
 This document update prepares execution; it does not activate a chat Goal or
 claim that a lane has begun work. Model evaluation remains excluded.
 
-**Verified starting tuple:** GitHub main and canonical local HEADs agree at
+**Historical planning starting tuple:** GitHub main and canonical local HEADs agreed at
 workspace `f7421368851d33e9582a579b0485ddc2b0d596e3`, backend
 `28a72b0643ae168a4976c1dfe7861a7c1022267c`, app
 `0f607bf2cef95dd4cd91c6fc9bbad10aa282a535`. The October 2 planning inspection
