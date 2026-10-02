@@ -28,6 +28,17 @@ recovery fix (`7a6a2900`) are combined in central backend
 all required hosted checks passed; local explicit-base preflight also passed. Do not repeat their completed local
 implementation goals while central integration owns acceptance.
 
+The independent Eng Efficiency preflight follow-on is locally ready at
+`cb3378f6`: feature-flag registration and generated-state drift checks now run
+before expensive selected suites. Central explicit-base verification passed
+186 tooling tests and contracts in 41.824s; protected hosted landing is still
+pending. Connectivity's second committed recovery handoff is workspace
+`97f44ac3`, backend `0c7c7c374`, app `47887a042`: binary upload response loss,
+process restart and exact 75-byte/hash original readback have a local real-API
+receipt with synthetic authentication and an S3 protocol stub. Native interrupted
+recovery remains a separate device-bound gap. These new candidates do not change
+accepted child pins or certify app-main adoption.
+
 Connectivity's app session-fencing handoff `84e875cb5` extends the existing
 Keep-to-original candidate in app
 [PR #213](https://github.com/fy538/travel-app/pull/213). Artifact's app
