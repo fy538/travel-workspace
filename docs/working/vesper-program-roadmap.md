@@ -20,28 +20,54 @@ depends_on:
 
 # Vesper program roadmap
 
-**Current execution checkpoint — October 2, 22:16 UTC:** the C1.2 route-continuity,
+**Current execution checkpoint — October 2, 23:26 UTC:** the C1.2 route-continuity,
 A1 private data-coherence and AC1 provider-free evidence prerequisites landed
-through normal required hosted checks: backend [PR #247](https://github.com/fy538/travel-agent/pull/247)
+through required hosted checks: backend [PR #247](https://github.com/fy538/travel-agent/pull/247)
 at `f5f34cac89a87480e11e9f3a4ff430ad730baa1a`, app
 [PR #216](https://github.com/fy538/travel-app/pull/216) at
 `d80d3476a5f99262eec36b77d39f1c47a9cb1663`, and workspace
 [PR #61](https://github.com/fy538/travel-workspace/pull/61) at
 `a303c1b0978c088d908134f36c2728740827b16a`. The app's final aggregate
-timed out before recording steps; one failed-job rerun passed at the unchanged
-head. No required check was waived. Canonical checkouts and active owner edits
-were preserved; this accepted tuple is not a claim that those checkouts advanced.
+initially timed out before recording steps; one failed-job rerun passed at the
+unchanged head. No required check was waived.
 
-Connectivity is preparing the shared QA simulator for ordinary approved-account
-sign-in. Artifact's isolated API and Metro are ready; its authenticated
-Save/readback/Undo gate remains open. Adaptive Context is implementing the
-founder-approved exact public-lookup approval contract, including a ten-minute
-unused-approval expiry, with provider dispatch still disabled. Eng Efficiency
-is finishing verification-input identity and native-prerequisite evidence.
-The hourly central orchestrator is active again and assigns ordered independent
-milestones when useful work exists. Active implementation turns do not imply
-that every chat's persistent Goal is active: blocked Goals require user/system
-resume. Do not repeat completed slices merely to keep a lane running.
+The mandatory verification-input and native-prerequisite tooling subsequently
+landed through app [PR #217](https://github.com/fy538/travel-app/pull/217) at
+`c921e4c8eea37d1e0799abd5804f838cc847bf99` and workspace
+[PR #62](https://github.com/fy538/travel-workspace/pull/62) at
+`069657acc7336fabc9554d0441c012ab0992126c`. The optional immutable-target
+sharding experiment repair landed through app
+[PR #218](https://github.com/fy538/travel-app/pull/218) at
+`35537620848bedf860aa9e273b0d9c0fed309651` and workspace
+[PR #63](https://github.com/fy538/travel-workspace/pull/63) at
+`98b078fe04f305bd755f8892944b3c305d3d54e2`; required checks passed.
+Canonical checkouts and owner edits remain preserved; accepted merges do not
+mean those local checkouts advanced.
+
+The one authorized [natural sharding comparison](https://github.com/fy538/travel-app/actions/runs/37076671614)
+completed successfully on its first run: validation, baseline, both shards and
+aggregate passed. Its workflow revision is the accepted app `355376208`; its
+historical test app is `8088501a6121acaac68b6691e7334d943382b230`, with workspace
+pin `8babb0d125c0e1c104f80d8a0c22063684365f04`. Baseline job duration was
+615 seconds; shard job durations were 293 and 294 seconds. These are observed
+job durations, including setup and cleanup, not pure test-command timings or
+a general productivity claim. Eng Efficiency owns the complete measured receipt;
+default sharding adoption remains unproven.
+
+Connectivity's released QA simulator is at the ordinary sign-in entry.
+Artifact's isolated API and Metro are ready; authenticated recovery and
+Save/readback/Undo acceptance still require the actual approved QA session.
+Adaptive Context is finishing the founder-approved exact public-lookup approval
+contract, including ten-minute unused-approval expiry and suppression when the
+source is revoked during dispatch. Seven disposable-Postgres cases passed; the
+final preflight, committed handoff and protected integration remain open.
+Provider dispatch and model evaluation remain excluded.
+
+The existing central orchestrator is active on its current ten-minute schedule.
+It assigns ordered independent milestones when useful work exists and preserves
+specific external blockers. Active implementation turns do not imply that every
+chat's persistent Goal is active: blocked Goals require user/system resume.
+Do not repeat completed slices merely to keep a lane running.
 
 **Assignment plan — October 2, after the engineering-efficiency investigation:**
 the [next activation round](#next-activation-round--october-2-roadmap-goals)
