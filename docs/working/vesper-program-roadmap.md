@@ -1343,6 +1343,47 @@ original as photo delivery or byte-custody proof. Continue D2 on independent
 supported Home/Places value; handle local private-object-store acceptance as a
 separate explicit runtime dependency.
 
+**Private Keep → explicit original send → recipient Home → exact reader → Home
+return — verified 2026-10-01:** app commit `03dd9ee1f` is on local `main` and
+wires the persisted private-Keep receipt to the existing exact-original reader.
+On the isolated Home lane, a text source entered through the app UI persisted
+as verified submission `2240012d-32f4-417e-85c6-3322aa089866`, source object
+`45ddc8c7-0c52-46d0-b232-bbd468ab565f`, revision SHA-256
+`dcacbf739c57d54b75c558d3ae519feaf72899dfe102cc9778fa5f5a1746efcc`. Keep
+alone did not create a Home item. After the recipient explicitly accepted the
+two-person circle, the sender explicitly sent that exact original; delivery
+`ddda4bee-b503-4904-889d-ed497ba022b7` became active. Following app-process
+restart under the recipient identity, the real Home V2 API projection returned
+`home.original-delivery.ddda4bee-b503-4904-889d-ed497ba022b7`; native iPhone
+16 Pro flow opened the exact text in the shared-original reader and returned to
+the same Home card (**1/1**). The post-read API still showed exactly one active
+delivery. Backend focused tests passed **30/30** across exact-source reads,
+recipient/custody rechecks (including stale/revoked and integrity failures),
+and deduplicated history.
+
+Evidence limits: intake, persistence, API projection, and native rendering used
+the isolated local Postgres/API and real app UI, but authentication was
+synthetic (`SKIP_AUTH=true`), not Clerk/production. Circle acceptance was an
+explicit API call, not a native invitation-acceptance flow; the invitation-list
+GET returned 500 during setup and is not fixed here. A sender-scoped legacy
+trip request correctly returned 403 after the synthetic identity switch; Home
+showed a recoverable partial-read notice while the intended original remained
+readable, with no cross-account content observed. This does not establish
+real-auth account-switch behavior. The focused app Jest command was attempted
+but could not start because `travel-app/node_modules/.bin/jest` is absent.
+`make docs-check` passed. The explicit local preflight
+`make verify-changed WORKSPACE_BASE_REF=origin/main AGENT_BASE_REF=origin/main APP_BASE_REF=origin/main`
+exited **2**: workspace documentation checks passed, app `verify:fast` stopped
+because `@resvg/resvg-js` is absent, and app `verify:merge` could not resolve
+`jest/bin/jest.js`. Required app preflight is therefore **blocked/unverified**,
+not passed; do not publish this app commit until dependencies are restored and
+the change-aware preflight passes. Workspace `main` was
+`f8ae68e075a634bc75f97fe3839013f4bcfc44ec`, backend `main`
+`0a1fdf224aaf59ca713eec5eba79a34321f038a9`, and app `main`
+`03dd9ee1fa22fdb3108e7eccb8206fda380356e6`; the app commit is one commit
+ahead of `origin/main`. Local integration is complete; remote publication is
+not performed.
+
 **Home addressed Place note identity — implemented 2026-10-01:** backend commits
 `f152de2bf` and `30b2fe5be` and app commit `604860d67` bind a named Place into
 an individual or multi-note Home heading only from the exact canonical Place
