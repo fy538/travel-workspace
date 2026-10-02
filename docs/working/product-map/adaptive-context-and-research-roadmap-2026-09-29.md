@@ -120,8 +120,14 @@ the selected-source POST accepts only the private synthesis request and rejects
 unknown public lookup fields; the producer rejects a work item carrying a public
 request before source hydration, spending or model work. The mobile selected-
 source path is an exact-result GET reader and does not start this work. The
-provider-free focused suite passed **93 tests** across request validation,
+provider-free focused suite passed **94 tests** across request validation,
 acquisition, work identity, the API route, answer-only lookup and producer
+rejection. A positive candidate-discovery fixture proves the shared adapter
+retains an injected candidate as a `search_snippet` with URL and published-date
+metadata while keeping local subject identity out of its result. Existing cases
+also cover fact lookup, empty/error/deadline outcomes, URL-only leads, answer-only
+abstention, citation source binding, malicious returned content without a
+second dispatch, and the selected-source route/producer's zero-dispatch
 rejection. No provider/network/model call was made.
 
 The adopted contribution contract already makes provider contact a T2 boundary:
