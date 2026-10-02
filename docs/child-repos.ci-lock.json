@@ -1,5 +1,5 @@
 {
-  "travel-agent": "f5f34cac89a87480e11e9f3a4ff430ad730baa1a",
-  "travel-app": "c895df7e4cf4522859c3d577cae1ded2b0dbe4ab",
-  "_comment": "Reviewed opt-in sharding control candidate; unchanged test target policy and required checks; no measured speedup implied."
+  "travel-agent": "e8f9416506e83df26657bbba6c194aa34593a7ee",
+  "travel-app": "35537620848bedf860aa9e273b0d9c0fed309651",
+  "_comment": "Reviewed provider-free selected-source permission contract candidate with accepted app main; normal required checks and real-auth acceptance remain separate."
 }
