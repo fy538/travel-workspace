@@ -688,6 +688,20 @@ a clean committed handoff. A concrete external blocker is a valid stop. No
 weakened assertions, broader native portfolio, repeated pilot events, security
 exception or open-ended retry loop is included.
 
+**Package 1 correction handoff — October 2, 12:44 UTC:** the specific Expo
+tutorial guard is committed at Eng `89f7bae1d`, Connectivity `3b97eb5b3` and
+central app `a20195808`. It conditionally closes only the observed tutorial,
+asserts that overlay is gone, and retains the exact seeded mock/persona/clock
+readiness checks. Central final-head explicit-base preflight passed 9,276 app
+tests, lint/types and contracts in 102.743s; four focused readiness tests and
+the pinned changed-flow parser passed. The earlier broad preflight on Eng
+`26dd6102d` and interrupted all-flow syntax sweep remain separate receipts.
+Connectivity's device trial was blocked by the locked Mac before execution:
+tutorial-present, tutorial-absent and genuine wrong-state rejection are unrun,
+not passed. Eng's implementation handoff is complete; Connectivity resumes the
+bounded native cases when local access is available. No further headless replay
+can close this boundary. Required app Security remains unresolved independently.
+
 **Current evidence and follow-up — October 2: measure the advisory pilot.**
 The shared security blocker review, workflow repair and first post-isolation
 natural sample are complete. PR #46's cancelled duplicate had to be rerun

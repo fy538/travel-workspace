@@ -65,6 +65,19 @@ cause investigation, with Connectivity remaining the sole device executor.
 Finish with intended readiness and recovery receiving evidenced while a real
 wrong product state still fails; preserve security checks and stop blind retries.
 
+**Readiness correction handoff — October 2, 12:44 UTC:** Eng Efficiency's
+`89f7bae1d`, adopted in Connectivity `3b97eb5b3` and central app `a20195808`,
+closes the specifically observed Expo tutorial only when its text is visible,
+then preserves the seeded mock/persona/frozen-clock checks. Central final-head
+explicit-base verification passed 9,276 app tests, lint/types and contracts in
+102.743s; focused readiness tests and the changed-flow Maestro parser passed.
+Connectivity could not run the device cases because the Mac was locked.
+Tutorial-present, tutorial-absent and wrong-state native evidence therefore
+remain open; the earlier 0/1 capture receipt is not replaced by a headless pass.
+The next action is Connectivity's bounded device trial after local access is
+available, rather than another implementation or blind replay. App security
+acceptance and real interrupted binary recovery remain separate gates.
+
 Connectivity's app session-fencing handoff `84e875cb5` extends the existing
 Keep-to-original candidate in app
 [PR #213](https://github.com/fy538/travel-app/pull/213). Artifact's app
