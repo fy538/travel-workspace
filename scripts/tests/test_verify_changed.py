@@ -3,6 +3,7 @@ from __future__ import annotations
 import importlib.util
 import subprocess
 import sys
+from types import SimpleNamespace
 from pathlib import Path
 
 import pytest
@@ -82,11 +83,130 @@ def test_selects_executable_checker_test_for_referenced_document(
 
 
 def test_shared_app_change_delegates_to_app_and_contracts_not_backend_suite() -> None:
-    selection = MODULE.select_commands(["travel-app/utils/api/schema.gen.ts"], base_refs={"app": "abc"})
+    selection = MODULE.select_commands(
+        ["travel-app/utils/api/schema.gen.ts"], base_refs={"app": "abc"}
+    )
     assert not selection.fallback_to_verify
     assert any("verify:merge" in command.argv for command in selection.commands)
     assert any("contract-check" in command.argv for command in selection.commands)
     assert not any(command.argv == ("make", "ci") for command in selection.commands)
+
+
+def test_flag_sources_select_registry_gate_and_keep_general_app_edits_out(
+    tmp_path: Path,
+) -> None:
+    repos = _repositories(tmp_path)
+    selection = MODULE.select_commands(
+        [
+            "docs/flags/registry.yaml",
+            "travel-agent/backend/core/feature_flags.py",
+            "travel-app/constants/featureFlags.ts",
+        ],
+        repositories=repos,
+        base_refs={"agent": "HEAD", "app": "HEAD"},
+    )
+    assert any(
+        command.argv == ("make", "flag-registry-check")
+        for command in selection.commands
+    )
+    assert any(
+        command.argv == ("make", "docs-status-check") for command in selection.commands
+    )
+    assert MODULE.required_dependency_repositories(selection, repos) == [
+        "travel-agent",
+        "travel-app",
+    ]
+
+    ordinary_app = MODULE.select_commands(
+        ["travel-app/components/example.tsx"],
+        repositories=repos,
+        base_refs={"app": "HEAD"},
+    )
+    assert not any(
+        command.argv == ("make", "flag-registry-check")
+        for command in ordinary_app.commands
+    )
+
+    backend_test = MODULE.select_commands(
+        ["travel-agent/backend/tests/test_flags.py"],
+        repositories=repos,
+        base_refs={"agent": "HEAD"},
+    )
+    assert not any(
+        command.argv == ("make", "flag-registry-check")
+        for command in backend_test.commands
+    )
+
+
+def test_policy_gates_precede_broader_suites_for_mixed_flag_changes(
+    tmp_path: Path,
+) -> None:
+    repos = _repositories(tmp_path)
+    selection = MODULE.select_commands(
+        ["docs/flags/registry.yaml", "travel-app/constants/featureFlags.ts"],
+        repositories=repos,
+        base_refs={"workspace": "HEAD", "app": "HEAD"},
+    )
+
+    gate_positions = [
+        index
+        for index, command in enumerate(selection.commands)
+        if command.argv
+        and command.argv[0] == "make"
+        and command.argv[1] in {"flag-registry-check", "docs-status-check"}
+    ]
+    broad_positions = [
+        index
+        for index, command in enumerate(selection.commands)
+        if "verify:merge" in command.argv or "scripts/tests/" in command.argv
+    ]
+
+    assert len(gate_positions) == 2
+    assert broad_positions
+    assert max(gate_positions) < min(broad_positions)
+
+
+def test_generated_current_state_sources_select_status_gate_and_backend_dependencies(
+    tmp_path: Path,
+) -> None:
+    repos = _repositories(tmp_path)
+    selection = MODULE.select_commands(
+        ["docs/status/current-state.md"],
+        repositories=repos,
+        base_refs={"workspace": "HEAD"},
+    )
+    assert any(
+        command.argv == ("make", "docs-status-check") for command in selection.commands
+    )
+    assert not any(
+        command.argv == ("make", "flag-registry-check")
+        for command in selection.commands
+    )
+    assert MODULE.required_dependency_repositories(selection, repos) == ["travel-agent"]
+
+
+@pytest.mark.parametrize(
+    ("path", "present_now"),
+    [("docs/working/added.md", True), ("docs/working/note.md", False)],
+)
+def test_added_or_deleted_markdown_selects_current_state_gate(
+    tmp_path: Path, path: str, present_now: bool
+) -> None:
+    repos = _repositories(tmp_path)
+    candidate = repos[0].root / path
+    if present_now:
+        candidate.parent.mkdir(parents=True, exist_ok=True)
+        candidate.write_text("new workspace document\n")
+    else:
+        candidate.unlink()
+
+    selection = MODULE.select_commands(
+        [path], repositories=repos, base_refs={"workspace": "HEAD"}
+    )
+
+    assert any(
+        command.argv == ("make", "docs-status-check") for command in selection.commands
+    )
 
 
 def test_unknown_workspace_input_runs_workspace_tests_and_contracts():
@@ -105,6 +225,7 @@ def test_dependency_plan_skips_child_installs_for_workspace_docs(
             "docs/working/note.md": "A prose-only note with no checker references."
         },
         repositories=repos,
+        base_refs={"workspace": "HEAD"},
     )
     assert MODULE.required_dependency_repositories(selection, repos) == []
 
@@ -124,6 +245,15 @@ def test_dependency_plan_matches_selected_child_and_cross_repo_checks(
     assert MODULE.required_dependency_repositories(workspace, repos) == [
         "travel-agent",
         "travel-app",
+    ]
+
+    workspace_policy = MODULE.Selection()
+    workspace_policy.add(("make", "flag-registry-check"), repos[0].root, "flag policy")
+    workspace_policy.add(
+        ("make", "docs-status-check"), repos[0].root, "generated state"
+    )
+    assert MODULE.required_dependency_repositories(workspace_policy, repos) == [
+        "travel-agent"
     ]
 
 
@@ -246,6 +376,50 @@ def test_ready_commands_propagate_nonzero_exit_code(
         )
         == 7
     )
+
+
+def test_validator_start_failure_is_reported_and_does_not_skip_later_checks(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    repos = _repositories(tmp_path)
+    selection = MODULE.Selection()
+    selection.add(("missing-validator",), repos[0].root, "validator unavailable")
+    selection.add(("later-validator",), repos[0].root, "later selected check")
+    calls: list[tuple[str, ...]] = []
+
+    def run(argv, *, cwd):
+        calls.append(tuple(argv))
+        if argv[0] == "missing-validator":
+            raise FileNotFoundError("missing-validator")
+        return SimpleNamespace(returncode=1)
+
+    monkeypatch.setattr(MODULE.subprocess, "run", run)
+    monkeypatch.setattr(MODULE, "default_repositories", lambda: repos)
+    monkeypatch.setattr(
+        MODULE,
+        "collect_changed_paths",
+        lambda _refs, _repos: (
+            {key: "x" * 40 for key in _refs},
+            ["docs/working/note.md"],
+        ),
+    )
+    monkeypatch.setattr(MODULE, "read_doc_texts", lambda _files, _repos: {})
+    monkeypatch.setattr(MODULE, "select_commands", lambda *_args, **_kwargs: selection)
+
+    result = MODULE.main(
+        [
+            "--workspace-base-ref",
+            "HEAD",
+            "--agent-base-ref",
+            "HEAD",
+            "--app-base-ref",
+            "HEAD",
+        ]
+    )
+
+    assert result == 2
+    assert calls == [("missing-validator",), ("later-validator",)]
+    assert "could not start selected check missing-validator" in capsys.readouterr().err
 
 
 def test_cli_requires_all_three_explicit_base_refs(

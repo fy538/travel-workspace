@@ -1,5 +1,5 @@
 {
-  "travel-agent": "355a8c11df54fee27f8de3b86196b606a64a071c",
-  "travel-app": "acf5bd837fe3725b00d9744727f513a601fb2498",
-  "_comment": "Immutable coordinated child SHAs for workspace reliability CI. Bump both after child changes land."
+  "travel-agent": "c5ff69a8d34e34e094b31258b5683a297d45a8e6",
+  "travel-app": "7338fc914ecd96757b084ada03756ade78a0b6f7",
+  "_comment": "Immutable coordinated review tuple for capture recovery and exact result reader; this branch is not accepted main."
 }

@@ -3,6 +3,8 @@ from __future__ import annotations
 import importlib.util
 from pathlib import Path
 
+import pytest
+
 
 MODULE_PATH = Path(__file__).resolve().parents[1] / "check_flag_registry.py"
 SPEC = importlib.util.spec_from_file_location("check_flag_registry", MODULE_PATH)
@@ -16,8 +18,7 @@ def test_backend_discovery_finds_literal_ad_hoc_flag_calls(tmp_path: Path) -> No
     source = backend / "core" / "feature_flags.py"
     source.parent.mkdir(parents=True)
     source.write_text(
-        'enabled = _truthy("EXAMPLE_ENABLED")\n'
-        'disabled = truthy_env("SECOND_FLAG")\n'
+        'enabled = _truthy("EXAMPLE_ENABLED")\ndisabled = truthy_env("SECOND_FLAG")\n'
     )
     (backend / "tests").mkdir()
     (backend / "tests" / "ignored.py").write_text('_truthy("TEST_ONLY")\n')
@@ -103,3 +104,52 @@ def test_unregistered_check_combines_backend_and_app_findings(tmp_path: Path) ->
         "APP_ONLY_ENABLED",
         "BACKEND_ONLY_ENABLED",
     ]
+
+
+@pytest.mark.parametrize(
+    ("app_flag", "expected_exit"),
+    [("APP_REGISTERED_ENABLED", 0), ("APP_MISSING_ENABLED", 1)],
+)
+def test_main_accepts_registered_flags_and_rejects_unregistered_mobile_flag(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+    app_flag: str,
+    expected_exit: int,
+) -> None:
+    backend_repo = tmp_path / "travel-agent"
+    backend = backend_repo / "backend" / "core"
+    backend.mkdir(parents=True)
+    (backend / "feature_flags.py").write_text('_truthy("BACKEND_REGISTERED_ENABLED")\n')
+
+    app_repo = tmp_path / "travel-app"
+    app_constants = app_repo / "constants"
+    app_constants.mkdir(parents=True)
+    app_flag_file = app_constants / "featureFlags.ts"
+    app_flag_file.write_text(f"export const {app_flag} = false;\n")
+
+    registry = tmp_path / "docs" / "flags" / "registry.yaml"
+    registry.parent.mkdir(parents=True)
+    registry.write_text(
+        "flags:\n"
+        "  - name: BACKEND_REGISTERED_ENABLED\n"
+        "    status: active\n"
+        "    expires: 2099-12-31\n"
+        "  - name: APP_REGISTERED_ENABLED\n"
+        "    status: active\n"
+        "    expires: 2099-12-31\n"
+    )
+
+    monkeypatch.setattr(MODULE, "_REPO", tmp_path)
+    monkeypatch.setattr(MODULE, "_REGISTRY", registry)
+    monkeypatch.setattr(MODULE, "_AGENT_REPO", backend_repo)
+    monkeypatch.setattr(MODULE, "_AGENT_BACKEND", backend_repo / "backend")
+    monkeypatch.setattr(MODULE, "_APP_REPO", app_repo)
+    monkeypatch.setattr(MODULE, "_APP_FLAG_FILE", app_flag_file)
+
+    assert MODULE.main([]) == expected_exit
+    captured = capsys.readouterr()
+    if expected_exit:
+        assert "APP_MISSING_ENABLED" in captured.err
+    else:
+        assert "no unregistered backend or mobile flags found" in captured.out
