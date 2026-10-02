@@ -31,13 +31,39 @@ implementation goals while central integration owns acceptance.
 The independent Eng Efficiency preflight follow-on is locally ready at
 `cb3378f6`: feature-flag registration and generated-state drift checks now run
 before expensive selected suites. Central explicit-base verification passed
-186 tooling tests and contracts in 41.824s; protected hosted landing is still
-pending. Connectivity's second committed recovery handoff is workspace
-`97f44ac3`, backend `0c7c7c374`, app `47887a042`: binary upload response loss,
+186 tooling tests and contracts in 41.824s. Protected workspace
+[PR #53](https://github.com/fy538/travel-workspace/pull/53) merged at
+`799cf00a9a36954b6a486ed7d95b86d0d5958402` after all required hosted checks
+passed. Connectivity's second committed recovery handoff is workspace
+`97f44ac3`, backend `0c7c7c374`, app `528fbac4e`: binary upload response loss and pre-upload interruption,
 process restart and exact 75-byte/hash original readback have a local real-API
 receipt with synthetic authentication and an S3 protocol stub. Native interrupted
 recovery remains a separate device-bound gap. These new candidates do not change
-accepted child pins or certify app-main adoption.
+accepted-main child pins or certify app-main adoption. The backward-compatible
+persisted-receipt finalizer is in backend
+[PR #245](https://github.com/fy538/travel-agent/pull/245), candidate `f266e325`,
+merged normally at `c5ff69a8d34e34e094b31258b5683a297d45a8e6` after all
+required and selected aggregate checks passed. Hosted database acceptance passed
+1,516 cases / 38 skipped plus canonical suites of 444 and 376 cases; skipped
+names are not enumerated in the retained summary. The capture app candidate
+`7cf04bada` (source `03fd900c`) and matching snapshots remain a review tuple,
+not accepted main. Central broad verification passed 22,304 offline backend
+cases (14 skipped / 53 expected passes), 9,276 app cases and 186 workspace
+cases; the accepted workspace-tooling delta passed a separate 186-case preflight.
+The measurement ledger records that the children stayed fixed while the
+workspace advanced during the first run; do not represent it as one immutable
+full-tuple run. Original failed/synthetic/native evidence boundaries remain.
+
+Artifact's completed idle Expo/API and isolated database/vector services were
+verified and stopped; volumes/evidence were preserved. Its QA SE reservation was
+explicitly released and assigned to Connectivity for the bounded native recovery
+proof. Home's separate device remains reserved. No paused candidate is deleted
+and no device is shared concurrently. Two subsequent native attempts stopped at
+Expo developer-menu readiness before capture (0/1); they do not certify the
+recovery flow. Eng Efficiency now owns one bounded Package 1 launch/readiness
+cause investigation, with Connectivity remaining the sole device executor.
+Finish with intended readiness and recovery receiving evidenced while a real
+wrong product state still fails; preserve security checks and stop blind retries.
 
 Connectivity's app session-fencing handoff `84e875cb5` extends the existing
 Keep-to-original candidate in app
