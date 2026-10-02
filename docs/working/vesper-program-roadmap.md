@@ -625,7 +625,9 @@ remain later packages, not automatic follow-ons.
 **Goal:** carry the accepted capture/original infrastructure through current
 Home/Places opening and return, and establish authenticated interrupted private
 Keep on the assigned device. Finish the finite cases below without asking for
-a new assignment between them. This goal is planned, not activated by this edit.
+a new assignment between them. This goal is active in the C1 capture-recovery
+lane; C1.2 is complete at the focused contract-evidence boundary, while C1.3
+remains blocked on an approved signed-in Clerk QA session.
 
 **Start / evidence:** backend upload finalization reads persisted server-owned
 receipts; app recovery journals preserve text/photo bytes and owner/session
@@ -641,6 +643,28 @@ dedicated native acceptance. Do not repeat their existing proofs as new work.
 | C1.1 Prerequisites and ownership | Record selected device/runtime, accepted tuple, mock/real mode and presence/absence of the required approved session. Confirm the historical Home staged architecture-test edit with its owner before reusing that checkout. Consume the current QA tooling; do not wait for E1 or implement a duplicate doctor. | No credentials in receipts; do not reset accounts, device data or another owner's work. Missing auth blocks C1.3, not C1.2. |
 | C1.2 Existing root-to-original continuity | Through current root/projection/route owners, cover: exact Source and return position for the additional-friend path beside a two-person Places comparison; source withdrawal/revision change between root read and open; an account change or late response during return. Reuse existing passing cases, reproduce gaps and repair only confirmed defects. Retained unrelated eligible originals and the originating root remain usable. | No new section, card hierarchy, research producer or artificial recurring supply. Synthetic API/DB plus focused app evidence is useful but is labeled separately from authenticated native evidence. Capture/review the exact existing flow when visible behavior changes. |
 | C1.3 Authenticated private capture | Once the approved QA session exists, run text and one currently supported photo through response-loss/restart/retry at the actual native journal/transport boundary. Verify one logical submission, identical Source identity/revision and original bytes, current-owner receipt, and denial/suppression after a session change. Repair discovered defects through existing owners. | Use disposable authorized QA data and isolated services. No synthetic identity override may satisfy this gate. Preserve prior failures and stop repeated identical prerequisite failures. |
+
+**C1 execution receipt — October 2:** the assigned `Vesper QA SE` simulator
+was booted on iOS 18.2 and has the development app installed, but its visible
+state is first-run onboarding; no approved signed-in Clerk session is present.
+The other booted simulator was not touched. The isolated Compose project listed
+no running containers and Metro at port 56987 refused the status request; no
+services were started, and no device/account data was reset or written. The
+accepted starting tuple remains workspace
+`da4c3d716aaff3e20a8d85ea35acc857810c4c16`, backend
+`28a72b0643ae168a4976c1dfe7861a7c1022267c`, app
+`0f607bf2cef95dd4cd91c6fc9bbad10aa282a535`.
+
+C1.2 found no demonstrated defect. Existing app evidence passed 177 tests in
+seven focused suites covering the additional-friend exact Place action,
+source-bound navigation and return context/viewport, Places reader withdrawal
+or revision changes, and suppression of delayed owner reads across navigation
+and account changes. Focused backend exact-reading, route and three-person
+projection checks passed 9 tests (88 related tests deselected). These are
+synthetic/contract-level checks, not a captured combined native three-person
+flow or authenticated owner readback. No source behavior changed. C1.3 remains
+unrun because its approved-session prerequisite is absent; no credentials or
+synthetic identity were used.
 
 **Finish:** a clean committed candidate and focused evidence for C1.2; the exact
 C1.3 native/authenticated receipt is required before calling the whole goal
