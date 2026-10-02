@@ -619,30 +619,20 @@ time. These observations motivate E1; they are not new benchmark results.
 | --- | --- | --- |
 | E1.1 Trustworthy measurement identity — mandatory | Extend the existing recorder with before/after resolved repository paths, revisions and bounded dirty-input digests; explicit bases/selected verification plan; executed tool versions, dependency-lock identity and safe allowlisted mode information. In a coordinated lane, missing children must not silently resolve to unrelated siblings. Preserve documented legitimate layouts through explicit resolution. Keep prior record compatibility and preserve failed attempts. | Stable input, modified input during execution, missing child, command/tool failure and secret-redaction cases. Unknown identity stays unknown/error; command exit semantics remain honest. Capture no credentials or source contents in receipts. Before/after identity detects observed changes, not a change-and-restore between samples; isolated checkout ownership remains necessary. No cached-pass reuse is introduced. |
 | E1.2 Early native prerequisite receipt — mandatory | Extend the existing QA intake/preflight to record assigned device, installed identity with known/unknown compatibility limits, API/Metro reachability, intended/observed mock-or-real mode and presence/absence/unknown of the required approved session. Establish session readiness through supported app/test signals, without extracting credentials or logging tokens/user data. Surface the actionable missing prerequisite before product mutations. | Missing-session real acceptance stops before Keep/Save; mock QA remains usable under its own declared requirements; wrong mode/persona still fails. Prove valid, violating and tool-unavailable cases. One serialized device trial verifies the receipt's actual environment; headless tests alone do not certify native compatibility or login. Do not promise full build-fingerprint coverage in this milestone. |
-| E1.3 Comparable broad app sharding — conditional | On the next naturally required broad app candidate, reuse `.github/workflows/app-test-sharding-experiment.yml`. Compare one successful baseline and successful shards with the same revision, dependency/coverage policy and runner class; retain every failed attempt. | Exact test union and failure propagation preserved. Record queue, install, test, aggregation and total runner occupancy separately. One passing sample is exploratory; repeat comparable natural cases before recommending adoption. If no eligible candidate exists, leave this experiment pending without creating dummy PRs or prolonging E1. Required-check changes need their own concrete reviewed candidate. |
+| E1.3 Comparable broad app sharding — conditional | Reuse the optional exact-SHA dispatch for naturally required broad app candidates. Compare one full baseline and two shards on the same app revision, immutable workspace pin, dependency/coverage policy and runner class; retain every failed dispatch and run attempt. | The first natural sample at PR #216 passed with an exact 1,298-file union (649 + 649). Record install, test, aggregation, workflow elapsed and total runner occupancy separately; leave unavailable queue time unknown. This sample is exploratory. Repeat comparable natural cases before recommending default adoption; required-check changes need their own reviewed candidate. |
 
-**E1.3 support gap and finish criterion — October 2.** The natural app
-candidate at PR #216 head `8088501a6121acaac68b6691e7334d943382b230` is now
-merged, but the existing experiment is pull-request-only and gates all three
-jobs on the historical head branch `codex/eng-eff-3a-app-tests`; it cannot
-replay that merged candidate by immutable revision. Add an optional manual
-dispatch that accepts only a full 40-character app commit SHA, validates it
-before starting test jobs, and checks the app checkout against that SHA. Run
-workflow-control helpers and their tests from the workflow revision in a separate
-checkout; the historical candidate is not required to contain future helpers.
-Record workflow revision separately from the tested app SHA and workspace SHA;
-keep the candidate's own test selection and shard union unchanged. Each comparison
-must keep using the workspace SHA already pinned in the candidate's
-`.github/ci-lock.json` (`8babb0d125c0e1c104f80d8a0c22063684365f04`) and verify
-the workspace checkout, without changing the PR path, required checks,
-permissions, secrets, runner class, Node/npm install, coverage policy or shard
-commands. Reject branch, tag, abbreviated and malformed refs before baseline
-or shard execution. Finish the hosted experiment only after one manual run at
-the natural candidate SHA has successful target validation, one full baseline,
-two successful shards and exact test-union evidence; preserve every attempt's
-run/job IDs, result, queue time, install time, test time, aggregation time and
-total runner occupancy, including failures, cancellations and reruns. One
-successful sample remains exploratory and does not justify default sharding.
+**E1.3 support repair and finish criterion — October 2.** The natural app
+candidate at PR #216 head `8088501a6121acaac68b6691e7334d943382b230` is merged.
+The optional exact-SHA workflow dispatch is now implemented and merged in app
+PR #218 (`35537620848bedf860aa9e273b0d9c0fed309651`) with its coordinated
+workspace receipt in PR #63 (`98b078fe04f305bd755f8892944b3c305d3d54e2`). It
+validates the full app SHA before test jobs, checks the workflow-control
+checkout separately from the historical app under test, and verifies the app
+checkout and existing workspace pin at
+`8babb0d125c0e1c104f80d8a0c22063684365f04`. The first natural comparison is
+complete and recorded below. Keep default sharding conditional until repeated
+comparable natural samples support an adoption recommendation; no required
+checks, permissions, secrets, automatic PR behavior or retry budgets changed.
 
 **Goal finish:** E1.1 and E1.2 are implemented, their stated representative
 acceptance is executed, and a coherent committed candidate has passed the
@@ -797,9 +787,9 @@ natural broad-test candidate, but the existing experiment workflow is not
 eligible on this PR: it triggers only on `pull_request` and gates all three jobs
 on `github.head_ref == 'codex/eng-eff-3a-app-tests'`; PR #216 uses
 `codex/integrate-autonomous-round-20261002`. There is no manual-dispatch path.
-Therefore no baseline/sharded pair ran. Reusing it on #216 would require a
-workflow or PR change, so leave E1.3 pending rather than editing a required
-check, creating a synthetic PR, or substituting a different runner.
+At that point no baseline/sharded pair had run. Reuse required a workflow
+repair; no required check was edited, no synthetic PR was created, and no
+runner was substituted.
 
 Central reports app #216's full tests passed in 9m40s. Its final `Merge ready`
 job `111049259802` ran no steps and timed out: the annotation said the maximum
@@ -807,6 +797,40 @@ execution was 1m while wall time was 6m. Central issued one failed-job rerun at
 the same head; this lane did not poll or duplicate it. Preserve the first
 attempt as infrastructure failure. Central retains publication, normal hosted
 checks and merge.
+
+**E1.3 repair and measurement receipt — October 2.** Central's explicit-base
+preflight for the repair passed in 169.003s at app `c895df7e`, workspace
+`6d79b56f` and backend `f5f34cac`: 9,294 app tests and 202 workspace tests.
+Before the experiment, a dispatch request using the target app SHA as the
+workflow `ref` returned HTTP 422 and created no event or run. It has no run ID
+or runner timing; it is retained as a failed dispatch request, not counted as a
+GitHub run attempt. The corrected dispatch ran the merged workflow from `main`
+with the target SHA as input: [run 37076671614](https://github.com/fy538/travel-app/actions/runs/37076671614), attempt 1, conclusion `success`.
+
+The run recorded workflow SHA `35537620848bedf860aa9e273b0d9c0fed309651`,
+tested app SHA `8088501a6121acaac68b6691e7334d943382b230`, and workspace pin
+`8babb0d125c0e1c104f80d8a0c22063684365f04`. Validation, both test jobs, and the
+aggregate passed. Runner class was `ubuntu-latest`; baseline and shards used
+Node 20, `npm ci`, coverage disabled and `--maxWorkers=2`.
+
+| Job | Result | `npm ci` | Test/check step | Job occupancy |
+| --- | --- | ---: | ---: | ---: |
+| Target validation | pass | — | 20s job | 20s |
+| Full baseline | 1,298 suites / 9,294 tests passed | 39s | 535s Actions step; Jest reported 533.954s | 615s |
+| Shard 1 of 2 | 649 suites / 4,499 tests passed | 34s | 227s Actions step; Jest reported 224.220s | 293s |
+| Shard 2 of 2 | 649 suites / 4,795 tests passed | 29s | 230s Actions step; Jest reported 228.058s | 294s |
+| Sharding aggregate | pass | — | 18s job; validation, baseline and shards all successful | 18s |
+
+The union check took 5s and confirmed all 1,298 selected test files exactly
+once across the two 649-file shards. The shard test totals sum to the baseline
+(4,499 + 4,795 = 9,294). The Actions run spanned 11m03s from `23:15:08Z` to
+`23:26:11Z`; summed job occupancy was 20m40s (baseline plus shards: 20m02s;
+validation and aggregation: 38s). `npm ci` totaled 1m42s across the three test
+jobs. Queue time is unknown because the run did not expose a per-job queue
+measurement. No workflow retry, cancellation or additional run occurred after
+the 422 request. This single sample demonstrates the optional path and exact
+union; it does not establish a repeatable speedup or justify default sharding.
+E1.2's authenticated native QA observation remains unverified and separate.
 
 **Ownership:** workspace recorder and QA tooling/app preflight only, plus the
 existing tests/runbooks affected. Connectivity owns product capture/session
