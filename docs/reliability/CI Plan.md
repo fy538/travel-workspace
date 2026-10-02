@@ -21,10 +21,12 @@ The required workspace Reliability workflow runs on pull-request opened,
 synchronize and reopened events. The optional pilot lives in the separate
 workspace workflow .github/workflows/roadmap-scope-pilot.yml, which listens
 to those events and labeled. It runs only when the roadmap-scope-pilot label
-is present and has a distinct concurrency group. Adding the label to an
-existing PR starts the pilot without cancelling or repeating the required
-Reliability workflow. A source update or reopen can start both workflows;
-their runs remain isolated. The pilot may select checks only for body edits
+is present; a labeled event must add that exact label. Lifecycle events and
+the opt-in label share one per-PR concurrency group; each unrelated label gets
+a separate group, so it cannot displace an active pilot. Adding the label to an existing PR starts the pilot
+without cancelling or repeating the required Reliability workflow. A source
+update or reopen can start both workflows; their runs remain isolated. The
+pilot may select checks only for body edits
 to the four working-roadmap documents admitted in the Eng Efficiency
 roadmap. GitHub requires the explicit labeled activity type for this trigger
 (https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#pull_request).
@@ -57,6 +59,21 @@ Reliability or Maestro run started. The detailed candidate tuple, plan digest
 and timing receipt are in the [working roadmap](../working/development-qa-research-and-roadmap-2026-09-30.md#hosted-trigger-isolation-recheck-october-2-utc).
 A cancelled pilot attempt remains visible, while the required full result
 stays authoritative.
+
+### Shared app security-audit blocker — October 2, 2026
+
+App PRs [#213](https://github.com/fy538/travel-app/pull/213) and
+[#214](https://github.com/fy538/travel-app/pull/214) remain blocked because the
+required `Security audit` reports `node-forge` advisory
+[GHSA-86w9-cpqp-85rv](https://github.com/advisories/GHSA-86w9-cpqp-85rv).
+The app lockfile resolves `node-forge` 1.4.0 through its production Expo
+dependency graph. The bounded usage and upstream-remediation review is in the
+[Eng Efficiency roadmap](../working/development-qa-research-and-roadmap-2026-09-30.md#bounded-app-security-blocker-review-october-2-utc).
+No compatible patched release was published in this review window. Keep the
+required audit in force and add no temporary exception. Recheck after Expo or
+`node-forge` publishes a supported fixed dependency, then require the affected
+app checks to pass before either PR can land.
+
 After the implementation lands, use the next natural PR whose only change is
 working-roadmap body prose and whose lifecycle front matter is byte-identical.
 At the trial base, expect the same child lock as protected main (`travel-agent`

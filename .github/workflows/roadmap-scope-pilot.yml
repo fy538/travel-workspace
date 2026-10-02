@@ -5,17 +5,23 @@ on:
     branches: [main]
     types: [opened, synchronize, reopened, labeled]
 
-concurrency:
-  group: roadmap-scope-pilot-${{ github.event.pull_request.number }}
-  cancel-in-progress: true
-
 permissions:
   contents: read
+
+concurrency:
+  # Lifecycle events and the opt-in label share a slot. Unrelated label
+  # events use a separate slot, so they cannot cancel an active pilot run.
+  group: >-
+    roadmap-scope-pilot-${{ github.event.pull_request.number }}-${{ github.event.action == 'labeled' && github.event.label.name != 'roadmap-scope-pilot' && format('unrelated-{0}', github.event.label.name) || 'eligible' }}
+  cancel-in-progress: true
 
 jobs:
   roadmap-scope-pilot:
     name: Advisory roadmap prose scope pilot
-    if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'roadmap-scope-pilot')
+    if: >-
+      github.event_name == 'pull_request' &&
+      contains(github.event.pull_request.labels.*.name, 'roadmap-scope-pilot') &&
+      (github.event.action != 'labeled' || github.event.label.name == 'roadmap-scope-pilot')
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:

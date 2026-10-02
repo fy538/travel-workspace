@@ -14,7 +14,7 @@ source_of_truth_for: []
 
 **Decision:** What should Vesper change about building, testing and reviewing work?
 **Research cutoff:** October 1, 2026. **Planning and execution update:**
-October 1, following the founder's request to recheck priorities after central
+October 2, following the founder's request to recheck priorities after central
 integration and Git cleanup. [Section 5](#5-improvement-roadmap) remains the
 single execution queue. Begin with the next measured verification bottleneck;
 fix obsolete assumptions when they obstruct current work and retire an old
@@ -825,6 +825,64 @@ not justify implementation/maintenance cost, retain the full path and select
 the next evidenced bottleneck. Do not build a general result-cache platform
 for this slice. Hand over the bounded implementation and evidence, or the
 specific rejected hypothesis, before expanding the assignment.
+
+### Unrelated-label cancellation guard candidate, October 2 UTC
+
+The follow-up candidate in branch `codex/pilot-label-event-guard-20261002`
+keeps `opened`, `synchronize` and `reopened` events plus the exact opt-in label
+event in one per-PR concurrency group. Other `labeled` events get a separate
+group keyed by the unrelated label name, and the job condition permits a
+labeled event only when that event adds `roadmap-scope-pilot`. This prevents an
+unrelated label from colliding with an active pilot even if GitHub reserves
+workflow concurrency before evaluating the job condition. The full required
+Reliability workflow remains separate and unchanged.
+
+`PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -p no:cacheprovider
+scripts/tests/test_merge_readiness_workflows.py -q` passed 33 tests, and
+`make docs-check` passed. The explicit-base
+`make verify-changed WORKSPACE_BASE_REF=origin/main
+AGENT_BASE_REF=origin/main APP_BASE_REF=origin/main` preflight exited 2 after
+171 workspace tests passed and five environment failures: one cross-repository
+fixture could not import SQLAlchemy, and four runtime tests could not bind
+local sockets in the sandbox. The follow-up contract command also stopped at
+the missing SQLAlchemy import. The environment was macOS 25.5 arm64 with
+Python 3.14.6; the workspace setup calls for Python 3.13. The measured records
+and logs are retained in the [verification baseline](../reliability/test-loop-baseline.json)
+and `/private/tmp/vesper-efficiency-lane-20261002/`. The focused test result
+does not replace the incomplete merge preflight.
+
+No hosted unrelated-label event has yet exercised the new concurrency key.
+After central integration publishes the candidate, add the opt-in label to
+that PR, then add an existing unrelated label while the pilot is active. Confirm
+the unrelated-label pilot job is skipped, the active pilot is not cancelled,
+and the required Reliability workflow neither restarts nor loses its green
+result. Also record a failed or cancelled required-check rerun as a failure.
+This implementation PR is a rejection/full-scope case, not a natural eligible
+roadmap-prose sample; post-isolation eligible sample size remains zero.
+
+### Bounded app security blocker review, October 2 UTC
+
+Both [app PR #213](https://github.com/fy538/travel-app/pull/213) and
+[#214](https://github.com/fy538/travel-app/pull/214) have a failing required
+`Security audit` on [GHSA-86w9-cpqp-85rv](https://github.com/advisories/GHSA-86w9-cpqp-85rv)
+(CVE-2026-85393). The app lockfile resolves `node-forge` 1.4.0 through
+`expo` → `@expo/cli` → `node-forge`; the CLI also depends on
+`@expo/code-signing-certificates`, whose current source uses node-forge for
+certificate and CSR parsing/verification and RSA signatures. Vesper does not
+import `node-forge` directly. The Expo code-signing path is present in tooling;
+direct reachability from the shipped app runtime has not been established.
+The required audit still sees the package as production-reachable through
+Expo, so that uncertainty does not justify suppressing the finding.
+
+The advisory lists no patched version, npm lists 1.4.0 as latest, and the
+upstream [proposed fix PR #1152](https://github.com/digitalbazaar/forge/pull/1152)
+is open rather than a published release. Expo's current code-signing source
+still allows node-forge 1.4.0, so updating that wrapper alone is not a
+remediation. No compatible supported fix was available in this bounded review;
+no exception or audit-policy change was made. Recheck after the upstream
+release and Expo dependency update, then require a green Security audit before
+landing affected app PRs. The operational record is in the
+[CI Plan](../reliability/CI%20Plan.md#shared-app-security-audit-blocker--october-2-2026).
 
 [DORA's work-visibility guidance](https://dora.dev/capabilities/work-visibility-in-value-stream/)
 supports directing improvement at observed constraints in the delivery path.
