@@ -84,19 +84,30 @@ was assigned to this lane. Keep this gate open until that evidence is available;
 do not infer closure from the route tests, mock app tests, or prior synthetic
 native runs.
 
-**Provider-free API readiness — October 2:** the lane-local Postgres and Qdrant
+**Provider-free API and Metro readiness — October 2:** the lane-local Postgres and Qdrant
 were healthy. The API started with the locally configured real Clerk issuer/JWKS,
 `SKIP_AUTH=false`, `AI_MODE=off`, `WEB_SEARCH_MODE=off`,
 `DISABLE_API_BACKGROUND_TASKS=true`, `DISABLE_LLM_BACKGROUND_LOOPS=true`, and
 `EMBEDDING_PREWARM_ENABLED=false`; read-only `/health` and `/ready` both returned
-HTTP 200, with Postgres, Qdrant, and the local embedding configuration ready.
+HTTP 200, with Postgres and Qdrant ready. The `/ready` response reports the
+local service checks as healthy.
 The first startup omitted the prewarm override and contacted Hugging Face Hub
 for the local embedding-model prewarm; it was stopped immediately. A corrected
 startup with prewarm explicitly disabled produced no prewarm activity. No
 LLM/search-provider call, protected-route request, or user-data mutation was
-made. The API process was stopped after the probes. The app lane has no local
-`EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY` configured, and no device/session is
-assigned, so this is startup readiness—not authenticated mobile acceptance.
+made. The API remains running on the lane's port 64746. The app lane's ignored
+`travel-app/.env.local` now contains only the matching test Clerk publishable
+key, lane-local API URL, real-backend mode and auth-bypass-disabled settings;
+the ignored backend `.env` contains only the matching issuer/JWKS plus the
+provider-off controls listed above. Both files were created with private file
+permissions; the canonical env files were not changed and no values were
+printed. Metro is running offline and localhost-only on lane port 64747. Its
+first attempt correctly failed the app's loopback guard; the successful retry
+used the app's explicit `ALLOW_LOCAL_ENV_OVERRIDE=1`. The Mapbox build-token
+warning remains; no map/build behavior was exercised. No approved signed-in
+session or device is assigned to this lane, so this is service/bundle readiness,
+not authenticated mobile acceptance. The shared simulator remains unavailable
+to this lane until central releases it.
 
 This investigation also found a registry mismatch: implementation and tests
 prewarm when `EMBEDDING_PREWARM_ENABLED` is unset, while the flag registry says
@@ -109,10 +120,20 @@ owner-scoped replacement-time Save → canonical readback/cold reopen → Undo �
 canonical readback/cold reopen against a non-sensitive test artifact. Record
 the authenticated session-to-owner mapping and app/backend revisions; verify
 the explicit offsets and expected revision progression, and that the original
-source evidence is unchanged. Stop after this one round trip. The present
-blocker is missing app auth configuration plus approved session/device—not
-another implementation package. Backend denial and persistence tests remain
-separate evidence and are not substitutes for this acceptance.
+source evidence is unchanged. Stop after this one round trip. The matching test
+Clerk app/backend configuration is now present in this lane's ignored files;
+the remaining blocker is an approved signed-in QA session and central release
+of an assigned device—not another implementation package. Backend denial and
+persistence tests remain separate evidence and are not substitutes for this
+acceptance.
+
+**Normal sign-in when the device is released:** open the installed Vesper
+development build against this lane's Metro server. On the welcome screen tap
+“I already have an account”; on the sign-in screen choose “Continue with email”
+and complete Clerk's ordinary email-code flow with the approved QA account.
+Keep the email and one-time code out of chat and logs. Before Save, confirm the
+signed-in session resolves to the expected owner. This sign-in step has not yet
+been exercised on a device.
 
 **Goal completion boundary:** A1's mandatory outcome is verified private
 implementation/data coherence plus the reviewable candidate; it does not certify
