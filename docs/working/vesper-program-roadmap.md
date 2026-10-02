@@ -625,7 +625,9 @@ remain later packages, not automatic follow-ons.
 **Goal:** carry the accepted capture/original infrastructure through current
 Home/Places opening and return, and establish authenticated interrupted private
 Keep on the assigned device. Finish the finite cases below without asking for
-a new assignment between them. This goal is planned, not activated by this edit.
+a new assignment between them. This goal is active in the C1 capture-recovery
+lane; C1.2 is complete at the focused contract-evidence boundary, while C1.3
+remains blocked on an approved signed-in Clerk QA session.
 
 **Start / evidence:** backend upload finalization reads persisted server-owned
 receipts; app recovery journals preserve text/photo bytes and owner/session
@@ -641,6 +643,74 @@ dedicated native acceptance. Do not repeat their existing proofs as new work.
 | C1.1 Prerequisites and ownership | Record selected device/runtime, accepted tuple, mock/real mode and presence/absence of the required approved session. Confirm the historical Home staged architecture-test edit with its owner before reusing that checkout. Consume the current QA tooling; do not wait for E1 or implement a duplicate doctor. | No credentials in receipts; do not reset accounts, device data or another owner's work. Missing auth blocks C1.3, not C1.2. |
 | C1.2 Existing root-to-original continuity | Through current root/projection/route owners, cover: exact Source and return position for the additional-friend path beside a two-person Places comparison; source withdrawal/revision change between root read and open; an account change or late response during return. Reuse existing passing cases, reproduce gaps and repair only confirmed defects. Retained unrelated eligible originals and the originating root remain usable. | No new section, card hierarchy, research producer or artificial recurring supply. Synthetic API/DB plus focused app evidence is useful but is labeled separately from authenticated native evidence. Capture/review the exact existing flow when visible behavior changes. |
 | C1.3 Authenticated private capture | Once the approved QA session exists, run text and one currently supported photo through response-loss/restart/retry at the actual native journal/transport boundary. Verify one logical submission, identical Source identity/revision and original bytes, current-owner receipt, and denial/suppression after a session change. Repair discovered defects through existing owners. | Use disposable authorized QA data and isolated services. No synthetic identity override may satisfy this gate. Preserve prior failures and stop repeated identical prerequisite failures. |
+
+**C1 execution receipt — October 2:** the assigned `Vesper QA SE` simulator
+was booted on iOS 18.2 and has the development app installed, but its visible
+state is first-run onboarding; no approved signed-in Clerk session is present.
+The other booted simulator was not touched. The isolated Compose project listed
+no running containers and Metro at port 56987 refused the status request; no
+services were started, and no device/account data was reset or written. The
+accepted starting tuple remains workspace
+`da4c3d716aaff3e20a8d85ea35acc857810c4c16`, backend
+`28a72b0643ae168a4976c1dfe7861a7c1022267c`, app
+`0f607bf2cef95dd4cd91c6fc9bbad10aa282a535`.
+The C1.2 candidate is workspace branch `codex/capture-recovery-20261002`
+starting from receipt commit `bfd06b7c` plus this roadmap amendment, backend
+`28a72b0643ae168a4976c1dfe7861a7c1022267c`, and app
+`aa731cab24043dda24872742a0d3d4fe72e8b421` (`test: cover additional-friend
+Places route return`).
+
+C1.2 found no demonstrated defect. The seven focused app suites now pass 178
+tests. A direct `usePlacesSemanticNavigation` test joins the additional-friend
+unit from the two-person comparison field to its exact venue route, selected
+Place refs, root-return token, and exact restored active unit. The other focused
+checks cover source-bound navigation/return context, Places reader withdrawal
+or revision changes, and suppression of delayed owner reads across navigation
+and account changes. The existing Places tab remains mounted beneath pushed
+detail routes, retaining its scroll view. Focused backend exact-reading, route
+and three-person projection checks passed 9 tests (88 related tests
+deselected). These are synthetic/contract-level checks, not a captured native
+viewport measurement or authenticated owner readback. No source behavior
+changed. C1.3 remains unrun because its approved-session prerequisite is
+absent; no credentials or synthetic identity were used.
+
+**C1.3 preparation — October 2:** `npm run capture-journal:test` passed its
+host-compiled Swift journal-store harness, including exact original-byte
+preservation, idempotent preparation replay, separate-process recovery, stable
+submission receipt identity, and owner/session isolation. The app's six focused
+capture-attempt, draft, session-host, and Chat-entry suites passed 74 tests; the
+backend's replay-identity and Intake route selection passed 7 tests (27
+deselected). Those app/backend checks use in-memory or mocked transport, and
+the Swift harness compiles the storage type rather than loading the Expo module
+inside iOS. They prepare the retry path but do not prove native-device
+response-loss, authenticated server custody, or current-owner readback. No
+disposable database or lane service was started. The assigned simulator still
+shows first-run onboarding, so C1.3's native signed-in execution remains
+blocked pending the approved QA session.
+
+The explicit-base `make verify-changed` selected app `verify:fast`, app
+`verify:merge`, and workspace documentation checks. `verify:merge` and the
+documentation checks passed. Fast-check components also passed individually:
+native compatibility, icon freshness, TypeScript, API boundaries, schema
+bridge, Home-surface budgets, test-contract TypeScript, and full lint with
+`--no-cache` (0 errors, 167 warnings). The aggregate wrapper returned exit 2
+because its default Expo lint attempted to write `.expo/cache/eslint` and the
+environment returned `EPERM`; this is an unverified wrapper/cache-write state,
+not a lint finding. No cache cleanup or permission changes were attempted.
+
+**C1.2 preflight retry — October 2:** retried the same aggregate command with
+narrow execution permission for Expo's ignored lint cache; no checker,
+configuration, source, or repository permissions were changed. Exact command:
+`make verify-changed WORKSPACE_BASE_REF=da4c3d716aaff3e20a8d85ea35acc857810c4c16 AGENT_BASE_REF=28a72b0643ae168a4976c1dfe7861a7c1022267c APP_BASE_REF=0f607bf2cef95dd4cd91c6fc9bbad10aa282a535`.
+It exited 0. The resolved bases matched those explicit revisions; the router
+selected app `verify:fast`, scoped app `verify:merge` (one related test file,
+`__tests__/hooks/usePlacesSemanticNavigation.test.tsx`), and workspace docs
+links/spine/canon checks. Expo lint completed with 0 errors and 167 warnings;
+TypeScript, native compatibility, icon freshness, API boundaries, schema bridge,
+Home-surface budgets, test-contract typecheck, the scoped Jest suite, and all
+three docs checks passed. This closes the prior cache-write-only preflight
+failure. It does not change the C1.3 authentication/device prerequisite or add
+native/authenticated evidence.
 
 **Finish:** a clean committed candidate and focused evidence for C1.2; the exact
 C1.3 native/authenticated receipt is required before calling the whole goal
