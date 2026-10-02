@@ -114,6 +114,34 @@ current-device visual judgment, authenticated correction readback and full
 product acceptance remain outside this landing. No overall engineering speed
 improvement is inferred from these checks alone.
 
+**Central integration checkpoint — October 2 UTC:** Eng Efficiency's advisory
+pilot and rejection receipt landed in workspace PRs
+[#45](https://github.com/fy538/travel-workspace/pull/45) and
+[#46](https://github.com/fy538/travel-workspace/pull/46). The positive trial and
+its cancellation/rerun cost are recorded in the efficiency roadmap; required
+checks remain unchanged and default adoption is not established. Adaptive
+Context's provider-free producer replay and abstention review landed in backend
+[PR #242](https://github.com/fy538/travel-agent/pull/242) at
+`fa337882423750b630deeb4286b3d3c8267129fd`, after all required checks passed.
+Its actual-model and independent human-quality acceptance remain pending.
+
+The workspace integration candidate pins that accepted backend with app
+`acf5bd837fe3725b00d9744727f513a601fb2498`. Connectivity's completed receipt-to-
+original slice is published in app
+[PR #213](https://github.com/fy538/travel-app/pull/213), with the separate real
+local receiving receipt preserved below. Central local preflight restored
+matching dependencies and passed 792 app tests plus 22,298 offline backend
+tests in 301.210s; this supersedes the earlier missing-dependency preflight
+blocker at that stated boundary. Its 14 skipped tests, one xfail and 52 xpasses
+remain explicit in the Adaptive Context receipt. The app's regenerated design
+status now passes hosted checks, but required security audit fails on unpatched
+`node-forge` advisory [GHSA-86w9-cpqp-85rv](https://github.com/advisories/GHSA-86w9-cpqp-85rv),
+inherited through Expo tooling. No security exception, policy bypass or unmerged
+app pin is included. App PR #213 is therefore **not merged**. Artifact remains
+active on its correction/readback acceptance and has no finished committed
+handoff in this checkpoint. These remaining boundaries prevent an “all four
+lanes integrated” claim; active owner worktrees and drafts are preserved.
+
 **Integration efficiency checkpoint — October 1:** review of the September 30
 landing found stronger checkout, database and required-check reliability, but
 did not demonstrate a faster end-to-end merge: first combined candidate to
