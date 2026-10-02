@@ -5030,3 +5030,31 @@ October 1 acceptance limits and sealed holdouts remain unchanged. The next
 decision is whether to authorize a separately bounded, five-case synthetic
 Luna-low run after the remaining exact-dollar execution-budget guard and
 independent review; no live run is implied by this configuration change.
+
+### 13.7 Central integration receipt — implementation only (October 2)
+
+The founder explicitly excluded model evaluation from this completion round.
+The implementation is under protected backend review in
+[PR #246](https://github.com/fy538/travel-agent/pull/246); no token-count or
+generation call was made. Provider activation, model quality, billing acceptance
+and the historical L3/L4 plan remain separate, deferred boundaries.
+
+The first central preflight forced global fixture/search modes and failed 107
+mock-dependent offline tests. Removing those overrides, without changing the
+implementation, passed the exact workspace `8265d3ec` / backend `d3cebb079` /
+app `0f607bf2` tuple in 169.425 seconds: 22,328 passed, 14 skipped and 53
+xpassed, plus static, flags, contracts, API coverage and documentation checks.
+Both attempts are retained; the failed run is not passing evidence.
+
+The first hosted candidate passed the offline/static/migration/persona/replay
+and package checks but failed five disposable-Postgres scenario setups:
+`test_micro_journey_loop_closure.py` staged three occurrence proposals where
+its real manual-confirmation setup requires two. A fresh, lane-owned disposable
+Postgres reproduced the same failure. The GPS write happened after timed
+blocks were created; the existing matcher permits a time-only match beyond the
+GPS radius near dinner time. The fixture now stores its real fresh GPS fix
+before blocks exist, preserving production matching and every exact two-proposal
+and one-proposal-per-member assertion. All five existing cases passed unmasked
+against that disposable database (no skipped/quarantined cases) in 12.873
+seconds; the committed test repair is backend `2f3f4ff94`. Normal hosted checks
+on the repaired candidate remain required before acceptance.
